@@ -20,6 +20,10 @@
 		6CCD42BC1FA01ABE000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BB1FA01ABE000AC6C9 /* shared */; };
 		6CCD42BD1FA01AC4000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BB1FA01ABE000AC6C9 /* shared */; };
 		6CCD42BE1FA01AC5000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BB1FA01ABE000AC6C9 /* shared */; };
+		6CFBF9B21FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AE1FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf */; };
+		6CFBF9B31FA1131700D3AA78 /* VolvoSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */; };
+		6CFBF9B41FA1131700D3AA78 /* VolvoSansPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */; };
+		6CFBF9B51FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B11FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,10 @@
 		6CCD42AD1FA013E3000AC6C9 /* voluxe_customerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voluxe_customerUITests.swift; sourceTree = "<group>"; };
 		6CCD42AF1FA013E3000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CCD42BB1FA01ABE000AC6C9 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shared; path = ../shared; sourceTree = "<group>"; };
+		6CFBF9AE1FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSerifPro-Regular.ttf"; sourceTree = "<group>"; };
+		6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Light.ttf"; sourceTree = "<group>"; };
+		6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Medium.ttf"; sourceTree = "<group>"; };
+		6CFBF9B11FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSerifPro-Italic.ttf"; sourceTree = "<group>"; };
 		903760B0363EB5C59B4A7EAC /* Pods-voluxe-customerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		93EA03E00AB3889820ED8C54 /* Pods-voluxe-customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.release.xcconfig"; sourceTree = "<group>"; };
 		A386C786F41B1895E5CB07AC /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -132,6 +140,7 @@
 		6CCD428C1FA013E3000AC6C9 /* voluxe-customer */ = {
 			isa = PBXGroup;
 			children = (
+				6CFBF9AC1FA1119A00D3AA78 /* Supporting Files */,
 				6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */,
 				6CCD428F1FA013E3000AC6C9 /* ViewController.swift */,
 				6CCD42911FA013E3000AC6C9 /* Main.storyboard */,
@@ -158,6 +167,25 @@
 				6CCD42AF1FA013E3000AC6C9 /* Info.plist */,
 			);
 			path = "voluxe-customerUITests";
+			sourceTree = "<group>";
+		};
+		6CFBF9AC1FA1119A00D3AA78 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				6CFBF9AD1FA112A500D3AA78 /* Fonts */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		6CFBF9AD1FA112A500D3AA78 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */,
+				6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */,
+				6CFBF9B11FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf */,
+				6CFBF9AE1FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		C12FDB27F024C9663651767B /* Frameworks */ = {
@@ -287,9 +315,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CCD42981FA013E3000AC6C9 /* LaunchScreen.storyboard in Resources */,
+				6CFBF9B41FA1131700D3AA78 /* VolvoSansPro-Medium.ttf in Resources */,
+				6CFBF9B21FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf in Resources */,
 				6CCD42BC1FA01ABE000AC6C9 /* shared in Resources */,
+				6CFBF9B31FA1131700D3AA78 /* VolvoSansPro-Light.ttf in Resources */,
 				6CCD42951FA013E3000AC6C9 /* Assets.xcassets in Resources */,
 				6CCD42931FA013E3000AC6C9 /* Main.storyboard in Resources */,
+				6CFBF9B51FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

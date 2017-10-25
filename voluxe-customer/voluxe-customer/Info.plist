@@ -41,5 +41,20 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>com.volvocars.hse.openIdClientId</key>
+	<string>${OPENID_CLIENT_ID}</string>
+	<key>com.volvocars.hse.openIdClientSecret</key>
+	<string>$(OPENID_CLIENT_SECRET)</string>
+	<key>com.volvocars.hse.openIdRedirectUri</key>
+	<string>$(OPENID_REDIRECT_URI)</string>
+	<key>com.volvocars.hse.openIdTokenEndpoint</key>
+	<string>$(OPENID_TOKEN_ENDPOINT)</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>VolvoSansPro-Light.ttf</string>
+		<string>VolvoSerifPro-Italic.ttf</string>
+		<string>VolvoSansPro-Regular.ttf</string>
+		<string>VolvoSansPro-Medium.ttf</string>
+	</array>
 </dict>
 </plist>
