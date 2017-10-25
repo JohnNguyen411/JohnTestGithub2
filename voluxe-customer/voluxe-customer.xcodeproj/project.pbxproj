@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1D3707DC7FBDA5A1F6E22E3C /* Pods_voluxe_customer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44AE8019B95ECA0FF0B30D01 /* Pods_voluxe_customer.framework */; };
+		24BCD120DB0FDCE13438B128 /* Pods_voluxe_customerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3BF41F5113D8E501DBBC5A9 /* Pods_voluxe_customerTests.framework */; };
+		490E3BD7F33FEA5A4D8972BE /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 621A0206BEA58CBA0A08A89F /* Pods_voluxe_customerUITests.framework */; };
 		6CCD428E1FA013E3000AC6C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
 		6CCD42901FA013E3000AC6C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428F1FA013E3000AC6C9 /* ViewController.swift */; };
 		6CCD42931FA013E3000AC6C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42911FA013E3000AC6C9 /* Main.storyboard */; };
@@ -37,6 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		301D76E0210CBD6CC08AA83C /* Pods-voluxe-customerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		44AE8019B95ECA0FF0B30D01 /* Pods_voluxe_customer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		572641EF4B9AAD99601F8685 /* Pods-voluxe-customerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6147460A8CCF932907D6C9DA /* Pods-voluxe-customerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.release.xcconfig"; sourceTree = "<group>"; };
+		621A0206BEA58CBA0A08A89F /* Pods_voluxe_customerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD428A1FA013E3000AC6C9 /* voluxe-customer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "voluxe-customer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CCD428F1FA013E3000AC6C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +59,10 @@
 		6CCD42AD1FA013E3000AC6C9 /* voluxe_customerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voluxe_customerUITests.swift; sourceTree = "<group>"; };
 		6CCD42AF1FA013E3000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CCD42BB1FA01ABE000AC6C9 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shared; path = ../shared; sourceTree = "<group>"; };
+		903760B0363EB5C59B4A7EAC /* Pods-voluxe-customerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		93EA03E00AB3889820ED8C54 /* Pods-voluxe-customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.release.xcconfig"; sourceTree = "<group>"; };
+		A386C786F41B1895E5CB07AC /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
+		F3BF41F5113D8E501DBBC5A9 /* Pods_voluxe_customerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1D3707DC7FBDA5A1F6E22E3C /* Pods_voluxe_customer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24BCD120DB0FDCE13438B128 /* Pods_voluxe_customerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +86,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				490E3BD7F33FEA5A4D8972BE /* Pods_voluxe_customerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		281244F07433D470DCA5F0A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A386C786F41B1895E5CB07AC /* Pods-voluxe-customer.debug.xcconfig */,
+				93EA03E00AB3889820ED8C54 /* Pods-voluxe-customer.release.xcconfig */,
+				301D76E0210CBD6CC08AA83C /* Pods-voluxe-customerTests.debug.xcconfig */,
+				6147460A8CCF932907D6C9DA /* Pods-voluxe-customerTests.release.xcconfig */,
+				572641EF4B9AAD99601F8685 /* Pods-voluxe-customerUITests.debug.xcconfig */,
+				903760B0363EB5C59B4A7EAC /* Pods-voluxe-customerUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6CCD42811FA013E3000AC6C9 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +114,8 @@
 				6CCD42A11FA013E3000AC6C9 /* voluxe-customerTests */,
 				6CCD42AC1FA013E3000AC6C9 /* voluxe-customerUITests */,
 				6CCD428B1FA013E3000AC6C9 /* Products */,
+				281244F07433D470DCA5F0A5 /* Pods */,
+				C12FDB27F024C9663651767B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +160,16 @@
 			path = "voluxe-customerUITests";
 			sourceTree = "<group>";
 		};
+		C12FDB27F024C9663651767B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				44AE8019B95ECA0FF0B30D01 /* Pods_voluxe_customer.framework */,
+				F3BF41F5113D8E501DBBC5A9 /* Pods_voluxe_customerTests.framework */,
+				621A0206BEA58CBA0A08A89F /* Pods_voluxe_customerUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,9 +177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CCD42B21FA013E3000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-customer" */;
 			buildPhases = (
+				1DB494501C48E1BCB7B89005 /* [CP] Check Pods Manifest.lock */,
 				6CCD42861FA013E3000AC6C9 /* Sources */,
 				6CCD42871FA013E3000AC6C9 /* Frameworks */,
 				6CCD42881FA013E3000AC6C9 /* Resources */,
+				D21A25259ECB5BFE995400D3 /* [CP] Embed Pods Frameworks */,
+				E4F9B777DDDD55CB1AA0FD36 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -154,9 +197,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CCD42B51FA013E3000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-customerTests" */;
 			buildPhases = (
+				95CD4089B67687EBAF3DC11F /* [CP] Check Pods Manifest.lock */,
 				6CCD429A1FA013E3000AC6C9 /* Sources */,
 				6CCD429B1FA013E3000AC6C9 /* Frameworks */,
 				6CCD429C1FA013E3000AC6C9 /* Resources */,
+				AF50A0FBE0044702BCE1A14A /* [CP] Embed Pods Frameworks */,
+				69099056B1831710A702EF47 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -172,9 +218,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CCD42B81FA013E3000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-customerUITests" */;
 			buildPhases = (
+				07C39CB5C2872DD121ECDE31 /* [CP] Check Pods Manifest.lock */,
 				6CCD42A51FA013E3000AC6C9 /* Sources */,
 				6CCD42A61FA013E3000AC6C9 /* Frameworks */,
 				6CCD42A71FA013E3000AC6C9 /* Resources */,
+				7055FD532FC1A9D623C03139 /* [CP] Embed Pods Frameworks */,
+				63F1EF43C1D9EFF8C02A30BF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -261,6 +310,160 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		07C39CB5C2872DD121ECDE31 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-voluxe-customerUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1DB494501C48E1BCB7B89005 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-voluxe-customer-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		63F1EF43C1D9EFF8C02A30BF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		69099056B1831710A702EF47 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7055FD532FC1A9D623C03139 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95CD4089B67687EBAF3DC11F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-voluxe-customerTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AF50A0FBE0044702BCE1A14A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D21A25259ECB5BFE995400D3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4F9B777DDDD55CB1AA0FD36 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6CCD42861FA013E3000AC6C9 /* Sources */ = {
@@ -432,6 +635,7 @@
 		};
 		6CCD42B31FA013E3000AC6C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A386C786F41B1895E5CB07AC /* Pods-voluxe-customer.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -446,6 +650,7 @@
 		};
 		6CCD42B41FA013E3000AC6C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 93EA03E00AB3889820ED8C54 /* Pods-voluxe-customer.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -460,6 +665,7 @@
 		};
 		6CCD42B61FA013E3000AC6C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 301D76E0210CBD6CC08AA83C /* Pods-voluxe-customerTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -476,6 +682,7 @@
 		};
 		6CCD42B71FA013E3000AC6C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6147460A8CCF932907D6C9DA /* Pods-voluxe-customerTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -492,6 +699,7 @@
 		};
 		6CCD42B91FA013E3000AC6C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 572641EF4B9AAD99601F8685 /* Pods-voluxe-customerUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -507,6 +715,7 @@
 		};
 		6CCD42BA1FA013E3000AC6C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 903760B0363EB5C59B4A7EAC /* Pods-voluxe-customerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;

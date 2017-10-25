@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		219C8AAC1E992352D6E5BBEF /* Pods_voluxe_driverTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 319A68D61977502B82AE3388 /* Pods_voluxe_driverTests.framework */; };
 		6CCD42541FA012FD000AC6C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD42531FA012FD000AC6C9 /* AppDelegate.swift */; };
 		6CCD42561FA012FD000AC6C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD42551FA012FD000AC6C9 /* ViewController.swift */; };
 		6CCD42591FA012FD000AC6C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42571FA012FD000AC6C9 /* Main.storyboard */; };
@@ -17,6 +18,8 @@
 		6CCD42C01FA01B1B000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BF1FA01B1B000AC6C9 /* shared */; };
 		6CCD42C11FA01B21000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BF1FA01B1B000AC6C9 /* shared */; };
 		6CCD42C21FA01B22000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BF1FA01B1B000AC6C9 /* shared */; };
+		7D0FEB4F09880485F2C8E223 /* Pods_voluxe_driverUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3889F04B4282D6EEAC070B0C /* Pods_voluxe_driverUITests.framework */; };
+		E466A7CEFED69B80B6A6607A /* Pods_voluxe_driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32001D448CBCE1582DB46FF2 /* Pods_voluxe_driver.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +40,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D4A71BC4E1EEC9F5F700584 /* Pods-voluxe-driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.release.xcconfig"; sourceTree = "<group>"; };
+		1463CF0E6164B152F92D50E0 /* Pods-voluxe-driverUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		319A68D61977502B82AE3388 /* Pods_voluxe_driverTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		32001D448CBCE1582DB46FF2 /* Pods_voluxe_driver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3889F04B4282D6EEAC070B0C /* Pods_voluxe_driverUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD42501FA012FD000AC6C9 /* voluxe-driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "voluxe-driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD42531FA012FD000AC6C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CCD42551FA012FD000AC6C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -51,6 +59,10 @@
 		6CCD42731FA012FD000AC6C9 /* voluxe_driverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voluxe_driverUITests.swift; sourceTree = "<group>"; };
 		6CCD42751FA012FD000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CCD42BF1FA01B1B000AC6C9 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shared; path = ../shared; sourceTree = "<group>"; };
+		73BBE239EE136587D691AACF /* Pods-voluxe-driverTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverTests/Pods-voluxe-driverTests.release.xcconfig"; sourceTree = "<group>"; };
+		76681EE206A650404E081CB9 /* Pods-voluxe-driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.debug.xcconfig"; sourceTree = "<group>"; };
+		CA973DC815C29A6DA692FA0B /* Pods-voluxe-driverTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverTests/Pods-voluxe-driverTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DB400D33AEC6D36819686679 /* Pods-voluxe-driverUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E466A7CEFED69B80B6A6607A /* Pods_voluxe_driver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				219C8AAC1E992352D6E5BBEF /* Pods_voluxe_driverTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +86,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D0FEB4F09880485F2C8E223 /* Pods_voluxe_driverUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1921F4F434554BD2329D06E5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				76681EE206A650404E081CB9 /* Pods-voluxe-driver.debug.xcconfig */,
+				0D4A71BC4E1EEC9F5F700584 /* Pods-voluxe-driver.release.xcconfig */,
+				CA973DC815C29A6DA692FA0B /* Pods-voluxe-driverTests.debug.xcconfig */,
+				73BBE239EE136587D691AACF /* Pods-voluxe-driverTests.release.xcconfig */,
+				1463CF0E6164B152F92D50E0 /* Pods-voluxe-driverUITests.debug.xcconfig */,
+				DB400D33AEC6D36819686679 /* Pods-voluxe-driverUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		6CCD42471FA012FD000AC6C9 = {
 			isa = PBXGroup;
 			children = (
@@ -86,6 +114,8 @@
 				6CCD42671FA012FD000AC6C9 /* voluxe-driverTests */,
 				6CCD42721FA012FD000AC6C9 /* voluxe-driverUITests */,
 				6CCD42511FA012FD000AC6C9 /* Products */,
+				1921F4F434554BD2329D06E5 /* Pods */,
+				A0DA838EA1E3A154C6C185A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -130,6 +160,16 @@
 			path = "voluxe-driverUITests";
 			sourceTree = "<group>";
 		};
+		A0DA838EA1E3A154C6C185A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				32001D448CBCE1582DB46FF2 /* Pods_voluxe_driver.framework */,
+				319A68D61977502B82AE3388 /* Pods_voluxe_driverTests.framework */,
+				3889F04B4282D6EEAC070B0C /* Pods_voluxe_driverUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -137,9 +177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CCD42781FA012FD000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-driver" */;
 			buildPhases = (
+				1856762F2D57DEF33678311F /* [CP] Check Pods Manifest.lock */,
 				6CCD424C1FA012FD000AC6C9 /* Sources */,
 				6CCD424D1FA012FD000AC6C9 /* Frameworks */,
 				6CCD424E1FA012FD000AC6C9 /* Resources */,
+				F68F65B4FDB48BA2626F5594 /* [CP] Embed Pods Frameworks */,
+				FF6E29EF0FB0805BCE070DAE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -154,9 +197,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CCD427B1FA012FD000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-driverTests" */;
 			buildPhases = (
+				B0E19FFCC628890E83F61FC5 /* [CP] Check Pods Manifest.lock */,
 				6CCD42601FA012FD000AC6C9 /* Sources */,
 				6CCD42611FA012FD000AC6C9 /* Frameworks */,
 				6CCD42621FA012FD000AC6C9 /* Resources */,
+				71253FC37DBE1DCCF7D734D2 /* [CP] Embed Pods Frameworks */,
+				36F9D6D23FDA2F57B5AFB350 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -172,9 +218,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CCD427E1FA012FD000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-driverUITests" */;
 			buildPhases = (
+				68ACBBB6A334FA68232BEF38 /* [CP] Check Pods Manifest.lock */,
 				6CCD426B1FA012FD000AC6C9 /* Sources */,
 				6CCD426C1FA012FD000AC6C9 /* Frameworks */,
 				6CCD426D1FA012FD000AC6C9 /* Resources */,
+				548E5032C134087152D303A9 /* [CP] Embed Pods Frameworks */,
+				85712AEAD13208FB0E4BE306 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -261,6 +310,160 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1856762F2D57DEF33678311F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-voluxe-driver-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		36F9D6D23FDA2F57B5AFB350 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driverTests/Pods-voluxe-driverTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		548E5032C134087152D303A9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		68ACBBB6A334FA68232BEF38 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-voluxe-driverUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		71253FC37DBE1DCCF7D734D2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driverTests/Pods-voluxe-driverTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		85712AEAD13208FB0E4BE306 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B0E19FFCC628890E83F61FC5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-voluxe-driverTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F68F65B4FDB48BA2626F5594 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FF6E29EF0FB0805BCE070DAE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		6CCD424C1FA012FD000AC6C9 /* Sources */ = {
@@ -432,6 +635,7 @@
 		};
 		6CCD42791FA012FD000AC6C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 76681EE206A650404E081CB9 /* Pods-voluxe-driver.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -446,6 +650,7 @@
 		};
 		6CCD427A1FA012FD000AC6C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0D4A71BC4E1EEC9F5F700584 /* Pods-voluxe-driver.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -460,6 +665,7 @@
 		};
 		6CCD427C1FA012FD000AC6C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CA973DC815C29A6DA692FA0B /* Pods-voluxe-driverTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -476,6 +682,7 @@
 		};
 		6CCD427D1FA012FD000AC6C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73BBE239EE136587D691AACF /* Pods-voluxe-driverTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -492,6 +699,7 @@
 		};
 		6CCD427F1FA012FD000AC6C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1463CF0E6164B152F92D50E0 /* Pods-voluxe-driverUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -507,6 +715,7 @@
 		};
 		6CCD42801FA012FD000AC6C9 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DB400D33AEC6D36819686679 /* Pods-voluxe-driverUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
