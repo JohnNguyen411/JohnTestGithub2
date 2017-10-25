@@ -14,6 +14,9 @@
 		6CCD425E1FA012FD000AC6C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD425C1FA012FD000AC6C9 /* LaunchScreen.storyboard */; };
 		6CCD42691FA012FD000AC6C9 /* voluxe_driverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD42681FA012FD000AC6C9 /* voluxe_driverTests.swift */; };
 		6CCD42741FA012FD000AC6C9 /* voluxe_driverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD42731FA012FD000AC6C9 /* voluxe_driverUITests.swift */; };
+		6CCD42C01FA01B1B000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BF1FA01B1B000AC6C9 /* shared */; };
+		6CCD42C11FA01B21000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BF1FA01B1B000AC6C9 /* shared */; };
+		6CCD42C21FA01B22000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BF1FA01B1B000AC6C9 /* shared */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,7 @@
 		6CCD426F1FA012FD000AC6C9 /* voluxe-driverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "voluxe-driverUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD42731FA012FD000AC6C9 /* voluxe_driverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voluxe_driverUITests.swift; sourceTree = "<group>"; };
 		6CCD42751FA012FD000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6CCD42BF1FA01B1B000AC6C9 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shared; path = ../shared; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +81,7 @@
 		6CCD42471FA012FD000AC6C9 = {
 			isa = PBXGroup;
 			children = (
+				6CCD42BF1FA01B1B000AC6C9 /* shared */,
 				6CCD42521FA012FD000AC6C9 /* voluxe-driver */,
 				6CCD42671FA012FD000AC6C9 /* voluxe-driverTests */,
 				6CCD42721FA012FD000AC6C9 /* voluxe-driverUITests */,
@@ -233,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CCD425E1FA012FD000AC6C9 /* LaunchScreen.storyboard in Resources */,
+				6CCD42C01FA01B1B000AC6C9 /* shared in Resources */,
 				6CCD425B1FA012FD000AC6C9 /* Assets.xcassets in Resources */,
 				6CCD42591FA012FD000AC6C9 /* Main.storyboard in Resources */,
 			);
@@ -242,6 +248,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CCD42C11FA01B21000AC6C9 /* shared in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -249,6 +256,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CCD42C21FA01B22000AC6C9 /* shared in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

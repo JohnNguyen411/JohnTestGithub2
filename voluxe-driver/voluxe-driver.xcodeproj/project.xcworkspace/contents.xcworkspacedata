@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:voluxe-driver.xcodeproj">
+      location = "group:../../shared">
+   </FileRef>
+   <FileRef
+      location = "self:">
    </FileRef>
 </Workspace>
