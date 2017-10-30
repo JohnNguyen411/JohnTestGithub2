@@ -13,9 +13,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    var initialized = false
+    let userDefaults = UserDefaults.standard
+
+    static func getRunConfig() -> String {
+        //swiftlint:disable:next force_cast
+        let config = Bundle.main.object(forInfoDictionaryKey: "com.volvocars.hse.environment") as! String
+        
+        return config
+    }
+    
+    private var _appToken: String?
+    var appToken: String? {
+        set(val) {
+            userDefaults.setValue(val, forKey: Constants.AccessTokenKey)
+            _appToken = val
+        }
+        get {
+            if _appToken == nil {
+                _appToken = userDefaults.value(forKey: Constants.AccessTokenKey) as? String
+            }
+            return _appToken
+        }
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let homeViewController = FTUEViewController()
+        homeViewController.view.backgroundColor = UIColor.red
+        window!.rootViewController = homeViewController
+        window!.makeKeyAndVisible()
         return true
     }
 
