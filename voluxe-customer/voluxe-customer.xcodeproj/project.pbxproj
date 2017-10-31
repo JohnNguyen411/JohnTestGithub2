@@ -20,6 +20,9 @@
 		6C3FB2BC1FA29A1C00B22EAB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BA1FA29A1C00B22EAB /* Location.swift */; };
 		6C3FB2BD1FA29A1C00B22EAB /* VehicleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BB1FA29A1C00B22EAB /* VehicleLocation.swift */; };
 		6C3FB2BF1FA2A4CE00B22EAB /* VehicleLockStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */; };
+		6C6F4BC31FA8FBCF00087FE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */; };
+		6C6F4BC41FA8FBCF00087FE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */; };
+		6C6F4BC51FA8FBCF00087FE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */; };
 		6C91BBCE1FA7D3CE0033C2B1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2AF1FA2823800B22EAB /* Fonts.swift */; };
 		6C91BBCF1FA7D3CE0033C2B1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2AF1FA2823800B22EAB /* Fonts.swift */; };
 		6C91BBD01FA7D3D40033C2B1 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC83A8A1FA1481900FE0633 /* StringUtils.swift */; };
@@ -37,9 +40,6 @@
 		6C91BBE01FA8EB470033C2B1 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
 		6C91BBE11FA8EB470033C2B1 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
 		6C91BBE21FA8EB470033C2B1 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
-		6C91BBE71FA8EF600033C2B1 /* FTUELocalization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C91BBEB1FA8EF600033C2B1 /* FTUELocalization.strings */; };
-		6C91BBE81FA8EF600033C2B1 /* FTUELocalization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C91BBEB1FA8EF600033C2B1 /* FTUELocalization.strings */; };
-		6C91BBE91FA8EF600033C2B1 /* FTUELocalization.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C91BBEB1FA8EF600033C2B1 /* FTUELocalization.strings */; };
 		6C91BBF11FA8F2A30033C2B1 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */; };
 		6C91BBF21FA8F2A30033C2B1 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */; };
 		6C91BBF31FA8F2A30033C2B1 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */; };
@@ -118,10 +118,11 @@
 		6C3FB2BA1FA29A1C00B22EAB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		6C3FB2BB1FA29A1C00B22EAB /* VehicleLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLocation.swift; sourceTree = "<group>"; };
 		6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLockStatus.swift; sourceTree = "<group>"; };
+		6C6F4BC61FA8FBCF00087FE7 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		6C6F4BC81FA8FC4600087FE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C91BBD61FA7D6220033C2B1 /* ViewPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPager.swift; sourceTree = "<group>"; };
 		6C91BBDA1FA8E9730033C2B1 /* FTUEStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEStartViewController.swift; sourceTree = "<group>"; };
 		6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUELocalization.swift; sourceTree = "<group>"; };
-		6C91BBEA1FA8EF600033C2B1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/FTUELocalization.strings; sourceTree = "<group>"; };
 		6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Localized.swift"; sourceTree = "<group>"; };
 		6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6CC37E491FA7AF2900DA8F01 /* FTUEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEViewController.swift; sourceTree = "<group>"; };
@@ -230,7 +231,7 @@
 			isa = PBXGroup;
 			children = (
 				6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */,
-				6C91BBEB1FA8EF600033C2B1 /* FTUELocalization.strings */,
+				6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -530,13 +531,13 @@
 				6CC83A831FA140D300FE0633 /* sensus_test.json in Resources */,
 				6CC83A851FA140D300FE0633 /* sensus_qa.json in Resources */,
 				6CFBF9B41FA1131700D3AA78 /* VolvoSansPro-Medium.ttf in Resources */,
+				6C6F4BC31FA8FBCF00087FE7 /* Localizable.strings in Resources */,
 				6CC83A801FA140D300FE0633 /* ngrok.json in Resources */,
 				6CFBF9B21FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf in Resources */,
 				6CCD42BC1FA01ABE000AC6C9 /* shared in Resources */,
 				6CC83A841FA140D300FE0633 /* sensus_prod.json in Resources */,
 				6CFBF9B31FA1131700D3AA78 /* VolvoSansPro-Light.ttf in Resources */,
 				6CCD42951FA013E3000AC6C9 /* Assets.xcassets in Resources */,
-				6C91BBE71FA8EF600033C2B1 /* FTUELocalization.strings in Resources */,
 				6CC83A821FA140D300FE0633 /* localhost.json in Resources */,
 				6CFBF9B51FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf in Resources */,
 				6CC83A811FA140D300FE0633 /* mock.json in Resources */,
@@ -548,7 +549,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CCD42BD1FA01AC4000AC6C9 /* shared in Resources */,
-				6C91BBE81FA8EF600033C2B1 /* FTUELocalization.strings in Resources */,
+				6C6F4BC41FA8FBCF00087FE7 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -557,7 +558,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CCD42BE1FA01AC5000AC6C9 /* shared in Resources */,
-				6C91BBE91FA8EF600033C2B1 /* FTUELocalization.strings in Resources */,
+				6C6F4BC51FA8FBCF00087FE7 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -831,12 +832,13 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6C91BBEB1FA8EF600033C2B1 /* FTUELocalization.strings */ = {
+		6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6C91BBEA1FA8EF600033C2B1 /* en */,
+				6C6F4BC61FA8FBCF00087FE7 /* en */,
+				6C6F4BC81FA8FC4600087FE7 /* Base */,
 			);
-			name = FTUELocalization.strings;
+			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

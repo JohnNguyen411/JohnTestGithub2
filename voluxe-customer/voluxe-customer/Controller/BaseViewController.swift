@@ -11,6 +11,10 @@ import  UIKit
 
 class BaseViewController: UIViewController {
     
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         styleViews()
