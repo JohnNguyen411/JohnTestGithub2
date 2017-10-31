@@ -7,3 +7,8 @@
 */
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
 "FTUEStartTwo" = "You can schedule maintenance and repairs with Luxe, and Volvo will take care of everything else.";
+"VolvoUserId" = "Volvo User ID";
+"VolvoUserId_Placeholder" = "lucasjohansson";
+"VolvoPassword" = "Volvo Password";
+"VehicleIdentificationNumber" = "Vehicle Identification Number (VIN)";
+"VehicleIdentificationNumber_Placeholder" = "0AVAV00AVA00000";

@@ -11,4 +11,9 @@ import Foundation
 extension String {
     static let FTUEStartOne = NSLocalizedString("FTUEStartOne")
     static let FTUEStartTwo = NSLocalizedString("FTUEStartTwo")
+    static let VolvoUserId = NSLocalizedString("VolvoUserId")
+    static let VolvoUserId_Placeholder = NSLocalizedString("VolvoUserId_Placeholder")
+    static let VolvoPassword = NSLocalizedString("VolvoPassword")
+    static let VehicleIdentificationNumber = NSLocalizedString("VehicleIdentificationNumber")
+    static let VehicleIdentificationNumber_Placeholder = NSLocalizedString("VehicleIdentificationNumber_Placeholder")
 }

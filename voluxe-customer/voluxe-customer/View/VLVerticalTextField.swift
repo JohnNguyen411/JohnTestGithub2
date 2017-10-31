@@ -29,12 +29,9 @@ class VLVerticalTextField : VLTextField {
         titleLabel.textColor = .white
         textField.tintColor = .white
         textField.font = Fonts.FONT_B1
-        titleLabel.font = Fonts.FONT_B4
+        titleLabel.font = Fonts.FONT_B3
         
-        /*
-        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSFontAttributeName: Fonts.FONT_B1, NSForegroundColorAttributeName: .white])
- */
-        
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedStringKey.font: Fonts.FONT_B1, NSAttributedStringKey.foregroundColor: ColorDefinitions.grayTextColor])
     }
     
     required init?(coder aDecoder: NSCoder) {

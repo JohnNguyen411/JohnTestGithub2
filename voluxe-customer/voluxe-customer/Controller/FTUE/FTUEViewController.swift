@@ -86,6 +86,9 @@ extension FTUEViewController: ViewPagerDataSource{
             if index == 0 {
                 let ftueOneController = FTUEStartViewController()
                 newView = ftueOneController.view
+            } else if  index == 1 {
+                let ftueTwoController = FTUELoginViewController()
+                newView = ftueTwoController.view
             } else {
                 newView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height:  self.view.frame.height))
                 newView?.backgroundColor = .blue
