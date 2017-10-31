@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import  UIKit
+import UIKit
 
 class FTUEViewController: BaseViewController {
     
@@ -82,7 +82,7 @@ extension FTUEViewController: ViewPagerDataSource{
     
     func viewAtIndex(viewPager:ViewPager, index:Int, view:UIView?) -> UIView {
         var newView = view;
-        var label:UILabel?
+        var label: UILabel?
         if (newView == nil) {
             newView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height:  self.view.frame.height))
             

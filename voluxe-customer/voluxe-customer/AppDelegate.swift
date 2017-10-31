@@ -42,7 +42,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         let homeViewController = FTUEViewController()
-        homeViewController.view.backgroundColor = UIColor.red
         window!.rootViewController = homeViewController
         window!.makeKeyAndVisible()
         return true
