@@ -11,11 +11,25 @@ import  UIKit
 
 class FTUEViewController: BaseViewController {
     
+    let logo: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "volvo_logo")
+        return imageView
+    }()
+    
+    let nextButton: UIButton = {
+        let button = UIButton(frame: .zero)
+        button.addTarget(self, action: #selector(pressButton(button:)), for: .touchUpInside)
+        button.setTitle(">", for: .normal)
+        button.setTitleColor(.blue, for: .normal)
+        return button
+    }()
+    
     let viewPager = ViewPager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         viewPager.dataSource = self
     }
     
@@ -28,12 +42,33 @@ class FTUEViewController: BaseViewController {
     override func setupViews() {
         super.setupViews()
         
+        viewPager.pageControl.isHidden = true
+        viewPager.scrollView.isScrollEnabled = false
+        
         self.view.addSubview(viewPager)
+        self.view.addSubview(logo)
+        self.view.addSubview(nextButton)
         
         viewPager.snp.makeConstraints { (make) -> Void in
             make.left.right.bottom.equalToSuperview()
-            make.top.equalTo(self.view).offset(60)
+            make.top.equalTo(logo.snp.bottom).offset(10)
         }
+        
+        logo.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(15)
+            make.top.equalToSuperview().offset(35)
+            make.width.height.equalTo(50)
+        }
+        
+        nextButton.snp.makeConstraints { (make) -> Void in
+            make.right.equalToSuperview().offset(-15)
+            make.top.equalToSuperview().offset(35)
+            make.width.height.equalTo(50)
+        }
+    }
+    
+    @objc func pressButton(button: UIButton) {
+        viewPager.scrollToPage(index: viewPager.currentPosition + 1)
     }
     
     
@@ -42,13 +77,13 @@ class FTUEViewController: BaseViewController {
 
 extension FTUEViewController: ViewPagerDataSource{
     func numberOfItems(viewPager:ViewPager) -> Int {
-        return 5;
+        return 5
     }
     
     func viewAtIndex(viewPager:ViewPager, index:Int, view:UIView?) -> UIView {
         var newView = view;
         var label:UILabel?
-        if(newView == nil){
+        if (newView == nil) {
             newView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height:  self.view.frame.height))
             
             label = UILabel(frame: newView!.bounds)
@@ -57,7 +92,7 @@ extension FTUEViewController: ViewPagerDataSource{
             label!.textAlignment = .center
             label!.font =  label!.font.withSize(28)
             newView?.addSubview(label!)
-        }else{
+        } else {
             label = newView?.viewWithTag(1) as? UILabel
         }
         
