@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FTUELoginViewController: UIViewController {
+class FTUELoginViewController: UIViewController, FTUEProtocol {
     
     let volvoIdTextField = VLVerticalTextField(title: .VolvoUserId, placeholder: .VolvoUserId_Placeholder)
     let volvoPwdTextField = VLVerticalTextField(title: .VolvoPassword, placeholder: "••••••••")
@@ -49,5 +49,10 @@ class FTUELoginViewController: UIViewController {
             make.top.equalTo(volvoPwdTextField.snp.bottom)
             make.height.equalTo(80)
         }
+    }
+    
+    //MARK: FTUEStartViewController
+    func didSelectPage() {
+        volvoIdTextField.textField.becomeFirstResponder()
     }
 }

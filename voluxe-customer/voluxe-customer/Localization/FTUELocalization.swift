@@ -20,5 +20,7 @@ extension String {
     static let MobilePhoneNumber_Placeholder = NSLocalizedString("MobilePhoneNumber_Placeholder")
     static let MobilePhoneNumberExplain = NSLocalizedString("MobilePhoneNumberExplain")
     static let MobilePhoneNumberConfirm = NSLocalizedString("MobilePhoneNumberConfirm")
-
+    static let PhoneNumberVerifLabel = NSLocalizedString("PhoneNumberVerifLabel")
+    static let ResendCode = NSLocalizedString("ResendCode")
+    static let PhoneNumberVerif_Placeholder = NSLocalizedString("PhoneNumberVerif_Placeholder")
 }

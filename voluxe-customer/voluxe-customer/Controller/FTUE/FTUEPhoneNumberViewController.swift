@@ -10,27 +10,27 @@ import Foundation
 import UIKit
 import PhoneNumberKit
 
-class FTUEPhoneNumberViewController: UIViewController {
+class FTUEPhoneNumberViewController: UIViewController, UITextFieldDelegate, FTUEProtocol {
     
     let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
     
-    let phoneNumberLabel: UITextView = {
-        let textView = UITextView(frame: .zero)
+    let phoneNumberLabel: UILabel = {
+        let textView = UILabel(frame: .zero)
         textView.font = Fonts.FONT_B2
         textView.text = .MobilePhoneNumberExplain
         textView.textColor = .white
         textView.backgroundColor = .clear
-        textView.isScrollEnabled = false
+        textView.numberOfLines = 0
         return textView
     }()
     
-    let phoneNumberConfirmLabel: UITextView = {
-        let textView = UITextView(frame: .zero)
+    let phoneNumberConfirmLabel: UILabel = {
+        let textView = UILabel(frame: .zero)
         textView.font = Fonts.FONT_B4
         textView.text = .MobilePhoneNumberConfirm
         textView.textColor = .white
         textView.backgroundColor = .clear
-        textView.isScrollEnabled = false
+        textView.numberOfLines = 0
         return textView
     }()
     
@@ -38,6 +38,7 @@ class FTUEPhoneNumberViewController: UIViewController {
         super.viewDidLoad()
         
         phoneNumberTextField.textField.keyboardType = .phonePad
+        phoneNumberTextField.textField.delegate = self
         
         let phoneNumberTF: PhoneNumberTextField = phoneNumberTextField.textField as! PhoneNumberTextField
         phoneNumberTF.maxDigits = 10
@@ -51,17 +52,18 @@ class FTUEPhoneNumberViewController: UIViewController {
         self.view.addSubview(phoneNumberLabel)
         self.view.addSubview(phoneNumberConfirmLabel)
                 
-        
+        let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width, height: CGFloat(MAXFLOAT)))
+
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
             make.left.top.equalToSuperview().offset(15)
             make.right.equalToSuperview().offset(-15)
-            make.height.equalTo(60)
+            make.height.equalTo(sizeThatFits)
         }
         
         phoneNumberTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(5)
+            make.left.equalToSuperview()
             make.right.equalToSuperview().offset(-5)
-            make.top.equalTo(phoneNumberLabel.snp.bottom)
+            make.top.equalTo(phoneNumberLabel.snp.bottom).offset(5)
             make.height.equalTo(60)
         }
         
@@ -70,5 +72,10 @@ class FTUEPhoneNumberViewController: UIViewController {
             make.top.equalTo(phoneNumberTextField.snp.bottom)
             make.height.equalTo(20)
         }
+    }
+    
+    //MARK: FTUEStartViewController
+    func didSelectPage() {
+        phoneNumberTextField.textField.becomeFirstResponder()
     }
 }

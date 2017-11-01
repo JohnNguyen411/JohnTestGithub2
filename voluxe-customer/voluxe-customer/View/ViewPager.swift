@@ -12,6 +12,7 @@ import UIKit
 @objc public protocol  ViewPagerDataSource {
     func numberOfItems(viewPager: ViewPager) -> Int
     func viewAtIndex(viewPager: ViewPager, index: Int, view: UIView?) -> UIView
+    @objc optional func didChangePage(index: Int)
     @objc optional func didSelectedItem(index: Int)
     
 }
@@ -181,7 +182,7 @@ public class ViewPager: UIView {
     
 }
 
-extension ViewPager:UIScrollViewDelegate{
+extension ViewPager: UIScrollViewDelegate{
     
     public func scrollViewDidEndScrollingAnimation(_ scrollView: UIScrollView) {
         NSObject.cancelPreviousPerformRequests(withTarget: self)
@@ -202,15 +203,17 @@ extension ViewPager:UIScrollViewDelegate{
 
 extension ViewPager{
     
-    
     func animationNext(){
         Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(ViewPager.moveToNextPage), userInfo: nil, repeats: true)
     }
     
     @objc func moveToNextPage (){
-        if (currentPosition <= numberOfItems && currentPosition > 0) {
-            scrollToPage(index: currentPosition)
+        if (currentPosition == 0) {
             currentPosition = currentPosition + 1
+        }
+        if (currentPosition <= numberOfItems) {
+            currentPosition = currentPosition + 1
+            scrollToPage(index: currentPosition)
             if currentPosition > numberOfItems {
                 currentPosition = 1
             }
@@ -225,6 +228,9 @@ extension ViewPager{
             pageControl.currentPage = zIndex
             reloadViews(index: zIndex)
             currentPosition = index
+            if (currentPosition != zIndex) {
+                dataSource?.didChangePage!(index: zIndex)
+            }
         }
     }
     

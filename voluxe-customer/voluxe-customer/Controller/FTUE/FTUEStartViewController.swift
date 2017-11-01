@@ -9,25 +9,25 @@
 import Foundation
 import UIKit
 
-class FTUEStartViewController: UIViewController {
-
-    let text1: UITextView = {
-        let textView = UITextView(frame: .zero)
+class FTUEStartViewController: UIViewController, FTUEProtocol {
+    
+    let text1: UILabel = {
+        let textView = UILabel(frame: .zero)
         textView.font = Fonts.FONT_B2
         textView.text = .FTUEStartOne
         textView.textColor = .white
         textView.backgroundColor = .clear
-        textView.isScrollEnabled = false
+        textView.numberOfLines = 0
         return textView
     }()
     
-    let text2: UITextView = {
-        let textView = UITextView(frame: .zero)
+    let text2: UILabel = {
+        let textView = UILabel(frame: .zero)
         textView.font = Fonts.FONT_B2
         textView.text = .FTUEStartTwo
         textView.textColor = .white
         textView.backgroundColor = .clear
-        textView.isScrollEnabled = false
+        textView.numberOfLines = 0
         return textView
     }()
     
@@ -50,8 +50,11 @@ class FTUEStartViewController: UIViewController {
         
         text2.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(text1)
-            make.top.equalTo(text1.snp.bottom)
+            make.top.equalTo(text1.snp.bottom).offset(15)
             make.height.equalTo(sizeThatFits)
         }
     }
+    
+    //MARK: FTUEStartViewController
+    func didSelectPage() {}
 }

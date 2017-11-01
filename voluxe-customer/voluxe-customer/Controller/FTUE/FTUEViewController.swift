@@ -25,6 +25,11 @@ class FTUEViewController: BaseViewController {
         return button
     }()
     
+    let ftueOneController = FTUEStartViewController()
+    let ftueTwoController = FTUELoginViewController()
+    let ftueThreeController = FTUEPhoneNumberViewController()
+    let ftueFourthController = FTUEPhoneVerificationViewController()
+
     let viewPager = ViewPager()
     
     override func viewDidLoad() {
@@ -68,42 +73,67 @@ class FTUEViewController: BaseViewController {
     }
     
     @objc func pressButton(button: UIButton) {
-        viewPager.scrollToPage(index: viewPager.currentPosition + 1)
+        viewPager.moveToNextPage()
     }
     
     
 }
 
 
-extension FTUEViewController: ViewPagerDataSource{
+extension FTUEViewController: ViewPagerDataSource {
+    
+    
     func numberOfItems(viewPager:ViewPager) -> Int {
         return 5
     }
     
     func viewAtIndex(viewPager:ViewPager, index: Int, view: UIView?) -> UIView {
         var newView = view;
+        
         if (newView == nil) {
             if index == 0 {
-                let ftueOneController = FTUEStartViewController()
                 newView = ftueOneController.view
             } else if  index == 1 {
-                let ftueTwoController = FTUELoginViewController()
                 newView = ftueTwoController.view
             } else if  index == 2 {
-                let ftueThreeController = FTUEPhoneNumberViewController()
                 newView = ftueThreeController.view
+            } else if  index == 3 {
+                newView = ftueFourthController.view
             } else {
                 newView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height:  self.view.frame.height))
                 newView?.backgroundColor = .blue
             }
-            
         }
         
         return newView!
+    }
+    
+    func controllerAtIndex(index: Int) -> FTUEProtocol {
+        if index == 0 {
+            return ftueOneController
+        } else if  index == 1 {
+            return ftueTwoController
+        } else if  index == 2 {
+            return ftueThreeController
+        } else {
+            return ftueFourthController
+        }
+    }
+    
+    func didChangePage(index: Int) {
+        print("select index \(index)")
+        let currentController = controllerAtIndex(index: index)
+        currentController.didSelectPage()
     }
     
     func didSelectedItem(index: Int) {
         print("select index \(index)")
     }
     
+    
+    
+}
+
+protocol FTUEProtocol {
+    func didSelectPage()
 }
