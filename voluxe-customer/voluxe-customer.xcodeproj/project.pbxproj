@@ -26,6 +26,9 @@
 		6C6F4BCA1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC91FA9178700087FE7 /* FTUELoginViewController.swift */; };
 		6C6F4BCB1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC91FA9178700087FE7 /* FTUELoginViewController.swift */; };
 		6C6F4BCC1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC91FA9178700087FE7 /* FTUELoginViewController.swift */; };
+		6C6F4BCE1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */; };
+		6C6F4BCF1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */; };
+		6C6F4BD01FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */; };
 		6C91BBCE1FA7D3CE0033C2B1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2AF1FA2823800B22EAB /* Fonts.swift */; };
 		6C91BBCF1FA7D3CE0033C2B1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2AF1FA2823800B22EAB /* Fonts.swift */; };
 		6C91BBD01FA7D3D40033C2B1 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC83A8A1FA1481900FE0633 /* StringUtils.swift */; };
@@ -123,6 +126,7 @@
 		6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLockStatus.swift; sourceTree = "<group>"; };
 		6C6F4BC81FA8FC4600087FE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C6F4BC91FA9178700087FE7 /* FTUELoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUELoginViewController.swift; sourceTree = "<group>"; };
+		6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		6C91BBD61FA7D6220033C2B1 /* ViewPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPager.swift; sourceTree = "<group>"; };
 		6C91BBDA1FA8E9730033C2B1 /* FTUEStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEStartViewController.swift; sourceTree = "<group>"; };
 		6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUELocalization.swift; sourceTree = "<group>"; };
@@ -254,6 +258,7 @@
 				6CC37E491FA7AF2900DA8F01 /* FTUEViewController.swift */,
 				6C91BBDA1FA8E9730033C2B1 /* FTUEStartViewController.swift */,
 				6C6F4BC91FA9178700087FE7 /* FTUELoginViewController.swift */,
+				6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */,
 			);
 			path = FTUE;
 			sourceTree = "<group>";
@@ -647,6 +652,7 @@
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
@@ -666,6 +672,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
@@ -771,6 +778,7 @@
 				6C91BBF11FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
 				6C3FB2AA1FA2574C00B22EAB /* Vehicle.swift in Sources */,
 				6CCD428E1FA013E3000AC6C9 /* AppDelegate.swift in Sources */,
+				6C6F4BCE1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6CC37E501FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C91BBDB1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C3FB2B01FA2823800B22EAB /* Fonts.swift in Sources */,
@@ -799,6 +807,7 @@
 				6CC37E511FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C91BBD01FA7D3D40033C2B1 /* StringUtils.swift in Sources */,
 				6C91BBD41FA7D44D0033C2B1 /* Constants.swift in Sources */,
+				6C6F4BCF1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -820,6 +829,7 @@
 				6CC37E521FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C91BBD11FA7D3D50033C2B1 /* StringUtils.swift in Sources */,
 				6C91BBD51FA7D44D0033C2B1 /* Constants.swift in Sources */,
+				6C6F4BD01FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

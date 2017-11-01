@@ -16,4 +16,9 @@ extension String {
     static let VolvoPassword = NSLocalizedString("VolvoPassword")
     static let VehicleIdentificationNumber = NSLocalizedString("VehicleIdentificationNumber")
     static let VehicleIdentificationNumber_Placeholder = NSLocalizedString("VehicleIdentificationNumber_Placeholder")
+    static let MobilePhoneNumber = NSLocalizedString("MobilePhoneNumber")
+    static let MobilePhoneNumber_Placeholder = NSLocalizedString("MobilePhoneNumber_Placeholder")
+    static let MobilePhoneNumberExplain = NSLocalizedString("MobilePhoneNumberExplain")
+    static let MobilePhoneNumberConfirm = NSLocalizedString("MobilePhoneNumberConfirm")
+
 }

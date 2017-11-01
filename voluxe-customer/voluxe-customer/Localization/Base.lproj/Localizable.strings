@@ -12,3 +12,7 @@
 "VolvoPassword" = "Volvo Password";
 "VehicleIdentificationNumber" = "Vehicle Identification Number (VIN)";
 "VehicleIdentificationNumber_Placeholder" = "0AVAV00AVA00000";
+"MobilePhoneNumber" = "Mobile Phone Number";
+"MobilePhoneNumber_Placeholder" = "(555) 555-5555";
+"MobilePhoneNumberExplain" = "We require your phone number to coordinate during pickup and delivery.";
+"MobilePhoneNumberConfirm" = "We'll send you a text message to confirm the number";

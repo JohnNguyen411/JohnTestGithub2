@@ -9,20 +9,15 @@
 import Foundation
 import UIKit
 import SnapKit
+import PhoneNumberKit
 
 /**
  Should be created with a height of 50 in constraints of the caller. LuxeTextField.height
 */
 class VLTextField : UIView {
     
-    let textField: UITextField = {
-        let textField = UITextField()
-        textField.textColor = ColorDefinitions.lightGray
-        textField.font = Fonts.FONT_B2
-        textField.textAlignment = .right
-        return textField
-    }()
-    
+    let textField: UITextField
+
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = ColorDefinitions.lightGray
@@ -54,7 +49,22 @@ class VLTextField : UIView {
     
     var leftPlaceholderConstraint: Constraint?
     
-    init(title:String, placeholder:String) {
+    convenience init(title: String, placeholder: String) {
+        self.init(title: title, placeholder: placeholder, isPhoneNumber: false)
+    }
+    
+    init(title:String, placeholder:String, isPhoneNumber: Bool) {
+        
+        if isPhoneNumber {
+            textField = PhoneNumberTextField()
+        } else {
+            textField = UITextField()
+        }
+        
+        textField.textColor = ColorDefinitions.lightGray
+        textField.font = Fonts.FONT_B2
+        textField.textAlignment = .right
+        
         self.title = title
         
         //make the tap area huge for selecting the textField

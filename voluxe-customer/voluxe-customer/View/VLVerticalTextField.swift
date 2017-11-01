@@ -16,9 +16,13 @@ class VLVerticalTextField : VLTextField {
 
     static let verticalHeight = 75
     
+    convenience init(title: String, placeholder: String) {
+        self.init(title: title, placeholder: placeholder, isPhoneNumber: false)
+    }
+    
     // MARK: Initializers
-    override init(title:String, placeholder:String) {
-        super.init(title: title, placeholder: placeholder)
+    override init(title:String, placeholder:String, isPhoneNumber: Bool) {
+        super.init(title: title, placeholder: placeholder, isPhoneNumber: isPhoneNumber)
         
         backgroundColor = .clear
         textField.placeholder = nil
