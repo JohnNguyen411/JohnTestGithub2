@@ -23,4 +23,5 @@ extension String {
     static let PhoneNumberVerifLabel = NSLocalizedString("PhoneNumberVerifLabel")
     static let ResendCode = NSLocalizedString("ResendCode")
     static let PhoneNumberVerif_Placeholder = NSLocalizedString("PhoneNumberVerif_Placeholder")
+    static let WelcomeToAppLabel = NSLocalizedString("WelcomeToAppLabel")
 }

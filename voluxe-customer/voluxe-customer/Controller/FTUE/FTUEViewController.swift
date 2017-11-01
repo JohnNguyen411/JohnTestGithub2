@@ -29,6 +29,7 @@ class FTUEViewController: BaseViewController {
     let ftueTwoController = FTUELoginViewController()
     let ftueThreeController = FTUEPhoneNumberViewController()
     let ftueFourthController = FTUEPhoneVerificationViewController()
+    let ftueFifthController = FTUEAllSetViewController()
 
     let viewPager = ViewPager()
     
@@ -56,7 +57,7 @@ class FTUEViewController: BaseViewController {
         
         viewPager.snp.makeConstraints { (make) -> Void in
             make.left.right.bottom.equalToSuperview()
-            make.top.equalTo(logo.snp.bottom).offset(10)
+            make.top.equalTo(logo.snp.bottom).offset(20)
         }
         
         logo.snp.makeConstraints { (make) -> Void in
@@ -99,6 +100,8 @@ extension FTUEViewController: ViewPagerDataSource {
                 newView = ftueThreeController.view
             } else if  index == 3 {
                 newView = ftueFourthController.view
+            } else if index == 4 {
+                newView = ftueFifthController.view
             } else {
                 newView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height:  self.view.frame.height))
                 newView?.backgroundColor = .blue
@@ -115,8 +118,10 @@ extension FTUEViewController: ViewPagerDataSource {
             return ftueTwoController
         } else if  index == 2 {
             return ftueThreeController
-        } else {
+        } else if  index == 3 {
             return ftueFourthController
+        } else {
+            return ftueFifthController
         }
     }
     
@@ -129,8 +134,6 @@ extension FTUEViewController: ViewPagerDataSource {
     func didSelectedItem(index: Int) {
         print("select index \(index)")
     }
-    
-    
     
 }
 
