@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import SlideMenuControllerSwift
+import SnapKit
 
 enum LeftMenu: Int {
     case main = 0
@@ -24,7 +25,7 @@ protocol LeftMenuProtocol : class {
 
 class LeftViewController : UIViewController, LeftMenuProtocol {
     
-    var tableView: UITableView!
+    var tableView = UITableView(frame: .zero)
     var menus = ["Main", "Swift", "Java", "Go", "NonMenu"]
     var mainViewController: UIViewController!
     var imageHeaderView: UIImageView!
@@ -33,26 +34,41 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         super.init(coder: aDecoder)
     }
     
+    convenience init() {
+        self.init(nibName: nil, bundle: nil)
+    }
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.tableView.separatorColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0)
-        
-        self.tableView.register(LeftPanelTableViewCell.self, forCellReuseIdentifier: LeftPanelTableViewCell.identifier)
-        
         self.imageHeaderView = UIImageView(frame: .zero)
-        self.view.addSubview(self.imageHeaderView)
+        self.tableView.separatorColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0)
+        self.tableView.register(LeftPanelTableViewCell.self, forCellReuseIdentifier: LeftPanelTableViewCell.identifier)
+
+        setupViews()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+    func setupViews() {
+        self.view.addSubview(imageHeaderView)
+        self.view.addSubview(tableView)
+        
+        imageHeaderView.snp.makeConstraints { (make) -> Void in
+            make.left.top.equalToSuperview().offset(15)
+            make.right.equalToSuperview().offset(-15)
+            make.height.equalTo(160)
+        }
+        
+        tableView.snp.makeConstraints { (make) -> Void in
+            make.left.bottom.equalToSuperview().offset(15)
+            make.right.equalToSuperview().offset(-15)
+            make.top.equalTo(imageHeaderView.snp.bottom)
+        }
     }
     
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        self.imageHeaderView.frame = CGRect(x: 0, y: 0, width: self.view.frame.width, height: 160)
-        self.view.layoutIfNeeded()
-    }
     
     func changeViewController(_ menu: LeftMenu) {
         switch menu {

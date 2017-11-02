@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SlideMenuControllerSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,14 +37,44 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             return _appToken
         }
     }
+    
+    fileprivate func createMenuView() {
+        
+       
+        let mainViewController = MainViewController()
+        let leftViewController = LeftViewController()
+        
+        let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+        
+        SlideMenuOptions.contentViewScale = 1.0
+        SlideMenuOptions.pointOfNoReturnWidth = 0.0
+    
+        nvc.navigationBar.isTranslucent = false
+        nvc.navigationBar.backgroundColor = UIColor("#FFFFFF")
+        nvc.navigationBar.tintColor = UIColor("#000000")
+        
+        leftViewController.mainViewController = nvc
+        
+        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
+        slideMenuController.automaticallyAdjustsScrollViewInsets = true
+        slideMenuController.delegate = mainViewController
+       // self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
+        self.window?.rootViewController = slideMenuController
+        self.window?.makeKeyAndVisible()
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
+        
+        createMenuView()
+        /*
+        
         let homeViewController = FTUEViewController()
         window!.rootViewController = homeViewController
         window!.makeKeyAndVisible()
+         */
         return true
     }
 
