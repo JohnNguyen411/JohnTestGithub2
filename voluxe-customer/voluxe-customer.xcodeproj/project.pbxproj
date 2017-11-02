@@ -32,6 +32,15 @@
 		6C88DC8F1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */; };
 		6C88DC901FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */; };
 		6C88DC911FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */; };
+		6C88DC941FAA8C28009F2FC3 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC931FAA8C28009F2FC3 /* LeftViewController.swift */; };
+		6C88DC951FAA8C28009F2FC3 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC931FAA8C28009F2FC3 /* LeftViewController.swift */; };
+		6C88DC961FAA8C28009F2FC3 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC931FAA8C28009F2FC3 /* LeftViewController.swift */; };
+		6C88DC981FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC971FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift */; };
+		6C88DC991FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC971FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift */; };
+		6C88DC9A1FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC971FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift */; };
+		6C88DC9D1FAA96D2009F2FC3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */; };
+		6C88DC9E1FAA96D2009F2FC3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */; };
+		6C88DC9F1FAA96D2009F2FC3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */; };
 		6C91BBCE1FA7D3CE0033C2B1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2AF1FA2823800B22EAB /* Fonts.swift */; };
 		6C91BBCF1FA7D3CE0033C2B1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2AF1FA2823800B22EAB /* Fonts.swift */; };
 		6C91BBD01FA7D3D40033C2B1 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC83A8A1FA1481900FE0633 /* StringUtils.swift */; };
@@ -134,6 +143,9 @@
 		6C6F4BC91FA9178700087FE7 /* FTUELoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUELoginViewController.swift; sourceTree = "<group>"; };
 		6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEPhoneNumberViewController.swift; sourceTree = "<group>"; };
 		6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEAllSetViewController.swift; sourceTree = "<group>"; };
+		6C88DC931FAA8C28009F2FC3 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeftViewController.swift; path = "voluxe-customer/Controller/Main/LeftPanel/LeftViewController.swift"; sourceTree = SOURCE_ROOT; };
+		6C88DC971FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftPanelTableViewCell.swift; sourceTree = "<group>"; };
+		6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		6C91BBD61FA7D6220033C2B1 /* ViewPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPager.swift; sourceTree = "<group>"; };
 		6C91BBDA1FA8E9730033C2B1 /* FTUEStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEStartViewController.swift; sourceTree = "<group>"; };
 		6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUELocalization.swift; sourceTree = "<group>"; };
@@ -242,6 +254,24 @@
 			path = Extention;
 			sourceTree = "<group>";
 		};
+		6C88DC921FAA8ADC009F2FC3 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				6C88DC9B1FAA9086009F2FC3 /* LeftPanel */,
+				6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		6C88DC9B1FAA9086009F2FC3 /* LeftPanel */ = {
+			isa = PBXGroup;
+			children = (
+				6C88DC931FAA8C28009F2FC3 /* LeftViewController.swift */,
+				6C88DC971FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift */,
+			);
+			path = LeftPanel;
+			sourceTree = "<group>";
+		};
 		6C91BBDE1FA8EB1B0033C2B1 /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -254,6 +284,7 @@
 		6CC37E431FA7ADB000DA8F01 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6C88DC921FAA8ADC009F2FC3 /* Main */,
 				6CC37E441FA7AE0F00DA8F01 /* FTUE */,
 				6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */,
 			);
@@ -775,6 +806,7 @@
 				6CC37E531FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
 				6CC83A8B1FA1481900FE0633 /* StringUtils.swift in Sources */,
 				6C3FB2AC1FA2574C00B22EAB /* Customer.swift in Sources */,
+				6C88DC941FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6CCD42901FA013E3000AC6C9 /* ViewController.swift in Sources */,
 				6C3FB2AB1FA2574C00B22EAB /* User.swift in Sources */,
 				6C3FB2B91FA297A300B22EAB /* Date+DateTools.swift in Sources */,
@@ -784,7 +816,9 @@
 				6C3FB2BD1FA29A1C00B22EAB /* VehicleLocation.swift in Sources */,
 				6CC83A881FA1479700FE0633 /* InitializationService.swift in Sources */,
 				6C88DC8F1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
+				6C88DC981FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C3FB2B21FA2824200B22EAB /* Constants.swift in Sources */,
+				6C88DC9D1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
 				6C6F4BCA1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
 				6C3FB2B41FA289A700B22EAB /* TransmissionType.swift in Sources */,
 				6C91BBF11FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
@@ -812,6 +846,7 @@
 				6CEA0D5A1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
 				6CC37E471FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6CCD42A31FA013E3000AC6C9 /* voluxe_customerTests.swift in Sources */,
+				6C88DC991FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C91BBD81FA7D6220033C2B1 /* ViewPager.swift in Sources */,
 				6C91BBD21FA7D3D70033C2B1 /* ColorDefinitions.swift in Sources */,
 				6C91BBDC1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
@@ -820,8 +855,10 @@
 				6CC37E511FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C88DC901FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6C91BBD01FA7D3D40033C2B1 /* StringUtils.swift in Sources */,
+				6C88DC951FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6C91BBD41FA7D44D0033C2B1 /* Constants.swift in Sources */,
 				6C6F4BCF1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
+				6C88DC9E1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -836,6 +873,7 @@
 				6CEA0D5B1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
 				6CC37E481FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6CCD42AE1FA013E3000AC6C9 /* voluxe_customerUITests.swift in Sources */,
+				6C88DC9A1FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C91BBD91FA7D6220033C2B1 /* ViewPager.swift in Sources */,
 				6C91BBD31FA7D3D80033C2B1 /* ColorDefinitions.swift in Sources */,
 				6C91BBDD1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
@@ -844,8 +882,10 @@
 				6CC37E521FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C88DC911FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6C91BBD11FA7D3D50033C2B1 /* StringUtils.swift in Sources */,
+				6C88DC961FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6C91BBD51FA7D44D0033C2B1 /* Constants.swift in Sources */,
 				6C6F4BD01FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
+				6C88DC9F1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
