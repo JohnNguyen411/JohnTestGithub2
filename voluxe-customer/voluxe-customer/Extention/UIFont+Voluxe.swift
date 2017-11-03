@@ -11,8 +11,8 @@ import UIKit
 
 extension UIFont {
     
-    public class func volvoSansLightBold(size: CGFloat) -> UIFont   { return UIFont(name: "VolvoSanLigBol", size: size)! }
+    public class func volvoSansLightBold(size: CGFloat) -> UIFont   { return UIFont(name: "VolvoSansLight-Bold", size: size)! }
     public class func volvoSansBold(size: CGFloat) -> UIFont   { return UIFont(name: "VolvoSansPro-Bold", size: size)! }
-    public class func volvoSansLight(size: CGFloat) -> UIFont   { return UIFont(name: "VolvoSansLigReg", size: size)! }
+    public class func volvoSansLight(size: CGFloat) -> UIFont   { return UIFont(name: "VolvoSansLight", size: size)! }
     
 }

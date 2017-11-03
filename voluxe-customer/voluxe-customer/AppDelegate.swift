@@ -68,13 +68,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        createMenuView()
-        /*
+        for familyName in UIFont.familyNames {
+            for font in UIFont.fontNames(forFamilyName: familyName) {
+                print("font: \(font)")
+            }
+        }
+        
+        //createMenuView()
         
         let homeViewController = FTUEViewController()
         window!.rootViewController = homeViewController
         window!.makeKeyAndVisible()
-         */
+        
         return true
     }
 
