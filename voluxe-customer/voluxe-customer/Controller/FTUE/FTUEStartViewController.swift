@@ -13,8 +13,8 @@ class FTUEStartViewController: UIViewController, FTUEProtocol {
     
     let text1: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.font = .volvoSansLight(size: 18)
         textView.text = .FTUEStartOne
+        textView.font = .volvoSansLight(size: 18)
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
@@ -23,8 +23,8 @@ class FTUEStartViewController: UIViewController, FTUEProtocol {
     
     let text2: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.font = .volvoSansLight(size: 18)
         textView.text = .FTUEStartTwo
+        textView.font = .volvoSansLight(size: 18)
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0

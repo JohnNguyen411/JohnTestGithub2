@@ -15,9 +15,9 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
     
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.font = Fonts.FONT_B2
         textView.text = .PhoneNumberVerifLabel
-        textView.textColor = .white
+        textView.font = .volvoSansLight(size: 18)
+        textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -25,9 +25,10 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
     
     let resendCodeLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.font = Fonts.FONT_B4
-        textView.text = .ResendCode
-        textView.textColor = .white
+        let text: String = .ResendCode
+        textView.text = text.uppercased()
+        textView.font = .volvoSansLightBold(size: 12)
+        textView.textColor = .luxeOrange()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -58,7 +59,7 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
         self.view.addSubview(phoneNumberLabel)
         self.view.addSubview(resendCodeLabel)
         
-        let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width, height: CGFloat(MAXFLOAT)))
+        let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width - 30, height: CGFloat(MAXFLOAT)))
 
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
             make.left.top.equalToSuperview().offset(15)

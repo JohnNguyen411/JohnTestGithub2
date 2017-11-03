@@ -29,13 +29,13 @@ class VLVerticalTextField : VLTextField {
         
         textField.textAlignment = .left
         titleLabel.textAlignment = .left
-        textField.textColor = .white
-        titleLabel.textColor = .white
-        textField.tintColor = .white
-        textField.font = Fonts.FONT_B1
-        titleLabel.font = Fonts.FONT_B3
+        textField.textColor = .luxeDarkBlue()
+        titleLabel.textColor = .luxeDarkBlue()
+        textField.tintColor = .luxeDarkBlue()
+        textField.font = .volvoSansLight(size: 18)
+        titleLabel.font = .volvoSansLightBold(size: 12)
         
-        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedStringKey.font: Fonts.FONT_B1, NSAttributedStringKey.foregroundColor: ColorDefinitions.grayTextColor])
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedStringKey.font: UIFont.volvoSansLight(size: 18), NSAttributedStringKey.foregroundColor: UIColor.luxeLightGray()])
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,7 +51,7 @@ class VLVerticalTextField : VLTextField {
         }
         
         let separator0 = UIView()
-        separator0.backgroundColor = .white
+        separator0.backgroundColor = .luxeDarkBlue()
         addSubview(separator0)
         
         separator0.snp.makeConstraints { (make) -> Void in
@@ -67,15 +67,15 @@ class VLVerticalTextField : VLTextField {
     }
     
     override func applyErrorState() {
-        textField.textColor = .white
+        textField.textColor = .luxeDarkBlue()
         titleLabel.textColor = .red
         backgroundColor = .blue
     }
 
     override func resetErrorState() {
         titleLabel.text = self.title
-        titleLabel.textColor = .white
-        textField.textColor = .white
+        titleLabel.textColor = .luxeDarkBlue()
+        textField.textColor = .luxeDarkBlue()
         backgroundColor = .clear
     }
 

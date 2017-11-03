@@ -16,9 +16,9 @@ class FTUEPhoneNumberViewController: UIViewController, UITextFieldDelegate, FTUE
     
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.font = Fonts.FONT_B2
         textView.text = .MobilePhoneNumberExplain
-        textView.textColor = .white
+        textView.font = .volvoSansLight(size: 18)
+        textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -26,9 +26,9 @@ class FTUEPhoneNumberViewController: UIViewController, UITextFieldDelegate, FTUE
     
     let phoneNumberConfirmLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.font = Fonts.FONT_B4
+        textView.font = .volvoSansLight(size: 12)
+        textView.textColor = .luxeDarkGray()
         textView.text = .MobilePhoneNumberConfirm
-        textView.textColor = .white
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView

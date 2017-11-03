@@ -13,9 +13,9 @@ class FTUEAllSetViewController: UIViewController, FTUEProtocol {
     
     let text1: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.font = Fonts.FONT_B2
         textView.text = .WelcomeToAppLabel
-        textView.textColor = .white
+        textView.font = .volvoSansLight(size: 18)
+        textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
