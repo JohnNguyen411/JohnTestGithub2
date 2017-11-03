@@ -22,7 +22,8 @@ class BaseViewController: UIViewController {
     }
     
     func styleViews() {
-        self.view.backgroundColor = UIColor.black
+        self.view.backgroundColor = .white
+        setGradientBackground()
     }
     
     func setupViews() {
@@ -32,6 +33,18 @@ class BaseViewController: UIViewController {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func setGradientBackground() {
+        let colorTop =  UIColor.white.cgColor
+        let colorBottom = UIColor.luxeLinearGradient().cgColor
+        
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.colors = [ colorTop, colorBottom]
+        gradientLayer.locations = [ 0.0, 1.0]
+        gradientLayer.frame = self.view.bounds
+        
+        self.view.layer.insertSublayer(gradientLayer, at: 0)
     }
     
     

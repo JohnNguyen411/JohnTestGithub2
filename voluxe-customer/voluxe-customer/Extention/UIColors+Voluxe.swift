@@ -20,4 +20,5 @@ extension UIColor {
     public class func luxeDarkGray() -> UIColor { return UIColor("#222222") }
     public class func luxeGray() -> UIColor { return UIColor("#666666") }
     public class func luxeDeepBlue() -> UIColor { return UIColor("#345E96") }
+    public class func luxeLinearGradient() -> UIColor { return UIColor("#DCDCDC") }
 }
