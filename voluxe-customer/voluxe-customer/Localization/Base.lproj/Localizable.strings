@@ -5,6 +5,8 @@
   Created by Giroux, Johan on 10/31/17.
   Copyright © 2017 Luxe - Volvo Cars. All rights reserved.
 */
+
+/***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
 "FTUEStartTwo" = "You can schedule maintenance and repairs with Luxe, and Volvo will take care of everything else.";
 "VolvoUserId" = "Volvo User ID";
@@ -20,3 +22,6 @@
 "ResendCode" = "Resend Code";
 "PhoneNumberVerif_Placeholder" = "0000";
 "WelcomeToAppLabel" = "Welcome to Luxe, %@. Your Volvo account is now active with Luxe.";
+
+/***************** SchedulePickup ***************/
+"ShowDescription" = "Show Description";

@@ -40,15 +40,27 @@ class VLTitledLabel: UIView {
         titleLabel.textAlignment = .right
         return titleLabel
     }()
-    
-    init(title: String, leftDescription: String, rightDescription: String) {
+  
+     init() {
         super.init(frame: .zero)
+    }
+    
+    convenience init(title: String, leftDescription: String, rightDescription: String) {
+        self.init()
         
+        self.addSubview(titleLabel)
+        self.addSubview(descLeftLabel)
+        self.addSubview(descRightLabel)
+        
+        setTitle(title: title, leftDescription: leftDescription, rightDescription: rightDescription)
+        
+        applyConstraints()
+    }
+    
+    func setTitle(title: String, leftDescription: String, rightDescription: String) {
         titleLabel.text = title
         descLeftLabel.text = leftDescription
         descRightLabel.text = rightDescription
-        
-        applyConstraints()
     }
     
     required init?(coder aDecoder: NSCoder) {
