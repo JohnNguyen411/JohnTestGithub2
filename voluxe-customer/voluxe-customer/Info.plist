@@ -26,6 +26,9 @@
 		<string>VolvoSerifPro-Italic.ttf</string>
 		<string>VolvoSansPro-Regular.ttf</string>
 		<string>VolvoSansPro-Medium.ttf</string>
+		<string>VolvoSansLigBol.ttf</string>
+		<string>VolvoSansLigReg.ttf</string>
+		<string>VolvoSansPro-Bold.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>

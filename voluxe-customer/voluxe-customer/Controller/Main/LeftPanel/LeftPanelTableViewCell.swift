@@ -36,9 +36,9 @@ open class LeftPanelTableViewCell : UITableViewCell {
     }
     
     open func setData(_ data: Any?) {
-        self.backgroundColor = UIColor("#F1F8E9")
-        self.textLabel?.font = UIFont.italicSystemFont(ofSize: 18)
-        self.textLabel?.textColor = UIColor("#9E9E9E")
+        self.backgroundColor = .clear
+        self.textLabel?.font = Fonts.FONT_B2
+        self.textLabel?.textColor = .black
         if let menuText = data as? String {
             self.textLabel?.text = menuText
         }
