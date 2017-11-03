@@ -12,7 +12,7 @@ import SnapKit
 import PhoneNumberKit
 
 /**
- Should be created with a height of 50 in constraints of the caller. LuxeTextField.height
+ Should be created with a height of 50 in constraints of the caller. VLTextField.height
 */
 class VLTextField : UIView {
     
