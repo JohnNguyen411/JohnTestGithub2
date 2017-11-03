@@ -104,6 +104,8 @@
 		6CCD42BC1FA01ABE000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BB1FA01ABE000AC6C9 /* shared */; };
 		6CCD42BD1FA01AC4000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BB1FA01ABE000AC6C9 /* shared */; };
 		6CCD42BE1FA01AC5000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BB1FA01ABE000AC6C9 /* shared */; };
+		6CE5AC061FACF116009FD0D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
+		6CE5AC071FACF116009FD0D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
 		6CEA0D591FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
 		6CEA0D5A1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
 		6CEA0D5B1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
@@ -897,6 +899,7 @@
 				6C91BBD41FA7D44D0033C2B1 /* Constants.swift in Sources */,
 				6C6F4BCF1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6C88DC9E1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
+				6CE5AC061FACF116009FD0D7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -926,6 +929,7 @@
 				6C91BBD51FA7D44D0033C2B1 /* Constants.swift in Sources */,
 				6C6F4BD01FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6C88DC9F1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
+				6CE5AC071FACF116009FD0D7 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

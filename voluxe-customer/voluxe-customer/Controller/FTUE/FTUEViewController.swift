@@ -10,7 +10,8 @@ import Foundation
 import UIKit
 
 class FTUEViewController: BaseViewController {
-    
+    weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
+
     let logo: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "volvo_logo")
@@ -73,7 +74,11 @@ class FTUEViewController: BaseViewController {
     }
     
     @objc func pressButton(button: UIButton) {
-        viewPager.moveToNextPage()
+        if viewPager.currentPosition == numberOfItems(viewPager: viewPager) {
+            appDelegate?.loadMainScreen()
+        } else {
+            viewPager.moveToNextPage()
+        }
     }
     
     
