@@ -43,16 +43,6 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
         setupViews()
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        print("viewWillAppear")
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        print("viewDidDisappear")
-        super.viewDidDisappear(animated)
-    }
-    
     func setupViews() {
         
         self.view.addSubview(codeTextField)

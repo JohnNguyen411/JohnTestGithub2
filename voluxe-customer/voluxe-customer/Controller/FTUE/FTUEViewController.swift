@@ -20,8 +20,7 @@ class FTUEViewController: BaseViewController {
     let nextButton: UIButton = {
         let button = UIButton(frame: .zero)
         button.addTarget(self, action: #selector(pressButton(button:)), for: .touchUpInside)
-        button.setTitle(">", for: .normal)
-        button.setTitleColor(.blue, for: .normal)
+        button.setImage(UIImage(named: "next_button"), for: .normal)
         return button
     }()
     
