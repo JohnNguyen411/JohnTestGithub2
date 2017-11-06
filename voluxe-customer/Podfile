@@ -21,6 +21,8 @@ target 'voluxe-customer' do
     pod 'SnapKit', '~> 4.0.0'
     pod 'SlideMenuControllerSwift', '~> 4.0.0'
     pod 'PhoneNumberKit', '~> 2.0'
+    pod 'Presentr', '~> 1.3'
+
     
     target 'voluxe-customerTests' do
         inherit! :search_paths

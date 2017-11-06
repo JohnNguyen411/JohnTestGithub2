@@ -53,7 +53,7 @@ class VLButton : UIButton {
             break
         case .BlueSecondary:
             backgroundColor = .clear
-            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeOrange(), highlightedFontColor: nil)
+            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeDeepBlue(), highlightedFontColor: nil)
             break
             
         case .OrangeSecondary:

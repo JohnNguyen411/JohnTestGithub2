@@ -56,6 +56,7 @@ PODS:
   - PhoneNumberKit/PhoneNumberKitCore (2.0.0)
   - PhoneNumberKit/UIKit (2.0.0):
     - PhoneNumberKit/PhoneNumberKitCore
+  - Presentr (1.3)
   - Protobuf (3.4.0)
   - Result (3.2.4)
   - SlideMenuControllerSwift (4.0.0)
@@ -75,6 +76,7 @@ DEPENDENCIES:
   - Firebase/RemoteConfig (~> 4.4.0)
   - Kingfisher (~> 4.2.0)
   - PhoneNumberKit (~> 2.0)
+  - Presentr (~> 1.3)
   - SlideMenuControllerSwift (~> 4.0.0)
   - SnapKit (~> 4.0.0)
   - SwiftEventBus (~> 2.1.2)
@@ -98,6 +100,7 @@ SPEC CHECKSUMS:
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   ObjectMapper: 92230db59bf8f341a5c3a3cf0b9fbdde3cf0d87f
   PhoneNumberKit: 073b3cef30c2a64ddcd623ea5953bc84bb5b3fc4
+  Presentr: 3f0825a42cb32ecd8fc6b6d0b0de87d7d0b42482
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
@@ -106,6 +109,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: dc88934f85fb50b263b1632b9cbad3402505783e
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: a0f28662863df991f36299792d1c7112cadc9754
+PODFILE CHECKSUM: ac5ee1482c4bfd5361c5234ee15c8a71477b4440
 
 COCOAPODS: 1.3.1

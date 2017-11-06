@@ -12,6 +12,9 @@ import SlideMenuControllerSwift
 
 class MainViewController: BaseViewController {
     
+    var schedulePickupViewController: SchedulePickupViewController?
+    
+    
     convenience init() {
         self.init(nibName: nil, bundle: nil)
     }
@@ -19,6 +22,17 @@ class MainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBarItem()
+    }
+    
+    override func setupViews() {
+        schedulePickupViewController = SchedulePickupViewController()
+        if let view = schedulePickupViewController?.view {
+            self.view.addSubview(view)
+        
+            view.snp.makeConstraints { make in
+                make.edges.equalToSuperview()
+            }
+        }
     }
     
 }

@@ -43,18 +43,18 @@ class VLTitledLabel: UIView {
   
      init() {
         super.init(frame: .zero)
-    }
-    
-    convenience init(title: String, leftDescription: String, rightDescription: String) {
-        self.init()
         
         self.addSubview(titleLabel)
         self.addSubview(descLeftLabel)
         self.addSubview(descRightLabel)
         
-        setTitle(title: title, leftDescription: leftDescription, rightDescription: rightDescription)
-        
         applyConstraints()
+    }
+    
+    convenience init(title: String, leftDescription: String, rightDescription: String) {
+        self.init()
+        
+        setTitle(title: title, leftDescription: leftDescription, rightDescription: rightDescription)
     }
     
     func setTitle(title: String, leftDescription: String, rightDescription: String) {
@@ -69,8 +69,8 @@ class VLTitledLabel: UIView {
     
     func applyConstraints() {
         titleLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview().inset(16)
-            make.top.equalTo(self).offset(10)
+            make.left.right.equalToSuperview()
+            make.top.equalTo(self)
             make.height.equalTo(20)
         }
         
@@ -79,18 +79,18 @@ class VLTitledLabel: UIView {
         addSubview(separator0)
         
         separator0.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview().inset(16)
+            make.left.right.equalToSuperview()
             make.top.equalTo(titleLabel.snp.bottom).offset(1)
             make.height.equalTo(1)
         }
         
         descLeftLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview().inset(16)
+            make.left.right.equalToSuperview()
             make.top.equalTo(separator0.snp.bottom).offset(4)
         }
         
         descRightLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview().inset(16)
+            make.left.right.equalToSuperview()
             make.top.equalTo(separator0.snp.bottom).offset(4)
         }
     }
