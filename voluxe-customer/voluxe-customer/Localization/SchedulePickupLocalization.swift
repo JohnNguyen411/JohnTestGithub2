@@ -10,4 +10,8 @@ import Foundation
 
 extension String {
     static let ShowDescription = NSLocalizedString("ShowDescription")
+    static let RecommendedService = NSLocalizedString("RecommendedService")
+    static let Dealership = NSLocalizedString("Dealership")
+    static let SelfDrop = NSLocalizedString("SelfDrop")
+    static let VolvoPickup = NSLocalizedString("VolvoPickup")
 }

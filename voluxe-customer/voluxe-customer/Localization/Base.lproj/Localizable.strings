@@ -25,3 +25,7 @@
 
 /***************** SchedulePickup ***************/
 "ShowDescription" = "Show Description";
+"RecommendedService" = "Recommended Service";
+"Dealership" = "Dealership";
+"SelfDrop" = "Self Drop";
+"VolvoPickup" = "Volvo Pickup";
