@@ -14,6 +14,8 @@ import UIKit
  */
 class VLSelectableLabel : UIView, UIGestureRecognizerDelegate {
     
+    static let height = 30
+
     private var selected = false
     
     weak var delegate: SelectableLabelDelegate?
