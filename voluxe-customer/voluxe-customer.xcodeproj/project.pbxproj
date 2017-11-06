@@ -302,12 +302,20 @@
 			path = Extention;
 			sourceTree = "<group>";
 		};
+		6C7342061FB123E500E90F7E /* SchedulePickup */ = {
+			isa = PBXGroup;
+			children = (
+				6C2F1DD51FAD0A8F00C28C6E /* SchedulePickupViewController.swift */,
+			);
+			path = SchedulePickup;
+			sourceTree = "<group>";
+		};
 		6C88DC921FAA8ADC009F2FC3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				6C7342061FB123E500E90F7E /* SchedulePickup */,
 				6C88DC9B1FAA9086009F2FC3 /* LeftPanel */,
 				6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */,
-				6C2F1DD51FAD0A8F00C28C6E /* SchedulePickupViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
