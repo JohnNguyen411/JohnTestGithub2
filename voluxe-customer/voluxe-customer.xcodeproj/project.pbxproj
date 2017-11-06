@@ -32,6 +32,12 @@
 		6C6F4BCE1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */; };
 		6C6F4BCF1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */; };
 		6C6F4BD01FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */; };
+		6C7341FF1FB11DCE00E90F7E /* VLGroupedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7341FE1FB11DCE00E90F7E /* VLGroupedLabel.swift */; };
+		6C7342001FB11DCE00E90F7E /* VLGroupedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7341FE1FB11DCE00E90F7E /* VLGroupedLabel.swift */; };
+		6C7342011FB11DCE00E90F7E /* VLGroupedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7341FE1FB11DCE00E90F7E /* VLGroupedLabel.swift */; };
+		6C7342031FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342021FB11DF200E90F7E /* VLSelectableLabel.swift */; };
+		6C7342041FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342021FB11DF200E90F7E /* VLSelectableLabel.swift */; };
+		6C7342051FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342021FB11DF200E90F7E /* VLSelectableLabel.swift */; };
 		6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
 		6C7E66E61FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
 		6C7E66E71FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
@@ -172,6 +178,8 @@
 		6C6F4BC81FA8FC4600087FE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C6F4BC91FA9178700087FE7 /* FTUELoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUELoginViewController.swift; sourceTree = "<group>"; };
 		6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEPhoneNumberViewController.swift; sourceTree = "<group>"; };
+		6C7341FE1FB11DCE00E90F7E /* VLGroupedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLGroupedLabel.swift; sourceTree = "<group>"; };
+		6C7342021FB11DF200E90F7E /* VLSelectableLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLSelectableLabel.swift; sourceTree = "<group>"; };
 		6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePickupLocalization.swift; sourceTree = "<group>"; };
 		6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEAllSetViewController.swift; sourceTree = "<group>"; };
 		6C88DC931FAA8C28009F2FC3 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeftViewController.swift; path = "voluxe-customer/Controller/Main/LeftPanel/LeftViewController.swift"; sourceTree = SOURCE_ROOT; };
@@ -354,6 +362,8 @@
 				6C91BBD61FA7D6220033C2B1 /* ViewPager.swift */,
 				6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */,
 				6CD47D171FAD190F00D794A6 /* VLButton.swift */,
+				6C7341FE1FB11DCE00E90F7E /* VLGroupedLabel.swift */,
+				6C7342021FB11DF200E90F7E /* VLSelectableLabel.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -862,6 +872,7 @@
 				6C3FB2B61FA289F000B22EAB /* ColorDefinitions.swift in Sources */,
 				6CEA0D591FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
 				6CC37E531FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
+				6C7342031FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
 				6CC83A8B1FA1481900FE0633 /* StringUtils.swift in Sources */,
 				6C3FB2AC1FA2574C00B22EAB /* Customer.swift in Sources */,
@@ -894,6 +905,7 @@
 				6C3FB2B01FA2823800B22EAB /* Fonts.swift in Sources */,
 				6C91BBE01FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
 				6C3FB2AD1FA2574C00B22EAB /* FuelData.swift in Sources */,
+				6C7341FF1FB11DCE00E90F7E /* VLGroupedLabel.swift in Sources */,
 				6C3FB2BF1FA2A4CE00B22EAB /* VehicleLockStatus.swift in Sources */,
 				6C91BBD71FA7D6220033C2B1 /* ViewPager.swift in Sources */,
 			);
@@ -911,9 +923,11 @@
 				6CEA0D5A1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
 				6CC37E471FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6CCD42A31FA013E3000AC6C9 /* voluxe_customerTests.swift in Sources */,
+				6C7342041FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6C88DC991FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C91BBD81FA7D6220033C2B1 /* ViewPager.swift in Sources */,
 				6C9543A31FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
+				6C7342001FB11DCE00E90F7E /* VLGroupedLabel.swift in Sources */,
 				6C91BBD21FA7D3D70033C2B1 /* ColorDefinitions.swift in Sources */,
 				6C95439F1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C91BBDC1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
@@ -945,9 +959,11 @@
 				6CEA0D5B1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
 				6CC37E481FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6CCD42AE1FA013E3000AC6C9 /* voluxe_customerUITests.swift in Sources */,
+				6C7342051FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6C88DC9A1FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C91BBD91FA7D6220033C2B1 /* ViewPager.swift in Sources */,
 				6C9543A41FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
+				6C7342011FB11DCE00E90F7E /* VLGroupedLabel.swift in Sources */,
 				6C91BBD31FA7D3D80033C2B1 /* ColorDefinitions.swift in Sources */,
 				6C9543A01FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C91BBDD1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
