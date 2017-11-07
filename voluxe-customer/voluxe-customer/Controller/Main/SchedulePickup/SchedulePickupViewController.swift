@@ -141,7 +141,7 @@ class SchedulePickupViewController: BaseViewController {
     
     func buildPresenter(heightInPixels: CGFloat) -> Presentr {
         // bottom modal view
-        let widthPerc = 0.9
+        let widthPerc = 0.95
         let width = ModalSize.fluid(percentage: Float(widthPerc))
         
         let viewH = self.view.frame.height + MainViewController.getNavigationBarHeight() + statusBarHeight() + presentrCornerRadius
