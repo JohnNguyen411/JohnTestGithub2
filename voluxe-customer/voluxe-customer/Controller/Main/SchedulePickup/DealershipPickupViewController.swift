@@ -11,14 +11,14 @@ import UIKit
 
 class DealershipPickupViewController: VLPresentrViewController {
 
-    let groupedLabels = VLGroupedLabels(items: ["Marin Volvo", "Volvo of San Francisco", "Volvo Centrum", "Volvo of Burlingame"], singleChoice: true)
+    let groupedLabels = VLGroupedLabels(items: ["Marin Volvo", "Volvo of San Francisco", "Volvo Centrum", "Volvo of Burlingame"], singleChoice: true, topBottomSeparator: true)
     
     override func setupViews() {
         super.setupViews()
         containerView.addSubview(groupedLabels)
         
         groupedLabels.snp.makeConstraints { make in
-            make.bottom.equalTo(bottomButton.snp.top).offset(-20)
+            make.bottom.equalTo(bottomButton.snp.top).offset(-30)
             make.left.right.equalToSuperview()
             make.height.equalTo(groupedLabels.items.count * VLSelectableLabel.height)
         }
@@ -28,12 +28,10 @@ class DealershipPickupViewController: VLPresentrViewController {
             make.bottom.equalTo(groupedLabels.snp.top).offset(-10)
             make.height.equalTo(25)
         }
-        
-        
     }
     
     override func height() -> Int {
-        return (groupedLabels.items.count * VLSelectableLabel.height) + VLPresentrViewController.baseHeight + 40
+        return (groupedLabels.items.count * VLSelectableLabel.height) + VLPresentrViewController.baseHeight + 70
     }
     
 }

@@ -67,7 +67,7 @@ class VLPresentrViewController: UIViewController {
         containerView.addSubview(bottomButton)
 
         containerView.snp.makeConstraints { make in
-            make.bottom.left.right.equalToSuperview().inset(UIEdgeInsetsMake(10, 10, 10, 10))
+            make.bottom.left.right.equalToSuperview().inset(UIEdgeInsetsMake(20, 10, 20, 10))
             make.height.equalTo(height())
         }
                 

@@ -19,13 +19,15 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
     var labels = [VLSelectableLabel]()
     let items: [String]
     let singleChoice: Bool
-    
+    let topBottomSeparator: Bool
+
     private(set) var selectedIndices = [Int]()
     
     //MARK: init
-    init(items: [String], singleChoice: Bool) {
+    init(items: [String], singleChoice: Bool, topBottomSeparator: Bool) {
         self.items = items
         self.singleChoice = singleChoice
+        self.topBottomSeparator = topBottomSeparator
         
         super.init(frame: .zero)
         
@@ -55,7 +57,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
                 }
                 
                 let separator = UIView()
-                separator.backgroundColor = .luxeGray()
+                separator.backgroundColor = .luxeLightGray()
                 
                 addSubview(separator)
                 
@@ -70,9 +72,35 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
                     make.top.left.right.equalToSuperview()
                     make.height.equalTo(VLSelectableLabel.height)
                 }
+                
+                if topBottomSeparator {
+                    let separator = UIView()
+                    separator.backgroundColor = .luxeLightGray()
+                    
+                    addSubview(separator)
+                    
+                    separator.snp.makeConstraints { (make) -> Void in
+                        make.top.equalTo(luxeLabel.snp.top)
+                        make.left.right.equalToSuperview()
+                        make.height.equalTo(1)
+                    }
+                }
             }
             
             previousLabel = luxeLabel
+        }
+        
+        if let previousLabel = previousLabel, topBottomSeparator {
+            let separator = UIView()
+            separator.backgroundColor = .luxeLightGray()
+            
+            addSubview(separator)
+            
+            separator.snp.makeConstraints { (make) -> Void in
+                make.top.equalTo(previousLabel.snp.bottom)
+                make.left.right.equalToSuperview()
+                make.height.equalTo(1)
+            }
         }
         
         if self.singleChoice {

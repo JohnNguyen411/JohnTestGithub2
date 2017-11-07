@@ -14,7 +14,7 @@ import UIKit
  */
 class VLSelectableLabel : UIView, UIGestureRecognizerDelegate {
     
-    static let height = 40
+    static let height = 45
 
     private var selected = false
     

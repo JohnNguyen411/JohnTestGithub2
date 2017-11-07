@@ -12,6 +12,7 @@ import SlideMenuControllerSwift
 
 class MainViewController: BaseViewController {
     
+    static var navigationBarHeight: CGFloat = 0
     var schedulePickupViewController: SchedulePickupViewController?
     
     
@@ -22,6 +23,9 @@ class MainViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBarItem()
+        if let navigationController = self.navigationController {
+            MainViewController.navigationBarHeight = navigationController.navigationBar.frame.size.height
+        }
     }
     
     override func setupViews() {
@@ -35,6 +39,9 @@ class MainViewController: BaseViewController {
         }
     }
     
+    static func getNavigationBarHeight() -> CGFloat {
+        return MainViewController.navigationBarHeight
+    }
 }
 
 extension MainViewController : SlideMenuControllerDelegate {

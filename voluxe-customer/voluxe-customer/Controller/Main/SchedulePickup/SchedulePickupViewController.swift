@@ -13,6 +13,8 @@ import Presentr
 
 class SchedulePickupViewController: BaseViewController {
     
+    let presentrCornerRadius: CGFloat = 4.0
+    
     let checkupLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .FTUEStartOne
@@ -35,22 +37,6 @@ class SchedulePickupViewController: BaseViewController {
     let dropButton = VLButton(type: .BluePrimary, title: (.SelfDrop as String).uppercased(), actionBlock: nil)
     let pickupButton = VLButton(type: .BluePrimary, title: (.VolvoPickup as String).uppercased(), actionBlock: nil)
 
-    // bottom modal view
-    let modalPresenter: Presentr = {
-        let width = ModalSize.fluid(percentage: 0.90)
-        let height = ModalSize.fluid(percentage: 0.40)
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 20, y: 400))
-        let customType = PresentationType.custom(width: width, height: height, center: center)
-        
-        let customPresenter = Presentr(presentationType: customType)
-        customPresenter.transitionType = .coverVertical
-        customPresenter.dismissTransitionType = .crossDissolve
-        customPresenter.roundCorners = false
-        customPresenter.blurBackground = true
-        customPresenter.blurStyle = UIBlurEffectStyle.light
-        customPresenter.dismissOnSwipe = false
-        return customPresenter
-    }()
     
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -153,6 +139,32 @@ class SchedulePickupViewController: BaseViewController {
         dealershipView.setTitle(title: .Dealership, leftDescription: "Marin Volvo", rightDescription: "")
     }
     
+    func buildPresenter(heightInPixels: CGFloat) -> Presentr {
+        // bottom modal view
+        let widthPerc = 0.9
+        let width = ModalSize.fluid(percentage: Float(widthPerc))
+        
+        let viewH = self.view.frame.height + MainViewController.getNavigationBarHeight() + statusBarHeight() + presentrCornerRadius
+        let viewW = Double(self.view.frame.width)
+
+        let percH = heightInPixels / viewH
+        let leftRightMargin = (viewW - (viewW * widthPerc))/2
+        let height = ModalSize.fluid(percentage: Float(percH))
+
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: leftRightMargin, y: Double(viewH - heightInPixels)))
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+        
+        let customPresenter = Presentr(presentationType: customType)
+        customPresenter.transitionType = .coverVertical
+        customPresenter.dismissTransitionType = .coverVerticalFromTop
+        customPresenter.roundCorners = true
+        customPresenter.cornerRadius = presentrCornerRadius
+        customPresenter.blurBackground = true
+        customPresenter.blurStyle = UIBlurEffectStyle.dark
+        customPresenter.dismissOnSwipe = false
+        return customPresenter
+    }
+    
     
     //MARK: Actions methods
     func showDescriptionClick() {
@@ -162,15 +174,8 @@ class SchedulePickupViewController: BaseViewController {
     @objc func dealershipClick() {
         print("dealershipClick")
         let dealershipController = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next, actionBlock: {})
-        customPresentViewController(modalPresenter, viewController: dealershipController, animated: true, completion: {
-            // attached?
-            /*
-            dealershipController.view.snp.makeConstraints { make in
-                make.left.right.bottom.equalToSuperview()
-                make.height.equalTo(dealershipController.height())
-            }
- */
-        })
+        let modalPresenter = buildPresenter(heightInPixels: CGFloat(dealershipController.height()))
+        customPresentViewController(modalPresenter, viewController: dealershipController, animated: true, completion: {})
     }
     
     func selfDropClick() {
