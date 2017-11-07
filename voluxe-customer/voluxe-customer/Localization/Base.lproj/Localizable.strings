@@ -6,6 +6,9 @@
   Copyright © 2017 Luxe - Volvo Cars. All rights reserved.
 */
 
+/***************** COMMONS ***************/
+"Next" = "Next";
+
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
 "FTUEStartTwo" = "You can schedule maintenance and repairs with Luxe, and Volvo will take care of everything else.";
@@ -29,3 +32,4 @@
 "Dealership" = "Dealership";
 "SelfDrop" = "Self Drop";
 "VolvoPickup" = "Volvo Pickup";
+"ChooseDealership" = "Choose where to perform service";

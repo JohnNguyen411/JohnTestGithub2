@@ -11,6 +11,8 @@ import UIKit
 
 class VLPresentrViewController: UIViewController {
     
+    static let baseHeight = 70
+
     let containerView = UIView(frame: .zero)
 
     let titleLabel: UILabel = {
@@ -21,6 +23,15 @@ class VLPresentrViewController: UIViewController {
         return titleLabel
     }()
     
+    let bottomButton = VLButton(type: .BluePrimary, title: nil, actionBlock: nil)
+    
+    convenience init(title: String, buttonTitle: String, actionBlock:@escaping (()->())) {
+        self.init()
+        
+        setTitle(title: title)
+        setButtonTitle(title: title, actionBlock: actionBlock)
+    }
+    
     convenience init(title: String) {
         self.init()
         
@@ -29,6 +40,7 @@ class VLPresentrViewController: UIViewController {
     
     init() {
         super.init(nibName: nil, bundle: nil)
+        setupViews()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -40,10 +52,20 @@ class VLPresentrViewController: UIViewController {
         titleLabel.text = title
     }
     
+    func setButtonTitle(title: String, actionBlock:@escaping (()->())) {
+        bottomButton.setTitle(title: title)
+        bottomButton.setActionBlock {
+            actionBlock()
+        }
+    }
+    
     func setupViews() {
+        containerView.backgroundColor = .white
+        
         self.view.addSubview(containerView)
         containerView.addSubview(titleLabel)
-        
+        containerView.addSubview(bottomButton)
+
         containerView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsetsMake(10, 10, 10, 10))
         }
@@ -51,6 +73,14 @@ class VLPresentrViewController: UIViewController {
         titleLabel.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
         }
+        
+        bottomButton.snp.makeConstraints { make in
+            make.left.bottom.right.equalToSuperview()
+        }
+    }
+    
+    func height() -> Int {
+        return VLPresentrViewController.baseHeight
     }
     
     

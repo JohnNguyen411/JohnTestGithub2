@@ -12,7 +12,7 @@ import UIKit
 /**
  Use to create multiple labels with singleChoice selection or multipleChoice
  */
-class VLGroupedLabel : UIView, SelectableLabelDelegate {
+class VLGroupedLabels : UIView, SelectableLabelDelegate {
     
     weak var delegate: VLGroupedLabelsDelegate?
     

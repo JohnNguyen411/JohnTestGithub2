@@ -46,7 +46,7 @@ class VLSelectableLabel : UIView, UIGestureRecognizerDelegate {
     init(text: String?, index: Int, selected: Bool, checkmark: UIImage?) {
         
         if checkmark == nil {
-            checkmarkImage = UIImage(named: "check_mark")!
+            checkmarkImage = UIImage(named: "checkmark")!
         } else {
             checkmarkImage = checkmark!
         }

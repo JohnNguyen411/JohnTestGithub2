@@ -120,7 +120,7 @@ class VLButton : UIButton {
      */
     private var actionBlock:(()->())?
     
-    //NOTE: Possible memory leak. If you store a button on a veiw controller with a completion block, you have to use weak self to not cause a retain cycle.
+    //NOTE: Possible memory leak. If you store a button on a view controller with a completion block, you have to use weak self to not cause a retain cycle.
     func setActionBlock(actionBlock:@escaping (()->())) {
         self.actionBlock = actionBlock
         addTarget(self, action: #selector(VLButton.runActionBlock), for: .touchUpInside)

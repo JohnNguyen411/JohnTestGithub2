@@ -43,13 +43,13 @@ class SchedulePickupViewController: BaseViewController {
         let customType = PresentationType.custom(width: width, height: height, center: center)
         
         let customPresenter = Presentr(presentationType: customType)
-        customPresenter.transitionType = .coverVerticalFromTop
+        customPresenter.transitionType = .coverVertical
         customPresenter.dismissTransitionType = .crossDissolve
         customPresenter.roundCorners = false
-        customPresenter.backgroundColor = .green
+        customPresenter.blurBackground = true
+        customPresenter.blurStyle = UIBlurEffectStyle.light
         customPresenter.backgroundOpacity = 0.5
-        customPresenter.dismissOnSwipe = true
-        customPresenter.dismissOnSwipeDirection = .top
+        customPresenter.dismissOnSwipe = false
         return customPresenter
     }()
     
@@ -77,6 +77,11 @@ class SchedulePickupViewController: BaseViewController {
     
     override func setupViews() {
         super.setupViews()
+        
+        // init tap events
+        dealershipView.isUserInteractionEnabled = true
+        let dealershipTap = UITapGestureRecognizer(target: self, action: #selector(self.dealershipClick))
+        dealershipView.addGestureRecognizer(dealershipTap)
         
         scrollView.contentMode = .scaleAspectFit
         
@@ -153,12 +158,24 @@ class SchedulePickupViewController: BaseViewController {
     //MARK: Actions methods
     func showDescriptionClick() {
         print("showDescriptionClick")
-
+    }
+    
+    @objc func dealershipClick() {
+        print("dealershipClick")
+        let dealershipController = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next, actionBlock: {})
+        customPresentViewController(modalPresenter, viewController: dealershipController, animated: true, completion: {
+            // attached?
+            /*
+            dealershipController.view.snp.makeConstraints { make in
+                make.left.right.bottom.equalToSuperview()
+                make.height.equalTo(dealershipController.height())
+            }
+ */
+        })
     }
     
     func selfDropClick() {
         print("selfDropClick")
-
     }
     
     func volvoPickupClick() {
