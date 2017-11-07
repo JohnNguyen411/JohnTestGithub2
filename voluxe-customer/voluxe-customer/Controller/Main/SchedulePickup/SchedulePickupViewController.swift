@@ -60,6 +60,8 @@ class SchedulePickupViewController: BaseViewController {
         fillViews()
     }
     
+    //MARK: View methods
+
     override func setupViews() {
         super.setupViews()
         
@@ -165,6 +167,17 @@ class SchedulePickupViewController: BaseViewController {
         return customPresenter
     }
     
+    private func showDealershipModal() {
+        let dealershipController = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next, actionBlock: {})
+        let modalPresenter = buildPresenter(heightInPixels: CGFloat(dealershipController.height()))
+        customPresentViewController(modalPresenter, viewController: dealershipController, animated: true, completion: {})
+    }
+    
+    private func showPickupLocationModal() {
+        let locationController = LocationPickupViewController(title: .PickupLocationTitle, buttonTitle: .Next, actionBlock: {})
+        let modalPresenter = buildPresenter(heightInPixels: CGFloat(locationController.height()))
+        customPresentViewController(modalPresenter, viewController: locationController, animated: true, completion: {})
+    }
     
     //MARK: Actions methods
     func showDescriptionClick() {
@@ -173,9 +186,7 @@ class SchedulePickupViewController: BaseViewController {
     
     @objc func dealershipClick() {
         print("dealershipClick")
-        let dealershipController = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next, actionBlock: {})
-        let modalPresenter = buildPresenter(heightInPixels: CGFloat(dealershipController.height()))
-        customPresentViewController(modalPresenter, viewController: dealershipController, animated: true, completion: {})
+        showPickupLocationModal()
     }
     
     func selfDropClick() {

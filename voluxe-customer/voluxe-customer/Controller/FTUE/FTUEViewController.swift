@@ -61,13 +61,13 @@ class FTUEViewController: BaseViewController {
         }
         
         logo.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(15)
+            make.left.equalToSuperview().offset(20)
             make.top.equalToSuperview().offset(35)
             make.width.height.equalTo(50)
         }
         
         nextButton.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview().offset(-15)
+            make.right.equalToSuperview().offset(-20)
             make.top.equalToSuperview().offset(35)
             make.width.height.equalTo(50)
         }

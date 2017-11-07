@@ -40,17 +40,17 @@ class FTUEStartViewController: UIViewController, FTUEProtocol {
         self.view.addSubview(text1)
         self.view.addSubview(text2)
 
-        let sizeThatFits = text1.sizeThatFits(CGSize(width: view.frame.width - 30, height: CGFloat(MAXFLOAT)))
+        let sizeThatFits = text1.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT)))
         
         text1.snp.makeConstraints { (make) -> Void in
-            make.left.top.equalToSuperview().offset(15)
-            make.right.equalToSuperview().offset(-15)
+            make.left.top.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
             make.height.equalTo(sizeThatFits)
         }
         
         text2.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(text1)
-            make.top.equalTo(text1.snp.bottom).offset(15)
+            make.top.equalTo(text1.snp.bottom).offset(20)
             make.height.equalTo(sizeThatFits)
         }
     }

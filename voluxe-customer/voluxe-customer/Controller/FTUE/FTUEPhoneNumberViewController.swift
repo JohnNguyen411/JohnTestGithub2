@@ -52,17 +52,17 @@ class FTUEPhoneNumberViewController: UIViewController, UITextFieldDelegate, FTUE
         self.view.addSubview(phoneNumberLabel)
         self.view.addSubview(phoneNumberConfirmLabel)
                 
-        let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width, height: CGFloat(MAXFLOAT)))
+        let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width-40, height: CGFloat(MAXFLOAT)))
 
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
-            make.left.top.equalToSuperview().offset(15)
-            make.right.equalToSuperview().offset(-15)
+            make.left.top.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
             make.height.equalTo(sizeThatFits)
         }
         
         phoneNumberTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview().offset(-5)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
             make.top.equalTo(phoneNumberLabel.snp.bottom).offset(5)
             make.height.equalTo(60)
         }

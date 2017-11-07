@@ -49,24 +49,23 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
         self.view.addSubview(phoneNumberLabel)
         self.view.addSubview(resendCodeLabel)
         
-        let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width - 30, height: CGFloat(MAXFLOAT)))
+        let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT)))
 
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
-            make.left.top.equalToSuperview().offset(15)
-            make.right.equalToSuperview().offset(-15)
+            make.left.top.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
             make.height.equalTo(sizeThatFits)
         }
         
         codeTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview().offset(-5)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
             make.top.equalTo(phoneNumberLabel.snp.bottom).offset(10)
             make.height.equalTo(40)
         }
         
         resendCodeLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(phoneNumberLabel)
-            make.right.equalTo(phoneNumberLabel).offset(-5)
             make.top.equalTo(codeTextField.snp.top).offset(15)
             make.height.equalTo(20)
         }

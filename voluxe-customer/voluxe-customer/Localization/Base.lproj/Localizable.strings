@@ -33,3 +33,8 @@
 "SelfDrop" = "Self Drop";
 "VolvoPickup" = "Volvo Pickup";
 "ChooseDealership" = "Choose where to perform service";
+"AddNewLocation" = "Add a new location";
+"AddressForPickupPlaceholder" = "123 Main Street, San Francisco";
+"AddressForPickup" = "Address for Pickup";
+"PickupLocationTitle" = "Where should we meet you?";
+

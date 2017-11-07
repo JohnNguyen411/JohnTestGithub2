@@ -45,7 +45,7 @@ class VLVerticalTextField : VLTextField {
     
     override func applyConstraints() {
         textField.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview().inset(16)
+            make.left.right.equalToSuperview()
             make.top.equalTo(self).offset(10)
             make.height.equalTo(25)
         }
@@ -55,13 +55,13 @@ class VLVerticalTextField : VLTextField {
         addSubview(separator0)
         
         separator0.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview().inset(16)
+            make.left.right.equalToSuperview()
             make.top.equalTo(textField.snp.bottom).offset(1)
             make.height.equalTo(1)
         }
         
         titleLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview().inset(16)
+            make.left.right.equalToSuperview()
             make.top.equalTo(separator0.snp.bottom).offset(4)
         }
     }

@@ -33,8 +33,8 @@ class FTUELoginViewController: UIViewController, FTUEProtocol {
         self.view.addSubview(volvoVINTextField)
 
         volvoIdTextField.snp.makeConstraints { (make) -> Void in
-            make.left.top.equalToSuperview().offset(15)
-            make.right.equalToSuperview().offset(-15)
+            make.left.top.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
             make.height.equalTo(80)
         }
         

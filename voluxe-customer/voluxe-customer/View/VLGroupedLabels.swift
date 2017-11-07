@@ -17,23 +17,47 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
     weak var delegate: VLGroupedLabelsDelegate?
     
     var labels = [VLSelectableLabel]()
-    let items: [String]
+    var items: [String]
     let singleChoice: Bool
     let topBottomSeparator: Bool
 
     private(set) var selectedIndices = [Int]()
     
     //MARK: init
-    init(items: [String], singleChoice: Bool, topBottomSeparator: Bool) {
+    convenience init(items: [String], singleChoice: Bool, topBottomSeparator: Bool) {
+        self.init(singleChoice: singleChoice, topBottomSeparator: topBottomSeparator)
         self.items = items
-        self.singleChoice = singleChoice
-        self.topBottomSeparator = topBottomSeparator
-        
-        super.init(frame: .zero)
-        
         setupViews()
     }
     
+    init(singleChoice: Bool, topBottomSeparator: Bool) {
+        self.singleChoice = singleChoice
+        self.topBottomSeparator = topBottomSeparator
+        items = []
+        super.init(frame: .zero)
+    }
+    
+    func addItem(item: String) {
+        let luxeLabel = VLSelectableLabel(text: item, index: items.count)
+        luxeLabel.delegate = self
+        
+        addSubview(luxeLabel)
+        
+        if items.count > 0 {
+            addLabel(luxeLabel: luxeLabel, previousLabel: labels[items.count-1])
+        } else {
+            addFirstLabel(luxeLabel: luxeLabel)
+        }
+        
+        labels.append(luxeLabel)
+        items.append(item)
+        
+        if self.singleChoice {
+            let lastLabel = labels[items.count-1]
+            lastLabel.setSelected(selected: true, callDelegate: false)
+            selectedIndices.append(items.count-1)
+        }
+    }
     
     private func setupViews() {
         var previousLabel: VLSelectableLabel?
@@ -48,59 +72,17 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
             labels.append(luxeLabel)
             
             if let previousLabel = previousLabel {
-                
-                // put this label under the previous one
-                luxeLabel.snp.makeConstraints { (make) -> Void in
-                    make.top.equalTo(previousLabel.snp.bottom)
-                    make.left.right.equalToSuperview()
-                    make.height.equalTo(VLSelectableLabel.height)
-                }
-                
-                let separator = UIView()
-                separator.backgroundColor = .luxeLightGray()
-                
-                addSubview(separator)
-                
-                separator.snp.makeConstraints { (make) -> Void in
-                    make.top.equalTo(luxeLabel.snp.top)
-                    make.left.right.equalToSuperview()
-                    make.height.equalTo(1)
-                }
+                addLabel(luxeLabel: luxeLabel, previousLabel: previousLabel)
             } else {
-                // first label
-                luxeLabel.snp.makeConstraints { (make) -> Void in
-                    make.top.left.right.equalToSuperview()
-                    make.height.equalTo(VLSelectableLabel.height)
-                }
-                
-                if topBottomSeparator {
-                    let separator = UIView()
-                    separator.backgroundColor = .luxeLightGray()
-                    
-                    addSubview(separator)
-                    
-                    separator.snp.makeConstraints { (make) -> Void in
-                        make.top.equalTo(luxeLabel.snp.top)
-                        make.left.right.equalToSuperview()
-                        make.height.equalTo(1)
-                    }
-                }
+                addFirstLabel(luxeLabel: luxeLabel)
             }
             
             previousLabel = luxeLabel
         }
         
+        // add last bottom separator
         if let previousLabel = previousLabel, topBottomSeparator {
-            let separator = UIView()
-            separator.backgroundColor = .luxeLightGray()
-            
-            addSubview(separator)
-            
-            separator.snp.makeConstraints { (make) -> Void in
-                make.top.equalTo(previousLabel.snp.bottom)
-                make.left.right.equalToSuperview()
-                make.height.equalTo(1)
-            }
+            addBottomSeparator(previousLabel: previousLabel)
         }
         
         if self.singleChoice {
@@ -108,8 +90,63 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
             firstLabel.setSelected(selected: true, callDelegate: false)
             selectedIndices.append(0)
         }
-        
     }
+    
+    private func addFirstLabel(luxeLabel: VLSelectableLabel) {
+        // first label
+        luxeLabel.snp.makeConstraints { (make) -> Void in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(VLSelectableLabel.height)
+        }
+        
+        if topBottomSeparator {
+            let separator = UIView()
+            separator.backgroundColor = .luxeLightGray()
+            
+            addSubview(separator)
+            
+            separator.snp.makeConstraints { (make) -> Void in
+                make.top.equalTo(luxeLabel.snp.top)
+                make.left.right.equalToSuperview()
+                make.height.equalTo(1)
+            }
+        }
+    }
+    
+    private func addLabel(luxeLabel: VLSelectableLabel, previousLabel: VLSelectableLabel) {
+        // put this label under the previous one
+        luxeLabel.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(previousLabel.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(VLSelectableLabel.height)
+        }
+        
+        let separator = UIView()
+        separator.backgroundColor = .luxeLightGray()
+        
+        addSubview(separator)
+        
+        separator.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(luxeLabel.snp.top)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(1)
+        }
+    }
+    
+    private func addBottomSeparator(previousLabel: VLSelectableLabel) {
+        let separator = UIView()
+        separator.backgroundColor = .luxeLightGray()
+        
+        addSubview(separator)
+        
+        separator.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(previousLabel.snp.bottom)
+            make.left.right.equalToSuperview()
+            make.height.equalTo(1)
+        }
+    }
+
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
