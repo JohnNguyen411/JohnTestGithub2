@@ -28,8 +28,8 @@ class VLPresentrViewController: UIViewController {
     convenience init(title: String, buttonTitle: String, actionBlock:@escaping (()->())) {
         self.init()
         
-        setTitle(title: title)
-        setButtonTitle(title: title, actionBlock: actionBlock)
+        setTitle(title: title.uppercased())
+        setButtonTitle(title: buttonTitle.uppercased(), actionBlock: actionBlock)
     }
     
     convenience init(title: String) {
@@ -60,22 +60,21 @@ class VLPresentrViewController: UIViewController {
     }
     
     func setupViews() {
-        containerView.backgroundColor = .white
+        self.view.backgroundColor = .white
         
         self.view.addSubview(containerView)
         containerView.addSubview(titleLabel)
         containerView.addSubview(bottomButton)
 
         containerView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsetsMake(10, 10, 10, 10))
+            make.bottom.left.right.equalToSuperview().inset(UIEdgeInsetsMake(10, 10, 10, 10))
+            make.height.equalTo(height())
         }
-        
-        titleLabel.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
-        }
-        
+                
         bottomButton.snp.makeConstraints { make in
-            make.left.bottom.right.equalToSuperview()
+            make.left.equalToSuperview()
+            make.bottom.right.equalToSuperview()
+            make.height.equalTo(VLButton.primaryHeight)
         }
     }
     

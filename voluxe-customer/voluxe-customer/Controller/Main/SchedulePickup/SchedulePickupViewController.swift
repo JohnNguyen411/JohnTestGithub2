@@ -37,9 +37,9 @@ class SchedulePickupViewController: BaseViewController {
 
     // bottom modal view
     let modalPresenter: Presentr = {
-        let width = ModalSize.full
-        let height = ModalSize.fluid(percentage: 0.20)
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 0, y: 0))
+        let width = ModalSize.fluid(percentage: 0.90)
+        let height = ModalSize.fluid(percentage: 0.40)
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: 20, y: 400))
         let customType = PresentationType.custom(width: width, height: height, center: center)
         
         let customPresenter = Presentr(presentationType: customType)
@@ -48,7 +48,6 @@ class SchedulePickupViewController: BaseViewController {
         customPresenter.roundCorners = false
         customPresenter.blurBackground = true
         customPresenter.blurStyle = UIBlurEffectStyle.light
-        customPresenter.backgroundOpacity = 0.5
         customPresenter.dismissOnSwipe = false
         return customPresenter
     }()
@@ -124,7 +123,7 @@ class SchedulePickupViewController: BaseViewController {
         descriptionButton.snp.makeConstraints { make in
             make.left.right.equalTo(checkupLabel)
             make.top.equalTo(scheduledServiceView.snp.bottom)
-            make.height.equalTo(30)
+            make.height.equalTo(VLButton.secondaryHeight)
         }
         
         dealershipView.snp.makeConstraints { make in
@@ -137,14 +136,14 @@ class SchedulePickupViewController: BaseViewController {
             make.left.equalToSuperview()
             make.bottom.equalTo(contentView.snp.bottom)
             make.width.equalToSuperview().dividedBy(2).offset(-10)
-            make.height.equalTo(40)
+            make.height.equalTo(VLButton.primaryHeight)
         }
         
         pickupButton.snp.makeConstraints { make in
             make.right.equalToSuperview()
             make.bottom.equalTo(contentView.snp.bottom)
             make.width.equalToSuperview().dividedBy(2).offset(-10)
-            make.height.equalTo(40)
+            make.height.equalTo(VLButton.primaryHeight)
         }
         
     }

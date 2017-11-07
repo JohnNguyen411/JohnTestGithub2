@@ -50,7 +50,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
                 // put this label under the previous one
                 luxeLabel.snp.makeConstraints { (make) -> Void in
                     make.top.equalTo(previousLabel.snp.bottom)
-                    make.width.equalTo(self)
+                    make.left.right.equalToSuperview()
                     make.height.equalTo(VLSelectableLabel.height)
                 }
                 
@@ -61,14 +61,13 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
                 
                 separator.snp.makeConstraints { (make) -> Void in
                     make.top.equalTo(luxeLabel.snp.top)
-                    make.left.equalTo(self).offset(15)
-                    make.right.equalTo(self)
+                    make.left.right.equalToSuperview()
                     make.height.equalTo(1)
                 }
             } else {
                 // first label
                 luxeLabel.snp.makeConstraints { (make) -> Void in
-                    make.top.width.equalTo(self)
+                    make.top.left.right.equalToSuperview()
                     make.height.equalTo(VLSelectableLabel.height)
                 }
             }

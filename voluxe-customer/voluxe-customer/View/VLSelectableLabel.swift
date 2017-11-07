@@ -14,7 +14,7 @@ import UIKit
  */
 class VLSelectableLabel : UIView, UIGestureRecognizerDelegate {
     
-    static let height = 30
+    static let height = 40
 
     private var selected = false
     
@@ -73,7 +73,7 @@ class VLSelectableLabel : UIView, UIGestureRecognizerDelegate {
         addSubview(checkmarkView)
         
         label.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(self).offset(15)
+            make.left.equalTo(self)
             make.centerY.equalTo(self.snp.centerY)
         }
         

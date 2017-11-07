@@ -18,13 +18,22 @@ class DealershipPickupViewController: VLPresentrViewController {
         containerView.addSubview(groupedLabels)
         
         groupedLabels.snp.makeConstraints { make in
-            make.top.equalTo(titleLabel.snp.bottom)
+            make.bottom.equalTo(bottomButton.snp.top).offset(-20)
             make.left.right.equalToSuperview()
             make.height.equalTo(groupedLabels.items.count * VLSelectableLabel.height)
         }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(groupedLabels.snp.top).offset(-10)
+            make.height.equalTo(25)
+        }
+        
+        
     }
+    
     override func height() -> Int {
-        return (groupedLabels.items.count * VLSelectableLabel.height) + VLPresentrViewController.baseHeight
+        return (groupedLabels.items.count * VLSelectableLabel.height) + VLPresentrViewController.baseHeight + 40
     }
     
 }

@@ -17,6 +17,9 @@ enum VLButtonType{
 
 class VLButton : UIButton {
     
+    static let primaryHeight = 40
+    static let secondaryHeight = 30
+
     var iconView: UIImageView?
 
     /**
