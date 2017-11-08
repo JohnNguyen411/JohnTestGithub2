@@ -57,8 +57,6 @@ class VLSelectableLabel : UIView, UIGestureRecognizerDelegate {
         
         super.init(frame: .zero)
         
-        backgroundColor = .luxeWhite()
-        
         label.text = text
         
         setupViews()

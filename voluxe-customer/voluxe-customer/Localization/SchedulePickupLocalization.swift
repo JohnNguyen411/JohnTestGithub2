@@ -20,4 +20,6 @@ extension String {
     static let AddressForPickupPlaceholder = NSLocalizedString("AddressForPickupPlaceholder")
     static let PickupLocationTitle = NSLocalizedString("PickupLocationTitle")
     static let YourLocation = NSLocalizedString("YourLocation")
+    static let DoYouNeedLoanerVehicle = NSLocalizedString("DoYouNeedLoanerVehicle")
+
 }

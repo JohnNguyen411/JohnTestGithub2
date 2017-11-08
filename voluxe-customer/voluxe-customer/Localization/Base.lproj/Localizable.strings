@@ -9,6 +9,8 @@
 /***************** COMMONS ***************/
 "Next" = "Next";
 "Add" = "Add";
+"Yes" = "Yes";
+"No" = "No";
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
@@ -39,4 +41,5 @@
 "AddressForPickup" = "Address for Pickup";
 "PickupLocationTitle" = "Where should we meet you?";
 "YourLocation" = "Your Location";
+"DoYouNeedLoanerVehicle" = "Do you need a loaner vehicle?";
 

@@ -11,5 +11,6 @@ import Foundation
 extension String {
     static let Next = NSLocalizedString("Next")
     static let Add = NSLocalizedString("Add")
-
+    static let Yes = NSLocalizedString("Yes")
+    static let No = NSLocalizedString("No")
 }

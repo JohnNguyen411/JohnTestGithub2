@@ -13,8 +13,6 @@ import UIKit
  Should be created with a height of 75 in constraints of the caller. LuxeVerticalTextField.verticalHeight
  */
 class VLVerticalTextField : VLTextField {
-
-    static let verticalHeight = 75
     
     let rightLabel: UILabel = {
         let textView = UILabel(frame: .zero)

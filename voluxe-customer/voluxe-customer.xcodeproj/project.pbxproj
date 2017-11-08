@@ -81,6 +81,9 @@
 		6C58333E1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5833071FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf */; };
 		6C58333F1FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833081FB3AF5600F6BFE0 /* TransitionType.swift */; };
 		6C5833401FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833081FB3AF5600F6BFE0 /* TransitionType.swift */; };
+		6C69267E1FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C69267D1FB3B3E3009495E9 /* LoanerPickupViewController.swift */; };
+		6C69267F1FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C69267D1FB3B3E3009495E9 /* LoanerPickupViewController.swift */; };
+		6C6926801FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C69267D1FB3B3E3009495E9 /* LoanerPickupViewController.swift */; };
 		6C6F4BC31FA8FBCF00087FE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */; };
 		6C6F4BC41FA8FBCF00087FE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */; };
 		6C6F4BC51FA8FBCF00087FE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */; };
@@ -266,6 +269,7 @@
 		6C5833061FB3AF5600F6BFE0 /* PresentrShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentrShadow.swift; sourceTree = "<group>"; };
 		6C5833071FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		6C5833081FB3AF5600F6BFE0 /* TransitionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionType.swift; sourceTree = "<group>"; };
+		6C69267D1FB3B3E3009495E9 /* LoanerPickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanerPickupViewController.swift; sourceTree = "<group>"; };
 		6C6F4BC81FA8FC4600087FE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C6F4BC91FA9178700087FE7 /* FTUELoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUELoginViewController.swift; sourceTree = "<group>"; };
 		6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEPhoneNumberViewController.swift; sourceTree = "<group>"; };
@@ -448,6 +452,7 @@
 				6C2F1DD51FAD0A8F00C28C6E /* SchedulePickupViewController.swift */,
 				6C7342071FB127A300E90F7E /* DealershipPickupViewController.swift */,
 				6C7342131FB25F8C00E90F7E /* LocationPickupViewController.swift */,
+				6C69267D1FB3B3E3009495E9 /* LoanerPickupViewController.swift */,
 			);
 			path = SchedulePickup;
 			sourceTree = "<group>";
@@ -1082,6 +1087,7 @@
 				6C3FB2B01FA2823800B22EAB /* Fonts.swift in Sources */,
 				6C91BBE01FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
 				6C7342081FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */,
+				6C69267E1FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */,
 				6C3FB2AD1FA2574C00B22EAB /* FuelData.swift in Sources */,
 				6C73420C1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,
 				6C7341FF1FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
@@ -1096,6 +1102,7 @@
 			files = (
 				6CC37E4B1FA7AF2900DA8F01 /* FTUEViewController.swift in Sources */,
 				6C58332A1FB3AF8000F6BFE0 /* ModalSize.swift in Sources */,
+				6C69267F1FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */,
 				6CC37E541FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
 				6CD47D151FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
 				6C91BBE11FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
@@ -1153,6 +1160,7 @@
 			files = (
 				6CC37E4C1FA7AF2900DA8F01 /* FTUEViewController.swift in Sources */,
 				6C58332E1FB3AF8000F6BFE0 /* ModalSize.swift in Sources */,
+				6C6926801FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */,
 				6CC37E551FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
 				6CD47D161FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
 				6C91BBE21FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,

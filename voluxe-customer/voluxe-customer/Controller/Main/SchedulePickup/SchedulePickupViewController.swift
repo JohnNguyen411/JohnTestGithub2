@@ -181,6 +181,14 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate {
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
+    private func showPickupLoanerModal() {
+        currentPresentrVC = LoanerPickupViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, actionBlock: {})
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()))
+        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
+    }
+    
+    
+    
     func presentrShouldDismiss(keyboardShowing: Bool) -> Bool {
         print("Dismissing View Controller")
         currentPresentr = nil
@@ -195,7 +203,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate {
     
     @objc func dealershipClick() {
         print("dealershipClick")
-        showPickupLocationModal()
+        showPickupLoanerModal()
     }
     
     func selfDropClick() {

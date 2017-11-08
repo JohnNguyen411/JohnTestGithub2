@@ -63,8 +63,8 @@ class FTUEPhoneNumberViewController: UIViewController, UITextFieldDelegate, FTUE
         phoneNumberTextField.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.top.equalTo(phoneNumberLabel.snp.bottom).offset(5)
-            make.height.equalTo(60)
+            make.top.equalTo(phoneNumberLabel.snp.bottom).offset(15)
+            make.height.equalTo(VLVerticalTextField.height)
         }
         
         phoneNumberConfirmLabel.snp.makeConstraints { (make) -> Void in

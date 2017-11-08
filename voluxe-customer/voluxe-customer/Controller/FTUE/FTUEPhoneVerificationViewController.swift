@@ -48,7 +48,7 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
         codeTextField.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.top.equalTo(phoneNumberLabel.snp.bottom).offset(10)
+            make.top.equalTo(phoneNumberLabel.snp.bottom).offset(20)
             make.height.equalTo(40)
         }
         
