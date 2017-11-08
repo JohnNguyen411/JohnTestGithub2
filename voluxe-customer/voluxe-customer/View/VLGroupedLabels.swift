@@ -80,10 +80,12 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
             previousLabel = luxeLabel
         }
         
+        /*
         // add last bottom separator
         if let previousLabel = previousLabel, topBottomSeparator {
             addBottomSeparator(previousLabel: previousLabel)
         }
+         */
         
         if self.singleChoice {
             let firstLabel = labels[0]
@@ -110,7 +112,9 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
                 make.left.right.equalToSuperview()
                 make.height.equalTo(1)
             }
+            
         }
+        addBottomSeparator(previousLabel: luxeLabel)
     }
     
     private func addLabel(luxeLabel: VLSelectableLabel, previousLabel: VLSelectableLabel) {
@@ -121,15 +125,19 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
             make.height.equalTo(VLSelectableLabel.height)
         }
         
-        let separator = UIView()
-        separator.backgroundColor = .luxeLightGray()
-        
-        addSubview(separator)
-        
-        separator.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(luxeLabel.snp.top)
-            make.left.right.equalToSuperview()
-            make.height.equalTo(1)
+        if topBottomSeparator {
+            addBottomSeparator(previousLabel: luxeLabel)
+        } else {
+            let separator = UIView()
+            separator.backgroundColor = .luxeLightGray()
+            
+            addSubview(separator)
+            
+            separator.snp.makeConstraints { (make) -> Void in
+                make.top.equalTo(luxeLabel.snp.top)
+                make.left.right.equalToSuperview()
+                make.height.equalTo(1)
+            }
         }
     }
     

@@ -38,4 +38,5 @@
 "AddressForPickupPlaceholder" = "123 Main Street, San Francisco";
 "AddressForPickup" = "Address for Pickup";
 "PickupLocationTitle" = "Where should we meet you?";
+"YourLocation" = "Your Location";
 

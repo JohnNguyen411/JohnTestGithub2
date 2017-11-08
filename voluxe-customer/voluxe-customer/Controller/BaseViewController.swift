@@ -7,9 +7,13 @@
 //
 
 import Foundation
-import  UIKit
+import UIKit
+import Presentr
 
 class BaseViewController: UIViewController {
+    
+    var keyboardShowing = false
+    var keyboardHeight: CGFloat = 0
     
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -48,6 +52,32 @@ class BaseViewController: UIViewController {
     }
     
     
+    //MARK: Keyboard management
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
+    }
+    
+    @objc func keyboardWillAppear(_ notification: Notification) {
+        //override if needed
+        keyboardShowing = true
+        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+            let keyboardRectangle = keyboardFrame.cgRectValue
+            keyboardHeight = keyboardRectangle.height
+        }
+    }
+    
+    @objc func keyboardWillDisappear(_ notification: Notification) {
+        //override if needed
+        keyboardShowing = false
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
 }
 
 extension UIViewController {
@@ -71,4 +101,3 @@ extension UIViewController {
         return Swift.min(statusBarSize.width, statusBarSize.height)
     }
 }
-

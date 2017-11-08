@@ -277,15 +277,15 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     
-    func reverseGeocodeLocationWithLatLon(latitude:Double, longitude: Double,onReverseGeocodingCompletionHandler:LMReverseGeocodeCompletionHandler) {
+    func reverseGeocodeLocationWithLatLon(latitude: Double, longitude: Double, onReverseGeocodingCompletionHandler: LMReverseGeocodeCompletionHandler) {
         
-        let location:CLLocation = CLLocation(latitude:latitude, longitude: longitude)
+        let location:CLLocation = CLLocation(latitude: latitude, longitude: longitude)
         
-        reverseGeocodeLocationWithCoordinates(location,onReverseGeocodingCompletionHandler: onReverseGeocodingCompletionHandler)
+        reverseGeocodeLocationWithCoordinates(location, onReverseGeocodingCompletionHandler: onReverseGeocodingCompletionHandler)
         
     }
     
-    func reverseGeocodeLocationWithCoordinates(_ coord:CLLocation, onReverseGeocodingCompletionHandler:LMReverseGeocodeCompletionHandler) {
+    func reverseGeocodeLocationWithCoordinates(_ coord: CLLocation, onReverseGeocodingCompletionHandler: LMReverseGeocodeCompletionHandler) {
         
         self.reverseGeocodingCompletionHandler = onReverseGeocodingCompletionHandler
         
@@ -306,7 +306,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
                     let address = AddressParser()
                     address.parseAppleLocationData(placemark)
                     let addressDict = address.getAddressDictionary()
-                    self.reverseGeocodingCompletionHandler!(addressDict,placemark,nil)
+                    self.reverseGeocodingCompletionHandler!(addressDict, placemark, nil)
                 }
                 else {
                     self.reverseGeocodingCompletionHandler!(nil, nil, "No Placemarks Found!")
@@ -354,22 +354,22 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     
     
     fileprivate func geoCodeUsignGoogleAddress(_ address:NSString){
-        var urlString = "http://maps.googleapis.com/maps/api/geocode/json?address=\(address)&sensor=true" as NSString
+        var urlString = "https://maps.googleapis.com/maps/api/geocode/json?address=\(address)&sensor=true" as NSString
         urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! as NSString
         performOperationForURL(urlString, type: GeoCodingType.geocoding)
     }
     
-    func reverseGeocodeLocationUsingGoogleWithLatLon(latitude:Double, longitude: Double,onReverseGeocodingCompletionHandler:LMReverseGeocodeCompletionHandler) {
+    func reverseGeocodeLocationUsingGoogleWithLatLon(latitude:Double, longitude: Double, onReverseGeocodingCompletionHandler: LMReverseGeocodeCompletionHandler) {
         self.reverseGeocodingCompletionHandler = onReverseGeocodingCompletionHandler
         reverseGocodeUsingGoogle(latitude: latitude, longitude: longitude)
     }
     
-    func reverseGeocodeLocationUsingGoogleWithCoordinates(_ coord:CLLocation, onReverseGeocodingCompletionHandler:LMReverseGeocodeCompletionHandler) {
+    func reverseGeocodeLocationUsingGoogleWithCoordinates(_ coord:CLLocation, onReverseGeocodingCompletionHandler: LMReverseGeocodeCompletionHandler) {
         reverseGeocodeLocationUsingGoogleWithLatLon(latitude: coord.coordinate.latitude, longitude: coord.coordinate.longitude, onReverseGeocodingCompletionHandler: onReverseGeocodingCompletionHandler)
     }
     
     fileprivate func reverseGocodeUsingGoogle(latitude:Double, longitude: Double) {
-        var urlString = "http://maps.googleapis.com/maps/api/geocode/json?latlng=\(latitude),\(longitude)&sensor=true" as NSString
+        var urlString = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(latitude),\(longitude)&sensor=true" as NSString
         urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! as NSString
         performOperationForURL(urlString, type: GeoCodingType.reverseGeocoding)
     }

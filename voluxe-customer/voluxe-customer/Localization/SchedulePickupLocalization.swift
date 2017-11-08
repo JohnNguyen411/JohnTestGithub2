@@ -19,4 +19,5 @@ extension String {
     static let AddressForPickup = NSLocalizedString("AddressForPickup")
     static let AddressForPickupPlaceholder = NSLocalizedString("AddressForPickupPlaceholder")
     static let PickupLocationTitle = NSLocalizedString("PickupLocationTitle")
+    static let YourLocation = NSLocalizedString("YourLocation")
 }

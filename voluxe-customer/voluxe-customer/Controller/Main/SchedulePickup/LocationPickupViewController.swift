@@ -9,9 +9,11 @@
 import Foundation
 import UIKit
 
-class LocationPickupViewController: VLPresentrViewController {
+class LocationPickupViewController: VLPresentrViewController, LocationManagerDelegate {
     
     var pickupLocationDelegate: PickupLocationDelegate?
+    var locationManager = LocationManager.sharedInstance
+
     
     let newLocationLabel: UILabel = {
         let titleLabel = UILabel()
@@ -28,10 +30,25 @@ class LocationPickupViewController: VLPresentrViewController {
     override init() {
         super.init()
         newLocationTextField.setRightButtonText(rightButtonText: (.Add as String).uppercased())
+        addLocation(location: .YourLocation)
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        locationManager.delegate = nil
+        locationManager.stopUpdatingLocation()
+    }
+    
+    func addLocation(location: String) {
+        groupedLabels.addItem(item: location)
+        groupedLabels.snp.updateConstraints{ make in
+            make.height.equalTo(groupedLabels.items.count * VLSelectableLabel.height)
+        }
     }
     
     override func setupViews() {
@@ -66,7 +83,16 @@ class LocationPickupViewController: VLPresentrViewController {
     }
     
     override func height() -> Int {
-        return (groupedLabels.items.count * VLSelectableLabel.height) + VLPresentrViewController.baseHeight + VLVerticalTextField.height + 90
+        return (groupedLabels.items.count * VLSelectableLabel.height) + VLPresentrViewController.baseHeight + VLVerticalTextField.height + 100
+    }
+    
+    func locationFound(_ latitude: Double, longitude: Double) {
+        locationManager.reverseGeocodeLocationUsingGoogleWithLatLon(latitude: latitude, longitude: longitude) { (reverseGeocodeInfo, placemark, error) -> Void in
+            if let reverseGeocodeInfo = reverseGeocodeInfo {
+                print("Address found")
+                print(reverseGeocodeInfo["formattedAddress"] ?? "")
+            }
+        }
     }
     
 }

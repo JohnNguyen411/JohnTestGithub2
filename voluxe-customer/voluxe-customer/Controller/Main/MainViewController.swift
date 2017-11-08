@@ -13,6 +13,7 @@ import SlideMenuControllerSwift
 class MainViewController: BaseViewController {
     
     static var navigationBarHeight: CGFloat = 0
+    var currentViewController: BaseViewController?
     var schedulePickupViewController: SchedulePickupViewController?
     
     
@@ -37,10 +38,25 @@ class MainViewController: BaseViewController {
                 make.edges.equalToSuperview()
             }
         }
+        currentViewController = schedulePickupViewController
     }
     
     static func getNavigationBarHeight() -> CGFloat {
         return MainViewController.navigationBarHeight
+    }
+    
+    override func keyboardWillAppear(_ notification: Notification) {
+        super.keyboardWillAppear(notification)
+        if let currentViewController = currentViewController {
+            currentViewController.keyboardWillAppear(notification)
+        }
+    }
+    
+    override func keyboardWillDisappear(_ notification: Notification) {
+        super.keyboardWillDisappear(notification)
+        if let currentViewController = currentViewController {
+            currentViewController.keyboardWillDisappear(notification)
+        }
     }
 }
 

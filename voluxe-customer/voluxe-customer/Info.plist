@@ -29,6 +29,8 @@
 		<string>VolvoSanLigBol.ttf</string>
 		<string>VolvoSanLigReg.ttf</string>
 		<string>VolvoSansPro-Bold.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>SourceSansPro-Regular.ttf</string>
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
@@ -55,6 +57,10 @@
 	<string>$(OPENID_CLIENT_SECRET)</string>
 	<key>com.volvocars.hse.openIdRedirectUri</key>
 	<string>$(OPENID_REDIRECT_URI)</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
 	<key>com.volvocars.hse.openIdTokenEndpoint</key>
 	<string>$(OPENID_TOKEN_ENDPOINT)</string>
 </dict>

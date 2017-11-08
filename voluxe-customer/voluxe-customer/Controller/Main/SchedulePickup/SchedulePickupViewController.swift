@@ -11,10 +11,12 @@ import UIKit
 import SlideMenuControllerSwift
 import Presentr
 
-class SchedulePickupViewController: BaseViewController {
+class SchedulePickupViewController: BaseViewController, PresentrDelegate {
     
     let presentrCornerRadius: CGFloat = 4.0
-    
+    var currentPresentr: Presentr?
+    var currentPresentrVC: VLPresentrViewController?
+
     let checkupLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .FTUEStartOne
@@ -165,20 +167,28 @@ class SchedulePickupViewController: BaseViewController {
         customPresenter.blurStyle = UIBlurEffectStyle.dark
         customPresenter.dismissOnSwipe = false
         customPresenter.keyboardTranslationType = .moveUp
+        
 
         return customPresenter
     }
     
     private func showDealershipModal() {
-        let dealershipController = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next, actionBlock: {})
-        let modalPresenter = buildPresenter(heightInPixels: CGFloat(dealershipController.height()))
-        customPresentViewController(modalPresenter, viewController: dealershipController, animated: true, completion: {})
+        currentPresentrVC = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next, actionBlock: {})
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()))
+        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
     private func showPickupLocationModal() {
-        let locationController = LocationPickupViewController(title: .PickupLocationTitle, buttonTitle: .Next, actionBlock: {})
-        let modalPresenter = buildPresenter(heightInPixels: CGFloat(locationController.height()))
-        customPresentViewController(modalPresenter, viewController: locationController, animated: true, completion: {})
+        currentPresentrVC = LocationPickupViewController(title: .PickupLocationTitle, buttonTitle: .Next, actionBlock: {})
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()))
+        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
+    }
+    
+    func presentrShouldDismiss(keyboardShowing: Bool) -> Bool {
+        print("Dismissing View Controller")
+        currentPresentr = nil
+        currentPresentrVC = nil
+        return true
     }
     
     //MARK: Actions methods
@@ -199,4 +209,16 @@ class SchedulePickupViewController: BaseViewController {
         print("volvoPickupClick")
     }
     
+    //MARK: Keyboard management
+    
+    override func keyboardWillAppear(_ notification: Notification) {
+        super.keyboardWillAppear(notification)
+        // move up presenter
+       
+    }
+
+    override func keyboardWillDisappear(_ notification: Notification) {
+        super.keyboardWillDisappear(notification)
+        // move down presenter
+    }
 }

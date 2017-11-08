@@ -23,6 +23,64 @@
 		6C3FB2BC1FA29A1C00B22EAB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BA1FA29A1C00B22EAB /* Location.swift */; };
 		6C3FB2BD1FA29A1C00B22EAB /* VehicleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BB1FA29A1C00B22EAB /* VehicleLocation.swift */; };
 		6C3FB2BF1FA2A4CE00B22EAB /* VehicleLockStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */; };
+		6C5832C51FB3899800F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
+		6C5832C61FB38C9000F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
+		6C5832C71FB38C9000F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
+		6C5833091FB3AF5600F6BFE0 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F41FB3AF5600F6BFE0 /* AlertViewController.swift */; };
+		6C58330A1FB3AF5600F6BFE0 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C5832F51FB3AF5600F6BFE0 /* AlertViewController.xib */; };
+		6C58330B1FB3AF5600F6BFE0 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F61FB3AF5600F6BFE0 /* BackgroundView.swift */; };
+		6C58330C1FB3AF5600F6BFE0 /* CoverHorizontalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F71FB3AF5600F6BFE0 /* CoverHorizontalAnimation.swift */; };
+		6C58330D1FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F81FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift */; };
+		6C58330E1FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F91FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift */; };
+		6C58330F1FB3AF5600F6BFE0 /* CrossDissolveAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FA1FB3AF5600F6BFE0 /* CrossDissolveAnimation.swift */; };
+		6C5833111FB3AF5600F6BFE0 /* KeyboardTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FC1FB3AF5600F6BFE0 /* KeyboardTranslation.swift */; };
+		6C5833121FB3AF5600F6BFE0 /* ModalCenterPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FD1FB3AF5600F6BFE0 /* ModalCenterPosition.swift */; };
+		6C5833131FB3AF5600F6BFE0 /* ModalSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FE1FB3AF5600F6BFE0 /* ModalSize.swift */; };
+		6C5833141FB3AF5600F6BFE0 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5832FF1FB3AF5600F6BFE0 /* Montserrat-Regular.ttf */; };
+		6C5833151FB3AF5600F6BFE0 /* PresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833001FB3AF5600F6BFE0 /* PresentationType.swift */; };
+		6C5833161FB3AF5600F6BFE0 /* Presentr+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833011FB3AF5600F6BFE0 /* Presentr+Equatable.swift */; };
+		6C5833171FB3AF5600F6BFE0 /* Presentr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833031FB3AF5600F6BFE0 /* Presentr.swift */; };
+		6C5833181FB3AF5600F6BFE0 /* PresentrAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833041FB3AF5600F6BFE0 /* PresentrAnimation.swift */; };
+		6C5833191FB3AF5600F6BFE0 /* PresentrController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833051FB3AF5600F6BFE0 /* PresentrController.swift */; };
+		6C58331A1FB3AF5600F6BFE0 /* PresentrShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833061FB3AF5600F6BFE0 /* PresentrShadow.swift */; };
+		6C58331B1FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5833071FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf */; };
+		6C58331C1FB3AF5600F6BFE0 /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833081FB3AF5600F6BFE0 /* TransitionType.swift */; };
+		6C58331D1FB3AF7200F6BFE0 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C5832F51FB3AF5600F6BFE0 /* AlertViewController.xib */; };
+		6C58331E1FB3AF7200F6BFE0 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C5832F51FB3AF5600F6BFE0 /* AlertViewController.xib */; };
+		6C58331F1FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F61FB3AF5600F6BFE0 /* BackgroundView.swift */; };
+		6C5833201FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F61FB3AF5600F6BFE0 /* BackgroundView.swift */; };
+		6C5833211FB3AF7800F6BFE0 /* CoverHorizontalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F71FB3AF5600F6BFE0 /* CoverHorizontalAnimation.swift */; };
+		6C5833221FB3AF7800F6BFE0 /* CoverHorizontalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F71FB3AF5600F6BFE0 /* CoverHorizontalAnimation.swift */; };
+		6C5833231FB3AF7B00F6BFE0 /* CoverVerticalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F81FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift */; };
+		6C5833241FB3AF7B00F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F91FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift */; };
+		6C5833251FB3AF7B00F6BFE0 /* CoverVerticalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F81FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift */; };
+		6C5833261FB3AF7B00F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F91FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift */; };
+		6C5833271FB3AF8000F6BFE0 /* CrossDissolveAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FA1FB3AF5600F6BFE0 /* CrossDissolveAnimation.swift */; };
+		6C5833281FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FC1FB3AF5600F6BFE0 /* KeyboardTranslation.swift */; };
+		6C5833291FB3AF8000F6BFE0 /* ModalCenterPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FD1FB3AF5600F6BFE0 /* ModalCenterPosition.swift */; };
+		6C58332A1FB3AF8000F6BFE0 /* ModalSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FE1FB3AF5600F6BFE0 /* ModalSize.swift */; };
+		6C58332B1FB3AF8000F6BFE0 /* CrossDissolveAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FA1FB3AF5600F6BFE0 /* CrossDissolveAnimation.swift */; };
+		6C58332C1FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FC1FB3AF5600F6BFE0 /* KeyboardTranslation.swift */; };
+		6C58332D1FB3AF8000F6BFE0 /* ModalCenterPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FD1FB3AF5600F6BFE0 /* ModalCenterPosition.swift */; };
+		6C58332E1FB3AF8000F6BFE0 /* ModalSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FE1FB3AF5600F6BFE0 /* ModalSize.swift */; };
+		6C58332F1FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5832FF1FB3AF5600F6BFE0 /* Montserrat-Regular.ttf */; };
+		6C5833301FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5832FF1FB3AF5600F6BFE0 /* Montserrat-Regular.ttf */; };
+		6C5833311FB3AF9200F6BFE0 /* PresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833001FB3AF5600F6BFE0 /* PresentationType.swift */; };
+		6C5833321FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833011FB3AF5600F6BFE0 /* Presentr+Equatable.swift */; };
+		6C5833331FB3AF9200F6BFE0 /* PresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833001FB3AF5600F6BFE0 /* PresentationType.swift */; };
+		6C5833341FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833011FB3AF5600F6BFE0 /* Presentr+Equatable.swift */; };
+		6C5833351FB3AF9900F6BFE0 /* Presentr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833031FB3AF5600F6BFE0 /* Presentr.swift */; };
+		6C5833361FB3AF9900F6BFE0 /* PresentrAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833041FB3AF5600F6BFE0 /* PresentrAnimation.swift */; };
+		6C5833371FB3AF9900F6BFE0 /* PresentrController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833051FB3AF5600F6BFE0 /* PresentrController.swift */; };
+		6C5833381FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833061FB3AF5600F6BFE0 /* PresentrShadow.swift */; };
+		6C5833391FB3AF9900F6BFE0 /* Presentr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833031FB3AF5600F6BFE0 /* Presentr.swift */; };
+		6C58333A1FB3AF9900F6BFE0 /* PresentrAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833041FB3AF5600F6BFE0 /* PresentrAnimation.swift */; };
+		6C58333B1FB3AF9900F6BFE0 /* PresentrController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833051FB3AF5600F6BFE0 /* PresentrController.swift */; };
+		6C58333C1FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833061FB3AF5600F6BFE0 /* PresentrShadow.swift */; };
+		6C58333D1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5833071FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf */; };
+		6C58333E1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5833071FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf */; };
+		6C58333F1FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833081FB3AF5600F6BFE0 /* TransitionType.swift */; };
+		6C5833401FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833081FB3AF5600F6BFE0 /* TransitionType.swift */; };
 		6C6F4BC31FA8FBCF00087FE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */; };
 		6C6F4BC41FA8FBCF00087FE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */; };
 		6C6F4BC51FA8FBCF00087FE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */; };
@@ -128,9 +186,6 @@
 		6CCD42951FA013E3000AC6C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42941FA013E3000AC6C9 /* Assets.xcassets */; };
 		6CCD42A31FA013E3000AC6C9 /* voluxe_customerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD42A21FA013E3000AC6C9 /* voluxe_customerTests.swift */; };
 		6CCD42AE1FA013E3000AC6C9 /* voluxe_customerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD42AD1FA013E3000AC6C9 /* voluxe_customerUITests.swift */; };
-		6CCD42BC1FA01ABE000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BB1FA01ABE000AC6C9 /* shared */; };
-		6CCD42BD1FA01AC4000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BB1FA01ABE000AC6C9 /* shared */; };
-		6CCD42BE1FA01AC5000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BB1FA01ABE000AC6C9 /* shared */; };
 		6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D151FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D161FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
@@ -190,6 +245,27 @@
 		6C3FB2BA1FA29A1C00B22EAB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		6C3FB2BB1FA29A1C00B22EAB /* VehicleLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLocation.swift; sourceTree = "<group>"; };
 		6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLockStatus.swift; sourceTree = "<group>"; };
+		6C5832C41FB3899700F6BFE0 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
+		6C5832F41FB3AF5600F6BFE0 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		6C5832F51FB3AF5600F6BFE0 /* AlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
+		6C5832F61FB3AF5600F6BFE0 /* BackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BackgroundView.swift; sourceTree = "<group>"; };
+		6C5832F71FB3AF5600F6BFE0 /* CoverHorizontalAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverHorizontalAnimation.swift; sourceTree = "<group>"; };
+		6C5832F81FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverVerticalAnimation.swift; sourceTree = "<group>"; };
+		6C5832F91FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoverVerticalFromTopAnimation.swift; sourceTree = "<group>"; };
+		6C5832FA1FB3AF5600F6BFE0 /* CrossDissolveAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CrossDissolveAnimation.swift; sourceTree = "<group>"; };
+		6C5832FC1FB3AF5600F6BFE0 /* KeyboardTranslation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyboardTranslation.swift; sourceTree = "<group>"; };
+		6C5832FD1FB3AF5600F6BFE0 /* ModalCenterPosition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalCenterPosition.swift; sourceTree = "<group>"; };
+		6C5832FE1FB3AF5600F6BFE0 /* ModalSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModalSize.swift; sourceTree = "<group>"; };
+		6C5832FF1FB3AF5600F6BFE0 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		6C5833001FB3AF5600F6BFE0 /* PresentationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentationType.swift; sourceTree = "<group>"; };
+		6C5833011FB3AF5600F6BFE0 /* Presentr+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Presentr+Equatable.swift"; sourceTree = "<group>"; };
+		6C5833021FB3AF5600F6BFE0 /* Presentr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Presentr.h; sourceTree = "<group>"; };
+		6C5833031FB3AF5600F6BFE0 /* Presentr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentr.swift; sourceTree = "<group>"; };
+		6C5833041FB3AF5600F6BFE0 /* PresentrAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentrAnimation.swift; sourceTree = "<group>"; };
+		6C5833051FB3AF5600F6BFE0 /* PresentrController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentrController.swift; sourceTree = "<group>"; };
+		6C5833061FB3AF5600F6BFE0 /* PresentrShadow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PresentrShadow.swift; sourceTree = "<group>"; };
+		6C5833071FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		6C5833081FB3AF5600F6BFE0 /* TransitionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionType.swift; sourceTree = "<group>"; };
 		6C6F4BC81FA8FC4600087FE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6C6F4BC91FA9178700087FE7 /* FTUELoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUELoginViewController.swift; sourceTree = "<group>"; };
 		6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEPhoneNumberViewController.swift; sourceTree = "<group>"; };
@@ -237,7 +313,6 @@
 		6CCD42A91FA013E3000AC6C9 /* voluxe-customerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "voluxe-customerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD42AD1FA013E3000AC6C9 /* voluxe_customerUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voluxe_customerUITests.swift; sourceTree = "<group>"; };
 		6CCD42AF1FA013E3000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6CCD42BB1FA01ABE000AC6C9 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shared; path = ../shared; sourceTree = "<group>"; };
 		6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLTitledLabel.swift; sourceTree = "<group>"; };
 		6CD47D171FAD190F00D794A6 /* VLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLButton.swift; sourceTree = "<group>"; };
 		6CE902141FA14C1200EE106C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -321,6 +396,50 @@
 				6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */,
 			);
 			path = Extention;
+			sourceTree = "<group>";
+		};
+		6C5832C21FB3899700F6BFE0 /* shared */ = {
+			isa = PBXGroup;
+			children = (
+				6C5832C31FB3899700F6BFE0 /* manager */,
+			);
+			name = shared;
+			path = ../shared;
+			sourceTree = "<group>";
+		};
+		6C5832C31FB3899700F6BFE0 /* manager */ = {
+			isa = PBXGroup;
+			children = (
+				6C5832C41FB3899700F6BFE0 /* LocationManager.swift */,
+			);
+			path = manager;
+			sourceTree = "<group>";
+		};
+		6C5832F31FB3AF5600F6BFE0 /* Presentr */ = {
+			isa = PBXGroup;
+			children = (
+				6C5832F41FB3AF5600F6BFE0 /* AlertViewController.swift */,
+				6C5832F51FB3AF5600F6BFE0 /* AlertViewController.xib */,
+				6C5832F61FB3AF5600F6BFE0 /* BackgroundView.swift */,
+				6C5832F71FB3AF5600F6BFE0 /* CoverHorizontalAnimation.swift */,
+				6C5832F81FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift */,
+				6C5832F91FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift */,
+				6C5832FA1FB3AF5600F6BFE0 /* CrossDissolveAnimation.swift */,
+				6C5832FC1FB3AF5600F6BFE0 /* KeyboardTranslation.swift */,
+				6C5832FD1FB3AF5600F6BFE0 /* ModalCenterPosition.swift */,
+				6C5832FE1FB3AF5600F6BFE0 /* ModalSize.swift */,
+				6C5832FF1FB3AF5600F6BFE0 /* Montserrat-Regular.ttf */,
+				6C5833001FB3AF5600F6BFE0 /* PresentationType.swift */,
+				6C5833011FB3AF5600F6BFE0 /* Presentr+Equatable.swift */,
+				6C5833021FB3AF5600F6BFE0 /* Presentr.h */,
+				6C5833031FB3AF5600F6BFE0 /* Presentr.swift */,
+				6C5833041FB3AF5600F6BFE0 /* PresentrAnimation.swift */,
+				6C5833051FB3AF5600F6BFE0 /* PresentrController.swift */,
+				6C5833061FB3AF5600F6BFE0 /* PresentrShadow.swift */,
+				6C5833071FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf */,
+				6C5833081FB3AF5600F6BFE0 /* TransitionType.swift */,
+			);
+			path = Presentr;
 			sourceTree = "<group>";
 		};
 		6C7342061FB123E500E90F7E /* SchedulePickup */ = {
@@ -435,7 +554,7 @@
 		6CCD42811FA013E3000AC6C9 = {
 			isa = PBXGroup;
 			children = (
-				6CCD42BB1FA01ABE000AC6C9 /* shared */,
+				6C5832C21FB3899700F6BFE0 /* shared */,
 				6CCD428C1FA013E3000AC6C9 /* voluxe-customer */,
 				6CCD42A11FA013E3000AC6C9 /* voluxe-customerTests */,
 				6CCD42AC1FA013E3000AC6C9 /* voluxe-customerUITests */,
@@ -458,6 +577,7 @@
 		6CCD428C1FA013E3000AC6C9 /* voluxe-customer */ = {
 			isa = PBXGroup;
 			children = (
+				6C5832F31FB3AF5600F6BFE0 /* Presentr */,
 				6CC83A791FA140A600FE0633 /* Config */,
 				6CC37E431FA7ADB000DA8F01 /* Controller */,
 				6C3FB2B71FA2971D00B22EAB /* Extention */,
@@ -668,6 +788,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C5833141FB3AF5600F6BFE0 /* Montserrat-Regular.ttf in Resources */,
+				6C58331B1FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
 				6CC83A831FA140D300FE0633 /* sensus_test.json in Resources */,
 				6CC83A851FA140D300FE0633 /* sensus_qa.json in Resources */,
 				6CFBF9B41FA1131700D3AA78 /* VolvoSansPro-Medium.ttf in Resources */,
@@ -676,7 +798,6 @@
 				6CC83A801FA140D300FE0633 /* ngrok.json in Resources */,
 				6C9543A81FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */,
 				6CFBF9B21FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf in Resources */,
-				6CCD42BC1FA01ABE000AC6C9 /* shared in Resources */,
 				6CC83A841FA140D300FE0633 /* sensus_prod.json in Resources */,
 				6CFBF9B31FA1131700D3AA78 /* VolvoSansPro-Light.ttf in Resources */,
 				6C9543AE1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
@@ -684,6 +805,7 @@
 				6CC83A821FA140D300FE0633 /* localhost.json in Resources */,
 				6CFBF9B51FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf in Resources */,
 				6CC83A811FA140D300FE0633 /* mock.json in Resources */,
+				6C58330A1FB3AF5600F6BFE0 /* AlertViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -691,11 +813,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C58332F1FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */,
 				6C9543AC1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
 				6C9543AF1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
-				6CCD42BD1FA01AC4000AC6C9 /* shared in Resources */,
+				6C58333D1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
 				6C9543A91FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */,
 				6C6F4BC41FA8FBCF00087FE7 /* Localizable.strings in Resources */,
+				6C58331D1FB3AF7200F6BFE0 /* AlertViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -703,11 +827,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C5833301FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */,
 				6C9543AD1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
 				6C9543B01FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
-				6CCD42BE1FA01AC5000AC6C9 /* shared in Resources */,
+				6C58333E1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
 				6C9543AA1FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */,
 				6C6F4BC51FA8FBCF00087FE7 /* Localizable.strings in Resources */,
+				6C58331E1FB3AF7200F6BFE0 /* AlertViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -902,9 +1028,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C5833111FB3AF5600F6BFE0 /* KeyboardTranslation.swift in Sources */,
 				6C7342141FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */,
 				6C3FB2B61FA289F000B22EAB /* ColorDefinitions.swift in Sources */,
+				6C58330C1FB3AF5600F6BFE0 /* CoverHorizontalAnimation.swift in Sources */,
 				6CEA0D591FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
+				6C5833161FB3AF5600F6BFE0 /* Presentr+Equatable.swift in Sources */,
+				6C58330D1FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
+				6C5833131FB3AF5600F6BFE0 /* ModalSize.swift in Sources */,
 				6CC37E531FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
 				6C7342031FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
@@ -913,15 +1044,23 @@
 				6C88DC941FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6CCD42901FA013E3000AC6C9 /* ViewController.swift in Sources */,
 				6CD47D181FAD190F00D794A6 /* VLButton.swift in Sources */,
+				6C5833091FB3AF5600F6BFE0 /* AlertViewController.swift in Sources */,
 				6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
+				6C5833191FB3AF5600F6BFE0 /* PresentrController.swift in Sources */,
 				6C3FB2AB1FA2574C00B22EAB /* User.swift in Sources */,
+				6C58330F1FB3AF5600F6BFE0 /* CrossDissolveAnimation.swift in Sources */,
 				6C3FB2B91FA297A300B22EAB /* Date+DateTools.swift in Sources */,
 				6C9543A21FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6CC37E4A1FA7AF2900DA8F01 /* FTUEViewController.swift in Sources */,
 				6C3FB2BC1FA29A1C00B22EAB /* Location.swift in Sources */,
+				6C5832C51FB3899800F6BFE0 /* LocationManager.swift in Sources */,
+				6C5833171FB3AF5600F6BFE0 /* Presentr.swift in Sources */,
+				6C5833151FB3AF5600F6BFE0 /* PresentationType.swift in Sources */,
 				6CC37E461FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
+				6C5833121FB3AF5600F6BFE0 /* ModalCenterPosition.swift in Sources */,
 				6C3FB2BD1FA29A1C00B22EAB /* VehicleLocation.swift in Sources */,
 				6CC83A881FA1479700FE0633 /* InitializationService.swift in Sources */,
+				6C58331A1FB3AF5600F6BFE0 /* PresentrShadow.swift in Sources */,
 				6C88DC8F1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6C88DC981FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C3FB2B21FA2824200B22EAB /* Constants.swift in Sources */,
@@ -931,12 +1070,16 @@
 				6C91BBF11FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
 				6C3FB2AA1FA2574C00B22EAB /* Vehicle.swift in Sources */,
 				6CCD428E1FA013E3000AC6C9 /* AppDelegate.swift in Sources */,
+				6C58330B1FB3AF5600F6BFE0 /* BackgroundView.swift in Sources */,
+				6C5833181FB3AF5600F6BFE0 /* PresentrAnimation.swift in Sources */,
 				6C9C7A7B1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
 				6C6F4BCE1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6CC37E501FA7C41700DA8F01 /* VLTextField.swift in Sources */,
+				6C58331C1FB3AF5600F6BFE0 /* TransitionType.swift in Sources */,
 				6C95439E1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C7342101FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
 				6C2F1DD61FAD0A8F00C28C6E /* SchedulePickupViewController.swift in Sources */,
+				6C58330E1FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */,
 				6C91BBDB1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C3FB2B01FA2823800B22EAB /* Fonts.swift in Sources */,
 				6C91BBE01FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
@@ -954,38 +1097,54 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CC37E4B1FA7AF2900DA8F01 /* FTUEViewController.swift in Sources */,
+				6C58332A1FB3AF8000F6BFE0 /* ModalSize.swift in Sources */,
 				6CC37E541FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
 				6CD47D151FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
 				6C91BBE11FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
 				6C91BBF21FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
 				6C7342091FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */,
 				6CEA0D5A1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
+				6C5833351FB3AF9900F6BFE0 /* Presentr.swift in Sources */,
 				6CC37E471FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
+				6C5833371FB3AF9900F6BFE0 /* PresentrController.swift in Sources */,
 				6CCD42A31FA013E3000AC6C9 /* voluxe_customerTests.swift in Sources */,
 				6C7342151FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */,
+				6C5833271FB3AF8000F6BFE0 /* CrossDissolveAnimation.swift in Sources */,
 				6C73420D1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,
+				6C5833211FB3AF7800F6BFE0 /* CoverHorizontalAnimation.swift in Sources */,
+				6C5833361FB3AF9900F6BFE0 /* PresentrAnimation.swift in Sources */,
 				6C7342041FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6C88DC991FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C91BBD81FA7D6220033C2B1 /* ViewPager.swift in Sources */,
 				6C9543A31FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6C7342001FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
+				6C5833281FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */,
 				6C91BBD21FA7D3D70033C2B1 /* ColorDefinitions.swift in Sources */,
+				6C5832C61FB38C9000F6BFE0 /* LocationManager.swift in Sources */,
+				6C58331F1FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */,
+				6C5833381FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */,
 				6C95439F1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C91BBDC1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C91BBCE1FA7D3CE0033C2B1 /* Fonts.swift in Sources */,
+				6C5833291FB3AF8000F6BFE0 /* ModalCenterPosition.swift in Sources */,
 				6C7E66E61FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
+				6C58333F1FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */,
 				6C6F4BCB1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
 				6CC37E511FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C88DC901FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
+				6C5833321FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */,
 				6C2F1DD71FAD0A8F00C28C6E /* SchedulePickupViewController.swift in Sources */,
 				6CD47D191FAD190F00D794A6 /* VLButton.swift in Sources */,
 				6C7342111FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
 				6C91BBD01FA7D3D40033C2B1 /* StringUtils.swift in Sources */,
+				6C5833311FB3AF9200F6BFE0 /* PresentationType.swift in Sources */,
 				6C88DC951FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6C91BBD41FA7D44D0033C2B1 /* Constants.swift in Sources */,
 				6C6F4BCF1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6C88DC9E1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
 				6CE5AC061FACF116009FD0D7 /* AppDelegate.swift in Sources */,
+				6C5833241FB3AF7B00F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */,
+				6C5833231FB3AF7B00F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
 				6C9C7A7C1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -995,38 +1154,54 @@
 			buildActionMask = 2147483647;
 			files = (
 				6CC37E4C1FA7AF2900DA8F01 /* FTUEViewController.swift in Sources */,
+				6C58332E1FB3AF8000F6BFE0 /* ModalSize.swift in Sources */,
 				6CC37E551FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
 				6CD47D161FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
 				6C91BBE21FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
 				6C91BBF31FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
 				6C73420A1FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */,
 				6CEA0D5B1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
+				6C5833391FB3AF9900F6BFE0 /* Presentr.swift in Sources */,
 				6CC37E481FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
+				6C58333B1FB3AF9900F6BFE0 /* PresentrController.swift in Sources */,
 				6CCD42AE1FA013E3000AC6C9 /* voluxe_customerUITests.swift in Sources */,
 				6C7342161FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */,
+				6C58332B1FB3AF8000F6BFE0 /* CrossDissolveAnimation.swift in Sources */,
 				6C73420E1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,
+				6C5833221FB3AF7800F6BFE0 /* CoverHorizontalAnimation.swift in Sources */,
+				6C58333A1FB3AF9900F6BFE0 /* PresentrAnimation.swift in Sources */,
 				6C7342051FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6C88DC9A1FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C91BBD91FA7D6220033C2B1 /* ViewPager.swift in Sources */,
 				6C9543A41FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6C7342011FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
+				6C58332C1FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */,
 				6C91BBD31FA7D3D80033C2B1 /* ColorDefinitions.swift in Sources */,
+				6C5832C71FB38C9000F6BFE0 /* LocationManager.swift in Sources */,
+				6C5833201FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */,
+				6C58333C1FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */,
 				6C9543A01FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C91BBDD1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C91BBCF1FA7D3CE0033C2B1 /* Fonts.swift in Sources */,
+				6C58332D1FB3AF8000F6BFE0 /* ModalCenterPosition.swift in Sources */,
 				6C7E66E71FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
+				6C5833401FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */,
 				6C6F4BCC1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
 				6CC37E521FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C88DC911FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
+				6C5833341FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */,
 				6C2F1DD81FAD0A8F00C28C6E /* SchedulePickupViewController.swift in Sources */,
 				6CD47D1A1FAD190F00D794A6 /* VLButton.swift in Sources */,
 				6C7342121FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
 				6C91BBD11FA7D3D50033C2B1 /* StringUtils.swift in Sources */,
+				6C5833331FB3AF9200F6BFE0 /* PresentationType.swift in Sources */,
 				6C88DC961FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6C91BBD51FA7D44D0033C2B1 /* Constants.swift in Sources */,
 				6C6F4BD01FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6C88DC9F1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
 				6CE5AC071FACF116009FD0D7 /* AppDelegate.swift in Sources */,
+				6C5833261FB3AF7B00F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */,
+				6C5833251FB3AF7B00F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
 				6C9C7A7D1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -78,9 +78,8 @@ class VLVerticalTextField : VLTextField {
     
     override func applyConstraints() {
         textField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview()
-            make.right.equalToSuperview()
-            make.top.equalTo(self).offset(10)
+            make.left.right.equalToSuperview()
+            make.top.equalTo(self)
             make.height.equalTo(25)
         }
        
