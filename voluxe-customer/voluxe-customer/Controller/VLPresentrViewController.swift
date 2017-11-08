@@ -11,7 +11,7 @@ import UIKit
 
 class VLPresentrViewController: UIViewController {
     
-    static let baseHeight = 70
+    static let baseHeight = 80
 
     let containerView = UIView(frame: .zero)
 

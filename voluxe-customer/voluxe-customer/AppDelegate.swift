@@ -66,12 +66,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        
+        /*
         for familyName in UIFont.familyNames {
             for font in UIFont.fontNames(forFamilyName: familyName) {
                 print("font: \(font)")
             }
         }
+ */
         
         //createMenuView()
         

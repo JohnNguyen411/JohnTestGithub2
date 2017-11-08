@@ -11,6 +11,8 @@ import UIKit
 
 class LocationPickupViewController: VLPresentrViewController {
     
+    var pickupLocationDelegate: PickupLocationDelegate?
+    
     let newLocationLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeGray()
@@ -22,6 +24,15 @@ class LocationPickupViewController: VLPresentrViewController {
     
     let newLocationTextField = VLVerticalTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
     let groupedLabels = VLGroupedLabels(singleChoice: true, topBottomSeparator: true)
+    
+    override init() {
+        super.init()
+        newLocationTextField.setRightButtonText(rightButtonText: (.Add as String).uppercased())
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func setupViews() {
         super.setupViews()
@@ -37,7 +48,7 @@ class LocationPickupViewController: VLPresentrViewController {
         
         newLocationLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(newLocationTextField.snp.top).offset(-10)
+            make.bottom.equalTo(newLocationTextField.snp.top)
             make.height.equalTo(25)
         }
 
@@ -55,8 +66,12 @@ class LocationPickupViewController: VLPresentrViewController {
     }
     
     override func height() -> Int {
-        return (groupedLabels.items.count * VLSelectableLabel.height) + VLPresentrViewController.baseHeight + VLVerticalTextField.height + 60
+        return (groupedLabels.items.count * VLSelectableLabel.height) + VLPresentrViewController.baseHeight + VLVerticalTextField.height + 90
     }
     
 }
 
+// MARK: protocol VLGroupedLabelsDelegate
+protocol PickupLocationDelegate: class {
+    func onLocationAdded(newSize: Int)
+}

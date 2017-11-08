@@ -164,6 +164,8 @@ class SchedulePickupViewController: BaseViewController {
         customPresenter.blurBackground = true
         customPresenter.blurStyle = UIBlurEffectStyle.dark
         customPresenter.dismissOnSwipe = false
+        customPresenter.keyboardTranslationType = .moveUp
+
         return customPresenter
     }
     

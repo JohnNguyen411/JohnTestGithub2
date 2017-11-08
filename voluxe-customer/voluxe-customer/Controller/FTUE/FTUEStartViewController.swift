@@ -45,13 +45,13 @@ class FTUEStartViewController: UIViewController, FTUEProtocol {
         text1.snp.makeConstraints { (make) -> Void in
             make.left.top.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(sizeThatFits)
+            make.height.equalTo(sizeThatFits.height)
         }
         
         text2.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(text1)
             make.top.equalTo(text1.snp.bottom).offset(20)
-            make.height.equalTo(sizeThatFits)
+            make.height.equalTo(sizeThatFits.height)
         }
     }
     

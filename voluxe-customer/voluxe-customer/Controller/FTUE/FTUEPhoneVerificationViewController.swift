@@ -23,22 +23,11 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
         return textView
     }()
     
-    let resendCodeLabel: UILabel = {
-        let textView = UILabel(frame: .zero)
-        let text: String = .ResendCode
-        textView.text = text.uppercased()
-        textView.font = .volvoSansLightBold(size: 12)
-        textView.textColor = .luxeOrange()
-        textView.backgroundColor = .clear
-        textView.numberOfLines = 0
-        return textView
-    }()
-    
     override func viewDidLoad() {
         codeTextField.textField.delegate = self
         super.viewDidLoad()
         codeTextField.textField.keyboardType = .numberPad
-        resendCodeLabel.textAlignment = .right
+        codeTextField.setRightButtonText(rightButtonText: (.ResendCode as String).uppercased())
 
         setupViews()
     }
@@ -47,7 +36,6 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
         
         self.view.addSubview(codeTextField)
         self.view.addSubview(phoneNumberLabel)
-        self.view.addSubview(resendCodeLabel)
         
         let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT)))
 
@@ -64,11 +52,6 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
             make.height.equalTo(40)
         }
         
-        resendCodeLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(phoneNumberLabel)
-            make.top.equalTo(codeTextField.snp.top).offset(15)
-            make.height.equalTo(20)
-        }
     }
     
     //MARK: UITextFieldDelegate
