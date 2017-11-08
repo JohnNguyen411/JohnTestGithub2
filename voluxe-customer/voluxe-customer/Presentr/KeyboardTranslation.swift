@@ -23,9 +23,9 @@ public enum KeyboardTranslationType {
      - parameter presentedFrame: The frame of the presented controller that may need to be translated.
      - returns: CGRect representing the new frame of the presented view.
      */
-    public func getTranslationFrame(keyboardFrame: CGRect, presentedFrame: CGRect) -> CGRect {
+    public func getTranslationFrame(keyboardFrame: CGRect, presentedFrame: CGRect, bufferOffset: CGFloat) -> CGRect {
         let keyboardTop = UIScreen.main.bounds.height - keyboardFrame.size.height
-        let presentedViewBottom = presentedFrame.origin.y + presentedFrame.height + 20.0 // add a 20 pt buffer
+        let presentedViewBottom = presentedFrame.origin.y + presentedFrame.height + bufferOffset // add buffer
         let offset = presentedViewBottom - keyboardTop
         switch self {
         case .moveUp:

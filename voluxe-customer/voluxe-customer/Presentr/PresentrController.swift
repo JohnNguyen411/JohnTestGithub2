@@ -44,7 +44,7 @@ class PresentrController: UIPresentationController, UIAdaptivePresentationContro
 
     fileprivate var shouldObserveKeyboard: Bool {
         return conformingPresentedController != nil ||
-            (keyboardTranslationType != .none && presentationType == .popup) // TODO: Work w/other types?
+            (keyboardTranslationType != .none) // TODO: Work w/other types?
     }
 
     fileprivate var containerFrame: CGRect {
@@ -435,7 +435,8 @@ extension PresentrController {
     @objc func keyboardWasShown(notification: Notification) {
         if let keyboardFrame = notification.keyboardEndFrame() {
             let presentedFrame = frameOfPresentedViewInContainerView
-            let translatedFrame = keyboardTranslationType.getTranslationFrame(keyboardFrame: keyboardFrame, presentedFrame: presentedFrame)
+            let offsetBuffer = presentationType == .alert || presentationType == .popup ? 20 : -4
+            let translatedFrame = keyboardTranslationType.getTranslationFrame(keyboardFrame: keyboardFrame, presentedFrame: presentedFrame, bufferOffset: CGFloat(offsetBuffer))
             if translatedFrame != presentedFrame {
                 UIView.animate(withDuration: notification.keyboardAnimationDuration() ?? 0.5, animations: {
                     self.presentedView?.frame = translatedFrame

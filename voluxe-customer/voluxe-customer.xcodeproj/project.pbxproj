@@ -577,13 +577,13 @@
 		6CCD428C1FA013E3000AC6C9 /* voluxe-customer */ = {
 			isa = PBXGroup;
 			children = (
-				6C5832F31FB3AF5600F6BFE0 /* Presentr */,
 				6CC83A791FA140A600FE0633 /* Config */,
 				6CC37E431FA7ADB000DA8F01 /* Controller */,
 				6C3FB2B71FA2971D00B22EAB /* Extention */,
 				6C3FB2AE1FA2820500B22EAB /* Font */,
 				6C91BBDE1FA8EB1B0033C2B1 /* Localization */,
 				6C3FB2A51FA16A0200B22EAB /* Model */,
+				6C5832F31FB3AF5600F6BFE0 /* Presentr */,
 				6CC83A861FA1478100FE0633 /* Service */,
 				6CFBF9AC1FA1119A00D3AA78 /* Supporting Files */,
 				6CC83A891FA147E100FE0633 /* Util */,
@@ -919,7 +919,6 @@
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
@@ -940,7 +939,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",

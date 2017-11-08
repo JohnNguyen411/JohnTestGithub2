@@ -9,7 +9,6 @@
 import Foundation
 import UIKit
 import SlideMenuControllerSwift
-import Presentr
 
 class SchedulePickupViewController: BaseViewController, PresentrDelegate {
     
@@ -160,14 +159,12 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate {
         
         let customPresenter = Presentr(presentationType: customType)
         customPresenter.transitionType = .coverVertical
-        customPresenter.dismissTransitionType = .coverVerticalFromTop
         customPresenter.roundCorners = true
         customPresenter.cornerRadius = presentrCornerRadius
         customPresenter.blurBackground = true
         customPresenter.blurStyle = UIBlurEffectStyle.dark
         customPresenter.dismissOnSwipe = false
         customPresenter.keyboardTranslationType = .moveUp
-        
 
         return customPresenter
     }

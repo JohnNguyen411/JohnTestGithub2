@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension PresentationType: Equatable { }
 public func == (lhs: PresentationType, rhs: PresentationType) -> Bool {

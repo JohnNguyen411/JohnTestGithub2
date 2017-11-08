@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 /**
  Descibes a presented modal's size dimension (width or height). It is meant to be non-specific, but the exact position can be calculated by calling the 'calculate' methods, passing in the 'parentSize' which only the Presentation Controller should be aware of.
