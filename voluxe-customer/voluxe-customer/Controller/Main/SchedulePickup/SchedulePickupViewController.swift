@@ -187,7 +187,11 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate {
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
-    
+    private func showPickupDateTimeModal() {
+        currentPresentrVC = DateTimePickupViewController(title: .SelectYourPreferredPickupTime, buttonTitle: .Next, actionBlock: {})
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()))
+        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
+    }
     
     func presentrShouldDismiss(keyboardShowing: Bool) -> Bool {
         print("Dismissing View Controller")
@@ -203,7 +207,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate {
     
     @objc func dealershipClick() {
         print("dealershipClick")
-        showPickupLoanerModal()
+        showPickupDateTimeModal()
     }
     
     func selfDropClick() {

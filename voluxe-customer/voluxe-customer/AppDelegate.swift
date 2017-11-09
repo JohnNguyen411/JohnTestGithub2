@@ -74,11 +74,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
  */
         
-        //createMenuView()
-        let homeViewController = FTUEViewController()
+        createMenuView()
+        /*let homeViewController = FTUEViewController()
         window!.rootViewController = homeViewController
         window!.makeKeyAndVisible()
-    
+    */
         return true
     }
 

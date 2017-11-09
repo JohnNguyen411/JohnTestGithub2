@@ -21,6 +21,7 @@ target 'voluxe-customer' do
     pod 'SnapKit', '~> 4.0.0'
     pod 'SlideMenuControllerSwift', '~> 4.0.0'
     pod 'PhoneNumberKit', '~> 2.0'
+    pod 'FSCalendar', '~> 2.7.9'
 
     
     target 'voluxe-customerTests' do
