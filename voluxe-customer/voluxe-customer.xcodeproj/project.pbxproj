@@ -11,9 +11,6 @@
 		6C2B32481FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B32471FB3C67100B943AC /* DateTimePickupViewController.swift */; };
 		6C2B32491FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B32471FB3C67100B943AC /* DateTimePickupViewController.swift */; };
 		6C2B324A1FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B32471FB3C67100B943AC /* DateTimePickupViewController.swift */; };
-		6C2B324D1FB3CE6A00B943AC /* VLCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B324C1FB3CE6A00B943AC /* VLCalendarCell.swift */; };
-		6C2B324E1FB3CE6A00B943AC /* VLCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B324C1FB3CE6A00B943AC /* VLCalendarCell.swift */; };
-		6C2B324F1FB3CE6A00B943AC /* VLCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B324C1FB3CE6A00B943AC /* VLCalendarCell.swift */; };
 		6C2F1DD61FAD0A8F00C28C6E /* SchedulePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1DD51FAD0A8F00C28C6E /* SchedulePickupViewController.swift */; };
 		6C2F1DD71FAD0A8F00C28C6E /* SchedulePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1DD51FAD0A8F00C28C6E /* SchedulePickupViewController.swift */; };
 		6C2F1DD81FAD0A8F00C28C6E /* SchedulePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1DD51FAD0A8F00C28C6E /* SchedulePickupViewController.swift */; };
@@ -243,7 +240,6 @@
 		598AADA586E21D3C7D530582 /* Pods-voluxe-customerTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.dev.xcconfig"; sourceTree = "<group>"; };
 		6C2B32471FB3C67100B943AC /* DateTimePickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickupViewController.swift; sourceTree = "<group>"; };
 		6C2B324B1FB3C88D00B943AC /* Objc-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Objc-Bridge-Header.h"; sourceTree = "<group>"; };
-		6C2B324C1FB3CE6A00B943AC /* VLCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCalendarCell.swift; sourceTree = "<group>"; };
 		6C2F1DD51FAD0A8F00C28C6E /* SchedulePickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePickupViewController.swift; sourceTree = "<group>"; };
 		6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		6C3FB2A71FA2574C00B22EAB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
@@ -531,7 +527,6 @@
 				6CD47D171FAD190F00D794A6 /* VLButton.swift */,
 				6C7341FE1FB11DCE00E90F7E /* VLGroupedLabels.swift */,
 				6C7342021FB11DF200E90F7E /* VLSelectableLabel.swift */,
-				6C2B324C1FB3CE6A00B943AC /* VLCalendarCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -932,7 +927,6 @@
 				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/FSCalendar/FSCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
@@ -953,7 +947,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FSCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
@@ -1088,7 +1081,6 @@
 				6C91BBF11FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
 				6C3FB2AA1FA2574C00B22EAB /* Vehicle.swift in Sources */,
 				6CCD428E1FA013E3000AC6C9 /* AppDelegate.swift in Sources */,
-				6C2B324D1FB3CE6A00B943AC /* VLCalendarCell.swift in Sources */,
 				6C58330B1FB3AF5600F6BFE0 /* BackgroundView.swift in Sources */,
 				6C5833181FB3AF5600F6BFE0 /* PresentrAnimation.swift in Sources */,
 				6C9C7A7B1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
@@ -1137,7 +1129,6 @@
 				6C7342041FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6C88DC991FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C91BBD81FA7D6220033C2B1 /* ViewPager.swift in Sources */,
-				6C2B324E1FB3CE6A00B943AC /* VLCalendarCell.swift in Sources */,
 				6C9543A31FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6C7342001FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
 				6C5833281FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */,
@@ -1197,7 +1188,6 @@
 				6C7342051FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6C88DC9A1FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C91BBD91FA7D6220033C2B1 /* ViewPager.swift in Sources */,
-				6C2B324F1FB3CE6A00B943AC /* VLCalendarCell.swift in Sources */,
 				6C9543A41FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6C7342011FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
 				6C58332C1FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */,
