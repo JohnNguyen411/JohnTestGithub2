@@ -27,7 +27,6 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         calendar.delegate = self
         calendar.allowsMultipleSelection = true
         containerView.addSubview(calendar)
-        self.calendar = calendar
         
         calendar.calendarHeaderView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
         calendar.calendarWeekdayView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
@@ -37,12 +36,20 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         calendar.register(VLCalendarCell.self, forCellReuseIdentifier: "cell")
         //        calendar.clipsToBounds = true // Remove top/bottom line
         
-        calendar.swipeToChooseGesture.isEnabled = true // Swipe-To-Choose
+        calendar.pagingEnabled = false
+        calendar.scrollEnabled = false
+        calendar.allowsMultipleSelection = false
+        calendar.allowsSelection = true
         
-        let scopeGesture = UIPanGestureRecognizer(target: calendar, action: #selector(calendar.handleScopeGesture(_:)));
-        calendar.addGestureRecognizer(scopeGesture)
+        calendar.calendarWeekdayView.isHidden = true
+        calendar.weekdayHeight = 0
+        //calendar.preferredWeekdayHeight = 0
+
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.empty(_:)))
+        calendar.handleScopeGesture(panGesture)
+        calendar.swipeToChooseGesture.isEnabled = false // Swipe-To-Choose
         
-        
+        self.calendar = calendar
     }
     
     override func setupViews() {
@@ -65,6 +72,10 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     override func height() -> Int {
         return (350) + VLPresentrViewController.baseHeight + 60
+    }
+    
+    @objc func empty(_ sender:UIPanGestureRecognizer){
+        print("empty")
     }
     
     // MARK:- FSCalendarDataSource
