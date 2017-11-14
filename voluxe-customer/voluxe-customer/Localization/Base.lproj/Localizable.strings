@@ -43,4 +43,6 @@
 "YourLocation" = "Your Location";
 "DoYouNeedLoanerVehicle" = "Do you need a loaner vehicle?";
 "SelectYourPreferredPickupTime" = "Select your preferred pickup time";
-
+"NineToTwelve" = "9:00-12:00";
+"TwelveToThree" = "12:00-3:00";
+"ThreeToSix" = "3:00-6:00";

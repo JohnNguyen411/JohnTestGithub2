@@ -222,6 +222,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     self.collectionView = collectionView;
     self.collectionViewLayout = collectionViewLayout;
     
+    /*
     if (!FSCalendarInAppExtension) {
         
         UIView *view = [[UIView alloc] initWithFrame:CGRectZero];
@@ -237,6 +238,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
         self.bottomBorder = view;
         
     }
+     */
     
     [self invalidateLayout];
     

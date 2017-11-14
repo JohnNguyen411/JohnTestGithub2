@@ -22,4 +22,7 @@ extension String {
     static let YourLocation = NSLocalizedString("YourLocation")
     static let DoYouNeedLoanerVehicle = NSLocalizedString("DoYouNeedLoanerVehicle")
     static let SelectYourPreferredPickupTime = NSLocalizedString("SelectYourPreferredPickupTime")
+    static let NineToTwelve = NSLocalizedString("NineToTwelve")
+    static let TwelveToThree = NSLocalizedString("TwelveToThree")
+    static let ThreeToSix = NSLocalizedString("ThreeToSix")
 }

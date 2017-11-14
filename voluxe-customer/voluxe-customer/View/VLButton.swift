@@ -12,6 +12,9 @@ import UIKit
 enum VLButtonType{
     case BluePrimary
     case BlueSecondary
+    case BlueSecondaryWithBorder
+    case BlueSecondaryWithBorderDisabled
+    case BlueSecondarySelected //orange
     case OrangeSecondary
 }
 
@@ -53,20 +56,40 @@ class VLButton : UIButton {
         case .BluePrimary:
             backgroundColor = .luxeDeepBlue()
             applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeWhite(), highlightedFontColor: .luxeLightGray())
+            layer.borderWidth = 0
             break
         case .BlueSecondary:
             backgroundColor = .clear
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeDeepBlue(), highlightedFontColor: .luxeGray())
+            layer.borderWidth = 0
+            break
+        case .BlueSecondaryWithBorder:
+            backgroundColor = .clear
+            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeDeepBlue(), highlightedFontColor: .luxeGray())
+            layer.borderWidth = 1
+            layer.borderColor = UIColor.luxeDeepBlue().cgColor
+            break
+        case .BlueSecondaryWithBorderDisabled:
+            backgroundColor = .clear
+            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeGray(), highlightedFontColor: .luxeGray())
+            layer.borderWidth = 1
+            layer.borderColor = UIColor.luxeGray().cgColor
             break
         case .OrangeSecondary:
             backgroundColor = .clear
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 18), fontColor: UIColor.luxeOrange(), highlightedFontColor: .luxeGray())
+            layer.borderWidth = 0
+            break
+        case .BlueSecondarySelected:
+            backgroundColor = UIColor.luxeOrange()
+            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: .white, highlightedFontColor: .luxeGray())
+            layer.borderWidth = 0
             break
         }
     }
     
     private func applyTextStyle(font: UIFont, fontColor: UIColor, highlightedFontColor: UIColor?) {
-        applyTextStyle(font: font, fontColor: fontColor, highlightedFontColor: highlightedFontColor, edgeInsets: UIEdgeInsets(top: 3, left: 0, bottom: 0, right: 0))
+        applyTextStyle(font: font, fontColor: fontColor, highlightedFontColor: highlightedFontColor, edgeInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
     }
     
     private func applyTextStyle(font: UIFont, fontColor: UIColor, highlightedFontColor: UIColor?, edgeInsets: UIEdgeInsets) {
