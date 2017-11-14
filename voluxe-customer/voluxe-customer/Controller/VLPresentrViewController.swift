@@ -25,11 +25,11 @@ class VLPresentrViewController: UIViewController {
     
     let bottomButton = VLButton(type: .BluePrimary, title: nil, actionBlock: nil)
     
-    convenience init(title: String, buttonTitle: String, actionBlock:@escaping (()->())) {
+    convenience init(title: String, buttonTitle: String) {
         self.init()
         
         setTitle(title: title.uppercased())
-        setButtonTitle(title: buttonTitle.uppercased(), actionBlock: actionBlock)
+        setButtonTitle(title: buttonTitle.uppercased())
     }
     
     convenience init(title: String) {
@@ -52,14 +52,16 @@ class VLPresentrViewController: UIViewController {
         titleLabel.text = title
     }
     
-    func setButtonTitle(title: String, actionBlock:@escaping (()->())) {
+    func setButtonTitle(title: String) {
         bottomButton.setTitle(title: title)
-        bottomButton.setActionBlock {
-            actionBlock()
-        }
     }
     
     func setupViews() {
+        
+        bottomButton.setActionBlock {
+            self.onButtonClick()
+        }
+        
         self.view.backgroundColor = .white
         
         self.view.addSubview(containerView)
@@ -82,5 +84,6 @@ class VLPresentrViewController: UIViewController {
         return VLPresentrViewController.baseHeight
     }
     
+    func onButtonClick() {}
     
 }

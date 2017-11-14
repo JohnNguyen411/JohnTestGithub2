@@ -11,6 +11,8 @@ import UIKit
 
 class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
+    var delegate: PickupDateDelegate?
+    
     let firstMonthHeader: UILabel = {
         let firstMonthHeader = UILabel()
         firstMonthHeader.textColor = .luxeGray()
@@ -113,6 +115,14 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     override func height() -> Int {
         return (360) + VLPresentrViewController.baseHeight + 60
+    }
+    
+    override func onButtonClick() {
+        if let delegate = delegate {
+            let index = getButtonSelectedIndex()
+            let bounds = minMax(index: index)
+            delegate.onDateTimeSelected(date: calendar.selectedDate!, hourRangeMin: bounds.min, hourRangeMax: bounds.max)
+        }
     }
     
     private func initCalendar() {
@@ -286,6 +296,28 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         }
     }
     
+    func getButtonSelectedIndex() -> Int {
+        if firstHourButton.isSelected {
+            return 0
+        } else if secondHourButton.isSelected {
+            return 1
+        } else if thirdHourButton.isSelected {
+            return 2
+        }
+        return -1
+    }
+    
+    func minMax(index: Int) -> (min: Int, max: Int) {
+        if index == 0 {
+            return (9, 12)
+        } else if index == 1 {
+            return (12, 15)
+        } else if index == 2 {
+            return (15, 18)
+        }
+        return (0, 0)
+    }
+    
     // MARK:- FSCalendarDataSource
     
     func calendar(_ calendar: FSCalendar, cellFor date: Date, at position: FSCalendarMonthPosition) -> FSCalendarCell {
@@ -341,8 +373,11 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             cell.isEnabled = false
         }
     }
-    
-    
-    
+}
+
+
+// MARK: protocol PickupDateDelegate
+protocol PickupDateDelegate: class {
+    func onDateTimeSelected(date: Date, hourRangeMin: Int, hourRangeMax: Int)
 }
 

@@ -11,10 +11,13 @@ import UIKit
 
 class DealershipPickupViewController: VLPresentrViewController {
 
+    var delegate: PickupDealershipDelegate?
+    
     let groupedLabels = VLGroupedLabels(items: ["Marin Volvo", "Volvo of San Francisco", "Volvo Centrum", "Volvo of Burlingame"], singleChoice: true, topBottomSeparator: true)
     
     override func setupViews() {
         super.setupViews()
+        
         containerView.addSubview(groupedLabels)
         
         groupedLabels.snp.makeConstraints { make in
@@ -34,5 +37,15 @@ class DealershipPickupViewController: VLPresentrViewController {
         return (groupedLabels.items.count * VLSelectableLabel.height) + VLPresentrViewController.baseHeight + 60
     }
     
+    override func onButtonClick() {
+        if let delegate = delegate {
+            delegate.onDealershipSelected(dealership: groupedLabels.items[groupedLabels.getLastSelectedIndex()!])
+        }
+    }
+}
+
+// MARK: protocol PickupDealershipDelegate
+protocol PickupDealershipDelegate: class {
+    func onDealershipSelected(dealership: String)
 }
 

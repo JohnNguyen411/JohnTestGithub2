@@ -11,7 +11,9 @@ import UIKit
 
 class LoanerPickupViewController: VLPresentrViewController {
     
-    let groupedLabels = VLGroupedLabels(items: ["Yes", "No"], singleChoice: true, topBottomSeparator: true)
+    var delegate: PickupLoanerDelegate?
+    
+    let groupedLabels = VLGroupedLabels(items: [.Yes, .No], singleChoice: true, topBottomSeparator: true)
     
     override func setupViews() {
         super.setupViews()
@@ -34,5 +36,16 @@ class LoanerPickupViewController: VLPresentrViewController {
         return (groupedLabels.items.count * VLSelectableLabel.height) + VLPresentrViewController.baseHeight + 60
     }
     
+    override func onButtonClick() {
+        if let delegate = delegate {
+            let index = groupedLabels.getLastSelectedIndex()
+            delegate.onLoanerSelected(loanerNeeded: index == 0 ? true : false)
+        }
+    }
+    
 }
 
+// MARK: protocol PickupDealershipDelegate
+protocol PickupLoanerDelegate: class {
+    func onLoanerSelected(loanerNeeded: Bool)
+}

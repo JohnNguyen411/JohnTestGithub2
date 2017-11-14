@@ -9,8 +9,15 @@
 import Foundation
 import UIKit
 import SlideMenuControllerSwift
+import CoreLocation
 
-class SchedulePickupViewController: BaseViewController, PresentrDelegate {
+class SchedulePickupViewController: BaseViewController, PresentrDelegate, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate {
+    
+    fileprivate let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMM d"
+        return formatter
+    }()
     
     let presentrCornerRadius: CGFloat = 4.0
     var currentPresentr: Presentr?
@@ -31,9 +38,10 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate {
     let scheduledServiceView = VLTitledLabel()
     let descriptionButton = VLButton(type: .BlueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
     let dealershipView = VLTitledLabel()
-    let scheduledPickupView = VLTitledLabel()
-    let pickupLocationView = VLTitledLabel()
-    let loanerView = VLTitledLabel()
+    let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "")
+    let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "")
+    let loanerView = VLTitledLabel(title: .ComplimentaryLoaner, leftDescription: "", rightDescription: "")
+    
     
     let dropButton = VLButton(type: .BluePrimary, title: (.SelfDrop as String).uppercased(), actionBlock: nil)
     let pickupButton = VLButton(type: .BluePrimary, title: (.VolvoPickup as String).uppercased(), actionBlock: nil)
@@ -71,6 +79,18 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate {
         let dealershipTap = UITapGestureRecognizer(target: self, action: #selector(self.dealershipClick))
         dealershipView.addGestureRecognizer(dealershipTap)
         
+        scheduledPickupView.isUserInteractionEnabled = true
+        let scheduledPickupTap = UITapGestureRecognizer(target: self, action: #selector(self.scheduledPickupClick))
+        scheduledPickupView.addGestureRecognizer(scheduledPickupTap)
+        
+        pickupLocationView.isUserInteractionEnabled = true
+        let pickupLocationTap = UITapGestureRecognizer(target: self, action: #selector(self.pickupLocationClick))
+        pickupLocationView.addGestureRecognizer(pickupLocationTap)
+        
+        loanerView.isUserInteractionEnabled = true
+        let loanerTap = UITapGestureRecognizer(target: self, action: #selector(self.loanerClick))
+        loanerView.addGestureRecognizer(loanerTap)
+        
         scrollView.contentMode = .scaleAspectFit
         
         let sizeThatFits = checkupLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT)))
@@ -85,6 +105,11 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate {
         
         contentView.addSubview(dropButton)
         contentView.addSubview(pickupButton)
+        
+        
+        scheduledPickupView.alpha = 0
+        pickupLocationView.alpha = 0
+        loanerView.alpha = 0
         
         contentView.addSubview(scheduledPickupView)
         contentView.addSubview(pickupLocationView)
@@ -118,6 +143,24 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate {
         dealershipView.snp.makeConstraints { make in
             make.left.right.equalTo(checkupLabel)
             make.top.equalTo(descriptionButton.snp.bottom).offset(20)
+            make.height.equalTo(VLTitledLabel.height)
+        }
+        
+        scheduledPickupView.snp.makeConstraints { make in
+            make.left.right.equalTo(checkupLabel)
+            make.top.equalTo(dealershipView.snp.bottom).offset(20)
+            make.height.equalTo(VLTitledLabel.height)
+        }
+        
+        pickupLocationView.snp.makeConstraints { make in
+            make.left.right.equalTo(checkupLabel)
+            make.top.equalTo(scheduledPickupView.snp.bottom).offset(20)
+            make.height.equalTo(VLTitledLabel.height)
+        }
+        
+        loanerView.snp.makeConstraints { make in
+            make.left.right.equalTo(checkupLabel)
+            make.top.equalTo(pickupLocationView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
         
@@ -170,25 +213,33 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate {
     }
     
     private func showDealershipModal() {
-        currentPresentrVC = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next, actionBlock: {})
+        let dealershipVC = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next)
+        dealershipVC.delegate = self
+        currentPresentrVC = dealershipVC
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()))
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
     private func showPickupLocationModal() {
-        currentPresentrVC = LocationPickupViewController(title: .PickupLocationTitle, buttonTitle: .Next, actionBlock: {})
+        let locationVC = LocationPickupViewController(title: .PickupLocationTitle, buttonTitle: .Next)
+        locationVC.pickupLocationDelegate = self
+        currentPresentrVC = locationVC
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()))
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
     private func showPickupLoanerModal() {
-        currentPresentrVC = LoanerPickupViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, actionBlock: {})
+        let loanerVC = LoanerPickupViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next)
+        loanerVC.delegate = self
+        currentPresentrVC = loanerVC
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()))
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
     private func showPickupDateTimeModal() {
-        currentPresentrVC = DateTimePickupViewController(title: .SelectYourPreferredPickupTime, buttonTitle: .Next, actionBlock: {})
+        let dateModal = DateTimePickupViewController(title: .SelectYourPreferredPickupTime, buttonTitle: .Next)
+        dateModal.delegate = self
+        currentPresentrVC = dateModal
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()))
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
@@ -207,7 +258,22 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate {
     
     @objc func dealershipClick() {
         print("dealershipClick")
+        showDealershipModal()
+    }
+    
+    @objc func scheduledPickupClick() {
+        print("scheduledPickupClick")
         showPickupDateTimeModal()
+    }
+    
+    @objc func pickupLocationClick() {
+        print("pickupLocationClick")
+        showPickupLocationModal()
+    }
+    
+    @objc func loanerClick() {
+        print("loanerClick")
+        showPickupLoanerModal()
     }
     
     func selfDropClick() {
@@ -216,6 +282,41 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate {
     
     func volvoPickupClick() {
         print("volvoPickupClick")
+        showPickupDateTimeModal()
+        scheduledPickupView.animateAlpha(show: true)
+        pickupLocationView.animateAlpha(show: true)
+        loanerView.animateAlpha(show: true)
+    }
+    
+    //MARK: PresentR delegate methods
+    
+    func onDealershipSelected(dealership: String) {
+        dealershipView.descLeftLabel.text = dealership
+        currentPresentrVC?.dismiss(animated: true, completion: nil)
+    }
+    
+    func onDateTimeSelected(date: Date, hourRangeMin: Int, hourRangeMax: Int) {
+        var dateTime = formatter.string(from: date)
+        scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: dateTime, rightDescription: "")
+        currentPresentrVC?.dismiss(animated: true, completion: {
+            self.pickupLocationClick()
+        })
+    }
+    
+    func onLocationAdded(newSize: Int) {
+        // increase size of presenter
+    }
+    
+    func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
+        pickupLocationView.setTitle(title: .PickupLocation, leftDescription: responseInfo!.value(forKey: "formattedAddress") as! String, rightDescription: "")
+        currentPresentrVC?.dismiss(animated: true, completion: {
+            self.loanerClick()
+        })
+    }
+    
+    func onLoanerSelected(loanerNeeded: Bool) {
+        loanerView.descLeftLabel.text = loanerNeeded ? .Yes : .No
+        currentPresentrVC?.dismiss(animated: true, completion: nil)
     }
     
     //MARK: Keyboard management

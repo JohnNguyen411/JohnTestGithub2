@@ -422,7 +422,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         
     }
     
-    fileprivate func setCompletionHandler(responseInfo:NSDictionary?,placemark:CLPlacemark?, error:String?,type:GeoCodingType) {
+    fileprivate func setCompletionHandler(responseInfo: NSDictionary?, placemark:CLPlacemark?, error:String?,type:GeoCodingType) {
         if (type == GeoCodingType.geocoding) {
             self.geocodingCompletionHandler!(responseInfo,placemark,error)
         } else {

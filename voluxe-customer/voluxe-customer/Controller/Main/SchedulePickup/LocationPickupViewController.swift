@@ -8,12 +8,15 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 class LocationPickupViewController: VLPresentrViewController, LocationManagerDelegate {
     
     var pickupLocationDelegate: PickupLocationDelegate?
     var locationManager = LocationManager.sharedInstance
 
+    var currentLocationInfo: NSDictionary?
+    var currentLocationPlacemark: CLPlacemark?
     
     let newLocationLabel: UILabel = {
         let titleLabel = UILabel()
@@ -33,6 +36,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         addLocation(location: .YourLocation)
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
+        bottomButton.isEnabled = false
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -89,9 +93,20 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     func locationFound(_ latitude: Double, longitude: Double) {
         locationManager.reverseGeocodeLocationUsingGoogleWithLatLon(latitude: latitude, longitude: longitude) { (reverseGeocodeInfo, placemark, error) -> Void in
             if let reverseGeocodeInfo = reverseGeocodeInfo {
+                self.currentLocationInfo = reverseGeocodeInfo
+                self.currentLocationPlacemark = placemark
                 print("Address found")
                 print(reverseGeocodeInfo["formattedAddress"] ?? "")
+                DispatchQueue.main.sync {
+                    self.bottomButton.isEnabled = true
+                }
             }
+        }
+    }
+    
+    override func onButtonClick() {
+        if let pickupLocationDelegate = pickupLocationDelegate {
+            pickupLocationDelegate.onLocationSelected(responseInfo: currentLocationInfo, placemark: currentLocationPlacemark)
         }
     }
     
@@ -100,4 +115,6 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
 // MARK: protocol VLGroupedLabelsDelegate
 protocol PickupLocationDelegate: class {
     func onLocationAdded(newSize: Int)
+    func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?)
+
 }
