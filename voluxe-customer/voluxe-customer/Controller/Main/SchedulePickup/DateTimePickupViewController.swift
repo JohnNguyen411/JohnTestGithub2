@@ -95,7 +95,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         calendar.snp.makeConstraints { make in
             make.bottom.equalTo(hoursView.snp.top).offset(-30)
             make.left.right.equalToSuperview()
-            make.height.equalTo(229)
+            make.height.equalTo(270)
         }
         
         firstMonthHeader.snp.makeConstraints { make in
@@ -112,7 +112,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     override func height() -> Int {
-        return (350) + VLPresentrViewController.baseHeight + 60
+        return (360) + VLPresentrViewController.baseHeight + 60
     }
     
     private func initCalendar() {
@@ -120,6 +120,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         maxDate = Calendar.current.date(byAdding: .month, value: 1, to: todaysDate)!
         
         let calendar = FSCalendar(frame: .zero)
+        calendar.rowHeight = 46
         calendar.dataSource = self
         calendar.delegate = self
         calendar.allowsMultipleSelection = true
@@ -127,6 +128,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         
         calendar.calendarHeaderView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
         calendar.calendarWeekdayView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
+        calendar.appearance.titleOffset = CGPoint(x: 0, y: 4)
         calendar.appearance.eventSelectionColor = UIColor.white
         calendar.appearance.headerTitleFont = .volvoSansLightBold(size: 12)
         calendar.appearance.titleFont = .volvoSansLightBold(size: 12)

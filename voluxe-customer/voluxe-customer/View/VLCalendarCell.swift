@@ -41,14 +41,14 @@ class VLCalendarCell: FSCalendarCell {
     
     override var colorForCellBorder: UIColor! {
         if !self.isEnabled {
-            return UIColor.luxeGray()
+            return UIColor.luxeLightGray()
         }
         return super.colorForCellBorder
     }
     
     override var colorForTitleLabel: UIColor! {
         if !self.isEnabled {
-            return UIColor.luxeGray()
+            return UIColor.luxeLightGray()
         }
         return super.colorForTitleLabel
     }

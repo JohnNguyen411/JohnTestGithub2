@@ -132,10 +132,18 @@
     CGFloat titleHeight = self.bounds.size.height*5.0/6.0;
     CGFloat diameter = MIN(self.bounds.size.height*5.0/6.0,self.bounds.size.width);
     diameter = diameter > FSCalendarStandardCellDiameter ? (diameter - (diameter-FSCalendarStandardCellDiameter)*0.5) : diameter;
+    if (self.borderRadius > 0) {
     _shapeLayer.frame = CGRectMake((self.bounds.size.width-diameter)/2,
                                    (titleHeight-diameter)/2,
                                    diameter,
                                    diameter);
+    } else {
+        CGFloat marginTop = (self.bounds.size.height - diameter) / 2;
+        _shapeLayer.frame = CGRectMake((self.bounds.size.width-diameter)/2,
+                                      marginTop,
+                                      diameter,
+                                      diameter);
+    }
     
     CGPathRef path = [UIBezierPath bezierPathWithRoundedRect:_shapeLayer.bounds
                                                 cornerRadius:CGRectGetWidth(_shapeLayer.bounds)*0.5*self.borderRadius].CGPath;
