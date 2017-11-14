@@ -15,9 +15,7 @@
 @interface FSCalendarCell ()
 
 @property (readonly, nonatomic) UIColor *colorForCellFill;
-@property (readonly, nonatomic) UIColor *colorForTitleLabel;
 @property (readonly, nonatomic) UIColor *colorForSubtitleLabel;
-@property (readonly, nonatomic) UIColor *colorForCellBorder;
 @property (readonly, nonatomic) NSArray<UIColor *> *colorsForEvents;
 @property (readonly, nonatomic) CGFloat borderRadius;
 

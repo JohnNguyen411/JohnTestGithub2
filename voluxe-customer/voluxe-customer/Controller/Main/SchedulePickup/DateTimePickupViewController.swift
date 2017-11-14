@@ -291,6 +291,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         return cell
     }
     
+    func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
+        self.configure(cell: cell, for: date, at: position)
+    }
    
     func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
         return nil
@@ -317,8 +320,10 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition)   -> Bool {
         let selectable = dateIsSelectable(date: date)
-        updateButtons(date: date)
-        selectFirstEnabledButton()
+        if selectable {
+            updateButtons(date: date)
+            selectFirstEnabledButton()
+        }
         return selectable
     }
     
@@ -326,13 +331,15 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         return true
     }
     
-    
-    func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
-        if self.gregorian.isDateInToday(date) {
-            return [UIColor.orange]
+    private func configure(cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
+        let cell = (cell as! VLCalendarCell)
+        if dateIsSelectable(date: date) {
+            cell.isEnabled = true
+        } else {
+            cell.isEnabled = false
         }
-        return [appearance.eventDefaultColor]
     }
+    
     
     
 }

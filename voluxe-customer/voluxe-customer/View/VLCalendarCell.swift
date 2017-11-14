@@ -16,11 +16,18 @@ class VLCalendarCell: FSCalendarCell {
     }
     
     override init(frame: CGRect) {
+        isEnabled = true
         super.init(frame: frame)
     }
     
+    var isEnabled: Bool {
+        didSet {
+            setNeedsLayout()
+        }
+    }
     override func layoutSubviews() {
         super.layoutSubviews()
+        self.configureAppearance()
     }
     
     override func configureAppearance() {
@@ -30,6 +37,20 @@ class VLCalendarCell: FSCalendarCell {
             self.eventIndicator.isHidden = true
             self.titleLabel.textColor = UIColor.lightGray
         }
+    }
+    
+    override var colorForCellBorder: UIColor! {
+        if !self.isEnabled {
+            return UIColor.luxeGray()
+        }
+        return super.colorForCellBorder
+    }
+    
+    override var colorForTitleLabel: UIColor! {
+        if !self.isEnabled {
+            return UIColor.luxeGray()
+        }
+        return super.colorForTitleLabel
     }
     
 }
