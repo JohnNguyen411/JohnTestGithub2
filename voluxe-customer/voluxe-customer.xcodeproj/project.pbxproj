@@ -14,6 +14,15 @@
 		6C2F1DD61FAD0A8F00C28C6E /* SchedulePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1DD51FAD0A8F00C28C6E /* SchedulePickupViewController.swift */; };
 		6C2F1DD71FAD0A8F00C28C6E /* SchedulePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1DD51FAD0A8F00C28C6E /* SchedulePickupViewController.swift */; };
 		6C2F1DD81FAD0A8F00C28C6E /* SchedulePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1DD51FAD0A8F00C28C6E /* SchedulePickupViewController.swift */; };
+		6C32C3071FBCC0E900B1218C /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C3061FBCC0E900B1218C /* Step.swift */; };
+		6C32C3081FBCC0E900B1218C /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C3061FBCC0E900B1218C /* Step.swift */; };
+		6C32C3091FBCC0E900B1218C /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C3061FBCC0E900B1218C /* Step.swift */; };
+		6C32C30B1FBCC1DD00B1218C /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30A1FBCC1DD00B1218C /* StepView.swift */; };
+		6C32C30C1FBCC1DD00B1218C /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30A1FBCC1DD00B1218C /* StepView.swift */; };
+		6C32C30D1FBCC1DD00B1218C /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30A1FBCC1DD00B1218C /* StepView.swift */; };
+		6C32C30F1FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */; };
+		6C32C3101FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */; };
+		6C32C3111FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */; };
 		6C3FB2AA1FA2574C00B22EAB /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */; };
 		6C3FB2AB1FA2574C00B22EAB /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A71FA2574C00B22EAB /* User.swift */; };
 		6C3FB2AC1FA2574C00B22EAB /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A81FA2574C00B22EAB /* Customer.swift */; };
@@ -292,6 +301,9 @@
 		6C2B32471FB3C67100B943AC /* DateTimePickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickupViewController.swift; sourceTree = "<group>"; };
 		6C2B324B1FB3C88D00B943AC /* Objc-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Objc-Bridge-Header.h"; sourceTree = "<group>"; };
 		6C2F1DD51FAD0A8F00C28C6E /* SchedulePickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePickupViewController.swift; sourceTree = "<group>"; };
+		6C32C3061FBCC0E900B1218C /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
+		6C32C30A1FBCC1DD00B1218C /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
+		6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedVerticalStepView.swift; sourceTree = "<group>"; };
 		6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		6C3FB2A71FA2574C00B22EAB /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		6C3FB2A81FA2574C00B22EAB /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
@@ -456,6 +468,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C32C3041FBCBF0E00B1218C /* ScheduledPickup */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ScheduledPickup;
+			sourceTree = "<group>";
+		};
+		6C32C3051FBCC0CB00B1218C /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				6C32C3061FBCC0E900B1218C /* Step.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		6C3FB2A51FA16A0200B22EAB /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -550,6 +577,7 @@
 		6C88DC921FAA8ADC009F2FC3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				6C32C3041FBCBF0E00B1218C /* ScheduledPickup */,
 				6C7342061FB123E500E90F7E /* SchedulePickup */,
 				6C88DC9B1FAA9086009F2FC3 /* LeftPanel */,
 				6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */,
@@ -651,6 +679,8 @@
 				6C7341FE1FB11DCE00E90F7E /* VLGroupedLabels.swift */,
 				6C7342021FB11DF200E90F7E /* VLSelectableLabel.swift */,
 				6CBB4EB21FB4E11800C31183 /* VLCalendarCell.swift */,
+				6C32C30A1FBCC1DD00B1218C /* StepView.swift */,
+				6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -679,6 +709,7 @@
 		6CC83A891FA147E100FE0633 /* Util */ = {
 			isa = PBXGroup;
 			children = (
+				6C32C3051FBCC0CB00B1218C /* Data */,
 				6C3FB2B51FA289F000B22EAB /* ColorDefinitions.swift */,
 				6C3FB2B11FA2824200B22EAB /* Constants.swift */,
 				6CC83A8A1FA1481900FE0633 /* StringUtils.swift */,
@@ -1169,6 +1200,7 @@
 				6C5833111FB3AF5600F6BFE0 /* KeyboardTranslation.swift in Sources */,
 				6C7342141FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */,
 				6C3FB2B61FA289F000B22EAB /* ColorDefinitions.swift in Sources */,
+				6C32C30F1FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */,
 				6C58330C1FB3AF5600F6BFE0 /* CoverHorizontalAnimation.swift in Sources */,
 				6CEA0D591FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
 				6C5833161FB3AF5600F6BFE0 /* Presentr+Equatable.swift in Sources */,
@@ -1180,6 +1212,7 @@
 				6C58330D1FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
 				6CBB4E9D1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
 				6C5833131FB3AF5600F6BFE0 /* ModalSize.swift in Sources */,
+				6C32C30B1FBCC1DD00B1218C /* StepView.swift in Sources */,
 				6CC37E531FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
 				6C7342031FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
@@ -1231,6 +1264,7 @@
 				6CC37E501FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C58331C1FB3AF5600F6BFE0 /* TransitionType.swift in Sources */,
 				6C95439E1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
+				6C32C3071FBCC0E900B1218C /* Step.swift in Sources */,
 				6C7342101FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
 				6CBB4E941FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */,
 				6C2F1DD61FAD0A8F00C28C6E /* SchedulePickupViewController.swift in Sources */,
@@ -1270,6 +1304,7 @@
 				6C5833351FB3AF9900F6BFE0 /* Presentr.swift in Sources */,
 				6CC37E471FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6C5833371FB3AF9900F6BFE0 /* PresentrController.swift in Sources */,
+				6C32C3081FBCC0E900B1218C /* Step.swift in Sources */,
 				6CCD42A31FA013E3000AC6C9 /* voluxe_customerTests.swift in Sources */,
 				6C7342151FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */,
 				6C5833271FB3AF8000F6BFE0 /* CrossDissolveAnimation.swift in Sources */,
@@ -1299,6 +1334,7 @@
 				6C2B32491FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */,
 				6CBB4EA71FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */,
 				6C58333F1FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */,
+				6C32C3101FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */,
 				6C6F4BCB1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
 				6CBB4E891FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */,
 				6CC37E511FA7C41700DA8F01 /* VLTextField.swift in Sources */,
@@ -1311,6 +1347,7 @@
 				6C7342111FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
 				6C91BBD01FA7D3D40033C2B1 /* StringUtils.swift in Sources */,
 				6CBB4E951FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */,
+				6C32C30C1FBCC1DD00B1218C /* StepView.swift in Sources */,
 				6C5833311FB3AF9200F6BFE0 /* PresentationType.swift in Sources */,
 				6C88DC951FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6C91BBD41FA7D44D0033C2B1 /* Constants.swift in Sources */,
@@ -1346,6 +1383,7 @@
 				6C5833391FB3AF9900F6BFE0 /* Presentr.swift in Sources */,
 				6CC37E481FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6C58333B1FB3AF9900F6BFE0 /* PresentrController.swift in Sources */,
+				6C32C3091FBCC0E900B1218C /* Step.swift in Sources */,
 				6CCD42AE1FA013E3000AC6C9 /* voluxe_customerUITests.swift in Sources */,
 				6C7342161FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */,
 				6C58332B1FB3AF8000F6BFE0 /* CrossDissolveAnimation.swift in Sources */,
@@ -1375,6 +1413,7 @@
 				6C2B324A1FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */,
 				6CBB4EA81FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */,
 				6C5833401FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */,
+				6C32C3111FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */,
 				6C6F4BCC1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
 				6CBB4E8A1FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */,
 				6CC37E521FA7C41700DA8F01 /* VLTextField.swift in Sources */,
@@ -1387,6 +1426,7 @@
 				6C7342121FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
 				6C91BBD11FA7D3D50033C2B1 /* StringUtils.swift in Sources */,
 				6CBB4E961FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */,
+				6C32C30D1FBCC1DD00B1218C /* StepView.swift in Sources */,
 				6C5833331FB3AF9200F6BFE0 /* PresentationType.swift in Sources */,
 				6C88DC961FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6C91BBD51FA7D44D0033C2B1 /* Constants.swift in Sources */,
