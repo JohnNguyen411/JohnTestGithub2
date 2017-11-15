@@ -213,10 +213,11 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         customPresenter.roundCorners = true
         customPresenter.cornerRadius = presentrCornerRadius
         customPresenter.blurBackground = true
-        customPresenter.blurStyle = UIBlurEffectStyle.dark
+        customPresenter.blurStyle = UIBlurEffectStyle.light
         customPresenter.dismissOnSwipe = false
         customPresenter.keyboardTranslationType = .moveUp
         customPresenter.dismissOnTap = dismissOnTap
+        
 
         return customPresenter
     }
