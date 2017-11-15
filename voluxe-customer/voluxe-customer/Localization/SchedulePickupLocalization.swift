@@ -28,4 +28,6 @@ extension String {
     static let ScheduledPickup = NSLocalizedString("ScheduledPickup")
     static let PickupLocation = NSLocalizedString("PickupLocation")
     static let ComplimentaryLoaner = NSLocalizedString("ComplimentaryLoaner")
+    static let ConfirmPickup = NSLocalizedString("ConfirmPickup")
+
 }

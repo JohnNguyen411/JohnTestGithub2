@@ -56,6 +56,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
     
     let dropButton = VLButton(type: .BluePrimary, title: (.SelfDrop as String).uppercased(), actionBlock: nil)
     let pickupButton = VLButton(type: .BluePrimary, title: (.VolvoPickup as String).uppercased(), actionBlock: nil)
+    let confirmButton = VLButton(type: .BluePrimary, title: (.ConfirmPickup as String).uppercased(), actionBlock: nil)
 
     
     convenience init() {
@@ -116,8 +117,9 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         
         contentView.addSubview(dropButton)
         contentView.addSubview(pickupButton)
-        
-        
+        contentView.addSubview(confirmButton)
+
+        confirmButton.alpha = 0
         scheduledPickupView.alpha = 0
         pickupLocationView.alpha = 0
         loanerView.alpha = 0
@@ -188,6 +190,13 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
             make.width.equalToSuperview().dividedBy(2).offset(-10)
             make.height.equalTo(VLButton.primaryHeight)
         }
+        
+        confirmButton.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(contentView.snp.bottom)
+            make.height.equalTo(VLButton.primaryHeight)
+        }
+        
         
     }
     
@@ -263,7 +272,12 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         dateModal.delegate = self
         currentPresentrVC = dateModal
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.dateTime.rawValue)
-        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
+        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {
+            self.checkupLabel.snp.updateConstraints { make in
+                make.height.equalTo(0)
+            }
+            
+        })
     }
     
     func presentrShouldDismiss(keyboardShowing: Bool) -> Bool {
@@ -308,6 +322,10 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         print("volvoPickupClick")
         showPickupDateTimeModal()
         scheduledPickupView.animateAlpha(show: true)
+        
+        dropButton.animateAlpha(show: false)
+        pickupButton.animateAlpha(show: false)
+        
     }
     
     //MARK: PresentR delegate methods
@@ -350,7 +368,9 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
     func onLoanerSelected(loanerNeeded: Bool) {
         scheduleState = .loaner
         loanerView.descLeftLabel.text = loanerNeeded ? .Yes : .No
-        currentPresentrVC?.dismiss(animated: true, completion: nil)
+        currentPresentrVC?.dismiss(animated: true, completion: {
+            self.confirmButton.animateAlpha(show: true)
+        })
     }
     
     //MARK: Keyboard management
