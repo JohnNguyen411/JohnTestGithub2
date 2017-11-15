@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import CoreLocation
 
-class LocationPickupViewController: VLPresentrViewController, LocationManagerDelegate {
+class LocationPickupViewController: VLPresentrViewController, LocationManagerDelegate, UITextFieldDelegate {
     
     var pickupLocationDelegate: PickupLocationDelegate?
     var locationManager = LocationManager.sharedInstance
@@ -32,6 +32,9 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
     override init() {
         super.init()
+        newLocationTextField.textField.delegate = self
+        newLocationTextField.rightLabel.isHidden = true
+
         newLocationTextField.setRightButtonText(rightButtonText: (.Add as String).uppercased(), actionBlock: {
             self.addLocation(location: self.newLocationTextField.text)
             self.newLocationTextField.textField.resignFirstResponder()
@@ -120,6 +123,18 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         if let pickupLocationDelegate = pickupLocationDelegate {
             pickupLocationDelegate.onLocationSelected(responseInfo: currentLocationInfo, placemark: currentLocationPlacemark)
         }
+    }
+    
+    // MARK: protocol UITextFieldDelegate
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if range.location == 0 && string.count == 0 {
+            newLocationTextField.rightLabel.isHidden = true
+        } else {
+            newLocationTextField.rightLabel.isHidden = false
+        }
+        
+        return true
     }
     
 }
