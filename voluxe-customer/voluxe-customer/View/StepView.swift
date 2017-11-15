@@ -29,6 +29,7 @@ class StepView: UIView {
     init(step: Step) {
         self.step = step
         super.init(frame: .zero)
+        setupViews()
         updateStep(step: step)
     }
     

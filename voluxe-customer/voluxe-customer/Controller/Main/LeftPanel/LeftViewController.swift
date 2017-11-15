@@ -12,8 +12,8 @@ import SlideMenuControllerSwift
 import SnapKit
 
 enum LeftMenu: Int {
-    case main = 0
-    case swift
+    case schedule = 0
+    case scheduled
     case java
     case go
     case nonMenu
@@ -26,8 +26,9 @@ protocol LeftMenuProtocol : class {
 class LeftViewController : UIViewController, LeftMenuProtocol {
     
     var tableView = UITableView(frame: .zero)
-    var menus = ["Main", "Swift", "Java", "Go", "NonMenu"]
-    var mainViewController: UIViewController!
+    var menus = ["Schedule", "Scheduled", "Java", "Go", "NonMenu"]
+    var mainNavigationViewController: UIViewController!
+    var mainViewController: MainViewController!
     var imageHeaderView: UIImageView!
     
     required init?(coder aDecoder: NSCoder) {
@@ -80,16 +81,18 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     
     func changeViewController(_ menu: LeftMenu) {
         switch menu {
-        case .main:
-            self.slideMenuController()?.changeMainViewController(self.mainViewController, close: true)
-        case .swift:
-            self.slideMenuController()?.changeMainViewController(self.mainViewController, close: true)
+        case .schedule:
+            self.mainViewController.updateState(state: .idle)
+            self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
+        case .scheduled:
+            self.mainViewController.updateState(state: .scheduled)
+            self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
         case .java:
-            self.slideMenuController()?.changeMainViewController(self.mainViewController, close: true)
+            self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
         case .go:
-            self.slideMenuController()?.changeMainViewController(self.mainViewController, close: true)
+            self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
         case .nonMenu:
-            self.slideMenuController()?.changeMainViewController(self.mainViewController, close: true)
+            self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
         }
     }
 }
@@ -98,7 +101,7 @@ extension LeftViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let menu = LeftMenu(rawValue: indexPath.row) {
             switch menu {
-            case .main, .swift, .java, .go, .nonMenu:
+            case .schedule, .scheduled, .java, .go, .nonMenu:
                 return LeftPanelTableViewCell.height()
             }
         }
@@ -128,7 +131,7 @@ extension LeftViewController : UITableViewDataSource {
         
         if let menu = LeftMenu(rawValue: indexPath.row) {
             switch menu {
-            case .main, .swift, .java, .go, .nonMenu:
+            case .schedule, .scheduled, .java, .go, .nonMenu:
                 let cell = LeftPanelTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: LeftPanelTableViewCell.identifier)
                 cell.setData(menus[indexPath.row])
                 return cell

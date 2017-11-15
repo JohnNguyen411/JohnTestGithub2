@@ -19,12 +19,13 @@ class Step: NSObject {
     var text: String
     var state: StepState = .todo
     
-    convenience init(text: String, state: StepState) {
-        self.init(text: text)
+    convenience init(id: Int, text: String, state: StepState) {
+        self.init(id: id, text: text)
         self.state = state
     }
     
-    init(text: String) {
+    init(id: Int, text: String) {
+        self.id = id
         self.text = text
         super.init()
     }

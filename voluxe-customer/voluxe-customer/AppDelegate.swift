@@ -52,7 +52,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         nvc.navigationBar.backgroundColor = UIColor("#FFFFFF")
         nvc.navigationBar.tintColor = UIColor("#000000")
         
-        leftViewController.mainViewController = nvc
+        leftViewController.mainNavigationViewController = nvc
+        leftViewController.mainViewController = mainViewController
         
         let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
         slideMenuController.automaticallyAdjustsScrollViewInsets = true

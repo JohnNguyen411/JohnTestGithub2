@@ -10,6 +10,8 @@ import Foundation
 
 class GroupedVerticalStepView: UIView {
     
+    var height = 0
+    
     private var steps: [Step] = []
     private var stepViews: [StepView] = []
     
@@ -29,13 +31,13 @@ class GroupedVerticalStepView: UIView {
         let stepView = StepView(step: step)
         addSubview(stepView)
         
-        let lastBottom = stepViews.count * StepView.height
-        
         stepView.snp.makeConstraints{ make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(lastBottom)
+            make.top.equalTo(height)
             make.height.equalTo(StepView.height)
         }
+        
+        height = stepViews.count * StepView.height
         
         stepViews.append(stepView)
         steps.append(step)

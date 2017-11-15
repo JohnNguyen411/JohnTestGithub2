@@ -11,6 +11,8 @@
 "Add" = "Add";
 "Yes" = "Yes";
 "No" = "No";
+"Contact" = "Contact";
+
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
@@ -46,9 +48,16 @@
 "NineToTwelve" = "9:00-12:00";
 "TwelveToThree" = "12:00-3:00";
 "ThreeToSix" = "3:00-6:00";
-"ScheduledPickup" = "Scheduled Pickup";
 "PickupLocation" = "Pickup Location";
 "ComplimentaryLoaner" = "Complimentary Loaner?";
 "ConfirmPickup" = "Confirm Pickup";
+
+/***************** ScheduledPickup ***************/
+"ScheduledPickup" = "Scheduled Pickup";
+"ServiceScheduled" = "Service is scheduled";
+"DriverEnRoute" = "Driver is en route";
+"DriverNearby" = "Driver is nearby";
+"DriverArrived" = "Driver has arrived";
+"PickupWindow" = "Pickup window";
 
 

@@ -12,10 +12,17 @@ import SlideMenuControllerSwift
 
 class MainViewController: BaseViewController {
     
+    public enum ServiceState: Int {
+        case noninit = -999
+        case idle = 0
+        case scheduled = 10
+    }
+    
+    private var serviceState = ServiceState.noninit
+    
     static var navigationBarHeight: CGFloat = 0
     var currentViewController: BaseViewController?
-    var schedulePickupViewController: SchedulePickupViewController?
-    
+
     
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -30,15 +37,36 @@ class MainViewController: BaseViewController {
     }
     
     override func setupViews() {
-        schedulePickupViewController = SchedulePickupViewController()
-        if let view = schedulePickupViewController?.view {
-            self.view.addSubview(view)
+        super.setupViews()
+        updateState(state: ServiceState.idle)
+    }
+    
+    func updateState(state: ServiceState) {
+        if state == serviceState {
+            return
+        }
+        serviceState = state
         
+        if let view = currentViewController?.view {
+            view.removeFromSuperview()
+        }
+
+        if serviceState == .idle {
+            let schedulePickupViewController = SchedulePickupViewController()
+            currentViewController = schedulePickupViewController
+            
+        } else if serviceState == .scheduled {
+            let scheduledPickupViewController = ScheduledPickupViewController()
+            currentViewController = scheduledPickupViewController
+        }
+        
+        if let view = currentViewController?.view {
+            self.view.addSubview(view)
+            
             view.snp.makeConstraints { make in
                 make.edges.equalToSuperview()
             }
         }
-        currentViewController = schedulePickupViewController
     }
     
     static func getNavigationBarHeight() -> CGFloat {

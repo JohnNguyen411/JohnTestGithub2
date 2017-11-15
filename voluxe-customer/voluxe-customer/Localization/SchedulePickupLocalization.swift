@@ -25,7 +25,6 @@ extension String {
     static let NineToTwelve = NSLocalizedString("NineToTwelve")
     static let TwelveToThree = NSLocalizedString("TwelveToThree")
     static let ThreeToSix = NSLocalizedString("ThreeToSix")
-    static let ScheduledPickup = NSLocalizedString("ScheduledPickup")
     static let PickupLocation = NSLocalizedString("PickupLocation")
     static let ComplimentaryLoaner = NSLocalizedString("ComplimentaryLoaner")
     static let ConfirmPickup = NSLocalizedString("ConfirmPickup")
