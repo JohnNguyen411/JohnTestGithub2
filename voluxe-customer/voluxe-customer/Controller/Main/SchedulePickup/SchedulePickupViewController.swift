@@ -13,6 +13,14 @@ import CoreLocation
 
 class SchedulePickupViewController: BaseViewController, PresentrDelegate, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate {
     
+    public enum SchedulePickupState: Int {
+        case start = 0
+        case dealership = 1
+        case dateTime = 2
+        case location = 3
+        case loaner = 4
+    }
+    
     static private let fakeYOrigin:CGFloat = -555.0
     
     fileprivate let formatter: DateFormatter = {
@@ -20,6 +28,8 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         formatter.dateFormat = "EEEE, MMM d"
         return formatter
     }()
+    
+    var scheduleState: SchedulePickupState = .start
     
     let presentrCornerRadius: CGFloat = 4.0
     var currentPresentr: Presentr?
@@ -43,7 +53,6 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
     let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "")
     let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "")
     let loanerView = VLTitledLabel(title: .ComplimentaryLoaner, leftDescription: "", rightDescription: "")
-    
     
     let dropButton = VLButton(type: .BluePrimary, title: (.SelfDrop as String).uppercased(), actionBlock: nil)
     let pickupButton = VLButton(type: .BluePrimary, title: (.VolvoPickup as String).uppercased(), actionBlock: nil)
@@ -187,7 +196,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         dealershipView.setTitle(title: .Dealership, leftDescription: "Marin Volvo", rightDescription: "")
     }
     
-    func buildPresenter(heightInPixels: CGFloat) -> Presentr {
+    func buildPresenter(heightInPixels: CGFloat, dismissOnTap: Bool) -> Presentr {
         let customType = getPresenterPresentationType(heightInPixels: heightInPixels, customYOrigin: SchedulePickupViewController.fakeYOrigin)
         
         let customPresenter = Presentr(presentationType: customType)
@@ -198,6 +207,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         customPresenter.blurStyle = UIBlurEffectStyle.dark
         customPresenter.dismissOnSwipe = false
         customPresenter.keyboardTranslationType = .moveUp
+        customPresenter.dismissOnTap = dismissOnTap
 
         return customPresenter
     }
@@ -228,7 +238,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         let dealershipVC = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next)
         dealershipVC.delegate = self
         currentPresentrVC = dealershipVC
-        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()))
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: true)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
@@ -236,7 +246,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         let locationVC = LocationPickupViewController(title: .PickupLocationTitle, buttonTitle: .Next)
         locationVC.pickupLocationDelegate = self
         currentPresentrVC = locationVC
-        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()))
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.location.rawValue)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
@@ -244,7 +254,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         let loanerVC = LoanerPickupViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next)
         loanerVC.delegate = self
         currentPresentrVC = loanerVC
-        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()))
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.loaner.rawValue)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
@@ -252,7 +262,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         let dateModal = DateTimePickupViewController(title: .SelectYourPreferredPickupTime, buttonTitle: .Next)
         dateModal.delegate = self
         currentPresentrVC = dateModal
-        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()))
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.dateTime.rawValue)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
@@ -281,11 +291,13 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
     @objc func pickupLocationClick() {
         print("pickupLocationClick")
         showPickupLocationModal()
+        pickupLocationView.animateAlpha(show: true)
     }
     
     @objc func loanerClick() {
         print("loanerClick")
         showPickupLoanerModal()
+        loanerView.animateAlpha(show: true)
     }
     
     func selfDropClick() {
@@ -296,18 +308,18 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         print("volvoPickupClick")
         showPickupDateTimeModal()
         scheduledPickupView.animateAlpha(show: true)
-        pickupLocationView.animateAlpha(show: true)
-        loanerView.animateAlpha(show: true)
     }
     
     //MARK: PresentR delegate methods
     
     func onDealershipSelected(dealership: String) {
+        scheduleState = .dealership
         dealershipView.descLeftLabel.text = dealership
         currentPresentrVC?.dismiss(animated: true, completion: nil)
     }
     
     func onDateTimeSelected(date: Date, hourRangeMin: Int, hourRangeMax: Int) {
+        scheduleState = .dateTime
         var dateTime = formatter.string(from: date)
         scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: dateTime, rightDescription: "")
         currentPresentrVC?.dismiss(animated: true, completion: {
@@ -328,6 +340,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
     }
     
     func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
+        scheduleState = .location
         pickupLocationView.setTitle(title: .PickupLocation, leftDescription: responseInfo!.value(forKey: "formattedAddress") as! String, rightDescription: "")
         currentPresentrVC?.dismiss(animated: true, completion: {
             self.loanerClick()
@@ -335,6 +348,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
     }
     
     func onLoanerSelected(loanerNeeded: Bool) {
+        scheduleState = .loaner
         loanerView.descLeftLabel.text = loanerNeeded ? .Yes : .No
         currentPresentrVC?.dismiss(animated: true, completion: nil)
     }
