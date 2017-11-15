@@ -331,17 +331,25 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
     //MARK: PresentR delegate methods
     
     func onDealershipSelected(dealership: String) {
-        scheduleState = .dealership
+        if scheduleState.rawValue < SchedulePickupState.dealership.rawValue {
+            scheduleState = .dealership
+        }
         dealershipView.descLeftLabel.text = dealership
         currentPresentrVC?.dismiss(animated: true, completion: nil)
     }
     
     func onDateTimeSelected(date: Date, hourRangeMin: Int, hourRangeMax: Int) {
-        scheduleState = .dateTime
+        var openNext = false
+        if scheduleState.rawValue < SchedulePickupState.dateTime.rawValue {
+            scheduleState = .dateTime
+            openNext = true
+        }
         var dateTime = formatter.string(from: date)
         scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: dateTime, rightDescription: "")
         currentPresentrVC?.dismiss(animated: true, completion: {
-            self.pickupLocationClick()
+            if openNext {
+                self.pickupLocationClick()
+            }
         })
     }
     
@@ -358,15 +366,25 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
     }
     
     func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
-        scheduleState = .location
+        var openNext = false
+
+        if scheduleState.rawValue < SchedulePickupState.location.rawValue {
+            scheduleState = .location
+            openNext = true
+        }
+        
         pickupLocationView.setTitle(title: .PickupLocation, leftDescription: responseInfo!.value(forKey: "formattedAddress") as! String, rightDescription: "")
         currentPresentrVC?.dismiss(animated: true, completion: {
-            self.loanerClick()
+            if openNext {
+                self.loanerClick()
+            }
         })
     }
     
     func onLoanerSelected(loanerNeeded: Bool) {
-        scheduleState = .loaner
+        if scheduleState.rawValue < SchedulePickupState.loaner.rawValue {
+            scheduleState = .loaner
+        }
         loanerView.descLeftLabel.text = loanerNeeded ? .Yes : .No
         currentPresentrVC?.dismiss(animated: true, completion: {
             self.confirmButton.animateAlpha(show: true)
