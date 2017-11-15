@@ -47,19 +47,21 @@ class StepView: UIView {
         addSubview(icon)
         
         line.snp.makeConstraints{ make in
-            make.left.top.bottom.equalToSuperview()
-            make.width.equalTo(3)
+            make.top.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(11)
+            make.width.equalTo(2)
         }
         
         icon.snp.makeConstraints{ make in
-            make.left.top.equalToSuperview()
+            make.left.equalToSuperview()
+            make.top.equalToSuperview().offset(1)
             make.height.width.equalTo(24)
         }
         
         titleView.snp.makeConstraints{ make in
             make.right.equalToSuperview()
-            make.left.equalTo(icon).offset(20)
-            make.top.equalToSuperview().offset(5)
+            make.left.equalTo(icon.snp.right).offset(20)
+            make.top.equalToSuperview().offset(3)
             make.height.equalTo(20)
         }
     }
@@ -69,9 +71,9 @@ class StepView: UIView {
         
         titleView.text = step.text
         if step.state == .todo {
-            line.image = UIImage(named: "padded_dots")
+            icon.image = UIImage(named: "padded_dots")
         } else {
-            line.image = UIImage(named: "checked_circle")
+            icon.image = UIImage(named: "checked_circle")
         }
     }
 }

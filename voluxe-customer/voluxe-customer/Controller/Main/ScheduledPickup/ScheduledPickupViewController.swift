@@ -45,8 +45,8 @@ class ScheduledPickupViewController: BaseViewController {
             self.view.addSubview(verticalStepView)
             
             verticalStepView.snp.makeConstraints { make in
-                make.left.equalToSuperview().offset(20)
-                make.top.equalToSuperview().offset(20)
+                make.left.equalToSuperview().offset(30)
+                make.top.equalToSuperview().offset(30)
                 make.right.equalToSuperview().offset(-20)
                 make.height.equalTo(verticalStepView.height)
             }

@@ -37,10 +37,11 @@ class GroupedVerticalStepView: UIView {
             make.height.equalTo(StepView.height)
         }
         
-        height = stepViews.count * StepView.height
-        
         stepViews.append(stepView)
         steps.append(step)
+        
+        height = stepViews.count * StepView.height
+
     }
     
     func updateStep(step: Step) {
