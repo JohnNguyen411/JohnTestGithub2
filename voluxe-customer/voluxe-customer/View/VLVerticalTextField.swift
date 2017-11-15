@@ -51,7 +51,7 @@ class VLVerticalTextField : VLTextField {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setRightButtonText(rightButtonText: String) {
+    func setRightButtonText(rightButtonText: String, actionBlock: (()->())?) {
         rightLabel.text = rightButtonText
 
         if rightLabel.superview == nil {
@@ -70,6 +70,13 @@ class VLVerticalTextField : VLTextField {
             make.height.equalTo(20)
             make.width.equalTo(sizeThatFits.width)
         }
+        
+        if let actionBlock = actionBlock {
+            setRightActionBlock {
+                actionBlock()
+            }
+        }
+        
         
     }
     
@@ -110,5 +117,21 @@ class VLVerticalTextField : VLTextField {
         backgroundColor = .clear
     }
 
+    /**
+     Can use an action block that takes the place of a target/action
+     */
+    private var rightActionBlock:(()->())?
     
+    func setRightActionBlock(actionBlock: @escaping (()->())) {
+        self.rightActionBlock = actionBlock
+        
+        rightLabel.isUserInteractionEnabled = true
+        let rightLabelTap = UITapGestureRecognizer(target: self, action: #selector(self.runActionBlock))
+        rightLabel.addGestureRecognizer(rightLabelTap)
+        
+    }
+    
+    @objc internal func runActionBlock() {
+        rightActionBlock?()
+    }
 }

@@ -32,7 +32,14 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
     override init() {
         super.init()
-        newLocationTextField.setRightButtonText(rightButtonText: (.Add as String).uppercased())
+        newLocationTextField.setRightButtonText(rightButtonText: (.Add as String).uppercased(), actionBlock: {
+            self.addLocation(location: self.newLocationTextField.text)
+            self.newLocationTextField.textField.resignFirstResponder()
+            self.newLocationTextField.textField.text = ""
+            if let pickupLocationDelegate = self.pickupLocationDelegate {
+                pickupLocationDelegate.onLocationAdded(newSize: self.groupedLabels.items.count)
+            }
+        })
         addLocation(location: .YourLocation)
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
@@ -50,6 +57,11 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
     func addLocation(location: String) {
         groupedLabels.addItem(item: location)
+        
+        containerView.snp.updateConstraints{ make in
+            make.height.equalTo(height())
+        }
+        
         groupedLabels.snp.updateConstraints{ make in
             make.height.equalTo(groupedLabels.items.count * VLSelectableLabel.height)
         }

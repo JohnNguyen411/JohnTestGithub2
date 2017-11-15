@@ -54,7 +54,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
         
         if self.singleChoice {
             let lastLabel = labels[items.count-1]
-            lastLabel.setSelected(selected: true, callDelegate: false)
+            lastLabel.setSelected(selected: true, callDelegate: true)
             selectedIndices.append(items.count-1)
         }
     }

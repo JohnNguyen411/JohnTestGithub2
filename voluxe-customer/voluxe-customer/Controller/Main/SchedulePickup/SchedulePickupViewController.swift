@@ -13,6 +13,8 @@ import CoreLocation
 
 class SchedulePickupViewController: BaseViewController, PresentrDelegate, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate {
     
+    static private let fakeYOrigin:CGFloat = -555.0
+    
     fileprivate let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMM d"
@@ -186,19 +188,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
     }
     
     func buildPresenter(heightInPixels: CGFloat) -> Presentr {
-        // bottom modal view
-        let widthPerc = 0.95
-        let width = ModalSize.fluid(percentage: Float(widthPerc))
-        
-        let viewH = self.view.frame.height + MainViewController.getNavigationBarHeight() + statusBarHeight() + presentrCornerRadius
-        let viewW = Double(self.view.frame.width)
-
-        let percH = heightInPixels / viewH
-        let leftRightMargin = (viewW - (viewW * widthPerc))/2
-        let height = ModalSize.fluid(percentage: Float(percH))
-
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: leftRightMargin, y: Double(viewH - heightInPixels)))
-        let customType = PresentationType.custom(width: width, height: height, center: center)
+        let customType = getPresenterPresentationType(heightInPixels: heightInPixels, customYOrigin: SchedulePickupViewController.fakeYOrigin)
         
         let customPresenter = Presentr(presentationType: customType)
         customPresenter.transitionType = .coverVertical
@@ -210,6 +200,28 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         customPresenter.keyboardTranslationType = .moveUp
 
         return customPresenter
+    }
+    
+    func getPresenterPresentationType(heightInPixels: CGFloat, customYOrigin: CGFloat) -> PresentationType {
+        let widthPerc = 0.95
+        let width = ModalSize.fluid(percentage: Float(widthPerc))
+        
+        let viewH = self.view.frame.height + MainViewController.getNavigationBarHeight() + statusBarHeight() + presentrCornerRadius
+        let viewW = Double(self.view.frame.width)
+        
+        let percH = heightInPixels / viewH
+        let leftRightMargin = (viewW - (viewW * widthPerc))/2
+        let height = ModalSize.fluid(percentage: Float(percH))
+        
+        var yOrigin = customYOrigin
+        if yOrigin == SchedulePickupViewController.fakeYOrigin {
+            yOrigin = viewH - heightInPixels
+        }
+        
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: leftRightMargin, y: Double(yOrigin)))
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+        
+        return customType
     }
     
     private func showDealershipModal() {
@@ -305,6 +317,14 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
     
     func onLocationAdded(newSize: Int) {
         // increase size of presenter
+        let newHeight = CGFloat(currentPresentrVC!.height())
+
+        /*
+        let frame = currentPresentr?.currentPresentationController?.getCurrentFrame()
+        let yOrigin = (frame?.origin.y)! - (newHeight - (frame?.size.height)!)
+ */
+        let presentationType = getPresenterPresentationType(heightInPixels: newHeight, customYOrigin: SchedulePickupViewController.fakeYOrigin)
+        currentPresentr?.currentPresentationController?.updateToNewFrame(presentationType: presentationType)
     }
     
     func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {

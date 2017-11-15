@@ -52,6 +52,8 @@ public enum DismissSwipeDirection {
 
 /// Main Presentr class. This is the point of entry for using the framework.
 public class Presentr: NSObject {
+    
+    public var currentPresentationController: PresentrController?
 
     /// This must be set during initialization, but can be changed to reuse a Presentr object.
     public var presentationType: PresentationType
@@ -186,24 +188,25 @@ extension Presentr: UIViewControllerTransitioningDelegate {
     // MARK: - Private Helper's
 
     fileprivate func presentationController(_ presented: UIViewController, presenting: UIViewController?) -> PresentrController {
-        return PresentrController(presentedViewController: presented,
-                                    presentingViewController: presenting,
-                                    presentationType: presentationType,
-                                    roundCorners: roundCorners,
-                                    cornerRadius: cornerRadius,
-                                    dropShadow: dropShadow,
-                                    dismissOnTap: dismissOnTap,
-                                    dismissOnSwipe: dismissOnSwipe,
-                                    dismissOnSwipeDirection: dismissOnSwipeDirection,
-                                    backgroundColor: backgroundColor,
-                                    backgroundOpacity: backgroundOpacity,
-                                    blurBackground: blurBackground,
-                                    blurStyle: blurStyle,
-                                    customBackgroundView: customBackgroundView,
-                                    keyboardTranslationType:  keyboardTranslationType,
-                                    dismissAnimated: dismissAnimated,
-                                    contextFrameForPresentation: contextFrameForPresentation,
-                                    shouldIgnoreTapOutsideContext: shouldIgnoreTapOutsideContext)
+        currentPresentationController = PresentrController(presentedViewController: presented,
+                                                          presentingViewController: presenting,
+                                                          presentationType: presentationType,
+                                                          roundCorners: roundCorners,
+                                                          cornerRadius: cornerRadius,
+                                                          dropShadow: dropShadow,
+                                                          dismissOnTap: dismissOnTap,
+                                                          dismissOnSwipe: dismissOnSwipe,
+                                                          dismissOnSwipeDirection: dismissOnSwipeDirection,
+                                                          backgroundColor: backgroundColor,
+                                                          backgroundOpacity: backgroundOpacity,
+                                                          blurBackground: blurBackground,
+                                                          blurStyle: blurStyle,
+                                                          customBackgroundView: customBackgroundView,
+                                                          keyboardTranslationType:  keyboardTranslationType,
+                                                          dismissAnimated: dismissAnimated,
+                                                          contextFrameForPresentation: contextFrameForPresentation,
+                                                          shouldIgnoreTapOutsideContext: shouldIgnoreTapOutsideContext)
+        return currentPresentationController!
     }
 
 }

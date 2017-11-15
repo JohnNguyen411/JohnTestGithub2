@@ -27,7 +27,9 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
         codeTextField.textField.delegate = self
         super.viewDidLoad()
         codeTextField.textField.keyboardType = .numberPad
-        codeTextField.setRightButtonText(rightButtonText: (.ResendCode as String).uppercased())
+        codeTextField.setRightButtonText(rightButtonText: (.ResendCode as String).uppercased(), actionBlock: {
+            self.resendCode()
+        })
 
         setupViews()
     }
@@ -54,6 +56,10 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
         
     }
     
+    @objc func resendCode() {
+        
+    }
+    
     //MARK: UITextFieldDelegate
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -71,5 +77,6 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
     func didSelectPage() {
         codeTextField.textField.becomeFirstResponder()
     }
+    
 
 }

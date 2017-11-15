@@ -14,7 +14,7 @@ extension UIColor {
     // MARK: - Color Scheme
     
     public class func luxeWhite() -> UIColor { return .white }
-    public class func luxeOrange() -> UIColor { return UIColor("#FB9222") }
+    public class func luxeOrange() -> UIColor { return UIColor("#FB5922") }
     public class func luxeDarkBlue() -> UIColor { return UIColor("#294276") }
     public class func luxeLightGray() -> UIColor { return UIColor("#BBBBBB") }
     public class func luxeDarkGray() -> UIColor { return UIColor("#222222") }

@@ -9,10 +9,10 @@
 import UIKit
 
 /// Presentr's custom presentation controller. Handles the position and sizing for the view controller's.
-class PresentrController: UIPresentationController, UIAdaptivePresentationControllerDelegate {
+public class PresentrController: UIPresentationController, UIAdaptivePresentationControllerDelegate {
     
     /// Presentation type must be passed in to make all the sizing and position decisions.
-    let presentationType: PresentationType
+    var presentationType: PresentationType
 
     /// Should the presented controller dismiss on background tap.
     let dismissOnTap: Bool
@@ -198,7 +198,7 @@ extension PresentrController {
     
     // MARK: Presentation
     
-    override var frameOfPresentedViewInContainerView: CGRect {
+    override public var frameOfPresentedViewInContainerView: CGRect {
         var presentedViewFrame = CGRect.zero
         let containerBounds = containerFrame
         let size = self.size(forChildContentContainer: presentedViewController, withParentContainerSize: containerBounds.size)
@@ -218,13 +218,13 @@ extension PresentrController {
         return presentedViewFrame
     }
     
-    override func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
+    override public func size(forChildContentContainer container: UIContentContainer, withParentContainerSize parentSize: CGSize) -> CGSize {
         let width = getWidthFromType(parentSize)
         let height = getHeightFromType(parentSize)
         return CGSize(width: CGFloat(width), height: CGFloat(height))
     }
     
-    override func containerViewWillLayoutSubviews() {
+    override public func containerViewWillLayoutSubviews() {
         guard !keyboardIsShowing else {
             return // prevent resetting of presented frame when the frame is being translated
         }
@@ -232,9 +232,19 @@ extension PresentrController {
         presentedView!.frame = frameOfPresentedViewInContainerView
     }
     
+    public func updateToNewFrame(presentationType: PresentationType) {
+        self.presentationType = presentationType
+        chromeView.frame = containerFrame
+        presentedView!.frame = frameOfPresentedViewInContainerView
+    }
+    
+    public func getCurrentFrame() -> CGRect {
+        return presentedView!.frame
+    }
+    
     // MARK: Animation
     
-    override func presentationTransitionWillBegin() {
+    override public func presentationTransitionWillBegin() {
         guard let containerView = containerView else {
             return
         }
@@ -273,7 +283,7 @@ extension PresentrController {
         }, completion: nil)
     }
     
-    override func dismissalTransitionWillBegin() {
+    override public func dismissalTransitionWillBegin() {
         guard let coordinator = presentedViewController.transitionCoordinator else {
             chromeView.alpha = 0.0
             return
