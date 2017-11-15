@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		2FFF68F2B16A50D15D6B9AD1 /* Pods_voluxe_customerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB40B9A1A2FD8B1B31418DF7 /* Pods_voluxe_customerTests.framework */; };
+		6C2208771FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
+		6C2208781FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
+		6C2208791FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
 		6C2B32481FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B32471FB3C67100B943AC /* DateTimePickupViewController.swift */; };
 		6C2B32491FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B32471FB3C67100B943AC /* DateTimePickupViewController.swift */; };
 		6C2B324A1FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B32471FB3C67100B943AC /* DateTimePickupViewController.swift */; };
@@ -304,6 +307,7 @@
 		445D30E54C0346D618C01387 /* Pods-voluxe-customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.release.xcconfig"; sourceTree = "<group>"; };
 		4D47CCA4D8E06F9A7A45EBF3 /* Pods-voluxe-customerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		598AADA586E21D3C7D530582 /* Pods-voluxe-customerTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.dev.xcconfig"; sourceTree = "<group>"; };
+		6C2208761FBCEF7A00874882 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6C2B32471FB3C67100B943AC /* DateTimePickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickupViewController.swift; sourceTree = "<group>"; };
 		6C2B324B1FB3C88D00B943AC /* Objc-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Objc-Bridge-Header.h"; sourceTree = "<group>"; };
 		6C2F1DD51FAD0A8F00C28C6E /* SchedulePickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePickupViewController.swift; sourceTree = "<group>"; };
@@ -476,6 +480,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6C2208751FBCEF4D00874882 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				6C2208761FBCEF7A00874882 /* MapViewController.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		6C22087A1FBCF24C00874882 /* Marker */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Marker;
+			sourceTree = "<group>";
+		};
 		6C32C3041FBCBF0E00B1218C /* ScheduledPickup */ = {
 			isa = PBXGroup;
 			children = (
@@ -657,6 +676,7 @@
 		6CC37E431FA7ADB000DA8F01 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6C2208751FBCEF4D00874882 /* Common */,
 				6C88DC921FAA8ADC009F2FC3 /* Main */,
 				6CC37E441FA7AE0F00DA8F01 /* FTUE */,
 				6C73420B1FB12E6C00E90F7E /* VLPresentrViewController.swift */,
@@ -681,6 +701,7 @@
 		6CC37E4D1FA7AFC300DA8F01 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6C22087A1FBCF24C00874882 /* Marker */,
 				6CC37E4E1FA7C41700DA8F01 /* VLTextField.swift */,
 				6CC37E4F1FA7C41700DA8F01 /* VLVerticalTextField.swift */,
 				6C91BBD61FA7D6220033C2B1 /* ViewPager.swift */,
@@ -1158,9 +1179,13 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1218,6 +1243,7 @@
 				6CBB4EA61FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */,
 				6CBB4E851FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
 				6C2B32481FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */,
+				6C2208771FBCEF7A00874882 /* MapViewController.swift in Sources */,
 				6CBB4E821FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
 				6C58330D1FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
 				6CBB4E9D1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
@@ -1357,6 +1383,7 @@
 				6C5833321FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */,
 				6CBB4E861FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
 				6C2F1DD71FAD0A8F00C28C6E /* SchedulePickupViewController.swift in Sources */,
+				6C2208781FBCEF7A00874882 /* MapViewController.swift in Sources */,
 				6CD47D191FAD190F00D794A6 /* VLButton.swift in Sources */,
 				6C7342111FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
 				6C91BBD01FA7D3D40033C2B1 /* StringUtils.swift in Sources */,
@@ -1438,6 +1465,7 @@
 				6C5833341FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */,
 				6CBB4E871FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
 				6C2F1DD81FAD0A8F00C28C6E /* SchedulePickupViewController.swift in Sources */,
+				6C2208791FBCEF7A00874882 /* MapViewController.swift in Sources */,
 				6CD47D1A1FAD190F00D794A6 /* VLButton.swift in Sources */,
 				6C7342121FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
 				6C91BBD11FA7D3D50033C2B1 /* StringUtils.swift in Sources */,

@@ -10,11 +10,20 @@ import Foundation
 import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
+import GoogleMaps
 
 class ScheduledPickupViewController: BaseViewController {
     
-    var verticalStepView: GroupedVerticalStepView? = nil
-    var steps: [Step] = []
+    static let officeLocation = CLLocationCoordinate2D(latitude: 37.788866, longitude: -122.398210)
+    
+    private static let mapViewHeight = 200
+    private static let driverViewHeight = 50
+
+    private var verticalStepView: GroupedVerticalStepView? = nil
+    private var steps: [Step] = []
+    
+    private let mapVC = MapViewController()
+    private let mapViewContainer = UIView(frame: .zero)
     
     convenience init() {
         self.init(nibName: nil, bundle: nil)
@@ -36,20 +45,43 @@ class ScheduledPickupViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        mapVC.updateRequestLocation(location: ScheduledPickupViewController.officeLocation)
+        /*
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            
+        })
+         */
     }
     
     override func setupViews() {
         super.setupViews()
         
+        mapViewContainer.backgroundColor = .white
+        
         if let verticalStepView = verticalStepView {
             self.view.addSubview(verticalStepView)
+            self.view.addSubview(mapViewContainer)
             
             verticalStepView.snp.makeConstraints { make in
                 make.left.equalToSuperview().offset(30)
                 make.top.equalToSuperview().offset(30)
-                make.right.equalToSuperview().offset(-20)
+                make.right.equalToSuperview().offset(-30)
                 make.height.equalTo(verticalStepView.height)
             }
+            
+            mapViewContainer.snp.makeConstraints { make in
+                make.left.right.equalTo(verticalStepView)
+                make.top.equalTo(verticalStepView.snp.bottom)
+                make.height.equalTo(ScheduledPickupViewController.mapViewHeight + ScheduledPickupViewController.driverViewHeight)
+            }
+            
+            mapViewContainer.addSubview(mapVC.view)
+            mapVC.view.snp.makeConstraints { (make) -> Void in
+                make.left.right.top.equalToSuperview()
+                make.height.equalTo(ScheduledPickupViewController.mapViewHeight)
+            }
+            
         }
     }
     
