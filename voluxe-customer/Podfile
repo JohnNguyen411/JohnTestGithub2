@@ -23,6 +23,8 @@ target 'voluxe-customer' do
     pod 'PhoneNumberKit', '~> 2.0'
     pod 'GoogleMaps', '~> 2.5.0'
     pod 'GooglePlaces', '~> 2.5.0'
+    pod 'SDWebImage', '~> 4.0'
+
     
     target 'voluxe-customerTests' do
         inherit! :search_paths

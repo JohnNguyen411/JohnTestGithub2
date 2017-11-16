@@ -65,6 +65,9 @@ PODS:
     - PhoneNumberKit/PhoneNumberKitCore
   - Protobuf (3.4.0)
   - Result (3.2.4)
+  - SDWebImage (4.2.1):
+    - SDWebImage/Core (= 4.2.1)
+  - SDWebImage/Core (4.2.1)
   - SlideMenuControllerSwift (4.0.0)
   - SnapKit (4.0.0)
   - SwiftEventBus (2.1.2)
@@ -84,6 +87,7 @@ DEPENDENCIES:
   - GooglePlaces (~> 2.5.0)
   - Kingfisher (~> 4.2.0)
   - PhoneNumberKit (~> 2.0)
+  - SDWebImage (~> 4.0)
   - SlideMenuControllerSwift (~> 4.0.0)
   - SnapKit (~> 4.0.0)
   - SwiftEventBus (~> 2.1.2)
@@ -111,12 +115,13 @@ SPEC CHECKSUMS:
   PhoneNumberKit: 073b3cef30c2a64ddcd623ea5953bc84bb5b3fc4
   Protobuf: 03eef2ee0b674770735cf79d9c4d3659cf6908e8
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
+  SDWebImage: 1fa4c9edf525b744f002db89f3f5a38b3cd4c541
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftEventBus: 9e8f6d8cff2826d66536ec367d17a47299478aa0
   SwiftyJSON: dc88934f85fb50b263b1632b9cbad3402505783e
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: a3799316c66bfeaa0add3d706eb4cc4bef83e04a
+PODFILE CHECKSUM: fc09a905be271ddcfaa7e146fcde52084037575c
 
 COCOAPODS: 1.3.1

@@ -25,23 +25,43 @@ class ScheduledPickupViewController: BaseViewController {
     static let driverLocation8 = CLLocationCoordinate2D(latitude: 37.788148, longitude: -122.399627)
     static let driverLocation9 = CLLocationCoordinate2D(latitude: 37.789094, longitude: -122.398403)
     
-    private static let mapViewHeight = 200
+    static let mockDriver = Driver(id: 0, name: "Michelle", iconUrl: "https://www.biography.com/.image/t_share/MTE5NDg0MDU0ODEyNzIyNzAz/michelle-obama-thumb-2.jpg",
+                               phone: nil, email: "")
+    
+    
+    private static let mapViewHeight = 180
     private static let driverViewHeight = 50
-
-    private var verticalStepView: GroupedVerticalStepView? = nil
+    
     private var steps: [Step] = []
-    
     private var driverLocations: [CLLocationCoordinate2D] = []
-
+    private var driver: Driver?
     
+    private var verticalStepView: GroupedVerticalStepView? = nil
     private let mapVC = MapViewController()
     private let mapViewContainer = UIView(frame: .zero)
+    private let driverViewContainer = UIView(frame: .zero)
+    private let driverIcon: UIImageView
     
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
+    let driverName: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.textColor = .luxeDarkGray()
+        titleLabel.font = .volvoSansLightBold(size: 16)
+        titleLabel.textAlignment = .left
+        return titleLabel
+    }()
+    
+    private let driverContact = VLButton(type: .OrangeSecondary, title: (.Contact as String).uppercased(), actionBlock: nil)
+    
+    override init() {
+        driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
+        super.init()
         generateSteps()
         generateDriverLocations()
         verticalStepView = GroupedVerticalStepView(steps: steps)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     func generateSteps() {
@@ -76,6 +96,7 @@ class ScheduledPickupViewController: BaseViewController {
         var delay = 4.0
         for driverLocation in driverLocations {
             DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
+                self.newDriver(driver: ScheduledPickupViewController.mockDriver)
                 self.newDriverLocation(location: driverLocation)
             })
             
@@ -89,8 +110,13 @@ class ScheduledPickupViewController: BaseViewController {
         mapViewContainer.backgroundColor = .white
         
         if let verticalStepView = verticalStepView {
+            
             self.view.addSubview(verticalStepView)
             self.view.addSubview(mapViewContainer)
+            mapViewContainer.addSubview(driverViewContainer)
+            driverViewContainer.addSubview(driverIcon)
+            driverViewContainer.addSubview(driverName)
+            driverViewContainer.addSubview(driverContact)
             
             verticalStepView.snp.makeConstraints { make in
                 make.left.equalToSuperview().offset(30)
@@ -100,7 +126,8 @@ class ScheduledPickupViewController: BaseViewController {
             }
             
             mapViewContainer.snp.makeConstraints { make in
-                make.left.right.equalTo(verticalStepView)
+                make.left.equalToSuperview().offset(25)
+                make.right.equalToSuperview().offset(-25)
                 make.top.equalTo(verticalStepView.snp.bottom)
                 make.height.equalTo(ScheduledPickupViewController.mapViewHeight + ScheduledPickupViewController.driverViewHeight)
             }
@@ -110,7 +137,46 @@ class ScheduledPickupViewController: BaseViewController {
                 make.left.right.top.equalToSuperview()
                 make.height.equalTo(ScheduledPickupViewController.mapViewHeight)
             }
+            
+            driverViewContainer.snp.makeConstraints { make in
+                make.left.right.equalToSuperview()
+                make.top.equalTo(mapVC.view.snp.bottom)
+                make.height.equalTo(ScheduledPickupViewController.driverViewHeight)
+            }
+            
+            driverIcon.snp.makeConstraints { make in
+                make.left.equalToSuperview().offset(10)
+                make.centerY.equalToSuperview()
+                make.width.height.equalTo(35)
+            }
+            
+            driverName.snp.makeConstraints { make in
+                make.left.equalTo(driverIcon.snp.right).offset(20)
+                make.centerY.right.equalToSuperview()
+                make.height.equalTo(35)
+            }
+            
+            driverContact.snp.makeConstraints { make in
+                make.centerY.right.equalToSuperview()
+                make.height.equalTo(35)
+                make.width.equalTo(100)
+            }
         }
+    }
+    
+    func newDriver(driver: Driver) {
+        
+        if self.driver == nil || self.driver?.id != driver.id {
+            self.driver = driver
+        } else {
+            return
+        }
+        
+        weak var weakSelf = self
+        
+        driverName.text = driver.name
+        driverIcon.sd_setImage(with: URL(string: driver.iconUrl!))
+        
     }
     
     func newDriverLocation(location: CLLocationCoordinate2D) {

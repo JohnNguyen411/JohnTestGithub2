@@ -23,11 +23,6 @@ class MainViewController: BaseViewController {
     static var navigationBarHeight: CGFloat = 0
     var currentViewController: BaseViewController?
 
-    
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationBarItem()

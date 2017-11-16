@@ -59,10 +59,6 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
     let confirmButton = VLButton(type: .BluePrimary, title: (.ConfirmPickup as String).uppercased(), actionBlock: nil)
 
     
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
