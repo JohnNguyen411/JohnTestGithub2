@@ -71,9 +71,17 @@ class StepView: UIView {
         
         titleView.text = step.text
         if step.state == .todo {
-            icon.image = UIImage(named: "padded_dots")
+            animateImageChange(image: UIImage(named: "padded_dot")!)
         } else {
-            icon.image = UIImage(named: "checked_circle")
+            animateImageChange(image: UIImage(named: "checked_circle")!)
         }
+    }
+    
+    func animateImageChange(image: UIImage) {
+        UIView.transition(with: self.icon,
+                          duration:0.5,
+                          options: .transitionCrossDissolve,
+                          animations: { self.icon.image = image },
+                          completion: nil)
     }
 }
