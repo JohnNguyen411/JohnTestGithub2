@@ -16,8 +16,6 @@ class MapViewController: UIViewController {
     private let driverMarker = GMSMarker()
     private let etaMarker = ETAMarker(frame: CGRect(x: 0, y: 0, width: 44, height: 54))
     
-    private let googleDirectionAPI = GoogleDirectionAPI()
-    
     convenience init(requestLocation: CLLocationCoordinate2D) {
         self.init()
         updateRequestLocation(location: requestLocation)
@@ -59,17 +57,13 @@ class MapViewController: UIViewController {
     
     func updateDriverLocation(location: CLLocationCoordinate2D) {
         // get ETA between location and flagMarker position
-        googleDirectionAPI.getDirection(origin: GoogleDirectionAPI.coordinatesToString(coordinate: location), destination: GoogleDirectionAPI.coordinatesToString(coordinate: flagMarker.position), mode: nil).onSuccess { direction in
-            if let direction = direction {
-                self.etaMarker.setETA(eta: direction.getEta())
-            }
-        }.onFailure { error in
-            print("error")
-        }
-        
         driverMarker.map = mapView
         driverMarker.position = location
         moveCamera()
+    }
+    
+    func updateETA(eta: GMTextValueObject?) {
+        etaMarker.setETA(eta: eta)
     }
     
     func updateServiceState(state: ServiceState) {

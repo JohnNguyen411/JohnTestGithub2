@@ -29,6 +29,9 @@
 		6C20E1A01FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E19F1FBE152200E5D9A0 /* GMTextValueObject.swift */; };
 		6C20E1A11FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E19F1FBE152200E5D9A0 /* GMTextValueObject.swift */; };
 		6C20E1A21FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E19F1FBE152200E5D9A0 /* GMTextValueObject.swift */; };
+		6C20E1A61FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1A51FBE28C000E5D9A0 /* TimeWindowView.swift */; };
+		6C20E1A71FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1A51FBE28C000E5D9A0 /* TimeWindowView.swift */; };
+		6C20E1A81FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1A51FBE28C000E5D9A0 /* TimeWindowView.swift */; };
 		6C2208771FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
 		6C2208781FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
 		6C2208791FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
@@ -341,6 +344,7 @@
 		6C20E1931FBE14D500E5D9A0 /* GMRoutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMRoutes.swift; sourceTree = "<group>"; };
 		6C20E1971FBE14E300E5D9A0 /* GMLegs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMLegs.swift; sourceTree = "<group>"; };
 		6C20E19F1FBE152200E5D9A0 /* GMTextValueObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GMTextValueObject.swift; sourceTree = "<group>"; };
+		6C20E1A51FBE28C000E5D9A0 /* TimeWindowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeWindowView.swift; sourceTree = "<group>"; };
 		6C2208761FBCEF7A00874882 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6C22087B1FBD0C6700874882 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Voluxe.swift"; sourceTree = "<group>"; };
@@ -525,6 +529,31 @@
 				6C20E19F1FBE152200E5D9A0 /* GMTextValueObject.swift */,
 			);
 			path = GoogleMapAPI;
+			sourceTree = "<group>";
+		};
+		6C20E1A31FBE287C00E5D9A0 /* VLKit */ = {
+			isa = PBXGroup;
+			children = (
+				6CC37E4E1FA7C41700DA8F01 /* VLTextField.swift */,
+				6CC37E4F1FA7C41700DA8F01 /* VLVerticalTextField.swift */,
+				6C91BBD61FA7D6220033C2B1 /* ViewPager.swift */,
+				6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */,
+				6CD47D171FAD190F00D794A6 /* VLButton.swift */,
+				6C7341FE1FB11DCE00E90F7E /* VLGroupedLabels.swift */,
+				6C7342021FB11DF200E90F7E /* VLSelectableLabel.swift */,
+			);
+			path = VLKit;
+			sourceTree = "<group>";
+		};
+		6C20E1A41FBE289800E5D9A0 /* Custom */ = {
+			isa = PBXGroup;
+			children = (
+				6CBB4EB21FB4E11800C31183 /* VLCalendarCell.swift */,
+				6C32C30A1FBCC1DD00B1218C /* StepView.swift */,
+				6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */,
+				6C20E1A51FBE28C000E5D9A0 /* TimeWindowView.swift */,
+			);
+			path = Custom;
 			sourceTree = "<group>";
 		};
 		6C2208751FBCEF4D00874882 /* Common */ = {
@@ -753,17 +782,9 @@
 		6CC37E4D1FA7AFC300DA8F01 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				6C20E1A41FBE289800E5D9A0 /* Custom */,
+				6C20E1A31FBE287C00E5D9A0 /* VLKit */,
 				6C22087A1FBCF24C00874882 /* Marker */,
-				6CC37E4E1FA7C41700DA8F01 /* VLTextField.swift */,
-				6CC37E4F1FA7C41700DA8F01 /* VLVerticalTextField.swift */,
-				6C91BBD61FA7D6220033C2B1 /* ViewPager.swift */,
-				6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */,
-				6CD47D171FAD190F00D794A6 /* VLButton.swift */,
-				6C7341FE1FB11DCE00E90F7E /* VLGroupedLabels.swift */,
-				6C7342021FB11DF200E90F7E /* VLSelectableLabel.swift */,
-				6CBB4EB21FB4E11800C31183 /* VLCalendarCell.swift */,
-				6C32C30A1FBCC1DD00B1218C /* StepView.swift */,
-				6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1336,6 +1357,7 @@
 				6CBB4EA91FB4DF7D00C31183 /* FSCalendarExtensions.m in Sources */,
 				6C5833121FB3AF5600F6BFE0 /* ModalCenterPosition.swift in Sources */,
 				6C3FB2BD1FA29A1C00B22EAB /* VehicleLocation.swift in Sources */,
+				6C20E1A61FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */,
 				6CC83A881FA1479700FE0633 /* InitializationService.swift in Sources */,
 				6C32C3131FBCCD8C00B1218C /* ScheduledPickupViewController.swift in Sources */,
 				6C58331A1FB3AF5600F6BFE0 /* PresentrShadow.swift in Sources */,
@@ -1432,6 +1454,7 @@
 				6C20E1881FBE061A00E5D9A0 /* ETAMarker.swift in Sources */,
 				6CBB4EA11FB4DF7D00C31183 /* FSCalendar.m in Sources */,
 				6C91BBD21FA7D3D70033C2B1 /* ColorDefinitions.swift in Sources */,
+				6C20E1A71FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */,
 				6C5832C61FB38C9000F6BFE0 /* LocationManager.swift in Sources */,
 				6C58331F1FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */,
 				6C5833381FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */,
@@ -1523,6 +1546,7 @@
 				6C20E1891FBE061A00E5D9A0 /* ETAMarker.swift in Sources */,
 				6CBB4EA21FB4DF7D00C31183 /* FSCalendar.m in Sources */,
 				6C91BBD31FA7D3D80033C2B1 /* ColorDefinitions.swift in Sources */,
+				6C20E1A81FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */,
 				6C5832C71FB38C9000F6BFE0 /* LocationManager.swift in Sources */,
 				6C5833201FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */,
 				6C58333C1FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */,

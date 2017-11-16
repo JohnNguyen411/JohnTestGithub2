@@ -26,11 +26,11 @@ class ScheduledPickupViewController: BaseViewController {
     static let driverLocation9 = CLLocationCoordinate2D(latitude: 37.789094, longitude: -122.398403)
     
     static let mockDriver = Driver(id: 0, name: "Michelle", iconUrl: "https://www.biography.com/.image/t_share/MTE5NDg0MDU0ODEyNzIyNzAz/michelle-obama-thumb-2.jpg",
-                               phone: nil, email: "")
+                                   phone: nil, email: "")
     
     
-    private static let mapViewHeight = 180
-    private static let driverViewHeight = 50
+    private static let mapViewHeight = 160
+    private static let driverViewHeight = 55
     
     // mock
     private var states: [ServiceState] = [ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute,
@@ -38,7 +38,9 @@ class ScheduledPickupViewController: BaseViewController {
                                           ServiceState.pickupDriverArrived]
     
     private var driverLocations: [CLLocationCoordinate2D] = []
-
+    
+    
+    private let googleDirectionAPI = GoogleDirectionAPI()
     
     private var steps: [Step] = []
     private var driver: Driver?
@@ -48,16 +50,17 @@ class ScheduledPickupViewController: BaseViewController {
     private let mapViewContainer = UIView(frame: .zero)
     private let driverViewContainer = UIView(frame: .zero)
     private let driverIcon: UIImageView
+    private let timeWindowView = TimeWindowView()
     
     let driverName: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.font = .volvoSansLightBold(size: 16)
+        titleLabel.font = .volvoSansLightBold(size: 18)
         titleLabel.textAlignment = .left
         return titleLabel
     }()
     
-    private let driverContact = VLButton(type: .OrangeSecondary, title: (.Contact as String).uppercased(), actionBlock: nil)
+    private let driverContact = VLButton(type: .OrangeSecondarySmall, title: (.Contact as String).uppercased(), actionBlock: nil)
     
     override init() {
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
@@ -106,6 +109,7 @@ class ScheduledPickupViewController: BaseViewController {
                 self.newDriver(driver: ScheduledPickupViewController.mockDriver)
                 self.newDriverLocation(location: driverLocation)
                 self.updateState(id: self.states[index], stepState: .done)
+                self.getEta(fromLocation: driverLocation, toLocation: ScheduledPickupViewController.officeLocation)
             })
             
             delay = delay + 4
@@ -121,6 +125,8 @@ class ScheduledPickupViewController: BaseViewController {
             
             self.view.addSubview(verticalStepView)
             self.view.addSubview(mapViewContainer)
+            self.view.addSubview(timeWindowView)
+            
             mapViewContainer.addSubview(driverViewContainer)
             driverViewContainer.addSubview(driverIcon)
             driverViewContainer.addSubview(driverName)
@@ -169,6 +175,11 @@ class ScheduledPickupViewController: BaseViewController {
                 make.height.equalTo(35)
                 make.width.equalTo(100)
             }
+            
+            timeWindowView.snp.makeConstraints { make in
+                make.left.bottom.right.equalToSuperview()
+                make.height.equalTo(TimeWindowView.height)
+            }
         }
     }
     
@@ -182,7 +193,6 @@ class ScheduledPickupViewController: BaseViewController {
         
         driverName.text = driver.name
         driverIcon.sd_setImage(with: URL(string: driver.iconUrl!))
-        
     }
     
     func updateState(id: ServiceState, stepState: StepState) {
@@ -198,6 +208,18 @@ class ScheduledPickupViewController: BaseViewController {
     
     func newDriverLocation(location: CLLocationCoordinate2D) {
         mapVC.updateDriverLocation(location: location)
+    }
+    
+    func getEta(fromLocation: CLLocationCoordinate2D, toLocation: CLLocationCoordinate2D) {
+        googleDirectionAPI.getDirection(origin: GoogleDirectionAPI.coordinatesToString(coordinate: fromLocation), destination: GoogleDirectionAPI.coordinatesToString(coordinate: toLocation), mode: nil).onSuccess { direction in
+            if let direction = direction {
+                self.mapVC.updateETA(eta: direction.getEta())
+                self.timeWindowView.setETA(eta: direction.getEta())
+            }
+            }.onFailure { error in
+                print("error")
+        }
+        
     }
     
 }

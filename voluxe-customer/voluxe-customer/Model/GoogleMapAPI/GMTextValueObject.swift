@@ -12,7 +12,7 @@ import ObjectMapper
 class GMTextValueObject: NSObject, Mappable {
     
     var text: String?
-    var value: Int64?
+    var value: Int?
     
     override init() {
         super.init()
@@ -20,7 +20,7 @@ class GMTextValueObject: NSObject, Mappable {
     
     required init?(map: Map) {
         text = map["text"].currentValue as? String
-        value = map["value"].currentValue as? Int64
+        value = map["value"].currentValue as? Int
     }
     
     func mapping(map: Map) {

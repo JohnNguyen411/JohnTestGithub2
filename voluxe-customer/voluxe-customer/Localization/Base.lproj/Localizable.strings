@@ -59,5 +59,6 @@
 "DriverNearby" = "Driver is nearby";
 "DriverArrived" = "Driver has arrived";
 "PickupWindow" = "Pickup window";
+"EstimatedPickupTime" = "Estimated Pickup Time";
 
 

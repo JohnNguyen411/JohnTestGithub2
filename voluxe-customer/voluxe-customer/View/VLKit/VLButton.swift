@@ -16,6 +16,7 @@ enum VLButtonType{
     case BlueSecondaryWithBorderDisabled
     case BlueSecondarySelected //orange
     case OrangeSecondary
+    case OrangeSecondarySmall
 }
 
 class VLButton : UIButton {
@@ -78,6 +79,11 @@ class VLButton : UIButton {
         case .OrangeSecondary:
             backgroundColor = .clear
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 18), fontColor: UIColor.luxeOrange(), highlightedFontColor: .luxeGray())
+            layer.borderWidth = 0
+            break
+        case .OrangeSecondarySmall:
+            backgroundColor = .clear
+            applyTextStyle(font: UIFont.volvoSansLightBold(size: 14), fontColor: UIColor.luxeOrange(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
         case .BlueSecondarySelected:
