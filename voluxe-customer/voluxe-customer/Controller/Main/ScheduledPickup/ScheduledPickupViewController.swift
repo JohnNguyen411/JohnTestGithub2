@@ -193,6 +193,7 @@ class ScheduledPickupViewController: BaseViewController {
                 break
             }
         }
+        mapVC.updateServiceState(state: id)
     }
     
     func newDriverLocation(location: CLLocationCoordinate2D) {
