@@ -1,5 +1,5 @@
 //
-//  SchedulePickupViewController.swift
+//  SchedulingPickupViewController.swift
 //  voluxe-customer
 //
 //  Created by Giroux, Johan on 11/3/17.
@@ -11,7 +11,7 @@ import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
 
-class SchedulePickupViewController: BaseViewController, PresentrDelegate, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate {
+class SchedulingPickupViewController: BaseViewController, PresentrDelegate, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate {
     
     public enum SchedulePickupState: Int {
         case start = 0
@@ -202,7 +202,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
     }
     
     func buildPresenter(heightInPixels: CGFloat, dismissOnTap: Bool) -> Presentr {
-        let customType = getPresenterPresentationType(heightInPixels: heightInPixels, customYOrigin: SchedulePickupViewController.fakeYOrigin)
+        let customType = getPresenterPresentationType(heightInPixels: heightInPixels, customYOrigin: SchedulingPickupViewController.fakeYOrigin)
         
         let customPresenter = Presentr(presentationType: customType)
         customPresenter.transitionType = .coverVertical
@@ -230,7 +230,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         let height = ModalSize.fluid(percentage: Float(percH))
         
         var yOrigin = customYOrigin
-        if yOrigin == SchedulePickupViewController.fakeYOrigin {
+        if yOrigin == SchedulingPickupViewController.fakeYOrigin {
             yOrigin = viewH - heightInPixels
         }
         
@@ -358,7 +358,7 @@ class SchedulePickupViewController: BaseViewController, PresentrDelegate, Pickup
         let frame = currentPresentr?.currentPresentationController?.getCurrentFrame()
         let yOrigin = (frame?.origin.y)! - (newHeight - (frame?.size.height)!)
  */
-        let presentationType = getPresenterPresentationType(heightInPixels: newHeight, customYOrigin: SchedulePickupViewController.fakeYOrigin)
+        let presentationType = getPresenterPresentationType(heightInPixels: newHeight, customYOrigin: SchedulingPickupViewController.fakeYOrigin)
         currentPresentr?.currentPresentationController?.updateToNewFrame(presentationType: presentationType)
     }
     

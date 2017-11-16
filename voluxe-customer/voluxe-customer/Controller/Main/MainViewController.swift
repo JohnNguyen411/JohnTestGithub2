@@ -43,8 +43,8 @@ class MainViewController: BaseViewController {
         }
 
         if serviceState == .idle {
-            let schedulePickupViewController = SchedulePickupViewController()
-            currentViewController = schedulePickupViewController
+            let schedulingPickupViewController = SchedulingPickupViewController()
+            currentViewController = schedulingPickupViewController
             
         } else if serviceState == .scheduled {
             let scheduledPickupViewController = ScheduledPickupViewController()
