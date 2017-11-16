@@ -12,11 +12,7 @@ import SlideMenuControllerSwift
 
 class MainViewController: BaseViewController {
     
-    public enum ServiceState: Int {
-        case noninit = -999
-        case idle = 0
-        case scheduled = 10
-    }
+    
     
     private var serviceState = ServiceState.noninit
     

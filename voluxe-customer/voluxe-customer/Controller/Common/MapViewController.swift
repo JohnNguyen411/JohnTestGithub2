@@ -66,7 +66,7 @@ class MapViewController: UIViewController {
             var bounds = GMSCoordinateBounds()
             bounds = bounds.includingCoordinate(flagMarker.position)
             bounds = bounds.includingCoordinate(driverMarker.position)
-            let update = GMSCameraUpdate.fit(bounds, with: UIEdgeInsets(top: 50, left: 30, bottom: 20, right: 30))
+            let update = GMSCameraUpdate.fit(bounds, with: UIEdgeInsets(top: 60, left: 30, bottom: 20, right: 30))
             mapView.animate(with: update)
         } else if flagMarker.map != nil {
             mapView.animate(toLocation: flagMarker.position)

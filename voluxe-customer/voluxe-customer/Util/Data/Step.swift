@@ -15,16 +15,16 @@ public enum StepState {
 
 class Step: NSObject {
     
-    var id: Int
+    var id: ServiceState
     var text: String
     var state: StepState = .todo
     
-    convenience init(id: Int, text: String, state: StepState) {
+    convenience init(id: ServiceState, text: String, state: StepState) {
         self.init(id: id, text: text)
         self.state = state
     }
     
-    init(id: Int, text: String) {
+    init(id: ServiceState, text: String) {
         self.id = id
         self.text = text
         super.init()

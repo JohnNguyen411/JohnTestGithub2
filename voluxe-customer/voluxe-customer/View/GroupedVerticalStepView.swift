@@ -47,7 +47,7 @@ class GroupedVerticalStepView: UIView {
     func updateStep(step: Step) {
         stepViews.forEach { stepView in
             if stepView.step.id == step.id {
-                updateStep(step: step)
+                stepView.updateStep(step: step)
             }
         }
         

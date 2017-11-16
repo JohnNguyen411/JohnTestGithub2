@@ -32,8 +32,15 @@ class ScheduledPickupViewController: BaseViewController {
     private static let mapViewHeight = 180
     private static let driverViewHeight = 50
     
-    private var steps: [Step] = []
+    // mock
+    private var states: [ServiceState] = [ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute,
+                                          ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute, ServiceState.pickupDriverNearby, ServiceState.pickupDriverNearby,
+                                          ServiceState.pickupDriverArrived]
+    
     private var driverLocations: [CLLocationCoordinate2D] = []
+
+    
+    private var steps: [Step] = []
     private var driver: Driver?
     
     private var verticalStepView: GroupedVerticalStepView? = nil
@@ -65,10 +72,10 @@ class ScheduledPickupViewController: BaseViewController {
     }
     
     func generateSteps() {
-        let step1 = Step(id: 0, text: .ServiceScheduled, state: .done)
-        let step2 = Step(id: 1, text: .DriverEnRoute)
-        let step3 = Step(id: 2, text: .DriverNearby)
-        let step4 = Step(id: 3, text: .DriverArrived)
+        let step1 = Step(id: ServiceState.scheduled, text: .ServiceScheduled, state: .done)
+        let step2 = Step(id: ServiceState.pickupDriverInRoute, text: .DriverEnRoute)
+        let step3 = Step(id: ServiceState.pickupDriverNearby, text: .DriverNearby)
+        let step4 = Step(id: ServiceState.pickupDriverArrived, text: .DriverArrived)
         
         steps.append(step1)
         steps.append(step2)
@@ -94,10 +101,11 @@ class ScheduledPickupViewController: BaseViewController {
         mapVC.updateRequestLocation(location: ScheduledPickupViewController.officeLocation)
         
         var delay = 4.0
-        for driverLocation in driverLocations {
+        for (index, driverLocation) in driverLocations.enumerated() {
             DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
                 self.newDriver(driver: ScheduledPickupViewController.mockDriver)
                 self.newDriverLocation(location: driverLocation)
+                self.updateState(id: self.states[index], stepState: .done)
             })
             
             delay = delay + 4
@@ -172,11 +180,19 @@ class ScheduledPickupViewController: BaseViewController {
             return
         }
         
-        weak var weakSelf = self
-        
         driverName.text = driver.name
         driverIcon.sd_setImage(with: URL(string: driver.iconUrl!))
         
+    }
+    
+    func updateState(id: ServiceState, stepState: StepState) {
+        for step in steps {
+            if step.id == id {
+                step.state = stepState
+                verticalStepView?.updateStep(step: step)
+                break
+            }
+        }
     }
     
     func newDriverLocation(location: CLLocationCoordinate2D) {
