@@ -73,4 +73,6 @@
 "ScheduledDelivery" = "Scheduled Delivery";
 "DeliveryLocation" = "Delivery Location";
 
-
+/***************** Scheduled Dropoff ***************/
+"VehicleIsReady" = "Vehicle is ready";
+"DeliveryWindow" = "Delivery window";

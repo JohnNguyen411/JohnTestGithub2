@@ -15,7 +15,7 @@ enum LeftMenu: Int {
     case schedule = 0
     case scheduled
     case serviced
-    case go
+    case delivery
     case nonMenu
 }
 
@@ -26,7 +26,7 @@ protocol LeftMenuProtocol : class {
 class LeftViewController : UIViewController, LeftMenuProtocol {
     
     var tableView = UITableView(frame: .zero)
-    var menus = ["Schedule", "Scheduled", "Serviced", "Go", "NonMenu"]
+    var menus = ["Schedule", "Scheduled", "Serviced", "Delivery", "NonMenu"]
     var mainNavigationViewController: UIViewController!
     var mainViewController: MainViewController!
     var imageHeaderView: UIImageView!
@@ -90,7 +90,8 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         case .serviced:
             self.mainViewController.updateState(state: .servicing)
             self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
-        case .go:
+        case .delivery:
+            self.mainViewController.updateState(state: .deliveryScheduled)
             self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
         case .nonMenu:
             self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
@@ -102,7 +103,7 @@ extension LeftViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let menu = LeftMenu(rawValue: indexPath.row) {
             switch menu {
-            case .schedule, .scheduled, .serviced, .go, .nonMenu:
+            case .schedule, .scheduled, .serviced, .delivery, .nonMenu:
                 return LeftPanelTableViewCell.height()
             }
         }
@@ -132,7 +133,7 @@ extension LeftViewController : UITableViewDataSource {
         
         if let menu = LeftMenu(rawValue: indexPath.row) {
             switch menu {
-            case .schedule, .scheduled, .serviced, .go, .nonMenu:
+            case .schedule, .scheduled, .serviced, .delivery, .nonMenu:
                 let cell = LeftPanelTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: LeftPanelTableViewCell.identifier)
                 cell.setData(menus[indexPath.row])
                 return cell

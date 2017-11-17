@@ -1,8 +1,8 @@
 //
-//  ScheduledPickupViewController.swift
+//  ScheduledViewController.swift
 //  voluxe-customer
 //
-//  Created by Giroux, Johan on 11/15/17.
+//  Created by Giroux, Johan on 11/16/17.
 //  Copyright © 2017 Luxe - Volvo Cars. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import SlideMenuControllerSwift
 import CoreLocation
 import GoogleMaps
 
-class ScheduledPickupViewController: BaseViewController {
+class ScheduledViewController: BaseViewController {
     
     static let officeLocation = CLLocationCoordinate2D(latitude: 37.788866, longitude: -122.398210)
     static let driverLocation1 = CLLocationCoordinate2D(latitude: 37.7686497, longitude: -122.4175534)
@@ -33,16 +33,14 @@ class ScheduledPickupViewController: BaseViewController {
     private static let driverViewHeight = 55
     
     // mock
-    private var states: [ServiceState] = [ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute,
-                                          ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute, ServiceState.pickupDriverNearby, ServiceState.pickupDriverNearby,
-                                          ServiceState.pickupDriverArrived]
+    var states: [ServiceState] = []
     
-    private var driverLocations: [CLLocationCoordinate2D] = []
+    var driverLocations: [CLLocationCoordinate2D] = []
     
     
     private let googleDirectionAPI = GoogleDirectionAPI()
     
-    private var steps: [Step] = []
+    var steps: [Step] = []
     private var driver: Driver?
     
     private var verticalStepView: GroupedVerticalStepView? = nil
@@ -65,6 +63,7 @@ class ScheduledPickupViewController: BaseViewController {
     override init() {
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
         super.init()
+        generateStates()
         generateSteps()
         generateDriverLocations()
         verticalStepView = GroupedVerticalStepView(steps: steps)
@@ -74,42 +73,22 @@ class ScheduledPickupViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func generateSteps() {
-        let step1 = Step(id: ServiceState.pickupScheduled, text: .ServiceScheduled, state: .done)
-        let step2 = Step(id: ServiceState.pickupDriverInRoute, text: .DriverEnRoute)
-        let step3 = Step(id: ServiceState.pickupDriverNearby, text: .DriverNearby)
-        let step4 = Step(id: ServiceState.pickupDriverArrived, text: .DriverArrived)
-        
-        steps.append(step1)
-        steps.append(step2)
-        steps.append(step3)
-        steps.append(step4)
-    }
-    
-    func generateDriverLocations() {
-        driverLocations.append(ScheduledPickupViewController.driverLocation1)
-        driverLocations.append(ScheduledPickupViewController.driverLocation2)
-        driverLocations.append(ScheduledPickupViewController.driverLocation3)
-        driverLocations.append(ScheduledPickupViewController.driverLocation4)
-        driverLocations.append(ScheduledPickupViewController.driverLocation5)
-        driverLocations.append(ScheduledPickupViewController.driverLocation6)
-        driverLocations.append(ScheduledPickupViewController.driverLocation7)
-        driverLocations.append(ScheduledPickupViewController.driverLocation8)
-        driverLocations.append(ScheduledPickupViewController.driverLocation9)
-    }
+    func generateSteps() {}
+    func generateStates() {}
+    func generateDriverLocations() {}
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapVC.updateRequestLocation(location: ScheduledPickupViewController.officeLocation)
+        mapVC.updateRequestLocation(location: ScheduledViewController.officeLocation)
         
         var delay = 4.0
         for (index, driverLocation) in driverLocations.enumerated() {
             DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
-                self.newDriver(driver: ScheduledPickupViewController.mockDriver)
+                self.newDriver(driver: ScheduledViewController.mockDriver)
                 self.newDriverLocation(location: driverLocation)
                 self.updateState(id: self.states[index], stepState: .done)
-                self.getEta(fromLocation: driverLocation, toLocation: ScheduledPickupViewController.officeLocation)
+                self.getEta(fromLocation: driverLocation, toLocation: ScheduledViewController.officeLocation)
             })
             
             delay = delay + 4
@@ -143,19 +122,19 @@ class ScheduledPickupViewController: BaseViewController {
                 make.left.equalToSuperview().offset(25)
                 make.right.equalToSuperview().offset(-25)
                 make.top.equalTo(verticalStepView.snp.bottom)
-                make.height.equalTo(ScheduledPickupViewController.mapViewHeight + ScheduledPickupViewController.driverViewHeight)
+                make.height.equalTo(ScheduledViewController.mapViewHeight + ScheduledViewController.driverViewHeight)
             }
             
             mapViewContainer.addSubview(mapVC.view)
             mapVC.view.snp.makeConstraints { (make) -> Void in
                 make.left.right.top.equalToSuperview()
-                make.height.equalTo(ScheduledPickupViewController.mapViewHeight)
+                make.height.equalTo(ScheduledViewController.mapViewHeight)
             }
             
             driverViewContainer.snp.makeConstraints { make in
                 make.left.right.equalToSuperview()
                 make.top.equalTo(mapVC.view.snp.bottom)
-                make.height.equalTo(ScheduledPickupViewController.driverViewHeight)
+                make.height.equalTo(ScheduledViewController.driverViewHeight)
             }
             
             driverIcon.snp.makeConstraints { make in

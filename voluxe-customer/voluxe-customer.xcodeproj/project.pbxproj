@@ -42,6 +42,15 @@
 		6C20E1B61FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1B51FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift */; };
 		6C20E1B71FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1B51FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift */; };
 		6C20E1B81FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1B51FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift */; };
+		6C20E1BB1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1BA1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift */; };
+		6C20E1BC1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1BA1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift */; };
+		6C20E1BD1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1BA1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift */; };
+		6C20E1BF1FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1BE1FBE635B00E5D9A0 /* ScheduledViewController.swift */; };
+		6C20E1C01FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1BE1FBE635B00E5D9A0 /* ScheduledViewController.swift */; };
+		6C20E1C11FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1BE1FBE635B00E5D9A0 /* ScheduledViewController.swift */; };
+		6C20E1C31FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1C21FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift */; };
+		6C20E1C41FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1C21FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift */; };
+		6C20E1C51FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1C21FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift */; };
 		6C2208771FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
 		6C2208781FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
 		6C2208791FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
@@ -357,6 +366,9 @@
 		6C20E1AC1FBE408B00E5D9A0 /* SchedulingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingViewController.swift; sourceTree = "<group>"; };
 		6C20E1B11FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingDropoffViewController.swift; sourceTree = "<group>"; };
 		6C20E1B51FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingDropoffLocalization.swift; sourceTree = "<group>"; };
+		6C20E1BA1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledDropoffViewController.swift; sourceTree = "<group>"; };
+		6C20E1BE1FBE635B00E5D9A0 /* ScheduledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledViewController.swift; sourceTree = "<group>"; };
+		6C20E1C21FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledDropoffLocalization.swift; sourceTree = "<group>"; };
 		6C2208761FBCEF7A00874882 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6C22087B1FBD0C6700874882 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Voluxe.swift"; sourceTree = "<group>"; };
@@ -581,7 +593,9 @@
 		6C20E1AA1FBE3EF500E5D9A0 /* Scheduled */ = {
 			isa = PBXGroup;
 			children = (
-				6C32C3041FBCBF0E00B1218C /* ScheduledPickup */,
+				6C20E1BE1FBE635B00E5D9A0 /* ScheduledViewController.swift */,
+				6C20E1B91FBE632800E5D9A0 /* Dropoff */,
+				6C32C3041FBCBF0E00B1218C /* Pickup */,
 			);
 			path = Scheduled;
 			sourceTree = "<group>";
@@ -592,6 +606,14 @@
 				6C20E1B11FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift */,
 			);
 			path = DropOff;
+			sourceTree = "<group>";
+		};
+		6C20E1B91FBE632800E5D9A0 /* Dropoff */ = {
+			isa = PBXGroup;
+			children = (
+				6C20E1BA1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift */,
+			);
+			path = Dropoff;
 			sourceTree = "<group>";
 		};
 		6C2208751FBCEF4D00874882 /* Common */ = {
@@ -610,12 +632,12 @@
 			path = Marker;
 			sourceTree = "<group>";
 		};
-		6C32C3041FBCBF0E00B1218C /* ScheduledPickup */ = {
+		6C32C3041FBCBF0E00B1218C /* Pickup */ = {
 			isa = PBXGroup;
 			children = (
 				6C32C3121FBCCD8C00B1218C /* ScheduledPickupViewController.swift */,
 			);
-			path = ScheduledPickup;
+			path = Pickup;
 			sourceTree = "<group>";
 		};
 		6C32C3051FBCC0CB00B1218C /* Data */ = {
@@ -750,6 +772,7 @@
 				6C73420F1FB136B000E90F7E /* CommonsLocalization.swift */,
 				6C32C3161FBCCFF200B1218C /* ScheduledPickupLocalization.swift */,
 				6C20E1B51FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift */,
+				6C20E1C21FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift */,
 			);
 			path = Localization;
 			sourceTree = "<group>";
@@ -1366,6 +1389,7 @@
 				6C2208801FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */,
 				6C58330D1FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
 				6CBB4E9D1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
+				6C20E1BB1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
 				6C5833131FB3AF5600F6BFE0 /* ModalSize.swift in Sources */,
 				6C32C30B1FBCC1DD00B1218C /* StepView.swift in Sources */,
 				6CC37E531FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
@@ -1419,6 +1443,7 @@
 				6CBB4E8E1FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
 				6C5833181FB3AF5600F6BFE0 /* PresentrAnimation.swift in Sources */,
 				6CBB4EB31FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
+				6C20E1C31FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */,
 				6C9C7A7B1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
 				6C6F4BCE1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6CC37E501FA7C41700DA8F01 /* VLTextField.swift in Sources */,
@@ -1443,6 +1468,7 @@
 				6C3FB2AD1FA2574C00B22EAB /* FuelData.swift in Sources */,
 				6C73420C1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,
 				6C7341FF1FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
+				6C20E1BF1FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */,
 				6C3FB2BF1FA2A4CE00B22EAB /* VehicleLockStatus.swift in Sources */,
 				6C91BBD71FA7D6220033C2B1 /* ViewPager.swift in Sources */,
 				6C20E1A01FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */,
@@ -1466,6 +1492,7 @@
 				6CBB4E8C1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				6CBB4EA41FB4DF7D00C31183 /* FSCalendarHeaderView.m in Sources */,
 				6C91BBF21FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
+				6C20E1BC1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
 				6C7342091FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */,
 				6CEA0D5A1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
 				6CBB4EB41FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
@@ -1500,6 +1527,7 @@
 				6C20E1A71FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */,
 				6C20E1B71FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift in Sources */,
 				6C5832C61FB38C9000F6BFE0 /* LocationManager.swift in Sources */,
+				6C20E1C41FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */,
 				6C58331F1FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */,
 				6C5833381FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */,
 				6C95439F1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
@@ -1516,6 +1544,7 @@
 				6C32C3101FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */,
 				6C6F4BCB1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
 				6CBB4E891FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */,
+				6C20E1C01FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */,
 				6CC37E511FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C88DC901FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6CBB4E831FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
@@ -1561,6 +1590,7 @@
 				6CBB4E8D1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				6CBB4EA51FB4DF7D00C31183 /* FSCalendarHeaderView.m in Sources */,
 				6C91BBF31FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
+				6C20E1BD1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
 				6C73420A1FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */,
 				6CEA0D5B1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
 				6CBB4EB51FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
@@ -1595,6 +1625,7 @@
 				6C20E1A81FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */,
 				6C20E1B81FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift in Sources */,
 				6C5832C71FB38C9000F6BFE0 /* LocationManager.swift in Sources */,
+				6C20E1C51FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */,
 				6C5833201FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */,
 				6C58333C1FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */,
 				6C9543A01FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
@@ -1611,6 +1642,7 @@
 				6C32C3111FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */,
 				6C6F4BCC1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
 				6CBB4E8A1FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */,
+				6C20E1C11FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */,
 				6CC37E521FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C88DC911FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6CBB4E841FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,

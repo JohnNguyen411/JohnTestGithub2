@@ -51,6 +51,9 @@ class MainViewController: BaseViewController {
         } else if serviceState == .servicing || serviceState == .serviceCompleted {
             let schedulingDropoffViewController = SchedulingDropoffViewController(state : serviceState)
             currentViewController = schedulingDropoffViewController
+        } else if serviceState == .deliveryScheduled {
+            let scheduledDeliveryViewController = ScheduledDropoffViewController()
+            currentViewController = scheduledDeliveryViewController
         }
         
         if let view = currentViewController?.view {

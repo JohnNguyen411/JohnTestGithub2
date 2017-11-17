@@ -24,8 +24,9 @@ class SchedulingDropoffViewController: SchedulingViewController {
     }
     
     override func fillViews() {
-        scheduledServiceView.setTitle(title: .CurrentService, leftDescription: "10,000 mile check-up", rightDescription: "$400")
-        pickupLocationView.titleLabel.text = .ScheduledDelivery
+        scheduledServiceView.setTitle(title: .RecommendedService, leftDescription: "10,000 mile check-up", rightDescription: "$400")
+        dealershipView.setTitle(title: .Dealership, leftDescription: "Marin Volvo", rightDescription: "")
+        scheduledPickupView.titleLabel.text = .ScheduledDelivery
         pickupLocationView.titleLabel.text = .DeliveryLocation
     }
     
