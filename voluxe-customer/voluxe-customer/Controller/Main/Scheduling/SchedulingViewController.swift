@@ -90,6 +90,12 @@ class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDeal
         fillViews()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        stateDidChange(state: serviceState)
+    }
+    
     //MARK: View methods
     
     override func setupViews() {

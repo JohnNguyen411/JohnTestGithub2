@@ -13,6 +13,7 @@ extension String {
     static let Add = NSLocalizedString("Add")
     static let Yes = NSLocalizedString("Yes")
     static let No = NSLocalizedString("No")
+    static let Ok = NSLocalizedString("Ok")
     static let Contact = NSLocalizedString("Contact")
     static let smallMinute = NSLocalizedString("smallMinute")
 }

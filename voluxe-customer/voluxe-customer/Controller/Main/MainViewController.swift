@@ -49,7 +49,8 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol {
             view.removeFromSuperview()
         }
 
-        if serviceState == .idle || serviceState == .needService {
+        if serviceState == .idle || serviceState == .needService ||
+            serviceState == .pickupDriverDrivingToDealership || serviceState == .pickupDriverAtDealership {
             let schedulingPickupViewController = SchedulingPickupViewController(state: serviceState)
             currentViewController = schedulingPickupViewController
         } else if serviceState == .pickupScheduled {

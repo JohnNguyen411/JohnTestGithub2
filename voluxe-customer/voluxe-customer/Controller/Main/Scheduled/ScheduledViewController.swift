@@ -90,9 +90,13 @@ class ScheduledViewController: BaseViewController {
                 self.updateState(id: self.states[index], stepState: .done)
                 self.getEta(fromLocation: driverLocation, toLocation: ScheduledViewController.officeLocation)
             })
-            
+              
             delay = delay + 4
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
+            StateServiceManager.sharedInstance.updateState(state: .pickupDriverDrivingToDealership)
+        })
     }
     
     override func setupViews() {

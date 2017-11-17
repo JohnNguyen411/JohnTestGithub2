@@ -28,5 +28,5 @@ extension String {
     static let PickupLocation = NSLocalizedString("PickupLocation")
     static let ComplimentaryLoaner = NSLocalizedString("ComplimentaryLoaner")
     static let ConfirmPickup = NSLocalizedString("ConfirmPickup")
-
+    static let YourVehicleHasArrived = NSLocalizedString("YourVehicleHasArrived")
 }

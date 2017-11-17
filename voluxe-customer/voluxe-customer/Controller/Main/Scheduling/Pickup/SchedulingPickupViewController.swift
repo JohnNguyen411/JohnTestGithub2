@@ -18,8 +18,6 @@ class SchedulingPickupViewController: SchedulingViewController {
             make.top.equalTo(pickupLocationView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
-        
-        stateDidChange(state: serviceState)
     }
     
     override func stateDidChange(state: ServiceState) {
@@ -27,6 +25,27 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         leftButton.setTitle(title: (.SelfDrop as String).uppercased())
         rightButton.setTitle(title: (.VolvoPickup as String).uppercased())
+        
+        if state == .pickupDriverDrivingToDealership || state == .pickupDriverAtDealership {
+            leftButton.isHidden = true
+            rightButton.isHidden = true
+            confirmButton.isHidden = true
+            
+            if state == .pickupDriverDrivingToDealership {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                    StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
+                })
+            } else if state == .pickupDriverAtDealership {
+                let alert = UIAlertController(title: .VolvoPickup, message: .YourVehicleHasArrived, preferredStyle: UIAlertControllerStyle.alert)
+                alert.addAction(UIAlertAction(title: (.Ok as String).uppercased(), style: UIAlertActionStyle.default, handler: { (alert: UIAlertAction!) in
+                    // show being serviced
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                        StateServiceManager.sharedInstance.updateState(state: .servicing)
+                    })
+                }))
+                self.present(alert, animated: true, completion: nil)
+            }
+        }
     }
     
     

@@ -19,8 +19,6 @@ class SchedulingDropoffViewController: SchedulingViewController {
         confirmButton.setTitle(title: (.ConfirmDelivery as String).uppercased())
         
         loanerView.isHidden = true
-        
-        stateDidChange(state: serviceState)
     }
     
     override func fillViews() {
