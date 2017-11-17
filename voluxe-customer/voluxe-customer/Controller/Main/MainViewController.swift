@@ -42,13 +42,15 @@ class MainViewController: BaseViewController {
             view.removeFromSuperview()
         }
 
-        if serviceState == .idle {
-            let schedulingPickupViewController = SchedulingPickupViewController()
+        if serviceState == .idle || serviceState == .needService {
+            let schedulingPickupViewController = SchedulingPickupViewController(state: serviceState)
             currentViewController = schedulingPickupViewController
-            
-        } else if serviceState == .scheduled {
+        } else if serviceState == .pickupScheduled {
             let scheduledPickupViewController = ScheduledPickupViewController()
             currentViewController = scheduledPickupViewController
+        } else if serviceState == .servicing || serviceState == .serviceCompleted {
+            let schedulingDropoffViewController = SchedulingDropoffViewController(state : serviceState)
+            currentViewController = schedulingDropoffViewController
         }
         
         if let view = currentViewController?.view {

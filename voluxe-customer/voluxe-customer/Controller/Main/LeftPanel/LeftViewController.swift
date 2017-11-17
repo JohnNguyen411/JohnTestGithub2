@@ -14,7 +14,7 @@ import SnapKit
 enum LeftMenu: Int {
     case schedule = 0
     case scheduled
-    case java
+    case serviced
     case go
     case nonMenu
 }
@@ -26,7 +26,7 @@ protocol LeftMenuProtocol : class {
 class LeftViewController : UIViewController, LeftMenuProtocol {
     
     var tableView = UITableView(frame: .zero)
-    var menus = ["Schedule", "Scheduled", "Java", "Go", "NonMenu"]
+    var menus = ["Schedule", "Scheduled", "Serviced", "Go", "NonMenu"]
     var mainNavigationViewController: UIViewController!
     var mainViewController: MainViewController!
     var imageHeaderView: UIImageView!
@@ -85,9 +85,10 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
             self.mainViewController.updateState(state: .idle)
             self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
         case .scheduled:
-            self.mainViewController.updateState(state: .scheduled)
+            self.mainViewController.updateState(state: .pickupScheduled)
             self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
-        case .java:
+        case .serviced:
+            self.mainViewController.updateState(state: .servicing)
             self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
         case .go:
             self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
@@ -101,7 +102,7 @@ extension LeftViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if let menu = LeftMenu(rawValue: indexPath.row) {
             switch menu {
-            case .schedule, .scheduled, .java, .go, .nonMenu:
+            case .schedule, .scheduled, .serviced, .go, .nonMenu:
                 return LeftPanelTableViewCell.height()
             }
         }
@@ -131,7 +132,7 @@ extension LeftViewController : UITableViewDataSource {
         
         if let menu = LeftMenu(rawValue: indexPath.row) {
             switch menu {
-            case .schedule, .scheduled, .java, .go, .nonMenu:
+            case .schedule, .scheduled, .serviced, .go, .nonMenu:
                 let cell = LeftPanelTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: LeftPanelTableViewCell.identifier)
                 cell.setData(menus[indexPath.row])
                 return cell

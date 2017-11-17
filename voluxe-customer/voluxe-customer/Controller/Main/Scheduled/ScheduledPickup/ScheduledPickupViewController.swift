@@ -75,7 +75,7 @@ class ScheduledPickupViewController: BaseViewController {
     }
     
     func generateSteps() {
-        let step1 = Step(id: ServiceState.scheduled, text: .ServiceScheduled, state: .done)
+        let step1 = Step(id: ServiceState.pickupScheduled, text: .ServiceScheduled, state: .done)
         let step2 = Step(id: ServiceState.pickupDriverInRoute, text: .DriverEnRoute)
         let step3 = Step(id: ServiceState.pickupDriverNearby, text: .DriverNearby)
         let step4 = Step(id: ServiceState.pickupDriverArrived, text: .DriverArrived)

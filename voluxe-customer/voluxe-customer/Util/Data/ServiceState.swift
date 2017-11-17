@@ -11,8 +11,15 @@ import Foundation
 public enum ServiceState: Int {
     case noninit = -999
     case idle = 0
-    case scheduled = 10
-    case pickupDriverInRoute = 11
-    case pickupDriverNearby = 12
-    case pickupDriverArrived = 13
+    case needService = 10
+    case pickupScheduled = 20
+    case pickupDriverInRoute = 21
+    case pickupDriverNearby = 22
+    case pickupDriverArrived = 23
+    case servicing = 30
+    case serviceCompleted = 40
+    case deliveryScheduled = 50
+    case deliveryInRoute = 51
+    case deliveryNearby = 52
+    case deliveryArrived = 53
 }

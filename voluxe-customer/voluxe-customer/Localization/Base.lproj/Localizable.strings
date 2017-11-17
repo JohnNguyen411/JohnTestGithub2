@@ -61,4 +61,16 @@
 "PickupWindow" = "Pickup window";
 "EstimatedPickupTime" = "Estimated Pickup Time";
 
+/***************** Scheduling Dropoff ***************/
+"CurrentService" = "Current Service";
+"VolvoCurrentlyServicing" = "Your Volvo is currently being serviced. We will alert you when the service is completed.";
+"ReturnVehicle" = "Return Vehicle";
+"VolvoServiceComplete" = "Your Volvo service is completed. You can pick it up from the dealership or schedule delivery.";
+"SelfPickup" = "Self Pickup";
+"VolvoDelivery" = "Volvo Delivery";
+"SelectYourPreferredDeliveryTime" = "Select your preferred delivery time";
+"ConfirmDelivery" = "Confirm Delivery";
+"ScheduledDelivery" = "Scheduled Delivery";
+"DeliveryLocation" = "Delivery Location";
+
 
