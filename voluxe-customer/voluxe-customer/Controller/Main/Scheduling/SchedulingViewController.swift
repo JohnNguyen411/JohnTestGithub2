@@ -83,6 +83,9 @@ class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDeal
         rightButton.setActionBlock {
             self.rightButtonClick()
         }
+        confirmButton.setActionBlock {
+            self.confirmButtonClick()
+        }
         
         fillViews()
     }
@@ -325,6 +328,10 @@ class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDeal
         leftButton.animateAlpha(show: false)
         rightButton.animateAlpha(show: false)
     }
+    
+    func confirmButtonClick() {
+    }
+        
     
     //MARK: PresentR delegate methods
     

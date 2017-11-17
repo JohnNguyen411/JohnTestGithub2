@@ -47,4 +47,8 @@ class SchedulingPickupViewController: SchedulingViewController {
         })
     }
     
+    override func confirmButtonClick() {
+        StateServiceManager.sharedInstance.updateState(state: .pickupScheduled)
+    }
+    
 }

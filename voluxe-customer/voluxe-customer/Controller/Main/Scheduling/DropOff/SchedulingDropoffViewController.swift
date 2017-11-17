@@ -85,4 +85,8 @@ class SchedulingDropoffViewController: SchedulingViewController {
         })
     }
     
+    override func confirmButtonClick() {
+        StateServiceManager.sharedInstance.updateState(state: .deliveryScheduled)
+    }
+    
 }

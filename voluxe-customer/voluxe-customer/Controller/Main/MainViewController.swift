@@ -10,9 +10,7 @@ import Foundation
 import UIKit
 import SlideMenuControllerSwift
 
-class MainViewController: BaseViewController {
-    
-    
+class MainViewController: BaseViewController, StateServiceManagerProtocol {
     
     private var serviceState = ServiceState.noninit
     
@@ -20,6 +18,7 @@ class MainViewController: BaseViewController {
     var currentViewController: BaseViewController?
 
     override func viewDidLoad() {
+        StateServiceManager.sharedInstance.addDelegate(delegate: self)
         super.viewDidLoad()
         setNavigationBarItem()
         if let navigationController = self.navigationController {
@@ -27,9 +26,17 @@ class MainViewController: BaseViewController {
         }
     }
     
+    deinit {
+        StateServiceManager.sharedInstance.removeDelegate(delegate: self)
+    }
+    
     override func setupViews() {
         super.setupViews()
-        updateState(state: ServiceState.idle)
+        StateServiceManager.sharedInstance.updateState(state: ServiceState.idle)
+    }
+    
+    func stateDidChange(oldState: ServiceState, newState: ServiceState) {
+        updateState(state: newState)
     }
     
     func updateState(state: ServiceState) {
