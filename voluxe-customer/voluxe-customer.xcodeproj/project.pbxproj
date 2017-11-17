@@ -54,6 +54,24 @@
 		6C20E1C71FBE6D2400E5D9A0 /* StateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1C61FBE6D2400E5D9A0 /* StateService.swift */; };
 		6C20E1C81FBE6D2400E5D9A0 /* StateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1C61FBE6D2400E5D9A0 /* StateService.swift */; };
 		6C20E1C91FBE6D2400E5D9A0 /* StateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1C61FBE6D2400E5D9A0 /* StateService.swift */; };
+		6C20E1CB1FBF698E00E5D9A0 /* Dealership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CA1FBF698E00E5D9A0 /* Dealership.swift */; };
+		6C20E1CC1FBF698E00E5D9A0 /* Dealership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CA1FBF698E00E5D9A0 /* Dealership.swift */; };
+		6C20E1CD1FBF698E00E5D9A0 /* Dealership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CA1FBF698E00E5D9A0 /* Dealership.swift */; };
+		6C20E1D01FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */; };
+		6C20E1D11FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */; };
+		6C20E1D21FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */; };
+		6C20E1D41FBF71B200E5D9A0 /* RequestLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1D31FBF71B200E5D9A0 /* RequestLocation.swift */; };
+		6C20E1D51FBF71B200E5D9A0 /* RequestLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1D31FBF71B200E5D9A0 /* RequestLocation.swift */; };
+		6C20E1D61FBF71B200E5D9A0 /* RequestLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1D31FBF71B200E5D9A0 /* RequestLocation.swift */; };
+		6C20E1D81FBF725F00E5D9A0 /* LocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */; };
+		6C20E1D91FBF725F00E5D9A0 /* LocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */; };
+		6C20E1DA1FBF725F00E5D9A0 /* LocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */; };
+		6C20E1E01FBF770C00E5D9A0 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1DF1FBF770C00E5D9A0 /* Request.swift */; };
+		6C20E1E11FBF770C00E5D9A0 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1DF1FBF770C00E5D9A0 /* Request.swift */; };
+		6C20E1E21FBF770C00E5D9A0 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1DF1FBF770C00E5D9A0 /* Request.swift */; };
+		6C20E1E81FBF851B00E5D9A0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1E71FBF851B00E5D9A0 /* Service.swift */; };
+		6C20E1E91FBF851B00E5D9A0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1E71FBF851B00E5D9A0 /* Service.swift */; };
+		6C20E1EA1FBF851B00E5D9A0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1E71FBF851B00E5D9A0 /* Service.swift */; };
 		6C2208771FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
 		6C2208781FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
 		6C2208791FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
@@ -373,6 +391,12 @@
 		6C20E1BE1FBE635B00E5D9A0 /* ScheduledViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledViewController.swift; sourceTree = "<group>"; };
 		6C20E1C21FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledDropoffLocalization.swift; sourceTree = "<group>"; };
 		6C20E1C61FBE6D2400E5D9A0 /* StateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateService.swift; sourceTree = "<group>"; };
+		6C20E1CA1FBF698E00E5D9A0 /* Dealership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealership.swift; sourceTree = "<group>"; };
+		6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedServiceManager.swift; sourceTree = "<group>"; };
+		6C20E1D31FBF71B200E5D9A0 /* RequestLocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestLocation.swift; sourceTree = "<group>"; };
+		6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtils.swift; sourceTree = "<group>"; };
+		6C20E1DF1FBF770C00E5D9A0 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		6C20E1E71FBF851B00E5D9A0 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		6C2208761FBCEF7A00874882 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6C22087B1FBD0C6700874882 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Voluxe.swift"; sourceTree = "<group>"; };
@@ -620,6 +644,14 @@
 			path = Dropoff;
 			sourceTree = "<group>";
 		};
+		6C20E1CE1FBF712700E5D9A0 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
 		6C2208751FBCEF4D00874882 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -657,6 +689,7 @@
 			isa = PBXGroup;
 			children = (
 				6C20E18E1FBE14A000E5D9A0 /* GoogleMapAPI */,
+				6C20E1CA1FBF698E00E5D9A0 /* Dealership.swift */,
 				6C22087B1FBD0C6700874882 /* Driver.swift */,
 				6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */,
 				6C3FB2BA1FA29A1C00B22EAB /* Location.swift */,
@@ -666,6 +699,9 @@
 				6C3FB2A91FA2574C00B22EAB /* FuelData.swift */,
 				6C3FB2A71FA2574C00B22EAB /* User.swift */,
 				6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */,
+				6C20E1D31FBF71B200E5D9A0 /* RequestLocation.swift */,
+				6C20E1DF1FBF770C00E5D9A0 /* Request.swift */,
+				6C20E1E71FBF851B00E5D9A0 /* Service.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -885,6 +921,7 @@
 				6C3FB2B51FA289F000B22EAB /* ColorDefinitions.swift */,
 				6C3FB2B11FA2824200B22EAB /* Constants.swift */,
 				6CC83A8A1FA1481900FE0633 /* StringUtils.swift */,
+				6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -922,6 +959,7 @@
 				6CBB4E5E1FB4DF3900C31183 /* FSCalendar */,
 				6C91BBDE1FA8EB1B0033C2B1 /* Localization */,
 				6C3FB2A51FA16A0200B22EAB /* Model */,
+				6C20E1CE1FBF712700E5D9A0 /* Manager */,
 				6C5832F31FB3AF5600F6BFE0 /* Presentr */,
 				6CC83A861FA1478100FE0633 /* Service */,
 				6CFBF9AC1FA1119A00D3AA78 /* Supporting Files */,
@@ -1377,8 +1415,10 @@
 			files = (
 				6C20E1AB1FBE3FE800E5D9A0 /* ScheduledPickupViewController.swift in Sources */,
 				6C20E1B61FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift in Sources */,
+				6C20E1D81FBF725F00E5D9A0 /* LocationUtils.swift in Sources */,
 				6C5833111FB3AF5600F6BFE0 /* KeyboardTranslation.swift in Sources */,
 				6C7342141FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */,
+				6C20E1CB1FBF698E00E5D9A0 /* Dealership.swift in Sources */,
 				6C3FB2B61FA289F000B22EAB /* ColorDefinitions.swift in Sources */,
 				6C32C30F1FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */,
 				6C58330C1FB3AF5600F6BFE0 /* CoverHorizontalAnimation.swift in Sources */,
@@ -1409,6 +1449,8 @@
 				6CD47D181FAD190F00D794A6 /* VLButton.swift in Sources */,
 				6C5833091FB3AF5600F6BFE0 /* AlertViewController.swift in Sources */,
 				6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
+				6C20E1D01FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
+				6C20E1D41FBF71B200E5D9A0 /* RequestLocation.swift in Sources */,
 				6CBB4EAC1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */,
 				6C5833191FB3AF5600F6BFE0 /* PresentrController.swift in Sources */,
 				6C3FB2AB1FA2574C00B22EAB /* User.swift in Sources */,
@@ -1445,6 +1487,7 @@
 				6C3FB2AA1FA2574C00B22EAB /* Vehicle.swift in Sources */,
 				6CCD428E1FA013E3000AC6C9 /* AppDelegate.swift in Sources */,
 				6C58330B1FB3AF5600F6BFE0 /* BackgroundView.swift in Sources */,
+				6C20E1E81FBF851B00E5D9A0 /* Service.swift in Sources */,
 				6CBB4E8E1FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
 				6C5833181FB3AF5600F6BFE0 /* PresentrAnimation.swift in Sources */,
 				6CBB4EB31FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
@@ -1476,6 +1519,7 @@
 				6C7341FF1FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
 				6C20E1BF1FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */,
 				6C3FB2BF1FA2A4CE00B22EAB /* VehicleLockStatus.swift in Sources */,
+				6C20E1E01FBF770C00E5D9A0 /* Request.swift in Sources */,
 				6C91BBD71FA7D6220033C2B1 /* ViewPager.swift in Sources */,
 				6C20E1A01FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */,
 			);
@@ -1497,6 +1541,7 @@
 				6C22087D1FBD0C6700874882 /* Driver.swift in Sources */,
 				6CBB4E8C1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				6C20E1C81FBE6D2400E5D9A0 /* StateService.swift in Sources */,
+				6C20E1D11FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
 				6CBB4EA41FB4DF7D00C31183 /* FSCalendarHeaderView.m in Sources */,
 				6C91BBF21FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
 				6C20E1BC1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
@@ -1508,6 +1553,8 @@
 				6C20E1951FBE14D500E5D9A0 /* GMRoutes.swift in Sources */,
 				6CC37E471FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6C5833371FB3AF9900F6BFE0 /* PresentrController.swift in Sources */,
+				6C20E1D91FBF725F00E5D9A0 /* LocationUtils.swift in Sources */,
+				6C20E1E11FBF770C00E5D9A0 /* Request.swift in Sources */,
 				6C32C3081FBCC0E900B1218C /* Step.swift in Sources */,
 				6CCD42A31FA013E3000AC6C9 /* voluxe_customerTests.swift in Sources */,
 				6C7342151FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */,
@@ -1525,6 +1572,7 @@
 				6C91BBD81FA7D6220033C2B1 /* ViewPager.swift in Sources */,
 				6C9543A31FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6C20E1A11FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */,
+				6C20E1E91FBF851B00E5D9A0 /* Service.swift in Sources */,
 				6C7342001FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
 				6CBB4E9E1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
 				6C5833281FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */,
@@ -1552,9 +1600,11 @@
 				6C6F4BCB1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
 				6CBB4E891FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */,
 				6C20E1C01FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */,
+				6C20E1CC1FBF698E00E5D9A0 /* Dealership.swift in Sources */,
 				6CC37E511FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C88DC901FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6CBB4E831FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
+				6C20E1D51FBF71B200E5D9A0 /* RequestLocation.swift in Sources */,
 				6C5833321FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */,
 				6CBB4E861FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
 				6C20E1AE1FBE408B00E5D9A0 /* SchedulingViewController.swift in Sources */,
@@ -1596,6 +1646,7 @@
 				6C22087E1FBD0C6700874882 /* Driver.swift in Sources */,
 				6CBB4E8D1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				6C20E1C91FBE6D2400E5D9A0 /* StateService.swift in Sources */,
+				6C20E1D21FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
 				6CBB4EA51FB4DF7D00C31183 /* FSCalendarHeaderView.m in Sources */,
 				6C91BBF31FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
 				6C20E1BD1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
@@ -1607,6 +1658,8 @@
 				6C20E1961FBE14D500E5D9A0 /* GMRoutes.swift in Sources */,
 				6CC37E481FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6C58333B1FB3AF9900F6BFE0 /* PresentrController.swift in Sources */,
+				6C20E1DA1FBF725F00E5D9A0 /* LocationUtils.swift in Sources */,
+				6C20E1E21FBF770C00E5D9A0 /* Request.swift in Sources */,
 				6C32C3091FBCC0E900B1218C /* Step.swift in Sources */,
 				6CCD42AE1FA013E3000AC6C9 /* voluxe_customerUITests.swift in Sources */,
 				6C7342161FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */,
@@ -1624,6 +1677,7 @@
 				6C91BBD91FA7D6220033C2B1 /* ViewPager.swift in Sources */,
 				6C9543A41FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6C20E1A21FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */,
+				6C20E1EA1FBF851B00E5D9A0 /* Service.swift in Sources */,
 				6C7342011FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
 				6CBB4E9F1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
 				6C58332C1FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */,
@@ -1651,9 +1705,11 @@
 				6C6F4BCC1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
 				6CBB4E8A1FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */,
 				6C20E1C11FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */,
+				6C20E1CD1FBF698E00E5D9A0 /* Dealership.swift in Sources */,
 				6CC37E521FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C88DC911FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6CBB4E841FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
+				6C20E1D61FBF71B200E5D9A0 /* RequestLocation.swift in Sources */,
 				6C5833341FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */,
 				6CBB4E871FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
 				6C20E1AF1FBE408B00E5D9A0 /* SchedulingViewController.swift in Sources */,

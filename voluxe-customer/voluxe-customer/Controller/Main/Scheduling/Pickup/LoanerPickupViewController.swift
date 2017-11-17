@@ -30,6 +30,10 @@ class LoanerPickupViewController: VLPresentrViewController {
             make.bottom.equalTo(groupedLabels.snp.top).offset(-10)
             make.height.equalTo(25)
         }
+        
+        if let loaner = RequestedServiceManager.sharedInstance.getLoaner() {
+            groupedLabels.select(selectedIndex: loaner ? 0 : 1, selected: true)
+        }
     }
     
     override func height() -> Int {

@@ -39,6 +39,14 @@ final class StateServiceManager {
             delegates.remove(at: index)
         }
     }
+    
+    func getState() -> ServiceState {
+        return state
+    }
+    
+    func isPickup() -> Bool {
+        return ServiceState.isPickup(state: state)
+    }
 }
 
 protocol StateServiceManagerProtocol: class {

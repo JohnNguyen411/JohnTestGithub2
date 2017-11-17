@@ -23,12 +23,12 @@ class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDeal
     
     static private let fakeYOrigin: CGFloat = -555.0
     
-    fileprivate let formatter: DateFormatter = {
+    let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMM d"
         return formatter
     }()
-    
+        
     var serviceState: ServiceState
     var scheduleState: SchedulePickupState = .start
     
@@ -209,8 +209,24 @@ class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDeal
     }
     
     func fillViews() {
-        scheduledServiceView.setTitle(title: .RecommendedService, leftDescription: "10,000 mile check-up", rightDescription: "$400")
-        dealershipView.setTitle(title: .Dealership, leftDescription: "Marin Volvo", rightDescription: "")
+        if let service = RequestedServiceManager.sharedInstance.getService() {
+            scheduledServiceView.setTitle(title: .RecommendedService, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
+        }
+        if RequestedServiceManager.sharedInstance.getDealership() == nil {
+            RequestedServiceManager.sharedInstance.setDealership(dealership: DealershipPickupViewController.dealerships[0])
+        }
+        if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+            dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+        }
+        
+        if RequestedServiceManager.sharedInstance.getLoaner() == nil {
+            RequestedServiceManager.sharedInstance.setLoaner(loaner: true)
+        }
+        if let loaner = RequestedServiceManager.sharedInstance.getLoaner() {
+            loanerView.descLeftLabel.text = loaner ? .Yes : .No
+        }
+                
+        
     }
     
     func buildPresenter(heightInPixels: CGFloat, dismissOnTap: Bool) -> Presentr {
@@ -341,11 +357,12 @@ class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDeal
     
     //MARK: PresentR delegate methods
     
-    func onDealershipSelected(dealership: String) {
+    func onDealershipSelected(dealership: Dealership) {
+        RequestedServiceManager.sharedInstance.setDealership(dealership: dealership)
         if scheduleState.rawValue < SchedulePickupState.dealership.rawValue {
             scheduleState = .dealership
         }
-        dealershipView.descLeftLabel.text = dealership
+        dealershipView.descLeftLabel.text = dealership.name
         currentPresentrVC?.dismiss(animated: true, completion: nil)
     }
     
@@ -355,9 +372,17 @@ class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDeal
             scheduleState = .dateTime
             openNext = true
         }
-
+        
+        if StateServiceManager.sharedInstance.isPickup() {
+            RequestedServiceManager.sharedInstance.setPickupDate(date: date)
+            RequestedServiceManager.sharedInstance.setPickupTimeRange(min: hourRangeMin, max: hourRangeMax)
+        } else {
+            RequestedServiceManager.sharedInstance.setDropoffDate(date: date)
+            RequestedServiceManager.sharedInstance.setDropoffTimeRange(min: hourRangeMin, max: hourRangeMax)
+        }
+        
         let dateTime = formatter.string(from: date)
-        scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: dateTime, rightDescription: "")
+        scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(Date.formatHourRange(min: hourRangeMin, max:hourRangeMax))", rightDescription: "")
         
         currentPresentrVC?.dismiss(animated: true, completion: {
             if openNext {
@@ -374,10 +399,17 @@ class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDeal
     }
     
     func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
-        pickupLocationView.setTitle(title: .PickupLocation, leftDescription: responseInfo!.value(forKey: "formattedAddress") as! String, rightDescription: "")
+        let locationRequest = RequestLocation(name: responseInfo!.value(forKey: "formattedAddress") as? String, stringLocation: nil, location: placemark?.location?.coordinate)
+        if StateServiceManager.sharedInstance.isPickup() {
+            RequestedServiceManager.sharedInstance.setPickupRequestLocation(requestLocation: locationRequest)
+        } else {
+            RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: locationRequest)
+        }
+        pickupLocationView.setTitle(title: .PickupLocation, leftDescription: locationRequest.name!, rightDescription: "")
     }
     
     func onLoanerSelected(loanerNeeded: Bool) {
+        RequestedServiceManager.sharedInstance.setLoaner(loaner: loanerNeeded)
         if scheduleState.rawValue < SchedulePickupState.loaner.rawValue {
             scheduleState = .loaner
         }

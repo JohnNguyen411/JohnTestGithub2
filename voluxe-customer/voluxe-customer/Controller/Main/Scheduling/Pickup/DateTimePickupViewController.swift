@@ -150,7 +150,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         calendar.appearance.titleDefaultColor = .luxeDeepBlue()
         calendar.appearance.titleSelectionColor = .white
         calendar.appearance.borderRadius = 0
-
+        
         calendar.register(VLCalendarCell.self, forCellReuseIdentifier: "cell")
         //        calendar.clipsToBounds = true // Remove top/bottom line
         
@@ -159,7 +159,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         calendar.allowsSelection = true
         calendar.setCollectionViewScrollEnabled(false)
         calendar.placeholderType = .none
-
+        
         //calendar.setCollectionViewScrollEnabled(false)
         
         calendar.calendarWeekdayView.isHidden = true
@@ -188,23 +188,35 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                     self.firstMonthHeader.isHidden = true
                 }
                 
-                var nextDay = self.todaysDate
-                while (!self.dateIsSelectable(date: nextDay)) {
-                    nextDay = Calendar.current.date(byAdding: .day, value: 1, to: nextDay)!
+                var selectedDate: Date?
+                // select preselected date, otherwise fallback to next day
+                if StateServiceManager.sharedInstance.isPickup() {
+                    selectedDate = RequestedServiceManager.sharedInstance.getPickupDate()
+                } else {
+                    selectedDate = RequestedServiceManager.sharedInstance.getDropoffDate()
                 }
                 
-                self.calendar(self.calendar, shouldSelect: nextDay, at: .current)
-                self.calendar.select(nextDay)
+                if selectedDate == nil {
+                    var nextDay = self.todaysDate
+                    while (!self.dateIsSelectable(date: nextDay)) {
+                        nextDay = Calendar.current.date(byAdding: .day, value: 1, to: nextDay)!
+                    }
+                    selectedDate = nextDay
+                }
+                
+                if let selectedDate = selectedDate {
+                    _ = self.calendar(self.calendar, shouldSelect: selectedDate, at: .current)
+                    self.calendar.select(selectedDate)
+                }
                 self.selectFirstEnabledButton()
             }
             self.calendar.animateAlpha(show: true)
         })
-        
     }
     
     
     // MARK: Private Methods
-
+    
     @objc func empty(_ sender:UIPanGestureRecognizer){
         print("empty")
     }
@@ -292,16 +304,22 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             button.setType(type: .BlueSecondaryWithBorder)
         } else {
             button.setType(type: .BlueSecondaryWithBorderDisabled)
-
         }
     }
     
+    func buttonIsSelected(button: VLButton) -> Bool {
+        if let type = button.type {
+            return type == .BlueSecondarySelected
+        }
+        return false
+    }
+    
     func getButtonSelectedIndex() -> Int {
-        if firstHourButton.isSelected {
+        if buttonIsSelected(button: firstHourButton) {
             return 0
-        } else if secondHourButton.isSelected {
+        } else if buttonIsSelected(button: secondHourButton) {
             return 1
-        } else if thirdHourButton.isSelected {
+        } else if buttonIsSelected(button: thirdHourButton) {
             return 2
         }
         return -1
@@ -328,7 +346,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     func calendar(_ calendar: FSCalendar, willDisplay cell: FSCalendarCell, for date: Date, at position: FSCalendarMonthPosition) {
         self.configure(cell: cell, for: date, at: position)
     }
-   
+    
     func calendar(_ calendar: FSCalendar, titleFor date: Date) -> String? {
         return nil
     }
@@ -344,7 +362,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     func minimumDate(for calendar: FSCalendar) -> Date {
         return todaysDate
     }
-
+    
     
     // MARK:- FSCalendarDelegate
     

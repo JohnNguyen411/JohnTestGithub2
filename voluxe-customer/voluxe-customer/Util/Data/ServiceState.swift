@@ -24,4 +24,8 @@ public enum ServiceState: Int {
     case deliveryInRoute = 51
     case deliveryNearby = 52
     case deliveryArrived = 53
+    
+    static func isPickup(state: ServiceState) -> Bool {
+        return state.rawValue <= 25
+    }
 }

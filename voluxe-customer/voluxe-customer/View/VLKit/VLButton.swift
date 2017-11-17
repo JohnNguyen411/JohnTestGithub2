@@ -25,6 +25,7 @@ class VLButton : UIButton {
     static let secondaryHeight = 30
 
     var iconView: UIImageView?
+    var type: VLButtonType?
 
     /**
      Need to make constraints after initializing the button
@@ -53,6 +54,7 @@ class VLButton : UIButton {
     }
     
     func setType(type: VLButtonType) {
+        self.type = type
         switch type {
         case .BluePrimary:
             backgroundColor = .luxeDeepBlue()

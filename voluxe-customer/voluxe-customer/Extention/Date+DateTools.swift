@@ -93,5 +93,19 @@ extension Date {
     static func == (a: Date, b: Date) -> Bool {
         return a.compare(b) == ComparisonResult.orderedSame
     }
+    
+    public static func formatHourRange(min: Int, max: Int) -> String {
+        let dateString : String = DateFormatter.dateFormat(fromTemplate: "HH:mm", options: 0, locale: Locale.current)!
+        let hourFormatter = DateFormatter()
+        hourFormatter.dateFormat = dateString
+        
+        let minHour = hourFormatter.date(from: "\(min):00")!
+        let maxHour = hourFormatter.date(from: "\(max):00")!
+
+        let minTime = hourFormatter.string(from: minHour)
+        let maxTime = hourFormatter.string(from: maxHour)
+
+        return "\(minTime) \(maxTime)"
+    }
 
 }

@@ -201,6 +201,14 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
         }
     }
     
+    func select(selectedIndex: Int, selected: Bool) {
+        for (index, view) in labels.enumerated() {
+            if selectedIndex == index {
+                view.setSelected(selected: selected, callDelegate: true)
+            }
+        }
+    }
+    
     // return the last selected index
     func getSelectedIndexes() -> Array<Int> {
         return selectedIndices

@@ -20,6 +20,25 @@ class SchedulingPickupViewController: SchedulingViewController {
         }
     }
     
+    override func fillViews() {
+        if serviceState == .idle || serviceState == .needService {
+            let service = Service(name: "10,000 mile check-up", price: Double(400))
+            RequestedServiceManager.sharedInstance.setService(service: service)
+        }
+        let date = RequestedServiceManager.sharedInstance.getPickupDate()
+        let min = RequestedServiceManager.sharedInstance.getPickupTimeMin()
+        let max = RequestedServiceManager.sharedInstance.getPickupTimeMax()
+        if let date = date, let min = min, let max = max {
+            let dateTime = formatter.string(from: date)
+            scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(Date.formatHourRange(min: min, max: max))", rightDescription: "")
+        }
+        
+        if let requestLocation = RequestedServiceManager.sharedInstance.getPickupLocation() {
+            pickupLocationView.setTitle(title: .PickupLocation, leftDescription: requestLocation.name!, rightDescription: "")
+        }
+        super.fillViews()
+    }
+    
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         
@@ -45,6 +64,16 @@ class SchedulingPickupViewController: SchedulingViewController {
                 }))
                 self.present(alert, animated: true, completion: nil)
             }
+        }
+        
+        if state.rawValue >= ServiceState.pickupScheduled.rawValue {
+            scheduledPickupView.animateAlpha(show: true)
+            pickupLocationView.animateAlpha(show: true)
+            loanerView.animateAlpha(show: true)
+            
+            scheduledPickupView.isUserInteractionEnabled = false
+            pickupLocationView.isUserInteractionEnabled = false
+            loanerView.isUserInteractionEnabled = false
         }
     }
     

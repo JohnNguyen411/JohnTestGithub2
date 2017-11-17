@@ -18,12 +18,13 @@ class SchedulingDropoffViewController: SchedulingViewController {
         rightButton.setTitle(title: (.VolvoDelivery as String).uppercased())
         confirmButton.setTitle(title: (.ConfirmDelivery as String).uppercased())
         
+        dealershipView.isUserInteractionEnabled = false
+        
         loanerView.isHidden = true
     }
     
     override func fillViews() {
-        scheduledServiceView.setTitle(title: .RecommendedService, leftDescription: "10,000 mile check-up", rightDescription: "$400")
-        dealershipView.setTitle(title: .Dealership, leftDescription: "Marin Volvo", rightDescription: "")
+        super.fillViews()
         scheduledPickupView.titleLabel.text = .ScheduledDelivery
         pickupLocationView.titleLabel.text = .DeliveryLocation
     }
