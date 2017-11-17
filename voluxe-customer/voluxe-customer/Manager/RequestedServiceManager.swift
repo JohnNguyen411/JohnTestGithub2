@@ -34,6 +34,12 @@ final class RequestedServiceManager {
         }
     }
     
+    func reset() {
+        loaner = nil
+        pickupRequest = nil
+        dropOffRequest = nil
+    }
+    
     func setService(service: Service) {
         self.service = service
     }

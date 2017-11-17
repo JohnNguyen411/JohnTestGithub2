@@ -95,7 +95,12 @@ class ScheduledViewController: BaseViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
-            StateServiceManager.sharedInstance.updateState(state: .pickupDriverDrivingToDealership)
+            if StateServiceManager.sharedInstance.isPickup() {
+                StateServiceManager.sharedInstance.updateState(state: .pickupDriverDrivingToDealership)
+            } else {
+                RequestedServiceManager.sharedInstance.reset()
+                StateServiceManager.sharedInstance.updateState(state: .idle)
+            }
         })
     }
     
