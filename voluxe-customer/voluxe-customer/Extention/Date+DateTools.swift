@@ -95,15 +95,26 @@ extension Date {
     }
     
     public static func formatHourRange(min: Int, max: Int) -> String {
-        let dateString : String = DateFormatter.dateFormat(fromTemplate: "HH:mm", options: 0, locale: Locale.current)!
+        let gregorian = Calendar(identifier: .gregorian)
+        let now = Date()
+        var components = gregorian.dateComponents([.year, .month, .day, .hour, .minute, .second], from: now)
+        
+        components.hour = min
+        components.minute = 00
+        components.second = 0
+        
+        let dateString : String = DateFormatter.dateFormat(fromTemplate: "j:mm", options: 0, locale: Locale.current)!
         let hourFormatter = DateFormatter()
         hourFormatter.dateFormat = dateString
         
-        let minHour = hourFormatter.date(from: "\(min):00")!
-        let maxHour = hourFormatter.date(from: "\(max):00")!
+        let dateMin = gregorian.date(from: components)!
+        
+        components.hour = max
 
-        let minTime = hourFormatter.string(from: minHour)
-        let maxTime = hourFormatter.string(from: maxHour)
+        let dateMax = gregorian.date(from: components)!
+
+        let minTime = hourFormatter.string(from: dateMin)
+        let maxTime = hourFormatter.string(from: dateMax)
 
         return "\(minTime) \(maxTime)"
     }
