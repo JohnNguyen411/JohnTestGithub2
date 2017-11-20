@@ -46,6 +46,18 @@ class SchedulingPickupViewController: SchedulingViewController {
         rightButton.setTitle(title: (.VolvoPickup as String).uppercased())
         
         if state == .pickupDriverDrivingToDealership || state == .pickupDriverAtDealership {
+            
+            if !self.checkupLabel.isHidden {
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.checkupLabel.snp.updateConstraints { make in
+                        make.height.equalTo(0)
+                    }
+                    self.checkupLabel.superview?.layoutIfNeeded()
+                }, completion: { (completed) in
+                    self.checkupLabel.isHidden = true
+                })
+            }
+            
             leftButton.isHidden = true
             rightButton.isHidden = true
             confirmButton.isHidden = true
@@ -64,9 +76,20 @@ class SchedulingPickupViewController: SchedulingViewController {
                 }))
                 self.present(alert, animated: true, completion: nil)
             }
+        } else {
+            if self.checkupLabel.isHidden {
+                self.checkupLabel.isHidden = false
+                UIView.animate(withDuration: 0.5, animations: {
+                    self.checkupLabel.snp.updateConstraints { make in
+                        make.height.equalTo(self.checkupLabelHeight)
+                    }
+                    self.checkupLabel.superview?.layoutIfNeeded()
+                })
+            }
         }
         
         if state.rawValue >= ServiceState.pickupScheduled.rawValue {
+            
             scheduledPickupView.animateAlpha(show: true)
             pickupLocationView.animateAlpha(show: true)
             loanerView.animateAlpha(show: true)
@@ -74,6 +97,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             scheduledPickupView.isUserInteractionEnabled = false
             pickupLocationView.isUserInteractionEnabled = false
             loanerView.isUserInteractionEnabled = false
+            dealershipView.isUserInteractionEnabled = false
         }
     }
     

@@ -12,6 +12,8 @@ import CoreLocation
 class SchedulingDropoffViewController: SchedulingViewController {
     
     override func setupViews() {
+        self.checkupLabel.isHidden = true
+        
         super.setupViews()
         
         leftButton.setTitle(title: (.SelfPickup as String).uppercased())
@@ -21,6 +23,10 @@ class SchedulingDropoffViewController: SchedulingViewController {
         dealershipView.isUserInteractionEnabled = false
         
         loanerView.isHidden = true
+        
+        self.checkupLabel.snp.updateConstraints { make in
+            make.height.equalTo(0)
+        }
     }
     
     override func fillViews() {
@@ -53,6 +59,16 @@ class SchedulingDropoffViewController: SchedulingViewController {
     
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
+        
+        if self.checkupLabel.isHidden {
+            self.checkupLabel.isHidden = false
+            UIView.animate(withDuration: 0.5, animations: {
+                self.checkupLabel.snp.updateConstraints { make in
+                    make.height.equalTo(self.checkupLabelHeight)
+                }
+                self.checkupLabel.superview?.layoutIfNeeded()
+            })
+        }
         
         if state == .serviceCompleted {
             checkupLabel.text = .VolvoServiceComplete

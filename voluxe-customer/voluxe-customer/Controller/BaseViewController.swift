@@ -33,9 +33,9 @@ class BaseViewController: UIViewController {
         setGradientBackground()
     }
     
-    func setupViews() {
-        
-    }
+    func setupViews() {}
+    
+    func stateDidChange(state: ServiceState) {}
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

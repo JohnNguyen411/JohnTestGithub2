@@ -43,32 +43,50 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol {
         if state == serviceState {
             return
         }
+        
+        var changeView = true
         serviceState = state
         
-        if let view = currentViewController?.view {
-            view.removeFromSuperview()
-        }
-
         if serviceState == .idle || serviceState == .needService ||
             serviceState == .pickupDriverDrivingToDealership || serviceState == .pickupDriverAtDealership {
-            let schedulingPickupViewController = SchedulingPickupViewController(state: serviceState)
-            currentViewController = schedulingPickupViewController
+            
+            if currentViewController != nil && (currentViewController?.isKind(of: SchedulingPickupViewController.self))! {
+                currentViewController?.stateDidChange(state: serviceState)
+                changeView = false
+            } else {
+                let schedulingPickupViewController = SchedulingPickupViewController(state: serviceState)
+                currentViewController = schedulingPickupViewController
+            }
+            
+            
         } else if serviceState == .pickupScheduled {
             let scheduledPickupViewController = ScheduledPickupViewController()
             currentViewController = scheduledPickupViewController
         } else if serviceState == .servicing || serviceState == .serviceCompleted {
-            let schedulingDropoffViewController = SchedulingDropoffViewController(state : serviceState)
-            currentViewController = schedulingDropoffViewController
+            
+            if currentViewController != nil && (currentViewController?.isKind(of: SchedulingDropoffViewController.self))! {
+                currentViewController?.stateDidChange(state: serviceState)
+                changeView = false
+            } else {
+                let schedulingDropoffViewController = SchedulingDropoffViewController(state : serviceState)
+                currentViewController = schedulingDropoffViewController
+            }
         } else if serviceState == .deliveryScheduled {
             let scheduledDeliveryViewController = ScheduledDropoffViewController()
             currentViewController = scheduledDeliveryViewController
         }
         
-        if let view = currentViewController?.view {
-            self.view.addSubview(view)
+        if changeView {
+            if let view = currentViewController?.view {
+                view.removeFromSuperview()
+            }
             
-            view.snp.makeConstraints { make in
-                make.edges.equalToSuperview()
+            if let view = currentViewController?.view {
+                self.view.addSubview(view)
+                
+                view.snp.makeConstraints { make in
+                    make.edges.equalToSuperview()
+                }
             }
         }
     }

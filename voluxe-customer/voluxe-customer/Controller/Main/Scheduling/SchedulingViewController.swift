@@ -32,6 +32,7 @@ class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDeal
     var serviceState: ServiceState
     var scheduleState: SchedulePickupState = .start
     
+    var checkupLabelHeight: CGFloat = 0
     let presentrCornerRadius: CGFloat = 4.0
     var currentPresentr: Presentr?
     var currentPresentrVC: VLPresentrViewController?
@@ -120,7 +121,7 @@ class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDeal
         
         scrollView.contentMode = .scaleAspectFit
         
-        let sizeThatFits = checkupLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT)))
+        checkupLabelHeight = checkupLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
         
         self.view.addSubview(scrollView)
         scrollView.addSubview(contentView)
@@ -153,7 +154,7 @@ class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDeal
         
         checkupLabel.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
-            make.height.equalTo(sizeThatFits)
+            make.height.equalTo(checkupLabelHeight)
         }
         
         scheduledServiceView.snp.makeConstraints { make in
@@ -312,10 +313,6 @@ class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDeal
         currentPresentr = nil
         currentPresentrVC = nil
         return true
-    }
-    
-    func stateDidChange(state: ServiceState) {
-        
     }
     
     //MARK: Actions methods
