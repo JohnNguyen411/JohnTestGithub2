@@ -12,7 +12,7 @@ import SlideMenuControllerSwift
 import CoreLocation
 import GoogleMaps
 
-class ScheduledViewController: BaseViewController {
+class ScheduledViewController: ChildViewController {
     
     static let officeLocation = CLLocationCoordinate2D(latitude: 37.788866, longitude: -122.398210)
     static let driverLocation1 = CLLocationCoordinate2D(latitude: 37.7686497, longitude: -122.4175534)

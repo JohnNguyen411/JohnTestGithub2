@@ -72,6 +72,9 @@
 		6C20E1E81FBF851B00E5D9A0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1E71FBF851B00E5D9A0 /* Service.swift */; };
 		6C20E1E91FBF851B00E5D9A0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1E71FBF851B00E5D9A0 /* Service.swift */; };
 		6C20E1EA1FBF851B00E5D9A0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1E71FBF851B00E5D9A0 /* Service.swift */; };
+		6C20E1EC1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1EB1FC3A5C000E5D9A0 /* ChildViewController.swift */; };
+		6C20E1ED1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1EB1FC3A5C000E5D9A0 /* ChildViewController.swift */; };
+		6C20E1EE1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1EB1FC3A5C000E5D9A0 /* ChildViewController.swift */; };
 		6C2208771FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
 		6C2208781FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
 		6C2208791FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
@@ -397,6 +400,7 @@
 		6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtils.swift; sourceTree = "<group>"; };
 		6C20E1DF1FBF770C00E5D9A0 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		6C20E1E71FBF851B00E5D9A0 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		6C20E1EB1FC3A5C000E5D9A0 /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 		6C2208761FBCEF7A00874882 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6C22087B1FBD0C6700874882 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Voluxe.swift"; sourceTree = "<group>"; };
@@ -790,6 +794,7 @@
 				6C20E1A91FBE3EE000E5D9A0 /* Scheduling */,
 				6C88DC9B1FAA9086009F2FC3 /* LeftPanel */,
 				6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */,
+				6C20E1EB1FC3A5C000E5D9A0 /* ChildViewController.swift */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -1424,6 +1429,7 @@
 				6C58330C1FB3AF5600F6BFE0 /* CoverHorizontalAnimation.swift in Sources */,
 				6CEA0D591FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
 				6C5833161FB3AF5600F6BFE0 /* Presentr+Equatable.swift in Sources */,
+				6C20E1EC1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */,
 				6CBB4E9A1FB4DF7D00C31183 /* FSCalendarCell.m in Sources */,
 				6CBB4EA61FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */,
 				6CBB4E851FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
@@ -1540,6 +1546,7 @@
 				6C91BBE11FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
 				6C22087D1FBD0C6700874882 /* Driver.swift in Sources */,
 				6CBB4E8C1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
+				6C20E1ED1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */,
 				6C20E1C81FBE6D2400E5D9A0 /* StateService.swift in Sources */,
 				6C20E1D11FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
 				6CBB4EA41FB4DF7D00C31183 /* FSCalendarHeaderView.m in Sources */,
@@ -1645,6 +1652,7 @@
 				6C91BBE21FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
 				6C22087E1FBD0C6700874882 /* Driver.swift in Sources */,
 				6CBB4E8D1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
+				6C20E1EE1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */,
 				6C20E1C91FBE6D2400E5D9A0 /* StateService.swift in Sources */,
 				6C20E1D21FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
 				6CBB4EA51FB4DF7D00C31183 /* FSCalendarHeaderView.m in Sources */,

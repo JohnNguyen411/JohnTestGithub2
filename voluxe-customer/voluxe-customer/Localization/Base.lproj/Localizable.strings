@@ -33,6 +33,7 @@
 "WelcomeToAppLabel" = "Welcome to Luxe, %@. Your Volvo account is now active with Luxe.";
 
 /***************** SchedulePickup ***************/
+"ScheduleService" = "Schedule Service";
 "ShowDescription" = "Show Description";
 "RecommendedService" = "Recommended Service";
 "Dealership" = "Dealership";
@@ -54,6 +55,7 @@
 "ConfirmPickup" = "Confirm Pickup";
 
 /***************** ScheduledPickup ***************/
+"SchedulePickup" = "Schedule Pickup";
 "ScheduledPickup" = "Scheduled Pickup";
 "ServiceScheduled" = "Service is scheduled";
 "DriverEnRoute" = "Driver is en route";
@@ -73,6 +75,7 @@
 "SelectYourPreferredDeliveryTime" = "Select your preferred delivery time";
 "ConfirmDelivery" = "Confirm Delivery";
 "ScheduledDelivery" = "Scheduled Delivery";
+"ScheduleDelivery" = "Schedule Delivery";
 "DeliveryLocation" = "Delivery Location";
 
 /***************** Scheduled Dropoff ***************/

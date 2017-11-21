@@ -9,6 +9,7 @@
 import Foundation
 
 extension String {
+    static let SchedulePickup = NSLocalizedString("SchedulePickup")
     static let ScheduledPickup = NSLocalizedString("ScheduledPickup")
     static let ServiceScheduled = NSLocalizedString("ServiceScheduled")
     static let DriverEnRoute = NSLocalizedString("DriverEnRoute")

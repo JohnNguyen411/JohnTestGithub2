@@ -10,12 +10,14 @@ import Foundation
 import UIKit
 import SlideMenuControllerSwift
 
-class MainViewController: BaseViewController, StateServiceManagerProtocol {
+class MainViewController: BaseViewController, StateServiceManagerProtocol, ChildViewDelegate {
+                    
+                    
     
     private var serviceState = ServiceState.noninit
     
     static var navigationBarHeight: CGFloat = 0
-    var currentViewController: BaseViewController?
+    var currentViewController: ChildViewController?
 
     override func viewDidLoad() {
         StateServiceManager.sharedInstance.addDelegate(delegate: self)
@@ -44,6 +46,8 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol {
             return
         }
         
+        setTitle(title: getTitleForState(state: state))
+        
         var changeView = true
         serviceState = state
         
@@ -57,7 +61,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol {
                 let schedulingPickupViewController = SchedulingPickupViewController(state: serviceState)
                 currentViewController = schedulingPickupViewController
             }
-            
             
         } else if serviceState == .pickupScheduled {
             let scheduledPickupViewController = ScheduledPickupViewController()
@@ -76,12 +79,15 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol {
             currentViewController = scheduledDeliveryViewController
         }
         
-        if changeView {
-            if let view = currentViewController?.view {
+        
+        
+        if let currentViewController = currentViewController, changeView {
+            currentViewController.childViewDelegate = self
+            if let view = currentViewController.view {
                 view.removeFromSuperview()
             }
             
-            if let view = currentViewController?.view {
+            if let view = currentViewController.view {
                 self.view.addSubview(view)
                 
                 view.snp.makeConstraints { make in
@@ -89,6 +95,34 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol {
                 }
             }
         }
+    }
+    
+    func getTitleForState(state: ServiceState) -> String? {
+        
+        if state.rawValue == ServiceState.idle.rawValue || state.rawValue == ServiceState.needService.rawValue {
+            return .ScheduleService
+        } else if state.rawValue >= ServiceState.pickupScheduled.rawValue && state.rawValue < ServiceState.pickupDriverDrivingToDealership.rawValue {
+            return .ScheduledPickup
+        } else if state.rawValue >= ServiceState.pickupDriverDrivingToDealership.rawValue && state.rawValue < ServiceState.serviceCompleted.rawValue {
+            return .CurrentService
+        } else if state.rawValue == ServiceState.serviceCompleted.rawValue {
+            return .ReturnVehicle
+        } else if state.rawValue > ServiceState.deliveryScheduled.rawValue {
+            return .ScheduledDelivery
+        }
+        return nil
+    }
+    
+    func setTitle(title: String?) {
+        if let title = title {
+            self.navigationController?.title = title
+            self.navigationController?.navigationItem.title = title
+            self.navigationController?.navigationBar.topItem?.title = title
+        }
+    }
+    
+    func setTitleFromChild(title: String) {
+        setTitle(title: title)
     }
     
     static func getNavigationBarHeight() -> CGFloat {

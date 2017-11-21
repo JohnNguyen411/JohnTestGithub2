@@ -9,6 +9,7 @@
 import Foundation
 
 extension String {
+    static let ScheduleService = NSLocalizedString("ScheduleService")
     static let ShowDescription = NSLocalizedString("ShowDescription")
     static let RecommendedService = NSLocalizedString("RecommendedService")
     static let Dealership = NSLocalizedString("Dealership")

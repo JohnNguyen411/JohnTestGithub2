@@ -18,5 +18,6 @@ extension String {
     static let SelectYourPreferredDeliveryTime = NSLocalizedString("SelectYourPreferredDeliveryTime")
     static let ConfirmDelivery = NSLocalizedString("ConfirmDelivery")
     static let ScheduledDelivery = NSLocalizedString("ScheduledDelivery")
+    static let ScheduleDelivery = NSLocalizedString("ScheduleDelivery")
     static let DeliveryLocation = NSLocalizedString("DeliveryLocation")
 }

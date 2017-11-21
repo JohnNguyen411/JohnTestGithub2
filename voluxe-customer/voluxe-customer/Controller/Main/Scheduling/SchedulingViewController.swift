@@ -11,7 +11,7 @@ import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
 
-class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate {
+class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate {
     
     public enum SchedulePickupState: Int {
         case start = 0
@@ -342,10 +342,16 @@ class SchedulingViewController: BaseViewController, PresentrDelegate, PickupDeal
     
     func rightButtonClick() {
         showPickupDateTimeModal()
-        scheduledPickupView.animateAlpha(show: true)
         
+        scheduledPickupView.animateAlpha(show: true)
         leftButton.animateAlpha(show: false)
         rightButton.animateAlpha(show: false)
+        
+        if ServiceState.isPickup(state: serviceState) {
+            setTitle(title: .SchedulePickup)
+        } else {
+            setTitle(title: .ScheduleDelivery)
+        }
     }
     
     func confirmButtonClick() {
