@@ -9,7 +9,10 @@
 import Foundation
 import UIKit
 
-class FTUEViewController: BaseViewController {
+class FTUEViewController: BaseViewController, FTUEChildProtocol {
+    
+    static let nbOfItems = 5
+    
     weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
 
     let logo: UIImageView = {
@@ -34,6 +37,12 @@ class FTUEViewController: BaseViewController {
     let viewPager = ViewPager()
     
     override func viewDidLoad() {
+        ftueOneController.delegate = self
+        ftueTwoController.delegate = self
+        ftueThreeController.delegate = self
+        ftueFourthController.delegate = self
+        ftueFifthController.delegate = self
+        
         super.viewDidLoad()
 
         viewPager.dataSource = self
@@ -89,7 +98,7 @@ extension FTUEViewController: ViewPagerDataSource {
     
     
     func numberOfItems(viewPager:ViewPager) -> Int {
-        return 5
+        return FTUEViewController.nbOfItems
     }
     
     func viewAtIndex(viewPager:ViewPager, index: Int, view: UIView?) -> UIView {
@@ -133,14 +142,23 @@ extension FTUEViewController: ViewPagerDataSource {
         print("select index \(index)")
         let currentController = controllerAtIndex(index: index)
         currentController.didSelectPage()
+        
     }
     
     func didSelectedItem(index: Int) {
         print("select index \(index)")
     }
     
+    func canGoNext(nextEnabled: Bool) {
+        nextButton.isEnabled = nextEnabled
+    }
+    
 }
 
 protocol FTUEProtocol {
     func didSelectPage()
+}
+
+protocol FTUEChildProtocol {
+    func canGoNext(nextEnabled: Bool)
 }

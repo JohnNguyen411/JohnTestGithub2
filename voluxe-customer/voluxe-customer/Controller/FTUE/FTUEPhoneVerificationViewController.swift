@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate, FTUEProtocol {
+class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldDelegate, FTUEProtocol {
     
     let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder)
     

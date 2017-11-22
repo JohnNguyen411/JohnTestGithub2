@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import PhoneNumberKit
 
-class FTUEPhoneNumberViewController: UIViewController, UITextFieldDelegate, FTUEProtocol {
+class FTUEPhoneNumberViewController: FTUEChildViewController, UITextFieldDelegate, FTUEProtocol {
     
     let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
     

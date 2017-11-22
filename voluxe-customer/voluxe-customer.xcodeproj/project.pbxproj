@@ -310,6 +310,21 @@
 		6CBB4EB31FB4E11800C31183 /* VLCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4EB21FB4E11800C31183 /* VLCalendarCell.swift */; };
 		6CBB4EB41FB4E11800C31183 /* VLCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4EB21FB4E11800C31183 /* VLCalendarCell.swift */; };
 		6CBB4EB51FB4E11800C31183 /* VLCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4EB21FB4E11800C31183 /* VLCalendarCell.swift */; };
+		6CBF9FE11FC5F987002BC7FC /* FTUEFlow_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FE01FC5F987002BC7FC /* FTUEFlow_UITests.swift */; };
+		6CBF9FE21FC5FB9A002BC7FC /* localhost.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7C1FA140D300FE0633 /* localhost.json */; };
+		6CBF9FE31FC5FB9A002BC7FC /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7B1FA140D300FE0633 /* mock.json */; };
+		6CBF9FE41FC5FB9A002BC7FC /* ngrok.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7A1FA140D300FE0633 /* ngrok.json */; };
+		6CBF9FE51FC5FB9A002BC7FC /* sensus_prod.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7E1FA140D300FE0633 /* sensus_prod.json */; };
+		6CBF9FE61FC5FB9A002BC7FC /* sensus_qa.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7F1FA140D300FE0633 /* sensus_qa.json */; };
+		6CBF9FE71FC5FB9A002BC7FC /* sensus_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7D1FA140D300FE0633 /* sensus_test.json */; };
+		6CBF9FE81FC5FB9A002BC7FC /* VolvoSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */; };
+		6CBF9FE91FC5FB9A002BC7FC /* VolvoSansPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */; };
+		6CBF9FEA1FC5FB9A002BC7FC /* VolvoSerifPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B11FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf */; };
+		6CBF9FEB1FC5FB9A002BC7FC /* VolvoSerifPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AE1FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf */; };
+		6CBF9FEC1FC60104002BC7FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42941FA013E3000AC6C9 /* Assets.xcassets */; };
+		6CBF9FEE1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FED1FC62154002BC7FC /* FTUEChildViewController.swift */; };
+		6CBF9FEF1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FED1FC62154002BC7FC /* FTUEChildViewController.swift */; };
+		6CBF9FF01FC62154002BC7FC /* FTUEChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FED1FC62154002BC7FC /* FTUEChildViewController.swift */; };
 		6CC37E461FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */; };
 		6CC37E471FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */; };
 		6CC37E481FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */; };
@@ -506,6 +521,8 @@
 		6CBB4E801FB4DF7C00C31183 /* FSCalendarAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarAppearance.h; sourceTree = "<group>"; };
 		6CBB4E811FB4DF7D00C31183 /* FSCalendarAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarAppearance.m; sourceTree = "<group>"; };
 		6CBB4EB21FB4E11800C31183 /* VLCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCalendarCell.swift; sourceTree = "<group>"; };
+		6CBF9FE01FC5F987002BC7FC /* FTUEFlow_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEFlow_UITests.swift; sourceTree = "<group>"; };
+		6CBF9FED1FC62154002BC7FC /* FTUEChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEChildViewController.swift; sourceTree = "<group>"; };
 		6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6CC37E491FA7AF2900DA8F01 /* FTUEViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEViewController.swift; sourceTree = "<group>"; };
 		6CC37E4E1FA7C41700DA8F01 /* VLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLTextField.swift; sourceTree = "<group>"; };
@@ -874,6 +891,7 @@
 		6CC37E441FA7AE0F00DA8F01 /* FTUE */ = {
 			isa = PBXGroup;
 			children = (
+				6CBF9FED1FC62154002BC7FC /* FTUEChildViewController.swift */,
 				6CC37E491FA7AF2900DA8F01 /* FTUEViewController.swift */,
 				6C91BBDA1FA8E9730033C2B1 /* FTUEStartViewController.swift */,
 				6C6F4BC91FA9178700087FE7 /* FTUELoginViewController.swift */,
@@ -989,6 +1007,7 @@
 		6CCD42AC1FA013E3000AC6C9 /* voluxe-customerUITests */ = {
 			isa = PBXGroup;
 			children = (
+				6CBF9FE01FC5F987002BC7FC /* FTUEFlow_UITests.swift */,
 				6CCD42AD1FA013E3000AC6C9 /* voluxe_customerUITests.swift */,
 				6CCD42AF1FA013E3000AC6C9 /* Info.plist */,
 			);
@@ -1205,6 +1224,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CBF9FEC1FC60104002BC7FC /* Assets.xcassets in Resources */,
+				6CBF9FE21FC5FB9A002BC7FC /* localhost.json in Resources */,
+				6CBF9FE31FC5FB9A002BC7FC /* mock.json in Resources */,
+				6CBF9FE41FC5FB9A002BC7FC /* ngrok.json in Resources */,
+				6CBF9FE51FC5FB9A002BC7FC /* sensus_prod.json in Resources */,
+				6CBF9FE61FC5FB9A002BC7FC /* sensus_qa.json in Resources */,
+				6CBF9FE71FC5FB9A002BC7FC /* sensus_test.json in Resources */,
+				6CBF9FE81FC5FB9A002BC7FC /* VolvoSansPro-Light.ttf in Resources */,
+				6CBF9FE91FC5FB9A002BC7FC /* VolvoSansPro-Medium.ttf in Resources */,
+				6CBF9FEA1FC5FB9A002BC7FC /* VolvoSerifPro-Italic.ttf in Resources */,
+				6CBF9FEB1FC5FB9A002BC7FC /* VolvoSerifPro-Regular.ttf in Resources */,
 				6C5833301FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */,
 				6C9543AD1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
 				6C9543B01FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
@@ -1578,6 +1608,7 @@
 				6C58331C1FB3AF5600F6BFE0 /* TransitionType.swift in Sources */,
 				6C95439E1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C20E1C71FBE6D2400E5D9A0 /* StateService.swift in Sources */,
+				6CBF9FEE1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */,
 				6C20E1901FBE14C300E5D9A0 /* GMDirection.swift in Sources */,
 				6C32C3071FBCC0E900B1218C /* Step.swift in Sources */,
 				6C7342101FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
@@ -1680,6 +1711,7 @@
 				6C58333F1FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */,
 				6C32C3101FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */,
 				6C6F4BCB1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
+				6CBF9FEF1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */,
 				6CBB4E891FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */,
 				6C20E1C01FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */,
 				6C20E1CC1FBF698E00E5D9A0 /* Dealership.swift in Sources */,
@@ -1741,6 +1773,7 @@
 				6CBB4EB11FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */,
 				6C5833391FB3AF9900F6BFE0 /* Presentr.swift in Sources */,
 				6C20E1961FBE14D500E5D9A0 /* GMRoutes.swift in Sources */,
+				6CBF9FF01FC62154002BC7FC /* FTUEChildViewController.swift in Sources */,
 				6CC921A41FC4FB26009E5164 /* AlertViewController.swift in Sources */,
 				6CC37E481FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6C58333B1FB3AF9900F6BFE0 /* PresentrController.swift in Sources */,
@@ -1784,6 +1817,7 @@
 				6C32C3191FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */,
 				6C2208821FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */,
 				6C7E66E71FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
+				6CBF9FE11FC5F987002BC7FC /* FTUEFlow_UITests.swift in Sources */,
 				6C2B324A1FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */,
 				6CBB4EA81FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */,
 				6C5833401FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */,

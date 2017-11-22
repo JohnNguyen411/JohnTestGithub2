@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FTUEAllSetViewController: UIViewController, FTUEProtocol {
+class FTUEAllSetViewController: FTUEChildViewController, FTUEProtocol {
     
     let text1: UILabel = {
         let textView = UILabel(frame: .zero)
