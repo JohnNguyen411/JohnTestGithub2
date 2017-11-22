@@ -1,11 +1,9 @@
 # Uncomment the next line to define a global platform for your project
 platform :ios, '9.0'
+use_frameworks!
 
-target 'voluxe-customer' do
-    # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
-    use_frameworks!
-    
-    # Pods for voluxe-customer
+
+def import_pods
     pod 'Alamofire', '~> 4.5.1'
     pod 'AlamofireObjectMapper', '~> 5.0.0'
     pod 'DateToolsSwift', '~> 2.0.3'
@@ -24,16 +22,19 @@ target 'voluxe-customer' do
     pod 'GoogleMaps', '~> 2.5.0'
     pod 'GooglePlaces', '~> 2.5.0'
     pod 'SDWebImage', '~> 4.0'
-
-    
-    target 'voluxe-customerTests' do
-        inherit! :search_paths
-        # Pods for testing
-    end
-    
-    target 'voluxe-customerUITests' do
-        inherit! :search_paths
-        # Pods for testing
-    end
-    
 end
+
+target 'voluxe-customer' do
+    # Pods for voluxe-customer
+    import_pods
+end
+
+target 'voluxe-customerTests' do
+    import_pods
+end
+
+target 'voluxe-customerUITests' do
+    import_pods
+end
+
+

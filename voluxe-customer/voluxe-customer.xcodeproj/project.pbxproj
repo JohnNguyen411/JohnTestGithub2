@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2FFF68F2B16A50D15D6B9AD1 /* Pods_voluxe_customerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB40B9A1A2FD8B1B31418DF7 /* Pods_voluxe_customerTests.framework */; };
+		4919A11892F7C3DF8E3B27E1 /* Pods_voluxe_customerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FF37696ECA3479BE741D40 /* Pods_voluxe_customerTests.framework */; };
+		4F168EBDD50184A5503B6E44 /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
 		6C20E1831FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
 		6C20E1841FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
 		6C20E1851FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
@@ -174,6 +175,7 @@
 		6C58333E1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5833071FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf */; };
 		6C58333F1FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833081FB3AF5600F6BFE0 /* TransitionType.swift */; };
 		6C5833401FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833081FB3AF5600F6BFE0 /* TransitionType.swift */; };
+		6C606ACE1FC501550030BBE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
 		6C69267E1FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C69267D1FB3B3E3009495E9 /* LoanerPickupViewController.swift */; };
 		6C69267F1FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C69267D1FB3B3E3009495E9 /* LoanerPickupViewController.swift */; };
 		6C6926801FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C69267D1FB3B3E3009495E9 /* LoanerPickupViewController.swift */; };
@@ -328,6 +330,10 @@
 		6CC83A851FA140D300FE0633 /* sensus_qa.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7F1FA140D300FE0633 /* sensus_qa.json */; };
 		6CC83A881FA1479700FE0633 /* InitializationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC83A871FA1479700FE0633 /* InitializationService.swift */; };
 		6CC83A8B1FA1481900FE0633 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC83A8A1FA1481900FE0633 /* StringUtils.swift */; };
+		6CC921A31FC4FB26009E5164 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F41FB3AF5600F6BFE0 /* AlertViewController.swift */; };
+		6CC921A41FC4FB26009E5164 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F41FB3AF5600F6BFE0 /* AlertViewController.swift */; };
+		6CC921A51FC4FBC7009E5164 /* Date+DateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B81FA297A300B22EAB /* Date+DateTools.swift */; };
+		6CC921A61FC4FBC8009E5164 /* Date+DateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B81FA297A300B22EAB /* Date+DateTools.swift */; };
 		6CCD428E1FA013E3000AC6C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
 		6CCD42901FA013E3000AC6C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428F1FA013E3000AC6C9 /* ViewController.swift */; };
 		6CCD42951FA013E3000AC6C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42941FA013E3000AC6C9 /* Assets.xcassets */; };
@@ -340,7 +346,6 @@
 		6CD47D191FAD190F00D794A6 /* VLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D171FAD190F00D794A6 /* VLButton.swift */; };
 		6CD47D1A1FAD190F00D794A6 /* VLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D171FAD190F00D794A6 /* VLButton.swift */; };
 		6CE5AC061FACF116009FD0D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
-		6CE5AC071FACF116009FD0D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
 		6CEA0D591FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
 		6CEA0D5A1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
 		6CEA0D5B1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
@@ -348,8 +353,7 @@
 		6CFBF9B31FA1131700D3AA78 /* VolvoSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */; };
 		6CFBF9B41FA1131700D3AA78 /* VolvoSansPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */; };
 		6CFBF9B51FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B11FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf */; };
-		B5ADF8E1506C007D540217FF /* Pods_voluxe_customer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E96D28932A5ED1211E52CBA /* Pods_voluxe_customer.framework */; };
-		FF479FF80A0FAD4CF4719E3B /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EEB0E34D7BBCEF165281A347 /* Pods_voluxe_customerUITests.framework */; };
+		F09D8352AF5AF508F65D2A08 /* Pods_voluxe_customer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AE2DE1F0F874762B0DBABE /* Pods_voluxe_customer.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -370,15 +374,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0B49481DC6C96B0D54DF1A88 /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
-		1B077A2E34430DEC82F81659 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
-		1B2E2DE8954CDD45BC08E20C /* Pods-voluxe-customer.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.staging.xcconfig"; sourceTree = "<group>"; };
-		1E96D28932A5ED1211E52CBA /* Pods_voluxe_customer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		2D867C37FFB112755DA923E5 /* Pods-voluxe-customer.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.dev.xcconfig"; sourceTree = "<group>"; };
-		43037BE79120F95DF69FB7DA /* Pods-voluxe-customerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.release.xcconfig"; sourceTree = "<group>"; };
-		445D30E54C0346D618C01387 /* Pods-voluxe-customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.release.xcconfig"; sourceTree = "<group>"; };
-		4D47CCA4D8E06F9A7A45EBF3 /* Pods-voluxe-customerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		598AADA586E21D3C7D530582 /* Pods-voluxe-customerTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.dev.xcconfig"; sourceTree = "<group>"; };
+		13FF37696ECA3479BE741D40 /* Pods_voluxe_customerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A1895FADFCBA7BA67D2D274 /* Pods-voluxe-customerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.release.xcconfig"; sourceTree = "<group>"; };
+		2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		36F8C19BBDAC98004E8F0A9A /* Pods-voluxe-customerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		446B7D7AA76D7E178415AA45 /* Pods-voluxe-customer.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.dev.xcconfig"; sourceTree = "<group>"; };
+		4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
+		4B49F366D485907B0CD58867 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
+		69AE2DE1F0F874762B0DBABE /* Pods_voluxe_customer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceState.swift; sourceTree = "<group>"; };
 		6C20E1861FBE061A00E5D9A0 /* ETAMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAMarker.swift; sourceTree = "<group>"; };
 		6C20E18A1FBE0E6200E5D9A0 /* GoogleDirectionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDirectionAPI.swift; sourceTree = "<group>"; };
@@ -537,15 +540,10 @@
 		6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Light.ttf"; sourceTree = "<group>"; };
 		6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Medium.ttf"; sourceTree = "<group>"; };
 		6CFBF9B11FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSerifPro-Italic.ttf"; sourceTree = "<group>"; };
-		6D52B734E571BE8CF31E6183 /* Pods-voluxe-customerTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.staging.xcconfig"; sourceTree = "<group>"; };
-		970857F002528EFEA570BA13 /* Pods-voluxe-customerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.release.xcconfig"; sourceTree = "<group>"; };
-		A2C7D7D37FBB323FA4518F97 /* Pods-voluxe-customerUITests.prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.prod.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.prod.xcconfig"; sourceTree = "<group>"; };
-		A752CBA96B181CBC27F7F728 /* Pods-voluxe-customer.prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.prod.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.prod.xcconfig"; sourceTree = "<group>"; };
-		BB40B9A1A2FD8B1B31418DF7 /* Pods_voluxe_customerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		BFC78CB58F9D9CC70A6F31BA /* Pods-voluxe-customerTests.prod.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.prod.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.prod.xcconfig"; sourceTree = "<group>"; };
-		C1711CF4BC823F0DFB09938F /* Pods-voluxe-customerUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.staging.xcconfig"; sourceTree = "<group>"; };
-		D43BB049171E40450D46789F /* Pods-voluxe-customerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.debug.xcconfig"; sourceTree = "<group>"; };
-		EEB0E34D7BBCEF165281A347 /* Pods_voluxe_customerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		830E0EB28610D29BD9577A43 /* Pods-voluxe-customerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		A4754A5C4909D3DF093D3ACF /* Pods-voluxe-customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.release.xcconfig"; sourceTree = "<group>"; };
+		B14C89A33603EA2EDE01A8EF /* Pods-voluxe-customerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.release.xcconfig"; sourceTree = "<group>"; };
+		B6E3B388CB760BA2DCBFB310 /* Pods-voluxe-customerTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.dev.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -553,7 +551,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B5ADF8E1506C007D540217FF /* Pods_voluxe_customer.framework in Frameworks */,
+				F09D8352AF5AF508F65D2A08 /* Pods_voluxe_customer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -561,7 +559,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2FFF68F2B16A50D15D6B9AD1 /* Pods_voluxe_customerTests.framework in Frameworks */,
+				4919A11892F7C3DF8E3B27E1 /* Pods_voluxe_customerTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -569,7 +567,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FF479FF80A0FAD4CF4719E3B /* Pods_voluxe_customerUITests.framework in Frameworks */,
+				4F168EBDD50184A5503B6E44 /* Pods_voluxe_customerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -940,7 +938,7 @@
 				6CCD42AC1FA013E3000AC6C9 /* voluxe-customerUITests */,
 				6CCD428B1FA013E3000AC6C9 /* Products */,
 				C12FDB27F024C9663651767B /* Frameworks */,
-				DF5B283FEE389368E5E9317D /* Pods */,
+				DD0FFFE5E0D1BE41F3C9FA3D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1026,31 +1024,25 @@
 				6CE902151FA14C1200EE106C /* AlamofireObjectMapper.framework */,
 				6CE902161FA14C1200EE106C /* DateToolsSwift.framework */,
 				6CE902171FA14C1200EE106C /* ObjectMapper.framework */,
-				1E96D28932A5ED1211E52CBA /* Pods_voluxe_customer.framework */,
-				BB40B9A1A2FD8B1B31418DF7 /* Pods_voluxe_customerTests.framework */,
-				EEB0E34D7BBCEF165281A347 /* Pods_voluxe_customerUITests.framework */,
+				69AE2DE1F0F874762B0DBABE /* Pods_voluxe_customer.framework */,
+				13FF37696ECA3479BE741D40 /* Pods_voluxe_customerTests.framework */,
+				2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DF5B283FEE389368E5E9317D /* Pods */ = {
+		DD0FFFE5E0D1BE41F3C9FA3D /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2D867C37FFB112755DA923E5 /* Pods-voluxe-customer.dev.xcconfig */,
-				A752CBA96B181CBC27F7F728 /* Pods-voluxe-customer.prod.xcconfig */,
-				1B2E2DE8954CDD45BC08E20C /* Pods-voluxe-customer.staging.xcconfig */,
-				598AADA586E21D3C7D530582 /* Pods-voluxe-customerTests.dev.xcconfig */,
-				BFC78CB58F9D9CC70A6F31BA /* Pods-voluxe-customerTests.prod.xcconfig */,
-				6D52B734E571BE8CF31E6183 /* Pods-voluxe-customerTests.staging.xcconfig */,
-				1B077A2E34430DEC82F81659 /* Pods-voluxe-customerUITests.dev.xcconfig */,
-				A2C7D7D37FBB323FA4518F97 /* Pods-voluxe-customerUITests.prod.xcconfig */,
-				C1711CF4BC823F0DFB09938F /* Pods-voluxe-customerUITests.staging.xcconfig */,
-				0B49481DC6C96B0D54DF1A88 /* Pods-voluxe-customer.debug.xcconfig */,
-				445D30E54C0346D618C01387 /* Pods-voluxe-customer.release.xcconfig */,
-				D43BB049171E40450D46789F /* Pods-voluxe-customerTests.debug.xcconfig */,
-				43037BE79120F95DF69FB7DA /* Pods-voluxe-customerTests.release.xcconfig */,
-				4D47CCA4D8E06F9A7A45EBF3 /* Pods-voluxe-customerUITests.debug.xcconfig */,
-				970857F002528EFEA570BA13 /* Pods-voluxe-customerUITests.release.xcconfig */,
+				4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */,
+				446B7D7AA76D7E178415AA45 /* Pods-voluxe-customer.dev.xcconfig */,
+				A4754A5C4909D3DF093D3ACF /* Pods-voluxe-customer.release.xcconfig */,
+				830E0EB28610D29BD9577A43 /* Pods-voluxe-customerTests.debug.xcconfig */,
+				B6E3B388CB760BA2DCBFB310 /* Pods-voluxe-customerTests.dev.xcconfig */,
+				2A1895FADFCBA7BA67D2D274 /* Pods-voluxe-customerTests.release.xcconfig */,
+				36F8C19BBDAC98004E8F0A9A /* Pods-voluxe-customerUITests.debug.xcconfig */,
+				4B49F366D485907B0CD58867 /* Pods-voluxe-customerUITests.dev.xcconfig */,
+				B14C89A33603EA2EDE01A8EF /* Pods-voluxe-customerUITests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1062,12 +1054,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CCD42B21FA013E3000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-customer" */;
 			buildPhases = (
-				713462CA2BAB69D926EA474C /* [CP] Check Pods Manifest.lock */,
+				AE0541E111E1DB1394BACA05 /* [CP] Check Pods Manifest.lock */,
 				6CCD42861FA013E3000AC6C9 /* Sources */,
 				6CCD42871FA013E3000AC6C9 /* Frameworks */,
 				6CCD42881FA013E3000AC6C9 /* Resources */,
-				8482EFE120F7B9D878BAE905 /* [CP] Embed Pods Frameworks */,
-				D114B64818AFE6FE662A0026 /* [CP] Copy Pods Resources */,
+				C40DDEDC559FCC13D140C7DC /* [CP] Embed Pods Frameworks */,
+				D86524E80D5D1E4794E1C4CE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1082,12 +1074,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CCD42B51FA013E3000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-customerTests" */;
 			buildPhases = (
-				C0E93A92B42C0591FC28D7E0 /* [CP] Check Pods Manifest.lock */,
+				200B4D533C6353AB32B707A0 /* [CP] Check Pods Manifest.lock */,
 				6CCD429A1FA013E3000AC6C9 /* Sources */,
 				6CCD429B1FA013E3000AC6C9 /* Frameworks */,
 				6CCD429C1FA013E3000AC6C9 /* Resources */,
-				6AF35F37649FD7B3A694D512 /* [CP] Embed Pods Frameworks */,
-				D1CC11CF7F0894C609C606EB /* [CP] Copy Pods Resources */,
+				356A2D862C1FFF741C588B39 /* [CP] Embed Pods Frameworks */,
+				4BEE99853E0F3B20689E5BB2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1103,12 +1095,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CCD42B81FA013E3000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-customerUITests" */;
 			buildPhases = (
-				F7CB6BC1FDC52DEF7FE7D876 /* [CP] Check Pods Manifest.lock */,
+				D872A81313767E138A2323D6 /* [CP] Check Pods Manifest.lock */,
 				6CCD42A51FA013E3000AC6C9 /* Sources */,
 				6CCD42A61FA013E3000AC6C9 /* Frameworks */,
 				6CCD42A71FA013E3000AC6C9 /* Resources */,
-				26A75B3C731D8FEDCC6AD77C /* [CP] Embed Pods Frameworks */,
-				026D6358CAEBDA2B0C0FEA78 /* [CP] Copy Pods Resources */,
+				4FBBA4AC3B4DFEA2634B6525 /* [CP] Embed Pods Frameworks */,
+				5092F1ABA3BB1FAA8B99BBDF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1226,52 +1218,167 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		026D6358CAEBDA2B0C0FEA78 /* [CP] Copy Pods Resources */ = {
+		200B4D533C6353AB32B707A0 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-voluxe-customerTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		26A75B3C731D8FEDCC6AD77C /* [CP] Embed Pods Frameworks */ = {
+		356A2D862C1FFF741C588B39 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6AF35F37649FD7B3A694D512 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEventBus.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		713462CA2BAB69D926EA474C /* [CP] Check Pods Manifest.lock */ = {
+		4BEE99853E0F3B20689E5BB2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4FBBA4AC3B4DFEA2634B6525 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
+				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
+				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEventBus.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5092F1ABA3BB1FAA8B99BBDF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		AE0541E111E1DB1394BACA05 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1289,7 +1396,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		8482EFE120F7B9D878BAE905 /* [CP] Embed Pods Frameworks */ = {
+		C40DDEDC559FCC13D140C7DC /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1341,25 +1448,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C0E93A92B42C0591FC28D7E0 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-voluxe-customerTests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D114B64818AFE6FE662A0026 /* [CP] Copy Pods Resources */ = {
+		D86524E80D5D1E4794E1C4CE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1378,22 +1467,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D1CC11CF7F0894C609C606EB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F7CB6BC1FDC52DEF7FE7D876 /* [CP] Check Pods Manifest.lock */ = {
+		D872A81313767E138A2323D6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1558,6 +1632,7 @@
 				6CBB4EB01FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */,
 				6C5833351FB3AF9900F6BFE0 /* Presentr.swift in Sources */,
 				6C20E1951FBE14D500E5D9A0 /* GMRoutes.swift in Sources */,
+				6CC921A31FC4FB26009E5164 /* AlertViewController.swift in Sources */,
 				6CC37E471FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6C5833371FB3AF9900F6BFE0 /* PresentrController.swift in Sources */,
 				6C20E1D91FBF725F00E5D9A0 /* LocationUtils.swift in Sources */,
@@ -1611,6 +1686,7 @@
 				6CC37E511FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C88DC901FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6CBB4E831FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
+				6CC921A61FC4FBC8009E5164 /* Date+DateTools.swift in Sources */,
 				6C20E1D51FBF71B200E5D9A0 /* RequestLocation.swift in Sources */,
 				6C5833321FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */,
 				6CBB4E861FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
@@ -1659,11 +1735,13 @@
 				6C91BBF31FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
 				6C20E1BD1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
 				6C73420A1FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */,
+				6C606ACE1FC501550030BBE3 /* AppDelegate.swift in Sources */,
 				6CEA0D5B1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
 				6CBB4EB51FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
 				6CBB4EB11FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */,
 				6C5833391FB3AF9900F6BFE0 /* Presentr.swift in Sources */,
 				6C20E1961FBE14D500E5D9A0 /* GMRoutes.swift in Sources */,
+				6CC921A41FC4FB26009E5164 /* AlertViewController.swift in Sources */,
 				6CC37E481FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6C58333B1FB3AF9900F6BFE0 /* PresentrController.swift in Sources */,
 				6C20E1DA1FBF725F00E5D9A0 /* LocationUtils.swift in Sources */,
@@ -1717,6 +1795,7 @@
 				6CC37E521FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C88DC911FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6CBB4E841FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
+				6CC921A51FC4FBC7009E5164 /* Date+DateTools.swift in Sources */,
 				6C20E1D61FBF71B200E5D9A0 /* RequestLocation.swift in Sources */,
 				6C5833341FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */,
 				6CBB4E871FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
@@ -1735,7 +1814,6 @@
 				6C6F4BD01FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6CBB4EAB1FB4DF7D00C31183 /* FSCalendarExtensions.m in Sources */,
 				6C88DC9F1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
-				6CE5AC071FACF116009FD0D7 /* AppDelegate.swift in Sources */,
 				6C5833261FB3AF7B00F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */,
 				6CBB4EAE1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */,
 				6C5833251FB3AF7B00F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
@@ -1773,6 +1851,7 @@
 		6C3FB2A11FA1645800B22EAB /* Dev */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1858,8 +1937,9 @@
 		};
 		6C3FB2A21FA1645800B22EAB /* Dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D867C37FFB112755DA923E5 /* Pods-voluxe-customer.dev.xcconfig */;
+			baseConfigurationReference = 446B7D7AA76D7E178415AA45 /* Pods-voluxe-customer.dev.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1878,9 +1958,9 @@
 		};
 		6C3FB2A31FA1645800B22EAB /* Dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 598AADA586E21D3C7D530582 /* Pods-voluxe-customerTests.dev.xcconfig */;
+			baseConfigurationReference = B6E3B388CB760BA2DCBFB310 /* Pods-voluxe-customerTests.dev.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1898,13 +1978,58 @@
 		};
 		6C3FB2A41FA1645800B22EAB /* Dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1B077A2E34430DEC82F81659 /* Pods-voluxe-customerUITests.dev.xcconfig */;
+			baseConfigurationReference = 4B49F366D485907B0CD58867 /* Pods-voluxe-customerUITests.dev.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/**",
+					"$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/**",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
+					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseMessaging\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseRemoteConfig\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleMaps\"",
+					"\"${PODS_ROOT}/Headers/Public/GooglePlaces\"",
+					"${PODS_ROOT}/**",
+				);
 				INFOPLIST_FILE = "voluxe-customerUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -1918,6 +2043,7 @@
 		6CCD42B01FA013E3000AC6C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2004,6 +2130,7 @@
 		6CCD42B11FA013E3000AC6C9 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -2082,8 +2209,9 @@
 		};
 		6CCD42B31FA013E3000AC6C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0B49481DC6C96B0D54DF1A88 /* Pods-voluxe-customer.debug.xcconfig */;
+			baseConfigurationReference = 4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2102,8 +2230,9 @@
 		};
 		6CCD42B41FA013E3000AC6C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 445D30E54C0346D618C01387 /* Pods-voluxe-customer.release.xcconfig */;
+			baseConfigurationReference = A4754A5C4909D3DF093D3ACF /* Pods-voluxe-customer.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2121,9 +2250,9 @@
 		};
 		6CCD42B61FA013E3000AC6C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D43BB049171E40450D46789F /* Pods-voluxe-customerTests.debug.xcconfig */;
+			baseConfigurationReference = 830E0EB28610D29BD9577A43 /* Pods-voluxe-customerTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2141,9 +2270,9 @@
 		};
 		6CCD42B71FA013E3000AC6C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 43037BE79120F95DF69FB7DA /* Pods-voluxe-customerTests.release.xcconfig */;
+			baseConfigurationReference = 2A1895FADFCBA7BA67D2D274 /* Pods-voluxe-customerTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2160,13 +2289,58 @@
 		};
 		6CCD42B91FA013E3000AC6C9 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4D47CCA4D8E06F9A7A45EBF3 /* Pods-voluxe-customerUITests.debug.xcconfig */;
+			baseConfigurationReference = 36F8C19BBDAC98004E8F0A9A /* Pods-voluxe-customerUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/**",
+					"$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/**",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
+					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseMessaging\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseRemoteConfig\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleMaps\"",
+					"\"${PODS_ROOT}/Headers/Public/GooglePlaces\"",
+					"${PODS_ROOT}/**",
+				);
 				INFOPLIST_FILE = "voluxe-customerUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -2179,13 +2353,58 @@
 		};
 		6CCD42BA1FA013E3000AC6C9 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 970857F002528EFEA570BA13 /* Pods-voluxe-customerUITests.release.xcconfig */;
+			baseConfigurationReference = B14C89A33603EA2EDE01A8EF /* Pods-voluxe-customerUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"${PODS_ROOT}/**",
+					"$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/**",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
+					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
+					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
+					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
+					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
+					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_ROOT}/Headers/Public\"",
+					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseMessaging\"",
+					"\"${PODS_ROOT}/Headers/Public/FirebaseRemoteConfig\"",
+					"\"${PODS_ROOT}/Headers/Public/GoogleMaps\"",
+					"\"${PODS_ROOT}/Headers/Public/GooglePlaces\"",
+					"${PODS_ROOT}/**",
+				);
 				INFOPLIST_FILE = "voluxe-customerUITests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";

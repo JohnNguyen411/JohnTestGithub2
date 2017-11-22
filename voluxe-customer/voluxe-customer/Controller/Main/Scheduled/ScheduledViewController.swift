@@ -11,6 +11,8 @@ import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
 import GoogleMaps
+import BrightFutures
+import Result
 
 class ScheduledViewController: ChildViewController {
     
