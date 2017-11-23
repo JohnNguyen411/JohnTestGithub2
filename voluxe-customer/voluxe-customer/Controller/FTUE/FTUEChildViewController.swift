@@ -31,4 +31,6 @@ class FTUEChildViewController: UIViewController {
             delegate.canGoNext(nextEnabled: nextEnabled)
         }
     }
+    
+    func checkTextFieldsValidity() {}
 }

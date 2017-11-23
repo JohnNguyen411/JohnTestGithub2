@@ -118,6 +118,29 @@ class FTUEFlow_UITests: XCTestCase {
         // Check controller match the view
         XCTAssertTrue(viewAtIndex == controllerAtIndex.view)
         
+        // Check textfields exists
+        let app = XCUIApplication()
+        let phoneNumberView = app.windows.element(matching: .any, identifier: "phoneNumberTextField")
+        
+        XCTAssertNotNil(phoneNumberView)
+        
+        let phoneNumberTextField = controllerAtIndex.phoneNumberTextField
+
+        XCTAssertTrue(phoneNumberTextField.textField.text!.isEmpty)
+        XCTAssertFalse(flowViewController.nextButton.isEnabled)
+        
+        // fill with fake data
+        phoneNumberTextField.textField.text = "5555555555"
+        
+        // fire validation method manually
+        controllerAtIndex.checkTextFieldsValidity()
+        
+        // check that next button is enable when data
+        XCTAssertTrue(flowViewController.nextButton.isEnabled)
+        
+        // go to next screen
+        flowViewController.pressButton(button: flowViewController.nextButton)
+
         return true
     }
     

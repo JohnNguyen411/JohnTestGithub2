@@ -10,10 +10,11 @@ import Foundation
 import UIKit
 import PhoneNumberKit
 
-class FTUEPhoneNumberViewController: FTUEChildViewController, UITextFieldDelegate, FTUEProtocol {
+class FTUEPhoneNumberViewController: FTUEChildViewController, FTUEProtocol {
     
     let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
-    
+    let phoneNumberKit = PhoneNumberKit()
+
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .MobilePhoneNumberExplain
@@ -37,9 +38,10 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, UITextFieldDelegat
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        phoneNumberTextField.accessibilityIdentifier = "phoneNumberTextField"
         phoneNumberTextField.textField.keyboardType = .phonePad
-        phoneNumberTextField.textField.delegate = self
-        
+        phoneNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+
         let phoneNumberTF: PhoneNumberTextField = phoneNumberTextField.textField as! PhoneNumberTextField
         phoneNumberTF.maxDigits = 10
         
@@ -74,8 +76,37 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, UITextFieldDelegat
         }
     }
     
+    func isPhoneNumberValid(phoneNumber: String?) -> Bool {
+        guard let phoneNumber = phoneNumber else {
+            return false
+        }
+        
+        guard let textField = phoneNumberTextField.textField as? PhoneNumberTextField else {
+            return false
+        }
+        
+        do {
+            let _ = try phoneNumberKit.parse(phoneNumber, withRegion: textField.currentRegion, ignoreType: true)
+            return true
+        } catch {
+            return false
+        }
+ 
+    }
+    
+    
+    
+    override func checkTextFieldsValidity() {
+        canGoNext(nextEnabled: isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text))
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        checkTextFieldsValidity()
+    }
+    
     //MARK: FTUEStartViewController
     func didSelectPage() {
         phoneNumberTextField.textField.becomeFirstResponder()
+        checkTextFieldsValidity()
     }
 }
