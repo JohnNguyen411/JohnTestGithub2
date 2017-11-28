@@ -94,8 +94,6 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FTUEProtocol {
  
     }
     
-    
-    
     override func checkTextFieldsValidity() {
         canGoNext(nextEnabled: isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text))
     }

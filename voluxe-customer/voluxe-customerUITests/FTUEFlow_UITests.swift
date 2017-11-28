@@ -39,6 +39,7 @@ class FTUEFlow_UITests: XCTestCase {
         XCTAssertTrue(internalTestNumberItems())
         XCTAssertTrue(internalTestLoginView())
         XCTAssertTrue(internalTestPhoneNumberView())
+        XCTAssertTrue(internalTestPhoneNumberVerificationView())
     }
     
     func internalTestNumberItems() -> Bool {
@@ -141,6 +142,47 @@ class FTUEFlow_UITests: XCTestCase {
         // go to next screen
         flowViewController.pressButton(button: flowViewController.nextButton)
 
+        return true
+    }
+    
+    func internalTestPhoneNumberVerificationView() -> Bool{
+        guard let flowViewController = flowViewController else {
+            return false
+        }
+        
+        let currentPosition = flowViewController.viewPager.currentPosition - 1
+        
+        XCTAssertTrue(currentPosition == 3)
+        
+        let viewAtIndex = flowViewController.viewAtIndex(viewPager: flowViewController.viewPager, index: currentPosition, view: nil)
+        let controllerAtIndex = flowViewController.controllerAtIndex(index: currentPosition) as! FTUEPhoneVerificationViewController
+        
+        // Check controller match the view
+        XCTAssertTrue(viewAtIndex == controllerAtIndex.view)
+        
+        // Check textfields exists
+        let app = XCUIApplication()
+        let phoneNumberView = app.windows.element(matching: .any, identifier: "codeTextField")
+        
+        XCTAssertNotNil(phoneNumberView)
+        
+        let codeTextField = controllerAtIndex.codeTextField
+        
+        XCTAssertTrue(codeTextField.textField.text!.isEmpty)
+        XCTAssertFalse(flowViewController.nextButton.isEnabled)
+        
+        // fill with fake data
+        codeTextField.textField.text = "0000"
+        
+        // fire validation method manually
+        controllerAtIndex.checkTextFieldsValidity()
+        
+        // check that next button is enable when data
+        XCTAssertTrue(flowViewController.nextButton.isEnabled)
+        
+        // go to next screen
+        flowViewController.pressButton(button: flowViewController.nextButton)
+        
         return true
     }
     
