@@ -40,6 +40,7 @@ class FTUEFlow_UITests: XCTestCase {
         XCTAssertTrue(internalTestLoginView())
         XCTAssertTrue(internalTestPhoneNumberView())
         XCTAssertTrue(internalTestPhoneNumberVerificationView())
+        XCTAssertTrue(internalTestAllSetScreen())
     }
     
     func internalTestNumberItems() -> Bool {
@@ -145,7 +146,7 @@ class FTUEFlow_UITests: XCTestCase {
         return true
     }
     
-    func internalTestPhoneNumberVerificationView() -> Bool{
+    func internalTestPhoneNumberVerificationView() -> Bool {
         guard let flowViewController = flowViewController else {
             return false
         }
@@ -183,6 +184,36 @@ class FTUEFlow_UITests: XCTestCase {
         // go to next screen
         flowViewController.pressButton(button: flowViewController.nextButton)
         
+        return true
+    }
+    
+    func internalTestAllSetScreen() -> Bool {
+        guard let flowViewController = flowViewController else {
+            return false
+        }
+        
+        let currentPosition = flowViewController.viewPager.currentPosition - 1
+        
+        XCTAssertTrue(currentPosition == 4)
+        
+        let viewAtIndex = flowViewController.viewAtIndex(viewPager: flowViewController.viewPager, index: currentPosition, view: nil)
+        let controllerAtIndex = flowViewController.controllerAtIndex(index: currentPosition) as! FTUEAllSetViewController
+        
+        // Check controller match the view
+        XCTAssertTrue(viewAtIndex == controllerAtIndex.view)
+        
+        // Check textfields exists
+        let app = XCUIApplication()
+        let allSetLabelView = app.windows.element(matching: .any, identifier: "allSetLabel")
+        
+        XCTAssertNotNil(allSetLabelView)
+        
+        // check that next button is enable when data
+        XCTAssertTrue(flowViewController.nextButton.isEnabled)
+        
+        // go to next screen
+        flowViewController.pressButton(button: flowViewController.nextButton)
+
         return true
     }
     

@@ -11,7 +11,7 @@ import UIKit
 
 class FTUEAllSetViewController: FTUEChildViewController, FTUEProtocol {
     
-    let text1: UILabel = {
+    let allSetLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .WelcomeToAppLabel
         textView.font = .volvoSansLight(size: 18)
@@ -24,15 +24,17 @@ class FTUEAllSetViewController: FTUEChildViewController, FTUEProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        allSetLabel.accessibilityIdentifier = "allSetLabel"
         setupViews()
     }
     
     func setupViews() {
-        self.view.addSubview(text1)
+        self.view.addSubview(allSetLabel)
         
-        let sizeThatFits = text1.sizeThatFits(CGSize(width: view.frame.width, height: CGFloat(MAXFLOAT)))
+        let sizeThatFits = allSetLabel.sizeThatFits(CGSize(width: view.frame.width, height: CGFloat(MAXFLOAT)))
         
-        text1.snp.makeConstraints { (make) -> Void in
+        allSetLabel.snp.makeConstraints { (make) -> Void in
             make.left.top.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(sizeThatFits)
