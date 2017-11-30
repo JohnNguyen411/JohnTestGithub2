@@ -12,7 +12,7 @@ import XCTest
 class FTUEFlow_UITests: XCTestCase {
     
     var flowViewController: FTUEViewController?
-    
+
     override func setUp() {
         super.setUp()
         
@@ -216,5 +216,5 @@ class FTUEFlow_UITests: XCTestCase {
 
         return true
     }
-    
+
 }

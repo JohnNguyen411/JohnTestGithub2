@@ -11,8 +11,6 @@ import UIKit
 import SlideMenuControllerSwift
 
 class MainViewController: BaseViewController, StateServiceManagerProtocol, ChildViewDelegate {
-                    
-                    
     
     private var serviceState = ServiceState.noninit
     
@@ -78,8 +76,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             let scheduledDeliveryViewController = ScheduledDropoffViewController()
             currentViewController = scheduledDeliveryViewController
         }
-        
-        
         
         if let currentViewController = currentViewController, changeView {
             currentViewController.childViewDelegate = self

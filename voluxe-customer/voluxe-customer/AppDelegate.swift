@@ -17,6 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var initialized = false
     let userDefaults = UserDefaults.standard
+    
+    var navigationController: UINavigationController?
+    var slideMenuController: SlideMenuController?
+
 
     static func getRunConfig() -> String {
         //swiftlint:disable:next force_cast
@@ -44,22 +48,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainViewController = MainViewController()
         let leftViewController = LeftViewController()
         
-        let nvc: UINavigationController = UINavigationController(rootViewController: mainViewController)
+        let uiNavigationController = UINavigationController(rootViewController: mainViewController)
         
         SlideMenuOptions.contentViewScale = 1.0
         SlideMenuOptions.pointOfNoReturnWidth = 0.0
     
-        nvc.navigationBar.isTranslucent = false
-        nvc.navigationBar.backgroundColor = UIColor("#FFFFFF")
-        nvc.navigationBar.tintColor = UIColor("#000000")
+        uiNavigationController.navigationBar.isTranslucent = false
+        uiNavigationController.navigationBar.backgroundColor = UIColor("#FFFFFF")
+        uiNavigationController.navigationBar.tintColor = UIColor("#000000")
         
-        leftViewController.mainNavigationViewController = nvc
+        leftViewController.mainNavigationViewController = navigationController
         leftViewController.mainViewController = mainViewController
         
-        let slideMenuController = SlideMenuController(mainViewController:nvc, leftMenuViewController: leftViewController)
-        slideMenuController.automaticallyAdjustsScrollViewInsets = true
-        slideMenuController.delegate = mainViewController
-
+        let menuController = SlideMenuController(mainViewController:uiNavigationController, leftMenuViewController: leftViewController)
+        menuController.automaticallyAdjustsScrollViewInsets = true
+        menuController.delegate = mainViewController
+        
+        slideMenuController = menuController
+        navigationController = uiNavigationController
+        
         // self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
         self.window?.rootViewController = slideMenuController
         self.window?.makeKeyAndVisible()
@@ -79,10 +86,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
  */
         
-        //createMenuView()
+        createMenuView()
+        /*
         let homeViewController = FTUEViewController()
         window!.rootViewController = homeViewController
         window!.makeKeyAndVisible()
+         */
     
         return true
     }
