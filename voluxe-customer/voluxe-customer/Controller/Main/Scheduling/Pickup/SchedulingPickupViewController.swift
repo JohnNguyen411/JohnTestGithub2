@@ -64,17 +64,25 @@ class SchedulingPickupViewController: SchedulingViewController {
             
             if state == .pickupDriverDrivingToDealership {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                    StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
+                   StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
                 })
             } else if state == .pickupDriverAtDealership {
                 let alert = UIAlertController(title: .VolvoPickup, message: .YourVehicleHasArrived, preferredStyle: UIAlertControllerStyle.alert)
-                alert.addAction(UIAlertAction(title: (.Ok as String).uppercased(), style: UIAlertActionStyle.default, handler: { (alert: UIAlertAction!) in
+                let okAction = UIAlertAction(title: (.Ok as String).uppercased(), style: UIAlertActionStyle.default, handler: { (alert: UIAlertAction!) in
                     // show being serviced
                     DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
                         StateServiceManager.sharedInstance.updateState(state: .servicing)
-                    })
-                }))
-                self.present(alert, animated: true, completion: nil)
+                    })})
+                
+                alert.addAction(okAction)
+                
+                self.present(alert, animated: true, completion: {
+                    // add accessibility if possible
+                    if let alertButton = okAction.value(forKey: "__representer") {
+                        let view = alertButton as? UIView
+                        view?.accessibilityIdentifier = "okAction_AID"
+                    }
+                })
             }
         } else {
             if self.checkupLabel.isHidden {

@@ -46,6 +46,7 @@ class MainController_UITests: XCTestCase {
     func testPickupDelivery() {
         internalTestSchedulePickup()
         internalTestPickup()
+        internalTestDrivingToDealership()
     }
     
     func internalTestSchedulePickup() {
@@ -138,13 +139,54 @@ class MainController_UITests: XCTestCase {
         let testElement = app.otherElements["testView"]
         let appeared = waitForElementToAppear(testElement, timeout: 10)
         XCTAssertTrue(appeared)
-        sleep(2)
+        
+        let stepview0 = app.otherElements["stepview0"]
+        let stepview0Appeared = waitForElementToAppear(stepview0, timeout: 5)
+        XCTAssertTrue(stepview0Appeared)
+        
+        let stepview1 = app.otherElements["stepview1"]
+        let stepview1Appeared = waitForElementToAppear(stepview1, timeout: 10)
+        XCTAssertTrue(stepview1Appeared)
+        
+        let stepview2 = app.otherElements["stepview2"]
+        let stepview2Appeared = waitForElementToAppear(stepview2, timeout: 50)
+        XCTAssertTrue(stepview2Appeared)
         
         let stepview3 = app.otherElements["stepview3"]
-        let stepview3Appeared = waitForElementToAppear(stepview3, timeout: 99)
+        let stepview3Appeared = waitForElementToAppear(stepview3, timeout: 20)
         XCTAssertTrue(stepview3Appeared)
-        sleep(10)
-
+        
+        sleep(1)
+    }
+    
+    
+    func internalTestDrivingToDealership() {
+        /*
+         
+         case pickupDriverDrivingToDealership = 24
+         case pickupDriverAtDealership = 25
+         case servicing = 30
+         case serviceCompleted = 40
+         case deliveryScheduled = 50
+         case deliveryInRoute = 51
+         case deliveryNearby = 52
+         case deliveryArrived = 53
+         
+         */
+        
+        let drivingToDealership = app.staticTexts["schedulingTestView\(ServiceState.pickupDriverDrivingToDealership)"]
+        let drivingToDealershipAppeared = waitForElementToAppear(drivingToDealership, timeout: 20)
+        XCTAssertTrue(drivingToDealershipAppeared)
+        
+        // wait for the popup to appear
+        sleep(1)
+        
+        // can't access the AlertView, only the Action button
+        let alerOkButton = app.buttons["okAction_AID"]
+        let okButtonAppeared = waitForElementToAppear(alerOkButton, timeout: 20)
+        XCTAssertTrue(okButtonAppeared)
+        sleep(1)
+        alerOkButton.tap()        
     }
     
     func waitForElementToAppear(_ element: XCUIElement, timeout: TimeInterval) -> Bool {

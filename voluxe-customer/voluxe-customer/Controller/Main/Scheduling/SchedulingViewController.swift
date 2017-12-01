@@ -47,6 +47,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         return textView
     }()
     
+    let stateTestView = UILabel(frame: .zero)
     let scrollView = UIScrollView()
     let contentView = UIView()
     let scheduledServiceView = VLTitledLabel()
@@ -95,6 +96,12 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         super.viewDidAppear(animated)
         
         stateDidChange(state: serviceState)
+    }
+    
+    override func stateDidChange(state: ServiceState) {
+        super.stateDidChange(state: state)
+        stateTestView.accessibilityIdentifier = "schedulingTestView\(state)"
+        stateTestView.text = "schedulingTestView\(state)"
     }
     
     //MARK: View methods
@@ -147,6 +154,10 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         contentView.addSubview(scheduledPickupView)
         contentView.addSubview(pickupLocationView)
         contentView.addSubview(loanerView)
+        
+        // TestView setup
+        contentView.addSubview(stateTestView)
+        stateTestView.textColor = .clear
         
         scrollView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsetsMake(20, 20, 20, 20))
@@ -209,6 +220,12 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
             make.left.right.equalToSuperview()
             make.bottom.equalTo(contentView.snp.bottom)
             make.height.equalTo(VLButton.primaryHeight)
+        }
+        
+        stateTestView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(confirmButton.snp.top)
+            make.height.width.equalTo(1)
         }
         
     }
