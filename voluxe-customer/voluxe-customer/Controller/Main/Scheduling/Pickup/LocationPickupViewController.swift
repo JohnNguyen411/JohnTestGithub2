@@ -32,8 +32,10 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
     override init() {
         super.init()
+        newLocationTextField.textField.accessibilityIdentifier = "newLocationTextField.textField"
         newLocationTextField.textField.delegate = self
         newLocationTextField.rightLabel.isHidden = true
+        newLocationTextField.rightLabel.accessibilityIdentifier = "newLocationTextField.rightLabel"
 
         newLocationTextField.setRightButtonText(rightButtonText: (.Add as String).uppercased(), actionBlock: {
             self.addLocation(location: self.newLocationTextField.text)

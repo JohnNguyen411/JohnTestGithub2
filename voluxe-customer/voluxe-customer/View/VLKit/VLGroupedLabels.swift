@@ -40,7 +40,8 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
     func addItem(item: String) {
         let luxeLabel = VLSelectableLabel(text: item, index: items.count)
         luxeLabel.delegate = self
-        
+        luxeLabel.accessibilityIdentifier = "groupedLabel\(items.count)"
+
         addSubview(luxeLabel)
         
         if items.count > 0 {
@@ -67,6 +68,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
             
             let luxeLabel = VLSelectableLabel(text: title, index: index)
             luxeLabel.delegate = self
+            luxeLabel.accessibilityIdentifier = "groupedLabel\(index)"
             
             addSubview(luxeLabel)
             labels.append(luxeLabel)

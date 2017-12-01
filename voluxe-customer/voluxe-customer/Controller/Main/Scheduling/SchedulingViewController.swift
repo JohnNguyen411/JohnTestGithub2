@@ -102,6 +102,9 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     override func setupViews() {
         super.setupViews()
         
+        dealershipView.accessibilityIdentifier = "dealershipView"
+        rightButton.accessibilityIdentifier = "rightButton"
+        
         // init tap events
         dealershipView.isUserInteractionEnabled = true
         let dealershipTap = UITapGestureRecognizer(target: self, action: #selector(self.dealershipClick))
@@ -272,6 +275,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     func showDealershipModal() {
         let dealershipVC = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next)
         dealershipVC.delegate = self
+        dealershipVC.view.accessibilityIdentifier = "dealershipVC"
         currentPresentrVC = dealershipVC
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: true)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
@@ -280,6 +284,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     func showPickupLocationModal() {
         let locationVC = LocationPickupViewController(title: .PickupLocationTitle, buttonTitle: .Next)
         locationVC.pickupLocationDelegate = self
+        locationVC.view.accessibilityIdentifier = "locationVC"
         currentPresentrVC = locationVC
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.location.rawValue)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
@@ -288,6 +293,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     func showPickupLoanerModal() {
         let loanerVC = LoanerPickupViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next)
         loanerVC.delegate = self
+        loanerVC.view.accessibilityIdentifier = "loanerVC"
         currentPresentrVC = loanerVC
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.loaner.rawValue)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
@@ -296,6 +302,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     func showPickupDateTimeModal() {
         let dateModal = DateTimePickupViewController(title: .SelectYourPreferredPickupTime, buttonTitle: .Next)
         dateModal.delegate = self
+        dateModal.view.accessibilityIdentifier = "dateModal"
         currentPresentrVC = dateModal
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.dateTime.rawValue)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {

@@ -48,7 +48,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let mainViewController = MainViewController()
         let leftViewController = LeftViewController()
         
+        mainViewController.view.accessibilityIdentifier = "mainViewController"
+        leftViewController.view.accessibilityIdentifier = "leftViewController"
+        
         let uiNavigationController = UINavigationController(rootViewController: mainViewController)
+        uiNavigationController.view.accessibilityIdentifier = "uiNavigationController"
         
         SlideMenuOptions.contentViewScale = 1.0
         SlideMenuOptions.pointOfNoReturnWidth = 0.0
@@ -60,12 +64,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         leftViewController.mainNavigationViewController = navigationController
         leftViewController.mainViewController = mainViewController
         
-        let menuController = SlideMenuController(mainViewController:uiNavigationController, leftMenuViewController: leftViewController)
+        let menuController = SlideMenuController(mainViewController: uiNavigationController, leftMenuViewController: leftViewController)
         menuController.automaticallyAdjustsScrollViewInsets = true
         menuController.delegate = mainViewController
+        menuController.opacityView.removeFromSuperview()
         
         slideMenuController = menuController
         navigationController = uiNavigationController
+        
+        slideMenuController?.view.accessibilityIdentifier = "slideMenuController"
         
         // self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
         self.window?.rootViewController = slideMenuController

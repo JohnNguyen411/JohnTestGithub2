@@ -82,6 +82,8 @@ class VLSelectableLabel : UIView, UIGestureRecognizerDelegate {
         
         setSelected(selected: selected, callDelegate: true)
         
+        self.isUserInteractionEnabled = true
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(VLSelectableLabel.labelDidTap))
         tapGesture.delegate = self
         self.addGestureRecognizer(tapGesture)

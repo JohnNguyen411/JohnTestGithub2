@@ -11,31 +11,30 @@ import XCTest
 class MainController_UITests: XCTestCase {
     
     var mainViewController: MainViewController?
+    var app: XCUIApplication!
 
     override func setUp() {
         super.setUp()
+        
+        app = XCUIApplication()
+        app.launch()
         
         // Init GMSServices
         let testBundle = Bundle(for: type(of: self))
         let mapApiKey = testBundle.object(forInfoDictionaryKey: "GoogleMapsAPIKey")
         XCTAssertNotNil(mapApiKey)
         GMSServices.provideAPIKey(mapApiKey as! String)
-
         
         mainViewController = MainViewController()
         _ = mainViewController?.view // call viewDidLoad
         StateServiceManager.sharedInstance.addDelegate(delegate: mainViewController!)
-
+        
         XCTAssertNotNil(mainViewController?.view)
         
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
     override func tearDown() {
@@ -50,21 +49,99 @@ class MainController_UITests: XCTestCase {
         XCTAssertNotNil(mainViewController?.currentViewController)
         XCTAssertTrue(mainViewController!.currentViewController!.isKind(of: SchedulingPickupViewController.self))
         
-        // change state to Volvo Pickup
-        StateServiceManager.sharedInstance.updateState(state: ServiceState.pickupScheduled)
-        XCTAssertNotNil(mainViewController?.currentViewController)
-        XCTAssertTrue(mainViewController!.currentViewController!.isKind(of: ScheduledPickupViewController.self))
+        // check if the dealershipView is here
+        let dealershipView = app.otherElements["dealershipView"]
+        XCTAssertTrue(dealershipView.exists)
         
-        // this will always timeout
-        let predicate = NSPredicate(format: "rawValue == \(ServiceState.pickupDriverInRoute.rawValue)")
-        let expectation = XCTNSPredicateExpectation(predicate: predicate, object: StateServiceManager.sharedInstance.getState())
+        //  and tap on it
+        dealershipView.tap()
+        sleep(1)
         
-        // don't check result as it's timeout
-        let result = XCTWaiter().wait(for: [expectation], timeout: 10)
+        // check that dealershipModal is showing
+        let dealershipModal = app.otherElements["dealershipVC"]
+        XCTAssertTrue(dealershipModal.exists)
         
-        // check state
-        XCTAssertTrue(StateServiceManager.sharedInstance.getState() == ServiceState.pickupDriverInRoute)
+        let groupedLabelOne = app.otherElements["groupedLabel1"]
+        XCTAssertTrue(groupedLabelOne.exists)
+        sleep(1)
+        
+        var bottomButton = app.buttons["bottomButton"]
+        XCTAssertTrue(bottomButton.exists)
+        bottomButton.tap()
+        
+        sleep(1)
+
+        let rightButton = app.buttons["rightButton"]
+        XCTAssertTrue(rightButton.exists)
+        rightButton.tap()
+        sleep(1)
+
+        // show CalendarView
+        let dateModal = app.otherElements["dateModal"]
+        XCTAssertTrue(dateModal.exists)
+        
+        // go to next
+        bottomButton = app.buttons["bottomButton"]
+        XCTAssertTrue(bottomButton.exists)
+        bottomButton.tap()
+        
+        sleep(1)
+        
+        // show LocationView
+        let locationVC = app.otherElements["locationVC"]
+        XCTAssertTrue(locationVC.exists)
+        
+        // enter new Location
+        let locationTextField = app.textFields["newLocationTextField.textField"]
+        XCTAssertTrue(locationTextField.exists)
+        locationTextField.tap()
+        sleep(1)
+        locationTextField.typeText("535 Mission St, San Francisco, CA")
+        
+        sleep(1)
+        
+        let locationAddButton = app.staticTexts["newLocationTextField.rightLabel"]
+        XCTAssertTrue(locationAddButton.exists)
+        locationAddButton.tap()
+        
+        // go to next
+        bottomButton = app.buttons["bottomButton"]
+        XCTAssertTrue(bottomButton.exists)
+        bottomButton.tap()
+        
+        sleep(1)
+
+        print(app.debugDescription)
         
     }
     
+    func waitForElementToAppear(_ element: XCUIElement, timeout: TimeInterval) -> Bool {
+        let predicate = NSPredicate(format: "exists == true")
+        let expect = expectation(for: predicate, evaluatedWith: element,
+                                      handler: nil)
+        
+        let result = XCTWaiter().wait(for: [expect], timeout: timeout)
+        return result == .completed
+    }
+    
+    func tapElementAndWaitForKeyboardToAppear(element: XCUIElement) {
+        let keyboard = XCUIApplication().keyboards.element
+        while (true) {
+            element.tap()
+            if keyboard.exists {
+                break;
+            }
+            RunLoop.current.run(until: Date(timeIntervalSinceNow: 0.5))
+        }
+    }
+    
+    /*
+    func waitForElementToAppear(_ element: XCUIElement, timeout: TimeInterval) -> Bool {
+        let expectation = XCTKVOExpectation(keyPath: "exists", object: element,
+                                            expectedValue: true)
+        
+        let result = XCTWaiter().wait(for: [expectation], timeout: timeout)
+        return result == .completed
+    }
+ */
 }

@@ -78,6 +78,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         }
         
         if let currentViewController = currentViewController, changeView {
+            currentViewController.view.accessibilityIdentifier = "currentViewController"
             currentViewController.childViewDelegate = self
             if let view = currentViewController.view {
                 view.removeFromSuperview()
