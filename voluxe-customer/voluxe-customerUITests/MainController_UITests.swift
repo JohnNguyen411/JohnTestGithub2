@@ -104,15 +104,31 @@ class MainController_UITests: XCTestCase {
         XCTAssertTrue(locationAddButton.exists)
         locationAddButton.tap()
         
+        sleep(1)
+
         // go to next
         bottomButton = app.buttons["bottomButton"]
         XCTAssertTrue(bottomButton.exists)
+        
+        bottomButton.tap()
+        
+        sleep(1)
+        
+        let loanerVC = app.otherElements["loanerVC"]
+        XCTAssertTrue(loanerVC.exists)
+
         bottomButton.tap()
         
         sleep(1)
 
-        print(app.debugDescription)
+        // confirm reservation
+        let confirmButton = app.buttons["confirmButton"]
+        XCTAssertTrue(confirmButton.exists)
+        confirmButton.tap()
         
+
+        sleep(10)
+
     }
     
     func waitForElementToAppear(_ element: XCUIElement, timeout: TimeInterval) -> Bool {
