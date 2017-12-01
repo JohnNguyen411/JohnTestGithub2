@@ -43,7 +43,12 @@ class MainController_UITests: XCTestCase {
         super.tearDown()
     }
     
-    func testStates() {
+    func testPickupDelivery() {
+        internalTestSchedulePickup()
+        internalTestPickup()
+    }
+    
+    func internalTestSchedulePickup() {
         // check state is Idle
         XCTAssertTrue(StateServiceManager.sharedInstance.getState() == ServiceState.idle || StateServiceManager.sharedInstance.getState() == ServiceState.needService)
         XCTAssertNotNil(mainViewController?.currentViewController)
@@ -126,7 +131,18 @@ class MainController_UITests: XCTestCase {
         XCTAssertTrue(confirmButton.exists)
         confirmButton.tap()
         
-
+        sleep(1)
+    }
+    
+    func internalTestPickup() {
+        let testElement = app.otherElements["testView"]
+        let appeared = waitForElementToAppear(testElement, timeout: 10)
+        XCTAssertTrue(appeared)
+        sleep(2)
+        
+        let stepview3 = app.otherElements["stepview3"]
+        let stepview3Appeared = waitForElementToAppear(stepview3, timeout: 99)
+        XCTAssertTrue(stepview3Appeared)
         sleep(10)
 
     }

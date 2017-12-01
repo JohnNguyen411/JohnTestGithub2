@@ -40,7 +40,7 @@ class ScheduledViewController: ChildViewController {
     var mockDelay = 4.0
     
     // UITest
-    let testView = UIView(frame: .zero)
+    let testView = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
     
     private let googleDirectionAPI = GoogleDirectionAPI()
     
@@ -165,6 +165,11 @@ class ScheduledViewController: ChildViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + mockDelay, execute: {
                 if (self.testView.superview == nil) {
                     self.view.addSubview(self.testView)
+                    self.testView.snp.makeConstraints { make in
+                        make.left.right.equalToSuperview()
+                        make.height.equalTo(1)
+                        make.bottom.equalTo(self.timeWindowView.snp.top)
+                    }
                 }
                 self.newDriver(driver: ScheduledViewController.mockDriver)
                 self.newDriverLocation(location: driverLocation)
@@ -176,6 +181,7 @@ class ScheduledViewController: ChildViewController {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + mockDelay, execute: {
+
             if StateServiceManager.sharedInstance.isPickup() {
                 StateServiceManager.sharedInstance.updateState(state: .pickupDriverDrivingToDealership)
             } else {

@@ -60,9 +60,15 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
                 currentViewController = schedulingPickupViewController
             }
             
-        } else if serviceState == .pickupScheduled {
-            let scheduledPickupViewController = ScheduledPickupViewController()
-            currentViewController = scheduledPickupViewController
+        } else if serviceState.rawValue >= ServiceState.pickupScheduled.rawValue && serviceState.rawValue <= ServiceState.pickupDriverArrived.rawValue {
+            if currentViewController != nil && (currentViewController?.isKind(of: ScheduledPickupViewController.self))! {
+                currentViewController?.stateDidChange(state: serviceState)
+                changeView = false
+            } else {
+                let scheduledPickupViewController = ScheduledPickupViewController()
+                currentViewController = scheduledPickupViewController
+            }
+            
         } else if serviceState == .servicing || serviceState == .serviceCompleted {
             
             if currentViewController != nil && (currentViewController?.isKind(of: SchedulingDropoffViewController.self))! {
@@ -76,7 +82,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             let scheduledDeliveryViewController = ScheduledDropoffViewController()
             currentViewController = scheduledDeliveryViewController
         }
-        
+    
         if let currentViewController = currentViewController, changeView {
             currentViewController.view.accessibilityIdentifier = "currentViewController"
             currentViewController.childViewDelegate = self
