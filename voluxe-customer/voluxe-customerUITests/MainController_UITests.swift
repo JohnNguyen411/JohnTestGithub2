@@ -47,6 +47,8 @@ class MainController_UITests: XCTestCase {
         internalTestSchedulePickup()
         internalTestPickup()
         internalTestDrivingToDealership()
+        internalTestServicing()
+        internalTestScheduleDropoff()
     }
     
     func internalTestSchedulePickup() {
@@ -162,16 +164,12 @@ class MainController_UITests: XCTestCase {
     
     func internalTestDrivingToDealership() {
         /*
-         
-         case pickupDriverDrivingToDealership = 24
-         case pickupDriverAtDealership = 25
          case servicing = 30
          case serviceCompleted = 40
          case deliveryScheduled = 50
          case deliveryInRoute = 51
          case deliveryNearby = 52
          case deliveryArrived = 53
-         
          */
         
         let drivingToDealership = app.staticTexts["schedulingTestView\(ServiceState.pickupDriverDrivingToDealership)"]
@@ -187,6 +185,83 @@ class MainController_UITests: XCTestCase {
         XCTAssertTrue(okButtonAppeared)
         sleep(1)
         alerOkButton.tap()        
+    }
+    
+    func internalTestServicing() {
+        
+        let servicing = app.staticTexts["schedulingTestView\(ServiceState.servicing)"]
+        let servicingAppeared = waitForElementToAppear(servicing, timeout: 20)
+        XCTAssertTrue(servicingAppeared)
+        
+        // check if the dealershipView is here
+        let dealershipView = app.otherElements["dealershipView"]
+        XCTAssertTrue(dealershipView.exists)
+        
+        // make sure confirm button not here
+        var rightButton = app.buttons["rightButton"]
+        XCTAssertFalse(rightButton.exists)
+        
+        sleep(1)
+        
+        let serviceCompleted = app.staticTexts["schedulingTestView\(ServiceState.serviceCompleted)"]
+        let servicedAppeared = waitForElementToAppear(serviceCompleted, timeout: 20)
+        XCTAssertTrue(servicedAppeared)
+        
+        sleep(1)
+        
+        // make sure Volvo Delivery button appeared
+        rightButton = app.buttons["rightButton"]
+        XCTAssertTrue(rightButton.exists)
+        rightButton.tap()
+        
+        sleep(1)
+    }
+    
+    func internalTestScheduleDropoff() {
+        /*
+         case deliveryScheduled = 50
+         case deliveryInRoute = 51
+         case deliveryNearby = 52
+         case deliveryArrived = 53
+         */
+        
+        // show CalendarView
+        let dateModal = app.otherElements["dateModal"]
+        XCTAssertTrue(dateModal.exists)
+        
+        // go to next
+        var bottomButton = app.buttons["bottomButton"]
+        XCTAssertTrue(bottomButton.exists)
+        bottomButton.tap()
+        
+        sleep(1)
+        
+        // show LocationView
+        let locationVC = app.otherElements["locationVC"]
+        XCTAssertTrue(locationVC.exists)
+        
+        // enter new Location
+        let locationTextField = app.textFields["newLocationTextField.textField"]
+        XCTAssertTrue(locationTextField.exists)
+        locationTextField.tap()
+        sleep(1)
+        locationTextField.typeText("535 Mission St, San Francisco, CA")
+        
+        sleep(1)
+        
+        let locationAddButton = app.staticTexts["newLocationTextField.rightLabel"]
+        XCTAssertTrue(locationAddButton.exists)
+        locationAddButton.tap()
+        
+        sleep(1)
+        
+        // go to next
+        bottomButton = app.buttons["bottomButton"]
+        XCTAssertTrue(bottomButton.exists)
+        
+        bottomButton.tap()
+        
+        
     }
     
     func waitForElementToAppear(_ element: XCUIElement, timeout: TimeInterval) -> Bool {
