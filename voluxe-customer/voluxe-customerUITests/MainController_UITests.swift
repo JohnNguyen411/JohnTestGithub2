@@ -43,12 +43,13 @@ class MainController_UITests: XCTestCase {
         super.tearDown()
     }
     
-    func testPickupDelivery() {
+        func testPickupDelivery() {
         internalTestSchedulePickup()
         internalTestPickup()
         internalTestDrivingToDealership()
         internalTestServicing()
         internalTestScheduleDropoff()
+        internalTestDropOff()
     }
     
     func internalTestSchedulePickup() {
@@ -163,14 +164,6 @@ class MainController_UITests: XCTestCase {
     
     
     func internalTestDrivingToDealership() {
-        /*
-         case servicing = 30
-         case serviceCompleted = 40
-         case deliveryScheduled = 50
-         case deliveryInRoute = 51
-         case deliveryNearby = 52
-         case deliveryArrived = 53
-         */
         
         let drivingToDealership = app.staticTexts["schedulingTestView\(ServiceState.pickupDriverDrivingToDealership)"]
         let drivingToDealershipAppeared = waitForElementToAppear(drivingToDealership, timeout: 20)
@@ -218,12 +211,6 @@ class MainController_UITests: XCTestCase {
     }
     
     func internalTestScheduleDropoff() {
-        /*
-         case deliveryScheduled = 50
-         case deliveryInRoute = 51
-         case deliveryNearby = 52
-         case deliveryArrived = 53
-         */
         
         // show CalendarView
         let dateModal = app.otherElements["dateModal"]
@@ -261,7 +248,48 @@ class MainController_UITests: XCTestCase {
         
         bottomButton.tap()
         
+        sleep(1)
+
+        // confirm reservation
+        let confirmButton = app.buttons["confirmButton"]
         
+        XCTAssertTrue(confirmButton.exists)
+        confirmButton.tap() // Test Fail here, try & take pic
+        
+        sleep(1)
+        
+    }
+    
+    func internalTestDropOff() {
+        
+        /*
+         case deliveryScheduled = 50
+         case deliveryInRoute = 51
+         case deliveryNearby = 52
+         case deliveryArrived = 53
+         */
+        
+        let testElement = app.otherElements["testView"]
+        let appeared = waitForElementToAppear(testElement, timeout: 10)
+        XCTAssertTrue(appeared)
+        
+        let stepview0 = app.otherElements["stepview0"]
+        let stepview0Appeared = waitForElementToAppear(stepview0, timeout: 5)
+        XCTAssertTrue(stepview0Appeared)
+        
+        let stepview1 = app.otherElements["stepview1"]
+        let stepview1Appeared = waitForElementToAppear(stepview1, timeout: 20)
+        XCTAssertTrue(stepview1Appeared)
+        
+        let stepview2 = app.otherElements["stepview2"]
+        let stepview2Appeared = waitForElementToAppear(stepview2, timeout: 50)
+        XCTAssertTrue(stepview2Appeared)
+        
+        let stepview3 = app.otherElements["stepview3"]
+        let stepview3Appeared = waitForElementToAppear(stepview3, timeout: 20)
+        XCTAssertTrue(stepview3Appeared)
+        
+        sleep(1)
     }
     
     func waitForElementToAppear(_ element: XCUIElement, timeout: TimeInterval) -> Bool {

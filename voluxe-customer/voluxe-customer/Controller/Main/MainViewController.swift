@@ -16,7 +16,8 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     
     static var navigationBarHeight: CGFloat = 0
     var currentViewController: ChildViewController?
-
+    var previousView: UIView?
+    
     override func viewDidLoad() {
         StateServiceManager.sharedInstance.addDelegate(delegate: self)
         super.viewDidLoad()
@@ -43,6 +44,8 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         if state == serviceState {
             return
         }
+        
+        
         
         setTitle(title: getTitleForState(state: state))
         
@@ -78,19 +81,26 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
                 let schedulingDropoffViewController = SchedulingDropoffViewController(state : serviceState)
                 currentViewController = schedulingDropoffViewController
             }
-        } else if serviceState == .deliveryScheduled {
-            let scheduledDeliveryViewController = ScheduledDropoffViewController()
-            currentViewController = scheduledDeliveryViewController
+        } else if serviceState.rawValue >= ServiceState.deliveryScheduled.rawValue && serviceState.rawValue <= ServiceState.deliveryArrived.rawValue {
+            if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
+                currentViewController?.stateDidChange(state: serviceState)
+                changeView = false
+            } else {
+                let scheduledDeliveryViewController = ScheduledDropoffViewController()
+                currentViewController = scheduledDeliveryViewController
+            }
+            
         }
     
         if let currentViewController = currentViewController, changeView {
             currentViewController.view.accessibilityIdentifier = "currentViewController"
             currentViewController.childViewDelegate = self
-            if let view = currentViewController.view {
+            if let view = previousView {
                 view.removeFromSuperview()
             }
             
             if let view = currentViewController.view {
+                previousView = view
                 self.view.addSubview(view)
                 
                 view.snp.makeConstraints { make in
