@@ -7,6 +7,7 @@
 //
 
 import XCTest
+@testable import voluxe_customer
 
 class MainController_UITests: XCTestCase {
     
