@@ -18,6 +18,7 @@ class MainController_UITests: XCTestCase {
         super.setUp()
         
         app = XCUIApplication()
+        app.launchArguments = ["testMode"]
         app.launch()
         
         // Init GMSServices
@@ -170,22 +171,9 @@ class MainController_UITests: XCTestCase {
         let drivingToDealershipAppeared = waitForElementToAppear(drivingToDealership, timeout: 20)
         XCTAssertTrue(drivingToDealershipAppeared)
         
-        let volvoPickupAlert = app.alerts["Volvo Pickup"]
-        let alertAppeared = waitForElementToAppear(volvoPickupAlert, timeout: 20)
-        XCTAssertTrue(alertAppeared)
-        let alertHandler = addUIInterruptionMonitor(withDescription: "Volvo Pickup") {
-            element in
-            do {
-                let button = element.buttons["okAction_AID"]
-                if button.exists {
-                    button.tap()
-                }
-            }
-            return true
-        }
-        
-        app.tap()
-        removeUIInterruptionMonitor(alertHandler)
+        let driverAtDealership = app.staticTexts["schedulingTestView\(ServiceState.pickupDriverAtDealership)"]
+        let driverAtDealershipAppeared = waitForElementToAppear(driverAtDealership, timeout: 20)
+        XCTAssertTrue(driverAtDealershipAppeared)
         
     }
     
