@@ -44,7 +44,7 @@ class MainController_UITests: XCTestCase {
         super.tearDown()
     }
     
-        func testPickupDelivery() {
+    func testPickupDelivery() {
         internalTestSchedulePickup()
         internalTestPickup()
         internalTestDrivingToDealership()
@@ -170,15 +170,11 @@ class MainController_UITests: XCTestCase {
         let drivingToDealershipAppeared = waitForElementToAppear(drivingToDealership, timeout: 20)
         XCTAssertTrue(drivingToDealershipAppeared)
         
-        // wait for the popup to appear
-        sleep(1)
-        
         // can't access the AlertView, only the Action button
         let alerOkButton = app.buttons["okAction_AID"]
         let okButtonAppeared = waitForElementToAppear(alerOkButton, timeout: 20)
         XCTAssertTrue(okButtonAppeared)
-        sleep(1)
-        alerOkButton.tap()        
+        alerOkButton.tap()
     }
     
     func internalTestServicing() {
