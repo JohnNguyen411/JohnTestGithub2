@@ -55,32 +55,6 @@ class MainController_UITests: XCTestCase {
         internalTestDropOff()
     }
     
-    func internTestLocationPermissions() {
-        app.tap()
-
-        let locationAlert = app.alerts["Allow “voluxe-customer” to access your location?"]
-        /*
-        if !locationAlert.exists {
-            let alertAppeared = waitForElementToAppear(locationAlert, timeout: 20)
-            XCTAssertTrue(alertAppeared)
-        }
-         */
-        let alertHandler = addUIInterruptionMonitor(withDescription: "Location Permission") {
-            element in
-            do {
-                let button = element.buttons["Always Allow"]
-                if button.exists {
-                    button.tap()
-                }
-            }
-            return true
-        }
-        
-        removeUIInterruptionMonitor(alertHandler)
-        
-        //XCUIApplication().alerts["Allow “voluxe-customer” to access your location?"].buttons["Always Allow"].tap()
-    }
-    
     func internalTestSchedulePickup() {
         // check state is Idle
         XCTAssertTrue(StateServiceManager.sharedInstance.getState() == ServiceState.idle || StateServiceManager.sharedInstance.getState() == ServiceState.needService)
@@ -118,16 +92,29 @@ class MainController_UITests: XCTestCase {
         let dateModal = app.otherElements["dateModal"]
         XCTAssertTrue(dateModal.exists)
         
+        let handler = addUIInterruptionMonitor(withDescription: "Location Dialog") { (alert) -> Bool in
+            let button = alert.buttons["Allow"]
+            if button.exists {
+                button.tap()
+                return true
+            }
+            return false
+        }
+        
         // go to next
         bottomButton = app.buttons["bottomButton"]
         XCTAssertTrue(bottomButton.exists)
         bottomButton.tap()
         
+        app.tap()
+
         sleep(1)
         
         // show LocationView
         let locationVC = app.otherElements["locationVC"]
         XCTAssertTrue(locationVC.exists)
+        
+        removeUIInterruptionMonitor(handler)
         
         // enter new Location
         let locationTextField = app.textFields["newLocationTextField.textField"]

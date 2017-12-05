@@ -66,10 +66,8 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
             })
         })
         //addLocation(location: .YourLocation)
-        if !UIApplication.isRunningTest {
-            locationManager.delegate = self
-            locationManager.startUpdatingLocation()
-        }
+        locationManager.delegate = self
+        locationManager.startUpdatingLocation()
         bottomButton.isEnabled = false
         groupedLabels.delegate = self
     }
@@ -79,10 +77,8 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     }
     
     deinit {
-        if !UIApplication.isRunningTest {
-            locationManager.delegate = nil
-            locationManager.stopUpdatingLocation()
-        }
+        locationManager.delegate = nil
+        locationManager.stopUpdatingLocation()
     }
     
     func addLocation(location: String) {

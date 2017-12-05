@@ -142,8 +142,11 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         let iOS8 = iosVersion >= 8
         
         if iOS8 {
-            locationManager.requestAlwaysAuthorization() // add in plist NSLocationAlwaysUsageDescription
-            //locationManager.requestWhenInUseAuthorization() // add in plist NSLocationWhenInUseUsageDescription
+            if UIApplication.isRunningTest {
+                locationManager.requestWhenInUseAuthorization() // add in plist NSLocationWhenInUseUsageDescription
+            } else {
+                locationManager.requestAlwaysAuthorization() // add in plist NSLocationAlwaysUsageDescription
+            }
         }
         
         startLocationManger()
