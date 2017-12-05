@@ -67,7 +67,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                    StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
                 })
             } else if state == .pickupDriverAtDealership {
-                
+                /*
                 if !UIApplication.isRunningTest {
                     let alert = UIAlertController(title: .VolvoPickup, message: .YourVehicleHasArrived, preferredStyle: UIAlertControllerStyle.alert)
                     let okAction = UIAlertAction(title: (.Ok as String).uppercased(), style: UIAlertActionStyle.default, handler: { (alert: UIAlertAction!) in
@@ -91,6 +91,10 @@ class SchedulingPickupViewController: SchedulingViewController {
                         StateServiceManager.sharedInstance.updateState(state: .servicing)
                     })
                 }
+                 */
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                    StateServiceManager.sharedInstance.updateState(state: .servicing)
+                })
                 
             }
         } else {
