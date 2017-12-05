@@ -63,7 +63,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             confirmButton.isHidden = true
             
             if state == .pickupDriverDrivingToDealership {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                    StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
                 })
             } else if state == .pickupDriverAtDealership {
@@ -92,7 +92,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     })
                 }
                  */
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                     StateServiceManager.sharedInstance.updateState(state: .servicing)
                 })
                 
