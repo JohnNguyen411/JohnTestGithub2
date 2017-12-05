@@ -48,10 +48,10 @@ class MainController_UITests: XCTestCase {
     func testPickupDelivery() {
         internalTestSchedulePickup()
         internalTestPickup()
-        internalTestDrivingToDealership()
-        internalTestServicing()
-        internalTestScheduleDropoff()
-        internalTestDropOff()
+       // internalTestDrivingToDealership()
+       // internalTestServicing()
+       // internalTestScheduleDropoff()
+       // internalTestDropOff()
     }
     
     func internalTestSchedulePickup() {
