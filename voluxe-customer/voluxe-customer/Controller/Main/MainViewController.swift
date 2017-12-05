@@ -45,8 +45,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             return
         }
         
-        
-        
         setTitle(title: getTitleForState(state: state))
         
         var changeView = true

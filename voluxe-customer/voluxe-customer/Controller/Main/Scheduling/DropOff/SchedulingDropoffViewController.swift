@@ -79,7 +79,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
             leftButton.isHidden = true
             rightButton.isHidden = true
             
-            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
                 self.stateDidChange(state: .serviceCompleted)
             })
         }

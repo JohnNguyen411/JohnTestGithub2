@@ -63,40 +63,31 @@ class SchedulingPickupViewController: SchedulingViewController {
             confirmButton.isHidden = true
             
             if state == .pickupDriverDrivingToDealership {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
                    StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
                 })
             } else if state == .pickupDriverAtDealership {
-                /*
-                if !UIApplication.isRunningTest {
-                    let alert = UIAlertController(title: .VolvoPickup, message: .YourVehicleHasArrived, preferredStyle: UIAlertControllerStyle.alert)
-                    let okAction = UIAlertAction(title: (.Ok as String).uppercased(), style: UIAlertActionStyle.default, handler: { (alert: UIAlertAction!) in
-                        // show being serviced
-                        DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                            StateServiceManager.sharedInstance.updateState(state: .servicing)
-                        })
-                    })
-                    
-                    alert.addAction(okAction)
-                    
-                    self.present(alert, animated: true, completion: {
-                        // add accessibility if possible
-                        if let alertButton = okAction.value(forKey: "__representer") {
-                            let view = alertButton as? UIView
-                            view?.accessibilityIdentifier = "okAction_AID"
-                        }
-                    })
-                } else {
+                
+                let alert = UIAlertController(title: .VolvoPickup, message: .YourVehicleHasArrived, preferredStyle: UIAlertControllerStyle.alert)
+                let okAction = UIAlertAction(title: (.Ok as String).uppercased(), style: UIAlertActionStyle.default, handler: { (alert: UIAlertAction!) in
+                    // show being serviced
                     DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
                         StateServiceManager.sharedInstance.updateState(state: .servicing)
                     })
-                }
-                 */
-                DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-                    StateServiceManager.sharedInstance.updateState(state: .servicing)
+                    
                 })
                 
+                alert.addAction(okAction)
+                
+                self.present(alert, animated: true, completion: {
+                    // add accessibility if possible
+                    if let alertButton = okAction.value(forKey: "__representer") {
+                        let view = alertButton as? UIView
+                        view?.accessibilityIdentifier = "okAction_AID"
+                    }
+                })
             }
+            
         } else {
             if self.checkupLabel.isHidden {
                 self.checkupLabel.isHidden = false

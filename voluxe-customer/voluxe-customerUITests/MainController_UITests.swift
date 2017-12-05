@@ -18,6 +18,7 @@ class MainController_UITests: XCTestCase {
         super.setUp()
         
         app = XCUIApplication()
+
         app.launchArguments = ["testMode"]
         app.launch()
         
@@ -48,10 +49,36 @@ class MainController_UITests: XCTestCase {
     func testPickupDelivery() {
         internalTestSchedulePickup()
         internalTestPickup()
-       // internalTestDrivingToDealership()
-       // internalTestServicing()
-       // internalTestScheduleDropoff()
-       // internalTestDropOff()
+        internalTestDrivingToDealership()
+        internalTestServicing()
+        internalTestScheduleDropoff()
+        internalTestDropOff()
+    }
+    
+    func internTestLocationPermissions() {
+        app.tap()
+
+        let locationAlert = app.alerts["Allow “voluxe-customer” to access your location?"]
+        /*
+        if !locationAlert.exists {
+            let alertAppeared = waitForElementToAppear(locationAlert, timeout: 20)
+            XCTAssertTrue(alertAppeared)
+        }
+         */
+        let alertHandler = addUIInterruptionMonitor(withDescription: "Location Permission") {
+            element in
+            do {
+                let button = element.buttons["Always Allow"]
+                if button.exists {
+                    button.tap()
+                }
+            }
+            return true
+        }
+        
+        removeUIInterruptionMonitor(alertHandler)
+        
+        //XCUIApplication().alerts["Allow “voluxe-customer” to access your location?"].buttons["Always Allow"].tap()
     }
     
     func internalTestSchedulePickup() {
@@ -171,10 +198,28 @@ class MainController_UITests: XCTestCase {
         let drivingToDealershipAppeared = waitForElementToAppear(drivingToDealership, timeout: 20)
         XCTAssertTrue(drivingToDealershipAppeared)
         
+        /*
         let driverAtDealership = app.staticTexts["schedulingTestView\(ServiceState.pickupDriverAtDealership)"]
         let driverAtDealershipAppeared = waitForElementToAppear(driverAtDealership, timeout: 20)
         XCTAssertTrue(driverAtDealershipAppeared)
+        */
         
+        let volvoPickupAlert = app.alerts["Volvo Pickup"]
+        let alertAppeared = waitForElementToAppear(volvoPickupAlert, timeout: 20)
+        XCTAssertTrue(alertAppeared)
+        let alertHandler = addUIInterruptionMonitor(withDescription: "Volvo Pickup") {
+            element in
+            do {
+                let button = element.buttons["okAction_AID"]
+                if button.exists {
+                    button.tap()
+                }
+            }
+            return true
+        }
+        
+        app.tap()
+        removeUIInterruptionMonitor(alertHandler)
     }
     
     func internalTestServicing() {

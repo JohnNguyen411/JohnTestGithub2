@@ -18,5 +18,25 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>GoogleMapsAPIKey</key>
+	<string>AIzaSyB3qUmbLV03IBIM7ie-K8-ZB6LdhyRyVTQ</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>VolvoSansPro-Light.ttf</string>
+		<string>VolvoSerifPro-Italic.ttf</string>
+		<string>VolvoSansPro-Regular.ttf</string>
+		<string>VolvoSansPro-Medium.ttf</string>
+		<string>VolvoSanLigBol.ttf</string>
+		<string>VolvoSanLigReg.ttf</string>
+		<string>VolvoSansPro-Bold.ttf</string>
+		<string>Montserrat-Regular.ttf</string>
+		<string>SourceSansPro-Regular.ttf</string>
+	</array>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
 </dict>
 </plist>
