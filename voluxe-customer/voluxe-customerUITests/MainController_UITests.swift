@@ -170,11 +170,23 @@ class MainController_UITests: XCTestCase {
         let drivingToDealershipAppeared = waitForElementToAppear(drivingToDealership, timeout: 20)
         XCTAssertTrue(drivingToDealershipAppeared)
         
-        // can't access the AlertView, only the Action button
-        let alerOkButton = app.buttons["okAction_AID"]
-        let okButtonAppeared = waitForElementToAppear(alerOkButton, timeout: 20)
-        XCTAssertTrue(okButtonAppeared)
-        alerOkButton.tap()
+        let volvoPickupAlert = app.alerts["Volvo Pickup"]
+        let alertAppeared = waitForElementToAppear(volvoPickupAlert, timeout: 20)
+        XCTAssertTrue(alertAppeared)
+        let alertHandler = addUIInterruptionMonitor(withDescription: "Volvo Pickup") {
+            element in
+            do {
+                let button = element.buttons["okAction_AID"]
+                if button.exists {
+                    button.tap()
+                }
+            }
+            return true
+        }
+        
+        app.tap()
+        removeUIInterruptionMonitor(alertHandler)
+        
     }
     
     func internalTestServicing() {
