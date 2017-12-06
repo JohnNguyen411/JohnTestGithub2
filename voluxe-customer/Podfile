@@ -22,6 +22,7 @@ def import_pods
     pod 'GoogleMaps', '~> 2.5.0'
     pod 'GooglePlaces', '~> 2.5.0'
     pod 'SDWebImage', '~> 4.0'
+    pod 'KeychainAccess', '~> 3.1.0'
 end
 
 target 'voluxe-customer' do
