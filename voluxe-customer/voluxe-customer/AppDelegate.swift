@@ -21,12 +21,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var navigationController: UINavigationController?
     var slideMenuController: SlideMenuController?
 
+    private static var navigationBarHeight: CGFloat = 0
 
     static func getRunConfig() -> String {
         //swiftlint:disable:next force_cast
         let config = Bundle.main.object(forInfoDictionaryKey: "com.volvocars.hse.environment") as! String
         
         return config
+    }
+    
+    static func getNavigationBarHeight() -> CGFloat {
+        return AppDelegate.navigationBarHeight
     }
     
     private var _appToken: String?
@@ -71,6 +76,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         slideMenuController = menuController
         navigationController = uiNavigationController
+        
+        if let navigationController = self.navigationController {
+            AppDelegate.navigationBarHeight = navigationController.navigationBar.frame.size.height
+        }
         
         slideMenuController?.view.accessibilityIdentifier = "slideMenuController"
         

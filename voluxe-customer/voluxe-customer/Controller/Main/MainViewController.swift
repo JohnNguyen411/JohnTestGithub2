@@ -14,7 +14,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     
     private var serviceState = ServiceState.noninit
     
-    static var navigationBarHeight: CGFloat = 0
     var currentViewController: ChildViewController?
     var previousView: UIView?
     
@@ -22,9 +21,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         StateServiceManager.sharedInstance.addDelegate(delegate: self)
         super.viewDidLoad()
         setNavigationBarItem()
-        if let navigationController = self.navigationController {
-            MainViewController.navigationBarHeight = navigationController.navigationBar.frame.size.height
-        }
     }
     
     deinit {
@@ -134,10 +130,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     
     func setTitleFromChild(title: String) {
         setTitle(title: title)
-    }
-    
-    static func getNavigationBarHeight() -> CGFloat {
-        return MainViewController.navigationBarHeight
     }
     
     override func keyboardWillAppear(_ notification: Notification) {

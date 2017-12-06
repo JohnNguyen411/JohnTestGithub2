@@ -272,7 +272,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         let widthPerc = 0.95
         let width = ModalSize.fluid(percentage: Float(widthPerc))
         
-        let viewH = self.view.frame.height + MainViewController.getNavigationBarHeight() + statusBarHeight() + presentrCornerRadius
+        let viewH = self.view.frame.height + AppDelegate.getNavigationBarHeight() + statusBarHeight() + presentrCornerRadius
         let viewW = Double(self.view.frame.width)
         
         let percH = heightInPixels / viewH
