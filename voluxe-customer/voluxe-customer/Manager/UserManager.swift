@@ -13,9 +13,9 @@ final class UserManager {
 
     static let sharedInstance = UserManager()
     
-    let serviceId: String
-    var accessToken: String?
-    let keychain: Keychain
+    private let serviceId: String
+    private var accessToken: String?
+    private let keychain: Keychain
     
     init() {
         serviceId = Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as! String
@@ -30,6 +30,10 @@ final class UserManager {
     private func saveAccessToken(token: String?) {
         keychain["token"] = token
         accessToken = token
+    }
+    
+    public func getAccessToken() -> String? {
+        return accessToken
     }
     
     public func loginSuccess(token: String) {

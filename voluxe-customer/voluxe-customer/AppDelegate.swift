@@ -83,13 +83,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
  */
         
-        //createMenuView()
+        if UserManager.sharedInstance.getAccessToken() != nil {
+            let homeViewController = FTUEViewController()
+            window!.rootViewController = homeViewController
+            window!.makeKeyAndVisible()
+        } else {
+            createMenuView()
+        }
         
-        let homeViewController = FTUEViewController()
-        window!.rootViewController = homeViewController
-        window!.makeKeyAndVisible()
-        
-    
         return true
     }
 

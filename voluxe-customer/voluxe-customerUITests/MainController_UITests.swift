@@ -17,6 +17,9 @@ class MainController_UITests: XCTestCase {
     override func setUp() {
         super.setUp()
         
+        // Add Fake Access Token
+        UserManager.sharedInstance.loginSuccess(token: "FAKE_ACCESS_TOKEN")
+        
         app = XCUIApplication()
 
         app.launchArguments = ["testMode"]
