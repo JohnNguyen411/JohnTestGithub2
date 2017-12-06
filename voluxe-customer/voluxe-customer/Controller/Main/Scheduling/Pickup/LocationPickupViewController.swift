@@ -57,9 +57,6 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                         self.addLocation(location: formattedAddress)
                         self.newLocationTextField.textField.resignFirstResponder()
                         self.newLocationTextField.textField.text = ""
-                        if let pickupLocationDelegate = self.pickupLocationDelegate {
-                            pickupLocationDelegate.onLocationAdded(newSize: self.groupedLabels.items.count)
-                        }
                     }
                 }
                 
@@ -90,6 +87,10 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         
         groupedLabels.snp.updateConstraints{ make in
             make.height.equalTo(groupedLabels.items.count * VLSelectableLabel.height)
+        }
+        
+        if let pickupLocationDelegate = self.pickupLocationDelegate {
+            pickupLocationDelegate.onLocationAdded(newSize: self.groupedLabels.items.count)
         }
     }
     
