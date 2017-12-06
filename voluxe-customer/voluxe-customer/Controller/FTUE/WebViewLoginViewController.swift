@@ -19,6 +19,11 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
         setupViews()
         
         webview.delegate = self
+        webview.scalesPageToFit = true
+        webview.autoresizesSubviews = true
+        webview.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        
+        // final redirect: /v1/customers/login/callback
     }
     
     func setupViews() {
@@ -26,6 +31,12 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
         webview.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        let url = URL(string: "\(Config.sharedInstance.apiEndpoint())/v1/customers/login")!
+        webview.loadRequest(URLRequest(url: url))
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
@@ -37,6 +48,5 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
     }
     
     func didSelectPage() {
-        
     }
 }
