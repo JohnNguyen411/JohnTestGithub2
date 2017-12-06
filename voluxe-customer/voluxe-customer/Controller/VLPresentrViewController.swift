@@ -62,6 +62,8 @@ class VLPresentrViewController: UIViewController {
             self.onButtonClick()
         }
         
+        bottomButton.accessibilityIdentifier = "bottomButton"
+
         self.view.backgroundColor = .white
         
         self.view.addSubview(containerView)

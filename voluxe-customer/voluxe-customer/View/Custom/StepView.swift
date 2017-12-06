@@ -17,7 +17,8 @@ class StepView: UIView {
     
     let icon = UIImageView(frame: .zero)
     let line = UIImageView(frame: .zero)
-    
+    let testView = UIView(frame: .zero)
+
     let titleView: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
@@ -26,11 +27,11 @@ class StepView: UIView {
         return titleLabel
     }()
 
-    init(step: Step) {
+    init(step: Step, index: Int) {
         self.step = step
         super.init(frame: .zero)
         setupViews()
-        updateStep(step: step)
+        updateStep(step: step, index: index)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -66,22 +67,32 @@ class StepView: UIView {
         }
     }
     
-    func updateStep(step: Step) {
+    func updateStep(step: Step, index: Int) {
         self.step = step
         
         titleView.text = step.text
         if step.state == .todo {
-            animateImageChange(image: UIImage(named: "padded_dot")!)
+            animateImageChange(image: UIImage(named: "padded_dot"))
         } else {
-            animateImageChange(image: UIImage(named: "checked_circle")!)
+            animateImageChange(image: UIImage(named: "checked_circle"))
+            if testView.superview == nil {
+                testView.accessibilityIdentifier = "stepview\(index)"
+                self.addSubview(testView)
+                testView.snp.makeConstraints { make in
+                    make.top.right.equalToSuperview()
+                    make.width.height.equalTo(1)
+                }
+            }
         }
     }
     
-    func animateImageChange(image: UIImage) {
-        UIView.transition(with: self.icon,
-                          duration:0.5,
-                          options: .transitionCrossDissolve,
-                          animations: { self.icon.image = image },
-                          completion: nil)
+    func animateImageChange(image: UIImage?) {
+        if let image = image {
+            UIView.transition(with: self.icon,
+                              duration:0.5,
+                              options: .transitionCrossDissolve,
+                              animations: { self.icon.image = image },
+                              completion: nil)
+        }
     }
 }

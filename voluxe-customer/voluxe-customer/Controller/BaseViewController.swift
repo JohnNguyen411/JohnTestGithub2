@@ -86,7 +86,9 @@ class BaseViewController: UIViewController {
 extension UIViewController {
     
     func setNavigationBarItem() {
-        self.addLeftBarButtonWithImage(UIImage(named: "ic_menu_black_24dp")!)
+        if let image = UIImage(named: "ic_menu_black_24dp") {
+            self.addLeftBarButtonWithImage(image)
+        }
         self.slideMenuController()?.removeLeftGestures()
         self.slideMenuController()?.removeRightGestures()
         self.slideMenuController()?.addLeftGestures()

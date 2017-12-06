@@ -17,8 +17,9 @@ class GroupedVerticalStepView: UIView {
     
     init(steps: [Step]) {
         super.init(frame: .zero)
-        steps.forEach { step in
-            addStep(step: step)
+        
+        for (index, step) in steps.enumerated() {
+            addStep(step: step, index: index)
         }
     }
     
@@ -26,9 +27,9 @@ class GroupedVerticalStepView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func addStep(step: Step) {
+    func addStep(step: Step, index: Int) {
         
-        let stepView = StepView(step: step)
+        let stepView = StepView(step: step, index: index)
         addSubview(stepView)
         
         stepView.snp.makeConstraints{ make in
@@ -45,16 +46,11 @@ class GroupedVerticalStepView: UIView {
     }
     
     func updateStep(step: Step) {
-        stepViews.forEach { stepView in
-            if stepView.step.id == step.id {
-                stepView.updateStep(step: step)
-            }
-        }
-        
         var indexInList = 0
-        
-        for (index, element) in steps.enumerated() {
-            if element.id == step.id {
+
+        for (index, stepView) in stepViews.enumerated() {
+            if stepView.step.id == step.id {
+                stepView.updateStep(step: step, index: index)
                 indexInList = index
                 break
             }

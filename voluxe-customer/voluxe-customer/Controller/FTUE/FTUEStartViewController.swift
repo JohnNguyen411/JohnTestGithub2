@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FTUEStartViewController: UIViewController, FTUEProtocol {
+class FTUEStartViewController: FTUEChildViewController, FTUEProtocol {
     
     let text1: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -56,5 +56,7 @@ class FTUEStartViewController: UIViewController, FTUEProtocol {
     }
     
     //MARK: FTUEStartViewController
-    func didSelectPage() {}
+    func didSelectPage() {
+        canGoNext(nextEnabled: true)
+    }
 }

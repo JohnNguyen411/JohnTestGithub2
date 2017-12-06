@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate, FTUEProtocol {
+class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldDelegate, FTUEProtocol {
     
     let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder)
     
@@ -24,12 +24,16 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
     }()
     
     override func viewDidLoad() {
+        
+        codeTextField.accessibilityIdentifier = "codeTextField"
         codeTextField.textField.delegate = self
         super.viewDidLoad()
         codeTextField.textField.keyboardType = .numberPad
         codeTextField.setRightButtonText(rightButtonText: (.ResendCode as String).uppercased(), actionBlock: {
             self.resendCode()
         })
+        
+        codeTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
         setupViews()
     }
@@ -60,6 +64,19 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
         
     }
     
+    func isCodeValid(code: String?) -> Bool {
+        // check code validity
+        return !(codeTextField.textField.text?.isEmpty)!
+    }
+    
+    override func checkTextFieldsValidity() {
+        canGoNext(nextEnabled: isCodeValid(code: codeTextField.textField.text))
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        checkTextFieldsValidity()
+    }
+    
     //MARK: UITextFieldDelegate
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -76,6 +93,7 @@ class FTUEPhoneVerificationViewController: UIViewController, UITextFieldDelegate
     //MARK: FTUEStartViewController
     func didSelectPage() {
         codeTextField.textField.becomeFirstResponder()
+        checkTextFieldsValidity()
     }
     
 

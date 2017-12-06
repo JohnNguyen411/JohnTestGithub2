@@ -11,6 +11,8 @@ import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
 import GoogleMaps
+import BrightFutures
+import Result
 
 class ScheduledViewController: ChildViewController {
     
@@ -34,21 +36,23 @@ class ScheduledViewController: ChildViewController {
     
     // mock
     var states: [ServiceState] = []
-    
     var driverLocations: [CLLocationCoordinate2D] = []
+    var mockDelay = 4.0
     
+    // UITest
+    let testView = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
     
     private let googleDirectionAPI = GoogleDirectionAPI()
     
     var steps: [Step] = []
     private var driver: Driver?
     
-    private var verticalStepView: GroupedVerticalStepView? = nil
-    private let mapVC = MapViewController()
+    var verticalStepView: GroupedVerticalStepView? = nil
+    let mapVC = MapViewController()
     private let mapViewContainer = UIView(frame: .zero)
     private let driverViewContainer = UIView(frame: .zero)
     private let driverIcon: UIImageView
-    private let timeWindowView = TimeWindowView()
+    let timeWindowView = TimeWindowView()
     
     let driverName: UILabel = {
         let titleLabel = UILabel()
@@ -67,6 +71,10 @@ class ScheduledViewController: ChildViewController {
         generateSteps()
         generateDriverLocations()
         verticalStepView = GroupedVerticalStepView(steps: steps)
+        verticalStepView?.accessibilityIdentifier = "verticalStepView"
+        mapVC.view.accessibilityIdentifier = "mapVC.view"
+        timeWindowView.accessibilityIdentifier = "timeWindowView"
+        testView.accessibilityIdentifier = "testView"
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -81,27 +89,7 @@ class ScheduledViewController: ChildViewController {
         super.viewDidLoad()
         
         mapVC.updateRequestLocation(location: ScheduledViewController.officeLocation)
-        
-        var delay = 4.0
-        for (index, driverLocation) in driverLocations.enumerated() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
-                self.newDriver(driver: ScheduledViewController.mockDriver)
-                self.newDriverLocation(location: driverLocation)
-                self.updateState(id: self.states[index], stepState: .done)
-                self.getEta(fromLocation: driverLocation, toLocation: ScheduledViewController.officeLocation)
-            })
-              
-            delay = delay + 4
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
-            if StateServiceManager.sharedInstance.isPickup() {
-                StateServiceManager.sharedInstance.updateState(state: .pickupDriverDrivingToDealership)
-            } else {
-                RequestedServiceManager.sharedInstance.reset()
-                StateServiceManager.sharedInstance.updateState(state: .idle)
-            }
-        })
+        startMockDriving()
     }
     
     override func setupViews() {
@@ -171,6 +159,43 @@ class ScheduledViewController: ChildViewController {
         }
     }
     
+    private func startMockDriving() {
+        
+        for (index, driverLocation) in driverLocations.enumerated() {
+            DispatchQueue.main.asyncAfter(deadline: .now() + mockDelay, execute: {
+                if (self.testView.superview == nil) {
+                    self.view.addSubview(self.testView)
+                    self.testView.snp.makeConstraints { make in
+                        make.left.right.equalToSuperview()
+                        make.height.equalTo(1)
+                        make.bottom.equalTo(self.timeWindowView.snp.top)
+                    }
+                }
+                self.newDriver(driver: ScheduledViewController.mockDriver)
+                self.newDriverLocation(location: driverLocation)
+                StateServiceManager.sharedInstance.updateState(state: self.states[index])
+                self.getEta(fromLocation: driverLocation, toLocation: ScheduledViewController.officeLocation)
+            })
+            
+            mockDelay = mockDelay + 4
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + mockDelay, execute: {
+
+            if StateServiceManager.sharedInstance.isPickup() {
+                StateServiceManager.sharedInstance.updateState(state: .pickupDriverDrivingToDealership)
+            } else {
+                RequestedServiceManager.sharedInstance.reset()
+                StateServiceManager.sharedInstance.updateState(state: .idle)
+            }
+        })
+    }
+    
+    override func stateDidChange(state: ServiceState) {
+        super.stateDidChange(state: state)
+        self.updateState(id: state, stepState: .done)
+    }
+    
     func newDriver(driver: Driver) {
         
         if self.driver == nil || self.driver?.id != driver.id {
@@ -183,7 +208,7 @@ class ScheduledViewController: ChildViewController {
         driverIcon.sd_setImage(with: URL(string: driver.iconUrl!))
     }
     
-    func updateState(id: ServiceState, stepState: StepState) {
+    private func updateState(id: ServiceState, stepState: StepState) {
         for step in steps {
             if step.id == id {
                 step.state = stepState

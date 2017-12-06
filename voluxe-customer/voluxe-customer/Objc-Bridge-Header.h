@@ -9,6 +9,7 @@
 #ifndef Objc_Bridge_Header_h
 #define Objc_Bridge_Header_h
 
+#import <GoogleMaps/GoogleMaps.h>
 #import "FSCalendar.h"
 #import "FSCalendarStickyHeader.h"
 

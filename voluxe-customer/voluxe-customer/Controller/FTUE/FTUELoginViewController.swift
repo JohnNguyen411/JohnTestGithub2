@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FTUELoginViewController: UIViewController, FTUEProtocol {
+class FTUELoginViewController: FTUEChildViewController, FTUEProtocol {
     
     let volvoIdTextField = VLVerticalTextField(title: .VolvoUserId, placeholder: .VolvoUserId_Placeholder)
     let volvoPwdTextField = VLVerticalTextField(title: .VolvoPassword, placeholder: "••••••••")
@@ -18,12 +18,21 @@ class FTUELoginViewController: UIViewController, FTUEProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        volvoIdTextField.accessibilityIdentifier = "volvoIdTextField"
+        volvoPwdTextField.accessibilityIdentifier = "volvoPwdTextField"
+        volvoVINTextField.accessibilityIdentifier = "volvoVINTextField"
+        
         volvoIdTextField.textField.autocorrectionType = .no
         volvoPwdTextField.textField.autocorrectionType = .no
         volvoVINTextField.textField.autocorrectionType = .no
         volvoPwdTextField.textField.isSecureTextEntry = true
         
+        volvoIdTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        volvoPwdTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        volvoVINTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
         setupViews()
+        
     }
     
     func setupViews() {
@@ -51,8 +60,52 @@ class FTUELoginViewController: UIViewController, FTUEProtocol {
         }
     }
     
+    //MARK: Validation methods
+
+    func isVolvoIdValid(volvoId: String?) -> Bool {
+        guard let volvoId = volvoId else {
+            return false
+        }
+        
+        if volvoId.isEmpty {
+            return false
+        }
+        return true
+    }
+    
+    func isPasswordValid(password: String?) -> Bool {
+        guard let password = password else {
+            return false
+        }
+        if password.isEmpty || password.count < 6 {
+            return false
+        }
+        return true
+    }
+    
+    
+    func isVINValid(vin: String?) -> Bool {
+        guard let vin = vin else {
+            return false
+        }
+        if vin.isEmpty {
+            return false
+        }
+        return true
+    }
+    
+    
+    override func checkTextFieldsValidity() {
+        canGoNext(nextEnabled: isVolvoIdValid(volvoId: volvoIdTextField.textField.text) && isPasswordValid(password: volvoPwdTextField.textField.text) && isVINValid(vin: volvoVINTextField.textField.text))
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        checkTextFieldsValidity()
+    }
+    
     //MARK: FTUEStartViewController
     func didSelectPage() {
         volvoIdTextField.textField.becomeFirstResponder()
+        canGoNext(nextEnabled: false)
     }
 }
