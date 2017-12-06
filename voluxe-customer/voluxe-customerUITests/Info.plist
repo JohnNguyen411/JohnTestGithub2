@@ -38,5 +38,7 @@
 	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
 	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
+	<key>Config</key>
+	<string>$(CONFIGURATION)</string>
 </dict>
 </plist>

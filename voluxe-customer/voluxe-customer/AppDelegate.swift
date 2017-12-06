@@ -23,30 +23,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     private static var navigationBarHeight: CGFloat = 0
 
-    static func getRunConfig() -> String {
-        //swiftlint:disable:next force_cast
-        let config = Bundle.main.object(forInfoDictionaryKey: "com.volvocars.hse.environment") as! String
-        
-        return config
-    }
     
     static func getNavigationBarHeight() -> CGFloat {
         return AppDelegate.navigationBarHeight
     }
     
-    private var _appToken: String?
-    var appToken: String? {
-        set(val) {
-            userDefaults.setValue(val, forKey: Constants.AccessTokenKey)
-            _appToken = val
-        }
-        get {
-            if _appToken == nil {
-                _appToken = userDefaults.value(forKey: Constants.AccessTokenKey) as? String
-            }
-            return _appToken
-        }
-    }
     
     fileprivate func createMenuView() {
         
