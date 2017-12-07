@@ -16,6 +16,9 @@ class FTUEFlow_UITests: XCTestCase {
     override func setUp() {
         super.setUp()
         
+        // make sure access token is empty
+        UserManager.sharedInstance.logout()
+        
         flowViewController = FTUEViewController()
         _ = flowViewController?.view // call viewDidLoad
         
@@ -60,11 +63,13 @@ class FTUEFlow_UITests: XCTestCase {
         XCTAssertTrue(currentPosition == 1)
         
         let viewAtIndex = flowViewController.viewAtIndex(viewPager: flowViewController.viewPager, index: currentPosition, view: nil)
-        let controllerAtIndex = flowViewController.controllerAtIndex(index: currentPosition) as! FTUELoginViewController
+        let controllerAtIndex = flowViewController.controllerAtIndex(index: currentPosition) as! FTUEChildViewController
         
         // Check controller match the view
         XCTAssertTrue(viewAtIndex == controllerAtIndex.view)
         
+        // skip as it's a webview
+        /*
         // Check textfields exists
         let app = XCUIApplication()
         let volvoIdView = app.windows.element(matching: .any, identifier: "volvoIdTextField")
@@ -97,6 +102,7 @@ class FTUEFlow_UITests: XCTestCase {
         
         // check that next button is enable when data
         XCTAssertTrue(flowViewController.nextButton.isEnabled)
+         */
         
         // go to next screen
         flowViewController.pressButton(button: flowViewController.nextButton)
