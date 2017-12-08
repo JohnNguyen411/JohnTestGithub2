@@ -18,7 +18,7 @@ class MainController_UITests: XCTestCase {
         super.setUp()
         
         // Add Fake Access Token
-        UserManager.sharedInstance.loginSuccess(token: "FAKE_ACCESS_TOKEN")
+         UserManager.sharedInstance.loginSuccess(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGYzYWQ4LTY4MzgtNGU3NC1iMDY0LTlhODIzMjQ4NDliNiIsImRhdGEiOnsidXNlcl9pZCI6MTIsInVzZXJfdHlwZSI6ImN1c3RvbWVyIn0sImlhdCI6MTUxMjY5NzIwOCwiZXhwIjoxNTE1Mjg5MjA4fQ.-due9Ef2HXKeAbuoO7C9nSwoVjs9qlyBnIf_ZagV19M")
         
         app = XCUIApplication()
 
