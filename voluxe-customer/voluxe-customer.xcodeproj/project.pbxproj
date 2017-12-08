@@ -123,6 +123,9 @@
 		6C3FB2BC1FA29A1C00B22EAB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BA1FA29A1C00B22EAB /* Location.swift */; };
 		6C3FB2BD1FA29A1C00B22EAB /* VehicleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BB1FA29A1C00B22EAB /* VehicleLocation.swift */; };
 		6C3FB2BF1FA2A4CE00B22EAB /* VehicleLockStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */; };
+		6C4D91BB1FDB15F90031E3CB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
+		6C4D91BC1FDB15F90031E3CB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
+		6C4D91BD1FDB15F90031E3CB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
 		6C5832C51FB3899800F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
 		6C5832C61FB38C9000F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
 		6C5832C71FB38C9000F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
@@ -474,6 +477,7 @@
 		6C3FB2BA1FA29A1C00B22EAB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		6C3FB2BB1FA29A1C00B22EAB /* VehicleLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLocation.swift; sourceTree = "<group>"; };
 		6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLockStatus.swift; sourceTree = "<group>"; };
+		6C4D91BA1FDB15F90031E3CB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		6C5832C41FB3899700F6BFE0 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		6C5832F41FB3AF5600F6BFE0 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		6C5832F51FB3AF5600F6BFE0 /* AlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
@@ -766,6 +770,7 @@
 				6C20E1D31FBF71B200E5D9A0 /* RequestLocation.swift */,
 				6C20E1DF1FBF770C00E5D9A0 /* Request.swift */,
 				6C20E1E71FBF851B00E5D9A0 /* Service.swift */,
+				6C4D91BA1FDB15F90031E3CB /* Token.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1719,6 +1724,7 @@
 				6C7342081FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */,
 				6C69267E1FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */,
 				6C3FB2AD1FA2574C00B22EAB /* FuelData.swift in Sources */,
+				6C4D91BB1FDB15F90031E3CB /* Token.swift in Sources */,
 				6C3A112F1FD8A1390069EF9C /* WebViewLoginViewController.swift in Sources */,
 				6C73420C1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,
 				6C7341FF1FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
@@ -1805,6 +1811,7 @@
 				6C5833291FB3AF8000F6BFE0 /* ModalCenterPosition.swift in Sources */,
 				6C32C3181FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */,
 				6C2208811FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */,
+				6C4D91BC1FDB15F90031E3CB /* Token.swift in Sources */,
 				6C7E66E61FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
 				6C2B32491FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */,
 				6CBB4EA71FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */,
@@ -1951,6 +1958,7 @@
 				6C91BBD11FA7D3D50033C2B1 /* StringUtils.swift in Sources */,
 				6CBB4E961FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */,
 				6C32C30D1FBCC1DD00B1218C /* StepView.swift in Sources */,
+				6C4D91BD1FDB15F90031E3CB /* Token.swift in Sources */,
 				6C5833331FB3AF9200F6BFE0 /* PresentationType.swift in Sources */,
 				6C88DC961FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6C20E1921FBE14C300E5D9A0 /* GMDirection.swift in Sources */,

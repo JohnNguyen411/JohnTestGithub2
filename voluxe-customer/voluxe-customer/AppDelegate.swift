@@ -74,14 +74,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey(Bundle.main.object(forInfoDictionaryKey: "GoogleMapsAPIKey") as! String)
         
+       startApp()
+        
+        return true
+    }
+    
+    func startApp() {
         window = UIWindow(frame: UIScreen.main.bounds)
-        /*
-        for familyName in UIFont.familyNames {
-            for font in UIFont.fontNames(forFamilyName: familyName) {
-                print("font: \(font)")
-            }
-        }
- */
         
         if UserManager.sharedInstance.getAccessToken() == nil {
             let homeViewController = FTUEViewController()
@@ -90,8 +89,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             createMenuView()
         }
-        
-        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

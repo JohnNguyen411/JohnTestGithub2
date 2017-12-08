@@ -153,6 +153,10 @@ extension FTUEViewController: ViewPagerDataSource {
         nextButton.isEnabled = nextEnabled
     }
     
+    func goToNext() {
+        pressButton(button: nextButton)
+    }
+    
 }
 
 protocol FTUEProtocol {
@@ -161,4 +165,5 @@ protocol FTUEProtocol {
 
 protocol FTUEChildProtocol {
     func canGoNext(nextEnabled: Bool)
+    func goToNext()
 }

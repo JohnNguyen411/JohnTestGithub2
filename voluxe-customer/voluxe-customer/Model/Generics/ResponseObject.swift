@@ -22,5 +22,4 @@ class ResponseObject<T: Mappable> {
     var meta: Meta?
     var data: T?
     
-    
 }

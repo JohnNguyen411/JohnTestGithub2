@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import ObjectMapper
 
 class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebViewDelegate {
 
@@ -44,9 +45,20 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
-        if let stringUrl = (request.url?.absoluteString) {
-            if stringUrl.contains("/v1/customers/login/callback") {
-                // login
+        if let stringUrl = (request.url?.lastPathComponent) {
+            if stringUrl.contains("callback") {
+                do {
+                    let responseString = try String(contentsOf: request.url!, encoding: String.Encoding.utf8)
+                    if let json = convertToDictionary(text: responseString) {
+                        let responseObject = ResponseObject<MappableDataObject<Token>>(json: json)
+                        if let token = responseObject.data?.result?.token {
+                            UserManager.sharedInstance.loginSuccess(token: token)
+                            goToNext()
+                        }
+                    }
+                } catch let error {
+                    print(error)
+                }
                 return false
             }
             print(stringUrl)
@@ -63,5 +75,16 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
     }
     
     func didSelectPage() {
+    }
+    
+    func convertToDictionary(text: String) -> [String: Any]? {
+        if let data = text.data(using: .utf8) {
+            do {
+                return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
+            } catch {
+                print(error.localizedDescription)
+            }
+        }
+        return nil
     }
 }

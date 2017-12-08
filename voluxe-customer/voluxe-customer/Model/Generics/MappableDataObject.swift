@@ -9,7 +9,7 @@
 import Foundation
 import ObjectMapper
  
- class MappableDataObject<T: Mappable>: Mappable {
+class MappableDataObject<T: Mappable>: Mappable {
     var result: T?
     
     required init?(map: Map){
