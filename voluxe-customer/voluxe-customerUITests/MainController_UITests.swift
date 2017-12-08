@@ -92,8 +92,9 @@ class MainController_UITests: XCTestCase {
         
         sleep(1)
         nextButtonButton.tap()
+        sleep(1)
         nextButtonButton.tap()
-        
+        sleep(1)
     }
     
     func testPickupDelivery() {
@@ -106,11 +107,6 @@ class MainController_UITests: XCTestCase {
     }
     
     func internalTestSchedulePickup() {
-        // check state is Idle
-        XCTAssertTrue(StateServiceManager.sharedInstance.getState() == ServiceState.idle || StateServiceManager.sharedInstance.getState() == ServiceState.needService)
-        XCTAssertNotNil(mainViewController?.currentViewController)
-        XCTAssertTrue(mainViewController!.currentViewController!.isKind(of: SchedulingPickupViewController.self))
-        
         sleep(1)
 
         // check if the dealershipView is here
