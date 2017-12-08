@@ -63,7 +63,6 @@ class DealershipPickupViewController: VLPresentrViewController {
                 make.height.equalTo(25)
             }
         }
-        
     }
     
     required init?(coder aDecoder: NSCoder) {

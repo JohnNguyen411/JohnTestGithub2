@@ -17,9 +17,6 @@ class MainController_UITests: XCTestCase {
     override func setUp() {
         super.setUp()
         
-        // Add Fake Access Token
-         UserManager.sharedInstance.loginSuccess(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGYzYWQ4LTY4MzgtNGU3NC1iMDY0LTlhODIzMjQ4NDliNiIsImRhdGEiOnsidXNlcl9pZCI6MTIsInVzZXJfdHlwZSI6ImN1c3RvbWVyIn0sImlhdCI6MTUxMjY5NzIwOCwiZXhwIjoxNTE1Mjg5MjA4fQ.-due9Ef2HXKeAbuoO7C9nSwoVjs9qlyBnIf_ZagV19M")
-        
         app = XCUIApplication()
 
         app.launchArguments = ["testMode"]
@@ -49,6 +46,56 @@ class MainController_UITests: XCTestCase {
         super.tearDown()
     }
     
+    func testFTUE() {
+        
+        let nextButtonButton = app.buttons["next button"]
+        nextButtonButton.tap()
+        sleep(1)
+        
+        let elementsQuery = app.scrollViews.otherElements
+        let webViewsQuery = elementsQuery.webViews
+        let element = webViewsQuery.otherElements["Volvo Auth Mock"].children(matching: .other).element
+        let textField = element.children(matching: .other).element(boundBy: 0).children(matching: .textField).element
+        _ = waitForElementToAppear(textField, timeout: 5)
+        textField.tap()
+        
+        sleep(1)
+
+        textField.typeText("test@test.com")
+        
+        let secureTextField = element.children(matching: .other).element(boundBy: 1).children(matching: .secureTextField).element
+        _ = waitForElementToAppear(secureTextField, timeout: 5)
+
+        secureTextField.tap()
+
+        sleep(1)
+
+        secureTextField.typeText("toto123")
+        webViewsQuery/*@START_MENU_TOKEN@*/.buttons["Login"]/*[[".otherElements[\"Volvo Auth Mock\"].buttons[\"Login\"]",".buttons[\"Login\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        
+        let allowButton = webViewsQuery/*@START_MENU_TOKEN@*/.buttons["Allow"]/*[[".otherElements[\"Volvo Auth Mock\"].buttons[\"Allow\"]",".buttons[\"Allow\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        _ = waitForElementToAppear(allowButton, timeout: 5)
+        
+        sleep(1)
+
+        allowButton.tap()
+        
+        sleep(5)
+        
+        elementsQuery/*@START_MENU_TOKEN@*/.textFields["(555) 555-5555"]/*[[".otherElements[\"phoneNumberTextField\"].textFields[\"(555) 555-5555\"]",".textFields[\"(555) 555-5555\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.typeText("5555555555")
+        nextButtonButton.tap()
+        
+        sleep(1)
+        
+        elementsQuery/*@START_MENU_TOKEN@*/.textFields["0000"]/*[[".otherElements[\"codeTextField\"].textFields[\"0000\"]",".textFields[\"0000\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.typeText("5555")
+        
+        sleep(1)
+        nextButtonButton.tap()
+        nextButtonButton.tap()
+        
+    }
+    
     func testPickupDelivery() {
         internalTestSchedulePickup()
         internalTestPickup()
@@ -64,9 +111,15 @@ class MainController_UITests: XCTestCase {
         XCTAssertNotNil(mainViewController?.currentViewController)
         XCTAssertTrue(mainViewController!.currentViewController!.isKind(of: SchedulingPickupViewController.self))
         
+        sleep(1)
+
         // check if the dealershipView is here
         let dealershipView = app.otherElements["dealershipView"]
         XCTAssertTrue(dealershipView.exists)
+        
+        let dealershipTestView = app.otherElements["dealershipTestView"]
+        _ = waitForElementToAppear(dealershipTestView, timeout: 5)
+        XCTAssertTrue(dealershipTestView.exists)
         
         //  and tap on it
         dealershipView.tap()

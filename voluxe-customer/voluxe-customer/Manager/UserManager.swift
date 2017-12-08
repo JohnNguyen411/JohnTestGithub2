@@ -18,7 +18,8 @@ final class UserManager {
     private let keychain: Keychain
     
     init() {
-        serviceId = Bundle.main.object(forInfoDictionaryKey: "CFBundleIdentifier") as! String
+        let bundle = Bundle(for: type(of: self))
+        serviceId = bundle.object(forInfoDictionaryKey: "CFBundleIdentifier") as! String
         keychain = Keychain(service: serviceId)
         loadAccessToken()
     }
