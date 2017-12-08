@@ -80,6 +80,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func startApp() {
+        
+        if UIApplication.shouldReset {
+            UserManager.sharedInstance.logout()
+        }
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         
         if UserManager.sharedInstance.getAccessToken() == nil {
@@ -122,6 +127,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension UIApplication {
     public static var isRunningTest: Bool {
         return ProcessInfo().arguments.contains("testMode")
+    }
+    
+    public static var shouldReset: Bool {
+        return ProcessInfo().arguments.contains("reset")
     }
 }
 
