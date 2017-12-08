@@ -28,7 +28,8 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         formatter.dateFormat = "EEEE, MMM d"
         return formatter
     }()
-        
+    
+    var dealerships: [Dealership]?
     var serviceState: ServiceState
     var scheduleState: SchedulePickupState = .start
     
@@ -236,17 +237,20 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         }
         
         DealershipAPI().getDealerships().onSuccess { result in
-            for dealership in (result?.data?.result)! {
-                print(dealership.name)
+            
+            if let dealerships = result?.data?.result, dealerships.count > 0 {
+                self.dealerships = dealerships
+                if RequestedServiceManager.sharedInstance.getDealership() == nil {
+                    RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
+                }
+                if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                    self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+                }
             }
+            
+        }.onFailure { error in
         }
         
-        if RequestedServiceManager.sharedInstance.getDealership() == nil {
-            RequestedServiceManager.sharedInstance.setDealership(dealership: DealershipPickupViewController.dealerships[0])
-        }
-        if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-            dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
-        }
         
         if RequestedServiceManager.sharedInstance.getLoaner() == nil {
             RequestedServiceManager.sharedInstance.setLoaner(loaner: true)
@@ -298,7 +302,10 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     }
     
     func showDealershipModal() {
-        let dealershipVC = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next)
+        guard let dealerships = dealerships else {
+            return
+        }
+        let dealershipVC = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next, dealerships: dealerships)
         dealershipVC.delegate = self
         dealershipVC.view.accessibilityIdentifier = "dealershipVC"
         currentPresentrVC = dealershipVC

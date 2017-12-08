@@ -13,12 +13,22 @@ class DealershipPickupViewController: VLPresentrViewController {
     
     var delegate: PickupDealershipDelegate?
     
-    static let dealerships: [Dealership] = [Dealership(name: "Volvo of San Francisco"), Dealership(name: "Marin Volvo"), Dealership(name: "Volvo Centrum"),
-                                     Dealership(name: "Volvo of Burlingame")]
+    var dealerships: [Dealership] = []
     
     var groupedLabels: VLGroupedLabels?
     
+    convenience init(title: String, buttonTitle: String, dealerships: [Dealership]) {
+        self.init(title: title, buttonTitle: buttonTitle)
+        setDealerhips(dealerships: dealerships)
+    }
+    
     override init() {
+        super.init()
+    }
+    
+    private func setDealerhips(dealerships: [Dealership]) {
+        self.dealerships = dealerships
+
         var selectedDealership: String? = nil
         if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
             selectedDealership = dealership.name!
@@ -26,7 +36,7 @@ class DealershipPickupViewController: VLPresentrViewController {
         
         var selectedIndex = -1
         var items: [String] = []
-        for (index, dealership) in DealershipPickupViewController.dealerships.enumerated() {
+        for (index, dealership) in dealerships.enumerated() {
             items.append(dealership.name!)
             if dealership.name == selectedDealership {
                 selectedIndex = index
@@ -37,16 +47,6 @@ class DealershipPickupViewController: VLPresentrViewController {
         if selectedIndex > -1 {
             groupedLabels?.select(selectedIndex: selectedIndex, selected: true)
         }
-        super.init()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
-    
-    override func setupViews() {
-        super.setupViews()
         
         if let groupedLabels = groupedLabels {
             containerView.addSubview(groupedLabels)
@@ -63,6 +63,11 @@ class DealershipPickupViewController: VLPresentrViewController {
                 make.height.equalTo(25)
             }
         }
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func height() -> Int {
@@ -75,7 +80,7 @@ class DealershipPickupViewController: VLPresentrViewController {
     
     override func onButtonClick() {
         if let delegate = delegate, let groupedLabels = groupedLabels {
-            delegate.onDealershipSelected(dealership: DealershipPickupViewController.dealerships[groupedLabels.getLastSelectedIndex()!])
+            delegate.onDealershipSelected(dealership: dealerships[groupedLabels.getLastSelectedIndex()!])
         }
     }
 }
