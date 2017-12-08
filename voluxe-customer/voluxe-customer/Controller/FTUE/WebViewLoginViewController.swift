@@ -19,8 +19,11 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
         setupViews()
         
         webview.delegate = self
-        webview.scalesPageToFit = true
+        webview.scalesPageToFit = false
         webview.autoresizesSubviews = true
+        webview.isMultipleTouchEnabled = false
+        webview.scrollView.bounces = false
+        
         webview.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         // final redirect: /v1/customers/login/callback
@@ -36,14 +39,26 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let url = URL(string: "\(Config.sharedInstance.apiEndpoint())/v1/customers/login")!
+       
         webview.loadRequest(URLRequest(url: url))
     }
     
     func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        if let stringUrl = (request.url?.absoluteString) {
+            if stringUrl.contains("/v1/customers/login/callback") {
+                // login
+                return false
+            }
+            print(stringUrl)
+        }
         return true
     }
     
     func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+        
+    }
+    
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         
     }
     

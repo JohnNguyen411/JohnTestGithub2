@@ -216,9 +216,21 @@
 		6C7342141FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342131FB25F8C00E90F7E /* LocationPickupViewController.swift */; };
 		6C7342151FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342131FB25F8C00E90F7E /* LocationPickupViewController.swift */; };
 		6C7342161FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342131FB25F8C00E90F7E /* LocationPickupViewController.swift */; };
+		6C7495D71FDA0CEB0036FC08 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495D61FDA0CEB0036FC08 /* Meta.swift */; };
+		6C7495D81FDA0CEB0036FC08 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495D61FDA0CEB0036FC08 /* Meta.swift */; };
+		6C7495D91FDA0CEB0036FC08 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495D61FDA0CEB0036FC08 /* Meta.swift */; };
+		6C7495DF1FDA1E870036FC08 /* MappableDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495DE1FDA1E870036FC08 /* MappableDataArray.swift */; };
+		6C7495E01FDA1E870036FC08 /* MappableDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495DE1FDA1E870036FC08 /* MappableDataArray.swift */; };
+		6C7495E11FDA1E870036FC08 /* MappableDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495DE1FDA1E870036FC08 /* MappableDataArray.swift */; };
+		6C7495E31FDA1F790036FC08 /* MappableDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */; };
+		6C7495E41FDA1F790036FC08 /* MappableDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */; };
+		6C7495E51FDA1F790036FC08 /* MappableDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */; };
 		6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
 		6C7E66E61FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
 		6C7E66E71FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
+		6C8159B41FDA07F400B8DF31 /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */; };
+		6C8159B51FDA07F400B8DF31 /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */; };
+		6C8159B61FDA07F400B8DF31 /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */; };
 		6C88DC8F1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */; };
 		6C88DC901FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */; };
 		6C88DC911FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */; };
@@ -362,6 +374,12 @@
 		6CCD42901FA013E3000AC6C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428F1FA013E3000AC6C9 /* ViewController.swift */; };
 		6CCD42951FA013E3000AC6C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42941FA013E3000AC6C9 /* Assets.xcassets */; };
 		6CCD42A31FA013E3000AC6C9 /* voluxe_customerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD42A21FA013E3000AC6C9 /* voluxe_customerTests.swift */; };
+		6CD0C8831FD9FB73008E4A72 /* DealershipAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8821FD9FB73008E4A72 /* DealershipAPI.swift */; };
+		6CD0C8841FD9FB73008E4A72 /* DealershipAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8821FD9FB73008E4A72 /* DealershipAPI.swift */; };
+		6CD0C8851FD9FB73008E4A72 /* DealershipAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8821FD9FB73008E4A72 /* DealershipAPI.swift */; };
+		6CD0C8871FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
+		6CD0C8881FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
+		6CD0C8891FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
 		6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D151FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D161FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
@@ -489,7 +507,11 @@
 		6C73420B1FB12E6C00E90F7E /* VLPresentrViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLPresentrViewController.swift; sourceTree = "<group>"; };
 		6C73420F1FB136B000E90F7E /* CommonsLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonsLocalization.swift; sourceTree = "<group>"; };
 		6C7342131FB25F8C00E90F7E /* LocationPickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPickupViewController.swift; sourceTree = "<group>"; };
+		6C7495D61FDA0CEB0036FC08 /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
+		6C7495DE1FDA1E870036FC08 /* MappableDataArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappableDataArray.swift; sourceTree = "<group>"; };
+		6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappableDataObject.swift; sourceTree = "<group>"; };
 		6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePickupLocalization.swift; sourceTree = "<group>"; };
+		6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseObject.swift; sourceTree = "<group>"; };
 		6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEAllSetViewController.swift; sourceTree = "<group>"; };
 		6C88DC931FAA8C28009F2FC3 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeftViewController.swift; path = "voluxe-customer/Controller/Main/LeftPanel/LeftViewController.swift"; sourceTree = SOURCE_ROOT; };
 		6C88DC971FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftPanelTableViewCell.swift; sourceTree = "<group>"; };
@@ -560,6 +582,8 @@
 		6CCD42A41FA013E3000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CCD42A91FA013E3000AC6C9 /* voluxe-customerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "voluxe-customerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD42AF1FA013E3000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6CD0C8821FD9FB73008E4A72 /* DealershipAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealershipAPI.swift; sourceTree = "<group>"; };
+		6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
 		6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLTitledLabel.swift; sourceTree = "<group>"; };
 		6CD47D171FAD190F00D794A6 /* VLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLButton.swift; sourceTree = "<group>"; };
 		6CE902141FA14C1200EE106C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -727,6 +751,7 @@
 		6C3FB2A51FA16A0200B22EAB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				6C7495E61FDA23010036FC08 /* Generics */,
 				6C20E18E1FBE14A000E5D9A0 /* GoogleMapAPI */,
 				6C20E1CA1FBF698E00E5D9A0 /* Dealership.swift */,
 				6C22087B1FBD0C6700874882 /* Driver.swift */,
@@ -820,6 +845,17 @@
 				6C2F1DD51FAD0A8F00C28C6E /* SchedulingPickupViewController.swift */,
 			);
 			path = Pickup;
+			sourceTree = "<group>";
+		};
+		6C7495E61FDA23010036FC08 /* Generics */ = {
+			isa = PBXGroup;
+			children = (
+				6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */,
+				6C7495D61FDA0CEB0036FC08 /* Meta.swift */,
+				6C7495DE1FDA1E870036FC08 /* MappableDataArray.swift */,
+				6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */,
+			);
+			path = Generics;
 			sourceTree = "<group>";
 		};
 		6C88DC921FAA8ADC009F2FC3 /* Main */ = {
@@ -950,7 +986,9 @@
 		6CC83A861FA1478100FE0633 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				6CD0C8821FD9FB73008E4A72 /* DealershipAPI.swift */,
 				6C20E18A1FBE0E6200E5D9A0 /* GoogleDirectionAPI.swift */,
+				6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */,
 				6C20E1C61FBE6D2400E5D9A0 /* StateService.swift */,
 			);
 			path = Service;
@@ -1314,6 +1352,8 @@
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
@@ -1336,6 +1376,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
@@ -1387,6 +1429,8 @@
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
@@ -1409,6 +1453,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
@@ -1478,6 +1524,8 @@
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
@@ -1500,6 +1548,8 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
@@ -1574,6 +1624,7 @@
 				6CBB4EA61FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */,
 				6CBB4E851FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
 				6C2B32481FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */,
+				6C7495E31FDA1F790036FC08 /* MappableDataObject.swift in Sources */,
 				6C20E1941FBE14D500E5D9A0 /* GMRoutes.swift in Sources */,
 				6C2208771FBCEF7A00874882 /* MapViewController.swift in Sources */,
 				6CBB4E821FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
@@ -1595,6 +1646,7 @@
 				6CD47D181FAD190F00D794A6 /* VLButton.swift in Sources */,
 				6C5833091FB3AF5600F6BFE0 /* AlertViewController.swift in Sources */,
 				6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
+				6CD0C8831FD9FB73008E4A72 /* DealershipAPI.swift in Sources */,
 				6C20E1D01FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
 				6C20E1D41FBF71B200E5D9A0 /* RequestLocation.swift in Sources */,
 				6CBB4EAC1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */,
@@ -1619,6 +1671,7 @@
 				6C3FB2BD1FA29A1C00B22EAB /* VehicleLocation.swift in Sources */,
 				6C20E1A61FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */,
 				6C58331A1FB3AF5600F6BFE0 /* PresentrShadow.swift in Sources */,
+				6C7495D71FDA0CEB0036FC08 /* Meta.swift in Sources */,
 				6C88DC8F1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6C88DC981FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C3FB2B21FA2824200B22EAB /* Constants.swift in Sources */,
@@ -1641,6 +1694,7 @@
 				6C9C7A7B1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
 				6C6F4BCE1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6CC37E501FA7C41700DA8F01 /* VLTextField.swift in Sources */,
+				6CD0C8871FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */,
 				6C58331C1FB3AF5600F6BFE0 /* TransitionType.swift in Sources */,
 				6C95439E1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C20E1C71FBE6D2400E5D9A0 /* StateService.swift in Sources */,
@@ -1649,6 +1703,8 @@
 				6C32C3071FBCC0E900B1218C /* Step.swift in Sources */,
 				6C7342101FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
 				6CBB4E941FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */,
+				6C8159B41FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
+				6C7495DF1FDA1E870036FC08 /* MappableDataArray.swift in Sources */,
 				6C2F1DD61FAD0A8F00C28C6E /* SchedulingPickupViewController.swift in Sources */,
 				6C58330E1FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */,
 				6C5C6A101FD8AACD00D70BF6 /* UserManager.swift in Sources */,
@@ -1705,6 +1761,7 @@
 				6CC37E471FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6C5833371FB3AF9900F6BFE0 /* PresentrController.swift in Sources */,
 				6C20E1D91FBF725F00E5D9A0 /* LocationUtils.swift in Sources */,
+				6C7495E01FDA1E870036FC08 /* MappableDataArray.swift in Sources */,
 				6C20E1E11FBF770C00E5D9A0 /* Request.swift in Sources */,
 				6C32C3081FBCC0E900B1218C /* Step.swift in Sources */,
 				6CCD42A31FA013E3000AC6C9 /* voluxe_customerTests.swift in Sources */,
@@ -1719,6 +1776,7 @@
 				6C20E1B31FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift in Sources */,
 				6C5833361FB3AF9900F6BFE0 /* PresentrAnimation.swift in Sources */,
 				6C7342041FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
+				6CD0C8841FD9FB73008E4A72 /* DealershipAPI.swift in Sources */,
 				6C88DC991FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6CBB4E981FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */,
 				6C91BBD81FA7D6220033C2B1 /* ViewPager.swift in Sources */,
@@ -1738,8 +1796,11 @@
 				6C58331F1FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */,
 				6C5833381FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */,
 				6C95439F1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
+				6C8159B51FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
 				6C91BBDC1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
+				6C7495E41FDA1F790036FC08 /* MappableDataObject.swift in Sources */,
 				6C91BBCE1FA7D3CE0033C2B1 /* Fonts.swift in Sources */,
+				6C7495D81FDA0CEB0036FC08 /* Meta.swift in Sources */,
 				6CBB4E8F1FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
 				6C5833291FB3AF8000F6BFE0 /* ModalCenterPosition.swift in Sources */,
 				6C32C3181FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */,
@@ -1756,6 +1817,7 @@
 				6C20E1CC1FBF698E00E5D9A0 /* Dealership.swift in Sources */,
 				6CC37E511FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C88DC901FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
+				6CD0C8881FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */,
 				6CBB4E831FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
 				6CC921A61FC4FBC8009E5164 /* Date+DateTools.swift in Sources */,
 				6C3A11301FD8A1390069EF9C /* WebViewLoginViewController.swift in Sources */,
@@ -1813,6 +1875,7 @@
 				6CBB4EB51FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
 				6CBB4EB11FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */,
 				6C5833391FB3AF9900F6BFE0 /* Presentr.swift in Sources */,
+				6C8159B61FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
 				6C20E1961FBE14D500E5D9A0 /* GMRoutes.swift in Sources */,
 				6CBF9FF01FC62154002BC7FC /* FTUEChildViewController.swift in Sources */,
 				6CC921A41FC4FB26009E5164 /* AlertViewController.swift in Sources */,
@@ -1836,6 +1899,8 @@
 				6C91BBD91FA7D6220033C2B1 /* ViewPager.swift in Sources */,
 				6C9543A41FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6C345A111FD897E4006CAC32 /* Config.swift in Sources */,
+				6CD0C8851FD9FB73008E4A72 /* DealershipAPI.swift in Sources */,
+				6C7495D91FDA0CEB0036FC08 /* Meta.swift in Sources */,
 				6C20E1A21FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */,
 				6C20E1EA1FBF851B00E5D9A0 /* Service.swift in Sources */,
 				6C7342011FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
@@ -1854,6 +1919,7 @@
 				6C91BBDD1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C91BBCF1FA7D3CE0033C2B1 /* Fonts.swift in Sources */,
 				6CBB4E901FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
+				6C7495E11FDA1E870036FC08 /* MappableDataArray.swift in Sources */,
 				6C58332D1FB3AF8000F6BFE0 /* ModalCenterPosition.swift in Sources */,
 				6C32C3191FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */,
 				6C2208821FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */,
@@ -1872,6 +1938,7 @@
 				6C88DC911FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6CBB4E841FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
 				6C5EB98A1FCE38980019ACAA /* MainController_UITests.swift in Sources */,
+				6C7495E51FDA1F790036FC08 /* MappableDataObject.swift in Sources */,
 				6CC921A51FC4FBC7009E5164 /* Date+DateTools.swift in Sources */,
 				6C20E1D61FBF71B200E5D9A0 /* RequestLocation.swift in Sources */,
 				6C5833341FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */,
@@ -1895,6 +1962,7 @@
 				6C5833261FB3AF7B00F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */,
 				6CBB4EAE1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */,
 				6C5833251FB3AF7B00F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
+				6CD0C8891FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */,
 				6C9C7A7D1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

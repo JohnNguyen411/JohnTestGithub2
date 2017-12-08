@@ -234,6 +234,13 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         if let service = RequestedServiceManager.sharedInstance.getService() {
             scheduledServiceView.setTitle(title: .RecommendedService, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
         }
+        
+        DealershipAPI().getDealerships().onSuccess { result in
+            for dealership in (result?.data?.result)! {
+                print(dealership.name)
+            }
+        }
+        
         if RequestedServiceManager.sharedInstance.getDealership() == nil {
             RequestedServiceManager.sharedInstance.setDealership(dealership: DealershipPickupViewController.dealerships[0])
         }

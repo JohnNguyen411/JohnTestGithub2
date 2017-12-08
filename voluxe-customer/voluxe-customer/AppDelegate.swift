@@ -83,7 +83,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
  */
         
-        if UserManager.sharedInstance.getAccessToken() != nil {
+        UserManager.sharedInstance.loginSuccess(token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGYzYWQ4LTY4MzgtNGU3NC1iMDY0LTlhODIzMjQ4NDliNiIsImRhdGEiOnsidXNlcl9pZCI6MTIsInVzZXJfdHlwZSI6ImN1c3RvbWVyIn0sImlhdCI6MTUxMjY5NzIwOCwiZXhwIjoxNTE1Mjg5MjA4fQ.-due9Ef2HXKeAbuoO7C9nSwoVjs9qlyBnIf_ZagV19M")
+        
+        if UserManager.sharedInstance.getAccessToken() == nil {
             let homeViewController = FTUEViewController()
             window!.rootViewController = homeViewController
             window!.makeKeyAndVisible()
