@@ -32,5 +32,11 @@ class FTUEChildViewController: UIViewController {
         }
     }
     
+    func goToNext() {
+        if let delegate = delegate {
+            delegate.goToNext()
+        }
+    }
+    
     func checkTextFieldsValidity() {}
 }

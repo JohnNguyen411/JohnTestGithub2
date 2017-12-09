@@ -12,9 +12,15 @@ import XCTest
 class FTUEFlow_UITests: XCTestCase {
     
     var flowViewController: FTUEViewController?
+    var app: XCUIApplication!
 
     override func setUp() {
         super.setUp()
+
+        app = XCUIApplication()
+        
+        app.launchArguments = ["reset", "testMode"]
+        app.launch()
         
         flowViewController = FTUEViewController()
         _ = flowViewController?.view // call viewDidLoad
@@ -23,10 +29,6 @@ class FTUEFlow_UITests: XCTestCase {
         
         // In UI tests it is usually best to stop immediately when a failure occurs.
         continueAfterFailure = false
-        // UI tests must launch the application that they test. Doing this in setup will make sure it happens for each test method.
-        XCUIApplication().launch()
-        
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
     }
     
     override func tearDown() {
@@ -60,11 +62,13 @@ class FTUEFlow_UITests: XCTestCase {
         XCTAssertTrue(currentPosition == 1)
         
         let viewAtIndex = flowViewController.viewAtIndex(viewPager: flowViewController.viewPager, index: currentPosition, view: nil)
-        let controllerAtIndex = flowViewController.controllerAtIndex(index: currentPosition) as! FTUELoginViewController
+        let controllerAtIndex = flowViewController.controllerAtIndex(index: currentPosition) as! FTUEChildViewController
         
         // Check controller match the view
         XCTAssertTrue(viewAtIndex == controllerAtIndex.view)
         
+        // skip as it's a webview
+        /*
         // Check textfields exists
         let app = XCUIApplication()
         let volvoIdView = app.windows.element(matching: .any, identifier: "volvoIdTextField")
@@ -97,6 +101,7 @@ class FTUEFlow_UITests: XCTestCase {
         
         // check that next button is enable when data
         XCTAssertTrue(flowViewController.nextButton.isEnabled)
+         */
         
         // go to next screen
         flowViewController.pressButton(button: flowViewController.nextButton)

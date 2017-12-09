@@ -28,7 +28,8 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         formatter.dateFormat = "EEEE, MMM d"
         return formatter
     }()
-        
+    
+    var dealerships: [Dealership]?
     var serviceState: ServiceState
     var scheduleState: SchedulePickupState = .start
     
@@ -48,6 +49,8 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     }()
     
     let stateTestView = UILabel(frame: .zero)
+    let dealershipTestView = UIView(frame: .zero)
+
     let scrollView = UIScrollView()
     let contentView = UIView()
     let scheduledServiceView = VLTitledLabel()
@@ -156,6 +159,9 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         contentView.addSubview(loanerView)
         
         // TestView setup
+        dealershipTestView.accessibilityIdentifier = "dealershipTestView"
+        dealershipTestView.isHidden = true
+        contentView.addSubview(dealershipTestView)
         contentView.addSubview(stateTestView)
         stateTestView.textColor = .clear
         
@@ -228,17 +234,40 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
             make.height.width.equalTo(1)
         }
         
+        dealershipTestView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(dealershipView.snp.bottom).offset(1)
+            make.height.width.equalTo(2)
+        }
+        
     }
     
     func fillViews() {
         if let service = RequestedServiceManager.sharedInstance.getService() {
             scheduledServiceView.setTitle(title: .RecommendedService, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
         }
+        
         if RequestedServiceManager.sharedInstance.getDealership() == nil {
-            RequestedServiceManager.sharedInstance.setDealership(dealership: DealershipPickupViewController.dealerships[0])
-        }
-        if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-            dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+            DealershipAPI().getDealerships().onSuccess { result in
+                
+                if let dealerships = result?.data?.result, dealerships.count > 0 {
+                    self.dealerships = dealerships
+                    if RequestedServiceManager.sharedInstance.getDealership() == nil {
+                        RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
+                    }
+                    if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                        self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+                    }
+                    
+                    self.dealershipTestView.isHidden = false
+                }
+                
+                }.onFailure { error in
+            }
+        } else {
+            if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+            }
         }
         
         if RequestedServiceManager.sharedInstance.getLoaner() == nil {
@@ -291,7 +320,10 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     }
     
     func showDealershipModal() {
-        let dealershipVC = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next)
+        guard let dealerships = dealerships else {
+            return
+        }
+        let dealershipVC = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next, dealerships: dealerships)
         dealershipVC.delegate = self
         dealershipVC.view.accessibilityIdentifier = "dealershipVC"
         currentPresentrVC = dealershipVC

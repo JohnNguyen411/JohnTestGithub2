@@ -9,42 +9,51 @@
 import Foundation
 import ObjectMapper
 import CoreLocation
+import RealmSwift
 
-class Dealership: NSObject, Mappable {
+class Dealership: Object, Mappable {
     
-    var name: String?
-    var stringLocation: String? // "37.788866,-122.398210"
+    @objc dynamic var id: Int = -1
+    @objc dynamic var name: String?
+    @objc dynamic var phoneNumber: String?
+    @objc dynamic var address: String?
+    @objc dynamic var locationLatitude: Double = 0
+    @objc dynamic var locationLongitude: Double = 0
+    @objc dynamic var coverageRadius: Int = 1
+    @objc dynamic var currencyId: Int = 1
+    @objc dynamic var enabled: Bool = true
+
     var location: CLLocationCoordinate2D?
     
-    override init() {
-        super.init()
-    }
-    
-    init(name: String?, stringLocation: String?, location: CLLocationCoordinate2D?) {
+    convenience init(name: String?, location: CLLocationCoordinate2D?) {
+        self.init()
         self.name = name
-        self.stringLocation = stringLocation
         self.location = location
     }
     
     convenience init(name: String?) {
-        self.init(name: name, stringLocation: nil, location: nil)
+        self.init(name: name, location: nil)
     }
     
-    required init?(map: Map) {
+    required convenience init?(map: Map) {
+        self.init()
     }
     
     func mapping(map: Map) {
+        id <- map["id"]
         name <- map["name"]
-        stringLocation <- map["location"]
+        phoneNumber <- map["phone_number"]
+        address <- map["address"]
+        locationLatitude <- map["location_latitude"]
+        locationLongitude <- map["location_longitude"]
+        coverageRadius <- map["coverage_radius"]
+        currencyId <- map["currency_id"]
+        enabled <- map["enabled"]
+        location = CLLocationCoordinate2DMake(locationLatitude, locationLongitude)
     }
     
-    func getLocation() -> CLLocationCoordinate2D? {
-        if let location = location {
-            return location
-        }
-        
-        location = LocationUtils.getLocation(stringLocation: stringLocation)
-        
-        return location
+    override static func ignoredProperties() -> [String] {
+        return ["location"]
     }
+
 }

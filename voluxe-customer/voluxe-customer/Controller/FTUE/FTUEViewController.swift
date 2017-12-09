@@ -29,7 +29,7 @@ class FTUEViewController: BaseViewController, FTUEChildProtocol {
     }()
     
     let ftueOneController = FTUEStartViewController()
-    let ftueTwoController = FTUELoginViewController()
+    let ftueTwoController = WebViewLoginViewController()
     let ftueThreeController = FTUEPhoneNumberViewController()
     let ftueFourthController = FTUEPhoneVerificationViewController()
     let ftueFifthController = FTUEAllSetViewController()
@@ -97,11 +97,11 @@ class FTUEViewController: BaseViewController, FTUEChildProtocol {
 extension FTUEViewController: ViewPagerDataSource {
     
     
-    func numberOfItems(viewPager:ViewPager) -> Int {
+    func numberOfItems(viewPager: ViewPager) -> Int {
         return FTUEViewController.nbOfItems
     }
     
-    func viewAtIndex(viewPager:ViewPager, index: Int, view: UIView?) -> UIView {
+    func viewAtIndex(viewPager: ViewPager, index: Int, view: UIView?) -> UIView {
         var newView = view;
         
         if (newView == nil) {
@@ -153,6 +153,10 @@ extension FTUEViewController: ViewPagerDataSource {
         nextButton.isEnabled = nextEnabled
     }
     
+    func goToNext() {
+        pressButton(button: nextButton)
+    }
+    
 }
 
 protocol FTUEProtocol {
@@ -161,4 +165,5 @@ protocol FTUEProtocol {
 
 protocol FTUEChildProtocol {
     func canGoNext(nextEnabled: Bool)
+    func goToNext()
 }

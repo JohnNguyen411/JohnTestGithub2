@@ -21,7 +21,8 @@ class Config: NSObject {
     static let sharedInstance = Config()
     
     override init() {
-        let scheme = Bundle.main.object(forInfoDictionaryKey: "Scheme") as! String
+        let bundle = Bundle(for: type(of: self))
+        let scheme = bundle.object(forInfoDictionaryKey: "Scheme") as! String
         baseUrl = Config.baseUrlForScheme(scheme: scheme)
         super.init()
     }

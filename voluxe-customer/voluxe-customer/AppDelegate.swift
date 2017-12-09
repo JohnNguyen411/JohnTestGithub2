@@ -74,23 +74,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         GMSServices.provideAPIKey(Bundle.main.object(forInfoDictionaryKey: "GoogleMapsAPIKey") as! String)
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        /*
-        for familyName in UIFont.familyNames {
-            for font in UIFont.fontNames(forFamilyName: familyName) {
-                print("font: \(font)")
-            }
-        }
- */
+       startApp()
         
-        createMenuView()
-        /*
-        let homeViewController = FTUEViewController()
-        window!.rootViewController = homeViewController
-        window!.makeKeyAndVisible()
-         */
-    
         return true
+    }
+    
+    func startApp() {
+        
+        if UIApplication.shouldReset {
+            UserManager.sharedInstance.logout()
+        }
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        if UserManager.sharedInstance.getAccessToken() == nil {
+            let homeViewController = FTUEViewController()
+            window!.rootViewController = homeViewController
+            window!.makeKeyAndVisible()
+        } else {
+            createMenuView()
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -124,6 +127,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 extension UIApplication {
     public static var isRunningTest: Bool {
         return ProcessInfo().arguments.contains("testMode")
+    }
+    
+    public static var shouldReset: Bool {
+        return ProcessInfo().arguments.contains("reset")
     }
 }
 
