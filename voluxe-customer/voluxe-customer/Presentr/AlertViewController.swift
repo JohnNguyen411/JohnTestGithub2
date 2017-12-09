@@ -232,7 +232,7 @@ let loadFonts: () = {
     let loadedFontMontserrat = AlertViewController.loadFont(Font.Montserrat.rawValue)
     let loadedFontSourceSansPro = AlertViewController.loadFont(Font.SourceSansPro.rawValue)
     if loadedFontMontserrat && loadedFontSourceSansPro {
-        print("LOADED FONTS")
+        Logger.print("LOADED FONTS")
     }
 }()
 
@@ -252,7 +252,7 @@ extension AlertViewController {
 
         let success = CTFontManagerRegisterGraphicsFont(font, &error)
         if !success {
-            print("Error loading font. Font is possibly already registered.")
+            Logger.print("Error loading font. Font is possibly already registered.")
             return false
         }
 

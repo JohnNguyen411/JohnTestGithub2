@@ -139,14 +139,14 @@ extension FTUEViewController: ViewPagerDataSource {
     }
     
     func didChangePage(index: Int) {
-        print("select index \(index)")
+        Logger.print("select index \(index)")
         let currentController = controllerAtIndex(index: index)
         currentController.didSelectPage()
         
     }
     
     func didSelectedItem(index: Int) {
-        print("select index \(index)")
+        Logger.print("select index \(index)")
     }
     
     func canGoNext(nextEnabled: Bool) {

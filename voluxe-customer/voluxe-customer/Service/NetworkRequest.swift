@@ -20,7 +20,15 @@ class NetworkRequest {
     
     static func request(url: String, method: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> DataRequest {
         let finalUrl = "\(Config.sharedInstance.apiEndpoint())\(url)"
-        return Alamofire.request(finalUrl, method: method, parameters: parameters, headers: headers)
+        let request = Alamofire.request(finalUrl, method: method, parameters: parameters, headers: headers)
+        Logger.print("NetworkRequest \(request)")
+        if let parameters = parameters {
+            Logger.print("parameters \(parameters)")
+        }
+        if let headers = headers {
+            Logger.print("headers \(headers)")
+        }
+        return request
     }
     
     static func request(url: String, method: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders, addBearer: Bool) -> DataRequest {

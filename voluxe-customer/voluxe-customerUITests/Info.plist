@@ -40,5 +40,7 @@
 	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
 	<key>Scheme</key>
 	<string>$(Scheme)</string>
+	<key>ENABLE_DEBUG_INFO</key>
+	<string>$(ENABLE_DEBUG_INFO)</string>
 </dict>
 </plist>

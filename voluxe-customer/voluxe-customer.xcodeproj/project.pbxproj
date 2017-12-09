@@ -228,6 +228,12 @@
 		6C7495E31FDA1F790036FC08 /* MappableDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */; };
 		6C7495E41FDA1F790036FC08 /* MappableDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */; };
 		6C7495E51FDA1F790036FC08 /* MappableDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */; };
+		6C7DDE0F1FDB64CD000E2822 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE0E1FDB64CC000E2822 /* Logger.swift */; };
+		6C7DDE101FDB64D0000E2822 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE0E1FDB64CC000E2822 /* Logger.swift */; };
+		6C7DDE111FDB64D1000E2822 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE0E1FDB64CC000E2822 /* Logger.swift */; };
+		6C7DDE131FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
+		6C7DDE141FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
+		6C7DDE151FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
 		6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
 		6C7E66E61FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
 		6C7E66E71FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
@@ -514,6 +520,8 @@
 		6C7495D61FDA0CEB0036FC08 /* Meta.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meta.swift; sourceTree = "<group>"; };
 		6C7495DE1FDA1E870036FC08 /* MappableDataArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappableDataArray.swift; sourceTree = "<group>"; };
 		6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappableDataObject.swift; sourceTree = "<group>"; };
+		6C7DDE0E1FDB64CC000E2822 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
+		6C7DDE121FDB664D000E2822 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePickupLocalization.swift; sourceTree = "<group>"; };
 		6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseObject.swift; sourceTree = "<group>"; };
 		6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEAllSetViewController.swift; sourceTree = "<group>"; };
@@ -792,6 +800,7 @@
 				6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */,
 				6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */,
 				6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */,
+				6C7DDE121FDB664D000E2822 /* String+Utils.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -1005,8 +1014,9 @@
 				6C32C3051FBCC0CB00B1218C /* Data */,
 				6C3FB2B51FA289F000B22EAB /* ColorDefinitions.swift */,
 				6C3FB2B11FA2824200B22EAB /* Constants.swift */,
-				6CC83A8A1FA1481900FE0633 /* StringUtils.swift */,
 				6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */,
+				6C7DDE0E1FDB64CC000E2822 /* Logger.swift */,
+				6CC83A8A1FA1481900FE0633 /* StringUtils.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1687,10 +1697,12 @@
 				6C6F4BCA1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
 				6C22087C1FBD0C6700874882 /* Driver.swift in Sources */,
 				6C3FB2B41FA289A700B22EAB /* TransmissionType.swift in Sources */,
+				6C7DDE131FDB664D000E2822 /* String+Utils.swift in Sources */,
 				6C91BBF11FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
 				6C3FB2AA1FA2574C00B22EAB /* Vehicle.swift in Sources */,
 				6CCD428E1FA013E3000AC6C9 /* AppDelegate.swift in Sources */,
 				6C58330B1FB3AF5600F6BFE0 /* BackgroundView.swift in Sources */,
+				6C7DDE0F1FDB64CD000E2822 /* Logger.swift in Sources */,
 				6C20E1E81FBF851B00E5D9A0 /* Service.swift in Sources */,
 				6CBB4E8E1FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
 				6C5833181FB3AF5600F6BFE0 /* PresentrAnimation.swift in Sources */,
@@ -1790,6 +1802,7 @@
 				6C20E1A11FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */,
 				6C20E1E91FBF851B00E5D9A0 /* Service.swift in Sources */,
 				6C7342001FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
+				6C7DDE141FDB664D000E2822 /* String+Utils.swift in Sources */,
 				6CBB4E9E1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
 				6C5833281FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */,
 				6C20E1881FBE061A00E5D9A0 /* ETAMarker.swift in Sources */,
@@ -1852,6 +1865,7 @@
 				6CBB4EAD1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */,
 				6C5833231FB3AF7B00F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
 				6C9C7A7C1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
+				6C7DDE101FDB64D0000E2822 /* Logger.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1878,6 +1892,7 @@
 				6C20E1BD1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
 				6C73420A1FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */,
 				6C606ACE1FC501550030BBE3 /* AppDelegate.swift in Sources */,
+				6C7DDE111FDB64D1000E2822 /* Logger.swift in Sources */,
 				6CEA0D5B1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
 				6CBB4EB51FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
 				6CBB4EB11FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */,
@@ -1928,6 +1943,7 @@
 				6CBB4E901FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
 				6C7495E11FDA1E870036FC08 /* MappableDataArray.swift in Sources */,
 				6C58332D1FB3AF8000F6BFE0 /* ModalCenterPosition.swift in Sources */,
+				6C7DDE151FDB664D000E2822 /* String+Utils.swift in Sources */,
 				6C32C3191FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */,
 				6C2208821FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */,
 				6C7E66E71FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
@@ -2035,6 +2051,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_DEBUG_INFO = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT = dev;
@@ -2078,7 +2095,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SDKROOT = iphoneos;
@@ -2228,6 +2244,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_DEBUG_INFO = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT = dev;
@@ -2271,7 +2288,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SDKROOT = iphoneos;
@@ -2421,6 +2437,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_DEBUG_INFO = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENVIRONMENT = prod;
@@ -2458,7 +2475,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -2604,6 +2620,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_DEBUG_INFO = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT = dev;
@@ -2647,7 +2664,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SDKROOT = iphoneos;
@@ -2692,6 +2708,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_DEBUG_INFO = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENVIRONMENT = prod;
@@ -2729,7 +2746,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				MTL_ENABLE_DEBUG_INFO = NO;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";

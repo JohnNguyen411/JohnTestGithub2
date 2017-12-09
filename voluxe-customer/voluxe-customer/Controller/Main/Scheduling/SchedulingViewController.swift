@@ -229,15 +229,15 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         }
         
         stateTestView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.left.equalToSuperview()
             make.bottom.equalTo(confirmButton.snp.top)
             make.height.width.equalTo(1)
         }
         
         dealershipTestView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.left.equalToSuperview()
             make.bottom.equalTo(dealershipView.snp.bottom).offset(1)
-            make.height.width.equalTo(2)
+            make.height.width.equalTo(1)
         }
         
     }
