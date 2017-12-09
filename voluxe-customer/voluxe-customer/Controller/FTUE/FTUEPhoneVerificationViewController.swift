@@ -80,11 +80,11 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     //MARK: UITextFieldDelegate
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("textFieldDidBeginEditing")
+        Logger.print("textFieldDidBeginEditing")
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        print("textField shouldChangeCharactersIn")
+        Logger.print("textField shouldChangeCharactersIn")
         guard let text = textField.text else { return true }
         let newLength = text.count + string.count - range.length
         return newLength <= 4 // Bool

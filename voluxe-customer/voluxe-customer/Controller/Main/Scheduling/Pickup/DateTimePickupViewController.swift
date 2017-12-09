@@ -218,25 +218,25 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     // MARK: Private Methods
     
     @objc func empty(_ sender:UIPanGestureRecognizer){
-        print("empty")
+        Logger.print("empty")
     }
     
     @objc func firstHourClicked(){
-        print("firstHourClicked")
+        Logger.print("firstHourClicked")
         setButtonEnabled(enable: firstHourButton.isEnabled, selected: true, button: firstHourButton)
         setButtonEnabled(enable: secondHourButton.isEnabled, selected: false, button: secondHourButton)
         setButtonEnabled(enable: thirdHourButton.isEnabled, selected: false, button: thirdHourButton)
     }
     
     @objc func secondHourClicked(){
-        print("secondHourClicked")
+        Logger.print("secondHourClicked")
         setButtonEnabled(enable: firstHourButton.isEnabled, selected: false, button: firstHourButton)
         setButtonEnabled(enable: secondHourButton.isEnabled, selected: true, button: secondHourButton)
         setButtonEnabled(enable: thirdHourButton.isEnabled, selected: false, button: thirdHourButton)
     }
     
     @objc func thirdHourClicked(){
-        print("thirdHourClicked")
+        Logger.print("thirdHourClicked")
         setButtonEnabled(enable: firstHourButton.isEnabled, selected: false, button: firstHourButton)
         setButtonEnabled(enable: secondHourButton.isEnabled, selected: false, button: secondHourButton)
         setButtonEnabled(enable: thirdHourButton.isEnabled, selected: true, button: thirdHourButton)

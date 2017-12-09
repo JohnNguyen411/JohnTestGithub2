@@ -138,8 +138,8 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                 self.locationInfoArray.append(reverseGeocodeInfo)
                 self.locationPlacemarkArray.append(placemark!)
                 
-                print("Address found")
-                print(reverseGeocodeInfo["formattedAddress"] ?? "")
+                Logger.print("Address found")
+                Logger.print(reverseGeocodeInfo["formattedAddress"] ?? "")
                 DispatchQueue.main.sync {
                     self.addLocation(location: .YourLocation)
                     self.bottomButton.isEnabled = true

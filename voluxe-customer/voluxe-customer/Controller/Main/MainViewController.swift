@@ -150,34 +150,34 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
 extension MainViewController : SlideMenuControllerDelegate {
     
     func leftWillOpen() {
-        print("SlideMenuControllerDelegate: leftWillOpen")
+        Logger.print("SlideMenuControllerDelegate: leftWillOpen")
     }
     
     func leftDidOpen() {
-        print("SlideMenuControllerDelegate: leftDidOpen")
+        Logger.print("SlideMenuControllerDelegate: leftDidOpen")
     }
     
     func leftWillClose() {
-        print("SlideMenuControllerDelegate: leftWillClose")
+        Logger.print("SlideMenuControllerDelegate: leftWillClose")
     }
     
     func leftDidClose() {
-        print("SlideMenuControllerDelegate: leftDidClose")
+        Logger.print("SlideMenuControllerDelegate: leftDidClose")
     }
     
     func rightWillOpen() {
-        print("SlideMenuControllerDelegate: rightWillOpen")
+        Logger.print("SlideMenuControllerDelegate: rightWillOpen")
     }
     
     func rightDidOpen() {
-        print("SlideMenuControllerDelegate: rightDidOpen")
+        Logger.print("SlideMenuControllerDelegate: rightDidOpen")
     }
     
     func rightWillClose() {
-        print("SlideMenuControllerDelegate: rightWillClose")
+        Logger.print("SlideMenuControllerDelegate: rightWillClose")
     }
     
     func rightDidClose() {
-        print("SlideMenuControllerDelegate: rightDidClose")
+        Logger.print("SlideMenuControllerDelegate: rightDidClose")
     }
 }

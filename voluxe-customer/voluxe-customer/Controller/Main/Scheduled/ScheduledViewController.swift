@@ -230,7 +230,7 @@ class ScheduledViewController: ChildViewController {
                 self.timeWindowView.setETA(eta: direction.getEta())
             }
             }.onFailure { error in
-                print("error")
+                Logger.print(error)
         }
         
     }

@@ -57,11 +57,11 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
                         }
                     }
                 } catch let error {
-                    print(error)
+                    Logger.print(error)
                 }
                 return false
             }
-            print(stringUrl)
+            Logger.print(stringUrl)
         }
         return true
     }
@@ -82,7 +82,7 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
             do {
                 return try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any]
             } catch {
-                print(error.localizedDescription)
+                Logger.print(error.localizedDescription)
             }
         }
         return nil

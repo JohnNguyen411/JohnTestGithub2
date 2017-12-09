@@ -21,7 +21,7 @@ class DealershipAPI: NSObject {
             var responseObject: ResponseObject<MappableDataArray<Dealership>>?
             
             if let json = response.result.value as? [String: Any] {
-                print("JSON: \(json)")
+                Logger.print("JSON: \(json)")
                 responseObject = ResponseObject<MappableDataArray<Dealership>>(json: json)
             }
             
