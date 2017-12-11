@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
+import RealmSwift
 
 class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate {
     
@@ -29,6 +30,8 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         return formatter
     }()
     
+    var realm : Realm?
+
     var dealerships: [Dealership]?
     var serviceState: ServiceState
     var scheduleState: SchedulePickupState = .start
@@ -76,6 +79,8 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        realm = try? Realm()
         
         descriptionButton.setActionBlock {
             self.showDescriptionClick()
@@ -260,6 +265,12 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
                     }
                     
                     self.dealershipTestView.isHidden = false
+                    
+                    if let realm = self.realm {
+                        try? realm.write {
+                            realm.add(dealerships)
+                        }
+                    }
                 }
                 
                 }.onFailure { error in
