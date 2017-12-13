@@ -234,6 +234,9 @@
 		6C7DDE131FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
 		6C7DDE141FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
 		6C7DDE151FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
+		6C7DDE181FE1B03F000E2822 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */; };
+		6C7DDE191FE1B03F000E2822 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */; };
+		6C7DDE1A1FE1B03F000E2822 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */; };
 		6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
 		6C7E66E61FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
 		6C7E66E71FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
@@ -522,6 +525,7 @@
 		6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappableDataObject.swift; sourceTree = "<group>"; };
 		6C7DDE0E1FDB64CC000E2822 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		6C7DDE121FDB664D000E2822 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePickupLocalization.swift; sourceTree = "<group>"; };
 		6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseObject.swift; sourceTree = "<group>"; };
 		6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEAllSetViewController.swift; sourceTree = "<group>"; };
@@ -872,6 +876,14 @@
 			path = Generics;
 			sourceTree = "<group>";
 		};
+		6C7DDE161FE1AFE6000E2822 /* Dev */ = {
+			isa = PBXGroup;
+			children = (
+				6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */,
+			);
+			path = Dev;
+			sourceTree = "<group>";
+		};
 		6C88DC921FAA8ADC009F2FC3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -986,6 +998,7 @@
 		6CC83A791FA140A600FE0633 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				6C7DDE161FE1AFE6000E2822 /* Dev */,
 				6CC83A7C1FA140D300FE0633 /* localhost.json */,
 				6CC83A7B1FA140D300FE0633 /* mock.json */,
 				6CC83A7A1FA140D300FE0633 /* ngrok.json */,
@@ -1279,6 +1292,7 @@
 				6C9543A81FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */,
 				6CFBF9B21FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf in Resources */,
 				6CC83A841FA140D300FE0633 /* sensus_prod.json in Resources */,
+				6C7DDE181FE1B03F000E2822 /* GoogleService-Info.plist in Resources */,
 				6CFBF9B31FA1131700D3AA78 /* VolvoSansPro-Light.ttf in Resources */,
 				6C9543AE1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
 				6CCD42951FA013E3000AC6C9 /* Assets.xcassets in Resources */,
@@ -1294,6 +1308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C58332F1FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */,
+				6C7DDE191FE1B03F000E2822 /* GoogleService-Info.plist in Resources */,
 				6C9543AC1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
 				6C9543AF1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
 				6C58333D1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
@@ -1318,6 +1333,7 @@
 				6CBF9FE91FC5FB9A002BC7FC /* VolvoSansPro-Medium.ttf in Resources */,
 				6CBF9FEA1FC5FB9A002BC7FC /* VolvoSerifPro-Italic.ttf in Resources */,
 				6CBF9FEB1FC5FB9A002BC7FC /* VolvoSerifPro-Regular.ttf in Resources */,
+				6C7DDE1A1FE1B03F000E2822 /* GoogleService-Info.plist in Resources */,
 				6C5833301FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */,
 				6C9543AD1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
 				6C9543B01FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
@@ -2117,7 +2133,7 @@
 				DEVELOPMENT_TEAM = 62ZVLS334X;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer.dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -2310,7 +2326,7 @@
 				DEVELOPMENT_TEAM = 62ZVLS334X;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer.staging";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -2767,7 +2783,7 @@
 				DEVELOPMENT_TEAM = 62ZVLS334X;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer.debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -2788,7 +2804,7 @@
 				DEVELOPMENT_TEAM = 62ZVLS334X;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer.prod";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
