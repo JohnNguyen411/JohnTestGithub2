@@ -10,8 +10,12 @@ import Foundation
 import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
+import RealmSwift
+import BrightFutures
+import Alamofire
 
-class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate {
+class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate, LocationManagerDelegate {
+    
     
     public enum SchedulePickupState: Int {
         case start = 0
@@ -29,6 +33,9 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         return formatter
     }()
     
+    var realm : Realm?
+    var locationManager = LocationManager.sharedInstance
+
     var dealerships: [Dealership]?
     var serviceState: ServiceState
     var scheduleState: SchedulePickupState = .start
@@ -77,6 +84,13 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        locationManager.delegate = self
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+        
+        realm = try? Realm()
+        
         descriptionButton.setActionBlock {
             self.showDescriptionClick()
         }
@@ -105,6 +119,11 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         super.stateDidChange(state: state)
         stateTestView.accessibilityIdentifier = "schedulingTestView\(state)"
         stateTestView.text = "schedulingTestView\(state)"
+    }
+    
+    deinit {
+        locationManager.delegate = nil
+        locationManager.stopUpdatingLocation()
     }
     
     //MARK: View methods
@@ -247,28 +266,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
             scheduledServiceView.setTitle(title: .RecommendedService, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
         }
         
-        if RequestedServiceManager.sharedInstance.getDealership() == nil {
-            DealershipAPI().getDealerships().onSuccess { result in
-                
-                if let dealerships = result?.data?.result, dealerships.count > 0 {
-                    self.dealerships = dealerships
-                    if RequestedServiceManager.sharedInstance.getDealership() == nil {
-                        RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
-                    }
-                    if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-                        self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
-                    }
-                    
-                    self.dealershipTestView.isHidden = false
-                }
-                
-                }.onFailure { error in
-            }
-        } else {
-            if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-                self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
-            }
-        }
+        fillDealership()
         
         if RequestedServiceManager.sharedInstance.getLoaner() == nil {
             RequestedServiceManager.sharedInstance.setLoaner(loaner: true)
@@ -276,9 +274,55 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         if let loaner = RequestedServiceManager.sharedInstance.getLoaner() {
             loanerView.descLeftLabel.text = loaner ? .Yes : .No
         }
-                
-        
     }
+    
+    private func fillDealership() {
+        if RequestedServiceManager.sharedInstance.getDealership() == nil {
+            
+            if CLLocationManager.locationServicesEnabled() && locationManager.lastKnownLatitude != 0 && locationManager.lastKnownLongitude != 0 && locationManager.hasLastKnownLocation {
+                DealershipAPI().getDealerships(location: CLLocationCoordinate2DMake(locationManager.lastKnownLatitude, locationManager.lastKnownLongitude)).onSuccess { result in
+                    
+                    self.handleDealershipsResponse(result: result)
+                    
+                    }.onFailure { error in
+                }
+            } else {
+                DealershipAPI().getDealerships().onSuccess { result in
+                    
+                    self.handleDealershipsResponse(result: result)
+                    
+                    }.onFailure { error in
+                }
+            }
+            
+        } else {
+            if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+            }
+        }
+    }
+    
+    private func handleDealershipsResponse(result: ResponseObject<MappableDataArray<Dealership>>?) {
+        if let dealerships = result?.data?.result, dealerships.count > 0 {
+            self.dealerships = dealerships
+            if RequestedServiceManager.sharedInstance.getDealership() == nil {
+                RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
+            }
+            if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+            }
+            
+            self.dealershipTestView.isHidden = false
+            
+            if let realm = self.realm {
+                try? realm.write {
+                    realm.add(dealerships)
+                }
+            }
+        }
+    }
+    
+    
     
     func buildPresenter(heightInPixels: CGFloat, dismissOnTap: Bool) -> Presentr {
         let customType = getPresenterPresentationType(heightInPixels: heightInPixels, customYOrigin: SchedulingPickupViewController.fakeYOrigin)
@@ -412,6 +456,12 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     }
     
     func confirmButtonClick() {
+    }
+    
+    //MARK: LocationManager delegate methods
+
+    func locationFound(_ latitude: Double, longitude: Double) {
+        fillDealership()
     }
         
     
