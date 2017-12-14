@@ -234,6 +234,12 @@
 		6C7DDE131FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
 		6C7DDE141FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
 		6C7DDE151FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
+		6C7DDE181FE1B03F000E2822 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */; };
+		6C7DDE191FE1B03F000E2822 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */; };
+		6C7DDE1A1FE1B03F000E2822 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */; };
+		6C7DDE1D1FE1B864000E2822 /* VLAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */; };
+		6C7DDE1E1FE1B864000E2822 /* VLAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */; };
+		6C7DDE1F1FE1B864000E2822 /* VLAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */; };
 		6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
 		6C7E66E61FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
 		6C7E66E71FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
@@ -522,6 +528,8 @@
 		6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappableDataObject.swift; sourceTree = "<group>"; };
 		6C7DDE0E1FDB64CC000E2822 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		6C7DDE121FDB664D000E2822 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLAnalytics.swift; sourceTree = "<group>"; };
 		6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePickupLocalization.swift; sourceTree = "<group>"; };
 		6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseObject.swift; sourceTree = "<group>"; };
 		6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEAllSetViewController.swift; sourceTree = "<group>"; };
@@ -872,6 +880,22 @@
 			path = Generics;
 			sourceTree = "<group>";
 		};
+		6C7DDE161FE1AFE6000E2822 /* Dev */ = {
+			isa = PBXGroup;
+			children = (
+				6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */,
+			);
+			path = Dev;
+			sourceTree = "<group>";
+		};
+		6C7DDE1B1FE1B5D6000E2822 /* Analytic */ = {
+			isa = PBXGroup;
+			children = (
+				6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */,
+			);
+			path = Analytic;
+			sourceTree = "<group>";
+		};
 		6C88DC921FAA8ADC009F2FC3 /* Main */ = {
 			isa = PBXGroup;
 			children = (
@@ -986,6 +1010,7 @@
 		6CC83A791FA140A600FE0633 /* Config */ = {
 			isa = PBXGroup;
 			children = (
+				6C7DDE161FE1AFE6000E2822 /* Dev */,
 				6CC83A7C1FA140D300FE0633 /* localhost.json */,
 				6CC83A7B1FA140D300FE0633 /* mock.json */,
 				6CC83A7A1FA140D300FE0633 /* ngrok.json */,
@@ -1047,6 +1072,7 @@
 		6CCD428C1FA013E3000AC6C9 /* voluxe-customer */ = {
 			isa = PBXGroup;
 			children = (
+				6C7DDE1B1FE1B5D6000E2822 /* Analytic */,
 				6CC83A791FA140A600FE0633 /* Config */,
 				6CC37E431FA7ADB000DA8F01 /* Controller */,
 				6C3FB2B71FA2971D00B22EAB /* Extention */,
@@ -1279,6 +1305,7 @@
 				6C9543A81FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */,
 				6CFBF9B21FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf in Resources */,
 				6CC83A841FA140D300FE0633 /* sensus_prod.json in Resources */,
+				6C7DDE181FE1B03F000E2822 /* GoogleService-Info.plist in Resources */,
 				6CFBF9B31FA1131700D3AA78 /* VolvoSansPro-Light.ttf in Resources */,
 				6C9543AE1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
 				6CCD42951FA013E3000AC6C9 /* Assets.xcassets in Resources */,
@@ -1294,6 +1321,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C58332F1FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */,
+				6C7DDE191FE1B03F000E2822 /* GoogleService-Info.plist in Resources */,
 				6C9543AC1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
 				6C9543AF1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
 				6C58333D1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
@@ -1318,6 +1346,7 @@
 				6CBF9FE91FC5FB9A002BC7FC /* VolvoSansPro-Medium.ttf in Resources */,
 				6CBF9FEA1FC5FB9A002BC7FC /* VolvoSerifPro-Italic.ttf in Resources */,
 				6CBF9FEB1FC5FB9A002BC7FC /* VolvoSerifPro-Regular.ttf in Resources */,
+				6C7DDE1A1FE1B03F000E2822 /* GoogleService-Info.plist in Resources */,
 				6C5833301FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */,
 				6C9543AD1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
 				6C9543B01FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
@@ -1706,6 +1735,7 @@
 				6C20E1E81FBF851B00E5D9A0 /* Service.swift in Sources */,
 				6CBB4E8E1FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
 				6C5833181FB3AF5600F6BFE0 /* PresentrAnimation.swift in Sources */,
+				6C7DDE1D1FE1B864000E2822 /* VLAnalytics.swift in Sources */,
 				6CBB4EB31FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
 				6C20E1C31FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */,
 				6C9C7A7B1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
@@ -1765,6 +1795,7 @@
 				6CBB4E8C1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				6C20E1ED1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */,
 				6C20E1C81FBE6D2400E5D9A0 /* StateService.swift in Sources */,
+				6C7DDE1E1FE1B864000E2822 /* VLAnalytics.swift in Sources */,
 				6C20E1D11FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
 				6CBB4EA41FB4DF7D00C31183 /* FSCalendarHeaderView.m in Sources */,
 				6C91BBF21FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
@@ -1911,6 +1942,7 @@
 				6C58332B1FB3AF8000F6BFE0 /* CrossDissolveAnimation.swift in Sources */,
 				6C73420E1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,
 				6CBB4E9C1FB4DF7D00C31183 /* FSCalendarCell.m in Sources */,
+				6C7DDE1F1FE1B864000E2822 /* VLAnalytics.swift in Sources */,
 				6C5833221FB3AF7800F6BFE0 /* CoverHorizontalAnimation.swift in Sources */,
 				6C20E18D1FBE0E6200E5D9A0 /* GoogleDirectionAPI.swift in Sources */,
 				6C20E1B41FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift in Sources */,
@@ -2117,7 +2149,7 @@
 				DEVELOPMENT_TEAM = 62ZVLS334X;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer.dev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -2310,7 +2342,7 @@
 				DEVELOPMENT_TEAM = 62ZVLS334X;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer.staging";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -2767,7 +2799,7 @@
 				DEVELOPMENT_TEAM = 62ZVLS334X;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer.debug";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -2788,7 +2820,7 @@
 				DEVELOPMENT_TEAM = 62ZVLS334X;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer.prod";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";

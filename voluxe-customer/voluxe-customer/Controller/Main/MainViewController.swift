@@ -41,6 +41,8 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             return
         }
         
+        VLAnalytics.logEventWithName(VLAnalytics.stateChangeEvent, paramName: VLAnalytics.stateParam, paramValue: "\(state.rawValue)")
+        
         setTitle(title: getTitleForState(state: state))
         
         var changeView = true

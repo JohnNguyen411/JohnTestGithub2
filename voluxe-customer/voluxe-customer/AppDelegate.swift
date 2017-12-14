@@ -9,9 +9,14 @@
 import UIKit
 import SlideMenuControllerSwift
 import GoogleMaps
+import Firebase
+import FirebaseMessaging
+import UserNotifications
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
+
+    let gcmMessageIDKey = "gcm.message_id"
 
     var window: UIWindow?
 
@@ -72,7 +77,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        Logger.init()
+        setupFirebase(application)
+        
+        _ = Logger.init()
         GMSServices.provideAPIKey(Bundle.main.object(forInfoDictionaryKey: "GoogleMapsAPIKey") as! String)
         
        startApp()
@@ -95,6 +102,31 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             createMenuView()
         }
+    }
+    
+    private func setupFirebase(_ application: UIApplication) {
+        FirebaseApp.configure()
+
+        // uncomment for Push Notification
+        /*
+        if #available(iOS 10.0, *) {
+            
+            // For iOS 10 display notification (sent via APNS)
+            UNUserNotificationCenter.current().delegate = self
+            
+            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
+            UNUserNotificationCenter.current().requestAuthorization(
+                options: authOptions,
+                completionHandler: {_, _ in })
+        } else {
+            let settings: UIUserNotificationSettings =
+                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
+            application.registerUserNotificationSettings(settings)
+        }
+        
+        application.registerForRemoteNotifications()
+        Messaging.messaging().delegate = self
+         */
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -122,7 +154,59 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func loadMainScreen() {
         createMenuView()
     }
+    
+    //MARK: UNUserNotificationCenterDelegate
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("didReceive")
+    }
+    
+    @available(iOS 10.0, *)
+    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("willPresent")
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        // Print full message.
+        print(userInfo)
+    }
+    
+    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        // If you are receiving a notification message while your app is in the background,
+        // this callback will not be fired till the user taps on the notification launching the application.
+        // TODO: Handle data of notification
+        
+        // Print message ID.
+        if let messageID = userInfo[gcmMessageIDKey] {
+            print("Message ID: \(messageID)")
+        }
+        
+        // Print full message.
+        print(userInfo)
+        
+        completionHandler(UIBackgroundFetchResult.newData)
+    }
 
+    
+    //MARK: MessagingDelegate
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        let token = Messaging.messaging().fcmToken
+        print("FCM token: \(token ?? "")")
+        
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
+    }
 }
 
 extension UIApplication {
