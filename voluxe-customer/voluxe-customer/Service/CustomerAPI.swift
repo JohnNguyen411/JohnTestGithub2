@@ -34,5 +34,26 @@ class CustomerAPI: NSObject {
         }
         return promise.future
     }
+    
+    func getVehicles(customerId: String) -> Future<ResponseObject<MappableDataArray<Vehicle>>?, AFError> {
+        let promise = Promise<ResponseObject<MappableDataArray<Vehicle>>?, AFError>()
+        
+        NetworkRequest.request(url: NetworkRequest.replaceValues(url: "/v1/customers/\(NetworkRequest.ID_PLACEHOLDER)/vehicles", values: [customerId]), queryParameters: [:], withBearer: true).responseJSON { response in
+            
+            var responseObject: ResponseObject<MappableDataArray<Vehicle>>?
+            
+            if let json = response.result.value as? [String: Any] {
+                Logger.print("JSON: \(json)")
+                responseObject = ResponseObject<MappableDataArray<Vehicle>>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(response.error as! AFError)
+            }
+        }
+        return promise.future
+    }
 }
 

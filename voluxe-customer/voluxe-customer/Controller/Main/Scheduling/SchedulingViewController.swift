@@ -309,7 +309,9 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
                 RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
             }
             if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-                self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+                if let dealershipName = dealership.name {
+                    self.dealershipView.setTitle(title: .Dealership, leftDescription: dealershipName, rightDescription: "")
+                }
             }
             
             self.dealershipTestView.isHidden = false
