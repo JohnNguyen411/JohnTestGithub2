@@ -59,6 +59,14 @@ class NetworkRequest {
         return NetworkRequest.request(url: url, method: method, queryParameters: queryParameters, headers: headers, addBearer: withBearer)
     }
     
+    static func request(url: String, queryParameters: Parameters?, bodyParameters: Parameters, withBearer: Bool) -> DataRequest {
+        var mutHeader: [String: String] = [:]
+        if withBearer {
+            NetworkRequest.addBearer(header: &mutHeader)
+        }
+        return NetworkRequest.request(url: url, method: .post, queryParameters: queryParameters, bodyParameters: bodyParameters, headers: mutHeader)
+    }
+    
     static func request(url: String, queryParameters: Parameters?, withBearer: Bool) -> DataRequest {
         return NetworkRequest.request(url: url, method: .get, queryParameters: queryParameters, withBearer: withBearer)
     }
