@@ -17,7 +17,7 @@ class DealershipAPI: NSObject {
     func getDealerships() -> Future<ResponseObject<MappableDataArray<Dealership>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/dealerships", parameters: [:], withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/dealerships", queryParameters: [:], withBearer: true).responseJSON { response in
             
             var responseObject: ResponseObject<MappableDataArray<Dealership>>?
             
@@ -38,7 +38,7 @@ class DealershipAPI: NSObject {
     func getDealerships(location: CLLocationCoordinate2D) -> Future<ResponseObject<MappableDataArray<Dealership>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/dealerships/near", parameters: ["latitude": "\(location.latitude)", "longitude" : "\(location.longitude)"], withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/dealerships/near", queryParameters: ["latitude": "\(location.latitude)", "longitude" : "\(location.longitude)"], withBearer: true).responseJSON { response in
             
             var responseObject: ResponseObject<MappableDataArray<Dealership>>?
             

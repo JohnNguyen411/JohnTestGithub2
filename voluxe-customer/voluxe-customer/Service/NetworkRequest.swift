@@ -18,41 +18,64 @@ import BrightFutures
  ***/
 class NetworkRequest {
     
-    static func request(url: String, method: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders?) -> DataRequest {
+    static let ID_PLACEHOLDER: String = "__ID__"
+    
+    static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, bodyParameters: Parameters? = nil, bodyEncoding: ParameterEncoding = URLEncoding.default, headers: HTTPHeaders?) -> DataRequest {
         let finalUrl = "\(Config.sharedInstance.apiEndpoint())\(url)"
-        let request = Alamofire.request(finalUrl, method: method, parameters: parameters, headers: headers)
-        Logger.print("NetworkRequest \(request)")
-        if let parameters = parameters {
-            Logger.print("parameters \(parameters)")
+        
+        var originalRequest: URLRequest?
+        var finalRequest: DataRequest?
+
+        do {
+            originalRequest = try URLRequest(url: finalUrl, method: method, headers: headers)
+            let queryEncodedURLRequest = try URLEncoding.default.encode(originalRequest!, with: queryParameters)
+            let queryAndBodyEncodedURLRequest = try bodyEncoding.encode(queryEncodedURLRequest, with: bodyParameters)
+            finalRequest = Alamofire.request(queryAndBodyEncodedURLRequest)
+        } catch {
+            finalRequest = Alamofire.request(originalRequest!)
+        }
+        
+        //let request = Alamofire.request(finalUrl, method: method, parameters: parameters, headers: headers)
+        Logger.print("NetworkRequest \(originalRequest!)")
+        if let queryParameters = queryParameters {
+            Logger.print("parameters \(queryParameters)")
         }
         if let headers = headers {
             Logger.print("headers \(headers)")
         }
-        return request
+        return finalRequest!
     }
     
-    static func request(url: String, method: HTTPMethod, parameters: Parameters?, headers: HTTPHeaders, addBearer: Bool) -> DataRequest {
+    static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, headers: HTTPHeaders, addBearer: Bool) -> DataRequest {
         var mutHeader = headers
         if addBearer {
             NetworkRequest.addBearer(header: &mutHeader)
         }
-        return NetworkRequest.request(url: url, method: method, parameters: parameters, headers: mutHeader)
+        return NetworkRequest.request(url: url, method: method, queryParameters: queryParameters, headers: mutHeader)
     }
     
-    static func request(url: String, method: HTTPMethod, parameters: Parameters?, withBearer: Bool) -> DataRequest {
+    static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, withBearer: Bool) -> DataRequest {
         let headers: [String: String] = [:]
-        return NetworkRequest.request(url: url, method: method, parameters: parameters, headers: headers, addBearer: withBearer)
+        return NetworkRequest.request(url: url, method: method, queryParameters: queryParameters, headers: headers, addBearer: withBearer)
     }
     
-    static func request(url: String, parameters: Parameters?, withBearer: Bool) -> DataRequest {
-        return NetworkRequest.request(url: url, method: .get, parameters: parameters, withBearer: withBearer)
+    static func request(url: String, queryParameters: Parameters?, withBearer: Bool) -> DataRequest {
+        return NetworkRequest.request(url: url, method: .get, queryParameters: queryParameters, withBearer: withBearer)
     }
     
-    static func request(url: String, parameters: Parameters?) -> DataRequest {
-        return NetworkRequest.request(url: url, method: .get, parameters: parameters, headers: nil)
+    static func request(url: String, queryParameters: Parameters?) -> DataRequest {
+        return NetworkRequest.request(url: url, method: .get, queryParameters: queryParameters, headers: nil)
     }
     
     static func addBearer(header: inout [String: String]) {
         header["Authorization"] = "Bearer \(UserManager.sharedInstance.getAccessToken() ?? "")"
+    }
+    
+    static func replaceValues(url: String, values: [String]) -> String{
+        var modifiedUrl = url
+        for id in values {
+            modifiedUrl = String.stringByReplacingFirstOccurrenceOfString(string: modifiedUrl, target: ID_PLACEHOLDER, withString: id)
+        }
+        return modifiedUrl
     }
 }

@@ -8,29 +8,45 @@
 
 import Foundation
 import ObjectMapper
+import CoreLocation
+import RealmSwift
 
-class Customer: NSObject, Mappable {
+class Customer: Object, Mappable {
 
-    var name: String?
-    var phone: String?
-    var email: String!
-
-    override init() {
-        super.init()
+    @objc dynamic var id: Int = -1
+    @objc dynamic var volvoCustomerId: String?
+    @objc dynamic var firstName: String?
+    @objc dynamic var lastName: String?
+    @objc dynamic var marketCode: String?
+    @objc dynamic var phoneNumber: String?
+    @objc dynamic var phoneNumberVerified: Bool = false
+    @objc dynamic var credit: Int = 0
+    @objc dynamic var currencyId: Int = 0
+    @objc dynamic var photoUrl: String?
+    @objc dynamic var enabled: Bool = true
+    var location: Location?
+    
+    required convenience init?(map: Map) {
+        self.init()
     }
-
-    init(name: String?, phone: String?, email: String) {
-        self.name = name
-        self.phone = phone
-        self.email = email
-    }
-
-    required init?(map: Map) {
-    }
-
+   
     func mapping(map: Map) {
-        name <- map["name"]
-        phone <- map["phone"]
-        email <- map["email"]
+        id <- map["id"]
+        volvoCustomerId <- map["volvo_customer_id"]
+        firstName <- map["first_name"]
+        lastName <- map["last_name"]
+        marketCode <- map["market_code"]
+        phoneNumber <- map["phone_number"]
+        phoneNumberVerified <- map["phone_number_verified"]
+        credit <- map["credit"]
+        currencyId <- map["currency_id"]
+        photoUrl <- map["photo_url"]
+        location <- map["location"]
+        enabled <- map["enabled"]
+    }
+    
+    override static func ignoredProperties() -> [String] {
+        return ["location"]
     }
 }
+
