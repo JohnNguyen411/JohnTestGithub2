@@ -12,8 +12,14 @@ import AlamofireObjectMapper
 import BrightFutures
 import CoreLocation
 
+/// Class regrouping all the methods creating requests to handle Dealership
 class DealershipAPI: NSObject {
     
+    /**
+     Get a list of Dealership
+     
+     - Returns: A Future ResponseObject containing a list of Dealership, or an AFError if an error occured
+     */
     func getDealerships() -> Future<ResponseObject<MappableDataArray<Dealership>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, AFError>()
         
@@ -35,6 +41,13 @@ class DealershipAPI: NSObject {
         return promise.future
     }
     
+    
+    /**
+     Get a list of Dealership near Location
+     - parameter location: the location
+
+     - Returns: A Future ResponseObject containing a list of Dealership around the location, or an AFError if an error occured
+     */
     func getDealerships(location: CLLocationCoordinate2D) -> Future<ResponseObject<MappableDataArray<Dealership>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, AFError>()
         

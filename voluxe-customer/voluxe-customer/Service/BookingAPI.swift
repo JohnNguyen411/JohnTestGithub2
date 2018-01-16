@@ -12,16 +12,15 @@ import AlamofireObjectMapper
 import BrightFutures
 import CoreLocation
 
-/// 🚲 A two-wheeled, human-powered mode of transportation.
+/// Class regrouping all the methods creating the requests to handle Booking
 class BookingAPI: NSObject {
     
     /**
      Create Booking for Customer
-     - parameters:
-     - customerId: Customer's Id
-     - vehicleId: Customer's vehicle that needs to be serviced
-     - dealershipId: Dealership choosed by the Customer
-     - loaner: If the customer requested a Loaner
+     - parameter customerId: Customer's Id
+     - parameter vehicleId: Customer's vehicle that needs to be serviced
+     - parameter dealershipId: Dealership choosed by the Customer
+     - parameter loaner: If the customer requested a Loaner
      
      - Returns: A Future ResponseObject containing a Booking, or an AFError if an error occured
      */
@@ -54,9 +53,8 @@ class BookingAPI: NSObject {
     
     /**
      Get Booking with CustomerID and BookingID
-     - parameters:
-     - customerId: Customer's Id
-     - bookingId: The Booking ID
+     - parameter customerId: Customer's Id
+     - parameter bookingId: The Booking ID
      
      - Returns: A Future ResponseObject containing a Booking, or an AFError if an error occured
      */
@@ -84,8 +82,7 @@ class BookingAPI: NSObject {
     
     /**
      Get the bookings of a customer
-     - parameters:
-     - customerId: Customer's Id
+     - parameter customerId: Customer's Id
      
      - Returns: A Future ResponseObject containing a list of Bookings, or an AFError if an error occured
      */

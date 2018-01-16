@@ -12,8 +12,15 @@ import AlamofireObjectMapper
 import BrightFutures
 import CoreLocation
 
+/// Class regrouping all the methods creating requests to handle Customer
 class CustomerAPI: NSObject {
     
+    /**
+     Get the Customer object with a customerId
+     - parameter id: Customer's Id
+     
+     - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
+     */
     func getCustomer(id: String) -> Future<ResponseObject<MappableDataObject<Customer>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
         
@@ -35,6 +42,13 @@ class CustomerAPI: NSObject {
         return promise.future
     }
     
+    
+    /**
+     Get the Customer's Vehicles
+     - parameter id: Customer's Id
+     
+     - Returns: A Future ResponseObject containing a list of Vehicle, or an AFError if an error occured
+     */
     func getVehicles(customerId: String) -> Future<ResponseObject<MappableDataArray<Vehicle>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<Vehicle>>?, AFError>()
         
