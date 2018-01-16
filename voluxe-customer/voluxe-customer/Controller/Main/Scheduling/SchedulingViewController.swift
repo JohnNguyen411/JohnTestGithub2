@@ -511,7 +511,8 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     }
     
     func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
-        let locationRequest = RequestLocation(name: responseInfo!.value(forKey: "formattedAddress") as? String, stringLocation: nil, location: placemark?.location?.coordinate)
+        //let locationRequest = RequestLocation(name: responseInfo!.value(forKey: "formattedAddress") as? String, stringLocation: nil, location: placemark?.location?.coordinate)
+        let locationRequest = RequestLocation(name: responseInfo!.value(forKey: "formattedAddress") as? String, latitude: nil, longitude: nil, location: placemark?.location?.coordinate)
         if StateServiceManager.sharedInstance.isPickup() {
             RequestedServiceManager.sharedInstance.setPickupRequestLocation(requestLocation: locationRequest)
         } else {
