@@ -61,8 +61,7 @@ class BookingAPI: NSObject {
     func getBooking(customerId: Int, bookingId: Int) -> Future<ResponseObject<MappableDataObject<Booking>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, AFError>()
 
-        NetworkRequest.request(url: NetworkRequest.replaceValues(url: "/v1/customers/\(customerId)/bookings/\(bookingId)",
-            values: ["\(customerId)", "\(bookingId)"]), queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)", queryParameters: nil, withBearer: true).responseJSON { response in
             
             var responseObject: ResponseObject<MappableDataObject<Booking>>?
             
@@ -89,7 +88,7 @@ class BookingAPI: NSObject {
     func getBookings(customerId: Int) -> Future<ResponseObject<MappableDataArray<Booking>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<Booking>>?, AFError>()
         
-        NetworkRequest.request(url: NetworkRequest.replaceValues(url: "/v1/customers/\(customerId)/bookings", queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings", queryParameters: nil, withBearer: true).responseJSON { response in
                 
                 var responseObject: ResponseObject<MappableDataArray<Booking>>?
                 

@@ -24,7 +24,7 @@ class CustomerAPI: NSObject {
     func getCustomer(id: String) -> Future<ResponseObject<MappableDataObject<Customer>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
         
-        NetworkRequest.request(url: NetworkRequest.replaceValues(url: "/v1/customers/\(NetworkRequest.ID_PLACEHOLDER)", values: [id]), queryParameters: [:], withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(id)", queryParameters: [:], withBearer: true).responseJSON { response in
             
             var responseObject: ResponseObject<MappableDataObject<Customer>>?
             
@@ -52,7 +52,7 @@ class CustomerAPI: NSObject {
     func getVehicles(customerId: String) -> Future<ResponseObject<MappableDataArray<Vehicle>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<Vehicle>>?, AFError>()
         
-        NetworkRequest.request(url: NetworkRequest.replaceValues(url: "/v1/customers/\(NetworkRequest.ID_PLACEHOLDER)/vehicles", values: [customerId]), queryParameters: [:], withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/vehicles", queryParameters: [:], withBearer: true).responseJSON { response in
             
             var responseObject: ResponseObject<MappableDataArray<Vehicle>>?
             
