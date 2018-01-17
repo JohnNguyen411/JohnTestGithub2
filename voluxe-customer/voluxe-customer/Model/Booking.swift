@@ -28,6 +28,8 @@ class Booking: Object, Mappable {
     @objc dynamic var dropoffRequest: RequestLocation?
     @objc dynamic var dropoffRequestId: Int = -1
     @objc dynamic var repairOrderRequests: RepairOrder?
+    @objc dynamic var createdAt: Date?
+    @objc dynamic var updatedAt: Date?
 
     required convenience init?(map: Map) {
         self.init()
@@ -49,5 +51,7 @@ class Booking: Object, Mappable {
         dropoffRequest <- map["dropoff_request"]
         dropoffRequestId <- map["dropoff_request_id"]
         repairOrderRequests <- map["repair_order_requests"]
+        createdAt <- (map["created_at"], DateTransform())
+        updatedAt <- (map["updated_at"], DateTransform())
     }
 }

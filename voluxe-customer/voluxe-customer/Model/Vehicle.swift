@@ -25,6 +25,8 @@ class Vehicle: Object, Mappable {
     @objc dynamic var baseColor: String?
     @objc dynamic var color: String?
     @objc dynamic var transmission: String?
+    @objc dynamic var createdAt: Date?
+    @objc dynamic var updatedAt: Date?
 
     required convenience init?(map: Map) {
         self.init()
@@ -44,6 +46,8 @@ class Vehicle: Object, Mappable {
         baseColor <- map["base_color"]
         color <- map["color"]
         transmission <- map["transmission"]
+        createdAt <- (map["created_at"], DateTransform())
+        updatedAt <- (map["updated_at"], DateTransform())
     }
 
     func colorCode() -> String {

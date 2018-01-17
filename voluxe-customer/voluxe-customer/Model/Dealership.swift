@@ -16,19 +16,17 @@ class Dealership: Object, Mappable {
     @objc dynamic var id: Int = -1
     @objc dynamic var name: String?
     @objc dynamic var phoneNumber: String?
-    @objc dynamic var address: String?
-    @objc dynamic var locationLatitude: Double = 0
-    @objc dynamic var locationLongitude: Double = 0
+    @objc dynamic var location: Location?
     @objc dynamic var coverageRadius: Int = 1
     @objc dynamic var currencyId: Int = 1
     @objc dynamic var enabled: Bool = true
-
-    var location: CLLocationCoordinate2D?
+    @objc dynamic var createdAt: Date?
+    @objc dynamic var updatedAt: Date?
     
     convenience init(name: String?, location: CLLocationCoordinate2D?) {
         self.init()
         self.name = name
-        self.location = location
+        self.location = Location(name: nil, latitude: nil, longitude: nil, location: location)
     }
     
     convenience init(name: String?) {
@@ -43,17 +41,11 @@ class Dealership: Object, Mappable {
         id <- map["id"]
         name <- map["name"]
         phoneNumber <- map["phone_number"]
-        address <- map["address"]
-        locationLatitude <- map["location_latitude"]
-        locationLongitude <- map["location_longitude"]
+        location <- map["location"]
         coverageRadius <- map["coverage_radius"]
         currencyId <- map["currency_id"]
         enabled <- map["enabled"]
-        location = CLLocationCoordinate2DMake(locationLatitude, locationLongitude)
+        createdAt <- (map["created_at"], DateTransform())
+        updatedAt <- (map["updated_at"], DateTransform())
     }
-    
-    override static func ignoredProperties() -> [String] {
-        return ["location"]
-    }
-
 }

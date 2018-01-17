@@ -17,6 +17,8 @@ final class RequestedServiceManager {
     private var pickupRequest: Request?
     private var dropOffRequest: Request?
     
+    private var booking: Booking?
+    
     static let sharedInstance = RequestedServiceManager()
     
     init() {
@@ -38,6 +40,10 @@ final class RequestedServiceManager {
         loaner = nil
         pickupRequest = nil
         dropOffRequest = nil
+    }
+    
+    func setBooking(booking: Booking?) {
+        self.booking = booking
     }
     
     func setService(service: Service) {

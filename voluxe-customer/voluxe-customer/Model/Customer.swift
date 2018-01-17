@@ -24,8 +24,10 @@ class Customer: Object, Mappable {
     @objc dynamic var currencyId: Int = 0
     @objc dynamic var photoUrl: String?
     @objc dynamic var enabled: Bool = true
-    var location: Location?
-    
+    @objc dynamic var location: Location?
+    @objc dynamic var createdAt: Date?
+    @objc dynamic var updatedAt: Date?
+
     required convenience init?(map: Map) {
         self.init()
     }
@@ -43,10 +45,9 @@ class Customer: Object, Mappable {
         photoUrl <- map["photo_url"]
         location <- map["location"]
         enabled <- map["enabled"]
+        createdAt <- (map["created_at"], DateTransform())
+        updatedAt <- (map["updated_at"], DateTransform())
     }
     
-    override static func ignoredProperties() -> [String] {
-        return ["location"]
-    }
 }
 
