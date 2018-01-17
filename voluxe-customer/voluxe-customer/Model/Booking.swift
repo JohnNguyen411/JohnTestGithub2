@@ -51,7 +51,7 @@ class Booking: Object, Mappable {
         dropoffRequest <- map["dropoff_request"]
         dropoffRequestId <- map["dropoff_request_id"]
         repairOrderRequests <- map["repair_order_requests"]
-        createdAt <- (map["created_at"], DateTransform())
-        updatedAt <- (map["updated_at"], DateTransform())
+        createdAt <- (map["created_at"], VLISODateTransform())
+        updatedAt <- (map["updated_at"], VLISODateTransform())
     }
 }

@@ -45,8 +45,8 @@ class Customer: Object, Mappable {
         photoUrl <- map["photo_url"]
         location <- map["location"]
         enabled <- map["enabled"]
-        createdAt <- (map["created_at"], DateTransform())
-        updatedAt <- (map["updated_at"], DateTransform())
+        createdAt <- (map["created_at"], VLISODateTransform())
+        updatedAt <- (map["updated_at"], VLISODateTransform())
     }
     
 }

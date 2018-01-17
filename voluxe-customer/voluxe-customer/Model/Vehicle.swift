@@ -46,8 +46,8 @@ class Vehicle: Object, Mappable {
         baseColor <- map["base_color"]
         color <- map["color"]
         transmission <- map["transmission"]
-        createdAt <- (map["created_at"], DateTransform())
-        updatedAt <- (map["updated_at"], DateTransform())
+        createdAt <- (map["created_at"], VLISODateTransform())
+        updatedAt <- (map["updated_at"], VLISODateTransform())
     }
 
     func colorCode() -> String {

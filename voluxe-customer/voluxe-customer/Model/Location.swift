@@ -30,8 +30,8 @@ class Location: Object, Mappable {
         latitude <- map["latitude"]
         longitude <- map["longitude"]
         accuracy <- map["accuracy"]
-        createdAt <- (map["created_at"], DateTransform())
-        updatedAt <- (map["updated_at"], DateTransform())
+        createdAt <- (map["created_at"], VLISODateTransform())
+        updatedAt <- (map["updated_at"], VLISODateTransform())
     }
     
     override static func ignoredProperties() -> [String] {

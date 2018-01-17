@@ -45,7 +45,7 @@ class Dealership: Object, Mappable {
         coverageRadius <- map["coverage_radius"]
         currencyId <- map["currency_id"]
         enabled <- map["enabled"]
-        createdAt <- (map["created_at"], DateTransform())
-        updatedAt <- (map["updated_at"], DateTransform())
+        createdAt <- (map["created_at"], VLISODateTransform())
+        updatedAt <- (map["updated_at"], VLISODateTransform())
     }
 }
