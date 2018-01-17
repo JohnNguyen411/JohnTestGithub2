@@ -13,6 +13,7 @@ final class UserManager {
 
     static let sharedInstance = UserManager()
     
+    private var customer: Customer?
     private let serviceId: String
     private var accessToken: String?
     private let keychain: Keychain
@@ -43,6 +44,10 @@ final class UserManager {
     
     public func logout() {
         saveAccessToken(token: nil)
+    }
+    
+    public func setCustomer(customer: Customer) {
+        self.customer = customer
     }
     
 }
