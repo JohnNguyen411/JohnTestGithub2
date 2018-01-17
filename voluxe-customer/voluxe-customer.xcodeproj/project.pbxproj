@@ -187,6 +187,11 @@
 		6C5C6A101FD8AACD00D70BF6 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5C6A0F1FD8AACD00D70BF6 /* UserManager.swift */; };
 		6C5C6A111FD8AACD00D70BF6 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5C6A0F1FD8AACD00D70BF6 /* UserManager.swift */; };
 		6C5C6A121FD8AACD00D70BF6 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5C6A0F1FD8AACD00D70BF6 /* UserManager.swift */; };
+		6C5DDECC20096CF8000847C9 /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */; };
+		6C5DDECD20096CF8000847C9 /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */; };
+		6C5DDECE20096CF8000847C9 /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */; };
+		6C5DDECF20096F3A000847C9 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A81FA2574C00B22EAB /* Customer.swift */; };
+		6C5DDED020096F3A000847C9 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A81FA2574C00B22EAB /* Customer.swift */; };
 		6C5EB98A1FCE38980019ACAA /* MainController_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB9891FCE38980019ACAA /* MainController_UITests.swift */; };
 		6C606ACE1FC501550030BBE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
 		6C69267E1FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C69267D1FB3B3E3009495E9 /* LoanerPickupViewController.swift */; };
@@ -395,6 +400,19 @@
 		6CD0C8871FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
 		6CD0C8881FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
 		6CD0C8891FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
+		6CD3BCA220098EF2001DD79B /* BookingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCA120098EF2001DD79B /* BookingAPI.swift */; };
+		6CD3BCA320098EF2001DD79B /* BookingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCA120098EF2001DD79B /* BookingAPI.swift */; };
+		6CD3BCA420098EF2001DD79B /* BookingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCA120098EF2001DD79B /* BookingAPI.swift */; };
+		6CD3BCA520099596001DD79B /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */; };
+		6CD3BCA620099597001DD79B /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */; };
+		6CD3BCA7200995A2001DD79B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BA1FA29A1C00B22EAB /* Location.swift */; };
+		6CD3BCA8200995A2001DD79B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BA1FA29A1C00B22EAB /* Location.swift */; };
+		6CD3BCAA200E727A001DD79B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCA9200E727A001DD79B /* Booking.swift */; };
+		6CD3BCAB200E727A001DD79B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCA9200E727A001DD79B /* Booking.swift */; };
+		6CD3BCAC200E727A001DD79B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCA9200E727A001DD79B /* Booking.swift */; };
+		6CD3BCAE200E85FE001DD79B /* RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */; };
+		6CD3BCAF200E85FE001DD79B /* RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */; };
+		6CD3BCB0200E85FE001DD79B /* RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */; };
 		6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D151FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D161FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
@@ -512,6 +530,7 @@
 		6C5833071FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SourceSansPro-Regular.ttf"; sourceTree = "<group>"; };
 		6C5833081FB3AF5600F6BFE0 /* TransitionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransitionType.swift; sourceTree = "<group>"; };
 		6C5C6A0F1FD8AACD00D70BF6 /* UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserManager.swift; sourceTree = "<group>"; };
+		6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAPI.swift; sourceTree = "<group>"; };
 		6C5EB9891FCE38980019ACAA /* MainController_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainController_UITests.swift; sourceTree = "<group>"; };
 		6C69267D1FB3B3E3009495E9 /* LoanerPickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanerPickupViewController.swift; sourceTree = "<group>"; };
 		6C6F4BC81FA8FC4600087FE7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -604,6 +623,9 @@
 		6CCD42AF1FA013E3000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CD0C8821FD9FB73008E4A72 /* DealershipAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealershipAPI.swift; sourceTree = "<group>"; };
 		6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRequest.swift; sourceTree = "<group>"; };
+		6CD3BCA120098EF2001DD79B /* BookingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingAPI.swift; sourceTree = "<group>"; };
+		6CD3BCA9200E727A001DD79B /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
+		6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrder.swift; sourceTree = "<group>"; };
 		6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLTitledLabel.swift; sourceTree = "<group>"; };
 		6CD47D171FAD190F00D794A6 /* VLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLButton.swift; sourceTree = "<group>"; };
 		6CE902141FA14C1200EE106C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -773,16 +795,18 @@
 			children = (
 				6C7495E61FDA23010036FC08 /* Generics */,
 				6C20E18E1FBE14A000E5D9A0 /* GoogleMapAPI */,
+				6CD3BCA9200E727A001DD79B /* Booking.swift */,
+				6C3FB2A81FA2574C00B22EAB /* Customer.swift */,
 				6C20E1CA1FBF698E00E5D9A0 /* Dealership.swift */,
 				6C22087B1FBD0C6700874882 /* Driver.swift */,
 				6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */,
 				6C3FB2BA1FA29A1C00B22EAB /* Location.swift */,
 				6C3FB2BB1FA29A1C00B22EAB /* VehicleLocation.swift */,
 				6C3FB2B31FA289A700B22EAB /* TransmissionType.swift */,
-				6C3FB2A81FA2574C00B22EAB /* Customer.swift */,
 				6C3FB2A91FA2574C00B22EAB /* FuelData.swift */,
 				6C3FB2A71FA2574C00B22EAB /* User.swift */,
 				6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */,
+				6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */,
 				6C20E1D31FBF71B200E5D9A0 /* RequestLocation.swift */,
 				6C20E1DF1FBF770C00E5D9A0 /* Request.swift */,
 				6C20E1E71FBF851B00E5D9A0 /* Service.swift */,
@@ -1025,6 +1049,8 @@
 		6CC83A861FA1478100FE0633 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				6CD3BCA120098EF2001DD79B /* BookingAPI.swift */,
+				6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */,
 				6CD0C8821FD9FB73008E4A72 /* DealershipAPI.swift */,
 				6C20E18A1FBE0E6200E5D9A0 /* GoogleDirectionAPI.swift */,
 				6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */,
@@ -1680,14 +1706,17 @@
 				6C32C30B1FBCC1DD00B1218C /* StepView.swift in Sources */,
 				6CC37E531FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
 				6C7342031FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
+				6C5DDECC20096CF8000847C9 /* CustomerAPI.swift in Sources */,
 				6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
 				6CC83A8B1FA1481900FE0633 /* StringUtils.swift in Sources */,
 				6C3FB2AC1FA2574C00B22EAB /* Customer.swift in Sources */,
+				6CD3BCAE200E85FE001DD79B /* RepairOrder.swift in Sources */,
 				6C88DC941FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6CCD42901FA013E3000AC6C9 /* ViewController.swift in Sources */,
 				6CBB4EA01FB4DF7D00C31183 /* FSCalendar.m in Sources */,
 				6C32C3171FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */,
 				6CD47D181FAD190F00D794A6 /* VLButton.swift in Sources */,
+				6CD3BCAA200E727A001DD79B /* Booking.swift in Sources */,
 				6C5833091FB3AF5600F6BFE0 /* AlertViewController.swift in Sources */,
 				6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
 				6CD0C8831FD9FB73008E4A72 /* DealershipAPI.swift in Sources */,
@@ -1757,6 +1786,7 @@
 				6C5C6A101FD8AACD00D70BF6 /* UserManager.swift in Sources */,
 				6C91BBDB1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C3FB2B01FA2823800B22EAB /* Fonts.swift in Sources */,
+				6CD3BCA220098EF2001DD79B /* BookingAPI.swift in Sources */,
 				6C20E1981FBE14E300E5D9A0 /* GMLegs.swift in Sources */,
 				6C91BBE01FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
 				6CBB4E881FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */,
@@ -1818,6 +1848,7 @@
 				6C32C3141FBCCD8C00B1218C /* ScheduledPickupViewController.swift in Sources */,
 				6C5833271FB3AF8000F6BFE0 /* CrossDissolveAnimation.swift in Sources */,
 				6C345A101FD897E4006CAC32 /* Config.swift in Sources */,
+				6CD3BCA320098EF2001DD79B /* BookingAPI.swift in Sources */,
 				6C73420D1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,
 				6CBB4E9B1FB4DF7D00C31183 /* FSCalendarCell.m in Sources */,
 				6C5833211FB3AF7800F6BFE0 /* CoverHorizontalAnimation.swift in Sources */,
@@ -1846,6 +1877,7 @@
 				6C58331F1FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */,
 				6C5833381FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */,
 				6C95439F1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
+				6C5DDECD20096CF8000847C9 /* CustomerAPI.swift in Sources */,
 				6C8159B51FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
 				6C91BBDC1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C7495E41FDA1F790036FC08 /* MappableDataObject.swift in Sources */,
@@ -1858,16 +1890,19 @@
 				6C4D91BC1FDB15F90031E3CB /* Token.swift in Sources */,
 				6C7E66E61FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
 				6C2B32491FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */,
+				6CD3BCAB200E727A001DD79B /* Booking.swift in Sources */,
 				6CBB4EA71FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */,
 				6C58333F1FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */,
 				6C32C3101FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */,
 				6C6F4BCB1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
+				6CD3BCA7200995A2001DD79B /* Location.swift in Sources */,
 				6CBF9FEF1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */,
 				6CBB4E891FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */,
 				6C20E1C01FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */,
 				6C20E1CC1FBF698E00E5D9A0 /* Dealership.swift in Sources */,
 				6CC37E511FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6C88DC901FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
+				6C5DDECF20096F3A000847C9 /* Customer.swift in Sources */,
 				6CD0C8881FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */,
 				6CBB4E831FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
 				6CC921A61FC4FBC8009E5164 /* Date+DateTools.swift in Sources */,
@@ -1886,8 +1921,10 @@
 				6C5833311FB3AF9200F6BFE0 /* PresentationType.swift in Sources */,
 				6C5C6A111FD8AACD00D70BF6 /* UserManager.swift in Sources */,
 				6C88DC951FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
+				6CD3BCAF200E85FE001DD79B /* RepairOrder.swift in Sources */,
 				6C20E1911FBE14C300E5D9A0 /* GMDirection.swift in Sources */,
 				6C91BBD41FA7D44D0033C2B1 /* Constants.swift in Sources */,
+				6CD3BCA520099596001DD79B /* Vehicle.swift in Sources */,
 				6C6F4BCF1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6CBB4EAA1FB4DF7D00C31183 /* FSCalendarExtensions.m in Sources */,
 				6C88DC9E1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
@@ -1917,6 +1954,7 @@
 				6CBB4E8D1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				6C20E1EE1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */,
 				6C20E1C91FBE6D2400E5D9A0 /* StateService.swift in Sources */,
+				6C5DDED020096F3A000847C9 /* Customer.swift in Sources */,
 				6C20E1D21FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
 				6CBB4EA51FB4DF7D00C31183 /* FSCalendarHeaderView.m in Sources */,
 				6C91BBF31FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
@@ -1926,6 +1964,7 @@
 				6C7DDE111FDB64D1000E2822 /* Logger.swift in Sources */,
 				6CEA0D5B1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
 				6CBB4EB51FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
+				6CD3BCB0200E85FE001DD79B /* RepairOrder.swift in Sources */,
 				6CBB4EB11FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */,
 				6C5833391FB3AF9900F6BFE0 /* Presentr.swift in Sources */,
 				6C8159B61FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
@@ -1951,6 +1990,7 @@
 				6C88DC9A1FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6CBB4E991FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */,
 				6C91BBD91FA7D6220033C2B1 /* ViewPager.swift in Sources */,
+				6CD3BCA620099597001DD79B /* Vehicle.swift in Sources */,
 				6C9543A41FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6C345A111FD897E4006CAC32 /* Config.swift in Sources */,
 				6CD0C8851FD9FB73008E4A72 /* DealershipAPI.swift in Sources */,
@@ -1998,12 +2038,16 @@
 				6C20E1D61FBF71B200E5D9A0 /* RequestLocation.swift in Sources */,
 				6C5833341FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */,
 				6CBB4E871FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
+				6C5DDECE20096CF8000847C9 /* CustomerAPI.swift in Sources */,
 				6C20E1AF1FBE408B00E5D9A0 /* SchedulingViewController.swift in Sources */,
 				6C2F1DD81FAD0A8F00C28C6E /* SchedulingPickupViewController.swift in Sources */,
 				6C2208791FBCEF7A00874882 /* MapViewController.swift in Sources */,
+				6CD3BCA8200995A2001DD79B /* Location.swift in Sources */,
 				6CD47D1A1FAD190F00D794A6 /* VLButton.swift in Sources */,
 				6C7342121FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
+				6CD3BCAC200E727A001DD79B /* Booking.swift in Sources */,
 				6C91BBD11FA7D3D50033C2B1 /* StringUtils.swift in Sources */,
+				6CD3BCA420098EF2001DD79B /* BookingAPI.swift in Sources */,
 				6CBB4E961FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */,
 				6C32C30D1FBCC1DD00B1218C /* StepView.swift in Sources */,
 				6C4D91BD1FDB15F90031E3CB /* Token.swift in Sources */,

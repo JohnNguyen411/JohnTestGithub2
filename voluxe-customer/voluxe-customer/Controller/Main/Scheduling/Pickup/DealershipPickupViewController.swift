@@ -31,15 +31,19 @@ class DealershipPickupViewController: VLPresentrViewController {
 
         var selectedDealership: String? = nil
         if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-            selectedDealership = dealership.name!
+            if let dealershipName = dealership.name {
+                selectedDealership = dealershipName
+            }
         }
         
         var selectedIndex = -1
         var items: [String] = []
         for (index, dealership) in dealerships.enumerated() {
-            items.append(dealership.name!)
-            if dealership.name == selectedDealership {
-                selectedIndex = index
+            if let dealershipName = dealership.name {
+                items.append(dealershipName)
+                if let selectedDealership = selectedDealership, dealership.name == selectedDealership {
+                    selectedIndex = index
+                }
             }
         }
         

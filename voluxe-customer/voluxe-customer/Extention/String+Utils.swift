@@ -12,4 +12,12 @@ extension String {
     var boolValue: Bool {
         return NSString(string: self).boolValue
     }
+    
+    static func stringByReplacingFirstOccurrenceOfString(string: String, target: String, withString replaceString: String) -> String {
+        if let range = string.range(of: target) {
+            return string.replacingOccurrences(of: target, with: replaceString, options: CompareOptions.literal, range: range)
+        }
+        return string
+    }
+
 }

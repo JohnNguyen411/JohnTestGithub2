@@ -8,46 +8,42 @@
 
 import Foundation
 import ObjectMapper
+import CoreLocation
+import RealmSwift
 
-class Vehicle: NSObject, Mappable {
+class Vehicle: Object, Mappable {
+    @objc dynamic var id: Int = -1
+    @objc dynamic var ownerId: Int = -1
+    @objc dynamic var vin: String?
+    @objc dynamic var licensePlate: String?
+    @objc dynamic var make: String?
+    @objc dynamic var model: String?
+    @objc dynamic var drive: String?
+    @objc dynamic var engine: String?
+    @objc dynamic var trim: String?
+    @objc dynamic var year: Int = 2018
+    @objc dynamic var baseColor: String?
+    @objc dynamic var color: String?
+    @objc dynamic var transmission: String?
 
-    var vin: String?
-    var vinForAnalytics: String?
-    var licensePlate: String?
-    var model: String?
-    var year: Int?
-    var color: String?
-    var baseColor: String?
-    var transmission: TransmissionType?
-    var trim: String?
-    var image: UIImage?
-
-    override init() {
-        super.init()
-    }
-
-    init(vin: String, licensePlate: String?, model: String?, year: Int?, color: String?, transmission: TransmissionType?) {
-        self.vin = vin
-        self.licensePlate = licensePlate
-        self.model = model
-        self.year = year
-        self.color = color
-        self.transmission = transmission
-    }
-
-    required init?(map: Map) {
+    required convenience init?(map: Map) {
+        self.init()
     }
 
     func mapping(map: Map) {
+        id <- map["id"]
+        ownerId <- map["owner_id"]
         vin <- map["vin"]
-        licensePlate <- map["licensePlate"]
+        licensePlate <- map["license_plate"]
+        make <- map["make"]
         model <- map["model"]
-        year <- map["year"]
-        color <- map["color"]
-        baseColor <- map["baseColor"]
-        transmission <- map["transmission"]
+        drive <- map["drive"]
+        engine <- map["engine"]
         trim <- map["trim"]
-        vinForAnalytics <- map["vinForAnalytics"]
+        year <- map["year"]
+        baseColor <- map["base_color"]
+        color <- map["color"]
+        transmission <- map["transmission"]
     }
 
     func colorCode() -> String {
