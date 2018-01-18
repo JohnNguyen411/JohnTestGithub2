@@ -64,4 +64,8 @@ class RequestLocation: Object, Mappable {
         
         return location
     }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

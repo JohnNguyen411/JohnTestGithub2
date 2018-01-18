@@ -14,6 +14,7 @@ final class UserManager {
     static let sharedInstance = UserManager()
     
     private var customer: Customer?
+    private var cars: [Vehicle]?
     private let serviceId: String
     private var accessToken: String?
     private let keychain: Keychain
@@ -48,6 +49,17 @@ final class UserManager {
     
     public func setCustomer(customer: Customer) {
         self.customer = customer
+    }
+    
+    public func setCars(cars: [Vehicle]) {
+        self.cars = cars
+    }
+    
+    public func getCar() -> Vehicle? {
+        if let cars = cars, cars.count > 0 {
+            return cars[0]
+        }
+        return nil
     }
     
 }

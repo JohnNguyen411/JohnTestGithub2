@@ -48,4 +48,8 @@ class Dealership: Object, Mappable {
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
     }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
 }

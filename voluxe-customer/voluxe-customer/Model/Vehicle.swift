@@ -12,6 +12,7 @@ import CoreLocation
 import RealmSwift
 
 class Vehicle: Object, Mappable {
+    
     @objc dynamic var id: Int = -1
     @objc dynamic var ownerId: Int = -1
     @objc dynamic var vin: String?
@@ -77,6 +78,10 @@ class Vehicle: Object, Mappable {
         let imageFragment = "\(model.lowercased())_\(trimLevel.lowercased())_\(colorCode()).jpg"
         let imageUrl = baseURL + scaleFragment + imageFragment
         return imageUrl
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
 
 }

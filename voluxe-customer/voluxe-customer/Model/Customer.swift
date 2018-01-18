@@ -49,5 +49,9 @@ class Customer: Object, Mappable {
         updatedAt <- (map["updated_at"], VLISODateTransform())
     }
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
 }
 

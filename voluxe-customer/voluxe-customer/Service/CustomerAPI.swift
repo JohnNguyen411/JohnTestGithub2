@@ -49,7 +49,7 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a list of Vehicle, or an AFError if an error occured
      */
-    func getVehicles(customerId: String) -> Future<ResponseObject<MappableDataArray<Vehicle>>?, AFError> {
+    func getVehicles(customerId: Int) -> Future<ResponseObject<MappableDataArray<Vehicle>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<Vehicle>>?, AFError>()
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/vehicles", queryParameters: [:], withBearer: true).responseJSON { response in

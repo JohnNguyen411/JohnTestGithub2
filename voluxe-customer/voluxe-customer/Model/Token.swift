@@ -31,21 +31,4 @@ class Token: Mappable {
         //let data = map.JSON["data"] as! [String: Any]
         customerId <- map["data.user_id"]
     }
-    
-    /*
- 
- "data": {
- "id": "ec22032b-5563-4c21-a8c6-9535b66ac514",
- "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImVjMjIwMzJiLTU1NjMtNGMyMS1hOGM2LTk1MzViNjZhYzUxNCIsImRhdGEiOnsidXNlcl9pZCI6MTcsInVzZXJfdHlwZSI6ImN1c3RvbWVyIn0sImlhdCI6MTUxNjIxODExNywiZXhwIjoxNTE4ODEwMTE3fQ.A_VGB_NzvBYthwzlKzrGQlM5OfaLv9RqO1cesDF7m24",
- "issued_at": "2018-01-17T19:41:57.000Z",
- "expires_at": "2018-02-16T19:41:57.000Z",
- "data": {
- "user_id": 17,
- "user_type": "customer"
- }
- },
- "meta": {
- "request_id": "d1b9d270-5bdb-4067-b292-6518e9e97a8c"
- }
- */
 }

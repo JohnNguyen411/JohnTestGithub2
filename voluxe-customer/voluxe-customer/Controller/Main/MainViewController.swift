@@ -48,7 +48,17 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         var changeView = true
         serviceState = state
         
-        if serviceState == .idle || serviceState == .needService ||
+        if serviceState == .idle{
+            
+            if currentViewController != nil && (currentViewController?.isKind(of: LoadingViewController.self))! {
+                currentViewController?.stateDidChange(state: serviceState)
+                changeView = false
+            } else {
+                let loadingViewController = LoadingViewController()
+                currentViewController = loadingViewController
+            }
+            
+        } else if serviceState == .needService ||
             serviceState == .pickupDriverDrivingToDealership || serviceState == .pickupDriverAtDealership {
             
             if currentViewController != nil && (currentViewController?.isKind(of: SchedulingPickupViewController.self))! {

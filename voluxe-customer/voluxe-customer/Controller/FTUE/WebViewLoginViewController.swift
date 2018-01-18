@@ -15,12 +15,12 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
     
     private let webview = UIWebView(frame: .zero)
     var realm : Realm?
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         realm = try? Realm()
-
+        
         setupViews()
         
         webview.delegate = self
@@ -59,6 +59,7 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
                         if let tokenObject = responseObject.data?.result {
                             if let customerId = tokenObject.customerId {
                                 
+                                // Get Customer object with ID
                                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token)
                                 CustomerAPI().getCustomer(id: customerId).onSuccess { result in
                                     if let customer = result?.data?.result {
@@ -69,7 +70,22 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
                                             }
                                         }
                                         UserManager.sharedInstance.setCustomer(customer: customer)
-                                        self.goToNext()
+                                        
+                                        // Get Customer's Vehicles based on ID
+                                        CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
+                                            if let cars = result?.data?.result {
+                                                if let realm = self.realm {
+                                                    try? realm.write {
+                                                        realm.add(cars)
+                                                    }
+                                                }
+                                                UserManager.sharedInstance.setCars(cars: cars)
+                                                self.goToNext()
+                                            }
+                                            
+                                            }.onFailure { error in
+                                                // todo show error
+                                        }
                                     }
                                     }.onFailure { error in
                                         // todo show error
