@@ -53,6 +53,8 @@ class LoadingViewController: ChildViewController {
         appDelegate?.startApp()
     }
     
+    
+    //MARK: API CALLS
     private func callCustomer(customerId: Int) {
         
         // Get Customer object with ID
@@ -64,29 +66,51 @@ class LoadingViewController: ChildViewController {
                     }
                 }
                 UserManager.sharedInstance.setCustomer(customer: customer)
+                self.callVehicle(customerId: customer.id)
                 
-                // Get Customer's Vehicles based on ID
-                CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
-                    if let cars = result?.data?.result {
-                        if let realm = self.realm {
-                            try? realm.write {
-                                realm.add(cars, update: true)
-                            }
-                        }
-                        UserManager.sharedInstance.setVehicles(vehicles: cars)
-                        StateServiceManager.sharedInstance.updateState(state: .needService)
-                    }
-                    
-                    }.onFailure { error in
-                        // todo show error
-                }
             }
             }.onFailure { error in
                 // todo show error
         }
     }
     
-    private func callVehicle() {
-        
+    private func callVehicle(customerId: Int) {
+        // Get Customer's Vehicles based on ID
+        CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
+            if let cars = result?.data?.result {
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(cars, update: true)
+                    }
+                }
+                UserManager.sharedInstance.setVehicles(vehicles: cars)
+                self.getBookings(customerId: customerId)
+            }
+            
+            }.onFailure { error in
+                // todo show error
+        }
+    }
+    
+    private func getBookings(customerId: Int) {
+        // Get Customer's Vehicles based on ID
+        BookingAPI().getBookings(customerId: customerId).onSuccess { result in
+            if let bookings = result?.data?.result, bookings.count > 0 {
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(bookings, update: true)
+                    }
+                }
+                RequestedServiceManager.sharedInstance.setBooking(booking: bookings[0])
+                StateServiceManager.sharedInstance.updateState(state: .needService)
+            } else {
+                // error
+                StateServiceManager.sharedInstance.updateState(state: .needService)
+            }
+            
+            }.onFailure { error in
+                // todo show error
+                StateServiceManager.sharedInstance.updateState(state: .needService)
+        }
     }
 }

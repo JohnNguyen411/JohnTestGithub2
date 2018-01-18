@@ -17,9 +17,16 @@ class ResponseObject<T: Mappable> {
             meta = Meta(JSON: jsonMeta)
         }
         data = Mapper<T>().map(JSON: json)
+        
+        if let error = json["error"] {
+            if error as! Bool {
+                self.error = ResponseError(JSON: json)
+            }
+        }
     }
     
     var meta: Meta?
     var data: T?
-    
+    var error: ResponseError?
+
 }

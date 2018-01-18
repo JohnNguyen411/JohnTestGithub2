@@ -137,7 +137,6 @@ class SchedulingPickupViewController: SchedulingViewController {
     }
     
     private func createBooking(loaner: Bool) {
-        confirmButton.isEnabled = false
         guard let customerId = UserManager.sharedInstance.getCustomerId() else {
             return
         }
@@ -147,14 +146,17 @@ class SchedulingPickupViewController: SchedulingViewController {
         guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else {
             return
         }
-        
+        confirmButton.isEnabled = false
+
         BookingAPI().createBooking(customerId: customerId, vehicleId: vehicleId, dealershipId: dealership.id, loaner: loaner).onSuccess { result in
             if let booking = result?.data?.result {
                 RequestedServiceManager.sharedInstance.setBooking(booking: booking)
             }
+            self.confirmButton.isEnabled = true
+
             }.onFailure { error in
                 // todo show error
-                confirmButton.isEnabled = true
+                self.confirmButton.isEnabled = true
         }
     }
     
