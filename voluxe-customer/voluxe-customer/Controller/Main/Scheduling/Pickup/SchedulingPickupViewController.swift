@@ -132,7 +132,30 @@ class SchedulingPickupViewController: SchedulingViewController {
     }
     
     override func confirmButtonClick() {
-        StateServiceManager.sharedInstance.updateState(state: .pickupScheduled)
+        // StateServiceManager.sharedInstance.updateState(state: .pickupScheduled)
+        createBooking(loaner: RequestedServiceManager.sharedInstance.getLoaner())
+    }
+    
+    private func createBooking(loaner: Bool) {
+        confirmButton.isEnabled = false
+        guard let customerId = UserManager.sharedInstance.getCustomerId() else {
+            return
+        }
+        guard let vehicleId = UserManager.sharedInstance.getVehicleId() else {
+            return
+        }
+        guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else {
+            return
+        }
+        
+        BookingAPI().createBooking(customerId: customerId, vehicleId: vehicleId, dealershipId: dealership.id, loaner: loaner).onSuccess { result in
+            if let booking = result?.data?.result {
+                RequestedServiceManager.sharedInstance.setBooking(booking: booking)
+            }
+            }.onFailure { error in
+                // todo show error
+                confirmButton.isEnabled = true
+        }
     }
     
 }

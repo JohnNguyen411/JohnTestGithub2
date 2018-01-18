@@ -268,12 +268,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         
         fillDealership()
         
-        if RequestedServiceManager.sharedInstance.getLoaner() == nil {
-            RequestedServiceManager.sharedInstance.setLoaner(loaner: true)
-        }
-        if let loaner = RequestedServiceManager.sharedInstance.getLoaner() {
-            loanerView.descLeftLabel.text = loaner ? .Yes : .No
-        }
+        loanerView.descLeftLabel.text = RequestedServiceManager.sharedInstance.getLoaner() ? .Yes : .No
     }
     
     private func fillDealership() {

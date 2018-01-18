@@ -79,7 +79,7 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
                                                         realm.add(cars, update: true)
                                                     }
                                                 }
-                                                UserManager.sharedInstance.setCars(cars: cars)
+                                                UserManager.sharedInstance.setVehicles(vehicles: cars)
                                                 self.goToNext()
                                             }
                                             

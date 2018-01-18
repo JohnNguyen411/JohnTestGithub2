@@ -24,7 +24,7 @@ class BookingAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Booking, or an AFError if an error occured
      */
-    func createBooking(customerId: String, vehicleId: String, dealershipId: String, loaner: Bool) -> Future<ResponseObject<MappableDataObject<Booking>>?, AFError> {
+    func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool) -> Future<ResponseObject<MappableDataObject<Booking>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, AFError>()
         let params: Parameters = [
             "customer_id": customerId,

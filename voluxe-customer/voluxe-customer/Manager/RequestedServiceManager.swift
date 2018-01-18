@@ -12,7 +12,7 @@ final class RequestedServiceManager {
     
     private var service: Service?
     private var dealership: Dealership?
-    private var loaner: Bool?
+    private var loaner: Bool = true
     
     private var pickupRequest: Request?
     private var dropOffRequest: Request?
@@ -37,7 +37,7 @@ final class RequestedServiceManager {
     }
     
     func reset() {
-        loaner = nil
+        loaner = true
         pickupRequest = nil
         dropOffRequest = nil
     }
@@ -66,7 +66,7 @@ final class RequestedServiceManager {
         return dealership
     }
     
-    func getLoaner() -> Bool? {
+    func getLoaner() -> Bool {
         return loaner
     }
     
