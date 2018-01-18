@@ -318,7 +318,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
             
             if let realm = self.realm {
                 try? realm.write {
-                    realm.add(dealerships)
+                    realm.add(dealerships, update: true)
                 }
             }
         }

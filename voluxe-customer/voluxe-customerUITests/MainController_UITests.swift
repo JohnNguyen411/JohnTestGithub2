@@ -107,7 +107,7 @@ class MainController_UITests: XCTestCase {
     }
     
     func internalTestSchedulePickup() {
-        sleep(1)
+        sleep(3) // wait for the app to call customer / cars enpoint
 
         // check if the dealershipView is here
         let dealershipView = app.otherElements["dealershipView"]

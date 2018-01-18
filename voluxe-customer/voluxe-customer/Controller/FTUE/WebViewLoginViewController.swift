@@ -76,7 +76,7 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
                                             if let cars = result?.data?.result {
                                                 if let realm = self.realm {
                                                     try? realm.write {
-                                                        realm.add(cars)
+                                                        realm.add(cars, update: true)
                                                     }
                                                 }
                                                 UserManager.sharedInstance.setCars(cars: cars)
