@@ -38,4 +38,17 @@ class DealershipTimeSlot: Object, Mappable {
     override static func primaryKey() -> String? {
         return "id"
     }
+    
+    func getTimeSlot(calendar: Calendar) -> String? {
+        guard let from = from, let to = to else {
+            return nil
+        }/*
+        let fromHour = calendar.component(.hour, from: from)
+        let fromMinutes = calendar.component(.minute, from: from)
+        let toHour = calendar.component(.hour, from: to)
+        let toMinutes = calendar.component(.minute, from: to)
+ */
+        
+        return "\(Date.formatHourMin(date: from, calendar: calendar)) - \(Date.formatHourMin(date: to, calendar: calendar))"
+    }
 }

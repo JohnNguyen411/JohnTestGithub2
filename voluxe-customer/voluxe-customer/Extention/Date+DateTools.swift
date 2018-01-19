@@ -118,5 +118,15 @@ extension Date {
 
         return "\(minTime) \(maxTime)"
     }
+    
+    public static func formatHourMin(date: Date, calendar: Calendar) -> String {
+        let dateString : String = DateFormatter.dateFormat(fromTemplate: "h:mm", options: 0, locale: Locale.current)!
+        let hourFormatter = DateFormatter()
+        hourFormatter.dateFormat = dateString
+        hourFormatter.amSymbol = ""
+        hourFormatter.pmSymbol = ""
+        
+        return hourFormatter.string(from: date)
+    }
 
 }
