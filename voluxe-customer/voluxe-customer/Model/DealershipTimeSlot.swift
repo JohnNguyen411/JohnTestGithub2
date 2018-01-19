@@ -27,7 +27,7 @@ class DealershipTimeSlot: Object, Mappable {
     
     func mapping(map: Map) {
         id <- map["id"]
-        dealershipId <- map["dealershipId"]
+        dealershipId <- map["dealership_id"]
         type <- map["type"]
         from <- (map["from"], VLISODateTransform())
         to <- (map["to"], VLISODateTransform())

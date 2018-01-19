@@ -245,10 +245,10 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     private func getSlotsForDate(date: Date) -> Results<DealershipTimeSlot>? {
-        if let realm = realm {
+        if let realm = realm, let dealership = RequestedServiceManager.sharedInstance.getDealership() {
             let from: NSDate = date as NSDate
             let to: NSDate = date.endOfDay() as NSDate
-            let predicate = NSPredicate(format: "from >= %@ AND to <= %@", from, to)
+            let predicate = NSPredicate(format: "from >= %@ AND to <= %@ AND dealershipId = %d", from, to, dealership.id)
             let slots = realm.objects(DealershipTimeSlot.self).filter(predicate)
             Logger.print("date \(slots.count) for date: \(date)")
             Logger.print("hasAvailabilities \(slots.count) for date: \(date)")
