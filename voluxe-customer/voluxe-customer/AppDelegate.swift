@@ -159,12 +159,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("didReceive")
+        Logger.print("didReceive")
     }
     
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print("willPresent")
+        Logger.print("willPresent")
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
@@ -174,11 +174,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            Logger.print("Message ID: \(messageID)")
         }
         
         // Print full message.
-        print(userInfo)
+        Logger.print(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -189,11 +189,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            Logger.print("Message ID: \(messageID)")
         }
         
         // Print full message.
-        print(userInfo)
+        Logger.print(userInfo)
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -202,7 +202,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //MARK: MessagingDelegate
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         let token = Messaging.messaging().fcmToken
-        print("FCM token: \(token ?? "")")
+        Logger.print("FCM token: \(token ?? "")")
         
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
