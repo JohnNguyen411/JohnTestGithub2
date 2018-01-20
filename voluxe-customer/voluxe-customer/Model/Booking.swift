@@ -23,9 +23,9 @@ class Booking: Object, Mappable {
     @objc dynamic var loanerVehicleRequested: Bool = false
     @objc dynamic var loanerVehicleId: Int = -1
     @objc dynamic var loanerVehicle: Vehicle?
-    @objc dynamic var pickupRequest: RequestLocation?
+    @objc dynamic var pickupRequest: Request?
     @objc dynamic var pickupRequestId: Int = -1
-    @objc dynamic var dropoffRequest: RequestLocation?
+    @objc dynamic var dropoffRequest: Request?
     @objc dynamic var dropoffRequestId: Int = -1
     @objc dynamic var repairOrderRequests: RepairOrder?
     @objc dynamic var createdAt: Date?

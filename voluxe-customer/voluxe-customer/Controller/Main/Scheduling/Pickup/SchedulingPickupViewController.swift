@@ -25,16 +25,13 @@ class SchedulingPickupViewController: SchedulingViewController {
             let service = Service(name: "10,000 mile check-up", price: Double(400))
             RequestedServiceManager.sharedInstance.setService(service: service)
         }
-        let date = RequestedServiceManager.sharedInstance.getPickupDate()
-        let min = RequestedServiceManager.sharedInstance.getPickupTimeMin()
-        let max = RequestedServiceManager.sharedInstance.getPickupTimeMax()
-        if let date = date, let min = min, let max = max {
+        if let timeSlot = RequestedServiceManager.sharedInstance.getPickupTimeSlot(), let date = timeSlot.from {
             let dateTime = formatter.string(from: date)
-            scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(Date.formatHourRange(min: min, max: max))", rightDescription: "")
+            scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" ))", rightDescription: "")
         }
         
         if let requestLocation = RequestedServiceManager.sharedInstance.getPickupLocation() {
-            pickupLocationView.setTitle(title: .PickupLocation, leftDescription: requestLocation.name!, rightDescription: "")
+            pickupLocationView.setTitle(title: .PickupLocation, leftDescription: requestLocation.address!, rightDescription: "")
         }
         super.fillViews()
     }
@@ -64,7 +61,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             
             if state == .pickupDriverDrivingToDealership {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                   StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
+                    StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
                 })
             } else if state == .pickupDriverAtDealership {
                 
@@ -133,7 +130,8 @@ class SchedulingPickupViewController: SchedulingViewController {
     
     override func confirmButtonClick() {
         // StateServiceManager.sharedInstance.updateState(state: .pickupScheduled)
-        createBooking(loaner: RequestedServiceManager.sharedInstance.getLoaner())
+        //createBooking(loaner: RequestedServiceManager.sharedInstance.getLoaner())
+        createPickupRequest(bookingId: 1) //todo change ID
     }
     
     private func createBooking(loaner: Bool) {
@@ -147,16 +145,50 @@ class SchedulingPickupViewController: SchedulingViewController {
             return
         }
         confirmButton.isEnabled = false
-
+        
         BookingAPI().createBooking(customerId: customerId, vehicleId: vehicleId, dealershipId: dealership.id, loaner: loaner).onSuccess { result in
             if let booking = result?.data?.result {
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(booking, update: true)
+                    }
+                }
                 RequestedServiceManager.sharedInstance.setBooking(booking: booking)
             }
             self.confirmButton.isEnabled = true
-
+            
             }.onFailure { error in
                 // todo show error
                 self.confirmButton.isEnabled = true
+        }
+    }
+    
+    private func createPickupRequest(bookingId: Int) {
+        if let timeSlot = RequestedServiceManager.sharedInstance.getPickupTimeSlot(),
+            let location = RequestedServiceManager.sharedInstance.getPickupLocation() {
+            BookingAPI().createPickupRequest(bookingId: bookingId, timeSlotId: timeSlot.id, location: location).onSuccess { result in
+                if let pickupRequest = result?.data?.result {
+                    if let realm = self.realm {
+                        try? realm.write {
+                            realm.add(pickupRequest)
+                        }
+                        let realmPickupRequest = realm.objects(Request.self).filter("id = \(pickupRequest.id)").first
+                        
+                        if let booking = realm.objects(Booking.self).filter("id = \(bookingId)").first {
+                            
+                            try? realm.write {
+                                booking.pickupRequest = realmPickupRequest
+                                realm.add(booking, update: true)
+                            }
+                            RequestedServiceManager.sharedInstance.setBooking(booking: booking)
+                        }
+                    }
+                }
+                self.confirmButton.isEnabled = true
+                }.onFailure { error in
+                    // todo show error
+                    self.confirmButton.isEnabled = true
+            }
         }
     }
     

@@ -473,7 +473,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         currentPresentrVC?.dismiss(animated: true, completion: nil)
     }
     
-    func onDateTimeSelected(date: Date, hourRangeMin: Int, hourRangeMax: Int) {
+    func onDateTimeSelected(timeSlot: DealershipTimeSlot) {
         var openNext = false
         if scheduleState.rawValue < SchedulePickupState.dateTime.rawValue {
             scheduleState = .dateTime
@@ -481,15 +481,13 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         }
         
         if StateServiceManager.sharedInstance.isPickup() {
-            RequestedServiceManager.sharedInstance.setPickupDate(date: date)
-            RequestedServiceManager.sharedInstance.setPickupTimeRange(min: hourRangeMin, max: hourRangeMax)
+            RequestedServiceManager.sharedInstance.setPickupTimeSlot(timeSlot: timeSlot)
         } else {
-            RequestedServiceManager.sharedInstance.setDropoffDate(date: date)
-            RequestedServiceManager.sharedInstance.setDropoffTimeRange(min: hourRangeMin, max: hourRangeMax)
+            RequestedServiceManager.sharedInstance.setDropoffTimeSlot(timeSlot: timeSlot)
         }
         
-        let dateTime = formatter.string(from: date)
-        scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(Date.formatHourRange(min: hourRangeMin, max:hourRangeMax))", rightDescription: "")
+        let dateTime = formatter.string(from: timeSlot.from!)
+        scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" ))", rightDescription: "")
         
         currentPresentrVC?.dismiss(animated: true, completion: {
             if openNext {
@@ -507,13 +505,13 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     
     func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
         //let locationRequest = RequestLocation(name: responseInfo!.value(forKey: "formattedAddress") as? String, stringLocation: nil, location: placemark?.location?.coordinate)
-        let locationRequest = RequestLocation(name: responseInfo!.value(forKey: "formattedAddress") as? String, latitude: nil, longitude: nil, location: placemark?.location?.coordinate)
+        let locationRequest = Location(name: responseInfo!.value(forKey: "formattedAddress") as? String, latitude: nil, longitude: nil, location: placemark?.location?.coordinate)
         if StateServiceManager.sharedInstance.isPickup() {
             RequestedServiceManager.sharedInstance.setPickupRequestLocation(requestLocation: locationRequest)
         } else {
             RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: locationRequest)
         }
-        pickupLocationView.setTitle(title: .PickupLocation, leftDescription: locationRequest.name!, rightDescription: "")
+        pickupLocationView.setTitle(title: .PickupLocation, leftDescription: locationRequest.address!, rightDescription: "")
     }
     
     func onLoanerSelected(loanerNeeded: Bool) {

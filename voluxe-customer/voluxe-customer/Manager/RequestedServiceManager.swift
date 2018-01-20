@@ -14,8 +14,11 @@ final class RequestedServiceManager {
     private var dealership: Dealership?
     private var loaner: Bool = true
     
-    private var pickupRequest: Request?
-    private var dropOffRequest: Request?
+    private var pickupRequestLocation: Location?
+    private var pickupTimeSlot: DealershipTimeSlot?
+    
+    private var dropOffRequestLocation: Location?
+    private var dropOffTimeSlot: DealershipTimeSlot?
     
     private var booking: Booking?
     
@@ -24,22 +27,13 @@ final class RequestedServiceManager {
     init() {
     }
     
-    private func initPickupIfNeeded() {
-        if pickupRequest == nil {
-            pickupRequest = Request()
-        }
-    }
-    
-    private func initDropoffIfNeeded() {
-        if dropOffRequest == nil {
-            dropOffRequest = Request()
-        }
-    }
-    
     func reset() {
         loaner = true
-        pickupRequest = nil
-        dropOffRequest = nil
+        pickupTimeSlot = nil
+        pickupRequestLocation = nil
+        dropOffRequestLocation = nil
+        dropOffTimeSlot = nil
+        booking = nil
     }
     
     func setBooking(booking: Booking?) {
@@ -70,95 +64,37 @@ final class RequestedServiceManager {
         return loaner
     }
     
-    func setPickupDate(date: Date) {
-        initPickupIfNeeded()
-        pickupRequest?.setRequestDate(date: date)
+    func setPickupTimeSlot(timeSlot: DealershipTimeSlot) {
+        pickupTimeSlot = timeSlot
     }
     
-    func setPickupTimeRange(min: Int, max: Int) {
-        initPickupIfNeeded()
-        pickupRequest?.setTimeMin(timeMin: min)
-        pickupRequest?.setTimeMax(timeMax: max)
+    func setPickupRequestLocation(requestLocation: Location) {
+        pickupRequestLocation = requestLocation
     }
     
-    func setPickupRequestLocation(requestLocation: RequestLocation) {
-        initPickupIfNeeded()
-        pickupRequest?.setRequestLocation(requestLocation: requestLocation)
-    }
-    
-    func getPickupDate() -> Date? {
-        if let pickupRequest = pickupRequest {
-            return pickupRequest.getRequestDate()
-        }
-        return nil
-    }
-    
-    func getPickupTimeMin() -> Int? {
-        if let pickupRequest = pickupRequest {
-            return pickupRequest.getTimeMin()
-        }
-        return nil
-    }
-    
-    func getPickupTimeMax() -> Int? {
-        if let pickupRequest = pickupRequest {
-            return pickupRequest.getTimeMax()
-        }
-        return nil
-    }
-    
-    func getPickupLocation() -> RequestLocation? {
-        if let pickupRequest = pickupRequest {
-            return pickupRequest.getRequestLocation()
-        }
-        return nil
+    func getPickupTimeSlot() -> DealershipTimeSlot? {
+        return pickupTimeSlot
     }
     
     
-    
-    
-    func setDropoffDate(date: Date) {
-        initDropoffIfNeeded()
-        dropOffRequest?.setRequestDate(date: date)
+    func getPickupLocation() -> Location? {
+        return pickupRequestLocation
     }
     
-    func setDropoffTimeRange(min: Int, max: Int) {
-        initDropoffIfNeeded()
-        dropOffRequest?.setTimeMin(timeMin: min)
-        dropOffRequest?.setTimeMax(timeMax: max)
+    func setDropoffTimeSlot(timeSlot: DealershipTimeSlot) {
+        dropOffTimeSlot = timeSlot
     }
     
-    func setDropoffRequestLocation(requestLocation: RequestLocation) {
-        initDropoffIfNeeded()
-        dropOffRequest?.setRequestLocation(requestLocation: requestLocation)
+    func setDropoffRequestLocation(requestLocation: Location) {
+        dropOffRequestLocation = requestLocation
     }
     
-    func getDropoffDate() -> Date? {
-        if let dropOffRequest = dropOffRequest {
-            return dropOffRequest.getRequestDate()
-        }
-        return nil
+    func getDropoffTimeSlot() -> DealershipTimeSlot? {
+        return dropOffTimeSlot
     }
     
-    func getDropoffTimeMin() -> Int? {
-        if let dropOffRequest = dropOffRequest {
-            return dropOffRequest.getTimeMin()
-        }
-        return nil
-    }
-    
-    func getDropoffTimeMax() -> Int? {
-        if let dropOffRequest = dropOffRequest {
-            return dropOffRequest.getTimeMax()
-        }
-        return nil
-    }
-    
-    func getDropoffLocation() -> RequestLocation? {
-        if let dropOffRequest = dropOffRequest {
-            return dropOffRequest.getRequestLocation()
-        }
-        return nil
+    func getDropoffLocation() -> Location? {
+        return dropOffRequestLocation
     }
     
     

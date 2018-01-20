@@ -46,7 +46,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     private var slotViews: [VLButton] = []
     
     private var currentSlots: Results<DealershipTimeSlot>?
-
+    
     override init() {
         super.init()
         realm = try? Realm()
@@ -115,10 +115,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     override func onButtonClick() {
-        if let delegate = delegate {
-            let index = getButtonSelectedIndex()
-            let bounds = minMax(index: index)
-            delegate.onDateTimeSelected(date: calendar.selectedDate!, hourRangeMin: bounds.min, hourRangeMax: bounds.max)
+        if let delegate = delegate, let currentSlots = currentSlots {
+            let timeSlot = currentSlots[getButtonSelectedIndex()]
+            delegate.onDateTimeSelected(timeSlot: timeSlot)
         }
     }
     
@@ -192,9 +191,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                 var selectedDate: Date?
                 // select preselected date, otherwise fallback to next day
                 if StateServiceManager.sharedInstance.isPickup() {
-                    selectedDate = RequestedServiceManager.sharedInstance.getPickupDate()
+                    selectedDate = RequestedServiceManager.sharedInstance.getPickupTimeSlot()?.from
                 } else {
-                    selectedDate = RequestedServiceManager.sharedInstance.getDropoffDate()
+                    selectedDate = RequestedServiceManager.sharedInstance.getDropoffTimeSlot()?.from
                 }
                 
                 if selectedDate == nil {
@@ -231,10 +230,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     func dateIsSelectable(date: Date) -> Bool {
-        if !date.isWeekend {
-            return hasAvailabilities(date: date)
-        }
-        return false
+        return hasAvailabilities(date: date)
     }
     
     func hasAvailabilities(date: Date) -> Bool {
@@ -246,11 +242,17 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     private func getSlotsForDate(date: Date) -> Results<DealershipTimeSlot>? {
         if let realm = realm, let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-            let from: NSDate = date as NSDate
-            let to: NSDate = date.endOfDay() as NSDate
-            let predicate = NSPredicate(format: "from >= %@ AND to <= %@ AND dealershipId = %d", from, to, dealership.id)
+            var from: NSDate = date.beginningOfDay() as NSDate
+            var to: NSDate = date.endOfDay() as NSDate
+            
+            if date == self.todaysDate {
+                from = date as NSDate
+                to = date as NSDate
+            }
+            
+            let predicate = NSPredicate(format: "from <= %@ AND to >= %@ AND dealershipId = %d", from, to, dealership.id)
             let slots = realm.objects(DealershipTimeSlot.self).filter(predicate)
-            Logger.print("date \(slots.count) for date: \(date)")
+            Logger.print("from: \(from) to: \(to)")
             Logger.print("hasAvailabilities \(slots.count) for date: \(date)")
             Logger.print("predicate \(predicate)")
             return slots
@@ -272,7 +274,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         currentSlots = slots
         
         for (index, slot) in slots.enumerated() {
-            let slotButton = VLButton(type: .BlueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current), actionBlock: nil)
+            let slotButton = VLButton(type: .BlueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: false), actionBlock: nil)
             slotButton.setActionBlock {
                 self.slotClicked(viewIndex: index, slot: slot)
             }
@@ -421,6 +423,6 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
 
 // MARK: protocol PickupDateDelegate
 protocol PickupDateDelegate: class {
-    func onDateTimeSelected(date: Date, hourRangeMin: Int, hourRangeMax: Int)
+    func onDateTimeSelected(timeSlot: DealershipTimeSlot)
 }
 

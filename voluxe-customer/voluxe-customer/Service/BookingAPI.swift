@@ -106,4 +106,40 @@ class BookingAPI: NSObject {
         return promise.future
     }
     
+    /**
+     Create a Pickup Request
+     - parameter bookingId: The booking ID related to the pickup
+     - parameter timeSlotId: The TimeSlot ID Choosed by the customer for the pickup
+     - parameter location: The location choosed by the customer for the pickup
+     
+     - Returns: A Future ResponseObject containing the Pickup, or an AFError if an error occured
+     */
+    func createPickupRequest(bookingId: Int, timeSlotId: Int, location: Location) -> Future<ResponseObject<MappableDataObject<Request>>?, AFError> {
+        let promise = Promise<ResponseObject<MappableDataObject<Request>>?, AFError>()
+
+        let params: Parameters = [
+            "booking_id": bookingId,
+            "driver_dealership_time_slot_assignment_id": timeSlotId,
+            "state": "created",
+            "location": location.toJSON()
+            ]
+        
+        NetworkRequest.request(url: "/v1/driver-pickup-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+            
+            var responseObject: ResponseObject<MappableDataObject<Request>>?
+            
+            if let json = response.result.value as? [String: Any] {
+                Logger.print("JSON: \(json)")
+                responseObject = ResponseObject<MappableDataObject<Request>>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(response.error as! AFError)
+            }
+        }
+        return promise.future
+    }
+    
 }

@@ -13,6 +13,7 @@ import RealmSwift
 
 class Location: Object, Mappable {
     
+    @objc dynamic var id = UUID().uuidString
     @objc dynamic var address: String?
     @objc dynamic var latitude: Double = 0.0
     @objc dynamic var longitude: Double = 0.0
@@ -38,16 +39,26 @@ class Location: Object, Mappable {
         return ["location"]
     }
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
     convenience init(name: String?, latitude: Double?, longitude: Double?, location: CLLocationCoordinate2D?) {
         self.init()
         self.address = name
-        if let latitude = latitude {
-            self.latitude = latitude
+        
+        if let location = location {
+            self.location = location
+            self.latitude = location.latitude
+            self.longitude = location.longitude
+        } else {
+            if let latitude = latitude {
+                self.latitude = latitude
+            }
+            if let longitude = longitude {
+                self.longitude = longitude
+            }
         }
-        if let longitude = longitude {
-            self.longitude = longitude
-        }
-        self.location = location
     }
     
     
@@ -59,5 +70,14 @@ class Location: Object, Mappable {
         location = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
         
         return location
+    }
+    
+    func toJSON() -> [String : Any] {
+        return [
+            "address": address ?? "",
+            "latitude": latitude,
+            "longitude": longitude,
+            "accuracy": accuracy
+        ]
     }
 }
