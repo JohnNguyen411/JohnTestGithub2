@@ -181,6 +181,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                                 realm.add(booking, update: true)
                             }
                             RequestedServiceManager.sharedInstance.setBooking(booking: booking)
+                            StateServiceManager.sharedInstance.updateState(state: .pickupScheduled)
                         }
                     }
                 }
