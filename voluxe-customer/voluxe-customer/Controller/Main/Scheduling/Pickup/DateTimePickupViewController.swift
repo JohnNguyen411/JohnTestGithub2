@@ -245,16 +245,15 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             var from: NSDate = date.beginningOfDay() as NSDate
             var to: NSDate = date.endOfDay() as NSDate
             
-            if date == self.todaysDate {
-                from = date as NSDate
-                to = date as NSDate
+            var predicate = NSPredicate(format: "from >= %@ AND to <= %@ AND dealershipId = %d", from, to, dealership.id)
+
+            if date.isToday {
+                from = self.todaysDate as NSDate
+                to = date.endOfDay() as NSDate
+                predicate = NSPredicate(format: "to >= %@ AND to <= %@ AND dealershipId = %d", from, to, dealership.id)
             }
-            
-            let predicate = NSPredicate(format: "from <= %@ AND to >= %@ AND dealershipId = %d", from, to, dealership.id)
+
             let slots = realm.objects(DealershipTimeSlot.self).filter(predicate)
-            Logger.print("from: \(from) to: \(to)")
-            Logger.print("hasAvailabilities \(slots.count) for date: \(date)")
-            Logger.print("predicate \(predicate)")
             return slots
         }
         return nil
