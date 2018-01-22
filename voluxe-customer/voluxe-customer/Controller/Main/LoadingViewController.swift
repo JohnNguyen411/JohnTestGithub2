@@ -101,8 +101,9 @@ class LoadingViewController: ChildViewController {
                         realm.add(bookings, update: true)
                     }
                 }
-                RequestedServiceManager.sharedInstance.setBooking(booking: bookings[0])
-                StateServiceManager.sharedInstance.updateState(state: .needService)
+                let booking = bookings[0] // TODO take last booking instead of first one
+                RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true)
+                
             } else {
                 // error
                 StateServiceManager.sharedInstance.updateState(state: .needService)

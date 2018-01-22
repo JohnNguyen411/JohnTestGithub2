@@ -130,8 +130,7 @@ class SchedulingPickupViewController: SchedulingViewController {
     
     override func confirmButtonClick() {
         // StateServiceManager.sharedInstance.updateState(state: .pickupScheduled)
-        //createBooking(loaner: RequestedServiceManager.sharedInstance.getLoaner())
-        createPickupRequest(bookingId: 1) //todo change ID
+        createBooking(loaner: RequestedServiceManager.sharedInstance.getLoaner())
     }
     
     private func createBooking(loaner: Bool) {
@@ -153,7 +152,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                         realm.add(booking, update: true)
                     }
                 }
-                RequestedServiceManager.sharedInstance.setBooking(booking: booking)
+                RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: false)
             }
             self.confirmButton.isEnabled = true
             
@@ -180,8 +179,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                                 booking.pickupRequest = realmPickupRequest
                                 realm.add(booking, update: true)
                             }
-                            RequestedServiceManager.sharedInstance.setBooking(booking: booking)
-                            StateServiceManager.sharedInstance.updateState(state: .pickupScheduled)
+                            RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true)
                         }
                     }
                 }

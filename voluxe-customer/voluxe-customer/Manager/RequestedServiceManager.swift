@@ -36,8 +36,12 @@ final class RequestedServiceManager {
         booking = nil
     }
     
-    func setBooking(booking: Booking?) {
+    func setBooking(booking: Booking?, updateState: Bool) {
+        let serviceState = getStateForBooking(booking: booking)
         self.booking = booking
+        if updateState {
+            StateServiceManager.sharedInstance.updateState(state: serviceState)
+        }
     }
     
     func setService(service: Service) {
@@ -97,6 +101,16 @@ final class RequestedServiceManager {
         return dropOffRequestLocation
     }
     
+    private func getStateForBooking(booking: Booking?) -> ServiceState {
+        if let booking = booking {
+            if booking.dropoffRequest != nil {
+                return .deliveryScheduled
+            } else if (booking.pickupRequest != nil) {
+                return .pickupScheduled
+            }
+        }
+        return .needService
+    }
     
 }
 

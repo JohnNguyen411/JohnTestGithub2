@@ -119,7 +119,7 @@ class BookingAPI: NSObject {
 
         let params: Parameters = [
             "booking_id": bookingId,
-            "driver_dealership_time_slot_assignment_id": timeSlotId,
+            "dealership_time_slot_id": timeSlotId, 
             "state": "created",
             "location": location.toJSON()
             ]
