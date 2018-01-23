@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4919A11892F7C3DF8E3B27E1 /* Pods_voluxe_customerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FF37696ECA3479BE741D40 /* Pods_voluxe_customerTests.framework */; };
 		4F168EBDD50184A5503B6E44 /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
+		6C11208E2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
+		6C11208F2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
+		6C1120902016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
 		6C20E1831FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
 		6C20E1841FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
 		6C20E1851FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
@@ -469,6 +472,7 @@
 		5B073D73742601FC967B4DD1 /* Pods-voluxe-customer.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.production.xcconfig"; sourceTree = "<group>"; };
 		6796259E2527512DC57B3E09 /* Pods-voluxe-customerUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.staging.xcconfig"; sourceTree = "<group>"; };
 		69AE2DE1F0F874762B0DBABE /* Pods_voluxe_customer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6C11208D2016B2C70048A56D /* BookingSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSyncManager.swift; sourceTree = "<group>"; };
 		6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceState.swift; sourceTree = "<group>"; };
 		6C20E1861FBE061A00E5D9A0 /* ETAMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAMarker.swift; sourceTree = "<group>"; };
 		6C20E18A1FBE0E6200E5D9A0 /* GoogleDirectionAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDirectionAPI.swift; sourceTree = "<group>"; };
@@ -763,6 +767,7 @@
 		6C20E1CE1FBF712700E5D9A0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				6C11208D2016B2C70048A56D /* BookingSyncManager.swift */,
 				6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */,
 				6C5C6A0F1FD8AACD00D70BF6 /* UserManager.swift */,
 			);
@@ -1748,6 +1753,7 @@
 				6C3FB2B91FA297A300B22EAB /* Date+DateTools.swift in Sources */,
 				6C9543A21FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6CC37E4A1FA7AF2900DA8F01 /* FTUEViewController.swift in Sources */,
+				6C11208E2016B2C70048A56D /* BookingSyncManager.swift in Sources */,
 				6CBB4EAF1FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */,
 				6C3FB2BC1FA29A1C00B22EAB /* Location.swift in Sources */,
 				6C5832C51FB3899800F6BFE0 /* LocationManager.swift in Sources */,
@@ -1896,6 +1902,7 @@
 				6C20E1C41FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */,
 				6C58331F1FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */,
 				6C5833381FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */,
+				6C11208F2016B2C70048A56D /* BookingSyncManager.swift in Sources */,
 				6C95439F1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C5DDECD20096CF8000847C9 /* CustomerAPI.swift in Sources */,
 				6C8159B51FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
@@ -1988,6 +1995,7 @@
 				6CD3BCB0200E85FE001DD79B /* RepairOrder.swift in Sources */,
 				6CBB4EB11FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */,
 				6C5833391FB3AF9900F6BFE0 /* Presentr.swift in Sources */,
+				6C1120902016B2C70048A56D /* BookingSyncManager.swift in Sources */,
 				6C8159B61FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
 				6CCC821D20116B3A003BB3F0 /* DealershipTimeSlot.swift in Sources */,
 				6C20E1961FBE14D500E5D9A0 /* GMRoutes.swift in Sources */,

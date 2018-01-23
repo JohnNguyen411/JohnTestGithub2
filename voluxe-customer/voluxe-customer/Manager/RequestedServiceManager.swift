@@ -44,6 +44,10 @@ final class RequestedServiceManager {
         }
     }
     
+    func getBooking() -> Booking? {
+        return booking
+    }
+    
     func setService(service: Service) {
         self.service = service
     }
