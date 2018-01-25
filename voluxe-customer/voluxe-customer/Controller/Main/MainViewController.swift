@@ -19,6 +19,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     
     override func viewDidLoad() {
         StateServiceManager.sharedInstance.addDelegate(delegate: self)
+        StateServiceManager.sharedInstance.updateState(state: ServiceState.idle)
         super.viewDidLoad()
         setNavigationBarItem()
     }
@@ -29,7 +30,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     
     override func setupViews() {
         super.setupViews()
-        StateServiceManager.sharedInstance.updateState(state: ServiceState.idle)
     }
     
     func stateDidChange(oldState: ServiceState, newState: ServiceState) {

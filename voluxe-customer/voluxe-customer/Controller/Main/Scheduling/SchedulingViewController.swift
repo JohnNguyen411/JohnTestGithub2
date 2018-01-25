@@ -16,7 +16,6 @@ import Alamofire
 
 class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate, LocationManagerDelegate {
     
-    
     public enum SchedulePickupState: Int {
         case start = 0
         case dealership = 1
@@ -41,6 +40,8 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     var scheduleState: SchedulePickupState = .start
     
     var checkupLabelHeight: CGFloat = 0
+    var vehicleImageHeight: CGFloat = 100
+
     let presentrCornerRadius: CGFloat = 4.0
     var currentPresentr: Presentr?
     var currentPresentrVC: VLPresentrViewController?
@@ -60,6 +61,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
 
     let scrollView = UIScrollView()
     let contentView = UIView()
+    let vehicleImageView = UIImageView(frame: .zero)
     let scheduledServiceView = VLTitledLabel()
     let descriptionButton = VLButton(type: .BlueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
     let dealershipView = VLTitledLabel()
@@ -158,6 +160,8 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         
         self.view.addSubview(scrollView)
         scrollView.addSubview(contentView)
+        
+        contentView.addSubview(vehicleImageView)
         contentView.addSubview(checkupLabel)
         
         contentView.addSubview(scheduledServiceView)
@@ -192,8 +196,14 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
             make.left.top.width.height.equalTo(scrollView)
         }
         
+        vehicleImageView.snp.makeConstraints { make in
+            make.left.right.top.equalToSuperview()
+            make.height.equalTo(vehicleImageHeight)
+        }
+        
         checkupLabel.snp.makeConstraints { make in
             make.left.right.top.equalToSuperview()
+            make.top.equalTo(vehicleImageView.snp.bottom)
             make.height.equalTo(checkupLabelHeight)
         }
         
@@ -397,12 +407,16 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         currentPresentrVC = dateModal
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.dateTime.rawValue)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {
-            self.hideCheckupLabel()
+            self.showCheckupLabel(show: false, alpha: true, animated: false)
         })
     }
     
-    func hideCheckupLabel() {
-        self.checkupLabel.snp.updateConstraints { make in
+    func showCheckupLabel(show: Bool, alpha: Bool, animated: Bool) {
+        self.checkupLabel.changeVisibility(show: show, alpha: alpha, animated: animated, height: self.checkupLabelHeight)
+    }
+    
+    func showVehicleImage(show: Bool, animateAlpha: Bool) {
+        self.vehicleImageView.snp.updateConstraints { make in
             make.height.equalTo(0)
         }
     }

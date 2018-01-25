@@ -24,9 +24,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
         
         loanerView.isHidden = true
         
-        self.checkupLabel.snp.updateConstraints { make in
-            make.height.equalTo(0)
-        }
+        self.showCheckupLabel(show: false, alpha: true, animated: false)
     }
     
     override func fillViews() {
@@ -35,8 +33,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
         pickupLocationView.titleLabel.text = .DeliveryLocation
     }
     
-    override func hideCheckupLabel() {
-        super.hideCheckupLabel()
+    func hideDealership() {
         
         self.dealershipView.isHidden = true
         
@@ -60,20 +57,14 @@ class SchedulingDropoffViewController: SchedulingViewController {
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         
-        if self.checkupLabel.isHidden {
-            self.checkupLabel.isHidden = false
-            UIView.animate(withDuration: 0.5, animations: {
-                self.checkupLabel.snp.updateConstraints { make in
-                    make.height.equalTo(self.checkupLabelHeight)
-                }
-                self.checkupLabel.superview?.layoutIfNeeded()
-            })
-        }
+       hideDealership()
         
         if state == .serviceCompleted {
             checkupLabel.text = .VolvoServiceComplete
             leftButton.animateAlpha(show: true)
             rightButton.animateAlpha(show: true)
+            showCheckupLabel(show: true, alpha: true, animated: true)
+
         } else {
             checkupLabel.text = .VolvoCurrentlyServicing
             leftButton.isHidden = true

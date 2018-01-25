@@ -134,6 +134,13 @@ class SchedulingPickupViewController: SchedulingViewController {
     }
     
     private func createBooking(loaner: Bool) {
+        
+        if Config.sharedInstance.isMock {
+            //todo mock
+            StateServiceManager.sharedInstance.updateState(state: .pickupScheduled)
+            return
+        }
+        
         guard let customerId = UserManager.sharedInstance.getCustomerId() else {
             return
         }

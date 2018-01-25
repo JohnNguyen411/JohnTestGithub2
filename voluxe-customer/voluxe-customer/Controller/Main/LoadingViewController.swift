@@ -14,12 +14,12 @@ class LoadingViewController: ChildViewController {
     
     let loadingView = UIActivityIndicatorView(frame: .zero)
     var realm : Realm?
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         realm = try? Realm()
-
+        
         // call user/vehicle/service
         if let realm = self.realm {
             if let customer = realm.objects(Customer.self).first {
@@ -56,6 +56,22 @@ class LoadingViewController: ChildViewController {
     
     //MARK: API CALLS
     private func callCustomer(customerId: Int) {
+        
+        if Config.sharedInstance.isMock {
+            if let realm = self.realm {
+                if let customer = realm.objects(Customer.self).first {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
+                        
+                        UserManager.sharedInstance.setCustomer(customer: customer)
+                        let cars = realm.objects(Vehicle.self)
+                        UserManager.sharedInstance.setVehicles(vehicles: Array(cars))
+                        StateServiceManager.sharedInstance.updateState(state: .needService)
+                    })
+                }
+            }
+            
+            return
+        }
         
         // Get Customer object with ID
         CustomerAPI().getCustomer(id: customerId).onSuccess { result in

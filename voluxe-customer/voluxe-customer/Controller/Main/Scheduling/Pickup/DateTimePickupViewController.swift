@@ -58,6 +58,18 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     func getTimeSlots() {
+        if Config.sharedInstance.isMock {
+            // clear DB slots
+            if let realm = self.realm {
+                let slots = realm.objects(DealershipTimeSlot.self)
+                try? realm.write {
+                    realm.delete(slots)
+                }
+            }
+            self.showCalendar()
+            
+            return
+        }
         if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
             DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id).onSuccess { result in
                 if let slots = result?.data?.result {
@@ -198,6 +210,21 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                 
                 if selectedDate == nil {
                     var nextDay = self.todaysDate
+                    
+                    // Fake slots for Mock
+                    if Config.sharedInstance.isMock {
+                        if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                            var mockDay = self.todaysDate
+                            try? self.realm?.write {
+                                for _ in 0...30 {
+                                    let timeSlot = DealershipTimeSlot.mockTimeSlotForDate(dealershipId: dealership.id, date: mockDay)
+                                    mockDay = Calendar.current.date(byAdding: .day, value: 1, to: nextDay)!
+                                    self.realm?.add(timeSlot)
+                                }
+                            }
+                        }
+                    }
+                    
                     var skippedDays = 0
                     while (!self.dateIsSelectable(date: nextDay) && skippedDays < 30) {
                         nextDay = Calendar.current.date(byAdding: .day, value: 1, to: nextDay)!
@@ -234,6 +261,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     func hasAvailabilities(date: Date) -> Bool {
+        if Config.sharedInstance.isMock {
+            return true
+        }
         if let slots = getSlotsForDate(date: date) {
             return slots.count > 0
         }
@@ -246,13 +276,13 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             var to: NSDate = date.endOfDay() as NSDate
             
             var predicate = NSPredicate(format: "from >= %@ AND to <= %@ AND dealershipId = %d", from, to, dealership.id)
-
+            
             if date.isToday {
                 from = self.todaysDate as NSDate
                 to = date.endOfDay() as NSDate
                 predicate = NSPredicate(format: "to >= %@ AND to <= %@ AND dealershipId = %d", from, to, dealership.id)
             }
-
+            
             let slots = realm.objects(DealershipTimeSlot.self).filter(predicate)
             return slots
         }
