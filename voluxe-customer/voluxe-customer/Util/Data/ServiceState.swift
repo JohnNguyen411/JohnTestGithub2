@@ -12,6 +12,7 @@ public enum ServiceState: Int {
     case noninit = -999
     case idle = 0
     case needService = 10
+    case schedulingService = 15
     case pickupScheduled = 20
     case pickupDriverInRoute = 21
     case pickupDriverNearby = 22
@@ -20,6 +21,7 @@ public enum ServiceState: Int {
     case pickupDriverAtDealership = 25
     case servicing = 30
     case serviceCompleted = 40
+    case schedulingDelivery = 45
     case deliveryScheduled = 50
     case deliveryInRoute = 51
     case deliveryNearby = 52

@@ -14,17 +14,14 @@ class SchedulingPickupViewController: SchedulingViewController {
     override func setupViews() {
         super.setupViews()
         loanerView.snp.makeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
+            make.left.right.equalToSuperview()
             make.top.equalTo(pickupLocationView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
     }
     
     override func fillViews() {
-        if serviceState == .idle || serviceState == .needService {
-            let service = Service(name: "10,000 mile check-up", price: Double(400))
-            RequestedServiceManager.sharedInstance.setService(service: service)
-        }
+        
         if let timeSlot = RequestedServiceManager.sharedInstance.getPickupTimeSlot(), let date = timeSlot.from {
             let dateTime = formatter.string(from: date)
             scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" ))", rightDescription: "")
@@ -38,64 +35,6 @@ class SchedulingPickupViewController: SchedulingViewController {
     
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
-        
-        leftButton.setTitle(title: (.SelfDrop as String).uppercased())
-        rightButton.setTitle(title: (.VolvoPickup as String).uppercased())
-        
-        if state == .pickupDriverDrivingToDealership || state == .pickupDriverAtDealership {
-            
-            if !self.checkupLabel.isHidden {
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.checkupLabel.snp.updateConstraints { make in
-                        make.height.equalTo(0)
-                    }
-                    self.checkupLabel.superview?.layoutIfNeeded()
-                }, completion: { (completed) in
-                    self.checkupLabel.isHidden = true
-                })
-            }
-            
-            leftButton.isHidden = true
-            rightButton.isHidden = true
-            confirmButton.isHidden = true
-            
-            if state == .pickupDriverDrivingToDealership {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                    StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
-                })
-            } else if state == .pickupDriverAtDealership {
-                
-                let alert = UIAlertController(title: .VolvoPickup, message: .YourVehicleHasArrived, preferredStyle: UIAlertControllerStyle.alert)
-                let okAction = UIAlertAction(title: (.Ok as String).uppercased(), style: UIAlertActionStyle.default, handler: { (alert: UIAlertAction!) in
-                    // show being serviced
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .servicing)
-                    })
-                    
-                })
-                
-                alert.addAction(okAction)
-                
-                self.present(alert, animated: true, completion: {
-                    // add accessibility if possible
-                    if let alertButton = okAction.value(forKey: "__representer") {
-                        let view = alertButton as? UIView
-                        view?.accessibilityIdentifier = "okAction_AID"
-                    }
-                })
-            }
-            
-        } else {
-            if self.checkupLabel.isHidden {
-                self.checkupLabel.isHidden = false
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.checkupLabel.snp.updateConstraints { make in
-                        make.height.equalTo(self.checkupLabelHeight)
-                    }
-                    self.checkupLabel.superview?.layoutIfNeeded()
-                })
-            }
-        }
         
         if state.rawValue >= ServiceState.pickupScheduled.rawValue {
             

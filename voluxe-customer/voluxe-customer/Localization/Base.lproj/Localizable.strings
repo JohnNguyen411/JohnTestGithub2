@@ -53,6 +53,8 @@
 "PickupLocation" = "Pickup Location";
 "ComplimentaryLoaner" = "Complimentary Loaner?";
 "ConfirmPickup" = "Confirm Pickup";
+"NotePickup" = "Note: Volvo pickup is only offered near the dealership.";
+"ScheduleDropDealership" = "You can drop your car at the dealership or arrange for Volvo to pickup your vehicle at the location of your choosing.";
 
 /***************** ScheduledPickup ***************/
 "SchedulePickup" = "Schedule Pickup";

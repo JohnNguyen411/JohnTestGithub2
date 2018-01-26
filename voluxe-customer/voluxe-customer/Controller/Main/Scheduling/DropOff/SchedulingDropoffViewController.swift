@@ -12,19 +12,12 @@ import CoreLocation
 class SchedulingDropoffViewController: SchedulingViewController {
     
     override func setupViews() {
-        self.checkupLabel.isHidden = true
         
         super.setupViews()
-        
-        leftButton.setTitle(title: (.SelfPickup as String).uppercased())
-        rightButton.setTitle(title: (.VolvoDelivery as String).uppercased())
-        confirmButton.setTitle(title: (.ConfirmDelivery as String).uppercased())
         
         dealershipView.isUserInteractionEnabled = false
         
         loanerView.isHidden = true
-        
-        self.showCheckupLabel(show: false, alpha: true, animated: false)
     }
     
     override func fillViews() {
@@ -42,13 +35,13 @@ class SchedulingDropoffViewController: SchedulingViewController {
         }
         
         scheduledPickupView.snp.remakeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
+            make.left.right.equalToSuperview()
             make.top.equalTo(descriptionButton.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
         
         pickupLocationView.snp.remakeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
+            make.left.right.equalToSuperview()
             make.top.equalTo(scheduledPickupView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
@@ -58,22 +51,6 @@ class SchedulingDropoffViewController: SchedulingViewController {
         super.stateDidChange(state: state)
         
        hideDealership()
-        
-        if state == .serviceCompleted {
-            checkupLabel.text = .VolvoServiceComplete
-            leftButton.animateAlpha(show: true)
-            rightButton.animateAlpha(show: true)
-            showCheckupLabel(show: true, alpha: true, animated: true)
-
-        } else {
-            checkupLabel.text = .VolvoCurrentlyServicing
-            leftButton.isHidden = true
-            rightButton.isHidden = true
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                self.stateDidChange(state: .serviceCompleted)
-            })
-        }
         
     }
     

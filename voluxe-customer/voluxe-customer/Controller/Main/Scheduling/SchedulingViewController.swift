@@ -38,30 +38,16 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     var dealerships: [Dealership]?
     var serviceState: ServiceState
     var scheduleState: SchedulePickupState = .start
-    
-    var checkupLabelHeight: CGFloat = 0
-    var vehicleImageHeight: CGFloat = 100
 
     let presentrCornerRadius: CGFloat = 4.0
     var currentPresentr: Presentr?
     var currentPresentrVC: VLPresentrViewController?
-    
-    let checkupLabel: UILabel = {
-        let textView = UILabel(frame: .zero)
-        textView.text = .FTUEStartOne
-        textView.font = .volvoSansLight(size: 18)
-        textView.textColor = .luxeDarkGray()
-        textView.backgroundColor = .clear
-        textView.numberOfLines = 0
-        return textView
-    }()
-    
+  
     let stateTestView = UILabel(frame: .zero)
     let dealershipTestView = UIView(frame: .zero)
 
     let scrollView = UIScrollView()
     let contentView = UIView()
-    let vehicleImageView = UIImageView(frame: .zero)
     let scheduledServiceView = VLTitledLabel()
     let descriptionButton = VLButton(type: .BlueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
     let dealershipView = VLTitledLabel()
@@ -69,8 +55,6 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "")
     let loanerView = VLTitledLabel(title: .ComplimentaryLoaner, leftDescription: "", rightDescription: "")
     
-    let leftButton = VLButton(type: .BluePrimary, title: (.SelfDrop as String).uppercased(), actionBlock: nil)
-    let rightButton = VLButton(type: .BluePrimary, title: (.VolvoPickup as String).uppercased(), actionBlock: nil)
     let confirmButton = VLButton(type: .BluePrimary, title: (.ConfirmPickup as String).uppercased(), actionBlock: nil)
     
     
@@ -98,12 +82,6 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         }
         descriptionButton.contentHorizontalAlignment = .left
         
-        leftButton.setActionBlock {
-            self.leftButtonClick()
-        }
-        rightButton.setActionBlock {
-            self.rightButtonClick()
-        }
         confirmButton.setActionBlock {
             self.confirmButtonClick()
         }
@@ -134,7 +112,6 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         super.setupViews()
         
         dealershipView.accessibilityIdentifier = "dealershipView"
-        rightButton.accessibilityIdentifier = "rightButton"
         confirmButton.accessibilityIdentifier = "confirmButton"
         
         // init tap events
@@ -156,20 +133,14 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         
         scrollView.contentMode = .scaleAspectFit
         
-        checkupLabelHeight = checkupLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
         
         self.view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        
-        contentView.addSubview(vehicleImageView)
-        contentView.addSubview(checkupLabel)
         
         contentView.addSubview(scheduledServiceView)
         contentView.addSubview(descriptionButton)
         contentView.addSubview(dealershipView)
         
-        contentView.addSubview(leftButton)
-        contentView.addSubview(rightButton)
         contentView.addSubview(confirmButton)
         
         confirmButton.alpha = 0
@@ -196,59 +167,34 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
             make.left.top.width.height.equalTo(scrollView)
         }
         
-        vehicleImageView.snp.makeConstraints { make in
-            make.left.right.top.equalToSuperview()
-            make.height.equalTo(vehicleImageHeight)
-        }
-        
-        checkupLabel.snp.makeConstraints { make in
-            make.left.right.top.equalToSuperview()
-            make.top.equalTo(vehicleImageView.snp.bottom)
-            make.height.equalTo(checkupLabelHeight)
-        }
-        
         scheduledServiceView.snp.makeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
-            make.top.equalTo(checkupLabel.snp.bottom).offset(30)
+            make.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(30)
             make.height.equalTo(VLTitledLabel.height)
         }
         
         descriptionButton.snp.makeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
+            make.left.right.equalTo(scheduledServiceView)
             make.top.equalTo(scheduledServiceView.snp.bottom)
             make.height.equalTo(VLButton.secondaryHeight)
         }
         
         dealershipView.snp.makeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
+            make.left.right.equalTo(scheduledServiceView)
             make.top.equalTo(descriptionButton.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
         
         scheduledPickupView.snp.makeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
+            make.left.right.equalTo(scheduledServiceView)
             make.top.equalTo(dealershipView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
         
         pickupLocationView.snp.makeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
+            make.left.right.equalTo(scheduledServiceView)
             make.top.equalTo(scheduledPickupView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
-        }
-        
-        leftButton.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.bottom.equalTo(contentView.snp.bottom)
-            make.width.equalToSuperview().dividedBy(2).offset(-10)
-            make.height.equalTo(VLButton.primaryHeight)
-        }
-        
-        rightButton.snp.makeConstraints { make in
-            make.right.equalToSuperview()
-            make.bottom.equalTo(contentView.snp.bottom)
-            make.width.equalToSuperview().dividedBy(2).offset(-10)
-            make.height.equalTo(VLButton.primaryHeight)
         }
         
         confirmButton.snp.makeConstraints { make in
@@ -272,6 +218,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     }
     
     func fillViews() {
+        
         if let service = RequestedServiceManager.sharedInstance.getService() {
             scheduledServiceView.setTitle(title: .RecommendedService, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
         }
@@ -406,19 +353,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         dateModal.view.accessibilityIdentifier = "dateModal"
         currentPresentrVC = dateModal
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.dateTime.rawValue)
-        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {
-            self.showCheckupLabel(show: false, alpha: true, animated: false)
-        })
-    }
-    
-    func showCheckupLabel(show: Bool, alpha: Bool, animated: Bool) {
-        self.checkupLabel.changeVisibility(show: show, alpha: alpha, animated: animated, height: self.checkupLabelHeight)
-    }
-    
-    func showVehicleImage(show: Bool, animateAlpha: Bool) {
-        self.vehicleImageView.snp.updateConstraints { make in
-            make.height.equalTo(0)
-        }
+        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
     func presentrShouldDismiss(keyboardShowing: Bool) -> Bool {
@@ -449,23 +384,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         loanerView.animateAlpha(show: true)
     }
     
-    func leftButtonClick() {
-    }
-    
-    func rightButtonClick() {
-        showPickupDateTimeModal()
-        
-        scheduledPickupView.animateAlpha(show: true)
-        leftButton.animateAlpha(show: false)
-        rightButton.animateAlpha(show: false)
-        
-        if ServiceState.isPickup(state: serviceState) {
-            setTitle(title: .SchedulePickup)
-        } else {
-            setTitle(title: .ScheduleDelivery)
-        }
-    }
-    
+   
     func confirmButtonClick() {
     }
     
