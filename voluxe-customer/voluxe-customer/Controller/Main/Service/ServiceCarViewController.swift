@@ -15,7 +15,8 @@ import BrightFutures
 import Alamofire
 
 
-class ServiceCarViewController: ChildViewController {
+class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
+    
     
     var serviceState: ServiceState
     var checkupLabelHeight: CGFloat = 0
@@ -41,9 +42,11 @@ class ServiceCarViewController: ChildViewController {
         return textView
     }()
     
+    var locationManager = LocationManager.sharedInstance
+
     let scheduledServiceView = VLTitledLabel()
     let descriptionButton = VLButton(type: .BlueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
-
+    
     let vehicleImageView = UIImageView(frame: .zero)
     
     let leftButton = VLButton(type: .BluePrimary, title: (.SelfDrop as String).uppercased(), actionBlock: nil)
@@ -63,6 +66,11 @@ class ServiceCarViewController: ChildViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        locationManager.delegate = self
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
         
         leftButton.setActionBlock {
             self.leftButtonClick()
@@ -192,6 +200,7 @@ class ServiceCarViewController: ChildViewController {
         super.stateDidChange(state: state)
         
         if state == .needService {
+            dealershipPrefetching()
             noteLabel.isHidden = false
             checkupLabel.isHidden = false
             
@@ -276,5 +285,41 @@ class ServiceCarViewController: ChildViewController {
     func confirmButtonClick() {
     }
     
+    
+    //MARK: Prefetching methods
+
+    func dealershipPrefetching() {
+        if CLLocationManager.locationServicesEnabled() && locationManager.lastKnownLatitude != 0 && locationManager.lastKnownLongitude != 0 && locationManager.hasLastKnownLocation {
+            DealershipAPI().getDealerships(location: CLLocationCoordinate2DMake(locationManager.lastKnownLatitude, locationManager.lastKnownLongitude)).onSuccess { result in
+                
+                self.saveDealerships(result: result)
+                
+                }.onFailure { error in
+            }
+        } else {
+            DealershipAPI().getDealerships().onSuccess { result in
+                
+                self.saveDealerships(result: result)
+
+                }.onFailure { error in
+            }
+        }
+    }
+    
+    func saveDealerships(result: ResponseObject<MappableDataArray<Dealership>>?) {
+        if let dealerships = result?.data?.result, dealerships.count > 0 {
+            if let realm = try? Realm() {
+                try? realm.write {
+                    realm.add(dealerships, update: true)
+                }
+            }
+        }
+        
+    }
+    
+    //MARK: LocationDelegate methods
+
+    func locationFound(_ latitude: Double, longitude: Double) {
+    }
     
 }

@@ -36,6 +36,11 @@ class SchedulingPickupViewController: SchedulingViewController {
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         
+        if state == .schedulingService {
+            // show dealership modal
+            showDealershipModal()
+        }
+        
         if state.rawValue >= ServiceState.pickupScheduled.rawValue {
             
             scheduledPickupView.animateAlpha(show: true)

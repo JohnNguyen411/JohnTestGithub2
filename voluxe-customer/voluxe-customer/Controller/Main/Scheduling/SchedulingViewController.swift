@@ -34,18 +34,18 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     
     var realm : Realm?
     var locationManager = LocationManager.sharedInstance
-
+    
     var dealerships: [Dealership]?
     var serviceState: ServiceState
     var scheduleState: SchedulePickupState = .start
-
+    
     let presentrCornerRadius: CGFloat = 4.0
     var currentPresentr: Presentr?
     var currentPresentrVC: VLPresentrViewController?
-  
+    
     let stateTestView = UILabel(frame: .zero)
     let dealershipTestView = UIView(frame: .zero)
-
+    
     let scrollView = UIScrollView()
     let contentView = UIView()
     let scheduledServiceView = VLTitledLabel()
@@ -223,9 +223,19 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
             scheduledServiceView.setTitle(title: .RecommendedService, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
         }
         
+        prefillDealerships()
         fillDealership()
         
         loanerView.descLeftLabel.text = RequestedServiceManager.sharedInstance.getLoaner() ? .Yes : .No
+    }
+    
+    private func prefillDealerships() {
+        // load from realm
+        if let realm = self.realm {
+            let dealerships = Array(realm.objects(Dealership.self))
+            handleDealershipsResponse(dealerships: dealerships)
+        }
+        
     }
     
     private func fillDealership() {
@@ -234,15 +244,17 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
             if CLLocationManager.locationServicesEnabled() && locationManager.lastKnownLatitude != 0 && locationManager.lastKnownLongitude != 0 && locationManager.hasLastKnownLocation {
                 DealershipAPI().getDealerships(location: CLLocationCoordinate2DMake(locationManager.lastKnownLatitude, locationManager.lastKnownLongitude)).onSuccess { result in
                     
-                    self.handleDealershipsResponse(result: result)
+                    if let dealerships = result?.data?.result, dealerships.count > 0 {
+                        self.handleDealershipsResponse(dealerships: dealerships)
+                    }
                     
                     }.onFailure { error in
                 }
             } else {
                 DealershipAPI().getDealerships().onSuccess { result in
-                    
-                    self.handleDealershipsResponse(result: result)
-                    
+                    if let dealerships = result?.data?.result, dealerships.count > 0 {
+                        self.handleDealershipsResponse(dealerships: dealerships)
+                    }
                     }.onFailure { error in
                 }
             }
@@ -254,9 +266,11 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         }
     }
     
-    private func handleDealershipsResponse(result: ResponseObject<MappableDataArray<Dealership>>?) {
-        if let dealerships = result?.data?.result, dealerships.count > 0 {
+    private func handleDealershipsResponse(dealerships: [Dealership]?) {
+        if let dealerships = dealerships {
+            //todo: hide loading if needed
             self.dealerships = dealerships
+            
             if RequestedServiceManager.sharedInstance.getDealership() == nil {
                 RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
             }
@@ -274,6 +288,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
                 }
             }
         }
+        
     }
     
     
@@ -372,6 +387,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     
     @objc func scheduledPickupClick() {
         showPickupDateTimeModal()
+        scheduledPickupView.animateAlpha(show: true)
     }
     
     @objc func pickupLocationClick() {
@@ -384,26 +400,35 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         loanerView.animateAlpha(show: true)
     }
     
-   
+    
     func confirmButtonClick() {
     }
     
     //MARK: LocationManager delegate methods
-
+    
     func locationFound(_ latitude: Double, longitude: Double) {
         fillDealership()
     }
-        
+    
     
     //MARK: PresentR delegate methods
     
     func onDealershipSelected(dealership: Dealership) {
+        var openNext = false
+        if scheduleState.rawValue < SchedulePickupState.dealership.rawValue {
+            scheduleState = .dealership
+            openNext = true
+        }
         RequestedServiceManager.sharedInstance.setDealership(dealership: dealership)
         if scheduleState.rawValue < SchedulePickupState.dealership.rawValue {
             scheduleState = .dealership
         }
         dealershipView.descLeftLabel.text = dealership.name
-        currentPresentrVC?.dismiss(animated: true, completion: nil)
+        currentPresentrVC?.dismiss(animated: true, completion: {
+            if openNext {
+                self.scheduledPickupClick()
+            }
+        })
     }
     
     func onDateTimeSelected(timeSlot: DealershipTimeSlot) {
