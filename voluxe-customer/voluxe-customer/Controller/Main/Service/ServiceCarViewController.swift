@@ -17,7 +17,6 @@ import Alamofire
 
 class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
-    
     var serviceState: ServiceState
     var checkupLabelHeight: CGFloat = 0
     var vehicleImageHeight: CGFloat = 100
@@ -51,7 +50,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     let leftButton = VLButton(type: .BluePrimary, title: (.SelfDrop as String).uppercased(), actionBlock: nil)
     let rightButton = VLButton(type: .BluePrimary, title: (.VolvoPickup as String).uppercased(), actionBlock: nil)
-    let confirmButton = VLButton(type: .BluePrimary, title: (.ConfirmPickup as String).uppercased(), actionBlock: nil)
+    let confirmButton = VLButton(type: .BluePrimary, title: (.Ok as String).uppercased(), actionBlock: nil)
     
     
     //MARK: Lifecycle methods
@@ -198,76 +197,88 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
-        
-        if state == .needService {
-            dealershipPrefetching()
+        confirmButton.isHidden = true
+
+        if state == .needService || state == .serviceCompleted {
+            
+            scheduledServiceView.isHidden = false
+            descriptionButton.isHidden = false
+            
+            if state == .needService {
+                dealershipPrefetching()
+                checkupLabel.text = .ScheduleDropDealership
+            } else {
+                checkupLabel.text = .VolvoServiceComplete
+            }
             noteLabel.isHidden = false
-            checkupLabel.isHidden = false
             
             checkupLabel.snp.remakeConstraints { make in
                 make.left.right.equalToSuperview()
                 make.bottom.equalTo(noteLabel.snp.top).offset(-20)
                 make.height.equalTo(checkupLabelHeight)
             }
-        } else {
             
-            if state == .serviceCompleted {
-                checkupLabel.text = .VolvoServiceComplete
-                leftButton.animateAlpha(show: true)
-                rightButton.animateAlpha(show: true)
-                showCheckupLabel(show: true, alpha: true, animated: true)
-                
-            } else {
+            leftButton.animateAlpha(show: true)
+            rightButton.animateAlpha(show: true)
+            confirmButton.animateAlpha(show: false)
+        } else {
+            noteLabel.isHidden = true
+            scheduledServiceView.isHidden = true
+            descriptionButton.isHidden = true
+            
+            checkupLabel.snp.remakeConstraints { make in
+                make.left.right.equalToSuperview()
+                make.top.equalTo(vehicleImageView.snp.bottom).offset(40)
+                make.height.equalTo(checkupLabelHeight)
+            }
+
+            if state == .servicing {
                 checkupLabel.text = .VolvoCurrentlyServicing
                 leftButton.isHidden = true
                 rightButton.isHidden = true
                 
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                    self.stateDidChange(state: .serviceCompleted)
-                })
-            }
-        }
-        
-        if state == .pickupDriverDrivingToDealership || state == .pickupDriverAtDealership {
-            
-            confirmButton.isHidden = true
-            
-            if state == .pickupDriverDrivingToDealership {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                    StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
-                })
-            } else if state == .pickupDriverAtDealership {
-                
-                let alert = UIAlertController(title: .VolvoPickup, message: .YourVehicleHasArrived, preferredStyle: UIAlertControllerStyle.alert)
-                let okAction = UIAlertAction(title: (.Ok as String).uppercased(), style: UIAlertActionStyle.default, handler: { (alert: UIAlertAction!) in
-                    // show being serviced
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .servicing)
+                if Config.sharedInstance.isMock {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
+                        self.stateDidChange(state: .serviceCompleted)
                     })
-                    
-                })
+                }
+            } else if state == .pickupDriverDrivingToDealership {
+                confirmButton.isHidden = true
+                leftButton.isHidden = true
+                rightButton.isHidden = true
+                checkupLabel.text = .DriverDrivingToDealership
                 
-                alert.addAction(okAction)
+                if Config.sharedInstance.isMock {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
+                        self.stateDidChange(state: .pickupDriverAtDealership)
+                    })
+                }
                 
-                self.present(alert, animated: true, completion: {
-                    // add accessibility if possible
-                    if let alertButton = okAction.value(forKey: "__representer") {
-                        let view = alertButton as? UIView
-                        view?.accessibilityIdentifier = "okAction_AID"
-                    }
-                })
+            } else if state == .pickupDriverAtDealership {
+                confirmButton.isHidden = false
+                checkupLabel.text = .YourVehicleHasArrived
+                
+                if Config.sharedInstance.isMock {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
+                        self.stateDidChange(state: .servicing)
+                    })
+                }
+                
+            } else if state == .completed {
+                confirmButton.isHidden = true
+                leftButton.isHidden = true
+                rightButton.isHidden = true
+                checkupLabel.text = .DriverDrivingToDealership
             }
         }
         
         
         if ServiceState.isPickup(state: state) {
-            confirmButton.isHidden = true
             leftButton.setTitle(title: (.SelfDrop as String).uppercased())
             rightButton.setTitle(title: (.VolvoPickup as String).uppercased())
         } else {
             leftButton.setTitle(title: (.SelfPickup as String).uppercased())
             rightButton.setTitle(title: (.VolvoDelivery as String).uppercased())
-            confirmButton.setTitle(title: (.ConfirmDelivery as String).uppercased())
         }
     }
     
