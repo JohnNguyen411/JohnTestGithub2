@@ -15,7 +15,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         super.setupViews()
         loanerView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(pickupLocationView.snp.bottom).offset(20)
+            make.top.equalTo(scheduledPickupView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
     }
@@ -37,8 +37,8 @@ class SchedulingPickupViewController: SchedulingViewController {
         super.stateDidChange(state: state)
         
         if state == .schedulingService {
-            // show dealership modal
-            showDealershipModal()
+            // show location modal
+            pickupLocationClick()
         }
         
         if state.rawValue >= ServiceState.pickupScheduled.rawValue {
@@ -67,7 +67,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         currentPresentrVC?.dismiss(animated: true, completion: {
             if openNext {
-                self.loanerClick()
+                self.dealershipClick()
             }
         })
     }

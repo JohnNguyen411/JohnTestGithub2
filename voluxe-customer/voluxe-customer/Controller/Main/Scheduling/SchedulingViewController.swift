@@ -18,9 +18,9 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     
     public enum SchedulePickupState: Int {
         case start = 0
-        case dealership = 1
-        case dateTime = 2
-        case location = 3
+        case location = 1
+        case dealership = 2
+        case dateTime = 3
         case loaner = 4
     }
     
@@ -144,6 +144,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         contentView.addSubview(confirmButton)
         
         confirmButton.alpha = 0
+        dealershipView.alpha = 0
         scheduledPickupView.alpha = 0
         pickupLocationView.alpha = 0
         loanerView.alpha = 0
@@ -179,21 +180,21 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
             make.height.equalTo(VLButton.secondaryHeight)
         }
         
-        dealershipView.snp.makeConstraints { make in
+        pickupLocationView.snp.makeConstraints { make in
             make.left.right.equalTo(scheduledServiceView)
             make.top.equalTo(descriptionButton.snp.bottom).offset(20)
+            make.height.equalTo(VLTitledLabel.height)
+        }
+        
+        dealershipView.snp.makeConstraints { make in
+            make.left.right.equalTo(scheduledServiceView)
+            make.top.equalTo(pickupLocationView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
         
         scheduledPickupView.snp.makeConstraints { make in
             make.left.right.equalTo(scheduledServiceView)
             make.top.equalTo(dealershipView.snp.bottom).offset(20)
-            make.height.equalTo(VLTitledLabel.height)
-        }
-        
-        pickupLocationView.snp.makeConstraints { make in
-            make.left.right.equalTo(scheduledServiceView)
-            make.top.equalTo(scheduledPickupView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
         
@@ -383,6 +384,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     
     @objc func dealershipClick() {
         showDealershipModal()
+        dealershipView.animateAlpha(show: true)
     }
     
     @objc func scheduledPickupClick() {
@@ -449,7 +451,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         
         currentPresentrVC?.dismiss(animated: true, completion: {
             if openNext {
-                self.pickupLocationClick()
+                self.loanerClick()
             }
         })
     }
@@ -462,6 +464,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     }
     
     func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
+        
         //let locationRequest = RequestLocation(name: responseInfo!.value(forKey: "formattedAddress") as? String, stringLocation: nil, location: placemark?.location?.coordinate)
         let locationRequest = Location(name: responseInfo!.value(forKey: "formattedAddress") as? String, latitude: nil, longitude: nil, location: placemark?.location?.coordinate)
         if StateServiceManager.sharedInstance.isPickup() {
@@ -470,6 +473,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
             RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: locationRequest)
         }
         pickupLocationView.setTitle(title: .PickupLocation, leftDescription: locationRequest.address!, rightDescription: "")
+       
     }
     
     func onLoanerSelected(loanerNeeded: Bool) {
