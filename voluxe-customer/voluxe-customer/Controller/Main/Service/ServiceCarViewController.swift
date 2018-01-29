@@ -239,7 +239,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        self.stateDidChange(state: .serviceCompleted)
+                        StateServiceManager.sharedInstance.updateState(state: .serviceCompleted)
                     })
                 }
             } else if state == .pickupDriverDrivingToDealership {
@@ -250,7 +250,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        self.stateDidChange(state: .pickupDriverAtDealership)
+                        StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
                     })
                 }
                 
@@ -260,7 +260,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        self.stateDidChange(state: .servicing)
+                        StateServiceManager.sharedInstance.updateState(state: .servicing)
                     })
                 }
                 
@@ -290,7 +290,11 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     }
     
     func rightButtonClick() {
-        StateServiceManager.sharedInstance.updateState(state: .schedulingService)
+        if StateServiceManager.sharedInstance.isPickup() {
+            StateServiceManager.sharedInstance.updateState(state: .schedulingService)
+        } else {
+            StateServiceManager.sharedInstance.updateState(state: .schedulingDelivery)
+        }
     }
     
     func confirmButtonClick() {

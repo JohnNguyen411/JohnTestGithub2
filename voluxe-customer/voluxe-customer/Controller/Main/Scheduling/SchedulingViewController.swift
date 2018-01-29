@@ -24,6 +24,12 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         case loaner = 4
     }
     
+    public enum ScheduleDropoffState: Int {
+        case start = 0
+        case dateTime = 1
+        case location = 2
+    }
+    
     static private let fakeYOrigin: CGFloat = -555.0
     
     let formatter: DateFormatter = {
@@ -37,7 +43,9 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     
     var dealerships: [Dealership]?
     var serviceState: ServiceState
-    var scheduleState: SchedulePickupState = .start
+    
+    var pickupScheduleState: SchedulePickupState = .start
+    var dropoffScheduleState: ScheduleDropoffState = .start
     
     let presentrCornerRadius: CGFloat = 4.0
     var currentPresentr: Presentr?
@@ -333,7 +341,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         return customType
     }
     
-    func showDealershipModal() {
+    func showDealershipModal(dismissOnTap: Bool) {
         guard let dealerships = dealerships else {
             return
         }
@@ -341,34 +349,34 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         dealershipVC.delegate = self
         dealershipVC.view.accessibilityIdentifier = "dealershipVC"
         currentPresentrVC = dealershipVC
-        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: true)
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
-    func showPickupLocationModal() {
+    func showPickupLocationModal(dismissOnTap: Bool) {
         let locationVC = LocationPickupViewController(title: .PickupLocationTitle, buttonTitle: .Next)
         locationVC.pickupLocationDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
         currentPresentrVC = locationVC
-        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.location.rawValue)
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
-    func showPickupLoanerModal() {
+    func showPickupLoanerModal(dismissOnTap: Bool) {
         let loanerVC = LoanerPickupViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next)
         loanerVC.delegate = self
         loanerVC.view.accessibilityIdentifier = "loanerVC"
         currentPresentrVC = loanerVC
-        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.loaner.rawValue)
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
-    func showPickupDateTimeModal() {
+    func showPickupDateTimeModal(dismissOnTap: Bool) {
         let dateModal = DateTimePickupViewController(title: .SelectYourPreferredPickupTime, buttonTitle: .Next)
         dateModal.delegate = self
         dateModal.view.accessibilityIdentifier = "dateModal"
         currentPresentrVC = dateModal
-        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.dateTime.rawValue)
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
@@ -383,22 +391,18 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     }
     
     @objc func dealershipClick() {
-        showDealershipModal()
         dealershipView.animateAlpha(show: true)
     }
     
     @objc func scheduledPickupClick() {
-        showPickupDateTimeModal()
         scheduledPickupView.animateAlpha(show: true)
     }
     
     @objc func pickupLocationClick() {
-        showPickupLocationModal()
         pickupLocationView.animateAlpha(show: true)
     }
     
     @objc func loanerClick() {
-        showPickupLoanerModal()
         loanerView.animateAlpha(show: true)
     }
     
@@ -416,29 +420,9 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     //MARK: PresentR delegate methods
     
     func onDealershipSelected(dealership: Dealership) {
-        var openNext = false
-        if scheduleState.rawValue < SchedulePickupState.dealership.rawValue {
-            scheduleState = .dealership
-            openNext = true
-        }
-        RequestedServiceManager.sharedInstance.setDealership(dealership: dealership)
-        if scheduleState.rawValue < SchedulePickupState.dealership.rawValue {
-            scheduleState = .dealership
-        }
-        dealershipView.descLeftLabel.text = dealership.name
-        currentPresentrVC?.dismiss(animated: true, completion: {
-            if openNext {
-                self.scheduledPickupClick()
-            }
-        })
     }
     
     func onDateTimeSelected(timeSlot: DealershipTimeSlot) {
-        var openNext = false
-        if scheduleState.rawValue < SchedulePickupState.dateTime.rawValue {
-            scheduleState = .dateTime
-            openNext = true
-        }
         
         if StateServiceManager.sharedInstance.isPickup() {
             RequestedServiceManager.sharedInstance.setPickupTimeSlot(timeSlot: timeSlot)
@@ -448,12 +432,6 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         
         let dateTime = formatter.string(from: timeSlot.from!)
         scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" ))", rightDescription: "")
-        
-        currentPresentrVC?.dismiss(animated: true, completion: {
-            if openNext {
-                self.loanerClick()
-            }
-        })
     }
     
     func onLocationAdded(newSize: Int) {
@@ -478,8 +456,8 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     
     func onLoanerSelected(loanerNeeded: Bool) {
         RequestedServiceManager.sharedInstance.setLoaner(loaner: loanerNeeded)
-        if scheduleState.rawValue < SchedulePickupState.loaner.rawValue {
-            scheduleState = .loaner
+        if pickupScheduleState.rawValue < SchedulePickupState.loaner.rawValue {
+            pickupScheduleState = .loaner
         }
         loanerView.descLeftLabel.text = loanerNeeded ? .Yes : .No
         currentPresentrVC?.dismiss(animated: true, completion: {

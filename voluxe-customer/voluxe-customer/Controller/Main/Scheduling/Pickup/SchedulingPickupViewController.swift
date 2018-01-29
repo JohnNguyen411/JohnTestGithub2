@@ -54,12 +54,41 @@ class SchedulingPickupViewController: SchedulingViewController {
         }
     }
     
+    override func onDealershipSelected(dealership: Dealership) {
+        var openNext = false
+        if pickupScheduleState.rawValue < SchedulePickupState.dealership.rawValue {
+            pickupScheduleState = .dealership
+            openNext = true
+        }
+        RequestedServiceManager.sharedInstance.setDealership(dealership: dealership)
+        
+        dealershipView.descLeftLabel.text = dealership.name
+        currentPresentrVC?.dismiss(animated: true, completion: {
+            if openNext {
+                self.scheduledPickupClick()
+            }
+        })
+    }
+
+    override func onDateTimeSelected(timeSlot: DealershipTimeSlot) {
+        var openNext = false
+        if pickupScheduleState.rawValue < SchedulePickupState.dateTime.rawValue {
+            pickupScheduleState = .dateTime
+            openNext = true
+        }
+        super.onDateTimeSelected(timeSlot: timeSlot)
+        currentPresentrVC?.dismiss(animated: true, completion: {
+            if openNext {
+                self.loanerClick()
+            }
+        })
+    }
     
     override func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
         var openNext = false
         
-        if scheduleState.rawValue < SchedulePickupState.location.rawValue {
-            scheduleState = .location
+        if pickupScheduleState.rawValue < SchedulePickupState.location.rawValue {
+            pickupScheduleState = .location
             openNext = true
         }
         
@@ -70,6 +99,26 @@ class SchedulingPickupViewController: SchedulingViewController {
                 self.dealershipClick()
             }
         })
+    }
+    
+    @objc override func dealershipClick() {
+        showDealershipModal(dismissOnTap: pickupScheduleState.rawValue >= SchedulePickupState.dealership.rawValue)
+        super.dealershipClick()
+    }
+    
+    @objc override func scheduledPickupClick() {
+        showPickupDateTimeModal(dismissOnTap: pickupScheduleState.rawValue >= SchedulePickupState.dateTime.rawValue)
+        super.scheduledPickupClick()
+    }
+    
+    @objc override func pickupLocationClick() {
+        showPickupLocationModal(dismissOnTap: pickupScheduleState.rawValue >= SchedulePickupState.location.rawValue)
+        super.pickupLocationClick()
+    }
+    
+    @objc override func loanerClick() {
+        showPickupLoanerModal(dismissOnTap: pickupScheduleState.rawValue >= SchedulePickupState.loaner.rawValue)
+        super.loanerClick()
     }
     
     override func confirmButtonClick() {

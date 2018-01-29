@@ -50,21 +50,54 @@ class SchedulingDropoffViewController: SchedulingViewController {
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         
-       hideDealership()
+        if state == .schedulingDelivery {
+            hideDealership()
+            scheduledPickupClick()
+        }
         
     }
     
     
+    @objc override func dealershipClick() {
+    }
+    
+    @objc override func scheduledPickupClick() {
+        showPickupDateTimeModal(dismissOnTap: dropoffScheduleState.rawValue >= ScheduleDropoffState.dateTime.rawValue)
+        super.scheduledPickupClick()
+    }
+    
+    @objc override func pickupLocationClick() {
+        showPickupLocationModal(dismissOnTap: dropoffScheduleState.rawValue >= ScheduleDropoffState.location.rawValue)
+        super.pickupLocationClick()
+    }
+    
+    @objc override func loanerClick() {
+    }
+    
     override func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
         
-        if scheduleState.rawValue < SchedulePickupState.location.rawValue {
-            scheduleState = .location
+        if dropoffScheduleState.rawValue < SchedulePickupState.location.rawValue {
+            dropoffScheduleState = .location
         }
         
         super.onLocationSelected(responseInfo: responseInfo, placemark: placemark)
         
         currentPresentrVC?.dismiss(animated: true, completion: {
             self.confirmButton.animateAlpha(show: true)
+        })
+    }
+    
+    override func onDateTimeSelected(timeSlot: DealershipTimeSlot) {
+        var openNext = false
+        if dropoffScheduleState.rawValue < SchedulePickupState.dateTime.rawValue {
+            dropoffScheduleState = .dateTime
+            openNext = true
+        }
+        super.onDateTimeSelected(timeSlot: timeSlot)
+        currentPresentrVC?.dismiss(animated: true, completion: {
+            if openNext {
+                self.pickupLocationClick()
+            }
         })
     }
     
