@@ -48,10 +48,9 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         var changeView = true
         serviceState = state
         
-        if serviceState == .idle{
+        if serviceState == .idle {
             
             if currentViewController != nil && (currentViewController?.isKind(of: LoadingViewController.self))! {
-                currentViewController?.stateDidChange(state: serviceState)
                 changeView = false
             } else {
                 let loadingViewController = LoadingViewController()
@@ -62,7 +61,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             serviceState == .pickupDriverDrivingToDealership || serviceState == .pickupDriverAtDealership {
             
             if currentViewController != nil && (currentViewController?.isKind(of: ServiceCarViewController.self))! {
-                currentViewController?.stateDidChange(state: serviceState)
                 changeView = false
             } else {
                 let serviceCarViewController = ServiceCarViewController(state: serviceState)
@@ -72,7 +70,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         } else if serviceState == .schedulingService {
             
             if currentViewController != nil && (currentViewController?.isKind(of: SchedulingPickupViewController.self))! {
-                currentViewController?.stateDidChange(state: serviceState)
                 changeView = false
             } else {
                 let schedulingPickupViewController = SchedulingPickupViewController(state: serviceState)
@@ -81,17 +78,15 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             
         } else if serviceState.rawValue >= ServiceState.pickupScheduled.rawValue && serviceState.rawValue <= ServiceState.pickupDriverArrived.rawValue {
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledPickupViewController.self))! {
-                currentViewController?.stateDidChange(state: serviceState)
                 changeView = false
             } else {
                 let scheduledPickupViewController = ScheduledPickupViewController()
                 currentViewController = scheduledPickupViewController
             }
             
-        } else if serviceState == .servicing || serviceState == .serviceCompleted {
+        } else if serviceState == .servicing || serviceState == .serviceCompleted || serviceState == .completed {
             
             if currentViewController != nil && (currentViewController?.isKind(of: ServiceCarViewController.self))! {
-                currentViewController?.stateDidChange(state: serviceState)
                 changeView = false
             } else {
                 let serviceCarViewController = ServiceCarViewController(state: serviceState)
@@ -100,7 +95,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         } else if serviceState == .schedulingDelivery {
             
             if currentViewController != nil && (currentViewController?.isKind(of: SchedulingDropoffViewController.self))! {
-                currentViewController?.stateDidChange(state: serviceState)
                 changeView = false
             } else {
                 let schedulingDropoffViewController = SchedulingDropoffViewController(state : serviceState)
@@ -108,15 +102,17 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             }
         } else if serviceState.rawValue >= ServiceState.deliveryScheduled.rawValue && serviceState.rawValue <= ServiceState.deliveryArrived.rawValue {
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
-                currentViewController?.stateDidChange(state: serviceState)
                 changeView = false
             } else {
                 let scheduledDeliveryViewController = ScheduledDropoffViewController()
                 currentViewController = scheduledDeliveryViewController
             }
-            
         }
     
+        if !changeView {
+            currentViewController?.stateDidChange(state: serviceState)
+        }
+        
         if let currentViewController = currentViewController, changeView {
             currentViewController.view.accessibilityIdentifier = "currentViewController"
             currentViewController.childViewDelegate = self

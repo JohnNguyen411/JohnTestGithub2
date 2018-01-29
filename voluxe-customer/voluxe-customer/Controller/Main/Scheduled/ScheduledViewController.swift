@@ -186,7 +186,7 @@ class ScheduledViewController: ChildViewController {
                 StateServiceManager.sharedInstance.updateState(state: .pickupDriverDrivingToDealership)
             } else {
                 RequestedServiceManager.sharedInstance.reset()
-                StateServiceManager.sharedInstance.updateState(state: .idle)
+                StateServiceManager.sharedInstance.updateState(state: .completed)
             }
         })
     }

@@ -84,3 +84,5 @@
 /***************** Scheduled Dropoff ***************/
 "VehicleIsReady" = "Vehicle is ready";
 "DeliveryWindow" = "Delivery window";
+"DeliveryComplete" = "Your delivery from %@ is complete. Thank you for letting us keep your Volvo in its best condition.";
+

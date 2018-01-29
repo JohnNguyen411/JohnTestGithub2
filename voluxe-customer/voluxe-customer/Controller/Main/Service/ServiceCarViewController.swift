@@ -265,10 +265,10 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 }
                 
             } else if state == .completed {
-                confirmButton.isHidden = true
+                confirmButton.isHidden = false
                 leftButton.isHidden = true
                 rightButton.isHidden = true
-                checkupLabel.text = .DriverDrivingToDealership
+                checkupLabel.text = .DeliveryComplete
             }
         }
         
@@ -298,6 +298,11 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     }
     
     func confirmButtonClick() {
+        if StateServiceManager.sharedInstance.getState() == .completed {
+            // start over
+            RequestedServiceManager.sharedInstance.reset()
+            StateServiceManager.sharedInstance.updateState(state: .idle)
+        }
     }
     
     
