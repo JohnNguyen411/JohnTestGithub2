@@ -58,6 +58,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     func getTimeSlots() {
+        showLoading(loading: true)
         if Config.sharedInstance.isMock {
             // clear DB slots
             if let realm = self.realm {
@@ -239,6 +240,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                 }
                 self.selectFirstEnabledButton()
             }
+            self.showLoading(loading: false)
             self.calendar.animateAlpha(show: true)
         })
     }
