@@ -232,45 +232,30 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
             scheduledServiceView.setTitle(title: .RecommendedService, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
         }
         
-        prefillDealerships()
         fillDealership()
         
         loanerView.descLeftLabel.text = RequestedServiceManager.sharedInstance.getLoaner() ? .Yes : .No
     }
     
-    private func prefillDealerships() {
-        // load from realm
-        if let realm = self.realm {
-            let dealerships = Array(realm.objects(Dealership.self))
-            handleDealershipsResponse(dealerships: dealerships)
+    private func fillDealership() {
+        if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+            self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
         }
-        
     }
     
-    private func fillDealership() {
-        if RequestedServiceManager.sharedInstance.getDealership() == nil {
-            
-            if CLLocationManager.locationServicesEnabled() && locationManager.lastKnownLatitude != 0 && locationManager.lastKnownLongitude != 0 && locationManager.hasLastKnownLocation {
-                DealershipAPI().getDealerships(location: CLLocationCoordinate2DMake(locationManager.lastKnownLatitude, locationManager.lastKnownLongitude)).onSuccess { result in
-                    
-                    if let dealerships = result?.data?.result, dealerships.count > 0 {
-                        self.handleDealershipsResponse(dealerships: dealerships)
-                    }
-                    
-                    }.onFailure { error in
+    func fetchDealershipsForLocation(location: CLLocationCoordinate2D?, completion: (() -> Swift.Void)? = nil) {
+        if let location = location {
+            DealershipAPI().getDealerships(location: location).onSuccess { result in
+                if let dealerships = result?.data?.result, dealerships.count > 0 {
+                    self.handleDealershipsResponse(dealerships: dealerships)
                 }
-            } else {
-                DealershipAPI().getDealerships().onSuccess { result in
-                    if let dealerships = result?.data?.result, dealerships.count > 0 {
-                        self.handleDealershipsResponse(dealerships: dealerships)
-                    }
-                    }.onFailure { error in
+                if let completion = completion {
+                    completion()
                 }
-            }
-            
-        } else {
-            if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-                self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+                }.onFailure { error in
+                    if let completion = completion {
+                        completion()
+                    }
             }
         }
     }
@@ -451,7 +436,6 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
             RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: locationRequest)
         }
         pickupLocationView.setTitle(title: .PickupLocation, leftDescription: locationRequest.address!, rightDescription: "")
-       
     }
     
     func onLoanerSelected(loanerNeeded: Bool) {

@@ -14,6 +14,8 @@ class BaseViewController: UIViewController {
     var keyboardShowing = false
     var keyboardHeight: CGFloat = 0
     
+    let blockingLoadingView = UIAlertController(title: nil, message: "", preferredStyle: .alert)
+    
     init() {
         super.init(nibName: nil, bundle: nil)
     }
@@ -29,6 +31,21 @@ class BaseViewController: UIViewController {
     }
     
     func styleViews() {
+        
+        blockingLoadingView.view.tintColor = UIColor.black
+        let loadingIndicator = UIActivityIndicatorView(frame: .zero) as UIActivityIndicatorView
+        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        loadingIndicator.color = .luxeDarkBlue()
+        loadingIndicator.hidesWhenStopped = true
+        loadingIndicator.startAnimating()
+        
+        blockingLoadingView.view.addSubview(loadingIndicator)
+        
+        loadingIndicator.snp.makeConstraints{ make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(100)
+        }
+        
         self.view.backgroundColor = .white
         setGradientBackground()
     }
@@ -81,6 +98,21 @@ class BaseViewController: UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    func showBlockingLoading() {
+        self.blockingLoadingView.view.alpha = 0
+        present(blockingLoadingView, animated: false, completion: {
+            self.blockingLoadingView.view.snp.remakeConstraints { make in
+                make.width.height.equalTo(150)
+                make.center.equalToSuperview()
+            }
+            self.blockingLoadingView.view.animateAlpha(show: true)
+        })
+    }
+    
+    func hideBlockingLoading() {
+        blockingLoadingView.dismiss(animated: true, completion: nil)
+    }
+    
 }
 
 extension UIViewController {
@@ -105,4 +137,5 @@ extension UIViewController {
         let statusBarSize = UIApplication.shared.statusBarFrame.size
         return Swift.min(statusBarSize.width, statusBarSize.height)
     }
+    
 }

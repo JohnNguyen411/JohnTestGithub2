@@ -24,11 +24,11 @@ class DealershipAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, AFError>()
         
         NetworkRequest.request(url: "/v1/dealerships", queryParameters: [:], withBearer: true).responseJSON { response in
-            
+            Logger.print("response: \(response)")
+
             var responseObject: ResponseObject<MappableDataArray<Dealership>>?
             
             if let json = response.result.value as? [String: Any] {
-                Logger.print("JSON: \(json)")
                 responseObject = ResponseObject<MappableDataArray<Dealership>>(json: json)
             }
             
@@ -52,11 +52,11 @@ class DealershipAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, AFError>()
         
         NetworkRequest.request(url: "/v1/dealerships/near", queryParameters: ["latitude": "\(location.latitude)", "longitude" : "\(location.longitude)"], withBearer: true).responseJSON { response in
-            
+            Logger.print("response: \(response)")
+
             var responseObject: ResponseObject<MappableDataArray<Dealership>>?
             
             if let json = response.result.value as? [String: Any] {
-                Logger.print("JSON: \(json)")
                 responseObject = ResponseObject<MappableDataArray<Dealership>>(json: json)
             }
             
@@ -79,11 +79,11 @@ class DealershipAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataArray<DealershipTimeSlot>>?, AFError>()
         
         NetworkRequest.request(url: "/v1/dealership-time-slots", queryParameters: ["dealership_id": dealershipId], withBearer: true).responseJSON { response in
-            
+            Logger.print("response: \(response)")
+
             var responseObject: ResponseObject<MappableDataArray<DealershipTimeSlot>>?
             
             if let json = response.result.value as? [String: Any] {
-                Logger.print("JSON: \(json)")
                 responseObject = ResponseObject<MappableDataArray<DealershipTimeSlot>>(json: json)
             }
             

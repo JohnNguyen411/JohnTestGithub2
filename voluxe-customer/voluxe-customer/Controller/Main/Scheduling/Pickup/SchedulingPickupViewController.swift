@@ -85,6 +85,11 @@ class SchedulingPickupViewController: SchedulingViewController {
     }
     
     override func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
+        
+        currentPresentrVC?.dismiss(animated: true, completion: {
+            self.showBlockingLoading()
+        })
+
         var openNext = false
         
         if pickupScheduleState.rawValue < SchedulePickupState.location.rawValue {
@@ -94,11 +99,31 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         super.onLocationSelected(responseInfo: responseInfo, placemark: placemark)
         
-        currentPresentrVC?.dismiss(animated: true, completion: {
-            if openNext {
-                self.dealershipClick()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+
+        self.fetchDealershipsForLocation(location: placemark?.location?.coordinate, completion: {
+            // hide loader
+            self.hideBlockingLoading()
+            if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                self.dealershipView.descLeftLabel.text = dealership.name
+
+                if self.pickupScheduleState.rawValue < SchedulePickupState.dealership.rawValue {
+                    self.pickupScheduleState = .dealership
+                    openNext = true
+                }
+                if openNext {
+                    self.dealershipView.animateAlpha(show: true)
+                    // show date time
+                    self.scheduledPickupClick()
+                }
+                
+            } else {
+                //todo: OUT OF ZONE ERROR
             }
+            
         })
+        })
+        
     }
     
     @objc override func dealershipClick() {

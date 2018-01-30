@@ -34,11 +34,11 @@ class BookingAPI: NSObject {
         ]
         
         NetworkRequest.request(url: "/v1/bookings", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
-            
+            Logger.print("response: \(response)")
+
             var responseObject: ResponseObject<MappableDataObject<Booking>>?
             
             if let json = response.result.value as? [String: Any] {
-                Logger.print("JSON: \(json)")
                 responseObject = ResponseObject<MappableDataObject<Booking>>(json: json)
             }
             
@@ -62,11 +62,11 @@ class BookingAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, AFError>()
 
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)", queryParameters: nil, withBearer: true).responseJSON { response in
-            
+            Logger.print("response: \(response)")
+
             var responseObject: ResponseObject<MappableDataObject<Booking>>?
             
             if let json = response.result.value as? [String: Any] {
-                Logger.print("JSON: \(json)")
                 responseObject = ResponseObject<MappableDataObject<Booking>>(json: json)
             }
             
@@ -89,11 +89,11 @@ class BookingAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataArray<Booking>>?, AFError>()
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings", queryParameters: nil, withBearer: true).responseJSON { response in
-                
+                Logger.print("response: \(response)")
+
                 var responseObject: ResponseObject<MappableDataArray<Booking>>?
                 
                 if let json = response.result.value as? [String: Any] {
-                    Logger.print("JSON: \(json)")
                     responseObject = ResponseObject<MappableDataArray<Booking>>(json: json)
                 }
                 
@@ -125,11 +125,11 @@ class BookingAPI: NSObject {
             ]
         
         NetworkRequest.request(url: "/v1/driver-pickup-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
-            
+            Logger.print("response: \(response)")
+
             var responseObject: ResponseObject<MappableDataObject<Request>>?
             
             if let json = response.result.value as? [String: Any] {
-                Logger.print("JSON: \(json)")
                 responseObject = ResponseObject<MappableDataObject<Request>>(json: json)
             }
             
