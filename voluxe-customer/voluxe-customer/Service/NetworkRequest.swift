@@ -35,18 +35,6 @@ class NetworkRequest {
         } catch {
             finalRequest = Alamofire.request(originalRequest!)
         }
-        
-        //let request = Alamofire.request(finalUrl, method: method, parameters: parameters, headers: headers)
-        Logger.print("NetworkRequest \(finalRequest!)")
-        if let queryParameters = queryParameters {
-            Logger.print("queryParameters \(queryParameters)")
-        }
-        if let bodyParameters = bodyParameters {
-            Logger.print("bodyParameters \(bodyParameters)")
-        }
-        if let headers = headers {
-            Logger.print("headers \(headers)")
-        }
         return finalRequest!
     }
     

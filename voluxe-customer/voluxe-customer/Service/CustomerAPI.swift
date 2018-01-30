@@ -25,8 +25,6 @@ class CustomerAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
         
         NetworkRequest.request(url: "/v1/customers/\(id)", queryParameters: [:], withBearer: true).responseJSON { response in
-            Logger.print("response: \(response)")
-
             var responseObject: ResponseObject<MappableDataObject<Customer>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -53,8 +51,6 @@ class CustomerAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataArray<Vehicle>>?, AFError>()
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/vehicles", queryParameters: [:], withBearer: true).responseJSON { response in
-            Logger.print("response: \(response)")
-
             var responseObject: ResponseObject<MappableDataArray<Vehicle>>?
             
             if let json = response.result.value as? [String: Any] {
