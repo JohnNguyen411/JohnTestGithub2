@@ -33,6 +33,6 @@ extension String {
     static let NotePickup = NSLocalizedString("NotePickup")
     static let ScheduleDropDealership = NSLocalizedString("ScheduleDropDealership")
     static let DriverDrivingToDealership = NSLocalizedString("DriverDrivingToDealership")
-
+    static let OutOfPickupArea = NSLocalizedString("OutOfPickupArea")
     
 }

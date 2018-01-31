@@ -15,8 +15,8 @@ class SchedulingPickupViewController: SchedulingViewController {
         super.setupViews()
         loanerView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(scheduledPickupView.snp.bottom).offset(20)
-            make.height.equalTo(VLTitledLabel.height)
+            make.top.equalTo(scheduledPickupView.snp.bottom)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
     }
     
@@ -105,6 +105,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             // hide loader
             self.hideBlockingLoading()
             if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                self.pickupLocationView.hideError()
                 self.dealershipView.descLeftLabel.text = dealership.name
 
                 if self.pickupScheduleState.rawValue < SchedulePickupState.dealership.rawValue {
@@ -119,6 +120,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 
             } else {
                 //todo: OUT OF ZONE ERROR
+                self.pickupLocationView.showError(error: .OutOfPickupArea)
             }
             
         })

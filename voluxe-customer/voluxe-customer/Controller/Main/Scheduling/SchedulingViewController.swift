@@ -31,7 +31,9 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     }
     
     static private let fakeYOrigin: CGFloat = -555.0
-    
+    static private let insetPadding: CGFloat = 20.0
+    static let vlLabelHeight = VLTitledLabel.height + Int(SchedulingViewController.insetPadding)
+
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMM d"
@@ -56,12 +58,12 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     
     let scrollView = UIScrollView()
     let contentView = UIView()
-    let scheduledServiceView = VLTitledLabel()
+    let scheduledServiceView = VLTitledLabel(padding: insetPadding)
     let descriptionButton = VLButton(type: .BlueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
-    let dealershipView = VLTitledLabel()
-    let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "")
-    let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "")
-    let loanerView = VLTitledLabel(title: .ComplimentaryLoaner, leftDescription: "", rightDescription: "")
+    let dealershipView = VLTitledLabel(padding: insetPadding)
+    let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "", padding: insetPadding)
+    let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "", padding: insetPadding)
+    let loanerView = VLTitledLabel(title: .ComplimentaryLoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
     
     let confirmButton = VLButton(type: .BluePrimary, title: (.ConfirmPickup as String).uppercased(), actionBlock: nil)
     
@@ -141,14 +143,11 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         
         scrollView.contentMode = .scaleAspectFit
         
-        
         self.view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        
         contentView.addSubview(scheduledServiceView)
         contentView.addSubview(descriptionButton)
         contentView.addSubview(dealershipView)
-        
         contentView.addSubview(confirmButton)
         
         confirmButton.alpha = 0
@@ -169,46 +168,48 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         stateTestView.textColor = .clear
         
         scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsetsMake(20, 20, 20, 20))
+            make.edges.equalToSuperview()
         }
+        
+        let leftRightPadding = UIEdgeInsetsMake(0, 20, 0, 20)
         
         contentView.snp.makeConstraints { make in
             make.left.top.width.height.equalTo(scrollView)
         }
         
         scheduledServiceView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalToSuperview().offset(30)
-            make.height.equalTo(VLTitledLabel.height)
+            make.right.left.equalToSuperview()
+            make.top.equalToSuperview().offset(SchedulingViewController.insetPadding)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         descriptionButton.snp.makeConstraints { make in
-            make.left.right.equalTo(scheduledServiceView)
+            make.left.right.equalTo(scheduledServiceView).inset(leftRightPadding)
             make.top.equalTo(scheduledServiceView.snp.bottom)
             make.height.equalTo(VLButton.secondaryHeight)
         }
         
         pickupLocationView.snp.makeConstraints { make in
             make.left.right.equalTo(scheduledServiceView)
-            make.top.equalTo(descriptionButton.snp.bottom).offset(20)
-            make.height.equalTo(VLTitledLabel.height)
+            make.top.equalTo(descriptionButton.snp.bottom).offset(SchedulingViewController.insetPadding)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         dealershipView.snp.makeConstraints { make in
             make.left.right.equalTo(scheduledServiceView)
-            make.top.equalTo(pickupLocationView.snp.bottom).offset(20)
-            make.height.equalTo(VLTitledLabel.height)
+            make.top.equalTo(pickupLocationView.snp.bottom)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         scheduledPickupView.snp.makeConstraints { make in
             make.left.right.equalTo(scheduledServiceView)
-            make.top.equalTo(dealershipView.snp.bottom).offset(20)
-            make.height.equalTo(VLTitledLabel.height)
+            make.top.equalTo(dealershipView.snp.bottom)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         confirmButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(contentView.snp.bottom)
+            make.left.right.equalToSuperview().inset(leftRightPadding)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-SchedulingViewController.insetPadding)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
