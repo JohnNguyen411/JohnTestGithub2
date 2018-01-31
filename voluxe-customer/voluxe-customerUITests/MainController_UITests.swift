@@ -96,7 +96,7 @@ class MainController_UITests: XCTestCase {
         nextButtonButton.tap()
         sleep(1)
     }
-    
+    /*
     func testPickupDelivery() {
         internalTestSchedulePickup()
         internalTestPickup()
@@ -105,7 +105,7 @@ class MainController_UITests: XCTestCase {
         internalTestScheduleDropoff()
         internalTestDropOff()
     }
-
+     */
     /*
     func testRightButton() {
         
