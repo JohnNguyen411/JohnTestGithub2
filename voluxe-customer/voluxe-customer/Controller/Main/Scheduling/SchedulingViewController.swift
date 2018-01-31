@@ -123,6 +123,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         
         dealershipView.accessibilityIdentifier = "dealershipView"
         confirmButton.accessibilityIdentifier = "confirmButton"
+        pickupLocationView.accessibilityIdentifier = "pickupLocationView"
         
         // init tap events
         dealershipView.isUserInteractionEnabled = true

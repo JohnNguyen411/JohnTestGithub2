@@ -42,6 +42,8 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     }()
     
     var locationManager = LocationManager.sharedInstance
+    
+    let stateTestView = UILabel(frame: .zero)
 
     let scheduledServiceView = VLTitledLabel()
     let descriptionButton = VLButton(type: .BlueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
@@ -109,6 +111,9 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         
         self.view.addSubview(contentView)
         
+        contentView.addSubview(stateTestView)
+        stateTestView.textColor = .clear
+        
         contentView.addSubview(vehicleImageView)
         contentView.addSubview(scheduledServiceView)
         contentView.addSubview(descriptionButton)
@@ -169,6 +174,12 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             make.height.equalTo(VLButton.primaryHeight)
         }
         
+        stateTestView.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.bottom.equalTo(confirmButton.snp.top)
+            make.height.width.equalTo(1)
+        }
+        
     }
     
     func fillViews() {
@@ -197,8 +208,12 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
+        
+        stateTestView.accessibilityIdentifier = "schedulingTestView\(state)"
+        stateTestView.text = "schedulingTestView\(state)"
+        
         confirmButton.isHidden = true
-
+        
         if state == .needService || state == .serviceCompleted {
             
             scheduledServiceView.isHidden = false
@@ -231,7 +246,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 make.top.equalTo(vehicleImageView.snp.bottom).offset(40)
                 make.height.equalTo(checkupLabelHeight)
             }
-
+            
             if state == .servicing {
                 checkupLabel.text = .VolvoCurrentlyServicing
                 leftButton.isHidden = true
@@ -307,7 +322,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     
     //MARK: Prefetching methods
-
+    
     func dealershipPrefetching() {
         if CLLocationManager.locationServicesEnabled() && locationManager.lastKnownLatitude != 0 && locationManager.lastKnownLongitude != 0 && locationManager.hasLastKnownLocation {
             DealershipAPI().getDealerships(location: CLLocationCoordinate2DMake(locationManager.lastKnownLatitude, locationManager.lastKnownLongitude)).onSuccess { result in
@@ -320,7 +335,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             DealershipAPI().getDealerships().onSuccess { result in
                 
                 self.saveDealerships(result: result)
-
+                
                 }.onFailure { error in
             }
         }
@@ -338,7 +353,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     }
     
     //MARK: LocationDelegate methods
-
+    
     func locationFound(_ latitude: Double, longitude: Double) {
     }
     
