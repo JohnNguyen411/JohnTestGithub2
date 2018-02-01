@@ -44,8 +44,7 @@ class FTUEFlow_UITests: XCTestCase {
         XCTAssertTrue(internalTestPhoneNumberVerificationView())
         XCTAssertTrue(internalTestAllSetScreen())
     }
- 
- */
+    */
     func internalTestNumberItems() -> Bool {
         XCTAssertTrue(flowViewController?.numberOfItems(viewPager: (flowViewController?.viewPager)!) == FTUEViewController.nbOfItems)
         return true

@@ -96,7 +96,7 @@ class MainController_UITests: XCTestCase {
         nextButtonButton.tap()
         sleep(1)
     }
-    /*
+    
     func testPickupDelivery() {
         internalTestSchedulePickup()
         internalTestPickup()
@@ -105,7 +105,7 @@ class MainController_UITests: XCTestCase {
         internalTestScheduleDropoff()
         internalTestDropOff()
     }
-     */
+
     /*
     func testRightButton() {
         
@@ -143,12 +143,25 @@ class MainController_UITests: XCTestCase {
     func internalTestSchedulePickup() {
         sleep(2) // wait for the app to call customer / cars enpoint
 
+        let handler = addUIInterruptionMonitor(withDescription: "Location Dialog") { (alert) -> Bool in
+            let button = alert.buttons["Allow"]
+            if button.exists {
+                button.tap()
+                return true
+            }
+            return false
+        }
+        
+        
         let allowButton = app.alerts["Allow “voluxe-customer” to access your location?"].buttons["Always Allow"]
         if allowButton.exists {
             allowButton.tap()
         }
        
-        sleep(1)
+        sleep(2)
+        
+        removeUIInterruptionMonitor(handler)
+
         app/*@START_MENU_TOKEN@*/.buttons["rightButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"]",".buttons[\"VOLVO PICKUP\"]",".buttons[\"rightButton\"]"],[[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3]],[[-1,5],[-1,4],[-1,3,4]],[[-1,5],[-1,4]]],[0]]@END_MENU_TOKEN@*/.tap()
         sleep(1)
 
