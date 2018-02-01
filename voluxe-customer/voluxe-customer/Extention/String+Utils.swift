@@ -19,5 +19,22 @@ extension String {
         }
         return string
     }
+    
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
 
+    
+    static func intToStringDecimal(largeNumber: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        if let formattedString = numberFormatter.string(from: NSNumber(value:largeNumber)) {
+            return formattedString
+        }
+        return "\(largeNumber)"
+    }
 }

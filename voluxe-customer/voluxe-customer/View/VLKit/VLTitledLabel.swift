@@ -77,6 +77,10 @@ class VLTitledLabel: UIView {
         descRightLabel.text = rightDescription
     }
     
+    func setLeftDescription(leftDescription: String) {
+        descLeftLabel.text = leftDescription
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

@@ -87,3 +87,9 @@
 "DeliveryWindow" = "Delivery window";
 "DeliveryComplete" = "Your delivery from %@ is complete. Thank you for letting us keep your Volvo in its best condition.";
 
+/***************** Vehicle ***************/
+"VolvoYearModel" = "Volvo Year/Model";
+"Mileage" = "Mileage";
+"PreferredDealership" = "Preferred Dealership";
+
+

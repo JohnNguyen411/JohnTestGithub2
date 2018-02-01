@@ -83,5 +83,13 @@ class Vehicle: Object, Mappable {
     override static func primaryKey() -> String? {
         return "id"
     }
+    
+    func vehicleDescription() -> String {
+        return "\(baseColor?.capitalizingFirstLetter() ?? "") \(year) \(model ?? "")"
+    }
+    
+    func mileage() -> Int {
+        return 13605
+    }
 
 }
