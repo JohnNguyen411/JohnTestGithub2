@@ -10,7 +10,8 @@ import Foundation
 
 public enum ServiceState: Int {
     case noninit = -999
-    case idle = 0
+    case loading = 0
+    case idle = 5
     case needService = 10
     case schedulingService = 15
     case pickupScheduled = 20

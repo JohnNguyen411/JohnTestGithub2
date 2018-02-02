@@ -63,9 +63,24 @@ class LoadingViewController: ChildViewController {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                         
                         UserManager.sharedInstance.setCustomer(customer: customer)
-                        let cars = realm.objects(Vehicle.self)
+                        var cars = realm.objects(Vehicle.self)
+                        if cars.count == 1 {
+                            // create one more
+                            let vehicle = Vehicle()
+                            vehicle.id = 654654
+                            vehicle.baseColor = "White"
+                            vehicle.model = "XC40"
+                            vehicle.year = 2018
+                            try? realm.write {
+                                realm.add(vehicle)
+                            }
+                            cars = realm.objects(Vehicle.self)
+                        }
                         UserManager.sharedInstance.setVehicles(vehicles: Array(cars))
-                        StateServiceManager.sharedInstance.updateState(state: .needService)
+                        
+                        StateServiceManager.sharedInstance.updateState(state: ServiceState.idle)
+                        
+                        //StateServiceManager.sharedInstance.updateState(state: .needService)
                     })
                 }
             }

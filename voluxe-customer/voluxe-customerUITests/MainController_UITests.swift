@@ -144,7 +144,12 @@ class MainController_UITests: XCTestCase {
         sleep(2) // wait for the app to call customer / cars enpoint
 
         let handler = addUIInterruptionMonitor(withDescription: "Location Dialog") { (alert) -> Bool in
-            let button = alert.buttons["Allow"]
+            var button = alert.buttons["Allow"]
+            if button.exists {
+                button.tap()
+                return true
+            }
+            button = alert.buttons["Always Allow"]
             if button.exists {
                 button.tap()
                 return true

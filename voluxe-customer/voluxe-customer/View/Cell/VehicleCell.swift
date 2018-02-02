@@ -11,7 +11,7 @@ import UIKit
 
 class VehicleCell: UICollectionViewCell {
     
-    public static let VehicleCellHeight = 100
+    public static let VehicleCellHeight = 110
     public static let reuseId = "VehicleCell"
 
     var vehicleImageView: UIImageView
@@ -39,8 +39,9 @@ class VehicleCell: UICollectionViewCell {
     
     private func setupViews() {
         vehicleImageView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(10)
-            make.right.equalToSuperview().offset(-10)
+            make.left.equalToSuperview().offset(7)
+            make.right.equalToSuperview().offset(-7)
+            make.centerY.equalToSuperview()
             make.height.equalTo(30)
         }
     }

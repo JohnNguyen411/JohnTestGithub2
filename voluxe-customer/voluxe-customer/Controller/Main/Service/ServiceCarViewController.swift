@@ -316,7 +316,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         if StateServiceManager.sharedInstance.getState() == .completed {
             // start over
             RequestedServiceManager.sharedInstance.reset()
-            StateServiceManager.sharedInstance.updateState(state: .idle)
+            StateServiceManager.sharedInstance.updateState(state: .noninit)
         }
     }
     

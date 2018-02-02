@@ -19,7 +19,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     
     override func viewDidLoad() {
         StateServiceManager.sharedInstance.addDelegate(delegate: self)
-        StateServiceManager.sharedInstance.updateState(state: ServiceState.idle)
+        StateServiceManager.sharedInstance.updateState(state: .loading)
         super.viewDidLoad()
         setNavigationBarItem()
     }
@@ -48,13 +48,22 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         var changeView = true
         serviceState = state
         
-        if serviceState == .idle {
+        if serviceState == .loading || serviceState == .noninit {
             
             if currentViewController != nil && (currentViewController?.isKind(of: LoadingViewController.self))! {
                 changeView = false
             } else {
                 let loadingViewController = LoadingViewController()
                 currentViewController = loadingViewController
+            }
+            
+        } else if serviceState == .idle {
+            
+            if currentViewController != nil && (currentViewController?.isKind(of: VehiclesViewController.self))! {
+                changeView = false
+            } else {
+                let vehiclesViewController = VehiclesViewController(state: serviceState)
+                currentViewController = vehiclesViewController
             }
             
         } else if serviceState == .needService ||

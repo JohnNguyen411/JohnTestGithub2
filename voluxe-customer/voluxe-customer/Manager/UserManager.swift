@@ -55,6 +55,10 @@ final class UserManager {
         self.vehicles = vehicles
     }
     
+    public func getVehicles() -> [Vehicle]? {
+        return vehicles
+    }
+    
     public func getVehicle() -> Vehicle? {
         if let vehicles = vehicles, vehicles.count > 0 {
             return vehicles[0]

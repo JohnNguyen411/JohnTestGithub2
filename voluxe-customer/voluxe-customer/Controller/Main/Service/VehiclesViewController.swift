@@ -20,7 +20,7 @@ class VehiclesViewController: ChildViewController {
     var serviceState: ServiceState
     var vehicles: [Vehicle]?
 
-    let vehicleCollectionView = UICollectionView(frame: .zero)
+    let vehicleCollectionView: UICollectionView
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
     let vehicleImageView = UIImageView(frame: .zero)
     let vehicleMileageView = VLTitledLabel(title: .Mileage, leftDescription: "", rightDescription: "")
@@ -32,8 +32,16 @@ class VehiclesViewController: ChildViewController {
     //MARK: Lifecycle methods
     init(state: ServiceState) {
         self.serviceState = state
+        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
+        layout.itemSize = CGSize(width: VehicleCell.VehicleCellHeight, height: VehicleCell.VehicleCellHeight)
+        layout.scrollDirection = .horizontal
+        vehicleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        vehicleCollectionView.backgroundColor = UIColor.clear
+        vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
+
         super.init()
     }
+    
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -46,15 +54,20 @@ class VehiclesViewController: ChildViewController {
             self.confirmButtonClick()
         }
         
-        let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: VehicleCell.VehicleCellHeight, height: VehicleCell.VehicleCellHeight)
-        
-        vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
         vehicleCollectionView.register(VehicleCell.self, forCellWithReuseIdentifier: VehicleCell.reuseId)
 
         vehicleCollectionView.delegate = self
         vehicleCollectionView.dataSource = self
+        
+        showVehicles(vehicles: UserManager.sharedInstance.getVehicles()!)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        stateDidChange(state: serviceState)
+    }
+    
     
     override func setupViews() {
         super.setupViews()
@@ -67,14 +80,15 @@ class VehiclesViewController: ChildViewController {
         contentView.addSubview(vehicleMileageView)
         contentView.addSubview(preferedDealershipView)
         contentView.addSubview(scheduledServiceView)
+        contentView.addSubview(confirmButton)
         
         contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsetsMake(20, 20, 20, 20))
+            make.edges.equalToSuperview().inset(UIEdgeInsetsMake(10, 20, 20, 20))
         }
         
         vehicleCollectionView.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-            make.height.equalTo(100)
+            make.height.equalTo(VehicleCell.VehicleCellHeight)
         }
         
         vehicleTypeView.snp.makeConstraints { make in
@@ -85,13 +99,13 @@ class VehiclesViewController: ChildViewController {
         
         vehicleImageView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(vehicleCollectionView.snp.bottom).offset(20)
+            make.top.equalTo(vehicleTypeView.snp.bottom).offset(30)
             make.height.equalTo(100)
         }
         
         vehicleMileageView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(vehicleImageView.snp.bottom).offset(20)
+            make.top.equalTo(vehicleImageView.snp.bottom).offset(30)
             make.height.equalTo(VLTitledLabel.height)
         }
         
@@ -106,19 +120,27 @@ class VehiclesViewController: ChildViewController {
             make.top.equalTo(preferedDealershipView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
+        
+        confirmButton.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.height.equalTo(VLButton.primaryHeight)
+        }
     }
     
     func showVehicles(vehicles: [Vehicle]) {
+        self.vehicles = vehicles
         if vehicles.count > 1 {
             vehicleCollectionView.snp.updateConstraints { make in
-                make.height.equalTo(100)
+                make.height.equalTo(VehicleCell.VehicleCellHeight)
             }
         } else {
             vehicleCollectionView.snp.updateConstraints { make in
                 make.height.equalTo(0)
             }
-            selectVehicle(vehicle: vehicles[0])
         }
+        vehicleCollectionView.reloadData()
+        selectVehicle(vehicle: vehicles[0])
+        vehicleCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
     }
     
     func selectVehicle(vehicle: Vehicle) {
@@ -131,21 +153,24 @@ class VehiclesViewController: ChildViewController {
         super.stateDidChange(state: state)
         // check if service scheduled
         
-        //todo: check service for vehicle
+        //todo: check service for selected vehicle
         if RequestedServiceManager.sharedInstance.getBooking() != nil {
-            scheduledServiceView.snp.updateConstraints { make in
-                make.height.equalTo(0)
-            }
-        } else {
             scheduledServiceView.snp.updateConstraints { make in
                 make.height.equalTo(100)
             }
+            scheduledServiceView.isHidden = false
+        } else {
+            scheduledServiceView.snp.updateConstraints { make in
+                make.height.equalTo(0)
+            }
+            scheduledServiceView.isHidden = true
         }
         
     }
     
     //MARK: Actions methods
     func confirmButtonClick() {
+        StateServiceManager.sharedInstance.updateState(state: .needService)
     }
     
 }
@@ -165,6 +190,10 @@ extension VehiclesViewController: UICollectionViewDataSource, UICollectionViewDe
             return vehicles.count
         }
         return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectVehicle(vehicle: vehicles![indexPath.row])
     }
     
 }
