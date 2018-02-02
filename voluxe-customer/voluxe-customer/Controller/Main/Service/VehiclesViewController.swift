@@ -50,6 +50,8 @@ class VehiclesViewController: ChildViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        vehicleImageView.contentMode = .scaleAspectFit
+        
         confirmButton.setActionBlock {
             self.confirmButtonClick()
         }
@@ -146,7 +148,7 @@ class VehiclesViewController: ChildViewController {
     func selectVehicle(vehicle: Vehicle) {
         vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
         vehicleMileageView.setLeftDescription(leftDescription: String.intToStringDecimal(largeNumber: vehicle.mileage()))
-        vehicleImageView.image = UIImage(named: "image_auto")
+        vehicleImageView.image = UIImage(named: vehicle.localImageName())
     }
     
     override func stateDidChange(state: ServiceState) {

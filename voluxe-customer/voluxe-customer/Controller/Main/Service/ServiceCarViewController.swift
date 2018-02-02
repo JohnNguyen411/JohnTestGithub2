@@ -68,6 +68,8 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        vehicleImageView.contentMode = .scaleAspectFit
+        
         locationManager.delegate = self
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
@@ -189,7 +191,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             
             noteLabel.text = .NotePickup
         }
-        vehicleImageView.image = UIImage(named: "image_auto")
+        vehicleImageView.image = UIImage(named: UserManager.sharedInstance.getVehicle()!.localImageName())
         
         if let service = RequestedServiceManager.sharedInstance.getService() {
             scheduledServiceView.setTitle(title: .RecommendedService, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
@@ -261,8 +263,8 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 confirmButton.isHidden = true
                 leftButton.isHidden = true
                 rightButton.isHidden = true
-                checkupLabel.text = .DriverDrivingToDealership
-                
+                checkupLabel.text = String(format: NSLocalizedString(.DriverDrivingToDealership), (RequestedServiceManager.sharedInstance.getDealership()?.name)!)
+
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
                         StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
@@ -271,8 +273,8 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 
             } else if state == .pickupDriverAtDealership {
                 confirmButton.isHidden = false
-                checkupLabel.text = .YourVehicleHasArrived
-                
+                checkupLabel.text = String(format: NSLocalizedString(.YourVehicleHasArrived), (RequestedServiceManager.sharedInstance.getDealership()?.name)!)
+
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
                         StateServiceManager.sharedInstance.updateState(state: .servicing)
@@ -283,7 +285,8 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 confirmButton.isHidden = false
                 leftButton.isHidden = true
                 rightButton.isHidden = true
-                checkupLabel.text = .DeliveryComplete
+                
+                checkupLabel.text = String(format: NSLocalizedString(.DeliveryComplete), (RequestedServiceManager.sharedInstance.getDealership()?.name)!)
             }
         }
         

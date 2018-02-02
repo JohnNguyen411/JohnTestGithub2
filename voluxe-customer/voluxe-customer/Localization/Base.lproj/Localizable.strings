@@ -67,7 +67,7 @@
 "PickupWindow" = "Pickup window";
 "EstimatedPickupTime" = "Estimated Pickup Time";
 "DriverDrivingToDealership" = "Our driver is driving your vehicle to %@";
-"YourVehicleHasArrived" = "Your vehicle has arrived safely at Marin Volvo. We'll alert you next when it's ready.";
+"YourVehicleHasArrived" = "Your vehicle has arrived safely at %@. We'll alert you next when it's ready.";
 
 /***************** Scheduling Dropoff ***************/
 "CurrentService" = "Current Service";

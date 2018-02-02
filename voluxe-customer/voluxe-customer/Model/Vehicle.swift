@@ -91,5 +91,12 @@ class Vehicle: Object, Mappable {
     func mileage() -> Int {
         return 13605
     }
+    
+    func localImageName() -> String {
+        if model == "XC40" {
+            return "image_xc40"
+        }
+        return "image_auto"
+    }
 
 }

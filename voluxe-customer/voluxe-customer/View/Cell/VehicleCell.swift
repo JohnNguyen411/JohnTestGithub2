@@ -18,6 +18,7 @@ class VehicleCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         vehicleImageView = UIImageView(frame: .zero)
+        vehicleImageView.contentMode = .scaleAspectFit
 
         super.init(frame: frame)
         
@@ -47,7 +48,7 @@ class VehicleCell: UICollectionViewCell {
     }
     
     public func setVehicle(vehicle: Vehicle) {
-        vehicleImageView.image = UIImage(named: "image_auto")
+        vehicleImageView.image = UIImage(named: vehicle.localImageName())
     }
     
     
