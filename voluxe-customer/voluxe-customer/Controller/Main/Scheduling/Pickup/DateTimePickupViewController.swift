@@ -60,8 +60,17 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     func getTimeSlots() {
         showLoading(loading: true)
         if Config.sharedInstance.isMock {
+            
+            var selectedDate: Date?
+            // select preselected date, otherwise fallback to next day
+            if StateServiceManager.sharedInstance.isPickup() {
+                selectedDate = RequestedServiceManager.sharedInstance.getPickupTimeSlot()?.from
+            } else {
+                selectedDate = RequestedServiceManager.sharedInstance.getDropoffTimeSlot()?.from
+            }
+            
             // clear DB slots
-            if let realm = self.realm {
+            if let realm = self.realm, selectedDate == nil {
                 let slots = realm.objects(DealershipTimeSlot.self)
                 try? realm.write {
                     realm.delete(slots)
@@ -219,7 +228,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                             try? self.realm?.write {
                                 for _ in 0...30 {
                                     let timeSlot = DealershipTimeSlot.mockTimeSlotForDate(dealershipId: dealership.id, date: mockDay)
-                                    mockDay = Calendar.current.date(byAdding: .day, value: 1, to: nextDay)!
+                                    mockDay = Calendar.current.date(byAdding: .day, value: 1, to: mockDay)!
                                     self.realm?.add(timeSlot)
                                 }
                             }

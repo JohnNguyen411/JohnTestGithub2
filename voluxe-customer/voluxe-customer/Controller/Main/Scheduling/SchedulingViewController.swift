@@ -33,7 +33,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     static private let fakeYOrigin: CGFloat = -555.0
     static private let insetPadding: CGFloat = 20.0
     static let vlLabelHeight = VLTitledLabel.height + Int(SchedulingViewController.insetPadding)
-
+    
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMM d"
@@ -248,8 +248,10 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     func fetchDealershipsForLocation(location: CLLocationCoordinate2D?, completion: (() -> Swift.Void)? = nil) {
         if let location = location {
             DealershipAPI().getDealerships(location: location).onSuccess { result in
-                if let dealerships = result?.data?.result, dealerships.count > 0 {
+                if let dealerships = result?.data?.result {
                     self.handleDealershipsResponse(dealerships: dealerships)
+                } else {
+                    self.dealerships = nil
                 }
                 if let completion = completion {
                     completion()
@@ -266,21 +268,23 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         if let dealerships = dealerships {
             //todo: hide loading if needed
             self.dealerships = dealerships
-            
-            if RequestedServiceManager.sharedInstance.getDealership() == nil {
-                RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
-            }
-            if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-                if let dealershipName = dealership.name {
-                    self.dealershipView.setTitle(title: .Dealership, leftDescription: dealershipName, rightDescription: "")
+            if dealerships.count > 0 {
+                
+                if StateServiceManager.sharedInstance.isPickup() && RequestedServiceManager.sharedInstance.getDealership() == nil {
+                    RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
                 }
-            }
-            
-            self.dealershipTestView.isHidden = false
-            
-            if let realm = self.realm {
-                try? realm.write {
-                    realm.add(dealerships, update: true)
+                if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                    if let dealershipName = dealership.name {
+                        self.dealershipView.setTitle(title: .Dealership, leftDescription: dealershipName, rightDescription: "")
+                    }
+                }
+                
+                self.dealershipTestView.isHidden = false
+                
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(dealerships, update: true)
+                    }
                 }
             }
         }
@@ -418,7 +422,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         }
         
         let dateTime = formatter.string(from: timeSlot.from!)
-        scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" ))", rightDescription: "")
+        scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")", rightDescription: "")
     }
     
     func onLocationAdded(newSize: Int) {

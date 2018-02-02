@@ -27,7 +27,7 @@ class VehiclesViewController: ChildViewController {
     let preferedDealershipView = VLTitledLabel(title: .PreferredDealership, leftDescription: "", rightDescription: "")
     let scheduledServiceView = VLTitledLabel()
     let contentView = UIView(frame: .zero)
-    let confirmButton = VLButton(type: .BluePrimary, title: (.Ok as String).uppercased(), actionBlock: nil)
+    let confirmButton = VLButton(type: .BluePrimary, title: (.NewService as String).uppercased(), actionBlock: nil)
 
     //MARK: Lifecycle methods
     init(state: ServiceState) {

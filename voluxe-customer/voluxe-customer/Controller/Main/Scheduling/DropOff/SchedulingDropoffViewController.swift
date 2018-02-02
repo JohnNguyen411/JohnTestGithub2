@@ -75,21 +75,46 @@ class SchedulingDropoffViewController: SchedulingViewController {
     }
     
     override func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
+        // need to check that location is within range
+        currentPresentrVC?.dismiss(animated: true, completion: {
+            self.showBlockingLoading()
+        })
         
-        if dropoffScheduleState.rawValue < SchedulePickupState.location.rawValue {
+        if dropoffScheduleState.rawValue < ScheduleDropoffState.location.rawValue {
             dropoffScheduleState = .location
         }
         
         super.onLocationSelected(responseInfo: responseInfo, placemark: placemark)
         
-        currentPresentrVC?.dismiss(animated: true, completion: {
-            self.confirmButton.animateAlpha(show: true)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+            
+            self.fetchDealershipsForLocation(location: placemark?.location?.coordinate, completion: {
+                // hide loader
+                self.hideBlockingLoading()
+                
+                if let dealerships = self.dealerships, dealerships.count > 0 {
+                    for dealership in dealerships {
+                        if dealership.id == RequestedServiceManager.sharedInstance.getDealership()?.id {
+                            self.pickupLocationView.hideError()
+                            self.confirmButton.animateAlpha(show: true)
+                            return
+                            // within zone
+                        }
+                    }
+                }
+                
+                //todo: OUT OF ZONE ERROR
+                self.pickupLocationView.showError(error: .OutOfPickupArea)
+                self.confirmButton.animateAlpha(show: false)
+            })
         })
+        
+        
     }
     
     override func onDateTimeSelected(timeSlot: DealershipTimeSlot) {
         var openNext = false
-        if dropoffScheduleState.rawValue < SchedulePickupState.dateTime.rawValue {
+        if dropoffScheduleState.rawValue < ScheduleDropoffState.dateTime.rawValue {
             dropoffScheduleState = .dateTime
             openNext = true
         }
