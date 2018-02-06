@@ -174,6 +174,14 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         navigationItem.backBarButtonItem = backItem
     }
     
+    func popViewController(animated: Bool) {
+        self.navigationController?.popViewController(animated: animated)
+    }
+    
+    func popToRootViewController(animated: Bool) {
+        self.navigationController?.popToRootViewController(animated: animated)
+    }
+    
     override func keyboardWillAppear(_ notification: Notification) {
         super.keyboardWillAppear(notification)
         if let currentViewController = currentViewController {

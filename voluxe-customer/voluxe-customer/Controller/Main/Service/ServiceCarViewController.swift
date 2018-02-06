@@ -92,11 +92,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         
         fillViews()
         
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        
         stateDidChange(state: serviceState)
     }
     
