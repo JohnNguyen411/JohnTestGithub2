@@ -8,27 +8,29 @@
 
 import Foundation
 import ObjectMapper
+import RealmSwift
 
-class Service: NSObject, Mappable {
-    
+class Service: Object, Mappable {
+
     var name: String?
     var price: Double?
+    var serviceDescription: String?
     
-    override init() {
-        super.init()
+    required convenience init?(map: Map) {
+        self.init()
     }
     
-    init(name: String?, price: Double?) {
+    convenience init(name: String?, price: Double?) {
+        self.init()
         self.name = name
         self.price = price
     }
-    
-    required init?(map: Map) {
-    }
+ 
     
     func mapping(map: Map) {
         name <- map["name"]
         price <- map["price"]
+        serviceDescription <- map["description"]
     }
     
 }

@@ -168,6 +168,12 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         setTitle(title: title)
     }
     
+    func pushViewController(controller: UIViewController, animated: Bool, backLabel: String?, title: String?) {
+        self.navigationController?.pushViewController(controller, animated: animated)
+        let backItem = UIBarButtonItem(title: "Back", style: .bordered, target: nil, action: nil)
+        navigationItem.backBarButtonItem = backItem
+    }
+    
     override func keyboardWillAppear(_ notification: Notification) {
         super.keyboardWillAppear(notification)
         if let currentViewController = currentViewController {
@@ -182,6 +188,8 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         }
     }
 }
+                 
+                 
 
 extension MainViewController : SlideMenuControllerDelegate {
     

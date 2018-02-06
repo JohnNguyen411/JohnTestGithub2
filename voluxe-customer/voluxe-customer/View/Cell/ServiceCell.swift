@@ -10,6 +10,7 @@ import Foundation
 
 class ServiceCell: UITableViewCell {
     
+    static let height: CGFloat = 50
     static let reuseId = "ServiceCell"
     
     var serviceLabel: UILabel
@@ -18,9 +19,11 @@ class ServiceCell: UITableViewCell {
         serviceLabel = UILabel(frame: .zero)
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
+        self.backgroundColor = .clear
         self.accessoryType = .disclosureIndicator
-        
         self.contentView.addSubview(serviceLabel)
+        setupViews()
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -29,7 +32,8 @@ class ServiceCell: UITableViewCell {
     
     private func setupViews() {
         serviceLabel.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.bottom.right.equalToSuperview()
+            make.left.equalToSuperview().offset(15)
         }
     }
     

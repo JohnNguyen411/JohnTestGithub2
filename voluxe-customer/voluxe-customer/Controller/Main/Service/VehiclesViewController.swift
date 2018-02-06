@@ -172,7 +172,10 @@ class VehiclesViewController: ChildViewController {
     
     //MARK: Actions methods
     func confirmButtonClick() {
-        StateServiceManager.sharedInstance.updateState(state: .needService)
+        
+        self.childViewDelegate?.pushViewController(controller: ServiceListViewController(), animated: true, backLabel: "Back", title: "New Service")
+        
+        //StateServiceManager.sharedInstance.updateState(state: .needService)
     }
     
 }

@@ -25,4 +25,5 @@ class ChildViewController: BaseViewController {
 // MARK: protocol PickupDealershipDelegate
 protocol ChildViewDelegate: class {
     func setTitleFromChild(title: String)
+    func pushViewController(controller: UIViewController, animated: Bool, backLabel: String?, title: String?)
 }
