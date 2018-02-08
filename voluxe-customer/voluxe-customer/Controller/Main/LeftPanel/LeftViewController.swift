@@ -12,10 +12,8 @@ import SlideMenuControllerSwift
 import SnapKit
 
 enum LeftMenu: Int {
-    case schedule = 0
-    case scheduled
-    case serviced
-    case delivery
+    case main = 0
+    case settings
     case logout
 }
 
@@ -26,7 +24,7 @@ protocol LeftMenuProtocol : class {
 class LeftViewController : UIViewController, LeftMenuProtocol {
     
     var tableView = UITableView(frame: .zero)
-    var menus = ["Schedule", "Scheduled", "Serviced", "Delivery", "Logout"]
+    var menus = ["Main", .Settings, "Logout"]
     var mainNavigationViewController: UIViewController!
     var mainViewController: MainViewController!
     var imageHeaderView: UIImageView!
@@ -81,18 +79,12 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     
     func changeViewController(_ menu: LeftMenu) {
         switch menu {
-        case .schedule:
-            self.mainViewController.updateState(state: .idle)
+        case .main:
             self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
-        case .scheduled:
-            self.mainViewController.updateState(state: .pickupScheduled)
-            self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
-        case .serviced:
-            self.mainViewController.updateState(state: .servicing)
-            self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
-        case .delivery:
-            self.mainViewController.updateState(state: .deliveryScheduled)
-            self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
+        case .settings:
+            weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
+            appDelegate?.navigationController?.pushViewController(SettingsViewController(), animated: true)
+            closeLeft()
         case .logout:
             UserManager.sharedInstance.logout()
             weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -103,13 +95,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
 
 extension LeftViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if let menu = LeftMenu(rawValue: indexPath.row) {
-            switch menu {
-            case .schedule, .scheduled, .serviced, .delivery, .logout:
-                return LeftPanelTableViewCell.height()
-            }
-        }
-        return 0
+        return LeftPanelTableViewCell.height()
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -133,15 +119,10 @@ extension LeftViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        if let menu = LeftMenu(rawValue: indexPath.row) {
-            switch menu {
-            case .schedule, .scheduled, .serviced, .delivery, .logout:
-                let cell = LeftPanelTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: LeftPanelTableViewCell.identifier)
-                cell.setData(menus[indexPath.row])
-                return cell
-            }
-        }
-        return UITableViewCell()
+        let cell = LeftPanelTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: LeftPanelTableViewCell.identifier)
+        cell.setData(menus[indexPath.row])
+        return cell
+        
     }
     
     

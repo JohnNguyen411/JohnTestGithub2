@@ -95,5 +95,11 @@
 /***************** Service ***************/
 "NewService" = "New Service";
 
-
+/***************** Settings ***************/
+"Settings" = "Settings";
+"YourVolvos" = "Your Volvos";
+"AddANewVolvo" = "Add a New Volvo";
+"YourAccount" = "Your Account";
+"UnitOfDistance" = "Unit Of Distance";
+"ShowDistanceAsMiles" = "Show Distance As Miles";
 

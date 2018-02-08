@@ -304,6 +304,15 @@
 		6C9543AE1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A71FACE0160099AC84 /* VolvoSansPro-Bold.ttf */; };
 		6C9543AF1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A71FACE0160099AC84 /* VolvoSansPro-Bold.ttf */; };
 		6C9543B01FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A71FACE0160099AC84 /* VolvoSansPro-Bold.ttf */; };
+		6C9B31FF202A51B3006380B9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */; };
+		6C9B3200202A51B3006380B9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */; };
+		6C9B3201202A51B4006380B9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */; };
+		6C9B3203202A79FB006380B9 /* SettingsLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3202202A79FB006380B9 /* SettingsLocalizations.swift */; };
+		6C9B3204202A79FB006380B9 /* SettingsLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3202202A79FB006380B9 /* SettingsLocalizations.swift */; };
+		6C9B3205202A79FB006380B9 /* SettingsLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3202202A79FB006380B9 /* SettingsLocalizations.swift */; };
+		6C9B3207202A85B9006380B9 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3206202A85B9006380B9 /* SettingsCell.swift */; };
+		6C9B3208202A85B9006380B9 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3206202A85B9006380B9 /* SettingsCell.swift */; };
+		6C9B3209202A85B9006380B9 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3206202A85B9006380B9 /* SettingsCell.swift */; };
 		6C9C7A7B1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */; };
 		6C9C7A7C1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */; };
 		6C9C7A7D1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */; };
@@ -603,6 +612,9 @@
 		6C9543A51FACE0160099AC84 /* VolvoSanLigBol.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VolvoSanLigBol.ttf; sourceTree = "<group>"; };
 		6C9543A61FACE0160099AC84 /* VolvoSanLigReg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VolvoSanLigReg.ttf; sourceTree = "<group>"; };
 		6C9543A71FACE0160099AC84 /* VolvoSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Bold.ttf"; sourceTree = "<group>"; };
+		6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		6C9B3202202A79FB006380B9 /* SettingsLocalizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocalizations.swift; sourceTree = "<group>"; };
+		6C9B3206202A85B9006380B9 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Voluxe.swift"; sourceTree = "<group>"; };
 		6CA7C943201A92A7009C00F6 /* ServiceCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCarViewController.swift; sourceTree = "<group>"; };
 		6CA968B020229FAD00FBEEAB /* VehiclesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesViewController.swift; sourceTree = "<group>"; };
@@ -1011,8 +1023,17 @@
 				6C20E1C21FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift */,
 				6CA968B42023933800FBEEAB /* VehicleLocalization.swift */,
 				6CBAA6CE2024E91300F35ECF /* ServicesLocalization.swift */,
+				6C9B3202202A79FB006380B9 /* SettingsLocalizations.swift */,
 			);
 			path = Localization;
+			sourceTree = "<group>";
+		};
+		6C9B31FD202A4F4F006380B9 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */,
+			);
+			path = Settings;
 			sourceTree = "<group>";
 		};
 		6CA7C942201A928D009C00F6 /* Service */ = {
@@ -1037,6 +1058,7 @@
 			children = (
 				6CA968BE2023CBB500FBEEAB /* VehicleCell.swift */,
 				6CBAA6CA2023FEE800F35ECF /* ServiceCell.swift */,
+				6C9B3206202A85B9006380B9 /* SettingsCell.swift */,
 			);
 			path = Cell;
 			sourceTree = "<group>";
@@ -1086,6 +1108,7 @@
 				6C2208751FBCEF4D00874882 /* Common */,
 				6C88DC921FAA8ADC009F2FC3 /* Main */,
 				6CC37E441FA7AE0F00DA8F01 /* FTUE */,
+				6C9B31FD202A4F4F006380B9 /* Settings */,
 				6C73420B1FB12E6C00E90F7E /* VLPresentrViewController.swift */,
 				6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */,
 			);
@@ -1797,6 +1820,7 @@
 				6CBB4E821FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
 				6C2208801FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */,
 				6C58330D1FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
+				6C9B31FF202A51B3006380B9 /* SettingsViewController.swift in Sources */,
 				6CBB4E9D1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
 				6C20E1BB1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
 				6C5833131FB3AF5600F6BFE0 /* ModalSize.swift in Sources */,
@@ -1867,6 +1891,7 @@
 				6CCD428E1FA013E3000AC6C9 /* AppDelegate.swift in Sources */,
 				6C58330B1FB3AF5600F6BFE0 /* BackgroundView.swift in Sources */,
 				6C7DDE0F1FDB64CD000E2822 /* Logger.swift in Sources */,
+				6C9B3207202A85B9006380B9 /* SettingsCell.swift in Sources */,
 				6CCC821B20116B3A003BB3F0 /* DealershipTimeSlot.swift in Sources */,
 				6CA968B52023933800FBEEAB /* VehicleLocalization.swift in Sources */,
 				6C20E1E81FBF851B00E5D9A0 /* Service.swift in Sources */,
@@ -1879,6 +1904,7 @@
 				6C6F4BCE1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6CC37E501FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6CD0C8871FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */,
+				6C9B3203202A79FB006380B9 /* SettingsLocalizations.swift in Sources */,
 				6C58331C1FB3AF5600F6BFE0 /* TransitionType.swift in Sources */,
 				6C95439E1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C20E1C71FBE6D2400E5D9A0 /* StateService.swift in Sources */,
@@ -1973,6 +1999,7 @@
 				6CBB4E981FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */,
 				6C91BBD81FA7D6220033C2B1 /* ViewPager.swift in Sources */,
 				6C90CC17201156AF002594F5 /* ResponseError.swift in Sources */,
+				6C9B3200202A51B3006380B9 /* SettingsViewController.swift in Sources */,
 				6C9543A31FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6C20E1A11FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */,
 				6C20E1E91FBF851B00E5D9A0 /* Service.swift in Sources */,
@@ -1997,6 +2024,7 @@
 				6C7495E41FDA1F790036FC08 /* MappableDataObject.swift in Sources */,
 				6C91BBCE1FA7D3CE0033C2B1 /* Fonts.swift in Sources */,
 				6C7495D81FDA0CEB0036FC08 /* Meta.swift in Sources */,
+				6C9B3208202A85B9006380B9 /* SettingsCell.swift in Sources */,
 				6CBB4E8F1FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
 				6C5833291FB3AF8000F6BFE0 /* ModalCenterPosition.swift in Sources */,
 				6CBAA6D02024E91300F35ECF /* ServicesLocalization.swift in Sources */,
@@ -2026,6 +2054,7 @@
 				6C3A11301FD8A1390069EF9C /* WebViewLoginViewController.swift in Sources */,
 				6C5833321FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */,
 				6CBB4E861FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
+				6C9B3204202A79FB006380B9 /* SettingsLocalizations.swift in Sources */,
 				6C20E1AE1FBE408B00E5D9A0 /* SchedulingViewController.swift in Sources */,
 				6CBAA6CC2023FEE800F35ECF /* ServiceCell.swift in Sources */,
 				6C2F1DD71FAD0A8F00C28C6E /* SchedulingPickupViewController.swift in Sources */,
@@ -2124,6 +2153,7 @@
 				6CA968B320229FAD00FBEEAB /* VehiclesViewController.swift in Sources */,
 				6C7495D91FDA0CEB0036FC08 /* Meta.swift in Sources */,
 				6C20E1A21FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */,
+				6C9B3201202A51B4006380B9 /* SettingsViewController.swift in Sources */,
 				6C20E1EA1FBF851B00E5D9A0 /* Service.swift in Sources */,
 				6C7342011FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
 				6CBB4E9F1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
@@ -2152,6 +2182,7 @@
 				6C2B324A1FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */,
 				6CBB4EA81FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */,
 				6C90CC1420113323002594F5 /* LoadingViewController.swift in Sources */,
+				6C9B3209202A85B9006380B9 /* SettingsCell.swift in Sources */,
 				6C5833401FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */,
 				6C32C3111FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */,
 				6C6F4BCC1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
@@ -2182,6 +2213,7 @@
 				6CBB4E961FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */,
 				6C32C30D1FBCC1DD00B1218C /* StepView.swift in Sources */,
 				6C4D91BD1FDB15F90031E3CB /* Token.swift in Sources */,
+				6C9B3205202A79FB006380B9 /* SettingsLocalizations.swift in Sources */,
 				6C5833331FB3AF9200F6BFE0 /* PresentationType.swift in Sources */,
 				6C88DC961FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6C20E1921FBE14C300E5D9A0 /* GMDirection.swift in Sources */,
