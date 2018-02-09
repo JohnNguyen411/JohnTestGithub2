@@ -15,4 +15,7 @@ extension String {
     static let YourAccount = NSLocalizedString("YourAccount")
     static let UnitOfDistance = NSLocalizedString("UnitOfDistance")
     static let ShowDistanceAsMiles = NSLocalizedString("ShowDistanceAsMiles")
+    static let PickupDeliveryLocations = NSLocalizedString("PickupDeliveryLocations")
+    static let ContactInformation = NSLocalizedString("ContactInformation")
+    static let AccountPassword = NSLocalizedString("AccountPassword")
 }

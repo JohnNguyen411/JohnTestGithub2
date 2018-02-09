@@ -18,6 +18,7 @@ class SettingsCell: UITableViewCell {
         case indicator
         case uiswitch
         case button
+        case none
     }
     
     var delegate: SettingsCellProtocol?
@@ -69,7 +70,7 @@ class SettingsCell: UITableViewCell {
     public func setCellType(type: SettingsCellType) {
         if type == .indicator {
             self.accessoryType = .disclosureIndicator
-        } else if type == .button {
+        } else if type == .button || type == .none {
             self.accessoryType = .none
         } else {
             self.accessoryType = .checkmark

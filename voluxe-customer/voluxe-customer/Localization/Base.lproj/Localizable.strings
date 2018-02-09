@@ -102,4 +102,7 @@
 "YourAccount" = "Your Account";
 "UnitOfDistance" = "Unit Of Distance";
 "ShowDistanceAsMiles" = "Show Distance As Miles";
+"PickupDeliveryLocations" = "Pickup/Delivery Locations";
+"ContactInformation" = "Contact Information";
+"AccountPassword" = "Account Password";
 

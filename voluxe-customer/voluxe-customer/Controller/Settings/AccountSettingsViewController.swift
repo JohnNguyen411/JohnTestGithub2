@@ -1,25 +1,28 @@
 //
-//  SettingsViewController.swift
+//  AccountSettingsViewController.swift
 //  voluxe-customer
 //
-//  Created by Giroux, Johan on 2/6/18.
+//  Created by Giroux, Johan on 2/8/18.
 //  Copyright © 2018 Luxe - Volvo Cars. All rights reserved.
 //
 
 import Foundation
+import RealmSwift
 
-class SettingsViewController: BaseViewController, SettingsCellProtocol {
+class AccountSettingsViewController: BaseViewController {
     
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
     let user: Customer?
-    let vehicles: [Vehicle]?
-    var vehicleCount = 0
+    var addresses: [CustomerAddress]?
+    var addressesCount = 0
+    var realm : Realm?
     
     override init() {
         user = UserManager.sharedInstance.getCustomer()
-        vehicles = UserManager.sharedInstance.getVehicles()
-        if let vehicles = vehicles {
-            vehicleCount = vehicles.count
+        realm = try? Realm()
+        if let realm = self.realm, let user = user {
+            addresses = Array(realm.objects(CustomerAddress.self).filter("volvoCustomerId = %@", user.volvoCustomerId ?? ""))
+            addressesCount = 0
         }
         super.init()
     }
@@ -36,7 +39,7 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
         tableView.delegate = self
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdIndicator)
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdToogle)
-
+        
     }
     
     override func setupViews() {
@@ -50,36 +53,41 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
     
     func getTitleForSection(section: Int) -> String {
         if section == 0 {
-            return .YourVolvos
+            return .PickupDeliveryLocations
         } else if section == 1 {
-            return .YourAccount
+            return .ContactInformation
         } else {
-            return .UnitOfDistance
+            return .AccountPassword
         }
     }
     
     func getTextForIndexPath(indexPath: IndexPath) -> String {
         if indexPath.section == 0 {
-            if let vehicles = vehicles, vehicleCount > indexPath.row{
-                return vehicles[indexPath.row].vehicleDescription()
+            if let addresses = addresses, addressesCount > indexPath.row {
+                return (addresses[indexPath.row].location?.address)!
             }
-            return .AddANewVolvo
+            return .AddNewLocation
         } else if indexPath.section == 1 {
-            return (user?.volvoCustomerId)!
+            if indexPath.row == 0 {
+                return (user?.volvoCustomerId)!
+            } else {
+                return (user?.phoneNumber)!
+            }
+            
         } else {
-            return .ShowDistanceAsMiles
+            return "********"
         }
     }
-    
+
 }
 
-extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
+extension AccountSettingsViewController: UITableViewDataSource, UITableViewDelegate, SettingsCellProtocol {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             // need at least one for "Add a New Volvo"
-            if let vehicles = vehicles {
-                return vehicles.count + 1
+            if let addresses = addresses {
+                return addresses.count + 1
             }
             return 1
         } else if section == 1 {
@@ -94,20 +102,16 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        var cell: SettingsCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdIndicator, for: indexPath) as! SettingsCell
         var text = getTextForIndexPath(indexPath: indexPath)
-        if indexPath.section == 2 {
-            cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdToogle, for: indexPath) as! SettingsCell
-            cell.setCellType(type: .uiswitch)
+        
+        if indexPath.section == 0 && indexPath.row >= addressesCount {
+            cell.setCellType(type: .button)
+            text = text.uppercased()
         } else {
-            cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdIndicator, for: indexPath) as! SettingsCell
-            if indexPath.section == 0 && indexPath.row >= vehicleCount {
-                cell.setCellType(type: .button)
-                text = text.uppercased()
-            } else {
-                cell.setCellType(type: .indicator)
-            }
+            cell.setCellType(type: .none)
         }
+        
         cell.setText(text: text)
         cell.delegate = self
         return cell
@@ -134,15 +138,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if (indexPath.section == 1) {
-            self.navigationController?.pushViewController(AccountSettingsViewController(), animated: true)
-        }
     }
     
-    func switchChanged(_ cell: UITableViewCell) {
-        //todo change from miles to km etc
-        //tableView.indexPath(for: cell)
-    }
+    func switchChanged(_ cell: UITableViewCell) {}
     
 }
-
