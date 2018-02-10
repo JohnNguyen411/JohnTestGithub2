@@ -16,6 +16,7 @@ class AccountSettingsViewController: BaseViewController {
     var addresses: [CustomerAddress]?
     var addressesCount = 0
     var realm : Realm?
+    var uiBarButton: UIBarButtonItem?
     
     override init() {
         user = UserManager.sharedInstance.getCustomer()
@@ -39,6 +40,9 @@ class AccountSettingsViewController: BaseViewController {
         tableView.delegate = self
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdIndicator)
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdToogle)
+        
+        uiBarButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
+        self.navigationItem.rightBarButtonItem = uiBarButton
         
     }
     
@@ -78,6 +82,18 @@ class AccountSettingsViewController: BaseViewController {
             return "********"
         }
     }
+    
+    @objc func edit() {
+        uiBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
+        self.navigationItem.rightBarButtonItem = uiBarButton
+        tableView.setEditing(true, animated: true)
+    }
+    
+    @objc func done() {
+        uiBarButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
+        self.navigationItem.rightBarButtonItem = uiBarButton
+        tableView.setEditing(false, animated: true)
+    }
 
 }
 
@@ -91,7 +107,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
             }
             return 1
         } else if section == 1 {
-            return 1
+            return 2
         } else {
             return 1
         }
@@ -103,18 +119,63 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdIndicator, for: indexPath) as! SettingsCell
+        var leftImage: String? = nil
+        var editImage: String? = nil
+
         var text = getTextForIndexPath(indexPath: indexPath)
         
         if indexPath.section == 0 && indexPath.row >= addressesCount {
             cell.setCellType(type: .button)
             text = text.uppercased()
         } else {
+            if indexPath.section == 1 {
+                editImage = "edit"
+                if indexPath.row == 0 {
+                    leftImage = "message"
+                } else {
+                    leftImage = "phone"
+                }
+            }
             cell.setCellType(type: .none)
         }
         
-        cell.setText(text: text)
+        cell.setText(text: text, leftImageName: leftImage, editImageName: editImage)
         cell.delegate = self
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        if (indexPath.section == 0 && indexPath.row >= addressesCount) || indexPath.section == 2 {
+            return false
+        }
+        return true
+    }
+    
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+        if indexPath.section == 0 && indexPath.row < addressesCount {
+            
+            return .delete
+        }
+        return .none
+    }
+    
+    func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
+        if indexPath.section == 0 && indexPath.row < addressesCount {
+            return true
+        }
+        return false
+    }
+    
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        if indexPath.section == 0 && indexPath.row < addressesCount {
+            let delete = UITableViewRowAction(style: .destructive, title: "Delete", handler: { (action, indexPath) in
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            })
+            return [delete]
+
+        }
+        
+        return []
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
