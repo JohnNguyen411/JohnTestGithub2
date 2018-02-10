@@ -9,11 +9,11 @@
 import Foundation
 import RealmSwift
 
-class AccountSettingsViewController: BaseViewController {
+class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
     let user: Customer?
-    var addresses: [CustomerAddress]?
+    var addresses: Results<CustomerAddress>?
     var addressesCount = 0
     var realm : Realm?
     var uiBarButton: UIBarButtonItem?
@@ -22,8 +22,10 @@ class AccountSettingsViewController: BaseViewController {
         user = UserManager.sharedInstance.getCustomer()
         realm = try? Realm()
         if let realm = self.realm, let user = user {
-            addresses = Array(realm.objects(CustomerAddress.self).filter("volvoCustomerId = %@", user.volvoCustomerId ?? ""))
-            addressesCount = 0
+            addresses = realm.objects(CustomerAddress.self).filter("volvoCustomerId = %@", user.volvoCustomerId ?? "")
+            if let addresses = addresses {
+                addressesCount = addresses.count
+            }
         }
         super.init()
     }
@@ -93,6 +95,33 @@ class AccountSettingsViewController: BaseViewController {
         uiBarButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
         self.navigationItem.rightBarButtonItem = uiBarButton
         tableView.setEditing(false, animated: true)
+    }
+    
+    func showPickupLocationModal(dismissOnTap: Bool) {
+        let locationVC = AddLocationViewController(title: .AddNewLocation, buttonTitle: .Add)
+        locationVC.pickupLocationDelegate = self
+        locationVC.view.accessibilityIdentifier = "locationVC"
+        currentPresentrVC = locationVC
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
+        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
+    }
+    
+    func onLocationAdded(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
+        let customerAddress = CustomerAddress()
+        
+        customerAddress.location = Location(name: responseInfo!.value(forKey: "formattedAddress") as? String, latitude: nil, longitude: nil, location: placemark?.location?.coordinate)
+        customerAddress.createdAt = Date()
+        customerAddress.volvoCustomerId = user!.volvoCustomerId
+        
+        if let realm = self.realm {
+            try? realm.write {
+                realm.add(customerAddress)
+                if let addresses = addresses {
+                    addressesCount = addresses.count
+                }
+                tableView.reloadData()
+            }
+        }
     }
 
 }
@@ -199,6 +228,9 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        if (indexPath.section == 0 && indexPath.row >= addressesCount) {
+            showPickupLocationModal(dismissOnTap: true)
+        }
     }
     
     func switchChanged(_ cell: UITableViewCell) {}

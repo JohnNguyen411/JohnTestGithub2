@@ -14,7 +14,7 @@ import RealmSwift
 import BrightFutures
 import Alamofire
 
-class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate, LocationManagerDelegate {
+class SchedulingViewController: ChildViewController, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate, LocationManagerDelegate {
     
     public enum SchedulePickupState: Int {
         case start = 0
@@ -30,7 +30,6 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         case location = 2
     }
     
-    static private let fakeYOrigin: CGFloat = -555.0
     static private let insetPadding: CGFloat = 20.0
     static let vlLabelHeight = VLTitledLabel.height + Int(SchedulingViewController.insetPadding)
     
@@ -48,10 +47,6 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     
     var pickupScheduleState: SchedulePickupState = .start
     var dropoffScheduleState: ScheduleDropoffState = .start
-    
-    let presentrCornerRadius: CGFloat = 4.0
-    var currentPresentr: Presentr?
-    var currentPresentrVC: VLPresentrViewController?
     
     let stateTestView = UILabel(frame: .zero)
     let dealershipTestView = UIView(frame: .zero)
@@ -291,47 +286,6 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         
     }
     
-    
-    
-    func buildPresenter(heightInPixels: CGFloat, dismissOnTap: Bool) -> Presentr {
-        let customType = getPresenterPresentationType(heightInPixels: heightInPixels, customYOrigin: SchedulingPickupViewController.fakeYOrigin)
-        
-        let customPresenter = Presentr(presentationType: customType)
-        customPresenter.transitionType = .coverVertical
-        customPresenter.roundCorners = true
-        customPresenter.cornerRadius = presentrCornerRadius
-        customPresenter.blurBackground = true
-        customPresenter.blurStyle = UIBlurEffectStyle.light
-        customPresenter.dismissOnSwipe = false
-        customPresenter.keyboardTranslationType = .moveUp
-        customPresenter.dismissOnTap = dismissOnTap
-        
-        
-        return customPresenter
-    }
-    
-    func getPresenterPresentationType(heightInPixels: CGFloat, customYOrigin: CGFloat) -> PresentationType {
-        let widthPerc = 0.95
-        let width = ModalSize.fluid(percentage: Float(widthPerc))
-        
-        let viewH = self.view.frame.height + AppDelegate.getNavigationBarHeight() + statusBarHeight() + presentrCornerRadius
-        let viewW = Double(self.view.frame.width)
-        
-        let percH = heightInPixels / viewH
-        let leftRightMargin = (viewW - (viewW * widthPerc))/2
-        let height = ModalSize.fluid(percentage: Float(percH))
-        
-        var yOrigin = customYOrigin
-        if yOrigin == SchedulingPickupViewController.fakeYOrigin {
-            yOrigin = viewH - heightInPixels
-        }
-        
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: leftRightMargin, y: Double(yOrigin)))
-        let customType = PresentationType.custom(width: width, height: height, center: center)
-        
-        return customType
-    }
-    
     func showDealershipModal(dismissOnTap: Bool) {
         guard let dealerships = dealerships else {
             return
@@ -371,11 +325,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
-    func presentrShouldDismiss(keyboardShowing: Bool) -> Bool {
-        currentPresentr = nil
-        currentPresentrVC = nil
-        return true
-    }
+    
     
     //MARK: Actions methods
     func showDescriptionClick() {
@@ -428,7 +378,7 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     func onLocationAdded(newSize: Int) {
         // increase size of presenter
         let newHeight = CGFloat(currentPresentrVC!.height())
-        let presentationType = getPresenterPresentationType(heightInPixels: newHeight, customYOrigin: SchedulingPickupViewController.fakeYOrigin)
+        let presentationType = getPresenterPresentationType(heightInPixels: newHeight, customYOrigin: BaseViewController.fakeYOrigin)
         currentPresentr?.currentPresentationController?.updateToNewFrame(presentationType: presentationType)
     }
     

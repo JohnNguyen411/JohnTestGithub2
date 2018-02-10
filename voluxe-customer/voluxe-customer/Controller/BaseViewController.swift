@@ -9,7 +9,13 @@
 import Foundation
 import UIKit
 
-class BaseViewController: UIViewController {
+class BaseViewController: UIViewController, PresentrDelegate {
+    
+    static let fakeYOrigin: CGFloat = -555.0
+    
+    let presentrCornerRadius: CGFloat = 4.0
+    var currentPresentr: Presentr?
+    var currentPresentrVC: VLPresentrViewController?
     
     var keyboardShowing = false
     var keyboardHeight: CGFloat = 0
@@ -111,6 +117,52 @@ class BaseViewController: UIViewController {
     
     func hideBlockingLoading() {
         blockingLoadingView.dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: PresentR
+    func presentrShouldDismiss(keyboardShowing: Bool) -> Bool {
+        currentPresentr = nil
+        currentPresentrVC = nil
+        return true
+    }
+    
+    func buildPresenter(heightInPixels: CGFloat, dismissOnTap: Bool) -> Presentr {
+        let customType = getPresenterPresentationType(heightInPixels: heightInPixels, customYOrigin: BaseViewController.fakeYOrigin)
+        
+        let customPresenter = Presentr(presentationType: customType)
+        customPresenter.transitionType = .coverVertical
+        customPresenter.roundCorners = true
+        customPresenter.cornerRadius = presentrCornerRadius
+        customPresenter.blurBackground = true
+        customPresenter.blurStyle = UIBlurEffectStyle.light
+        customPresenter.dismissOnSwipe = false
+        customPresenter.keyboardTranslationType = .moveUp
+        customPresenter.dismissOnTap = dismissOnTap
+        
+        
+        return customPresenter
+    }
+    
+    func getPresenterPresentationType(heightInPixels: CGFloat, customYOrigin: CGFloat) -> PresentationType {
+        let widthPerc = 0.95
+        let width = ModalSize.fluid(percentage: Float(widthPerc))
+        
+        let viewH = self.view.frame.height + AppDelegate.getNavigationBarHeight() + statusBarHeight() + presentrCornerRadius
+        let viewW = Double(self.view.frame.width)
+        
+        let percH = heightInPixels / viewH
+        let leftRightMargin = (viewW - (viewW * widthPerc))/2
+        let height = ModalSize.fluid(percentage: Float(percH))
+        
+        var yOrigin = customYOrigin
+        if yOrigin == BaseViewController.fakeYOrigin {
+            yOrigin = viewH - heightInPixels
+        }
+        
+        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: leftRightMargin, y: Double(yOrigin)))
+        let customType = PresentationType.custom(width: width, height: height, center: center)
+        
+        return customType
     }
     
 }
