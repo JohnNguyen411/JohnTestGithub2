@@ -103,7 +103,9 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         locationVC.view.accessibilityIdentifier = "locationVC"
         currentPresentrVC = locationVC
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
-        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
+        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {
+            locationVC.newLocationTextField.closeAutocomplete()
+        })
     }
     
     func onLocationAdded(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
@@ -122,6 +124,8 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
                 tableView.reloadData()
             }
         }
+        
+        currentPresentrVC?.dismiss(animated: true, completion: nil)
     }
 
 }

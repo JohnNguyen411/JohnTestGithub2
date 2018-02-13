@@ -13,6 +13,7 @@ import MapKit
 
 typealias LMReverseGeocodeCompletionHandler = ((_ reverseGecodeInfo:NSDictionary?,_ placemark:CLPlacemark?, _ error:String?)->Void)?
 typealias LMGeocodeCompletionHandler = ((_ gecodeInfo:NSDictionary?,_ placemark:CLPlacemark?, _ error:String?)->Void)?
+typealias LMAutocompleteCompletionHandler = ((_ gecodeInfos:[NSDictionary]?,_ placemarks:[CLPlacemark]?, _ error:String?)->Void)?
 typealias LMLocationCompletionHandler = ((_ latitude:Double, _ longitude:Double, _ status:String, _ verboseMessage:String, _ error:String?)->())?
 
 // Todo: Keep completion handler differerent for all services, otherwise only one will work
@@ -29,7 +30,8 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     
     fileprivate var reverseGeocodingCompletionHandler: LMReverseGeocodeCompletionHandler
     fileprivate var geocodingCompletionHandler: LMGeocodeCompletionHandler
-    
+    fileprivate var autocompleteCompletionHandler: LMAutocompleteCompletionHandler
+
     fileprivate var locationStatus: NSString = "Calibrating"// to pass in handler
     fileprivate var locationManager: CLLocationManager!
     fileprivate var verboseMessage = "Calibrating"
@@ -350,11 +352,21 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     
+    func autocompleteUsingGoogleAddressString(address:NSString, onAutocompleteCompletionHandler:LMAutocompleteCompletionHandler){
+        self.autocompleteCompletionHandler = onAutocompleteCompletionHandler
+        autocompleteUsignGoogleAddress(address)
+    }
+    
     func geocodeUsingGoogleAddressString(address:NSString, onGeocodingCompletionHandler:LMGeocodeCompletionHandler){
         self.geocodingCompletionHandler = onGeocodingCompletionHandler
         geoCodeUsignGoogleAddress(address)
     }
     
+    fileprivate func autocompleteUsignGoogleAddress(_ address:NSString){
+        var urlString = "https://maps.googleapis.com/maps/api/geocode/json?address=\(address)&sensor=true" as NSString
+        urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! as NSString
+        performAutocompleteOperationForURL(urlString, type: GeoCodingType.geocoding)
+    }
     
     fileprivate func geoCodeUsignGoogleAddress(_ address:NSString){
         var urlString = "https://maps.googleapis.com/maps/api/geocode/json?address=\(address)&sensor=true" as NSString
@@ -375,6 +387,59 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         var urlString = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(latitude),\(longitude)&sensor=true" as NSString
         urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! as NSString
         performOperationForURL(urlString, type: GeoCodingType.reverseGeocoding)
+    }
+    
+    fileprivate func performAutocompleteOperationForURL(_ urlString: NSString, type:GeoCodingType) {
+        
+        let url:URL? = URL(string:urlString as String)
+        let request:URLRequest = URLRequest(url: url!)
+        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
+            
+            if (error != nil) {
+                self.setCompletionHandler(responseInfo: nil, placemark: nil, error: error!.localizedDescription, type: type)
+            } else{
+                let kStatus = "status"
+                let kOK = "ok"
+                let kZeroResults = "ZERO_RESULTS"
+                let kAPILimit = "OVER_QUERY_LIMIT"
+                let kRequestDenied = "REQUEST_DENIED"
+                let kInvalidRequest = "INVALID_REQUEST"
+                let kInvalidInput =  "Invalid Input"
+                
+                //let dataAsString: NSString? = NSString(data: data!, encoding: NSUTF8StringEncoding)
+                
+                let jsonResult: NSDictionary = (try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSDictionary
+                
+                var status = jsonResult.value(forKey: kStatus) as! NSString
+                status = status.lowercased as NSString
+                
+                if (status.isEqual(to: kOK)) {
+                    
+                    let address = AddressParser()
+                    let locationsDict = (jsonResult.value(forKey: "results") as! NSArray)
+                    
+                    var addressDictArray: [NSDictionary] = []
+                    var placemarksArray: [CLPlacemark] = []
+
+                    for locationDict in locationsDict {
+                        address.parseGoogleLocationData(locationDict as! NSDictionary)
+                        addressDictArray.append(address.getAddressDictionary())
+                        placemarksArray.append(address.getPlacemark())
+                    }
+                    
+                    self.setAutoCompletionHandler(responseInfo: addressDictArray, placemark: placemarksArray, error: nil)
+                    
+                } else if (!status.isEqual(to: kZeroResults) && !status.isEqual(to: kAPILimit) && !status.isEqual(to: kRequestDenied) && !status.isEqual(to: kInvalidRequest)) {
+                    self.setAutoCompletionHandler(responseInfo:nil, placemark:nil, error:kInvalidInput)
+                } else {
+                    //status = (status.componentsSeparatedByString("_") as NSArray).componentsJoinedByString(" ").capitalizedString
+                    self.setAutoCompletionHandler(responseInfo:nil, placemark:nil, error:status as String)
+                }
+            }
+        })
+        
+        task.resume()
+        
     }
     
     fileprivate func performOperationForURL(_ urlString: NSString, type:GeoCodingType) {
@@ -404,8 +469,9 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
                 if (status.isEqual(to: kOK)) {
                     
                     let address = AddressParser()
+                    let locationDict = (jsonResult.value(forKey: "results") as! NSArray).firstObject as! NSDictionary
                     
-                    address.parseGoogleLocationData(jsonResult)
+                    address.parseGoogleLocationData(locationDict)
                     
                     let addressDict = address.getAddressDictionary()
                     let placemark:CLPlacemark = address.getPlacemark()
@@ -431,6 +497,10 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         } else {
             self.reverseGeocodingCompletionHandler!(responseInfo,placemark,error)
         }
+    }
+    
+    fileprivate func setAutoCompletionHandler(responseInfo: [NSDictionary]?, placemark:[CLPlacemark]?, error:String?) {
+        self.autocompleteCompletionHandler!(responseInfo, placemark, error)
     }
 }
 
@@ -507,9 +577,7 @@ private class AddressParser: NSObject{
     }
     
     
-    fileprivate func parseGoogleLocationData(_ resultDict:NSDictionary) {
-        
-        let locationDict = (resultDict.value(forKey: "results") as! NSArray).firstObject as! NSDictionary
+    fileprivate func parseGoogleLocationData(_ locationDict:NSDictionary) {
         
         let formattedAddrs = locationDict.object(forKey: "formatted_address") as! NSString
         

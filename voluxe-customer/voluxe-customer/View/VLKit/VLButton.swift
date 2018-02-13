@@ -44,6 +44,13 @@ class VLButton : UIButton {
         }
     }
     
+    
+    override var isEnabled:Bool {
+        didSet {
+            self.alpha = isEnabled ? 1 : 0.8
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

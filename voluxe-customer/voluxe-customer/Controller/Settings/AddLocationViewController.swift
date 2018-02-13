@@ -10,50 +10,35 @@ import Foundation
 import UIKit
 import CoreLocation
 
-class AddLocationViewController: VLPresentrViewController, LocationManagerDelegate, UITextFieldDelegate {
+class AddLocationViewController: VLPresentrViewController, LocationManagerDelegate, UITextFieldDelegate, VLVerticalSearchTextFieldDelegate {
     
     var pickupLocationDelegate: AddLocationDelegate?
     var locationManager = LocationManager.sharedInstance
     
-    var currentLocationInfo: NSDictionary?
-    var currentLocationPlacemark: CLPlacemark?
+    var selectedLocationInfo: NSDictionary?
+    var selectedLocationPlacemark: CLPlacemark?
     
-    var locationInfoArray: [NSDictionary] = []
-    var locationPlacemarkArray: [CLPlacemark] = []
+    var locationInfoArray: [NSDictionary]?
+    var locationPlacemarkArray: [CLPlacemark]?
     
-    let newLocationTextField = VLVerticalTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
+    var autoCompleteCharacterCount = 0
+    
+    let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
     
     override init() {
         super.init()
+        newLocationTextField.textField.autocorrectionType = .no
+        newLocationTextField.tableYOffset = -20
+        newLocationTextField.tableBottomMargin = 0
+        newLocationTextField.maxResultsListHeight = Int(3 * VLVerticalSearchTextField.defaultCellHeight)
+        newLocationTextField.delegate = self
         newLocationTextField.textField.accessibilityIdentifier = "newLocationTextField.textField"
         newLocationTextField.textField.delegate = self
         newLocationTextField.rightLabel.isHidden = true
         newLocationTextField.rightLabel.accessibilityIdentifier = "newLocationTextField.rightLabel"
-        
-        newLocationTextField.setRightButtonText(rightButtonText: (.Add as String).uppercased(), actionBlock: {
-            // look for real address
-            self.locationManager.geocodeUsingGoogleAddressString(address: self.newLocationTextField.text as NSString, onGeocodingCompletionHandler: { (gecodeInfo: NSDictionary?, placemark: CLPlacemark?, error: String?) in
-                if let error = error {
-                } else if let gecodeInfo = gecodeInfo {
-                    
-                    self.locationInfoArray.append(gecodeInfo)
-                    self.locationPlacemarkArray.append(placemark!)
-                    
-                    let formattedAddress = gecodeInfo["formattedAddress"] as! String
-                    
-                    DispatchQueue.main.sync {
-                        self.bottomButton.isEnabled = true
-                        self.addLocation(location: formattedAddress)
-                        self.newLocationTextField.textField.resignFirstResponder()
-                        self.newLocationTextField.textField.text = ""
-                    }
-                }
-                
-            })
-        })
-        //addLocation(location: .YourLocation)
+
         locationManager.delegate = self
-        //locationManager.startUpdatingLocation()
+
         bottomButton.isEnabled = false
     }
     
@@ -64,10 +49,6 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     deinit {
         locationManager.delegate = nil
         locationManager.stopUpdatingLocation()
-    }
-    
-    func addLocation(location: String) {
-        onButtonClick()
     }
     
     override func setupViews() {
@@ -88,46 +69,92 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     }
     
     override func height() -> Int {
-        return VLPresentrViewController.baseHeight + VLVerticalTextField.height + 100
+        return VLPresentrViewController.baseHeight + VLVerticalTextField.height + 50
+    }
+    
+    
+    override func onButtonClick() {
+        if let pickupLocationDelegate = pickupLocationDelegate, let selectedLocationInfo = selectedLocationInfo, let selectedLocationPlacemark = selectedLocationPlacemark {
+            pickupLocationDelegate.onLocationAdded(responseInfo: selectedLocationInfo, placemark: selectedLocationPlacemark)
+        }
+    }
+    
+    
+    func autocompleteWithText(userText: String){
+        selectedLocationInfo = nil
+        selectedLocationPlacemark = nil
+        self.bottomButton.isEnabled = false
+
+        self.locationManager.autocompleteUsingGoogleAddressString(address: self.newLocationTextField.text as NSString, onAutocompleteCompletionHandler: { (gecodeInfos: [NSDictionary]?, placemarks: [CLPlacemark]?, error: String?) in
+            if let error = error {
+                DispatchQueue.main.sync {
+                    
+                    self.newLocationTextField.text = userText
+                    self.autoCompleteCharacterCount = 0
+                }
+
+            } else if let gecodeInfos = gecodeInfos {
+                
+                self.locationInfoArray = gecodeInfos
+                self.locationPlacemarkArray = placemarks
+                
+                var formattedAddress: [String] = []
+                for gecodeInfo in gecodeInfos {
+                   formattedAddress.append(gecodeInfo["formattedAddress"] as! String)
+                }
+
+                DispatchQueue.main.sync {
+                   self.newLocationTextField.filteredStrings(formattedAddress)
+                }
+            }
+        })
     }
     
     func locationFound(_ latitude: Double, longitude: Double) {
-        locationManager.reverseGeocodeLocationUsingGoogleWithLatLon(latitude: latitude, longitude: longitude) { (reverseGeocodeInfo, placemark, error) -> Void in
-            if let reverseGeocodeInfo = reverseGeocodeInfo {
-                self.currentLocationInfo = reverseGeocodeInfo
-                self.currentLocationPlacemark = placemark
-                
-                self.locationInfoArray.append(reverseGeocodeInfo)
-                self.locationPlacemarkArray.append(placemark!)
-                
-                Logger.print("Address found")
-                Logger.print(reverseGeocodeInfo["formattedAddress"] ?? "")
-                DispatchQueue.main.sync {
-                    self.addLocation(location: .YourLocation)
-                    self.bottomButton.isEnabled = true
-                }
-            }
-        }
-    }
-    
-    override func onButtonClick() {
-        if let pickupLocationDelegate = pickupLocationDelegate {
-            pickupLocationDelegate.onLocationAdded(responseInfo: locationInfoArray[0], placemark: locationPlacemarkArray[0])
-        }
     }
     
     // MARK: protocol UITextFieldDelegate
     
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if range.location == 0 && string.count == 0 {
-            newLocationTextField.rightLabel.isHidden = true
-        } else {
-            newLocationTextField.rightLabel.isHidden = false
+    func onAutocompleteSelected(selectedIndex: Int) {
+        
+        newLocationTextField.closeAutocomplete()
+        
+        guard let locationPlacemarkArray = locationPlacemarkArray, let locationInfoArray = locationInfoArray else {
+            return
         }
         
+        if selectedIndex > locationPlacemarkArray.count {
+            return
+        }
+        
+        selectedLocationInfo = locationInfoArray[selectedIndex]
+        selectedLocationPlacemark = locationPlacemarkArray[selectedIndex]
+        
+        self.bottomButton.isEnabled = true
+        //self.newLocationTextField.textField.resignFirstResponder()
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        var subString = (textField.text!.capitalized as NSString).replacingCharacters(in: range, with: string) // 2
+        subString = formatSubstring(subString: subString)
+        
+        if subString.count == 0 { // 3 when a user clears the textField
+            resetValues()
+        } else {
+            autocompleteWithText(userText: subString) //4
+        }
         return true
     }
     
+    func formatSubstring(subString: String) -> String {
+        let formatted = String(subString.dropLast(autoCompleteCharacterCount)).lowercased().capitalized //5
+        return formatted
+    }
+    
+    func resetValues() {
+        autoCompleteCharacterCount = 0
+        self.newLocationTextField.textField.text = ""
+    }
 }
 
 // MARK: protocol AddLocationDelegate
