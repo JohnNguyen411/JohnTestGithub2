@@ -74,7 +74,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     @objc override func loanerClick() {
     }
     
-    override func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
+    override func onLocationSelected(customerAddress: CustomerAddress) {
         // need to check that location is within range
         currentPresentrVC?.dismiss(animated: true, completion: {
             self.showBlockingLoading()
@@ -84,11 +84,11 @@ class SchedulingDropoffViewController: SchedulingViewController {
             dropoffScheduleState = .location
         }
         
-        super.onLocationSelected(responseInfo: responseInfo, placemark: placemark)
+        super.onLocationSelected(customerAddress: customerAddress)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
             
-            self.fetchDealershipsForLocation(location: placemark?.location?.coordinate, completion: {
+            self.fetchDealershipsForLocation(location: customerAddress.location?.getLocation(), completion: {
                 // hide loader
                 self.hideBlockingLoading()
                 

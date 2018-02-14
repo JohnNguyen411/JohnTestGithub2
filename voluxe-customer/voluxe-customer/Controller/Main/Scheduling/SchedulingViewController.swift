@@ -382,16 +382,16 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         currentPresentr?.currentPresentationController?.updateToNewFrame(presentationType: presentationType)
     }
     
-    func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
+    func onLocationSelected(customerAddress: CustomerAddress) {
         
         //let locationRequest = RequestLocation(name: responseInfo!.value(forKey: "formattedAddress") as? String, stringLocation: nil, location: placemark?.location?.coordinate)
-        let locationRequest = Location(name: responseInfo!.value(forKey: "formattedAddress") as? String, latitude: nil, longitude: nil, location: placemark?.location?.coordinate)
+        let locationRequest = customerAddress.location
         if StateServiceManager.sharedInstance.isPickup() {
-            RequestedServiceManager.sharedInstance.setPickupRequestLocation(requestLocation: locationRequest)
+            RequestedServiceManager.sharedInstance.setPickupRequestLocation(requestLocation: locationRequest!)
         } else {
-            RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: locationRequest)
+            RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: locationRequest!)
         }
-        pickupLocationView.setTitle(title: .PickupLocation, leftDescription: locationRequest.address!, rightDescription: "")
+        pickupLocationView.setTitle(title: .PickupLocation, leftDescription: locationRequest!.address!, rightDescription: "")
     }
     
     func onLoanerSelected(loanerNeeded: Bool) {

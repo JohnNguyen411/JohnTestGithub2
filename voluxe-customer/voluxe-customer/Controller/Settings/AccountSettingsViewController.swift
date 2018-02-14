@@ -202,7 +202,13 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if indexPath.section == 0 && indexPath.row < addressesCount {
             let delete = UITableViewRowAction(style: .destructive, title: "Delete", handler: { (action, indexPath) in
-                tableView.deleteRows(at: [indexPath], with: .automatic)
+                if let realm = self.realm, let addresses = self.addresses {
+                    try? realm.write {
+                        realm.delete(addresses[indexPath.row])
+                    }
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+
             })
             return [delete]
 

@@ -84,7 +84,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         })
     }
     
-    override func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
+    override func onLocationSelected(customerAddress: CustomerAddress) {
         
         currentPresentrVC?.dismiss(animated: true, completion: {
             self.showBlockingLoading()
@@ -97,11 +97,11 @@ class SchedulingPickupViewController: SchedulingViewController {
             openNext = true
         }
         
-        super.onLocationSelected(responseInfo: responseInfo, placemark: placemark)
+        super.onLocationSelected(customerAddress: customerAddress)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
 
-        self.fetchDealershipsForLocation(location: placemark?.location?.coordinate, completion: {
+        self.fetchDealershipsForLocation(location: customerAddress.location?.getLocation(), completion: {
             // hide loader
             self.hideBlockingLoading()
             if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
