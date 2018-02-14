@@ -162,9 +162,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         calendar.appearance.titleFont = .volvoSansLightBold(size: 12)
         calendar.appearance.headerTitleColor = .luxeGray()
         calendar.appearance.caseOptions = FSCalendarCaseOptions.headerUsesUpperCase
-        calendar.appearance.borderSelectionColor = .luxeOrange()
+        calendar.appearance.borderSelectionColor = .luxeDeepBlue()
         calendar.appearance.borderDefaultColor = .luxeDeepBlue()
-        calendar.appearance.selectionColor = .luxeOrange()
+        calendar.appearance.selectionColor = .luxeDeepBlue()
         calendar.appearance.titleDefaultColor = .luxeDeepBlue()
         calendar.appearance.titleSelectionColor = .white
         calendar.appearance.borderRadius = 0

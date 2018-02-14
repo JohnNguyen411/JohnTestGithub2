@@ -96,7 +96,7 @@ class VLButton : UIButton {
             layer.borderWidth = 0
             break
         case .BlueSecondarySelected:
-            backgroundColor = UIColor.luxeOrange()
+            backgroundColor = UIColor.luxeDeepBlue()
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: .white, highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
