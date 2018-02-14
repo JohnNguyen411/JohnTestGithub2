@@ -36,6 +36,11 @@ class SchedulingPickupViewController: SchedulingViewController {
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         
+        loanerView.isEditable = true
+        dealershipView.isEditable = true
+        scheduledPickupView.isEditable = true
+        pickupLocationView.isEditable = true
+        
         if state == .schedulingService {
             // show location modal
             pickupLocationClick()

@@ -50,6 +50,11 @@ class SchedulingDropoffViewController: SchedulingViewController {
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         
+        loanerView.isEditable = false
+        dealershipView.isEditable = false
+        scheduledPickupView.isEditable = true
+        pickupLocationView.isEditable = true
+        
         if state == .schedulingDelivery {
             hideDealership()
             scheduledPickupClick()

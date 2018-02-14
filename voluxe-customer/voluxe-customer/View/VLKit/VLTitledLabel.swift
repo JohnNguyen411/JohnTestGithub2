@@ -52,7 +52,17 @@ class VLTitledLabel: UIView {
     let separator = UIView()
     let containerView = UIView(frame: .zero)
     let padding: CGFloat
-  
+    
+    var isEditable = false {
+        didSet {
+            if isEditable {
+                descLeftLabel.textColor = .luxeDeepBlue()
+            } else {
+                descLeftLabel.textColor = .luxeDarkGray()
+            }
+        }
+    }
+    
      init(padding: CGFloat = 0) {
         self.padding = padding
         super.init(frame: .zero)
@@ -139,7 +149,7 @@ class VLTitledLabel: UIView {
     func hideError() {
         titleLabel.textColor = .luxeGray()
         separator.backgroundColor = .luxeGray()
-        descLeftLabel.textColor = .luxeDarkGray()
+        descLeftLabel.textColor = isEditable ? .luxeDeepBlue() :  .luxeDarkGray()
         descRightLabel.textColor = .luxeDarkGray()
         self.backgroundColor = .clear
 
