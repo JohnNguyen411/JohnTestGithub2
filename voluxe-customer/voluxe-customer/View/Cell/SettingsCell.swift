@@ -26,14 +26,19 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
     
     var delegate: SettingsCellProtocol?
     
-    var editImage: UIImageView
-    var leftImage: UIImageView
-    var settingLabel: UILabel
-    var settingTextField: UITextField
+    let editImage: UIImageView
+    let leftImage: UIImageView
+    
+    let settingLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.font = UIFont.volvoSansLightBold(size: 18)
+        return label
+    }()
+    
+    let settingTextField: UITextField
     var switchView: UISwitch?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        settingLabel = UILabel(frame: .zero)
         settingTextField = UITextField(frame: .zero)
         leftImage = UIImageView(frame: .zero)
         editImage = UIImageView(frame: .zero)

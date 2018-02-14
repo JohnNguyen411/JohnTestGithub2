@@ -126,7 +126,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         view.backgroundColor = UIColor.clear
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: SettingsCell.height))
         label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.textColor = UIColor.luxeDarkGray()
+        label.textColor = UIColor.luxeGray()
         label.text = getTitleForSection(section: section).uppercased()
         view.addSubview(label)
         return view
