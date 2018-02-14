@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SettingsCell: UITableViewCell {
+class SettingsCell: UITableViewCell, UITextFieldDelegate {
     
     static let height: CGFloat = 50
     static let reuseIdIndicator = "SettingsCell"
@@ -29,10 +29,12 @@ class SettingsCell: UITableViewCell {
     var editImage: UIImageView
     var leftImage: UIImageView
     var settingLabel: UILabel
+    var settingTextField: UITextField
     var switchView: UISwitch?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         settingLabel = UILabel(frame: .zero)
+        settingTextField = UITextField(frame: .zero)
         leftImage = UIImageView(frame: .zero)
         editImage = UIImageView(frame: .zero)
         
@@ -43,9 +45,20 @@ class SettingsCell: UITableViewCell {
         self.backgroundColor = .clear
         self.accessoryType = .disclosureIndicator
         self.contentView.addSubview(settingLabel)
+        self.contentView.addSubview(settingTextField)
         self.contentView.addSubview(leftImage)
         self.contentView.addSubview(editImage)
         setupViews()
+        
+        let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onEditClicked))
+        singleTap.numberOfTapsRequired = 1
+        editImage.isUserInteractionEnabled = true
+        editImage.addGestureRecognizer(singleTap)
+        
+        settingTextField.isHidden = true
+        settingTextField.delegate = self
+        settingTextField.returnKeyType = .done
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,6 +89,11 @@ class SettingsCell: UITableViewCell {
             make.top.bottom.right.equalToSuperview()
             make.left.equalTo(leftImage.snp.right).offset(15)
         }
+        
+        settingTextField.snp.makeConstraints { make in
+            make.top.bottom.right.equalToSuperview()
+            make.left.equalTo(leftImage.snp.right).offset(15)
+        }
     }
     
     public func setText(text: String, leftImageName: String? = nil, editImageName: String? = nil) {
@@ -90,6 +108,11 @@ class SettingsCell: UITableViewCell {
             }
                 
             settingLabel.snp.remakeConstraints { make in
+                make.top.bottom.right.equalToSuperview()
+                make.left.equalTo(leftImage.snp.right).offset(15)
+            }
+            
+            settingTextField.snp.remakeConstraints { make in
                 make.top.bottom.right.equalToSuperview()
                 make.left.equalTo(leftImage.snp.right).offset(15)
             }
@@ -128,21 +151,32 @@ class SettingsCell: UITableViewCell {
         if editImage.image == nil {
             return
         }
-        editImage.animateAlpha(show: isEditing)
-        if isEditing {
-            editImage.snp.updateConstraints { make in
-                make.width.equalTo(20)
+        UIView.animate(withDuration: 0.3, animations: {
+            if self.isEditing {
+                self.editImage.alpha = 1
+                self.editImage.snp.updateConstraints { make in
+                    make.width.equalTo(20)
+                }
+                self.leftImage.snp.updateConstraints { make in
+                    make.left.equalToSuperview().offset(50)
+                }
+            } else {
+                self.editImage.alpha = 0
+                self.editImage.snp.updateConstraints { make in
+                    make.width.equalTo(0)
+                }
+                self.leftImage.snp.updateConstraints { make in
+                    make.left.equalToSuperview().offset(15)
+                }
             }
-            leftImage.snp.updateConstraints { make in
-                make.left.equalToSuperview().offset(50)
-            }
-        } else {
-            editImage.snp.updateConstraints { make in
-                make.width.equalTo(0)
-            }
-            leftImage.snp.updateConstraints { make in
-                make.left.equalToSuperview().offset(15)
-            }
+        })
+        
+    }
+    
+    @objc internal func onEditClicked() {
+        if settingTextField.isHidden {
+            settingTextField.isHidden = false
+            settingLabel.isHidden = true
         }
     }
     
@@ -154,6 +188,12 @@ class SettingsCell: UITableViewCell {
     override func setEditing(_ editing: Bool, animated: Bool) {
         super.setEditing(editing, animated: animated)
         resetConstraints()
+    }
+    
+    //MARK: UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        // validate phone number
+        return true
     }
     
 }

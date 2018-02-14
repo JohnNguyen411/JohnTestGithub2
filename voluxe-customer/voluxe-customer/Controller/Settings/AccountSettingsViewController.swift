@@ -205,6 +205,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
                 if let realm = self.realm, let addresses = self.addresses {
                     try? realm.write {
                         realm.delete(addresses[indexPath.row])
+                        self.addressesCount = addresses.count
                     }
                     tableView.deleteRows(at: [indexPath], with: .automatic)
                 }
