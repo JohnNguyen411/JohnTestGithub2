@@ -220,18 +220,25 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                     return
                 }
                 // add location to realm
-                let customerAddress = CustomerAddress()
+                var customerAddress = CustomerAddress()
+                let addressString: String = currentLocationInfo["formattedAddress"] as! String
                 
-                customerAddress.location = Location(name: currentLocationInfo["formattedAddress"] as? String, latitude: nil, longitude: nil, location: currentLocationPlacemark.location?.coordinate)
+                customerAddress.location = Location(name: addressString, latitude: nil, longitude: nil, location: currentLocationPlacemark.location?.coordinate)
                 customerAddress.createdAt = Date()
                 customerAddress.volvoCustomerId = user!.volvoCustomerId
                 
                 if let realm = self.realm {
-                    try? realm.write {
-                        realm.add(customerAddress)
-                        if let addresses = addresses {
-                            addressesCount = addresses.count
+                    // "volvoCustomerId = %@", user.volvoCustomerId ?? ""
+                    let existingAddress = realm.objects(CustomerAddress.self).filter("location.address = %@ AND volvoCustomerId = %@", addressString, user!.volvoCustomerId ?? "").first
+                    if existingAddress == nil {
+                        try? realm.write {
+                            realm.add(customerAddress)
+                            if let addresses = addresses {
+                                addressesCount = addresses.count
+                            }
                         }
+                    } else {
+                        customerAddress = existingAddress!
                     }
                 }
                 
