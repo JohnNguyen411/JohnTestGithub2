@@ -30,6 +30,8 @@ class GroupedVerticalStepView: UIView {
     func addStep(step: Step, index: Int) {
         
         let stepView = StepView(step: step, index: index)
+        stepView.setCurrent(isCurrent: index == 0)
+        
         addSubview(stepView)
         
         stepView.snp.makeConstraints{ make in
@@ -52,7 +54,10 @@ class GroupedVerticalStepView: UIView {
             if stepView.step.id == step.id {
                 stepView.updateStep(step: step, index: index)
                 indexInList = index
-                break
+                stepView.setCurrent(isCurrent: true)
+            } else {
+                // not current
+                stepView.setCurrent(isCurrent: false)
             }
         }
         
