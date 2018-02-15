@@ -53,6 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         uiNavigationController.navigationBar.backgroundColor = UIColor("#FFFFFF")
         uiNavigationController.navigationBar.tintColor = UIColor("#000000")
         
+        navigationController = uiNavigationController
+
         leftViewController.mainNavigationViewController = navigationController
         leftViewController.mainViewController = mainViewController
         
@@ -62,7 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         menuController.opacityView.removeFromSuperview()
         
         slideMenuController = menuController
-        navigationController = uiNavigationController
         
         if let navigationController = self.navigationController {
             AppDelegate.navigationBarHeight = navigationController.navigationBar.frame.size.height
