@@ -10,6 +10,7 @@ import Foundation
 
 final class RequestedServiceManager {
     
+    private var selfInitiated = false
     private var service: Service?
     private var dealership: Dealership?
     private var loaner: Bool = true
@@ -48,8 +49,11 @@ final class RequestedServiceManager {
         return booking
     }
     
-    func setService(service: Service) {
+    func setService(service: Service, selfInitiated: Bool? = nil) {
         self.service = service
+        if let selfInitiated = selfInitiated {
+            self.selfInitiated = selfInitiated
+        }
     }
     
     func setDealership(dealership: Dealership) {
@@ -70,6 +74,10 @@ final class RequestedServiceManager {
     
     func getLoaner() -> Bool {
         return loaner
+    }
+    
+    func isSelfInitiated() -> Bool {
+        return selfInitiated
     }
     
     func setPickupTimeSlot(timeSlot: DealershipTimeSlot) {

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import QuartzCore
 import SlideMenuControllerSwift
 import CoreLocation
 import RealmSwift
@@ -20,6 +21,19 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     var serviceState: ServiceState
     var checkupLabelHeight: CGFloat = 0
     var vehicleImageHeight: CGFloat = 100
+    
+    let updateLabel: UILabel = {
+        let textView = UILabel(frame: .zero)
+        textView.text = (.New as String).uppercased()
+        textView.font = .volvoSansLightBold(size: 14)
+        textView.textColor = .white
+        textView.backgroundColor = .luxeDeepBlue()
+        textView.numberOfLines = 0
+        textView.layer.masksToBounds = true
+        textView.textAlignment = .center
+        textView.layer.cornerRadius = 5
+        return textView
+    }()
     
     let checkupLabel: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -119,6 +133,9 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         contentView.addSubview(leftButton)
         contentView.addSubview(rightButton)
         contentView.addSubview(confirmButton)
+        contentView.addSubview(updateLabel)
+        
+        updateLabel.isHidden = true
         
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsetsMake(20, 20, 20, 20))
@@ -140,6 +157,13 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             make.left.right.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom).offset(40)
             make.height.equalTo(VLTitledLabel.height)
+        }
+        
+        updateLabel.snp.makeConstraints { make in
+            make.right.equalToSuperview()
+            make.top.equalTo(scheduledServiceView).offset(-3)
+            make.width.greaterThanOrEqualTo(45)
+            make.height.equalTo(20)
         }
         
         descriptionButton.snp.makeConstraints { make in
@@ -182,14 +206,21 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     func fillViews() {
         if serviceState == .idle || serviceState == .needService {
             let service = Service(name: "10,000 mile check-up", price: Double(400))
-            RequestedServiceManager.sharedInstance.setService(service: service)
+            RequestedServiceManager.sharedInstance.setService(service: service, selfInitiated: true)
             
             noteLabel.text = .NotePickup
         }
         vehicleImageView.image = UIImage(named: UserManager.sharedInstance.getVehicle()!.localImageName())
         
         if let service = RequestedServiceManager.sharedInstance.getService() {
-            scheduledServiceView.setTitle(title: .RecommendedService, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
+            var title = String.RecommendedService
+            if RequestedServiceManager.sharedInstance.isSelfInitiated() {
+                title = .SelectedService
+                updateLabel.isHidden = true
+            } else {
+                updateLabel.isHidden = false
+            }
+            scheduledServiceView.setTitle(title: title, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
         }
     }
     
@@ -220,7 +251,9 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 dealershipPrefetching()
                 checkupLabel.text = .ScheduleDropDealership
             } else {
+                updateLabel.isHidden = false
                 checkupLabel.text = .VolvoServiceComplete
+                scheduledServiceView.setTitle(title: .CompletedService)
             }
             noteLabel.isHidden = false
             
@@ -230,10 +263,18 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 make.height.equalTo(checkupLabelHeight)
             }
             
+            updateLabel.snp.remakeConstraints { make in
+                make.right.equalToSuperview()
+                make.top.equalTo(scheduledServiceView).offset(-3)
+                make.width.greaterThanOrEqualTo(40)
+                make.height.equalTo(20)
+            }
+            
             leftButton.animateAlpha(show: true)
             rightButton.animateAlpha(show: true)
             confirmButton.animateAlpha(show: false)
         } else {
+            updateLabel.isHidden = false
             noteLabel.isHidden = true
             scheduledServiceView.isHidden = true
             descriptionButton.isHidden = true
@@ -242,6 +283,13 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 make.left.right.equalToSuperview()
                 make.top.equalTo(vehicleImageView.snp.bottom).offset(40)
                 make.height.equalTo(checkupLabelHeight)
+            }
+            
+            updateLabel.snp.remakeConstraints { make in
+                make.left.equalToSuperview()
+                make.bottom.equalTo(checkupLabel.snp.top).offset(-10)
+                make.width.greaterThanOrEqualTo(40)
+                make.height.equalTo(20)
             }
             
             if state == .servicing {
@@ -267,6 +315,10 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 }
                 
             } else if state == .pickupDriverAtDealership {
+                
+                updateLabel.isHidden = false
+                updateLabel.text = (.Update as String).uppercased()
+                
                 confirmButton.isHidden = false
                 checkupLabel.text = String(format: NSLocalizedString(.YourVehicleHasArrived), (RequestedServiceManager.sharedInstance.getDealership()?.name)!)
 

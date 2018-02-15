@@ -87,6 +87,10 @@ class VLTitledLabel: UIView {
         descRightLabel.text = rightDescription
     }
     
+    func setTitle(title: String) {
+        titleLabel.text = title
+    }
+    
     func setLeftDescription(leftDescription: String) {
         descLeftLabel.text = leftDescription
     }

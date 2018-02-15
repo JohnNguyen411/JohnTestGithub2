@@ -37,4 +37,8 @@ extension String {
         }
         return "\(largeNumber)"
     }
+    
+    static func addLeftRightPadding(string: String) -> String {
+        return " \(string) "
+    }
 }

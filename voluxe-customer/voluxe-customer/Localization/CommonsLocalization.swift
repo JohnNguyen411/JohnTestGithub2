@@ -18,5 +18,7 @@ extension String {
     static let smallMinute = NSLocalizedString("smallMinute")
     static let Done = NSLocalizedString("Done")
     static let Edit = NSLocalizedString("Edit")
+    static let New = NSLocalizedString("New")
+    static let Update = NSLocalizedString("Update")
     
 }
