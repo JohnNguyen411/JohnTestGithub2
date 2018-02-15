@@ -62,35 +62,11 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         newLocationTextField.textField.delegate = self
         newLocationTextField.rightLabel.isHidden = true
         newLocationTextField.rightLabel.accessibilityIdentifier = "newLocationTextField.rightLabel"
-        /*
-         newLocationTextField.setRightButtonText(rightButtonText: (.Add as String).uppercased(), actionBlock: {
-         // look for real address
-         self.locationManager.geocodeUsingGoogleAddressString(address: self.newLocationTextField.text as NSString, onGeocodingCompletionHandler: { (gecodeInfo: NSDictionary?, placemark: CLPlacemark?, error: String?) in
-         if let error = error {
-         } else if let gecodeInfo = gecodeInfo {
-         
-         self.locationInfoArray.append(gecodeInfo)
-         self.locationPlacemarkArray.append(placemark!)
-         
-         let formattedAddress = gecodeInfo["formattedAddress"] as! String
-         
-         DispatchQueue.main.sync {
-         self.addLocation(location: formattedAddress)
-         self.newLocationTextField.textField.resignFirstResponder()
-         self.newLocationTextField.textField.text = ""
-         }
-         }
-         
-         })
-         })
-         */
-        //addLocation(location: .YourLocation)
+  
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         bottomButton.isEnabled = false
         groupedLabels.delegate = self
-        
-        //
         
         user = UserManager.sharedInstance.getCustomer()
         realm = try? Realm()
@@ -132,6 +108,9 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
     override func setupViews() {
         super.setupViews()
+        
+        groupedLabels.clipsToBounds = true
+        
         containerView.addSubview(groupedLabels)
         containerView.addSubview(newLocationLabel)
         containerView.addSubview(newLocationTextField)

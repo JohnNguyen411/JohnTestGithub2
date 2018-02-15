@@ -139,6 +139,8 @@ class BaseViewController: UIViewController, PresentrDelegate {
         customPresenter.keyboardTranslationType = .moveUp
         customPresenter.dismissOnTap = dismissOnTap
         
+        let shadow = PresentrShadow(shadowColor: .black, shadowOpacity: 0.8, shadowOffset: CGSize(width: 0, height: 5), shadowRadius: 4.0)
+        customPresenter.dropShadow = shadow
         
         return customPresenter
     }
