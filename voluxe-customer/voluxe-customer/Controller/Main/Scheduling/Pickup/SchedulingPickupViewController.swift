@@ -154,7 +154,6 @@ class SchedulingPickupViewController: SchedulingViewController {
     }
     
     override func confirmButtonClick() {
-        // StateServiceManager.sharedInstance.updateState(state: .pickupScheduled)
         createBooking(loaner: RequestedServiceManager.sharedInstance.getLoaner())
     }
     
@@ -163,6 +162,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         if Config.sharedInstance.isMock {
             //todo mock
             StateServiceManager.sharedInstance.updateState(state: .pickupScheduled)
+            confirmButton.isLoading = false
             return
         }
         
@@ -175,7 +175,8 @@ class SchedulingPickupViewController: SchedulingViewController {
         guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else {
             return
         }
-        confirmButton.isEnabled = false
+        
+        confirmButton.isLoading = true
         
         BookingAPI().createBooking(customerId: customerId, vehicleId: vehicleId, dealershipId: dealership.id, loaner: loaner).onSuccess { result in
             if let booking = result?.data?.result {
@@ -184,13 +185,15 @@ class SchedulingPickupViewController: SchedulingViewController {
                         realm.add(booking, update: true)
                     }
                 }
-                RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: false)
+                self.createPickupRequest(bookingId: booking.id)
+            } else {
+                // todo show error
+                self.confirmButton.isLoading = false
             }
-            self.confirmButton.isEnabled = true
             
             }.onFailure { error in
                 // todo show error
-                self.confirmButton.isEnabled = true
+                self.confirmButton.isLoading = false
         }
     }
     
@@ -211,14 +214,18 @@ class SchedulingPickupViewController: SchedulingViewController {
                                 booking.pickupRequest = realmPickupRequest
                                 realm.add(booking, update: true)
                             }
-                            RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true)
+                            UserManager.sharedInstance.addBooking(booking: booking)
                         }
                     }
+                } else {
+                    // todo show error
+                    self.confirmButton.isLoading = false
                 }
-                self.confirmButton.isEnabled = true
+                // todo show error
+                self.confirmButton.isLoading = false
                 }.onFailure { error in
                     // todo show error
-                    self.confirmButton.isEnabled = true
+                    self.confirmButton.isLoading = false
             }
         }
     }

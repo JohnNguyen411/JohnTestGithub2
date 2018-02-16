@@ -24,8 +24,27 @@ class VLButton : UIButton {
     static let primaryHeight = 40
     static let secondaryHeight = 30
 
+    let activityIndicator = UIActivityIndicatorView(frame: .zero)
     var iconView: UIImageView?
     var type: VLButtonType?
+    var titleText = ""
+    
+    var isLoading = false {
+        didSet {
+            iconView?.animateAlpha(show: !isLoading)
+            activityIndicator.animateAlpha(show: isLoading)
+            
+            if isLoading {
+                setTitle(title: "")
+                isEnabled = false
+                activityIndicator.startAnimating()
+            } else {
+                activityIndicator.stopAnimating()
+                isEnabled = true
+                setTitle(title: titleText)
+            }
+        }
+    }
 
     /**
      Need to make constraints after initializing the button
@@ -36,16 +55,24 @@ class VLButton : UIButton {
         setType(type: type)
         
         if let title = title {
+            self.titleText = title
             setTitle(title: title)
         }
         
         if let actionBlock = actionBlock {
             setActionBlock(actionBlock: actionBlock)
         }
+        
+        activityIndicator.isHidden = true
+        self.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(25)
+        }
     }
     
     
-    override var isEnabled:Bool {
+    override var isEnabled: Bool {
         didSet {
             self.alpha = isEnabled ? 1 : 0.8
         }

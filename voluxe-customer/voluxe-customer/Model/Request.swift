@@ -15,10 +15,11 @@ class Request: Object, Mappable {
     @objc dynamic var id: Int = -1
     @objc dynamic var bookingId: Int = -1
     @objc dynamic var timeslotId: Int = -1
-    @objc dynamic var state: String?
+    @objc dynamic var state: String = "created"
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
     @objc dynamic var location: Location?
+    @objc dynamic var timeSlot: DealershipTimeSlot?
     
     required convenience init?(map: Map) {
         self.init()
@@ -29,6 +30,7 @@ class Request: Object, Mappable {
         bookingId <- map["booking_id"]
         timeslotId <- map["driver_dealership_time_slot_assignment_id"]
         location <- map["location"]
+        timeSlot <- map["time_slot"]
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
     }
@@ -37,5 +39,16 @@ class Request: Object, Mappable {
         return "id"
     }
     
+    
+    func getState() -> State {
+        return State(rawValue: state)!
+    }
+    
+    func isToday() -> Bool {
+        if let timeSlot = timeSlot, let from = timeSlot.from {
+            return from.isToday
+        }
+        return false
+    }
     
 }

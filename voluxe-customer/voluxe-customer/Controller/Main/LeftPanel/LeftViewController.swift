@@ -24,7 +24,7 @@ protocol LeftMenuProtocol : class {
 class LeftViewController : UIViewController, LeftMenuProtocol {
     
     var tableView = UITableView(frame: .zero)
-    var menus = ["Main", .Settings, "Logout"]
+    var menus = [String.YourVolvos, String.Settings, String.Logout]
     var mainNavigationViewController: UIViewController!
     var mainViewController: MainViewController!
     var imageHeaderView: UIImageView!

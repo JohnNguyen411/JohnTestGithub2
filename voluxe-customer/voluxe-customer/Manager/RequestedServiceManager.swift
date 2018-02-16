@@ -8,6 +8,9 @@
 
 import Foundation
 
+/***
+ *** RequestedServiceManager use to handle current Booking (currently scheduling or active booking)
+ ***/
 final class RequestedServiceManager {
     
     private var selfInitiated = false

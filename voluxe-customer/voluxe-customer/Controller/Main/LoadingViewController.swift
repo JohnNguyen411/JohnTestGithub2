@@ -124,7 +124,7 @@ class LoadingViewController: ChildViewController {
     }
     
     private func getBookings(customerId: Int) {
-        // Get Customer's Vehicles based on ID
+        // Get Customer's Bookings based on ID
         BookingAPI().getBookings(customerId: customerId).onSuccess { result in
             if let bookings = result?.data?.result, bookings.count > 0 {
                 if let realm = self.realm {
@@ -132,8 +132,8 @@ class LoadingViewController: ChildViewController {
                         realm.add(bookings, update: true)
                     }
                 }
-                let booking = bookings[0] // TODO take last booking instead of first one
-                RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true)
+                // set the bookings
+                UserManager.sharedInstance.setBookings(bookings: bookings)
                 
             } else {
                 // error

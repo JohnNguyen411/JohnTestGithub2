@@ -81,10 +81,12 @@ class VLTitledLabel: UIView {
         setTitle(title: title, leftDescription: leftDescription, rightDescription: rightDescription)
     }
     
-    func setTitle(title: String, leftDescription: String, rightDescription: String) {
+    func setTitle(title: String, leftDescription: String, rightDescription: String? = nil) {
         titleLabel.text = title
         descLeftLabel.text = leftDescription
-        descRightLabel.text = rightDescription
+        if let rightDescription = rightDescription {
+            descRightLabel.text = rightDescription
+        }
     }
     
     func setTitle(title: String) {

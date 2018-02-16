@@ -33,4 +33,8 @@ class Service: Object, Mappable {
         serviceDescription <- map["description"]
     }
     
+    
+    static func mockService() -> Service {
+        return Service(name: "10,000 mile check-up", price: Double(400))
+    }
 }

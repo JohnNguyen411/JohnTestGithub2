@@ -19,6 +19,7 @@ class VehiclesViewController: ChildViewController {
 
     var serviceState: ServiceState
     var vehicles: [Vehicle]?
+    var selectedVehicle: Vehicle?
 
     let vehicleCollectionView: UICollectionView
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
@@ -149,6 +150,7 @@ class VehiclesViewController: ChildViewController {
         vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
         vehicleMileageView.setLeftDescription(leftDescription: String.intToStringDecimal(largeNumber: vehicle.mileage()))
         vehicleImageView.image = UIImage(named: vehicle.localImageName())
+        selectedVehicle = vehicle
     }
     
     override func stateDidChange(state: ServiceState) {
@@ -156,11 +158,13 @@ class VehiclesViewController: ChildViewController {
         // check if service scheduled
         
         //todo: check service for selected vehicle
-        if RequestedServiceManager.sharedInstance.getBooking() != nil {
+        if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getBookingsForVehicle(vehicle: selectedVehicle) {
             scheduledServiceView.snp.updateConstraints { make in
                 make.height.equalTo(100)
             }
             scheduledServiceView.isHidden = false
+            //todo: remove MOCK SERVICE
+            scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: Service.mockService().name!)
         } else {
             scheduledServiceView.snp.updateConstraints { make in
                 make.height.equalTo(0)
@@ -172,7 +176,7 @@ class VehiclesViewController: ChildViewController {
     
     //MARK: Actions methods
     func confirmButtonClick() {
-        self.childViewDelegate?.pushViewController(controller: ServiceListViewController(), animated: true, backLabel: "Back", title: "New Service")
+        self.childViewDelegate?.pushViewController(controller: ServiceListViewController(), animated: true, backLabel: .Back, title: .NewService)
     }
     
 }

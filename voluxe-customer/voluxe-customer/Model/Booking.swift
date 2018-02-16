@@ -16,10 +16,11 @@ class Booking: Object, Mappable {
     @objc dynamic var id: Int = -1
     @objc dynamic var customerId: Int = -1
     @objc dynamic var customer: Customer?
+    @objc dynamic var state: String = "created"
     @objc dynamic var vehicleId: Int = -1
     @objc dynamic var vehicle: Vehicle?
     @objc dynamic var dealershipId: Int = -1
-    @objc dynamic var dealership: Vehicle?
+    @objc dynamic var dealership: Dealership?
     @objc dynamic var loanerVehicleRequested: Bool = false
     @objc dynamic var loanerVehicleId: Int = -1
     @objc dynamic var loanerVehicle: Vehicle?
@@ -39,6 +40,7 @@ class Booking: Object, Mappable {
         id <- map["id"]
         customerId <- map["customer_id"]
         customer <- map["customer"]
+        state <- map["state"]
         vehicleId <- map["vehicle_id"]
         vehicle <- map["vehicle"]
         dealershipId <- map["dealership_id"]
@@ -57,5 +59,29 @@ class Booking: Object, Mappable {
     
     override static func primaryKey() -> String? {
         return "id"
+    }
+    
+    
+    func getState() -> State {
+        return State(rawValue: state)!
+    }
+    
+    
+    func hasUpcomingRequestToday() -> Bool {
+        if let pickupRequest = pickupRequest {
+            if pickupRequest.getState() == .created {
+                if pickupRequest.isToday() {
+                    return true
+                }
+            }
+        }
+        if let dropOffRequest = pickupRequest {
+            if dropOffRequest.getState() == .created {
+                if dropOffRequest.isToday() {
+                    return true
+                }
+            }
+        }
+        return false
     }
 }
