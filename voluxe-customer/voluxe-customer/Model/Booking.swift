@@ -66,7 +66,6 @@ class Booking: Object, Mappable {
         return State(rawValue: state)!
     }
     
-    
     func hasUpcomingRequestToday() -> Bool {
         if let pickupRequest = pickupRequest {
             if pickupRequest.getState() == .created {
@@ -83,5 +82,15 @@ class Booking: Object, Mappable {
             }
         }
         return false
+    }
+    
+    static func mockBooking(customer: Customer, vehicle: Vehicle) -> Booking {
+        let booking = Booking()
+        booking.id = Int(arc4random_uniform(99999)) + 1
+        booking.customer = customer
+        booking.customerId = customer.id
+        booking.vehicle = vehicle
+        booking.vehicleId = vehicle.id
+        return booking
     }
 }

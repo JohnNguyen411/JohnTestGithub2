@@ -78,8 +78,11 @@ final class BookingSyncManager {
     }
     
     private func getBooking(customerId: Int, bookingId: Int) {
+        if Config.sharedInstance.isMock {
+            return
+        }
         // Get Customer's Vehicles based on ID
-        BookingAPI().getBooking(customerId: customerId,bookingId: bookingId).onSuccess { result in
+        BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
             if let booking = result?.data?.result {
                 if let realm = try? Realm() {
                     try? realm.write {

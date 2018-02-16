@@ -160,9 +160,14 @@ class SchedulingPickupViewController: SchedulingViewController {
     private func createBooking(loaner: Bool) {
         
         if Config.sharedInstance.isMock {
-            //todo mock
-            StateServiceManager.sharedInstance.updateState(state: .pickupScheduled)
-            confirmButton.isLoading = false
+            let booking = Booking.mockBooking(customer: UserManager.sharedInstance.getCustomer()!, vehicle: UserManager.sharedInstance.getVehicle()!)
+            if let realm = self.realm {
+                try? realm.write {
+                    realm.add(booking, update: true)
+                }
+            }
+            self.createPickupRequest(booking: booking)
+
             return
         }
         
@@ -185,7 +190,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                         realm.add(booking, update: true)
                     }
                 }
-                self.createPickupRequest(bookingId: booking.id)
+                self.createPickupRequest(booking: booking)
             } else {
                 // todo show error
                 self.confirmButton.isLoading = false
@@ -197,26 +202,19 @@ class SchedulingPickupViewController: SchedulingViewController {
         }
     }
     
-    private func createPickupRequest(bookingId: Int) {
+    private func createPickupRequest(booking: Booking) {
         if let timeSlot = RequestedServiceManager.sharedInstance.getPickupTimeSlot(),
             let location = RequestedServiceManager.sharedInstance.getPickupLocation() {
-            BookingAPI().createPickupRequest(bookingId: bookingId, timeSlotId: timeSlot.id, location: location).onSuccess { result in
+            
+            if Config.sharedInstance.isMock {
+                let pickupRequest = Request.mockRequest(bookingId: booking.id, location: location, timeSlot: timeSlot)
+                self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
+                return
+            }
+            
+            BookingAPI().createPickupRequest(bookingId: booking.id, timeSlotId: timeSlot.id, location: location).onSuccess { result in
                 if let pickupRequest = result?.data?.result {
-                    if let realm = self.realm {
-                        try? realm.write {
-                            realm.add(pickupRequest)
-                        }
-                        let realmPickupRequest = realm.objects(Request.self).filter("id = \(pickupRequest.id)").first
-                        
-                        if let booking = realm.objects(Booking.self).filter("id = \(bookingId)").first {
-                            
-                            try? realm.write {
-                                booking.pickupRequest = realmPickupRequest
-                                realm.add(booking, update: true)
-                            }
-                            UserManager.sharedInstance.addBooking(booking: booking)
-                        }
-                    }
+                    self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
                 } else {
                     // todo show error
                     self.confirmButton.isLoading = false
@@ -226,6 +224,24 @@ class SchedulingPickupViewController: SchedulingViewController {
                 }.onFailure { error in
                     // todo show error
                     self.confirmButton.isLoading = false
+            }
+        }
+    }
+    
+    private func manageNewPickupRequest(pickupRequest: Request, booking: Booking) {
+        if let realm = self.realm {
+            try? realm.write {
+                realm.add(pickupRequest)
+            }
+            let realmPickupRequest = realm.objects(Request.self).filter("id = \(pickupRequest.id)").first
+            
+            if let booking = realm.objects(Booking.self).filter("id = \(booking.id)").first {
+                
+                try? realm.write {
+                    booking.pickupRequest = realmPickupRequest
+                    realm.add(booking, update: true)
+                }
+                UserManager.sharedInstance.addBooking(booking: booking)
             }
         }
     }

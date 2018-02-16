@@ -51,4 +51,15 @@ class Request: Object, Mappable {
         return false
     }
     
+    
+    static func mockRequest(bookingId: Int, location: Location, timeSlot: DealershipTimeSlot) -> Request {
+        let request = Request()
+        request.id = Int(arc4random_uniform(99999)) + 1
+        request.bookingId = bookingId
+        request.location = location
+        request.timeSlot = timeSlot
+        request.timeslotId = timeSlot.id
+        return request
+    }
+    
 }
