@@ -12,6 +12,10 @@ import UIKit
 extension UIView {
     
     func animateAlpha(show: Bool) {
+        if show && isHidden {
+            self.alpha = 0
+            self.isHidden = false
+        }
         UIView.animate(withDuration: 0.3, animations: {
             self.alpha = show ? 1 : 0
         }) { (finished) in

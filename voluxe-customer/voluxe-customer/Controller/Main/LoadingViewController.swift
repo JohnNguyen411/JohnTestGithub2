@@ -78,6 +78,9 @@ class LoadingViewController: ChildViewController {
                         }
                         UserManager.sharedInstance.setVehicles(vehicles: Array(cars))
                         
+                        let bookings = realm.objects(Booking.self).filter("customerId = %@ AND (state = %@ OR state = %@)", customerId, "created", "started")
+                        UserManager.sharedInstance.setBookings(bookings: Array(bookings))
+                        
                         StateServiceManager.sharedInstance.updateState(state: ServiceState.idle)
                         
                         //StateServiceManager.sharedInstance.updateState(state: .needService)

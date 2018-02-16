@@ -24,7 +24,6 @@ class VehiclesViewController: ChildViewController {
     let vehicleCollectionView: UICollectionView
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
     let vehicleImageView = UIImageView(frame: .zero)
-    let vehicleMileageView = VLTitledLabel(title: .Mileage, leftDescription: "", rightDescription: "")
     let preferedDealershipView = VLTitledLabel(title: .PreferredDealership, leftDescription: "", rightDescription: "")
     let scheduledServiceView = VLTitledLabel()
     let contentView = UIView(frame: .zero)
@@ -80,7 +79,6 @@ class VehiclesViewController: ChildViewController {
         contentView.addSubview(vehicleCollectionView)
         contentView.addSubview(vehicleTypeView)
         contentView.addSubview(vehicleImageView)
-        contentView.addSubview(vehicleMileageView)
         contentView.addSubview(preferedDealershipView)
         contentView.addSubview(scheduledServiceView)
         contentView.addSubview(confirmButton)
@@ -106,17 +104,12 @@ class VehiclesViewController: ChildViewController {
             make.height.equalTo(100)
         }
         
-        vehicleMileageView.snp.makeConstraints { make in
+        preferedDealershipView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom).offset(30)
             make.height.equalTo(VLTitledLabel.height)
         }
         
-        preferedDealershipView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(vehicleMileageView.snp.bottom).offset(20)
-            make.height.equalTo(VLTitledLabel.height)
-        }
         
         scheduledServiceView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
@@ -148,9 +141,9 @@ class VehiclesViewController: ChildViewController {
     
     func selectVehicle(vehicle: Vehicle) {
         vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
-        vehicleMileageView.setLeftDescription(leftDescription: String.intToStringDecimal(largeNumber: vehicle.mileage()))
         vehicleImageView.image = UIImage(named: vehicle.localImageName())
         selectedVehicle = vehicle
+        stateDidChange(state: serviceState)
     }
     
     override func stateDidChange(state: ServiceState) {
@@ -165,11 +158,13 @@ class VehiclesViewController: ChildViewController {
             scheduledServiceView.isHidden = false
             //todo: remove MOCK SERVICE
             scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: Service.mockService().name!)
+            confirmButton.animateAlpha(show: false)
         } else {
             scheduledServiceView.snp.updateConstraints { make in
                 make.height.equalTo(0)
             }
             scheduledServiceView.isHidden = true
+            confirmButton.animateAlpha(show: true)
         }
         
     }
