@@ -160,7 +160,7 @@ class SchedulingPickupViewController: SchedulingViewController {
     private func createBooking(loaner: Bool) {
         
         if Config.sharedInstance.isMock {
-            let booking = Booking.mockBooking(customer: UserManager.sharedInstance.getCustomer()!, vehicle: UserManager.sharedInstance.getVehicle()!)
+            let booking = Booking.mockBooking(customer: UserManager.sharedInstance.getCustomer()!, vehicle: UserManager.sharedInstance.getVehicle()!, dealership: RequestedServiceManager.sharedInstance.getDealership()!)
             if let realm = self.realm {
                 try? realm.write {
                     realm.add(booking, update: true)

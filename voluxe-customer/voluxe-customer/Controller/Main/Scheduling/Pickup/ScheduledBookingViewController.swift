@@ -33,14 +33,15 @@ class ScheduledBookingViewController: SchedulingViewController {
         contentView.addSubview(rightButton)
         
         leftButton.snp.makeConstraints { make in
-            make.left.bottom.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(2).offset(-10)
+            make.bottom.equalToSuperview().offset(-10)
+            make.left.equalToSuperview().offset(10)
+            make.width.equalToSuperview().dividedBy(2).offset(-20)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
         rightButton.snp.makeConstraints { make in
-            make.right.bottom.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(2).offset(-10)
+            make.bottom.right.equalToSuperview().offset(-10)
+            make.width.equalToSuperview().dividedBy(2).offset(-20)
             make.height.equalTo(VLButton.primaryHeight)
         }
     }

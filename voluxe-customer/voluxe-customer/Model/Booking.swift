@@ -95,13 +95,15 @@ class Booking: Object, Mappable {
         return .needService
     }
     
-    static func mockBooking(customer: Customer, vehicle: Vehicle) -> Booking {
+    static func mockBooking(customer: Customer, vehicle: Vehicle, dealership: Dealership) -> Booking {
         let booking = Booking()
         booking.id = Int(arc4random_uniform(99999)) + 1
         booking.customer = customer
         booking.customerId = customer.id
         booking.vehicle = vehicle
         booking.vehicleId = vehicle.id
+        booking.dealershipId = dealership.id
+        booking.dealership = dealership
         return booking
     }
 }
