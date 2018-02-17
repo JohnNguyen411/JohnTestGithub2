@@ -117,6 +117,13 @@ final class UserManager {
         return self.vehicleBookings[vehicle.id]
     }
     
+    public func getFirstBookingForVehicle(vehicle: Vehicle) -> Booking? {
+        if let bookings = getBookingsForVehicle(vehicle: vehicle), bookings.count > 0 {
+            return bookings[0]
+        }
+        return nil
+    }
+    
     public func addBooking(booking: Booking) {
         var carBookings: [Booking]? = self.vehicleBookings[booking.vehicleId]
         if carBookings != nil {

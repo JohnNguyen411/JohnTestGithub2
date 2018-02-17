@@ -21,6 +21,9 @@
 "New" = "New";
 "Login" = "Login";
 "Logout" = "Logout";
+"Cancel" = "Cancel";
+"CancelPickup" = "Cancel Pickup";
+"CancelDropOff" = "Cancel DropOff";
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
@@ -103,7 +106,7 @@
 
 /***************** Service ***************/
 "NewService" = "New Service";
-"ScheduledService" = "ScheduledService";
+"ScheduledService" = "Scheduled Service";
 
 /***************** Settings ***************/
 "Settings" = "Settings";

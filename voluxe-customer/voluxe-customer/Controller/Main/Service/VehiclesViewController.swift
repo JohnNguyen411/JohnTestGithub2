@@ -50,6 +50,11 @@ class VehiclesViewController: ChildViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // init tap events
+        scheduledServiceView.isUserInteractionEnabled = true
+        let scheduledServiceTap = UITapGestureRecognizer(target: self, action: #selector(self.scheduledServiceClick))
+        scheduledServiceView.addGestureRecognizer(scheduledServiceTap)
+        
         vehicleImageView.contentMode = .scaleAspectFit
         
         confirmButton.setActionBlock {
@@ -151,7 +156,7 @@ class VehiclesViewController: ChildViewController {
         // check if service scheduled
         
         //todo: check service for selected vehicle
-        if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getBookingsForVehicle(vehicle: selectedVehicle) {
+        if let selectedVehicle = selectedVehicle, let _ = UserManager.sharedInstance.getFirstBookingForVehicle(vehicle: selectedVehicle) {
             scheduledServiceView.snp.updateConstraints { make in
                 make.height.equalTo(100)
             }
@@ -174,6 +179,12 @@ class VehiclesViewController: ChildViewController {
         self.childViewDelegate?.pushViewController(controller: ServiceListViewController(), animated: true, backLabel: .Back, title: .NewService)
     }
     
+    
+    @objc func scheduledServiceClick() {
+        if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getFirstBookingForVehicle(vehicle: selectedVehicle) {
+            self.childViewDelegate?.pushViewController(controller: ScheduledBookingViewController(booking: booking), animated: true, backLabel: .Back, title: .ScheduledService)
+        }
+    }
 }
 
 extension VehiclesViewController: UICollectionViewDataSource, UICollectionViewDelegate {

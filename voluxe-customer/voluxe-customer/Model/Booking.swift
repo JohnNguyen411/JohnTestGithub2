@@ -84,6 +84,17 @@ class Booking: Object, Mappable {
         return false
     }
     
+    public static func getStateForBooking(booking: Booking?) -> ServiceState {
+        if let booking = booking {
+            if booking.dropoffRequest != nil {
+                return .deliveryScheduled
+            } else if (booking.pickupRequest != nil) {
+                return .pickupScheduled
+            }
+        }
+        return .needService
+    }
+    
     static func mockBooking(customer: Customer, vehicle: Vehicle) -> Booking {
         let booking = Booking()
         booking.id = Int(arc4random_uniform(99999)) + 1
