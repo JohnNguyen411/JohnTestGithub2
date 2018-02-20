@@ -267,6 +267,11 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             rightButton.animateAlpha(show: true)
             confirmButton.animateAlpha(show: false)
         } else {
+            
+            var dealership = RequestedServiceManager.sharedInstance.getDealership()
+            if dealership == nil, let booking = UserManager.sharedInstance.getFirstBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+                dealership = booking.dealership
+            }
             noteLabel.isHidden = true
             scheduledServiceView.isHidden = true
             descriptionButton.isHidden = true
@@ -293,7 +298,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 confirmButton.isHidden = true
                 leftButton.isHidden = true
                 rightButton.isHidden = true
-                checkupLabel.text = String(format: NSLocalizedString(.DriverDrivingToDealership), (RequestedServiceManager.sharedInstance.getDealership()?.name)!)
+                checkupLabel.text = String(format: NSLocalizedString(.DriverDrivingToDealership), (dealership?.name)!)
 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
@@ -306,7 +311,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 showUpdateLabel(show: true, title: (.Update as String).uppercased(), width: 80, right: false)
                 
                 confirmButton.isHidden = false
-                checkupLabel.text = String(format: NSLocalizedString(.YourVehicleHasArrived), (RequestedServiceManager.sharedInstance.getDealership()?.name)!)
+                checkupLabel.text = String(format: NSLocalizedString(.YourVehicleHasArrived), (dealership?.name)!)
 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
@@ -319,7 +324,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 leftButton.isHidden = true
                 rightButton.isHidden = true
                 
-                checkupLabel.text = String(format: NSLocalizedString(.DeliveryComplete), (RequestedServiceManager.sharedInstance.getDealership()?.name)!)
+                checkupLabel.text = String(format: NSLocalizedString(.DeliveryComplete), (dealership?.name)!)
             }
         }
         
@@ -349,7 +354,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             updateLabel.snp.remakeConstraints { make in
                 make.left.equalToSuperview()
                 make.bottom.equalTo(checkupLabel.snp.top).offset(-10)
-                make.width.greaterThanOrEqualTo(40)
+                make.width.greaterThanOrEqualTo(width)
                 make.height.equalTo(20)
             }
         }
