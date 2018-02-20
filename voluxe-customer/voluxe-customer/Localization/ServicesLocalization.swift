@@ -11,5 +11,7 @@ import Foundation
 
 extension String {
     static let NewService = NSLocalizedString("NewService")
+    static let AreYouSureCancelDropOff = NSLocalizedString("AreYouSureCancelDropOff")
+    static let AreYouSureCancelPickup = NSLocalizedString("AreYouSureCancelPickup")
     
 }

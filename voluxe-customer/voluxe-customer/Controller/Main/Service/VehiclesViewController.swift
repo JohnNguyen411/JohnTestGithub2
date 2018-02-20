@@ -15,7 +15,7 @@ import BrightFutures
 import Alamofire
 
 
-class VehiclesViewController: ChildViewController {
+class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
 
     var serviceState: ServiceState
     var vehicles: [Vehicle]?
@@ -182,8 +182,13 @@ class VehiclesViewController: ChildViewController {
     
     @objc func scheduledServiceClick() {
         if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getFirstBookingForVehicle(vehicle: selectedVehicle) {
-            self.childViewDelegate?.pushViewController(controller: ScheduledBookingViewController(booking: booking), animated: true, backLabel: .Back, title: .ScheduledService)
+            self.childViewDelegate?.pushViewController(controller: ScheduledBookingViewController(booking: booking, delegate: self), animated: true, backLabel: .Back, title: .ScheduledService)
         }
+    }
+    
+    func onCancelRequest() {
+        // refresh
+        stateDidChange(state: serviceState)
     }
 }
 

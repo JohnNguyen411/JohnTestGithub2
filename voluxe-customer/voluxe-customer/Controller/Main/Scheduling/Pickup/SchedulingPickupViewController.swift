@@ -231,7 +231,7 @@ class SchedulingPickupViewController: SchedulingViewController {
     private func manageNewPickupRequest(pickupRequest: Request, booking: Booking) {
         if let realm = self.realm {
             try? realm.write {
-                realm.add(pickupRequest)
+                realm.add(pickupRequest, update: true)
             }
             let realmPickupRequest = realm.objects(Request.self).filter("id = \(pickupRequest.id)").first
             

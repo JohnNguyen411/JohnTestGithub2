@@ -92,7 +92,7 @@ class Booking: Object, Mappable {
                 return .pickupScheduled
             }
         }
-        return .needService
+        return .idle
     }
     
     static func mockBooking(customer: Customer, vehicle: Vehicle, dealership: Dealership) -> Booking {

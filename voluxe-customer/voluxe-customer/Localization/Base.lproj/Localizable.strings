@@ -107,6 +107,8 @@
 /***************** Service ***************/
 "NewService" = "New Service";
 "ScheduledService" = "Scheduled Service";
+"AreYouSureCancelPickup" = "Are you sure you want to cancel your pickup?";
+"AreYouSureCancelDropOff" = "Are you sure you want to cancel your dropoff?";
 
 /***************** Settings ***************/
 "Settings" = "Settings";

@@ -107,6 +107,11 @@ final class UserManager {
                     RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true) // set current booking
                 }
             }
+            if bookings.count == 0 {
+                // empty array
+                RequestedServiceManager.sharedInstance.setBooking(booking: nil, updateState: true) // no current booking
+                self.vehicleBookings.removeAll()
+            }
         } else {
             RequestedServiceManager.sharedInstance.setBooking(booking: nil, updateState: true) // no current booking
             self.vehicleBookings.removeAll()
