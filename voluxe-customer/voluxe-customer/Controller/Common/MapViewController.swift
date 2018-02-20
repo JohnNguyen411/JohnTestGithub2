@@ -32,7 +32,7 @@ class MapViewController: UIViewController {
         mapView.settings.zoomGestures = false
         
         flagMarker.iconView = etaMarker
-        driverMarker.icon = UIImage(named: "driver_location")
+        driverMarker.icon = UIImage(named: "marker_car")
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -58,6 +58,7 @@ class MapViewController: UIViewController {
     func updateDriverLocation(location: CLLocationCoordinate2D) {
         // get ETA between location and flagMarker position
         driverMarker.map = mapView
+        driverMarker.rotation = degreeBearing(from: self.driverMarker.position, to: location)
         driverMarker.position = location
         moveCamera()
     }
@@ -86,4 +87,24 @@ class MapViewController: UIViewController {
         }
     }
     
+    func degreeBearing(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) -> Double {
+        var dlon = self.toRad(to.longitude - from.longitude)
+        let dPhi = log(tan(self.toRad(to.latitude) / 2 + .pi / 4) / tan(self.toRad(from.latitude) / 2 + .pi / 4))
+        if  abs(dlon) > .pi{
+            dlon = (dlon > 0) ? (dlon - 2 * .pi) : (2 * .pi + dlon)
+        }
+        return self.toBearing(atan2(dlon, dPhi))
+    }
+    
+    func toRad(_ degrees: Double) -> Double{
+        return degrees*(.pi / 180)
+    }
+    
+    func toBearing(_ radians: Double) -> Double{
+        return (toDegrees(radians) + 360).truncatingRemainder(dividingBy: 360)
+    }
+    
+    func toDegrees(_ radians: Double) -> Double{
+        return radians * 180 / .pi
+    }
 }

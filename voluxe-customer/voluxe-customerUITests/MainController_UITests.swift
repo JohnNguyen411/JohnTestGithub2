@@ -96,7 +96,37 @@ class MainController_UITests: XCTestCase {
         nextButtonButton.tap()
         sleep(1)
     }
-    
+    /*
+    func testNewFlow() {
+        
+        let app = XCUIApplication()
+        app/*@START_MENU_TOKEN@*/.buttons["NEW SERVICE"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"].buttons[\"NEW SERVICE\"]",".buttons[\"NEW SERVICE\"]"],[[[-1,4],[-1,3],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,4],[-1,3],[-1,2,3],[-1,1,2]],[[-1,4],[-1,3],[-1,2,3]],[[-1,4],[-1,3]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app/*@START_MENU_TOKEN@*/.tables.containing(.other, identifier:"ROUTINE SERVICES")/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"].tables",".tables.containing(.other, identifier:\"REPAIRS\")",".tables.containing(.other, identifier:\"ROUTINE SERVICES\")"],[[[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.children(matching: .cell).element(boundBy: 0).staticTexts["Oil Change"].tap()
+        app.alerts["Allow “voluxe-customer” to access your location?"].buttons["Always Allow"].tap()
+        app/*@START_MENU_TOKEN@*/.buttons["rightButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"]",".buttons[\"VOLVO PICKUP\"]",".buttons[\"rightButton\"]"],[[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3]],[[-1,5],[-1,4],[-1,3,4]],[[-1,5],[-1,4]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let newlocationtextfieldTextfieldTextField = app/*@START_MENU_TOKEN@*/.textFields["newLocationTextField.textField"]/*[[".otherElements[\"locationVC\"]",".textFields[\"123 Main Street, San Francisco\"]",".textFields[\"newLocationTextField.textField\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        newlocationtextfieldTextfieldTextField.tap()
+        newlocationtextfieldTextfieldTextField.typeText("535 Mission St")
+        app.windows.containing(.other, identifier:"slideMenuController").children(matching: .other).element(boundBy: 1).tap()
+        
+        let bottombuttonButton = app/*@START_MENU_TOKEN@*/.buttons["bottomButton"]/*[[".otherElements[\"locationVC\"]",".buttons[\"NEXT\"]",".buttons[\"bottomButton\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        bottombuttonButton.tap()
+        
+        let bottombuttonButton2 = app/*@START_MENU_TOKEN@*/.buttons["bottomButton"]/*[[".otherElements[\"dateModal\"]",".buttons[\"NEXT\"]",".buttons[\"bottomButton\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        bottombuttonButton2.tap()
+        app/*@START_MENU_TOKEN@*/.buttons["bottomButton"]/*[[".otherElements[\"loanerVC\"]",".buttons[\"NEXT\"]",".buttons[\"bottomButton\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let confirmbuttonButton = app/*@START_MENU_TOKEN@*/.scrollViews.otherElements.buttons["confirmButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"].scrollViews.otherElements",".buttons[\"CONFIRM PICKUP\"]",".buttons[\"confirmButton\"]",".scrollViews.otherElements"],[[[-1,6,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,6,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,6,4],[-1,3,4],[-1,2,3]],[[-1,6,4],[-1,3,4]],[[-1,5],[-1,4]]],[0,0]]@END_MENU_TOKEN@*/
+        confirmbuttonButton.tap()
+        app/*@START_MENU_TOKEN@*/.buttons["rightButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"]",".buttons[\"VOLVO DELIVERY\"]",".buttons[\"rightButton\"]"],[[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3]],[[-1,5],[-1,4],[-1,3,4]],[[-1,5],[-1,4]]],[0]]@END_MENU_TOKEN@*/.tap()
+        bottombuttonButton2.tap()
+        bottombuttonButton.tap()
+        confirmbuttonButton.tap()
+        app/*@START_MENU_TOKEN@*/.buttons["confirmButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"]",".buttons[\"OK\"]",".buttons[\"confirmButton\"]"],[[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3]],[[-1,5],[-1,4],[-1,3,4]],[[-1,5],[-1,4]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+    }
+    */
     func testPickupDelivery() {
         internalTestSchedulePickup()
         internalTestPickup()

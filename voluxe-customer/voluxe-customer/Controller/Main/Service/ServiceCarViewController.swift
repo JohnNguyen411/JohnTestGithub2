@@ -308,7 +308,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 
             } else if state == .pickupDriverAtDealership {
                 
-                showUpdateLabel(show: true, title: (.Update as String).uppercased(), width: 80, right: false)
+                showUpdateLabel(show: true, title: (.Update as String).uppercased(), width: 70, right: false)
                 
                 confirmButton.isHidden = false
                 checkupLabel.text = String(format: NSLocalizedString(.YourVehicleHasArrived), (dealership?.name)!)
