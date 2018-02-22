@@ -196,8 +196,8 @@ class MainController_UITests: XCTestCase {
         sleep(2)
         
         removeUIInterruptionMonitor(handler)
-
-        app/*@START_MENU_TOKEN@*/.buttons["rightButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"]",".buttons[\"VOLVO PICKUP\"]",".buttons[\"rightButton\"]"],[[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3]],[[-1,5],[-1,4],[-1,3,4]],[[-1,5],[-1,4]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        app.buttons["confirmButton"].tap()
         sleep(1)
 
 

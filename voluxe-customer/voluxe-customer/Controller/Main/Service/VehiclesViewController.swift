@@ -81,6 +81,8 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         
         self.view.addSubview(contentView)
         
+        confirmButton.accessibilityLabel = "confirmButton"
+        
         contentView.addSubview(vehicleCollectionView)
         contentView.addSubview(vehicleTypeView)
         contentView.addSubview(vehicleImageView)

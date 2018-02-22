@@ -1,0 +1,24 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:ios)
+
+lane :tests_mocks do
+  run_tests(workspace: "voluxe-customer.xcworkspace",
+            devices: ["iPhone 6s (11.1)",],
+            scheme: "Mock") 
+end
+
+lane :beta do
+  build_app(scheme: "Beta",
+            workspace: "voluxe-customer.xcworkspace",
+            include_bitcode: true)
+end

@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<testsuites name='voluxe-customerUITests.xctest' tests='2' failures='2'>
+  <testsuite name='voluxe_customerUITests.MainController_UITests' tests='2' failures='2'>
+    <testcase classname='voluxe_customerUITests.MainController_UITests' name='testFTUE'>
+      <failure message='No matches found for Find: Elements matching predicate &apos;&quot;next button&quot; IN identifiers&apos; from input {('>&lt;unknown&gt;:0</failure>
+    </testcase>
+    <testcase classname='voluxe_customerUITests.MainController_UITests' name='testPickupDelivery'>
+      <failure message='No matches found for Find: Elements matching predicate &apos;&quot;confirmButton&quot; IN identifiers&apos; from input {('>&lt;unknown&gt;:0</failure>
+    </testcase>
+  </testsuite>
+</testsuites>
