@@ -483,6 +483,9 @@
 		6CE687872037A3D000D915FC /* ScheduledBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */; };
 		6CE687882037A3D000D915FC /* ScheduledBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */; };
 		6CE687892037A3D000D915FC /* ScheduledBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */; };
+		6CE68792203F7D5A00D915FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CE68796203F7D5A00D915FC /* InfoPlist.strings */; };
+		6CE68793203F7D5A00D915FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CE68796203F7D5A00D915FC /* InfoPlist.strings */; };
+		6CE68794203F7D5A00D915FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CE68796203F7D5A00D915FC /* InfoPlist.strings */; };
 		6CEA0D591FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
 		6CEA0D5A1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
 		6CEA0D5B1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
@@ -713,6 +716,9 @@
 		6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLDateFormatter.swift; sourceTree = "<group>"; };
 		6CE687822036634A00D915FC /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledBookingViewController.swift; sourceTree = "<group>"; };
+		6CE68795203F7D5A00D915FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6CE68797203F7D7900D915FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		6CE68798203F874F00D915FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		6CE902141FA14C1200EE106C /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CE902151FA14C1200EE106C /* AlamofireObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = AlamofireObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CE902161FA14C1200EE106C /* DateToolsSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DateToolsSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1257,6 +1263,7 @@
 				6CCD42941FA013E3000AC6C9 /* Assets.xcassets */,
 				6CCD42991FA013E3000AC6C9 /* Info.plist */,
 				6C2B324B1FB3C88D00B943AC /* Objc-Bridge-Header.h */,
+				6CE68796203F7D5A00D915FC /* InfoPlist.strings */,
 			);
 			path = "voluxe-customer";
 			sourceTree = "<group>";
@@ -1472,6 +1479,7 @@
 				6C9543AB1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
 				6CC83A801FA140D300FE0633 /* ngrok.json in Resources */,
 				6C9543A81FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */,
+				6CE68792203F7D5A00D915FC /* InfoPlist.strings in Resources */,
 				6CFBF9B21FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf in Resources */,
 				6CC83A841FA140D300FE0633 /* sensus_prod.json in Resources */,
 				6C7DDE181FE1B03F000E2822 /* GoogleService-Info.plist in Resources */,
@@ -1496,6 +1504,7 @@
 				6C58333D1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
 				6C9543A91FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */,
 				6C6F4BC41FA8FBCF00087FE7 /* Localizable.strings in Resources */,
+				6CE68793203F7D5A00D915FC /* InfoPlist.strings in Resources */,
 				6C58331D1FB3AF7200F6BFE0 /* AlertViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1513,6 +1522,7 @@
 				6CBF9FE71FC5FB9A002BC7FC /* sensus_test.json in Resources */,
 				6CBF9FE81FC5FB9A002BC7FC /* VolvoSansPro-Light.ttf in Resources */,
 				6CBF9FE91FC5FB9A002BC7FC /* VolvoSansPro-Medium.ttf in Resources */,
+				6CE68794203F7D5A00D915FC /* InfoPlist.strings in Resources */,
 				6CBF9FEA1FC5FB9A002BC7FC /* VolvoSerifPro-Italic.ttf in Resources */,
 				6CBF9FEB1FC5FB9A002BC7FC /* VolvoSerifPro-Regular.ttf in Resources */,
 				6C7DDE1A1FE1B03F000E2822 /* GoogleService-Info.plist in Resources */,
@@ -2299,8 +2309,18 @@
 			isa = PBXVariantGroup;
 			children = (
 				6C6F4BC81FA8FC4600087FE7 /* Base */,
+				6CE68798203F874F00D915FC /* en */,
 			);
 			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
+		6CE68796203F7D5A00D915FC /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				6CE68795203F7D5A00D915FC /* en */,
+				6CE68797203F7D7900D915FC /* Base */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
