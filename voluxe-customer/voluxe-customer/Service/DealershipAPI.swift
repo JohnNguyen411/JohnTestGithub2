@@ -33,7 +33,7 @@ class DealershipAPI: NSObject {
             if response.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(response.error as! AFError)
+                promise.failure(Errors.safeAFError(error: response.error!))
             }
         }
         return promise.future
@@ -59,7 +59,7 @@ class DealershipAPI: NSObject {
             if response.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(response.error as! AFError)
+                promise.failure(Errors.safeAFError(error: response.error!))
             }
         }
         return promise.future
@@ -84,7 +84,7 @@ class DealershipAPI: NSObject {
             if response.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(response.error as! AFError)
+                promise.failure(Errors.safeAFError(error: response.error!))
             }
         }
         return promise.future
