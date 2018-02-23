@@ -108,17 +108,46 @@ class BookingAPI: NSObject {
      
      - Returns: A Future ResponseObject containing the Pickup, or an AFError if an error occured
      */
-    func createPickupRequest(bookingId: Int, timeSlotId: Int, location: Location) -> Future<ResponseObject<MappableDataObject<Request>>?, AFError> {
+    func createPickupRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location) -> Future<ResponseObject<MappableDataObject<Request>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Request>>?, AFError>()
 
         let params: Parameters = [
-            "booking_id": bookingId,
-            "dealership_time_slot_id": timeSlotId, 
-            "state": "created",
+            "dealership_time_slot_id": timeSlotId,
             "location": location.toJSON()
             ]
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/driver-pickup-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+            var responseObject: ResponseObject<MappableDataObject<Request>>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<MappableDataObject<Request>>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    /**
+     Create a DropOff Request
+     - parameter bookingId: The booking ID related to the pickup
+     - parameter timeSlotId: The TimeSlot ID Choosed by the customer for the pickup
+     - parameter location: The location choosed by the customer for the pickup
+     
+     - Returns: A Future ResponseObject containing the Pickup, or an AFError if an error occured
+     */
+    func createDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location) -> Future<ResponseObject<MappableDataObject<Request>>?, AFError> {
+        let promise = Promise<ResponseObject<MappableDataObject<Request>>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/driver-pickup-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        let params: Parameters = [
+            "dealership_time_slot_id": timeSlotId,
+            "location": location.toJSON()
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/driver-dropoff-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
             var responseObject: ResponseObject<MappableDataObject<Request>>?
             
             if let json = response.result.value as? [String: Any] {

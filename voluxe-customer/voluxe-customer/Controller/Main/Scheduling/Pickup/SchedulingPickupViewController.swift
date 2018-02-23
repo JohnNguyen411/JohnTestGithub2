@@ -159,6 +159,10 @@ class SchedulingPickupViewController: SchedulingViewController {
     
     private func createBooking(loaner: Bool) {
         
+        guard let customerId = UserManager.sharedInstance.getCustomerId() else {
+            return
+        }
+        
         if Config.sharedInstance.isMock {
             let booking = Booking.mockBooking(customer: UserManager.sharedInstance.getCustomer()!, vehicle: UserManager.sharedInstance.getVehicle()!, dealership: RequestedServiceManager.sharedInstance.getDealership()!)
             if let realm = self.realm {
@@ -166,14 +170,12 @@ class SchedulingPickupViewController: SchedulingViewController {
                     realm.add(booking, update: true)
                 }
             }
-            self.createPickupRequest(booking: booking)
+            self.createPickupRequest(customerId: customerId, booking: booking)
 
             return
         }
         
-        guard let customerId = UserManager.sharedInstance.getCustomerId() else {
-            return
-        }
+       
         guard let vehicleId = UserManager.sharedInstance.getVehicleId() else {
             return
         }
@@ -190,7 +192,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                         realm.add(booking, update: true)
                     }
                 }
-                self.createPickupRequest(booking: booking)
+                self.createPickupRequest(customerId: customerId, booking: booking)
             } else {
                 // todo show error
                 self.confirmButton.isLoading = false
@@ -202,7 +204,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         }
     }
     
-    private func createPickupRequest(booking: Booking) {
+    private func createPickupRequest(customerId: Int, booking: Booking) {
         if let timeSlot = RequestedServiceManager.sharedInstance.getPickupTimeSlot(),
             let location = RequestedServiceManager.sharedInstance.getPickupLocation() {
             
@@ -212,7 +214,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 return
             }
             
-            BookingAPI().createPickupRequest(bookingId: booking.id, timeSlotId: timeSlot.id, location: location).onSuccess { result in
+            BookingAPI().createPickupRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location).onSuccess { result in
                 if let pickupRequest = result?.data?.result {
                     self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
                 } else {
