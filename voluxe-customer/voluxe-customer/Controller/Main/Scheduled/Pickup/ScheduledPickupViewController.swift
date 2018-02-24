@@ -65,6 +65,7 @@ class ScheduledPickupViewController: ScheduledViewController {
         }
         if let pickupRequest = booking.pickupRequest, let driver = pickupRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
             mapVC.updateDriverLocation(location: coordinates)
+            newDriver(driver: driver)
         }
     }
     

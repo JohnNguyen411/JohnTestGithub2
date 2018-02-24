@@ -66,6 +66,7 @@ class ScheduledDropoffViewController: ScheduledViewController {
         }
         if let dropoffRequest = booking.dropoffRequest, let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
             mapVC.updateDriverLocation(location: coordinates)
+            newDriver(driver: driver)
         }
     }
     

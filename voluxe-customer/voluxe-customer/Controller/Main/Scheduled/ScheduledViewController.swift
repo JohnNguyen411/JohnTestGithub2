@@ -209,7 +209,9 @@ class ScheduledViewController: ChildViewController {
         }
         
         driverName.text = driver.name
-        driverIcon.sd_setImage(with: URL(string: driver.iconUrl!))
+        if let iconUrl = driver.iconUrl {
+            driverIcon.sd_setImage(with: URL(string: iconUrl))
+        }
     }
     
     private func updateState(id: ServiceState, stepState: StepState) {
