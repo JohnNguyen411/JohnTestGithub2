@@ -18,6 +18,7 @@ class Request: Object, Mappable {
     @objc dynamic var state: String = "requested"
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
+    @objc dynamic var driver: Driver?
     @objc dynamic var location: Location?
     @objc dynamic var timeSlot: DealershipTimeSlot?
     
@@ -32,6 +33,7 @@ class Request: Object, Mappable {
         location <- map["location"]
         timeSlot <- map["dealership_time_slot"]
         state <- map["state"]
+        driver <- map["driver_dealership_time_slot_assignment.driver"]
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
     }

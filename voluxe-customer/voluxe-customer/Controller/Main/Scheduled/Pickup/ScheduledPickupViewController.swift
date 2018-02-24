@@ -13,6 +13,11 @@ import GoogleMaps
 
 class ScheduledPickupViewController: ScheduledViewController {
     
+    convenience init(state: ServiceState) {
+        self.init()
+        stateDidChange(state: state)
+    }
+    
     override func generateStates() {
         states = [ServiceState.enRouteForPickup, ServiceState.enRouteForPickup, ServiceState.enRouteForPickup, ServiceState.enRouteForPickup,
                   ServiceState.enRouteForPickup, ServiceState.enRouteForPickup, ServiceState.nearbyForPickup, ServiceState.nearbyForPickup,
@@ -41,6 +46,26 @@ class ScheduledPickupViewController: ScheduledViewController {
         driverLocations.append(ScheduledViewController.driverLocation7)
         driverLocations.append(ScheduledViewController.driverLocation8)
         driverLocations.append(ScheduledViewController.driverLocation9)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
+            return
+        }
+        if let pickupRequest = booking.pickupRequest, let location = pickupRequest.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
+            mapVC.updateRequestLocation(location: coordinates)
+        }
+    }
+    
+    override func stateDidChange(state: ServiceState) {
+        super.stateDidChange(state: state)
+        guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
+            return
+        }
+        if let pickupRequest = booking.pickupRequest, let driver = pickupRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
+            mapVC.updateDriverLocation(location: coordinates)
+        }
     }
     
 }

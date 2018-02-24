@@ -88,7 +88,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledPickupViewController.self))! {
                 changeView = false
             } else {
-                let scheduledPickupViewController = ScheduledPickupViewController()
+                let scheduledPickupViewController = ScheduledPickupViewController(state: serviceState)
                 currentViewController = scheduledPickupViewController
             }
             
@@ -112,7 +112,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
                 changeView = false
             } else {
-                let scheduledDeliveryViewController = ScheduledDropoffViewController()
+                let scheduledDeliveryViewController = ScheduledDropoffViewController(state: serviceState)
                 currentViewController = scheduledDeliveryViewController
             }
         }

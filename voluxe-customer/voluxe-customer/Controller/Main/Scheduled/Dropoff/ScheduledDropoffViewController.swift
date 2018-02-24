@@ -14,6 +14,11 @@ import GoogleMaps
 
 class ScheduledDropoffViewController: ScheduledViewController {
     
+    convenience init(state: ServiceState) {
+        self.init()
+        stateDidChange(state: state)
+    }
+    
     override func generateStates() {
         states = [ServiceState.enRouteForDropoff, ServiceState.enRouteForDropoff, ServiceState.enRouteForDropoff, ServiceState.enRouteForDropoff,
                   ServiceState.enRouteForDropoff, ServiceState.enRouteForDropoff, ServiceState.nearbyForDropoff, ServiceState.nearbyForDropoff,
@@ -42,6 +47,26 @@ class ScheduledDropoffViewController: ScheduledViewController {
         driverLocations.append(ScheduledViewController.driverLocation7)
         driverLocations.append(ScheduledViewController.driverLocation8)
         driverLocations.append(ScheduledViewController.driverLocation9)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
+            return
+        }
+        if let dropoffRequest = booking.dropoffRequest, let location = dropoffRequest.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
+            mapVC.updateRequestLocation(location: coordinates)
+        }
+    }
+    
+    override func stateDidChange(state: ServiceState) {
+        super.stateDidChange(state: state)
+        guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
+            return
+        }
+        if let dropoffRequest = booking.dropoffRequest, let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
+            mapVC.updateDriverLocation(location: coordinates)
+        }
     }
     
 }

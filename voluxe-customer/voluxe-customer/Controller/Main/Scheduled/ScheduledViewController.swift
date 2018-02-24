@@ -27,8 +27,7 @@ class ScheduledViewController: ChildViewController {
     static let driverLocation8 = CLLocationCoordinate2D(latitude: 37.788148, longitude: -122.399627)
     static let driverLocation9 = CLLocationCoordinate2D(latitude: 37.789094, longitude: -122.398403)
     
-    static let mockDriver = Driver(id: 0, name: "Michelle", iconUrl: "https://www.biography.com/.image/t_share/MTE5NDg0MDU0ODEyNzIyNzAz/michelle-obama-thumb-2.jpg",
-                                   phone: nil, email: "")
+    static let mockDriver = Driver.mockDriver(id: 0, name: "Michelle", iconUrl: "https://www.biography.com/.image/t_share/MTE5NDg0MDU0ODEyNzIyNzAz/michelle-obama-thumb-2.jpg")
     
     
     private static let mapViewHeight = 160
@@ -67,9 +66,12 @@ class ScheduledViewController: ChildViewController {
     override init() {
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
         super.init()
-        generateStates()
         generateSteps()
-        generateDriverLocations()
+        
+        if Config.sharedInstance.isMock {
+            generateStates()
+            generateDriverLocations()
+        }
         verticalStepView = GroupedVerticalStepView(steps: steps)
         verticalStepView?.accessibilityIdentifier = "verticalStepView"
         mapVC.view.accessibilityIdentifier = "mapVC.view"
@@ -88,8 +90,10 @@ class ScheduledViewController: ChildViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapVC.updateRequestLocation(location: ScheduledViewController.officeLocation)
-        startMockDriving()
+        if Config.sharedInstance.isMock {
+            mapVC.updateRequestLocation(location: ScheduledViewController.officeLocation)
+            startMockDriving()
+        }
     }
     
     override func setupViews() {

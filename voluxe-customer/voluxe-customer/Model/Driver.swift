@@ -8,35 +8,36 @@
 
 import Foundation
 import ObjectMapper
+import RealmSwift
 
-class Driver: NSObject, Mappable {
+class Driver: Object, Mappable {
     
-    var id: Int64?
-    var name: String?
-    var iconUrl: String?
-    var phone: String?
-    var email: String!
-    
-    override init() {
-        super.init()
+    @objc dynamic var id: Int = -1
+    @objc dynamic var name: String?
+    @objc dynamic var iconUrl: String?
+    @objc dynamic var location: Location?
+
+    required convenience init?(map: Map) {
+        self.init()
     }
     
-    init(id: Int64, name: String?, iconUrl: String, phone: String?, email: String) {
-        self.id = id
-        self.name = name
-        self.iconUrl = iconUrl
-        self.phone = phone
-        self.email = email
+    static func mockDriver(id: Int, name: String?, iconUrl: String) -> Driver {
+        let driver = Driver()
+        driver.id = id
+        driver.name = name
+        driver.iconUrl = iconUrl
+        return driver
     }
     
-    required init?(map: Map) {
-    }
     
     func mapping(map: Map) {
         id <- map["id"]
-        name <- map["name"]
-        iconUrl <- map["iconUrl"]
-        phone <- map["phone"]
-        email <- map["email"]
+        name <- map["first_name"]
+        iconUrl <- map["photo_url"]
+        location <- map["location"]
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }
