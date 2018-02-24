@@ -242,7 +242,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         
         confirmButton.isHidden = true
         
-        if state == .needService || state == .serviceCompleted {
+        if state == .needService || state == .completed {
             
             scheduledServiceView.isHidden = false
             descriptionButton.isHidden = false
@@ -284,7 +284,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             
             showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: false)
             
-            if state == .servicing {
+            if state == .service {
                 checkupLabel.text = .VolvoCurrentlyServicing
                 leftButton.isHidden = true
                 rightButton.isHidden = true
@@ -294,7 +294,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                         StateServiceManager.sharedInstance.updateState(state: .serviceCompleted)
                     })
                 }
-            } else if state == .pickupDriverDrivingToDealership {
+            } else if state == .enRouteForService {
                 confirmButton.isHidden = true
                 leftButton.isHidden = true
                 rightButton.isHidden = true
@@ -302,11 +302,11 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
+                        StateServiceManager.sharedInstance.updateState(state: .service)
                     })
                 }
                 
-            } else if state == .pickupDriverAtDealership {
+            } else if state == .service { // TODO: merge with upstairs
                 
                 showUpdateLabel(show: true, title: (.Update as String).uppercased(), width: 70, right: false)
                 
@@ -315,7 +315,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .servicing)
+                        StateServiceManager.sharedInstance.updateState(state: .service)
                     })
                 }
                 

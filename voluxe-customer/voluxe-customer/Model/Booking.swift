@@ -68,14 +68,14 @@ class Booking: Object, Mappable {
     
     func hasUpcomingRequestToday() -> Bool {
         if let pickupRequest = pickupRequest {
-            if pickupRequest.getState() == .created {
+            if pickupRequest.getState() == .requested || pickupRequest.getState() == .started {
                 if pickupRequest.isToday() {
                     return true
                 }
             }
         }
         if let dropOffRequest = pickupRequest {
-            if dropOffRequest.getState() == .created {
+            if dropOffRequest.getState() == .requested || dropOffRequest.getState() == .started {
                 if dropOffRequest.isToday() {
                     return true
                 }
@@ -86,11 +86,7 @@ class Booking: Object, Mappable {
     
     public static func getStateForBooking(booking: Booking?) -> ServiceState {
         if let booking = booking {
-            if booking.dropoffRequest != nil {
-                return .deliveryScheduled
-            } else if (booking.pickupRequest != nil) {
-                return .pickupScheduled
-            }
+            return ServiceState.appStateForBookingState(bookingState: booking.getState())
         }
         return .idle
     }

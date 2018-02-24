@@ -68,7 +68,7 @@ class MapViewController: UIViewController {
     }
     
     func updateServiceState(state: ServiceState) {
-        if state == .pickupDriverArrived {
+        if state == .arrivedForPickup {
             etaMarker.hideEta()
         }
     }

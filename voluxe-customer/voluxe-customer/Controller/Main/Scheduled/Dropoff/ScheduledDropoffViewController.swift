@@ -15,16 +15,16 @@ import GoogleMaps
 class ScheduledDropoffViewController: ScheduledViewController {
     
     override func generateStates() {
-        states = [ServiceState.deliveryInRoute, ServiceState.deliveryInRoute, ServiceState.deliveryInRoute, ServiceState.deliveryInRoute,
-                  ServiceState.deliveryInRoute, ServiceState.deliveryInRoute, ServiceState.deliveryNearby, ServiceState.deliveryNearby,
-                  ServiceState.deliveryArrived]
+        states = [ServiceState.enRouteForDropoff, ServiceState.enRouteForDropoff, ServiceState.enRouteForDropoff, ServiceState.enRouteForDropoff,
+                  ServiceState.enRouteForDropoff, ServiceState.enRouteForDropoff, ServiceState.nearbyForDropoff, ServiceState.nearbyForDropoff,
+                  ServiceState.arrivedForDropoff]
     }
     
     override func generateSteps() {
         let step1 = Step(id: ServiceState.serviceCompleted, text: .VehicleIsReady, state: .done)
-        let step2 = Step(id: ServiceState.deliveryInRoute, text: .DriverEnRoute)
-        let step3 = Step(id: ServiceState.deliveryNearby, text: .DriverNearby)
-        let step4 = Step(id: ServiceState.deliveryArrived, text: .DriverArrived)
+        let step2 = Step(id: ServiceState.enRouteForDropoff, text: .DriverEnRoute)
+        let step3 = Step(id: ServiceState.nearbyForDropoff, text: .DriverNearby)
+        let step4 = Step(id: ServiceState.arrivedForDropoff, text: .DriverArrived)
         
         steps.append(step1)
         steps.append(step2)

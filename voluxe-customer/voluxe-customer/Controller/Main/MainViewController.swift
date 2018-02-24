@@ -66,8 +66,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
                 currentViewController = vehiclesViewController
             }
             
-        } else if serviceState == .needService ||
-            serviceState == .pickupDriverDrivingToDealership || serviceState == .pickupDriverAtDealership {
+        } else if serviceState == .needService || serviceState == .enRouteForService {
             
             if currentViewController != nil && (currentViewController?.isKind(of: ServiceCarViewController.self))! {
                 changeView = false
@@ -85,7 +84,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
                 currentViewController = schedulingPickupViewController
             }
             
-        } else if serviceState.rawValue >= ServiceState.pickupScheduled.rawValue && serviceState.rawValue <= ServiceState.pickupDriverArrived.rawValue {
+        } else if serviceState.rawValue >= ServiceState.pickupScheduled.rawValue && serviceState.rawValue <= ServiceState.arrivedForPickup.rawValue {
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledPickupViewController.self))! {
                 changeView = false
             } else {
@@ -93,7 +92,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
                 currentViewController = scheduledPickupViewController
             }
             
-        } else if serviceState == .servicing || serviceState == .serviceCompleted || serviceState == .completed {
+        } else if serviceState == .service || serviceState == .serviceCompleted || serviceState == .completed {
             
             if currentViewController != nil && (currentViewController?.isKind(of: ServiceCarViewController.self))! {
                 changeView = false
@@ -109,7 +108,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
                 let schedulingDropoffViewController = SchedulingDropoffViewController(state : serviceState)
                 currentViewController = schedulingDropoffViewController
             }
-        } else if serviceState.rawValue >= ServiceState.deliveryScheduled.rawValue && serviceState.rawValue <= ServiceState.deliveryArrived.rawValue {
+        } else if serviceState.rawValue >= ServiceState.dropoffScheduled.rawValue && serviceState.rawValue <= ServiceState.arrivedForDropoff.rawValue {
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
                 changeView = false
             } else {
@@ -144,13 +143,13 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         
         if state.rawValue == ServiceState.idle.rawValue || state.rawValue == ServiceState.needService.rawValue {
             return .ScheduleService
-        } else if state.rawValue >= ServiceState.pickupScheduled.rawValue && state.rawValue < ServiceState.pickupDriverDrivingToDealership.rawValue {
+        } else if state.rawValue >= ServiceState.pickupScheduled.rawValue && state.rawValue < ServiceState.enRouteForService.rawValue {
             return .ScheduledPickup
-        } else if state.rawValue >= ServiceState.pickupDriverDrivingToDealership.rawValue && state.rawValue < ServiceState.serviceCompleted.rawValue {
+        } else if state.rawValue >= ServiceState.enRouteForService.rawValue && state.rawValue < ServiceState.serviceCompleted.rawValue {
             return .CurrentService
         } else if state.rawValue == ServiceState.serviceCompleted.rawValue {
             return .ReturnVehicle
-        } else if state.rawValue > ServiceState.deliveryScheduled.rawValue {
+        } else if state.rawValue > ServiceState.dropoffScheduled.rawValue {
             return .ScheduledDelivery
         }
         return nil

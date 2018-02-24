@@ -15,7 +15,7 @@ class Request: Object, Mappable {
     @objc dynamic var id: Int = -1
     @objc dynamic var bookingId: Int = -1
     @objc dynamic var timeslotId: Int = -1
-    @objc dynamic var state: String = "created"
+    @objc dynamic var state: String = "requested"
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
     @objc dynamic var location: Location?
@@ -30,7 +30,8 @@ class Request: Object, Mappable {
         bookingId <- map["booking_id"]
         timeslotId <- map["driver_dealership_time_slot_assignment_id"]
         location <- map["location"]
-        timeSlot <- map["time_slot"]
+        timeSlot <- map["dealership_time_slot"]
+        state <- map["state"]
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
     }
@@ -40,8 +41,8 @@ class Request: Object, Mappable {
     }
     
     
-    func getState() -> State {
-        return State(rawValue: state)!
+    func getState() -> RequestState {
+        return RequestState(rawValue: state)!
     }
     
     func isToday() -> Bool {
@@ -62,4 +63,10 @@ class Request: Object, Mappable {
         return request
     }
     
+}
+public enum RequestState: String {
+    case requested = "requested"
+    case started = "started"
+    case completed = "completed"
+    case cancelled = "cancelled"
 }

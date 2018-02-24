@@ -90,6 +90,7 @@ final class UserManager {
     
     public func setBookings(bookings: [Booking]?) {
         if let bookings = bookings {
+            var hasUpcomingRequestToday = false
             for booking in bookings {
                 if booking.getState() == .cancelled || booking.getState() == .completed {
                     continue
@@ -104,10 +105,11 @@ final class UserManager {
                 self.vehicleBookings[vehicleId] = carBookings
                 
                 if booking.hasUpcomingRequestToday() {
+                    hasUpcomingRequestToday = true
                     RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true) // set current booking
                 }
             }
-            if bookings.count == 0 {
+            if bookings.count == 0 || !hasUpcomingRequestToday {
                 // empty array
                 RequestedServiceManager.sharedInstance.setBooking(booking: nil, updateState: true) // no current booking
                 self.vehicleBookings.removeAll()

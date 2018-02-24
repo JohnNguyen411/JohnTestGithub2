@@ -132,7 +132,15 @@ class SchedulingDropoffViewController: SchedulingViewController {
     }
     
     override func confirmButtonClick() {
-        StateServiceManager.sharedInstance.updateState(state: .deliveryScheduled)
+        guard let customerId = UserManager.sharedInstance.getCustomerId() else {
+            return
+        }
+        
+        confirmButton.isLoading = true
+        
+       // BookingAPI().createDropoffRequest(customerId: customerId, bookingId: book, timeSlotId: <#T##Int#>, location: <#T##Location#>)
+        
+        
     }
     
 }
