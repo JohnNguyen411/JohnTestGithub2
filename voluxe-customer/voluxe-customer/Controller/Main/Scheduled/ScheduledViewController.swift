@@ -220,6 +220,11 @@ class ScheduledViewController: ChildViewController {
                 step.state = stepState
                 verticalStepView?.updateStep(step: step)
                 break
+            } else if stepState == .done {
+                if step.id.rawValue < id.rawValue {
+                    step.state = .done
+                    verticalStepView?.updateStep(step: step)
+                }
             }
         }
         mapVC.updateServiceState(state: id)
