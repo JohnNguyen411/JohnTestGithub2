@@ -80,6 +80,9 @@
 "EstimatedPickupTime" = "Estimated Pickup Time";
 "DriverDrivingToDealership" = "Our driver is driving your vehicle to %@";
 "YourVehicleHasArrived" = "Your vehicle has arrived safely at %@. We'll alert you next when it's ready.";
+"ContactDriver" = "Contact Driver";
+"CallDriver" = "Call Driver";
+"TextDriver" = "Text Driver";
 
 /***************** Scheduling Dropoff ***************/
 "CurrentService" = "Current Service";

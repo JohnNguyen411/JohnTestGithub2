@@ -163,4 +163,37 @@ class BookingAPI: NSObject {
         return promise.future
     }
     
+    /**
+     Contact Driver
+     - parameter customerId: Customer's Id
+     - parameter bookingId: The booking ID related to the pickup
+     - parameter mode: The contact mode choosen: "text_only" or "voice_only"
+     
+     - Returns: A Future ResponseObject containing the ContactDriver object with text or voice phone number, or an AFError if an error occured
+     */
+    func contactDriver(customerId: Int, bookingId: Int, mode: String) -> Future<ResponseObject<MappableDataObject<ContactDriver>>?, AFError> {
+        let promise = Promise<ResponseObject<MappableDataObject<ContactDriver>>?, AFError>()
+        
+        let params: Parameters = [
+            "mode": mode
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/contact-driver", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+            var responseObject: ResponseObject<MappableDataObject<ContactDriver>>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<MappableDataObject<ContactDriver>>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    
+    
 }

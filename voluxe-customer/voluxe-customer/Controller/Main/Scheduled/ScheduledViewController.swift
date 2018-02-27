@@ -94,6 +94,10 @@ class ScheduledViewController: ChildViewController {
             mapVC.updateRequestLocation(location: ScheduledViewController.officeLocation)
             startMockDriving()
         }
+        
+        driverContact.setActionBlock {
+            self.contactDriverActionSheet()
+        }
     }
     
     override func setupViews() {
@@ -243,6 +247,56 @@ class ScheduledViewController: ChildViewController {
             }.onFailure { error in
                 Logger.print(error)
         }
+        
+    }
+    
+    func contactDriverActionSheet() {
+        let alertController = UIAlertController(title: .ContactDriver, message: nil, preferredStyle: .actionSheet)
+        
+        let textButton = UIAlertAction(title: .TextDriver, style: .default, handler: { (action) -> Void in
+            self.contactDriver(mode: "text_only")
+        })
+        
+        let callButton = UIAlertAction(title: .CallDriver, style: .default, handler: { (action) -> Void in
+            self.contactDriver(mode: "voice_only")
+        })
+        
+        let cancelButton = UIAlertAction(title: .Cancel, style: .cancel, handler: { (action) -> Void in
+            alertController.dismiss(animated: true, completion: nil)
+        })
+        
+        alertController.addAction(textButton)
+        alertController.addAction(callButton)
+        alertController.addAction(cancelButton)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func contactDriver(mode: String) {
+        
+        guard let customerId = UserManager.sharedInstance.getCustomerId() else {
+            return
+        }
+        
+        guard let bookingId = RequestedServiceManager.sharedInstance.getBooking()?.id else {
+            return
+        }
+        
+        BookingAPI().contactDriver(customerId: customerId, bookingId: bookingId, mode: mode).onSuccess { result in
+            if let contactDriver = result?.data?.result {
+                if mode == "text_only" {
+                    // sms
+                    let number = "sms:\(contactDriver.textPhoneNumber ?? "")"
+                    UIApplication.shared.openURL(URL(string: number)!)
+                } else {
+                    let number = "telprompt:\(contactDriver.textPhoneNumber ?? "")"
+                    UIApplication.shared.openURL(URL(string: number)!)
+                }
+            }
+        }.onFailure { error in
+            // todo handle error
+        }
+        
         
     }
     
