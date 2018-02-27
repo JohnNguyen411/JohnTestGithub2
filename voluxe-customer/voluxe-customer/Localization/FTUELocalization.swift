@@ -29,4 +29,9 @@ extension String {
     static let WelcomeSignup = NSLocalizedString("WelcomeSignup")
     static let FirstNamePlaceholder = NSLocalizedString("FirstNamePlaceholder")
     static let LastNamePlaceholder = NSLocalizedString("LastNamePlaceholder")
+    static let CreatePassword = NSLocalizedString("CreatePassword")
+    static let PasswordCondition = NSLocalizedString("PasswordCondition")
+    static let Password = NSLocalizedString("Password")
+    static let RepeatPassword = NSLocalizedString("RepeatPassword")
+
 }

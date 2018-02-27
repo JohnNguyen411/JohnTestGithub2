@@ -473,6 +473,9 @@
 		6CD474B0204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */; };
 		6CD474B1204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */; };
 		6CD474B2204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */; };
+		6CD474B420460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B320460C260082A44A /* FTUESignupPasswordViewController.swift */; };
+		6CD474B520460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B320460C260082A44A /* FTUESignupPasswordViewController.swift */; };
+		6CD474B620460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B320460C260082A44A /* FTUESignupPasswordViewController.swift */; };
 		6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D151FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D161FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
@@ -725,6 +728,7 @@
 		6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrder.swift; sourceTree = "<group>"; };
 		6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUESignupNameViewController.swift; sourceTree = "<group>"; };
 		6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUESignupEmailPhoneViewController.swift; sourceTree = "<group>"; };
+		6CD474B320460C260082A44A /* FTUESignupPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUESignupPasswordViewController.swift; sourceTree = "<group>"; };
 		6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLTitledLabel.swift; sourceTree = "<group>"; };
 		6CD47D171FAD190F00D794A6 /* VLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLButton.swift; sourceTree = "<group>"; };
 		6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLDateFormatter.swift; sourceTree = "<group>"; };
@@ -1179,6 +1183,7 @@
 				6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */,
 				6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */,
 				6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */,
+				6CD474B320460C260082A44A /* FTUESignupPasswordViewController.swift */,
 				6C3A112E1FD8A1390069EF9C /* WebViewLoginViewController.swift */,
 			);
 			path = FTUE;
@@ -1980,6 +1985,7 @@
 				6C20E1901FBE14C300E5D9A0 /* GMDirection.swift in Sources */,
 				6C32C3071FBCC0E900B1218C /* Step.swift in Sources */,
 				6C7342101FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
+				6CD474B420460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */,
 				6CBB4E941FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */,
 				6C8159B41FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
 				6C7495DF1FDA1E870036FC08 /* MappableDataArray.swift in Sources */,
@@ -2044,6 +2050,7 @@
 				6CC921A31FC4FB26009E5164 /* AlertViewController.swift in Sources */,
 				6CC37E471FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6C5833371FB3AF9900F6BFE0 /* PresentrController.swift in Sources */,
+				6CD474B520460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */,
 				6CD474B1204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */,
 				6C20E1D91FBF725F00E5D9A0 /* LocationUtils.swift in Sources */,
 				6CA7C945201A92A7009C00F6 /* ServiceCarViewController.swift in Sources */,
@@ -2261,6 +2268,7 @@
 				6C58332D1FB3AF8000F6BFE0 /* ModalCenterPosition.swift in Sources */,
 				6C7DDE151FDB664D000E2822 /* String+Utils.swift in Sources */,
 				6C32C3191FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */,
+				6CD474B620460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */,
 				6CBAA6D520251B4800F35ECF /* ServiceGroup.swift in Sources */,
 				6C2208821FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */,
 				6C7E66E71FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,

@@ -46,7 +46,10 @@
 "WelcomeSignup" = "Welcome to Luxe by Volvo. Let's create your account.";
 "FirstNamePlaceholder" = "Johan";
 "LastNamePlaceholder" = "Johansson";
-
+"CreatePassword" = "Create a password.";
+"PasswordCondition" = "(At least 8 characters with at least one letter and one numeral)";
+"Password" = "Password";
+"RepeatPassword" = "Repeat Password";
 
 /***************** SchedulePickup ***************/
 "ScheduleService" = "Schedule Service";
