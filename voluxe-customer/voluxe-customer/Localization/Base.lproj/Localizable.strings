@@ -41,6 +41,12 @@
 "ResendCode" = "Resend Code";
 "PhoneNumberVerif_Placeholder" = "0000";
 "WelcomeToAppLabel" = "Welcome to Luxe, %@. Your Volvo account is now active with Luxe.";
+"FirstName" = "First Name";
+"LastName" = "Last Name";
+"WelcomeSignup" = "Welcome to Luxe by Volvo. Let's create your account.";
+"FirstNamePlaceholder" = "Johan";
+"LastNamePlaceholder" = "Johansson";
+
 
 /***************** SchedulePickup ***************/
 "ScheduleService" = "Schedule Service";

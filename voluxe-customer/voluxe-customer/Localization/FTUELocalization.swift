@@ -24,4 +24,9 @@ extension String {
     static let ResendCode = NSLocalizedString("ResendCode")
     static let PhoneNumberVerif_Placeholder = NSLocalizedString("PhoneNumberVerif_Placeholder")
     static let WelcomeToAppLabel = NSLocalizedString("WelcomeToAppLabel")
+    static let FirstName = NSLocalizedString("FirstName")
+    static let LastName = NSLocalizedString("LastName")
+    static let WelcomeSignup = NSLocalizedString("WelcomeSignup")
+    static let FirstNamePlaceholder = NSLocalizedString("FirstNamePlaceholder")
+    static let LastNamePlaceholder = NSLocalizedString("LastNamePlaceholder")
 }
