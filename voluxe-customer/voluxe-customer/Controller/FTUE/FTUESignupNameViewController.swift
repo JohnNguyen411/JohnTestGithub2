@@ -1,5 +1,5 @@
 //
-//  FTUESignupName.swift
+//  FTUESignupNameViewController.swift
 //  voluxe-customer
 //
 //  Created by Giroux, Johan on 2/27/18.
@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FTUESignupName: FTUEChildViewController, FTUEProtocol {
+class FTUESignupNameViewController: FTUEChildViewController, FTUEProtocol {
     
     let welcomeLabel: UILabel = {
         let textView = UILabel(frame: .zero)

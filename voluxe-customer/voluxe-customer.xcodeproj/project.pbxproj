@@ -467,9 +467,12 @@
 		6CD3BCAE200E85FE001DD79B /* RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */; };
 		6CD3BCAF200E85FE001DD79B /* RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */; };
 		6CD3BCB0200E85FE001DD79B /* RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */; };
-		6CD474AC2046034F0082A44A /* FTUESignupName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AB2046034F0082A44A /* FTUESignupName.swift */; };
-		6CD474AD2046034F0082A44A /* FTUESignupName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AB2046034F0082A44A /* FTUESignupName.swift */; };
-		6CD474AE2046034F0082A44A /* FTUESignupName.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AB2046034F0082A44A /* FTUESignupName.swift */; };
+		6CD474AC2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */; };
+		6CD474AD2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */; };
+		6CD474AE2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */; };
+		6CD474B0204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */; };
+		6CD474B1204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */; };
+		6CD474B2204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */; };
 		6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D151FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D161FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
@@ -720,7 +723,8 @@
 		6CD3BCA120098EF2001DD79B /* BookingAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingAPI.swift; sourceTree = "<group>"; };
 		6CD3BCA9200E727A001DD79B /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
 		6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrder.swift; sourceTree = "<group>"; };
-		6CD474AB2046034F0082A44A /* FTUESignupName.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUESignupName.swift; sourceTree = "<group>"; };
+		6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUESignupNameViewController.swift; sourceTree = "<group>"; };
+		6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUESignupEmailPhoneViewController.swift; sourceTree = "<group>"; };
 		6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLTitledLabel.swift; sourceTree = "<group>"; };
 		6CD47D171FAD190F00D794A6 /* VLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLButton.swift; sourceTree = "<group>"; };
 		6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLDateFormatter.swift; sourceTree = "<group>"; };
@@ -1173,7 +1177,8 @@
 				6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */,
 				6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */,
 				6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */,
-				6CD474AB2046034F0082A44A /* FTUESignupName.swift */,
+				6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */,
+				6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */,
 				6C3A112E1FD8A1390069EF9C /* WebViewLoginViewController.swift */,
 			);
 			path = FTUE;
@@ -1878,7 +1883,7 @@
 				6C9B31FF202A51B3006380B9 /* SettingsViewController.swift in Sources */,
 				6CBB4E9D1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
 				6C20E1BB1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
-				6CD474AC2046034F0082A44A /* FTUESignupName.swift in Sources */,
+				6CD474AC2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */,
 				6C9B320B202CFE28006380B9 /* AccountSettingsViewController.swift in Sources */,
 				6C5833131FB3AF5600F6BFE0 /* ModalSize.swift in Sources */,
 				6C32C30B1FBCC1DD00B1218C /* StepView.swift in Sources */,
@@ -1916,6 +1921,7 @@
 				6C9543A21FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6CC37E4A1FA7AF2900DA8F01 /* FTUEViewController.swift in Sources */,
 				6C11208E2016B2C70048A56D /* BookingSyncManager.swift in Sources */,
+				6CD474B0204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */,
 				6CA968B120229FAD00FBEEAB /* VehiclesViewController.swift in Sources */,
 				6CBB4EAF1FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */,
 				6C3FB2BC1FA29A1C00B22EAB /* Location.swift in Sources */,
@@ -2038,6 +2044,7 @@
 				6CC921A31FC4FB26009E5164 /* AlertViewController.swift in Sources */,
 				6CC37E471FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6C5833371FB3AF9900F6BFE0 /* PresentrController.swift in Sources */,
+				6CD474B1204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */,
 				6C20E1D91FBF725F00E5D9A0 /* LocationUtils.swift in Sources */,
 				6CA7C945201A92A7009C00F6 /* ServiceCarViewController.swift in Sources */,
 				6C7495E01FDA1E870036FC08 /* MappableDataArray.swift in Sources */,
@@ -2143,7 +2150,7 @@
 				6C5D866D2032539900BBADDC /* VLVerticalSearchTextField.swift in Sources */,
 				6C20E1911FBE14C300E5D9A0 /* GMDirection.swift in Sources */,
 				6C91BBD41FA7D44D0033C2B1 /* Constants.swift in Sources */,
-				6CD474AD2046034F0082A44A /* FTUESignupName.swift in Sources */,
+				6CD474AD2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */,
 				6CD3BCA520099596001DD79B /* Vehicle.swift in Sources */,
 				6C6F4BCF1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6CBB4EAA1FB4DF7D00C31183 /* FSCalendarExtensions.m in Sources */,
@@ -2191,9 +2198,10 @@
 				6CBB4EB11FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */,
 				6C5833391FB3AF9900F6BFE0 /* Presentr.swift in Sources */,
 				6C1120902016B2C70048A56D /* BookingSyncManager.swift in Sources */,
+				6CD474B2204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */,
 				6C8159B61FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
 				6CCC821D20116B3A003BB3F0 /* DealershipTimeSlot.swift in Sources */,
-				6CD474AE2046034F0082A44A /* FTUESignupName.swift in Sources */,
+				6CD474AE2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */,
 				6C20E1961FBE14D500E5D9A0 /* GMRoutes.swift in Sources */,
 				6C9B3211202E0CED006380B9 /* CustomerAddress.swift in Sources */,
 				6CBF9FF01FC62154002BC7FC /* FTUEChildViewController.swift in Sources */,
