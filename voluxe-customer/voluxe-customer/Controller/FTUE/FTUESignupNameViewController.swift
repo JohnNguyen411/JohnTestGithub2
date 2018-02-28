@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FTUESignupNameViewController: FTUEChildViewController, FTUEProtocol {
+class FTUESignupNameViewController: FTUEChildViewController, FTUEProtocol, UITextFieldDelegate {
     
     let welcomeLabel: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -31,12 +31,17 @@ class FTUESignupNameViewController: FTUEChildViewController, FTUEProtocol {
         firstNameTextField.accessibilityIdentifier = "firstNameTextField"
         lastNameTextField.accessibilityIdentifier = "lastNameTextField"
         
+        firstNameTextField.textField.returnKeyType = .next
         firstNameTextField.textField.autocorrectionType = .no
         lastNameTextField.textField.autocorrectionType = .no
+        lastNameTextField.textField.returnKeyType = .done
         
         firstNameTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         lastNameTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
+        firstNameTextField.textField.delegate = self
+        lastNameTextField.textField.delegate = self
+
         setupViews()
         
     }
@@ -60,8 +65,8 @@ class FTUESignupNameViewController: FTUEChildViewController, FTUEProtocol {
         }
         
         lastNameTextField.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(lastNameTextField)
-            make.top.equalTo(lastNameTextField.snp.bottom)
+            make.left.right.equalTo(firstNameTextField)
+            make.top.equalTo(firstNameTextField.snp.bottom)
             make.height.equalTo(80)
         }
     }
@@ -83,18 +88,35 @@ class FTUESignupNameViewController: FTUEChildViewController, FTUEProtocol {
         guard let lastName = lastName else {
             return false
         }
-        if lastName.isEmpty || lastName.count < 6 {
+        if lastName.isEmpty {
             return false
         }
         return true
     }
     
-    override func checkTextFieldsValidity() {
-        canGoNext(nextEnabled: isFirstNameValid(firstName: firstNameTextField.textField.text) && isLastNameValid(lastName: lastNameTextField.textField.text))
+    override func checkTextFieldsValidity() -> Bool {
+        let enabled = isFirstNameValid(firstName: firstNameTextField.textField.text) && isLastNameValid(lastName: lastNameTextField.textField.text)
+        canGoNext(nextEnabled: enabled)
+        return enabled
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        checkTextFieldsValidity()
+        _ = checkTextFieldsValidity()
+    }
+    
+    // MARK: UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.returnKeyType == .next {
+            lastNameTextField.textField.becomeFirstResponder()
+        } else {
+            if checkTextFieldsValidity() {
+                self.goToNext()
+            } else {
+                // show error
+            }
+        }
+        return false
     }
     
     //MARK: FTUEStartViewController

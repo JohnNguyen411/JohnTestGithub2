@@ -94,17 +94,19 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FTUEProtocol {
  
     }
     
-    override func checkTextFieldsValidity() {
-        canGoNext(nextEnabled: isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text))
+    override func checkTextFieldsValidity() -> Bool {
+        let enabled = isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text)
+        canGoNext(nextEnabled: enabled)
+        return enabled
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        checkTextFieldsValidity()
+        _ = checkTextFieldsValidity()
     }
     
     //MARK: FTUEStartViewController
     func didSelectPage() {
         phoneNumberTextField.textField.becomeFirstResponder()
-        checkTextFieldsValidity()
+        _ = checkTextFieldsValidity()
     }
 }

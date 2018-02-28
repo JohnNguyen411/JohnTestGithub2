@@ -9,6 +9,9 @@
 import Foundation
 
 extension String {
+    
+    static let Login = NSLocalizedString("Login")
+    static let Signup = NSLocalizedString("Signup")
     static let FTUEStartOne = NSLocalizedString("FTUEStartOne")
     static let FTUEStartTwo = NSLocalizedString("FTUEStartTwo")
     static let VolvoUserId = NSLocalizedString("VolvoUserId")
@@ -33,5 +36,7 @@ extension String {
     static let PasswordCondition = NSLocalizedString("PasswordCondition")
     static let Password = NSLocalizedString("Password")
     static let RepeatPassword = NSLocalizedString("RepeatPassword")
+    static let EmailAddress = NSLocalizedString("EmailAddress")
+    static let EmailPlaceholder = NSLocalizedString("EmailPlaceholder")
 
 }

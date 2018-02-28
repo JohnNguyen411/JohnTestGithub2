@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol {
+class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, UITextFieldDelegate {
     
     let passwordLabel: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -45,7 +45,13 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol {
 
         volvoPwdTextField.textField.isSecureTextEntry = true
         volvoPwdConfirmTextField.textField.isSecureTextEntry = true
-
+        
+        volvoPwdTextField.textField.returnKeyType = .next
+        volvoPwdConfirmTextField.textField.returnKeyType = .done
+        
+        volvoPwdTextField.textField.delegate = self
+        volvoPwdConfirmTextField.textField.delegate = self
+        
         volvoPwdTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         volvoPwdConfirmTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
@@ -63,18 +69,18 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol {
         passwordLabel.snp.makeConstraints { (make) -> Void in
             make.left.top.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(80)
+            make.height.equalTo(30)
         }
         
         passwordConditionLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(passwordLabel)
             make.top.equalTo(passwordLabel.snp.bottom)
-            make.height.equalTo(80)
+            make.height.equalTo(30)
         }
         
         volvoPwdTextField.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(passwordConditionLabel)
-            make.top.equalTo(passwordConditionLabel.snp.bottom)
+            make.top.equalTo(passwordConditionLabel.snp.bottom).offset(20)
             make.height.equalTo(80)
         }
         
@@ -132,12 +138,29 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol {
         return passwordOne == passwordTwo
     }
     
-    override func checkTextFieldsValidity() {
-        canGoNext(nextEnabled: isPasswordValid(password: volvoPwdTextField.textField.text) && isPasswordValid(password: volvoPwdConfirmTextField.textField.text) && areSimilar(passwordOne: volvoPwdTextField.textField.text, passwordTwo: volvoPwdConfirmTextField.textField.text))
+    override func checkTextFieldsValidity() -> Bool {
+        let enabled = isPasswordValid(password: volvoPwdTextField.textField.text) && isPasswordValid(password: volvoPwdConfirmTextField.textField.text) && areSimilar(passwordOne: volvoPwdTextField.textField.text, passwordTwo: volvoPwdConfirmTextField.textField.text)
+        canGoNext(nextEnabled: enabled)
+        return enabled
+    }
+    
+    // MARK: UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.returnKeyType == .next {
+            volvoPwdConfirmTextField.textField.becomeFirstResponder()
+        } else {
+            if checkTextFieldsValidity() {
+                self.goToNext()
+            } else {
+                // show error
+            }
+        }
+        return false
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        checkTextFieldsValidity()
+        _ = checkTextFieldsValidity()
     }
     
     //MARK: FTUEStartViewController

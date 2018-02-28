@@ -11,7 +11,23 @@ import UIKit
 
 class FTUEViewController: BaseViewController, FTUEChildProtocol {
     
-    static let nbOfItems = 5
+    enum FTUEFlowType {
+        case Login
+        case Signup
+    }
+    
+    init(flowType: FTUEFlowType) {
+        self.flowType = flowType
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    let flowType: FTUEFlowType
+    static let nbOfItemsSignup = 4
+    static let nbOfItemsLogin = 3
     
     weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
 
@@ -28,24 +44,28 @@ class FTUEViewController: BaseViewController, FTUEChildProtocol {
         return button
     }()
     
-    let ftueOneController = FTUEStartViewController()
-    let ftueTwoController = WebViewLoginViewController()
-    let ftueThreeController = FTUEPhoneNumberViewController()
-    let ftueFourthController = FTUEPhoneVerificationViewController()
-    let ftueFifthController = FTUEAllSetViewController()
+    lazy var ftueLoginController = FTUELoginViewController()
+    lazy var ftueNameController = FTUESignupNameViewController()
+    lazy var ftuePhoneController = FTUEPhoneNumberViewController()
+    lazy var ftuePhoneVerifController = FTUEPhoneVerificationViewController()
+    lazy var ftueEmailPhoneController = FTUESignupEmailPhoneViewController()
+    lazy var ftuePasswordController = FTUESignupPasswordViewController()
 
     let viewPager = ViewPager()
     
     override func viewDidLoad() {
-        ftueOneController.delegate = self
-        ftueTwoController.delegate = self
-        ftueThreeController.delegate = self
-        ftueFourthController.delegate = self
-        ftueFifthController.delegate = self
-        
         super.viewDidLoad()
 
         viewPager.dataSource = self
+        if flowType == .Login {
+            ftueLoginController.delegate = self
+        } else {
+            ftueNameController.delegate = self
+            ftueEmailPhoneController.delegate = self
+            ftuePasswordController.delegate = self
+        }
+        ftuePhoneController.delegate = self
+        ftuePhoneVerifController.delegate = self
     }
     
     
@@ -64,20 +84,20 @@ class FTUEViewController: BaseViewController, FTUEChildProtocol {
         self.view.addSubview(logo)
         self.view.addSubview(nextButton)
         
+        logo.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(60)
+            make.width.height.equalTo(50)
+        }
+        
         viewPager.snp.makeConstraints { (make) -> Void in
             make.left.right.bottom.equalToSuperview()
             make.top.equalTo(logo.snp.bottom).offset(20)
         }
         
-        logo.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.top.equalToSuperview().offset(35)
-            make.width.height.equalTo(50)
-        }
-        
         nextButton.snp.makeConstraints { (make) -> Void in
             make.right.equalToSuperview().offset(-20)
-            make.top.equalToSuperview().offset(35)
+            make.top.equalToSuperview().offset(60)
             make.width.height.equalTo(50)
         }
     }
@@ -98,26 +118,35 @@ extension FTUEViewController: ViewPagerDataSource {
     
     
     func numberOfItems(viewPager: ViewPager) -> Int {
-        return FTUEViewController.nbOfItems
+        if flowType == .Login {
+            return FTUEViewController.nbOfItemsLogin
+        } else {
+            return FTUEViewController.nbOfItemsSignup
+        }
     }
     
     func viewAtIndex(viewPager: ViewPager, index: Int, view: UIView?) -> UIView {
         var newView = view;
         
         if (newView == nil) {
-            if index == 0 {
-                newView = ftueOneController.view
-            } else if  index == 1 {
-                newView = ftueTwoController.view
-            } else if  index == 2 {
-                newView = ftueThreeController.view
-            } else if  index == 3 {
-                newView = ftueFourthController.view
-            } else if index == 4 {
-                newView = ftueFifthController.view
+            if flowType == .Login {
+                if index == 0 {
+                    newView = ftueLoginController.view
+                } else if index == 1 {
+                    newView = ftuePhoneController.view
+                } else {
+                    newView = ftuePhoneVerifController.view
+                }
             } else {
-                newView = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width, height:  self.view.frame.height))
-                newView?.backgroundColor = .blue
+                if index == 0 {
+                    newView = ftueNameController.view
+                } else if index == 1 {
+                    newView = ftueEmailPhoneController.view
+                } else if index == 2 {
+                    newView = ftuePhoneVerifController.view
+                } else {
+                    newView = ftuePasswordController.view
+                }
             }
         }
         
@@ -125,16 +154,24 @@ extension FTUEViewController: ViewPagerDataSource {
     }
     
     func controllerAtIndex(index: Int) -> FTUEProtocol {
-        if index == 0 {
-            return ftueOneController
-        } else if  index == 1 {
-            return ftueTwoController
-        } else if  index == 2 {
-            return ftueThreeController
-        } else if  index == 3 {
-            return ftueFourthController
+        if flowType == .Login {
+            if index == 0 {
+                return ftueLoginController
+            } else if index == 1 {
+                return ftuePhoneController
+            } else {
+                return ftuePhoneVerifController
+            }
         } else {
-            return ftueFifthController
+            if index == 0 {
+                return ftueNameController
+            } else if index == 1 {
+                return ftueEmailPhoneController
+            } else if index == 2 {
+                return ftuePhoneVerifController
+            } else {
+                return ftuePasswordController
+            }
         }
     }
     

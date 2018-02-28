@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import PhoneNumberKit
 
-class FTUESignupEmailPhoneViewController: FTUEChildViewController, FTUEProtocol {
+class FTUESignupEmailPhoneViewController: FTUEChildViewController, FTUEProtocol, UITextFieldDelegate {
     
-    let emailTextField = VLVerticalTextField(title: .VolvoUserId, placeholder: .VolvoUserId_Placeholder)
+    let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
     
     let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
     let phoneNumberKit = PhoneNumberKit()
@@ -51,6 +51,12 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, FTUEProtocol 
         
         phoneNumberTextField.textField.keyboardType = .phonePad
         emailTextField.textField.keyboardType = .emailAddress
+        
+        emailTextField.textField.returnKeyType = .next
+        phoneNumberTextField.textField.returnKeyType = .done
+        
+        emailTextField.textField.delegate = self
+        phoneNumberTextField.textField.delegate = self
 
         phoneNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
@@ -130,12 +136,29 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, FTUEProtocol 
         
     }
     
-    override func checkTextFieldsValidity() {
-        canGoNext(nextEnabled: isEmailValid(email: emailTextField.textField.text) && isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text))
+    override func checkTextFieldsValidity() -> Bool {
+        let enabled = isEmailValid(email: emailTextField.textField.text) && isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text)
+        canGoNext(nextEnabled: enabled)
+        return enabled
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        checkTextFieldsValidity()
+        _ = checkTextFieldsValidity()
+    }
+    
+    // MARK: UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.returnKeyType == .next {
+            phoneNumberTextField.textField.becomeFirstResponder()
+        } else {
+            if checkTextFieldsValidity() {
+                self.goToNext()
+            } else {
+                // show error
+            }
+        }
+        return false
     }
     
     //MARK: FTUEStartViewController

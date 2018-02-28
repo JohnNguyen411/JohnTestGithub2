@@ -95,8 +95,10 @@ class FTUELoginViewController: FTUEChildViewController, FTUEProtocol {
     }
     
     
-    override func checkTextFieldsValidity() {
-        canGoNext(nextEnabled: isVolvoIdValid(volvoId: volvoIdTextField.textField.text) && isPasswordValid(password: volvoPwdTextField.textField.text) && isVINValid(vin: volvoVINTextField.textField.text))
+    override func checkTextFieldsValidity() -> Bool {
+        let enabled = isVolvoIdValid(volvoId: volvoIdTextField.textField.text) && isPasswordValid(password: volvoPwdTextField.textField.text) && isVINValid(vin: volvoVINTextField.textField.text)
+        canGoNext(nextEnabled: enabled)
+        return enabled
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {

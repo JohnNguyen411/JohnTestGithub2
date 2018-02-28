@@ -9,7 +9,26 @@
 import Foundation
 import UIKit
 
-class FTUEStartViewController: FTUEChildViewController, FTUEProtocol {
+class FTUEStartViewController: BaseViewController {
+    
+    let loginButton = VLButton(type: .BluePrimary, title: (.Login as String).uppercased(), actionBlock: nil)
+    let signupButton = VLButton(type: .BluePrimary, title: (.Signup as String).uppercased(), actionBlock: nil)
+
+    let logo: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "volvo_logo")
+        return imageView
+    }()
+    
+    let appName: UILabel = {
+        let textView = UILabel(frame: .zero)
+        textView.text = .AppName
+        textView.font = .volvoSansLight(size: 26)
+        textView.textColor = .luxeDarkBlue()
+        textView.backgroundColor = .clear
+        textView.numberOfLines = 0
+        return textView
+    }()
     
     let text1: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -33,17 +52,47 @@ class FTUEStartViewController: FTUEChildViewController, FTUEProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
+        
+        loginButton.setActionBlock {
+            //login
+            self.navigationController?.pushViewController(FTUEViewController(flowType: .Login), animated: true)
+        }
+        
+        signupButton.setActionBlock {
+            //signup
+            self.navigationController?.pushViewController(FTUEViewController(flowType: .Signup), animated: true)
+        }
+        
+        //setupViews()
     }
     
-    func setupViews() {
+    override func setupViews() {
+        
+        self.view.addSubview(logo)
+        self.view.addSubview(appName)
         self.view.addSubview(text1)
         self.view.addSubview(text2)
+        self.view.addSubview(loginButton)
+        self.view.addSubview(signupButton)
 
         let sizeThatFits = text1.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT)))
         
+        logo.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview().offset(60)
+            make.left.equalToSuperview().offset(20)
+            make.width.height.equalTo(50)
+        }
+        
+        appName.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(logo.snp.bottom).offset(20)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.height.equalTo(80)
+        }
+        
         text1.snp.makeConstraints { (make) -> Void in
-            make.left.top.equalToSuperview().offset(20)
+            make.top.equalTo(appName.snp.bottom).offset(20)
+            make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(sizeThatFits.height)
         }
@@ -53,10 +102,19 @@ class FTUEStartViewController: FTUEChildViewController, FTUEProtocol {
             make.top.equalTo(text1.snp.bottom).offset(20)
             make.height.equalTo(sizeThatFits.height)
         }
-    }
-    
-    //MARK: FTUEStartViewController
-    func didSelectPage() {
-        canGoNext(nextEnabled: true)
+        
+        loginButton.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(20)
+            make.bottom.equalToSuperview().offset(-20)
+            make.width.equalToSuperview().dividedBy(2).offset(-30)
+            make.height.equalTo(VLButton.primaryHeight)
+        }
+        
+        signupButton.snp.makeConstraints { (make) -> Void in
+            make.right.equalToSuperview().offset(-20)
+            make.bottom.equalToSuperview().offset(-20)
+            make.width.equalToSuperview().dividedBy(2).offset(-30)
+            make.height.equalTo(VLButton.primaryHeight)
+        }
     }
 }

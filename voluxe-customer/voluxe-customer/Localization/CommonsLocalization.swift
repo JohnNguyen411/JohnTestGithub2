@@ -9,6 +9,8 @@
 import Foundation
 
 extension String {
+    
+    static let AppName = NSLocalizedString("AppName")
     static let Next = NSLocalizedString("Next")
     static let Add = NSLocalizedString("Add")
     static let Yes = NSLocalizedString("Yes")
@@ -20,7 +22,6 @@ extension String {
     static let Edit = NSLocalizedString("Edit")
     static let New = NSLocalizedString("New")
     static let Update = NSLocalizedString("Update")
-    static let Login = NSLocalizedString("Login")
     static let Logout = NSLocalizedString("Logout")
     static let Back = NSLocalizedString("Back")
     static let Cancel = NSLocalizedString("Cancel")

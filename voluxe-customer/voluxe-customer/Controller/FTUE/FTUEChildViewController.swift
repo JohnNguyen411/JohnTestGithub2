@@ -38,5 +38,7 @@ class FTUEChildViewController: UIViewController {
         }
     }
     
-    func checkTextFieldsValidity() {}
+    func checkTextFieldsValidity() -> Bool {
+        return false
+    }
 }

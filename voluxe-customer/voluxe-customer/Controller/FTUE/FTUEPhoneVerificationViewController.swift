@@ -69,12 +69,14 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         return !(codeTextField.textField.text?.isEmpty)!
     }
     
-    override func checkTextFieldsValidity() {
-        canGoNext(nextEnabled: isCodeValid(code: codeTextField.textField.text))
+    override func checkTextFieldsValidity() -> Bool {
+        let enabled = isCodeValid(code: codeTextField.textField.text)
+        canGoNext(nextEnabled: enabled)
+        return enabled
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        checkTextFieldsValidity()
+        _ = checkTextFieldsValidity()
     }
     
     //MARK: UITextFieldDelegate
@@ -93,7 +95,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     //MARK: FTUEStartViewController
     func didSelectPage() {
         codeTextField.textField.becomeFirstResponder()
-        checkTextFieldsValidity()
+        _ = checkTextFieldsValidity()
     }
     
 

@@ -101,8 +101,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window = UIWindow(frame: UIScreen.main.bounds)
         
         if UserManager.sharedInstance.getAccessToken() == nil {
-            let homeViewController = FTUEViewController()
-            window!.rootViewController = homeViewController
+            let uiNavigationController = UINavigationController(rootViewController: FTUEStartViewController())
+            uiNavigationController.navigationBar.isTranslucent = true
+            uiNavigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            uiNavigationController.navigationBar.shadowImage = UIImage()
+            window!.rootViewController = uiNavigationController
             window!.makeKeyAndVisible()
         } else {
             createMenuView()

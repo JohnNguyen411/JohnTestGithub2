@@ -7,6 +7,7 @@
 */
 
 /***************** COMMONS ***************/
+"AppName" = "Luxe by Volvo";
 "Next" = "Next";
 "Add" = "Add";
 "Yes" = "Yes";
@@ -50,6 +51,10 @@
 "PasswordCondition" = "(At least 8 characters with at least one letter and one numeral)";
 "Password" = "Password";
 "RepeatPassword" = "Repeat Password";
+"Login" = "Login";
+"Signup" = "Signup";
+"EmailAddress" = "Email Address";
+"EmailPlaceholder" = "name@domain.com";
 
 /***************** SchedulePickup ***************/
 "ScheduleService" = "Schedule Service";
