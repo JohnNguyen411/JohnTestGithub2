@@ -98,5 +98,9 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         _ = checkTextFieldsValidity()
     }
     
+    func nextButtonTap() -> Bool {
+        return true
+    }
+    
 
 }

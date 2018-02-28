@@ -38,6 +38,12 @@ class FTUEChildViewController: UIViewController {
         }
     }
     
+    func loadMainScreen() {
+        if let delegate = delegate {
+            delegate.loadMainScreen()
+        }
+    }
+    
     func checkTextFieldsValidity() -> Bool {
         return false
     }

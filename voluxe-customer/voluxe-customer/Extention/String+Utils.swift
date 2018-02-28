@@ -41,4 +41,40 @@ extension String {
     static func addLeftRightPadding(string: String) -> String {
         return " \(string) "
     }
+    
+    func containsNumber() -> Bool {
+        let decimalCharacters = CharacterSet.decimalDigits
+        
+        let decimalRange = self.rangeOfCharacter(from: decimalCharacters)
+        
+        if decimalRange != nil {
+            return true
+        }
+        return false
+    }
+    
+    func containsLetter() -> Bool {
+        let decimalCharacters = CharacterSet.letters
+        
+        let decimalRange = self.rangeOfCharacter(from: decimalCharacters)
+        
+        if decimalRange != nil {
+            return true
+        }
+        return false
+    }
+    
+    public static func areSimilar(stringOne: String?, stringTwo: String?) -> Bool {
+        guard let stringOne = stringOne else {
+            return false
+        }
+        
+        guard let stringTwo = stringTwo else {
+            return false
+        }
+        
+        return stringOne == stringTwo
+    }
+    
+    
 }

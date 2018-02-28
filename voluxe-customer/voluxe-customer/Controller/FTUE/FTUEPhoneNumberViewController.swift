@@ -109,4 +109,8 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FTUEProtocol {
         phoneNumberTextField.textField.becomeFirstResponder()
         _ = checkTextFieldsValidity()
     }
+    
+    func nextButtonTap() -> Bool {
+        return true
+    }
 }

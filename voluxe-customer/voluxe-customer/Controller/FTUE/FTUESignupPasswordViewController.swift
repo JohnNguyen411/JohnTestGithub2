@@ -97,49 +97,16 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
         guard let password = password else {
             return false
         }
-        if password.isEmpty || password.count < 7 {
+        if password.isEmpty || password.count < 8 {
             return false
         }
         
-        return containsNumber(string: password) && containsLetter(string: password)
+        return password.containsNumber() && password.containsLetter()
     }
     
-    func containsNumber(string: String) -> Bool {
-        let decimalCharacters = CharacterSet.decimalDigits
-        
-        let decimalRange = string.rangeOfCharacter(from: decimalCharacters)
-        
-        if decimalRange != nil {
-            return true
-        }
-        return false
-    }
-    
-    func containsLetter(string: String) -> Bool {
-        let decimalCharacters = CharacterSet.letters
-        
-        let decimalRange = string.rangeOfCharacter(from: decimalCharacters)
-        
-        if decimalRange != nil {
-            return true
-        }
-        return false
-    }
-    
-    func areSimilar(passwordOne: String?, passwordTwo: String?) -> Bool {
-        guard let passwordOne = passwordOne else {
-            return false
-        }
-        
-        guard let passwordTwo = passwordTwo else {
-            return false
-        }
-        
-        return passwordOne == passwordTwo
-    }
     
     override func checkTextFieldsValidity() -> Bool {
-        let enabled = isPasswordValid(password: volvoPwdTextField.textField.text) && isPasswordValid(password: volvoPwdConfirmTextField.textField.text) && areSimilar(passwordOne: volvoPwdTextField.textField.text, passwordTwo: volvoPwdConfirmTextField.textField.text)
+        let enabled = isPasswordValid(password: volvoPwdTextField.textField.text) && isPasswordValid(password: volvoPwdConfirmTextField.textField.text) && String.areSimilar(stringOne: volvoPwdTextField.textField.text, stringTwo: volvoPwdConfirmTextField.textField.text)
         canGoNext(nextEnabled: enabled)
         return enabled
     }
@@ -167,5 +134,9 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
     func didSelectPage() {
         volvoPwdTextField.textField.becomeFirstResponder()
         canGoNext(nextEnabled: false)
+    }
+    
+    func nextButtonTap() -> Bool {
+        return true
     }
 }

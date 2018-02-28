@@ -104,9 +104,23 @@ class FTUEViewController: BaseViewController, FTUEChildProtocol {
     
     @objc func pressButton(button: UIButton) {
         if viewPager.currentPosition == numberOfItems(viewPager: viewPager) {
-            appDelegate?.loadMainScreen()
+            loadMainScreen()
         } else {
-            viewPager.moveToNextPage()
+            var currentPos = viewPager.currentPosition - 1
+            if currentPos < 0 {
+                currentPos = 0
+            }
+            let currentController = controllerAtIndex(index: currentPos)
+            if currentController.nextButtonTap() {
+                
+                if let customer = UserManager.sharedInstance.getCustomer(), flowType == .Login, currentPos == 0 {
+                    if customer.phoneNumber != nil && !customer.phoneNumberVerified {
+                        viewPager.scrollToPage(index: currentPos + 2)
+                        return
+                    }
+                }
+                viewPager.moveToNextPage()
+            }
         }
     }
     
@@ -116,9 +130,15 @@ class FTUEViewController: BaseViewController, FTUEChildProtocol {
 
 extension FTUEViewController: ViewPagerDataSource {
     
-    
     func numberOfItems(viewPager: ViewPager) -> Int {
         if flowType == .Login {
+            if let customer = UserManager.sharedInstance.getCustomer() {
+                if customer.phoneNumber == nil {
+                    return FTUEViewController.nbOfItemsLogin
+                } else {
+                    return FTUEViewController.nbOfItemsLogin
+                }
+            }
             return FTUEViewController.nbOfItemsLogin
         } else {
             return FTUEViewController.nbOfItemsSignup
@@ -194,13 +214,19 @@ extension FTUEViewController: ViewPagerDataSource {
         pressButton(button: nextButton)
     }
     
+    func loadMainScreen() {
+        appDelegate?.loadMainScreen()
+    }
+    
 }
 
 protocol FTUEProtocol {
     func didSelectPage()
+    func nextButtonTap() -> Bool
 }
 
 protocol FTUEChildProtocol {
     func canGoNext(nextEnabled: Bool)
     func goToNext()
+    func loadMainScreen()
 }

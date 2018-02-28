@@ -46,4 +46,8 @@ class FTUEAllSetViewController: FTUEChildViewController, FTUEProtocol {
     func didSelectPage() {
         
     }
+    
+    func nextButtonTap() -> Bool {
+        return true
+    }
 }

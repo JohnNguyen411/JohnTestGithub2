@@ -124,4 +124,8 @@ class FTUESignupNameViewController: FTUEChildViewController, FTUEProtocol, UITex
         firstNameTextField.textField.becomeFirstResponder()
         canGoNext(nextEnabled: false)
     }
+    
+    func nextButtonTap() -> Bool {
+        return true
+    }
 }

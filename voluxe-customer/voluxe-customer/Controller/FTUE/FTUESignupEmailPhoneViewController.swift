@@ -166,4 +166,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, FTUEProtocol,
         emailTextField.textField.becomeFirstResponder()
         canGoNext(nextEnabled: false)
     }
+    
+    func nextButtonTap() -> Bool {
+        return true
+    }
 }

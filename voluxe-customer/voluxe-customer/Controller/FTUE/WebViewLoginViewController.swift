@@ -114,6 +114,10 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
     func didSelectPage() {
     }
     
+    func nextButtonTap() -> Bool {
+        return true
+    }
+    
     func convertToDictionary(text: String) -> [String: Any]? {
         if let data = text.data(using: .utf8) {
             do {
