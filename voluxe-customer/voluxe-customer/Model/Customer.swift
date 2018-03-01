@@ -15,6 +15,7 @@ class Customer: Object, Mappable {
 
     @objc dynamic var id: Int = -1
     @objc dynamic var volvoCustomerId: String?
+    @objc dynamic var email: String?
     @objc dynamic var firstName: String?
     @objc dynamic var lastName: String?
     @objc dynamic var marketCode: String?
@@ -35,6 +36,7 @@ class Customer: Object, Mappable {
     func mapping(map: Map) {
         id <- map["id"]
         volvoCustomerId <- map["volvo_customer_id"]
+        email <- map["email"]
         firstName <- map["first_name"]
         lastName <- map["last_name"]
         marketCode <- map["market_code"]

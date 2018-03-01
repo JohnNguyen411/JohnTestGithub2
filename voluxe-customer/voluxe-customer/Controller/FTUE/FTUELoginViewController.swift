@@ -185,6 +185,7 @@ class FTUELoginViewController: FTUEChildViewController, FTUEProtocol, UITextFiel
     }
     
     private func onLoginError() {
+        //todo show error message
         self.showLoading(loading: false)
     }
 }

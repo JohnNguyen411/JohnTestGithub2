@@ -111,6 +111,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FTUEProtocol {
     }
     
     func nextButtonTap() -> Bool {
+        FTUEViewController.signupCustomer.phoneNumber = phoneNumberTextField.textField.text
         return true
     }
 }

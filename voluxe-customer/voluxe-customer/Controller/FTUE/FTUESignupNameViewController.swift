@@ -126,6 +126,8 @@ class FTUESignupNameViewController: FTUEChildViewController, FTUEProtocol, UITex
     }
     
     func nextButtonTap() -> Bool {
+        FTUEViewController.signupCustomer.lastName = lastNameTextField.textField.text
+        FTUEViewController.signupCustomer.firstName = firstNameTextField.textField.text
         return true
     }
 }

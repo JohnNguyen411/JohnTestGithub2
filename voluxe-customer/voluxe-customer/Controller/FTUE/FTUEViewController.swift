@@ -25,12 +25,16 @@ class FTUEViewController: BaseViewController, FTUEChildProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
+    public static var signupCustomer = Customer()
+    public static var pwd: String = ""
+    
     let flowType: FTUEFlowType
     static let nbOfItemsSignup = 4
     static let nbOfItemsLogin = 3
     
     weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
-
+    
     let logo: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "volvo_logo")
@@ -50,12 +54,13 @@ class FTUEViewController: BaseViewController, FTUEChildProtocol {
     lazy var ftuePhoneVerifController = FTUEPhoneVerificationViewController()
     lazy var ftueEmailPhoneController = FTUESignupEmailPhoneViewController()
     lazy var ftuePasswordController = FTUESignupPasswordViewController()
-
+    
     let viewPager = ViewPager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        FTUEViewController.signupCustomer = Customer()
+        
         viewPager.dataSource = self
         if flowType == .Login {
             ftueLoginController.delegate = self
@@ -103,27 +108,22 @@ class FTUEViewController: BaseViewController, FTUEChildProtocol {
     }
     
     @objc func pressButton(button: UIButton) {
-        if viewPager.currentPosition == numberOfItems(viewPager: viewPager) {
-            loadMainScreen()
-        } else {
-            var currentPos = viewPager.currentPosition - 1
-            if currentPos < 0 {
-                currentPos = 0
-            }
-            let currentController = controllerAtIndex(index: currentPos)
-            if currentController.nextButtonTap() {
-                
-                if let customer = UserManager.sharedInstance.getCustomer(), flowType == .Login, currentPos == 0 {
-                    if customer.phoneNumber != nil && !customer.phoneNumberVerified {
-                        viewPager.scrollToPage(index: currentPos + 2)
-                        return
-                    }
+        var currentPos = viewPager.currentPosition - 1
+        if currentPos < 0 {
+            currentPos = 0
+        }
+        let currentController = controllerAtIndex(index: currentPos)
+        if currentController.nextButtonTap() {
+            
+            if let customer = UserManager.sharedInstance.getCustomer(), flowType == .Login, currentPos == 0 {
+                if customer.phoneNumber != nil && !customer.phoneNumberVerified {
+                    viewPager.scrollToPage(index: currentPos + 2)
+                    return
                 }
-                viewPager.moveToNextPage()
             }
+            viewPager.moveToNextPage()
         }
     }
-    
     
 }
 

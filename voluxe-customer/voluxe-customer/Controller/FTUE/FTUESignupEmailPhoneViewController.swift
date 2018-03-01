@@ -168,6 +168,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, FTUEProtocol,
     }
     
     func nextButtonTap() -> Bool {
+        FTUEViewController.signupCustomer.email = emailTextField.textField.text
+        FTUEViewController.signupCustomer.phoneNumber = phoneNumberTextField.textField.text
         return true
     }
 }

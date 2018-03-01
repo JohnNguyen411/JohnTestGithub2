@@ -99,6 +99,8 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     }
     
     func nextButtonTap() -> Bool {
+        //TODO: VERIFY PHONE with backend
+        
         return true
     }
     

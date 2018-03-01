@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
+import RealmSwift
 
 class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, UITextFieldDelegate {
     
@@ -33,7 +35,10 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
     
     let volvoPwdTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••")
     let volvoPwdConfirmTextField = VLVerticalTextField(title: .RepeatPassword, placeholder: "••••••••")
-
+    
+    var loginInProgress = false
+    var realm : Realm?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,7 +47,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
         
         volvoPwdTextField.textField.autocorrectionType = .no
         volvoPwdConfirmTextField.textField.autocorrectionType = .no
-
+        
         volvoPwdTextField.textField.isSecureTextEntry = true
         volvoPwdConfirmTextField.textField.isSecureTextEntry = true
         
@@ -65,7 +70,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
         self.view.addSubview(passwordConditionLabel)
         self.view.addSubview(volvoPwdTextField)
         self.view.addSubview(volvoPwdConfirmTextField)
-
+        
         passwordLabel.snp.makeConstraints { (make) -> Void in
             make.left.top.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
@@ -111,6 +116,23 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
         return enabled
     }
     
+    private func onSignupError() {
+        //todo show error message
+        self.showLoading(loading: false)
+    }
+    
+    func showLoading(loading: Bool) {
+        if loginInProgress == loading {
+            return
+        }
+        loginInProgress = loading
+        if loading {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        } else {
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
+    }
+    
     // MARK: UITextFieldDelegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -118,6 +140,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
             volvoPwdConfirmTextField.textField.becomeFirstResponder()
         } else {
             if checkTextFieldsValidity() {
+                //todo CREATE CUSTOMER HERE AND THEN ADD CAR
                 self.goToNext()
             } else {
                 // show error
@@ -137,6 +160,62 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
     }
     
     func nextButtonTap() -> Bool {
-        return true
+        let signupCustomer = FTUEViewController.signupCustomer
+        
+        if loginInProgress {
+            return false
+        }
+        
+        showLoading(loading: true)
+
+        if UserManager.sharedInstance.getCustomer() != nil {
+            
+            if UserManager.sharedInstance.getAccessToken() != nil {
+                self.showLoading(loading: false)
+                self.loadMainScreen()
+            } else {
+                loginUser(email: signupCustomer.email!, password: volvoPwdConfirmTextField.textField.text!)
+            }
+            return false
+        }
+        
+        //TODO: NOW => Create account
+        // HANDLE LOADING AND ERRORS
+        // CALL LOGIN AND REDIRECT
+        CustomerAPI().signup(email: signupCustomer.email!, password: volvoPwdConfirmTextField.textField.text!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, phoneNumber: signupCustomer.phoneNumber!).onSuccess { result in
+            if let customer = result?.data?.result {
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.deleteAll()
+                        realm.add(customer)
+                    }
+                }
+                UserManager.sharedInstance.setCustomer(customer: customer)
+                self.loginUser(email: signupCustomer.email!, password: self.volvoPwdConfirmTextField.textField.text!)
+            } else {
+                self.onSignupError()
+            }
+            }.onFailure { error in
+                self.onSignupError()
+        }
+        
+        return false
     }
+    
+    func loginUser(email: String, password: String) {
+        CustomerAPI().login(email: email, password: password).onSuccess { result in
+            if let tokenObject = result?.data?.result, let _ = tokenObject.customerId {
+                // Get Customer object with ID
+                UserManager.sharedInstance.loginSuccess(token: tokenObject.token)
+                self.showLoading(loading: false)
+                self.loadMainScreen()
+            } else {
+                self.onSignupError()
+            }
+            }.onFailure { error in
+                self.onSignupError()
+        }
+    }
+    
+    
 }
