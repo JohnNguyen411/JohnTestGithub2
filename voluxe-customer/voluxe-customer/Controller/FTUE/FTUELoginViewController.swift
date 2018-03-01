@@ -18,9 +18,11 @@ class FTUELoginViewController: FTUEChildViewController, FTUEProtocol, UITextFiel
     
     var loginInProgress = false
     var realm : Realm?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        realm = try? Realm()
         
         emailTextField.accessibilityIdentifier = "volvoIdTextField"
         passwordTextField.accessibilityIdentifier = "volvoPwdTextField"
@@ -83,7 +85,7 @@ class FTUELoginViewController: FTUEChildViewController, FTUEProtocol, UITextFiel
         guard let password = password else {
             return false
         }
-        if password.isEmpty || password.count < 8 {
+        if password.isEmpty || password.count < 5 {
             return false
         }
         
@@ -137,7 +139,7 @@ class FTUELoginViewController: FTUEChildViewController, FTUEProtocol, UITextFiel
         if loginInProgress {
             return false
         }
-        if let customer = UserManager.sharedInstance.getCustomer() {
+        if UserManager.sharedInstance.getCustomer() != nil {
             return true
         }
         
@@ -147,37 +149,42 @@ class FTUELoginViewController: FTUEChildViewController, FTUEProtocol, UITextFiel
         guard let password = passwordTextField.textField.text else { return false }
         
         CustomerAPI().login(email: email, password: password).onSuccess { result in
-            if let tokenObject = result?.data?.result {
-                if let customerId = tokenObject.customerId {
-                    // Get Customer object with ID
-                    UserManager.sharedInstance.loginSuccess(token: tokenObject.token)
-                    CustomerAPI().getCustomer(id: customerId).onSuccess { result in
-                        if let customer = result?.data?.result {
-                            if let realm = self.realm {
-                                try? realm.write {
-                                    realm.deleteAll()
-                                    realm.add(customer)
-                                }
-                            }
-                            UserManager.sharedInstance.setCustomer(customer: customer)
-                            if customer.phoneNumberVerified {
-                                // load main
-                                self.loadMainScreen()
-                                return
-                            } else {
-                                self.showLoading(loading: false)
-                                _ = self.nextButtonTap()
+            if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
+                // Get Customer object with ID
+                UserManager.sharedInstance.loginSuccess(token: tokenObject.token)
+                CustomerAPI().getCustomer(id: customerId).onSuccess { result in
+                    if let customer = result?.data?.result {
+                        if let realm = self.realm {
+                            try? realm.write {
+                                realm.deleteAll()
+                                realm.add(customer)
                             }
                         }
+                        UserManager.sharedInstance.setCustomer(customer: customer)
+                        if customer.phoneNumberVerified {
+                            // load main
+                            self.showLoading(loading: false)
+                            self.loadMainScreen()
+                            return
+                        } else {
+                            self.showLoading(loading: false)
+                            _ = self.nextButtonTap()
+                        }
                     }
+                    }.onFailure { error in
+                        self.onLoginError()
                 }
+            } else {
+                self.onLoginError()
             }
-            self.showLoading(loading: false)
             }.onFailure { error in
-                // todo show error
-                self.showLoading(loading: false)
+                self.onLoginError()
         }
         
-        return true
+        return false
+    }
+    
+    private func onLoginError() {
+        self.showLoading(loading: false)
     }
 }
