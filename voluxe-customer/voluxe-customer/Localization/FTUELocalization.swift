@@ -38,5 +38,12 @@ extension String {
     static let RepeatPassword = NSLocalizedString("RepeatPassword")
     static let EmailAddress = NSLocalizedString("EmailAddress")
     static let EmailPlaceholder = NSLocalizedString("EmailPlaceholder")
+    static let SelectYourVehicle = NSLocalizedString("SelectYourVehicle")
+    static let Year = NSLocalizedString("Year")
+    static let Model = NSLocalizedString("Model")
+    static let Color = NSLocalizedString("Color")
+    static let YearPlaceholder = NSLocalizedString("YearPlaceholder")
+    static let ModelPlaceholder = NSLocalizedString("ModelPlaceholder")
+    static let ColorPlaceholder = NSLocalizedString("ColorPlaceholder")
 
 }

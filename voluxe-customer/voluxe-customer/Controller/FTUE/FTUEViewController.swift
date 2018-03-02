@@ -54,6 +54,8 @@ class FTUEViewController: BaseViewController, FTUEChildProtocol {
     lazy var ftuePhoneVerifController = FTUEPhoneVerificationViewController()
     lazy var ftueEmailPhoneController = FTUESignupEmailPhoneViewController()
     lazy var ftuePasswordController = FTUESignupPasswordViewController()
+    lazy var addVehicleViewController = FTUEAddVehicleViewController()
+
     
     let viewPager = ViewPager()
     
@@ -69,6 +71,8 @@ class FTUEViewController: BaseViewController, FTUEChildProtocol {
             ftueEmailPhoneController.delegate = self
             ftuePasswordController.delegate = self
         }
+        
+        addVehicleViewController.delegate = self
         ftuePhoneController.delegate = self
         ftuePhoneVerifController.delegate = self
     }
@@ -151,7 +155,7 @@ extension FTUEViewController: ViewPagerDataSource {
         if (newView == nil) {
             if flowType == .Login {
                 if index == 0 {
-                    newView = ftueLoginController.view
+                    newView = addVehicleViewController.view
                 } else if index == 1 {
                     newView = ftuePhoneController.view
                 } else {
@@ -176,7 +180,7 @@ extension FTUEViewController: ViewPagerDataSource {
     func controllerAtIndex(index: Int) -> FTUEProtocol {
         if flowType == .Login {
             if index == 0 {
-                return ftueLoginController
+                return addVehicleViewController
             } else if index == 1 {
                 return ftuePhoneController
             } else {

@@ -50,7 +50,9 @@ final class BookingSyncManager {
         if let booking = RequestedServiceManager.sharedInstance.getBooking() {
             // todo define timer for states
             if booking.pickupRequest != nil || booking.dropoffRequest != nil {
-                syncBooking(every: 10)
+                if booking.getState() != .serviceCompleted && booking.getState() != .completed {
+                    syncBooking(every: 10)
+                }
             } else {
                 suspend()
             }

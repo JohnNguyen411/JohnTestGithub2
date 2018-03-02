@@ -103,8 +103,7 @@ final class UserManager {
                     carBookings = [booking]
                 }
                 self.vehicleBookings[vehicleId] = carBookings
-                
-                if booking.hasUpcomingRequestToday() {
+                if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted) {
                     hasUpcomingRequestToday = true
                     RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true) // set current booking
                 }

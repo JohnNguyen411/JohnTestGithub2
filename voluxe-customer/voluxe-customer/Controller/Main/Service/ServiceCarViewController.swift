@@ -251,6 +251,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 dealershipPrefetching()
                 checkupLabel.text = .ScheduleDropDealership
             } else {
+                checkupLabel.text = .SchedulePickupDealership
                 showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: true)
                 checkupLabel.text = .VolvoServiceComplete
                 scheduledServiceView.setTitle(title: .CompletedService)
