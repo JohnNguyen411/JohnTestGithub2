@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import PhoneNumberKit
 
-class FTUESignupEmailPhoneViewController: FTUEChildViewController, FTUEProtocol, UITextFieldDelegate {
+class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
     
@@ -61,11 +61,13 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, FTUEProtocol,
         phoneNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        setupViews()
         
+        emailTextField.textField.becomeFirstResponder()
+        canGoNext(nextEnabled: false)
+                
     }
     
-    func setupViews() {
+    override func setupViews() {
         
         self.view.addSubview(phoneNumberLabel)
         self.view.addSubview(phoneNumberConfirmLabel)
@@ -75,9 +77,10 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, FTUEProtocol,
         let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width-40, height: CGFloat(MAXFLOAT)))
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
-            make.left.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(80)
+            make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(sizeThatFits)
+            make.height.equalTo(80)
         }
         
         emailTextField.snp.makeConstraints { (make) -> Void in
@@ -153,7 +156,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, FTUEProtocol,
             phoneNumberTextField.textField.becomeFirstResponder()
         } else {
             if checkTextFieldsValidity() {
-                self.goToNext()
+                nextButtonTap()
             } else {
                 // show error
             }
@@ -162,14 +165,14 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, FTUEProtocol,
     }
     
     //MARK: FTUEStartViewController
-    func didSelectPage() {
-        emailTextField.textField.becomeFirstResponder()
-        canGoNext(nextEnabled: false)
+    
+    override func nextButtonTap() {
+        UserManager.sharedInstance.signupCustomer.email = emailTextField.textField.text
+        UserManager.sharedInstance.signupCustomer.phoneNumber = phoneNumberTextField.textField.text
+        goToNext()
     }
     
-    func nextButtonTap() -> Bool {
-        FTUEViewController.signupCustomer.email = emailTextField.textField.text
-        FTUEViewController.signupCustomer.phoneNumber = phoneNumberTextField.textField.text
-        return true
+    override func goToNext() {
+        self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
     }
 }

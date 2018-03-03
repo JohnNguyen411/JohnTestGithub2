@@ -117,8 +117,12 @@ class LoadingViewController: ChildViewController {
                         realm.add(cars, update: true)
                     }
                 }
-                UserManager.sharedInstance.setVehicles(vehicles: cars)
-                self.getBookings(customerId: customerId)
+                if cars.count == 0 {
+                    self.navigationController?.pushViewController(FTUEAddVehicleViewController(), animated: false)
+                } else {
+                    UserManager.sharedInstance.setVehicles(vehicles: cars)
+                    self.getBookings(customerId: customerId)
+                }
             }
             
             }.onFailure { error in

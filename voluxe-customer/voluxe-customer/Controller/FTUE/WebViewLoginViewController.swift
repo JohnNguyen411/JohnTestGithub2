@@ -11,7 +11,7 @@ import UIKit
 import ObjectMapper
 import RealmSwift
 
-class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebViewDelegate {
+class WebViewLoginViewController: FTUEChildViewController, UIWebViewDelegate {
     
     private let webview = UIWebView(frame: .zero)
     var realm : Realm?
@@ -20,9 +20,7 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
     override func viewDidLoad() {
         super.viewDidLoad()
         realm = try? Realm()
-        
-        setupViews()
-        
+                
         webview.delegate = self
         webview.scalesPageToFit = false
         webview.autoresizesSubviews = true
@@ -34,7 +32,7 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
         // final redirect: /v1/customers/login/callback
     }
     
-    func setupViews() {
+    override func setupViews() {
         self.view.addSubview(webview)
         webview.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -114,8 +112,7 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
     func didSelectPage() {
     }
     
-    func nextButtonTap() -> Bool {
-        return true
+    override func nextButtonTap() {
     }
     
     func convertToDictionary(text: String) -> [String: Any]? {

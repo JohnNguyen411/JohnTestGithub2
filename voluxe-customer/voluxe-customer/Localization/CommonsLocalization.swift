@@ -27,4 +27,7 @@ extension String {
     static let Cancel = NSLocalizedString("Cancel")
     static let CancelPickup = NSLocalizedString("CancelPickup")
     static let CancelDropOff = NSLocalizedString("CancelDropOff")
+    static let Error = NSLocalizedString("Error")
+    static let GenericError = NSLocalizedString("GenericError")
+
 }

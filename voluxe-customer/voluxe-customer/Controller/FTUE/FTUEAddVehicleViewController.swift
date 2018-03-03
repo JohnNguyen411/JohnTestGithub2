@@ -11,7 +11,7 @@ import UIKit
 import MBProgressHUD
 import RealmSwift
 
-class FTUEAddVehicleViewController: FTUEChildViewController, FTUEProtocol, UITextFieldDelegate {
+class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate {
     
     enum PickerType {
         case year
@@ -57,13 +57,11 @@ class FTUEAddVehicleViewController: FTUEChildViewController, FTUEProtocol, UITex
         yearLabel.textField.delegate = self
         modelLabel.textField.delegate = self
         colorLabel.textField.delegate = self
-
-        setupViews()
         
         canGoNext(nextEnabled: false)
     }
     
-    private func setupViews() {
+    override func setupViews() {
         self.view.addSubview(label)
         self.view.addSubview(yearLabel)
         self.view.addSubview(modelLabel)
@@ -158,11 +156,12 @@ class FTUEAddVehicleViewController: FTUEChildViewController, FTUEProtocol, UITex
         }
     }
     
-    func didSelectPage() {
+    override func nextButtonTap() {
+        // todo add car to user
     }
     
-    func nextButtonTap() -> Bool {
-        return true
+    override func rightButtonTitle() -> String {
+        return .Done
     }
     
     override func checkTextFieldsValidity() -> Bool {
@@ -170,16 +169,14 @@ class FTUEAddVehicleViewController: FTUEChildViewController, FTUEProtocol, UITex
         canGoNext(nextEnabled: enabled)
         return enabled
     }
+    
+    
 }
 
 extension FTUEAddVehicleViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
-    }
-    
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        
     }
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {

@@ -192,4 +192,21 @@ extension UIViewController {
         return Swift.min(statusBarSize.width, statusBarSize.height)
     }
     
+    func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        
+        // Submit button
+        let okButton = UIAlertAction(title: .Ok, style: .default, handler: { (action) -> Void in
+            if let completion = completion {
+                completion()
+            }
+            alert.dismiss(animated: true, completion: nil)
+        })
+        
+        alert.addAction(okButton)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
 }

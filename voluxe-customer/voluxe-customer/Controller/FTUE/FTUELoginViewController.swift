@@ -11,7 +11,7 @@ import UIKit
 import MBProgressHUD
 import RealmSwift
 
-class FTUELoginViewController: FTUEChildViewController, FTUEProtocol, UITextFieldDelegate {
+class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
     let passwordTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••")
@@ -41,18 +41,20 @@ class FTUELoginViewController: FTUEChildViewController, FTUEProtocol, UITextFiel
         
         emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         passwordTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        
-        setupViews()
+                
+        emailTextField.textField.becomeFirstResponder()
+        canGoNext(nextEnabled: false)
         
     }
     
-    func setupViews() {
+    override func setupViews() {
         
         self.view.addSubview(emailTextField)
         self.view.addSubview(passwordTextField)
         
         emailTextField.snp.makeConstraints { (make) -> Void in
-            make.left.top.equalToSuperview().offset(20)
+            make.left.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(80)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(80)
         }
@@ -105,7 +107,7 @@ class FTUELoginViewController: FTUEChildViewController, FTUEProtocol, UITextFiel
             passwordTextField.textField.becomeFirstResponder()
         } else {
             if checkTextFieldsValidity() {
-                self.goToNext()
+                self.nextButtonTap()
             } else {
                 // show error
             }
@@ -130,23 +132,19 @@ class FTUELoginViewController: FTUEChildViewController, FTUEProtocol, UITextFiel
     }
     
     //MARK: FTUEStartViewController
-    func didSelectPage() {
-        emailTextField.textField.becomeFirstResponder()
-        canGoNext(nextEnabled: false)
-    }
     
-    func nextButtonTap() -> Bool {
+    override func nextButtonTap() {
         if loginInProgress {
-            return false
+            return
         }
         if UserManager.sharedInstance.getCustomer() != nil {
-            return true
+            return
         }
         
         showLoading(loading: true)
         
-        guard let email = emailTextField.textField.text else { return false }
-        guard let password = passwordTextField.textField.text else { return false }
+        guard let email = emailTextField.textField.text else { return }
+        guard let password = passwordTextField.textField.text else { return }
         
         CustomerAPI().login(email: email, password: password).onSuccess { result in
             if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
@@ -181,7 +179,6 @@ class FTUELoginViewController: FTUEChildViewController, FTUEProtocol, UITextFiel
                 self.onLoginError()
         }
         
-        return false
     }
     
     private func onLoginError() {

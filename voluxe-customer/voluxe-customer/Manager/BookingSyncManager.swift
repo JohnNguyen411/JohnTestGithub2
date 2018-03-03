@@ -71,8 +71,14 @@ final class BookingSyncManager {
         if let timer = timer {
             timer.schedule(deadline: .now(), repeating: .seconds(every), leeway: .seconds(1))
             timer.setEventHandler(handler: {
+                guard let token = UserManager.sharedInstance.getAccessToken() else {
+                    self.suspend()
+                    return
+                }
                 if let customerId = UserManager.sharedInstance.getCustomerId(), let booking = RequestedServiceManager.sharedInstance.getBooking() {
                     self.getBooking(customerId: customerId, bookingId: booking.id)
+                } else {
+                    self.suspend()
                 }
             })
             timer.resume()

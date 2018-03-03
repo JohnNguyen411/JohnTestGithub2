@@ -25,6 +25,9 @@
 "Cancel" = "Cancel";
 "CancelPickup" = "Cancel Pickup";
 "CancelDropOff" = "Cancel DropOff";
+"Error" = "Error";
+"GenericError" = "An unknown error has occurred, please try again later.";
+
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
@@ -40,7 +43,7 @@
 "MobilePhoneNumberConfirm" = "We'll send you a text message to confirm the number";
 "PhoneNumberVerifLabel" = "Type the confirmation code you received via SMS.";
 "ResendCode" = "Resend Code";
-"PhoneNumberVerif_Placeholder" = "0000";
+"PhoneNumberVerif_Placeholder" = "000000";
 "WelcomeToAppLabel" = "Welcome to Luxe, %@. Your Volvo account is now active with Luxe.";
 "FirstName" = "First Name";
 "LastName" = "Last Name";
@@ -62,6 +65,7 @@
 "YearPlaceholder" = "2018";
 "ModelPlaceholder" = "S90";
 "ColorPlaceholder" = "Black";
+"AccountAlreadyExist" = "An account already exist with that email, please try Login instead.";
 
 
 /***************** SchedulePickup ***************/

@@ -11,6 +11,13 @@ import UIKit
 
 class FTUEStartViewController: BaseViewController {
     
+    enum FTUEFlowType {
+        case login
+        case signup
+    }
+    
+    public static var flowType: FTUEFlowType = .login
+
     let loginButton = VLButton(type: .BluePrimary, title: (.Login as String).uppercased(), actionBlock: nil)
     let signupButton = VLButton(type: .BluePrimary, title: (.Signup as String).uppercased(), actionBlock: nil)
 
@@ -53,14 +60,20 @@ class FTUEStartViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        UserManager.sharedInstance.signupCustomer = SignupCustomer()
+
         loginButton.setActionBlock {
             //login
-            self.navigationController?.pushViewController(FTUEViewController(flowType: .Login), animated: true)
+            UserManager.sharedInstance.signupCustomer = SignupCustomer()
+            FTUEStartViewController.flowType = .login
+            self.navigationController?.pushViewController(FTUELoginViewController(), animated: true)
         }
         
         signupButton.setActionBlock {
             //signup
-            self.navigationController?.pushViewController(FTUEViewController(flowType: .Signup), animated: true)
+            UserManager.sharedInstance.signupCustomer = SignupCustomer()
+            FTUEStartViewController.flowType = .signup
+            self.navigationController?.pushViewController(FTUESignupNameViewController(), animated: true)
         }
         
         //setupViews()
@@ -117,4 +130,11 @@ class FTUEStartViewController: BaseViewController {
             make.height.equalTo(VLButton.primaryHeight)
         }
     }
+}
+
+class SignupCustomer: NSObject {
+    var firstName: String?
+    var lastName: String?
+    var phoneNumber: String?
+    var email: String?
 }

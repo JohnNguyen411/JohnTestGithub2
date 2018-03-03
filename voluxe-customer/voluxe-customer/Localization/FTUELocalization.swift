@@ -45,5 +45,6 @@ extension String {
     static let YearPlaceholder = NSLocalizedString("YearPlaceholder")
     static let ModelPlaceholder = NSLocalizedString("ModelPlaceholder")
     static let ColorPlaceholder = NSLocalizedString("ColorPlaceholder")
+    static let AccountAlreadyExist = NSLocalizedString("AccountAlreadyExist")
 
 }

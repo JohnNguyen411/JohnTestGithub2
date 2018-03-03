@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
-class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldDelegate, FTUEProtocol {
+class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldDelegate {
     
+    let codeLength = 6
     let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder)
     
     let phoneNumberLabel: UILabel = {
@@ -35,10 +36,11 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         codeTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
-        setupViews()
+        codeTextField.textField.becomeFirstResponder()
+        _ = checkTextFieldsValidity()
     }
     
-    func setupViews() {
+    override func setupViews() {
         
         self.view.addSubview(codeTextField)
         self.view.addSubview(phoneNumberLabel)
@@ -46,7 +48,8 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT)))
 
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
-            make.left.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(80)
+            make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(sizeThatFits)
         }
@@ -66,7 +69,10 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     func isCodeValid(code: String?) -> Bool {
         // check code validity
-        return !(codeTextField.textField.text?.isEmpty)!
+        if let code = code {
+            return code.count == codeLength
+        }
+        return false
     }
     
     override func checkTextFieldsValidity() -> Bool {
@@ -89,19 +95,22 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         Logger.print("textField shouldChangeCharactersIn")
         guard let text = textField.text else { return true }
         let newLength = text.count + string.count - range.length
-        return newLength <= 4 // Bool
+        return newLength <= codeLength // Bool
     }
     
     //MARK: FTUEStartViewController
-    func didSelectPage() {
-        codeTextField.textField.becomeFirstResponder()
-        _ = checkTextFieldsValidity()
+    
+    override func nextButtonTap() {
+        //TODO: VERIFY PHONE with backend
+        goToNext()
     }
     
-    func nextButtonTap() -> Bool {
-        //TODO: VERIFY PHONE with backend
-        
-        return true
+    override func goToNext() {
+        if FTUEStartViewController.flowType == .signup {
+            self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
+        } else {
+            
+        }
     }
     
 

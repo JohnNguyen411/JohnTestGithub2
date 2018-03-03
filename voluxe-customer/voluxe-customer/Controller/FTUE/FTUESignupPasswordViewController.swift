@@ -11,7 +11,7 @@ import UIKit
 import MBProgressHUD
 import RealmSwift
 
-class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, UITextFieldDelegate {
+class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let passwordLabel: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -60,11 +60,11 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
         volvoPwdTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         volvoPwdConfirmTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        setupViews()
-        
+        volvoPwdTextField.textField.becomeFirstResponder()
+        canGoNext(nextEnabled: false)
     }
     
-    func setupViews() {
+    override func setupViews() {
         
         self.view.addSubview(passwordLabel)
         self.view.addSubview(passwordConditionLabel)
@@ -72,7 +72,8 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
         self.view.addSubview(volvoPwdConfirmTextField)
         
         passwordLabel.snp.makeConstraints { (make) -> Void in
-            make.left.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(80)
+            make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(30)
         }
@@ -116,9 +117,18 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
         return enabled
     }
     
-    private func onSignupError() {
+    private func onSignupError(error: ResponseError? = nil) {
         //todo show error message
         self.showLoading(loading: false)
+        
+        if error?.code == "E5001" {
+            self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
+                self.loadLandingPage()
+            })
+        } else {
+            self.showOkDialog(title: .Error, message: .GenericError)
+        }
+        
     }
     
     func showLoading(loading: Bool) {
@@ -154,16 +164,12 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
     }
     
     //MARK: FTUEStartViewController
-    func didSelectPage() {
-        volvoPwdTextField.textField.becomeFirstResponder()
-        canGoNext(nextEnabled: false)
-    }
     
-    func nextButtonTap() -> Bool {
-        let signupCustomer = FTUEViewController.signupCustomer
+    override func nextButtonTap() {
+        let signupCustomer = UserManager.sharedInstance.signupCustomer
         
         if loginInProgress {
-            return false
+            return
         }
         
         showLoading(loading: true)
@@ -176,7 +182,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
             } else {
                 loginUser(email: signupCustomer.email!, password: volvoPwdConfirmTextField.textField.text!)
             }
-            return false
+            return
         }
         
         //TODO: NOW => Create account
@@ -193,13 +199,13 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
                 UserManager.sharedInstance.setCustomer(customer: customer)
                 self.loginUser(email: signupCustomer.email!, password: self.volvoPwdConfirmTextField.textField.text!)
             } else {
-                self.onSignupError()
+                self.onSignupError(error: result?.error)
             }
             }.onFailure { error in
                 self.onSignupError()
         }
         
-        return false
+        return
     }
     
     func loginUser(email: String, password: String) {
@@ -208,13 +214,17 @@ class FTUESignupPasswordViewController: FTUEChildViewController, FTUEProtocol, U
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token)
                 self.showLoading(loading: false)
-                self.loadMainScreen()
+                self.goToNext()
             } else {
                 self.onSignupError()
             }
             }.onFailure { error in
                 self.onSignupError()
         }
+    }
+    
+    override func goToNext() {
+        loadMainScreen()
     }
     
     

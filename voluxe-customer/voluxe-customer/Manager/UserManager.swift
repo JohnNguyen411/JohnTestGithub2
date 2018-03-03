@@ -13,6 +13,7 @@ final class UserManager {
     
     static let sharedInstance = UserManager()
     
+    public var signupCustomer = SignupCustomer()
     private var customer: Customer?
     private var vehicles: [Vehicle]?
     private var vehicleBookings = [Int: [Booking]]() // bookings dict (Vehicle Id : Booking array)

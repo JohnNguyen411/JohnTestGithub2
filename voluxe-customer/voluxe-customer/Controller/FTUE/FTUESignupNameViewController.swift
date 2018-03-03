@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FTUESignupNameViewController: FTUEChildViewController, FTUEProtocol, UITextFieldDelegate {
+class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let welcomeLabel: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -41,19 +41,22 @@ class FTUESignupNameViewController: FTUEChildViewController, FTUEProtocol, UITex
         
         firstNameTextField.textField.delegate = self
         lastNameTextField.textField.delegate = self
-
-        setupViews()
+        
+        
+        firstNameTextField.textField.becomeFirstResponder()
+        canGoNext(nextEnabled: false)
         
     }
     
-    func setupViews() {
+    override func setupViews() {
         
         self.view.addSubview(welcomeLabel)
         self.view.addSubview(firstNameTextField)
         self.view.addSubview(lastNameTextField)
         
         welcomeLabel.snp.makeConstraints { (make) -> Void in
-            make.left.top.equalToSuperview().offset(20)
+            make.left.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(80)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(80)
         }
@@ -111,7 +114,7 @@ class FTUESignupNameViewController: FTUEChildViewController, FTUEProtocol, UITex
             lastNameTextField.textField.becomeFirstResponder()
         } else {
             if checkTextFieldsValidity() {
-                self.goToNext()
+                nextButtonTap()
             } else {
                 // show error
             }
@@ -120,14 +123,13 @@ class FTUESignupNameViewController: FTUEChildViewController, FTUEProtocol, UITex
     }
     
     //MARK: FTUEStartViewController
-    func didSelectPage() {
-        firstNameTextField.textField.becomeFirstResponder()
-        canGoNext(nextEnabled: false)
+    override func nextButtonTap() {
+        UserManager.sharedInstance.signupCustomer.lastName = lastNameTextField.textField.text
+        UserManager.sharedInstance.signupCustomer.firstName = firstNameTextField.textField.text
+        goToNext()
     }
     
-    func nextButtonTap() -> Bool {
-        FTUEViewController.signupCustomer.lastName = lastNameTextField.textField.text
-        FTUEViewController.signupCustomer.firstName = firstNameTextField.textField.text
-        return true
+    override func goToNext() {
+        self.navigationController?.pushViewController(FTUESignupEmailPhoneViewController(), animated: true)
     }
 }
