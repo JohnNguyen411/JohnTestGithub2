@@ -35,7 +35,7 @@
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>GoogleMapsAPIKey</key>
-	<string>AIzaSyB3qUmbLV03IBIM7ie-K8-ZB6LdhyRyVTQ</string>
+	<string>AIzaSyCf1Ub4aMgqWeISdHPEcFawx-N-OrmxBTM</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -69,6 +69,8 @@
 	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
 	<key>com.volvocars.hse.openIdTokenEndpoint</key>
 	<string>$(OPENID_TOKEN_ENDPOINT)</string>
+	<key>GoogleMapsGeocodeAPIKey</key>
+	<string>AIzaSyDttDpi-qSy_4-MwUs2tbsZrJqCjz_gowM</string>
 	<key>ENABLE_DEBUG_INFO</key>
 	<string>$(ENABLE_DEBUG_INFO)</string>
 </dict>

@@ -19,7 +19,7 @@
 	<key>CFBundleVersion</key>
 	<string>1</string>
 	<key>GoogleMapsAPIKey</key>
-	<string>AIzaSyB3qUmbLV03IBIM7ie-K8-ZB6LdhyRyVTQ</string>
+	<string>AIzaSyCf1Ub4aMgqWeISdHPEcFawx-N-OrmxBTM</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>VolvoSansPro-Light.ttf</string>
@@ -42,5 +42,7 @@
 	<string>$(Scheme)</string>
 	<key>ENABLE_DEBUG_INFO</key>
 	<string>$(ENABLE_DEBUG_INFO)</string>
+	<key>GoogleMapsGeocodeAPIKey</key>
+	<string>AIzaSyDttDpi-qSy_4-MwUs2tbsZrJqCjz_gowM</string>
 </dict>
 </plist>

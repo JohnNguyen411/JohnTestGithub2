@@ -20,6 +20,8 @@
 	<string>1</string>
 	<key>GoogleMapsAPIKey</key>
 	<string>AIzaSyB3qUmbLV03IBIM7ie-K8-ZB6LdhyRyVTQ</string>
+	<key>GoogleMapsGeocodeAPIKey</key>
+	<string>AIzaSyDttDpi-qSy_4-MwUs2tbsZrJqCjz_gowM</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>VolvoSansPro-Light.ttf</string>

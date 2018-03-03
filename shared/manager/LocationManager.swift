@@ -363,13 +363,16 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     fileprivate func autocompleteUsignGoogleAddress(_ address:NSString){
-        var urlString = "https://maps.googleapis.com/maps/api/geocode/json?address=\(address)&sensor=true" as NSString
+
+        let key = Bundle.main.object(forInfoDictionaryKey: "GoogleMapsGeocodeAPIKey") as! String
+        var urlString = "https://maps.googleapis.com/maps/api/geocode/json?address=\(address)&sensor=true&key=\(key)" as NSString
         urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! as NSString
         performAutocompleteOperationForURL(urlString, type: GeoCodingType.geocoding)
     }
     
     fileprivate func geoCodeUsignGoogleAddress(_ address:NSString){
-        var urlString = "https://maps.googleapis.com/maps/api/geocode/json?address=\(address)&sensor=true" as NSString
+        let key = Bundle.main.object(forInfoDictionaryKey: "GoogleMapsGeocodeAPIKey") as! String
+        var urlString = "https://maps.googleapis.com/maps/api/geocode/json?address=\(address)&sensor=true=\(key)" as NSString
         urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! as NSString
         performOperationForURL(urlString, type: GeoCodingType.geocoding)
     }
@@ -384,7 +387,8 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     fileprivate func reverseGocodeUsingGoogle(latitude:Double, longitude: Double) {
-        var urlString = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(latitude),\(longitude)&sensor=true" as NSString
+        let key = Bundle.main.object(forInfoDictionaryKey: "GoogleMapsGeocodeAPIKey") as! String
+        var urlString = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(latitude),\(longitude)&sensor=true\(key)" as NSString
         urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! as NSString
         performOperationForURL(urlString, type: GeoCodingType.reverseGeocoding)
     }
