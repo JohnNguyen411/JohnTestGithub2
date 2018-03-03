@@ -40,6 +40,14 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         _ = checkTextFieldsValidity()
     }
     
+    override func rightButtonTitle() -> String {
+        if FTUEStartViewController.flowType == .login {
+            return .Done
+        } else {
+            return super.rightButtonTitle()
+        }
+    }
+    
     override func setupViews() {
         
         self.view.addSubview(codeTextField)
@@ -109,7 +117,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         if FTUEStartViewController.flowType == .signup {
             self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
         } else {
-            
+            self.loadMainScreen()
         }
     }
     

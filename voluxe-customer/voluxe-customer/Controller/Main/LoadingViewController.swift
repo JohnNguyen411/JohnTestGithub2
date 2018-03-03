@@ -100,7 +100,12 @@ class LoadingViewController: ChildViewController {
                     }
                 }
                 UserManager.sharedInstance.setCustomer(customer: customer)
-                self.callVehicle(customerId: customer.id)
+                if !customer.phoneNumberVerified {
+                    FTUEStartViewController.flowType = .login
+                    self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: false)
+                } else {
+                    self.callVehicle(customerId: customer.id)
+                }
                 
             }
             }.onFailure { error in
@@ -118,6 +123,7 @@ class LoadingViewController: ChildViewController {
                     }
                 }
                 if cars.count == 0 {
+                    FTUEStartViewController.flowType = .login
                     self.navigationController?.pushViewController(FTUEAddVehicleViewController(), animated: false)
                 } else {
                     UserManager.sharedInstance.setVehicles(vehicles: cars)
