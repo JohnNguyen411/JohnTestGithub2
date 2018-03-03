@@ -40,27 +40,61 @@ class VLTitledLabel: UIView {
         titleLabel.textAlignment = .right
         return titleLabel
     }()
-  
-     init() {
+    
+    let errorLabel: UILabel = {
+        let errorLabel = UILabel()
+        errorLabel.textColor = .luxeOrange()
+        errorLabel.font = .volvoSansLightBold(size: 12)
+        errorLabel.textAlignment = .right
+        return errorLabel
+    }()
+    
+    let separator = UIView()
+    let containerView = UIView(frame: .zero)
+    let padding: CGFloat
+    
+    var isEditable = false {
+        didSet {
+            if isEditable {
+                descLeftLabel.textColor = .luxeDeepBlue()
+            } else {
+                descLeftLabel.textColor = .luxeDarkGray()
+            }
+        }
+    }
+    
+     init(padding: CGFloat = 0) {
+        self.padding = padding
         super.init(frame: .zero)
         
-        self.addSubview(titleLabel)
-        self.addSubview(descLeftLabel)
-        self.addSubview(descRightLabel)
-        
+        self.addSubview(containerView)
+        containerView.addSubview(titleLabel)
+        containerView.addSubview(descLeftLabel)
+        containerView.addSubview(descRightLabel)
+        containerView.addSubview(errorLabel)
         applyConstraints()
     }
     
-    convenience init(title: String, leftDescription: String, rightDescription: String) {
-        self.init()
+    convenience init(title: String, leftDescription: String, rightDescription: String, padding: CGFloat = 0) {
+        self.init(padding: padding)
         
         setTitle(title: title, leftDescription: leftDescription, rightDescription: rightDescription)
     }
     
-    func setTitle(title: String, leftDescription: String, rightDescription: String) {
+    func setTitle(title: String, leftDescription: String, rightDescription: String? = nil) {
         titleLabel.text = title
         descLeftLabel.text = leftDescription
-        descRightLabel.text = rightDescription
+        if let rightDescription = rightDescription {
+            descRightLabel.text = rightDescription
+        }
+    }
+    
+    func setTitle(title: String) {
+        titleLabel.text = title
+    }
+    
+    func setLeftDescription(leftDescription: String) {
+        descLeftLabel.text = leftDescription
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -68,17 +102,19 @@ class VLTitledLabel: UIView {
     }
     
     func applyConstraints() {
+        
+        containerView.snp.makeConstraints { make in
+            make.edges.equalToSuperview().inset(UIEdgeInsetsMake(padding/2, padding, padding/2, padding))
+        }
         titleLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(self)
+            make.left.right.top.equalToSuperview()
             make.height.equalTo(20)
         }
         
-        let separator0 = UIView()
-        separator0.backgroundColor = .luxeGray()
-        addSubview(separator0)
+        separator.backgroundColor = .luxeGray()
+        containerView.addSubview(separator)
         
-        separator0.snp.makeConstraints { (make) -> Void in
+        separator.snp.makeConstraints { (make) -> Void in
             make.left.right.equalToSuperview()
             make.top.equalTo(titleLabel.snp.bottom).offset(1)
             make.height.equalTo(1)
@@ -86,12 +122,45 @@ class VLTitledLabel: UIView {
         
         descLeftLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalToSuperview()
-            make.top.equalTo(separator0.snp.bottom).offset(4)
+            make.top.equalTo(separator.snp.bottom).offset(4)
         }
         
         descRightLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalToSuperview()
-            make.top.equalTo(separator0.snp.bottom).offset(4)
+            make.top.equalTo(separator.snp.bottom).offset(4)
+        }
+        
+        errorLabel.snp.makeConstraints { (make) -> Void in
+            make.left.right.top.equalToSuperview()
+            make.height.equalTo(20)
+        }
+        
+        errorLabel.isHidden = true
+    }
+    
+    func showError(error: String?) {
+        
+        separator.backgroundColor = .luxeOrange()
+        titleLabel.textColor = .luxeOrange()
+        descLeftLabel.textColor = .luxeOrange()
+        descRightLabel.textColor = .luxeOrange()
+        self.backgroundColor = .luxeLightOrange()
+        
+        errorLabel.text = error?.uppercased()
+        if errorLabel.isHidden {
+            errorLabel.animateAlpha(show: true)
+        }
+    }
+    
+    func hideError() {
+        titleLabel.textColor = .luxeGray()
+        separator.backgroundColor = .luxeGray()
+        descLeftLabel.textColor = isEditable ? .luxeDeepBlue() :  .luxeDarkGray()
+        descRightLabel.textColor = .luxeDarkGray()
+        self.backgroundColor = .clear
+
+        if !errorLabel.isHidden {
+            errorLabel.animateAlpha(show: false)
         }
     }
     

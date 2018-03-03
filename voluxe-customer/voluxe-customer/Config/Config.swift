@@ -16,13 +16,15 @@ class Config: NSObject {
     private static let prodUrl = "https://development-uswest2.api.luxe.com"
     
     private let baseUrl: String
-    
+    public let isMock: Bool
+
     // Singleton instance
     static let sharedInstance = Config()
     
     override init() {
         let bundle = Bundle(for: type(of: self))
         let scheme = bundle.object(forInfoDictionaryKey: "Scheme") as! String
+        isMock = scheme == "Mock"
         baseUrl = Config.baseUrlForScheme(scheme: scheme)
         super.init()
     }
@@ -43,4 +45,5 @@ extension Config {
     func apiEndpoint() -> String {
         return baseUrl
     }
+    
 }

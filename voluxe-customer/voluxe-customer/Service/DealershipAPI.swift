@@ -24,18 +24,16 @@ class DealershipAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, AFError>()
         
         NetworkRequest.request(url: "/v1/dealerships", queryParameters: [:], withBearer: true).responseJSON { response in
-            
             var responseObject: ResponseObject<MappableDataArray<Dealership>>?
             
             if let json = response.result.value as? [String: Any] {
-                Logger.print("JSON: \(json)")
                 responseObject = ResponseObject<MappableDataArray<Dealership>>(json: json)
             }
             
             if response.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(response.error as! AFError)
+                promise.failure(Errors.safeAFError(error: response.error!))
             }
         }
         return promise.future
@@ -52,18 +50,41 @@ class DealershipAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, AFError>()
         
         NetworkRequest.request(url: "/v1/dealerships/near", queryParameters: ["latitude": "\(location.latitude)", "longitude" : "\(location.longitude)"], withBearer: true).responseJSON { response in
-            
             var responseObject: ResponseObject<MappableDataArray<Dealership>>?
             
             if let json = response.result.value as? [String: Any] {
-                Logger.print("JSON: \(json)")
                 responseObject = ResponseObject<MappableDataArray<Dealership>>(json: json)
             }
             
             if response.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(response.error as! AFError)
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    /**
+     Get a list of Time slot for a dealership
+     - parameter dealershipId: the dealership_id
+     
+     - Returns: A Future ResponseObject containing a list of Time Slot available for a dealership, or an AFError if an error occured
+     */
+    func getDealershipTimeSlot(dealershipId: Int) -> Future<ResponseObject<MappableDataArray<DealershipTimeSlot>>?, AFError> {
+        let promise = Promise<ResponseObject<MappableDataArray<DealershipTimeSlot>>?, AFError>()
+        
+        NetworkRequest.request(url: "/v1/dealership-time-slots", queryParameters: ["dealership_id": dealershipId], withBearer: true).responseJSON { response in
+            var responseObject: ResponseObject<MappableDataArray<DealershipTimeSlot>>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<MappableDataArray<DealershipTimeSlot>>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
             }
         }
         return promise.future

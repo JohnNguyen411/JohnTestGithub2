@@ -18,4 +18,4 @@ before_install:
   - xcrun instruments -w "iPhone 6s (11.1)" || echo "(Pre)Launched the simulator."
 script:
   #- xcodebuild test -workspace Valet/Valet.xcworkspace -scheme "Development (Debug)" -destination 'platform=iOS Simulator,name=iPhone 5,OS=10.0' -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
-  - xcodebuild test -workspace voluxe-customer/voluxe-customer.xcworkspace -scheme Dev -destination 'platform=iOS Simulator,name=iPhone 6s,OS=11.1' -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
+  - xcodebuild test -workspace voluxe-customer/voluxe-customer.xcworkspace -scheme Mock -destination 'platform=iOS Simulator,name=iPhone 6s,OS=11.1' -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}

@@ -8,10 +8,14 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
+    static let hourButtonWidth = 80
+    
     var delegate: PickupDateDelegate?
+    var realm: Realm?
     
     let firstMonthHeader: UILabel = {
         let firstMonthHeader = UILabel()
@@ -39,31 +43,67 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     private var maxDate = Date()
     
     private let hoursView = UIView(frame: .zero)
-    private let firstHourButton = VLButton(type: .BlueSecondaryWithBorder, title: (.NineToTwelve as String).uppercased(), actionBlock: nil)
-    private let secondHourButton = VLButton(type: .BlueSecondaryWithBorder, title: (.TwelveToThree as String).uppercased(), actionBlock: nil)
-    private let thirdHourButton = VLButton(type: .BlueSecondaryWithBorder, title: (.ThreeToSix as String).uppercased(), actionBlock: nil)
+    private var slotViews: [VLButton] = []
+    
+    private var currentSlots: Results<DealershipTimeSlot>?
+    
+    override init() {
+        super.init()
+        realm = try? Realm()
+        getTimeSlots()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    func getTimeSlots() {
+        showLoading(loading: true)
+        if Config.sharedInstance.isMock {
+            
+            var selectedDate: Date?
+            // select preselected date, otherwise fallback to next day
+            if StateServiceManager.sharedInstance.isPickup() {
+                selectedDate = RequestedServiceManager.sharedInstance.getPickupTimeSlot()?.from
+            } else {
+                selectedDate = RequestedServiceManager.sharedInstance.getDropoffTimeSlot()?.from
+            }
+            
+            // clear DB slots
+            if let realm = self.realm, selectedDate == nil {
+                let slots = realm.objects(DealershipTimeSlot.self)
+                try? realm.write {
+                    realm.delete(slots)
+                }
+            }
+            self.showCalendar()
+            
+            return
+        }
+        if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+            DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id).onSuccess { result in
+                if let slots = result?.data?.result {
+                    if let realm = self.realm {
+                        try? realm.write {
+                            realm.add(slots, update: true)
+                        }
+                    }
+                    self.showCalendar()
+                } else {
+                    // todo show error
+                    
+                }
+                }.onFailure { error in
+                    // todo show error
+            }
+        }
+    }
     
     override func setupViews() {
         super.setupViews()
         
-        firstHourButton.setActionBlock {
-            self.firstHourClicked()
-        }
-        
-        secondHourButton.setActionBlock {
-            self.secondHourClicked()
-        }
-        
-        thirdHourButton.setActionBlock {
-            self.thirdHourClicked()
-        }
-        
         containerView.addSubview(firstMonthHeader)
         containerView.addSubview(hoursView)
-        
-        hoursView.addSubview(firstHourButton)
-        hoursView.addSubview(secondHourButton)
-        hoursView.addSubview(thirdHourButton)
         
         initCalendar()
         
@@ -71,27 +111,6 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             make.bottom.equalTo(bottomButton.snp.top).offset(-30)
             make.left.right.equalToSuperview()
             make.height.equalTo(VLButton.secondaryHeight)
-        }
-        
-        firstHourButton.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.left.equalToSuperview()
-            make.height.equalTo(VLButton.secondaryHeight)
-            make.width.equalToSuperview().dividedBy(3).offset(-10)
-        }
-        
-        thirdHourButton.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.right.equalToSuperview()
-            make.height.equalTo(VLButton.secondaryHeight)
-            make.width.equalToSuperview().dividedBy(3).offset(-10)
-        }
-        
-        secondHourButton.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
-            make.center.equalToSuperview()
-            make.height.equalTo(VLButton.secondaryHeight)
-            make.width.equalToSuperview().dividedBy(3).offset(-10)
         }
         
         calendar.snp.makeConstraints { make in
@@ -118,10 +137,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     override func onButtonClick() {
-        if let delegate = delegate {
-            let index = getButtonSelectedIndex()
-            let bounds = minMax(index: index)
-            delegate.onDateTimeSelected(date: calendar.selectedDate!, hourRangeMin: bounds.min, hourRangeMax: bounds.max)
+        if let delegate = delegate, let currentSlots = currentSlots {
+            let timeSlot = currentSlots[getButtonSelectedIndex()]
+            delegate.onDateTimeSelected(timeSlot: timeSlot)
         }
     }
     
@@ -144,9 +162,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         calendar.appearance.titleFont = .volvoSansLightBold(size: 12)
         calendar.appearance.headerTitleColor = .luxeGray()
         calendar.appearance.caseOptions = FSCalendarCaseOptions.headerUsesUpperCase
-        calendar.appearance.borderSelectionColor = .luxeOrange()
+        calendar.appearance.borderSelectionColor = .luxeDeepBlue()
         calendar.appearance.borderDefaultColor = .luxeDeepBlue()
-        calendar.appearance.selectionColor = .luxeOrange()
+        calendar.appearance.selectionColor = .luxeDeepBlue()
         calendar.appearance.titleDefaultColor = .luxeDeepBlue()
         calendar.appearance.titleSelectionColor = .white
         calendar.appearance.borderRadius = 0
@@ -175,15 +193,19 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         self.calendar = calendar
         self.calendar.alpha = 0
         
+        
+    }
+    
+    private func showCalendar() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
-            self.calendar.scroll(to: self.minimumDate(for: calendar), animated: false)
+            self.calendar.scroll(to: self.minimumDate(for: self.calendar), animated: false)
         })
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
             if (self.calendar.visibleStickyHeaders.count > 0) {
                 let header = self.calendar.visibleStickyHeaders[0] as! FSCalendarStickyHeader
-                let firstMonth = self.monthFormatter.string(from: self.minimumDate(for: calendar)).uppercased()
-                self.firstMonthHeader.text = self.monthFormatter.string(from: self.minimumDate(for: calendar)).uppercased()
+                let firstMonth = self.monthFormatter.string(from: self.minimumDate(for: self.calendar)).uppercased()
+                self.firstMonthHeader.text = self.monthFormatter.string(from: self.minimumDate(for: self.calendar)).uppercased()
                 if header.titleLabel.text == firstMonth {
                     self.firstMonthHeader.isHidden = true
                 }
@@ -191,15 +213,32 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                 var selectedDate: Date?
                 // select preselected date, otherwise fallback to next day
                 if StateServiceManager.sharedInstance.isPickup() {
-                    selectedDate = RequestedServiceManager.sharedInstance.getPickupDate()
+                    selectedDate = RequestedServiceManager.sharedInstance.getPickupTimeSlot()?.from
                 } else {
-                    selectedDate = RequestedServiceManager.sharedInstance.getDropoffDate()
+                    selectedDate = RequestedServiceManager.sharedInstance.getDropoffTimeSlot()?.from
                 }
                 
                 if selectedDate == nil {
                     var nextDay = self.todaysDate
-                    while (!self.dateIsSelectable(date: nextDay)) {
+                    
+                    // Fake slots for Mock
+                    if Config.sharedInstance.isMock {
+                        if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                            var mockDay = self.todaysDate
+                            try? self.realm?.write {
+                                for _ in 0...30 {
+                                    let timeSlot = DealershipTimeSlot.mockTimeSlotForDate(dealershipId: dealership.id, date: mockDay)
+                                    mockDay = Calendar.current.date(byAdding: .day, value: 1, to: mockDay)!
+                                    self.realm?.add(timeSlot)
+                                }
+                            }
+                        }
+                    }
+                    
+                    var skippedDays = 0
+                    while (!self.dateIsSelectable(date: nextDay) && skippedDays < 30) {
                         nextDay = Calendar.current.date(byAdding: .day, value: 1, to: nextDay)!
+                        skippedDays += 1
                     }
                     selectedDate = nextDay
                 }
@@ -210,6 +249,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                 }
                 self.selectFirstEnabledButton()
             }
+            self.showLoading(loading: false)
             self.calendar.animateAlpha(show: true)
         })
     }
@@ -221,78 +261,106 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         Logger.print("empty")
     }
     
-    @objc func firstHourClicked(){
-        Logger.print("firstHourClicked")
-        setButtonEnabled(enable: firstHourButton.isEnabled, selected: true, button: firstHourButton)
-        setButtonEnabled(enable: secondHourButton.isEnabled, selected: false, button: secondHourButton)
-        setButtonEnabled(enable: thirdHourButton.isEnabled, selected: false, button: thirdHourButton)
-    }
-    
-    @objc func secondHourClicked(){
-        Logger.print("secondHourClicked")
-        setButtonEnabled(enable: firstHourButton.isEnabled, selected: false, button: firstHourButton)
-        setButtonEnabled(enable: secondHourButton.isEnabled, selected: true, button: secondHourButton)
-        setButtonEnabled(enable: thirdHourButton.isEnabled, selected: false, button: thirdHourButton)
-    }
-    
-    @objc func thirdHourClicked(){
-        Logger.print("thirdHourClicked")
-        setButtonEnabled(enable: firstHourButton.isEnabled, selected: false, button: firstHourButton)
-        setButtonEnabled(enable: secondHourButton.isEnabled, selected: false, button: secondHourButton)
-        setButtonEnabled(enable: thirdHourButton.isEnabled, selected: true, button: thirdHourButton)
+    @objc func slotClicked(viewIndex: Int, slot: DealershipTimeSlot) {
+        for (index, view) in slotViews.enumerated() {
+            setButtonEnabled(enable: view.isEnabled, selected: index == viewIndex, button: view)
+        }
     }
     
     func dateIsSelectable(date: Date) -> Bool {
-        if !date.isWeekend {
-            return hasAvailabilities(date: date)
+        return hasAvailabilities(date: date)
+    }
+    
+    func hasAvailabilities(date: Date) -> Bool {
+        if Config.sharedInstance.isMock {
+            return true
+        }
+        if let slots = getSlotsForDate(date: date) {
+            return slots.count > 0
         }
         return false
     }
     
-    func hasAvailabilities(date: Date) -> Bool {
-        if date.isToday {
-            if todaysDate.hour < 17 {
-                return true
-            } else {
-                return false
+    private func getSlotsForDate(date: Date) -> Results<DealershipTimeSlot>? {
+        if let realm = realm, let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+            var from: NSDate = date.beginningOfDay() as NSDate
+            var to: NSDate = date.endOfDay() as NSDate
+            
+            var predicate = NSPredicate(format: "from >= %@ AND to <= %@ AND dealershipId = %d", from, to, dealership.id)
+            
+            if date.isToday {
+                from = self.todaysDate as NSDate
+                to = date.endOfDay() as NSDate
+                predicate = NSPredicate(format: "to >= %@ AND to <= %@ AND dealershipId = %d", from, to, dealership.id)
             }
+            
+            let slots = realm.objects(DealershipTimeSlot.self).filter(predicate)
+            return slots
         }
-        return true
+        return nil
     }
     
-    func updateButtons(date: Date) {
-        if date.isToday {
-            if todaysDate.hour > 18 {
-                setButtonEnabled(enable: false, selected: false, button: firstHourButton)
-                setButtonEnabled(enable: false, selected: false, button: secondHourButton)
-                setButtonEnabled(enable: false, selected: false, button: thirdHourButton)
-            } else if todaysDate.hour > 14 {
-                setButtonEnabled(enable: false, selected: false, button: firstHourButton)
-                setButtonEnabled(enable: false, selected: false, button: secondHourButton)
-                setButtonEnabled(enable: true, selected: false, button: thirdHourButton)
-            } else if todaysDate.hour > 11 {
-                setButtonEnabled(enable: false, selected: false, button: firstHourButton)
-                setButtonEnabled(enable: true, selected: false, button: secondHourButton)
-                setButtonEnabled(enable: true, selected: false, button: thirdHourButton)
-            } else {
-                setButtonEnabled(enable: true, selected: false, button: firstHourButton)
-                setButtonEnabled(enable: true, selected: false, button: secondHourButton)
-                setButtonEnabled(enable: true, selected: false, button: thirdHourButton)
+    func updateSlots(slots: Results<DealershipTimeSlot>?) {
+        // remove time slots view
+        for view in hoursView.subviews {
+            view.removeFromSuperview()
+        }
+        
+        guard let slots = slots, slots.count > 0 else {
+            return
+        }
+        
+        slotViews = []
+        currentSlots = slots
+        
+        for (index, slot) in slots.enumerated() {
+            let slotButton = VLButton(type: .BlueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: false), actionBlock: nil)
+            slotButton.setActionBlock {
+                self.slotClicked(viewIndex: index, slot: slot)
             }
-        } else {
-            setButtonEnabled(enable: true, selected: false, button: firstHourButton)
-            setButtonEnabled(enable: true, selected: false, button: secondHourButton)
-            setButtonEnabled(enable: true, selected: false, button: thirdHourButton)
+            slotViews.append(slotButton)
+            hoursView.addSubview(slotButton)
+        }
+        // todo add constraints
+        
+        hoursView.snp.remakeConstraints { make in
+            make.bottom.equalTo(bottomButton.snp.top).offset(-30)
+            make.width.equalTo((DateTimePickupViewController.hourButtonWidth + 10) * slots.count)
+            make.centerX.equalToSuperview()
+            make.height.equalTo(VLButton.secondaryHeight)
+        }
+        
+        var prevView: UIView? = nil
+        for view in hoursView.subviews {
+            
+            view.snp.makeConstraints { make in
+                make.top.bottom.equalToSuperview()
+                make.left.equalTo(prevView == nil ? hoursView.snp.left : prevView!.snp.right).offset(prevView == nil ? 0 : 10)
+                make.height.equalTo(VLButton.secondaryHeight)
+                make.width.equalToSuperview().dividedBy(hoursView.subviews.count).offset(-10)
+            }
+            
+            prevView = view
+        }
+        
+    }
+    
+    
+    func updateButtons(date: Date) {
+        for slotView in slotViews {
+            setButtonEnabled(enable: true, selected: false, button: slotView)
         }
     }
     
     func selectFirstEnabledButton() {
-        if firstHourButton.isEnabled {
-            firstHourClicked()
-        } else if secondHourButton.isEnabled {
-            secondHourClicked()
-        } else if thirdHourButton.isEnabled {
-            thirdHourClicked()
+        guard let currentSlots = currentSlots else {
+            return
+        }
+        for (index, slotView) in slotViews.enumerated() {
+            if slotView.isEnabled {
+                slotClicked(viewIndex: index, slot: currentSlots[index])
+                break
+            }
         }
     }
     
@@ -315,12 +383,10 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     func getButtonSelectedIndex() -> Int {
-        if buttonIsSelected(button: firstHourButton) {
-            return 0
-        } else if buttonIsSelected(button: secondHourButton) {
-            return 1
-        } else if buttonIsSelected(button: thirdHourButton) {
-            return 2
+        for (index, slotView) in slotViews.enumerated() {
+            if buttonIsSelected(button: slotView) {
+                return index
+            }
         }
         return -1
     }
@@ -373,6 +439,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition)   -> Bool {
         let selectable = dateIsSelectable(date: date)
         if selectable {
+            updateSlots(slots: getSlotsForDate(date: date))
             updateButtons(date: date)
             selectFirstEnabledButton()
         }
@@ -396,6 +463,6 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
 
 // MARK: protocol PickupDateDelegate
 protocol PickupDateDelegate: class {
-    func onDateTimeSelected(date: Date, hourRangeMin: Int, hourRangeMax: Int)
+    func onDateTimeSelected(timeSlot: DealershipTimeSlot)
 }
 

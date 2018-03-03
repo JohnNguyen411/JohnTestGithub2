@@ -24,7 +24,7 @@ class BookingAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Booking, or an AFError if an error occured
      */
-    func createBooking(customerId: String, vehicleId: String, dealershipId: String, loaner: Bool) -> Future<ResponseObject<MappableDataObject<Booking>>?, AFError> {
+    func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool) -> Future<ResponseObject<MappableDataObject<Booking>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, AFError>()
         let params: Parameters = [
             "customer_id": customerId,
@@ -34,18 +34,16 @@ class BookingAPI: NSObject {
         ]
         
         NetworkRequest.request(url: "/v1/bookings", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
-            
             var responseObject: ResponseObject<MappableDataObject<Booking>>?
             
             if let json = response.result.value as? [String: Any] {
-                Logger.print("JSON: \(json)")
                 responseObject = ResponseObject<MappableDataObject<Booking>>(json: json)
             }
             
             if response.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(response.error as! AFError)
+                promise.failure(Errors.safeAFError(error: response.error!))
             }
         }
         return promise.future
@@ -62,18 +60,16 @@ class BookingAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, AFError>()
 
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)", queryParameters: nil, withBearer: true).responseJSON { response in
-            
             var responseObject: ResponseObject<MappableDataObject<Booking>>?
             
             if let json = response.result.value as? [String: Any] {
-                Logger.print("JSON: \(json)")
                 responseObject = ResponseObject<MappableDataObject<Booking>>(json: json)
             }
             
             if response.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(response.error as! AFError)
+                promise.failure(Errors.safeAFError(error: response.error!))
             }
         }
         return promise.future
@@ -89,21 +85,115 @@ class BookingAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataArray<Booking>>?, AFError>()
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings", queryParameters: nil, withBearer: true).responseJSON { response in
-                
                 var responseObject: ResponseObject<MappableDataArray<Booking>>?
                 
                 if let json = response.result.value as? [String: Any] {
-                    Logger.print("JSON: \(json)")
                     responseObject = ResponseObject<MappableDataArray<Booking>>(json: json)
                 }
                 
                 if response.error == nil {
                     promise.success(responseObject)
                 } else {
-                    promise.failure(response.error as! AFError)
+                    promise.failure(Errors.safeAFError(error: response.error!))
                 }
         }
         return promise.future
     }
+    
+    /**
+     Create a Pickup Request
+     - parameter bookingId: The booking ID related to the pickup
+     - parameter timeSlotId: The TimeSlot ID Choosed by the customer for the pickup
+     - parameter location: The location choosed by the customer for the pickup
+     
+     - Returns: A Future ResponseObject containing the Pickup, or an AFError if an error occured
+     */
+    func createPickupRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location) -> Future<ResponseObject<MappableDataObject<Request>>?, AFError> {
+        let promise = Promise<ResponseObject<MappableDataObject<Request>>?, AFError>()
+
+        let params: Parameters = [
+            "dealership_time_slot_id": timeSlotId,
+            "location": location.toJSON()
+            ]
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/driver-pickup-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+            var responseObject: ResponseObject<MappableDataObject<Request>>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<MappableDataObject<Request>>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    /**
+     Create a DropOff Request
+     - parameter bookingId: The booking ID related to the pickup
+     - parameter timeSlotId: The TimeSlot ID Choosed by the customer for the pickup
+     - parameter location: The location choosed by the customer for the pickup
+     
+     - Returns: A Future ResponseObject containing the Pickup, or an AFError if an error occured
+     */
+    func createDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location) -> Future<ResponseObject<MappableDataObject<Request>>?, AFError> {
+        let promise = Promise<ResponseObject<MappableDataObject<Request>>?, AFError>()
+        
+        let params: Parameters = [
+            "dealership_time_slot_id": timeSlotId,
+            "location": location.toJSON()
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/driver-dropoff-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+            var responseObject: ResponseObject<MappableDataObject<Request>>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<MappableDataObject<Request>>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    /**
+     Contact Driver
+     - parameter customerId: Customer's Id
+     - parameter bookingId: The booking ID related to the pickup
+     - parameter mode: The contact mode choosen: "text_only" or "voice_only"
+     
+     - Returns: A Future ResponseObject containing the ContactDriver object with text or voice phone number, or an AFError if an error occured
+     */
+    func contactDriver(customerId: Int, bookingId: Int, mode: String) -> Future<ResponseObject<MappableDataObject<ContactDriver>>?, AFError> {
+        let promise = Promise<ResponseObject<MappableDataObject<ContactDriver>>?, AFError>()
+        
+        let params: Parameters = [
+            "mode": mode
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/contact-driver", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+            var responseObject: ResponseObject<MappableDataObject<ContactDriver>>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<MappableDataObject<ContactDriver>>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    
     
 }

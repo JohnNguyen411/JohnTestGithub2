@@ -14,27 +14,21 @@ class SchedulingPickupViewController: SchedulingViewController {
     override func setupViews() {
         super.setupViews()
         loanerView.snp.makeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
-            make.top.equalTo(pickupLocationView.snp.bottom).offset(20)
-            make.height.equalTo(VLTitledLabel.height)
+            make.left.right.equalToSuperview()
+            make.top.equalTo(scheduledPickupView.snp.bottom)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
     }
     
     override func fillViews() {
-        if serviceState == .idle || serviceState == .needService {
-            let service = Service(name: "10,000 mile check-up", price: Double(400))
-            RequestedServiceManager.sharedInstance.setService(service: service)
-        }
-        let date = RequestedServiceManager.sharedInstance.getPickupDate()
-        let min = RequestedServiceManager.sharedInstance.getPickupTimeMin()
-        let max = RequestedServiceManager.sharedInstance.getPickupTimeMax()
-        if let date = date, let min = min, let max = max {
+        
+        if let timeSlot = RequestedServiceManager.sharedInstance.getPickupTimeSlot(), let date = timeSlot.from {
             let dateTime = formatter.string(from: date)
-            scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(Date.formatHourRange(min: min, max: max))", rightDescription: "")
+            scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" ))", rightDescription: "")
         }
         
         if let requestLocation = RequestedServiceManager.sharedInstance.getPickupLocation() {
-            pickupLocationView.setTitle(title: .PickupLocation, leftDescription: requestLocation.name!, rightDescription: "")
+            pickupLocationView.setTitle(title: .PickupLocation, leftDescription: requestLocation.address!, rightDescription: "")
         }
         super.fillViews()
     }
@@ -42,62 +36,14 @@ class SchedulingPickupViewController: SchedulingViewController {
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         
-        leftButton.setTitle(title: (.SelfDrop as String).uppercased())
-        rightButton.setTitle(title: (.VolvoPickup as String).uppercased())
+        loanerView.isEditable = true
+        dealershipView.isEditable = true
+        scheduledPickupView.isEditable = true
+        pickupLocationView.isEditable = true
         
-        if state == .pickupDriverDrivingToDealership || state == .pickupDriverAtDealership {
-            
-            if !self.checkupLabel.isHidden {
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.checkupLabel.snp.updateConstraints { make in
-                        make.height.equalTo(0)
-                    }
-                    self.checkupLabel.superview?.layoutIfNeeded()
-                }, completion: { (completed) in
-                    self.checkupLabel.isHidden = true
-                })
-            }
-            
-            leftButton.isHidden = true
-            rightButton.isHidden = true
-            confirmButton.isHidden = true
-            
-            if state == .pickupDriverDrivingToDealership {
-                DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                   StateServiceManager.sharedInstance.updateState(state: .pickupDriverAtDealership)
-                })
-            } else if state == .pickupDriverAtDealership {
-                
-                let alert = UIAlertController(title: .VolvoPickup, message: .YourVehicleHasArrived, preferredStyle: UIAlertControllerStyle.alert)
-                let okAction = UIAlertAction(title: (.Ok as String).uppercased(), style: UIAlertActionStyle.default, handler: { (alert: UIAlertAction!) in
-                    // show being serviced
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .servicing)
-                    })
-                    
-                })
-                
-                alert.addAction(okAction)
-                
-                self.present(alert, animated: true, completion: {
-                    // add accessibility if possible
-                    if let alertButton = okAction.value(forKey: "__representer") {
-                        let view = alertButton as? UIView
-                        view?.accessibilityIdentifier = "okAction_AID"
-                    }
-                })
-            }
-            
-        } else {
-            if self.checkupLabel.isHidden {
-                self.checkupLabel.isHidden = false
-                UIView.animate(withDuration: 0.5, animations: {
-                    self.checkupLabel.snp.updateConstraints { make in
-                        make.height.equalTo(self.checkupLabelHeight)
-                    }
-                    self.checkupLabel.superview?.layoutIfNeeded()
-                })
-            }
+        if state == .schedulingService {
+            // show location modal
+            pickupLocationClick()
         }
         
         if state.rawValue >= ServiceState.pickupScheduled.rawValue {
@@ -113,17 +59,29 @@ class SchedulingPickupViewController: SchedulingViewController {
         }
     }
     
-    
-    override func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
+    override func onDealershipSelected(dealership: Dealership) {
         var openNext = false
-        
-        if scheduleState.rawValue < SchedulePickupState.location.rawValue {
-            scheduleState = .location
+        if pickupScheduleState.rawValue < SchedulePickupState.dealership.rawValue {
+            pickupScheduleState = .dealership
             openNext = true
         }
+        RequestedServiceManager.sharedInstance.setDealership(dealership: dealership)
         
-        super.onLocationSelected(responseInfo: responseInfo, placemark: placemark)
-        
+        dealershipView.descLeftLabel.text = dealership.name
+        currentPresentrVC?.dismiss(animated: true, completion: {
+            if openNext {
+                self.scheduledPickupClick()
+            }
+        })
+    }
+
+    override func onDateTimeSelected(timeSlot: DealershipTimeSlot) {
+        var openNext = false
+        if pickupScheduleState.rawValue < SchedulePickupState.dateTime.rawValue {
+            pickupScheduleState = .dateTime
+            openNext = true
+        }
+        super.onDateTimeSelected(timeSlot: timeSlot)
         currentPresentrVC?.dismiss(animated: true, completion: {
             if openNext {
                 self.loanerClick()
@@ -131,8 +89,166 @@ class SchedulingPickupViewController: SchedulingViewController {
         })
     }
     
+    override func onLocationSelected(customerAddress: CustomerAddress) {
+        
+        currentPresentrVC?.dismiss(animated: true, completion: {
+            self.showBlockingLoading()
+        })
+
+        var openNext = false
+        
+        if pickupScheduleState.rawValue < SchedulePickupState.location.rawValue {
+            pickupScheduleState = .location
+            openNext = true
+        }
+        
+        super.onLocationSelected(customerAddress: customerAddress)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+
+        self.fetchDealershipsForLocation(location: customerAddress.location?.getLocation(), completion: {
+            // hide loader
+            self.hideBlockingLoading()
+            if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                self.pickupLocationView.hideError()
+                self.dealershipView.descLeftLabel.text = dealership.name
+
+                if self.pickupScheduleState.rawValue < SchedulePickupState.dealership.rawValue {
+                    self.pickupScheduleState = .dealership
+                    openNext = true
+                }
+                if openNext {
+                    self.dealershipView.animateAlpha(show: true)
+                    // show date time
+                    self.scheduledPickupClick()
+                }
+                
+            } else {
+                //todo: OUT OF ZONE ERROR
+                self.pickupLocationView.showError(error: .OutOfPickupArea)
+            }
+            
+        })
+        })
+        
+    }
+    
+    @objc override func dealershipClick() {
+        showDealershipModal(dismissOnTap: pickupScheduleState.rawValue >= SchedulePickupState.dealership.rawValue)
+        super.dealershipClick()
+    }
+    
+    @objc override func scheduledPickupClick() {
+        showPickupDateTimeModal(dismissOnTap: pickupScheduleState.rawValue >= SchedulePickupState.dateTime.rawValue)
+        super.scheduledPickupClick()
+    }
+    
+    @objc override func pickupLocationClick() {
+        showPickupLocationModal(dismissOnTap: pickupScheduleState.rawValue >= SchedulePickupState.location.rawValue)
+        super.pickupLocationClick()
+    }
+    
+    @objc override func loanerClick() {
+        showPickupLoanerModal(dismissOnTap: pickupScheduleState.rawValue >= SchedulePickupState.loaner.rawValue)
+        super.loanerClick()
+    }
+    
     override func confirmButtonClick() {
-        StateServiceManager.sharedInstance.updateState(state: .pickupScheduled)
+        createBooking(loaner: RequestedServiceManager.sharedInstance.getLoaner())
+    }
+    
+    private func createBooking(loaner: Bool) {
+        
+        guard let customerId = UserManager.sharedInstance.getCustomerId() else {
+            return
+        }
+        
+        if Config.sharedInstance.isMock {
+            let booking = Booking.mockBooking(customer: UserManager.sharedInstance.getCustomer()!, vehicle: UserManager.sharedInstance.getVehicle()!, dealership: RequestedServiceManager.sharedInstance.getDealership()!)
+            if let realm = self.realm {
+                try? realm.write {
+                    realm.add(booking, update: true)
+                }
+            }
+            self.createPickupRequest(customerId: customerId, booking: booking)
+
+            return
+        }
+        
+       
+        guard let vehicleId = UserManager.sharedInstance.getVehicleId() else {
+            return
+        }
+        guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else {
+            return
+        }
+        
+        confirmButton.isLoading = true
+        
+        BookingAPI().createBooking(customerId: customerId, vehicleId: vehicleId, dealershipId: dealership.id, loaner: loaner).onSuccess { result in
+            if let booking = result?.data?.result {
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(booking, update: true)
+                    }
+                }
+                self.createPickupRequest(customerId: customerId, booking: booking)
+            } else {
+                // todo show error
+                self.confirmButton.isLoading = false
+            }
+            
+            }.onFailure { error in
+                // todo show error
+                self.confirmButton.isLoading = false
+        }
+    }
+    
+    private func createPickupRequest(customerId: Int, booking: Booking) {
+        if let timeSlot = RequestedServiceManager.sharedInstance.getPickupTimeSlot(),
+            let location = RequestedServiceManager.sharedInstance.getPickupLocation() {
+            
+            if Config.sharedInstance.isMock {
+                let pickupRequest = Request.mockRequest(bookingId: booking.id, location: location, timeSlot: timeSlot)
+                self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
+                return
+            }
+            
+            BookingAPI().createPickupRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location).onSuccess { result in
+                if let pickupRequest = result?.data?.result {
+                    self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
+                } else {
+                    // todo show error
+                    self.confirmButton.isLoading = false
+                }
+                // todo show error
+                self.confirmButton.isLoading = false
+                }.onFailure { error in
+                    // todo show error
+                    self.confirmButton.isLoading = false
+            }
+        }
+    }
+    
+    private func manageNewPickupRequest(pickupRequest: Request, booking: Booking) {
+        if let realm = self.realm {
+            try? realm.write {
+                realm.add(pickupRequest, update: true)
+            }
+            let realmPickupRequest = realm.objects(Request.self).filter("id = \(pickupRequest.id)").first
+            
+            if let booking = realm.objects(Booking.self).filter("id = \(booking.id)").first {
+                
+                try? realm.write {
+                    booking.pickupRequest = realmPickupRequest
+                    realm.add(booking, update: true)
+                }
+                UserManager.sharedInstance.addBooking(booking: booking)
+                if RequestedServiceManager.sharedInstance.getBooking() == nil {
+                    StateServiceManager.sharedInstance.updateState(state: .loading)
+                }
+            }
+        }
     }
     
 }

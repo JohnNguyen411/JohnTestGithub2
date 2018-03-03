@@ -19,5 +19,62 @@ extension String {
         }
         return string
     }
+    
+    func capitalizingFirstLetter() -> String {
+        return prefix(1).uppercased() + dropFirst()
+    }
+    
+    mutating func capitalizeFirstLetter() {
+        self = self.capitalizingFirstLetter()
+    }
 
+    
+    static func intToStringDecimal(largeNumber: Int) -> String {
+        let numberFormatter = NumberFormatter()
+        numberFormatter.numberStyle = NumberFormatter.Style.decimal
+        if let formattedString = numberFormatter.string(from: NSNumber(value:largeNumber)) {
+            return formattedString
+        }
+        return "\(largeNumber)"
+    }
+    
+    static func addLeftRightPadding(string: String) -> String {
+        return " \(string) "
+    }
+    
+    func containsNumber() -> Bool {
+        let decimalCharacters = CharacterSet.decimalDigits
+        
+        let decimalRange = self.rangeOfCharacter(from: decimalCharacters)
+        
+        if decimalRange != nil {
+            return true
+        }
+        return false
+    }
+    
+    func containsLetter() -> Bool {
+        let decimalCharacters = CharacterSet.letters
+        
+        let decimalRange = self.rangeOfCharacter(from: decimalCharacters)
+        
+        if decimalRange != nil {
+            return true
+        }
+        return false
+    }
+    
+    public static func areSimilar(stringOne: String?, stringTwo: String?) -> Bool {
+        guard let stringOne = stringOne else {
+            return false
+        }
+        
+        guard let stringTwo = stringTwo else {
+            return false
+        }
+        
+        return stringOne == stringTwo
+    }
+    
+    
 }

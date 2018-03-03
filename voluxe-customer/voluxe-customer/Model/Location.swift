@@ -8,46 +8,76 @@
 
 import Foundation
 import ObjectMapper
+import CoreLocation
+import RealmSwift
 
-class Location: NSObject, Mappable {
-    var longitude: Double
-    var latitude: Double
-    var address: String?
-    var note: String?
-
-    init(longitude: Double, latitude: Double, address: String?, note: String?) {
-        self.longitude = longitude
-        self.latitude = latitude
-        self.address = address
-        self.note = note
+class Location: Object, Mappable {
+    
+    @objc dynamic var id = UUID().uuidString
+    @objc dynamic var address: String?
+    @objc dynamic var latitude: Double = 0.0
+    @objc dynamic var longitude: Double = 0.0
+    @objc dynamic var accuracy: Int = 0
+    @objc dynamic var createdAt: Date?
+    @objc dynamic var updatedAt: Date?
+    var location: CLLocationCoordinate2D?
+    
+    required convenience init?(map: Map) {
+        self.init()
     }
-
-    init(dict: [String : AnyObject]) {
-        self.address = dict["address"] as? String
-        self.note = dict["note"] as? String
-        self.longitude = (dict["longitude"] as! NSNumber).doubleValue
-        self.latitude = (dict["latitude"] as! NSNumber).doubleValue
-    }
-
-    required init?(map: Map) {
-        longitude = map["longitude"].currentValue as! Double
-        latitude = map["latitude"].currentValue as! Double
-        address = map["address"].currentValue as? String
-        note = map["note"].currentValue as? String
-    }
-
+    
     func mapping(map: Map) {
-        longitude <- map["longitude"]
-        latitude <- map["latitude"]
         address <- map["address"]
-        note <- map["note"]
+        latitude <- map["latitude"]
+        longitude <- map["longitude"]
+        accuracy <- map["accuracy"]
+        createdAt <- (map["created_at"], VLISODateTransform())
+        updatedAt <- (map["updated_at"], VLISODateTransform())
     }
-
-    override func isEqual(_ other: Any?) -> Bool {
-        if let other = other as? Location {
-            return self.latitude == other.latitude && self.longitude == other.longitude
+    
+    override static func ignoredProperties() -> [String] {
+        return ["location"]
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    convenience init(name: String?, latitude: Double?, longitude: Double?, location: CLLocationCoordinate2D?) {
+        self.init()
+        self.address = name
+        
+        if let location = location {
+            self.location = location
+            self.latitude = location.latitude
+            self.longitude = location.longitude
+        } else {
+            if let latitude = latitude {
+                self.latitude = latitude
+            }
+            if let longitude = longitude {
+                self.longitude = longitude
+            }
         }
-
-        return false
+    }
+    
+    
+    func getLocation() -> CLLocationCoordinate2D? {
+        if let location = location {
+            return location
+        }
+        
+        location = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
+        
+        return location
+    }
+    
+    func toJSON() -> [String : Any] {
+        return [
+            "address": address ?? "",
+            "latitude": latitude,
+            "longitude": longitude,
+            "accuracy": accuracy
+        ]
     }
 }

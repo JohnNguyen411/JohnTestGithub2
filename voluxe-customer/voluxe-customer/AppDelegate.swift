@@ -12,6 +12,7 @@ import GoogleMaps
 import Firebase
 import FirebaseMessaging
 import UserNotifications
+import AlamofireNetworkActivityLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -52,6 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         uiNavigationController.navigationBar.backgroundColor = UIColor("#FFFFFF")
         uiNavigationController.navigationBar.tintColor = UIColor("#000000")
         
+        navigationController = uiNavigationController
+
         leftViewController.mainNavigationViewController = navigationController
         leftViewController.mainViewController = mainViewController
         
@@ -61,7 +64,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         menuController.opacityView.removeFromSuperview()
         
         slideMenuController = menuController
-        navigationController = uiNavigationController
         
         if let navigationController = self.navigationController {
             AppDelegate.navigationBarHeight = navigationController.navigationBar.frame.size.height
@@ -75,7 +77,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        #if DEBUG
+            NetworkActivityLogger.shared.level = .debug
+            NetworkActivityLogger.shared.startLogging()
+        #endif
         
         setupFirebase(application)
         
@@ -96,8 +101,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window = UIWindow(frame: UIScreen.main.bounds)
         
         if UserManager.sharedInstance.getAccessToken() == nil {
-            let homeViewController = FTUEViewController()
-            window!.rootViewController = homeViewController
+            let uiNavigationController = UINavigationController(rootViewController: FTUEStartViewController())
+            uiNavigationController.navigationBar.isTranslucent = true
+            uiNavigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+            uiNavigationController.navigationBar.shadowImage = UIImage()
+            window!.rootViewController = uiNavigationController
             window!.makeKeyAndVisible()
         } else {
             createMenuView()
@@ -159,12 +167,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        print("didReceive")
+        Logger.print("didReceive")
     }
     
     @available(iOS 10.0, *)
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        print("willPresent")
+        Logger.print("willPresent")
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
@@ -174,11 +182,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            Logger.print("Message ID: \(messageID)")
         }
         
         // Print full message.
-        print(userInfo)
+        Logger.print(userInfo)
     }
     
     func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
@@ -189,11 +197,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         // Print message ID.
         if let messageID = userInfo[gcmMessageIDKey] {
-            print("Message ID: \(messageID)")
+            Logger.print("Message ID: \(messageID)")
         }
         
         // Print full message.
-        print(userInfo)
+        Logger.print(userInfo)
         
         completionHandler(UIBackgroundFetchResult.newData)
     }
@@ -202,7 +210,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     //MARK: MessagingDelegate
     func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
         let token = Messaging.messaging().fcmToken
-        print("FCM token: \(token ?? "")")
+        Logger.print("FCM token: \(token ?? "")")
         
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.

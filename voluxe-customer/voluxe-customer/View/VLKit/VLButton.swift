@@ -15,6 +15,7 @@ enum VLButtonType{
     case BlueSecondaryWithBorder
     case BlueSecondaryWithBorderDisabled
     case BlueSecondarySelected //orange
+    case OrangePrimary
     case OrangeSecondary
     case OrangeSecondarySmall
 }
@@ -24,8 +25,27 @@ class VLButton : UIButton {
     static let primaryHeight = 40
     static let secondaryHeight = 30
 
+    let activityIndicator = UIActivityIndicatorView(frame: .zero)
     var iconView: UIImageView?
     var type: VLButtonType?
+    var titleText = ""
+    
+    var isLoading = false {
+        didSet {
+            iconView?.animateAlpha(show: !isLoading)
+            activityIndicator.animateAlpha(show: isLoading)
+            
+            if isLoading {
+                setTitle(title: "")
+                isEnabled = false
+                activityIndicator.startAnimating()
+            } else {
+                activityIndicator.stopAnimating()
+                isEnabled = true
+                setTitle(title: titleText)
+            }
+        }
+    }
 
     /**
      Need to make constraints after initializing the button
@@ -36,11 +56,26 @@ class VLButton : UIButton {
         setType(type: type)
         
         if let title = title {
+            self.titleText = title
             setTitle(title: title)
         }
         
         if let actionBlock = actionBlock {
             setActionBlock(actionBlock: actionBlock)
+        }
+        
+        activityIndicator.isHidden = true
+        self.addSubview(activityIndicator)
+        activityIndicator.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+            make.width.height.equalTo(25)
+        }
+    }
+    
+    
+    override var isEnabled: Bool {
+        didSet {
+            self.alpha = isEnabled ? 1 : 0.8
         }
     }
     
@@ -78,6 +113,11 @@ class VLButton : UIButton {
             layer.borderWidth = 1
             layer.borderColor = UIColor.luxeGray().cgColor
             break
+        case .OrangePrimary:
+            backgroundColor = .white
+            applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeOrange(), highlightedFontColor: .luxeLightGray())
+            layer.borderWidth = 0
+            break
         case .OrangeSecondary:
             backgroundColor = .clear
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 18), fontColor: UIColor.luxeOrange(), highlightedFontColor: .luxeGray())
@@ -89,7 +129,7 @@ class VLButton : UIButton {
             layer.borderWidth = 0
             break
         case .BlueSecondarySelected:
-            backgroundColor = UIColor.luxeOrange()
+            backgroundColor = UIColor.luxeDeepBlue()
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: .white, highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break

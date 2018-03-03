@@ -9,16 +9,18 @@
 import Foundation
 import UIKit
 import ObjectMapper
+import RealmSwift
 
-class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebViewDelegate {
-
+class WebViewLoginViewController: FTUEChildViewController, UIWebViewDelegate {
+    
     private let webview = UIWebView(frame: .zero)
+    var realm : Realm?
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupViews()
-        
+        realm = try? Realm()
+                
         webview.delegate = self
         webview.scalesPageToFit = false
         webview.autoresizesSubviews = true
@@ -30,7 +32,7 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
         // final redirect: /v1/customers/login/callback
     }
     
-    func setupViews() {
+    override func setupViews() {
         self.view.addSubview(webview)
         webview.snp.makeConstraints { make in
             make.edges.equalToSuperview()
@@ -40,7 +42,7 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let url = URL(string: "\(Config.sharedInstance.apiEndpoint())/v1/customers/login")!
-       
+        
         webview.loadRequest(URLRequest(url: url))
     }
     
@@ -51,9 +53,42 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
                     let responseString = try String(contentsOf: request.url!, encoding: String.Encoding.utf8)
                     if let json = convertToDictionary(text: responseString) {
                         let responseObject = ResponseObject<MappableDataObject<Token>>(json: json)
-                        if let token = responseObject.data?.result?.token {
-                            UserManager.sharedInstance.loginSuccess(token: token)
-                            goToNext()
+                        
+                        if let tokenObject = responseObject.data?.result {
+                            if let customerId = tokenObject.customerId {
+                                
+                                // Get Customer object with ID
+                                UserManager.sharedInstance.loginSuccess(token: tokenObject.token)
+                                CustomerAPI().getCustomer(id: customerId).onSuccess { result in
+                                    if let customer = result?.data?.result {
+                                        if let realm = self.realm {
+                                            try? realm.write {
+                                                realm.deleteAll()
+                                                realm.add(customer)
+                                            }
+                                        }
+                                        UserManager.sharedInstance.setCustomer(customer: customer)
+                                        
+                                        // Get Customer's Vehicles based on ID
+                                        CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
+                                            if let cars = result?.data?.result {
+                                                if let realm = self.realm {
+                                                    try? realm.write {
+                                                        realm.add(cars, update: true)
+                                                    }
+                                                }
+                                                UserManager.sharedInstance.setVehicles(vehicles: cars)
+                                                self.goToNext()
+                                            }
+                                            
+                                            }.onFailure { error in
+                                                // todo show error
+                                        }
+                                    }
+                                    }.onFailure { error in
+                                        // todo show error
+                                }
+                            }
                         }
                     }
                 } catch let error {
@@ -75,6 +110,9 @@ class WebViewLoginViewController: FTUEChildViewController, FTUEProtocol, UIWebVi
     }
     
     func didSelectPage() {
+    }
+    
+    override func nextButtonTap() {
     }
     
     func convertToDictionary(text: String) -> [String: Any]? {

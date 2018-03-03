@@ -7,6 +7,7 @@
 */
 
 /***************** COMMONS ***************/
+"AppName" = "Luxe by Volvo";
 "Next" = "Next";
 "Add" = "Add";
 "Yes" = "Yes";
@@ -14,6 +15,19 @@
 "Ok" = "Ok";
 "Contact" = "Contact";
 "smallMinute" = "Min";
+"Edit" = "Edit";
+"Done" = "Done";
+"Back" = "Back";
+"Update" = "Update";
+"New" = "New";
+"Login" = "Login";
+"Logout" = "Logout";
+"Cancel" = "Cancel";
+"CancelPickup" = "Cancel Pickup";
+"CancelDropOff" = "Cancel DropOff";
+"Error" = "Error";
+"GenericError" = "An unknown error has occurred, please try again later.";
+
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
@@ -29,13 +43,37 @@
 "MobilePhoneNumberConfirm" = "We'll send you a text message to confirm the number";
 "PhoneNumberVerifLabel" = "Type the confirmation code you received via SMS.";
 "ResendCode" = "Resend Code";
-"PhoneNumberVerif_Placeholder" = "0000";
+"PhoneNumberVerif_Placeholder" = "000000";
 "WelcomeToAppLabel" = "Welcome to Luxe, %@. Your Volvo account is now active with Luxe.";
+"FirstName" = "First Name";
+"LastName" = "Last Name";
+"WelcomeSignup" = "Welcome to Luxe by Volvo. Let's create your account.";
+"FirstNamePlaceholder" = "Johan";
+"LastNamePlaceholder" = "Johansson";
+"CreatePassword" = "Create a password.";
+"PasswordCondition" = "(At least 8 characters with at least one letter and one numeral)";
+"Password" = "Password";
+"RepeatPassword" = "Repeat Password";
+"Login" = "Login";
+"Signup" = "Signup";
+"EmailAddress" = "Email Address";
+"EmailPlaceholder" = "name@domain.com";
+"SelectYourVehicle" = "Select your vehicle.";
+"Year" = "Year";
+"Model" = "Model";
+"Color" = "Color";
+"YearPlaceholder" = "2018";
+"ModelPlaceholder" = "S90";
+"ColorPlaceholder" = "Black";
+"AccountAlreadyExist" = "An account already exist with that email, please try Login instead.";
+
 
 /***************** SchedulePickup ***************/
 "ScheduleService" = "Schedule Service";
 "ShowDescription" = "Show Description";
 "RecommendedService" = "Recommended Service";
+"SelectedService" = "Selected Service";
+"CompletedService" = "Completed Service";
 "Dealership" = "Dealership";
 "SelfDrop" = "Self Drop";
 "VolvoPickup" = "Volvo Pickup";
@@ -53,6 +91,10 @@
 "PickupLocation" = "Pickup Location";
 "ComplimentaryLoaner" = "Complimentary Loaner?";
 "ConfirmPickup" = "Confirm Pickup";
+"NotePickup" = "Note: Volvo pickup is only offered near the dealership.";
+"ScheduleDropDealership" = "You can drop your car at the dealership or arrange for Volvo to pickup your vehicle at the location of your choosing.";
+"SchedulePickupDealership" = "You can pickup your car from the dealership or arrange for Volvo to deliver your vehicle to the location of your choosing.";
+"OutOfPickupArea" = "Out of pickup area";
 
 /***************** ScheduledPickup ***************/
 "SchedulePickup" = "Schedule Pickup";
@@ -63,7 +105,11 @@
 "DriverArrived" = "Driver has arrived";
 "PickupWindow" = "Pickup window";
 "EstimatedPickupTime" = "Estimated Pickup Time";
-"YourVehicleHasArrived" = "Your vehicle has arrived safely at Marin Volvo. We'll alert you next when it's ready.";
+"DriverDrivingToDealership" = "Our driver is driving your vehicle to %@";
+"YourVehicleHasArrived" = "Your vehicle has arrived safely at %@. We'll alert you next when it's ready.";
+"ContactDriver" = "Contact Driver";
+"CallDriver" = "Call Driver";
+"TextDriver" = "Text Driver";
 
 /***************** Scheduling Dropoff ***************/
 "CurrentService" = "Current Service";
@@ -81,3 +127,27 @@
 /***************** Scheduled Dropoff ***************/
 "VehicleIsReady" = "Vehicle is ready";
 "DeliveryWindow" = "Delivery window";
+"DeliveryComplete" = "Your delivery from %@ is complete. Thank you for letting us keep your Volvo in its best condition.";
+
+/***************** Vehicle ***************/
+"VolvoYearModel" = "Volvo Year/Model";
+"Mileage" = "Mileage";
+"PreferredDealership" = "Preferred Dealership";
+
+/***************** Service ***************/
+"NewService" = "New Service";
+"ScheduledService" = "Scheduled Service";
+"AreYouSureCancelPickup" = "Are you sure you want to cancel your pickup?";
+"AreYouSureCancelDropOff" = "Are you sure you want to cancel your dropoff?";
+
+/***************** Settings ***************/
+"Settings" = "Settings";
+"YourVolvos" = "Your Volvos";
+"AddANewVolvo" = "Add a New Volvo";
+"YourAccount" = "Your Account";
+"UnitOfDistance" = "Unit Of Distance";
+"ShowDistanceAsMiles" = "Show Distance As Miles";
+"PickupDeliveryLocations" = "Pickup/Delivery Locations";
+"ContactInformation" = "Contact Information";
+"AccountPassword" = "Account Password";
+

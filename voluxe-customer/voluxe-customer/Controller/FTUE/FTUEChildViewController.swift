@@ -9,34 +9,41 @@
 import Foundation
 import UIKit
 
-class FTUEChildViewController: UIViewController {
+class FTUEChildViewController: BaseViewController {
 
-    var delegate: FTUEChildProtocol?
+    weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        let nextButton = UIBarButtonItem(title: rightButtonTitle(), style: .plain, target: self, action: #selector(self.nextButtonTap))
+        self.navigationItem.rightBarButtonItem = nextButton
     }
     
-    convenience init(delegate: FTUEChildProtocol) {
-        self.init()
-        self.delegate = delegate
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func rightButtonTitle() -> String {
+        return .Next
     }
     
     func canGoNext(nextEnabled: Bool) {
-        if let delegate = delegate {
-            delegate.canGoNext(nextEnabled: nextEnabled)
-        }
+        // disable/enable rightbar button
+        self.navigationItem.rightBarButtonItem?.isEnabled = nextEnabled
     }
     
     func goToNext() {
-        if let delegate = delegate {
-            delegate.goToNext()
-        }
     }
     
-    func checkTextFieldsValidity() {}
+    @objc func nextButtonTap() {
+        
+    }
+    
+    func loadMainScreen() {
+        appDelegate?.loadMainScreen()
+    }
+    
+    func loadLandingPage() {
+        appDelegate?.startApp()
+    }
+    
+    func checkTextFieldsValidity() -> Bool {
+        return false
+    }
 }

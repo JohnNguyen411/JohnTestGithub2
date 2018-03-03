@@ -14,18 +14,24 @@ import RealmSwift
 import BrightFutures
 import Alamofire
 
-class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate, LocationManagerDelegate {
-    
+class SchedulingViewController: ChildViewController, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate, LocationManagerDelegate {
     
     public enum SchedulePickupState: Int {
         case start = 0
-        case dealership = 1
-        case dateTime = 2
-        case location = 3
+        case location = 1
+        case dealership = 2
+        case dateTime = 3
         case loaner = 4
     }
     
-    static private let fakeYOrigin: CGFloat = -555.0
+    public enum ScheduleDropoffState: Int {
+        case start = 0
+        case dateTime = 1
+        case location = 2
+    }
+    
+    static private let insetPadding: CGFloat = 20.0
+    static let vlLabelHeight = VLTitledLabel.height + Int(SchedulingViewController.insetPadding)
     
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -35,40 +41,25 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     
     var realm : Realm?
     var locationManager = LocationManager.sharedInstance
-
+    
     var dealerships: [Dealership]?
     var serviceState: ServiceState
-    var scheduleState: SchedulePickupState = .start
     
-    var checkupLabelHeight: CGFloat = 0
-    let presentrCornerRadius: CGFloat = 4.0
-    var currentPresentr: Presentr?
-    var currentPresentrVC: VLPresentrViewController?
-    
-    let checkupLabel: UILabel = {
-        let textView = UILabel(frame: .zero)
-        textView.text = .FTUEStartOne
-        textView.font = .volvoSansLight(size: 18)
-        textView.textColor = .luxeDarkGray()
-        textView.backgroundColor = .clear
-        textView.numberOfLines = 0
-        return textView
-    }()
+    var pickupScheduleState: SchedulePickupState = .start
+    var dropoffScheduleState: ScheduleDropoffState = .start
     
     let stateTestView = UILabel(frame: .zero)
     let dealershipTestView = UIView(frame: .zero)
-
+    
     let scrollView = UIScrollView()
     let contentView = UIView()
-    let scheduledServiceView = VLTitledLabel()
+    let scheduledServiceView = VLTitledLabel(padding: insetPadding)
     let descriptionButton = VLButton(type: .BlueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
-    let dealershipView = VLTitledLabel()
-    let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "")
-    let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "")
-    let loanerView = VLTitledLabel(title: .ComplimentaryLoaner, leftDescription: "", rightDescription: "")
+    let dealershipView = VLTitledLabel(padding: insetPadding)
+    let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "", padding: insetPadding)
+    let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "", padding: insetPadding)
+    let loanerView = VLTitledLabel(title: .ComplimentaryLoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
     
-    let leftButton = VLButton(type: .BluePrimary, title: (.SelfDrop as String).uppercased(), actionBlock: nil)
-    let rightButton = VLButton(type: .BluePrimary, title: (.VolvoPickup as String).uppercased(), actionBlock: nil)
     let confirmButton = VLButton(type: .BluePrimary, title: (.ConfirmPickup as String).uppercased(), actionBlock: nil)
     
     
@@ -96,12 +87,6 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         }
         descriptionButton.contentHorizontalAlignment = .left
         
-        leftButton.setActionBlock {
-            self.leftButtonClick()
-        }
-        rightButton.setActionBlock {
-            self.rightButtonClick()
-        }
         confirmButton.setActionBlock {
             self.confirmButtonClick()
         }
@@ -132,8 +117,8 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         super.setupViews()
         
         dealershipView.accessibilityIdentifier = "dealershipView"
-        rightButton.accessibilityIdentifier = "rightButton"
         confirmButton.accessibilityIdentifier = "confirmButton"
+        pickupLocationView.accessibilityIdentifier = "pickupLocationView"
         
         // init tap events
         dealershipView.isUserInteractionEnabled = true
@@ -154,21 +139,15 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         
         scrollView.contentMode = .scaleAspectFit
         
-        checkupLabelHeight = checkupLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
-        
         self.view.addSubview(scrollView)
         scrollView.addSubview(contentView)
-        contentView.addSubview(checkupLabel)
-        
         contentView.addSubview(scheduledServiceView)
         contentView.addSubview(descriptionButton)
         contentView.addSubview(dealershipView)
-        
-        contentView.addSubview(leftButton)
-        contentView.addSubview(rightButton)
         contentView.addSubview(confirmButton)
         
         confirmButton.alpha = 0
+        dealershipView.alpha = 0
         scheduledPickupView.alpha = 0
         pickupLocationView.alpha = 0
         loanerView.alpha = 0
@@ -185,65 +164,48 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         stateTestView.textColor = .clear
         
         scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsetsMake(20, 20, 20, 20))
+            make.edges.equalToSuperview()
         }
+        
+        let leftRightPadding = UIEdgeInsetsMake(0, 20, 0, 20)
         
         contentView.snp.makeConstraints { make in
             make.left.top.width.height.equalTo(scrollView)
         }
         
-        checkupLabel.snp.makeConstraints { make in
-            make.left.right.top.equalToSuperview()
-            make.height.equalTo(checkupLabelHeight)
-        }
-        
         scheduledServiceView.snp.makeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
-            make.top.equalTo(checkupLabel.snp.bottom).offset(30)
-            make.height.equalTo(VLTitledLabel.height)
+            make.right.left.equalToSuperview()
+            make.top.equalToSuperview().offset(SchedulingViewController.insetPadding)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         descriptionButton.snp.makeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
+            make.left.right.equalTo(scheduledServiceView).inset(leftRightPadding)
             make.top.equalTo(scheduledServiceView.snp.bottom)
             make.height.equalTo(VLButton.secondaryHeight)
         }
         
+        pickupLocationView.snp.makeConstraints { make in
+            make.left.right.equalTo(scheduledServiceView)
+            make.top.equalTo(descriptionButton.snp.bottom).offset(SchedulingViewController.insetPadding)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
+        }
+        
         dealershipView.snp.makeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
-            make.top.equalTo(descriptionButton.snp.bottom).offset(20)
-            make.height.equalTo(VLTitledLabel.height)
+            make.left.right.equalTo(scheduledServiceView)
+            make.top.equalTo(pickupLocationView.snp.bottom)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         scheduledPickupView.snp.makeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
-            make.top.equalTo(dealershipView.snp.bottom).offset(20)
-            make.height.equalTo(VLTitledLabel.height)
-        }
-        
-        pickupLocationView.snp.makeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
-            make.top.equalTo(scheduledPickupView.snp.bottom).offset(20)
-            make.height.equalTo(VLTitledLabel.height)
-        }
-        
-        leftButton.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.bottom.equalTo(contentView.snp.bottom)
-            make.width.equalToSuperview().dividedBy(2).offset(-10)
-            make.height.equalTo(VLButton.primaryHeight)
-        }
-        
-        rightButton.snp.makeConstraints { make in
-            make.right.equalToSuperview()
-            make.bottom.equalTo(contentView.snp.bottom)
-            make.width.equalToSuperview().dividedBy(2).offset(-10)
-            make.height.equalTo(VLButton.primaryHeight)
+            make.left.right.equalTo(scheduledServiceView)
+            make.top.equalTo(dealershipView.snp.bottom)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         confirmButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(contentView.snp.bottom)
+            make.left.right.equalToSuperview().inset(leftRightPadding)
+            make.bottom.equalTo(contentView.snp.bottom).offset(-SchedulingViewController.insetPadding)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
@@ -262,110 +224,73 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
     }
     
     func fillViews() {
+        
         if let service = RequestedServiceManager.sharedInstance.getService() {
-            scheduledServiceView.setTitle(title: .RecommendedService, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
+            var title = String.RecommendedService
+            if RequestedServiceManager.sharedInstance.isSelfInitiated() {
+                title = .SelectedService
+            }
+            scheduledServiceView.setTitle(title: title, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
         }
         
         fillDealership()
         
-        if RequestedServiceManager.sharedInstance.getLoaner() == nil {
-            RequestedServiceManager.sharedInstance.setLoaner(loaner: true)
-        }
-        if let loaner = RequestedServiceManager.sharedInstance.getLoaner() {
-            loanerView.descLeftLabel.text = loaner ? .Yes : .No
-        }
+        loanerView.descLeftLabel.text = RequestedServiceManager.sharedInstance.getLoaner() ? .Yes : .No
     }
     
     private func fillDealership() {
-        if RequestedServiceManager.sharedInstance.getDealership() == nil {
-            
-            if CLLocationManager.locationServicesEnabled() && locationManager.lastKnownLatitude != 0 && locationManager.lastKnownLongitude != 0 && locationManager.hasLastKnownLocation {
-                DealershipAPI().getDealerships(location: CLLocationCoordinate2DMake(locationManager.lastKnownLatitude, locationManager.lastKnownLongitude)).onSuccess { result in
-                    
-                    self.handleDealershipsResponse(result: result)
-                    
-                    }.onFailure { error in
+        if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+            self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+        }
+    }
+    
+    func fetchDealershipsForLocation(location: CLLocationCoordinate2D?, completion: (() -> Swift.Void)? = nil) {
+        if let location = location {
+            DealershipAPI().getDealerships(location: location).onSuccess { result in
+                if let dealerships = result?.data?.result {
+                    self.handleDealershipsResponse(dealerships: dealerships)
+                } else {
+                    self.dealerships = nil
                 }
-            } else {
-                DealershipAPI().getDealerships().onSuccess { result in
-                    
-                    self.handleDealershipsResponse(result: result)
-                    
-                    }.onFailure { error in
+                if let completion = completion {
+                    completion()
                 }
-            }
-            
-        } else {
-            if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-                self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+                }.onFailure { error in
+                    if let completion = completion {
+                        completion()
+                    }
             }
         }
     }
     
-    private func handleDealershipsResponse(result: ResponseObject<MappableDataArray<Dealership>>?) {
-        if let dealerships = result?.data?.result, dealerships.count > 0 {
+    private func handleDealershipsResponse(dealerships: [Dealership]?) {
+        if let dealerships = dealerships {
+            //todo: hide loading if needed
             self.dealerships = dealerships
-            if RequestedServiceManager.sharedInstance.getDealership() == nil {
-                RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
-            }
-            if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-                if let dealershipName = dealership.name {
-                    self.dealershipView.setTitle(title: .Dealership, leftDescription: dealershipName, rightDescription: "")
+            if dealerships.count > 0 {
+                
+                if StateServiceManager.sharedInstance.isPickup() && RequestedServiceManager.sharedInstance.getDealership() == nil {
+                    RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
                 }
-            }
-            
-            self.dealershipTestView.isHidden = false
-            
-            if let realm = self.realm {
-                try? realm.write {
-                    realm.add(dealerships)
+                if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                    if let dealershipName = dealership.name {
+                        self.dealershipView.setTitle(title: .Dealership, leftDescription: dealershipName, rightDescription: "")
+                    }
+                }
+                
+                self.dealershipTestView.isHidden = false
+                
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(dealerships, update: true)
+                    }
                 }
             }
         }
+        
     }
     
-    
-    
-    func buildPresenter(heightInPixels: CGFloat, dismissOnTap: Bool) -> Presentr {
-        let customType = getPresenterPresentationType(heightInPixels: heightInPixels, customYOrigin: SchedulingPickupViewController.fakeYOrigin)
-        
-        let customPresenter = Presentr(presentationType: customType)
-        customPresenter.transitionType = .coverVertical
-        customPresenter.roundCorners = true
-        customPresenter.cornerRadius = presentrCornerRadius
-        customPresenter.blurBackground = true
-        customPresenter.blurStyle = UIBlurEffectStyle.light
-        customPresenter.dismissOnSwipe = false
-        customPresenter.keyboardTranslationType = .moveUp
-        customPresenter.dismissOnTap = dismissOnTap
-        
-        
-        return customPresenter
-    }
-    
-    func getPresenterPresentationType(heightInPixels: CGFloat, customYOrigin: CGFloat) -> PresentationType {
-        let widthPerc = 0.95
-        let width = ModalSize.fluid(percentage: Float(widthPerc))
-        
-        let viewH = self.view.frame.height + AppDelegate.getNavigationBarHeight() + statusBarHeight() + presentrCornerRadius
-        let viewW = Double(self.view.frame.width)
-        
-        let percH = heightInPixels / viewH
-        let leftRightMargin = (viewW - (viewW * widthPerc))/2
-        let height = ModalSize.fluid(percentage: Float(percH))
-        
-        var yOrigin = customYOrigin
-        if yOrigin == SchedulingPickupViewController.fakeYOrigin {
-            yOrigin = viewH - heightInPixels
-        }
-        
-        let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: leftRightMargin, y: Double(yOrigin)))
-        let customType = PresentationType.custom(width: width, height: height, center: center)
-        
-        return customType
-    }
-    
-    func showDealershipModal() {
+    func showDealershipModal(dismissOnTap: Bool) {
         guard let dealerships = dealerships else {
             return
         }
@@ -373,158 +298,110 @@ class SchedulingViewController: ChildViewController, PresentrDelegate, PickupDea
         dealershipVC.delegate = self
         dealershipVC.view.accessibilityIdentifier = "dealershipVC"
         currentPresentrVC = dealershipVC
-        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: true)
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
-    func showPickupLocationModal() {
+    func showPickupLocationModal(dismissOnTap: Bool) {
         let locationVC = LocationPickupViewController(title: .PickupLocationTitle, buttonTitle: .Next)
         locationVC.pickupLocationDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
         currentPresentrVC = locationVC
-        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.location.rawValue)
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
-    func showPickupLoanerModal() {
+    func showPickupLoanerModal(dismissOnTap: Bool) {
         let loanerVC = LoanerPickupViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next)
         loanerVC.delegate = self
         loanerVC.view.accessibilityIdentifier = "loanerVC"
         currentPresentrVC = loanerVC
-        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.loaner.rawValue)
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
-    func showPickupDateTimeModal() {
+    func showPickupDateTimeModal(dismissOnTap: Bool) {
         let dateModal = DateTimePickupViewController(title: .SelectYourPreferredPickupTime, buttonTitle: .Next)
         dateModal.delegate = self
         dateModal.view.accessibilityIdentifier = "dateModal"
         currentPresentrVC = dateModal
-        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: scheduleState.rawValue >= SchedulePickupState.dateTime.rawValue)
-        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {
-            self.hideCheckupLabel()
-        })
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
+        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
-    func hideCheckupLabel() {
-        self.checkupLabel.snp.updateConstraints { make in
-            make.height.equalTo(0)
-        }
-    }
     
-    func presentrShouldDismiss(keyboardShowing: Bool) -> Bool {
-        currentPresentr = nil
-        currentPresentrVC = nil
-        return true
-    }
     
     //MARK: Actions methods
     func showDescriptionClick() {
     }
     
     @objc func dealershipClick() {
-        showDealershipModal()
+        dealershipView.animateAlpha(show: true)
     }
     
     @objc func scheduledPickupClick() {
-        showPickupDateTimeModal()
+        scheduledPickupView.animateAlpha(show: true)
     }
     
     @objc func pickupLocationClick() {
-        showPickupLocationModal()
         pickupLocationView.animateAlpha(show: true)
     }
     
     @objc func loanerClick() {
-        showPickupLoanerModal()
         loanerView.animateAlpha(show: true)
     }
     
-    func leftButtonClick() {
-    }
-    
-    func rightButtonClick() {
-        showPickupDateTimeModal()
-        
-        scheduledPickupView.animateAlpha(show: true)
-        leftButton.animateAlpha(show: false)
-        rightButton.animateAlpha(show: false)
-        
-        if ServiceState.isPickup(state: serviceState) {
-            setTitle(title: .SchedulePickup)
-        } else {
-            setTitle(title: .ScheduleDelivery)
-        }
-    }
     
     func confirmButtonClick() {
     }
     
     //MARK: LocationManager delegate methods
-
+    
     func locationFound(_ latitude: Double, longitude: Double) {
         fillDealership()
     }
-        
+    
     
     //MARK: PresentR delegate methods
     
     func onDealershipSelected(dealership: Dealership) {
-        RequestedServiceManager.sharedInstance.setDealership(dealership: dealership)
-        if scheduleState.rawValue < SchedulePickupState.dealership.rawValue {
-            scheduleState = .dealership
-        }
-        dealershipView.descLeftLabel.text = dealership.name
-        currentPresentrVC?.dismiss(animated: true, completion: nil)
     }
     
-    func onDateTimeSelected(date: Date, hourRangeMin: Int, hourRangeMax: Int) {
-        var openNext = false
-        if scheduleState.rawValue < SchedulePickupState.dateTime.rawValue {
-            scheduleState = .dateTime
-            openNext = true
-        }
+    func onDateTimeSelected(timeSlot: DealershipTimeSlot) {
         
         if StateServiceManager.sharedInstance.isPickup() {
-            RequestedServiceManager.sharedInstance.setPickupDate(date: date)
-            RequestedServiceManager.sharedInstance.setPickupTimeRange(min: hourRangeMin, max: hourRangeMax)
+            RequestedServiceManager.sharedInstance.setPickupTimeSlot(timeSlot: timeSlot)
         } else {
-            RequestedServiceManager.sharedInstance.setDropoffDate(date: date)
-            RequestedServiceManager.sharedInstance.setDropoffTimeRange(min: hourRangeMin, max: hourRangeMax)
+            RequestedServiceManager.sharedInstance.setDropoffTimeSlot(timeSlot: timeSlot)
         }
         
-        let dateTime = formatter.string(from: date)
-        scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(Date.formatHourRange(min: hourRangeMin, max:hourRangeMax))", rightDescription: "")
-        
-        currentPresentrVC?.dismiss(animated: true, completion: {
-            if openNext {
-                self.pickupLocationClick()
-            }
-        })
+        let dateTime = formatter.string(from: timeSlot.from!)
+        scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")", rightDescription: "")
     }
     
     func onLocationAdded(newSize: Int) {
         // increase size of presenter
         let newHeight = CGFloat(currentPresentrVC!.height())
-        let presentationType = getPresenterPresentationType(heightInPixels: newHeight, customYOrigin: SchedulingPickupViewController.fakeYOrigin)
+        let presentationType = getPresenterPresentationType(heightInPixels: newHeight, customYOrigin: BaseViewController.fakeYOrigin)
         currentPresentr?.currentPresentationController?.updateToNewFrame(presentationType: presentationType)
     }
     
-    func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
+    func onLocationSelected(customerAddress: CustomerAddress) {
+        
         //let locationRequest = RequestLocation(name: responseInfo!.value(forKey: "formattedAddress") as? String, stringLocation: nil, location: placemark?.location?.coordinate)
-        let locationRequest = RequestLocation(name: responseInfo!.value(forKey: "formattedAddress") as? String, latitude: nil, longitude: nil, location: placemark?.location?.coordinate)
+        let locationRequest = customerAddress.location
         if StateServiceManager.sharedInstance.isPickup() {
-            RequestedServiceManager.sharedInstance.setPickupRequestLocation(requestLocation: locationRequest)
+            RequestedServiceManager.sharedInstance.setPickupRequestLocation(requestLocation: locationRequest!)
         } else {
-            RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: locationRequest)
+            RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: locationRequest!)
         }
-        pickupLocationView.setTitle(title: .PickupLocation, leftDescription: locationRequest.name!, rightDescription: "")
+        pickupLocationView.setTitle(title: .PickupLocation, leftDescription: locationRequest!.address!, rightDescription: "")
     }
     
     func onLoanerSelected(loanerNeeded: Bool) {
         RequestedServiceManager.sharedInstance.setLoaner(loaner: loanerNeeded)
-        if scheduleState.rawValue < SchedulePickupState.loaner.rawValue {
-            scheduleState = .loaner
+        if pickupScheduleState.rawValue < SchedulePickupState.loaner.rawValue {
+            pickupScheduleState = .loaner
         }
         loanerView.descLeftLabel.text = loanerNeeded ? .Yes : .No
         currentPresentrVC?.dismiss(animated: true, completion: {

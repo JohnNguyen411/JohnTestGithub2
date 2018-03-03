@@ -1,0 +1,10 @@
+/* 
+  InfoPlist.strings
+  voluxe-customer
+
+  Created by Giroux, Johan on 2/22/18.
+  Copyright © 2018 Luxe - Volvo Cars. All rights reserved.
+*/
+
+"CFBundleDisplayName" = "Luxe by Volvo";
+"CFBundleName" = "Luxe by Volvo";

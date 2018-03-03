@@ -12,6 +12,8 @@ extension String {
     static let ScheduleService = NSLocalizedString("ScheduleService")
     static let ShowDescription = NSLocalizedString("ShowDescription")
     static let RecommendedService = NSLocalizedString("RecommendedService")
+    static let SelectedService = NSLocalizedString("SelectedService")
+    static let CompletedService = NSLocalizedString("CompletedService")
     static let Dealership = NSLocalizedString("Dealership")
     static let SelfDrop = NSLocalizedString("SelfDrop")
     static let VolvoPickup = NSLocalizedString("VolvoPickup")
@@ -30,4 +32,10 @@ extension String {
     static let ComplimentaryLoaner = NSLocalizedString("ComplimentaryLoaner")
     static let ConfirmPickup = NSLocalizedString("ConfirmPickup")
     static let YourVehicleHasArrived = NSLocalizedString("YourVehicleHasArrived")
+    static let NotePickup = NSLocalizedString("NotePickup")
+    static let ScheduleDropDealership = NSLocalizedString("ScheduleDropDealership")
+    static let SchedulePickupDealership = NSLocalizedString("SchedulePickupDealership")
+    static let DriverDrivingToDealership = NSLocalizedString("DriverDrivingToDealership")
+    static let OutOfPickupArea = NSLocalizedString("OutOfPickupArea")
+    
 }

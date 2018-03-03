@@ -15,6 +15,7 @@ class Customer: Object, Mappable {
 
     @objc dynamic var id: Int = -1
     @objc dynamic var volvoCustomerId: String?
+    @objc dynamic var email: String?
     @objc dynamic var firstName: String?
     @objc dynamic var lastName: String?
     @objc dynamic var marketCode: String?
@@ -24,8 +25,10 @@ class Customer: Object, Mappable {
     @objc dynamic var currencyId: Int = 0
     @objc dynamic var photoUrl: String?
     @objc dynamic var enabled: Bool = true
-    var location: Location?
-    
+    @objc dynamic var location: Location?
+    @objc dynamic var createdAt: Date?
+    @objc dynamic var updatedAt: Date?
+
     required convenience init?(map: Map) {
         self.init()
     }
@@ -33,6 +36,7 @@ class Customer: Object, Mappable {
     func mapping(map: Map) {
         id <- map["id"]
         volvoCustomerId <- map["volvo_customer_id"]
+        email <- map["email"]
         firstName <- map["first_name"]
         lastName <- map["last_name"]
         marketCode <- map["market_code"]
@@ -43,10 +47,13 @@ class Customer: Object, Mappable {
         photoUrl <- map["photo_url"]
         location <- map["location"]
         enabled <- map["enabled"]
+        createdAt <- (map["created_at"], VLISODateTransform())
+        updatedAt <- (map["updated_at"], VLISODateTransform())
     }
     
-    override static func ignoredProperties() -> [String] {
-        return ["location"]
+    override static func primaryKey() -> String? {
+        return "id"
     }
+    
 }
 

@@ -11,4 +11,5 @@ import Foundation
 extension String {
     static let VehicleIsReady = NSLocalizedString("VehicleIsReady")
     static let DeliveryWindow = NSLocalizedString("DeliveryWindow")
+    static let DeliveryComplete = NSLocalizedString("DeliveryComplete")
 }

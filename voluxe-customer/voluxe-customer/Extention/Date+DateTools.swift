@@ -74,6 +74,11 @@ extension Date {
 
      - returns: `Date` object.
      */
+    
+    func beginningOfDay() -> Date {
+        return Date(year: self.year, month: self.month, day: self.day, hour: 0, minute: 0, second: 1)
+    }
+    
     func endOfDay() -> Date {
         return Date(year: self.year, month: self.month, day: self.day, hour: 23, minute: 59, second: 59)
     }
@@ -117,6 +122,19 @@ extension Date {
         let maxTime = hourFormatter.string(from: dateMax)
 
         return "\(minTime) \(maxTime)"
+    }
+    
+    public static func formatHourMin(date: Date, calendar: Calendar, showAMPM: Bool) -> String {
+        let dateString : String = DateFormatter.dateFormat(fromTemplate: "h:mm", options: 0, locale: Locale.current)!
+        let hourFormatter = DateFormatter()
+        hourFormatter.dateFormat = dateString
+        
+        if !showAMPM {
+            hourFormatter.amSymbol = ""
+            hourFormatter.pmSymbol = ""
+        }
+        
+        return hourFormatter.string(from: date)
     }
 
 }

@@ -8,104 +8,181 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
+import RealmSwift
 
-class FTUELoginViewController: FTUEChildViewController, FTUEProtocol {
+class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
-    let volvoIdTextField = VLVerticalTextField(title: .VolvoUserId, placeholder: .VolvoUserId_Placeholder)
-    let volvoPwdTextField = VLVerticalTextField(title: .VolvoPassword, placeholder: "••••••••")
-    let volvoVINTextField = VLVerticalTextField(title: .VehicleIdentificationNumber, placeholder: .VehicleIdentificationNumber_Placeholder)
+    let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
+    let passwordTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••")
+    
+    var loginInProgress = false
+    var realm : Realm?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        volvoIdTextField.accessibilityIdentifier = "volvoIdTextField"
-        volvoPwdTextField.accessibilityIdentifier = "volvoPwdTextField"
-        volvoVINTextField.accessibilityIdentifier = "volvoVINTextField"
+        realm = try? Realm()
         
-        volvoIdTextField.textField.autocorrectionType = .no
-        volvoPwdTextField.textField.autocorrectionType = .no
-        volvoVINTextField.textField.autocorrectionType = .no
-        volvoPwdTextField.textField.isSecureTextEntry = true
+        emailTextField.accessibilityIdentifier = "volvoIdTextField"
+        passwordTextField.accessibilityIdentifier = "volvoPwdTextField"
         
-        volvoIdTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        volvoPwdTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        volvoVINTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        emailTextField.textField.autocorrectionType = .no
+        passwordTextField.textField.autocorrectionType = .no
+        passwordTextField.textField.isSecureTextEntry = true
         
-        setupViews()
+        emailTextField.textField.keyboardType = .emailAddress
+        
+        emailTextField.textField.returnKeyType = .next
+        passwordTextField.textField.returnKeyType = .done
+        
+        emailTextField.textField.delegate = self
+        passwordTextField.textField.delegate = self
+        
+        emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        passwordTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+                
+        emailTextField.textField.becomeFirstResponder()
+        canGoNext(nextEnabled: false)
         
     }
     
-    func setupViews() {
+    override func setupViews() {
         
-        self.view.addSubview(volvoIdTextField)
-        self.view.addSubview(volvoPwdTextField)
-        self.view.addSubview(volvoVINTextField)
-
-        volvoIdTextField.snp.makeConstraints { (make) -> Void in
-            make.left.top.equalToSuperview().offset(20)
+        self.view.addSubview(emailTextField)
+        self.view.addSubview(passwordTextField)
+        
+        emailTextField.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(80)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(80)
         }
         
-        volvoPwdTextField.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(volvoIdTextField)
-            make.top.equalTo(volvoIdTextField.snp.bottom)
-            make.height.equalTo(80)
-        }
-        
-        volvoVINTextField.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(volvoIdTextField)
-            make.top.equalTo(volvoPwdTextField.snp.bottom)
+        passwordTextField.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalTo(emailTextField)
+            make.top.equalTo(emailTextField.snp.bottom)
             make.height.equalTo(80)
         }
     }
     
     //MARK: Validation methods
-
-    func isVolvoIdValid(volvoId: String?) -> Bool {
-        guard let volvoId = volvoId else {
+    
+    func isEmailValid(email: String?) -> Bool {
+        guard let email = email else {
             return false
         }
         
-        if volvoId.isEmpty {
+        if email.isEmpty {
             return false
         }
-        return true
+        
+        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        
+        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
+        return emailTest.evaluate(with: email)
     }
     
     func isPasswordValid(password: String?) -> Bool {
         guard let password = password else {
             return false
         }
-        if password.isEmpty || password.count < 6 {
+        if password.isEmpty || password.count < 5 {
             return false
         }
+        
         return true
     }
     
-    
-    func isVINValid(vin: String?) -> Bool {
-        guard let vin = vin else {
-            return false
-        }
-        if vin.isEmpty {
-            return false
-        }
-        return true
+    override func checkTextFieldsValidity() -> Bool {
+        let enabled = isEmailValid(email: emailTextField.textField.text) && isPasswordValid(password: passwordTextField.textField.text)
+        canGoNext(nextEnabled: enabled)
+        return enabled
     }
     
+    // MARK: UITextFieldDelegate
     
-    override func checkTextFieldsValidity() {
-        canGoNext(nextEnabled: isVolvoIdValid(volvoId: volvoIdTextField.textField.text) && isPasswordValid(password: volvoPwdTextField.textField.text) && isVINValid(vin: volvoVINTextField.textField.text))
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.returnKeyType == .next {
+            passwordTextField.textField.becomeFirstResponder()
+        } else {
+            if checkTextFieldsValidity() {
+                self.nextButtonTap()
+            } else {
+                // show error
+            }
+        }
+        return false
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        checkTextFieldsValidity()
+        _ = checkTextFieldsValidity()
+    }
+    
+    func showLoading(loading: Bool) {
+        if loginInProgress == loading {
+            return
+        }
+        loginInProgress = loading
+        if loading {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        } else {
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
     }
     
     //MARK: FTUEStartViewController
-    func didSelectPage() {
-        volvoIdTextField.textField.becomeFirstResponder()
-        canGoNext(nextEnabled: false)
+    
+    override func nextButtonTap() {
+        if loginInProgress {
+            return
+        }
+        if UserManager.sharedInstance.getCustomer() != nil {
+            return
+        }
+        
+        showLoading(loading: true)
+        
+        guard let email = emailTextField.textField.text else { return }
+        guard let password = passwordTextField.textField.text else { return }
+        
+        CustomerAPI().login(email: email, password: password).onSuccess { result in
+            if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
+                // Get Customer object with ID
+                UserManager.sharedInstance.loginSuccess(token: tokenObject.token)
+                CustomerAPI().getCustomer(id: customerId).onSuccess { result in
+                    if let customer = result?.data?.result {
+                        if let realm = self.realm {
+                            try? realm.write {
+                                realm.deleteAll()
+                                realm.add(customer)
+                            }
+                        }
+                        UserManager.sharedInstance.setCustomer(customer: customer)
+                        if customer.phoneNumberVerified {
+                            // load main
+                            self.showLoading(loading: false)
+                            self.loadMainScreen()
+                            return
+                        } else {
+                            self.showLoading(loading: false)
+                            _ = self.nextButtonTap()
+                        }
+                    }
+                    }.onFailure { error in
+                        self.onLoginError()
+                }
+            } else {
+                self.onLoginError()
+            }
+            }.onFailure { error in
+                self.onLoginError()
+        }
+        
+    }
+    
+    private func onLoginError() {
+        //todo show error message
+        self.showLoading(loading: false)
     }
 }

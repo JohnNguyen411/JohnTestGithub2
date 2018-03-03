@@ -18,9 +18,7 @@ import BrightFutures
  ***/
 class NetworkRequest {
     
-    static let ID_PLACEHOLDER: String = "__ID__"
-    
-    static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, bodyParameters: Parameters? = nil, bodyEncoding: ParameterEncoding = URLEncoding.default, headers: HTTPHeaders?) -> DataRequest {
+    static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, bodyParameters: Parameters? = nil, bodyEncoding: ParameterEncoding = URLEncoding.httpBody, headers: HTTPHeaders?) -> DataRequest {
         let finalUrl = "\(Config.sharedInstance.apiEndpoint())\(url)"
         
         var originalRequest: URLRequest?
@@ -28,20 +26,14 @@ class NetworkRequest {
 
         do {
             originalRequest = try URLRequest(url: finalUrl, method: method, headers: headers)
-            let queryEncodedURLRequest = try URLEncoding.default.encode(originalRequest!, with: queryParameters)
-            let queryAndBodyEncodedURLRequest = try bodyEncoding.encode(queryEncodedURLRequest, with: bodyParameters)
-            finalRequest = Alamofire.request(queryAndBodyEncodedURLRequest)
+            var queryEncodedURLRequest = try URLEncoding.default.encode(originalRequest!, with: queryParameters)
+            if let bodyParameters = bodyParameters, let postData = (try? JSONSerialization.data(withJSONObject: bodyParameters, options: [])) {
+                queryEncodedURLRequest.httpBody = postData
+                queryEncodedURLRequest.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
+            }
+            finalRequest = Alamofire.request(queryEncodedURLRequest)
         } catch {
             finalRequest = Alamofire.request(originalRequest!)
-        }
-        
-        //let request = Alamofire.request(finalUrl, method: method, parameters: parameters, headers: headers)
-        Logger.print("NetworkRequest \(originalRequest!)")
-        if let queryParameters = queryParameters {
-            Logger.print("parameters \(queryParameters)")
-        }
-        if let headers = headers {
-            Logger.print("headers \(headers)")
         }
         return finalRequest!
     }
@@ -52,6 +44,14 @@ class NetworkRequest {
             NetworkRequest.addBearer(header: &mutHeader)
         }
         return NetworkRequest.request(url: url, method: method, queryParameters: queryParameters, headers: mutHeader)
+    }
+    
+    static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, bodyParameters: Parameters, bodyEncoding: ParameterEncoding = URLEncoding.httpBody, withBearer: Bool) -> DataRequest {
+        var mutHeader: [String: String] = [:]
+        if withBearer {
+            NetworkRequest.addBearer(header: &mutHeader)
+        }
+        return NetworkRequest.request(url: url, method: method, queryParameters: queryParameters, bodyParameters: bodyParameters, headers: mutHeader)
     }
     
     static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, withBearer: Bool) -> DataRequest {
@@ -77,13 +77,5 @@ class NetworkRequest {
     
     static func addBearer(header: inout [String: String]) {
         header["Authorization"] = "Bearer \(UserManager.sharedInstance.getAccessToken() ?? "")"
-    }
-    
-    static func replaceValues(url: String, values: [String]) -> String{
-        var modifiedUrl = url
-        for id in values {
-            modifiedUrl = String.stringByReplacingFirstOccurrenceOfString(string: modifiedUrl, target: ID_PLACEHOLDER, withString: id)
-        }
-        return modifiedUrl
     }
 }

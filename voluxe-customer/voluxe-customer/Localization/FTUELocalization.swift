@@ -9,6 +9,9 @@
 import Foundation
 
 extension String {
+    
+    static let Login = NSLocalizedString("Login")
+    static let Signup = NSLocalizedString("Signup")
     static let FTUEStartOne = NSLocalizedString("FTUEStartOne")
     static let FTUEStartTwo = NSLocalizedString("FTUEStartTwo")
     static let VolvoUserId = NSLocalizedString("VolvoUserId")
@@ -24,4 +27,24 @@ extension String {
     static let ResendCode = NSLocalizedString("ResendCode")
     static let PhoneNumberVerif_Placeholder = NSLocalizedString("PhoneNumberVerif_Placeholder")
     static let WelcomeToAppLabel = NSLocalizedString("WelcomeToAppLabel")
+    static let FirstName = NSLocalizedString("FirstName")
+    static let LastName = NSLocalizedString("LastName")
+    static let WelcomeSignup = NSLocalizedString("WelcomeSignup")
+    static let FirstNamePlaceholder = NSLocalizedString("FirstNamePlaceholder")
+    static let LastNamePlaceholder = NSLocalizedString("LastNamePlaceholder")
+    static let CreatePassword = NSLocalizedString("CreatePassword")
+    static let PasswordCondition = NSLocalizedString("PasswordCondition")
+    static let Password = NSLocalizedString("Password")
+    static let RepeatPassword = NSLocalizedString("RepeatPassword")
+    static let EmailAddress = NSLocalizedString("EmailAddress")
+    static let EmailPlaceholder = NSLocalizedString("EmailPlaceholder")
+    static let SelectYourVehicle = NSLocalizedString("SelectYourVehicle")
+    static let Year = NSLocalizedString("Year")
+    static let Model = NSLocalizedString("Model")
+    static let Color = NSLocalizedString("Color")
+    static let YearPlaceholder = NSLocalizedString("YearPlaceholder")
+    static let ModelPlaceholder = NSLocalizedString("ModelPlaceholder")
+    static let ColorPlaceholder = NSLocalizedString("ColorPlaceholder")
+    static let AccountAlreadyExist = NSLocalizedString("AccountAlreadyExist")
+
 }

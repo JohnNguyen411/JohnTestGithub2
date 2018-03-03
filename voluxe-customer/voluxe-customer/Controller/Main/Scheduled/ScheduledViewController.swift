@@ -27,8 +27,7 @@ class ScheduledViewController: ChildViewController {
     static let driverLocation8 = CLLocationCoordinate2D(latitude: 37.788148, longitude: -122.399627)
     static let driverLocation9 = CLLocationCoordinate2D(latitude: 37.789094, longitude: -122.398403)
     
-    static let mockDriver = Driver(id: 0, name: "Michelle", iconUrl: "https://www.biography.com/.image/t_share/MTE5NDg0MDU0ODEyNzIyNzAz/michelle-obama-thumb-2.jpg",
-                                   phone: nil, email: "")
+    static let mockDriver = Driver.mockDriver(id: 0, name: "Michelle", iconUrl: "https://www.biography.com/.image/t_share/MTE5NDg0MDU0ODEyNzIyNzAz/michelle-obama-thumb-2.jpg")
     
     
     private static let mapViewHeight = 160
@@ -67,9 +66,12 @@ class ScheduledViewController: ChildViewController {
     override init() {
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
         super.init()
-        generateStates()
         generateSteps()
-        generateDriverLocations()
+        
+        if Config.sharedInstance.isMock {
+            generateStates()
+            generateDriverLocations()
+        }
         verticalStepView = GroupedVerticalStepView(steps: steps)
         verticalStepView?.accessibilityIdentifier = "verticalStepView"
         mapVC.view.accessibilityIdentifier = "mapVC.view"
@@ -88,8 +90,14 @@ class ScheduledViewController: ChildViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapVC.updateRequestLocation(location: ScheduledViewController.officeLocation)
-        startMockDriving()
+        if Config.sharedInstance.isMock {
+            mapVC.updateRequestLocation(location: ScheduledViewController.officeLocation)
+            startMockDriving()
+        }
+        
+        driverContact.setActionBlock {
+            self.contactDriverActionSheet()
+        }
     }
     
     override func setupViews() {
@@ -183,10 +191,10 @@ class ScheduledViewController: ChildViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + mockDelay, execute: {
 
             if StateServiceManager.sharedInstance.isPickup() {
-                StateServiceManager.sharedInstance.updateState(state: .pickupDriverDrivingToDealership)
+                StateServiceManager.sharedInstance.updateState(state: .enRouteForService)
             } else {
                 RequestedServiceManager.sharedInstance.reset()
-                StateServiceManager.sharedInstance.updateState(state: .idle)
+                StateServiceManager.sharedInstance.updateState(state: .completed)
             }
         })
     }
@@ -205,7 +213,9 @@ class ScheduledViewController: ChildViewController {
         }
         
         driverName.text = driver.name
-        driverIcon.sd_setImage(with: URL(string: driver.iconUrl!))
+        if let iconUrl = driver.iconUrl {
+            driverIcon.sd_setImage(with: URL(string: iconUrl))
+        }
     }
     
     private func updateState(id: ServiceState, stepState: StepState) {
@@ -214,6 +224,11 @@ class ScheduledViewController: ChildViewController {
                 step.state = stepState
                 verticalStepView?.updateStep(step: step)
                 break
+            } else if stepState == .done {
+                if step.id.rawValue < id.rawValue {
+                    step.state = .done
+                    verticalStepView?.updateStep(step: step)
+                }
             }
         }
         mapVC.updateServiceState(state: id)
@@ -232,6 +247,56 @@ class ScheduledViewController: ChildViewController {
             }.onFailure { error in
                 Logger.print(error)
         }
+        
+    }
+    
+    func contactDriverActionSheet() {
+        let alertController = UIAlertController(title: .ContactDriver, message: nil, preferredStyle: .actionSheet)
+        
+        let textButton = UIAlertAction(title: .TextDriver, style: .default, handler: { (action) -> Void in
+            self.contactDriver(mode: "text_only")
+        })
+        
+        let callButton = UIAlertAction(title: .CallDriver, style: .default, handler: { (action) -> Void in
+            self.contactDriver(mode: "voice_only")
+        })
+        
+        let cancelButton = UIAlertAction(title: .Cancel, style: .cancel, handler: { (action) -> Void in
+            alertController.dismiss(animated: true, completion: nil)
+        })
+        
+        alertController.addAction(textButton)
+        alertController.addAction(callButton)
+        alertController.addAction(cancelButton)
+        
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func contactDriver(mode: String) {
+        
+        guard let customerId = UserManager.sharedInstance.getCustomerId() else {
+            return
+        }
+        
+        guard let bookingId = RequestedServiceManager.sharedInstance.getBooking()?.id else {
+            return
+        }
+        
+        BookingAPI().contactDriver(customerId: customerId, bookingId: bookingId, mode: mode).onSuccess { result in
+            if let contactDriver = result?.data?.result {
+                if mode == "text_only" {
+                    // sms
+                    let number = "sms:\(contactDriver.textPhoneNumber ?? "")"
+                    UIApplication.shared.openURL(URL(string: number)!)
+                } else {
+                    let number = "telprompt:\(contactDriver.textPhoneNumber ?? "")"
+                    UIApplication.shared.openURL(URL(string: number)!)
+                }
+            }
+        }.onFailure { error in
+            // todo handle error
+        }
+        
         
     }
     

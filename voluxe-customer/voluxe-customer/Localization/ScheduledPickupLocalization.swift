@@ -17,5 +17,8 @@ extension String {
     static let DriverArrived = NSLocalizedString("DriverArrived")
     static let PickupWindow = NSLocalizedString("PickupWindow")
     static let EstimatedPickupTime = NSLocalizedString("EstimatedPickupTime")
-
+    static let ScheduledService = NSLocalizedString("ScheduledService")
+    static let ContactDriver = NSLocalizedString("ContactDriver")
+    static let CallDriver = NSLocalizedString("CallDriver")
+    static let TextDriver = NSLocalizedString("TextDriver")
 }

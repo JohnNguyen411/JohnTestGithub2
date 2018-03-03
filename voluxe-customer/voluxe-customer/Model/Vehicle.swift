@@ -12,6 +12,7 @@ import CoreLocation
 import RealmSwift
 
 class Vehicle: Object, Mappable {
+    
     @objc dynamic var id: Int = -1
     @objc dynamic var ownerId: Int = -1
     @objc dynamic var vin: String?
@@ -25,6 +26,8 @@ class Vehicle: Object, Mappable {
     @objc dynamic var baseColor: String?
     @objc dynamic var color: String?
     @objc dynamic var transmission: String?
+    @objc dynamic var createdAt: Date?
+    @objc dynamic var updatedAt: Date?
 
     required convenience init?(map: Map) {
         self.init()
@@ -44,6 +47,8 @@ class Vehicle: Object, Mappable {
         baseColor <- map["base_color"]
         color <- map["color"]
         transmission <- map["transmission"]
+        createdAt <- (map["created_at"], VLISODateTransform())
+        updatedAt <- (map["updated_at"], VLISODateTransform())
     }
 
     func colorCode() -> String {
@@ -73,6 +78,25 @@ class Vehicle: Object, Mappable {
         let imageFragment = "\(model.lowercased())_\(trimLevel.lowercased())_\(colorCode()).jpg"
         let imageUrl = baseURL + scaleFragment + imageFragment
         return imageUrl
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
+    }
+    
+    func vehicleDescription() -> String {
+        return "\(baseColor?.capitalizingFirstLetter() ?? "") \(year) \(model ?? "")"
+    }
+    
+    func mileage() -> Int {
+        return 13605
+    }
+    
+    func localImageName() -> String {
+        if model == "XC40" {
+            return "image_xc40"
+        }
+        return "image_auto"
     }
 
 }

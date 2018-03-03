@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class FTUEAllSetViewController: FTUEChildViewController, FTUEProtocol {
+class FTUEAllSetViewController: FTUEChildViewController {
     
     let allSetLabel: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -26,10 +26,9 @@ class FTUEAllSetViewController: FTUEChildViewController, FTUEProtocol {
         super.viewDidLoad()
         
         allSetLabel.accessibilityIdentifier = "allSetLabel"
-        setupViews()
     }
     
-    func setupViews() {
+    override func setupViews() {
         self.view.addSubview(allSetLabel)
         
         let sizeThatFits = allSetLabel.sizeThatFits(CGSize(width: view.frame.width, height: CGFloat(MAXFLOAT)))
@@ -45,5 +44,8 @@ class FTUEAllSetViewController: FTUEChildViewController, FTUEProtocol {
     //MARK: FTUEStartViewController
     func didSelectPage() {
         
+    }
+    
+    override func nextButtonTap() {
     }
 }

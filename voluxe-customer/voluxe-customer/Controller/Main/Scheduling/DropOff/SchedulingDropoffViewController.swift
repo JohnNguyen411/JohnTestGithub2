@@ -12,21 +12,12 @@ import CoreLocation
 class SchedulingDropoffViewController: SchedulingViewController {
     
     override func setupViews() {
-        self.checkupLabel.isHidden = true
         
         super.setupViews()
-        
-        leftButton.setTitle(title: (.SelfPickup as String).uppercased())
-        rightButton.setTitle(title: (.VolvoDelivery as String).uppercased())
-        confirmButton.setTitle(title: (.ConfirmDelivery as String).uppercased())
         
         dealershipView.isUserInteractionEnabled = false
         
         loanerView.isHidden = true
-        
-        self.checkupLabel.snp.updateConstraints { make in
-            make.height.equalTo(0)
-        }
     }
     
     override func fillViews() {
@@ -35,8 +26,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
         pickupLocationView.titleLabel.text = .DeliveryLocation
     }
     
-    override func hideCheckupLabel() {
-        super.hideCheckupLabel()
+    func hideDealership() {
         
         self.dealershipView.isHidden = true
         
@@ -45,63 +35,112 @@ class SchedulingDropoffViewController: SchedulingViewController {
         }
         
         scheduledPickupView.snp.remakeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
-            make.top.equalTo(descriptionButton.snp.bottom).offset(20)
-            make.height.equalTo(VLTitledLabel.height)
+            make.left.right.equalToSuperview()
+            make.top.equalTo(descriptionButton.snp.bottom)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         pickupLocationView.snp.remakeConstraints { make in
-            make.left.right.equalTo(checkupLabel)
-            make.top.equalTo(scheduledPickupView.snp.bottom).offset(20)
-            make.height.equalTo(VLTitledLabel.height)
+            make.left.right.equalToSuperview()
+            make.top.equalTo(scheduledPickupView.snp.bottom)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
     }
     
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         
-        if self.checkupLabel.isHidden {
-            self.checkupLabel.isHidden = false
-            UIView.animate(withDuration: 0.5, animations: {
-                self.checkupLabel.snp.updateConstraints { make in
-                    make.height.equalTo(self.checkupLabelHeight)
-                }
-                self.checkupLabel.superview?.layoutIfNeeded()
-            })
-        }
+        loanerView.isEditable = false
+        dealershipView.isEditable = false
+        scheduledPickupView.isEditable = true
+        pickupLocationView.isEditable = true
         
-        if state == .serviceCompleted {
-            checkupLabel.text = .VolvoServiceComplete
-            leftButton.animateAlpha(show: true)
-            rightButton.animateAlpha(show: true)
-        } else {
-            checkupLabel.text = .VolvoCurrentlyServicing
-            leftButton.isHidden = true
-            rightButton.isHidden = true
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 5, execute: {
-                self.stateDidChange(state: .serviceCompleted)
-            })
+        if state == .schedulingDelivery {
+            hideDealership()
+            scheduledPickupClick()
         }
         
     }
     
     
-    override func onLocationSelected(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
+    @objc override func dealershipClick() {
+    }
+    
+    @objc override func scheduledPickupClick() {
+        showPickupDateTimeModal(dismissOnTap: dropoffScheduleState.rawValue >= ScheduleDropoffState.dateTime.rawValue)
+        super.scheduledPickupClick()
+    }
+    
+    @objc override func pickupLocationClick() {
+        showPickupLocationModal(dismissOnTap: dropoffScheduleState.rawValue >= ScheduleDropoffState.location.rawValue)
+        super.pickupLocationClick()
+    }
+    
+    @objc override func loanerClick() {
+    }
+    
+    override func onLocationSelected(customerAddress: CustomerAddress) {
+        // need to check that location is within range
+        currentPresentrVC?.dismiss(animated: true, completion: {
+            self.showBlockingLoading()
+        })
         
-        if scheduleState.rawValue < SchedulePickupState.location.rawValue {
-            scheduleState = .location
+        if dropoffScheduleState.rawValue < ScheduleDropoffState.location.rawValue {
+            dropoffScheduleState = .location
         }
         
-        super.onLocationSelected(responseInfo: responseInfo, placemark: placemark)
+        super.onLocationSelected(customerAddress: customerAddress)
         
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+            
+            self.fetchDealershipsForLocation(location: customerAddress.location?.getLocation(), completion: {
+                // hide loader
+                self.hideBlockingLoading()
+                
+                if let dealerships = self.dealerships, dealerships.count > 0 {
+                    for dealership in dealerships {
+                        if dealership.id == RequestedServiceManager.sharedInstance.getDealership()?.id {
+                            self.pickupLocationView.hideError()
+                            self.confirmButton.animateAlpha(show: true)
+                            return
+                            // within zone
+                        }
+                    }
+                }
+                
+                //todo: OUT OF ZONE ERROR
+                self.pickupLocationView.showError(error: .OutOfPickupArea)
+                self.confirmButton.animateAlpha(show: false)
+            })
+        })
+        
+        
+    }
+    
+    override func onDateTimeSelected(timeSlot: DealershipTimeSlot) {
+        var openNext = false
+        if dropoffScheduleState.rawValue < ScheduleDropoffState.dateTime.rawValue {
+            dropoffScheduleState = .dateTime
+            openNext = true
+        }
+        super.onDateTimeSelected(timeSlot: timeSlot)
         currentPresentrVC?.dismiss(animated: true, completion: {
-            self.confirmButton.animateAlpha(show: true)
+            if openNext {
+                self.pickupLocationClick()
+            }
         })
     }
     
     override func confirmButtonClick() {
-        StateServiceManager.sharedInstance.updateState(state: .deliveryScheduled)
+        guard let customerId = UserManager.sharedInstance.getCustomerId() else {
+            return
+        }
+        
+        confirmButton.isLoading = true
+        
+       // BookingAPI().createDropoffRequest(customerId: customerId, bookingId: book, timeSlotId: <#T##Int#>, location: <#T##Location#>)
+        
+        
     }
     
 }

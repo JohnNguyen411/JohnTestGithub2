@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (4.5.1)
+  - AlamofireNetworkActivityLogger (2.2.0):
+    - Alamofire (~> 4.0)
   - AlamofireObjectMapper (5.0.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
@@ -55,6 +57,7 @@ PODS:
     - GoogleToolboxForMac/Defines (= 2.1.3)
   - KeychainAccess (3.1.0)
   - Kingfisher (4.2.0)
+  - MBProgressHUD (1.1.0)
   - nanopb (0.3.8):
     - nanopb/decode (= 0.3.8)
     - nanopb/encode (= 0.3.8)
@@ -85,6 +88,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (~> 4.5.1)
+  - AlamofireNetworkActivityLogger (~> 2.2)
   - AlamofireObjectMapper (~> 5.0.0)
   - BrightFutures (~> 6.0.0)
   - CocoaLumberjack/Swift (~> 3.3.0)
@@ -96,6 +100,7 @@ DEPENDENCIES:
   - GooglePlaces (~> 2.5.0)
   - KeychainAccess (~> 3.1.0)
   - Kingfisher (~> 4.2.0)
+  - MBProgressHUD (~> 1.1.0)
   - PhoneNumberKit (~> 2.0)
   - RealmSwift (~> 3.0.2)
   - SDWebImage (~> 4.0)
@@ -107,6 +112,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
+  AlamofireNetworkActivityLogger: a7ae1842988b3f6248a49213268375bd27b515f0
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
   BrightFutures: 9e7604f511aed9f0d6a49b04ac9b3fca6b117758
   CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
@@ -123,6 +129,7 @@ SPEC CHECKSUMS:
   GoogleToolboxForMac: 2501e2ad72a52eb3dfe7bd9aee7dad11b858bd20
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   Kingfisher: 9ee7e788d8ba07c3f21ce0d43f33cec310a4f781
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
   ObjectMapper: 92230db59bf8f341a5c3a3cf0b9fbdde3cf0d87f
   PhoneNumberKit: 073b3cef30c2a64ddcd623ea5953bc84bb5b3fc4
@@ -137,6 +144,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: dc88934f85fb50b263b1632b9cbad3402505783e
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: 8d6d8403c6aa76bf9a44dd60059a465f17d3ec91
+PODFILE CHECKSUM: 75d507dca912d6e67288d5a61d3cbebd4fc4285c
 
 COCOAPODS: 1.3.1

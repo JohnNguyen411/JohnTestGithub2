@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import PhoneNumberKit
 
-class FTUEPhoneNumberViewController: FTUEChildViewController, FTUEProtocol {
+class FTUEPhoneNumberViewController: FTUEChildViewController {
     
     let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
     let phoneNumberKit = PhoneNumberKit()
@@ -45,10 +45,9 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FTUEProtocol {
         let phoneNumberTF: PhoneNumberTextField = phoneNumberTextField.textField as! PhoneNumberTextField
         phoneNumberTF.maxDigits = 10
         
-        setupViews()
     }
     
-    func setupViews() {
+    override func setupViews() {
         
         self.view.addSubview(phoneNumberTextField)
         self.view.addSubview(phoneNumberLabel)
@@ -94,17 +93,23 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FTUEProtocol {
  
     }
     
-    override func checkTextFieldsValidity() {
-        canGoNext(nextEnabled: isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text))
+    override func checkTextFieldsValidity() -> Bool {
+        let enabled = isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text)
+        canGoNext(nextEnabled: enabled)
+        return enabled
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        checkTextFieldsValidity()
+        _ = checkTextFieldsValidity()
     }
     
     //MARK: FTUEStartViewController
     func didSelectPage() {
         phoneNumberTextField.textField.becomeFirstResponder()
-        checkTextFieldsValidity()
+        _ = checkTextFieldsValidity()
+    }
+    
+    override func nextButtonTap() {
+        UserManager.sharedInstance.signupCustomer.phoneNumber = phoneNumberTextField.textField.text
     }
 }

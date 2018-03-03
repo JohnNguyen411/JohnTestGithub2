@@ -8,23 +8,27 @@
 
 import Foundation
 import UIKit
-import SlideMenuControllerSwift
 import CoreLocation
 import GoogleMaps
 
 class ScheduledPickupViewController: ScheduledViewController {
     
+    convenience init(state: ServiceState) {
+        self.init()
+        stateDidChange(state: state)
+    }
+    
     override func generateStates() {
-        states = [ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute,
-                  ServiceState.pickupDriverInRoute, ServiceState.pickupDriverInRoute, ServiceState.pickupDriverNearby, ServiceState.pickupDriverNearby,
-                  ServiceState.pickupDriverArrived]
+        states = [ServiceState.enRouteForPickup, ServiceState.enRouteForPickup, ServiceState.enRouteForPickup, ServiceState.enRouteForPickup,
+                  ServiceState.enRouteForPickup, ServiceState.enRouteForPickup, ServiceState.nearbyForPickup, ServiceState.nearbyForPickup,
+                  ServiceState.arrivedForPickup]
     }
     
     override func generateSteps() {
         let step1 = Step(id: ServiceState.pickupScheduled, text: .ServiceScheduled, state: .done)
-        let step2 = Step(id: ServiceState.pickupDriverInRoute, text: .DriverEnRoute)
-        let step3 = Step(id: ServiceState.pickupDriverNearby, text: .DriverNearby)
-        let step4 = Step(id: ServiceState.pickupDriverArrived, text: .DriverArrived)
+        let step2 = Step(id: ServiceState.enRouteForPickup, text: .DriverEnRoute)
+        let step3 = Step(id: ServiceState.nearbyForPickup, text: .DriverNearby)
+        let step4 = Step(id: ServiceState.arrivedForPickup, text: .DriverArrived)
         
         steps.append(step1)
         steps.append(step2)
@@ -42,6 +46,27 @@ class ScheduledPickupViewController: ScheduledViewController {
         driverLocations.append(ScheduledViewController.driverLocation7)
         driverLocations.append(ScheduledViewController.driverLocation8)
         driverLocations.append(ScheduledViewController.driverLocation9)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
+            return
+        }
+        if let pickupRequest = booking.pickupRequest, let location = pickupRequest.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
+            mapVC.updateRequestLocation(location: coordinates)
+        }
+    }
+    
+    override func stateDidChange(state: ServiceState) {
+        super.stateDidChange(state: state)
+        guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
+            return
+        }
+        if let pickupRequest = booking.pickupRequest, let driver = pickupRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
+            mapVC.updateDriverLocation(location: coordinates)
+            newDriver(driver: driver)
+        }
     }
     
 }

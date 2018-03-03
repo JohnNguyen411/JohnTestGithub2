@@ -96,7 +96,37 @@ class MainController_UITests: XCTestCase {
         nextButtonButton.tap()
         sleep(1)
     }
-    
+    /*
+    func testNewFlow() {
+        
+        let app = XCUIApplication()
+        app/*@START_MENU_TOKEN@*/.buttons["NEW SERVICE"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"].buttons[\"NEW SERVICE\"]",".buttons[\"NEW SERVICE\"]"],[[[-1,4],[-1,3],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,4],[-1,3],[-1,2,3],[-1,1,2]],[[-1,4],[-1,3],[-1,2,3]],[[-1,4],[-1,3]]],[0]]@END_MENU_TOKEN@*/.tap()
+        app/*@START_MENU_TOKEN@*/.tables.containing(.other, identifier:"ROUTINE SERVICES")/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"].tables",".tables.containing(.other, identifier:\"REPAIRS\")",".tables.containing(.other, identifier:\"ROUTINE SERVICES\")"],[[[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.children(matching: .cell).element(boundBy: 0).staticTexts["Oil Change"].tap()
+        app.alerts["Allow “voluxe-customer” to access your location?"].buttons["Always Allow"].tap()
+        app/*@START_MENU_TOKEN@*/.buttons["rightButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"]",".buttons[\"VOLVO PICKUP\"]",".buttons[\"rightButton\"]"],[[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3]],[[-1,5],[-1,4],[-1,3,4]],[[-1,5],[-1,4]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let newlocationtextfieldTextfieldTextField = app/*@START_MENU_TOKEN@*/.textFields["newLocationTextField.textField"]/*[[".otherElements[\"locationVC\"]",".textFields[\"123 Main Street, San Francisco\"]",".textFields[\"newLocationTextField.textField\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        newlocationtextfieldTextfieldTextField.tap()
+        newlocationtextfieldTextfieldTextField.typeText("535 Mission St")
+        app.windows.containing(.other, identifier:"slideMenuController").children(matching: .other).element(boundBy: 1).tap()
+        
+        let bottombuttonButton = app/*@START_MENU_TOKEN@*/.buttons["bottomButton"]/*[[".otherElements[\"locationVC\"]",".buttons[\"NEXT\"]",".buttons[\"bottomButton\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        bottombuttonButton.tap()
+        
+        let bottombuttonButton2 = app/*@START_MENU_TOKEN@*/.buttons["bottomButton"]/*[[".otherElements[\"dateModal\"]",".buttons[\"NEXT\"]",".buttons[\"bottomButton\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        bottombuttonButton2.tap()
+        app/*@START_MENU_TOKEN@*/.buttons["bottomButton"]/*[[".otherElements[\"loanerVC\"]",".buttons[\"NEXT\"]",".buttons[\"bottomButton\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let confirmbuttonButton = app/*@START_MENU_TOKEN@*/.scrollViews.otherElements.buttons["confirmButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"].scrollViews.otherElements",".buttons[\"CONFIRM PICKUP\"]",".buttons[\"confirmButton\"]",".scrollViews.otherElements"],[[[-1,6,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,6,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,6,4],[-1,3,4],[-1,2,3]],[[-1,6,4],[-1,3,4]],[[-1,5],[-1,4]]],[0,0]]@END_MENU_TOKEN@*/
+        confirmbuttonButton.tap()
+        app/*@START_MENU_TOKEN@*/.buttons["rightButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"]",".buttons[\"VOLVO DELIVERY\"]",".buttons[\"rightButton\"]"],[[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3]],[[-1,5],[-1,4],[-1,3,4]],[[-1,5],[-1,4]]],[0]]@END_MENU_TOKEN@*/.tap()
+        bottombuttonButton2.tap()
+        bottombuttonButton.tap()
+        confirmbuttonButton.tap()
+        app/*@START_MENU_TOKEN@*/.buttons["confirmButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"]",".buttons[\"OK\"]",".buttons[\"confirmButton\"]"],[[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3]],[[-1,5],[-1,4],[-1,3,4]],[[-1,5],[-1,4]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+    }
+    */
     func testPickupDelivery() {
         internalTestSchedulePickup()
         internalTestPickup()
@@ -105,10 +135,96 @@ class MainController_UITests: XCTestCase {
         internalTestScheduleDropoff()
         internalTestDropOff()
     }
-    
+
+    /*
+    func testRightButton() {
+        
+        let app = XCUIApplication()
+        app.alerts["Allow “voluxe-customer” to also access your location even when you are not using the app?"].buttons["Always Allow"].tap()
+        app/*@START_MENU_TOKEN@*/.buttons["rightButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"]",".buttons[\"VOLVO PICKUP\"]",".buttons[\"rightButton\"]"],[[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3]],[[-1,5],[-1,4],[-1,3,4]],[[-1,5],[-1,4]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let newlocationtextfieldTextfieldTextField = app/*@START_MENU_TOKEN@*/.textFields["newLocationTextField.textField"]/*[[".otherElements[\"locationVC\"]",".textFields[\"123 Main Street, San Francisco\"]",".textFields[\"newLocationTextField.textField\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        newlocationtextfieldTextfieldTextField.tap()
+        newlocationtextfieldTextfieldTextField.typeText("535 Mission St, SF")
+        
+        let newlocationtextfieldRightlabelStaticText = app/*@START_MENU_TOKEN@*/.staticTexts["newLocationTextField.rightLabel"]/*[[".otherElements[\"locationVC\"]",".staticTexts[\"ADD\"]",".staticTexts[\"newLocationTextField.rightLabel\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        newlocationtextfieldRightlabelStaticText.tap()
+        
+        let bottombuttonButton = app/*@START_MENU_TOKEN@*/.buttons["bottomButton"]/*[[".otherElements[\"locationVC\"]",".buttons[\"NEXT\"]",".buttons[\"bottomButton\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        bottombuttonButton.tap()
+        
+        let bottombuttonButton2 = app/*@START_MENU_TOKEN@*/.buttons["bottomButton"]/*[[".otherElements[\"dateModal\"]",".buttons[\"NEXT\"]",".buttons[\"bottomButton\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/
+        bottombuttonButton2.tap()
+        app/*@START_MENU_TOKEN@*/.buttons["bottomButton"]/*[[".otherElements[\"loanerVC\"]",".buttons[\"NEXT\"]",".buttons[\"bottomButton\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+        let confirmbuttonButton = app/*@START_MENU_TOKEN@*/.scrollViews.otherElements.buttons["confirmButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"].scrollViews.otherElements",".buttons[\"CONFIRM PICKUP\"]",".buttons[\"confirmButton\"]",".scrollViews.otherElements"],[[[-1,6,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,6,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,6,4],[-1,3,4],[-1,2,3]],[[-1,6,4],[-1,3,4]],[[-1,5],[-1,4]]],[0,0]]@END_MENU_TOKEN@*/
+        confirmbuttonButton.tap()
+        app/*@START_MENU_TOKEN@*/.buttons["rightButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"]",".buttons[\"VOLVO DELIVERY\"]",".buttons[\"rightButton\"]"],[[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3]],[[-1,5],[-1,4],[-1,3,4]],[[-1,5],[-1,4]]],[0]]@END_MENU_TOKEN@*/.tap()
+        bottombuttonButton2.tap()
+        newlocationtextfieldTextfieldTextField.tap()
+        newlocationtextfieldTextfieldTextField.typeText("535 Mission St, SF")
+        newlocationtextfieldRightlabelStaticText.tap()
+        bottombuttonButton.tap()
+        confirmbuttonButton.tap()
+        app/*@START_MENU_TOKEN@*/.buttons["confirmButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"]",".buttons[\"OK\"]",".buttons[\"confirmButton\"]"],[[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3]],[[-1,5],[-1,4],[-1,3,4]],[[-1,5],[-1,4]]],[0]]@END_MENU_TOKEN@*/.tap()
+        
+    }
+    */
     func internalTestSchedulePickup() {
+        sleep(2) // wait for the app to call customer / cars enpoint
+
+        let handler = addUIInterruptionMonitor(withDescription: "Location Dialog") { (alert) -> Bool in
+            var button = alert.buttons["Allow"]
+            if button.exists {
+                button.tap()
+                return true
+            }
+            button = alert.buttons["Always Allow"]
+            if button.exists {
+                button.tap()
+                return true
+            }
+            return false
+        }
+        
+        
+        let allowButton = app.alerts["Allow “voluxe-customer” to access your location?"].buttons["Always Allow"]
+        if allowButton.exists {
+            allowButton.tap()
+        }
+       
+        sleep(2)
+        
+        removeUIInterruptionMonitor(handler)
+        
+        app.buttons["confirmButton"].tap()
         sleep(1)
 
+
+        // show LocationView
+        let locationVC = app.otherElements["locationVC"]
+        XCTAssertTrue(locationVC.exists)
+        
+        // enter new Location
+         let locationTextField = app.textFields["newLocationTextField.textField"]
+        XCTAssertTrue(locationTextField.exists)
+        locationTextField.tap()
+        sleep(1)
+        locationTextField.typeText("535 Mission St, San Francisco, CA")
+        
+        sleep(1)
+        
+        let locationAddButton = app.staticTexts["newLocationTextField.rightLabel"]
+        XCTAssertTrue(locationAddButton.exists)
+        locationAddButton.tap()
+        
+        sleep(1)
+        
+        // go to next
+        var bottomButton = app.buttons["bottomButton"]
+        XCTAssertTrue(bottomButton.exists)
+        bottomButton.tap()
+        /*
         // check if the dealershipView is here
         let dealershipView = app.otherElements["dealershipView"]
         XCTAssertTrue(dealershipView.exists)
@@ -129,29 +245,15 @@ class MainController_UITests: XCTestCase {
         XCTAssertTrue(groupedLabelOne.exists)
         sleep(1)
         
-        var bottomButton = app.buttons["bottomButton"]
+        bottomButton = app.buttons["bottomButton"]
         XCTAssertTrue(bottomButton.exists)
         bottomButton.tap()
-        
-        sleep(1)
-
-        let rightButton = app.buttons["rightButton"]
-        XCTAssertTrue(rightButton.exists)
-        rightButton.tap()
-        sleep(1)
+        */
+        sleep(2)
 
         // show CalendarView
         let dateModal = app.otherElements["dateModal"]
         XCTAssertTrue(dateModal.exists)
-        
-        let handler = addUIInterruptionMonitor(withDescription: "Location Dialog") { (alert) -> Bool in
-            let button = alert.buttons["Allow"]
-            if button.exists {
-                button.tap()
-                return true
-            }
-            return false
-        }
         
         // go to next
         bottomButton = app.buttons["bottomButton"]
@@ -160,35 +262,6 @@ class MainController_UITests: XCTestCase {
         
         app.tap()
 
-        sleep(1)
-        
-        // show LocationView
-        let locationVC = app.otherElements["locationVC"]
-        XCTAssertTrue(locationVC.exists)
-        
-        removeUIInterruptionMonitor(handler)
-        
-        // enter new Location
-        let locationTextField = app.textFields["newLocationTextField.textField"]
-        XCTAssertTrue(locationTextField.exists)
-        locationTextField.tap()
-        sleep(1)
-        locationTextField.typeText("535 Mission St, San Francisco, CA")
-        
-        sleep(1)
-        
-        let locationAddButton = app.staticTexts["newLocationTextField.rightLabel"]
-        XCTAssertTrue(locationAddButton.exists)
-        locationAddButton.tap()
-        
-        sleep(1)
-
-        // go to next
-        bottomButton = app.buttons["bottomButton"]
-        XCTAssertTrue(bottomButton.exists)
-        
-        bottomButton.tap()
-        
         sleep(1)
         
         let loanerVC = app.otherElements["loanerVC"]
@@ -237,28 +310,10 @@ class MainController_UITests: XCTestCase {
         let drivingToDealershipAppeared = waitForElementToAppear(drivingToDealership, timeout: 20)
         XCTAssertTrue(drivingToDealershipAppeared)
         
-        /*
-        let driverAtDealership = app.staticTexts["schedulingTestView\(ServiceState.pickupDriverAtDealership)"]
-        let driverAtDealershipAppeared = waitForElementToAppear(driverAtDealership, timeout: 20)
-        XCTAssertTrue(driverAtDealershipAppeared)
-        */
+        let pickupDriverAtDealership = app.staticTexts["schedulingTestView\(ServiceState.pickupDriverAtDealership)"]
+        let pickupDriverAtDealershipAppeared = waitForElementToAppear(pickupDriverAtDealership, timeout: 20)
+        XCTAssertTrue(pickupDriverAtDealershipAppeared)
         
-        let volvoPickupAlert = app.alerts["Volvo Pickup"]
-        let alertAppeared = waitForElementToAppear(volvoPickupAlert, timeout: 20)
-        XCTAssertTrue(alertAppeared)
-        let alertHandler = addUIInterruptionMonitor(withDescription: "Volvo Pickup") {
-            element in
-            do {
-                let button = element.buttons["okAction_AID"]
-                if button.exists {
-                    button.tap()
-                }
-            }
-            return true
-        }
-        
-        app.tap()
-        removeUIInterruptionMonitor(alertHandler)
     }
     
     func internalTestServicing() {
@@ -267,24 +322,14 @@ class MainController_UITests: XCTestCase {
         let servicingAppeared = waitForElementToAppear(servicing, timeout: 20)
         XCTAssertTrue(servicingAppeared)
         
-        // check if the dealershipView is here
-        let dealershipView = app.otherElements["dealershipView"]
-        XCTAssertTrue(dealershipView.exists)
+        let serviceCompleted = app.staticTexts["schedulingTestView\(ServiceState.serviceCompleted)"]
+        let serviceCompletedAppeared = waitForElementToAppear(serviceCompleted, timeout: 20)
+        XCTAssertTrue(serviceCompletedAppeared)
+        
+        sleep(1)
         
         // make sure confirm button not here
-        var rightButton = app.buttons["rightButton"]
-        XCTAssertFalse(rightButton.exists)
-        
-        sleep(1)
-        
-        let serviceCompleted = app.staticTexts["schedulingTestView\(ServiceState.serviceCompleted)"]
-        let servicedAppeared = waitForElementToAppear(serviceCompleted, timeout: 20)
-        XCTAssertTrue(servicedAppeared)
-        
-        sleep(1)
-        
-        // make sure Volvo Delivery button appeared
-        rightButton = app.buttons["rightButton"]
+        let rightButton = app.buttons["rightButton"]
         XCTAssertTrue(rightButton.exists)
         rightButton.tap()
         

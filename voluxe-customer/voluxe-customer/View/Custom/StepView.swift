@@ -22,7 +22,7 @@ class StepView: UIView {
     let titleView: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.font = .volvoSansLightBold(size: 18)
+        titleLabel.font = .volvoSansLight(size: 18)
         titleLabel.textAlignment = .left
         return titleLabel
     }()
@@ -71,6 +71,7 @@ class StepView: UIView {
         self.step = step
         
         titleView.text = step.text
+        
         if step.state == .todo {
             animateImageChange(image: UIImage(named: "padded_dot"))
         } else {
@@ -83,6 +84,14 @@ class StepView: UIView {
                     make.width.height.equalTo(1)
                 }
             }
+        }
+    }
+    
+    func setCurrent(isCurrent: Bool) {
+        if isCurrent {
+            titleView.font = .volvoSansLightBold(size: 18)
+        } else {
+            titleView.font = .volvoSansLight(size: 18)
         }
     }
     

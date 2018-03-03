@@ -27,6 +27,8 @@ final class StateServiceManager {
             delegates.forEach {delegate in
                 delegate.stateDidChange(oldState: oldState, newState: state)
             }
+            
+            BookingSyncManager.sharedInstance.syncBooking()
         }
     }
     

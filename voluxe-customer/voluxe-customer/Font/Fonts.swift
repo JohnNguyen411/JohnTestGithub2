@@ -188,7 +188,7 @@ class Fonts {
     }
 
     static func attributedString(text: String, font: UIFont, color: UIColor, spacing: CGFloat) -> NSMutableAttributedString {
-        let range = NSRange(location: 0, length: text.characters.count)
+        let range = NSRange(location: 0, length: text.count)
         let attStr = NSMutableAttributedString(string: text)
         attStr.addAttribute(NSAttributedStringKey.kern, value: letterSpacing(font: font, spacing: spacing), range: range)
         attStr.addAttribute(NSAttributedStringKey.font, value: font, range: range)
