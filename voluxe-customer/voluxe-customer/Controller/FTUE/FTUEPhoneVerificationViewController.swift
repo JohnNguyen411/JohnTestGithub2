@@ -109,7 +109,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     //MARK: FTUEStartViewController
     
     override func nextButtonTap() {
-        //TODO: VERIFY PHONE with backend
+        UserManager.sharedInstance.signupCustomer.verificationCode = codeTextField.textField.text
         goToNext()
     }
     

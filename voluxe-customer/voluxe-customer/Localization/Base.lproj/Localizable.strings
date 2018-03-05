@@ -66,6 +66,9 @@
 "ModelPlaceholder" = "S90";
 "ColorPlaceholder" = "Black";
 "AccountAlreadyExist" = "An account already exist with that email, please try Login instead.";
+"InvalidVerificationCode" = "Invalid Code.";
+
+
 
 
 /***************** SchedulePickup ***************/

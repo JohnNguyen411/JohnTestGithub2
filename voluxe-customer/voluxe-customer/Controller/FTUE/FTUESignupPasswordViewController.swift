@@ -36,7 +36,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     let volvoPwdTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••")
     let volvoPwdConfirmTextField = VLVerticalTextField(title: .RepeatPassword, placeholder: "••••••••")
     
-    var loginInProgress = false
+    var signupInProgress = false
     var realm : Realm?
     
     override func viewDidLoad() {
@@ -125,6 +125,10 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                 self.loadLandingPage()
             })
+        } else if error?.code == "E4012" {
+            self.showOkDialog(title: .Error, message: .InvalidVerificationCode, completion: {
+                self.navigationController?.popViewController(animated: true)
+            })
         } else {
             self.showOkDialog(title: .Error, message: .GenericError)
         }
@@ -132,10 +136,10 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     }
     
     func showLoading(loading: Bool) {
-        if loginInProgress == loading {
+        if signupInProgress == loading {
             return
         }
-        loginInProgress = loading
+        signupInProgress = loading
         if loading {
             MBProgressHUD.showAdded(to: self.view, animated: true)
         } else {
@@ -168,7 +172,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     override func nextButtonTap() {
         let signupCustomer = UserManager.sharedInstance.signupCustomer
         
-        if loginInProgress {
+        if signupInProgress {
             return
         }
         
@@ -188,7 +192,8 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         //TODO: NOW => Create account
         // HANDLE LOADING AND ERRORS
         // CALL LOGIN AND REDIRECT
-        CustomerAPI().signup(email: signupCustomer.email!, password: volvoPwdConfirmTextField.textField.text!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, phoneNumber: signupCustomer.phoneNumber!).onSuccess { result in
+        //email: signupCustomer.email!, password: volvoPwdConfirmTextField.textField.text!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, phoneNumber: signupCustomer.phoneNumber!
+        CustomerAPI().confirmSignup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, password: volvoPwdConfirmTextField.textField.text!, verificationCode: signupCustomer.verificationCode!).onSuccess { result in
             if let customer = result?.data?.result {
                 if let realm = self.realm {
                     try? realm.write {

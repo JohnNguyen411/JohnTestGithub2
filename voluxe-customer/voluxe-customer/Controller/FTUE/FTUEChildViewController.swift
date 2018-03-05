@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 
 class FTUEChildViewController: BaseViewController {
-
-    weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()

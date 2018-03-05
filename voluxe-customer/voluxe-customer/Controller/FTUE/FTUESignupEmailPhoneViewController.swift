@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import PhoneNumberKit
+import RealmSwift
+import MBProgressHUD
 
 class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDelegate {
     
@@ -37,8 +39,13 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         return textView
     }()
     
+    var signupInProgress = false
+    var realm : Realm?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        realm = try? Realm()
         
         let phoneNumberTF: PhoneNumberTextField = phoneNumberTextField.textField as! PhoneNumberTextField
         phoneNumberTF.maxDigits = 10
@@ -139,6 +146,31 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
     }
     
+    private func onSignupError(error: ResponseError? = nil) {
+        //todo show error message
+        self.showLoading(loading: false)
+        
+        if error?.code == "E4011" {
+            self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
+                self.loadLandingPage()
+            })
+        } else {
+            self.showOkDialog(title: .Error, message: .GenericError)
+        }
+    }
+    
+    func showLoading(loading: Bool) {
+        if signupInProgress == loading {
+            return
+        }
+        signupInProgress = loading
+        if loading {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        } else {
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
+    }
+    
     override func checkTextFieldsValidity() -> Bool {
         let enabled = isEmailValid(email: emailTextField.textField.text) && isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text)
         canGoNext(nextEnabled: enabled)
@@ -169,7 +201,43 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     override func nextButtonTap() {
         UserManager.sharedInstance.signupCustomer.email = emailTextField.textField.text
         UserManager.sharedInstance.signupCustomer.phoneNumber = phoneNumberTextField.textField.text
-        goToNext()
+        // signup
+        
+        let signupCustomer = UserManager.sharedInstance.signupCustomer
+        
+        if signupInProgress {
+            return
+        }
+        
+        showLoading(loading: true)
+        
+        if UserManager.sharedInstance.getCustomer() != nil {
+            
+            if UserManager.sharedInstance.getAccessToken() != nil {
+                self.showLoading(loading: false)
+                self.loadMainScreen()
+            } else {
+                onSignupError(error: ResponseError(JSON: ["code" : "E4011"]))
+            }
+            return
+        }
+        
+        CustomerAPI().signup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, languageCode: "ENG").onSuccess { result in
+            if let customer = result?.data?.result {
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.deleteAll()
+                        realm.add(customer)
+                    }
+                }
+                UserManager.sharedInstance.setCustomer(customer: customer)
+                self.goToNext()
+            } else {
+                self.onSignupError(error: result?.error)
+            }
+            }.onFailure { error in
+                self.onSignupError()
+        }
     }
     
     override func goToNext() {

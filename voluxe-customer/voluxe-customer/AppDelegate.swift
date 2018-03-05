@@ -112,6 +112,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
+    
+    func phoneVerificationScreen() {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let uiNavigationController = UINavigationController(rootViewController: FTUEPhoneVerificationViewController())
+        uiNavigationController.navigationBar.isTranslucent = true
+        uiNavigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        uiNavigationController.navigationBar.shadowImage = UIImage()
+        window!.rootViewController = uiNavigationController
+        window!.makeKeyAndVisible()
+    }
+    
+    func showAddVehicleScreen() {
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        
+        let uiNavigationController = UINavigationController(rootViewController: FTUEAddVehicleViewController())
+        uiNavigationController.navigationBar.isTranslucent = true
+        uiNavigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        uiNavigationController.navigationBar.shadowImage = UIImage()
+        window!.rootViewController = uiNavigationController
+        window!.makeKeyAndVisible()
+    }
+    
     private func setupFirebase(_ application: UIApplication) {
         FirebaseApp.configure()
 

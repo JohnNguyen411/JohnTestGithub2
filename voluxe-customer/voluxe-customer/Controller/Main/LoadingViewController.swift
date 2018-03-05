@@ -102,14 +102,26 @@ class LoadingViewController: ChildViewController {
                 UserManager.sharedInstance.setCustomer(customer: customer)
                 if !customer.phoneNumberVerified {
                     FTUEStartViewController.flowType = .login
-                    self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: false)
+                    self.appDelegate?.phoneVerificationScreen()
                 } else {
                     self.callVehicle(customerId: customer.id)
                 }
                 
+            } else {
+                // error
+                if let error = result?.error {
+                    if error.code == "E3004" {
+                        // code not verified
+                        FTUEStartViewController.flowType = .login
+                        self.appDelegate?.phoneVerificationScreen()
+                    } else {
+                        //todo show error
+                    }
+                }
             }
             }.onFailure { error in
                 // todo show error
+                Logger.print(error.errorDescription)
         }
     }
     
@@ -124,7 +136,7 @@ class LoadingViewController: ChildViewController {
                 }
                 if cars.count == 0 {
                     FTUEStartViewController.flowType = .login
-                    self.navigationController?.pushViewController(FTUEAddVehicleViewController(), animated: false)
+                    self.appDelegate?.showAddVehicleScreen()
                 } else {
                     UserManager.sharedInstance.setVehicles(vehicles: cars)
                     self.getBookings(customerId: customerId)

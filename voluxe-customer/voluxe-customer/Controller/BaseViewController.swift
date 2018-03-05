@@ -13,6 +13,8 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     static let fakeYOrigin: CGFloat = -555.0
     
+    weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
+
     let presentrCornerRadius: CGFloat = 4.0
     var currentPresentr: Presentr?
     var currentPresentrVC: VLPresentrViewController?

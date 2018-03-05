@@ -46,5 +46,6 @@ extension String {
     static let ModelPlaceholder = NSLocalizedString("ModelPlaceholder")
     static let ColorPlaceholder = NSLocalizedString("ColorPlaceholder")
     static let AccountAlreadyExist = NSLocalizedString("AccountAlreadyExist")
+    static let InvalidVerificationCode = NSLocalizedString("InvalidVerificationCode")
 
 }

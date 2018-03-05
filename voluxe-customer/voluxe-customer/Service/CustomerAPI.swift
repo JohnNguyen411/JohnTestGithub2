@@ -51,28 +51,25 @@ class CustomerAPI: NSObject {
     /**
      Signup endpoint for Customer
      - parameter email: Customer's email
-     - parameter password: Customer's password
+     - parameter phoneNumber: Customer's phoneNumber
      - parameter firstName: Customer's firstname
      - parameter lastName: Customer's lastame
-     - parameter phoneNumber: Customer's phoneNumber
+     - parameter languageCode: Customer's ISO_639-3 language code
      
      - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
      */
-    func signup(email: String, password: String, firstName: String, lastName: String, phoneNumber: String) -> Future<ResponseObject<MappableDataObject<Customer>>?, AFError> {
+    func signup(email: String, phoneNumber: String, firstName: String, lastName: String, languageCode: String) -> Future<ResponseObject<MappableDataObject<Customer>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
         
         let params: Parameters = [
             "email": email,
-            "password": password,
+            "phone_number": phoneNumber,
             "first_name": firstName,
             "last_name": lastName,
-            "phone_number": phoneNumber,
-            "phone_number_verified": true, //todo remove that
-            "credit": 0, //todo remove that
-            "currency_id": 1 //todo remove that
+            "language_code": languageCode
         ]
         
-        NetworkRequest.request(url: "/v1/customers", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/signup", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSON { response in
             
             var responseObject: ResponseObject<MappableDataObject<Customer>>?
             
@@ -88,6 +85,43 @@ class CustomerAPI: NSObject {
         }
         return promise.future
     }
+    
+    /**
+     Signup endpoint for Customer
+     - parameter email: Customer's email
+     - parameter phoneNumber: Customer's phoneNumber
+     - parameter password: Customer's password
+     - parameter verificationCode: Customer's SMS verification code
+     
+     - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
+     */
+    func confirmSignup(email: String, phoneNumber: String, password: String, verificationCode: String) -> Future<ResponseObject<MappableDataObject<Customer>>?, AFError> {
+        let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
+        
+        let params: Parameters = [
+            "email": email,
+            "phone_number": phoneNumber,
+            "password": password,
+            "code": verificationCode
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/confirm-signup", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSON { response in
+            
+            var responseObject: ResponseObject<MappableDataObject<Customer>>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<MappableDataObject<Customer>>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
     
     /**
      Get the Customer object with a customerId

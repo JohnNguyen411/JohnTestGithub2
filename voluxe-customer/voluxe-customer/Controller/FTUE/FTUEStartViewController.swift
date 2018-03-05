@@ -137,4 +137,5 @@ class SignupCustomer: NSObject {
     var lastName: String?
     var phoneNumber: String?
     var email: String?
+    var verificationCode: String?
 }
