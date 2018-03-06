@@ -18,7 +18,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     
     let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
     let phoneNumberKit = PhoneNumberKit()
-    
+    var validPhoneNumber: PhoneNumber?
+
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .MobilePhoneNumberExplain
@@ -138,7 +139,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         }
         
         do {
-            let _ = try phoneNumberKit.parse(phoneNumber, withRegion: textField.currentRegion, ignoreType: true)
+            validPhoneNumber = try phoneNumberKit.parse(phoneNumber, withRegion: textField.currentRegion, ignoreType: true)
             return true
         } catch {
             return false
@@ -199,8 +200,12 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     //MARK: FTUEStartViewController
     
     override func nextButtonTap() {
+        guard let validPhoneNumber = validPhoneNumber else {
+            return
+        }
+        
         UserManager.sharedInstance.signupCustomer.email = emailTextField.textField.text
-        UserManager.sharedInstance.signupCustomer.phoneNumber = phoneNumberTextField.textField.text
+        UserManager.sharedInstance.signupCustomer.phoneNumber = phoneNumberKit.format(validPhoneNumber, toType: .e164)
         // signup
         
         let signupCustomer = UserManager.sharedInstance.signupCustomer

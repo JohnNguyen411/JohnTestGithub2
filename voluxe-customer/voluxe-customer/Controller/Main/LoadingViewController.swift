@@ -112,6 +112,7 @@ class LoadingViewController: ChildViewController {
                 if let error = result?.error {
                     if error.code == "E3004" {
                         // code not verified
+                        UserManager.sharedInstance.tempCustomerId = customerId
                         FTUEStartViewController.flowType = .login
                         self.appDelegate?.phoneVerificationScreen()
                     } else {

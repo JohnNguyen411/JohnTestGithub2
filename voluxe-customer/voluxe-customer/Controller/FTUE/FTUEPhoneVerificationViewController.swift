@@ -15,6 +15,9 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     let codeLength = 4
     let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder)
     
+    let updatePhoneNumberButton = VLButton(type: .BlueSecondary, title: .UpdatePhoneNumber, actionBlock: nil)
+    
+    
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .PhoneNumberVerifLabel
@@ -37,6 +40,10 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.resendCode()
         })
         
+        updatePhoneNumberButton.setActionBlock {
+            self.updatePhoneNumber()
+        }
+        
         codeTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
         codeTextField.textField.becomeFirstResponder()
@@ -55,6 +62,9 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         self.view.addSubview(codeTextField)
         self.view.addSubview(phoneNumberLabel)
+        self.view.addSubview(updatePhoneNumberButton)
+        
+        updatePhoneNumberButton.contentHorizontalAlignment = .left
         
         let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT)))
 
@@ -72,6 +82,17 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             make.height.equalTo(40)
         }
         
+        updatePhoneNumberButton.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.top.equalTo(codeTextField.snp.bottom).offset(20)
+            make.height.equalTo(20)
+        }
+        
+    }
+    
+    @objc func updatePhoneNumber() {
+        self.navigationController?.pushViewController(FTUEPhoneNumberViewController(), animated: true)
     }
     
     @objc func resendCode() {

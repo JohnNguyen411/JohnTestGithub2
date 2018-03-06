@@ -123,7 +123,7 @@ class CustomerAPI: NSObject {
     }
     
     /**
-     Signup endpoint for Customer
+     Endpoint to request Customer's phone number verification code
      - parameter customerId: Customer's ID
      
      - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
@@ -149,7 +149,7 @@ class CustomerAPI: NSObject {
     }
     
     /**
-     Signup endpoint for Customer
+     Endpoint to verify Customer's phone number
      - parameter customerId: Customer's ID
      - parameter verificationCode: Verification Code sent by SMS
      
@@ -163,6 +163,37 @@ class CustomerAPI: NSObject {
         ]
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/verify-phone-number", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+            
+            var responseObject: ResponseObject<EmptyMappableObject>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    /**
+     Endpoint to update Customer's phone number
+     - parameter customerId: Customer's ID
+     - parameter phoneNumber: The new customer Phone Number
+     
+     - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
+     */
+    func updatePhoneNumber(customerId: Int, phoneNumber: String) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+        
+        let params: Parameters = [
+            "phone_number": phoneNumber
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)", method: .patch, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             
