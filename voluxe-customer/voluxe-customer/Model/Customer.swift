@@ -21,6 +21,7 @@ class Customer: Object, Mappable {
     @objc dynamic var marketCode: String?
     @objc dynamic var phoneNumber: String?
     @objc dynamic var phoneNumberVerified: Bool = false
+    @objc dynamic var passwordResetRequired: Bool = false
     @objc dynamic var credit: Int = 0
     @objc dynamic var currencyId: Int = 0
     @objc dynamic var photoUrl: String?
@@ -42,6 +43,7 @@ class Customer: Object, Mappable {
         marketCode <- map["market_code"]
         phoneNumber <- map["phone_number"]
         phoneNumberVerified <- map["phone_number_verified"]
+        passwordResetRequired <- map["password_reset_required"]
         credit <- map["credit"]
         currencyId <- map["currency_id"]
         photoUrl <- map["photo_url"]

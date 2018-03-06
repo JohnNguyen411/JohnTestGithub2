@@ -8,10 +8,11 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldDelegate {
     
-    let codeLength = 6
+    let codeLength = 4
     let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder)
     
     let phoneNumberLabel: UILabel = {
@@ -23,6 +24,8 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         textView.numberOfLines = 0
         return textView
     }()
+    
+    private var isLoading = false
     
     override func viewDidLoad() {
         
@@ -73,6 +76,31 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     @objc func resendCode() {
         
+        var customerId = UserManager.sharedInstance.getCustomerId()
+        if customerId == nil {
+            customerId = UserManager.sharedInstance.tempCustomerId
+        }
+        
+        if isLoading || customerId == nil {
+            return
+        }
+        
+        isLoading = true
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        CustomerAPI().requestPhoneVerificationCode(customerId: customerId!).onSuccess { result in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if result?.error != nil {
+                self.showOkDialog(title: .Error, message: .GenericError)
+            }
+            self.isLoading = false
+        }.onFailure { error in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            self.showOkDialog(title: .Error, message: .GenericError)
+            self.isLoading = false
+        }
+        
     }
     
     func isCodeValid(code: String?) -> Bool {
@@ -117,7 +145,36 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         if FTUEStartViewController.flowType == .signup {
             self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
         } else {
-            self.loadMainScreen()
+            
+            var customerId = UserManager.sharedInstance.getCustomerId()
+            if customerId == nil {
+                customerId = UserManager.sharedInstance.tempCustomerId
+            }
+            
+            if isLoading || customerId == nil {
+                return
+            }
+            
+            isLoading = true
+            
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
+            // verify phone number
+            CustomerAPI().verifyPhoneNumber(customerId: customerId!, verificationCode: codeTextField.textField.text!).onSuccess { result in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                if result?.error != nil {
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                } else {
+                    self.loadMainScreen()
+                }
+                
+                self.isLoading = false
+                }.onFailure { error in
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.isLoading = false
+            }
+            
         }
     }
     

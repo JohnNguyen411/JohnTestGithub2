@@ -13,6 +13,7 @@ final class UserManager {
     
     static let sharedInstance = UserManager()
     
+    public var tempCustomerId: Int?
     public var signupCustomer = SignupCustomer()
     private var customer: Customer?
     private var vehicles: [Vehicle]?
@@ -47,6 +48,11 @@ final class UserManager {
     
     public func logout() {
         saveAccessToken(token: nil)
+        self.customer = nil
+        self.vehicles = nil
+        self.vehicleBookings = [Int: [Booking]]()
+        self.tempCustomerId = nil
+        self.signupCustomer = SignupCustomer()
     }
     
     public func setCustomer(customer: Customer) {

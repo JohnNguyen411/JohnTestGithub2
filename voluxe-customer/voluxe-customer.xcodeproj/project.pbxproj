@@ -450,6 +450,9 @@
 		6CCCF23B2048BA33004BF1A6 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF23A2048BA33004BF1A6 /* VehicleModel.swift */; };
 		6CCCF23C2048BA33004BF1A6 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF23A2048BA33004BF1A6 /* VehicleModel.swift */; };
 		6CCCF23D2048BA33004BF1A6 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF23A2048BA33004BF1A6 /* VehicleModel.swift */; };
+		6CCCF241204DFA9C004BF1A6 /* EmptyMappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF240204DFA9C004BF1A6 /* EmptyMappableObject.swift */; };
+		6CCCF242204DFA9C004BF1A6 /* EmptyMappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF240204DFA9C004BF1A6 /* EmptyMappableObject.swift */; };
+		6CCCF243204DFA9C004BF1A6 /* EmptyMappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF240204DFA9C004BF1A6 /* EmptyMappableObject.swift */; };
 		6CCD428E1FA013E3000AC6C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
 		6CCD42901FA013E3000AC6C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428F1FA013E3000AC6C9 /* ViewController.swift */; };
 		6CCD42951FA013E3000AC6C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42941FA013E3000AC6C9 /* Assets.xcassets */; };
@@ -723,6 +726,7 @@
 		6CCCF23220488C5C004BF1A6 /* FTUEAddVehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEAddVehicleViewController.swift; sourceTree = "<group>"; };
 		6CCCF2362048B161004BF1A6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		6CCCF23A2048BA33004BF1A6 /* VehicleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModel.swift; sourceTree = "<group>"; };
+		6CCCF240204DFA9C004BF1A6 /* EmptyMappableObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyMappableObject.swift; sourceTree = "<group>"; };
 		6CCD428A1FA013E3000AC6C9 /* voluxe-customer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "voluxe-customer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CCD428F1FA013E3000AC6C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -1033,6 +1037,7 @@
 		6C7495E61FDA23010036FC08 /* Generics */ = {
 			isa = PBXGroup;
 			children = (
+				6CCCF240204DFA9C004BF1A6 /* EmptyMappableObject.swift */,
 				6C90CC15201156AF002594F5 /* ResponseError.swift */,
 				6C7495DE1FDA1E870036FC08 /* MappableDataArray.swift */,
 				6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */,
@@ -1915,6 +1920,7 @@
 				6C58330D1FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
 				6C9B31FF202A51B3006380B9 /* SettingsViewController.swift in Sources */,
 				6CBB4E9D1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
+				6CCCF241204DFA9C004BF1A6 /* EmptyMappableObject.swift in Sources */,
 				6C20E1BB1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
 				6CD474AC2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */,
 				6C9B320B202CFE28006380B9 /* AccountSettingsViewController.swift in Sources */,
@@ -2127,6 +2133,7 @@
 				6C20E1C41FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */,
 				6CCCF2382048B161004BF1A6 /* Color.swift in Sources */,
 				6C58331F1FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */,
+				6CCCF242204DFA9C004BF1A6 /* EmptyMappableObject.swift in Sources */,
 				6C5833381FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */,
 				6C11208F2016B2C70048A56D /* BookingSyncManager.swift in Sources */,
 				6C95439F1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
@@ -2336,6 +2343,7 @@
 				6CD3BCA8200995A2001DD79B /* Location.swift in Sources */,
 				6CCCF2392048B161004BF1A6 /* Color.swift in Sources */,
 				6CD47D1A1FAD190F00D794A6 /* VLButton.swift in Sources */,
+				6CCCF243204DFA9C004BF1A6 /* EmptyMappableObject.swift in Sources */,
 				6C7342121FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
 				6CD3BCAC200E727A001DD79B /* Booking.swift in Sources */,
 				6C91BBD11FA7D3D50033C2B1 /* StringUtils.swift in Sources */,

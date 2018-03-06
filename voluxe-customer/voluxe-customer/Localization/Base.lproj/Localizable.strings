@@ -67,8 +67,7 @@
 "ColorPlaceholder" = "Black";
 "AccountAlreadyExist" = "An account already exist with that email, please try Login instead.";
 "InvalidVerificationCode" = "Invalid Code.";
-
-
+"InvalidCredentials" = "The email or password provided is invalid.";
 
 
 /***************** SchedulePickup ***************/

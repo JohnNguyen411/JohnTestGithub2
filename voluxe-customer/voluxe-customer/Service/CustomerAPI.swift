@@ -122,6 +122,64 @@ class CustomerAPI: NSObject {
         return promise.future
     }
     
+    /**
+     Signup endpoint for Customer
+     - parameter customerId: Customer's ID
+     
+     - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
+     */
+    func requestPhoneVerificationCode(customerId: Int) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/request-phone-number-verification", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
+            
+            var responseObject: ResponseObject<EmptyMappableObject>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    /**
+     Signup endpoint for Customer
+     - parameter customerId: Customer's ID
+     - parameter verificationCode: Verification Code sent by SMS
+     
+     - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
+     */
+    func verifyPhoneNumber(customerId: Int, verificationCode: String) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+        
+        let params: Parameters = [
+            "verification_code": verificationCode
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/verify-phone-number", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+            
+            var responseObject: ResponseObject<EmptyMappableObject>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    
     
     /**
      Get the Customer object with a customerId
