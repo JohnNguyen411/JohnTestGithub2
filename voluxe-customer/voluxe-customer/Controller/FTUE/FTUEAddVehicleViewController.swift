@@ -168,6 +168,10 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     
     override func nextButtonTap() {
         // todo add car to user
+        if let customerId = UserManager.sharedInstance.getCustomerId() {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            callVehicle(customerId: customerId)
+        }
     }
     
     override func rightButtonTitle() -> String {
@@ -178,6 +182,30 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         let enabled = selectedColor >= 0 && selectedYear >= 0 && selectedModel >= 0
         canGoNext(nextEnabled: enabled)
         return enabled
+    }
+    
+    private func callVehicle(customerId: Int) {
+        // Get Customer's Vehicles based on ID
+        CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
+            if let cars = result?.data?.result {
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(cars, update: true)
+                    }
+                }
+                if cars.count > 1 {
+                    // go back
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    self.appDelegate?.loadMainScreen()
+                }
+            }
+            MBProgressHUD.hide(for: self.view, animated: true)
+            
+            }.onFailure { error in
+                // todo show error
+                MBProgressHUD.hide(for: self.view, animated: true)
+        }
     }
     
     

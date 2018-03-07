@@ -190,10 +190,6 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             }
         }
         
-        //TODO: NOW => Create account
-        // HANDLE LOADING AND ERRORS
-        // CALL LOGIN AND REDIRECT
-        //email: signupCustomer.email!, password: volvoPwdConfirmTextField.textField.text!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, phoneNumber: signupCustomer.phoneNumber!
         CustomerAPI().confirmSignup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, password: volvoPwdConfirmTextField.textField.text!, verificationCode: signupCustomer.verificationCode!).onSuccess { result in
             if let customer = result?.data?.result {
                 if let realm = self.realm {

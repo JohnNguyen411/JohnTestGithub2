@@ -12,7 +12,7 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
     
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
     let user: Customer?
-    let vehicles: [Vehicle]?
+    var vehicles: [Vehicle]?
     var vehicleCount = 0
     
     override init() {
@@ -38,6 +38,17 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdToogle)
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // update data
+        vehicles = UserManager.sharedInstance.getVehicles()
+        if let vehicles = vehicles {
+            vehicleCount = vehicles.count
+        }
+        tableView.reloadData()
+    }
+    
     
     override func setupViews() {
         super.setupViews()
