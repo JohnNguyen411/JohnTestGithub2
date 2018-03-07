@@ -103,9 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         if UserManager.sharedInstance.getAccessToken() == nil {
             let uiNavigationController = UINavigationController(rootViewController: FTUEStartViewController())
-            uiNavigationController.navigationBar.isTranslucent = true
-            uiNavigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            uiNavigationController.navigationBar.shadowImage = UIImage()
+            styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
             window!.rootViewController = uiNavigationController
             window!.makeKeyAndVisible()
         } else {
@@ -116,25 +114,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func phoneVerificationScreen() {
         window = UIWindow(frame: UIScreen.main.bounds)
-        
         let uiNavigationController = UINavigationController(rootViewController: FTUEPhoneVerificationViewController())
-        uiNavigationController.navigationBar.isTranslucent = true
-        uiNavigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        uiNavigationController.navigationBar.shadowImage = UIImage()
+        styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         window!.rootViewController = uiNavigationController
         window!.makeKeyAndVisible()
     }
     
     func showAddVehicleScreen() {
-        
         window = UIWindow(frame: UIScreen.main.bounds)
-        
         let uiNavigationController = UINavigationController(rootViewController: FTUEAddVehicleViewController())
-        uiNavigationController.navigationBar.isTranslucent = true
-        uiNavigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        uiNavigationController.navigationBar.shadowImage = UIImage()
+        styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         window!.rootViewController = uiNavigationController
         window!.makeKeyAndVisible()
+    }
+    
+    private func styleNavigationBar(navigationBar: UINavigationBar) {
+        navigationBar.isTranslucent = true
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.tintColor = .luxeDeepBlue()
+        
+        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
     }
     
     private func setupFirebase(_ application: UIApplication) {

@@ -71,7 +71,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         user = UserManager.sharedInstance.getCustomer()
         realm = try? Realm()
         if let realm = self.realm, let user = user {
-            addresses = realm.objects(CustomerAddress.self).filter("email = %@", user.email ?? "")
+            addresses = realm.objects(CustomerAddress.self).filter("volvoCustomerId = %@", user.email ?? "")
             if let addresses = addresses {
                 addressesCount = addresses.count
                 for address in addresses {
@@ -208,7 +208,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                 
                 if let realm = self.realm {
                     // "email = %@", user.email ?? ""
-                    let existingAddress = realm.objects(CustomerAddress.self).filter("location.address = %@ AND email = %@", addressString, user!.email ?? "").first
+                    let existingAddress = realm.objects(CustomerAddress.self).filter("location.address = %@ AND volvoCustomerId = %@", addressString, user!.email ?? "").first
                     if existingAddress == nil {
                         try? realm.write {
                             realm.add(customerAddress)

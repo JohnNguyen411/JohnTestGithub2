@@ -36,6 +36,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
         super.viewDidLoad()
         styleViews()
         setupViews()
+        styleNavigationBar(navigationBar: self.navigationController?.navigationBar)
     }
     
     func styleViews() {
@@ -181,6 +182,18 @@ extension UIViewController {
         self.slideMenuController()?.removeRightGestures()
         self.slideMenuController()?.addLeftGestures()
     }
+    
+    
+    func styleNavigationBar(navigationBar: UINavigationBar?) {
+        if let navigationBar = navigationBar {
+            navigationBar.isTranslucent = true
+            navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationBar.shadowImage = UIImage()
+            navigationBar.tintColor = .luxeDeepBlue()
+            navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
+        }
+    }
+    
     
     func removeNavigationBarItem() {
         self.navigationItem.leftBarButtonItem = nil
