@@ -65,7 +65,7 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
             }
             return .AddANewVolvo
         } else if indexPath.section == 1 {
-            return (user?.volvoCustomerId)!
+            return (user?.email)!
         } else {
             return .ShowDistanceAsMiles
         }

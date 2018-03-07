@@ -21,11 +21,9 @@ class LoadingViewController: ChildViewController {
         realm = try? Realm()
         
         // call user/vehicle/service
-        if let realm = self.realm {
-            if let customer = realm.objects(Customer.self).first {
-                callCustomer(customerId: customer.id)
-                return
-            }
+        if let customerId = UserManager.sharedInstance.getCustomerId() {
+            callCustomer(customerId: customerId)
+            return
         }
         //logout
         logout()

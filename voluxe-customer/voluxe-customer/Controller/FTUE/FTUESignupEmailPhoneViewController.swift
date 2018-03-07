@@ -59,6 +59,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         phoneNumberTextField.textField.keyboardType = .phonePad
         emailTextField.textField.keyboardType = .emailAddress
+        emailTextField.textField.autocapitalizationType = .none
         
         emailTextField.textField.returnKeyType = .next
         phoneNumberTextField.textField.returnKeyType = .done
@@ -81,8 +82,6 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         self.view.addSubview(phoneNumberConfirmLabel)
         self.view.addSubview(emailTextField)
         self.view.addSubview(phoneNumberTextField)
-
-        let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width-40, height: CGFloat(MAXFLOAT)))
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalToSuperview().offset(80)
@@ -151,13 +150,20 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         //todo show error message
         self.showLoading(loading: false)
         
-        if error?.code == "E4011" {
+        
+        if error?.code == "E5001" {
+            self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, completion: {
+                self.loadLandingPage()
+            })
+        } else if error?.code == "E4011" {
             self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                 self.loadLandingPage()
             })
         } else {
             self.showOkDialog(title: .Error, message: .GenericError)
         }
+        
+        
     }
     
     func showLoading(loading: Bool) {

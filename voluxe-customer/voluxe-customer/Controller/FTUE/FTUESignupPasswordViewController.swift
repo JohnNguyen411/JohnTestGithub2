@@ -215,9 +215,9 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     func loginUser(email: String, password: String) {
         CustomerAPI().login(email: email, password: password).onSuccess { result in
-            if let tokenObject = result?.data?.result, let _ = tokenObject.customerId {
+            if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
                 // Get Customer object with ID
-                UserManager.sharedInstance.loginSuccess(token: tokenObject.token)
+                UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
                 self.showLoading(loading: false)
                 self.goToNext()
             } else {

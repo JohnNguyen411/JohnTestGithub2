@@ -21,6 +21,12 @@ class FTUEChildViewController: BaseViewController {
         return .Next
     }
     
+    func canGoBack(backEnabled: Bool) {
+        if !backEnabled {
+            self.navigationItem.leftBarButtonItem = nil
+        }
+    }
+    
     func canGoNext(nextEnabled: Bool) {
         // disable/enable rightbar button
         self.navigationItem.rightBarButtonItem?.isEnabled = nextEnabled

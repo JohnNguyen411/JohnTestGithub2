@@ -48,6 +48,10 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
 
         codeTextField.textField.becomeFirstResponder()
         _ = checkTextFieldsValidity()
+        
+        if FTUEStartViewController.flowType == .signup {
+            canGoBack(backEnabled: false)
+        }
     }
     
     override func rightButtonTitle() -> String {
@@ -162,6 +166,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         goToNext()
     }
     
+    
     override func goToNext() {
         if FTUEStartViewController.flowType == .signup {
             self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
@@ -195,7 +200,6 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                     self.showOkDialog(title: .Error, message: .GenericError)
                     self.isLoading = false
             }
-            
         }
     }
     

@@ -49,5 +49,6 @@ extension String {
     static let InvalidVerificationCode = NSLocalizedString("InvalidVerificationCode")
     static let InvalidCredentials = NSLocalizedString("InvalidCredentials")
     static let UpdatePhoneNumber = NSLocalizedString("UpdatePhoneNumber")
+    static let PhoneNumberAlreadyExist = NSLocalizedString("PhoneNumberAlreadyExist")
 
 }

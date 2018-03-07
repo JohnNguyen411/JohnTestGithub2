@@ -32,7 +32,8 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         passwordTextField.textField.isSecureTextEntry = true
         
         emailTextField.textField.keyboardType = .emailAddress
-        
+        emailTextField.textField.autocapitalizationType = .none
+
         emailTextField.textField.returnKeyType = .next
         passwordTextField.textField.returnKeyType = .done
         
@@ -149,7 +150,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         CustomerAPI().login(email: email, password: password).onSuccess { result in
             if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
                 // Get Customer object with ID
-                UserManager.sharedInstance.loginSuccess(token: tokenObject.token)
+                UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
                 UserManager.sharedInstance.tempCustomerId = customerId
                 CustomerAPI().getCustomer(id: customerId).onSuccess { result in
                     if let customer = result?.data?.result {
