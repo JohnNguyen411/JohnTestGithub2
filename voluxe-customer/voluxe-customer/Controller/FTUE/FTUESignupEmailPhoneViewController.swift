@@ -152,9 +152,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         
         if error?.code == "E5001" {
-            self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, completion: {
-                self.loadLandingPage()
-            })
+            self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist)
         } else if error?.code == "E4011" {
             self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                 self.loadLandingPage()
@@ -233,7 +231,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
             return
         }
         
-        CustomerAPI().signup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, languageCode: "ENG").onSuccess { result in
+        CustomerAPI().signup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, languageCode: Locale.preferredLanguages[0].uppercased()).onSuccess { result in
             if let customer = result?.data?.result {
                 if let realm = self.realm {
                     try? realm.write {
@@ -242,6 +240,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                     }
                 }
                 UserManager.sharedInstance.setCustomer(customer: customer)
+                UserManager.sharedInstance.tempCustomerId = customer.id
                 self.goToNext()
             } else {
                 self.onSignupError(error: result?.error)

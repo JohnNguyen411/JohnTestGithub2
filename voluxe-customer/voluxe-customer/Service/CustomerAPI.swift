@@ -98,9 +98,12 @@ class CustomerAPI: NSObject {
     func confirmSignup(email: String, phoneNumber: String, password: String, verificationCode: String) -> Future<ResponseObject<MappableDataObject<Customer>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
         
+        /*
+         "email": email,
+         "phone_number": phoneNumber,
+         */
+        
         let params: Parameters = [
-            "email": email,
-            "phone_number": phoneNumber,
             "password": password,
             "code": verificationCode
         ]

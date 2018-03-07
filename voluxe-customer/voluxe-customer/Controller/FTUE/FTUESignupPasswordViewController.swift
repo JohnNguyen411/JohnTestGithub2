@@ -155,7 +155,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         } else {
             if checkTextFieldsValidity() {
                 //todo CREATE CUSTOMER HERE AND THEN ADD CAR
-                self.goToNext()
+                self.nextButtonTap()
             } else {
                 // show error
             }
@@ -178,15 +178,16 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         showLoading(loading: true)
 
-        if UserManager.sharedInstance.getCustomer() != nil {
+        if let customer = UserManager.sharedInstance.getCustomer() {
             
             if UserManager.sharedInstance.getAccessToken() != nil {
                 self.showLoading(loading: false)
                 self.loadMainScreen()
-            } else {
+                return
+            } else if !customer.passwordResetRequired {
                 loginUser(email: signupCustomer.email!, password: volvoPwdConfirmTextField.textField.text!)
+                return
             }
-            return
         }
         
         //TODO: NOW => Create account
