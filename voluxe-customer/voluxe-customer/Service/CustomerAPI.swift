@@ -99,13 +99,13 @@ class CustomerAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
         
         /*
-         "email": email,
          "phone_number": phoneNumber,
          */
         
         let params: Parameters = [
+            "email": email,
             "password": password,
-            "code": verificationCode
+            "verification_code": verificationCode
         ]
         
         NetworkRequest.request(url: "/v1/customers/confirm-signup", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSON { response in
