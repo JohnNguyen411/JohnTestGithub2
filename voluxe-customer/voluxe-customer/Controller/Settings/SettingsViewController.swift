@@ -134,7 +134,17 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if (indexPath.section == 1) {
+        if indexPath.section == 0 {
+            var vehicle: Vehicle?
+            if let vehicles = vehicles, vehicles.count > indexPath.row {
+                vehicle = vehicles[indexPath.row]
+            }
+            if let vehicle = vehicle {
+                self.navigationController?.pushViewController(SettingsCarViewController(vehicle: vehicle), animated: true)
+            } else {
+                
+            }
+        } else if indexPath.section == 1 {
             self.navigationController?.pushViewController(AccountSettingsViewController(), animated: true)
         }
     }

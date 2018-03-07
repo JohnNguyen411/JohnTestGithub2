@@ -18,4 +18,6 @@ extension String {
     static let PickupDeliveryLocations = NSLocalizedString("PickupDeliveryLocations")
     static let ContactInformation = NSLocalizedString("ContactInformation")
     static let AccountPassword = NSLocalizedString("AccountPassword")
+    static let RemoveVehicle = NSLocalizedString("RemoveVehicle")
+
 }

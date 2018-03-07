@@ -10,14 +10,14 @@ import Foundation
 import UIKit
 
 enum VLButtonType{
-    case BluePrimary
-    case BlueSecondary
-    case BlueSecondaryWithBorder
-    case BlueSecondaryWithBorderDisabled
-    case BlueSecondarySelected //orange
-    case OrangePrimary
-    case OrangeSecondary
-    case OrangeSecondarySmall
+    case bluePrimary
+    case blueSecondary
+    case blueSecondaryWithBorder
+    case blueSecondaryWithBorderDisabled
+    case blueSecondarySelected //orange
+    case orangePrimary
+    case orangeSecondary
+    case orangeSecondarySmall
 }
 
 class VLButton : UIButton {
@@ -91,44 +91,44 @@ class VLButton : UIButton {
     func setType(type: VLButtonType) {
         self.type = type
         switch type {
-        case .BluePrimary:
+        case .bluePrimary:
             backgroundColor = .luxeDeepBlue()
             applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeWhite(), highlightedFontColor: .luxeLightGray())
             layer.borderWidth = 0
             break
-        case .BlueSecondary:
+        case .blueSecondary:
             backgroundColor = .clear
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeDeepBlue(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
-        case .BlueSecondaryWithBorder:
+        case .blueSecondaryWithBorder:
             backgroundColor = .clear
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeDeepBlue(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 1
             layer.borderColor = UIColor.luxeDeepBlue().cgColor
             break
-        case .BlueSecondaryWithBorderDisabled:
+        case .blueSecondaryWithBorderDisabled:
             backgroundColor = .clear
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeGray(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 1
             layer.borderColor = UIColor.luxeGray().cgColor
             break
-        case .OrangePrimary:
+        case .orangePrimary:
             backgroundColor = .white
             applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeOrange(), highlightedFontColor: .luxeLightGray())
             layer.borderWidth = 0
             break
-        case .OrangeSecondary:
+        case .orangeSecondary:
             backgroundColor = .clear
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 18), fontColor: UIColor.luxeOrange(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
-        case .OrangeSecondarySmall:
+        case .orangeSecondarySmall:
             backgroundColor = .clear
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 14), fontColor: UIColor.luxeOrange(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
-        case .BlueSecondarySelected:
+        case .blueSecondarySelected:
             backgroundColor = UIColor.luxeDeepBlue()
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: .white, highlightedFontColor: .luxeGray())
             layer.borderWidth = 0

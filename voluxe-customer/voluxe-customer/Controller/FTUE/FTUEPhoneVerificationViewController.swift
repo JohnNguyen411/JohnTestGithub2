@@ -15,7 +15,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     let codeLength = 4
     let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder)
     
-    let updatePhoneNumberButton = VLButton(type: .BlueSecondary, title: .UpdatePhoneNumber, actionBlock: nil)
+    let updatePhoneNumberButton = VLButton(type: .blueSecondary, title: .UpdatePhoneNumber, actionBlock: nil)
     
     
     let phoneNumberLabel: UILabel = {

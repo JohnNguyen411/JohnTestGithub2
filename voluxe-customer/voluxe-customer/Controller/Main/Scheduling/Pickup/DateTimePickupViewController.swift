@@ -314,7 +314,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         currentSlots = slots
         
         for (index, slot) in slots.enumerated() {
-            let slotButton = VLButton(type: .BlueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: false), actionBlock: nil)
+            let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: false), actionBlock: nil)
             slotButton.setActionBlock {
                 self.slotClicked(viewIndex: index, slot: slot)
             }
@@ -367,17 +367,17 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     func setButtonEnabled(enable: Bool, selected: Bool, button: VLButton) {
         button.isEnabled = enable
         if selected {
-            button.setType(type: .BlueSecondarySelected)
+            button.setType(type: .blueSecondarySelected)
         } else if enable {
-            button.setType(type: .BlueSecondaryWithBorder)
+            button.setType(type: .blueSecondaryWithBorder)
         } else {
-            button.setType(type: .BlueSecondaryWithBorderDisabled)
+            button.setType(type: .blueSecondaryWithBorderDisabled)
         }
     }
     
     func buttonIsSelected(button: VLButton) -> Bool {
         if let type = button.type {
-            return type == .BlueSecondarySelected
+            return type == .blueSecondarySelected
         }
         return false
     }
