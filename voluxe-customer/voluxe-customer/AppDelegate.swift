@@ -11,6 +11,7 @@ import SlideMenuControllerSwift
 import GoogleMaps
 import Firebase
 import FirebaseMessaging
+import Crashlytics
 import UserNotifications
 import AlamofireNetworkActivityLogger
 
