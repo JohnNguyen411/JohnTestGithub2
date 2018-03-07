@@ -46,8 +46,6 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     let colorLabel = VLVerticalTextField(title: .Color, placeholder: .ColorPlaceholder)
     
     var pickerView: UIPickerView!
-    let pickerToolBar = UIToolbar(frame: .zero)
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,8 +103,20 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
             selectedColor = row
             colorLabel.textField.text = colors[row].color
         }
-        cancelPicker()
+        goToNextTextField()
         _ = checkTextFieldsValidity()
+    }
+    
+    func goToNextTextField() {
+        if (yearLabel.textField.text?.isEmpty)! {
+            yearLabel.textField.becomeFirstResponder()
+        } else if (modelLabel.textField.text?.isEmpty)! {
+            modelLabel.textField.becomeFirstResponder()
+        } else if (colorLabel.textField.text?.isEmpty)! {
+            colorLabel.textField.becomeFirstResponder()
+        } else {
+            cancelPicker()
+        }
     }
     
     @objc func cancelPicker() {

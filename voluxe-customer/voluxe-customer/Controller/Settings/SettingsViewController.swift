@@ -142,7 +142,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             if let vehicle = vehicle {
                 self.navigationController?.pushViewController(SettingsCarViewController(vehicle: vehicle), animated: true)
             } else {
-                
+                self.navigationController?.pushViewController(FTUEAddVehicleViewController(), animated: true)
             }
         } else if indexPath.section == 1 {
             self.navigationController?.pushViewController(AccountSettingsViewController(), animated: true)
