@@ -186,7 +186,7 @@ extension UIViewController {
     
     func styleNavigationBar(navigationBar: UINavigationBar?) {
         if let navigationBar = navigationBar {
-            navigationBar.isTranslucent = true
+            navigationBar.isTranslucent = false
             navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationBar.shadowImage = UIImage()
             navigationBar.tintColor = .luxeDeepBlue()
