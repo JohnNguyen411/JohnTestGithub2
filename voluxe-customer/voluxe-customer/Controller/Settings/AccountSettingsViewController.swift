@@ -22,7 +22,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         user = UserManager.sharedInstance.getCustomer()
         realm = try? Realm()
         if let realm = self.realm, let user = user {
-            addresses = realm.objects(CustomerAddress.self).filter("volvoCustomerId = %@", user.volvoCustomerId ?? "")
+            addresses = realm.objects(CustomerAddress.self).filter("volvoCustomerId = %@", user.email ?? "")
             if let addresses = addresses {
                 addressesCount = addresses.count
             }
@@ -75,7 +75,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
             return .AddNewLocation
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
-                return (user?.volvoCustomerId)!
+                return (user?.email)!
             } else {
                 return (user?.phoneNumber)!
             }
@@ -113,7 +113,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         
         customerAddress.location = Location(name: responseInfo!.value(forKey: "formattedAddress") as? String, latitude: nil, longitude: nil, location: placemark?.location?.coordinate)
         customerAddress.createdAt = Date()
-        customerAddress.volvoCustomerId = user!.volvoCustomerId
+        customerAddress.volvoCustomerId = user!.email
         
         if let realm = self.realm {
             try? realm.write {

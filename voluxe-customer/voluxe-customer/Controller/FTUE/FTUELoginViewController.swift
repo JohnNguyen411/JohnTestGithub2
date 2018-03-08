@@ -32,7 +32,8 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         passwordTextField.textField.isSecureTextEntry = true
         
         emailTextField.textField.keyboardType = .emailAddress
-        
+        emailTextField.textField.autocapitalizationType = .none
+
         emailTextField.textField.returnKeyType = .next
         passwordTextField.textField.returnKeyType = .done
         
@@ -149,7 +150,8 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         CustomerAPI().login(email: email, password: password).onSuccess { result in
             if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
                 // Get Customer object with ID
-                UserManager.sharedInstance.loginSuccess(token: tokenObject.token)
+                UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
+                UserManager.sharedInstance.tempCustomerId = customerId
                 CustomerAPI().getCustomer(id: customerId).onSuccess { result in
                     if let customer = result?.data?.result {
                         if let realm = self.realm {
@@ -159,21 +161,23 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
                             }
                         }
                         UserManager.sharedInstance.setCustomer(customer: customer)
-                        if customer.phoneNumberVerified {
-                            // load main
+                        if !customer.phoneNumberVerified {
                             self.showLoading(loading: false)
-                            self.loadMainScreen()
+                            self.appDelegate?.phoneVerificationScreen()
                             return
                         } else {
                             self.showLoading(loading: false)
-                            _ = self.nextButtonTap()
+                            self.appDelegate?.startApp()
                         }
+                    } else {
+                        self.showLoading(loading: false)
+                        self.appDelegate?.phoneVerificationScreen()
                     }
                     }.onFailure { error in
                         self.onLoginError()
                 }
             } else {
-                self.onLoginError()
+                self.onLoginError(error: result?.error)
             }
             }.onFailure { error in
                 self.onLoginError()
@@ -181,8 +185,14 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
     }
     
-    private func onLoginError() {
+    private func onLoginError(error: ResponseError? = nil) {
         //todo show error message
         self.showLoading(loading: false)
+        
+        if error?.code == "E2005" {
+            self.showOkDialog(title: .Error, message: .InvalidCredentials)
+        } else {
+            self.showOkDialog(title: .Error, message: .GenericError)
+        }
     }
 }

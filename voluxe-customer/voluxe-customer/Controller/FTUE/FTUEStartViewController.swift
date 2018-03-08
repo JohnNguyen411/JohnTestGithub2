@@ -18,8 +18,8 @@ class FTUEStartViewController: BaseViewController {
     
     public static var flowType: FTUEFlowType = .login
 
-    let loginButton = VLButton(type: .BluePrimary, title: (.Login as String).uppercased(), actionBlock: nil)
-    let signupButton = VLButton(type: .BluePrimary, title: (.Signup as String).uppercased(), actionBlock: nil)
+    let loginButton = VLButton(type: .bluePrimary, title: (.Login as String).uppercased(), actionBlock: nil)
+    let signupButton = VLButton(type: .bluePrimary, title: (.Signup as String).uppercased(), actionBlock: nil)
 
     let logo: UIImageView = {
         let imageView = UIImageView()
@@ -137,4 +137,5 @@ class SignupCustomer: NSObject {
     var lastName: String?
     var phoneNumber: String?
     var email: String?
+    var verificationCode: String?
 }

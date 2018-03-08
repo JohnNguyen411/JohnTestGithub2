@@ -11,6 +11,7 @@ import SlideMenuControllerSwift
 import GoogleMaps
 import Firebase
 import FirebaseMessaging
+import Crashlytics
 import UserNotifications
 import AlamofireNetworkActivityLogger
 
@@ -102,14 +103,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         if UserManager.sharedInstance.getAccessToken() == nil {
             let uiNavigationController = UINavigationController(rootViewController: FTUEStartViewController())
-            uiNavigationController.navigationBar.isTranslucent = true
-            uiNavigationController.navigationBar.setBackgroundImage(UIImage(), for: .default)
-            uiNavigationController.navigationBar.shadowImage = UIImage()
+            styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
             window!.rootViewController = uiNavigationController
             window!.makeKeyAndVisible()
         } else {
             createMenuView()
         }
+    }
+    
+    
+    func phoneVerificationScreen() {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let uiNavigationController = UINavigationController(rootViewController: FTUEPhoneVerificationViewController())
+        styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
+        window!.rootViewController = uiNavigationController
+        window!.makeKeyAndVisible()
+    }
+    
+    func showAddVehicleScreen() {
+        window = UIWindow(frame: UIScreen.main.bounds)
+        let uiNavigationController = UINavigationController(rootViewController: FTUEAddVehicleViewController())
+        styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
+        window!.rootViewController = uiNavigationController
+        window!.makeKeyAndVisible()
+    }
+    
+    private func styleNavigationBar(navigationBar: UINavigationBar) {
+        navigationBar.isTranslucent = false
+        navigationBar.setBackgroundImage(UIImage(), for: .default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.tintColor = .luxeDeepBlue()
+        
+        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
     }
     
     private func setupFirebase(_ application: UIApplication) {

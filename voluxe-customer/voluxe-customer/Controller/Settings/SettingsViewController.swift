@@ -12,7 +12,7 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
     
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
     let user: Customer?
-    let vehicles: [Vehicle]?
+    var vehicles: [Vehicle]?
     var vehicleCount = 0
     
     override init() {
@@ -38,6 +38,17 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdToogle)
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // update data
+        vehicles = UserManager.sharedInstance.getVehicles()
+        if let vehicles = vehicles {
+            vehicleCount = vehicles.count
+        }
+        tableView.reloadData()
+    }
+    
     
     override func setupViews() {
         super.setupViews()
@@ -65,7 +76,7 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
             }
             return .AddANewVolvo
         } else if indexPath.section == 1 {
-            return (user?.volvoCustomerId)!
+            return (user?.email)!
         } else {
             return .ShowDistanceAsMiles
         }
@@ -134,7 +145,17 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if (indexPath.section == 1) {
+        if indexPath.section == 0 {
+            var vehicle: Vehicle?
+            if let vehicles = vehicles, vehicles.count > indexPath.row {
+                vehicle = vehicles[indexPath.row]
+            }
+            if let vehicle = vehicle {
+                self.navigationController?.pushViewController(SettingsCarViewController(vehicle: vehicle), animated: true)
+            } else {
+                self.navigationController?.pushViewController(FTUEAddVehicleViewController(), animated: true)
+            }
+        } else if indexPath.section == 1 {
             self.navigationController?.pushViewController(AccountSettingsViewController(), animated: true)
         }
     }

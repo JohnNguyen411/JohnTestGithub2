@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import PhoneNumberKit
+import RealmSwift
+import MBProgressHUD
 
 class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDelegate {
     
@@ -16,7 +18,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     
     let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
     let phoneNumberKit = PhoneNumberKit()
-    
+    var validPhoneNumber: PhoneNumber?
+
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .MobilePhoneNumberExplain
@@ -37,8 +40,13 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         return textView
     }()
     
+    var signupInProgress = false
+    var realm : Realm?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        realm = try? Realm()
         
         let phoneNumberTF: PhoneNumberTextField = phoneNumberTextField.textField as! PhoneNumberTextField
         phoneNumberTF.maxDigits = 10
@@ -51,6 +59,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         phoneNumberTextField.textField.keyboardType = .phonePad
         emailTextField.textField.keyboardType = .emailAddress
+        emailTextField.textField.autocapitalizationType = .none
         
         emailTextField.textField.returnKeyType = .next
         phoneNumberTextField.textField.returnKeyType = .done
@@ -73,8 +82,6 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         self.view.addSubview(phoneNumberConfirmLabel)
         self.view.addSubview(emailTextField)
         self.view.addSubview(phoneNumberTextField)
-
-        let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width-40, height: CGFloat(MAXFLOAT)))
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalToSuperview().offset(80)
@@ -131,12 +138,42 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         }
         
         do {
-            let _ = try phoneNumberKit.parse(phoneNumber, withRegion: textField.currentRegion, ignoreType: true)
+            validPhoneNumber = try phoneNumberKit.parse(phoneNumber, withRegion: textField.currentRegion, ignoreType: true)
             return true
         } catch {
             return false
         }
         
+    }
+    
+    private func onSignupError(error: ResponseError? = nil) {
+        //todo show error message
+        self.showLoading(loading: false)
+        
+        
+        if error?.code == "E5001" {
+            self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist)
+        } else if error?.code == "E4011" {
+            self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
+                self.loadLandingPage()
+            })
+        } else {
+            self.showOkDialog(title: .Error, message: .GenericError)
+        }
+        
+        
+    }
+    
+    func showLoading(loading: Bool) {
+        if signupInProgress == loading {
+            return
+        }
+        signupInProgress = loading
+        if loading {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        } else {
+            MBProgressHUD.hide(for: self.view, animated: true)
+        }
     }
     
     override func checkTextFieldsValidity() -> Bool {
@@ -167,9 +204,50 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     //MARK: FTUEStartViewController
     
     override func nextButtonTap() {
+        guard let validPhoneNumber = validPhoneNumber else {
+            return
+        }
+        
         UserManager.sharedInstance.signupCustomer.email = emailTextField.textField.text
-        UserManager.sharedInstance.signupCustomer.phoneNumber = phoneNumberTextField.textField.text
-        goToNext()
+        UserManager.sharedInstance.signupCustomer.phoneNumber = phoneNumberKit.format(validPhoneNumber, toType: .e164)
+        // signup
+        
+        let signupCustomer = UserManager.sharedInstance.signupCustomer
+        
+        if signupInProgress {
+            return
+        }
+        
+        showLoading(loading: true)
+        
+        if UserManager.sharedInstance.getCustomer() != nil {
+            
+            if UserManager.sharedInstance.getAccessToken() != nil {
+                self.showLoading(loading: false)
+                self.loadMainScreen()
+            } else {
+                onSignupError(error: ResponseError(JSON: ["code" : "E4011"]))
+            }
+            return
+        }
+        
+        CustomerAPI().signup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, languageCode: Locale.preferredLanguages[0].uppercased()).onSuccess { result in
+            if let customer = result?.data?.result {
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.deleteAll()
+                        realm.add(customer)
+                    }
+                }
+                UserManager.sharedInstance.setCustomer(customer: customer)
+                UserManager.sharedInstance.tempCustomerId = customer.id
+                self.goToNext()
+            } else {
+                self.onSignupError(error: result?.error)
+            }
+            }.onFailure { error in
+                self.onSignupError()
+        }
     }
     
     override func goToNext() {

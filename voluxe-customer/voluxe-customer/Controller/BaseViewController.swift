@@ -13,6 +13,8 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     static let fakeYOrigin: CGFloat = -555.0
     
+    weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
+
     let presentrCornerRadius: CGFloat = 4.0
     var currentPresentr: Presentr?
     var currentPresentrVC: VLPresentrViewController?
@@ -34,6 +36,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
         super.viewDidLoad()
         styleViews()
         setupViews()
+        styleNavigationBar(navigationBar: self.navigationController?.navigationBar)
     }
     
     func styleViews() {
@@ -180,6 +183,18 @@ extension UIViewController {
         self.slideMenuController()?.addLeftGestures()
     }
     
+    
+    func styleNavigationBar(navigationBar: UINavigationBar?) {
+        if let navigationBar = navigationBar {
+            navigationBar.isTranslucent = false
+            navigationBar.setBackgroundImage(UIImage(), for: .default)
+            navigationBar.shadowImage = UIImage()
+            navigationBar.tintColor = .luxeDeepBlue()
+            navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
+        }
+    }
+    
+    
     func removeNavigationBarItem() {
         self.navigationItem.leftBarButtonItem = nil
         self.navigationItem.rightBarButtonItem = nil
@@ -193,19 +208,23 @@ extension UIViewController {
     }
     
     func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil) {
+        showDialog(title: title, message: message, buttonTitle: .Ok, completion: completion)
+    }
+    
+    func showDialog(title: String, message: String, buttonTitle: String? = nil, completion: (() -> Swift.Void)? = nil) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
         
         // Submit button
-        let okButton = UIAlertAction(title: .Ok, style: .default, handler: { (action) -> Void in
+        let button = UIAlertAction(title: buttonTitle, style: .default, handler: { (action) -> Void in
             if let completion = completion {
                 completion()
             }
             alert.dismiss(animated: true, completion: nil)
         })
         
-        alert.addAction(okButton)
+        alert.addAction(button)
         self.present(alert, animated: true, completion: nil)
     }
     

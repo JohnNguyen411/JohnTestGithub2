@@ -13,12 +13,14 @@ final class UserManager {
     
     static let sharedInstance = UserManager()
     
+    public var tempCustomerId: Int?
     public var signupCustomer = SignupCustomer()
     private var customer: Customer?
     private var vehicles: [Vehicle]?
     private var vehicleBookings = [Int: [Booking]]() // bookings dict (Vehicle Id : Booking array)
     private let serviceId: String
     private var accessToken: String?
+    private var customerIdToken: Int?
     private let keychain: Keychain
     
     init() {
@@ -30,10 +32,21 @@ final class UserManager {
     
     private func loadAccessToken() {
         accessToken = keychain["token"]
+        if let customerIdString = keychain["customerId"] {
+            customerIdToken = Int(customerIdString)
+        } else {
+            customerIdToken = nil
+        }
     }
     
-    private func saveAccessToken(token: String?) {
+    private func saveAccessToken(token: String?, customerId: String?) {
         keychain["token"] = token
+        keychain["customerId"] = customerId
+        if let customerId = customerId {
+            customerIdToken = Int(customerId)
+        } else {
+            customerIdToken = nil
+        }
         accessToken = token
     }
     
@@ -41,12 +54,21 @@ final class UserManager {
         return accessToken
     }
     
-    public func loginSuccess(token: String) {
-        saveAccessToken(token: token)
+    public func getCustomerId() -> Int? {
+        return customerIdToken
+    }
+    
+    public func loginSuccess(token: String, customerId: String?) {
+        saveAccessToken(token: token, customerId: customerId)
     }
     
     public func logout() {
-        saveAccessToken(token: nil)
+        saveAccessToken(token: nil, customerId: nil)
+        self.customer = nil
+        self.vehicles = nil
+        self.vehicleBookings = [Int: [Booking]]()
+        self.tempCustomerId = nil
+        self.signupCustomer = SignupCustomer()
     }
     
     public func setCustomer(customer: Customer) {
@@ -78,13 +100,6 @@ final class UserManager {
     public func getCustomer() -> Customer? {
         if let customer = customer {
             return customer
-        }
-        return nil
-    }
-    
-    public func getCustomerId() -> Int? {
-        if let customer = customer {
-            return customer.id
         }
         return nil
     }

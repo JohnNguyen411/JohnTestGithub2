@@ -26,6 +26,8 @@ def import_pods
     pod 'KeychainAccess', '~> 3.1.0'
     pod 'RealmSwift', '~> 3.0.2'
     pod 'MBProgressHUD', '~> 1.1.0'
+    pod 'Fabric', '~> 1.7.5'
+    pod 'Crashlytics', '~> 3.10.1'
 
 end
 

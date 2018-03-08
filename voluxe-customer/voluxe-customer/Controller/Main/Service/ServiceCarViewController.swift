@@ -60,13 +60,13 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     let stateTestView = UILabel(frame: .zero)
 
     let scheduledServiceView = VLTitledLabel()
-    let descriptionButton = VLButton(type: .BlueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
+    let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
     
     let vehicleImageView = UIImageView(frame: .zero)
     
-    let leftButton = VLButton(type: .BluePrimary, title: (.SelfDrop as String).uppercased(), actionBlock: nil)
-    let rightButton = VLButton(type: .BluePrimary, title: (.VolvoPickup as String).uppercased(), actionBlock: nil)
-    let confirmButton = VLButton(type: .BluePrimary, title: (.Ok as String).uppercased(), actionBlock: nil)
+    let leftButton = VLButton(type: .bluePrimary, title: (.SelfDrop as String).uppercased(), actionBlock: nil)
+    let rightButton = VLButton(type: .bluePrimary, title: (.VolvoPickup as String).uppercased(), actionBlock: nil)
+    let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), actionBlock: nil)
     
     
     //MARK: Lifecycle methods

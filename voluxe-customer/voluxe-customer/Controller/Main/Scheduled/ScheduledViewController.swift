@@ -61,7 +61,7 @@ class ScheduledViewController: ChildViewController {
         return titleLabel
     }()
     
-    private let driverContact = VLButton(type: .OrangeSecondarySmall, title: (.Contact as String).uppercased(), actionBlock: nil)
+    private let driverContact = VLButton(type: .orangeSecondarySmall, title: (.Contact as String).uppercased(), actionBlock: nil)
     
     override init() {
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))

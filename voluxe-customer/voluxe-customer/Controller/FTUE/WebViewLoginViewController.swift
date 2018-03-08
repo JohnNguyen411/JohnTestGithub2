@@ -58,7 +58,7 @@ class WebViewLoginViewController: FTUEChildViewController, UIWebViewDelegate {
                             if let customerId = tokenObject.customerId {
                                 
                                 // Get Customer object with ID
-                                UserManager.sharedInstance.loginSuccess(token: tokenObject.token)
+                                UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
                                 CustomerAPI().getCustomer(id: customerId).onSuccess { result in
                                     if let customer = result?.data?.result {
                                         if let realm = self.realm {

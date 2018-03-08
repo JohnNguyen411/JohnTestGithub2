@@ -46,8 +46,6 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     let colorLabel = VLVerticalTextField(title: .Color, placeholder: .ColorPlaceholder)
     
     var pickerView: UIPickerView!
-    let pickerToolBar = UIToolbar(frame: .zero)
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,8 +103,20 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
             selectedColor = row
             colorLabel.textField.text = colors[row].color
         }
-        cancelPicker()
+        goToNextTextField()
         _ = checkTextFieldsValidity()
+    }
+    
+    func goToNextTextField() {
+        if (yearLabel.textField.text?.isEmpty)! {
+            yearLabel.textField.becomeFirstResponder()
+        } else if (modelLabel.textField.text?.isEmpty)! {
+            modelLabel.textField.becomeFirstResponder()
+        } else if (colorLabel.textField.text?.isEmpty)! {
+            colorLabel.textField.becomeFirstResponder()
+        } else {
+            cancelPicker()
+        }
     }
     
     @objc func cancelPicker() {
@@ -158,6 +168,19 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     
     override func nextButtonTap() {
         // todo add car to user
+        if let customerId = UserManager.sharedInstance.getCustomerId(), let baseColor = colors[selectedColor].baseColor {
+            CustomerAPI().addVehicle(customerId: customerId, make: models[selectedModel].make, model: models[selectedModel].model, baseColor: baseColor, year: years[selectedYear]).onSuccess { response in
+                if (response?.data?.result) != nil {
+                    // success
+                } else {
+                    // error
+                }
+                self.callVehicle(customerId: customerId)
+            }.onFailure { error in
+                self.callVehicle(customerId: customerId)
+            }
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+        }
     }
     
     override func rightButtonTitle() -> String {
@@ -168,6 +191,31 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         let enabled = selectedColor >= 0 && selectedYear >= 0 && selectedModel >= 0
         canGoNext(nextEnabled: enabled)
         return enabled
+    }
+    
+    private func callVehicle(customerId: Int) {
+        // Get Customer's Vehicles based on ID
+        CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
+            if let cars = result?.data?.result {
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(cars, update: true)
+                    }
+                }
+                UserManager.sharedInstance.setVehicles(vehicles: cars)
+                if cars.count > 1 {
+                    // go back
+                    self.navigationController?.popViewController(animated: true)
+                } else {
+                    self.appDelegate?.loadMainScreen()
+                }
+            }
+            MBProgressHUD.hide(for: self.view, animated: true)
+            
+            }.onFailure { error in
+                // todo show error
+                MBProgressHUD.hide(for: self.view, animated: true)
+        }
     }
     
     

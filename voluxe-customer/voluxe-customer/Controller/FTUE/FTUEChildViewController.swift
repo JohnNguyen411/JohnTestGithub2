@@ -10,8 +10,6 @@ import Foundation
 import UIKit
 
 class FTUEChildViewController: BaseViewController {
-
-    weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,6 +19,12 @@ class FTUEChildViewController: BaseViewController {
     
     func rightButtonTitle() -> String {
         return .Next
+    }
+    
+    func canGoBack(backEnabled: Bool) {
+        if !backEnabled {
+            self.navigationItem.leftBarButtonItem = nil
+        }
     }
     
     func canGoNext(nextEnabled: Bool) {

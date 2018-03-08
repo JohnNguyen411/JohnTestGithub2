@@ -71,7 +71,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         user = UserManager.sharedInstance.getCustomer()
         realm = try? Realm()
         if let realm = self.realm, let user = user {
-            addresses = realm.objects(CustomerAddress.self).filter("volvoCustomerId = %@", user.volvoCustomerId ?? "")
+            addresses = realm.objects(CustomerAddress.self).filter("volvoCustomerId = %@", user.email ?? "")
             if let addresses = addresses {
                 addressesCount = addresses.count
                 for address in addresses {
@@ -204,11 +204,11 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                 
                 customerAddress.location = Location(name: addressString, latitude: nil, longitude: nil, location: currentLocationPlacemark.location?.coordinate)
                 customerAddress.createdAt = Date()
-                customerAddress.volvoCustomerId = user!.volvoCustomerId
+                customerAddress.volvoCustomerId = user!.email
                 
                 if let realm = self.realm {
-                    // "volvoCustomerId = %@", user.volvoCustomerId ?? ""
-                    let existingAddress = realm.objects(CustomerAddress.self).filter("location.address = %@ AND volvoCustomerId = %@", addressString, user!.volvoCustomerId ?? "").first
+                    // "email = %@", user.email ?? ""
+                    let existingAddress = realm.objects(CustomerAddress.self).filter("location.address = %@ AND volvoCustomerId = %@", addressString, user!.email ?? "").first
                     if existingAddress == nil {
                         try? realm.write {
                             realm.add(customerAddress)
@@ -265,7 +265,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         
         customerAddress.location = Location(name: selectedLocationInfo["formattedAddress"] as? String, latitude: nil, longitude: nil, location: selectedLocationPlacemark.location?.coordinate)
         customerAddress.createdAt = Date()
-        customerAddress.volvoCustomerId = user!.volvoCustomerId
+        customerAddress.volvoCustomerId = user!.email
         
         if let realm = self.realm {
             try? realm.write {

@@ -21,11 +21,9 @@ class LoadingViewController: ChildViewController {
         realm = try? Realm()
         
         // call user/vehicle/service
-        if let realm = self.realm {
-            if let customer = realm.objects(Customer.self).first {
-                callCustomer(customerId: customer.id)
-                return
-            }
+        if let customerId = UserManager.sharedInstance.getCustomerId() {
+            callCustomer(customerId: customerId)
+            return
         }
         //logout
         logout()
@@ -59,7 +57,7 @@ class LoadingViewController: ChildViewController {
         
         if Config.sharedInstance.isMock {
             if let realm = self.realm {
-                if let customer = realm.objects(Customer.self).first {
+                if let customer = realm.objects(Customer.self).filter("id = \(customerId)").first {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
                         
                         UserManager.sharedInstance.setCustomer(customer: customer)
@@ -102,14 +100,66 @@ class LoadingViewController: ChildViewController {
                 UserManager.sharedInstance.setCustomer(customer: customer)
                 if !customer.phoneNumberVerified {
                     FTUEStartViewController.flowType = .login
-                    self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: false)
+                    self.appDelegate?.phoneVerificationScreen()
                 } else {
                     self.callVehicle(customerId: customer.id)
                 }
                 
+            } else {
+                // error
+                if let error = result?.error {
+                    if error.code == "E3004" {
+                        // code not verified
+                        UserManager.sharedInstance.tempCustomerId = customerId
+                        FTUEStartViewController.flowType = .login
+                        self.appDelegate?.phoneVerificationScreen()
+                    } else {
+                        //todo show error
+                    }
+                }
             }
             }.onFailure { error in
                 // todo show error
+                if error.responseCode == 404 || error.responseCode == 403 {
+                    self.logout()
+                    return
+                }
+                self.errorRetrievingCustomer(customerId: customerId, error: nil)
+        }
+    }
+    
+    private func errorRetrievingCustomer(customerId: Int, error: ResponseError?) {
+        
+        if let error = error {
+            if error.code == "E3004" {
+                // code not verified
+                UserManager.sharedInstance.tempCustomerId = customerId
+                FTUEStartViewController.flowType = .login
+                self.appDelegate?.phoneVerificationScreen()
+                return
+            } else {
+                //todo show error && logout?
+                logout()
+                return
+            }
+        } else {
+            if let realm = self.realm {
+                if let customer = realm.objects(Customer.self).filter("id = \(customerId)").first {
+                    UserManager.sharedInstance.setCustomer(customer: customer)
+                    if !customer.phoneNumberVerified {
+                        FTUEStartViewController.flowType = .login
+                        self.appDelegate?.phoneVerificationScreen()
+                    } else {
+                        self.callVehicle(customerId: customer.id)
+                    }
+                    return
+                }
+            }
+            
+            
+            self.showOkDialog(title: .Error, message: .GenericError, completion: {
+                self.callCustomer(customerId: customerId)
+            })
         }
     }
     
@@ -124,16 +174,32 @@ class LoadingViewController: ChildViewController {
                 }
                 if cars.count == 0 {
                     FTUEStartViewController.flowType = .login
-                    self.navigationController?.pushViewController(FTUEAddVehicleViewController(), animated: false)
+                    self.appDelegate?.showAddVehicleScreen()
                 } else {
                     UserManager.sharedInstance.setVehicles(vehicles: cars)
                     self.getBookings(customerId: customerId)
                 }
+            } else {
+                self.errorRetrievingVehicle(customerId: customerId)
             }
             
             }.onFailure { error in
-                // todo show error
+                self.errorRetrievingVehicle(customerId: customerId)
         }
+    }
+    
+    private func errorRetrievingVehicle(customerId: Int) {
+        if let realm = self.realm {
+            let vehicles = realm.objects(Vehicle.self).filter("ownerId = \(customerId)")
+            if vehicles.count > 0 {
+                UserManager.sharedInstance.setVehicles(vehicles: Array(vehicles))
+                self.getBookings(customerId: customerId)
+                return
+            }
+        }
+        self.showOkDialog(title: .Error, message: .GenericError, completion: {
+            self.callVehicle(customerId: customerId)
+        })
     }
     
     private func getBookings(customerId: Int) {

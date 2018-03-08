@@ -25,7 +25,7 @@ class VLPresentrViewController: UIViewController {
         return titleLabel
     }()
     
-    let bottomButton = VLButton(type: .BluePrimary, title: nil, actionBlock: nil)
+    let bottomButton = VLButton(type: .bluePrimary, title: nil, actionBlock: nil)
     
     convenience init(title: String, buttonTitle: String) {
         self.init()

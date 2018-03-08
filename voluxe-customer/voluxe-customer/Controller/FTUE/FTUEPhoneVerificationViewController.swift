@@ -8,11 +8,15 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldDelegate {
     
-    let codeLength = 6
+    let codeLength = 4
     let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder)
+    
+    let updatePhoneNumberButton = VLButton(type: .blueSecondary, title: .UpdatePhoneNumber, actionBlock: nil)
+    
     
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -24,6 +28,8 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         return textView
     }()
     
+    private var isLoading = false
+    
     override func viewDidLoad() {
         
         codeTextField.accessibilityIdentifier = "codeTextField"
@@ -34,10 +40,18 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.resendCode()
         })
         
+        updatePhoneNumberButton.setActionBlock {
+            self.updatePhoneNumber()
+        }
+        
         codeTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
         codeTextField.textField.becomeFirstResponder()
         _ = checkTextFieldsValidity()
+        
+        if FTUEStartViewController.flowType == .signup {
+            canGoBack(backEnabled: false)
+        }
     }
     
     override func rightButtonTitle() -> String {
@@ -52,6 +66,9 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         self.view.addSubview(codeTextField)
         self.view.addSubview(phoneNumberLabel)
+        self.view.addSubview(updatePhoneNumberButton)
+        
+        updatePhoneNumberButton.contentHorizontalAlignment = .left
         
         let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT)))
 
@@ -69,9 +86,45 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             make.height.equalTo(40)
         }
         
+        updatePhoneNumberButton.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.top.equalTo(codeTextField.snp.bottom).offset(20)
+            make.height.equalTo(20)
+        }
+        
+    }
+    
+    @objc func updatePhoneNumber() {
+        self.navigationController?.pushViewController(FTUEPhoneNumberViewController(), animated: true)
     }
     
     @objc func resendCode() {
+        
+        var customerId = UserManager.sharedInstance.getCustomerId()
+        if customerId == nil {
+            customerId = UserManager.sharedInstance.tempCustomerId
+        }
+        
+        if isLoading || customerId == nil {
+            return
+        }
+        
+        isLoading = true
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        CustomerAPI().requestPhoneVerificationCode(customerId: customerId!).onSuccess { result in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if result?.error != nil {
+                self.showOkDialog(title: .Error, message: .GenericError)
+            }
+            self.isLoading = false
+        }.onFailure { error in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            self.showOkDialog(title: .Error, message: .GenericError)
+            self.isLoading = false
+        }
         
     }
     
@@ -109,15 +162,44 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     //MARK: FTUEStartViewController
     
     override func nextButtonTap() {
-        //TODO: VERIFY PHONE with backend
+        UserManager.sharedInstance.signupCustomer.verificationCode = codeTextField.textField.text
         goToNext()
     }
+    
     
     override func goToNext() {
         if FTUEStartViewController.flowType == .signup {
             self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
         } else {
-            self.loadMainScreen()
+            
+            var customerId = UserManager.sharedInstance.getCustomerId()
+            if customerId == nil {
+                customerId = UserManager.sharedInstance.tempCustomerId
+            }
+            
+            if isLoading || customerId == nil {
+                return
+            }
+            
+            isLoading = true
+            
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
+            // verify phone number
+            CustomerAPI().verifyPhoneNumber(customerId: customerId!, verificationCode: codeTextField.textField.text!).onSuccess { result in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                if result?.error != nil {
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                } else {
+                    self.loadMainScreen()
+                }
+                
+                self.isLoading = false
+                }.onFailure { error in
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.isLoading = false
+            }
         }
     }
     

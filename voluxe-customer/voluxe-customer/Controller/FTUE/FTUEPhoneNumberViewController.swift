@@ -9,11 +9,13 @@
 import Foundation
 import UIKit
 import PhoneNumberKit
+import MBProgressHUD
 
 class FTUEPhoneNumberViewController: FTUEChildViewController {
     
     let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
     let phoneNumberKit = PhoneNumberKit()
+    var validPhoneNumber: PhoneNumber?
 
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -35,6 +37,8 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         return textView
     }()
     
+    private var isLoading = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -44,6 +48,10 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
 
         let phoneNumberTF: PhoneNumberTextField = phoneNumberTextField.textField as! PhoneNumberTextField
         phoneNumberTF.maxDigits = 10
+        
+        
+        phoneNumberTextField.textField.becomeFirstResponder()
+        _ = checkTextFieldsValidity()
         
     }
     
@@ -56,7 +64,8 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width-40, height: CGFloat(MAXFLOAT)))
 
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
-            make.left.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(80)
+            make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(sizeThatFits)
         }
@@ -85,7 +94,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         }
         
         do {
-            let _ = try phoneNumberKit.parse(phoneNumber, withRegion: textField.currentRegion, ignoreType: true)
+            validPhoneNumber = try phoneNumberKit.parse(phoneNumber, withRegion: textField.currentRegion, ignoreType: true)
             return true
         } catch {
             return false
@@ -104,12 +113,52 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     }
     
     //MARK: FTUEStartViewController
-    func didSelectPage() {
-        phoneNumberTextField.textField.becomeFirstResponder()
-        _ = checkTextFieldsValidity()
-    }
     
     override func nextButtonTap() {
-        UserManager.sharedInstance.signupCustomer.phoneNumber = phoneNumberTextField.textField.text
+        guard let validPhoneNumber = validPhoneNumber else {
+            return
+        }
+        
+        UserManager.sharedInstance.signupCustomer.phoneNumber = phoneNumberKit.format(validPhoneNumber, toType: .e164)
+        //update customer
+        updatePhoneNumber()
+        
+    }
+    
+    private func updatePhoneNumber() {
+        
+        guard let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber else {
+            return
+        }
+        
+        var customerId = UserManager.sharedInstance.getCustomerId()
+        if customerId == nil {
+            customerId = UserManager.sharedInstance.tempCustomerId
+        }
+        
+        if isLoading || customerId == nil {
+            return
+        }
+        
+        isLoading = true
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        CustomerAPI().updatePhoneNumber(customerId: customerId!, phoneNumber: phoneNumber).onSuccess { result in
+            MBProgressHUD.hide(for: self.view, animated: true)
+            if result?.error != nil {
+                self.showOkDialog(title: .Error, message: .GenericError)
+            }
+            self.isLoading = false
+            self.goToNext()
+            }.onFailure { error in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.showOkDialog(title: .Error, message: .GenericError)
+                self.isLoading = false
+        }
+    }
+    
+    override func goToNext() {
+        appDelegate?.startApp()
     }
 }
