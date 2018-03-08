@@ -208,19 +208,23 @@ extension UIViewController {
     }
     
     func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil) {
+        showDialog(title: title, message: message, buttonTitle: .Ok, completion: completion)
+    }
+    
+    func showDialog(title: String, message: String, buttonTitle: String? = nil, completion: (() -> Swift.Void)? = nil) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
         
         // Submit button
-        let okButton = UIAlertAction(title: .Ok, style: .default, handler: { (action) -> Void in
+        let button = UIAlertAction(title: buttonTitle, style: .default, handler: { (action) -> Void in
             if let completion = completion {
                 completion()
             }
             alert.dismiss(animated: true, completion: nil)
         })
         
-        alert.addAction(okButton)
+        alert.addAction(button)
         self.present(alert, animated: true, completion: nil)
     }
     
