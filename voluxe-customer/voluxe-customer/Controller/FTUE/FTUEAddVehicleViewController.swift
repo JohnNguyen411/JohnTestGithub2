@@ -168,9 +168,18 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     
     override func nextButtonTap() {
         // todo add car to user
-        if let customerId = UserManager.sharedInstance.getCustomerId() {
+        if let customerId = UserManager.sharedInstance.getCustomerId(), let baseColor = colors[selectedColor].baseColor {
+            CustomerAPI().addVehicle(customerId: customerId, make: models[selectedModel].make, model: models[selectedModel].model, baseColor: baseColor, year: years[selectedYear]).onSuccess { response in
+                if (response?.data?.result) != nil {
+                    // success
+                } else {
+                    // error
+                }
+                self.callVehicle(customerId: customerId)
+            }.onFailure { error in
+                self.callVehicle(customerId: customerId)
+            }
             MBProgressHUD.showAdded(to: self.view, animated: true)
-            callVehicle(customerId: customerId)
         }
     }
     
@@ -193,6 +202,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
                         realm.add(cars, update: true)
                     }
                 }
+                UserManager.sharedInstance.setVehicles(vehicles: cars)
                 if cars.count > 1 {
                     // go back
                     self.navigationController?.popViewController(animated: true)
