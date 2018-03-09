@@ -80,8 +80,17 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             
             return
         }
+        
         if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-            DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id).onSuccess { result in
+            let formatter = DateFormatter()
+            formatter.calendar = Calendar(identifier: .iso8601)
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            formatter.timeZone = TimeZone(secondsFromGMT: 0)
+            formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
+            let from = formatter.string(from: todaysDate)
+            let to = formatter.string(from: maxDate)
+
+            DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id, type: "driver", from: from, to: to).onSuccess { result in
                 if let slots = result?.data?.result {
                     if let realm = self.realm {
                         try? realm.write {
