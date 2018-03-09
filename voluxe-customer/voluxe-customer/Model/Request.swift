@@ -12,6 +12,11 @@ import RealmSwift
 
 class Request: Object, Mappable {
     
+    public enum RequestType {
+        case advisor // self IB/OB
+        case driver // Pickup / Delivery
+    }
+    
     @objc dynamic var id: Int = -1
     @objc dynamic var bookingId: Int = -1
     @objc dynamic var timeslotId: Int = -1

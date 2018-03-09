@@ -99,6 +99,7 @@
 "ScheduleDropDealership" = "You can drop your car at the dealership or arrange for Volvo to pickup your vehicle at the location of your choosing.";
 "SchedulePickupDealership" = "You can pickup your car from the dealership or arrange for Volvo to deliver your vehicle to the location of your choosing.";
 "OutOfPickupArea" = "Out of pickup area";
+"DatesLoanersOnly" = "Dates with available loaners only";
 
 /***************** ScheduledPickup ***************/
 "SchedulePickup" = "Schedule Pickup";

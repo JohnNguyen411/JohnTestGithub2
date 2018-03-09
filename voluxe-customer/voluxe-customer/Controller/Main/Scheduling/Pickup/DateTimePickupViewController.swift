@@ -21,7 +21,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         let firstMonthHeader = UILabel()
         firstMonthHeader.textColor = .luxeGray()
         firstMonthHeader.font = .volvoSansLightBold(size: 12)
-        firstMonthHeader.textAlignment = .left
+        firstMonthHeader.textAlignment = .center
         return firstMonthHeader
     }()
     
@@ -42,9 +42,18 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     private let todaysDate = Date()
     private var maxDate = Date()
     
+    private let loanerLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.font = UIFont.volvoSansLightBold(size: 18)
+        label.text = .DatesLoanersOnly
+        return label
+    }()
+    private let loanerSwitch = UISwitch(frame: .zero)
+
     private let hoursView = UIView(frame: .zero)
     private var slotViews: [VLButton] = []
-    
+    private var weekdayViews = UIView(frame: .zero)
+
     private var currentSlots: Results<DealershipTimeSlot>?
     
     override init() {
@@ -114,6 +123,11 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         containerView.addSubview(firstMonthHeader)
         containerView.addSubview(hoursView)
         
+        containerView.addSubview(loanerLabel)
+        containerView.addSubview(loanerSwitch)
+        
+        containerView.addSubview(weekdayViews)
+        
         initCalendar()
         
         hoursView.snp.makeConstraints { make in
@@ -125,8 +139,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         calendar.snp.makeConstraints { make in
             make.bottom.equalTo(hoursView.snp.top).offset(-30)
             make.left.right.equalToSuperview()
-            make.height.equalTo(270)
+            make.height.equalTo(187)
         }
+        
         
         firstMonthHeader.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
@@ -134,9 +149,26 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             make.height.equalTo(25)
         }
         
-        titleLabel.snp.makeConstraints { make in
+        weekdayViews.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.bottom.equalTo(firstMonthHeader.snp.top).offset(-10)
+            make.height.equalTo(25)
+        }
+        
+        loanerSwitch.snp.makeConstraints { make in
+            make.right.equalToSuperview()
+            make.bottom.equalTo(weekdayViews.snp.top).offset(-10)
+        }
+        
+        loanerLabel.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.centerY.equalTo(loanerSwitch)
+            make.height.equalTo(loanerSwitch)
+        }
+        
+        titleLabel.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(loanerLabel.snp.top).offset(-10)
             make.height.equalTo(25)
         }
     }
@@ -152,10 +184,39 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         }
     }
     
+    private func initWeekDayView() {
+        
+        let cell = self.calendar.cell(for: todaysDate, at: .current)
+        let frame = cell!.frame
+        
+        var prevView: UIView? = nil
+
+        for weekday in Calendar.current.veryShortWeekdaySymbols {
+            let label = UILabel(frame: .zero)
+            label.text = weekday
+            label.textAlignment = .center
+            label.textColor = .luxeGray()
+            label.font = .volvoSansLightBold(size: 12)
+            
+            weekdayViews.addSubview(label)
+            
+            label.snp.makeConstraints { make in
+                make.top.bottom.equalToSuperview()
+                make.left.equalTo(prevView == nil ? weekdayViews.snp.left : prevView!.snp.right)
+                make.width.equalTo(frame.width)
+            }
+            
+            prevView = label
+        }
+    }
+    
     private func initCalendar() {
         
-        maxDate = Calendar.current.date(byAdding: .month, value: 1, to: todaysDate)!
+        maxDate = Calendar.current.date(byAdding: .day, value: 3*7, to: todaysDate)!
+        let weekday = Calendar.current.component(.weekday, from: maxDate) // 1 is sunday for Gregorian
+        maxDate = Calendar.current.date(byAdding: .day, value: 7-weekday+1, to: maxDate)!
         
+
         let calendar = FSCalendar(frame: .zero)
         calendar.rowHeight = 46
         calendar.dataSource = self
@@ -258,6 +319,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                 }
                 self.selectFirstEnabledButton()
             }
+            self.initWeekDayView()
             self.showLoading(loading: false)
             self.calendar.animateAlpha(show: true)
         })
@@ -467,6 +529,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             cell.isEnabled = false
         }
     }
+    
 }
 
 
