@@ -83,7 +83,7 @@ final class RequestedServiceManager {
         return selfInitiated
     }
     
-    func setPickupTimeSlot(timeSlot: DealershipTimeSlot) {
+    func setPickupTimeSlot(timeSlot: DealershipTimeSlot?) {
         pickupTimeSlot = timeSlot
     }
     
@@ -100,7 +100,7 @@ final class RequestedServiceManager {
         return pickupRequestLocation
     }
     
-    func setDropoffTimeSlot(timeSlot: DealershipTimeSlot) {
+    func setDropoffTimeSlot(timeSlot: DealershipTimeSlot?) {
         dropOffTimeSlot = timeSlot
     }
     

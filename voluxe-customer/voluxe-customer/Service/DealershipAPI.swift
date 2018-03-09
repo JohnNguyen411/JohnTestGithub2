@@ -69,14 +69,16 @@ class DealershipAPI: NSObject {
      Get a list of Time slot for a dealership
      - parameter dealershipId: the dealership_id
      - parameter type: the type of TimeSlot (driver, advisor). `driver` for Pickup/Delivery, `advisor` for "self" IB/OB
+     - parameter loaner: true if loaner is requested, false otherwise
      - parameter from: the dealership_id
      - parameter to: the dealership_id
 
      - Returns: A Future ResponseObject containing a list of Time Slot available for a dealership, or an AFError if an error occured
      */
-    func getDealershipTimeSlot(dealershipId: Int, type: String, from: String, to: String) -> Future<ResponseObject<MappableDataArray<DealershipTimeSlot>>?, AFError> {
+    func getDealershipTimeSlot(dealershipId: Int, type: String, loaner: Bool, from: String, to: String) -> Future<ResponseObject<MappableDataArray<DealershipTimeSlot>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<DealershipTimeSlot>>?, AFError>()
         
+        // "loaner": loaner,
         let queryParams = [
             "dealership_id": dealershipId,
             "type": type,

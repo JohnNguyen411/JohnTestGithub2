@@ -70,22 +70,18 @@ class SchedulingPickupViewController: SchedulingViewController {
         dealershipView.descLeftLabel.text = dealership.name
         currentPresentrVC?.dismiss(animated: true, completion: {
             if openNext {
-                self.scheduledPickupClick()
+                self.loanerClick()
             }
         })
     }
 
     override func onDateTimeSelected(timeSlot: DealershipTimeSlot) {
-        var openNext = false
         if pickupScheduleState.rawValue < SchedulePickupState.dateTime.rawValue {
             pickupScheduleState = .dateTime
-            openNext = true
         }
         super.onDateTimeSelected(timeSlot: timeSlot)
         currentPresentrVC?.dismiss(animated: true, completion: {
-            if openNext {
-                self.loanerClick()
-            }
+            self.confirmButton.animateAlpha(show: true)
         })
     }
     
@@ -120,7 +116,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 if openNext {
                     self.dealershipView.animateAlpha(show: true)
                     // show date time
-                    self.scheduledPickupClick()
+                    self.loanerClick()
                 }
                 
             } else {

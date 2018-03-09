@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import RealmSwift
+import SwiftEventBus
 
 class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
@@ -71,6 +72,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         super.init()
         realm = try? Realm()
         getTimeSlots()
+        loanerSwitch.setOn(RequestedServiceManager.sharedInstance.getLoaner(), animated: false)
+        loanerSwitch.addTarget(self, action: #selector(switchChanged(uiswitch:)), for: .valueChanged)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -110,7 +113,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             let from = formatter.string(from: todaysDate)
             let to = formatter.string(from: maxDate)
 
-            DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id, type: "driver", from: from, to: to).onSuccess { result in
+            var timeSlotType = "driver"
+            
+            DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: RequestedServiceManager.sharedInstance.getLoaner(), from: from, to: to).onSuccess { result in
                 if let slots = result?.data?.result {
                     if let realm = self.realm {
                         try? realm.write {
@@ -365,6 +370,12 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     
     // MARK: Private Methods
+    
+    @objc internal func switchChanged(uiswitch: UISwitch) {
+        RequestedServiceManager.sharedInstance.setLoaner(loaner: uiswitch.isOn)
+        getTimeSlots()
+        SwiftEventBus.post("onLoanerChanged")
+    }
     
     @objc func empty(_ sender:UIPanGestureRecognizer){
         Logger.print("empty")

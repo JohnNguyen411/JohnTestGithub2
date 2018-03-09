@@ -13,6 +13,7 @@ import CoreLocation
 import RealmSwift
 import BrightFutures
 import Alamofire
+import SwiftEventBus
 
 class SchedulingViewController: ChildViewController, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate, LocationManagerDelegate {
     
@@ -20,8 +21,8 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         case start = 0
         case location = 1
         case dealership = 2
-        case dateTime = 3
-        case loaner = 4
+        case loaner = 3
+        case dateTime = 4
     }
     
     public enum ScheduleDropoffState: Int {
@@ -92,6 +93,11 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
         
         fillViews()
+        
+        // onLoanerChanged
+        SwiftEventBus.onMainThread(self, name: "onLoanerChanged") { result in
+            self.loanerView.descLeftLabel.text = RequestedServiceManager.sharedInstance.getLoaner() ? .Yes : .No
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -399,13 +405,38 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func onLoanerSelected(loanerNeeded: Bool) {
+        
+        let valueChanged = loanerNeeded != RequestedServiceManager.sharedInstance.getLoaner()
+        
+        var openNext = false
         RequestedServiceManager.sharedInstance.setLoaner(loaner: loanerNeeded)
+
         if pickupScheduleState.rawValue < SchedulePickupState.loaner.rawValue {
             pickupScheduleState = .loaner
+            openNext = true
+        } else {
+            if valueChanged {
+                self.confirmButton.animateAlpha(show: false)
+
+                scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "", rightDescription: "")
+
+                // invalidate Date/Time
+                if StateServiceManager.sharedInstance.isPickup() {
+                    RequestedServiceManager.sharedInstance.setPickupTimeSlot(timeSlot: nil)
+                } else {
+                    RequestedServiceManager.sharedInstance.setDropoffTimeSlot(timeSlot: nil)
+                }
+                
+                // re-select TimeSlot
+                openNext = true
+            }
         }
+        
         loanerView.descLeftLabel.text = loanerNeeded ? .Yes : .No
         currentPresentrVC?.dismiss(animated: true, completion: {
-            self.confirmButton.animateAlpha(show: true)
+            if openNext {
+                self.scheduledPickupClick()
+            }
         })
     }
     
