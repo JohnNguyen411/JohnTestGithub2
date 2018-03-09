@@ -379,7 +379,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")", rightDescription: "")
     }
     
-    func onLocationAdded(newSize: Int) {
+    func onSizeChanged() {
         // increase size of presenter
         let newHeight = CGFloat(currentPresentrVC!.height())
         let presentationType = getPresenterPresentationType(heightInPixels: newHeight, customYOrigin: BaseViewController.fakeYOrigin)

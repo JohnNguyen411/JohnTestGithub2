@@ -38,4 +38,5 @@ extension String {
     static let DriverDrivingToDealership = NSLocalizedString("DriverDrivingToDealership")
     static let OutOfPickupArea = NSLocalizedString("OutOfPickupArea")
     static let DatesLoanersOnly = NSLocalizedString("DatesLoanersOnly")
+    static let PickupTimes = NSLocalizedString("PickupTimes")
 }

@@ -234,8 +234,10 @@ extension PresentrController {
     
     public func updateToNewFrame(presentationType: PresentationType) {
         self.presentationType = presentationType
-        chromeView.frame = containerFrame
-        presentedView!.frame = frameOfPresentedViewInContainerView
+        UIView.animate(withDuration: 0.5, animations: {
+            self.chromeView.frame = self.containerFrame
+            self.presentedView!.frame = self.frameOfPresentedViewInContainerView
+        })
     }
     
     public func getCurrentFrame() -> CGRect {

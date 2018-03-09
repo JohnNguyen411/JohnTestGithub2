@@ -126,3 +126,7 @@ class VLPresentrViewController: UIViewController {
     }
     
 }
+
+protocol VLPresentrViewDelegate: class {
+    func onSizeChanged()
+}

@@ -25,6 +25,15 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         return firstMonthHeader
     }()
     
+    let timeSlotsHeader: UILabel = {
+        let timeSlotsHeader = UILabel()
+        timeSlotsHeader.textColor = .luxeGray()
+        timeSlotsHeader.font = .volvoSansLightBold(size: 12)
+        timeSlotsHeader.textAlignment = .center
+        timeSlotsHeader.text = (.PickupTimes as String).uppercased()
+        return timeSlotsHeader
+    }()
+    
     fileprivate let gregorian = Calendar(identifier: .gregorian)
     fileprivate let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -34,7 +43,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     fileprivate let monthFormatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM yyyy"
+        formatter.dateFormat = "MMMM"
         return formatter
     }()
     
@@ -44,11 +53,13 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     private let loanerLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = UIFont.volvoSansLightBold(size: 18)
+        label.font = UIFont.volvoSansLightBold(size: 16)
         label.text = .DatesLoanersOnly
         return label
     }()
     private let loanerSwitch = UISwitch(frame: .zero)
+
+    private var hoursViewHeight = VLButton.secondaryHeight
 
     private let hoursView = UIView(frame: .zero)
     private var slotViews: [VLButton] = []
@@ -122,7 +133,15 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         
         containerView.addSubview(firstMonthHeader)
         containerView.addSubview(hoursView)
+        containerView.addSubview(timeSlotsHeader)
         
+        let separatorOne = UIView(frame: .zero)
+        separatorOne.backgroundColor = .luxeLightGray()
+        let separatorTwo = UIView(frame: .zero)
+        separatorTwo.backgroundColor = .luxeLightGray()
+        
+        self.view.addSubview(separatorOne)
+        self.view.addSubview(separatorTwo)
         containerView.addSubview(loanerLabel)
         containerView.addSubview(loanerSwitch)
         
@@ -136,34 +155,53 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             make.height.equalTo(VLButton.secondaryHeight)
         }
         
+        timeSlotsHeader.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.bottom.equalTo(hoursView.snp.top).offset(-5)
+            make.height.equalTo(20)
+        }
+        
         calendar.snp.makeConstraints { make in
-            make.bottom.equalTo(hoursView.snp.top).offset(-30)
+            make.bottom.equalTo(timeSlotsHeader.snp.top).offset(-30)
             make.left.right.equalToSuperview()
             make.height.equalTo(187)
         }
         
-        
         firstMonthHeader.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(calendar.snp.top).offset(-10)
-            make.height.equalTo(25)
+            make.bottom.equalTo(calendar.snp.top).offset(-5)
+            make.height.equalTo(20)
         }
         
         weekdayViews.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(firstMonthHeader.snp.top).offset(-10)
-            make.height.equalTo(25)
+            make.bottom.equalTo(firstMonthHeader.snp.top).offset(-5)
+            make.height.equalTo(20)
+        }
+        
+        separatorOne.snp.makeConstraints { make in
+            make.right.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
+            make.height.equalTo(1)
+            make.bottom.equalTo(weekdayViews.snp.top).offset(-20)
         }
         
         loanerSwitch.snp.makeConstraints { make in
             make.right.equalToSuperview()
-            make.bottom.equalTo(weekdayViews.snp.top).offset(-10)
+            make.bottom.equalTo(separatorOne.snp.top).offset(-5)
         }
         
         loanerLabel.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.centerY.equalTo(loanerSwitch)
             make.height.equalTo(loanerSwitch)
+        }
+        
+        separatorTwo.snp.makeConstraints { make in
+            make.right.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
+            make.height.equalTo(1)
+            make.bottom.equalTo(loanerSwitch.snp.top).offset(-5)
         }
         
         titleLabel.snp.makeConstraints { make in
@@ -174,7 +212,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     override func height() -> Int {
-        return (360) + VLPresentrViewController.baseHeight + 60
+        return (360) + VLPresentrViewController.baseHeight + 40 + hoursViewHeight
     }
     
     override func onButtonClick() {
@@ -392,26 +430,34 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             slotViews.append(slotButton)
             hoursView.addSubview(slotButton)
         }
-        // todo add constraints
         
+        hoursViewHeight = slots.count > 3 ? (VLButton.secondaryHeight * 2) + 10 : VLButton.secondaryHeight
+
         hoursView.snp.remakeConstraints { make in
-            make.bottom.equalTo(bottomButton.snp.top).offset(-30)
-            make.width.equalTo((DateTimePickupViewController.hourButtonWidth + 10) * slots.count)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(VLButton.secondaryHeight)
+            make.bottom.equalTo(bottomButton.snp.top).offset(-20)
+            make.width.centerX.equalToSuperview()
+            make.height.equalTo(hoursViewHeight)
         }
         
         var prevView: UIView? = nil
-        for view in hoursView.subviews {
+        for (index, view) in slotViews.enumerated() {
+            
+            if index == 3 {
+                prevView = nil
+            }
             
             view.snp.makeConstraints { make in
-                make.top.bottom.equalToSuperview()
+                make.top.equalTo(index <= 2 ? hoursView.snp.top : (VLButton.secondaryHeight + 10))
                 make.left.equalTo(prevView == nil ? hoursView.snp.left : prevView!.snp.right).offset(prevView == nil ? 0 : 10)
                 make.height.equalTo(VLButton.secondaryHeight)
-                make.width.equalToSuperview().dividedBy(hoursView.subviews.count).offset(-10)
+                make.width.equalToSuperview().dividedBy(3).offset(-10)
             }
             
             prevView = view
+        }
+        
+        if let delegate = delegate {
+            delegate.onSizeChanged()
         }
         
     }
@@ -534,7 +580,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
 
 
 // MARK: protocol PickupDateDelegate
-protocol PickupDateDelegate: class {
+protocol PickupDateDelegate: VLPresentrViewDelegate {
     func onDateTimeSelected(timeSlot: DealershipTimeSlot)
 }
 

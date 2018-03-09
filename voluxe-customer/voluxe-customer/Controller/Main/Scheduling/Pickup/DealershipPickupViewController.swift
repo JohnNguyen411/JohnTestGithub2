@@ -89,7 +89,7 @@ class DealershipPickupViewController: VLPresentrViewController {
 }
 
 // MARK: protocol PickupDealershipDelegate
-protocol PickupDealershipDelegate: class {
+protocol PickupDealershipDelegate: VLPresentrViewDelegate {
     func onDealershipSelected(dealership: Dealership)
 }
 
