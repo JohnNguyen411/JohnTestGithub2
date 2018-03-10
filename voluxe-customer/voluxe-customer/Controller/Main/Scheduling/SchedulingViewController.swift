@@ -13,6 +13,7 @@ import CoreLocation
 import RealmSwift
 import BrightFutures
 import Alamofire
+import SwiftEventBus
 
 class SchedulingViewController: ChildViewController, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate, LocationManagerDelegate {
     
@@ -20,8 +21,8 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         case start = 0
         case location = 1
         case dealership = 2
-        case dateTime = 3
-        case loaner = 4
+        case loaner = 3
+        case dateTime = 4
     }
     
     public enum ScheduleDropoffState: Int {
@@ -92,6 +93,11 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
         
         fillViews()
+        
+        // onLoanerChanged
+        SwiftEventBus.onMainThread(self, name: "onLoanerChanged") { result in
+            self.loanerView.descLeftLabel.text = RequestedServiceManager.sharedInstance.getLoaner() ? .Yes : .No
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -236,6 +242,8 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         fillDealership()
         
         loanerView.descLeftLabel.text = RequestedServiceManager.sharedInstance.getLoaner() ? .Yes : .No
+        
+        confirmButton.setTitle(title: getConfirmButtonTitle())
     }
     
     private func fillDealership() {
@@ -303,7 +311,15 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func showPickupLocationModal(dismissOnTap: Bool) {
-        let locationVC = LocationPickupViewController(title: .PickupLocationTitle, buttonTitle: .Next)
+        
+        var title: String = .PickupLocationTitle
+        if StateServiceManager.sharedInstance.isPickup() {
+            if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
+                title = .DealershipCloseToLocation
+            }
+        }
+        
+        let locationVC = LocationPickupViewController(title: title, buttonTitle: .Next)
         locationVC.pickupLocationDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
         currentPresentrVC = locationVC
@@ -329,6 +345,43 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
     }
     
+    
+    func getPickupLocationTitle() -> String {
+        var title: String = .PickupLocationTitle
+        if StateServiceManager.sharedInstance.isPickup() {
+            if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
+                title = .DealershipCloseToLocation
+            }
+        }
+        return title
+    }
+    
+    func getScheduledPickupTitle() -> String {
+        var title: String = .ScheduledPickup
+        if StateServiceManager.sharedInstance.isPickup() {
+            if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
+                title = .ScheduledSelfDrop
+            }
+        }
+        return title
+    }
+    
+    func getConfirmButtonTitle() -> String {
+        var title: String = .ConfirmPickup
+        if StateServiceManager.sharedInstance.isPickup() {
+            if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
+                title = .ConfirmSelfDrop
+            }
+        } else {
+            if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
+                title = .ConfirmSelfPickup
+            } else {
+                title = .ConfirmDelivery
+            }
+        }
+        return title
+        
+    }
     
     
     //MARK: Actions methods
@@ -376,10 +429,10 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
         
         let dateTime = formatter.string(from: timeSlot.from!)
-        scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")", rightDescription: "")
+        scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")", rightDescription: "")
     }
     
-    func onLocationAdded(newSize: Int) {
+    func onSizeChanged() {
         // increase size of presenter
         let newHeight = CGFloat(currentPresentrVC!.height())
         let presentationType = getPresenterPresentationType(heightInPixels: newHeight, customYOrigin: BaseViewController.fakeYOrigin)
@@ -395,17 +448,51 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         } else {
             RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: locationRequest!)
         }
-        pickupLocationView.setTitle(title: .PickupLocation, leftDescription: locationRequest!.address!, rightDescription: "")
+        var title: String = .PickupLocation
+        if StateServiceManager.sharedInstance.isPickup() {
+            if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
+                title = .DealershipCloseToLocation
+            }
+        } else {
+            title = .DeliveryLocation
+        }
+        
+        pickupLocationView.setTitle(title: title, leftDescription: locationRequest!.address!, rightDescription: "")
     }
     
     func onLoanerSelected(loanerNeeded: Bool) {
+        
+        let valueChanged = loanerNeeded != RequestedServiceManager.sharedInstance.getLoaner()
+        
+        var openNext = false
         RequestedServiceManager.sharedInstance.setLoaner(loaner: loanerNeeded)
+
         if pickupScheduleState.rawValue < SchedulePickupState.loaner.rawValue {
             pickupScheduleState = .loaner
+            openNext = true
+        } else {
+            if valueChanged {
+                self.confirmButton.animateAlpha(show: false)
+
+                scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "", rightDescription: "")
+
+                // invalidate Date/Time
+                if StateServiceManager.sharedInstance.isPickup() {
+                    RequestedServiceManager.sharedInstance.setPickupTimeSlot(timeSlot: nil)
+                } else {
+                    RequestedServiceManager.sharedInstance.setDropoffTimeSlot(timeSlot: nil)
+                }
+                
+                // re-select TimeSlot
+                openNext = true
+            }
         }
+        
         loanerView.descLeftLabel.text = loanerNeeded ? .Yes : .No
         currentPresentrVC?.dismiss(animated: true, completion: {
-            self.confirmButton.animateAlpha(show: true)
+            if openNext {
+                self.scheduledPickupClick()
+            }
         })
     }
     

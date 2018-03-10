@@ -49,6 +49,6 @@ class LoanerPickupViewController: VLPresentrViewController {
 }
 
 // MARK: protocol PickupDealershipDelegate
-protocol PickupLoanerDelegate: class {
+protocol PickupLoanerDelegate: VLPresentrViewDelegate {
     func onLoanerSelected(loanerNeeded: Bool)
 }

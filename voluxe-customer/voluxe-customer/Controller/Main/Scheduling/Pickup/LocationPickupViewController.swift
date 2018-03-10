@@ -102,7 +102,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         }
         
         if let pickupLocationDelegate = self.pickupLocationDelegate {
-            pickupLocationDelegate.onLocationAdded(newSize: self.groupedLabels.items.count)
+            pickupLocationDelegate.onSizeChanged()
         }
     }
     
@@ -318,9 +318,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
 }
 
-// MARK: protocol VLGroupedLabelsDelegate
-protocol PickupLocationDelegate: class {
-    func onLocationAdded(newSize: Int)
+// MARK: protocol PickupLocationDelegate
+protocol PickupLocationDelegate: VLPresentrViewDelegate {
     func onLocationSelected(customerAddress: CustomerAddress)
-    
 }

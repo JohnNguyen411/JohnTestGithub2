@@ -71,7 +71,7 @@ final class BookingSyncManager {
         if let timer = timer {
             timer.schedule(deadline: .now(), repeating: .seconds(every), leeway: .seconds(1))
             timer.setEventHandler(handler: {
-                guard let token = UserManager.sharedInstance.getAccessToken() else {
+                if UserManager.sharedInstance.getAccessToken() == nil {
                     self.suspend()
                     return
                 }
