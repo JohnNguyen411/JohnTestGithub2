@@ -348,12 +348,15 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                         }
                     }
                     
-                    var skippedDays = 0
-                    while (!self.dateIsSelectable(date: nextDay) && skippedDays < 30) {
+                    //var skippedDays = 0
+                    while (!self.dateIsSelectable(date: nextDay) && nextDay <= self.maxDate) {
                         nextDay = Calendar.current.date(byAdding: .day, value: 1, to: nextDay)!
-                        skippedDays += 1
                     }
                     selectedDate = nextDay
+                }
+                
+                if selectedDate != nil && selectedDate! > self.maxDate {
+                    selectedDate = nil
                 }
                 
                 if let selectedDate = selectedDate {

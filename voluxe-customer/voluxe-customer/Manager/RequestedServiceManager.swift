@@ -20,10 +20,12 @@ final class RequestedServiceManager {
     
     private var pickupRequestLocation: Location?
     private var pickupTimeSlot: DealershipTimeSlot?
-    
+    private var pickupRequestType: RequestType? = nil
+
     private var dropOffRequestLocation: Location?
     private var dropOffTimeSlot: DealershipTimeSlot?
-    
+    private var dropOffRequestType: RequestType? = nil
+
     private var booking: Booking?
     
     static let sharedInstance = RequestedServiceManager()
@@ -51,6 +53,23 @@ final class RequestedServiceManager {
     func getBooking() -> Booking? {
         return booking
     }
+    
+    func setPickupRequestType(requestType: RequestType) {
+        self.pickupRequestType = requestType
+    }
+    
+    func setDropOffRequestType(requestType: RequestType) {
+        self.dropOffRequestType = requestType
+    }
+    
+    func getPickupRequestType() -> RequestType? {
+        return pickupRequestType
+    }
+    
+    func getDropoffRequestType() -> RequestType? {
+        return dropOffRequestType
+    }
+    
     
     func setService(service: Service, selfInitiated: Bool? = nil) {
         self.service = service

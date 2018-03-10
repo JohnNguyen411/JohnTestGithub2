@@ -101,6 +101,8 @@
 "OutOfPickupArea" = "Out of pickup area";
 "DatesLoanersOnly" = "Dates with available loaners only";
 "PickupTimes" = "Pickup Times";
+"DealershipCloseToLocation" = "Dealerships close to:";
+"ConfirmSelfDrop" = "Confirm Self-Drop";
 
 /***************** ScheduledPickup ***************/
 "SchedulePickup" = "Schedule Pickup";
@@ -116,6 +118,7 @@
 "ContactDriver" = "Contact Driver";
 "CallDriver" = "Call Driver";
 "TextDriver" = "Text Driver";
+"ScheduledSelfDrop" = "Scheduled Self-Drop";
 
 /***************** Scheduling Dropoff ***************/
 "CurrentService" = "Current Service";
@@ -129,6 +132,7 @@
 "ScheduledDelivery" = "Scheduled Delivery";
 "ScheduleDelivery" = "Schedule Delivery";
 "DeliveryLocation" = "Delivery Location";
+"ConfirmSelfPickup" = "Confirm Self-Pickup";
 
 /***************** Scheduled Dropoff ***************/
 "VehicleIsReady" = "Vehicle is ready";

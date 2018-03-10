@@ -12,15 +12,11 @@ import RealmSwift
 
 class Request: Object, Mappable {
     
-    public enum RequestType {
-        case advisor // self IB/OB
-        case driver // Pickup / Delivery
-    }
-    
     @objc dynamic var id: Int = -1
     @objc dynamic var bookingId: Int = -1
     @objc dynamic var timeslotId: Int = -1
     @objc dynamic var state: String = "requested"
+    @objc dynamic var type: String?
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
     @objc dynamic var driver: Driver?
@@ -38,6 +34,7 @@ class Request: Object, Mappable {
         location <- map["location"]
         timeSlot <- map["dealership_time_slot"]
         state <- map["state"]
+        type <- map["type"]
         driver <- map["driver_dealership_time_slot_assignment.driver"]
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
@@ -50,6 +47,13 @@ class Request: Object, Mappable {
     
     func getState() -> RequestState {
         return RequestState(rawValue: state)!
+    }
+    
+    func getType() -> RequestType? {
+        if let type = type {
+            return RequestType(rawValue: type)!
+        }
+        return nil
     }
     
     func isToday() -> Bool {
