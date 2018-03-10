@@ -42,6 +42,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
         luxeLabel.delegate = self
         luxeLabel.accessibilityIdentifier = "groupedLabel\(items.count)"
         luxeLabel.clipsToBounds = true
+        luxeLabel.isUserInteractionEnabled = true
         
         addSubview(luxeLabel)
         
@@ -71,6 +72,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
             luxeLabel.delegate = self
             luxeLabel.accessibilityIdentifier = "groupedLabel\(index)"
             luxeLabel.clipsToBounds = true
+            luxeLabel.isUserInteractionEnabled = true
             
             addSubview(luxeLabel)
             labels.append(luxeLabel)

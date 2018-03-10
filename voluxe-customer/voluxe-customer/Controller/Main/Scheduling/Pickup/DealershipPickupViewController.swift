@@ -67,6 +67,10 @@ class DealershipPickupViewController: VLPresentrViewController {
                 make.height.equalTo(25)
             }
         }
+        
+        containerView.snp.updateConstraints{ make in
+            make.height.equalTo(height())
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
