@@ -27,13 +27,12 @@ class BookingAPI: NSObject {
     func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool) -> Future<ResponseObject<MappableDataObject<Booking>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, AFError>()
         let params: Parameters = [
-            "customer_id": customerId,
             "vehicle_id": vehicleId,
             "dealership_id": dealershipId,
             "loaner_vehicle_requested": loaner,
         ]
         
-        NetworkRequest.request(url: "/v1/bookings", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
             var responseObject: ResponseObject<MappableDataObject<Booking>>?
             
             if let json = response.result.value as? [String: Any] {

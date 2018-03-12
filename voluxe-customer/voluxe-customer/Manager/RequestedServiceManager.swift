@@ -48,6 +48,9 @@ final class RequestedServiceManager {
         if updateState {
             StateServiceManager.sharedInstance.updateState(state: serviceState)
         }
+        if let dealership = booking?.dealership {
+            setDealership(dealership: dealership)
+        }
     }
     
     func getBooking() -> Booking? {

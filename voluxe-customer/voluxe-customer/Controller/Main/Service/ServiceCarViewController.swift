@@ -242,7 +242,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         
         confirmButton.isHidden = true
         
-        if state == .needService || state == .completed {
+        if state == .needService || state == .serviceCompleted {
             
             scheduledServiceView.isHidden = false
             descriptionButton.isHidden = false
