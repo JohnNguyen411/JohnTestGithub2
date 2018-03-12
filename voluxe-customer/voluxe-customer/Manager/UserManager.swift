@@ -119,7 +119,10 @@ final class UserManager {
                     carBookings = [booking]
                 }
                 self.vehicleBookings[vehicleId] = carBookings
-                if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted) {
+                if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted
+                                                        || booking.getState() == .enRouteForDropoff || booking.getState() == .enRouteForPickup
+                                                        || booking.getState() == .nearbyForDropoff || booking.getState() == .nearbyForPickup
+                                                        || booking.getState() == .arrivedForDropoff || booking.getState() == .arrivedForPickup) {
                     hasUpcomingRequestToday = true
                     RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true) // set current booking
                 }
