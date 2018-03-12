@@ -67,6 +67,9 @@ class ScheduledPickupViewController: ScheduledViewController {
             mapVC.updateDriverLocation(location: coordinates)
             if let pickupRequestLocation = pickupRequest.location, let pickupRequestCoordinates = pickupRequestLocation.getLocation() {
                 self.getEta(fromLocation: coordinates, toLocation: pickupRequestCoordinates)
+            } else if let timeSlot = pickupRequest.timeSlot {
+                // show timeslot window
+                timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
             }
             newDriver(driver: driver)
         }

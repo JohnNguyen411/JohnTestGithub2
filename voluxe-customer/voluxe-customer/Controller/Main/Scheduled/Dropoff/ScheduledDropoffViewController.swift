@@ -68,6 +68,9 @@ class ScheduledDropoffViewController: ScheduledViewController {
             mapVC.updateDriverLocation(location: coordinates)
             if let dropoffRequestLocation = dropoffRequest.location, let dropoffRequestCoordinates = dropoffRequestLocation.getLocation() {
                 self.getEta(fromLocation: coordinates, toLocation: dropoffRequestCoordinates)
+            } else if let timeSlot = dropoffRequest.timeSlot {
+                // show timeslot window
+                timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
             }
             newDriver(driver: driver)
         }
