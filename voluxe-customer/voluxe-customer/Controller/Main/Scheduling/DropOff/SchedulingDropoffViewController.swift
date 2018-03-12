@@ -136,11 +136,44 @@ class SchedulingDropoffViewController: SchedulingViewController {
             return
         }
         
-        confirmButton.isLoading = true
-        
-       // BookingAPI().createDropoffRequest(customerId: customerId, bookingId: book, timeSlotId: <#T##Int#>, location: <#T##Location#>)
-        
-        
+        if let booking = RequestedServiceManager.sharedInstance.getBooking(),
+            let timeSlot = RequestedServiceManager.sharedInstance.getDropoffTimeSlot(),
+            let location = RequestedServiceManager.sharedInstance.getDropoffLocation() {
+            
+            confirmButton.isLoading = true
+            
+            BookingAPI().createDropoffRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location).onSuccess { result in
+                if let dropOffRequest = result?.data?.result {
+                    self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
+                } else {
+                    // todo show error
+                    self.confirmButton.isLoading = false
+                }
+                // todo show error
+                self.confirmButton.isLoading = false
+                }.onFailure { error in
+                    // todo show error
+                    self.confirmButton.isLoading = false
+            }
+            
+        }
+    }
+    
+    private func manageNewDropoffRequest(dropOffRequest: Request, booking: Booking) {
+        if let realm = self.realm {
+            try? realm.write {
+                realm.add(dropOffRequest, update: true)
+            }
+            let realmDropOffRequest = realm.objects(Request.self).filter("id = \(dropOffRequest.id)").first
+            
+            if let booking = realm.objects(Booking.self).filter("id = \(booking.id)").first {
+                
+                try? realm.write {
+                    booking.dropoffRequest = realmDropOffRequest
+                    realm.add(booking, update: true)
+                }
+            }
+        }
     }
     
 }
