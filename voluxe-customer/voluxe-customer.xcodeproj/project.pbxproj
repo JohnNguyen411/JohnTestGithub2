@@ -500,6 +500,9 @@
 		6CDCC5FE2053592700DFA831 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC5FD2053592700DFA831 /* RequestType.swift */; };
 		6CDCC5FF2053592700DFA831 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC5FD2053592700DFA831 /* RequestType.swift */; };
 		6CDCC6002053592700DFA831 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC5FD2053592700DFA831 /* RequestType.swift */; };
+		6CDCC602205743DB00DFA831 /* NewServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC601205743DB00DFA831 /* NewServiceViewController.swift */; };
+		6CDCC603205743DB00DFA831 /* NewServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC601205743DB00DFA831 /* NewServiceViewController.swift */; };
+		6CDCC604205743DB00DFA831 /* NewServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC601205743DB00DFA831 /* NewServiceViewController.swift */; };
 		6CDCD7F7200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		6CDCD7F8200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		6CDCD7F9200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
@@ -756,6 +759,7 @@
 		6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLTitledLabel.swift; sourceTree = "<group>"; };
 		6CD47D171FAD190F00D794A6 /* VLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLButton.swift; sourceTree = "<group>"; };
 		6CDCC5FD2053592700DFA831 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
+		6CDCC601205743DB00DFA831 /* NewServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceViewController.swift; sourceTree = "<group>"; };
 		6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLDateFormatter.swift; sourceTree = "<group>"; };
 		6CE687822036634A00D915FC /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledBookingViewController.swift; sourceTree = "<group>"; };
@@ -1131,6 +1135,7 @@
 				6CA7C943201A92A7009C00F6 /* ServiceCarViewController.swift */,
 				6CA968B020229FAD00FBEEAB /* VehiclesViewController.swift */,
 				6CBAA6C62023FD3300F35ECF /* ServiceListViewController.swift */,
+				6CDCC601205743DB00DFA831 /* NewServiceViewController.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2067,6 +2072,7 @@
 				6C20E18B1FBE0E6200E5D9A0 /* GoogleDirectionAPI.swift in Sources */,
 				6C20E1871FBE061A00E5D9A0 /* ETAMarker.swift in Sources */,
 				6C20E1B21FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift in Sources */,
+				6CDCC602205743DB00DFA831 /* NewServiceViewController.swift in Sources */,
 				6C7342081FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */,
 				6C69267E1FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */,
 				6C3FB2AD1FA2574C00B22EAB /* FuelData.swift in Sources */,
@@ -2168,6 +2174,7 @@
 				6C95439F1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C5DDECD20096CF8000847C9 /* CustomerAPI.swift in Sources */,
 				6C8159B51FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
+				6CDCC603205743DB00DFA831 /* NewServiceViewController.swift in Sources */,
 				6C91BBDC1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C7495E41FDA1F790036FC08 /* MappableDataObject.swift in Sources */,
 				6C91BBCE1FA7D3CE0033C2B1 /* Fonts.swift in Sources */,
@@ -2334,6 +2341,7 @@
 				6C58333C1FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */,
 				6C9543A01FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C5D866E2032539900BBADDC /* VLVerticalSearchTextField.swift in Sources */,
+				6CDCC604205743DB00DFA831 /* NewServiceViewController.swift in Sources */,
 				6C91BBDD1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C91BBCF1FA7D3CE0033C2B1 /* Fonts.swift in Sources */,
 				6CBB4E901FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,

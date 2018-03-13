@@ -149,6 +149,10 @@
 "ScheduledService" = "Scheduled Service";
 "AreYouSureCancelPickup" = "Are you sure you want to cancel your pickup?";
 "AreYouSureCancelDropOff" = "Are you sure you want to cancel your dropoff?";
+"NewServiceIntro" = "Is your Volvo in need of service? Please identify what part of your Volvo needs work, and write a short description of what you're experiencing.\n\nYou can then schedule pickup directly through this app.";
+"MilestoneServices" = "Milestone services";
+"RecallServices" = "Recall services";
+"OtherMaintenanceRepairs" = "Other maintenance and repairs";
 
 /***************** Settings ***************/
 "Settings" = "Settings";
