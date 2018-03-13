@@ -26,6 +26,13 @@ class NewServiceViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.backgroundColor = .clear
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(ServiceCell.self, forCellReuseIdentifier: ServiceCell.reuseId)
+        tableView.isScrollEnabled = false
+        
         showServices(services: [ServiceGroup(name: String.MilestoneServices, services: nil), ServiceGroup(name: String.RecallServices, services: nil), ServiceGroup(name: String.OtherMaintenanceRepairs, services: nil)])
     }
     
@@ -34,9 +41,19 @@ class NewServiceViewController: BaseViewController {
         
         self.view.addSubview(introLabel)
         self.view.addSubview(tableView)
-        
-        //todo constraints
+        let labelHeight = introLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
 
+        introLabel.snp.makeConstraints { make in
+            make.left.top.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.height.equalTo(labelHeight)
+        }
+        
+        tableView.snp.makeConstraints { make in
+            make.left.right.equalTo(introLabel)
+            make.top.equalTo(introLabel.snp.bottom).offset(20)
+            make.height.equalTo(ServiceCell.height*4)
+        }
         
     }
     
