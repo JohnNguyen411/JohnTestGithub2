@@ -17,5 +17,6 @@ extension String {
     static let MilestoneServices = NSLocalizedString("MilestoneServices")
     static let RecallServices = NSLocalizedString("RecallServices")
     static let OtherMaintenanceRepairs = NSLocalizedString("OtherMaintenanceRepairs")
-    
+    static let WhatPartRequiresService = NSLocalizedString("WhatPartRequiresService")
+    static let SelectAllThatApply = NSLocalizedString("SelectAllThatApply")
 }

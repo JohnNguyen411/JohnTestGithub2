@@ -153,6 +153,8 @@
 "MilestoneServices" = "Milestone services";
 "RecallServices" = "Recall services";
 "OtherMaintenanceRepairs" = "Other maintenance and repairs";
+"WhatPartRequiresService" = "What part of your Volvo requires service?";
+"SelectAllThatApply" = "Select all that apply";
 
 /***************** Settings ***************/
 "Settings" = "Settings";
