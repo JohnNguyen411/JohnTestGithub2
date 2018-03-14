@@ -58,6 +58,10 @@ class ServiceMultiselectListViewController: BaseViewController {
 
         
         showServices(services: [Service(name: "Exterior Body", price: nil), Service(name: "Doors or cabin interior", price: nil), Service(name: "Steering wheel or Dashboard", price: nil), Service(name: "Tires, wheels, or brakes", price: nil), Service(name: "Engine or transmission", price: nil), Service(name: "Battery, lights, AC, or electrical", price: nil), Service(name: "Something under the hood", price: nil), Service(name: "Other", price: nil), Service(name: "I don't know", price: nil)])
+        
+        confirmButton.setActionBlock {
+            self.navigationController?.pushViewController(OtherServiceViewController(), animated: true)
+        }
     }
     
     override func setupViews() {

@@ -155,6 +155,11 @@
 "OtherMaintenanceRepairs" = "Other maintenance and repairs";
 "WhatPartRequiresService" = "What part of your Volvo requires service?";
 "SelectAllThatApply" = "Select all that apply";
+"IsVolvoDrivable" = "Is your Volvo currenlty drivable?";
+"ImNotSure" = "I'm not sure";
+"NewServiceDescription" = "Is there anything else you can tell us about your Volvo?";
+"TypeDescriptionHere" = "Type description here";
+"AddDescription" = "Add Description";
 
 /***************** Settings ***************/
 "Settings" = "Settings";

@@ -45,4 +45,8 @@ class ServiceCell: UITableViewCell {
         serviceLabel.text = service
     }
     
+    public func setChecked(checked: Bool) {
+        self.accessoryType = checked ? .checkmark : .none
+    }
+    
 }
