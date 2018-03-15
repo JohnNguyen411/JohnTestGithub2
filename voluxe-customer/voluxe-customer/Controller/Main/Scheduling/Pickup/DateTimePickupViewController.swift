@@ -146,11 +146,13 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         
         let separatorOne = UIView(frame: .zero)
         separatorOne.backgroundColor = .luxeLightGray()
+        separatorOne.clipsToBounds = false
         let separatorTwo = UIView(frame: .zero)
         separatorTwo.backgroundColor = .luxeLightGray()
+        separatorTwo.clipsToBounds = false
         
-        self.view.addSubview(separatorOne)
-        self.view.addSubview(separatorTwo)
+        containerView.addSubview(separatorOne)
+        containerView.addSubview(separatorTwo)
         containerView.addSubview(loanerLabel)
         containerView.addSubview(loanerSwitch)
         
@@ -189,8 +191,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         }
         
         separatorOne.snp.makeConstraints { make in
-            make.right.equalToSuperview()
-            make.left.equalToSuperview().offset(20)
+            make.right.equalTo(self.view)
+            make.left.equalToSuperview()
             make.height.equalTo(1)
             make.bottom.equalTo(weekdayViews.snp.top).offset(-20)
         }
@@ -207,8 +209,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         }
         
         separatorTwo.snp.makeConstraints { make in
-            make.right.equalToSuperview()
-            make.left.equalToSuperview().offset(20)
+            make.right.equalTo(self.view)
+            make.left.equalToSuperview()
             make.height.equalTo(1)
             make.bottom.equalTo(loanerSwitch.snp.top).offset(-5)
         }
