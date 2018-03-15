@@ -219,7 +219,7 @@ class StringUtils {
             actionTitle.append(" and \(last!)")
         }
 
-        return String(actionTitle.characters.prefix(1)).uppercased() + String(actionTitle.characters.dropFirst())
+        return String(actionTitle.prefix(1)).uppercased() + String(actionTitle.dropFirst())
     }
 
     class func arrayToStringTruncated(strings: [String]) -> String {
@@ -242,7 +242,7 @@ class StringUtils {
                 actionTitle.append(" & \(last!)")
             }
         }
-        return String(actionTitle.characters.prefix(1)).uppercased() + String(actionTitle.characters.dropFirst())
+        return String(actionTitle.prefix(1)).uppercased() + String(actionTitle.dropFirst())
     }
 
 }
