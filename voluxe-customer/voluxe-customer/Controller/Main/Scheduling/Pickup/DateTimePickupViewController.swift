@@ -13,7 +13,10 @@ import SwiftEventBus
 
 class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
-    static let hourButtonWidth = 80
+    private static let hourButtonWidth = 80
+    
+    private static let smallCalendarHeight = 187
+    private static let tallCalendarHeight = 215
     
     var delegate: PickupDateDelegate?
     var realm: Realm?
@@ -61,6 +64,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     private let loanerSwitch = UISwitch(frame: .zero)
 
     private var hoursViewHeight = VLButton.secondaryHeight
+    private var calendarViewHeight = smallCalendarHeight
 
     private let hoursView = UIView(frame: .zero)
     private var slotViews: [VLButton] = []
@@ -169,7 +173,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         calendar.snp.makeConstraints { make in
             make.bottom.equalTo(timeSlotsHeader.snp.top).offset(-30)
             make.left.right.equalToSuperview()
-            make.height.equalTo(187)
+            make.height.equalTo(calendarViewHeight)
         }
         
         firstMonthHeader.snp.makeConstraints { make in
@@ -217,7 +221,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     override func height() -> Int {
-        return (360) + VLPresentrViewController.baseHeight + 40 + hoursViewHeight
+        return (173 + calendarViewHeight) + VLPresentrViewController.baseHeight + 40 + hoursViewHeight
     }
     
     override func onButtonClick() {
@@ -259,6 +263,13 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         let weekday = Calendar.current.component(.weekday, from: maxDate) // 1 is sunday for Gregorian
         maxDate = Calendar.current.date(byAdding: .day, value: 7-weekday+1, to: maxDate)!
         
+        let monthMax = Calendar.current.component(.month, from: maxDate)
+        let monthCurrent = Calendar.current.component(.month, from: todaysDate)
+        if monthMax != monthCurrent {
+            calendarViewHeight = DateTimePickupViewController.tallCalendarHeight
+        } else {
+            calendarViewHeight = DateTimePickupViewController.smallCalendarHeight
+        }
 
         let calendar = FSCalendar(frame: .zero)
         calendar.rowHeight = 46
