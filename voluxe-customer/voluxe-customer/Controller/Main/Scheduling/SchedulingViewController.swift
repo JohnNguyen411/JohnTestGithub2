@@ -339,8 +339,16 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     func showPickupDateTimeModal(dismissOnTap: Bool) {
         
         var title: String = .SelectPickupDate
-        if StateServiceManager.sharedInstance.isPickup() {
-            title = .SelectDeliveryDate
+        if !StateServiceManager.sharedInstance.isPickup() {
+            if let type = RequestedServiceManager.sharedInstance.getDropoffRequestType() , type == RequestType.advisorDropoff {
+                title = .SelectPickupDate
+            } else {
+                title = .SelectDeliveryDate
+            }
+        } else {
+            if let type = RequestedServiceManager.sharedInstance.getPickupRequestType() , type == RequestType.advisorPickup {
+                title = .SelectDropoffDate
+            }
         }
         
         let dateModal = DateTimePickupViewController(title: title, buttonTitle: .Next)

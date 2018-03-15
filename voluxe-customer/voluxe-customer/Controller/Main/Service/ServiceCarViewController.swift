@@ -213,6 +213,8 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             }
             
             noteLabel.text = .NotePickup
+        } else if serviceState == .serviceCompleted {
+            noteLabel.text = .NoteDelivery
         }
         
         if let vehicle = UserManager.sharedInstance.getVehicle() {
@@ -377,7 +379,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorPickup)
             self.childViewDelegate?.pushViewController(controller: SchedulingPickupViewController(state: .schedulingService), animated: true, backLabel: .Back, title: nil)
         } else {
-            RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorDropoff)
+            RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .advisorDropoff)
             self.childViewDelegate?.pushViewController(controller: SchedulingDropoffViewController(state: .schedulingDelivery), animated: true, backLabel: .Back, title: nil)
         }
     }

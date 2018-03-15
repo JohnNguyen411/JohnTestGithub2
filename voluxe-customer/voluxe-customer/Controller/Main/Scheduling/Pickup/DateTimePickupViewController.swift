@@ -147,7 +147,20 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     override func setupViews() {
         super.setupViews()
         
-        timeSlotsHeader.text = isPickup ? (.PickupTimes as String).uppercased() : (.DeliveryTimes as String).uppercased()
+        if isPickup {
+            if let type = RequestedServiceManager.sharedInstance.getPickupRequestType(), type == .advisorPickup {
+                timeSlotsHeader.text = (.DropOffTimes as String).uppercased()
+            } else {
+                timeSlotsHeader.text = (.PickupTimes as String).uppercased()
+            }
+        } else {
+            if let type = RequestedServiceManager.sharedInstance.getDropoffRequestType(), type == .advisorDropoff {
+                timeSlotsHeader.text = (.PickupTimes as String).uppercased()
+            } else {
+                timeSlotsHeader.text = (.DeliveryTimes as String).uppercased()
+            }
+        }
+        
         loanerContainerView.isHidden = !isPickup
         
         containerView.addSubview(firstMonthHeader)
