@@ -243,6 +243,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 if RequestedServiceManager.sharedInstance.getBooking() == nil {
                     StateServiceManager.sharedInstance.updateState(state: .loading)
                 }
+                self.navigationController?.popToRootViewController(animated: false)
             }
         }
     }

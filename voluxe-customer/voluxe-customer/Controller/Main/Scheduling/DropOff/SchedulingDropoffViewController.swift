@@ -173,6 +173,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
                     realm.add(booking, update: true)
                 }
             }
+            self.navigationController?.popToRootViewController(animated: false)
         }
     }
     

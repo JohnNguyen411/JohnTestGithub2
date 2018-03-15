@@ -20,6 +20,9 @@ class LoadingViewController: ChildViewController {
         super.viewDidLoad()
         realm = try? Realm()
         
+        //DO NOT UNCOMMENT, DEBUG MODE ONLY
+        //logout()
+        
         // call user/vehicle/service
         if let customerId = UserManager.sharedInstance.getCustomerId() {
             callCustomer(customerId: customerId)

@@ -134,7 +134,9 @@ extension Date {
             hourFormatter.pmSymbol = ""
         }
         
-        return hourFormatter.string(from: date)
+        var hourFormatted = hourFormatter.string(from: date)
+        
+        return hourFormatted.lowercased()
     }
 
 }

@@ -70,16 +70,19 @@ class ScheduledDropoffViewController: ScheduledViewController {
         guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
             return
         }
-        if let dropoffRequest = booking.dropoffRequest, let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
-            self.mapVC.updateDriverLocation(location: coordinates)
-            if let dropoffRequestLocation = dropoffRequest.location, let dropoffRequestCoordinates = dropoffRequestLocation.getLocation() {
-                self.getEta(fromLocation: coordinates, toLocation: dropoffRequestCoordinates)
-            } else if let timeSlot = dropoffRequest.timeSlot {
+        if let dropoffRequest = booking.dropoffRequest {
+            if let timeSlot = dropoffRequest.timeSlot {
                 // show timeslot window
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
             }
-            newDriverLocation(location: coordinates)
-            newDriver(driver: driver)
+            if let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
+                self.mapVC.updateDriverLocation(location: coordinates)
+                if let dropoffRequestLocation = dropoffRequest.location, let dropoffRequestCoordinates = dropoffRequestLocation.getLocation() {
+                    self.getEta(fromLocation: coordinates, toLocation: dropoffRequestCoordinates)
+                }
+                newDriverLocation(location: coordinates)
+                newDriver(driver: driver)
+            }
         }
     }
     
