@@ -60,7 +60,16 @@ class ServiceMultiselectListViewController: BaseViewController {
         showServices(services: [Service(name: "Exterior Body", price: nil), Service(name: "Doors or cabin interior", price: nil), Service(name: "Steering wheel or Dashboard", price: nil), Service(name: "Tires, wheels, or brakes", price: nil), Service(name: "Engine or transmission", price: nil), Service(name: "Battery, lights, AC, or electrical", price: nil), Service(name: "Something under the hood", price: nil), Service(name: "Other", price: nil), Service(name: "I don't know", price: nil)])
         
         confirmButton.setActionBlock {
-            self.navigationController?.pushViewController(OtherServiceViewController(), animated: true)
+            guard let services = self.services else {
+                return
+            }
+            var selectedService: [Service] = []
+            for dictElement in self.selected.enumerated() {
+                if dictElement.element.value {
+                    selectedService.append(services[dictElement.element.key])
+                }
+            }
+            self.navigationController?.pushViewController(OtherServiceViewController(services: selectedService), animated: true)
         }
     }
     
@@ -153,7 +162,6 @@ extension ServiceMultiselectListViewController: UITableViewDataSource, UITableVi
         }
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
-        //self.navigationController?.popViewController(animated: false)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -10,12 +10,6 @@ import Foundation
 
 class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     
-    enum DrivableType {
-        case yes
-        case no
-        case notSure
-    }
-    
     let volvoDrivableLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .IsVolvoDrivable
@@ -65,6 +59,20 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     
     let drivability = [DrivableType.yes, DrivableType.no, DrivableType.notSure]
     var checkedCellIndex = 0
+    let service: Service
+    
+    init(services: [Service]) {
+        var serviceTitle = String.Service
+        for service in services {
+            serviceTitle += "\(service.name). "
+        }
+        self.service = Service(customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,6 +87,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         descriptionTextView.delegate = self
         
         confirmButton.setActionBlock {
+            RequestedServiceManager.sharedInstance.setService(service: self.service)
             StateServiceManager.sharedInstance.updateState(state: .needService)
             self.navigationController?.popToRootViewController(animated: false)
         }

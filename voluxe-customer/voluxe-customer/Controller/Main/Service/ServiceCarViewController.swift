@@ -205,8 +205,11 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     func fillViews() {
         if serviceState == .idle || serviceState == .needService {
-            let service = Service.mockService()
-            RequestedServiceManager.sharedInstance.setService(service: service, selfInitiated: true)
+            var service = RequestedServiceManager.sharedInstance.getService()
+            if service == nil {
+                service = Service.mockService()
+                RequestedServiceManager.sharedInstance.setService(service: service!, selfInitiated: true)
+            }
             
             noteLabel.text = .NotePickup
         }

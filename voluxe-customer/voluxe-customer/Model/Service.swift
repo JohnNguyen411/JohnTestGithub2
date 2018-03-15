@@ -15,6 +15,8 @@ class Service: Object, Mappable {
     var name: String?
     var price: Double?
     var serviceDescription: String?
+    var customerDescription: String?
+    var drivable: DrivableType?
     
     required convenience init?(map: Map) {
         self.init()
@@ -24,6 +26,14 @@ class Service: Object, Mappable {
         self.init()
         self.name = name
         self.price = price
+    }
+    
+    convenience init(customerDescription: String?, drivable: DrivableType?) {
+        self.init()
+        self.name = .DiagnosticAndService
+        self.customerDescription = customerDescription
+        self.drivable = drivable
+        self.price = 0
     }
  
     
@@ -37,4 +47,10 @@ class Service: Object, Mappable {
     static func mockService() -> Service {
         return Service(name: "10,000 mile check-up", price: Double(400))
     }
+}
+
+public enum DrivableType {
+    case yes
+    case no
+    case notSure
 }

@@ -60,19 +60,24 @@ class ScheduledPickupViewController: ScheduledViewController {
     
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
+        driverLocationUpdate()
+    }
+    
+    override func driverLocationUpdate() {
+        super.driverLocationUpdate()
         guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
             return
         }
         if let pickupRequest = booking.pickupRequest, let driver = pickupRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
-            mapVC.updateDriverLocation(location: coordinates)
+            self.mapVC.updateDriverLocation(location: coordinates)
             if let pickupRequestLocation = pickupRequest.location, let pickupRequestCoordinates = pickupRequestLocation.getLocation() {
                 self.getEta(fromLocation: coordinates, toLocation: pickupRequestCoordinates)
             } else if let timeSlot = pickupRequest.timeSlot {
                 // show timeslot window
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
             }
+            newDriverLocation(location: coordinates)
             newDriver(driver: driver)
         }
     }
-    
 }

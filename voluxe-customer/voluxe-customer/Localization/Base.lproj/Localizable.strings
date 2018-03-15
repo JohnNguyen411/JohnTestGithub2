@@ -145,6 +145,7 @@
 "PreferredDealership" = "Preferred Dealership";
 
 /***************** Service ***************/
+"Service" = "Service";
 "NewService" = "New Service";
 "ScheduledService" = "Scheduled Service";
 "AreYouSureCancelPickup" = "Are you sure you want to cancel your pickup?";
@@ -160,6 +161,7 @@
 "NewServiceDescription" = "Is there anything else you can tell us about your Volvo?";
 "TypeDescriptionHere" = "Type description here";
 "AddDescription" = "Add Description";
+"DiagnosticAndService" = "Diagnostic and service";
 
 /***************** Settings ***************/
 "Settings" = "Settings";

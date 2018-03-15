@@ -13,6 +13,7 @@ import CoreLocation
 import GoogleMaps
 import BrightFutures
 import Result
+import SwiftEventBus
 
 class ScheduledViewController: ChildViewController {
     
@@ -202,6 +203,14 @@ class ScheduledViewController: ChildViewController {
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         self.updateState(id: state, stepState: .done)
+        if state == .enRouteForDropoff || state == .enRouteForPickup {
+            SwiftEventBus.onMainThread(self, name: "driverLocationUpdate") { result in
+                // UI thread
+                self.driverLocationUpdate()
+            }
+        } else {
+            SwiftEventBus.unregister(self)
+        }
     }
     
     func newDriver(driver: Driver) {
@@ -234,8 +243,15 @@ class ScheduledViewController: ChildViewController {
         mapVC.updateServiceState(state: id)
     }
     
+    func driverLocationUpdate() {
+        
+    }
+    
     func newDriverLocation(location: CLLocationCoordinate2D) {
-        mapVC.updateDriverLocation(location: location)
+        // add a slight delay to prevent map bug
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            self.mapVC.updateDriverLocation(location: location)
+        })
     }
     
     func getEta(fromLocation: CLLocationCoordinate2D, toLocation: CLLocationCoordinate2D) {
@@ -296,8 +312,6 @@ class ScheduledViewController: ChildViewController {
         }.onFailure { error in
             // todo handle error
         }
-        
-        
     }
     
 }
