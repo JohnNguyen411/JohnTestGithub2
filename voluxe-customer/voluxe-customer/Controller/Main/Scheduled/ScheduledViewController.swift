@@ -99,6 +99,12 @@ class ScheduledViewController: ChildViewController {
         driverContact.setActionBlock {
             self.contactDriverActionSheet()
         }
+        
+        driverViewContainer.isHidden = true
+        
+        mapVC.view.snp.updateConstraints { (make) -> Void in
+            make.height.equalTo(ScheduledViewController.mapViewHeight + ScheduledViewController.driverViewHeight)
+        }
     }
     
     override func setupViews() {
@@ -217,6 +223,12 @@ class ScheduledViewController: ChildViewController {
         
         if self.driver == nil || self.driver?.id != driver.id {
             self.driver = driver
+            driverViewContainer.animateAlpha(show: true)
+            UIView.animate(withDuration: 0.25, animations: {
+                self.mapVC.view.snp.updateConstraints { (make) -> Void in
+                    make.height.equalTo(ScheduledViewController.mapViewHeight)
+                }
+            })
         } else {
             return
         }
