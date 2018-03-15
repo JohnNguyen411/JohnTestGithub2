@@ -14,7 +14,7 @@ import SwiftEventBus
 class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
     private static let hourButtonWidth = 80
-    
+
     private static let smallCalendarHeight = 187
     private static let tallCalendarHeight = 220
     
@@ -55,14 +55,20 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     private let todaysDate = Date()
     private var maxDate = Date()
     
+    private let isPickup = StateServiceManager.sharedInstance.isPickup()
+
+    private let loanerContainerView = UIView(frame: .zero)
+    
     private let loanerLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.volvoSansLightBold(size: 16)
         label.text = .DatesLoanersOnly
         return label
     }()
+    
     private let loanerSwitch = UISwitch(frame: .zero)
 
+    private var loanerViewHeight = 48
     private var hoursViewHeight = VLButton.secondaryHeight
     private var calendarViewHeight = smallCalendarHeight
 
@@ -73,6 +79,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     private var currentSlots: Results<DealershipTimeSlot>?
     
     override init() {
+        loanerViewHeight = isPickup ? 48 : 0
         super.init()
         realm = try? Realm()
         getTimeSlots()
@@ -140,9 +147,13 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     override func setupViews() {
         super.setupViews()
         
+        timeSlotsHeader.text = isPickup ? (.PickupTimes as String).uppercased() : (.DeliveryTimes as String).uppercased()
+        loanerContainerView.isHidden = !isPickup
+        
         containerView.addSubview(firstMonthHeader)
         containerView.addSubview(hoursView)
         containerView.addSubview(timeSlotsHeader)
+        containerView.addSubview(loanerContainerView)
         
         let separatorOne = UIView(frame: .zero)
         separatorOne.backgroundColor = .luxeLightGray()
@@ -151,10 +162,10 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         separatorTwo.backgroundColor = .luxeLightGray()
         separatorTwo.clipsToBounds = false
         
-        containerView.addSubview(separatorOne)
-        containerView.addSubview(separatorTwo)
-        containerView.addSubview(loanerLabel)
-        containerView.addSubview(loanerSwitch)
+        loanerContainerView.addSubview(separatorOne)
+        loanerContainerView.addSubview(separatorTwo)
+        loanerContainerView.addSubview(loanerLabel)
+        loanerContainerView.addSubview(loanerSwitch)
         
         containerView.addSubview(weekdayViews)
         
@@ -190,40 +201,43 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             make.height.equalTo(20)
         }
         
-        separatorOne.snp.makeConstraints { make in
-            make.right.equalTo(self.view)
-            make.left.equalToSuperview()
-            make.height.equalTo(1)
+        loanerContainerView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.height.equalTo(loanerViewHeight)
             make.bottom.equalTo(weekdayViews.snp.top).offset(-20)
         }
         
+        separatorOne.snp.makeConstraints { make in
+            make.right.equalTo(self.view)
+            make.left.bottom.equalToSuperview()
+            make.height.equalTo(1)
+        }
+        
         loanerSwitch.snp.makeConstraints { make in
-            make.right.equalToSuperview()
-            make.bottom.equalTo(separatorOne.snp.top).offset(-5)
+            make.right.centerY.equalToSuperview()
         }
         
         loanerLabel.snp.makeConstraints { make in
             make.left.equalToSuperview()
-            make.centerY.equalTo(loanerSwitch)
-            make.height.equalTo(loanerSwitch)
+            make.centerY.height.equalTo(loanerSwitch)
         }
         
         separatorTwo.snp.makeConstraints { make in
             make.right.equalTo(self.view)
             make.left.equalToSuperview()
             make.height.equalTo(1)
-            make.bottom.equalTo(loanerSwitch.snp.top).offset(-5)
+            make.top.equalToSuperview()
         }
         
         titleLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(loanerLabel.snp.top).offset(-10)
-            make.height.equalTo(25)
+            make.bottom.equalTo(loanerContainerView.snp.top).offset(-10)
+            make.height.equalTo(20)
         }
     }
     
     override func height() -> Int {
-        return (173 + calendarViewHeight) + VLPresentrViewController.baseHeight + 40 + hoursViewHeight
+        return (170 + calendarViewHeight) + VLPresentrViewController.baseHeight + hoursViewHeight + loanerViewHeight
     }
     
     override func onButtonClick() {

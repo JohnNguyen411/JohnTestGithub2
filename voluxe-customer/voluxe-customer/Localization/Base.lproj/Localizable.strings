@@ -88,7 +88,7 @@
 "PickupLocationTitle" = "Where should we meet you?";
 "YourLocation" = "Your Location";
 "DoYouNeedLoanerVehicle" = "Do you need a loaner vehicle?";
-"SelectYourPreferredPickupTime" = "Select your preferred pickup time";
+"SelectPickupDate" = "Select pickup date and time";
 "NineToTwelve" = "9:00-12:00";
 "TwelveToThree" = "12:00-3:00";
 "ThreeToSix" = "3:00-6:00";
@@ -103,6 +103,8 @@
 "PickupTimes" = "Pickup Times";
 "DealershipCloseToLocation" = "Dealerships close to:";
 "ConfirmSelfDrop" = "Confirm Self-Drop";
+"SelectDeliveryDate" = "SelectDeliveryDate";
+"DeliveryTimes" = "Delivery Times";
 
 /***************** ScheduledPickup ***************/
 "SchedulePickup" = "Schedule Pickup";

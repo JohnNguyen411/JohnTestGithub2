@@ -337,7 +337,13 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func showPickupDateTimeModal(dismissOnTap: Bool) {
-        let dateModal = DateTimePickupViewController(title: .SelectYourPreferredPickupTime, buttonTitle: .Next)
+        
+        var title: String = .SelectPickupDate
+        if StateServiceManager.sharedInstance.isPickup() {
+            title = .SelectDeliveryDate
+        }
+        
+        let dateModal = DateTimePickupViewController(title: title, buttonTitle: .Next)
         dateModal.delegate = self
         dateModal.view.accessibilityIdentifier = "dateModal"
         currentPresentrVC = dateModal
