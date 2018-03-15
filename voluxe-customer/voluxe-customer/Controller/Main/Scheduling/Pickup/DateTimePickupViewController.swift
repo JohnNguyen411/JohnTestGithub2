@@ -16,7 +16,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     private static let hourButtonWidth = 80
     
     private static let smallCalendarHeight = 187
-    private static let tallCalendarHeight = 215
+    private static let tallCalendarHeight = 220
     
     var delegate: PickupDateDelegate?
     var realm: Realm?
@@ -159,7 +159,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         initCalendar()
         
         hoursView.snp.makeConstraints { make in
-            make.bottom.equalTo(bottomButton.snp.top).offset(-30)
+            make.bottom.equalTo(bottomButton.snp.top).offset(-28)
             make.left.right.equalToSuperview()
             make.height.equalTo(VLButton.secondaryHeight)
         }
@@ -171,7 +171,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         }
         
         calendar.snp.makeConstraints { make in
-            make.bottom.equalTo(timeSlotsHeader.snp.top).offset(-30)
+            make.bottom.equalTo(timeSlotsHeader.snp.top).offset(-28)
             make.left.right.equalToSuperview()
             make.height.equalTo(calendarViewHeight)
         }

@@ -48,7 +48,7 @@ class VehicleCell: UICollectionViewCell {
     }
     
     public func setVehicle(vehicle: Vehicle) {
-        vehicleImageView.image = UIImage(named: vehicle.localImageName())
+        vehicle.setVehicleImage(imageView: vehicleImageView)
     }
     
     

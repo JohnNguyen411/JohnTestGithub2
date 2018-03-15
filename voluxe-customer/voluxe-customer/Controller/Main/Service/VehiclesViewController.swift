@@ -148,7 +148,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     
     func selectVehicle(vehicle: Vehicle) {
         vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
-        vehicleImageView.image = UIImage(named: vehicle.localImageName())
+        vehicle.setVehicleImage(imageView: vehicleImageView)
         selectedVehicle = vehicle
         stateDidChange(state: serviceState)
     }

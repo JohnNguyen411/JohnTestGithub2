@@ -14,6 +14,7 @@ import CoreLocation
 import RealmSwift
 import BrightFutures
 import Alamofire
+import Kingfisher
 
 
 class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
@@ -213,7 +214,10 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             
             noteLabel.text = .NotePickup
         }
-        vehicleImageView.image = UIImage(named: UserManager.sharedInstance.getVehicle()!.localImageName())
+        
+        if let vehicle = UserManager.sharedInstance.getVehicle() {
+            vehicle.setVehicleImage(imageView: vehicleImageView)
+        }
         
         if let service = RequestedServiceManager.sharedInstance.getService() {
             var title = String.RecommendedService
