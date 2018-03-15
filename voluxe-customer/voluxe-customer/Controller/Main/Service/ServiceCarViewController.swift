@@ -371,18 +371,18 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     func leftButtonClick() {
         if StateServiceManager.sharedInstance.isPickup() {
             RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorPickup)
-            StateServiceManager.sharedInstance.updateState(state: .schedulingService)
+            self.childViewDelegate?.pushViewController(controller: SchedulingPickupViewController(state: .schedulingService), animated: true, backLabel: .Back, title: nil)
         } else {
             RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorDropoff)
-            StateServiceManager.sharedInstance.updateState(state: .schedulingDelivery)
+            self.childViewDelegate?.pushViewController(controller: SchedulingDropoffViewController(state: .schedulingDelivery), animated: true, backLabel: .Back, title: nil)
         }
     }
     
     func rightButtonClick() {
         if StateServiceManager.sharedInstance.isPickup() {
-            StateServiceManager.sharedInstance.updateState(state: .schedulingService)
+            self.childViewDelegate?.pushViewController(controller: SchedulingPickupViewController(state: .schedulingService), animated: true, backLabel: .Back, title: nil)
         } else {
-            StateServiceManager.sharedInstance.updateState(state: .schedulingDelivery)
+            self.childViewDelegate?.pushViewController(controller: SchedulingDropoffViewController(state: .schedulingDelivery), animated: true, backLabel: .Back, title: nil)
         }
     }
     

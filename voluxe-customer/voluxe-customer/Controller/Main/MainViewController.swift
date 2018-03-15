@@ -75,15 +75,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
                 currentViewController = serviceCarViewController
             }
             
-        } else if serviceState == .schedulingService {
-            
-            if currentViewController != nil && (currentViewController?.isKind(of: SchedulingPickupViewController.self))! {
-                changeView = false
-            } else {
-                let schedulingPickupViewController = SchedulingPickupViewController(state: serviceState)
-                currentViewController = schedulingPickupViewController
-            }
-            
         } else if serviceState.rawValue >= ServiceState.pickupScheduled.rawValue && serviceState.rawValue <= ServiceState.arrivedForPickup.rawValue {
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledPickupViewController.self))! {
                 changeView = false
@@ -99,14 +90,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             } else {
                 let serviceCarViewController = ServiceCarViewController(state: serviceState)
                 currentViewController = serviceCarViewController
-            }
-        } else if serviceState == .schedulingDelivery {
-            
-            if currentViewController != nil && (currentViewController?.isKind(of: SchedulingDropoffViewController.self))! {
-                changeView = false
-            } else {
-                let schedulingDropoffViewController = SchedulingDropoffViewController(state : serviceState)
-                currentViewController = schedulingDropoffViewController
             }
         } else if serviceState.rawValue >= ServiceState.dropoffScheduled.rawValue && serviceState.rawValue <= ServiceState.arrivedForDropoff.rawValue {
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
