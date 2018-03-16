@@ -71,17 +71,19 @@ class ScheduledDropoffViewController: ScheduledViewController {
             return
         }
         if let dropoffRequest = booking.dropoffRequest {
-            if let timeSlot = dropoffRequest.timeSlot {
-                // show timeslot window
-                timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
-            }
+            var refreshTimeSlot = true
+            
             if let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
                 self.mapVC.updateDriverLocation(location: coordinates)
                 if let dropoffRequestLocation = dropoffRequest.location, let dropoffRequestCoordinates = dropoffRequestLocation.getLocation() {
+                    refreshTimeSlot = false
                     self.getEta(fromLocation: coordinates, toLocation: dropoffRequestCoordinates)
                 }
                 newDriverLocation(location: coordinates)
                 newDriver(driver: driver)
+            }
+            if let timeSlot = dropoffRequest.timeSlot, refreshTimeSlot {
+                timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
             }
         }
     }
