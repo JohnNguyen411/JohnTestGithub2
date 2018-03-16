@@ -219,12 +219,12 @@ class LoadingViewController: ChildViewController {
                 
             } else {
                 // error
-                StateServiceManager.sharedInstance.updateState(state: .needService)
+                StateServiceManager.sharedInstance.updateState(state: .idle)
             }
             
             }.onFailure { error in
                 // todo show error
-                StateServiceManager.sharedInstance.updateState(state: .needService)
+                StateServiceManager.sharedInstance.updateState(state: .idle)
         }
     }
 }

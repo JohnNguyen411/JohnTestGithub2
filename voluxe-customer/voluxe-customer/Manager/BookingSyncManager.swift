@@ -100,12 +100,12 @@ final class BookingSyncManager {
                 RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true)
             } else {
                 // error
-                StateServiceManager.sharedInstance.updateState(state: .needService)
+                StateServiceManager.sharedInstance.updateState(state: .idle)
             }
             
             }.onFailure { error in
                 // todo show error
-                StateServiceManager.sharedInstance.updateState(state: .needService)
+                StateServiceManager.sharedInstance.updateState(state: .idle)
         }
     }
     

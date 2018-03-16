@@ -50,7 +50,9 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         titleLabel.text = .AddDescription
         return titleLabel
     }()
-        
+    
+    var scrollViewSize: CGSize? = nil
+
     let scrollView = UIScrollView(frame: .zero)
     let contentView = UIView(frame: .zero)
 
@@ -82,6 +84,8 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         tableView.delegate = self
         tableView.register(ServiceCell.self, forCellReuseIdentifier: ServiceCell.reuseId)
         tableView.isScrollEnabled = false
+        
+        scrollView.keyboardDismissMode = .onDrag
         
         descriptionTextView.textContainer.maximumNumberOfLines = 10
         descriptionTextView.delegate = self
@@ -182,6 +186,12 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         }
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if scrollViewSize == nil {
+            scrollViewSize = self.scrollView.frame.size
+        }
+    }
     
     
     func textViewDidChange(_ textView: UITextView) {
@@ -204,11 +214,18 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     func textViewDidBeginEditing(_ textView: UITextView) {
         let offset = CGPoint(x: 0, y: descriptionLabel.frame.origin.y)
         scrollView.setContentOffset(offset, animated: true)
+        if let scrollViewSize = scrollViewSize {
+            scrollView.contentSize = CGSize(width: scrollViewSize.width, height: scrollViewSize.height + 2)
+        }
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
         let offset = CGPoint(x: 0, y: 0)
+        if let scrollViewSize = scrollViewSize {
+            scrollView.contentSize = scrollViewSize
+        }
         scrollView.setContentOffset(offset, animated: true)
+
     }
 
     
