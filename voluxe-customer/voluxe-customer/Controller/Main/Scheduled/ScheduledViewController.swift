@@ -209,7 +209,7 @@ class ScheduledViewController: ChildViewController {
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         self.updateState(id: state, stepState: .done)
-        if state == .enRouteForDropoff || state == .enRouteForPickup {
+        if state == .enRouteForDropoff || state == .enRouteForPickup || state == .nearbyForPickup || state == .nearbyForDropoff {
             SwiftEventBus.onMainThread(self, name: "driverLocationUpdate") { result in
                 // UI thread
                 self.driverLocationUpdate()
