@@ -29,5 +29,6 @@ extension String {
     static let CancelDropOff = NSLocalizedString("CancelDropOff")
     static let Error = NSLocalizedString("Error")
     static let GenericError = NSLocalizedString("GenericError")
+    static let Map = NSLocalizedString("Map")
 
 }

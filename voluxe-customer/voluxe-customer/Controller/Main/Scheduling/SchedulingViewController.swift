@@ -54,14 +54,33 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     
     let scrollView = UIScrollView()
     let contentView = UIView()
+    let dealershipAddressView = UIView()
     let scheduledServiceView = VLTitledLabel(padding: insetPadding)
     let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
     let dealershipView = VLTitledLabel(padding: insetPadding)
     let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "", padding: insetPadding)
     let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "", padding: insetPadding)
     let loanerView = VLTitledLabel(title: .ComplimentaryLoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
-    
     let confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmPickup as String).uppercased(), actionBlock: nil)
+    
+    let dealershipAddressLabel: UILabel = {
+        let dealershipAddressLabel = UILabel()
+        dealershipAddressLabel.textColor = .luxeGray()
+        dealershipAddressLabel.font = .volvoSansLightBold(size: 12)
+        dealershipAddressLabel.textAlignment = .left
+        dealershipAddressLabel.numberOfLines = 1
+        dealershipAddressLabel.lineBreakMode = .byTruncatingTail
+        return dealershipAddressLabel
+    }()
+    
+    let dealershipMapLabel: UILabel = {
+        let dealershipMapLabel = UILabel()
+        dealershipMapLabel.textColor = .luxeDeepBlue()
+        dealershipMapLabel.font = .volvoSansLightBold(size: 12)
+        dealershipMapLabel.text = String.Map.uppercased()
+        dealershipMapLabel.textAlignment = .left
+        return dealershipMapLabel
+    }()
     
     
     init(state: ServiceState) {
@@ -150,10 +169,15 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         contentView.addSubview(scheduledServiceView)
         contentView.addSubview(descriptionButton)
         contentView.addSubview(dealershipView)
+        contentView.addSubview(dealershipAddressView)
         contentView.addSubview(confirmButton)
+        
+        dealershipAddressView.addSubview(dealershipAddressLabel)
+        dealershipAddressView.addSubview(dealershipMapLabel)
         
         confirmButton.alpha = 0
         dealershipView.alpha = 0
+        dealershipAddressView.alpha = 0
         scheduledPickupView.alpha = 0
         pickupLocationView.alpha = 0
         loanerView.alpha = 0
@@ -201,6 +225,16 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             make.left.right.equalTo(scheduledServiceView)
             make.top.equalTo(pickupLocationView.snp.bottom)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
+        }
+        
+        dealershipMapLabel.snp.makeConstraints { make in
+            make.right.centerY.height.equalToSuperview()
+            make.width.equalTo(60)
+        }
+        
+        dealershipAddressLabel.snp.makeConstraints { make in
+            make.left.height.centerY.equalToSuperview()
+            make.right.equalTo(dealershipMapLabel.snp.left)
         }
         
         scheduledPickupView.snp.makeConstraints { make in
@@ -357,6 +391,23 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         currentPresentrVC = dateModal
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
+    }
+    
+    func showDealershipAddress(dealership: Dealership) {
+        dealershipAddressView.snp.makeConstraints { make in
+            make.left.right.equalTo(scheduledServiceView).inset(UIEdgeInsetsMake(0, 20, 0, 20))
+            make.top.equalTo(dealershipView.snp.bottom).offset(-5)
+            make.height.equalTo(25)
+        }
+        
+        scheduledPickupView.snp.remakeConstraints { make in
+            make.left.right.equalTo(scheduledServiceView)
+            make.top.equalTo(dealershipAddressView.snp.bottom).offset(10)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
+        }
+        
+        dealershipAddressView.animateAlpha(show: true)
+        dealershipAddressLabel.text = dealership.location?.address
     }
     
     

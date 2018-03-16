@@ -11,6 +11,8 @@ import CoreLocation
 
 class SchedulingDropoffViewController: SchedulingViewController {
     
+    var isSelfDrop = false
+    
     override func setupViews() {
         
         super.setupViews()
@@ -47,16 +49,49 @@ class SchedulingDropoffViewController: SchedulingViewController {
         }
     }
     
+    func hideLocation() {
+        
+        self.pickupLocationView.isHidden = true
+        
+        self.pickupLocationView.snp.updateConstraints { make in
+            make.height.equalTo(0)
+        }
+        
+        if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+            showDealershipAddress(dealership: dealership)
+        }
+        /*
+        dealershipView.snp.remakeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(pickupLocationView.snp.bottom)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
+        }
+        
+        pickupLocationView.snp.remakeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(dealershipView.snp.bottom)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
+        }
+         */
+    }
+    
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
-        
+        if let requestType = RequestedServiceManager.sharedInstance.getDropoffRequestType(), requestType == .advisorDropoff {
+            isSelfDrop = true
+        }
         loanerView.isEditable = false
         dealershipView.isEditable = false
         scheduledPickupView.isEditable = true
         pickupLocationView.isEditable = true
         
         if state == .schedulingDelivery {
-            hideDealership()
+            if isSelfDrop {
+                hideLocation()
+                self.dealershipView.animateAlpha(show: true)
+            } else {
+                hideDealership()
+            }
             scheduledPickupClick()
         }
         
@@ -126,7 +161,11 @@ class SchedulingDropoffViewController: SchedulingViewController {
         super.onDateTimeSelected(timeSlot: timeSlot)
         currentPresentrVC?.dismiss(animated: true, completion: {
             if openNext {
-                self.pickupLocationClick()
+                if !self.isSelfDrop {
+                    self.pickupLocationClick()
+                } else {
+                    self.confirmButton.animateAlpha(show: true)
+                }
             }
         })
     }

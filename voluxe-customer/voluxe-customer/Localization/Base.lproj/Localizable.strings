@@ -27,7 +27,7 @@
 "CancelDropOff" = "Cancel DropOff";
 "Error" = "Error";
 "GenericError" = "An unknown error has occurred, please try again later.";
-
+"Map" = "Map";
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
