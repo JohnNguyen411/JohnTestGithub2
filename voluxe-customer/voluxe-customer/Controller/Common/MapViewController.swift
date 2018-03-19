@@ -57,7 +57,9 @@ class MapViewController: UIViewController {
     
     func updateDriverLocation(location: CLLocationCoordinate2D) {
         // get ETA between location and flagMarker position
-        driverMarker.map = mapView
+        if driverMarker.map == nil || driverMarker.map != mapView {
+            driverMarker.map = mapView
+        }
         if self.driverMarker.position.latitude != location.latitude || self.driverMarker.position.longitude != location.longitude {
             let degreeBearing = self.degreeBearing(from: self.driverMarker.position, to: location)
             Logger.print("degreeBearing \(degreeBearing)")
