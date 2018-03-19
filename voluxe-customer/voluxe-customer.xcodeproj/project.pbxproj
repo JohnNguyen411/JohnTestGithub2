@@ -518,6 +518,9 @@
 		6CDCC616205C461100DFA831 /* RepairOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC615205C461100DFA831 /* RepairOrderType.swift */; };
 		6CDCC617205C461100DFA831 /* RepairOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC615205C461100DFA831 /* RepairOrderType.swift */; };
 		6CDCC618205C461100DFA831 /* RepairOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC615205C461100DFA831 /* RepairOrderType.swift */; };
+		6CDCC61A20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */; };
+		6CDCC61B20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */; };
+		6CDCC61C20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */; };
 		6CDCD7F7200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		6CDCD7F8200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		6CDCD7F9200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
@@ -780,6 +783,7 @@
 		6CDCC60D2059983000DFA831 /* OtherServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherServiceViewController.swift; sourceTree = "<group>"; };
 		6CDCC611205C40B400DFA831 /* RepairOrderAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrderAPI.swift; sourceTree = "<group>"; };
 		6CDCC615205C461100DFA831 /* RepairOrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrderType.swift; sourceTree = "<group>"; };
+		6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLDateFormatter.swift; sourceTree = "<group>"; };
 		6CE687822036634A00D915FC /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledBookingViewController.swift; sourceTree = "<group>"; };
@@ -1159,6 +1163,7 @@
 				6CDCC601205743DB00DFA831 /* NewServiceViewController.swift */,
 				6CDCC6052058411200DFA831 /* ServiceMultiselectListViewController.swift */,
 				6CDCC60D2059983000DFA831 /* OtherServiceViewController.swift */,
+				6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -2097,6 +2102,7 @@
 				6CD3BCA220098EF2001DD79B /* BookingAPI.swift in Sources */,
 				6C20E1981FBE14E300E5D9A0 /* GMLegs.swift in Sources */,
 				6C91BBE01FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
+				6CDCC61A20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */,
 				6CBB4E881FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */,
 				6CE6879E2044CEAE00D915FC /* ContactDriver.swift in Sources */,
 				6C20E18B1FBE0E6200E5D9A0 /* GoogleDirectionAPI.swift in Sources */,
@@ -2191,6 +2197,7 @@
 				6CBB4E9E1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
 				6C5833281FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */,
 				6C20E1881FBE061A00E5D9A0 /* ETAMarker.swift in Sources */,
+				6CDCC61B20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */,
 				6CBB4EA11FB4DF7D00C31183 /* FSCalendar.m in Sources */,
 				6C91BBD21FA7D3D70033C2B1 /* ColorDefinitions.swift in Sources */,
 				6C20E1A71FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */,
@@ -2294,6 +2301,7 @@
 				6C58332E1FB3AF8000F6BFE0 /* ModalSize.swift in Sources */,
 				6C6926801FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */,
 				6CC37E551FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
+				6CDCC61C20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */,
 				6CD47D161FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
 				6C20E19A1FBE14E300E5D9A0 /* GMLegs.swift in Sources */,
 				6C91BBE21FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,

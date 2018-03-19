@@ -102,9 +102,8 @@ extension ServiceListViewController: UITableViewDataSource, UITableViewDelegate 
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        //StateServiceManager.sharedInstance.updateState(state: .needService)
         tableView.deselectRow(at: indexPath, animated: true)
-        //self.navigationController?.popViewController(animated: false)
+        self.navigationController?.pushViewController(ServiceDetailViewController(service: services![indexPath.row]), animated: true)
     }
     
 }

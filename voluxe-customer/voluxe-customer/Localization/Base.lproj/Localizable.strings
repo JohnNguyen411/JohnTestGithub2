@@ -167,6 +167,7 @@
 "TypeDescriptionHere" = "Type description here";
 "AddDescription" = "Add Description";
 "DiagnosticAndService" = "Diagnostic and service";
+"FactoryScheduledMaintenance" = "Factory Scheduled Maintenance";
 
 /***************** Settings ***************/
 "Settings" = "Settings";
