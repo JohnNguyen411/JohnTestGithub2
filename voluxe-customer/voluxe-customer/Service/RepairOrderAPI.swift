@@ -20,15 +20,15 @@ class RepairOrderAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Booking, or an AFError if an error occured
      */
-    func getRepairOrderTypes() -> Future<ResponseObject<MappableDataObject<Booking>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, AFError>()
+    func getRepairOrderTypes() -> Future<ResponseObject<MappableDataArray<RepairOrderType>>?, AFError> {
+        let promise = Promise<ResponseObject<MappableDataArray<RepairOrderType>>?, AFError>()
         
         
         NetworkRequest.request(url: "/v1/repair-order-types/", queryParameters: nil, withBearer: true).responseJSON { response in
-            var responseObject: ResponseObject<MappableDataObject<Booking>>?
+            var responseObject: ResponseObject<MappableDataArray<RepairOrderType>>?
             
             if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<Booking>>(json: json)
+                responseObject = ResponseObject<MappableDataArray<RepairOrderType>>(json: json)
             }
             
             if response.error == nil {

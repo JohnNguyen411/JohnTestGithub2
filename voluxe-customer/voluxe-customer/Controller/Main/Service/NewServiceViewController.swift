@@ -88,7 +88,13 @@ extension NewServiceViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.navigationController?.pushViewController(ServiceMultiselectListViewController(), animated: true)
+        if indexPath.row == 0 {
+            self.navigationController?.pushViewController(ServiceListViewController(), animated: true)
+        } else if indexPath.row == 1 {
+            self.navigationController?.pushViewController(ServiceListViewController(), animated: true)
+        } else {
+            self.navigationController?.pushViewController(ServiceMultiselectListViewController(), animated: true)
+        }
     }
     
 }

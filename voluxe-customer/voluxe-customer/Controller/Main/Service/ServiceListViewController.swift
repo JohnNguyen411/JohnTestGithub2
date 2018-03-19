@@ -7,19 +7,13 @@
 //
 
 import Foundation
+import MBProgressHUD
+import RealmSwift
 
 class ServiceListViewController: BaseViewController {
     
-    var mockRoutineServices: [Service] = [Service(name: "Oil Change", price: 100.0), Service(name: "Rotate/Balance Tires", price: 100.0), Service(name: "Check Fluids", price: 100.0),
-                                          Service(name: "Battery Inspection", price: 100.0), Service(name: "Replace Cabin Air Filter", price: 100.0), Service(name: "Replace Engine Air Filter", price: 100.0),
-                                          Service(name: "Replace Spark Plugs", price: 100.0)]
-    
-    var mockRepairsServices: [Service] = [Service(name: "Replace Windshield", price: 100.0), Service(name: "Replace Window", price: 100.0), Service(name: "Repair Body", price: 100.0),
-                                          Service(name: "Touch up Paint", price: 100.0), Service(name: "Another Repair", price: 100.0), Service(name: "Another Repair", price: 100.0)]
-    
-    
-    var services: [ServiceGroup]?
-    let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
+    var services: [RepairOrderType]?
+    let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
     
     override init() {
         super.init()
@@ -37,8 +31,25 @@ class ServiceListViewController: BaseViewController {
         tableView.delegate = self
         tableView.register(ServiceCell.self, forCellReuseIdentifier: ServiceCell.reuseId)
         
-        showServices(services: [ServiceGroup(name: "Routine Services", services: mockRoutineServices), ServiceGroup(name: "Repairs", services: mockRoutineServices)])
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
+            if let services = services?.data?.result {
+                if let realm = try? Realm() {
+                    try? realm.write {
+                        realm.add(services, update: true)
+                    }
+                    
+                    let filteredResults = realm.objects(RepairOrderType.self).filter("name != 'Custom'")
+                    self.showServices(services: Array(filteredResults))
+                }
+            }
+            MBProgressHUD.hide(for: self.view, animated: true)
+            }.onFailure { error in
+                Logger.print(error)
+                MBProgressHUD.hide(for: self.view, animated: true)
+        }        
     }
+    
     
     override func setupViews() {
         super.setupViews()
@@ -49,20 +60,27 @@ class ServiceListViewController: BaseViewController {
         }
     }
     
-    private func showServices(services: [ServiceGroup]) {
+    private func showServices(services: [RepairOrderType]) {
         self.services = services
-        tableView.reloadData()
+        self.tableView.reloadData()
+        
+        let viewHeight = self.view.frame.height
+        let servicesHeight = CGFloat(services.count) * ServiceCell.height
+        if servicesHeight < CGFloat(viewHeight - ServiceCell.height) {
+            tableView.snp.remakeConstraints { make in
+                make.left.right.top.equalToSuperview()
+                make.height.equalTo(servicesHeight)
+            }
+        }
+        
     }
-    
 }
 
 extension ServiceListViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let groupServices = services {
-            if let services = groupServices[section].services {
-                return services.count
-            }
+        if let services = services {
+            return services.count
         }
         return 0
     }
@@ -75,45 +93,18 @@ extension ServiceListViewController: UITableViewDataSource, UITableViewDelegate 
         let cell = tableView.dequeueReusableCell(withIdentifier: ServiceCell.reuseId, for: indexPath) as! ServiceCell
         // Similar to above, first check if there is a valid section of table.
         // Then we check that for the section there is a row.
-        if let groupService = services {
-            if let serviceList = groupService[indexPath.section].services {
-                let service = serviceList[indexPath.row]
-                cell.setService(service: service.name!)
-            }
+        if let services = services {
+            let service = services[indexPath.row]
+            cell.setService(service: service.name!)
         }
         return cell
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        if let services = services {
-            return services.count
-        }
-        return 0
-        
-    }
-    
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return ServiceCell.height
-    }
-    
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let services = services {
-            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: ServiceCell.height))
-            view.backgroundColor = UIColor.clear
-            let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: ServiceCell.height))
-            label.font = UIFont.boldSystemFont(ofSize: 15)
-            label.textColor = UIColor.luxeDarkGray()
-            label.text = services[section].name?.uppercased()
-            view.addSubview(label)
-            return view
-        }
-        return nil
-    }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        StateServiceManager.sharedInstance.updateState(state: .needService)
+        //StateServiceManager.sharedInstance.updateState(state: .needService)
         tableView.deselectRow(at: indexPath, animated: true)
-        self.navigationController?.popViewController(animated: false)
+        //self.navigationController?.popViewController(animated: false)
     }
     
 }
