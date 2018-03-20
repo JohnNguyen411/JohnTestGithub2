@@ -29,6 +29,12 @@ class ServiceDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         label.attributedText = toHtml(string: service.name!)
+        
+        if let _ = RequestedServiceManager.sharedInstance.getRepairOrder() {
+            confirmButton.isEnabled = false
+            confirmButton.alpha = 0
+        }
+        
         confirmButton.setActionBlock {
             // shedule service
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: RepairOrder(repairOrderType: self.service))

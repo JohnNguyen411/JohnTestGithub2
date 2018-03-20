@@ -366,6 +366,9 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     //MARK: Actions methods
     func showDescriptionClick() {
+        if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder(), let repairOrderType = repairOrder.repairOrderType {
+            childViewDelegate?.pushViewController(controller: ServiceDetailViewController(service: repairOrderType), animated: true, backLabel: .Back, title: repairOrderType.name)
+        }
     }
     
     func leftButtonClick() {
