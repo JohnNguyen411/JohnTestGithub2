@@ -106,6 +106,7 @@ class LoadingViewController: ChildViewController {
                     self.appDelegate?.phoneVerificationScreen()
                 } else {
                     self.callVehicle(customerId: customer.id)
+                    self.refreshRepairOrderTypes()
                 }
                 
             } else {
@@ -225,6 +226,20 @@ class LoadingViewController: ChildViewController {
             }.onFailure { error in
                 // todo show error
                 StateServiceManager.sharedInstance.updateState(state: .idle)
+        }
+    }
+    
+    private func refreshRepairOrderTypes() {
+        RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
+            if let services = services?.data?.result {
+                if let realm = try? Realm() {
+                    try? realm.write {
+                        realm.add(services, update: true)
+                    }
+                }
+            }
+            }.onFailure { error in
+                Logger.print(error)
         }
     }
 }

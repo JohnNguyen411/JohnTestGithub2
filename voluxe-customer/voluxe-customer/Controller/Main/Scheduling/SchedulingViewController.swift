@@ -265,12 +265,12 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     
     func fillViews() {
         
-        if let service = RequestedServiceManager.sharedInstance.getService() {
+        if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
             var title = String.RecommendedService
             if RequestedServiceManager.sharedInstance.isSelfInitiated() {
                 title = .SelectedService
             }
-            scheduledServiceView.setTitle(title: title, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
+            scheduledServiceView.setTitle(title: title, leftDescription: repairOrder.name!, rightDescription: "")
         }
         
         fillDealership()

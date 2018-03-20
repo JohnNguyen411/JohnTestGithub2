@@ -8,7 +8,6 @@
 
 import Foundation
 import ObjectMapper
-import CoreLocation
 import RealmSwift
 
 class RepairOrderType: Object, Mappable {
@@ -45,6 +44,12 @@ class RepairOrderType: Object, Mappable {
         return .other
     }
  
+    static func categoryName(category: RepairOrderCategory) -> String {
+        if category == .routineMaintenanceByDistance {
+            return .MilestoneServices
+        }
+        return .OtherMaintenanceRepairs
+    }
     
 }
 

@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import RealmSwift
+import MBProgressHUD
 
 class NewServiceViewController: BaseViewController {
     
@@ -21,8 +23,7 @@ class NewServiceViewController: BaseViewController {
     }()
     
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
-    var services: [ServiceGroup]?
-
+    var services: [String]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,22 @@ class NewServiceViewController: BaseViewController {
         tableView.register(ServiceCell.self, forCellReuseIdentifier: ServiceCell.reuseId)
         tableView.isScrollEnabled = false
         
-        showServices(services: [ServiceGroup(name: String.MilestoneServices, services: nil), ServiceGroup(name: String.RecallServices, services: nil), ServiceGroup(name: String.OtherMaintenanceRepairs, services: nil)])
+        RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
+            if let services = services?.data?.result {
+                if let realm = try? Realm() {
+                    try? realm.write {
+                        realm.add(services, update: true)
+                    }
+                    
+                    self.showServices(repairOrderTypes: [String.MilestoneServices, String.OtherMaintenanceRepairs])
+                }
+            }
+            MBProgressHUD.hide(for: self.view, animated: true)
+            }.onFailure { error in
+                Logger.print(error)
+                MBProgressHUD.hide(for: self.view, animated: true)
+        }
+        
     }
     
     override func setupViews() {
@@ -57,8 +73,8 @@ class NewServiceViewController: BaseViewController {
         
     }
     
-    private func showServices(services: [ServiceGroup]) {
-        self.services = services
+    private func showServices(repairOrderTypes: [String]) {
+        self.services = repairOrderTypes
         tableView.reloadData()
     }
     
@@ -81,7 +97,7 @@ extension NewServiceViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: ServiceCell.reuseId, for: indexPath) as! ServiceCell
         if let groupService = services {
-            cell.setService(service: groupService[indexPath.row].name!)
+            cell.setService(service: groupService[indexPath.row])
         }
         return cell
     }
@@ -90,10 +106,12 @@ extension NewServiceViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 0 {
             self.navigationController?.pushViewController(ServiceListViewController(), animated: true)
-        } else if indexPath.row == 1 {
-            self.navigationController?.pushViewController(ServiceListViewController(), animated: true)
         } else {
-            self.navigationController?.pushViewController(ServiceMultiselectListViewController(), animated: true)
+            if let realm = try? Realm() {
+                if let filteredResults = realm.objects(RepairOrderType.self).filter("category = '\(RepairOrderCategory.custom.rawValue)'").first {
+                    self.navigationController?.pushViewController(ServiceMultiselectListViewController(repairOrderType: filteredResults), animated: true)
+                }
+            }
         }
     }
     

@@ -206,12 +206,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     func fillViews() {
         if serviceState == .idle || serviceState == .needService {
-            var service = RequestedServiceManager.sharedInstance.getService()
-            if service == nil {
-                service = Service.mockService()
-                RequestedServiceManager.sharedInstance.setService(service: service!, selfInitiated: true)
-            }
-            
             noteLabel.text = .NotePickup
         } else if serviceState == .serviceCompleted {
             noteLabel.text = .NoteDelivery
@@ -221,7 +215,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             vehicle.setVehicleImage(imageView: vehicleImageView)
         }
         
-        if let service = RequestedServiceManager.sharedInstance.getService() {
+        if let service = RequestedServiceManager.sharedInstance.getRepairOrder() {
             var title = String.RecommendedService
             if RequestedServiceManager.sharedInstance.isSelfInitiated() {
                 title = .SelectedService
@@ -229,7 +223,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             } else {
                 showUpdateLabel(show: true, title: .New, width: 40, right: true)
             }
-            scheduledServiceView.setTitle(title: title, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
+            scheduledServiceView.setTitle(title: title, leftDescription: service.name!, rightDescription: "")
         }
     }
     

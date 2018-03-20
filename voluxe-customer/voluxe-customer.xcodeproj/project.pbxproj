@@ -70,9 +70,6 @@
 		6C20E1E01FBF770C00E5D9A0 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1DF1FBF770C00E5D9A0 /* Request.swift */; };
 		6C20E1E11FBF770C00E5D9A0 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1DF1FBF770C00E5D9A0 /* Request.swift */; };
 		6C20E1E21FBF770C00E5D9A0 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1DF1FBF770C00E5D9A0 /* Request.swift */; };
-		6C20E1E81FBF851B00E5D9A0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1E71FBF851B00E5D9A0 /* Service.swift */; };
-		6C20E1E91FBF851B00E5D9A0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1E71FBF851B00E5D9A0 /* Service.swift */; };
-		6C20E1EA1FBF851B00E5D9A0 /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1E71FBF851B00E5D9A0 /* Service.swift */; };
 		6C20E1EC1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1EB1FC3A5C000E5D9A0 /* ChildViewController.swift */; };
 		6C20E1ED1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1EB1FC3A5C000E5D9A0 /* ChildViewController.swift */; };
 		6C20E1EE1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1EB1FC3A5C000E5D9A0 /* ChildViewController.swift */; };
@@ -352,9 +349,6 @@
 		6CBAA6CF2024E91300F35ECF /* ServicesLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6CE2024E91300F35ECF /* ServicesLocalization.swift */; };
 		6CBAA6D02024E91300F35ECF /* ServicesLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6CE2024E91300F35ECF /* ServicesLocalization.swift */; };
 		6CBAA6D12024E91300F35ECF /* ServicesLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6CE2024E91300F35ECF /* ServicesLocalization.swift */; };
-		6CBAA6D320251B4800F35ECF /* ServiceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6D220251B4800F35ECF /* ServiceGroup.swift */; };
-		6CBAA6D420251B4800F35ECF /* ServiceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6D220251B4800F35ECF /* ServiceGroup.swift */; };
-		6CBAA6D520251B4800F35ECF /* ServiceGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6D220251B4800F35ECF /* ServiceGroup.swift */; };
 		6CBB4E821FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E651FB4DF7A00C31183 /* FSCalendarDelegationProxy.m */; };
 		6CBB4E831FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E651FB4DF7A00C31183 /* FSCalendarDelegationProxy.m */; };
 		6CBB4E841FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E651FB4DF7A00C31183 /* FSCalendarDelegationProxy.m */; };
@@ -521,6 +515,9 @@
 		6CDCC61A20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */; };
 		6CDCC61B20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */; };
 		6CDCC61C20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */; };
+		6CDCC61E20607EB400DFA831 /* DealershipRepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */; };
+		6CDCC61F20607EB400DFA831 /* DealershipRepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */; };
+		6CDCC62020607EB400DFA831 /* DealershipRepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */; };
 		6CDCD7F7200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		6CDCD7F8200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		6CDCD7F9200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
@@ -602,7 +599,6 @@
 		6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedServiceManager.swift; sourceTree = "<group>"; };
 		6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtils.swift; sourceTree = "<group>"; };
 		6C20E1DF1FBF770C00E5D9A0 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
-		6C20E1E71FBF851B00E5D9A0 /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		6C20E1EB1FC3A5C000E5D9A0 /* ChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChildViewController.swift; sourceTree = "<group>"; };
 		6C2208761FBCEF7A00874882 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6C22087B1FBD0C6700874882 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
@@ -704,7 +700,6 @@
 		6CBAA6C62023FD3300F35ECF /* ServiceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceListViewController.swift; sourceTree = "<group>"; };
 		6CBAA6CA2023FEE800F35ECF /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		6CBAA6CE2024E91300F35ECF /* ServicesLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesLocalization.swift; sourceTree = "<group>"; };
-		6CBAA6D220251B4800F35ECF /* ServiceGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceGroup.swift; sourceTree = "<group>"; };
 		6CBB4E621FB4DF7900C31183 /* FSCalendarStickyHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarStickyHeader.h; sourceTree = "<group>"; };
 		6CBB4E631FB4DF7900C31183 /* FSCalendarTransitionCoordinator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarTransitionCoordinator.h; sourceTree = "<group>"; };
 		6CBB4E641FB4DF7900C31183 /* FSCalendarScopeHandle.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarScopeHandle.h; sourceTree = "<group>"; };
@@ -784,6 +779,7 @@
 		6CDCC611205C40B400DFA831 /* RepairOrderAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrderAPI.swift; sourceTree = "<group>"; };
 		6CDCC615205C461100DFA831 /* RepairOrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrderType.swift; sourceTree = "<group>"; };
 		6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
+		6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealershipRepairOrder.swift; sourceTree = "<group>"; };
 		6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLDateFormatter.swift; sourceTree = "<group>"; };
 		6CE687822036634A00D915FC /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledBookingViewController.swift; sourceTree = "<group>"; };
@@ -971,6 +967,7 @@
 				6C3FB2A81FA2574C00B22EAB /* Customer.swift */,
 				6C9B320E202E0CED006380B9 /* CustomerAddress.swift */,
 				6C20E1CA1FBF698E00E5D9A0 /* Dealership.swift */,
+				6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */,
 				6CCC821A20116B3A003BB3F0 /* DealershipTimeSlot.swift */,
 				6C22087B1FBD0C6700874882 /* Driver.swift */,
 				6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */,
@@ -985,8 +982,6 @@
 				6CDCC615205C461100DFA831 /* RepairOrderType.swift */,
 				6C20E1DF1FBF770C00E5D9A0 /* Request.swift */,
 				6CDCC5FD2053592700DFA831 /* RequestType.swift */,
-				6C20E1E71FBF851B00E5D9A0 /* Service.swift */,
-				6CBAA6D220251B4800F35ECF /* ServiceGroup.swift */,
 				6CE687822036634A00D915FC /* State.swift */,
 				6C4D91BA1FDB15F90031E3CB /* Token.swift */,
 			);
@@ -1989,6 +1984,7 @@
 				6CD474AC2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */,
 				6C9B320B202CFE28006380B9 /* AccountSettingsViewController.swift in Sources */,
 				6C5833131FB3AF5600F6BFE0 /* ModalSize.swift in Sources */,
+				6CDCC61E20607EB400DFA831 /* DealershipRepairOrder.swift in Sources */,
 				6C32C30B1FBCC1DD00B1218C /* StepView.swift in Sources */,
 				6CC37E531FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
 				6C7342031FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
@@ -1999,7 +1995,6 @@
 				6CC83A8B1FA1481900FE0633 /* StringUtils.swift in Sources */,
 				6C3FB2AC1FA2574C00B22EAB /* Customer.swift in Sources */,
 				6C90CC1220113323002594F5 /* LoadingViewController.swift in Sources */,
-				6CBAA6D320251B4800F35ECF /* ServiceGroup.swift in Sources */,
 				6CD3BCAE200E85FE001DD79B /* RepairOrder.swift in Sources */,
 				6C88DC941FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6CCCF23B2048BA33004BF1A6 /* VehicleModel.swift in Sources */,
@@ -2070,7 +2065,6 @@
 				6CCCF23320488C5C004BF1A6 /* FTUEAddVehicleViewController.swift in Sources */,
 				6CCC821B20116B3A003BB3F0 /* DealershipTimeSlot.swift in Sources */,
 				6CA968B52023933800FBEEAB /* VehicleLocalization.swift in Sources */,
-				6C20E1E81FBF851B00E5D9A0 /* Service.swift in Sources */,
 				6CBB4E8E1FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
 				6C5833181FB3AF5600F6BFE0 /* PresentrAnimation.swift in Sources */,
 				6C7DDE1D1FE1B864000E2822 /* VLAnalytics.swift in Sources */,
@@ -2179,9 +2173,9 @@
 				6C20E18C1FBE0E6200E5D9A0 /* GoogleDirectionAPI.swift in Sources */,
 				6CDCC617205C461100DFA831 /* RepairOrderType.swift in Sources */,
 				6C20E1B31FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift in Sources */,
-				6CBAA6D420251B4800F35ECF /* ServiceGroup.swift in Sources */,
 				6C5833361FB3AF9900F6BFE0 /* PresentrAnimation.swift in Sources */,
 				6C7342041FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
+				6CDCC61F20607EB400DFA831 /* DealershipRepairOrder.swift in Sources */,
 				6CD0C8841FD9FB73008E4A72 /* DealershipAPI.swift in Sources */,
 				6C88DC991FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6CBB4E981FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */,
@@ -2191,7 +2185,6 @@
 				6C9B3200202A51B3006380B9 /* SettingsViewController.swift in Sources */,
 				6C9543A31FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6C20E1A11FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */,
-				6C20E1E91FBF851B00E5D9A0 /* Service.swift in Sources */,
 				6C7342001FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
 				6C7DDE141FDB664D000E2822 /* String+Utils.swift in Sources */,
 				6CBB4E9E1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
@@ -2361,6 +2354,7 @@
 				6C88DC9A1FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6CBB4E991FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */,
 				6C91BBD91FA7D6220033C2B1 /* ViewPager.swift in Sources */,
+				6CDCC62020607EB400DFA831 /* DealershipRepairOrder.swift in Sources */,
 				6CD3BCA620099597001DD79B /* Vehicle.swift in Sources */,
 				6C9B320D202CFE28006380B9 /* AccountSettingsViewController.swift in Sources */,
 				6C9543A41FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
@@ -2371,7 +2365,6 @@
 				6C7495D91FDA0CEB0036FC08 /* Meta.swift in Sources */,
 				6C20E1A21FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */,
 				6C9B3201202A51B4006380B9 /* SettingsViewController.swift in Sources */,
-				6C20E1EA1FBF851B00E5D9A0 /* Service.swift in Sources */,
 				6C7342011FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
 				6CBB4E9F1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
 				6C58332C1FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */,
@@ -2396,7 +2389,6 @@
 				6C7DDE151FDB664D000E2822 /* String+Utils.swift in Sources */,
 				6C32C3191FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */,
 				6CD474B620460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */,
-				6CBAA6D520251B4800F35ECF /* ServiceGroup.swift in Sources */,
 				6C2208821FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */,
 				6C7E66E71FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
 				6CBF9FE11FC5F987002BC7FC /* FTUEFlow_UITests.swift in Sources */,

@@ -61,14 +61,14 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     
     let drivability = [DrivableType.yes, DrivableType.no, DrivableType.notSure]
     var checkedCellIndex = 0
-    let service: Service
+    let service: RepairOrder
     
-    init(services: [Service]) {
+    init(repairOrderType: RepairOrderType, services: [String]) {
         var serviceTitle = String.Service
         for service in services {
-            serviceTitle += "\(service.name). "
+            serviceTitle += "\(service). "
         }
-        self.service = Service(customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
+        self.service = RepairOrder(repairOrderType: repairOrderType, customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
         super.init()
     }
     
@@ -91,7 +91,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         descriptionTextView.delegate = self
         
         confirmButton.setActionBlock {
-            RequestedServiceManager.sharedInstance.setService(service: self.service)
+            RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: self.service)
             StateServiceManager.sharedInstance.updateState(state: .needService)
             self.navigationController?.popToRootViewController(animated: false)
         }

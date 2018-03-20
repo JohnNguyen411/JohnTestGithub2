@@ -31,6 +31,8 @@ class ServiceDetailViewController: BaseViewController {
         label.attributedText = toHtml(string: service.name!)
         confirmButton.setActionBlock {
             // shedule service
+            RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: RepairOrder(repairOrderType: self.service))
+            StateServiceManager.sharedInstance.updateState(state: .needService)
         }
     }
     

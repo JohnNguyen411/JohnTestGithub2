@@ -89,10 +89,9 @@ class ScheduledBookingViewController: SchedulingViewController {
             pickupLocationView.setTitle(title: .PickupLocation, leftDescription: requestLocation.address!, rightDescription: "")
         }
         
-        //todo: unmock
-        let service = Service.mockService()
-        
-        scheduledServiceView.setTitle(title: .SelectedService, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
+        if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
+            scheduledServiceView.setTitle(title: .SelectedService, leftDescription: repairOrder.name!, rightDescription: "")
+        }
         
         if let dealership = booking.dealership {
             self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")

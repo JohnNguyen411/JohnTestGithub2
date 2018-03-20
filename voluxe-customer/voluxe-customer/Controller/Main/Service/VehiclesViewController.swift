@@ -164,7 +164,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
             }
             scheduledServiceView.isHidden = false
             //todo: remove MOCK SERVICE
-            scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: Service.mockService().name!)
+            scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: RepairOrder.mockRepairOrder().name!)
             confirmButton.animateAlpha(show: false)
         } else {
             scheduledServiceView.snp.updateConstraints { make in

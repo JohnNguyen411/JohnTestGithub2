@@ -33,8 +33,18 @@ class ServiceMultiselectListViewController: BaseViewController {
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
     let confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), actionBlock: nil)
 
-    var services: [Service]?
+    let repairOrderType: RepairOrderType
+    var services: [String]?
     var selected = [Int: Bool]()
+    
+    init(repairOrderType: RepairOrderType) {
+        self.repairOrderType = repairOrderType
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     
     override func viewDidLoad() {
@@ -57,19 +67,19 @@ class ServiceMultiselectListViewController: BaseViewController {
         self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
 
         
-        showServices(services: [Service(name: "Exterior Body", price: nil), Service(name: "Doors or cabin interior", price: nil), Service(name: "Steering wheel or Dashboard", price: nil), Service(name: "Tires, wheels, or brakes", price: nil), Service(name: "Engine or transmission", price: nil), Service(name: "Battery, lights, AC, or electrical", price: nil), Service(name: "Something under the hood", price: nil), Service(name: "Other", price: nil), Service(name: "I don't know", price: nil)])
+        showServices(services: ["Exterior Body", "Doors or cabin interior", "Steering wheel or Dashboard", "Tires, wheels, or brakes", "Engine or transmission", "Battery, lights, AC, or electrical", "Something under the hood", "Other", "I don't know"])
         
         confirmButton.setActionBlock {
             guard let services = self.services else {
                 return
             }
-            var selectedService: [Service] = []
+            var selectedService: [String] = []
             for dictElement in self.selected.enumerated() {
                 if dictElement.element.value {
                     selectedService.append(services[dictElement.element.key])
                 }
             }
-            self.navigationController?.pushViewController(OtherServiceViewController(services: selectedService), animated: true)
+            self.navigationController?.pushViewController(OtherServiceViewController(repairOrderType: self.repairOrderType, services: selectedService), animated: true)
         }
     }
     
@@ -117,7 +127,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         
     }
     
-    private func showServices(services: [Service]) {
+    private func showServices(services: [String]) {
         self.services = services
         tableView.reloadData()
     }
@@ -149,7 +159,7 @@ extension ServiceMultiselectListViewController: UITableViewDataSource, UITableVi
             if selectedRow == nil {
                 selectedRow = false
             }
-            cell.setText(text: services[indexPath.row].name!, selected: selectedRow!)
+            cell.setText(text: services[indexPath.row], selected: selectedRow!)
         }
         return cell
     }
