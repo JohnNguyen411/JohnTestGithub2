@@ -33,6 +33,7 @@ class ServiceDetailViewController: BaseViewController {
             // shedule service
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: RepairOrder(repairOrderType: self.service))
             StateServiceManager.sharedInstance.updateState(state: .needService)
+            self.navigationController?.popToRootViewController(animated: true)
         }
     }
     
@@ -51,8 +52,8 @@ class ServiceDetailViewController: BaseViewController {
         
         confirmButton.snp.makeConstraints { make in
             make.right.left.equalTo(serviceTitle)
-            make.top.equalTo(serviceTitle.snp.bottom).offset(20)
             make.bottom.equalToSuperview().offset(-10)
+            make.height.equalTo(VLButton.primaryHeight)
         }
         
         label.snp.makeConstraints { make in

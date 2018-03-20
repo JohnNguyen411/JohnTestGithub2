@@ -45,12 +45,29 @@ class RepairOrderAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a RepairOrderType, or an AFError if an error occured
      */
-    func getDealershipRepairOrder(dealershipIds: [Int]) -> Future<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, AFError> {
+    func getDealershipRepairOrder(dealerships: [Dealership], repairOrderTypeId: Int?) -> Future<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, AFError> {
+        var ids: [Int] = []
+        for dealership in dealerships {
+            ids.append(dealership.id)
+        }
+        return getDealershipRepairOrder(dealershipIds: ids, repairOrderTypeId: repairOrderTypeId)
+    }
+    
+    /**
+     Get all dealership repair orders
+     
+     - Returns: A Future ResponseObject containing a RepairOrderType, or an AFError if an error occured
+     */
+    func getDealershipRepairOrder(dealershipIds: [Int], repairOrderTypeId: Int?) -> Future<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, AFError>()
         
-        let params: Parameters = [
+        var params: Parameters = [
             "dealership_id__in": dealershipIds
         ]
+        
+        if let repairOrderTypeId = repairOrderTypeId {
+            params["repair_order_type_id"] = repairOrderTypeId
+        }
         
         NetworkRequest.request(url: "/v1/dealership-repair-orders", queryParameters: params, withBearer: true).responseJSON { response in
             var responseObject: ResponseObject<MappableDataArray<DealershipRepairOrder>>?

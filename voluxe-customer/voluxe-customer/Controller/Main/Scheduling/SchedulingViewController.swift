@@ -287,6 +287,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func fetchDealershipsForLocation(location: CLLocationCoordinate2D?, completion: (() -> Swift.Void)? = nil) {
+        
         if let location = location {
             DealershipAPI().getDealerships(location: location).onSuccess { result in
                 if let dealerships = result?.data?.result {
@@ -305,31 +306,39 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
     }
     
+    // From list of dealership, check if offering service
     private func handleDealershipsResponse(dealerships: [Dealership]?) {
         if let dealerships = dealerships {
             //todo: hide loading if needed
             self.dealerships = dealerships
             if dealerships.count > 0 {
                 
-                if StateServiceManager.sharedInstance.isPickup() && RequestedServiceManager.sharedInstance.getDealership() == nil {
-                    RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
-                }
-                if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-                    if let dealershipName = dealership.name {
-                        self.dealershipView.setTitle(title: .Dealership, leftDescription: dealershipName, rightDescription: "")
+                //todo check with
+                //getDealershipRepairOrder if available
+                RepairOrderAPI().getDealershipRepairOrder(dealerships: dealerships, repairOrderTypeId: RequestedServiceManager.sharedInstance.getRepairOrder()?.repairOrderType?.id).onSuccess { result in
+                    
+                    if StateServiceManager.sharedInstance.isPickup() && RequestedServiceManager.sharedInstance.getDealership() == nil {
+                        RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
                     }
-                }
-                
-                self.dealershipTestView.isHidden = false
-                
-                if let realm = self.realm {
-                    try? realm.write {
-                        realm.add(dealerships, update: true)
+                    if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                        if let dealershipName = dealership.name {
+                            self.dealershipView.setTitle(title: .Dealership, leftDescription: dealershipName, rightDescription: "")
+                        }
                     }
+                    
+                    self.dealershipTestView.isHidden = false
+                    
+                    if let realm = self.realm {
+                        try? realm.write {
+                            realm.add(dealerships, update: true)
+                        }
+                    }
+                    }.onFailure { error in
+                        // No nearby dealership offering that service
+                        // todo show error
                 }
             }
         }
-        
     }
     
     func showDealershipModal(dismissOnTap: Bool) {
@@ -531,16 +540,16 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         
         var openNext = false
         RequestedServiceManager.sharedInstance.setLoaner(loaner: loanerNeeded)
-
+        
         if pickupScheduleState.rawValue < SchedulePickupState.loaner.rawValue {
             pickupScheduleState = .loaner
             openNext = true
         } else {
             if valueChanged {
                 self.confirmButton.animateAlpha(show: false)
-
+                
                 scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "", rightDescription: "")
-
+                
                 // invalidate Date/Time
                 if StateServiceManager.sharedInstance.isPickup() {
                     RequestedServiceManager.sharedInstance.setPickupTimeSlot(timeSlot: nil)
