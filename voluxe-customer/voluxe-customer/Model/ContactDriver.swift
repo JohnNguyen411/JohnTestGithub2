@@ -22,7 +22,7 @@ class ContactDriver: NSObject, Mappable {
     func mapping(map: Map) {
         driver <- map["recipient"]
         textPhoneNumber <- map["text_messages.phone_number"]
-        voicePhoneNumber <- map["text_messages.phone_number"]
+        voicePhoneNumber <- map["voice_calls.phone_number"]
         bodyHeader <- map["text_messages.bodyHeader"]
     }
     

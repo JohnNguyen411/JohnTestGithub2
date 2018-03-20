@@ -317,7 +317,7 @@ class ScheduledViewController: ChildViewController {
                     let number = "sms:\(contactDriver.textPhoneNumber ?? "")"
                     UIApplication.shared.openURL(URL(string: number)!)
                 } else {
-                    let number = "telprompt:\(contactDriver.textPhoneNumber ?? "")"
+                    let number = "telprompt:\(contactDriver.voicePhoneNumber ?? "")"
                     UIApplication.shared.openURL(URL(string: number)!)
                 }
             }
