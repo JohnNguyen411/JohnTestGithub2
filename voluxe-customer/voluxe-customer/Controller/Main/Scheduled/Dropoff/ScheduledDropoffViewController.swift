@@ -70,10 +70,12 @@ class ScheduledDropoffViewController: ScheduledViewController {
         guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
             return
         }
+        let state = StateServiceManager.sharedInstance.getState()
+
         if let dropoffRequest = booking.dropoffRequest {
             var refreshTimeSlot = true
             
-            if let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
+            if let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock, state != .pickupScheduled {
                 self.mapVC.updateDriverLocation(location: coordinates)
                 if let dropoffRequestLocation = dropoffRequest.location, let dropoffRequestCoordinates = dropoffRequestLocation.getLocation() {
                     refreshTimeSlot = false

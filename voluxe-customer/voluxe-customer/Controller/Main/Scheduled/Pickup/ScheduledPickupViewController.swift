@@ -68,10 +68,11 @@ class ScheduledPickupViewController: ScheduledViewController {
         guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
             return
         }
+        let state = StateServiceManager.sharedInstance.getState()
         if let pickupRequest = booking.pickupRequest {
             var refreshTimeSlot = true
 
-            if let driver = pickupRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
+            if let driver = pickupRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock, state != .pickupScheduled {
                 self.mapVC.updateDriverLocation(location: coordinates)
                 if let pickupRequestLocation = pickupRequest.location, let pickupRequestCoordinates = pickupRequestLocation.getLocation() {
                     self.getEta(fromLocation: coordinates, toLocation: pickupRequestCoordinates)
