@@ -188,6 +188,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                         realm.add(booking, update: true)
                     }
                 }
+                // createRepairOrder
                 self.createPickupRequest(customerId: customerId, booking: booking)
             } else {
                 // todo show error
@@ -198,6 +199,53 @@ class SchedulingPickupViewController: SchedulingViewController {
                 // todo show error
                 self.confirmButton.isLoading = false
         }
+    }
+    
+    private func createRepairOrder(customerId: Int, booking: Booking, repairOrder: RepairOrder) {
+        
+        if Config.sharedInstance.isMock {
+            // if mock, skip service for now
+            createPickupRequest(customerId: customerId, booking: booking)
+            return
+        }
+        
+        guard let repairOrderType = repairOrder.repairOrderType else {
+            // todo show error
+            return
+        }
+        
+        guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else {
+            // todo show error
+            return
+        }
+        
+         guard let realm = self.realm else {
+            // todo show error
+            return
+        }
+        
+        guard let dealershipRepairOrder = realm.objects(DealershipRepairOrder.self).filter("repairOrderTypeId = \(repairOrderType.id) AND dealershipId = \(dealership.id) AND enabled = true").first else {
+            // todo show error
+            return
+        }
+        
+        RepairOrderAPI().createRepairOrder(customerId: customerId, bookingId: booking.id, dealershipRepairOrderId: dealershipRepairOrder.id, notes: repairOrder.notes).onSuccess { result in
+            if let repairOrder = result?.data?.result {
+                try? realm.write {
+                    realm.add(repairOrder, update: true)
+                }
+                self.createPickupRequest(customerId: customerId, booking: booking)
+            } else {
+                // todo show error
+                self.confirmButton.isLoading = false
+            }
+            // todo show error
+            self.confirmButton.isLoading = false
+            }.onFailure { error in
+                // todo show error
+                self.confirmButton.isLoading = false
+        }
+        
     }
     
     private func createPickupRequest(customerId: Int, booking: Booking) {
@@ -222,6 +270,10 @@ class SchedulingPickupViewController: SchedulingViewController {
                 }.onFailure { error in
                     // todo show error
                     self.confirmButton.isLoading = false
+                    // an error occured while creating the request, try again with same booking
+                    self.showDialog(title: .Error, message: .GenericError, buttonTitle: String.Retry, completion: {
+                        self.createPickupRequest(customerId: customerId, booking: booking)
+                    })
             }
         }
     }

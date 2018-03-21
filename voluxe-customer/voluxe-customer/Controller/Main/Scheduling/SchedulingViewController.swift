@@ -292,6 +292,35 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             DealershipAPI().getDealerships(location: location).onSuccess { result in
                 if let dealerships = result?.data?.result {
                     self.handleDealershipsResponse(dealerships: dealerships)
+                    if StateServiceManager.sharedInstance.isPickup() {
+                        if dealerships.count > 0 {
+                            
+                            //todo check with getDealershipRepairOrder if available ONLY at pickup
+                            RepairOrderAPI().getDealershipRepairOrder(dealerships: dealerships, repairOrderTypeId: RequestedServiceManager.sharedInstance.getRepairOrder()?.repairOrderType?.id).onSuccess { result in
+                                if let dealershipsRO = result?.data?.result {
+                                    if let realm = self.realm {
+                                        try? realm.write {
+                                            realm.add(dealershipsRO, update: true)
+                                        }
+                                    }
+                                    if dealershipsRO.count > 0 {
+                                        self.handleDealershipsResponse(dealerships: dealerships)
+                                    } else {
+                                        // todo show error
+                                    }
+                                } else {
+                                    // todo show error
+                                }
+                                
+
+                                }.onFailure { error in
+                                    // No nearby dealership offering that service
+                                    // todo show error
+                            }
+                        }
+                    } else {
+                        self.handleDealershipsResponse(dealerships: dealerships)
+                    }
                 } else {
                     self.dealerships = nil
                 }
@@ -313,29 +342,21 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             self.dealerships = dealerships
             if dealerships.count > 0 {
                 
-                //todo check with
-                //getDealershipRepairOrder if available
-                RepairOrderAPI().getDealershipRepairOrder(dealerships: dealerships, repairOrderTypeId: RequestedServiceManager.sharedInstance.getRepairOrder()?.repairOrderType?.id).onSuccess { result in
-                    
-                    if StateServiceManager.sharedInstance.isPickup() && RequestedServiceManager.sharedInstance.getDealership() == nil {
-                        RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
+                if StateServiceManager.sharedInstance.isPickup() && RequestedServiceManager.sharedInstance.getDealership() == nil {
+                    RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
+                }
+                if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                    if let dealershipName = dealership.name {
+                        self.dealershipView.setTitle(title: .Dealership, leftDescription: dealershipName, rightDescription: "")
                     }
-                    if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-                        if let dealershipName = dealership.name {
-                            self.dealershipView.setTitle(title: .Dealership, leftDescription: dealershipName, rightDescription: "")
-                        }
+                }
+                
+                self.dealershipTestView.isHidden = false
+                
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(dealerships, update: true)
                     }
-                    
-                    self.dealershipTestView.isHidden = false
-                    
-                    if let realm = self.realm {
-                        try? realm.write {
-                            realm.add(dealerships, update: true)
-                        }
-                    }
-                    }.onFailure { error in
-                        // No nearby dealership offering that service
-                        // todo show error
                 }
             }
         }

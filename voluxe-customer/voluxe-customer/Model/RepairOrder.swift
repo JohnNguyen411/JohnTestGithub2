@@ -15,7 +15,7 @@ class RepairOrder: Object, Mappable {
     @objc dynamic var id: Int = -1
     @objc dynamic var bookingId: Int = -1
     @objc dynamic var dealershipRepairOrderId: Int = -1
-    @objc dynamic var notes: String?
+    @objc dynamic var notes: String = ""
     @objc dynamic var state: String?
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
@@ -23,7 +23,7 @@ class RepairOrder: Object, Mappable {
     var repairOrderType: RepairOrderType?
     var name: String?
 
-    convenience init(repairOrderType: RepairOrderType, customerDescription: String?, drivable: DrivableType?) {
+    convenience init(repairOrderType: RepairOrderType, customerDescription: String, drivable: DrivableType?) {
         self.init()
         self.name = .DiagnosticAndService
         self.repairOrderType = repairOrderType
