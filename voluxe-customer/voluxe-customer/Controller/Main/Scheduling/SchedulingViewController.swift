@@ -291,7 +291,6 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         if let location = location {
             DealershipAPI().getDealerships(location: location).onSuccess { result in
                 if let dealerships = result?.data?.result {
-                    self.handleDealershipsResponse(dealerships: dealerships)
                     if StateServiceManager.sharedInstance.isPickup() {
                         if dealerships.count > 0 {
                             
