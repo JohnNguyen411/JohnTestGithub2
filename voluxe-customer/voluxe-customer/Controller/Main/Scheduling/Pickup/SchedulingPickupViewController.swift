@@ -178,6 +178,9 @@ class SchedulingPickupViewController: SchedulingViewController {
         guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else {
             return
         }
+        guard let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() else {
+            return
+        }
         
         confirmButton.isLoading = true
         
@@ -188,8 +191,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                         realm.add(booking, update: true)
                     }
                 }
-                // createRepairOrder
-                self.createPickupRequest(customerId: customerId, booking: booking)
+                self.createRepairOrder(customerId: customerId, booking: booking, repairOrder: repairOrder)
             } else {
                 // todo show error
                 self.confirmButton.isLoading = false
