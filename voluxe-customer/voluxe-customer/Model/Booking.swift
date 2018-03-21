@@ -10,6 +10,7 @@ import Foundation
 import ObjectMapper
 import CoreLocation
 import RealmSwift
+import Realm
 
 class Booking: Object, Mappable {
     
@@ -28,7 +29,7 @@ class Booking: Object, Mappable {
     @objc dynamic var pickupRequestId: Int = -1
     @objc dynamic var dropoffRequest: Request?
     @objc dynamic var dropoffRequestId: Int = -1
-    @objc dynamic var repairOrderRequests: RepairOrder?
+    var repairOrderRequests = List<RepairOrder>()
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
 
