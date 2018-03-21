@@ -2589,7 +2589,7 @@
 				ENVIRONMENT = mock;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer.mock";
+				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo.mock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -2789,7 +2789,7 @@
 				DEVELOPMENT_TEAM = 62ZVLS334X;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer.dev";
+				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo.dev;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -2990,7 +2990,7 @@
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer.staging";
+				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -3182,7 +3182,7 @@
 				DEVELOPMENT_TEAM = 62ZVLS334X;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer";
+				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -3459,7 +3459,7 @@
 				DEVELOPMENT_TEAM = 62ZVLS334X;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer.debug";
+				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo.debug;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -3480,7 +3480,7 @@
 				DEVELOPMENT_TEAM = 62ZVLS334X;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer.prod";
+				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
@@ -3759,7 +3759,7 @@
 				DEVELOPMENT_TEAM = 62ZVLS334X;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customer";
+				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
