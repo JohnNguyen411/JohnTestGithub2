@@ -61,7 +61,11 @@ class RepairOrderAPI: NSObject {
     func getDealershipRepairOrder(dealershipIds: [Int], repairOrderTypeId: Int?) -> Future<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, AFError>()
         
-        var params = NetworkRequest.encodeParamsArray(array: dealershipIds, key: "dealership_id__in")
+        // todo remove tempfix
+        //var params = NetworkRequest.encodeParamsArray(array: dealershipIds, key: "dealership_id__in")
+        
+        //tempfix:
+        var params = "dealership_id=\(dealershipIds[0])"
         
         if let repairOrderTypeId = repairOrderTypeId {
             params += "&repair_order_type_id=\(repairOrderTypeId)"
@@ -101,7 +105,7 @@ class RepairOrderAPI: NSObject {
             "dealership_repair_order_id": dealershipRepairOrderId
             ]
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(customerId)/repair-order-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/repair-order-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
             var responseObject: ResponseObject<MappableDataObject<RepairOrder>>?
             
             if let json = response.result.value as? [String: Any] {

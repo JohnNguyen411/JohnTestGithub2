@@ -603,6 +603,7 @@
 		6C2208761FBCEF7A00874882 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6C22087B1FBD0C6700874882 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Voluxe.swift"; sourceTree = "<group>"; };
+		6C2A0B392063211200A5A637 /* voluxe-customer.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "voluxe-customer.entitlements"; sourceTree = "<group>"; };
 		6C2B32471FB3C67100B943AC /* DateTimePickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimePickupViewController.swift; sourceTree = "<group>"; };
 		6C2B324B1FB3C88D00B943AC /* Objc-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Objc-Bridge-Header.h"; sourceTree = "<group>"; };
 		6C2F1DD51FAD0A8F00C28C6E /* SchedulingPickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingPickupViewController.swift; sourceTree = "<group>"; };
@@ -1331,6 +1332,7 @@
 		6CCD428C1FA013E3000AC6C9 /* voluxe-customer */ = {
 			isa = PBXGroup;
 			children = (
+				6C2A0B392063211200A5A637 /* voluxe-customer.entitlements */,
 				6C7DDE1B1FE1B5D6000E2822 /* Analytic */,
 				6CC83A791FA140A600FE0633 /* Config */,
 				6CC37E431FA7ADB000DA8F01 /* Controller */,
@@ -1521,6 +1523,11 @@
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					6CCD429D1FA013E3000AC6C9 = {
 						CreatedOnToolsVersion = 9.0;
@@ -2584,13 +2591,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/voluxe-customer.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 62ZVLS334X;
+				DEVELOPMENT_TEAM = DTE5P7QRF9;
 				ENVIRONMENT = mock;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo.mock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2785,12 +2795,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/voluxe-customer.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 62ZVLS334X;
+				DEVELOPMENT_TEAM = DTE5P7QRF9;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo.dev;
+				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo.development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -2985,13 +2998,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/voluxe-customer.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 62ZVLS334X;
+				DEVELOPMENT_TEAM = DTE5P7QRF9;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -3178,12 +3194,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/voluxe-customer.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 62ZVLS334X;
+				DEVELOPMENT_TEAM = DTE5P7QRF9;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_VERSION = 4.0;
@@ -3279,94 +3298,6 @@
 			};
 			name = AppStore;
 		};
-		6CCD42B01FA013E3000AC6C9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ALWAYS_SEARCH_USER_PATHS = YES;
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_COMMA = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INFINITE_RECURSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
-				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
-				CLANG_WARN_STRICT_PROTOTYPES = YES;
-				CLANG_WARN_SUSPICIOUS_MOVE = YES;
-				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_DEBUG_INFO = YES;
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
-				ENVIRONMENT = dev;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-				);
-				GCC_C_LANGUAGE_STANDARD = gnu11;
-				GCC_DYNAMIC_NO_PIC = NO;
-				GCC_NO_COMMON_BLOCKS = YES;
-				GCC_OPTIMIZATION_LEVEL = 0;
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				ONLY_ACTIVE_ARCH = YES;
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
-				SDKROOT = iphoneos;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = "";
-				Scheme = Debug;
-			};
-			name = Debug;
-		};
 		6CCD42B11FA013E3000AC6C9 /* Production */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3448,27 +3379,6 @@
 			};
 			name = Production;
 		};
-		6CCD42B31FA013E3000AC6C9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 62ZVLS334X;
-				INFOPLIST_FILE = "voluxe-customer/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo.debug;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
 		6CCD42B41FA013E3000AC6C9 /* Production */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5B073D73742601FC967B4DD1 /* Pods-voluxe-customer.production.xcconfig */;
@@ -3476,39 +3386,21 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/voluxe-customer.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 62ZVLS334X;
+				DEVELOPMENT_TEAM = DTE5P7QRF9;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Production;
-		};
-		6CCD42B61FA013E3000AC6C9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 830E0EB28610D29BD9577A43 /* Pods-voluxe-customerTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "voluxe-customerTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/voluxe-customer.app/voluxe-customer";
-			};
-			name = Debug;
 		};
 		6CCD42B71FA013E3000AC6C9 /* Production */ = {
 			isa = XCBuildConfiguration;
@@ -3529,75 +3421,6 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/voluxe-customer.app/voluxe-customer";
 			};
 			name = Production;
-		};
-		6CCD42B91FA013E3000AC6C9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 36F8C19BBDAC98004E8F0A9A /* Pods-voluxe-customerUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
-				CLANG_ENABLE_MODULES = YES;
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/**",
-					"$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/**",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
-					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
-				);
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/Public\"",
-					"\"${PODS_ROOT}/Headers/Public/Firebase\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseAnalytics\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseCore\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseInstanceID\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseMessaging\"",
-					"\"${PODS_ROOT}/Headers/Public/FirebaseRemoteConfig\"",
-					"\"${PODS_ROOT}/Headers/Public/GoogleMaps\"",
-					"\"${PODS_ROOT}/Headers/Public/GooglePlaces\"",
-					"${PODS_ROOT}/**",
-				);
-				INFOPLIST_FILE = "voluxe-customerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				ONLY_ACTIVE_ARCH = YES;
-				OTHER_LDFLAGS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerUITests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_TARGET_NAME = "voluxe-customer";
-			};
-			name = Debug;
 		};
 		6CCD42BA1FA013E3000AC6C9 /* Production */ = {
 			isa = XCBuildConfiguration;
@@ -3755,12 +3578,15 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/voluxe-customer.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 62ZVLS334X;
+				DEVELOPMENT_TEAM = DTE5P7QRF9;
 				INFOPLIST_FILE = "voluxe-customer/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_VERSION = 4.0;
@@ -3863,7 +3689,6 @@
 		6CCD42851FA013E3000AC6C9 /* Build configuration list for PBXProject "voluxe-customer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6CCD42B01FA013E3000AC6C9 /* Debug */,
 				6C3FB2A11FA1645800B22EAB /* Dev */,
 				6C112091201A66290048A56D /* Mock */,
 				6C7401A21FD89BBC001F94AF /* Staging */,
@@ -3877,7 +3702,6 @@
 		6CCD42B21FA013E3000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-customer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6CCD42B31FA013E3000AC6C9 /* Debug */,
 				6C3FB2A21FA1645800B22EAB /* Dev */,
 				6C112092201A66290048A56D /* Mock */,
 				6C7401A31FD89BBC001F94AF /* Staging */,
@@ -3891,7 +3715,6 @@
 		6CCD42B51FA013E3000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-customerTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6CCD42B61FA013E3000AC6C9 /* Debug */,
 				6C3FB2A31FA1645800B22EAB /* Dev */,
 				6C112093201A66290048A56D /* Mock */,
 				6C7401A41FD89BBC001F94AF /* Staging */,
@@ -3905,7 +3728,6 @@
 		6CCD42B81FA013E3000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-customerUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6CCD42B91FA013E3000AC6C9 /* Debug */,
 				6C3FB2A41FA1645800B22EAB /* Dev */,
 				6C112094201A66290048A56D /* Mock */,
 				6C7401A51FD89BBC001F94AF /* Staging */,
