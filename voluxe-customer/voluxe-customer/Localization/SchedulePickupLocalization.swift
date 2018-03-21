@@ -24,7 +24,9 @@ extension String {
     static let PickupLocationTitle = NSLocalizedString("PickupLocationTitle")
     static let YourLocation = NSLocalizedString("YourLocation")
     static let DoYouNeedLoanerVehicle = NSLocalizedString("DoYouNeedLoanerVehicle")
-    static let SelectYourPreferredPickupTime = NSLocalizedString("SelectYourPreferredPickupTime")
+    static let SelectPickupDate = NSLocalizedString("SelectPickupDate")
+    static let SelectDeliveryDate = NSLocalizedString("SelectDeliveryDate")
+    static let SelectDropoffDate = NSLocalizedString("SelectDropoffDate")
     static let NineToTwelve = NSLocalizedString("NineToTwelve")
     static let TwelveToThree = NSLocalizedString("TwelveToThree")
     static let ThreeToSix = NSLocalizedString("ThreeToSix")
@@ -33,6 +35,7 @@ extension String {
     static let ConfirmPickup = NSLocalizedString("ConfirmPickup")
     static let YourVehicleHasArrived = NSLocalizedString("YourVehicleHasArrived")
     static let NotePickup = NSLocalizedString("NotePickup")
+    static let NoteDelivery = NSLocalizedString("NoteDelivery")
     static let ScheduleDropDealership = NSLocalizedString("ScheduleDropDealership")
     static let SchedulePickupDealership = NSLocalizedString("SchedulePickupDealership")
     static let DriverDrivingToDealership = NSLocalizedString("DriverDrivingToDealership")
@@ -41,5 +44,7 @@ extension String {
     static let PickupTimes = NSLocalizedString("PickupTimes")
     static let DealershipCloseToLocation = NSLocalizedString("DealershipCloseToLocation")
     static let ConfirmSelfDrop = NSLocalizedString("ConfirmSelfDrop")
+    static let DeliveryTimes = NSLocalizedString("DeliveryTimes")
+    static let DropOffTimes = NSLocalizedString("DropOffTimes")
 
 }

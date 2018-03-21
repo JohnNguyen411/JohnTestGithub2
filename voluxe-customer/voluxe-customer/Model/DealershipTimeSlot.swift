@@ -43,7 +43,7 @@ class DealershipTimeSlot: Object, Mappable {
         guard let from = from, let to = to else {
             return nil
         }
-        return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: showAMPM)) - \(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM))"
+        return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: showAMPM))-\(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM))"
     }
     
     public static func mockTimeSlotForDate(dealershipId: Int, date: Date) -> DealershipTimeSlot {

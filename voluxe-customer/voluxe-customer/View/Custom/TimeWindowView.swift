@@ -17,7 +17,7 @@ class TimeWindowView: UIView {
     let titleView: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .white
-        titleLabel.font = .volvoSansLight(size: 40)
+        titleLabel.font = .volvoSansLight(size: 38)
         titleLabel.textAlignment = .center
         titleLabel.text = "6:00 - 9:00"
         return titleLabel
@@ -83,5 +83,6 @@ class TimeWindowView: UIView {
     
     func setTimeWindows(timeWindows: String) {
         subtitleView.text = (.PickupWindow as String).uppercased()
+        titleView.text = timeWindows
     }
 }

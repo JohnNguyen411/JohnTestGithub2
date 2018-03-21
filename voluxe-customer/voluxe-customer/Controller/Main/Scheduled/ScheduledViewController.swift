@@ -13,6 +13,7 @@ import CoreLocation
 import GoogleMaps
 import BrightFutures
 import Result
+import SwiftEventBus
 
 class ScheduledViewController: ChildViewController {
     
@@ -97,6 +98,12 @@ class ScheduledViewController: ChildViewController {
         
         driverContact.setActionBlock {
             self.contactDriverActionSheet()
+        }
+        
+        driverViewContainer.isHidden = true
+        
+        mapVC.view.snp.updateConstraints { (make) -> Void in
+            make.height.equalTo(ScheduledViewController.mapViewHeight + ScheduledViewController.driverViewHeight)
         }
     }
     
@@ -202,12 +209,26 @@ class ScheduledViewController: ChildViewController {
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         self.updateState(id: state, stepState: .done)
+        if state == .enRouteForDropoff || state == .enRouteForPickup || state == .nearbyForPickup || state == .nearbyForDropoff {
+            SwiftEventBus.onMainThread(self, name: "driverLocationUpdate") { result in
+                // UI thread
+                self.driverLocationUpdate()
+            }
+        } else {
+            SwiftEventBus.unregister(self)
+        }
     }
     
     func newDriver(driver: Driver) {
         
         if self.driver == nil || self.driver?.id != driver.id {
             self.driver = driver
+            driverViewContainer.animateAlpha(show: true)
+            UIView.animate(withDuration: 0.25, animations: {
+                self.mapVC.view.snp.updateConstraints { (make) -> Void in
+                    make.height.equalTo(ScheduledViewController.mapViewHeight)
+                }
+            })
         } else {
             return
         }
@@ -234,8 +255,15 @@ class ScheduledViewController: ChildViewController {
         mapVC.updateServiceState(state: id)
     }
     
+    func driverLocationUpdate() {
+        
+    }
+    
     func newDriverLocation(location: CLLocationCoordinate2D) {
-        mapVC.updateDriverLocation(location: location)
+        // add a slight delay to prevent map bug
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            self.mapVC.updateDriverLocation(location: location)
+        })
     }
     
     func getEta(fromLocation: CLLocationCoordinate2D, toLocation: CLLocationCoordinate2D) {
@@ -289,15 +317,13 @@ class ScheduledViewController: ChildViewController {
                     let number = "sms:\(contactDriver.textPhoneNumber ?? "")"
                     UIApplication.shared.openURL(URL(string: number)!)
                 } else {
-                    let number = "telprompt:\(contactDriver.textPhoneNumber ?? "")"
+                    let number = "telprompt:\(contactDriver.voicePhoneNumber ?? "")"
                     UIApplication.shared.openURL(URL(string: number)!)
                 }
             }
         }.onFailure { error in
             // todo handle error
         }
-        
-        
     }
     
 }

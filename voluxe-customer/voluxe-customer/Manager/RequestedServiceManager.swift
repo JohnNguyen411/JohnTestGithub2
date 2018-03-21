@@ -14,7 +14,7 @@ import Foundation
 final class RequestedServiceManager {
     
     private var selfInitiated = false
-    private var service: Service?
+    private var repairOrder: RepairOrder?
     private var dealership: Dealership?
     private var loaner: Bool = true
     
@@ -48,6 +48,9 @@ final class RequestedServiceManager {
         if updateState {
             StateServiceManager.sharedInstance.updateState(state: serviceState)
         }
+        if let dealership = booking?.dealership {
+            setDealership(dealership: dealership)
+        }
     }
     
     func getBooking() -> Booking? {
@@ -71,8 +74,8 @@ final class RequestedServiceManager {
     }
     
     
-    func setService(service: Service, selfInitiated: Bool? = nil) {
-        self.service = service
+    func setRepairOrder(repairOrder: RepairOrder, selfInitiated: Bool? = nil) {
+        self.repairOrder = repairOrder
         if let selfInitiated = selfInitiated {
             self.selfInitiated = selfInitiated
         }
@@ -86,8 +89,8 @@ final class RequestedServiceManager {
         self.loaner = loaner
     }
     
-    func getService() -> Service? {
-        return service
+    func getRepairOrder() -> RepairOrder? {
+        return repairOrder
     }
     
     func getDealership() -> Dealership? {

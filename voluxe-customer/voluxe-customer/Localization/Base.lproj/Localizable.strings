@@ -27,7 +27,8 @@
 "CancelDropOff" = "Cancel DropOff";
 "Error" = "Error";
 "GenericError" = "An unknown error has occurred, please try again later.";
-
+"Map" = "Map";
+"Retry" = "Retry";
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
@@ -88,7 +89,7 @@
 "PickupLocationTitle" = "Where should we meet you?";
 "YourLocation" = "Your Location";
 "DoYouNeedLoanerVehicle" = "Do you need a loaner vehicle?";
-"SelectYourPreferredPickupTime" = "Select your preferred pickup time";
+"SelectPickupDate" = "Select pickup date and time";
 "NineToTwelve" = "9:00-12:00";
 "TwelveToThree" = "12:00-3:00";
 "ThreeToSix" = "3:00-6:00";
@@ -96,6 +97,7 @@
 "ComplimentaryLoaner" = "Complimentary Loaner?";
 "ConfirmPickup" = "Confirm Pickup";
 "NotePickup" = "Note: Volvo pickup is only offered near the dealership.";
+"NoteDelivery" = "Note: Volvo delivery is only offered near the dealership.";
 "ScheduleDropDealership" = "You can drop your car at the dealership or arrange for Volvo to pickup your vehicle at the location of your choosing.";
 "SchedulePickupDealership" = "You can pickup your car from the dealership or arrange for Volvo to deliver your vehicle to the location of your choosing.";
 "OutOfPickupArea" = "Out of pickup area";
@@ -103,6 +105,10 @@
 "PickupTimes" = "Pickup Times";
 "DealershipCloseToLocation" = "Dealerships close to:";
 "ConfirmSelfDrop" = "Confirm Self-Drop";
+"SelectDeliveryDate" = "Select delivery date and time";
+"SelectDropoffDate" = "Select dropoff date and time";
+"DeliveryTimes" = "Delivery Times";
+"DropOffTimes" = "Dropoff Times";
 
 /***************** ScheduledPickup ***************/
 "SchedulePickup" = "Schedule Pickup";
@@ -145,10 +151,24 @@
 "PreferredDealership" = "Preferred Dealership";
 
 /***************** Service ***************/
+"Service" = "Service";
 "NewService" = "New Service";
 "ScheduledService" = "Scheduled Service";
 "AreYouSureCancelPickup" = "Are you sure you want to cancel your pickup?";
 "AreYouSureCancelDropOff" = "Are you sure you want to cancel your dropoff?";
+"NewServiceIntro" = "Is your Volvo in need of service? Please identify what part of your Volvo needs work, and write a short description of what you're experiencing.\n\nYou can then schedule pickup directly through this app.";
+"MilestoneServices" = "Milestone services";
+"RecallServices" = "Recall services";
+"OtherMaintenanceRepairs" = "Other maintenance and repairs";
+"WhatPartRequiresService" = "What part of your Volvo requires service?";
+"SelectAllThatApply" = "Select all that apply";
+"IsVolvoDrivable" = "Is your Volvo currenlty drivable?";
+"ImNotSure" = "I'm not sure";
+"NewServiceDescription" = "Is there anything else you can tell us about your Volvo?";
+"TypeDescriptionHere" = "Type description here";
+"AddDescription" = "Add Description";
+"DiagnosticAndService" = "Diagnostic and service";
+"FactoryScheduledMaintenance" = "Factory Scheduled Maintenance";
 
 /***************** Settings ***************/
 "Settings" = "Settings";

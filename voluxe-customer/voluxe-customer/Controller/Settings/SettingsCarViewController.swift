@@ -57,7 +57,7 @@ class SettingsCarViewController: BaseViewController {
         }
         
         vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
-        vehicleImageView.image = UIImage(named: vehicle.localImageName())
+        vehicle.setVehicleImage(imageView: vehicleImageView)
     }
     
 }

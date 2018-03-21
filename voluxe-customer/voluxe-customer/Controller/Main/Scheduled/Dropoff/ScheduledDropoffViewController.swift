@@ -61,12 +61,32 @@ class ScheduledDropoffViewController: ScheduledViewController {
     
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
+        driverLocationUpdate()
+    }
+    
+    override func driverLocationUpdate() {
+        super.driverLocationUpdate()
+        
         guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
             return
         }
-        if let dropoffRequest = booking.dropoffRequest, let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
-            mapVC.updateDriverLocation(location: coordinates)
-            newDriver(driver: driver)
+        let state = StateServiceManager.sharedInstance.getState()
+
+        if let dropoffRequest = booking.dropoffRequest {
+            var refreshTimeSlot = true
+            
+            if let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock, state != .pickupScheduled {
+                self.mapVC.updateDriverLocation(location: coordinates)
+                if let dropoffRequestLocation = dropoffRequest.location, let dropoffRequestCoordinates = dropoffRequestLocation.getLocation() {
+                    refreshTimeSlot = false
+                    self.getEta(fromLocation: coordinates, toLocation: dropoffRequestCoordinates)
+                }
+                newDriverLocation(location: coordinates)
+                newDriver(driver: driver)
+            }
+            if let timeSlot = dropoffRequest.timeSlot, refreshTimeSlot {
+                timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
+            }
         }
     }
     

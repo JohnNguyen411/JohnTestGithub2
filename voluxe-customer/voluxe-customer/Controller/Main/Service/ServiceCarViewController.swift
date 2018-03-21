@@ -14,6 +14,7 @@ import CoreLocation
 import RealmSwift
 import BrightFutures
 import Alamofire
+import Kingfisher
 
 
 class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
@@ -205,14 +206,16 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     func fillViews() {
         if serviceState == .idle || serviceState == .needService {
-            let service = Service.mockService()
-            RequestedServiceManager.sharedInstance.setService(service: service, selfInitiated: true)
-            
             noteLabel.text = .NotePickup
+        } else if serviceState == .serviceCompleted {
+            noteLabel.text = .NoteDelivery
         }
-        vehicleImageView.image = UIImage(named: UserManager.sharedInstance.getVehicle()!.localImageName())
         
-        if let service = RequestedServiceManager.sharedInstance.getService() {
+        if let vehicle = UserManager.sharedInstance.getVehicle() {
+            vehicle.setVehicleImage(imageView: vehicleImageView)
+        }
+        
+        if let service = RequestedServiceManager.sharedInstance.getRepairOrder() {
             var title = String.RecommendedService
             if RequestedServiceManager.sharedInstance.isSelfInitiated() {
                 title = .SelectedService
@@ -220,7 +223,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             } else {
                 showUpdateLabel(show: true, title: .New, width: 40, right: true)
             }
-            scheduledServiceView.setTitle(title: title, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
+            scheduledServiceView.setTitle(title: title, leftDescription: service.name!, rightDescription: "")
         }
     }
     
@@ -242,7 +245,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         
         confirmButton.isHidden = true
         
-        if state == .needService || state == .completed {
+        if state == .needService || state == .serviceCompleted {
             
             scheduledServiceView.isHidden = false
             descriptionButton.isHidden = false
@@ -363,23 +366,26 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     //MARK: Actions methods
     func showDescriptionClick() {
+        if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder(), let repairOrderType = repairOrder.repairOrderType {
+            childViewDelegate?.pushViewController(controller: ServiceDetailViewController(service: repairOrderType), animated: true, backLabel: .Back, title: repairOrderType.name)
+        }
     }
     
     func leftButtonClick() {
         if StateServiceManager.sharedInstance.isPickup() {
             RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorPickup)
-            StateServiceManager.sharedInstance.updateState(state: .schedulingService)
+            self.childViewDelegate?.pushViewController(controller: SchedulingPickupViewController(state: .schedulingService), animated: true, backLabel: .Back, title: nil)
         } else {
-            RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorDropoff)
-            StateServiceManager.sharedInstance.updateState(state: .schedulingDelivery)
+            RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .advisorDropoff)
+            self.childViewDelegate?.pushViewController(controller: SchedulingDropoffViewController(state: .schedulingDelivery), animated: true, backLabel: .Back, title: nil)
         }
     }
     
     func rightButtonClick() {
         if StateServiceManager.sharedInstance.isPickup() {
-            StateServiceManager.sharedInstance.updateState(state: .schedulingService)
+            self.childViewDelegate?.pushViewController(controller: SchedulingPickupViewController(state: .schedulingService), animated: true, backLabel: .Back, title: nil)
         } else {
-            StateServiceManager.sharedInstance.updateState(state: .schedulingDelivery)
+            self.childViewDelegate?.pushViewController(controller: SchedulingDropoffViewController(state: .schedulingDelivery), animated: true, backLabel: .Back, title: nil)
         }
     }
     

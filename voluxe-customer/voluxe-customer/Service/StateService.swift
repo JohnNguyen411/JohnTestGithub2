@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftEventBus
 
 final class StateServiceManager {
     
@@ -29,6 +30,9 @@ final class StateServiceManager {
             }
             
             BookingSyncManager.sharedInstance.syncBooking()
+        } else if state == .enRouteForDropoff || state == .enRouteForPickup || state == .nearbyForPickup || state == .nearbyForDropoff {
+            // update driver's location
+            SwiftEventBus.post("driverLocationUpdate")
         }
     }
     

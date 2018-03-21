@@ -11,6 +11,8 @@ import CoreLocation
 
 class SchedulingDropoffViewController: SchedulingViewController {
     
+    var isSelfDrop = false
+    
     override func setupViews() {
         
         super.setupViews()
@@ -47,16 +49,49 @@ class SchedulingDropoffViewController: SchedulingViewController {
         }
     }
     
+    func hideLocation() {
+        
+        self.pickupLocationView.isHidden = true
+        
+        self.pickupLocationView.snp.updateConstraints { make in
+            make.height.equalTo(0)
+        }
+        
+        if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+            showDealershipAddress(dealership: dealership)
+        }
+        /*
+        dealershipView.snp.remakeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(pickupLocationView.snp.bottom)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
+        }
+        
+        pickupLocationView.snp.remakeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(dealershipView.snp.bottom)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
+        }
+         */
+    }
+    
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
-        
+        if let requestType = RequestedServiceManager.sharedInstance.getDropoffRequestType(), requestType == .advisorDropoff {
+            isSelfDrop = true
+        }
         loanerView.isEditable = false
         dealershipView.isEditable = false
         scheduledPickupView.isEditable = true
         pickupLocationView.isEditable = true
         
         if state == .schedulingDelivery {
-            hideDealership()
+            if isSelfDrop {
+                hideLocation()
+                self.dealershipView.animateAlpha(show: true)
+            } else {
+                hideDealership()
+            }
             scheduledPickupClick()
         }
         
@@ -126,7 +161,11 @@ class SchedulingDropoffViewController: SchedulingViewController {
         super.onDateTimeSelected(timeSlot: timeSlot)
         currentPresentrVC?.dismiss(animated: true, completion: {
             if openNext {
-                self.pickupLocationClick()
+                if !self.isSelfDrop {
+                    self.pickupLocationClick()
+                } else {
+                    self.confirmButton.animateAlpha(show: true)
+                }
             }
         })
     }
@@ -136,11 +175,45 @@ class SchedulingDropoffViewController: SchedulingViewController {
             return
         }
         
-        confirmButton.isLoading = true
-        
-       // BookingAPI().createDropoffRequest(customerId: customerId, bookingId: book, timeSlotId: <#T##Int#>, location: <#T##Location#>)
-        
-        
+        if let booking = RequestedServiceManager.sharedInstance.getBooking(),
+            let timeSlot = RequestedServiceManager.sharedInstance.getDropoffTimeSlot(),
+            let location = RequestedServiceManager.sharedInstance.getDropoffLocation() {
+            
+            confirmButton.isLoading = true
+            
+            BookingAPI().createDropoffRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location).onSuccess { result in
+                if let dropOffRequest = result?.data?.result {
+                    self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
+                } else {
+                    // todo show error
+                    self.confirmButton.isLoading = false
+                }
+                // todo show error
+                self.confirmButton.isLoading = false
+                }.onFailure { error in
+                    // todo show error
+                    self.confirmButton.isLoading = false
+            }
+            
+        }
+    }
+    
+    private func manageNewDropoffRequest(dropOffRequest: Request, booking: Booking) {
+        if let realm = self.realm {
+            try? realm.write {
+                realm.add(dropOffRequest, update: true)
+            }
+            let realmDropOffRequest = realm.objects(Request.self).filter("id = \(dropOffRequest.id)").first
+            
+            if let booking = realm.objects(Booking.self).filter("id = \(booking.id)").first {
+                
+                try? realm.write {
+                    booking.dropoffRequest = realmDropOffRequest
+                    realm.add(booking, update: true)
+                }
+            }
+            self.navigationController?.popToRootViewController(animated: false)
+        }
     }
     
 }

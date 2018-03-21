@@ -13,10 +13,14 @@ class ServiceCell: UITableViewCell {
     static let height: CGFloat = 50
     static let reuseId = "ServiceCell"
     
-    var serviceLabel: UILabel
+    let serviceLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.font = UIFont.volvoSansBold(size: 16)
+        label.textColor = .black
+        return label
+    }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        serviceLabel = UILabel(frame: .zero)
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.backgroundColor = .clear
@@ -39,6 +43,10 @@ class ServiceCell: UITableViewCell {
     
     public func setService(service: String) {
         serviceLabel.text = service
+    }
+    
+    public func setChecked(checked: Bool) {
+        self.accessoryType = checked ? .checkmark : .none
     }
     
 }

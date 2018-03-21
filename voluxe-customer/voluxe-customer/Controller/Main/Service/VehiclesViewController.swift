@@ -148,7 +148,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     
     func selectVehicle(vehicle: Vehicle) {
         vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
-        vehicleImageView.image = UIImage(named: vehicle.localImageName())
+        vehicle.setVehicleImage(imageView: vehicleImageView)
         selectedVehicle = vehicle
         stateDidChange(state: serviceState)
     }
@@ -164,7 +164,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
             }
             scheduledServiceView.isHidden = false
             //todo: remove MOCK SERVICE
-            scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: Service.mockService().name!)
+            scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: RepairOrder.mockRepairOrder().name!)
             confirmButton.animateAlpha(show: false)
         } else {
             scheduledServiceView.snp.updateConstraints { make in
@@ -178,7 +178,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     
     //MARK: Actions methods
     func confirmButtonClick() {
-        self.childViewDelegate?.pushViewController(controller: ServiceListViewController(), animated: true, backLabel: .Back, title: .NewService)
+        self.childViewDelegate?.pushViewController(controller: NewServiceViewController(), animated: true, backLabel: .Back, title: .NewService)
     }
     
     

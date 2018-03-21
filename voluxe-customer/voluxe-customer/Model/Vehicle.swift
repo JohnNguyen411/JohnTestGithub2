@@ -10,6 +10,7 @@ import Foundation
 import ObjectMapper
 import CoreLocation
 import RealmSwift
+import Kingfisher
 
 class Vehicle: Object, Mappable {
     
@@ -25,6 +26,7 @@ class Vehicle: Object, Mappable {
     @objc dynamic var year: Int = 2018
     @objc dynamic var baseColor: String?
     @objc dynamic var color: String?
+    @objc dynamic var photoUrl: String?
     @objc dynamic var transmission: String?
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
@@ -46,6 +48,7 @@ class Vehicle: Object, Mappable {
         year <- map["year"]
         baseColor <- map["base_color"]
         color <- map["color"]
+        photoUrl <- map["photo_url"]
         transmission <- map["transmission"]
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
@@ -68,7 +71,7 @@ class Vehicle: Object, Mappable {
         }
         return "614"
     }
-
+/*
     func imageUrl(scale: Int) -> String! {
         let baseURL = Constants.VehicleImageBaseUrl
         let trimLevel = trim != nil ? trim!.lowercased().replacingOccurrences(of: " ", with: "_").replacingOccurrences(of: "-", with: "_") : ""
@@ -79,6 +82,7 @@ class Vehicle: Object, Mappable {
         let imageUrl = baseURL + scaleFragment + imageFragment
         return imageUrl
     }
+ */
     
     override static func primaryKey() -> String? {
         return "id"
@@ -97,6 +101,21 @@ class Vehicle: Object, Mappable {
             return "image_xc40"
         }
         return "image_auto"
+    }
+    
+    func setVehicleImage(imageView: UIImageView) {
+        imageView.image = UIImage(named: localImageName())
+        return
+        
+        if var imageUrl = photoUrl, !imageUrl.isEmpty {
+            if imageUrl.contains("http://") {
+                imageUrl = imageUrl.replacingOccurrences(of: "http://", with: "https://")
+            }
+            let url = URL(string: imageUrl)
+            imageView.kf.setImage(with: url)
+        } else {
+            imageView.image = UIImage(named: localImageName())
+        }
     }
 
 }

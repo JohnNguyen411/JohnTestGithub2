@@ -54,14 +54,33 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     
     let scrollView = UIScrollView()
     let contentView = UIView()
+    let dealershipAddressView = UIView()
     let scheduledServiceView = VLTitledLabel(padding: insetPadding)
     let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
     let dealershipView = VLTitledLabel(padding: insetPadding)
     let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "", padding: insetPadding)
     let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "", padding: insetPadding)
     let loanerView = VLTitledLabel(title: .ComplimentaryLoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
-    
     let confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmPickup as String).uppercased(), actionBlock: nil)
+    
+    let dealershipAddressLabel: UILabel = {
+        let dealershipAddressLabel = UILabel()
+        dealershipAddressLabel.textColor = .luxeGray()
+        dealershipAddressLabel.font = .volvoSansLightBold(size: 12)
+        dealershipAddressLabel.textAlignment = .left
+        dealershipAddressLabel.numberOfLines = 1
+        dealershipAddressLabel.lineBreakMode = .byTruncatingTail
+        return dealershipAddressLabel
+    }()
+    
+    let dealershipMapLabel: UILabel = {
+        let dealershipMapLabel = UILabel()
+        dealershipMapLabel.textColor = .luxeDeepBlue()
+        dealershipMapLabel.font = .volvoSansLightBold(size: 12)
+        dealershipMapLabel.text = String.Map.uppercased()
+        dealershipMapLabel.textAlignment = .left
+        return dealershipMapLabel
+    }()
     
     
     init(state: ServiceState) {
@@ -150,10 +169,15 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         contentView.addSubview(scheduledServiceView)
         contentView.addSubview(descriptionButton)
         contentView.addSubview(dealershipView)
+        contentView.addSubview(dealershipAddressView)
         contentView.addSubview(confirmButton)
+        
+        dealershipAddressView.addSubview(dealershipAddressLabel)
+        dealershipAddressView.addSubview(dealershipMapLabel)
         
         confirmButton.alpha = 0
         dealershipView.alpha = 0
+        dealershipAddressView.alpha = 0
         scheduledPickupView.alpha = 0
         pickupLocationView.alpha = 0
         loanerView.alpha = 0
@@ -203,6 +227,16 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
+        dealershipMapLabel.snp.makeConstraints { make in
+            make.right.centerY.height.equalToSuperview()
+            make.width.equalTo(60)
+        }
+        
+        dealershipAddressLabel.snp.makeConstraints { make in
+            make.left.height.centerY.equalToSuperview()
+            make.right.equalTo(dealershipMapLabel.snp.left)
+        }
+        
         scheduledPickupView.snp.makeConstraints { make in
             make.left.right.equalTo(scheduledServiceView)
             make.top.equalTo(dealershipView.snp.bottom)
@@ -231,12 +265,12 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     
     func fillViews() {
         
-        if let service = RequestedServiceManager.sharedInstance.getService() {
+        if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
             var title = String.RecommendedService
             if RequestedServiceManager.sharedInstance.isSelfInitiated() {
                 title = .SelectedService
             }
-            scheduledServiceView.setTitle(title: title, leftDescription: service.name!, rightDescription: String(format: "$%.02f", service.price!))
+            scheduledServiceView.setTitle(title: title, leftDescription: repairOrder.name!, rightDescription: "")
         }
         
         fillDealership()
@@ -253,10 +287,39 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func fetchDealershipsForLocation(location: CLLocationCoordinate2D?, completion: (() -> Swift.Void)? = nil) {
+        
         if let location = location {
             DealershipAPI().getDealerships(location: location).onSuccess { result in
                 if let dealerships = result?.data?.result {
-                    self.handleDealershipsResponse(dealerships: dealerships)
+                    if StateServiceManager.sharedInstance.isPickup() {
+                        if dealerships.count > 0 {
+                            
+                            //todo check with getDealershipRepairOrder if available ONLY at pickup
+                            RepairOrderAPI().getDealershipRepairOrder(dealerships: dealerships, repairOrderTypeId: RequestedServiceManager.sharedInstance.getRepairOrder()?.repairOrderType?.id).onSuccess { result in
+                                if let dealershipsRO = result?.data?.result {
+                                    if let realm = self.realm {
+                                        try? realm.write {
+                                            realm.add(dealershipsRO, update: true)
+                                        }
+                                    }
+                                    if dealershipsRO.count > 0 {
+                                        self.handleDealershipsResponse(dealerships: dealerships)
+                                    } else {
+                                        // todo show error
+                                    }
+                                } else {
+                                    // todo show error
+                                }
+                                
+
+                                }.onFailure { error in
+                                    // No nearby dealership offering that service
+                                    // todo show error
+                            }
+                        }
+                    } else {
+                        self.handleDealershipsResponse(dealerships: dealerships)
+                    }
                 } else {
                     self.dealerships = nil
                 }
@@ -271,6 +334,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
     }
     
+    // From list of dealership, check if offering service
     private func handleDealershipsResponse(dealerships: [Dealership]?) {
         if let dealerships = dealerships {
             //todo: hide loading if needed
@@ -295,7 +359,6 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                 }
             }
         }
-        
     }
     
     func showDealershipModal(dismissOnTap: Bool) {
@@ -337,12 +400,43 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func showPickupDateTimeModal(dismissOnTap: Bool) {
-        let dateModal = DateTimePickupViewController(title: .SelectYourPreferredPickupTime, buttonTitle: .Next)
+        
+        var title: String = .SelectPickupDate
+        if !StateServiceManager.sharedInstance.isPickup() {
+            if let type = RequestedServiceManager.sharedInstance.getDropoffRequestType() , type == RequestType.advisorDropoff {
+                title = .SelectPickupDate
+            } else {
+                title = .SelectDeliveryDate
+            }
+        } else {
+            if let type = RequestedServiceManager.sharedInstance.getPickupRequestType() , type == RequestType.advisorPickup {
+                title = .SelectDropoffDate
+            }
+        }
+        
+        let dateModal = DateTimePickupViewController(title: title, buttonTitle: .Next)
         dateModal.delegate = self
         dateModal.view.accessibilityIdentifier = "dateModal"
         currentPresentrVC = dateModal
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
         customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
+    }
+    
+    func showDealershipAddress(dealership: Dealership) {
+        dealershipAddressView.snp.makeConstraints { make in
+            make.left.right.equalTo(scheduledServiceView).inset(UIEdgeInsetsMake(0, 20, 0, 20))
+            make.top.equalTo(dealershipView.snp.bottom).offset(-5)
+            make.height.equalTo(25)
+        }
+        
+        scheduledPickupView.snp.remakeConstraints { make in
+            make.left.right.equalTo(scheduledServiceView)
+            make.top.equalTo(dealershipAddressView.snp.bottom).offset(10)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
+        }
+        
+        dealershipAddressView.animateAlpha(show: true)
+        dealershipAddressLabel.text = dealership.location?.address
     }
     
     
@@ -386,6 +480,9 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     
     //MARK: Actions methods
     func showDescriptionClick() {
+        if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder(), let repairOrderType = repairOrder.repairOrderType {
+            childViewDelegate?.pushViewController(controller: ServiceDetailViewController(service: repairOrderType), animated: true, backLabel: .Back, title: repairOrderType.name)
+        }
     }
     
     @objc func dealershipClick() {
@@ -466,16 +563,16 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         
         var openNext = false
         RequestedServiceManager.sharedInstance.setLoaner(loaner: loanerNeeded)
-
+        
         if pickupScheduleState.rawValue < SchedulePickupState.loaner.rawValue {
             pickupScheduleState = .loaner
             openNext = true
         } else {
             if valueChanged {
                 self.confirmButton.animateAlpha(show: false)
-
+                
                 scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "", rightDescription: "")
-
+                
                 // invalidate Date/Time
                 if StateServiceManager.sharedInstance.isPickup() {
                     RequestedServiceManager.sharedInstance.setPickupTimeSlot(timeSlot: nil)

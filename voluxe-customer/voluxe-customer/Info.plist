@@ -18,8 +18,22 @@
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>ENABLE_DEBUG_INFO</key>
+	<string>$(ENABLE_DEBUG_INFO)</string>
+	<key>GoogleMapsAPIKey</key>
+	<string>AIzaSyCf1Ub4aMgqWeISdHPEcFawx-N-OrmxBTM</string>
+	<key>GoogleMapsGeocodeAPIKey</key>
+	<string>AIzaSyDttDpi-qSy_4-MwUs2tbsZrJqCjz_gowM</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
+	<key>NSLocationAlwaysUsageDescription</key>
+	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
+	<key>Scheme</key>
+	<string>$(Scheme)</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>VolvoSansPro-Light.ttf</string>
@@ -34,8 +48,6 @@
 	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
-	<key>GoogleMapsAPIKey</key>
-	<string>AIzaSyCf1Ub4aMgqWeISdHPEcFawx-N-OrmxBTM</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -43,8 +55,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationLandscapeLeft</string>
-		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -59,19 +69,7 @@
 	<string>$(OPENID_CLIENT_SECRET)</string>
 	<key>com.volvocars.hse.openIdRedirectUri</key>
 	<string>$(OPENID_REDIRECT_URI)</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
-	<key>Scheme</key>
-	<string>$(Scheme)</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>
 	<key>com.volvocars.hse.openIdTokenEndpoint</key>
 	<string>$(OPENID_TOKEN_ENDPOINT)</string>
-	<key>GoogleMapsGeocodeAPIKey</key>
-	<string>AIzaSyDttDpi-qSy_4-MwUs2tbsZrJqCjz_gowM</string>
-	<key>ENABLE_DEBUG_INFO</key>
-	<string>$(ENABLE_DEBUG_INFO)</string>
 </dict>
 </plist>
