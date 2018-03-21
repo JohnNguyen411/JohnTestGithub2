@@ -61,15 +61,13 @@ class RepairOrderAPI: NSObject {
     func getDealershipRepairOrder(dealershipIds: [Int], repairOrderTypeId: Int?) -> Future<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, AFError>()
         
-        var params: Parameters = [
-            "dealership_id__in": dealershipIds
-        ]
+        var params = NetworkRequest.encodeParamsArray(array: dealershipIds, key: "dealership_id__in")
         
         if let repairOrderTypeId = repairOrderTypeId {
-            params["repair_order_type_id"] = repairOrderTypeId
+            params += "&repair_order_type_id=\(repairOrderTypeId)"
         }
         
-        NetworkRequest.request(url: "/v1/dealership-repair-orders", queryParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/dealership-repair-orders?\(params)", queryParameters: nil, withBearer: true).responseJSON { response in
             var responseObject: ResponseObject<MappableDataArray<DealershipRepairOrder>>?
             
             if let json = response.result.value as? [String: Any] {
