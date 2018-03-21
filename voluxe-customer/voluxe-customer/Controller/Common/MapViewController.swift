@@ -31,6 +31,8 @@ class MapViewController: UIViewController {
         mapView.settings.tiltGestures = false
         mapView.settings.zoomGestures = false
         
+        driverMarker.appearAnimation = GMSMarkerAnimation.pop
+        
         flagMarker.iconView = etaMarker
         driverMarker.icon = UIImage(named: "marker_car")
         
@@ -57,18 +59,16 @@ class MapViewController: UIViewController {
     
     func updateDriverLocation(location: CLLocationCoordinate2D) {
         // get ETA between location and flagMarker position
-        if driverMarker.map == nil || driverMarker.map != mapView {
-            driverMarker.map = mapView
-        }
-        if self.driverMarker.position.latitude != location.latitude || self.driverMarker.position.longitude != location.longitude {
-            let degreeBearing = self.degreeBearing(from: self.driverMarker.position, to: location)
-            Logger.print("degreeBearing \(degreeBearing)")
-            Logger.print("prevLocation \(self.driverMarker.position)")
-            Logger.print("location \(location)")
-            
+
+        let prevLocation = self.driverMarker.position
+        driverMarker.position = location
+        driverMarker.map = mapView
+        let noPreviousLocation = prevLocation.latitude == -180 && prevLocation.longitude == -180
+        if !noPreviousLocation && (prevLocation.latitude != location.latitude || prevLocation.longitude != location.longitude) {
+            let degreeBearing = self.degreeBearing(from: prevLocation, to: location)
             driverMarker.rotation = degreeBearing
         }
-        driverMarker.position = location
+        
         moveCamera()
     }
     
