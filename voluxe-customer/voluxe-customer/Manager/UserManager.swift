@@ -117,8 +117,8 @@ final class UserManager {
     }
     
     public func getVehicleId() -> Int? {
-        if let vehicles = vehicles, vehicles.count > 0 {
-            return vehicles[0].id
+        if let vehicle = getVehicle() {
+            return vehicle.id
         }
         return nil
     }
@@ -159,7 +159,9 @@ final class UserManager {
             if bookings.count == 0 || !hasUpcomingRequestToday {
                 // empty array
                 RequestedServiceManager.sharedInstance.setBooking(booking: nil, updateState: true) // no current booking
-                self.vehicleBookings.removeAll()
+                if bookings.count == 0 {
+                    self.vehicleBookings.removeAll()
+                }
             }
         } else {
             RequestedServiceManager.sharedInstance.setBooking(booking: nil, updateState: true) // no current booking
