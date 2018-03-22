@@ -170,11 +170,18 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
             scheduledServiceView.isHidden = false
             scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: booking.getRepairOrderName())
             confirmButton.animateAlpha(show: false)
+            
+            if let dealership = booking.dealership {
+                preferedDealershipView.isHidden = false
+                preferedDealershipView.setLeftDescription(leftDescription: dealership.name!)
+            }
+            
         } else {
             scheduledServiceView.snp.updateConstraints { make in
                 make.height.equalTo(0)
             }
             scheduledServiceView.isHidden = true
+            preferedDealershipView.isHidden = true
             confirmButton.animateAlpha(show: true)
         }
         
