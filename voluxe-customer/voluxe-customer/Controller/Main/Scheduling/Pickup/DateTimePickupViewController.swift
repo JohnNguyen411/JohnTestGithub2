@@ -351,6 +351,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     private func showCalendar() {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+            self.calendar.reloadData()
             self.calendar.scroll(to: self.minimumDate(for: self.calendar), animated: false)
         })
         
