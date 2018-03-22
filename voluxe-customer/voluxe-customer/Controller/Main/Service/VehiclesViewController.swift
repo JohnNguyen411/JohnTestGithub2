@@ -178,7 +178,10 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     
     //MARK: Actions methods
     func confirmButtonClick() {
-        self.childViewDelegate?.pushViewController(controller: NewServiceViewController(), animated: true, backLabel: .Back, title: .NewService)
+        if let selectedVehicle = selectedVehicle {
+            UserManager.sharedInstance.selectVehicle(vehicle: selectedVehicle)
+            self.childViewDelegate?.pushViewController(controller: NewServiceViewController(), animated: true, backLabel: .Back, title: .NewService)
+        }
     }
     
     

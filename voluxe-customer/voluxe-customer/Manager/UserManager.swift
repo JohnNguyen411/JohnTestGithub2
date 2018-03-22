@@ -17,6 +17,7 @@ final class UserManager {
     public var signupCustomer = SignupCustomer()
     private var customer: Customer?
     private var vehicles: [Vehicle]?
+    private var selectedVehicle: Vehicle?
     private var vehicleBookings = [Int: [Booking]]() // bookings dict (Vehicle Id : Booking array)
     private let serviceId: String
     private var accessToken: String?
@@ -69,6 +70,8 @@ final class UserManager {
         self.vehicleBookings = [Int: [Booking]]()
         self.tempCustomerId = nil
         self.signupCustomer = SignupCustomer()
+        self.selectedVehicle = nil
+        RequestedServiceManager.sharedInstance.reset()
     }
     
     public func setCustomer(customer: Customer) {
@@ -84,10 +87,33 @@ final class UserManager {
     }
     
     public func getVehicle() -> Vehicle? {
+        if let selectedVehicle = selectedVehicle {
+            return selectedVehicle
+        }
         if let vehicles = vehicles, vehicles.count > 0 {
             return vehicles[0]
         }
         return nil
+    }
+    
+    public func getVehicleForId(vehicleId: Int) -> Vehicle? {
+        if let selectedVehicle = selectedVehicle {
+            if selectedVehicle.id == vehicleId {
+                return selectedVehicle
+            }
+        }
+        if let vehicles = vehicles, vehicles.count > 0 {
+            for vehicle in vehicles {
+                if vehicle.id == vehicleId {
+                    return vehicle
+                }
+            }
+        }
+        return nil
+    }
+    
+    public func selectVehicle(vehicle: Vehicle) {
+        selectedVehicle = vehicle
     }
     
     public func getVehicleId() -> Int? {
@@ -125,6 +151,9 @@ final class UserManager {
                                                         || booking.getState() == .arrivedForDropoff || booking.getState() == .arrivedForPickup) {
                     hasUpcomingRequestToday = true
                     RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true) // set current booking
+                    if let vehicle = self.getVehicleForId(vehicleId: booking.vehicleId) {
+                        self.selectVehicle(vehicle: vehicle)
+                    }
                 }
             }
             if bookings.count == 0 || !hasUpcomingRequestToday {

@@ -522,6 +522,9 @@
 		6CDCD7F8200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		6CDCD7F9200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		6CE5AC061FACF116009FD0D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
+		6CE5DFC220633A5600234C22 /* ArrayTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5DFC120633A5600234C22 /* ArrayTransform.swift */; };
+		6CE5DFC320633A5600234C22 /* ArrayTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5DFC120633A5600234C22 /* ArrayTransform.swift */; };
+		6CE5DFC420633A5600234C22 /* ArrayTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5DFC120633A5600234C22 /* ArrayTransform.swift */; };
 		6CE687832036634A00D915FC /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687822036634A00D915FC /* State.swift */; };
 		6CE687842036634A00D915FC /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687822036634A00D915FC /* State.swift */; };
 		6CE687852036634A00D915FC /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687822036634A00D915FC /* State.swift */; };
@@ -782,6 +785,7 @@
 		6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealershipRepairOrder.swift; sourceTree = "<group>"; };
 		6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLDateFormatter.swift; sourceTree = "<group>"; };
+		6CE5DFC120633A5600234C22 /* ArrayTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayTransform.swift; sourceTree = "<group>"; };
 		6CE687822036634A00D915FC /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledBookingViewController.swift; sourceTree = "<group>"; };
 		6CE68795203F7D5A00D915FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -953,6 +957,7 @@
 				6C32C3061FBCC0E900B1218C /* Step.swift */,
 				6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */,
 				6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */,
+				6CE5DFC120633A5600234C22 /* ArrayTransform.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -2121,6 +2126,7 @@
 				6C3FB2BF1FA2A4CE00B22EAB /* VehicleLockStatus.swift in Sources */,
 				6C20E1E01FBF770C00E5D9A0 /* Request.swift in Sources */,
 				6C91BBD71FA7D6220033C2B1 /* ViewPager.swift in Sources */,
+				6CE5DFC220633A5600234C22 /* ArrayTransform.swift in Sources */,
 				6C20E1A01FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2162,6 +2168,7 @@
 				6CD474B1204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */,
 				6C20E1D91FBF725F00E5D9A0 /* LocationUtils.swift in Sources */,
 				6CA7C945201A92A7009C00F6 /* ServiceCarViewController.swift in Sources */,
+				6CE5DFC320633A5600234C22 /* ArrayTransform.swift in Sources */,
 				6C7495E01FDA1E870036FC08 /* MappableDataArray.swift in Sources */,
 				6C20E1E11FBF770C00E5D9A0 /* Request.swift in Sources */,
 				6C32C3081FBCC0E900B1218C /* Step.swift in Sources */,
@@ -2370,6 +2377,7 @@
 				6CD0C8851FD9FB73008E4A72 /* DealershipAPI.swift in Sources */,
 				6CA968B320229FAD00FBEEAB /* VehiclesViewController.swift in Sources */,
 				6C7495D91FDA0CEB0036FC08 /* Meta.swift in Sources */,
+				6CE5DFC420633A5600234C22 /* ArrayTransform.swift in Sources */,
 				6C20E1A21FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */,
 				6C9B3201202A51B4006380B9 /* SettingsViewController.swift in Sources */,
 				6C7342011FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,

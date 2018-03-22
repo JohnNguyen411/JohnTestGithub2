@@ -51,11 +51,15 @@ final class RequestedServiceManager {
         if let dealership = booking?.dealership {
             setDealership(dealership: dealership)
         }
+        if let repairOrderRequests = booking?.repairOrderRequests, repairOrderRequests.count > 0 {
+            RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: repairOrderRequests[0])
+        }
     }
     
     func getBooking() -> Booking? {
         return booking
     }
+    
     
     func setPickupRequestType(requestType: RequestType) {
         self.pickupRequestType = requestType
