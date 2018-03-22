@@ -35,6 +35,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         let layout: UICollectionViewFlowLayout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: VehicleCell.VehicleCellHeight, height: VehicleCell.VehicleCellHeight)
         layout.scrollDirection = .horizontal
+        layout.sectionInset = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         vehicleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         vehicleCollectionView.backgroundColor = UIColor.clear
         vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
@@ -65,6 +66,8 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
 
         vehicleCollectionView.delegate = self
         vehicleCollectionView.dataSource = self
+        vehicleCollectionView.showsVerticalScrollIndicator = false
+        vehicleCollectionView.showsHorizontalScrollIndicator = false
         
         showVehicles(vehicles: UserManager.sharedInstance.getVehicles()!)
     }
@@ -83,6 +86,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         
         confirmButton.accessibilityLabel = "confirmButton"
         
+        vehicleCollectionView.clipsToBounds = false
         contentView.addSubview(vehicleCollectionView)
         contentView.addSubview(vehicleTypeView)
         contentView.addSubview(vehicleImageView)
@@ -95,7 +99,8 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         }
         
         vehicleCollectionView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.equalToSuperview()
+            make.left.right.equalTo(self.view)
             make.height.equalTo(VehicleCell.VehicleCellHeight)
         }
         
