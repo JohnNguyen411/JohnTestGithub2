@@ -150,7 +150,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
                     for dealership in dealerships {
                         if dealership.id == RequestedServiceManager.sharedInstance.getDealership()?.id {
                             self.pickupLocationView.hideError()
-                            self.confirmButton.animateAlpha(show: true)
+                            self.showConfirmButtonIfNeeded()
                             return
                             // within zone
                         }
@@ -159,14 +159,14 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 
                 //todo: OUT OF ZONE ERROR
                 self.pickupLocationView.showError(error: .OutOfPickupArea)
-                self.confirmButton.animateAlpha(show: false)
+                self.showConfirmButtonIfNeeded()
             })
         })
         
         
     }
     
-    override func onDateTimeSelected(timeSlot: DealershipTimeSlot) {
+    override func onDateTimeSelected(timeSlot: DealershipTimeSlot?) {
         var openNext = false
         if dropoffScheduleState.rawValue < ScheduleDropoffState.dateTime.rawValue {
             dropoffScheduleState = .dateTime
@@ -178,7 +178,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 if !self.isSelfDrop {
                     self.pickupLocationClick()
                 } else {
-                    self.confirmButton.animateAlpha(show: true)
+                    self.showConfirmButtonIfNeeded()
                 }
             }
         })
@@ -230,4 +230,16 @@ class SchedulingDropoffViewController: SchedulingViewController {
         }
     }
     
+    
+    override func showConfirmButtonIfNeeded() {
+        
+        if let _ = UserManager.sharedInstance.getCustomerId(),
+            let _ = RequestedServiceManager.sharedInstance.getBooking(),
+            let _ = RequestedServiceManager.sharedInstance.getDropoffTimeSlot(),
+            RequestedServiceManager.sharedInstance.getDropoffLocation() != nil || RequestedServiceManager.sharedInstance.getDropoffRequestType() == .advisorDropoff {
+                confirmButton.animateAlpha(show: true)
+        } else {
+            confirmButton.animateAlpha(show: false)
+        }
+    }
 }

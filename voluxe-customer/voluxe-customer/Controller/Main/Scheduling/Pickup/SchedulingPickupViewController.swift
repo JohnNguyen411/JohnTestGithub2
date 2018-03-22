@@ -71,17 +71,21 @@ class SchedulingPickupViewController: SchedulingViewController {
         currentPresentrVC?.dismiss(animated: true, completion: {
             if openNext {
                 self.loanerClick()
+            } else {
+                // timeslots already selected, need to invalidate them
+                self.onDateTimeSelected(timeSlot: nil)
+                self.showConfirmButtonIfNeeded()
             }
         })
     }
 
-    override func onDateTimeSelected(timeSlot: DealershipTimeSlot) {
+    override func onDateTimeSelected(timeSlot: DealershipTimeSlot?) {
         if pickupScheduleState.rawValue < SchedulePickupState.dateTime.rawValue {
             pickupScheduleState = .dateTime
         }
         super.onDateTimeSelected(timeSlot: timeSlot)
         currentPresentrVC?.dismiss(animated: true, completion: {
-            self.confirmButton.animateAlpha(show: true)
+            self.showConfirmButtonIfNeeded()
         })
     }
     
@@ -151,6 +155,19 @@ class SchedulingPickupViewController: SchedulingViewController {
     
     override func confirmButtonClick() {
         createBooking(loaner: RequestedServiceManager.sharedInstance.getLoaner())
+    }
+    
+    override func showConfirmButtonIfNeeded() {
+        
+        if let _ = UserManager.sharedInstance.getCustomerId(),
+            let _ = UserManager.sharedInstance.getVehicleId(),
+            let _ = RequestedServiceManager.sharedInstance.getDealership(),
+            let _ = RequestedServiceManager.sharedInstance.getPickupTimeSlot(),
+            let _ = RequestedServiceManager.sharedInstance.getRepairOrder() {
+            confirmButton.animateAlpha(show: true)
+        } else {
+            confirmButton.animateAlpha(show: false)
+        }
     }
     
     private func createBooking(loaner: Bool) {

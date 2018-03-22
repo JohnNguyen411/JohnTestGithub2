@@ -635,6 +635,6 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
 
 // MARK: protocol PickupDateDelegate
 protocol PickupDateDelegate: VLPresentrViewDelegate {
-    func onDateTimeSelected(timeSlot: DealershipTimeSlot)
+    func onDateTimeSelected(timeSlot: DealershipTimeSlot?)
 }
 

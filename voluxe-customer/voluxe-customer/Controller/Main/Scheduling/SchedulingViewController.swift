@@ -511,6 +511,9 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         loanerView.animateAlpha(show: true)
     }
     
+    func showConfirmButtonIfNeeded() {
+        
+    }
     
     func confirmButtonClick() {
     }
@@ -527,12 +530,17 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     func onDealershipSelected(dealership: Dealership) {
     }
     
-    func onDateTimeSelected(timeSlot: DealershipTimeSlot) {
+    func onDateTimeSelected(timeSlot: DealershipTimeSlot?) {
         
         if StateServiceManager.sharedInstance.isPickup() {
             RequestedServiceManager.sharedInstance.setPickupTimeSlot(timeSlot: timeSlot)
         } else {
             RequestedServiceManager.sharedInstance.setDropoffTimeSlot(timeSlot: timeSlot)
+        }
+        
+        guard let timeSlot = timeSlot else {
+            scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "", rightDescription: "")
+            return
         }
         
         let dateTime = formatter.string(from: timeSlot.from!)
@@ -579,7 +587,6 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             openNext = true
         } else {
             if valueChanged {
-                self.confirmButton.animateAlpha(show: false)
                 
                 scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "", rightDescription: "")
                 
@@ -592,6 +599,8 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                 
                 // re-select TimeSlot
                 openNext = true
+                
+                self.showConfirmButtonIfNeeded()
             }
         }
         
