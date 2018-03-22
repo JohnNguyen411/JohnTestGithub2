@@ -12,7 +12,14 @@ import RealmSwift
 class ServiceDetailViewController: BaseViewController {
     
     let serviceTitle: VLTitledLabel
-    let label = UILabel(frame: .zero)
+    let label: UILabel = {
+        let textView = UILabel(frame: .zero)
+        textView.font = .volvoSansLight(size: 16)
+        textView.backgroundColor = .clear
+        textView.numberOfLines = 0
+        return textView
+    }()
+    
     let service: RepairOrderType
     let confirmButton = VLButton(type: .bluePrimary, title: (.ScheduleService as String).uppercased(), actionBlock: nil)
 
@@ -28,7 +35,8 @@ class ServiceDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        label.attributedText = toHtml(string: service.name!)
+        label.setHTMLFromString(text: service.desc)
+        label.sizeToFit()
         
         if let _ = RequestedServiceManager.sharedInstance.getRepairOrder() {
             confirmButton.isEnabled = false
@@ -65,17 +73,6 @@ class ServiceDetailViewController: BaseViewController {
         label.snp.makeConstraints { make in
             make.right.left.equalTo(serviceTitle)
             make.top.equalTo(serviceTitle.snp.bottom).offset(20)
-            make.bottom.equalTo(confirmButton.snp.top).offset(-10)
         }
-    }
-    
-    func toHtml(string: String) -> NSAttributedString {
-        guard let data = string.data(using: .utf8) else { return NSAttributedString() }
-        do {
-            return try NSAttributedString(data: data, options: [NSAttributedString.DocumentReadingOptionKey.documentType:  NSAttributedString.DocumentType.html], documentAttributes: nil)
-        } catch {
-            return NSAttributedString()
-        }
-        
     }
 }

@@ -120,6 +120,9 @@
 		6C3FB2BC1FA29A1C00B22EAB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BA1FA29A1C00B22EAB /* Location.swift */; };
 		6C3FB2BD1FA29A1C00B22EAB /* VehicleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BB1FA29A1C00B22EAB /* VehicleLocation.swift */; };
 		6C3FB2BF1FA2A4CE00B22EAB /* VehicleLockStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */; };
+		6C4970F72064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */; };
+		6C4970F82064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */; };
+		6C4970F92064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */; };
 		6C4D91BB1FDB15F90031E3CB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
 		6C4D91BC1FDB15F90031E3CB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
 		6C4D91BD1FDB15F90031E3CB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
@@ -629,6 +632,7 @@
 		6C3FB2BA1FA29A1C00B22EAB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		6C3FB2BB1FA29A1C00B22EAB /* VehicleLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLocation.swift; sourceTree = "<group>"; };
 		6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLockStatus.swift; sourceTree = "<group>"; };
+		6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Voluxe.swift"; sourceTree = "<group>"; };
 		6C4D91BA1FDB15F90031E3CB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		6C5832C41FB3899700F6BFE0 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		6C5832F41FB3AF5600F6BFE0 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
@@ -1012,6 +1016,7 @@
 				6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */,
 				6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */,
 				6C7DDE121FDB664D000E2822 /* String+Utils.swift */,
+				6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -2024,6 +2029,7 @@
 				6CDCC616205C461100DFA831 /* RepairOrderType.swift in Sources */,
 				6CBB4EAC1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */,
 				6C5833191FB3AF5600F6BFE0 /* PresentrController.swift in Sources */,
+				6C4970F72064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */,
 				6C3FB2AB1FA2574C00B22EAB /* User.swift in Sources */,
 				6C20E1AD1FBE408B00E5D9A0 /* SchedulingViewController.swift in Sources */,
 				6C58330F1FB3AF5600F6BFE0 /* CrossDissolveAnimation.swift in Sources */,
@@ -2282,6 +2288,7 @@
 				6CBAA6C82023FD3300F35ECF /* ServiceListViewController.swift in Sources */,
 				6CD3BCAF200E85FE001DD79B /* RepairOrder.swift in Sources */,
 				6C5D866D2032539900BBADDC /* VLVerticalSearchTextField.swift in Sources */,
+				6C4970F82064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */,
 				6C20E1911FBE14C300E5D9A0 /* GMDirection.swift in Sources */,
 				6C91BBD41FA7D44D0033C2B1 /* Constants.swift in Sources */,
 				6CD474AD2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */,
@@ -2303,6 +2310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C4970F92064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */,
 				6CBB4E931FB4DF7D00C31183 /* FSCalendarCollectionViewLayout.m in Sources */,
 				6C20E1851FBD206E00E5D9A0 /* ServiceState.swift in Sources */,
 				6C58332E1FB3AF8000F6BFE0 /* ModalSize.swift in Sources */,

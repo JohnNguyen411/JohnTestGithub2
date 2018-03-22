@@ -14,7 +14,7 @@ class RepairOrderType: Object, Mappable {
     
     @objc dynamic var id: Int = -1
     @objc dynamic var name: String?
-    @objc dynamic var desc: String?
+    @objc dynamic var desc: String = ""
     @objc dynamic var category: String?
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
