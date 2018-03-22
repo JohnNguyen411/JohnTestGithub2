@@ -311,21 +311,31 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                                     // todo show error
                                 }
                                 
+                                if let completion = completion {
+                                    completion()
+                                }
 
                                 }.onFailure { error in
                                     // No nearby dealership offering that service
                                     // todo show error
+                                    if let completion = completion {
+                                        completion()
+                                    }
                             }
                         }
                     } else {
                         self.handleDealershipsResponse(dealerships: dealerships)
+                        if let completion = completion {
+                            completion()
+                        }
                     }
                 } else {
+                    if let completion = completion {
+                        completion()
+                    }
                     self.dealerships = nil
                 }
-                if let completion = completion {
-                    completion()
-                }
+                
                 }.onFailure { error in
                     if let completion = completion {
                         completion()
