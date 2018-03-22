@@ -89,8 +89,8 @@ class ScheduledBookingViewController: SchedulingViewController {
             pickupLocationView.setTitle(title: .PickupLocation, leftDescription: requestLocation.address!, rightDescription: "")
         }
         
-        if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
-            scheduledServiceView.setTitle(title: .SelectedService, leftDescription: repairOrder.name!, rightDescription: "")
+        if booking.repairOrderRequests.count > 0 {
+            scheduledServiceView.setTitle(title: .SelectedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
         }
         
         if let dealership = booking.dealership {

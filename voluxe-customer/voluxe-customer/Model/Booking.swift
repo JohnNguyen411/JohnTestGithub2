@@ -85,6 +85,20 @@ class Booking: Object, Mappable {
         return false
     }
     
+    func getRepairOrderName() -> String {
+        if repairOrderRequests.count > 0 {
+            var name = ""
+            name.append(repairOrderRequests[0].name ?? "")
+            if repairOrderRequests.count > 1 {
+                for i in 0...repairOrderRequests.count {
+                    name.append("| \(repairOrderRequests[i].name ?? "")")
+                }
+            }
+            return name
+        }
+        return ""
+    }
+    
     public static func getStateForBooking(booking: Booking?) -> ServiceState {
         if let booking = booking {
             return ServiceState.appStateForBookingState(bookingState: booking.getState())

@@ -134,7 +134,8 @@ final class UserManager {
         if let bookings = bookings {
             var hasUpcomingRequestToday = false
             for booking in bookings {
-                if booking.getState() == .cancelled || booking.getState() == .completed {
+                // skipped cancelled and completed request, and request w/o any request
+                if booking.getState() == .cancelled || booking.getState() == .completed || (booking.pickupRequest == nil && booking.dropoffRequest == nil) {
                     continue
                 }
                 let vehicleId = booking.vehicleId
@@ -176,6 +177,13 @@ final class UserManager {
     public func getFirstBookingForVehicle(vehicle: Vehicle) -> Booking? {
         if let bookings = getBookingsForVehicle(vehicle: vehicle), bookings.count > 0 {
             return bookings[0]
+        }
+        return nil
+    }
+    
+    public func getLastBookingForVehicle(vehicle: Vehicle) -> Booking? {
+        if let bookings = getBookingsForVehicle(vehicle: vehicle), bookings.count > 0 {
+            return bookings[bookings.count-1]
         }
         return nil
     }

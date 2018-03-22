@@ -163,13 +163,12 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         // check if service scheduled
         
         //todo: check service for selected vehicle
-        if let selectedVehicle = selectedVehicle, let _ = UserManager.sharedInstance.getFirstBookingForVehicle(vehicle: selectedVehicle) {
+        if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle) {
             scheduledServiceView.snp.updateConstraints { make in
                 make.height.equalTo(100)
             }
             scheduledServiceView.isHidden = false
-            //todo: remove MOCK SERVICE
-            scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: RepairOrder.mockRepairOrder().name!)
+            scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: booking.getRepairOrderName())
             confirmButton.animateAlpha(show: false)
         } else {
             scheduledServiceView.snp.updateConstraints { make in
@@ -191,7 +190,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     
     
     @objc func scheduledServiceClick() {
-        if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getFirstBookingForVehicle(vehicle: selectedVehicle) {
+        if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle) {
             self.childViewDelegate?.pushViewController(controller: ScheduledBookingViewController(booking: booking, delegate: self), animated: true, backLabel: .Back, title: .ScheduledService)
         }
     }

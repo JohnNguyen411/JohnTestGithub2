@@ -13,6 +13,17 @@ class SchedulingDropoffViewController: SchedulingViewController {
     
     var isSelfDrop = false
     
+    let booking: Booking
+    
+    init(state: ServiceState, booking: Booking) {
+        self.booking = booking
+        super.init(state: state)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func setupViews() {
         
         super.setupViews()
@@ -24,6 +35,9 @@ class SchedulingDropoffViewController: SchedulingViewController {
     
     override func fillViews() {
         super.fillViews()
+        
+        scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+        
         scheduledPickupView.titleLabel.text = .ScheduledDelivery
         pickupLocationView.titleLabel.text = .DeliveryLocation
     }
