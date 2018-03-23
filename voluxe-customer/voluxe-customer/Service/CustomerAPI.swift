@@ -130,7 +130,7 @@ class CustomerAPI: NSObject {
     func requestPhoneVerificationCode(customerId: Int) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
         let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/request-phone-number-verification", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/phone-number/request-verification", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             
@@ -161,7 +161,7 @@ class CustomerAPI: NSObject {
             "verification_code": verificationCode
         ]
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/verify-phone-number", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/phone-number/verify", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             

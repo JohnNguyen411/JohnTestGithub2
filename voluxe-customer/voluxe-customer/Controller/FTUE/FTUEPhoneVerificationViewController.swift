@@ -123,11 +123,11 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             return
         }
         
-        guard let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber else {
-            return
-        }
-        
         if ftuePhoneType == .resetPassword {
+            guard let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber else {
+                return
+            }
+            
             isLoading = true
             
             MBProgressHUD.showAdded(to: self.view, animated: true)
