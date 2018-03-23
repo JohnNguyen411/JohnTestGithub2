@@ -26,6 +26,10 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         emailTextField.accessibilityIdentifier = "volvoIdTextField"
         passwordTextField.accessibilityIdentifier = "volvoPwdTextField"
+        passwordTextField.setRightButtonText(rightButtonText: String.ForgotPassword.uppercased(), actionBlock: {
+            
+            })
+        
         
         emailTextField.textField.autocorrectionType = .no
         passwordTextField.textField.autocorrectionType = .no

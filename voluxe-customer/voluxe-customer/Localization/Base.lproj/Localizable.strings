@@ -72,6 +72,7 @@
 "UpdatePhoneNumber" = "Update phone number";
 "PhoneNumberAlreadyExist" = "An account already exist with that phone number, please try Login instead.";
 "UpdatePassword" = "Update your password.";
+"ForgotPassword" = "Forgot password?";
 
 
 /***************** SchedulePickup ***************/
