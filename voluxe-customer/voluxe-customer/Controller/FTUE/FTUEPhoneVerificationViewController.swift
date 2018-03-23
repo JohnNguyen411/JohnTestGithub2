@@ -110,6 +110,23 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             return
         }
         
+        if let customer = UserManager.sharedInstance.getCustomer(), customer.phoneNumberVerified {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
+            CustomerAPI().requestPasswordChange(customerId: customer.id).onSuccess { result in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                if result?.error != nil {
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                }
+                self.isLoading = false
+                }.onFailure { error in
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.isLoading = false
+            }
+            return
+        }
+        
         isLoading = true
         
         MBProgressHUD.showAdded(to: self.view, animated: true)

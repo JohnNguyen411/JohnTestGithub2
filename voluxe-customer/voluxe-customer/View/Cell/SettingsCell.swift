@@ -26,6 +26,7 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
     
     var delegate: SettingsCellProtocol?
     
+    var singleTap: UITapGestureRecognizer?
     let editImage: UIImageView
     let leftImage: UIImageView
     
@@ -35,11 +36,9 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
         return label
     }()
     
-    let settingTextField: UITextField
     var switchView: UISwitch?
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        settingTextField = UITextField(frame: .zero)
         leftImage = UIImageView(frame: .zero)
         editImage = UIImageView(frame: .zero)
         
@@ -50,19 +49,14 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
         self.backgroundColor = .clear
         self.accessoryType = .disclosureIndicator
         self.contentView.addSubview(settingLabel)
-        self.contentView.addSubview(settingTextField)
         self.contentView.addSubview(leftImage)
         self.contentView.addSubview(editImage)
         setupViews()
         
-        let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(onEditClicked))
-        singleTap.numberOfTapsRequired = 1
+        singleTap = UITapGestureRecognizer(target: self, action: #selector(onEditClicked))
+        singleTap!.numberOfTapsRequired = 1
         editImage.isUserInteractionEnabled = true
-        editImage.addGestureRecognizer(singleTap)
-        
-        settingTextField.isHidden = true
-        settingTextField.delegate = self
-        settingTextField.returnKeyType = .done
+        editImage.addGestureRecognizer(singleTap!)
         
     }
     
@@ -95,10 +89,6 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
             make.left.equalTo(leftImage.snp.right).offset(15)
         }
         
-        settingTextField.snp.makeConstraints { make in
-            make.top.bottom.right.equalToSuperview()
-            make.left.equalTo(leftImage.snp.right).offset(15)
-        }
     }
     
     public func setText(text: String, leftImageName: String? = nil, editImageName: String? = nil) {
@@ -113,11 +103,6 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
             }
                 
             settingLabel.snp.remakeConstraints { make in
-                make.top.bottom.right.equalToSuperview()
-                make.left.equalTo(leftImage.snp.right).offset(15)
-            }
-            
-            settingTextField.snp.remakeConstraints { make in
                 make.top.bottom.right.equalToSuperview()
                 make.left.equalTo(leftImage.snp.right).offset(15)
             }
@@ -154,24 +139,31 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
     
     private func resetConstraints() {
         if editImage.image == nil {
+            settingLabel.isUserInteractionEnabled = false
             return
         }
+        settingLabel.isUserInteractionEnabled = true
+        settingLabel.addGestureRecognizer(singleTap!)
         UIView.animate(withDuration: 0.3, animations: {
             if self.isEditing {
                 self.editImage.alpha = 1
                 self.editImage.snp.updateConstraints { make in
                     make.width.equalTo(20)
                 }
-                self.leftImage.snp.updateConstraints { make in
-                    make.left.equalToSuperview().offset(50)
+                if let _ = self.leftImage.image {
+                    self.leftImage.snp.updateConstraints { make in
+                        make.left.equalToSuperview().offset(50)
+                    }
                 }
             } else {
                 self.editImage.alpha = 0
                 self.editImage.snp.updateConstraints { make in
                     make.width.equalTo(0)
                 }
-                self.leftImage.snp.updateConstraints { make in
-                    make.left.equalToSuperview().offset(15)
+                if let _ = self.leftImage.image {
+                    self.leftImage.snp.updateConstraints { make in
+                        make.left.equalToSuperview().offset(15)
+                    }
                 }
             }
         })
@@ -179,9 +171,8 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
     }
     
     @objc internal func onEditClicked() {
-        if settingTextField.isHidden {
-            settingTextField.isHidden = false
-            settingLabel.isHidden = true
+        if let delegate = delegate, editImage.alpha == 1 {
+            delegate.onEditClicked(self)
         }
     }
     
@@ -205,4 +196,5 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
 
 protocol SettingsCellProtocol {
     func switchChanged(_ cell: UITableViewCell)
+    func onEditClicked(_ cell: UITableViewCell)
 }

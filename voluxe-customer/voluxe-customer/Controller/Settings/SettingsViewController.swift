@@ -165,5 +165,8 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         //tableView.indexPath(for: cell)
     }
     
+    func onEditClicked(_ cell: UITableViewCell) {
+    }
+    
 }
 

@@ -71,6 +71,7 @@
 "InvalidCredentials" = "The email or password provided is invalid.";
 "UpdatePhoneNumber" = "Update phone number";
 "PhoneNumberAlreadyExist" = "An account already exist with that phone number, please try Login instead.";
+"UpdatePassword" = "Update your password.";
 
 
 /***************** SchedulePickup ***************/
