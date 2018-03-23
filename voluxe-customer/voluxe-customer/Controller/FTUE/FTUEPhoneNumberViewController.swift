@@ -37,6 +37,17 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         return textView
     }()
     
+    let ftuePhoneType: FTUEPhoneType
+    
+    init(type: FTUEPhoneType) {
+        self.ftuePhoneType = type
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private var isLoading = false
     
     override func viewDidLoad() {
@@ -49,6 +60,9 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         let phoneNumberTF: PhoneNumberTextField = phoneNumberTextField.textField as! PhoneNumberTextField
         phoneNumberTF.maxDigits = 10
         
+        if ftuePhoneType == .resetPassword {
+            self.phoneNumberLabel.text = .MobilePhoneNumberResetPassword
+        }
         
         phoneNumberTextField.textField.becomeFirstResponder()
         _ = checkTextFieldsValidity()
@@ -131,12 +145,36 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             return
         }
         
+        if isLoading {
+            return
+        }
+        
+        if ftuePhoneType == .resetPassword {
+            isLoading = true
+            
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
+            CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                if result?.error != nil {
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                }
+                self.isLoading = false
+                self.goToNext()
+                }.onFailure { error in
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.isLoading = false
+            }
+            return
+        }
+        
         var customerId = UserManager.sharedInstance.getCustomerId()
         if customerId == nil {
             customerId = UserManager.sharedInstance.tempCustomerId
         }
         
-        if isLoading || customerId == nil {
+        if customerId == nil {
             return
         }
         
@@ -159,6 +197,16 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     }
     
     override func goToNext() {
-        appDelegate?.startApp()
+        if ftuePhoneType == .resetPassword {
+            // enter need password
+            self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(type: ftuePhoneType), animated: true)
+        } else {
+            appDelegate?.startApp()
+        }
     }
+}
+
+public enum FTUEPhoneType {
+    case update
+    case resetPassword
 }

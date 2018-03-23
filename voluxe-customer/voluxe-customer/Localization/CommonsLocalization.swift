@@ -31,5 +31,6 @@ extension String {
     static let GenericError = NSLocalizedString("GenericError")
     static let Map = NSLocalizedString("Map")
     static let Retry = NSLocalizedString("Retry")
+    static let Success = NSLocalizedString("Success")
 
 }

@@ -244,7 +244,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
                     self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
                 } else if indexPath.section == 1 || indexPath.row == 1 {
                     // update phone number
-                    self.navigationController?.pushViewController(FTUEPhoneNumberViewController(), animated: true)
+                    self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
                 }
             }
             return [edit]
@@ -288,7 +288,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
                 self.resetPassword()
             } else if indexPath.section == 1 || indexPath.row == 1 {
                 // update phone number
-                self.navigationController?.pushViewController(FTUEPhoneNumberViewController(), animated: true)
+                self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
             }
         }
     }

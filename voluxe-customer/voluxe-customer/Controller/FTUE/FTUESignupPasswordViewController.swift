@@ -208,7 +208,30 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                     
             return
         }
-
+        
+        // if no access token, no temp email, no cust id, and a phone number, it's a reset password
+        // if accessToken, it's a password update
+        if let code = UserManager.sharedInstance.signupCustomer.verificationCode,
+            let password = volvoPwdConfirmTextField.textField.text,
+            let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber,
+            UserManager.sharedInstance.getCustomerId() == nil, signupCustomer.email == nil, accessToken == nil {
+            CustomerAPI().passwordResetConfirm(phoneNumber: phoneNumber, code: code, password: password).onSuccess { result in
+                if let _ = result?.error {
+                    // error
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                } else {
+                    // password successfully updated, proceed to login
+                    self.navigationController?.popToRootViewController(animated: true)
+                    self.showOkDialog(title: .Success, message: .PasswordResetLogin, completion: {
+                        self.navigationController?.pushViewController(FTUELoginViewController(), animated: true)
+                    });
+                }
+                }.onFailure { error in
+                    self.showOkDialog(title: .Error, message: .GenericError)
+            }
+            return
+        }
+            
         signup(signupCustomer: signupCustomer)
         
     }
