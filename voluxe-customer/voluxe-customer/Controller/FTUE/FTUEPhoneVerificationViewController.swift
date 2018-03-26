@@ -17,6 +17,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     let updatePhoneNumberButton = VLButton(type: .blueSecondary, title: .UpdatePhoneNumber, actionBlock: nil)
     
+    var ftuePhoneType: FTUEPhoneType = .update
     
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -27,6 +28,19 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         textView.numberOfLines = 0
         return textView
     }()
+    
+    override init() {
+        super.init()
+    }
+    
+    convenience init(type: FTUEPhoneType) {
+        self.init()
+        self.ftuePhoneType = type
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     private var isLoading = false
     
@@ -51,6 +65,10 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         if FTUEStartViewController.flowType == .signup {
             canGoBack(backEnabled: false)
+        }
+        
+        if ftuePhoneType == .resetPassword {
+            updatePhoneNumberButton.isHidden = true
         }
     }
     
@@ -96,17 +114,63 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     }
     
     @objc func updatePhoneNumber() {
-        self.navigationController?.pushViewController(FTUEPhoneNumberViewController(), animated: true)
+        self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
     }
     
     @objc func resendCode() {
+        
+        if isLoading {
+            return
+        }
+        
+        if ftuePhoneType == .resetPassword {
+            guard let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber else {
+                return
+            }
+            
+            isLoading = true
+            
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
+            CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                if result?.error != nil {
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                }
+                self.isLoading = false
+                self.codeTextField.textField.text = ""
+                }.onFailure { error in
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.isLoading = false
+            }
+            return
+        }
         
         var customerId = UserManager.sharedInstance.getCustomerId()
         if customerId == nil {
             customerId = UserManager.sharedInstance.tempCustomerId
         }
         
-        if isLoading || customerId == nil {
+        if customerId == nil {
+            return
+        }
+        
+        
+        if let customer = UserManager.sharedInstance.getCustomer(), customer.phoneNumberVerified {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
+            CustomerAPI().requestPasswordChange(customerId: customer.id).onSuccess { result in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                if result?.error != nil {
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                }
+                self.isLoading = false
+                }.onFailure { error in
+                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.isLoading = false
+            }
             return
         }
         
@@ -168,7 +232,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     
     override func goToNext() {
-        if FTUEStartViewController.flowType == .signup {
+        if FTUEStartViewController.flowType == .signup || ftuePhoneType == .resetPassword {
             self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
         } else {
             

@@ -130,7 +130,7 @@ class CustomerAPI: NSObject {
     func requestPhoneVerificationCode(customerId: Int) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
         let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/request-phone-number-verification", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/phone-number/request-verification", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             
@@ -161,7 +161,7 @@ class CustomerAPI: NSObject {
             "verification_code": verificationCode
         ]
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/verify-phone-number", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/phone-number/verify", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             
@@ -209,7 +209,128 @@ class CustomerAPI: NSObject {
         return promise.future
     }
     
+    /**
+     Endpoint to initiate Customer's reset password
+     - parameter customerId: Customer's ID
+     
+     - Returns: A Future ResponseObject containing an empty Object, or an AFError if an error occured
+     */
+    func requestPasswordChange(customerId: Int) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/password/request-change", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
+            
+            var responseObject: ResponseObject<EmptyMappableObject>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
     
+    /**
+     Endpoint to reset Customer's password
+     - parameter customerId: Customer's ID
+     - parameter code: The verification code the customer received
+     - parameter password: The new password
+     
+     - Returns: A Future ResponseObject containing an empty Object, or an AFError if an error occured
+     */
+    func passwordChange(customerId: Int, code: String, password: String) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+        
+        let params: Parameters = [
+            "verification_code": code,
+            "password": password
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/password/change", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+            
+            var responseObject: ResponseObject<EmptyMappableObject>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    /**
+     Endpoint to initiate Customer's reset password from phone number
+     - parameter phoneNumber: Customer's phone number
+     
+     - Returns: A Future ResponseObject containing an empty Object, or an AFError if an error occured
+     */
+    func passwordReset(phoneNumber: String) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+        
+        let params: Parameters = [
+            "phone_number": phoneNumber
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/password-reset/request", method: .put, queryParameters: nil, bodyParameters: params,  withBearer: true).responseJSON { response in
+            
+            var responseObject: ResponseObject<EmptyMappableObject>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    /**
+     Endpoint to set a new password for the customer using a 2FA verification code.
+     - parameter phoneNumber: Customer's phone number
+     - parameter code: The verification code the customer received
+     - parameter password: The new password
+     
+     - Returns: A Future ResponseObject containing an empty Object, or an AFError if an error occured
+     */
+    func passwordResetConfirm(phoneNumber: String, code: String, password: String) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+        
+        let params: Parameters = [
+            "phone_number": phoneNumber,
+            "verification_code": code,
+            "password": password
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/password-reset/confirm", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+            
+            var responseObject: ResponseObject<EmptyMappableObject>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
     
     /**
      Get the Customer object with a customerId

@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import MBProgressHUD
 
 class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     
@@ -127,10 +128,31 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         
         currentPresentrVC?.dismiss(animated: true, completion: nil)
     }
-
+    
+    func resetPassword() {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        if let customerId = UserManager.sharedInstance.getCustomerId() {
+            CustomerAPI().requestPasswordChange(customerId: customerId).onSuccess { response in
+                if let _ = response?.error {
+                    // show error
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                } else {
+                    FTUEStartViewController.flowType = .signup
+                    self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
+                }
+                MBProgressHUD.hide(for: self.view, animated: true)
+                }.onFailure { error in
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                    MBProgressHUD.hide(for: self.view, animated: true)
+            }
+        }
+    }
+    
 }
 
 extension AccountSettingsViewController: UITableViewDataSource, UITableViewDelegate, SettingsCellProtocol {
+    
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -154,7 +176,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdIndicator, for: indexPath) as! SettingsCell
         var leftImage: String? = nil
         var editImage: String? = nil
-
+        
         var text = getTextForIndexPath(indexPath: indexPath)
         
         if indexPath.section == 0 && indexPath.row >= addressesCount {
@@ -168,6 +190,8 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
                 } else {
                     leftImage = "phone"
                 }
+            } else if indexPath.section == 2 {
+                editImage = "edit"
             }
             cell.setCellType(type: .none)
         }
@@ -178,7 +202,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        if (indexPath.section == 0 && indexPath.row >= addressesCount) || indexPath.section == 2 {
+        if (indexPath.section == 0 && indexPath.row >= addressesCount) {
             return false
         }
         return true
@@ -186,7 +210,6 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         if indexPath.section == 0 && indexPath.row < addressesCount {
-            
             return .delete
         }
         return .none
@@ -209,10 +232,22 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
                     }
                     tableView.deleteRows(at: [indexPath], with: .automatic)
                 }
-
+                
             })
             return [delete]
-
+            
+        } else if indexPath.section == 1 || indexPath.section == 2 {
+            let edit = UITableViewRowAction(style: .normal, title: .Edit) { (action, indexPath) in
+                // edit item at indexPath
+                if indexPath.section == 2 {
+                    // pwd
+                    self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
+                } else if indexPath.section == 1 || indexPath.row == 1 {
+                    // update phone number
+                    self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
+                }
+            }
+            return [edit]
         }
         
         return []
@@ -245,5 +280,19 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func switchChanged(_ cell: UITableViewCell) {}
+    
+    func onEditClicked(_ cell: UITableViewCell) {
+        if let indexPath = tableView.indexPath(for: cell) {
+            if indexPath.section == 2 {
+                // pwd
+                self.resetPassword()
+            } else if indexPath.section == 1 || indexPath.row == 1 {
+                // update phone number
+                self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
+            }
+        }
+    }
+    
+    
     
 }

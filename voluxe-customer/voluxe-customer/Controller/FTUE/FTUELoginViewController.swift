@@ -26,6 +26,10 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         emailTextField.accessibilityIdentifier = "volvoIdTextField"
         passwordTextField.accessibilityIdentifier = "volvoPwdTextField"
+        passwordTextField.setRightButtonText(rightButtonText: String.ForgotPassword.uppercased(), actionBlock: {
+            self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .resetPassword), animated: true)
+        })
+        
         
         emailTextField.textField.autocorrectionType = .no
         passwordTextField.textField.autocorrectionType = .no
@@ -33,7 +37,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         emailTextField.textField.keyboardType = .emailAddress
         emailTextField.textField.autocapitalizationType = .none
-
+        
         emailTextField.textField.returnKeyType = .next
         passwordTextField.textField.returnKeyType = .done
         
@@ -42,7 +46,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         passwordTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-                
+        
         emailTextField.textField.becomeFirstResponder()
         canGoNext(nextEnabled: false)
         

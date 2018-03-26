@@ -29,6 +29,7 @@
 "GenericError" = "An unknown error has occurred, please try again later.";
 "Map" = "Map";
 "Retry" = "Retry";
+"Success" = "Success";
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
@@ -41,6 +42,7 @@
 "MobilePhoneNumber" = "Mobile Phone Number";
 "MobilePhoneNumber_Placeholder" = "(555) 555-5555";
 "MobilePhoneNumberExplain" = "We require your phone number to coordinate during pickup and delivery.";
+"MobilePhoneNumberResetPassword" = "We require your phone number to reset your password.";
 "MobilePhoneNumberConfirm" = "We'll send you a text message to confirm the number";
 "PhoneNumberVerifLabel" = "Type the confirmation code you received via SMS.";
 "ResendCode" = "Resend Code";
@@ -71,7 +73,9 @@
 "InvalidCredentials" = "The email or password provided is invalid.";
 "UpdatePhoneNumber" = "Update phone number";
 "PhoneNumberAlreadyExist" = "An account already exist with that phone number, please try Login instead.";
-
+"UpdatePassword" = "Update your password.";
+"ForgotPassword" = "Forgot password?";
+"PasswordResetLogin" = "Password successfully reset, please proceed to login.";
 
 /***************** SchedulePickup ***************/
 "ScheduleService" = "Schedule Service";

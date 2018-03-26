@@ -22,6 +22,7 @@ extension String {
     static let MobilePhoneNumber = NSLocalizedString("MobilePhoneNumber")
     static let MobilePhoneNumber_Placeholder = NSLocalizedString("MobilePhoneNumber_Placeholder")
     static let MobilePhoneNumberExplain = NSLocalizedString("MobilePhoneNumberExplain")
+    static let MobilePhoneNumberResetPassword = NSLocalizedString("MobilePhoneNumberResetPassword")
     static let MobilePhoneNumberConfirm = NSLocalizedString("MobilePhoneNumberConfirm")
     static let PhoneNumberVerifLabel = NSLocalizedString("PhoneNumberVerifLabel")
     static let ResendCode = NSLocalizedString("ResendCode")
@@ -33,6 +34,8 @@ extension String {
     static let FirstNamePlaceholder = NSLocalizedString("FirstNamePlaceholder")
     static let LastNamePlaceholder = NSLocalizedString("LastNamePlaceholder")
     static let CreatePassword = NSLocalizedString("CreatePassword")
+    static let UpdatePassword = NSLocalizedString("UpdatePassword")
+    static let ForgotPassword = NSLocalizedString("ForgotPassword")
     static let PasswordCondition = NSLocalizedString("PasswordCondition")
     static let Password = NSLocalizedString("Password")
     static let RepeatPassword = NSLocalizedString("RepeatPassword")
@@ -50,5 +53,6 @@ extension String {
     static let InvalidCredentials = NSLocalizedString("InvalidCredentials")
     static let UpdatePhoneNumber = NSLocalizedString("UpdatePhoneNumber")
     static let PhoneNumberAlreadyExist = NSLocalizedString("PhoneNumberAlreadyExist")
+    static let PasswordResetLogin = NSLocalizedString("PasswordResetLogin")
 
 }

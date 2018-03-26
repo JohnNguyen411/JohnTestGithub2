@@ -38,6 +38,16 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     var signupInProgress = false
     var realm : Realm?
+    let accessToken: String?
+    
+    override init() {
+        accessToken = UserManager.sharedInstance.getAccessToken()
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +72,10 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         volvoPwdTextField.textField.becomeFirstResponder()
         canGoNext(nextEnabled: false)
+        
+        if accessToken != nil {
+            passwordLabel.text = .UpdatePassword
+        }
     }
     
     override func setupViews() {
@@ -154,7 +168,6 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             volvoPwdConfirmTextField.textField.becomeFirstResponder()
         } else {
             if checkTextFieldsValidity() {
-                //todo CREATE CUSTOMER HERE AND THEN ADD CAR
                 self.nextButtonTap()
             } else {
                 // show error
@@ -177,7 +190,53 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         }
         
         showLoading(loading: true)
-
+        
+        // if accessToken, it's a password update
+        if let code = UserManager.sharedInstance.signupCustomer.verificationCode,
+            let password = volvoPwdConfirmTextField.textField.text, let customerId = UserManager.sharedInstance.getCustomerId(),
+            signupCustomer.email == nil, accessToken != nil {
+            CustomerAPI().passwordChange(customerId: customerId, code: code, password: password).onSuccess { result in
+                if let _ = result?.error {
+                    // error
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                } else {
+                    self.navigationController?.popToRootViewController(animated: true)
+                }
+                }.onFailure { error in
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                }
+                    
+            return
+        }
+        
+        // if no access token, no temp email, no cust id, and a phone number, it's a reset password
+        // if accessToken, it's a password update
+        if let code = UserManager.sharedInstance.signupCustomer.verificationCode,
+            let password = volvoPwdConfirmTextField.textField.text,
+            let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber,
+            UserManager.sharedInstance.getCustomerId() == nil, signupCustomer.email == nil, accessToken == nil {
+            CustomerAPI().passwordResetConfirm(phoneNumber: phoneNumber, code: code, password: password).onSuccess { result in
+                if let _ = result?.error {
+                    // error
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                } else {
+                    // password successfully updated, proceed to login
+                    self.navigationController?.popToRootViewController(animated: true)
+                    self.showOkDialog(title: .Success, message: .PasswordResetLogin, completion: {
+                        self.navigationController?.pushViewController(FTUELoginViewController(), animated: true)
+                    });
+                }
+                }.onFailure { error in
+                    self.showOkDialog(title: .Error, message: .GenericError)
+            }
+            return
+        }
+            
+        signup(signupCustomer: signupCustomer)
+        
+    }
+    
+    private func signup(signupCustomer: SignupCustomer) {
         if let customer = UserManager.sharedInstance.getCustomer() {
             
             if UserManager.sharedInstance.getAccessToken() != nil {
@@ -206,8 +265,6 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             }.onFailure { error in
                 self.onSignupError()
         }
-        
-        return
     }
     
     func loginUser(email: String, password: String) {
