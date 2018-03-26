@@ -471,7 +471,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func getConfirmButtonTitle() -> String {
-        var title: String = .ConfirmPickup
+        var title = String.ConfirmPickup.uppercased()
         if StateServiceManager.sharedInstance.isPickup() {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
                 title = .ConfirmSelfDrop
