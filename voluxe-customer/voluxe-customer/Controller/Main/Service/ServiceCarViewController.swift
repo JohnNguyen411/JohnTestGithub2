@@ -257,7 +257,9 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 checkupLabel.text = .SchedulePickupDealership
                 showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: true)
                 checkupLabel.text = .VolvoServiceComplete
-                scheduledServiceView.setTitle(title: .CompletedService)
+                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+                    scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+                }
             }
             noteLabel.isHidden = false
             
