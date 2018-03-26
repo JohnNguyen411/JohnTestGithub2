@@ -207,8 +207,8 @@ class LoadingViewController: ChildViewController {
     }
     
     private func getBookings(customerId: Int) {
-        // Get Customer's Bookings based on ID
-        BookingAPI().getBookings(customerId: customerId).onSuccess { result in
+        // Get Customer's active Bookings based on ID
+        BookingAPI().getBookings(customerId: customerId, active: true).onSuccess { result in
             if let bookings = result?.data?.result, bookings.count > 0 {
                 if let realm = self.realm {
                     try? realm.write {

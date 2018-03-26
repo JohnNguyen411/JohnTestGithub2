@@ -77,13 +77,19 @@ class BookingAPI: NSObject {
     /**
      Get the bookings of a customer
      - parameter customerId: Customer's Id
-     
+     - parameter active: true for active request only, false for non active, nil to ignore
+
      - Returns: A Future ResponseObject containing a list of Bookings, or an AFError if an error occured
      */
-    func getBookings(customerId: Int) -> Future<ResponseObject<MappableDataArray<Booking>>?, AFError> {
+    func getBookings(customerId: Int, active: Bool?) -> Future<ResponseObject<MappableDataArray<Booking>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<Booking>>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings", queryParameters: nil, withBearer: true).responseJSON { response in
+        var params: Parameters?
+        if let active = active {
+            params = ["active" : active]
+        }
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings", queryParameters: params, withBearer: true).responseJSON { response in
                 var responseObject: ResponseObject<MappableDataArray<Booking>>?
                 
                 if let json = response.result.value as? [String: Any] {
