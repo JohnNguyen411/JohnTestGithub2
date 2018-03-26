@@ -20,6 +20,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     var delegate: PickupDateDelegate?
     var realm: Realm?
+    var dealership: Dealership?
     
     let firstMonthHeader: UILabel = {
         let firstMonthHeader = UILabel()
@@ -80,6 +81,13 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     override init() {
         loanerViewHeight = isPickup ? 48 : 0
+        var currentDealership = RequestedServiceManager.sharedInstance.getDealership()
+        if currentDealership == nil {
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+                currentDealership = booking.dealership
+            }
+        }
+        dealership = currentDealership
         super.init()
         realm = try? Realm()
         getTimeSlots()
@@ -115,7 +123,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             return
         }
         
-        if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+        if let dealership = self.dealership {
             let formatter = DateFormatter()
             formatter.calendar = Calendar(identifier: .iso8601)
             formatter.locale = Locale(identifier: "en_US_POSIX")
@@ -377,7 +385,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                     
                     // Fake slots for Mock
                     if Config.sharedInstance.isMock {
-                        if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                        if let dealership = self.dealership {
                             var mockDay = self.todaysDate
                             try? self.realm?.write {
                                 for _ in 0...30 {
@@ -446,7 +454,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     private func getSlotsForDate(date: Date) -> Results<DealershipTimeSlot>? {
-        if let realm = realm, let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+        if let realm = realm, let dealership = self.dealership {
             var from: NSDate = date.beginningOfDay() as NSDate
             var to: NSDate = date.endOfDay() as NSDate
             

@@ -145,10 +145,16 @@ class SchedulingDropoffViewController: SchedulingViewController {
             self.fetchDealershipsForLocation(location: customerAddress.location?.getLocation(), completion: {
                 // hide loader
                 self.hideBlockingLoading()
+                var bookingDealership = RequestedServiceManager.sharedInstance.getDealership()
+                if bookingDealership == nil {
+                    if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+                        bookingDealership = booking.dealership
+                    }
+                }
                 
                 if let dealerships = self.dealerships, dealerships.count > 0 {
                     for dealership in dealerships {
-                        if dealership.id == RequestedServiceManager.sharedInstance.getDealership()?.id {
+                        if dealership.id == bookingDealership?.id {
                             self.pickupLocationView.hideError()
                             self.showConfirmButtonIfNeeded()
                             return
