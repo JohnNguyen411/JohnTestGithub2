@@ -20,10 +20,12 @@ class ServiceDetailViewController: BaseViewController {
         return textView
     }()
     
+    var canSchedule = true
     let service: RepairOrderType
     let confirmButton = VLButton(type: .bluePrimary, title: (.ScheduleService as String).uppercased(), actionBlock: nil)
 
-    init(service: RepairOrderType) {
+    init(service: RepairOrderType, canSchedule: Bool) {
+        self.canSchedule = canSchedule
         self.service = service
         serviceTitle = VLTitledLabel(title: .FactoryScheduledMaintenance, leftDescription: service.name!, rightDescription: "")
         super.init()
@@ -38,7 +40,7 @@ class ServiceDetailViewController: BaseViewController {
         label.setHTMLFromString(text: service.desc)
         label.sizeToFit()
         
-        if let _ = RequestedServiceManager.sharedInstance.getRepairOrder() {
+        if !canSchedule || RequestedServiceManager.sharedInstance.getRepairOrder() != nil{
             confirmButton.isEnabled = false
             confirmButton.alpha = 0
         }

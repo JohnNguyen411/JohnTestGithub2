@@ -103,7 +103,7 @@ extension ServiceListViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.navigationController?.pushViewController(ServiceDetailViewController(service: services![indexPath.row]), animated: true)
+        self.navigationController?.pushViewController(ServiceDetailViewController(service: services![indexPath.row], canSchedule: true), animated: true)
     }
     
 }
