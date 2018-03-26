@@ -280,7 +280,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         confirmButton.setTitle(title: getConfirmButtonTitle())
     }
     
-    private func fillDealership() {
+    func fillDealership() {
         if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
             self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
         }

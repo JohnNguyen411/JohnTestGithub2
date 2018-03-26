@@ -63,6 +63,18 @@ class SchedulingDropoffViewController: SchedulingViewController {
         }
     }
     
+    override func fillDealership() {
+        var bookingDealership = RequestedServiceManager.sharedInstance.getDealership()
+        if bookingDealership == nil {
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+                bookingDealership = booking.dealership
+            }
+        }
+        if let dealership = bookingDealership {
+            self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+        }
+    }
+    
     func hideLocation() {
         
         self.pickupLocationView.isHidden = true
@@ -71,7 +83,14 @@ class SchedulingDropoffViewController: SchedulingViewController {
             make.height.equalTo(0)
         }
         
-        if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+        var bookingDealership = RequestedServiceManager.sharedInstance.getDealership()
+        if bookingDealership == nil {
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+                bookingDealership = booking.dealership
+            }
+        }
+        
+        if let dealership = bookingDealership {
             showDealershipAddress(dealership: dealership)
         }
         /*

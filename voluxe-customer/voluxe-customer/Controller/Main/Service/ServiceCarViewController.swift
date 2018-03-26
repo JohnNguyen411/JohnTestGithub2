@@ -394,7 +394,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             self.childViewDelegate?.pushViewController(controller: SchedulingPickupViewController(state: .schedulingService), animated: true, backLabel: .Back, title: nil)
         } else {
             if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
-                RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .driverDropoff)
+                RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .driverDropoff)
                 self.childViewDelegate?.pushViewController(controller: SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true, backLabel: .Back, title: nil)
             }
         }
