@@ -161,6 +161,11 @@ class ScheduledBookingViewController: SchedulingViewController {
     }
     
     override func showDescriptionClick() {
+        if booking.repairOrderRequests.count > 0 {
+            if let repairOrderType = booking.repairOrderRequests[0].repairOrderType {
+                childViewDelegate?.pushViewController(controller: ServiceDetailViewController(service: repairOrderType), animated: true, backLabel: .Back, title: repairOrderType.name)
+            }
+        }
     }
     
 }

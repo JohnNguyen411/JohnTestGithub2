@@ -20,8 +20,8 @@ class RepairOrder: Object, Mappable {
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
     var drivable: DrivableType?
-    var repairOrderType: RepairOrderType?
-    var name: String?
+    @objc dynamic var repairOrderType: RepairOrderType?
+    @objc dynamic var name: String?
 
     convenience init(repairOrderType: RepairOrderType, customerDescription: String, drivable: DrivableType?) {
         self.init()
@@ -51,12 +51,14 @@ class RepairOrder: Object, Mappable {
         dealershipRepairOrderId <- map["dealership_repair_order_id"]
         notes <- map["notes"]
         state <- map["state"]
+        repairOrderType <- map["dealership_repair_order.repair_order_type"]
+        name <- map["dealership_repair_order.repair_order_type.name"]
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
     }
     
     override static func ignoredProperties() -> [String] {
-        return ["drivable", "name", "repairOrderType"]
+        return ["drivable"]
     }
     
     static func mockRepairOrder() -> RepairOrder {
