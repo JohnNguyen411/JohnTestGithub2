@@ -75,7 +75,7 @@ class Booking: Object, Mappable {
                 }
             }
         }
-        if let dropOffRequest = pickupRequest {
+        if let dropOffRequest = dropoffRequest {
             if dropOffRequest.getState() == .requested || dropOffRequest.getState() == .started {
                 if dropOffRequest.isToday() {
                     return true
