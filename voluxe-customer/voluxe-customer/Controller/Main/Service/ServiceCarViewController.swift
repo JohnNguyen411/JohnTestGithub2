@@ -368,10 +368,10 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     //MARK: Actions methods
     func showDescriptionClick() {
-        if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder(), let repairOrderType = repairOrder.repairOrderType {
-            childViewDelegate?.pushViewController(controller: ServiceDetailViewController(service: repairOrderType, canSchedule: true), animated: true, backLabel: .Back, title: repairOrderType.name)
-        } else if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!), booking.repairOrderRequests.count > 0, let repairOrderType = booking.repairOrderRequests[0].repairOrderType {
-            childViewDelegate?.pushViewController(controller: ServiceDetailViewController(service: repairOrderType, canSchedule: false), animated: true, backLabel: .Back, title: repairOrderType.name)
+        if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
+            childViewDelegate?.pushViewController(controller: ServiceDetailViewController(service: repairOrder), animated: true, backLabel: .Back, title: repairOrder.name)
+        } else if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!), booking.repairOrderRequests.count > 0 {
+            childViewDelegate?.pushViewController(controller: ServiceDetailViewController(service: booking.repairOrderRequests[0]), animated: true, backLabel: .Back, title: booking.repairOrderRequests[0].name)
         }
     }
     
