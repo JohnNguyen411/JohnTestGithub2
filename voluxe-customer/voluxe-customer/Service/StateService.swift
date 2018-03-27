@@ -12,15 +12,14 @@ import SwiftEventBus
 final class StateServiceManager {
     
     private var delegates: [StateServiceManagerProtocol] = []
-    private var state: ServiceState
-    
-    static let sharedInstance = StateServiceManager(state: .noninit)
+    private var states = [Int: ServiceState]() // states dict (Vehicle Id : State)
 
-    init(state: ServiceState) {
-        self.state = state
+    static let sharedInstance = StateServiceManager()
+
+    init() {
     }
     
-    func updateState(state: ServiceState) {
+    func updateState(state: ServiceState, vehicleId: Int) {
         if self.state != state {
             // state did change
             let oldState = self.state
@@ -46,12 +45,15 @@ final class StateServiceManager {
         }
     }
     
-    func getState() -> ServiceState {
-        return state
+    func getState(vehicleId: Int) -> ServiceState {
+        if let serviceState = states[vehicleId] {
+            return serviceState
+        }
+        return .noninit
     }
     
-    func isPickup() -> Bool {
-        return ServiceState.isPickup(state: state)
+    func isPickup(vehicleId: Int) -> Bool {
+        return ServiceState.isPickup(state: getState(vehicleId: vehicleId))
     }
 }
 

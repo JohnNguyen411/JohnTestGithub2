@@ -82,8 +82,6 @@ final class BookingSyncManager {
                 }
                 if let customerId = UserManager.sharedInstance.getCustomerId() {
                     self.getBooking(customerId: customerId, bookingId: booking.id)
-                } else {
-                    self.suspend()
                 }
             })
             timer.resume()
@@ -102,15 +100,14 @@ final class BookingSyncManager {
                         realm.add(booking, update: true)
                     }
                 }
-                RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true)
+                let serviceState = Booking.getStateForBooking(booking: booking)
+                StateServiceManager.sharedInstance.updateState(state: serviceState, vehicleId: booking.vehicleId)
             } else {
                 // error
-                StateServiceManager.sharedInstance.updateState(state: .idle)
             }
             
             }.onFailure { error in
                 // todo show error
-                StateServiceManager.sharedInstance.updateState(state: .idle)
         }
     }
     

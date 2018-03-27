@@ -45,8 +45,8 @@ final class RequestedServiceManager {
     func setBooking(booking: Booking?, updateState: Bool) {
         let serviceState = Booking.getStateForBooking(booking: booking)
         self.booking = booking
-        if updateState {
-            StateServiceManager.sharedInstance.updateState(state: serviceState)
+        if let vehicleId = booking?.vehicleId, updateState {
+            StateServiceManager.sharedInstance.updateState(state: serviceState, vehicleId: vehicleId)
         }
     }
     

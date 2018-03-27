@@ -49,6 +49,7 @@ class ScheduledViewController: ChildViewController {
     
     var verticalStepView: GroupedVerticalStepView? = nil
     let mapVC = MapViewController()
+    let vehicle: Vehicle
     private let mapViewContainer = UIView(frame: .zero)
     private let driverViewContainer = UIView(frame: .zero)
     private let driverIcon: UIImageView
@@ -64,7 +65,8 @@ class ScheduledViewController: ChildViewController {
     
     private let driverContact = VLButton(type: .orangeSecondarySmall, title: (.Contact as String).uppercased(), actionBlock: nil)
     
-    override init() {
+    init(vehicle: Vehicle) {
+        self.vehicle = vehicle
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
         super.init()
         generateSteps()
@@ -188,7 +190,7 @@ class ScheduledViewController: ChildViewController {
                 }
                 self.newDriver(driver: ScheduledViewController.mockDriver)
                 self.newDriverLocation(location: driverLocation)
-                StateServiceManager.sharedInstance.updateState(state: self.states[index])
+                StateServiceManager.sharedInstance.updateState(state: self.states[index], vehicleId: self.vehicle.id)
                 self.getEta(fromLocation: driverLocation, toLocation: ScheduledViewController.officeLocation)
             })
             
@@ -198,10 +200,10 @@ class ScheduledViewController: ChildViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + mockDelay, execute: {
 
             if StateServiceManager.sharedInstance.isPickup() {
-                StateServiceManager.sharedInstance.updateState(state: .enRouteForService)
+                StateServiceManager.sharedInstance.updateState(state: .enRouteForService, vehicleId: self.vehicle.id)
             } else {
                 RequestedServiceManager.sharedInstance.reset()
-                StateServiceManager.sharedInstance.updateState(state: .completed)
+                StateServiceManager.sharedInstance.updateState(state: .completed, vehicleId: self.vehicle.id)
             }
         })
     }
