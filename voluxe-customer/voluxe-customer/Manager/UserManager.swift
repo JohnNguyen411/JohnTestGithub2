@@ -19,6 +19,7 @@ final class UserManager {
     private var vehicles: [Vehicle]?
     private var selectedVehicle: Vehicle?
     private var vehicleBookings = [Int: [Booking]]() // bookings dict (Vehicle Id : Booking array)
+    private var bookings = [Booking]() // bookings dict (Vehicle Id : Booking array)
     private let serviceId: String
     private var accessToken: String?
     private var customerIdToken: Int?
@@ -68,6 +69,7 @@ final class UserManager {
         self.customer = nil
         self.vehicles = nil
         self.vehicleBookings = [Int: [Booking]]()
+        self.bookings = [Booking]()
         self.tempCustomerId = nil
         self.signupCustomer = SignupCustomer()
         self.selectedVehicle = nil
@@ -145,6 +147,7 @@ final class UserManager {
                 } else {
                     carBookings = [booking]
                 }
+                self.bookings.append(booking)
                 self.vehicleBookings[vehicleId] = carBookings
                 if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted
                                                         || booking.getState() == .enRouteForDropoff || booking.getState() == .enRouteForPickup
@@ -163,11 +166,17 @@ final class UserManager {
                 if bookings.count == 0 {
                     self.vehicleBookings.removeAll()
                 }
+                self.bookings.removeAll()
             }
         } else {
             RequestedServiceManager.sharedInstance.setBooking(booking: nil, updateState: true) // no current booking
             self.vehicleBookings.removeAll()
+            self.bookings.removeAll()
         }
+    }
+    
+    public func getBookings() -> [Booking] {
+        return self.bookings
     }
     
     public func getBookingsForVehicle(vehicle: Vehicle) -> [Booking]? {
@@ -195,6 +204,7 @@ final class UserManager {
         } else {
             carBookings = [booking]
         }
+        self.bookings.append(booking)
         self.vehicleBookings[booking.vehicleId] = carBookings
         if booking.hasUpcomingRequestToday() {
             RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true) // set current booking

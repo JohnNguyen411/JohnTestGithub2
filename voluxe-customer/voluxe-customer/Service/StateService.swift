@@ -29,7 +29,7 @@ final class StateServiceManager {
                 delegate.stateDidChange(oldState: oldState, newState: state)
             }
             
-            BookingSyncManager.sharedInstance.syncBooking()
+            BookingSyncManager.sharedInstance.syncBookings()
         } else if state == .enRouteForDropoff || state == .enRouteForPickup || state == .nearbyForPickup || state == .nearbyForDropoff {
             // update driver's location
             SwiftEventBus.post("driverLocationUpdate")

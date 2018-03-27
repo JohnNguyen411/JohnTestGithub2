@@ -9,7 +9,7 @@
 import Foundation
 
 /***
- *** RequestedServiceManager use to handle current Booking (currently scheduling or active booking)
+ *** RequestedServiceManager use to handle current Booking (currently scheduling only)
  ***/
 final class RequestedServiceManager {
     
@@ -112,7 +112,6 @@ final class RequestedServiceManager {
     func getPickupTimeSlot() -> DealershipTimeSlot? {
         return pickupTimeSlot
     }
-    
     
     func getPickupLocation() -> Location? {
         return pickupRequestLocation
