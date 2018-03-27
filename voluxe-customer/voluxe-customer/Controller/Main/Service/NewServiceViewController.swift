@@ -22,8 +22,18 @@ class NewServiceViewController: BaseViewController {
         return textView
     }()
     
+    let vehicle: Vehicle
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
     var services: [String]?
+    
+    init(vehicle: Vehicle) {
+        self.vehicle = vehicle
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -105,11 +115,11 @@ extension NewServiceViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row == 0 {
-            self.navigationController?.pushViewController(ServiceListViewController(), animated: true)
+            self.navigationController?.pushViewController(ServiceListViewController(vehicle: vehicle), animated: true)
         } else {
             if let realm = try? Realm() {
                 if let filteredResults = realm.objects(RepairOrderType.self).filter("category = '\(RepairOrderCategory.custom.rawValue)'").first {
-                    self.navigationController?.pushViewController(ServiceMultiselectListViewController(repairOrderType: filteredResults), animated: true)
+                    self.navigationController?.pushViewController(ServiceMultiselectListViewController(vehicle: vehicle, repairOrderType: filteredResults), animated: true)
                 }
             }
         }

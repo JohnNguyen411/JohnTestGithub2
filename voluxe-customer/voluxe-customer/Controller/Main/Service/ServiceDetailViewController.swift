@@ -23,15 +23,17 @@ class ServiceDetailViewController: BaseViewController {
     var canSchedule = true
     
     var repairOrder: RepairOrder?
+    let vehicle: Vehicle
     let service: RepairOrderType
     let confirmButton = VLButton(type: .bluePrimary, title: (.ScheduleService as String).uppercased(), actionBlock: nil)
 
-    convenience init(service: RepairOrder) {
-        self.init(service: service.repairOrderType!, canSchedule: false)
+    convenience init(vehicle: Vehicle, service: RepairOrder) {
+        self.init(vehicle: vehicle, service: service.repairOrderType!, canSchedule: false)
         self.repairOrder = service
     }
     
-    init(service: RepairOrderType, canSchedule: Bool) {
+    init(vehicle: Vehicle, service: RepairOrderType, canSchedule: Bool) {
+        self.vehicle = vehicle
         self.canSchedule = canSchedule
         self.service = service
         serviceTitle = VLTitledLabel(title: .FactoryScheduledMaintenance, leftDescription: service.name!, rightDescription: "")
@@ -62,6 +64,7 @@ class ServiceDetailViewController: BaseViewController {
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: RepairOrder(repairOrderType: self.service))
             StateServiceManager.sharedInstance.updateState(state: .needService)
             self.navigationController?.popToRootViewController(animated: true)
+            self.appDelegate?.loadViewForVehicle(vehicle: self.vehicle, state: .needService)
         }
     }
     

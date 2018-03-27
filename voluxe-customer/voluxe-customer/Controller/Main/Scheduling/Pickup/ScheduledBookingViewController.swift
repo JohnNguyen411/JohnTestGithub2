@@ -161,8 +161,8 @@ class ScheduledBookingViewController: SchedulingViewController {
     }
     
     override func showDescriptionClick() {
-        if booking.repairOrderRequests.count > 0 {
-            self.navigationController?.pushViewController(ServiceDetailViewController(service: booking.repairOrderRequests[0]), animated: true)
+        if let vehicle = booking.vehicle, booking.repairOrderRequests.count > 0 {
+            self.navigationController?.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: booking.repairOrderRequests[0]), animated: true)
         }
     }
     

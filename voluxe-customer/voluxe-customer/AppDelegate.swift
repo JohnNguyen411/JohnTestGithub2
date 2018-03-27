@@ -121,6 +121,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
+    func loadViewForVehicle(vehicle: Vehicle, state: ServiceState) {
+        if let slideMenu = slideMenuController {
+            if let leftVC = slideMenu.leftViewController as? LeftViewController {
+                let uiNavigationController = UINavigationController(rootViewController: MainViewController(vehicle: vehicle, state: state))
+                styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
+                leftVC.changeMainViewController(uiNavigationController: uiNavigationController)
+            }
+        }
+        
+        
+    }
+    
     
     func phoneVerificationScreen() {
         window = UIWindow(frame: UIScreen.main.bounds)

@@ -145,8 +145,8 @@ class SchedulingDropoffViewController: SchedulingViewController {
     }
     
     override func showDescriptionClick() {
-        if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!), booking.repairOrderRequests.count > 0 {
-            self.navigationController?.pushViewController(ServiceDetailViewController(service: booking.repairOrderRequests[0]), animated: true)
+        if let vehicle = UserManager.sharedInstance.getVehicle(), let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.repairOrderRequests.count > 0 {
+            self.navigationController?.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: booking.repairOrderRequests[0]), animated: true)
         }
     }
     

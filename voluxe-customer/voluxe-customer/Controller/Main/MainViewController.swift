@@ -14,12 +14,24 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     
     private var serviceState = ServiceState.noninit
     
+    private let vehicle: Vehicle
+    
     var currentViewController: ChildViewController?
     var previousView: UIView?
     
+    init(vehicle: Vehicle, state: ServiceState) {
+        self.vehicle = vehicle
+        self.serviceState = state
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         StateServiceManager.sharedInstance.addDelegate(delegate: self)
-        StateServiceManager.sharedInstance.updateState(state: .loading)
+        updateState(state: self.serviceState)
         super.viewDidLoad()
         setNavigationBarItem()
     }
@@ -33,13 +45,14 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     }
     
     func stateDidChange(oldState: ServiceState, newState: ServiceState) {
+        if serviceState == newState {
+            return
+        }
         updateState(state: newState)
     }
     
     func updateState(state: ServiceState) {
-        if state == serviceState {
-            return
-        }
+        
         
         VLAnalytics.logEventWithName(VLAnalytics.stateChangeEvent, paramName: VLAnalytics.stateParam, paramValue: "\(state.rawValue)")
         

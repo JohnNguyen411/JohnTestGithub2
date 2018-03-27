@@ -33,11 +33,13 @@ class ServiceMultiselectListViewController: BaseViewController {
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
     let confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), actionBlock: nil)
 
+    let vehicle: Vehicle
     let repairOrderType: RepairOrderType
     var services: [String]?
     var selected = [Int: Bool]()
     
-    init(repairOrderType: RepairOrderType) {
+    init(vehicle: Vehicle, repairOrderType: RepairOrderType) {
+        self.vehicle = vehicle
         self.repairOrderType = repairOrderType
         super.init()
     }
@@ -79,7 +81,7 @@ class ServiceMultiselectListViewController: BaseViewController {
                     selectedService.append(services[dictElement.element.key])
                 }
             }
-            self.navigationController?.pushViewController(OtherServiceViewController(repairOrderType: self.repairOrderType, services: selectedService), animated: true)
+            self.navigationController?.pushViewController(OtherServiceViewController(vehicle: self.vehicle, repairOrderType: self.repairOrderType, services: selectedService), animated: true)
         }
     }
     

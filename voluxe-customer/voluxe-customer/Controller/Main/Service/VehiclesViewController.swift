@@ -192,14 +192,14 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     func confirmButtonClick() {
         if let selectedVehicle = selectedVehicle {
             UserManager.sharedInstance.selectVehicle(vehicle: selectedVehicle)
-            self.childViewDelegate?.pushViewController(controller: NewServiceViewController(), animated: true, backLabel: .Back, title: .NewService)
+            self.navigationController?.pushViewController(NewServiceViewController(vehicle: selectedVehicle), animated: true)
         }
     }
     
     
     @objc func scheduledServiceClick() {
         if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle) {
-            self.childViewDelegate?.pushViewController(controller: ScheduledBookingViewController(booking: booking, delegate: self), animated: true, backLabel: .Back, title: .ScheduledService)
+            self.navigationController?.pushViewController(ScheduledBookingViewController(booking: booking, delegate: self), animated: true)
         }
     }
     

@@ -90,6 +90,10 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
             appDelegate?.startApp()
         }
     }
+    
+    func changeMainViewController(uiNavigationController: UINavigationController) {
+        self.slideMenuController()?.changeMainViewController(uiNavigationController, close: true)
+    }
 }
 
 extension LeftViewController : UITableViewDelegate {
