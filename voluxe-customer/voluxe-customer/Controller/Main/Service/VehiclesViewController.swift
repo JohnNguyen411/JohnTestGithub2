@@ -51,6 +51,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationBarItem()
         // init tap events
         scheduledServiceView.isUserInteractionEnabled = true
         let scheduledServiceTap = UITapGestureRecognizer(target: self, action: #selector(self.scheduledServiceClick))
@@ -228,5 +229,8 @@ extension VehiclesViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectVehicle(vehicle: vehicles![indexPath.row])
     }
+}
+
+extension VehiclesViewController: SlideMenuControllerDelegate {
     
 }

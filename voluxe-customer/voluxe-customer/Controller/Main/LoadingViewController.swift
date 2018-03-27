@@ -82,7 +82,7 @@ class LoadingViewController: ChildViewController {
                         let bookings = realm.objects(Booking.self).filter("customerId = %@ AND (state = %@ OR state = %@)", customerId, "created", "started")
                         UserManager.sharedInstance.setBookings(bookings: Array(bookings))
                         if StateServiceManager.sharedInstance.getState() == .loading {
-                            StateServiceManager.sharedInstance.updateState(state: .idle)
+                            self.loadVehiclesViewController()
                         }
                         
                     })
@@ -217,15 +217,16 @@ class LoadingViewController: ChildViewController {
                 }
                 // set the bookings
                 UserManager.sharedInstance.setBookings(bookings: bookings)
+                self.loadVehiclesViewController()
                 
             } else {
                 // error
-                StateServiceManager.sharedInstance.updateState(state: .idle)
+                self.loadVehiclesViewController()
             }
             
             }.onFailure { error in
                 // todo show error
-                StateServiceManager.sharedInstance.updateState(state: .idle)
+                self.loadVehiclesViewController()
         }
     }
     
@@ -241,5 +242,10 @@ class LoadingViewController: ChildViewController {
             }.onFailure { error in
                 Logger.print(error)
         }
+    }
+    
+    private func loadVehiclesViewController() {
+        StateServiceManager.sharedInstance.updateState(state: .idle)
+        appDelegate?.showMainView()
     }
 }

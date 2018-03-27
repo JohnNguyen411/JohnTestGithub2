@@ -36,9 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     
+    fileprivate func showLoadingView() {
+        //LoadingView Controller is the entry point of the app LoadingViewController
+        window!.rootViewController = LoadingViewController()
+        window!.makeKeyAndVisible()
+    }
+    
+    func showMainView() {
+        createMenuView()
+    }
+    
     fileprivate func createMenuView() {
         
-        let mainViewController = MainViewController()
+        let mainViewController = VehiclesViewController(state: .idle)
         let leftViewController = LeftViewController()
         
         mainViewController.view.accessibilityIdentifier = "mainViewController"
@@ -57,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         navigationController = uiNavigationController
 
         leftViewController.mainNavigationViewController = navigationController
-        leftViewController.mainViewController = mainViewController
+        //leftViewController.mainViewController = mainViewController
         
         let menuController = SlideMenuController(mainViewController: uiNavigationController, leftMenuViewController: leftViewController)
         menuController.automaticallyAdjustsScrollViewInsets = true
@@ -107,7 +117,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             window!.rootViewController = uiNavigationController
             window!.makeKeyAndVisible()
         } else {
-            createMenuView()
+            loadMainScreen()
         }
     }
     
@@ -185,7 +195,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func loadMainScreen() {
-        createMenuView()
+        showLoadingView()
     }
     
     //MARK: UNUserNotificationCenterDelegate

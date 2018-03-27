@@ -26,7 +26,6 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     var tableView = UITableView(frame: .zero)
     var menus = [String.YourVolvos, String.Settings, String.Logout]
     var mainNavigationViewController: UIViewController!
-    var mainViewController: MainViewController!
     var imageHeaderView: UIImageView!
     
     required init?(coder aDecoder: NSCoder) {

@@ -48,25 +48,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         var changeView = true
         serviceState = state
         
-        if serviceState == .loading || serviceState == .noninit {
-            
-            if currentViewController != nil && (currentViewController?.isKind(of: LoadingViewController.self))! {
-                changeView = false
-            } else {
-                let loadingViewController = LoadingViewController()
-                currentViewController = loadingViewController
-            }
-            
-        } else if serviceState == .idle {
-            
-            if currentViewController != nil && (currentViewController?.isKind(of: VehiclesViewController.self))! {
-                changeView = false
-            } else {
-                let vehiclesViewController = VehiclesViewController(state: serviceState)
-                currentViewController = vehiclesViewController
-            }
-            
-        } else if serviceState == .needService || serviceState == .enRouteForService {
+       if serviceState == .needService || serviceState == .enRouteForService {
             
             if currentViewController != nil && (currentViewController?.isKind(of: ServiceCarViewController.self))! {
                 changeView = false
