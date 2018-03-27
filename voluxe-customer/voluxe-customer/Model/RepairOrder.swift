@@ -34,6 +34,9 @@ class RepairOrder: Object, Mappable {
     convenience init(repairOrderType: RepairOrderType) {
         self.init()
         self.name = repairOrderType.name
+        if repairOrderType.getCategory() == .custom {
+            self.name = String.DiagnosticAndService
+        }
         self.repairOrderType = repairOrderType
     }
     
@@ -55,6 +58,9 @@ class RepairOrder: Object, Mappable {
         name <- map["dealership_repair_order.repair_order_type.name"]
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
+        if let repairOrderType = repairOrderType, repairOrderType.getCategory() == .custom {
+            self.name = String.DiagnosticAndService
+        }
     }
     
     override static func ignoredProperties() -> [String] {
@@ -69,8 +75,8 @@ class RepairOrder: Object, Mappable {
     
 }
 
-public enum DrivableType {
-    case yes
-    case no
-    case notSure
+public enum DrivableType: String {
+    case yes = "yes"
+    case no = "no"
+    case notSure = "notSure"
 }

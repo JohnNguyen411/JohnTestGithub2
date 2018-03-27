@@ -64,9 +64,9 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     let service: RepairOrder
     
     init(repairOrderType: RepairOrderType, services: [String]) {
-        var serviceTitle = String.Service
+        var serviceTitle = String.Service + ": "
         for service in services {
-            serviceTitle += "\(service). "
+            serviceTitle += "<br/>&bull; \(service). "
         }
         self.service = RepairOrder(repairOrderType: repairOrderType, customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
         super.init()
@@ -91,6 +91,13 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         descriptionTextView.delegate = self
         
         confirmButton.setActionBlock {
+            
+            var notes = self.service.notes
+            notes.append("<br/><br/>\(self.descriptionTextView.text ?? "")")
+            notes.append("<br/><br/>\(String.IsVolvoDrivable) \(self.drivability[self.checkedCellIndex].rawValue)")
+
+            self.service.notes = notes
+            
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: self.service)
             StateServiceManager.sharedInstance.updateState(state: .needService)
             self.navigationController?.popToRootViewController(animated: false)
