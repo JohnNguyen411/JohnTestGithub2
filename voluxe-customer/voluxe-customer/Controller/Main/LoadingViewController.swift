@@ -81,10 +81,7 @@ class LoadingViewController: ChildViewController {
                         
                         let bookings = realm.objects(Booking.self).filter("customerId = %@ AND (state = %@ OR state = %@)", customerId, "created", "started")
                         UserManager.sharedInstance.setBookings(bookings: Array(bookings))
-                        if StateServiceManager.sharedInstance.getState() == .loading {
-                            self.loadVehiclesViewController()
-                        }
-                        
+                        self.loadVehiclesViewController()
                     })
                 }
             }
@@ -245,7 +242,6 @@ class LoadingViewController: ChildViewController {
     }
     
     private func loadVehiclesViewController() {
-        StateServiceManager.sharedInstance.updateState(state: .idle)
         appDelegate?.showMainView()
     }
 }

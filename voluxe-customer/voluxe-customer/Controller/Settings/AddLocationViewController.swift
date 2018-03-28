@@ -25,8 +25,8 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     
     let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
     
-    override init() {
-        super.init()
+    override init(title: String, buttonTitle: String) {
+        super.init(title: title, buttonTitle: buttonTitle)
         newLocationTextField.textField.autocorrectionType = .no
         newLocationTextField.tableYOffset = -20
         newLocationTextField.tableBottomMargin = 0

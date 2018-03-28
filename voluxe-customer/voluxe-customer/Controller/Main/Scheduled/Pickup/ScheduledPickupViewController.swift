@@ -13,8 +13,8 @@ import GoogleMaps
 
 class ScheduledPickupViewController: ScheduledViewController {
     
-    convenience init(state: ServiceState) {
-        self.init()
+    convenience init(vehicle: Vehicle, state: ServiceState) {
+        self.init(vehicle: vehicle)
         stateDidChange(state: state)
     }
     
@@ -68,7 +68,7 @@ class ScheduledPickupViewController: ScheduledViewController {
         guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
             return
         }
-        let state = StateServiceManager.sharedInstance.getState()
+        let state = StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id)
         if let pickupRequest = booking.pickupRequest {
             var refreshTimeSlot = true
 

@@ -199,7 +199,7 @@ class ScheduledViewController: ChildViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + mockDelay, execute: {
 
-            if StateServiceManager.sharedInstance.isPickup() {
+            if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
                 StateServiceManager.sharedInstance.updateState(state: .enRouteForService, vehicleId: self.vehicle.id)
             } else {
                 RequestedServiceManager.sharedInstance.reset()

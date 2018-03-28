@@ -13,19 +13,22 @@ final class StateServiceManager {
     
     private var delegates: [StateServiceManagerProtocol] = []
     private var states = [Int: ServiceState]() // states dict (Vehicle Id : State)
-
+    
     static let sharedInstance = StateServiceManager()
-
+    
     init() {
     }
     
     func updateState(state: ServiceState, vehicleId: Int) {
-        if self.state != state {
+        var oldState = states[vehicleId]
+        if oldState == nil || oldState != state {
             // state did change
-            let oldState = self.state
-            self.state = state
+            states[vehicleId] = state
+            if oldState == nil {
+                oldState = .noninit
+            }
             delegates.forEach {delegate in
-                delegate.stateDidChange(oldState: oldState, newState: state)
+                delegate.stateDidChange(vehicleId: vehicleId, oldState: oldState!, newState: state)
             }
             
             BookingSyncManager.sharedInstance.syncBookings()
@@ -58,5 +61,5 @@ final class StateServiceManager {
 }
 
 protocol StateServiceManagerProtocol: class {
-    func stateDidChange(oldState: ServiceState, newState: ServiceState)
+    func stateDidChange(vehicleId: Int, oldState: ServiceState, newState: ServiceState)
 }

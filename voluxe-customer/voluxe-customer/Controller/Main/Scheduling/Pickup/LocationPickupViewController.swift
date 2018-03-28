@@ -51,8 +51,8 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
     let groupedLabels = VLGroupedLabels(singleChoice: true, topBottomSeparator: true)
     
-    override init() {
-        super.init()
+    override init(title: String, buttonTitle: String) {
+        super.init(title: title, buttonTitle: buttonTitle)
         newLocationTextField.textField.autocorrectionType = .no
         newLocationTextField.tableYOffset = -20
         newLocationTextField.tableBottomMargin = 0

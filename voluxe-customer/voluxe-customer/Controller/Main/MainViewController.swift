@@ -44,7 +44,10 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         super.setupViews()
     }
     
-    func stateDidChange(oldState: ServiceState, newState: ServiceState) {
+    func stateDidChange(vehicleId: Int, oldState: ServiceState, newState: ServiceState) {
+        if vehicleId != vehicle.id {
+            return
+        }
         if serviceState == newState {
             return
         }
@@ -66,7 +69,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             if currentViewController != nil && (currentViewController?.isKind(of: ServiceCarViewController.self))! {
                 changeView = false
             } else {
-                let serviceCarViewController = ServiceCarViewController(state: serviceState)
+                let serviceCarViewController = ServiceCarViewController(vehicle: vehicle, state: serviceState)
                 currentViewController = serviceCarViewController
             }
             
@@ -74,7 +77,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledPickupViewController.self))! {
                 changeView = false
             } else {
-                let scheduledPickupViewController = ScheduledPickupViewController(state: serviceState)
+                let scheduledPickupViewController = ScheduledPickupViewController(vehicle: vehicle, state: serviceState)
                 currentViewController = scheduledPickupViewController
             }
             
@@ -83,14 +86,14 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             if currentViewController != nil && (currentViewController?.isKind(of: ServiceCarViewController.self))! {
                 changeView = false
             } else {
-                let serviceCarViewController = ServiceCarViewController(state: serviceState)
+                let serviceCarViewController = ServiceCarViewController(vehicle: vehicle, state: serviceState)
                 currentViewController = serviceCarViewController
             }
         } else if serviceState.rawValue >= ServiceState.dropoffScheduled.rawValue && serviceState.rawValue <= ServiceState.arrivedForDropoff.rawValue {
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
                 changeView = false
             } else {
-                let scheduledDeliveryViewController = ScheduledDropoffViewController(state: serviceState)
+                let scheduledDeliveryViewController = ScheduledDropoffViewController(vehicle: vehicle, state: serviceState)
                 currentViewController = scheduledDeliveryViewController
             }
         }

@@ -17,13 +17,9 @@ class DealershipPickupViewController: VLPresentrViewController {
     
     var groupedLabels: VLGroupedLabels?
     
-    convenience init(title: String, buttonTitle: String, dealerships: [Dealership]) {
-        self.init(title: title, buttonTitle: buttonTitle)
+    init(title: String, buttonTitle: String, dealerships: [Dealership]) {
+        super.init(title: title, buttonTitle: buttonTitle)
         setDealerhips(dealerships: dealerships)
-    }
-    
-    override init() {
-        super.init()
     }
     
     private func setDealerhips(dealerships: [Dealership]) {

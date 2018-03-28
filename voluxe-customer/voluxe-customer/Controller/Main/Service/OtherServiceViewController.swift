@@ -101,7 +101,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             self.service.notes = notes
             
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: self.service)
-            StateServiceManager.sharedInstance.updateState(state: .needService)
+            StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id)
             self.navigationController?.popToRootViewController(animated: false)
             self.appDelegate?.loadViewForVehicle(vehicle: self.vehicle, state: .needService)
             

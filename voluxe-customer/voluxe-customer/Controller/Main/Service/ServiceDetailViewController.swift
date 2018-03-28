@@ -62,7 +62,7 @@ class ServiceDetailViewController: BaseViewController {
         confirmButton.setActionBlock {
             // shedule service
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: RepairOrder(repairOrderType: self.service))
-            StateServiceManager.sharedInstance.updateState(state: .needService)
+            StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id)
             self.navigationController?.popToRootViewController(animated: true)
             self.appDelegate?.loadViewForVehicle(vehicle: self.vehicle, state: .needService)
         }

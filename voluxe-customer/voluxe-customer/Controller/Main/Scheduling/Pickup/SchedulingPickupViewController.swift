@@ -312,7 +312,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 }
                 UserManager.sharedInstance.addBooking(booking: booking)
                 if RequestedServiceManager.sharedInstance.getBooking() == nil {
-                    StateServiceManager.sharedInstance.updateState(state: .loading)
+                    StateServiceManager.sharedInstance.updateState(state: .loading, vehicleId: vehicle.id)
                 }
                 self.navigationController?.popToRootViewController(animated: false)
             }

@@ -17,7 +17,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     
     init(state: ServiceState, booking: Booking) {
         self.booking = booking
-        super.init(state: state)
+        super.init(vehicle: booking.vehicle!, state: state)
     }
     
     required init?(coder aDecoder: NSCoder) {
