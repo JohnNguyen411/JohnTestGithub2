@@ -56,7 +56,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     
     func updateState(state: ServiceState) {
         
-        
         VLAnalytics.logEventWithName(VLAnalytics.stateChangeEvent, paramName: VLAnalytics.stateParam, paramValue: "\(state.rawValue)")
         
         setTitle(title: getTitleForState(state: state))

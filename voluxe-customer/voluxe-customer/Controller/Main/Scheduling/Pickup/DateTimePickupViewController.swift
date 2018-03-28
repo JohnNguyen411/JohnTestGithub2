@@ -86,7 +86,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         loanerViewHeight = isPickup ? 48 : 0
         var currentDealership = RequestedServiceManager.sharedInstance.getDealership()
         if currentDealership == nil {
-            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                 currentDealership = booking.dealership
             }
         }

@@ -160,7 +160,6 @@ class SchedulingPickupViewController: SchedulingViewController {
     override func showConfirmButtonIfNeeded() {
         
         if let _ = UserManager.sharedInstance.getCustomerId(),
-            let _ = UserManager.sharedInstance.getVehicleId(),
             let _ = RequestedServiceManager.sharedInstance.getDealership(),
             let _ = RequestedServiceManager.sharedInstance.getPickupTimeSlot(),
             let _ = RequestedServiceManager.sharedInstance.getRepairOrder() {
@@ -177,7 +176,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         }
         
         if Config.sharedInstance.isMock {
-            let booking = Booking.mockBooking(customer: UserManager.sharedInstance.getCustomer()!, vehicle: UserManager.sharedInstance.getVehicle()!, dealership: RequestedServiceManager.sharedInstance.getDealership()!)
+            let booking = Booking.mockBooking(customer: UserManager.sharedInstance.getCustomer()!, vehicle: vehicle, dealership: RequestedServiceManager.sharedInstance.getDealership()!)
             if let realm = self.realm {
                 try? realm.write {
                     realm.add(booking, update: true)
@@ -188,10 +187,6 @@ class SchedulingPickupViewController: SchedulingViewController {
             return
         }
         
-       
-        guard let vehicleId = UserManager.sharedInstance.getVehicleId() else {
-            return
-        }
         guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else {
             return
         }
@@ -201,7 +196,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         confirmButton.isLoading = true
         
-        BookingAPI().createBooking(customerId: customerId, vehicleId: vehicleId, dealershipId: dealership.id, loaner: loaner).onSuccess { result in
+        BookingAPI().createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner).onSuccess { result in
             if let booking = result?.data?.result {
                 if let realm = self.realm {
                     try? realm.write {
@@ -311,7 +306,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     realm.add(booking, update: true)
                 }
                 UserManager.sharedInstance.addBooking(booking: booking)
-                if RequestedServiceManager.sharedInstance.getBooking() == nil {
+                if UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) == nil {
                     StateServiceManager.sharedInstance.updateState(state: .loading, vehicleId: vehicle.id)
                 }
                 self.navigationController?.popToRootViewController(animated: false)

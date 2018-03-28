@@ -17,7 +17,6 @@ final class UserManager {
     public var signupCustomer = SignupCustomer()
     private var customer: Customer?
     private var vehicles: [Vehicle]?
-    private var selectedVehicle: Vehicle?
     private var vehicleBookings = [Int: [Booking]]() // bookings dict (Vehicle Id : Booking array)
     private var bookings = [Booking]() // bookings dict (Vehicle Id : Booking array)
     private let serviceId: String
@@ -72,7 +71,6 @@ final class UserManager {
         self.bookings = [Booking]()
         self.tempCustomerId = nil
         self.signupCustomer = SignupCustomer()
-        self.selectedVehicle = nil
         RequestedServiceManager.sharedInstance.reset()
     }
     
@@ -88,22 +86,7 @@ final class UserManager {
         return vehicles
     }
     
-    public func getVehicle() -> Vehicle? {
-        if let selectedVehicle = selectedVehicle {
-            return selectedVehicle
-        }
-        if let vehicles = vehicles, vehicles.count > 0 {
-            return vehicles[0]
-        }
-        return nil
-    }
-    
     public func getVehicleForId(vehicleId: Int) -> Vehicle? {
-        if let selectedVehicle = selectedVehicle {
-            if selectedVehicle.id == vehicleId {
-                return selectedVehicle
-            }
-        }
         if let vehicles = vehicles, vehicles.count > 0 {
             for vehicle in vehicles {
                 if vehicle.id == vehicleId {
@@ -114,16 +97,6 @@ final class UserManager {
         return nil
     }
     
-    public func selectVehicle(vehicle: Vehicle) {
-        selectedVehicle = vehicle
-    }
-    
-    public func getVehicleId() -> Int? {
-        if let vehicle = getVehicle() {
-            return vehicle.id
-        }
-        return nil
-    }
     
     public func getCustomer() -> Customer? {
         if let customer = customer {
@@ -134,7 +107,6 @@ final class UserManager {
     
     public func setBookings(bookings: [Booking]?) {
         if let bookings = bookings {
-            var hasUpcomingRequestToday = false
             for booking in bookings {
                 // skipped cancelled and completed request, and request w/o any request
                 if booking.getState() == .cancelled || booking.getState() == .completed || (booking.pickupRequest == nil && booking.dropoffRequest == nil) {
@@ -149,27 +121,15 @@ final class UserManager {
                 }
                 self.bookings.append(booking)
                 self.vehicleBookings[vehicleId] = carBookings
-                if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted
-                                                        || booking.getState() == .enRouteForDropoff || booking.getState() == .enRouteForPickup
-                                                        || booking.getState() == .nearbyForDropoff || booking.getState() == .nearbyForPickup
-                                                        || booking.getState() == .arrivedForDropoff || booking.getState() == .arrivedForPickup) {
-                    hasUpcomingRequestToday = true
-                    RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true) // set current booking
-                    if let vehicle = self.getVehicleForId(vehicleId: booking.vehicleId) {
-                        self.selectVehicle(vehicle: vehicle)
-                    }
-                }
+                StateServiceManager.sharedInstance.updateState(state: Booking.getStateForBooking(booking: booking), vehicleId: booking.vehicleId)
             }
-            if bookings.count == 0 || !hasUpcomingRequestToday {
-                // empty array
-                RequestedServiceManager.sharedInstance.setBooking(booking: nil, updateState: true) // no current booking
-                if bookings.count == 0 {
-                    self.vehicleBookings.removeAll()
-                }
+            // empty array
+            if bookings.count == 0 {
+                self.vehicleBookings.removeAll()
                 self.bookings.removeAll()
             }
+            
         } else {
-            RequestedServiceManager.sharedInstance.setBooking(booking: nil, updateState: true) // no current booking
             self.vehicleBookings.removeAll()
             self.bookings.removeAll()
         }
@@ -207,8 +167,20 @@ final class UserManager {
         self.bookings.append(booking)
         self.vehicleBookings[booking.vehicleId] = carBookings
         if booking.hasUpcomingRequestToday() {
-            RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true) // set current booking
         }
     }
     
+    public func getTodaysBookings() -> [Booking] {
+        var todaysBookings: [Booking] = []
+        for booking in bookings {
+            
+            if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted
+                || booking.getState() == .enRouteForDropoff || booking.getState() == .enRouteForPickup
+                || booking.getState() == .nearbyForDropoff || booking.getState() == .nearbyForPickup
+                || booking.getState() == .arrivedForDropoff || booking.getState() == .arrivedForPickup) {
+                todaysBookings.append(booking)
+            }
+        }
+        return bookings
+    }
 }

@@ -50,7 +50,7 @@ class ScheduledPickupViewController: ScheduledViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
+        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else {
             return
         }
         if let pickupRequest = booking.pickupRequest, let location = pickupRequest.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
@@ -65,7 +65,7 @@ class ScheduledPickupViewController: ScheduledViewController {
     
     override func driverLocationUpdate() {
         super.driverLocationUpdate()
-        guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
+        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else {
             return
         }
         let state = StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id)

@@ -25,8 +25,6 @@ final class RequestedServiceManager {
     private var dropOffRequestLocation: Location?
     private var dropOffTimeSlot: DealershipTimeSlot?
     private var dropOffRequestType: RequestType? = nil
-
-    private var booking: Booking?
     
     static let sharedInstance = RequestedServiceManager()
     
@@ -39,20 +37,8 @@ final class RequestedServiceManager {
         pickupRequestLocation = nil
         dropOffRequestLocation = nil
         dropOffTimeSlot = nil
-        booking = nil
     }
     
-    func setBooking(booking: Booking?, updateState: Bool) {
-        let serviceState = Booking.getStateForBooking(booking: booking)
-        self.booking = booking
-        if let vehicleId = booking?.vehicleId, updateState {
-            StateServiceManager.sharedInstance.updateState(state: serviceState, vehicleId: vehicleId)
-        }
-    }
-    
-    func getBooking() -> Booking? {
-        return booking
-    }
     
     func setPickupRequestType(requestType: RequestType) {
         self.pickupRequestType = requestType

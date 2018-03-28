@@ -308,11 +308,11 @@ class ScheduledViewController: ChildViewController {
             return
         }
         
-        guard let bookingId = RequestedServiceManager.sharedInstance.getBooking()?.id else {
+        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else {
             return
         }
         
-        BookingAPI().contactDriver(customerId: customerId, bookingId: bookingId, mode: mode).onSuccess { result in
+        BookingAPI().contactDriver(customerId: customerId, bookingId: booking.id, mode: mode).onSuccess { result in
             if let contactDriver = result?.data?.result {
                 if mode == "text_only" {
                     // sms

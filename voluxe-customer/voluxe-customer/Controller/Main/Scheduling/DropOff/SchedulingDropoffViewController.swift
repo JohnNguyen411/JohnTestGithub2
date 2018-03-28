@@ -66,7 +66,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     override func fillDealership() {
         var bookingDealership = RequestedServiceManager.sharedInstance.getDealership()
         if bookingDealership == nil {
-            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                 bookingDealership = booking.dealership
             }
         }
@@ -85,7 +85,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
         
         var bookingDealership = RequestedServiceManager.sharedInstance.getDealership()
         if bookingDealership == nil {
-            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                 bookingDealership = booking.dealership
             }
         }
@@ -145,7 +145,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     }
     
     override func showDescriptionClick() {
-        if let vehicle = UserManager.sharedInstance.getVehicle(), let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.repairOrderRequests.count > 0 {
+        if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.repairOrderRequests.count > 0 {
             self.navigationController?.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: booking.repairOrderRequests[0]), animated: true)
         }
     }
@@ -172,7 +172,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 self.hideBlockingLoading()
                 var bookingDealership = RequestedServiceManager.sharedInstance.getDealership()
                 if bookingDealership == nil {
-                    if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+                    if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: self.vehicle) {
                         bookingDealership = booking.dealership
                     }
                 }
@@ -220,7 +220,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
             return
         }
         
-        if let booking = RequestedServiceManager.sharedInstance.getBooking(),
+        if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle),
             let timeSlot = RequestedServiceManager.sharedInstance.getDropoffTimeSlot(),
             let location = RequestedServiceManager.sharedInstance.getDropoffLocation() {
             
@@ -265,7 +265,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     override func showConfirmButtonIfNeeded() {
         
         if let _ = UserManager.sharedInstance.getCustomerId(),
-            let _ = RequestedServiceManager.sharedInstance.getBooking(),
+            let _ = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle),
             let _ = RequestedServiceManager.sharedInstance.getDropoffTimeSlot(),
             RequestedServiceManager.sharedInstance.getDropoffLocation() != nil || RequestedServiceManager.sharedInstance.getDropoffRequestType() == .advisorDropoff {
                 confirmButton.animateAlpha(show: true)

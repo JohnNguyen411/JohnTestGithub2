@@ -213,9 +213,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             noteLabel.text = .NoteDelivery
         }
         
-        if let vehicle = UserManager.sharedInstance.getVehicle() {
-            vehicle.setVehicleImage(imageView: vehicleImageView)
-        }
+        vehicle.setVehicleImage(imageView: vehicleImageView)
         
         if let service = RequestedServiceManager.sharedInstance.getRepairOrder() {
             var title = String.RecommendedService
@@ -259,7 +257,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 checkupLabel.text = .SchedulePickupDealership
                 showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: true)
                 checkupLabel.text = .VolvoServiceComplete
-                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                     scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
                 }
             }
@@ -277,7 +275,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         } else {
             
             var dealership = RequestedServiceManager.sharedInstance.getDealership()
-            if dealership == nil, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+            if dealership == nil, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                 dealership = booking.dealership
             }
             noteLabel.isHidden = true
@@ -370,12 +368,9 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     //MARK: Actions methods
     func showDescriptionClick() {
-        guard let vehicle = UserManager.sharedInstance.getVehicle() else {
-            return
-        }
         if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
             childViewDelegate?.pushViewController(controller: ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true, backLabel: .Back, title: repairOrder.name)
-        } else if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!), booking.repairOrderRequests.count > 0 {
+        } else if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.repairOrderRequests.count > 0 {
             childViewDelegate?.pushViewController(controller: ServiceDetailViewController(vehicle: vehicle, service: booking.repairOrderRequests[0]), animated: true, backLabel: .Back, title: booking.repairOrderRequests[0].name)
         }
     }
@@ -385,7 +380,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorPickup)
             self.childViewDelegate?.pushViewController(controller: SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true, backLabel: .Back, title: nil)
         } else {
-            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                 self.childViewDelegate?.pushViewController(controller: SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true, backLabel: .Back, title: nil)
                 RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .advisorDropoff)
 
@@ -398,7 +393,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .driverPickup)
             self.childViewDelegate?.pushViewController(controller: SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true, backLabel: .Back, title: nil)
         } else {
-            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                 RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .driverDropoff)
                 self.childViewDelegate?.pushViewController(controller: SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true, backLabel: .Back, title: nil)
             }

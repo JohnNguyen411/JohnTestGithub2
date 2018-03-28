@@ -129,8 +129,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 leftVC.changeMainViewController(uiNavigationController: uiNavigationController)
             }
         }
-        
-        
     }
     
     
