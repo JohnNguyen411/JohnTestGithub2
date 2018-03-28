@@ -52,10 +52,10 @@ final class BookingSyncManager {
                 // todo define timer for states
                 if booking.pickupRequest != nil || booking.dropoffRequest != nil {
                     if booking.getState() != .serviceCompleted && booking.getState() != .completed {
-                        if booking.getState() == .dropoffScheduled || booking.getState() == .pickupScheduled {
-                            syncBooking(booking: booking, every: 60)
-                        } else {
+                        if booking.getState() == .enRouteForPickup || booking.getState() == .enRouteForDropoff {
                             syncBooking(booking: booking, every: 10)
+                        } else {
+                            syncBooking(booking: booking, every: 60)
                         }
                     }
                 }
