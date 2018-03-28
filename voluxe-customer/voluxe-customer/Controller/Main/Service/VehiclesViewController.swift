@@ -199,7 +199,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     @objc func scheduledServiceClick() {
         if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle) {
             // if booking is today, show upcoming request with map
-            if booking.hasUpcomingRequestToday() || booking.getState() == .service {
+            if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted) {
                 appDelegate?.loadViewForVehicle(vehicle: selectedVehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: selectedVehicle.id))
             } else {
                 self.navigationController?.pushViewController(ScheduledBookingViewController(booking: booking, delegate: self), animated: true)
