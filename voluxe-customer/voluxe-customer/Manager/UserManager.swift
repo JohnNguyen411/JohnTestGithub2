@@ -8,6 +8,7 @@
 
 import Foundation
 import KeychainAccess
+import SwiftEventBus
 
 final class UserManager {
     
@@ -133,6 +134,8 @@ final class UserManager {
             self.vehicleBookings.removeAll()
             self.bookings.removeAll()
         }
+        
+        SwiftEventBus.post("setActiveBooking")
     }
     
     public func getBookings() -> [Booking] {
@@ -166,8 +169,7 @@ final class UserManager {
         }
         self.bookings.append(booking)
         self.vehicleBookings[booking.vehicleId] = carBookings
-        if booking.hasUpcomingRequestToday() {
-        }
+        SwiftEventBus.post("setActiveBooking")
     }
     
     public func getTodaysBookings() -> [Booking] {

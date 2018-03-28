@@ -10,21 +10,24 @@ import Foundation
 import UIKit
 import SlideMenuControllerSwift
 import SnapKit
+import SwiftEventBus
 
 enum LeftMenu: Int {
     case main = 0
-    case settings
-    case logout
+    case activeBookings = 1
+    case settings = 2
+    case logout = 3
 }
 
 protocol LeftMenuProtocol : class {
-    func changeViewController(_ menu: LeftMenu)
+    func changeViewController(_ menu: LeftMenu, indexPath: IndexPath)
 }
 
 class LeftViewController : UIViewController, LeftMenuProtocol {
     
     var tableView = UITableView(frame: .zero)
     var menus = [String.YourVolvos, String.Settings, String.Logout]
+    var activeBookings: [Booking] = []
     var mainNavigationViewController: UIViewController!
     var imageHeaderView: UIImageView!
     
@@ -40,8 +43,19 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
     }
     
+    deinit {
+        SwiftEventBus.unregister(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.setActiveBooking(bookings: UserManager.sharedInstance.getBookings())
+
+        SwiftEventBus.onMainThread(self, name: "setActiveBooking") { result in
+            // UI thread
+            self.setActiveBooking(bookings: UserManager.sharedInstance.getBookings())
+        }
         
         self.view.backgroundColor = .white
         
@@ -76,7 +90,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     }
     
     
-    func changeViewController(_ menu: LeftMenu) {
+    func changeViewController(_ menu: LeftMenu, indexPath: IndexPath) {
         switch menu {
         case .main:
             self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
@@ -88,11 +102,37 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
             UserManager.sharedInstance.logout()
             weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
             appDelegate?.startApp()
+        case .activeBookings:
+            let bookingIndex = indexPath.row - 1
+            if activeBookings.count > bookingIndex {
+                let booking = activeBookings[bookingIndex]
+                if let vehicle = booking.vehicle, let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                    appDelegate.loadViewForVehicle(vehicle: vehicle, state: Booking.getStateForBooking(booking: booking))
+                }
+            }
         }
     }
     
     func changeMainViewController(uiNavigationController: UINavigationController) {
         self.slideMenuController()?.changeMainViewController(uiNavigationController, close: true)
+    }
+    
+    func setActiveBooking(bookings: [Booking]) {
+        activeBookings = bookings
+        if activeBookings.count == 0 {
+            menus = [String.YourVolvos, String.Settings, String.Logout]
+        } else {
+            menus.removeAll()
+            menus.append(String.YourVolvos)
+            for booking in activeBookings {
+                if let vehicle = booking.vehicle {
+                    menus.append(vehicle.vehicleDescription())
+                }
+            }
+        }
+        menus.append(String.Settings)
+        menus.append(String.Logout)
+        tableView.reloadData()
     }
 }
 
@@ -103,7 +143,7 @@ extension LeftViewController : UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let menu = LeftMenu(rawValue: indexPath.row) {
-            self.changeViewController(menu)
+            self.changeViewController(menu, indexPath: indexPath)
         }
     }
     
