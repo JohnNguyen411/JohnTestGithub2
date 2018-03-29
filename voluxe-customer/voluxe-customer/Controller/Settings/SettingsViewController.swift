@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SettingsViewController: BaseViewController, SettingsCellProtocol {
+class SettingsViewController: ChildViewController, SettingsCellProtocol {
     
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
     let user: Customer?
@@ -30,6 +30,8 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setNavigationBarItem()
         
         tableView.backgroundColor = .clear
         tableView.dataSource = self

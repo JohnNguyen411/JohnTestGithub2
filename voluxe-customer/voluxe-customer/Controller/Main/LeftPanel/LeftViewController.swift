@@ -115,8 +115,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
             self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
         case .settings:
             weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
-            appDelegate?.navigationController?.pushViewController(SettingsViewController(), animated: true)
-            closeLeft()
+            appDelegate?.settingsScreen()
         case .logout:
             UserManager.sharedInstance.logout()
             weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
