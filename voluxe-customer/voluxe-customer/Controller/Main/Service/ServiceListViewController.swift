@@ -15,7 +15,10 @@ class ServiceListViewController: BaseViewController {
     var services: [RepairOrderType]?
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
     
-    override init() {
+    let vehicle: Vehicle
+    
+    init(vehicle: Vehicle) {
+        self.vehicle = vehicle
         super.init()
     }
     
@@ -103,7 +106,7 @@ extension ServiceListViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.navigationController?.pushViewController(ServiceDetailViewController(service: services![indexPath.row], canSchedule: true), animated: true)
+        self.navigationController?.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: services![indexPath.row], canSchedule: true), animated: true)
     }
     
 }

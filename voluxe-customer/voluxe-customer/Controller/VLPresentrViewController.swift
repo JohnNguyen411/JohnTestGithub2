@@ -27,22 +27,20 @@ class VLPresentrViewController: UIViewController {
     
     let bottomButton = VLButton(type: .bluePrimary, title: nil, actionBlock: nil)
     
-    convenience init(title: String, buttonTitle: String) {
-        self.init()
+    init(title: String, buttonTitle: String) {
+        super.init(nibName: nil, bundle: nil)
+        setupViews()
         
         setTitle(title: title.uppercased())
         setButtonTitle(title: buttonTitle.uppercased())
     }
     
     convenience init(title: String) {
-        self.init()
-        
-        setTitle(title: title)
+        self.init(title: title, buttonTitle: "")
     }
     
-    init() {
-        super.init(nibName: nil, bundle: nil)
-        setupViews()
+    convenience init() {
+        self.init(title: "", buttonTitle: "")
     }
     
     required init?(coder aDecoder: NSCoder) {

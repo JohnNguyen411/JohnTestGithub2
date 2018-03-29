@@ -12,24 +12,26 @@ import SwiftEventBus
 final class StateServiceManager {
     
     private var delegates: [StateServiceManagerProtocol] = []
-    private var state: ServiceState
+    private var states = [Int: ServiceState]() // states dict (Vehicle Id : State)
     
-    static let sharedInstance = StateServiceManager(state: .noninit)
-
-    init(state: ServiceState) {
-        self.state = state
+    static let sharedInstance = StateServiceManager()
+    
+    init() {
     }
     
-    func updateState(state: ServiceState) {
-        if self.state != state {
+    func updateState(state: ServiceState, vehicleId: Int) {
+        var oldState = states[vehicleId]
+        if oldState == nil || oldState != state {
             // state did change
-            let oldState = self.state
-            self.state = state
+            states[vehicleId] = state
+            if oldState == nil {
+                oldState = .noninit
+            }
             delegates.forEach {delegate in
-                delegate.stateDidChange(oldState: oldState, newState: state)
+                delegate.stateDidChange(vehicleId: vehicleId, oldState: oldState!, newState: state)
             }
             
-            BookingSyncManager.sharedInstance.syncBooking()
+            BookingSyncManager.sharedInstance.syncBookings()
         } else if state == .enRouteForDropoff || state == .enRouteForPickup || state == .nearbyForPickup || state == .nearbyForDropoff {
             // update driver's location
             SwiftEventBus.post("driverLocationUpdate")
@@ -46,15 +48,18 @@ final class StateServiceManager {
         }
     }
     
-    func getState() -> ServiceState {
-        return state
+    func getState(vehicleId: Int) -> ServiceState {
+        if let serviceState = states[vehicleId] {
+            return serviceState
+        }
+        return .noninit
     }
     
-    func isPickup() -> Bool {
-        return ServiceState.isPickup(state: state)
+    func isPickup(vehicleId: Int) -> Bool {
+        return ServiceState.isPickup(state: getState(vehicleId: vehicleId))
     }
 }
 
 protocol StateServiceManagerProtocol: class {
-    func stateDidChange(oldState: ServiceState, newState: ServiceState)
+    func stateDidChange(vehicleId: Int, oldState: ServiceState, newState: ServiceState)
 }

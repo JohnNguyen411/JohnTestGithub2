@@ -14,8 +14,8 @@ import GoogleMaps
 
 class ScheduledDropoffViewController: ScheduledViewController {
     
-    convenience init(state: ServiceState) {
-        self.init()
+    convenience init(vehicle: Vehicle, state: ServiceState) {
+        self.init(vehicle: vehicle)
         stateDidChange(state: state)
     }
     
@@ -51,7 +51,7 @@ class ScheduledDropoffViewController: ScheduledViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
+        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else {
             return
         }
         if let dropoffRequest = booking.dropoffRequest, let location = dropoffRequest.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
@@ -67,10 +67,10 @@ class ScheduledDropoffViewController: ScheduledViewController {
     override func driverLocationUpdate() {
         super.driverLocationUpdate()
         
-        guard let booking = RequestedServiceManager.sharedInstance.getBooking() else {
+        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else {
             return
         }
-        let state = StateServiceManager.sharedInstance.getState()
+        let state = StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id)
 
         if let dropoffRequest = booking.dropoffRequest {
             var refreshTimeSlot = true

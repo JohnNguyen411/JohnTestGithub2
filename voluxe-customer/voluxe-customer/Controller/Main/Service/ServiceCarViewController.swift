@@ -59,6 +59,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     var locationManager = LocationManager.sharedInstance
     
     let stateTestView = UILabel(frame: .zero)
+    let vehicle: Vehicle
 
     let scheduledServiceView = VLTitledLabel()
     let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
@@ -71,7 +72,8 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     
     //MARK: Lifecycle methods
-    init(state: ServiceState) {
+    init(vehicle: Vehicle, state: ServiceState) {
+        self.vehicle = vehicle
         self.serviceState = state
         super.init()
     }
@@ -211,9 +213,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             noteLabel.text = .NoteDelivery
         }
         
-        if let vehicle = UserManager.sharedInstance.getVehicle() {
-            vehicle.setVehicleImage(imageView: vehicleImageView)
-        }
+        vehicle.setVehicleImage(imageView: vehicleImageView)
         
         if let service = RequestedServiceManager.sharedInstance.getRepairOrder() {
             var title = String.RecommendedService
@@ -257,7 +257,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 checkupLabel.text = .SchedulePickupDealership
                 showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: true)
                 checkupLabel.text = .VolvoServiceComplete
-                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                     scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
                 }
             }
@@ -275,7 +275,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         } else {
             
             var dealership = RequestedServiceManager.sharedInstance.getDealership()
-            if dealership == nil, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+            if dealership == nil, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                 dealership = booking.dealership
             }
             noteLabel.isHidden = true
@@ -297,7 +297,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .serviceCompleted)
+                        StateServiceManager.sharedInstance.updateState(state: .serviceCompleted, vehicleId: self.vehicle.id)
                     })
                 }
             } else if state == .enRouteForService {
@@ -308,7 +308,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .service)
+                        StateServiceManager.sharedInstance.updateState(state: .service, vehicleId: self.vehicle.id)
                     })
                 }
                 
@@ -321,7 +321,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .service)
+                        StateServiceManager.sharedInstance.updateState(state: .service, vehicleId: self.vehicle.id)
                     })
                 }
                 
@@ -369,18 +369,18 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     //MARK: Actions methods
     func showDescriptionClick() {
         if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
-            childViewDelegate?.pushViewController(controller: ServiceDetailViewController(service: repairOrder), animated: true, backLabel: .Back, title: repairOrder.name)
-        } else if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!), booking.repairOrderRequests.count > 0 {
-            childViewDelegate?.pushViewController(controller: ServiceDetailViewController(service: booking.repairOrderRequests[0]), animated: true, backLabel: .Back, title: booking.repairOrderRequests[0].name)
+            childViewDelegate?.pushViewController(controller: ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true, backLabel: .Back, title: repairOrder.name)
+        } else if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.repairOrderRequests.count > 0 {
+            childViewDelegate?.pushViewController(controller: ServiceDetailViewController(vehicle: vehicle, service: booking.repairOrderRequests[0]), animated: true, backLabel: .Back, title: booking.repairOrderRequests[0].name)
         }
     }
     
     func leftButtonClick() {
-        if StateServiceManager.sharedInstance.isPickup() {
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorPickup)
-            self.childViewDelegate?.pushViewController(controller: SchedulingPickupViewController(state: .schedulingService), animated: true, backLabel: .Back, title: nil)
+            self.childViewDelegate?.pushViewController(controller: SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true, backLabel: .Back, title: nil)
         } else {
-            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                 self.childViewDelegate?.pushViewController(controller: SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true, backLabel: .Back, title: nil)
                 RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .advisorDropoff)
 
@@ -389,11 +389,11 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     }
     
     func rightButtonClick() {
-        if StateServiceManager.sharedInstance.isPickup() {
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .driverPickup)
-            self.childViewDelegate?.pushViewController(controller: SchedulingPickupViewController(state: .schedulingService), animated: true, backLabel: .Back, title: nil)
+            self.childViewDelegate?.pushViewController(controller: SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true, backLabel: .Back, title: nil)
         } else {
-            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                 RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .driverDropoff)
                 self.childViewDelegate?.pushViewController(controller: SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true, backLabel: .Back, title: nil)
             }
@@ -401,10 +401,11 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     }
     
     func confirmButtonClick() {
-        if StateServiceManager.sharedInstance.getState() == .completed {
+        if StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id) == .completed {
             // start over
             RequestedServiceManager.sharedInstance.reset()
-            StateServiceManager.sharedInstance.updateState(state: .noninit)
+            StateServiceManager.sharedInstance.updateState(state: .noninit, vehicleId: vehicle.id)
+            appDelegate?.loadMainScreen()
         }
     }
     

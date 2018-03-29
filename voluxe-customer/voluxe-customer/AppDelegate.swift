@@ -36,9 +36,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     
+    fileprivate func showLoadingView() {
+        //LoadingView Controller is the entry point of the app LoadingViewController
+        window!.rootViewController = LoadingViewController()
+        window!.makeKeyAndVisible()
+    }
+    
+    func showMainView() {
+        createMenuView()
+    }
+    
     fileprivate func createMenuView() {
         
-        let mainViewController = MainViewController()
+        let mainViewController = VehiclesViewController(state: .idle)
         let leftViewController = LeftViewController()
         
         mainViewController.view.accessibilityIdentifier = "mainViewController"
@@ -57,7 +67,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         navigationController = uiNavigationController
 
         leftViewController.mainNavigationViewController = navigationController
-        leftViewController.mainViewController = mainViewController
+        //leftViewController.mainViewController = mainViewController
         
         let menuController = SlideMenuController(mainViewController: uiNavigationController, leftMenuViewController: leftViewController)
         menuController.automaticallyAdjustsScrollViewInsets = true
@@ -71,10 +81,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         slideMenuController?.view.accessibilityIdentifier = "slideMenuController"
+
+        if let snapShot = self.window?.snapshotView(afterScreenUpdates: true) {
+            slideMenuController?.view.addSubview(snapShot)
+            self.window?.rootViewController = slideMenuController
+            
+            UIView.animate(withDuration: 0.3, animations: {
+                snapShot.layer.opacity = 0
+                snapShot.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5)
+            }, completion: { finished in
+                snapShot.removeFromSuperview()
+            })
+        } else {
+            self.window?.rootViewController = slideMenuController
+        }
         
-        // self.window?.backgroundColor = UIColor(red: 236.0, green: 238.0, blue: 241.0, alpha: 1.0)
-        self.window?.rootViewController = slideMenuController
-        self.window?.makeKeyAndVisible()
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -107,7 +128,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             window!.rootViewController = uiNavigationController
             window!.makeKeyAndVisible()
         } else {
-            createMenuView()
+            loadMainScreen()
+        }
+    }
+    
+    func loadViewForVehicle(vehicle: Vehicle, state: ServiceState) {
+        if let slideMenu = slideMenuController {
+            if let leftVC = slideMenu.leftViewController as? LeftViewController {
+                let uiNavigationController = UINavigationController(rootViewController: MainViewController(vehicle: vehicle, state: state))
+                styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
+                leftVC.changeMainViewController(uiNavigationController: uiNavigationController)
+            }
         }
     }
     
@@ -185,7 +216,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func loadMainScreen() {
-        createMenuView()
+        showLoadingView()
     }
     
     //MARK: UNUserNotificationCenterDelegate

@@ -41,30 +41,31 @@ final class BookingSyncManager {
     
     deinit {
         guard let timer = self.timer else { return }
-
+        
         timer.setEventHandler {}
         timer.cancel()
     }
     
-    public func syncBooking() {
-        if let booking = RequestedServiceManager.sharedInstance.getBooking() {
-            // todo define timer for states
-            if booking.pickupRequest != nil || booking.dropoffRequest != nil {
-                if booking.getState() != .serviceCompleted && booking.getState() != .completed {
-                    if booking.getState() == .dropoffScheduled || booking.getState() == .pickupScheduled {
-                        syncBooking(every: 60)
-                    } else {
-                        syncBooking(every: 10)
+    public func syncBookings() {
+        if UserManager.sharedInstance.getBookings().count > 0 {
+            for booking in UserManager.sharedInstance.getBookings() {
+                // todo define timer for states
+                if booking.pickupRequest != nil || booking.dropoffRequest != nil {
+                    if booking.getState() != .serviceCompleted && booking.getState() != .completed {
+                        if booking.getState() == .enRouteForPickup || booking.getState() == .enRouteForDropoff {
+                            syncBooking(booking: booking, every: 10)
+                        } else {
+                            syncBooking(booking: booking, every: 60)
+                        }
                     }
                 }
-            } else {
-                suspend()
             }
-
+        } else {
+            suspend()
         }
     }
     
-    private func syncBooking(every: Int) {
+    private func syncBooking(booking: Booking, every: Int) {
         
         if let timer = timer {
             timer.setEventHandler {}
@@ -79,10 +80,8 @@ final class BookingSyncManager {
                     self.suspend()
                     return
                 }
-                if let customerId = UserManager.sharedInstance.getCustomerId(), let booking = RequestedServiceManager.sharedInstance.getBooking() {
+                if let customerId = UserManager.sharedInstance.getCustomerId() {
                     self.getBooking(customerId: customerId, bookingId: booking.id)
-                } else {
-                    self.suspend()
                 }
             })
             timer.resume()
@@ -101,15 +100,14 @@ final class BookingSyncManager {
                         realm.add(booking, update: true)
                     }
                 }
-                RequestedServiceManager.sharedInstance.setBooking(booking: booking, updateState: true)
+                let serviceState = Booking.getStateForBooking(booking: booking)
+                StateServiceManager.sharedInstance.updateState(state: serviceState, vehicleId: booking.vehicleId)
             } else {
                 // error
-                StateServiceManager.sharedInstance.updateState(state: .idle)
             }
             
             }.onFailure { error in
                 // todo show error
-                StateServiceManager.sharedInstance.updateState(state: .idle)
         }
     }
     

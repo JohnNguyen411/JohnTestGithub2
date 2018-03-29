@@ -21,6 +21,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     var delegate: PickupDateDelegate?
     var realm: Realm?
     var dealership: Dealership?
+    let vehicle: Vehicle
     
     let firstMonthHeader: UILabel = {
         let firstMonthHeader = UILabel()
@@ -56,7 +57,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     private let todaysDate = Date()
     private var maxDate = Date()
     
-    private let isPickup = StateServiceManager.sharedInstance.isPickup()
+    private var isPickup = true
 
     private let loanerContainerView = UIView(frame: .zero)
     
@@ -79,16 +80,18 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
 
     private var currentSlots: Results<DealershipTimeSlot>?
     
-    override init() {
+    init(vehicle: Vehicle, title: String, buttonTitle: String) {
+        self.vehicle = vehicle
+        isPickup = StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id)
         loanerViewHeight = isPickup ? 48 : 0
         var currentDealership = RequestedServiceManager.sharedInstance.getDealership()
         if currentDealership == nil {
-            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: UserManager.sharedInstance.getVehicle()!) {
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                 currentDealership = booking.dealership
             }
         }
         dealership = currentDealership
-        super.init()
+        super.init(title: title, buttonTitle: buttonTitle)
         realm = try? Realm()
         getTimeSlots()
         loanerSwitch.setOn(RequestedServiceManager.sharedInstance.getLoaner(), animated: false)
@@ -105,7 +108,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             
             var selectedDate: Date?
             // select preselected date, otherwise fallback to next day
-            if StateServiceManager.sharedInstance.isPickup() {
+            if isPickup {
                 selectedDate = RequestedServiceManager.sharedInstance.getPickupTimeSlot()?.from
             } else {
                 selectedDate = RequestedServiceManager.sharedInstance.getDropoffTimeSlot()?.from
@@ -374,7 +377,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                 
                 var selectedDate: Date?
                 // select preselected date, otherwise fallback to next day
-                if StateServiceManager.sharedInstance.isPickup() {
+                if self.isPickup {
                     selectedDate = RequestedServiceManager.sharedInstance.getPickupTimeSlot()?.from
                 } else {
                     selectedDate = RequestedServiceManager.sharedInstance.getDropoffTimeSlot()?.from

@@ -51,6 +51,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setNavigationBarItem()
         // init tap events
         scheduledServiceView.isUserInteractionEnabled = true
         let scheduledServiceTap = UITapGestureRecognizer(target: self, action: #selector(self.scheduledServiceClick))
@@ -190,15 +191,19 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     //MARK: Actions methods
     func confirmButtonClick() {
         if let selectedVehicle = selectedVehicle {
-            UserManager.sharedInstance.selectVehicle(vehicle: selectedVehicle)
-            self.childViewDelegate?.pushViewController(controller: NewServiceViewController(), animated: true, backLabel: .Back, title: .NewService)
+            self.navigationController?.pushViewController(NewServiceViewController(vehicle: selectedVehicle), animated: true)
         }
     }
     
     
     @objc func scheduledServiceClick() {
         if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle) {
-            self.childViewDelegate?.pushViewController(controller: ScheduledBookingViewController(booking: booking, delegate: self), animated: true, backLabel: .Back, title: .ScheduledService)
+            // if booking is today, show upcoming request with map
+            if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted) {
+                appDelegate?.loadViewForVehicle(vehicle: selectedVehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: selectedVehicle.id))
+            } else {
+                self.navigationController?.pushViewController(ScheduledBookingViewController(booking: booking, delegate: self), animated: true)
+            }
         }
     }
     
@@ -228,5 +233,8 @@ extension VehiclesViewController: UICollectionViewDataSource, UICollectionViewDe
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectVehicle(vehicle: vehicles![indexPath.row])
     }
+}
+
+extension VehiclesViewController: SlideMenuControllerDelegate {
     
 }

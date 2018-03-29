@@ -20,7 +20,7 @@ class ScheduledBookingViewController: SchedulingViewController {
     init(booking: Booking, delegate: ScheduledBookingDelegate?) {
         self.booking = booking
         self.delegate = delegate
-        super.init(state: Booking.getStateForBooking(booking: booking))
+        super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking))
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -161,8 +161,8 @@ class ScheduledBookingViewController: SchedulingViewController {
     }
     
     override func showDescriptionClick() {
-        if booking.repairOrderRequests.count > 0 {
-            self.navigationController?.pushViewController(ServiceDetailViewController(service: booking.repairOrderRequests[0]), animated: true)
+        if let vehicle = booking.vehicle, booking.repairOrderRequests.count > 0 {
+            self.navigationController?.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: booking.repairOrderRequests[0]), animated: true)
         }
     }
     

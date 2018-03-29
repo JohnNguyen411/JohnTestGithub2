@@ -177,6 +177,7 @@
 /***************** Settings ***************/
 "Settings" = "Settings";
 "YourVolvos" = "Your Volvos";
+"ActiveBookings" = "Active Bookings";
 "AddANewVolvo" = "Add a New Volvo";
 "YourAccount" = "Your Account";
 "UnitOfDistance" = "Unit Of Distance";

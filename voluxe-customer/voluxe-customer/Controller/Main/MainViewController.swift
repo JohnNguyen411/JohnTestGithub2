@@ -14,12 +14,24 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     
     private var serviceState = ServiceState.noninit
     
+    private let vehicle: Vehicle
+    
     var currentViewController: ChildViewController?
     var previousView: UIView?
     
+    init(vehicle: Vehicle, state: ServiceState) {
+        self.vehicle = vehicle
+        self.serviceState = state
+        super.init()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         StateServiceManager.sharedInstance.addDelegate(delegate: self)
-        StateServiceManager.sharedInstance.updateState(state: .loading)
+        updateState(state: self.serviceState)
         super.viewDidLoad()
         setNavigationBarItem()
     }
@@ -32,14 +44,17 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         super.setupViews()
     }
     
-    func stateDidChange(oldState: ServiceState, newState: ServiceState) {
+    func stateDidChange(vehicleId: Int, oldState: ServiceState, newState: ServiceState) {
+        if vehicleId != vehicle.id {
+            return
+        }
+        if serviceState == newState {
+            return
+        }
         updateState(state: newState)
     }
     
     func updateState(state: ServiceState) {
-        if state == serviceState {
-            return
-        }
         
         VLAnalytics.logEventWithName(VLAnalytics.stateChangeEvent, paramName: VLAnalytics.stateParam, paramValue: "\(state.rawValue)")
         
@@ -48,30 +63,12 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         var changeView = true
         serviceState = state
         
-        if serviceState == .loading || serviceState == .noninit {
-            
-            if currentViewController != nil && (currentViewController?.isKind(of: LoadingViewController.self))! {
-                changeView = false
-            } else {
-                let loadingViewController = LoadingViewController()
-                currentViewController = loadingViewController
-            }
-            
-        } else if serviceState == .idle {
-            
-            if currentViewController != nil && (currentViewController?.isKind(of: VehiclesViewController.self))! {
-                changeView = false
-            } else {
-                let vehiclesViewController = VehiclesViewController(state: serviceState)
-                currentViewController = vehiclesViewController
-            }
-            
-        } else if serviceState == .needService || serviceState == .enRouteForService {
+       if serviceState == .needService || serviceState == .enRouteForService {
             
             if currentViewController != nil && (currentViewController?.isKind(of: ServiceCarViewController.self))! {
                 changeView = false
             } else {
-                let serviceCarViewController = ServiceCarViewController(state: serviceState)
+                let serviceCarViewController = ServiceCarViewController(vehicle: vehicle, state: serviceState)
                 currentViewController = serviceCarViewController
             }
             
@@ -79,7 +76,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledPickupViewController.self))! {
                 changeView = false
             } else {
-                let scheduledPickupViewController = ScheduledPickupViewController(state: serviceState)
+                let scheduledPickupViewController = ScheduledPickupViewController(vehicle: vehicle, state: serviceState)
                 currentViewController = scheduledPickupViewController
             }
             
@@ -88,14 +85,14 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             if currentViewController != nil && (currentViewController?.isKind(of: ServiceCarViewController.self))! {
                 changeView = false
             } else {
-                let serviceCarViewController = ServiceCarViewController(state: serviceState)
+                let serviceCarViewController = ServiceCarViewController(vehicle: vehicle, state: serviceState)
                 currentViewController = serviceCarViewController
             }
         } else if serviceState.rawValue >= ServiceState.dropoffScheduled.rawValue && serviceState.rawValue <= ServiceState.arrivedForDropoff.rawValue {
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
                 changeView = false
             } else {
-                let scheduledDeliveryViewController = ScheduledDropoffViewController(state: serviceState)
+                let scheduledDeliveryViewController = ScheduledDropoffViewController(vehicle: vehicle, state: serviceState)
                 currentViewController = scheduledDeliveryViewController
             }
         }

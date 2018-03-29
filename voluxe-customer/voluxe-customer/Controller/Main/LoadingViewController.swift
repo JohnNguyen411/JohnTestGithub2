@@ -81,10 +81,7 @@ class LoadingViewController: ChildViewController {
                         
                         let bookings = realm.objects(Booking.self).filter("customerId = %@ AND (state = %@ OR state = %@)", customerId, "created", "started")
                         UserManager.sharedInstance.setBookings(bookings: Array(bookings))
-                        if StateServiceManager.sharedInstance.getState() == .loading {
-                            StateServiceManager.sharedInstance.updateState(state: .idle)
-                        }
-                        
+                        self.loadVehiclesViewController()
                     })
                 }
             }
@@ -217,15 +214,16 @@ class LoadingViewController: ChildViewController {
                 }
                 // set the bookings
                 UserManager.sharedInstance.setBookings(bookings: bookings)
+                self.loadVehiclesViewController()
                 
             } else {
                 // error
-                StateServiceManager.sharedInstance.updateState(state: .idle)
+                self.loadVehiclesViewController()
             }
             
             }.onFailure { error in
                 // todo show error
-                StateServiceManager.sharedInstance.updateState(state: .idle)
+                self.loadVehiclesViewController()
         }
     }
     
@@ -241,5 +239,20 @@ class LoadingViewController: ChildViewController {
             }.onFailure { error in
                 Logger.print(error)
         }
+    }
+    
+    private func loadVehiclesViewController() {
+        appDelegate?.showMainView()
+        // need to delay to make sure the leftpanel is created already
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+            if UserManager.sharedInstance.getBookings().count > 0 {
+                if UserManager.sharedInstance.getBookings().count == 1 {
+                    let booking = UserManager.sharedInstance.getBookings()[0]
+                    if let vehicle = booking.vehicle {
+                        self.appDelegate?.loadViewForVehicle(vehicle: vehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id))
+                    }
+                }
+            }
+        })
     }
 }

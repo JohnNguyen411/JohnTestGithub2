@@ -62,8 +62,10 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     let drivability = [DrivableType.yes, DrivableType.no, DrivableType.notSure]
     var checkedCellIndex = 0
     let service: RepairOrder
+    let vehicle: Vehicle
     
-    init(repairOrderType: RepairOrderType, services: [String]) {
+    init(vehicle: Vehicle, repairOrderType: RepairOrderType, services: [String]) {
+        self.vehicle = vehicle
         var serviceTitle = String.Service + ": "
         for service in services {
             serviceTitle += "<br/>&bull; \(service). "
@@ -99,8 +101,10 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             self.service.notes = notes
             
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: self.service)
-            StateServiceManager.sharedInstance.updateState(state: .needService)
+            StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id)
             self.navigationController?.popToRootViewController(animated: false)
+            self.appDelegate?.loadViewForVehicle(vehicle: self.vehicle, state: .needService)
+            
         }
         //descriptionTextView.placeholder
         

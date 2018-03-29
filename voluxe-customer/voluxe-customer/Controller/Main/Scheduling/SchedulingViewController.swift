@@ -40,6 +40,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         return formatter
     }()
     
+    let vehicle: Vehicle
     var realm : Realm?
     var locationManager = LocationManager.sharedInstance
     
@@ -83,7 +84,8 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }()
     
     
-    init(state: ServiceState) {
+    init(vehicle: Vehicle, state: ServiceState) {
+        self.vehicle = vehicle
         self.serviceState = state
         super.init()
     }
@@ -291,7 +293,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         if let location = location {
             DealershipAPI().getDealerships(location: location).onSuccess { result in
                 if let dealerships = result?.data?.result {
-                    if StateServiceManager.sharedInstance.isPickup() {
+                    if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
                         if dealerships.count > 0 {
                             
                             //todo check with getDealershipRepairOrder if available ONLY at pickup
@@ -351,7 +353,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             self.dealerships = dealerships
             if dealerships.count > 0 {
                 
-                if StateServiceManager.sharedInstance.isPickup() && RequestedServiceManager.sharedInstance.getDealership() == nil {
+                if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) && RequestedServiceManager.sharedInstance.getDealership() == nil {
                     RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
                 }
                 if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
@@ -386,7 +388,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     func showPickupLocationModal(dismissOnTap: Bool) {
         
         var title: String = .PickupLocationTitle
-        if StateServiceManager.sharedInstance.isPickup() {
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
                 title = .DealershipCloseToLocation
             }
@@ -412,7 +414,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     func showPickupDateTimeModal(dismissOnTap: Bool) {
         
         var title: String = .SelectPickupDate
-        if !StateServiceManager.sharedInstance.isPickup() {
+        if !StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let type = RequestedServiceManager.sharedInstance.getDropoffRequestType() , type == RequestType.advisorDropoff {
                 title = .SelectPickupDate
             } else {
@@ -424,7 +426,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             }
         }
         
-        let dateModal = DateTimePickupViewController(title: title, buttonTitle: .Next)
+        let dateModal = DateTimePickupViewController(vehicle: vehicle, title: title, buttonTitle: .Next)
         dateModal.delegate = self
         dateModal.view.accessibilityIdentifier = "dateModal"
         currentPresentrVC = dateModal
@@ -452,7 +454,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     
     func getPickupLocationTitle() -> String {
         var title: String = .PickupLocationTitle
-        if StateServiceManager.sharedInstance.isPickup() {
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
                 title = .DealershipCloseToLocation
             }
@@ -462,7 +464,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     
     func getScheduledPickupTitle() -> String {
         var title: String = .ScheduledPickup
-        if StateServiceManager.sharedInstance.isPickup() {
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
                 title = .ScheduledSelfDrop
             }
@@ -472,7 +474,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     
     func getConfirmButtonTitle() -> String {
         var title = String.ConfirmPickup
-        if StateServiceManager.sharedInstance.isPickup() {
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
                 title = .ConfirmSelfDrop
             }
@@ -491,7 +493,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     //MARK: Actions methods
     func showDescriptionClick() {
         if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
-            self.navigationController?.pushViewController(ServiceDetailViewController(service: repairOrder), animated: true)
+            self.navigationController?.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true)
         }
     }
     
@@ -532,7 +534,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     
     func onDateTimeSelected(timeSlot: DealershipTimeSlot?) {
         
-        if StateServiceManager.sharedInstance.isPickup() {
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             RequestedServiceManager.sharedInstance.setPickupTimeSlot(timeSlot: timeSlot)
         } else {
             RequestedServiceManager.sharedInstance.setDropoffTimeSlot(timeSlot: timeSlot)
@@ -558,13 +560,13 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         
         //let locationRequest = RequestLocation(name: responseInfo!.value(forKey: "formattedAddress") as? String, stringLocation: nil, location: placemark?.location?.coordinate)
         let locationRequest = customerAddress.location
-        if StateServiceManager.sharedInstance.isPickup() {
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             RequestedServiceManager.sharedInstance.setPickupRequestLocation(requestLocation: locationRequest!)
         } else {
             RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: locationRequest!)
         }
         var title: String = .PickupLocation
-        if StateServiceManager.sharedInstance.isPickup() {
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
                 title = .DealershipCloseToLocation
             }
@@ -591,7 +593,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                 scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "", rightDescription: "")
                 
                 // invalidate Date/Time
-                if StateServiceManager.sharedInstance.isPickup() {
+                if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
                     RequestedServiceManager.sharedInstance.setPickupTimeSlot(timeSlot: nil)
                 } else {
                     RequestedServiceManager.sharedInstance.setDropoffTimeSlot(timeSlot: nil)
