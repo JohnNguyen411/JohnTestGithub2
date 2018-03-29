@@ -14,9 +14,8 @@ import SwiftEventBus
 
 enum LeftMenu: Int {
     case main = 0
-    case activeBookings = 1
-    case settings = 2
-    case logout = 3
+    case settings = 1
+    case logout = 2
 }
 
 protocol LeftMenuProtocol : class {
@@ -122,8 +121,6 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
             UserManager.sharedInstance.logout()
             weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
             appDelegate?.startApp()
-        case .activeBookings:
-            break
         }
     }
     
