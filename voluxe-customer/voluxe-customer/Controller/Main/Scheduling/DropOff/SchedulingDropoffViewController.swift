@@ -229,7 +229,12 @@ class SchedulingDropoffViewController: SchedulingViewController {
             
             confirmButton.isLoading = true
             
-            BookingAPI().createDropoffRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location).onSuccess { result in
+            var isDriver = true
+            if let type = RequestedServiceManager.sharedInstance.getDropoffRequestType(), type == .advisorDropoff {
+                isDriver = false
+            }
+            
+            BookingAPI().createDropoffRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: isDriver).onSuccess { result in
                 if let dropOffRequest = result?.data?.result {
                     self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
                 } else {

@@ -273,7 +273,12 @@ class SchedulingPickupViewController: SchedulingViewController {
                 return
             }
             
-            BookingAPI().createPickupRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location).onSuccess { result in
+            var isDriver = true
+            if let type = RequestedServiceManager.sharedInstance.getPickupRequestType(), type == .advisorPickup {
+                isDriver = false
+            }
+            
+            BookingAPI().createPickupRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: isDriver).onSuccess { result in
                 if let pickupRequest = result?.data?.result {
                     self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
                 } else {
