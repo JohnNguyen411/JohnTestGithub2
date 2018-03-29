@@ -306,9 +306,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     realm.add(booking, update: true)
                 }
                 UserManager.sharedInstance.addBooking(booking: booking)
-                if UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) == nil {
-                    StateServiceManager.sharedInstance.updateState(state: .loading, vehicleId: vehicle.id)
-                }
+               
                 self.navigationController?.popToRootViewController(animated: false)
             }
         }

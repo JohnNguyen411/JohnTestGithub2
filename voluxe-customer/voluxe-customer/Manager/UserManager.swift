@@ -169,6 +169,8 @@ final class UserManager {
         }
         self.bookings.append(booking)
         self.vehicleBookings[booking.vehicleId] = carBookings
+        StateServiceManager.sharedInstance.updateState(state: Booking.getStateForBooking(booking: booking), vehicleId: booking.vehicleId)
+
         SwiftEventBus.post("setActiveBooking")
     }
     

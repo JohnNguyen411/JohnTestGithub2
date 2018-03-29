@@ -51,7 +51,7 @@ final class BookingSyncManager {
             for booking in UserManager.sharedInstance.getBookings() {
                 // todo define timer for states
                 if booking.pickupRequest != nil || booking.dropoffRequest != nil {
-                    if booking.getState() != .serviceCompleted && booking.getState() != .completed {
+                    if booking.getState() != .serviceCompleted && booking.getState() != .completed && booking.getState() != .cancelled {
                         if booking.getState() == .enRouteForPickup || booking.getState() == .enRouteForDropoff {
                             syncBooking(booking: booking, every: 10)
                         } else {

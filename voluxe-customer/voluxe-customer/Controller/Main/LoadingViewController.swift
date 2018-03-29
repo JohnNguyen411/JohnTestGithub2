@@ -218,11 +218,13 @@ class LoadingViewController: ChildViewController {
                 
             } else {
                 // error
+                UserManager.sharedInstance.setBookings(bookings: nil)
                 self.loadVehiclesViewController()
             }
             
             }.onFailure { error in
                 // todo show error
+                UserManager.sharedInstance.setBookings(bookings: nil)
                 self.loadVehiclesViewController()
         }
     }
