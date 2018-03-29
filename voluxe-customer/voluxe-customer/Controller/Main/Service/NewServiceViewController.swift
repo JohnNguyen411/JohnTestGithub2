@@ -22,6 +22,8 @@ class NewServiceViewController: BaseViewController {
         return textView
     }()
     
+    let activityIndicator = UIActivityIndicatorView(frame: .zero)
+
     let vehicle: Vehicle
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
     var services: [String]?
@@ -37,6 +39,10 @@ class NewServiceViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicator.color = .luxeDarkBlue()
+        activityIndicator.startAnimating()
         
         tableView.backgroundColor = .clear
         tableView.dataSource = self
@@ -54,10 +60,10 @@ class NewServiceViewController: BaseViewController {
                     self.showServices(repairOrderTypes: [String.MilestoneServices, String.OtherMaintenanceRepairs])
                 }
             }
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.activityIndicator.animateAlpha(show: false)
             }.onFailure { error in
                 Logger.print(error)
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.activityIndicator.animateAlpha(show: false)
         }
         
     }
@@ -67,6 +73,7 @@ class NewServiceViewController: BaseViewController {
         
         self.view.addSubview(introLabel)
         self.view.addSubview(tableView)
+        self.view.addSubview(activityIndicator)
         let labelHeight = introLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
 
         introLabel.snp.makeConstraints { make in
@@ -79,6 +86,12 @@ class NewServiceViewController: BaseViewController {
             make.left.right.equalTo(introLabel)
             make.top.equalTo(introLabel.snp.bottom).offset(20)
             make.height.equalTo(ServiceCell.height*4)
+        }
+        
+        activityIndicator.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalTo(tableView)
+            make.height.equalTo(100)
         }
         
     }
