@@ -47,10 +47,10 @@ class ServiceDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
-            label.setHTMLFromString(text: repairOrder.notes)
+            label.text = repairOrder.notes)
             serviceTitle.setTitle(title: .OtherMaintenanceRepairs, leftDescription: repairOrder.name!)
         } else {
-            label.setHTMLFromString(text: service.desc)
+            label.text = service.desc)
         }
         label.sizeToFit()
         

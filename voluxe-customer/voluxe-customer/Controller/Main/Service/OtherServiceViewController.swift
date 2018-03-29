@@ -68,7 +68,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         self.vehicle = vehicle
         var serviceTitle = String.Service + ": "
         for service in services {
-            serviceTitle += "<br/>&bull; \(service). "
+            serviceTitle += "\n• \(service). "
         }
         self.service = RepairOrder(repairOrderType: repairOrderType, customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
         super.init()
@@ -95,8 +95,8 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         confirmButton.setActionBlock {
             
             var notes = self.service.notes
-            notes.append("<br/><br/>\(self.descriptionTextView.text ?? "")")
-            notes.append("<br/><br/>\(String.IsVolvoDrivable) \(self.drivability[self.checkedCellIndex].rawValue)")
+            notes.append("\n\n\(self.descriptionTextView.text ?? "")")
+            notes.append("\n\n\(String.IsVolvoDrivable) \(self.drivability[self.checkedCellIndex].rawValue)")
 
             self.service.notes = notes
             
