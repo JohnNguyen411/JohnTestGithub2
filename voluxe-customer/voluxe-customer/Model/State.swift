@@ -9,7 +9,7 @@
 import Foundation
 
 public enum State: String {
-    case cancelled = "cancelled"
+    case canceled = "canceled"
     case created = "created"
     case pickupScheduled = "pickup_scheduled"
     case enRouteForPickup = "en_route_for_pickup"

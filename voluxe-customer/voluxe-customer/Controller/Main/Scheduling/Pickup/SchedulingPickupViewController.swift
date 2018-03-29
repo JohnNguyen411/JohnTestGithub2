@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import MBProgressHUD
 
 class SchedulingPickupViewController: SchedulingViewController {
     
@@ -293,6 +294,7 @@ class SchedulingPickupViewController: SchedulingViewController {
     }
     
     private func manageNewPickupRequest(pickupRequest: Request, booking: Booking) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         if let realm = self.realm {
             try? realm.write {
                 realm.add(pickupRequest, update: true)
@@ -310,6 +312,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 self.navigationController?.popToRootViewController(animated: false)
             }
         }
+        MBProgressHUD.hide(for: self.view, animated: true)
     }
     
 }

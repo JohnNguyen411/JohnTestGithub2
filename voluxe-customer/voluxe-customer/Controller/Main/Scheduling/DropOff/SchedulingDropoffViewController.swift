@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import MBProgressHUD
 
 class SchedulingDropoffViewController: SchedulingViewController {
     
@@ -246,6 +247,8 @@ class SchedulingDropoffViewController: SchedulingViewController {
     }
     
     private func manageNewDropoffRequest(dropOffRequest: Request, booking: Booking) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+
         if let realm = self.realm {
             try? realm.write {
                 realm.add(dropOffRequest, update: true)
@@ -265,6 +268,8 @@ class SchedulingDropoffViewController: SchedulingViewController {
             
             self.navigationController?.popToRootViewController(animated: false)
         }
+        MBProgressHUD.hide(for: self.view, animated: true)
+
     }
     
     

@@ -110,7 +110,7 @@ final class UserManager {
         if let bookings = bookings {
             for booking in bookings {
                 // skipped cancelled and completed request, and request w/o any request
-                if booking.getState() == .cancelled || booking.getState() == .completed || (booking.pickupRequest == nil && booking.dropoffRequest == nil) {
+                if booking.getState() == .canceled || booking.getState() == .completed || (booking.pickupRequest == nil && booking.dropoffRequest == nil) {
                     continue
                 }
                 let vehicleId = booking.vehicleId

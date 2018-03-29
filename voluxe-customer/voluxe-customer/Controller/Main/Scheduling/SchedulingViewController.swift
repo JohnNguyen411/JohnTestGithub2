@@ -14,6 +14,7 @@ import RealmSwift
 import BrightFutures
 import Alamofire
 import SwiftEventBus
+import MBProgressHUD
 
 class SchedulingViewController: ChildViewController, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate, LocationManagerDelegate {
     
