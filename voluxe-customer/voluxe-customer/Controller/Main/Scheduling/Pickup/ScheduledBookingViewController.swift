@@ -115,8 +115,6 @@ class ScheduledBookingViewController: SchedulingViewController {
         let deleteAction = UIAlertAction(title: .CancelPickup, style: .destructive, handler: { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
             self.cancelRequest()
-            
-            self.navigationController?.popViewController(animated: true)
         })
         
         alert.addAction(backAction)
@@ -127,33 +125,58 @@ class ScheduledBookingViewController: SchedulingViewController {
     func cancelRequest() {
         // todo submit cancel request with API && Refresh bookings
         
-        if !Config.sharedInstance.isMock {
-            return
+        if let dropoffRequest = booking.dropoffRequest, let type = dropoffRequest.getType() {
+            BookingAPI().cancelDropoffRequest(requestId: dropoffRequest.id, isDriver: type == .driverDropoff).onSuccess { result in
+                if let _ = result?.error {
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                } else {
+                    self.onDelete()
+                }
+                }.onFailure { error in
+                    self.showOkDialog(title: .Error, message: .GenericError)
+            }
+            
+            
+        } else if let pickupRequest = booking.pickupRequest, let type = pickupRequest.getType() {
+            BookingAPI().cancelPickupRequest(requestId: pickupRequest.id, isDriver: type == .driverPickup).onSuccess { result in
+                if let _ = result?.error {
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                } else {
+                    self.onDelete()
+                }
+                }.onFailure { error in
+                    self.showOkDialog(title: .Error, message: .GenericError)
+            }
         }
+        
+        
+        
+    }
+    
+    private func onDelete() {
         if let realm = self.realm {
             
             if let pickupRequest = self.booking.pickupRequest, self.serviceState == .pickupScheduled {
                 try? realm.write {
                     realm.delete(pickupRequest)
                     realm.delete(self.booking) // delete booking
-                    
                 }
-                
             } else if let dropoffRequest = self.booking.dropoffRequest {
                 try? realm.write {
                     realm.delete(dropoffRequest)
                 }
-                
             }
             
             // reload bookings from DB
-            let bookings = realm.objects(Booking.self).filter("customerId = %@ AND (state = %@ OR state = %@)", UserManager.sharedInstance.getCustomerId()!, "created", "started")
+            let bookings = realm.objects(Booking.self).filter("customerId = %@)", UserManager.sharedInstance.getCustomerId()!)
             UserManager.sharedInstance.setBookings(bookings: Array(bookings))
         }
         
         if let delegate = delegate {
             delegate.onCancelRequest()
         }
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
     func rightButtonClick() {
