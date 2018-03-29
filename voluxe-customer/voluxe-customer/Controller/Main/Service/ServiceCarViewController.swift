@@ -405,6 +405,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             // start over
             RequestedServiceManager.sharedInstance.reset()
             StateServiceManager.sharedInstance.updateState(state: .noninit, vehicleId: vehicle.id)
+            appDelegate?.loadMainScreen()
         }
     }
     
