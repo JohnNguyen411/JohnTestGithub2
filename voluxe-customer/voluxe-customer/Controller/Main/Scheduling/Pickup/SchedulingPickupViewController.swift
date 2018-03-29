@@ -41,7 +41,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         scheduledPickupView.isEditable = true
         pickupLocationView.isEditable = true
         
-        if state == .schedulingService {
+        if state == .schedulingService && pickupScheduleState == .start{
             // show location modal
             pickupLocationClick()
         }

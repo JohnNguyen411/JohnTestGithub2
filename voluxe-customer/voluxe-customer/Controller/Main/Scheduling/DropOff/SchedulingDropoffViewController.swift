@@ -125,7 +125,9 @@ class SchedulingDropoffViewController: SchedulingViewController {
             } else {
                 hideDealership()
             }
-            scheduledPickupClick()
+            if dropoffScheduleState == .start {
+                scheduledPickupClick()
+            }
         }
         
     }
