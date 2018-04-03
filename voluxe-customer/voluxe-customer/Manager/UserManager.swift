@@ -178,6 +178,9 @@ final class UserManager {
     public func getActiveBookings() -> [Booking] {
         var todaysBookings: [Booking] = []
         for booking in bookings {
+            if booking.isInvalidated {
+                continue
+            }
             
             if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted
                 || booking.getState() == .enRouteForDropoff || booking.getState() == .enRouteForPickup

@@ -273,8 +273,9 @@ class SchedulingDropoffViewController: SchedulingViewController {
             
             self.navigationController?.popToRootViewController(animated: false)
         }
-        
+        RequestedServiceManager.sharedInstance.reset()
         appDelegate?.showVehiclesView()
+        
         MBProgressHUD.hide(for: self.view, animated: true)
 
     }

@@ -209,8 +209,8 @@ class LoadingViewController: ChildViewController {
             if let bookings = result?.data?.result, bookings.count > 0 {
                 
                 for booking in bookings {
-                    if booking.id == -1 {
-                        booking.id = customerId
+                    if booking.customerId == -1 {
+                        booking.customerId = customerId
                     }
                 }
                 

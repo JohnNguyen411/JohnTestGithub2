@@ -104,8 +104,8 @@ final class BookingSyncManager {
             if let booking = result?.data?.result {
                 if let realm = try? Realm() {
                     try? realm.write {
-                        if booking.id == -1 {
-                            booking.id = customerId
+                        if booking.customerId == -1 {
+                            booking.customerId = customerId
                         }
                         realm.add(booking, update: true)
                     }

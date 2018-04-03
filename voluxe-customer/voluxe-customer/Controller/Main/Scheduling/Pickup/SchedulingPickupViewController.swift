@@ -201,8 +201,8 @@ class SchedulingPickupViewController: SchedulingViewController {
             if let booking = result?.data?.result {
                 if let realm = self.realm {
                     try? realm.write {
-                        if booking.id == -1 {
-                            booking.id = customerId
+                        if booking.customerId == -1 {
+                            booking.customerId = customerId
                         }
                         realm.add(booking, update: true)
                     }
@@ -303,6 +303,7 @@ class SchedulingPickupViewController: SchedulingViewController {
     
     private func manageNewPickupRequest(pickupRequest: Request, booking: Booking) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
+        
         if let realm = self.realm {
             try? realm.write {
                 realm.add(pickupRequest, update: true)
@@ -319,8 +320,11 @@ class SchedulingPickupViewController: SchedulingViewController {
                
                 self.navigationController?.popToRootViewController(animated: false)
             }
-            appDelegate?.showVehiclesView()
         }
+        
+        RequestedServiceManager.sharedInstance.reset()
+        appDelegate?.showVehiclesView()
+        
         MBProgressHUD.hide(for: self.view, animated: true)
     }
     
