@@ -108,6 +108,10 @@ final class UserManager {
     
     public func setBookings(bookings: [Booking]?) {
         if let bookings = bookings {
+            
+            self.vehicleBookings.removeAll()
+            self.bookings.removeAll()
+            
             for booking in bookings {
                 // skipped cancelled and completed request, and request w/o any request
                 if booking.getState() == .canceled || booking.getState() == .completed || (booking.pickupRequest == nil && booking.dropoffRequest == nil) {

@@ -165,10 +165,7 @@ class ScheduledBookingViewController: SchedulingViewController {
     
     private func onDelete() {
         if let realm = self.realm {
-            if let customerId = UserManager.sharedInstance.getCustomerId() {
-                let bookings = realm.objects(Booking.self).filter("customerId = %@", customerId)
-                UserManager.sharedInstance.setBookings(bookings: Array(bookings))
-            }
+           
             if let pickupRequest = self.booking.pickupRequest, self.serviceState == .pickupScheduled {
                 try? realm.write {
                     realm.delete(pickupRequest)

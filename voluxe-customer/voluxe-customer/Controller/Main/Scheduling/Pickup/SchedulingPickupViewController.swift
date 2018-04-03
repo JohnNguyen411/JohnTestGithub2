@@ -79,7 +79,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             }
         })
     }
-
+    
     override func onDateTimeSelected(timeSlot: DealershipTimeSlot?) {
         if pickupScheduleState.rawValue < SchedulePickupState.dateTime.rawValue {
             pickupScheduleState = .dateTime
@@ -95,7 +95,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         currentPresentrVC?.dismiss(animated: true, completion: {
             self.showBlockingLoading()
         })
-
+        
         var openNext = false
         
         if pickupScheduleState.rawValue < SchedulePickupState.location.rawValue {
@@ -106,30 +106,30 @@ class SchedulingPickupViewController: SchedulingViewController {
         super.onLocationSelected(customerAddress: customerAddress)
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
-
-        self.fetchDealershipsForLocation(location: customerAddress.location?.getLocation(), completion: {
-            // hide loader
-            self.hideBlockingLoading()
-            if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-                self.pickupLocationView.hideError()
-                self.dealershipView.descLeftLabel.text = dealership.name
-
-                if self.pickupScheduleState.rawValue < SchedulePickupState.dealership.rawValue {
-                    self.pickupScheduleState = .dealership
-                    openNext = true
-                }
-                if openNext {
-                    self.dealershipView.animateAlpha(show: true)
-                    // show date time
-                    self.loanerClick()
+            
+            self.fetchDealershipsForLocation(location: customerAddress.location?.getLocation(), completion: {
+                // hide loader
+                self.hideBlockingLoading()
+                if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
+                    self.pickupLocationView.hideError()
+                    self.dealershipView.descLeftLabel.text = dealership.name
+                    
+                    if self.pickupScheduleState.rawValue < SchedulePickupState.dealership.rawValue {
+                        self.pickupScheduleState = .dealership
+                        openNext = true
+                    }
+                    if openNext {
+                        self.dealershipView.animateAlpha(show: true)
+                        // show date time
+                        self.loanerClick()
+                    }
+                    
+                } else {
+                    //todo: OUT OF ZONE ERROR
+                    self.pickupLocationView.showError(error: .OutOfPickupArea)
                 }
                 
-            } else {
-                //todo: OUT OF ZONE ERROR
-                self.pickupLocationView.showError(error: .OutOfPickupArea)
-            }
-            
-        })
+            })
         })
         
     }
@@ -184,7 +184,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 }
             }
             self.createPickupRequest(customerId: customerId, booking: booking)
-
+            
             return
         }
         
@@ -237,7 +237,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             return
         }
         
-         guard let realm = self.realm else {
+        guard let realm = self.realm else {
             // todo show error
             return
         }
@@ -251,6 +251,10 @@ class SchedulingPickupViewController: SchedulingViewController {
             if let repairOrder = result?.data?.result {
                 try? realm.write {
                     realm.add(repairOrder, update: true)
+                    if booking.repairOrderRequests.count == 0 {
+                        booking.repairOrderRequests.append(repairOrder)
+                        realm.add(booking, update: true)
+                    }
                 }
                 self.createPickupRequest(customerId: customerId, booking: booking)
                 return
@@ -285,6 +289,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             BookingAPI().createPickupRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: isDriver).onSuccess { result in
                 if let pickupRequest = result?.data?.result {
                     self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
+                    self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
                 } else {
                     // todo show error
                     self.confirmButton.isLoading = false
@@ -303,7 +308,6 @@ class SchedulingPickupViewController: SchedulingViewController {
     }
     
     private func manageNewPickupRequest(pickupRequest: Request, booking: Booking) {
-        MBProgressHUD.showAdded(to: self.view, animated: true)
         
         if let realm = self.realm {
             try? realm.write {
@@ -317,16 +321,37 @@ class SchedulingPickupViewController: SchedulingViewController {
                     booking.pickupRequest = realmPickupRequest
                     realm.add(booking, update: true)
                 }
-                UserManager.sharedInstance.addBooking(booking: booking)
-               
-                self.navigationController?.popToRootViewController(animated: false)
             }
         }
+    }
+    
+    private func refreshFinalBooking(customerId: Int, bookingId: Int) {
+        MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        RequestedServiceManager.sharedInstance.reset()
-        appDelegate?.showVehiclesView()
-        
-        MBProgressHUD.hide(for: self.view, animated: true)
+        BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
+            if let booking = result?.data?.result {
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(booking, update: true)
+                    }
+                }
+                UserManager.sharedInstance.addBooking(booking: booking)
+                
+                self.navigationController?.popToRootViewController(animated: false)
+            }
+            
+            RequestedServiceManager.sharedInstance.reset()
+            self.appDelegate?.showVehiclesView()
+            
+            MBProgressHUD.hide(for: self.view, animated: true)
+            
+            }.onFailure { error in
+                // retry
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                    self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
+                })
+        }
     }
     
 }
