@@ -201,6 +201,9 @@ class SchedulingPickupViewController: SchedulingViewController {
             if let booking = result?.data?.result {
                 if let realm = self.realm {
                     try? realm.write {
+                        if booking.id == -1 {
+                            booking.id = customerId
+                        }
                         realm.add(booking, update: true)
                     }
                 }
@@ -316,6 +319,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                
                 self.navigationController?.popToRootViewController(animated: false)
             }
+            appDelegate?.showVehiclesView()
         }
         MBProgressHUD.hide(for: self.view, animated: true)
     }

@@ -183,11 +183,13 @@ class BookingAPI: NSObject {
     
     /**
      Cancel a Pickup Request
+     - parameter customerId: The customer ID
+     - parameter bookingId: The booking ID to cancel
      - parameter requestId: The request ID to cancel
      
      - Returns: A Future EmptyMappableObject, or an AFError if an error occured
      */
-    func cancelPickupRequest(requestId: Int, isDriver: Bool) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+    func cancelPickupRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
         let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
         
         var endpoint = "driver-pickup-requests"
@@ -195,7 +197,7 @@ class BookingAPI: NSObject {
             endpoint = "advisor-pickup-requests"
         }
         
-        NetworkRequest.request(url: "/v1/\(endpoint)/\(requestId)/cancel", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)/\(requestId)/cancel", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
             var responseObject: ResponseObject<EmptyMappableObject>?
             
             if let json = response.result.value as? [String: Any] {
@@ -213,11 +215,13 @@ class BookingAPI: NSObject {
     
     /**
      Cancel a Dropoff Request
+     - parameter customerId: The customer ID
+     - parameter bookingId: The booking ID to cancel
      - parameter requestId: The request ID to cancel
      
      - Returns: A Future EmptyMappableObject, or an AFError if an error occured
      */
-    func cancelDropoffRequest(requestId: Int, isDriver: Bool) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+    func cancelDropoffRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
         let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
         
         var endpoint = "driver-dropoff-requests"
@@ -225,7 +229,7 @@ class BookingAPI: NSObject {
             endpoint = "advisor-dropoff-requests"
         }
         
-        NetworkRequest.request(url: "/v1/\(endpoint)/\(requestId)/cancel", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)/\(requestId)/cancel", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
             var responseObject: ResponseObject<EmptyMappableObject>?
             
             if let json = response.result.value as? [String: Any] {

@@ -273,6 +273,8 @@ class SchedulingDropoffViewController: SchedulingViewController {
             
             self.navigationController?.popToRootViewController(animated: false)
         }
+        
+        appDelegate?.showVehiclesView()
         MBProgressHUD.hide(for: self.view, animated: true)
 
     }

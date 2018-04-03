@@ -134,7 +134,8 @@ final class UserManager {
             self.vehicleBookings.removeAll()
             self.bookings.removeAll()
         }
-        
+        BookingSyncManager.sharedInstance.syncBookings()
+
         SwiftEventBus.post("setActiveBooking")
     }
     

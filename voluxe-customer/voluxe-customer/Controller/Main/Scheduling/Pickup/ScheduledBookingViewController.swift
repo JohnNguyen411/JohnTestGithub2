@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import MBProgressHUD
 
 class ScheduledBookingViewController: SchedulingViewController {
     
@@ -124,28 +125,37 @@ class ScheduledBookingViewController: SchedulingViewController {
     
     func cancelRequest() {
         // todo submit cancel request with API && Refresh bookings
-        
         if let dropoffRequest = booking.dropoffRequest, let type = dropoffRequest.getType() {
-            BookingAPI().cancelDropoffRequest(requestId: dropoffRequest.id, isDriver: type == .driverDropoff).onSuccess { result in
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+
+            BookingAPI().cancelDropoffRequest(customerId: UserManager.sharedInstance.getCustomerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff).onSuccess { result in
                 if let _ = result?.error {
                     self.showOkDialog(title: .Error, message: .GenericError)
                 } else {
                     self.onDelete()
                 }
+                MBProgressHUD.hide(for: self.view, animated: true)
                 }.onFailure { error in
                     self.showOkDialog(title: .Error, message: .GenericError)
+                    MBProgressHUD.hide(for: self.view, animated: true)
             }
             
             
         } else if let pickupRequest = booking.pickupRequest, let type = pickupRequest.getType() {
-            BookingAPI().cancelPickupRequest(requestId: pickupRequest.id, isDriver: type == .driverPickup).onSuccess { result in
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+
+            BookingAPI().cancelPickupRequest(customerId: UserManager.sharedInstance.getCustomerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup).onSuccess { result in
                 if let _ = result?.error {
                     self.showOkDialog(title: .Error, message: .GenericError)
                 } else {
                     self.onDelete()
                 }
+                MBProgressHUD.hide(for: self.view, animated: true)
+
                 }.onFailure { error in
                     self.showOkDialog(title: .Error, message: .GenericError)
+                    MBProgressHUD.hide(for: self.view, animated: true)
+
             }
         }
         
@@ -168,7 +178,7 @@ class ScheduledBookingViewController: SchedulingViewController {
             }
             
             // reload bookings from DB
-            let bookings = realm.objects(Booking.self).filter("customerId = %@)", UserManager.sharedInstance.getCustomerId()!)
+            let bookings = realm.objects(Booking.self).filter("customerId = \(UserManager.sharedInstance.getCustomerId()!)")
             UserManager.sharedInstance.setBookings(bookings: Array(bookings))
         }
         

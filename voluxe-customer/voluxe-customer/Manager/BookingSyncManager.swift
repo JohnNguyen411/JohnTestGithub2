@@ -49,6 +49,9 @@ final class BookingSyncManager {
     public func syncBookings() {
         if UserManager.sharedInstance.getBookings().count > 0 {
             for booking in UserManager.sharedInstance.getBookings() {
+                if booking.isInvalidated {
+                    continue
+                }
                 // todo define timer for states
                 if booking.pickupRequest != nil || booking.dropoffRequest != nil {
                     if booking.getState() != .serviceCompleted && booking.getState() != .completed && booking.getState() != .canceled {
@@ -72,11 +75,15 @@ final class BookingSyncManager {
             timer.cancel()
         }
         
+        if booking.isInvalidated {
+            return
+        }
+        
         timer = DispatchSource.makeTimerSource(queue: queue)
         if let timer = timer {
             timer.schedule(deadline: .now(), repeating: .seconds(every), leeway: .seconds(1))
             timer.setEventHandler(handler: {
-                if UserManager.sharedInstance.getAccessToken() == nil {
+                if UserManager.sharedInstance.getAccessToken() == nil || booking.isInvalidated {
                     self.suspend()
                     return
                 }
@@ -97,6 +104,9 @@ final class BookingSyncManager {
             if let booking = result?.data?.result {
                 if let realm = try? Realm() {
                     try? realm.write {
+                        if booking.id == -1 {
+                            booking.id = customerId
+                        }
                         realm.add(booking, update: true)
                     }
                 }

@@ -207,6 +207,13 @@ class LoadingViewController: ChildViewController {
         // Get Customer's active Bookings based on ID
         BookingAPI().getBookings(customerId: customerId, active: true).onSuccess { result in
             if let bookings = result?.data?.result, bookings.count > 0 {
+                
+                for booking in bookings {
+                    if booking.id == -1 {
+                        booking.id = customerId
+                    }
+                }
+                
                 if let realm = self.realm {
                     try? realm.write {
                         realm.add(bookings, update: true)
@@ -244,15 +251,6 @@ class LoadingViewController: ChildViewController {
     }
     
     private func loadVehiclesViewController() {
-        appDelegate?.showMainView()
-        // need to delay to make sure the leftpanel is created already
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
-            if UserManager.sharedInstance.getActiveBookings().count > 0 {
-                let booking = UserManager.sharedInstance.getActiveBookings()[0]
-                if let vehicle = booking.vehicle {
-                    self.appDelegate?.loadViewForVehicle(vehicle: vehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id))
-                }
-            }
-        })
+        appDelegate?.showVehiclesView()
     }
 }
