@@ -253,6 +253,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     realm.add(repairOrder, update: true)
                 }
                 self.createPickupRequest(customerId: customerId, booking: booking)
+                return
             } else {
                 // todo show error
                 self.confirmButton.isLoading = false
