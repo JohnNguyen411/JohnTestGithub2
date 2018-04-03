@@ -174,7 +174,7 @@ final class UserManager {
         SwiftEventBus.post("setActiveBooking")
     }
     
-    public func getTodaysBookings() -> [Booking] {
+    public func getActiveBookings() -> [Booking] {
         var todaysBookings: [Booking] = []
         for booking in bookings {
             
@@ -185,6 +185,6 @@ final class UserManager {
                 todaysBookings.append(booking)
             }
         }
-        return bookings
+        return todaysBookings
     }
 }

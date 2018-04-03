@@ -247,12 +247,10 @@ class LoadingViewController: ChildViewController {
         appDelegate?.showMainView()
         // need to delay to make sure the leftpanel is created already
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
-            if UserManager.sharedInstance.getBookings().count > 0 {
-                if UserManager.sharedInstance.getBookings().count == 1 {
-                    let booking = UserManager.sharedInstance.getBookings()[0]
-                    if let vehicle = booking.vehicle {
-                        self.appDelegate?.loadViewForVehicle(vehicle: vehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id))
-                    }
+            if UserManager.sharedInstance.getActiveBookings().count > 0 {
+                let booking = UserManager.sharedInstance.getActiveBookings()[0]
+                if let vehicle = booking.vehicle {
+                    self.appDelegate?.loadViewForVehicle(vehicle: vehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id))
                 }
             }
         })
