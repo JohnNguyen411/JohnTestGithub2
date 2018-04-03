@@ -251,6 +251,6 @@ class LoadingViewController: ChildViewController {
     }
     
     private func loadVehiclesViewController() {
-        appDelegate?.showVehiclesView()
+        appDelegate?.showVehiclesView(animated: true)
     }
 }

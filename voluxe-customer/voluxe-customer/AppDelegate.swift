@@ -42,13 +42,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window!.makeKeyAndVisible()
     }
     
-    func showMainView() {
-        createMenuView()
+    func showMainView(animated: Bool) {
+        createMenuView(animated: animated)
     }
     
     // showVehiclesView: show VehiclesView if no active services, current service if any
-    func showVehiclesView() {
-        showMainView()
+    func showVehiclesView(animated: Bool) {
+        showMainView(animated: animated)
         // need to delay to make sure the leftpanel is created already
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
             if UserManager.sharedInstance.getActiveBookings().count > 0 {
@@ -60,7 +60,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         })
     }
     
-    fileprivate func createMenuView() {
+    fileprivate func createMenuView(animated: Bool) {
         
         let mainViewController = VehiclesViewController(state: .idle)
         let leftViewController = LeftViewController()
@@ -96,7 +96,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         slideMenuController?.view.accessibilityIdentifier = "slideMenuController"
 
-        if let snapShot = self.window?.snapshotView(afterScreenUpdates: true) {
+        if let snapShot = self.window?.snapshotView(afterScreenUpdates: true), animated {
             slideMenuController?.view.addSubview(snapShot)
             self.window?.rootViewController = slideMenuController
             

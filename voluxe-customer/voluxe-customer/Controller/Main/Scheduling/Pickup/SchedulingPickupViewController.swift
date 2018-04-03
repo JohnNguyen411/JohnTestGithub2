@@ -341,7 +341,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             }
             
             RequestedServiceManager.sharedInstance.reset()
-            self.appDelegate?.showVehiclesView()
+            self.appDelegate?.showVehiclesView(animated: false)
             
             MBProgressHUD.hide(for: self.view, animated: true)
             
