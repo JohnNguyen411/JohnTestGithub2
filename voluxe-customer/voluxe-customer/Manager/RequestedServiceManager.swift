@@ -37,6 +37,7 @@ final class RequestedServiceManager {
         pickupRequestLocation = nil
         dropOffRequestLocation = nil
         dropOffTimeSlot = nil
+        repairOrder = nil
     }
     
     

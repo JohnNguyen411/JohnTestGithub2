@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreLocation
+import MBProgressHUD
 
 class ScheduledBookingViewController: SchedulingViewController {
     
@@ -115,8 +116,6 @@ class ScheduledBookingViewController: SchedulingViewController {
         let deleteAction = UIAlertAction(title: .CancelPickup, style: .destructive, handler: { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
             self.cancelRequest()
-            
-            self.navigationController?.popViewController(animated: true)
         })
         
         alert.addAction(backAction)
@@ -126,34 +125,70 @@ class ScheduledBookingViewController: SchedulingViewController {
     
     func cancelRequest() {
         // todo submit cancel request with API && Refresh bookings
-        
-        if !Config.sharedInstance.isMock {
-            return
-        }
-        if let realm = self.realm {
+        if let dropoffRequest = booking.dropoffRequest, let type = dropoffRequest.getType() {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+
+            BookingAPI().cancelDropoffRequest(customerId: UserManager.sharedInstance.getCustomerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff).onSuccess { result in
+                if let _ = result?.error {
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                } else {
+                    self.onDelete()
+                }
+                MBProgressHUD.hide(for: self.view, animated: true)
+                }.onFailure { error in
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                    MBProgressHUD.hide(for: self.view, animated: true)
+            }
             
+            
+        } else if let pickupRequest = booking.pickupRequest, let type = pickupRequest.getType() {
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+
+            BookingAPI().cancelPickupRequest(customerId: UserManager.sharedInstance.getCustomerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup).onSuccess { result in
+                if let _ = result?.error {
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                } else {
+                    self.onDelete()
+                }
+                MBProgressHUD.hide(for: self.view, animated: true)
+
+                }.onFailure { error in
+                    self.showOkDialog(title: .Error, message: .GenericError)
+                    MBProgressHUD.hide(for: self.view, animated: true)
+
+            }
+        }
+        
+        
+        
+    }
+    
+    private func onDelete() {
+        if let realm = self.realm {
+           
             if let pickupRequest = self.booking.pickupRequest, self.serviceState == .pickupScheduled {
                 try? realm.write {
                     realm.delete(pickupRequest)
                     realm.delete(self.booking) // delete booking
-                    
                 }
-                
             } else if let dropoffRequest = self.booking.dropoffRequest {
                 try? realm.write {
                     realm.delete(dropoffRequest)
                 }
-                
             }
             
             // reload bookings from DB
-            let bookings = realm.objects(Booking.self).filter("customerId = %@ AND (state = %@ OR state = %@)", UserManager.sharedInstance.getCustomerId()!, "created", "started")
-            UserManager.sharedInstance.setBookings(bookings: Array(bookings))
+            if let customerId = UserManager.sharedInstance.getCustomerId() {
+                let bookings = realm.objects(Booking.self).filter("customerId = %@", customerId)
+                UserManager.sharedInstance.setBookings(bookings: Array(bookings))
+            }
         }
         
         if let delegate = delegate {
             delegate.onCancelRequest()
         }
+        
+        self.navigationController?.popViewController(animated: true)
     }
     
     func rightButtonClick() {

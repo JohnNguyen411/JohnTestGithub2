@@ -69,11 +69,11 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         
         setupViews()
         
-        self.setActiveBooking(bookings: UserManager.sharedInstance.getBookings())
+        self.setActiveBooking(bookings: UserManager.sharedInstance.getActiveBookings())
         
         SwiftEventBus.onMainThread(self, name: "setActiveBooking") { result in
             // UI thread
-            self.setActiveBooking(bookings: UserManager.sharedInstance.getBookings())
+            self.setActiveBooking(bookings: UserManager.sharedInstance.getActiveBookings())
         }
     }
     

@@ -46,6 +46,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         createMenuView()
     }
     
+    // showVehiclesView: show VehiclesView if no active services, current service if any
+    func showVehiclesView() {
+        showMainView()
+        // need to delay to make sure the leftpanel is created already
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+            if UserManager.sharedInstance.getActiveBookings().count > 0 {
+                let booking = UserManager.sharedInstance.getActiveBookings()[0]
+                if let vehicle = booking.vehicle {
+                    self.loadViewForVehicle(vehicle: vehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id))
+                }
+            }
+        })
+    }
+    
     fileprivate func createMenuView() {
         
         let mainViewController = VehiclesViewController(state: .idle)

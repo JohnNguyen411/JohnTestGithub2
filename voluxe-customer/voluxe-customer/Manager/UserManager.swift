@@ -108,6 +108,10 @@ final class UserManager {
     
     public func setBookings(bookings: [Booking]?) {
         if let bookings = bookings {
+            
+            self.vehicleBookings.removeAll()
+            self.bookings.removeAll()
+            
             for booking in bookings {
                 // skipped cancelled and completed request, and request w/o any request
                 if booking.getState() == .canceled || booking.getState() == .completed || (booking.pickupRequest == nil && booking.dropoffRequest == nil) {
@@ -134,7 +138,8 @@ final class UserManager {
             self.vehicleBookings.removeAll()
             self.bookings.removeAll()
         }
-        
+        BookingSyncManager.sharedInstance.syncBookings()
+
         SwiftEventBus.post("setActiveBooking")
     }
     
@@ -174,9 +179,12 @@ final class UserManager {
         SwiftEventBus.post("setActiveBooking")
     }
     
-    public func getTodaysBookings() -> [Booking] {
+    public func getActiveBookings() -> [Booking] {
         var todaysBookings: [Booking] = []
         for booking in bookings {
+            if booking.isInvalidated {
+                continue
+            }
             
             if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted
                 || booking.getState() == .enRouteForDropoff || booking.getState() == .enRouteForPickup
@@ -185,6 +193,6 @@ final class UserManager {
                 todaysBookings.append(booking)
             }
         }
-        return bookings
+        return todaysBookings
     }
 }

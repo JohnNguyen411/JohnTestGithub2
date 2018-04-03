@@ -110,17 +110,24 @@ class BookingAPI: NSObject {
      - parameter bookingId: The booking ID related to the pickup
      - parameter timeSlotId: The TimeSlot ID Choosed by the customer for the pickup
      - parameter location: The location choosed by the customer for the pickup
+     - parameter isDriver: true if the request type if driver, false if advisor
      
      - Returns: A Future ResponseObject containing the Pickup, or an AFError if an error occured
      */
-    func createPickupRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location) -> Future<ResponseObject<MappableDataObject<Request>>?, AFError> {
+    func createPickupRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location, isDriver: Bool) -> Future<ResponseObject<MappableDataObject<Request>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Request>>?, AFError>()
 
         let params: Parameters = [
             "dealership_time_slot_id": timeSlotId,
             "location": location.toJSON()
             ]
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/driver-pickup-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        
+        var endpoint = "driver-pickup-requests"
+        if !isDriver {
+            endpoint = "advisor-pickup-requests"
+        }
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
             var responseObject: ResponseObject<MappableDataObject<Request>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -141,10 +148,11 @@ class BookingAPI: NSObject {
      - parameter bookingId: The booking ID related to the pickup
      - parameter timeSlotId: The TimeSlot ID Choosed by the customer for the pickup
      - parameter location: The location choosed by the customer for the pickup
+     - parameter isDriver: true if the request type if driver, false if advisor
      
      - Returns: A Future ResponseObject containing the Pickup, or an AFError if an error occured
      */
-    func createDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location) -> Future<ResponseObject<MappableDataObject<Request>>?, AFError> {
+    func createDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location, isDriver: Bool) -> Future<ResponseObject<MappableDataObject<Request>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Request>>?, AFError>()
         
         let params: Parameters = [
@@ -152,7 +160,12 @@ class BookingAPI: NSObject {
             "location": location.toJSON()
         ]
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/driver-dropoff-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        var endpoint = "driver-dropoff-requests"
+        if !isDriver {
+            endpoint = "advisor-dropoff-requests"
+        }
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
             var responseObject: ResponseObject<MappableDataObject<Request>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -167,6 +180,71 @@ class BookingAPI: NSObject {
         }
         return promise.future
     }
+    
+    /**
+     Cancel a Pickup Request
+     - parameter customerId: The customer ID
+     - parameter bookingId: The booking ID to cancel
+     - parameter requestId: The request ID to cancel
+     
+     - Returns: A Future EmptyMappableObject, or an AFError if an error occured
+     */
+    func cancelPickupRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+        
+        var endpoint = "driver-pickup-requests"
+        if !isDriver {
+            endpoint = "advisor-pickup-requests"
+        }
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)/\(requestId)/cancel", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
+            var responseObject: ResponseObject<EmptyMappableObject>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    /**
+     Cancel a Dropoff Request
+     - parameter customerId: The customer ID
+     - parameter bookingId: The booking ID to cancel
+     - parameter requestId: The request ID to cancel
+     
+     - Returns: A Future EmptyMappableObject, or an AFError if an error occured
+     */
+    func cancelDropoffRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+        
+        var endpoint = "driver-dropoff-requests"
+        if !isDriver {
+            endpoint = "advisor-dropoff-requests"
+        }
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)/\(requestId)/cancel", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
+            var responseObject: ResponseObject<EmptyMappableObject>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
     
     /**
      Contact Driver
