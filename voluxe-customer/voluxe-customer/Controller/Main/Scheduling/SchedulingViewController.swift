@@ -325,6 +325,10 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                                         completion()
                                     }
                             }
+                        } else {
+                            if let completion = completion {
+                                completion()
+                            }
                         }
                     } else {
                         self.handleDealershipsResponse(dealerships: dealerships)
