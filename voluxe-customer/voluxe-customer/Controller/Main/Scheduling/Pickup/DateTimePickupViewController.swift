@@ -14,7 +14,7 @@ import SwiftEventBus
 class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
     private static let hourButtonWidth = 80
-
+    
     private static let smallCalendarHeight = 187
     private static let tallCalendarHeight = 220
     
@@ -58,7 +58,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     private var maxDate = Date()
     
     private var isPickup = true
-
+    
     private let loanerContainerView = UIView(frame: .zero)
     
     private let loanerLabel: UILabel = {
@@ -69,15 +69,15 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }()
     
     private let loanerSwitch = UISwitch(frame: .zero)
-
+    
     private var loanerViewHeight = 48
     private var hoursViewHeight = VLButton.secondaryHeight
     private var calendarViewHeight = smallCalendarHeight
-
+    
     private let hoursView = UIView(frame: .zero)
     private var slotViews: [VLButton] = []
     private var weekdayViews = UIView(frame: .zero)
-
+    
     private var currentSlots: Results<DealershipTimeSlot>?
     
     init(vehicle: Vehicle, title: String, buttonTitle: String) {
@@ -134,7 +134,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
             let from = formatter.string(from: todaysDate)
             let to = formatter.string(from: maxDate)
-
+            
             var timeSlotType = "driver"
             
             DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: RequestedServiceManager.sharedInstance.getLoaner(), from: from, to: to).onSuccess { result in
@@ -277,7 +277,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         let frame = cell!.frame
         
         var prevView: UIView? = nil
-
+        
         for weekday in Calendar.current.veryShortWeekdaySymbols {
             let label = UILabel(frame: .zero)
             label.text = weekday
@@ -310,7 +310,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         } else {
             calendarViewHeight = DateTimePickupViewController.smallCalendarHeight
         }
-
+        
         let calendar = FSCalendar(frame: .zero)
         calendar.rowHeight = 46
         calendar.dataSource = self
@@ -367,56 +367,58 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         })
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+            var header: FSCalendarStickyHeader? = nil
             if (self.calendar.visibleStickyHeaders.count > 0) {
-                let header = self.calendar.visibleStickyHeaders[0] as! FSCalendarStickyHeader
-                let firstMonth = self.monthFormatter.string(from: self.minimumDate(for: self.calendar)).uppercased()
-                self.firstMonthHeader.text = self.monthFormatter.string(from: self.minimumDate(for: self.calendar)).uppercased()
-                if header.titleLabel.text == firstMonth {
-                    self.firstMonthHeader.isHidden = true
-                }
+                header = self.calendar.visibleStickyHeaders[0] as? FSCalendarStickyHeader
+            }
+            let firstMonth = self.monthFormatter.string(from: self.minimumDate(for: self.calendar)).uppercased()
+            self.firstMonthHeader.text = self.monthFormatter.string(from: self.minimumDate(for: self.calendar)).uppercased()
+            if let header = header, header.titleLabel.text == firstMonth {
+                self.firstMonthHeader.isHidden = true
+            }
+            
+            var selectedDate: Date?
+            // select preselected date, otherwise fallback to next day
+            if self.isPickup {
+                selectedDate = RequestedServiceManager.sharedInstance.getPickupTimeSlot()?.from
+            } else {
+                selectedDate = RequestedServiceManager.sharedInstance.getDropoffTimeSlot()?.from
+            }
+            
+            if selectedDate == nil {
+                var nextDay = self.todaysDate
                 
-                var selectedDate: Date?
-                // select preselected date, otherwise fallback to next day
-                if self.isPickup {
-                    selectedDate = RequestedServiceManager.sharedInstance.getPickupTimeSlot()?.from
-                } else {
-                    selectedDate = RequestedServiceManager.sharedInstance.getDropoffTimeSlot()?.from
-                }
-                
-                if selectedDate == nil {
-                    var nextDay = self.todaysDate
-                    
-                    // Fake slots for Mock
-                    if Config.sharedInstance.isMock {
-                        if let dealership = self.dealership {
-                            var mockDay = self.todaysDate
-                            try? self.realm?.write {
-                                for _ in 0...30 {
-                                    let timeSlot = DealershipTimeSlot.mockTimeSlotForDate(dealershipId: dealership.id, date: mockDay)
-                                    mockDay = Calendar.current.date(byAdding: .day, value: 1, to: mockDay)!
-                                    self.realm?.add(timeSlot)
-                                }
+                // Fake slots for Mock
+                if Config.sharedInstance.isMock {
+                    if let dealership = self.dealership {
+                        var mockDay = self.todaysDate
+                        try? self.realm?.write {
+                            for _ in 0...30 {
+                                let timeSlot = DealershipTimeSlot.mockTimeSlotForDate(dealershipId: dealership.id, date: mockDay)
+                                mockDay = Calendar.current.date(byAdding: .day, value: 1, to: mockDay)!
+                                self.realm?.add(timeSlot)
                             }
                         }
                     }
-                    
-                    //var skippedDays = 0
-                    while (!self.dateIsSelectable(date: nextDay) && nextDay <= self.maxDate) {
-                        nextDay = Calendar.current.date(byAdding: .day, value: 1, to: nextDay)!
-                    }
-                    selectedDate = nextDay
                 }
                 
-                if selectedDate != nil && selectedDate! > self.maxDate {
-                    selectedDate = nil
+                //var skippedDays = 0
+                while (!self.dateIsSelectable(date: nextDay) && nextDay <= self.maxDate) {
+                    nextDay = Calendar.current.date(byAdding: .day, value: 1, to: nextDay)!
                 }
-                
-                if let selectedDate = selectedDate {
-                    _ = self.calendar(self.calendar, shouldSelect: selectedDate, at: .current)
-                    self.calendar.select(selectedDate)
-                }
-                self.selectFirstEnabledButton()
+                selectedDate = nextDay
             }
+            
+            if selectedDate != nil && selectedDate! > self.maxDate {
+                selectedDate = nil
+            }
+            
+            if let selectedDate = selectedDate {
+                _ = self.calendar(self.calendar, shouldSelect: selectedDate, at: .current)
+                self.calendar.select(selectedDate)
+            }
+            self.selectFirstEnabledButton()
+            
             self.initWeekDayView()
             self.showLoading(loading: false)
             self.calendar.animateAlpha(show: true)
@@ -498,7 +500,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         }
         
         hoursViewHeight = slots.count > 3 ? (VLButton.secondaryHeight * 2) + 10 : VLButton.secondaryHeight
-
+        
         hoursView.snp.remakeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-20)
             make.width.centerX.equalToSuperview()
