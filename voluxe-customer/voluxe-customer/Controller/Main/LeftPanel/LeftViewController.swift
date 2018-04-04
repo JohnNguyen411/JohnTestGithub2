@@ -75,6 +75,16 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
             // UI thread
             self.setActiveBooking(bookings: UserManager.sharedInstance.getActiveBookings())
         }
+        
+        
+        SwiftEventBus.onMainThread(self, name:"stateDidChange") { result in
+            let vehicle: Vehicle = result.object as! Vehicle
+            self.stateDidChange(vehicleId: vehicle.id)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.stateDidChange(vehicleId: 1)
+        })
     }
     
     func setupViews() {
@@ -113,6 +123,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         switch menu {
         case .main:
             self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
+            self.updateNotificationBadge()
         case .settings:
             weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
             appDelegate?.settingsScreen()
@@ -125,6 +136,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     
     func changeMainViewController(uiNavigationController: UINavigationController) {
         self.slideMenuController()?.changeMainViewController(uiNavigationController, close: true)
+        self.updateNotificationBadge()
     }
     
     private func setActiveBooking(bookings: [Booking]) {
@@ -159,28 +171,73 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         }
     }
     
-    private func generateBookingLabel(_ booking: Booking) -> UILabel {
+    private func generateBookingLabel(_ booking: Booking) -> LeftPanelActiveBooking {
         
         let tapGesture = BookingTapGesture(target: self, action: #selector(bookingTapped(sender:)))
         tapGesture.booking = booking
         
-        let label = UILabel()
+        let label = LeftPanelActiveBooking(booking: booking)
         label.isUserInteractionEnabled = true
-        label.textColor = .black
-        label.font = .volvoSansLight(size: 16)
-        label.textAlignment = .left
-        if let vehicle = booking.vehicle {
-            label.text = vehicle.vehicleDescription()
-        }
-        
         label.addGestureRecognizer(tapGesture)
         return label
         
     }
     
+    // show red dot update if needed
+    func stateDidChange(vehicleId: Int) {
+        if let viewController = self.slideMenuController()?.mainViewController {
+            if let mainController = viewController as? MainViewController {
+                if mainController.vehicleId == vehicleId {
+                    // controller already on screen don't show update
+                    return
+                }
+            }
+        }
+        showRedDot(vehicleId: vehicleId, show: true)
+    }
+    
+    func showRedDot(vehicleId: Int, show: Bool) {
+        for subview in activeBookingsContainer.subviews {
+            let activeBookingLabel = subview as! LeftPanelActiveBooking
+            if activeBookingLabel.booking.vehicleId == vehicleId {
+                activeBookingLabel.showRedDot(show: show)
+            }
+        }
+        
+        updateNotificationBadge()
+    }
+    
+    private func updateNotificationBadge() {
+        var isShowingNotif = false
+
+        for subview in activeBookingsContainer.subviews {
+            let activeBookingLabel = subview as! LeftPanelActiveBooking
+            
+            if !isShowingNotif && activeBookingLabel.isShowingNotif {
+                isShowingNotif = true
+            }
+        }
+        if let viewController = self.slideMenuController()?.mainViewController {
+            if let baseController = viewController as? BaseViewController {
+                if baseController is VehiclesViewController || baseController is MainViewController || baseController is SettingsViewController {
+                    baseController.setNavigationBarItem(showNotif: isShowingNotif)
+                }
+            } else if let navController = viewController as? UINavigationController {
+                if navController.childViewControllers.count > 0 {
+                    for controller in navController.childViewControllers {
+                        if controller is VehiclesViewController || controller is MainViewController || controller is SettingsViewController {
+                            controller.setNavigationBarItem(showNotif: isShowingNotif)
+                        }
+                    }
+                }
+            }
+        }
+    }
+    
     @objc func bookingTapped(sender : BookingTapGesture) {
         if let booking = sender.booking, let vehicle = booking.vehicle, let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.loadViewForVehicle(vehicle: vehicle, state: Booking.getStateForBooking(booking: booking))
+            showRedDot(vehicleId: vehicle.id, show: false)
         }
     }
 }

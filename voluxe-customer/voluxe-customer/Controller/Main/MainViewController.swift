@@ -15,12 +15,14 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     private var serviceState = ServiceState.noninit
     
     private let vehicle: Vehicle
+    let vehicleId: Int
     
     var currentViewController: ChildViewController?
     var previousView: UIView?
     
     init(vehicle: Vehicle, state: ServiceState) {
         self.vehicle = vehicle
+        self.vehicleId = vehicle.id
         self.serviceState = state
         super.init()
     }

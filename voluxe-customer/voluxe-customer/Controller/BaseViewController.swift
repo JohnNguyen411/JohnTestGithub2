@@ -174,9 +174,15 @@ class BaseViewController: UIViewController, PresentrDelegate {
 
 extension UIViewController {
     
-    func setNavigationBarItem() {
-        if let image = UIImage(named: "ic_menu_black_24dp") {
-            self.addLeftBarButtonWithImage(image)
+    func setNavigationBarItem(showNotif: Bool = false) {
+        if showNotif {
+            if let image = UIImage(named: "ic_menu_black_notif") {
+                self.addLeftBarButtonWithImage(image)
+            }
+        } else {
+            if let image = UIImage(named: "ic_menu_black_24dp") {
+                self.addLeftBarButtonWithImage(image)
+            }
         }
         self.slideMenuController()?.removeLeftGestures()
         self.slideMenuController()?.removeRightGestures()

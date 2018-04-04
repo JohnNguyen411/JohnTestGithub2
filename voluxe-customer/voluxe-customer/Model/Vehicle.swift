@@ -31,6 +31,12 @@ class Vehicle: Object, Mappable {
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
 
+    // Use Only for SwiftEventBus
+    convenience init(id: Int) {
+        self.init()
+        self.id = id
+    }
+    
     required convenience init?(map: Map) {
         self.init()
     }
