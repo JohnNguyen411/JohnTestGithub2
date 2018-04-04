@@ -92,7 +92,7 @@ class SyncTimer {
                     self.getBooking(customerId: customerId, bookingId: self.booking.id)
                 }
             })
-            self.resume()
+            timer.resume()
         }
     }
     
