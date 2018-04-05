@@ -92,7 +92,7 @@ final class RequestedServiceManager {
         pickupTimeSlot = timeSlot
     }
     
-    func setPickupRequestLocation(requestLocation: Location) {
+    func setPickupRequestLocation(requestLocation: Location?) {
         pickupRequestLocation = requestLocation
     }
     
@@ -108,7 +108,7 @@ final class RequestedServiceManager {
         dropOffTimeSlot = timeSlot
     }
     
-    func setDropoffRequestLocation(requestLocation: Location) {
+    func setDropoffRequestLocation(requestLocation: Location?) {
         dropOffRequestLocation = requestLocation
     }
     

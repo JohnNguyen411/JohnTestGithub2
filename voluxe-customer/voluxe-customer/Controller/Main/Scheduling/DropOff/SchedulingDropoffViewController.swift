@@ -191,7 +191,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
                     }
                 }
                 
-                //todo: OUT OF ZONE ERROR
+                RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: nil)
                 self.pickupLocationView.showError(error: .OutOfPickupArea)
                 self.showConfirmButtonIfNeeded()
             })

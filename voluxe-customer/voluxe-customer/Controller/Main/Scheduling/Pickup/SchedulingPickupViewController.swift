@@ -125,7 +125,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     }
                     
                 } else {
-                    //todo: OUT OF ZONE ERROR
+                    RequestedServiceManager.sharedInstance.setPickupRequestLocation(requestLocation: nil)
                     self.pickupLocationView.showError(error: .OutOfPickupArea)
                 }
                 
