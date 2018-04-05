@@ -32,6 +32,13 @@ class ScheduledBookingViewController: SchedulingViewController {
     override func setupViews() {
         super.setupViews()
         
+        var title = String.CancelPickup
+        
+        if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
+            title = .CancelDropOff
+            leftButton.setTitle(title: title.uppercased())
+        }
+        
         contentView.addSubview(leftButton)
         contentView.addSubview(rightButton)
         
@@ -83,15 +90,27 @@ class ScheduledBookingViewController: SchedulingViewController {
     private func fillViewsForRequest(request: Request) {
         if let timeSlot = request.timeSlot, let date = timeSlot.from {
             let dateTime = formatter.string(from: date)
-            scheduledPickupView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+            var title = String.ScheduledPickup
+            if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
+                title = .ScheduledDelivery
+            }
+            scheduledPickupView.setTitle(title: title, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
         }
         
         if let requestLocation = request.location {
-            pickupLocationView.setTitle(title: .PickupLocation, leftDescription: requestLocation.address!, rightDescription: "")
+            var title = String.PickupLocation
+            if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
+                title = .DeliveryLocation
+            }
+            pickupLocationView.setTitle(title: title, leftDescription: requestLocation.address!, rightDescription: "")
         }
         
         if booking.repairOrderRequests.count > 0 {
-            scheduledServiceView.setTitle(title: .SelectedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+            if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
+                scheduledServiceView.setTitle(title: .SelectedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+            } else {
+                scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+            }
         }
         
         if let dealership = booking.dealership {
@@ -103,8 +122,16 @@ class ScheduledBookingViewController: SchedulingViewController {
     
     func leftButtonClick() {
         //todo alertview to cancel
-        let alert = UIAlertController(title: .CancelPickup,
-                                      message: .AreYouSureCancelPickup,
+        var title = String.CancelPickup
+        var message = String.AreYouSureCancelPickup
+        
+        if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
+            title = .CancelDropOff
+            message = .AreYouSureCancelDropOff
+        }
+        
+        let alert = UIAlertController(title: title,
+                                      message: message,
                                       preferredStyle: .alert)
         
         // Submit button
@@ -113,7 +140,7 @@ class ScheduledBookingViewController: SchedulingViewController {
         })
         
         // Submit button
-        let deleteAction = UIAlertAction(title: .CancelPickup, style: .destructive, handler: { (action) -> Void in
+        let deleteAction = UIAlertAction(title: title, style: .destructive, handler: { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
             self.cancelRequest()
         })

@@ -17,6 +17,12 @@ import Alamofire
 
 class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
 
+    let formatter: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "EEEE, MMM d"
+        return formatter
+    }()
+    
     var serviceState: ServiceState
     var vehicles: [Vehicle]?
     var selectedVehicle: Vehicle?
@@ -169,8 +175,19 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
                 make.height.equalTo(100)
             }
             scheduledServiceView.isHidden = false
-            scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: booking.getRepairOrderName())
             confirmButton.animateAlpha(show: false)
+            
+            if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
+                scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: booking.getRepairOrderName())
+            } else {
+                if let request = booking.dropoffRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
+                    let dateTime = formatter.string(from: date)
+                    scheduledServiceView.setTitle(title: .ScheduledDelivery, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+                } else {
+                    scheduledServiceView.setTitle(title: .ScheduledDelivery, leftDescription: booking.getRepairOrderName())
+                }
+            }
+            
             
             if let dealership = booking.dealership {
                 preferedDealershipView.isHidden = false
