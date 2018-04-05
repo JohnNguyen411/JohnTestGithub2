@@ -184,7 +184,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
                     let dateTime = formatter.string(from: date)
                     scheduledServiceView.setTitle(title: .ScheduledDelivery, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                 } else {
-                    scheduledServiceView.setTitle(title: .ScheduledDelivery, leftDescription: booking.getRepairOrderName())
+                    scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName())
                 }
             }
             

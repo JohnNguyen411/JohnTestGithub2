@@ -263,11 +263,12 @@ class SchedulingDropoffViewController: SchedulingViewController {
             if let booking = realm.objects(Booking.self).filter("id = \(booking.id)").first {
                 
                 try? realm.write {
+                    // update state to scheduled dropoff
+                    booking.state = State.dropoffScheduled.rawValue
                     booking.dropoffRequest = realmDropOffRequest
                     realm.add(booking, update: true)
                 }
             }
-            
             let bookings = realm.objects(Booking.self).filter("customerId = \(booking.customerId)")
             UserManager.sharedInstance.setBookings(bookings: Array(bookings))
             
