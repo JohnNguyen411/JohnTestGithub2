@@ -170,7 +170,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
             
-            self.fetchDealershipsForLocation(location: customerAddress.location?.getLocation(), completion: {
+            self.fetchDealershipsForLocation(location: customerAddress.location?.getLocation(), completion: { error in
                 // hide loader
                 self.hideBlockingLoading()
                 var bookingDealership = RequestedServiceManager.sharedInstance.getDealership()
@@ -192,7 +192,11 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 }
                 
                 RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: nil)
-                self.pickupLocationView.showError(error: .OutOfPickupArea)
+                if let error = error {
+                    self.pickupLocationView.showError(error: error)
+                } else {
+                    self.pickupLocationView.showError(error: .OutOfPickupArea)
+                }
                 self.showConfirmButtonIfNeeded()
             })
         })

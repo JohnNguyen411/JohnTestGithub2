@@ -289,7 +289,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
     }
     
-    func fetchDealershipsForLocation(location: CLLocationCoordinate2D?, completion: (() -> Swift.Void)? = nil) {
+    func fetchDealershipsForLocation(location: CLLocationCoordinate2D?, completion: ((_ error: String?) -> Swift.Void)? = nil) {
         
         if let location = location {
             DealershipAPI().getDealerships(location: location).onSuccess { result in
@@ -299,6 +299,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                             
                             //todo check with getDealershipRepairOrder if available ONLY at pickup
                             RepairOrderAPI().getDealershipRepairOrder(dealerships: dealerships, repairOrderTypeId: RequestedServiceManager.sharedInstance.getRepairOrder()?.repairOrderType?.id).onSuccess { result in
+                                var error: String? = nil
                                 if let dealershipsRO = result?.data?.result {
                                     if let realm = self.realm {
                                         try? realm.write {
@@ -308,45 +309,43 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                                     if dealershipsRO.count > 0 {
                                         self.handleDealershipsResponse(dealerships: dealerships)
                                     } else {
-                                        // todo show error
+                                        error = String.ServiceNotOfferedInArea
                                     }
                                 } else {
-                                    // todo show error
+                                    error = String.ServiceNotOfferedInArea
                                 }
                                 
                                 if let completion = completion {
-                                    completion()
+                                    completion(error)
                                 }
 
                                 }.onFailure { error in
-                                    // No nearby dealership offering that service
-                                    // todo show error
                                     if let completion = completion {
-                                        completion()
+                                        completion(String.ServiceNotOfferedInArea)
                                     }
                             }
                         } else {
                             RequestedServiceManager.sharedInstance.setDealership(dealership: nil)
                             if let completion = completion {
-                                completion()
+                                completion(nil)
                             }
                         }
                     } else {
                         self.handleDealershipsResponse(dealerships: dealerships)
                         if let completion = completion {
-                            completion()
+                            completion(nil)
                         }
                     }
                 } else {
                     if let completion = completion {
-                        completion()
+                        completion(nil)
                     }
                     self.dealerships = nil
                 }
                 
                 }.onFailure { error in
                     if let completion = completion {
-                        completion()
+                        completion(nil)
                     }
             }
         }
