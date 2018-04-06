@@ -98,7 +98,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
             yearLabel.textField.text = "\(years[row])"
         } else if pickerType == .model {
             selectedModel = row
-            modelLabel.textField.text = models[row].model
+            modelLabel.textField.text = models[row].name
         } else {
             selectedColor = row
             colorLabel.textField.text = colors[row].color
@@ -169,7 +169,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     override func nextButtonTap() {
         // todo add car to user
         if let customerId = UserManager.sharedInstance.getCustomerId(), let baseColor = colors[selectedColor].baseColor {
-            CustomerAPI().addVehicle(customerId: customerId, make: models[selectedModel].make, model: models[selectedModel].model, baseColor: baseColor, year: years[selectedYear]).onSuccess { response in
+            CustomerAPI().addVehicle(customerId: customerId, make: models[selectedModel].make!, model: models[selectedModel].name!, baseColor: baseColor, year: years[selectedYear]).onSuccess { response in
                 if (response?.data?.result) != nil {
                     // success
                 } else {
@@ -241,7 +241,7 @@ extension FTUEAddVehicleViewController: UIPickerViewDelegate, UIPickerViewDataSo
         if pickerType == .year {
             return "\(years[row])"
         } else if pickerType == .model {
-            return models[row].model
+            return models[row].name
         } else {
             return colors[row].color
         }
