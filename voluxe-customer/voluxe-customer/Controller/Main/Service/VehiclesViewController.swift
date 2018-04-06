@@ -208,6 +208,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     //MARK: Actions methods
     func confirmButtonClick() {
         if let selectedVehicle = selectedVehicle {
+            RequestedServiceManager.sharedInstance.reset()
             self.navigationController?.pushViewController(NewServiceViewController(vehicle: selectedVehicle), animated: true)
         }
     }
