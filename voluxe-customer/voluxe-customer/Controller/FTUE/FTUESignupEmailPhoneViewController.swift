@@ -84,7 +84,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         self.view.addSubview(phoneNumberTextField)
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalToSuperview().offset(80)
+            make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(80)
@@ -106,7 +106,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         phoneNumberConfirmLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(phoneNumberLabel)
-            make.top.equalTo(phoneNumberTextField.snp.bottom)
+            make.top.equalTo(phoneNumberTextField.snp.bottom).offset(-2)
             make.height.equalTo(20)
         }
     }

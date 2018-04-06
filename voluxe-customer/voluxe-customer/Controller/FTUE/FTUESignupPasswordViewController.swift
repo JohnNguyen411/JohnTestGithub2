@@ -25,7 +25,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     let passwordConditionLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.font = .volvoSansLightBold(size: 12)
+        textView.font = .volvoSansLightBold(size: 11)
         textView.textColor = .luxeDarkGray()
         textView.text = .PasswordCondition
         textView.backgroundColor = .clear
@@ -86,7 +86,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         self.view.addSubview(volvoPwdConfirmTextField)
         
         passwordLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalToSuperview().offset(80)
+            make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(30)
@@ -94,7 +94,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         passwordConditionLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(passwordLabel)
-            make.top.equalTo(passwordLabel.snp.bottom)
+            make.top.equalTo(passwordLabel.snp.bottom).offset(-5)
             make.height.equalTo(30)
         }
         

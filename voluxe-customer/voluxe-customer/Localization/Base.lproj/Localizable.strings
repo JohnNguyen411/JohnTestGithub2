@@ -63,7 +63,7 @@
 "CreateAccount" = "Create Account";
 "EmailAddress" = "Email Address";
 "EmailPlaceholder" = "name@domain.com";
-"SelectYourVehicle" = "Select your vehicle.";
+"SelectYourVehicle" = "Select your vehicle year of manufacture, model and paint color.";
 "Year" = "Year";
 "Model" = "Model";
 "Color" = "Color";

@@ -69,7 +69,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         label.snp.makeConstraints { (make) -> Void in
             make.left.top.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(40)
+            make.height.equalTo(60)
         }
         
         yearLabel.snp.makeConstraints { (make) -> Void in
