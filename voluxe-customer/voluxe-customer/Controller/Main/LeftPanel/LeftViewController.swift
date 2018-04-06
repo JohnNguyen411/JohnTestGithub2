@@ -82,9 +82,6 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
             self.stateDidChange(vehicleId: vehicle.id)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
-            self.stateDidChange(vehicleId: 1)
-        })
     }
     
     func setupViews() {
