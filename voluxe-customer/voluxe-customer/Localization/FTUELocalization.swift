@@ -12,6 +12,8 @@ extension String {
     
     static let Login = NSLocalizedString("Login")
     static let Signup = NSLocalizedString("Signup")
+    static let SignIn = NSLocalizedString("SignIn")
+    static let CreateAccount = NSLocalizedString("CreateAccount")
     static let FTUEStartOne = NSLocalizedString("FTUEStartOne")
     static let FTUEStartTwo = NSLocalizedString("FTUEStartTwo")
     static let VolvoUserId = NSLocalizedString("VolvoUserId")

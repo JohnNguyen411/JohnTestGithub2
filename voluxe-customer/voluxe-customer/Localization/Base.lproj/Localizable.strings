@@ -59,6 +59,8 @@
 "RepeatPassword" = "Repeat Password";
 "Login" = "Login";
 "Signup" = "Signup";
+"SignIn" = "Sign-In";
+"CreateAccount" = "Create Account";
 "EmailAddress" = "Email Address";
 "EmailPlaceholder" = "name@domain.com";
 "SelectYourVehicle" = "Select your vehicle.";

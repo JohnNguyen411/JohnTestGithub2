@@ -18,8 +18,8 @@ class FTUEStartViewController: BaseViewController {
     
     public static var flowType: FTUEFlowType = .login
 
-    let loginButton = VLButton(type: .bluePrimary, title: (.Login as String).uppercased(), actionBlock: nil)
-    let signupButton = VLButton(type: .bluePrimary, title: (.Signup as String).uppercased(), actionBlock: nil)
+    let loginButton = VLButton(type: .blueSecondary, title: (.SignIn as String).uppercased(), actionBlock: nil)
+    let signupButton = VLButton(type: .blueSecondary, title: (.CreateAccount as String).uppercased(), actionBlock: nil)
 
     let logo: UIImageView = {
         let imageView = UIImageView()
@@ -27,35 +27,26 @@ class FTUEStartViewController: BaseViewController {
         return imageView
     }()
     
+    let pipeSeparator: UILabel = {
+        let textView = UILabel(frame: .zero)
+        textView.text = "|"
+        textView.font = .volvoSansLight(size: 12)
+        textView.textColor = .luxeDarkGray()
+        textView.backgroundColor = .clear
+        textView.numberOfLines = 0
+        return textView
+    }()
+    
     let appName: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .AppName
-        textView.font = .volvoSansLight(size: 26)
+        textView.font = .volvoSansLight(size: 40)
         textView.textColor = .luxeDarkBlue()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
     }()
     
-    let text1: UILabel = {
-        let textView = UILabel(frame: .zero)
-        textView.text = .FTUEStartOne
-        textView.font = .volvoSansLight(size: 18)
-        textView.textColor = .luxeDarkGray()
-        textView.backgroundColor = .clear
-        textView.numberOfLines = 0
-        return textView
-    }()
-    
-    let text2: UILabel = {
-        let textView = UILabel(frame: .zero)
-        textView.text = .FTUEStartTwo
-        textView.font = .volvoSansLight(size: 18)
-        textView.textColor = .luxeDarkGray()
-        textView.backgroundColor = .clear
-        textView.numberOfLines = 0
-        return textView
-    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,52 +72,59 @@ class FTUEStartViewController: BaseViewController {
     
     override func setupViews() {
         
-        self.view.addSubview(logo)
-        self.view.addSubview(appName)
-        self.view.addSubview(text1)
-        self.view.addSubview(text2)
-        self.view.addSubview(loginButton)
-        self.view.addSubview(signupButton)
-
-        let sizeThatFits = text1.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT)))
+        loginButton.contentHorizontalAlignment = .right
+        signupButton.contentHorizontalAlignment = .left
+        
+        let container = UIView(frame: .zero)
+        self.view.addSubview(container)
+        container.addSubview(logo)
+        container.addSubview(appName)
+        
+        let buttonContainer = UIView(frame: .zero)
+        self.view.addSubview(buttonContainer)
+        buttonContainer.addSubview(pipeSeparator)
+        buttonContainer.addSubview(loginButton)
+        buttonContainer.addSubview(signupButton)
+        
+        container.snp.makeConstraints { (make) -> Void in
+            make.top.equalToSuperview().offset(120)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
+            make.height.equalTo(100)
+        }
         
         logo.snp.makeConstraints { (make) -> Void in
-            make.top.equalToSuperview().offset(60)
-            make.left.equalToSuperview().offset(20)
-            make.width.height.equalTo(50)
+            make.left.centerY.equalToSuperview()
+            make.width.height.equalTo(70)
         }
         
         appName.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(logo.snp.bottom).offset(20)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.centerY.equalTo(logo)
+            make.left.equalTo(logo.snp.right).offset(20)
             make.height.equalTo(80)
         }
         
-        text1.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(appName.snp.bottom).offset(20)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(sizeThatFits.height)
-        }
-        
-        text2.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(text1)
-            make.top.equalTo(text1.snp.bottom).offset(20)
-            make.height.equalTo(sizeThatFits.height)
+        buttonContainer.snp.makeConstraints { (make) -> Void in
+            make.centerX.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-40)
+            make.width.equalTo(180)
+            make.height.equalTo(VLButton.primaryHeight)
         }
         
         loginButton.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.bottom.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().dividedBy(2).offset(-30)
+            make.left.centerY.equalToSuperview()
+            make.height.equalTo(VLButton.primaryHeight)
+        }
+        
+        pipeSeparator.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalToSuperview()
+            make.left.equalTo(loginButton.snp.right).offset(10)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
         signupButton.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview().offset(-20)
-            make.bottom.equalToSuperview().offset(-20)
-            make.width.equalToSuperview().dividedBy(2).offset(-30)
+            make.centerY.equalToSuperview()
+            make.left.equalTo(pipeSeparator.snp.right).offset(10)
             make.height.equalTo(VLButton.primaryHeight)
         }
     }
