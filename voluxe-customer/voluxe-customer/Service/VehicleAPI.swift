@@ -21,7 +21,7 @@ class VehicleAPI: NSObject {
     func vehicleMakes() -> Future<ResponseObject<MappableDataArray<VehicleMake>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<VehicleMake>>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/vehicle-makes", queryParameters: nil, withBearer: false).responseJSON { response in
+        NetworkRequest.request(url: "/v1/vehicle-makes", queryParameters: nil, withBearer: true).responseJSON { response in
             
             
             var responseObject: ResponseObject<MappableDataArray<VehicleMake>>?
@@ -53,7 +53,7 @@ class VehicleAPI: NSObject {
             endpoint += "/\(makeId)"
         }
         
-        NetworkRequest.request(url: endpoint, queryParameters: nil, withBearer: false).responseJSON { response in
+        NetworkRequest.request(url: endpoint, queryParameters: nil, withBearer: true).responseJSON { response in
             
             var responseObject: ResponseObject<MappableDataArray<VehicleModel>>?
             

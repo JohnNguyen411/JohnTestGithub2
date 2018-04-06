@@ -21,7 +21,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     
     let colors = [Color(baseColor: "beige", color: "Beige"), Color(baseColor: "black", color: "Black"), Color(baseColor: "blue", color: "Blue"), Color(baseColor: "brown", color: "Brown"), Color(baseColor: "copper", color: "Copper"), Color(baseColor: "gold", color: "Gold"), Color(baseColor: "green", color: "Green"), Color(baseColor: "grey", color: "Grey"), Color(baseColor: "orange", color: "Orange"), Color(baseColor: "purple", color: "Purple"), Color(baseColor: "red", color: "Red"), Color(baseColor: "sand", color: "Sand"), Color(baseColor: "silver", color: "Silver"), Color(baseColor: "white", color: "White"), Color(baseColor: "yellow", color: "Yellow")]
     let years = [2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995]
-    let models = [VehicleModel(make: "Volvo", model: "XC90"), VehicleModel(make: "Volvo", model: "XC60"), VehicleModel(make: "Volvo", model: "XC40"), VehicleModel(make: "Volvo", model: "S90"), VehicleModel(make: "Volvo", model: "S60")]
+    var models: [VehicleModel] = [VehicleModel(make: "Volvo", model: "XC90"), VehicleModel(make: "Volvo", model: "XC60"), VehicleModel(make: "Volvo", model: "XC40"), VehicleModel(make: "Volvo", model: "S90"), VehicleModel(make: "Volvo", model: "S60")]
     
     var realm: Realm?
     
@@ -57,6 +57,17 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         colorLabel.textField.delegate = self
         
         canGoNext(nextEnabled: false)
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        VehicleAPI().vehicleModels(makeId: nil).onSuccess { result in
+            if let vehicles = result?.data?.result {
+                self.models = vehicles
+            }
+            MBProgressHUD.hide(for: self.view, animated: true)
+            }.onFailure { error in
+                MBProgressHUD.hide(for: self.view, animated: true)
+            }
     }
     
     override func setupViews() {
