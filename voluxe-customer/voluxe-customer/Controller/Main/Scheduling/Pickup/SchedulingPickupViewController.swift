@@ -128,7 +128,8 @@ class SchedulingPickupViewController: SchedulingViewController {
                     RequestedServiceManager.sharedInstance.setPickupRequestLocation(requestLocation: nil)
                     self.pickupLocationView.showError(error: .OutOfPickupArea)
                 }
-                
+                self.showConfirmButtonIfNeeded()
+
             })
         })
         

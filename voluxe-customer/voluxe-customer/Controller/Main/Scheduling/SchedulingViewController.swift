@@ -326,6 +326,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                                     }
                             }
                         } else {
+                            RequestedServiceManager.sharedInstance.setDealership(dealership: nil)
                             if let completion = completion {
                                 completion()
                             }

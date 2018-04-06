@@ -38,6 +38,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     var autoCompleteCharacterCount = 0
     
     var selectedIndex = 0
+    var preselectedIndex = -1
     
     let newLocationLabel: UILabel = {
         let titleLabel = UILabel()
@@ -69,14 +70,24 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         groupedLabels.delegate = self
         
         user = UserManager.sharedInstance.getCustomer()
+        var selectedLocation = RequestedServiceManager.sharedInstance.getPickupLocation()
+        if RequestedServiceManager.sharedInstance.getDropoffLocation() != nil {
+            selectedLocation = RequestedServiceManager.sharedInstance.getDropoffLocation()
+        }
         realm = try? Realm()
         if let realm = self.realm, let user = user {
             addresses = realm.objects(CustomerAddress.self).filter("volvoCustomerId = %@", user.email ?? "")
             if let addresses = addresses {
                 addressesCount = addresses.count
-                for address in addresses {
+                for (index, address) in addresses.enumerated() {
                     addLocation(location: (address.location?.address)!)
+                    if let selectedLocation = selectedLocation, selectedLocation.id == address.location?.id {
+                        preselectedIndex = index
+                    }
                 }
+            }
+            if preselectedIndex >= 0 {
+                groupedLabels.select(selectedIndex: preselectedIndex, selected: true)
             }
         }
     }
@@ -186,6 +197,9 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                     self.addLocation(location: .YourLocation)
                     self.currentLocationIndex = self.groupedLabels.items.count - 1
                     self.bottomButton.isEnabled = true
+                    if self.preselectedIndex >= 0 {
+                        self.groupedLabels.select(selectedIndex: self.preselectedIndex, selected: true)
+                    }
                 }
             }
         }

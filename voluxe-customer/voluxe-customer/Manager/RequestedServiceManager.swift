@@ -64,7 +64,7 @@ final class RequestedServiceManager {
         }
     }
     
-    func setDealership(dealership: Dealership) {
+    func setDealership(dealership: Dealership?) {
         self.dealership = dealership
     }
     
