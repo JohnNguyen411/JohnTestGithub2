@@ -25,7 +25,7 @@ class NetworkRequest {
         var finalRequest: DataRequest?
         
         var mutHeader = headers
-        mutHeader["X-CLIENT_ID"] = Config.sharedInstance.apiClientId()
+        mutHeader["X-CLIENT-ID"] = Config.sharedInstance.apiClientId()
 
         do {
             originalRequest = try URLRequest(url: finalUrl, method: method, headers: mutHeader)
