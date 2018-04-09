@@ -65,6 +65,8 @@ final class UserManager {
     }
     
     public func logout() {
+        // logout from API
+        _ = CustomerAPI().logout()
         saveAccessToken(token: nil, customerId: nil)
         self.customer = nil
         self.vehicles = nil

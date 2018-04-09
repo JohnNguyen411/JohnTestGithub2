@@ -59,7 +59,7 @@ class WebViewLoginViewController: FTUEChildViewController, UIWebViewDelegate {
                                 
                                 // Get Customer object with ID
                                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
-                                CustomerAPI().getCustomer(id: customerId).onSuccess { result in
+                                CustomerAPI().getMe().onSuccess { result in
                                     if let customer = result?.data?.result {
                                         if let realm = self.realm {
                                             try? realm.write {
