@@ -16,6 +16,32 @@ import CoreLocation
 class CustomerAPI: NSObject {
     
     /**
+     Logout
+     Logout the currently logged user
+     
+     - Returns: A Future ResponseObject containing an empty Object, or an AFError if an error occured
+     */
+    func logout() -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+        
+        NetworkRequest.request(url: "/v1/users/logout", queryParameters: [:], withBearer: true).responseJSON { response in
+            var responseObject: ResponseObject<EmptyMappableObject>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    
+    /**
      Login endpoint for Customer
      - parameter email: Customer's email
      - parameter password: Customer's password
@@ -30,7 +56,7 @@ class CustomerAPI: NSObject {
             "password": password
         ]
         
-        NetworkRequest.request(url: "/v1/customers/login", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSON { response in
+        NetworkRequest.request(url: "/v1/users/login", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSON { response in
             
             
             var responseObject: ResponseObject<MappableDataObject<Token>>?
@@ -342,6 +368,30 @@ class CustomerAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
         
         NetworkRequest.request(url: "/v1/customers/\(id)", queryParameters: [:], withBearer: true).responseJSON { response in
+            var responseObject: ResponseObject<MappableDataObject<Customer>>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<MappableDataObject<Customer>>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    /**
+     Get the Customer object for the logged user
+     
+     - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
+     */
+    func getMe() -> Future<ResponseObject<MappableDataObject<Customer>>?, AFError> {
+        let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
+        
+        NetworkRequest.request(url: "/v1/users/me", queryParameters: [:], withBearer: true).responseJSON { response in
             var responseObject: ResponseObject<MappableDataObject<Customer>>?
             
             if let json = response.result.value as? [String: Any] {

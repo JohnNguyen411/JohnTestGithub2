@@ -18,14 +18,17 @@ import BrightFutures
  ***/
 class NetworkRequest {
     
-    static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, bodyParameters: Parameters? = nil, bodyEncoding: ParameterEncoding = URLEncoding.httpBody, headers: HTTPHeaders?) -> DataRequest {
+    static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, bodyParameters: Parameters? = nil, bodyEncoding: ParameterEncoding = URLEncoding.httpBody, headers: HTTPHeaders) -> DataRequest {
         let finalUrl = "\(Config.sharedInstance.apiEndpoint())\(url)"
         
         var originalRequest: URLRequest?
         var finalRequest: DataRequest?
+        
+        var mutHeader = headers
+        mutHeader["X-CLIENT-ID"] = Config.sharedInstance.apiClientId()
 
         do {
-            originalRequest = try URLRequest(url: finalUrl, method: method, headers: headers)
+            originalRequest = try URLRequest(url: finalUrl, method: method, headers: mutHeader)
             var queryEncodedURLRequest = try URLEncoding.default.encode(originalRequest!, with: queryParameters)
             if let bodyParameters = bodyParameters, let postData = (try? JSONSerialization.data(withJSONObject: bodyParameters, options: [])) {
                 queryEncodedURLRequest.httpBody = postData
@@ -72,7 +75,7 @@ class NetworkRequest {
     }
     
     static func request(url: String, queryParameters: Parameters?) -> DataRequest {
-        return NetworkRequest.request(url: url, method: .get, queryParameters: queryParameters, headers: nil)
+        return NetworkRequest.request(url: url, method: .get, queryParameters: queryParameters, headers: [:])
     }
     
     static func addBearer(header: inout [String: String]) {
