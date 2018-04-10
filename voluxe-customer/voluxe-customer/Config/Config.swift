@@ -15,7 +15,12 @@ class Config: NSObject {
     private static let stagingUrl = "https://development-uswest2.api.luxe.com"
     private static let prodUrl = "https://development-uswest2.api.luxe.com"
     
+    private static let clientIdDev = "P2HHU4CKLS3JDQCF9ILSCAVPOJRN0LFS"
+    private static let clientIdStaging = "P2HHU4CKLS3JDQCF9ILSCAVPOJRN0LFS"
+    private static let clientIdProd = "P2HHU4CKLS3JDQCF9ILSCAVPOJRN0LFS"
+    
     private let baseUrl: String
+    private let clientId: String
     public let isMock: Bool
 
     // Singleton instance
@@ -26,6 +31,7 @@ class Config: NSObject {
         let scheme = bundle.object(forInfoDictionaryKey: "Scheme") as! String
         isMock = scheme == "Mock"
         baseUrl = Config.baseUrlForScheme(scheme: scheme)
+        clientId = Config.clientIdForScheme(scheme: scheme)
         super.init()
     }
     
@@ -39,11 +45,24 @@ class Config: NSObject {
         }
         return Config.prodUrl
     }
+    
+    private static func clientIdForScheme(scheme: String) -> String {
+        if scheme == "Dev" {
+            return Config.clientIdDev
+        } else if scheme == "Staging" {
+            return Config.clientIdStaging
+        }
+        return Config.clientIdProd
+    }
 }
 
 extension Config {
     func apiEndpoint() -> String {
         return baseUrl
+    }
+    
+    func apiClientId() -> String {
+        return clientId
     }
     
 }

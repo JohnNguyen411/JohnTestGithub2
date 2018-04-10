@@ -23,7 +23,6 @@ class LoadingViewController: ChildViewController {
         //DO NOT UNCOMMENT, DEBUG MODE ONLY
         //logout()
         
-        // call user/vehicle/service
         if let customerId = UserManager.sharedInstance.getCustomerId() {
             callCustomer(customerId: customerId)
             return
@@ -90,7 +89,7 @@ class LoadingViewController: ChildViewController {
         }
         
         // Get Customer object with ID
-        CustomerAPI().getCustomer(id: customerId).onSuccess { result in
+        CustomerAPI().getMe().onSuccess { result in
             if let customer = result?.data?.result {
                 if let realm = self.realm {
                     try? realm.write {
