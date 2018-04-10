@@ -58,6 +58,8 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         super.viewDidLoad()
         
         setNavigationBarItem()
+        self.navigationItem.title = .NewService
+
         // init tap events
         scheduledServiceView.isUserInteractionEnabled = true
         let scheduledServiceTap = UITapGestureRecognizer(target: self, action: #selector(self.scheduledServiceClick))
@@ -209,7 +211,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     func confirmButtonClick() {
         if let selectedVehicle = selectedVehicle {
             RequestedServiceManager.sharedInstance.reset()
-            self.navigationController?.pushViewController(NewServiceViewController(vehicle: selectedVehicle), animated: true)
+            self.pushViewController(NewServiceViewController(vehicle: selectedVehicle), animated: true, backLabel: .Back)
         }
     }
     

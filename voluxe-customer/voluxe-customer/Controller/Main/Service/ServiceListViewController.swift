@@ -17,9 +17,10 @@ class ServiceListViewController: BaseViewController {
     
     let vehicle: Vehicle
     
-    init(vehicle: Vehicle) {
+    init(vehicle: Vehicle, title: String) {
         self.vehicle = vehicle
         super.init()
+        self.title = title
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -50,7 +51,9 @@ class ServiceListViewController: BaseViewController {
             }.onFailure { error in
                 Logger.print(error)
                 MBProgressHUD.hide(for: self.view, animated: true)
-        }        
+        }
+        
+        self.navigationItem.title = self.title
     }
     
     
@@ -106,7 +109,7 @@ extension ServiceListViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        self.navigationController?.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: services![indexPath.row], canSchedule: true), animated: true)
+        self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: services![indexPath.row], canSchedule: true), animated: true, backLabel: .Back)
     }
     
 }

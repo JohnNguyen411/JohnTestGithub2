@@ -81,8 +81,10 @@ class ServiceMultiselectListViewController: BaseViewController {
                     selectedService.append(services[dictElement.element.key])
                 }
             }
-            self.navigationController?.pushViewController(OtherServiceViewController(vehicle: self.vehicle, repairOrderType: self.repairOrderType, services: selectedService), animated: true)
+            self.pushViewController(OtherServiceViewController(vehicle: self.vehicle, repairOrderType: self.repairOrderType, services: selectedService), animated: true, backLabel: .Back)
         }
+        
+        self.navigationItem.title = .OtherMaintenance
     }
     
     override func setupViews() {

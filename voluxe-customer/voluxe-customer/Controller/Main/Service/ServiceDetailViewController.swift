@@ -52,6 +52,9 @@ class ServiceDetailViewController: BaseViewController {
         } else {
             label.text = service.desc
         }
+        
+        self.navigationItem.title = .NewService
+
         label.sizeToFit()
         
         if !canSchedule || RequestedServiceManager.sharedInstance.getRepairOrder() != nil{

@@ -74,11 +74,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         SlideMenuOptions.contentViewScale = 1.0
         SlideMenuOptions.pointOfNoReturnWidth = 0.0
     
-        uiNavigationController.navigationBar.isTranslucent = false
-        uiNavigationController.navigationBar.backgroundColor = UIColor("#FFFFFF")
-        uiNavigationController.navigationBar.tintColor = UIColor("#000000")
+        styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         
         navigationController = uiNavigationController
+        navigationController?.setTitle(title: .YourVolvos)
 
         leftViewController.mainNavigationViewController = navigationController
         //leftViewController.mainViewController = mainViewController
@@ -151,7 +150,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
                 let uiNavigationController = UINavigationController(rootViewController: MainViewController(vehicle: vehicle, state: state))
                 styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-                leftVC.changeMainViewController(uiNavigationController: uiNavigationController)
+                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: nil)
             }
         }
     }
@@ -161,7 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
                 let uiNavigationController = UINavigationController(rootViewController: SettingsViewController())
                 styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-                leftVC.changeMainViewController(uiNavigationController: uiNavigationController)
+                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .Settings)
             }
         }
     }

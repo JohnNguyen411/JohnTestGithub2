@@ -67,7 +67,6 @@ class FTUEStartViewController: BaseViewController {
             self.navigationController?.pushViewController(FTUESignupNameViewController(), animated: true)
         }
         
-        //setupViews()
     }
     
     override func setupViews() {

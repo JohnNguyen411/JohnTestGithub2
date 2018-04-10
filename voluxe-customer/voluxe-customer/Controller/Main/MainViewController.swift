@@ -137,14 +137,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         return nil
     }
     
-    func setTitle(title: String?) {
-        if let title = title {
-            self.navigationController?.title = title
-            self.navigationController?.navigationItem.title = title
-            self.navigationController?.navigationBar.topItem?.title = title
-        }
-    }
-    
     func setTitleFromChild(title: String) {
         setTitle(title: title)
     }

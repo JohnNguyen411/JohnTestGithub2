@@ -39,6 +39,22 @@ class BaseViewController: UIViewController, PresentrDelegate {
         styleNavigationBar(navigationBar: self.navigationController?.navigationBar)
     }
     
+    func setTitle(title: String?) {
+        if let title = title {
+            self.navigationController?.title = title
+            self.navigationController?.navigationItem.title = title
+            self.navigationController?.navigationBar.topItem?.title = title
+            self.navigationItem.title = title
+        }
+        self.title = title
+    }
+    
+    func pushViewController(_ controller: UIViewController, animated: Bool, backLabel: String) {
+        self.navigationController?.pushViewController(controller, animated: animated)
+        let backItem = UIBarButtonItem(title: backLabel, style: .plain, target: self, action: #selector(onBackClicked))
+        navigationItem.backBarButtonItem = backItem
+    }
+    
     func styleViews() {
         
         blockingLoadingView.view.tintColor = UIColor.black
@@ -63,6 +79,12 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     func stateDidChange(state: ServiceState) {}
     
+    
+    @objc func onBackClicked() {
+        
+    }
+        
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

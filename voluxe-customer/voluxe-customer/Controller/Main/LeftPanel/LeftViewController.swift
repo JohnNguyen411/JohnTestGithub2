@@ -131,9 +131,10 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         }
     }
     
-    func changeMainViewController(uiNavigationController: UINavigationController) {
+    func changeMainViewController(uiNavigationController: UINavigationController, title: String?) {
         self.slideMenuController()?.changeMainViewController(uiNavigationController, close: true)
         self.updateNotificationBadge()
+        uiNavigationController.setTitle(title: title)
     }
     
     private func setActiveBooking(bookings: [Booking]) {

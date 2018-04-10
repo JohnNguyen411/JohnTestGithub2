@@ -107,7 +107,8 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             
         }
         //descriptionTextView.placeholder
-        
+        self.navigationItem.title = .OtherMaintenance
+
     }
     
     override func setupViews() {
