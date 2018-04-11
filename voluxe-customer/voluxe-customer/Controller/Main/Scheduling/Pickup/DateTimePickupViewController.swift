@@ -42,6 +42,16 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         return timeSlotsHeader
     }()
     
+    let noDateLabel: UILabel = {
+        let noDateLabel = UILabel()
+        noDateLabel.textColor = .black
+        noDateLabel.font = .volvoSansLightBold(size: 12)
+        noDateLabel.textAlignment = .center
+        noDateLabel.text = String.NoDatesForDealership
+        noDateLabel.numberOfLines = 0
+        return noDateLabel
+    }()
+    
     fileprivate let gregorian = Calendar(identifier: .gregorian)
     fileprivate let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -180,6 +190,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         containerView.addSubview(hoursView)
         containerView.addSubview(timeSlotsHeader)
         containerView.addSubview(loanerContainerView)
+        containerView.addSubview(noDateLabel)
+        noDateLabel.isHidden = true
         
         let separatorOne = UIView(frame: .zero)
         separatorOne.backgroundColor = .luxeLightGray()
@@ -213,6 +225,12 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             make.bottom.equalTo(timeSlotsHeader.snp.top).offset(-28)
             make.left.right.equalToSuperview()
             make.height.equalTo(calendarViewHeight)
+        }
+        
+        noDateLabel.snp.makeConstraints { make in
+            make.center.equalTo(calendar)
+            make.width.equalToSuperview()
+            make.height.equalTo(50)
         }
         
         firstMonthHeader.snp.makeConstraints { make in
@@ -423,21 +441,34 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             if let selectedDate = selectedDate {
                 _ = self.calendar(self.calendar, shouldSelect: selectedDate, at: .current)
                 self.calendar.select(selectedDate)
+                self.showError(error: false)
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.25, execute: {
                     self.calendar.scroll(to: self.maxDate, animated: false)
                 })
+                self.showError(error: true)
             }
             self.selectFirstEnabledButton()
             
             self.initWeekDayView()
             self.showLoading(loading: false)
-            self.calendar.animateAlpha(show: true)
+            if let _ = selectedDate {
+                self.calendar.animateAlpha(show: true)
+            }
         })
     }
     
     
     // MARK: Private Methods
+    
+    private func showError(error: Bool) {
+        
+        self.noDateLabel.isHidden = !error
+        self.calendar.isHidden = error
+        self.weekdayViews.isHidden = error
+        self.firstMonthHeader.isHidden = error
+        self.timeSlotsHeader.isHidden = error
+    }
     
     @objc internal func switchChanged(uiswitch: UISwitch) {
         RequestedServiceManager.sharedInstance.setLoaner(loaner: uiswitch.isOn)

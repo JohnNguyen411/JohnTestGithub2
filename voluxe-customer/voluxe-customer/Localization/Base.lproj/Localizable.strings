@@ -116,6 +116,7 @@
 "SelectDropoffDate" = "Select dropoff date and time";
 "DeliveryTimes" = "Delivery Times";
 "DropOffTimes" = "Dropoff Times";
+"NoDatesForDealership" = "Unfortunatelly no date are available for this dealership, please try again later or call dealership.";
 
 /***************** ScheduledPickup ***************/
 "SchedulePickup" = "Schedule Pickup";

@@ -47,5 +47,6 @@ extension String {
     static let ConfirmSelfDrop = NSLocalizedString("ConfirmSelfDrop")
     static let DeliveryTimes = NSLocalizedString("DeliveryTimes")
     static let DropOffTimes = NSLocalizedString("DropOffTimes")
+    static let NoDatesForDealership = NSLocalizedString("NoDatesForDealership")
 
 }
