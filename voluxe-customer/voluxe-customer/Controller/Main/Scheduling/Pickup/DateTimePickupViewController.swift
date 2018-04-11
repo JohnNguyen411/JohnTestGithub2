@@ -17,7 +17,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     private static let rowHeight = 46
 
-    private static let smallCalendarHeight = 184
+    private static let smallCalendarHeight = 180
     private static let tallCalendarHeight = 220
     
     var delegate: PickupDateDelegate?
@@ -275,7 +275,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         
         titleLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(loanerContainerView.snp.top).offset(-10)
+            make.bottom.equalTo(loanerContainerView.snp.top).offset(-8)
             make.height.equalTo(20)
         }
     }
