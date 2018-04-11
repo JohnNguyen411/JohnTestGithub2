@@ -100,7 +100,7 @@
 "TwelveToThree" = "12:00-3:00";
 "ThreeToSix" = "3:00-6:00";
 "PickupLocation" = "Pickup Location";
-"ComplimentaryLoaner" = "Complimentary Loaner?";
+"NeedALoaner" = "Need a Loaner?";
 "ConfirmPickup" = "Confirm Pickup";
 "NotePickup" = "Note: Volvo pickup is only offered near the dealership.";
 "NoteDelivery" = "Note: Volvo delivery is only offered near the dealership.";

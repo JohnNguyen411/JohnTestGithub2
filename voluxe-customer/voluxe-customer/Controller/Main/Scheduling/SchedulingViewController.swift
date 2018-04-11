@@ -62,7 +62,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     let dealershipView = VLTitledLabel(padding: insetPadding)
     let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "", padding: insetPadding)
     let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "", padding: insetPadding)
-    let loanerView = VLTitledLabel(title: .ComplimentaryLoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
+    let loanerView = VLTitledLabel(title: .NeedALoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
     let confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmPickup as String).uppercased(), actionBlock: nil)
     
     let dealershipAddressLabel: UILabel = {
@@ -551,7 +551,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
         
         let dateTime = formatter.string(from: timeSlot.from!)
-        scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")", rightDescription: "")
+        scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")", rightDescription: "")
     }
     
     func onSizeChanged() {

@@ -94,7 +94,7 @@ class ScheduledBookingViewController: SchedulingViewController {
             if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
                 title = .ScheduledDelivery
             }
-            scheduledPickupView.setTitle(title: title, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+            scheduledPickupView.setTitle(title: title, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
         }
         
         if let requestLocation = request.location {

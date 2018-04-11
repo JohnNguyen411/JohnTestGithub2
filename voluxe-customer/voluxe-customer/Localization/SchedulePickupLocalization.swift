@@ -31,7 +31,7 @@ extension String {
     static let TwelveToThree = NSLocalizedString("TwelveToThree")
     static let ThreeToSix = NSLocalizedString("ThreeToSix")
     static let PickupLocation = NSLocalizedString("PickupLocation")
-    static let ComplimentaryLoaner = NSLocalizedString("ComplimentaryLoaner")
+    static let NeedALoaner = NSLocalizedString(NeedALoaner)
     static let ConfirmPickup = NSLocalizedString("ConfirmPickup")
     static let YourVehicleHasArrived = NSLocalizedString("YourVehicleHasArrived")
     static let NotePickup = NSLocalizedString("NotePickup")
