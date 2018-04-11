@@ -34,6 +34,7 @@ class ServiceListViewController: BaseViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(ServiceCell.self, forCellReuseIdentifier: ServiceCell.reuseId)
+        tableView.isHidden = true
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
@@ -62,11 +63,13 @@ class ServiceListViewController: BaseViewController {
         self.view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
         }
     }
     
     private func showServices(services: [RepairOrderType]) {
+        self.tableView.isHidden = false
         self.services = services
         self.tableView.reloadData()
         
@@ -74,7 +77,8 @@ class ServiceListViewController: BaseViewController {
         let servicesHeight = CGFloat(services.count) * ServiceCell.height
         if servicesHeight < CGFloat(viewHeight - ServiceCell.height) {
             tableView.snp.remakeConstraints { make in
-                make.left.right.top.equalToSuperview()
+                make.left.right.equalToSuperview()
+                make.top.equalToSuperview().offset(20)
                 make.height.equalTo(servicesHeight)
             }
         }

@@ -57,11 +57,9 @@ final class RequestedServiceManager {
         return dropOffRequestType
     }
     
-    func setRepairOrder(repairOrder: RepairOrder, selfInitiated: Bool? = nil) {
+    func setRepairOrder(repairOrder: RepairOrder, selfInitiated: Bool = true) {
         self.repairOrder = repairOrder
-        if let selfInitiated = selfInitiated {
-            self.selfInitiated = selfInitiated
-        }
+        self.selfInitiated = selfInitiated
     }
     
     func setDealership(dealership: Dealership?) {

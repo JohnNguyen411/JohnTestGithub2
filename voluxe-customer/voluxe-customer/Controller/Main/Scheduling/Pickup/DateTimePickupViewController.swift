@@ -15,7 +15,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     private static let hourButtonWidth = 80
     
-    private static let smallCalendarHeight = 187
+    private static let rowHeight = 46
+
+    private static let smallCalendarHeight = 184
     private static let tallCalendarHeight = 220
     
     var delegate: PickupDateDelegate?
@@ -301,7 +303,14 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         
         maxDate = Calendar.current.date(byAdding: .day, value: 3*7, to: todaysDate)!
         let weekday = Calendar.current.component(.weekday, from: maxDate) // 1 is sunday for Gregorian
-        maxDate = Calendar.current.date(byAdding: .day, value: 7-weekday+1, to: maxDate)!
+        let weekMonth = Calendar.current.component(.weekOfMonth, from: maxDate)
+
+        let day = Calendar.current.component(.day, from: maxDate)
+        if day >= 1 && day <= 7 && weekMonth == 1 {
+            maxDate = Calendar.current.date(byAdding: .day, value: -day, to: maxDate)!
+        } else {
+            maxDate = Calendar.current.date(byAdding: .day, value: 7-weekday+1, to: maxDate)!
+        }
         
         let monthMax = Calendar.current.component(.month, from: maxDate)
         let monthCurrent = Calendar.current.component(.month, from: todaysDate)
@@ -312,12 +321,13 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         }
         
         let calendar = FSCalendar(frame: .zero)
-        calendar.rowHeight = 46
+        calendar.rowHeight = CGFloat(DateTimePickupViewController.rowHeight)
         calendar.dataSource = self
         calendar.delegate = self
         calendar.allowsMultipleSelection = true
         containerView.addSubview(calendar)
         
+        calendar.appearance.headerDateFormat = monthFormatter.dateFormat
         calendar.calendarHeaderView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
         calendar.calendarWeekdayView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
         calendar.appearance.titleOffset = CGPoint(x: 0, y: 4)
@@ -341,9 +351,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         calendar.allowsSelection = true
         calendar.setCollectionViewScrollEnabled(false)
         calendar.placeholderType = .none
-        
-        //calendar.setCollectionViewScrollEnabled(false)
-        
+                
         calendar.calendarWeekdayView.isHidden = true
         calendar.weekdayHeight = 0
         //calendar.preferredWeekdayHeight = 0
@@ -356,7 +364,6 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         
         self.calendar = calendar
         self.calendar.alpha = 0
-        
         
     }
     
@@ -416,6 +423,10 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             if let selectedDate = selectedDate {
                 _ = self.calendar(self.calendar, shouldSelect: selectedDate, at: .current)
                 self.calendar.select(selectedDate)
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.25, execute: {
+                    self.calendar.scroll(to: self.maxDate, animated: false)
+                })
             }
             self.selectFirstEnabledButton()
             
@@ -574,17 +585,6 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             }
         }
         return -1
-    }
-    
-    func minMax(index: Int) -> (min: Int, max: Int) {
-        if index == 0 {
-            return (9, 12)
-        } else if index == 1 {
-            return (12, 15)
-        } else if index == 2 {
-            return (15, 18)
-        }
-        return (0, 0)
     }
     
     // MARK:- FSCalendarDataSource
