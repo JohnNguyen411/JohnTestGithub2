@@ -138,7 +138,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: SettingsCell.height))
         view.backgroundColor = UIColor.clear
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: SettingsCell.height))
-        label.font = UIFont.boldSystemFont(ofSize: 15)
+        label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = UIColor.luxeGray()
         label.text = getTitleForSection(section: section).uppercased()
         view.addSubview(label)
@@ -153,12 +153,12 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 vehicle = vehicles[indexPath.row]
             }
             if let vehicle = vehicle {
-                self.navigationController?.pushViewController(SettingsCarViewController(vehicle: vehicle), animated: true)
+                self.pushViewController(SettingsCarViewController(vehicle: vehicle), animated: true, backLabel: .Back)
             } else {
-                self.navigationController?.pushViewController(FTUEAddVehicleViewController(), animated: true)
+                self.pushViewController(FTUEAddVehicleViewController(), animated: true, backLabel: .Back)
             }
         } else if indexPath.section == 1 {
-            self.navigationController?.pushViewController(AccountSettingsViewController(), animated: true)
+            self.pushViewController(AccountSettingsViewController(), animated: true, backLabel: .Back)
         }
     }
     

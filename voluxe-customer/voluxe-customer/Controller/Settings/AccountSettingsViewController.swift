@@ -38,6 +38,8 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = .YourAccount
+        
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
@@ -183,7 +185,9 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.setCellType(type: .button)
             text = text.uppercased()
         } else {
-            if indexPath.section == 1 {
+            if indexPath.section == 0 {
+                editImage = "edit"
+            } else if indexPath.section == 1 {
                 editImage = "edit"
                 if indexPath.row == 0 {
                     leftImage = "message"
@@ -209,19 +213,14 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        if indexPath.section == 0 && indexPath.row < addressesCount {
-            return .delete
-        }
         return .none
     }
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 0 && indexPath.row < addressesCount {
-            return true
-        }
         return false
     }
     
+    /*
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if indexPath.section == 0 && indexPath.row < addressesCount {
             let delete = UITableViewRowAction(style: .destructive, title: "Delete", handler: { (action, indexPath) in
@@ -252,7 +251,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         
         return []
     }
-    
+    */
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
@@ -265,8 +264,8 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: SettingsCell.height))
         view.backgroundColor = UIColor.clear
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: SettingsCell.height))
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.textColor = UIColor.luxeDarkGray()
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = UIColor.luxeGray()
         label.text = getTitleForSection(section: section).uppercased()
         view.addSubview(label)
         return view
@@ -283,12 +282,20 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     
     func onEditClicked(_ cell: UITableViewCell) {
         if let indexPath = tableView.indexPath(for: cell) {
-            if indexPath.section == 2 {
+            if indexPath.section == 0 {
+                if let realm = self.realm, let addresses = self.addresses {
+                    try? realm.write {
+                        realm.delete(addresses[indexPath.row])
+                        self.addressesCount = addresses.count
+                    }
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+            } else if indexPath.section == 2 {
                 // pwd
                 self.resetPassword()
             } else if indexPath.section == 1 || indexPath.row == 1 {
                 // update phone number
-                self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
+                self.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true, backLabel: .Back)
             }
         }
     }
