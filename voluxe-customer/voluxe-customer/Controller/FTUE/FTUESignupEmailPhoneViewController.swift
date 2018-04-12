@@ -231,6 +231,20 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
             return
         }
         
+        if UIApplication.isRunningTest {
+            let customer = Customer.mockCustomer()
+            if let realm = self.realm {
+                try? realm.write {
+                    realm.deleteAll()
+                    realm.add(customer)
+                }
+            }
+            UserManager.sharedInstance.setCustomer(customer: customer)
+            UserManager.sharedInstance.tempCustomerId = customer.id
+            self.goToNext()
+            return
+        }
+        
         CustomerAPI().signup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, languageCode: Locale.preferredLanguages[0].uppercased()).onSuccess { result in
             if let customer = result?.data?.result {
                 if let realm = self.realm {

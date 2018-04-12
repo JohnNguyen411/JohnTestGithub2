@@ -191,6 +191,11 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         showLoading(loading: true)
         
+        if UIApplication.isRunningTest {
+            loginUser(email: "johan@luxe.com", password: "Ch@ngeth1s")
+            return
+        }
+        
         // if accessToken, it's a password update
         if let code = UserManager.sharedInstance.signupCustomer.verificationCode,
             let password = volvoPwdConfirmTextField.textField.text, let customerId = UserManager.sharedInstance.getCustomerId(),

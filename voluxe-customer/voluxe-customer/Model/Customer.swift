@@ -33,6 +33,18 @@ class Customer: Object, Mappable {
     required convenience init?(map: Map) {
         self.init()
     }
+    
+    static func mockCustomer() -> Customer {
+        let customer = Customer()
+        customer.email = "johan@luxe.com"
+        customer.firstName = "Johan"
+        customer.lastName = "Giroux"
+        customer.phoneNumber = "+14156919667"
+        customer.enabled = true
+        customer.passwordResetRequired = false
+        customer.phoneNumberVerified = true
+        return customer
+    }
    
     func mapping(map: Map) {
         id <- map["id"]

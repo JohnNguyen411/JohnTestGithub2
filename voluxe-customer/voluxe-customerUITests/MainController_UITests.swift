@@ -11,7 +11,6 @@ import XCTest
 
 class MainController_UITests: XCTestCase {
     
-    var mainViewController: MainViewController?
     var app: XCUIApplication!
 
     override func setUp() {
@@ -28,12 +27,6 @@ class MainController_UITests: XCTestCase {
         XCTAssertNotNil(mapApiKey)
         GMSServices.provideAPIKey(mapApiKey as! String)
         
-        mainViewController = MainViewController()
-        _ = mainViewController?.view // call viewDidLoad
-        StateServiceManager.sharedInstance.addDelegate(delegate: mainViewController!)
-        
-        XCTAssertNotNil(mainViewController?.view)
-        
         // Put setup code here. This method is called before the invocation of each test method in the class.
         
         // In UI tests it is usually best to stop immediately when a failure occurs.
@@ -41,12 +34,13 @@ class MainController_UITests: XCTestCase {
     }
     
     override func tearDown() {
-        StateServiceManager.sharedInstance.removeDelegate(delegate: mainViewController!)
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
     }
     
-    func testFTUE() {
+    
+    
+    func intTestFTUE() {
         
         let nextButtonButton = app.buttons["next button"]
         nextButtonButton.tap()
@@ -126,7 +120,6 @@ class MainController_UITests: XCTestCase {
         app/*@START_MENU_TOKEN@*/.buttons["confirmButton"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"uiNavigationController\"]",".otherElements[\"mainViewController\"]",".otherElements[\"currentViewController\"]",".buttons[\"OK\"]",".buttons[\"confirmButton\"]"],[[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2],[-1,0,1]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3],[-1,1,2]],[[-1,5],[-1,4],[-1,3,4],[-1,2,3]],[[-1,5],[-1,4],[-1,3,4]],[[-1,5],[-1,4]]],[0]]@END_MENU_TOKEN@*/.tap()
         
     }
-    */
     func testPickupDelivery() {
         internalTestSchedulePickup()
         internalTestPickup()
@@ -136,7 +129,6 @@ class MainController_UITests: XCTestCase {
         internalTestDropOff()
     }
 
-    /*
     func testRightButton() {
         
         let app = XCUIApplication()
@@ -303,7 +295,7 @@ class MainController_UITests: XCTestCase {
         sleep(1)
     }
     
-    
+    /*
     func internalTestDrivingToDealership() {
         
         let drivingToDealership = app.staticTexts["schedulingTestView\(ServiceState.pickupDriverDrivingToDealership)"]
@@ -335,7 +327,7 @@ class MainController_UITests: XCTestCase {
         
         sleep(1)
     }
-    
+    */
     func internalTestScheduleDropoff() {
         
         // show CalendarView
