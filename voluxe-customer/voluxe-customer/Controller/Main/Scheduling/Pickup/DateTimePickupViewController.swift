@@ -144,8 +144,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             formatter.locale = Locale(identifier: "en_US_POSIX")
             formatter.timeZone = TimeZone(secondsFromGMT: 0)
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-            let from = formatter.string(from: todaysDate)
-            let to = formatter.string(from: maxDate)
+            let from = formatter.string(from: todaysDate.beginningOfDay())
+            let to = formatter.string(from: maxDate.endOfDay())
             
             var timeSlotType = "driver"
             
