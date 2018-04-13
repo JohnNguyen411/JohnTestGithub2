@@ -43,7 +43,7 @@ class NewServiceViewController: BaseViewController {
         self.navigationItem.title = .NewService
 
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-        activityIndicator.color = .luxeDarkBlue()
+        activityIndicator.color = .luxeCobaltBlue()
         activityIndicator.startAnimating()
         
         tableView.backgroundColor = .clear

@@ -39,13 +39,13 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     
     let separator: UIView = {
         let view = UIView(frame: .zero)
-        view.backgroundColor = UIColor.luxeDarkBlue()
+        view.backgroundColor = UIColor.luxeCobaltBlue()
         return view
     }()
     
     let descriptionTitle: UILabel = {
         let titleLabel = UILabel(frame: .zero)
-        titleLabel.textColor = UIColor.luxeDarkBlue()
+        titleLabel.textColor = UIColor.luxeCobaltBlue()
         titleLabel.font = .volvoSansLightBold(size: 12)
         titleLabel.text = .AddDescription
         return titleLabel

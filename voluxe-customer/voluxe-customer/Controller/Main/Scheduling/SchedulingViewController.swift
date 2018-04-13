@@ -77,7 +77,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     
     let dealershipMapLabel: UILabel = {
         let dealershipMapLabel = UILabel()
-        dealershipMapLabel.textColor = .luxeDeepBlue()
+        dealershipMapLabel.textColor = .luxeCobaltBlue()
         dealershipMapLabel.font = .volvoSansLightBold(size: 12)
         dealershipMapLabel.text = String.Map.uppercased()
         dealershipMapLabel.textAlignment = .left

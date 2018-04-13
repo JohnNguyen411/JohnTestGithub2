@@ -60,7 +60,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
         blockingLoadingView.view.tintColor = UIColor.black
         let loadingIndicator = UIActivityIndicatorView(frame: .zero) as UIActivityIndicatorView
         loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-        loadingIndicator.color = .luxeDarkBlue()
+        loadingIndicator.color = .luxeCobaltBlue()
         loadingIndicator.hidesWhenStopped = true
         loadingIndicator.startAnimating()
         
@@ -217,7 +217,7 @@ extension UIViewController {
             navigationBar.isTranslucent = false
             navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationBar.shadowImage = UIImage()
-            navigationBar.tintColor = .luxeDeepBlue()
+            navigationBar.tintColor = .luxeCobaltBlue()
             navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
         }
     }

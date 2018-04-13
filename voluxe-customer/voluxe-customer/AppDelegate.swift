@@ -185,7 +185,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         navigationBar.isTranslucent = false
         navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationBar.shadowImage = UIImage()
-        navigationBar.tintColor = .luxeDeepBlue()
+        navigationBar.tintColor = .luxeCobaltBlue()
         
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
     }

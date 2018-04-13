@@ -69,7 +69,7 @@ class VLPresentrViewController: UIViewController {
         }
         
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-        activityIndicator.color = .luxeDarkBlue()
+        activityIndicator.color = .luxeCobaltBlue()
         
         bottomButton.accessibilityIdentifier = "bottomButton"
         

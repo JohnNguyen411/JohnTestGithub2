@@ -41,7 +41,7 @@ class FTUEStartViewController: BaseViewController {
         let textView = UILabel(frame: .zero)
         textView.text = .AppName
         textView.font = .volvoSansLight(size: 40)
-        textView.textColor = .luxeDarkBlue()
+        textView.textColor = .luxeCobaltBlue()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView

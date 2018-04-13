@@ -92,20 +92,20 @@ class VLButton : UIButton {
         self.type = type
         switch type {
         case .bluePrimary:
-            backgroundColor = .luxeDeepBlue()
+            backgroundColor = .luxeCobaltBlue()
             applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeWhite(), highlightedFontColor: .luxeLightGray())
             layer.borderWidth = 0
             break
         case .blueSecondary:
             backgroundColor = .clear
-            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeDeepBlue(), highlightedFontColor: .luxeGray())
+            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeCobaltBlue(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
         case .blueSecondaryWithBorder:
             backgroundColor = .clear
-            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeDeepBlue(), highlightedFontColor: .luxeGray())
+            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeCobaltBlue(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 1
-            layer.borderColor = UIColor.luxeDeepBlue().cgColor
+            layer.borderColor = UIColor.luxeCobaltBlue().cgColor
             break
         case .blueSecondaryWithBorderDisabled:
             backgroundColor = .clear
@@ -129,7 +129,7 @@ class VLButton : UIButton {
             layer.borderWidth = 0
             break
         case .blueSecondarySelected:
-            backgroundColor = UIColor.luxeDeepBlue()
+            backgroundColor = UIColor.luxeCobaltBlue()
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: .white, highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break

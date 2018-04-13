@@ -28,7 +28,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         textView.text = (.New as String).uppercased()
         textView.font = .volvoSansLightBold(size: 14)
         textView.textColor = .white
-        textView.backgroundColor = .luxeDeepBlue()
+        textView.backgroundColor = .luxeCobaltBlue()
         textView.numberOfLines = 0
         textView.layer.masksToBounds = true
         textView.textAlignment = .center

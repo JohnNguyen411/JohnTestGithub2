@@ -37,9 +37,9 @@ class VLVerticalTextField : VLTextField {
         
         textField.textAlignment = .left
         titleLabel.textAlignment = .left
-        textField.textColor = .luxeDarkBlue()
-        titleLabel.textColor = .luxeDarkBlue()
-        textField.tintColor = .luxeDarkBlue()
+        textField.textColor = .luxeCobaltBlue()
+        titleLabel.textColor = .luxeCobaltBlue()
+        textField.tintColor = .luxeCobaltBlue()
         textField.font = .volvoSansLight(size: 18)
         titleLabel.font = .volvoSansLightBold(size: 12)
         
@@ -89,7 +89,7 @@ class VLVerticalTextField : VLTextField {
         }
        
         let separator0 = UIView()
-        separator0.backgroundColor = .luxeDarkBlue()
+        separator0.backgroundColor = .luxeCobaltBlue()
         addSubview(separator0)
         
         separator0.snp.makeConstraints { (make) -> Void in
@@ -105,15 +105,15 @@ class VLVerticalTextField : VLTextField {
     }
     
     override func applyErrorState() {
-        textField.textColor = .luxeDarkBlue()
+        textField.textColor = .luxeCobaltBlue()
         titleLabel.textColor = .red
         backgroundColor = .blue
     }
 
     override func resetErrorState() {
         titleLabel.text = self.title
-        titleLabel.textColor = .luxeDarkBlue()
-        textField.textColor = .luxeDarkBlue()
+        titleLabel.textColor = .luxeCobaltBlue()
+        textField.textColor = .luxeCobaltBlue()
         backgroundColor = .clear
     }
 

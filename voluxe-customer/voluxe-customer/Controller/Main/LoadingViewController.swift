@@ -35,7 +35,7 @@ class LoadingViewController: ChildViewController {
         super.setupViews()
         
         loadingView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-        loadingView.color = .luxeDarkBlue()
+        loadingView.color = .luxeCobaltBlue()
         
         self.view.addSubview(loadingView)
         

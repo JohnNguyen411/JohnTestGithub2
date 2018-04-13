@@ -56,7 +56,7 @@ class VLTitledLabel: UIView {
     var isEditable = false {
         didSet {
             if isEditable {
-                descLeftLabel.textColor = .luxeDeepBlue()
+                descLeftLabel.textColor = .luxeCobaltBlue()
             } else {
                 descLeftLabel.textColor = .luxeDarkGray()
             }
@@ -155,7 +155,7 @@ class VLTitledLabel: UIView {
     func hideError() {
         titleLabel.textColor = .luxeGray()
         separator.backgroundColor = .luxeGray()
-        descLeftLabel.textColor = isEditable ? .luxeDeepBlue() :  .luxeDarkGray()
+        descLeftLabel.textColor = isEditable ? .luxeCobaltBlue() :  .luxeDarkGray()
         descRightLabel.textColor = .luxeDarkGray()
         self.backgroundColor = .clear
 
