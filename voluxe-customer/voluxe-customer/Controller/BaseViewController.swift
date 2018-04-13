@@ -222,6 +222,23 @@ extension UIViewController {
         }
     }
     
+    static func styleBarButtonItem(barButton: UIBarButtonItem) {
+        barButton.setTitleTextAttributes([
+            NSAttributedStringKey.font : UIFont.volvoSansLightBold(size: 16),
+            NSAttributedStringKey.foregroundColor : UIColor.luxeCobaltBlue()],
+                                          for: UIControlState.normal)
+        
+        barButton.setTitleTextAttributes([
+            NSAttributedStringKey.font : UIFont.volvoSansLightBold(size: 16),
+            NSAttributedStringKey.foregroundColor : UIColor.luxeLightGray()],
+                                         for: UIControlState.selected)
+        
+        barButton.setTitleTextAttributes([
+            NSAttributedStringKey.font : UIFont.volvoSansLightBold(size: 16),
+            NSAttributedStringKey.foregroundColor : UIColor.luxeLightGray()],
+                                         for: UIControlState.disabled)
+    }
+    
     
     func removeNavigationBarItem() {
         self.navigationItem.leftBarButtonItem = nil

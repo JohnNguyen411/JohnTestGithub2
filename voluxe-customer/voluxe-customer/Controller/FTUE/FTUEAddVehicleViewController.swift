@@ -159,10 +159,11 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         
         // Adding Button ToolBar
         let doneButton = UIBarButtonItem(title: .Done, style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.donePicker))
-        doneButton.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.luxeCobaltBlue()], for: .normal)
+        UIViewController.styleBarButtonItem(barButton: doneButton)
+
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: .Cancel, style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.cancelPicker))
-        cancelButton.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.luxeCobaltBlue()], for: .normal)
+        UIViewController.styleBarButtonItem(barButton: cancelButton)
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         textField.inputAccessoryView = toolBar
