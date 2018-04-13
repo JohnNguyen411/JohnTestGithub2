@@ -358,6 +358,7 @@
 		6CB1181A207D36D1008FB2FE /* UINavigationController+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */; };
 		6CB1181B207D36D1008FB2FE /* UINavigationController+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */; };
 		6CB1181F208017C7008FB2FE /* Signin_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB1181C208017C7008FB2FE /* Signin_UITests.swift */; };
+		6CB11821208020D6008FB2FE /* Settings_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB11820208020D6008FB2FE /* Settings_UITests.swift */; };
 		6CBAA6C72023FD3300F35ECF /* ServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6C62023FD3300F35ECF /* ServiceListViewController.swift */; };
 		6CBAA6C82023FD3300F35ECF /* ServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6C62023FD3300F35ECF /* ServiceListViewController.swift */; };
 		6CBAA6C92023FD3300F35ECF /* ServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6C62023FD3300F35ECF /* ServiceListViewController.swift */; };
@@ -725,6 +726,7 @@
 		6CA968BE2023CBB500FBEEAB /* VehicleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCell.swift; sourceTree = "<group>"; };
 		6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Voluxe.swift"; sourceTree = "<group>"; };
 		6CB1181C208017C7008FB2FE /* Signin_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signin_UITests.swift; sourceTree = "<group>"; };
+		6CB11820208020D6008FB2FE /* Settings_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings_UITests.swift; sourceTree = "<group>"; };
 		6CBAA6C62023FD3300F35ECF /* ServiceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceListViewController.swift; sourceTree = "<group>"; };
 		6CBAA6CA2023FEE800F35ECF /* ServiceCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCell.swift; sourceTree = "<group>"; };
 		6CBAA6CE2024E91300F35ECF /* ServicesLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServicesLocalization.swift; sourceTree = "<group>"; };
@@ -1404,8 +1406,9 @@
 			isa = PBXGroup;
 			children = (
 				6CBF9FE01FC5F987002BC7FC /* FTUEFlow_UITests.swift */,
-				6C5EB9891FCE38980019ACAA /* MainController_UITests.swift */,
 				6CB1181C208017C7008FB2FE /* Signin_UITests.swift */,
+				6CB11820208020D6008FB2FE /* Settings_UITests.swift */,
+				6C5EB9891FCE38980019ACAA /* MainController_UITests.swift */,
 				6CCD42AF1FA013E3000AC6C9 /* Info.plist */,
 			);
 			path = "voluxe-customerUITests";
@@ -2344,6 +2347,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CB11821208020D6008FB2FE /* Settings_UITests.swift in Sources */,
 				6C4970F92064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */,
 				6CBB4E931FB4DF7D00C31183 /* FSCalendarCollectionViewLayout.m in Sources */,
 				6C20E1851FBD206E00E5D9A0 /* ServiceState.swift in Sources */,

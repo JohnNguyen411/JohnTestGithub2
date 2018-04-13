@@ -91,6 +91,7 @@ class VLVerticalSearchTextField : VLVerticalTextField {
     // Create the filter table and shadow view
     fileprivate func buildSearchTableView() {
         if let tableView = tableView, let shadowView = shadowView {
+            tableView.accessibilityLabel = "VLVerticalSearchTextField.tableView"
             tableView.layer.masksToBounds = true
             tableView.layer.borderWidth = theme.borderWidth > 0 ? theme.borderWidth : 0.5
             tableView.dataSource = self

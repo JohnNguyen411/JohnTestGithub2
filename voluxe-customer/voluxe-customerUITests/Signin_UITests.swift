@@ -32,13 +32,11 @@ class Signin_UITests: XCTestCase {
     
     func testLogin() {
         
-        let app = app2
         app.buttons["SIGN-IN"].tap()
         
-        let app2 = app
-        app2/*@START_MENU_TOKEN@*/.textFields["name@domain.com"]/*[[".otherElements[\"volvoIdTextField\"].textFields[\"name@domain.com\"]",".textFields[\"name@domain.com\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.typeText("johan@luxe.com")
+        app/*@START_MENU_TOKEN@*/.textFields["name@domain.com"]/*[[".otherElements[\"volvoIdTextField\"].textFields[\"name@domain.com\"]",".textFields[\"name@domain.com\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.typeText("johan@luxe.com")
         
-        let secureTextField = app2/*@START_MENU_TOKEN@*/.secureTextFields["••••••••"]/*[[".otherElements[\"volvoPwdTextField\"].secureTextFields[\"••••••••\"]",".secureTextFields[\"••••••••\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
+        let secureTextField = app/*@START_MENU_TOKEN@*/.secureTextFields["••••••••"]/*[[".otherElements[\"volvoPwdTextField\"].secureTextFields[\"••••••••\"]",".secureTextFields[\"••••••••\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/
         secureTextField.tap()
         secureTextField.typeText("Ch@ngeth1s")
         app.navigationBars["voluxe_customer.FTUELoginView"].buttons["Next"].tap()
