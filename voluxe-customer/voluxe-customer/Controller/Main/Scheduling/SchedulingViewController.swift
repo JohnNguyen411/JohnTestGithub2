@@ -58,12 +58,12 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     let contentView = UIView()
     let dealershipAddressView = UIView()
     let scheduledServiceView = VLTitledLabel(padding: insetPadding)
-    let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
+    let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     let dealershipView = VLTitledLabel(padding: insetPadding)
     let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "", padding: insetPadding)
     let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "", padding: insetPadding)
     let loanerView = VLTitledLabel(title: .NeedALoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmPickup as String).uppercased(), actionBlock: nil)
+    let confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmPickup as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
     let dealershipAddressLabel: UILabel = {
         let dealershipAddressLabel = UILabel()
@@ -81,6 +81,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         dealershipMapLabel.font = .volvoSansLightBold(size: 12)
         dealershipMapLabel.text = String.Map.uppercased()
         dealershipMapLabel.textAlignment = .left
+        dealershipMapLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         return dealershipMapLabel
     }()
     

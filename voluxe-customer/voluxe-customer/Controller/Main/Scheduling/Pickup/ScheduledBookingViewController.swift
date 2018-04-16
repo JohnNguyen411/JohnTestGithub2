@@ -15,8 +15,8 @@ class ScheduledBookingViewController: SchedulingViewController {
     let booking: Booking
     let delegate: ScheduledBookingDelegate?
     
-    let leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), actionBlock: nil)
-    let rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), actionBlock: nil)
+    let leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
     init(booking: Booking, delegate: ScheduledBookingDelegate?) {
         self.booking = booking

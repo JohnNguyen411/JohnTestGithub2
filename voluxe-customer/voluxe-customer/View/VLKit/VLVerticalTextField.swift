@@ -100,7 +100,7 @@ class VLVerticalTextField : VLTextField {
         
         titleLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalToSuperview()
-            make.top.equalTo(separator0.snp.bottom).offset(4)
+            make.top.equalTo(separator0.snp.bottom).offset(5)
         }
     }
     

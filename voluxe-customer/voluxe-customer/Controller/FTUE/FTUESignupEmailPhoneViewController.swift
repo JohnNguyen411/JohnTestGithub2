@@ -106,7 +106,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         phoneNumberConfirmLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(phoneNumberLabel)
-            make.top.equalTo(phoneNumberTextField.snp.bottom).offset(-2)
+            make.top.equalTo(phoneNumberTextField.snp.bottom).offset(-4)
             make.height.equalTo(20)
         }
     }

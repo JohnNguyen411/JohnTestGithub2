@@ -46,6 +46,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         titleLabel.text = (.AddNewLocation as String).uppercased()
         titleLabel.font = .volvoSansLightBold(size: 12)
         titleLabel.textAlignment = .left
+        titleLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         return titleLabel
     }()
     

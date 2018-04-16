@@ -267,6 +267,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = UIColor.luxeGray()
         label.text = getTitleForSection(section: section).uppercased()
+        label.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         view.addSubview(label)
         return view
     }

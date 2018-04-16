@@ -25,7 +25,7 @@ class ServiceDetailViewController: BaseViewController {
     var repairOrder: RepairOrder?
     let vehicle: Vehicle
     let service: RepairOrderType
-    let confirmButton = VLButton(type: .bluePrimary, title: (.ScheduleService as String).uppercased(), actionBlock: nil)
+    let confirmButton = VLButton(type: .bluePrimary, title: (.ScheduleService as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
 
     convenience init(vehicle: Vehicle, service: RepairOrder) {
         self.init(vehicle: vehicle, service: service.repairOrderType!, canSchedule: false)

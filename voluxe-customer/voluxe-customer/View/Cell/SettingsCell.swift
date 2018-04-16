@@ -66,9 +66,11 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
     
     private func applyTextStyle(type: SettingsCellType) {
         if type == .button {
+            settingLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
             settingLabel.textColor = .luxeCobaltBlue()
             settingLabel.font = UIFont.volvoSansLightBold(size: 15)
         } else {
+            settingLabel.addCharacterSpacing(kernValue: UILabel.defaultKern())
             settingLabel.textColor = .black
             settingLabel.font = UIFont.volvoSansLightBold(size: 18)
         }

@@ -31,7 +31,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     }()
     
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), actionBlock: nil)
+    let confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
 
     let vehicle: Vehicle
     let repairOrderType: RepairOrderType

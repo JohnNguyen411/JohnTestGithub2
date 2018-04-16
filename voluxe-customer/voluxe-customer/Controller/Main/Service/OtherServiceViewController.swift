@@ -57,7 +57,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     let contentView = UIView(frame: .zero)
 
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), actionBlock: nil)
+    let confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
     let drivability = [DrivableType.yes, DrivableType.no, DrivableType.notSure]
     var checkedCellIndex = 0

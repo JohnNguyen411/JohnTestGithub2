@@ -30,6 +30,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         firstMonthHeader.textColor = .luxeGray()
         firstMonthHeader.font = .volvoSansLightBold(size: 12)
         firstMonthHeader.textAlignment = .center
+        firstMonthHeader.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         return firstMonthHeader
     }()
     
@@ -39,6 +40,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         timeSlotsHeader.font = .volvoSansLightBold(size: 12)
         timeSlotsHeader.textAlignment = .center
         timeSlotsHeader.text = (.PickupTimes as String).uppercased()
+        timeSlotsHeader.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         return timeSlotsHeader
     }()
     

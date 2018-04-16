@@ -18,8 +18,8 @@ class FTUEStartViewController: BaseViewController {
     
     public static var flowType: FTUEFlowType = .login
 
-    let loginButton = VLButton(type: .blueSecondary, title: (.SignIn as String).uppercased(), actionBlock: nil)
-    let signupButton = VLButton(type: .blueSecondary, title: (.CreateAccount as String).uppercased(), actionBlock: nil)
+    let loginButton = VLButton(type: .blueSecondary, title: (.SignIn as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let signupButton = VLButton(type: .blueSecondary, title: (.CreateAccount as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
 
     let logo: UIImageView = {
         let imageView = UIImageView()
@@ -31,7 +31,7 @@ class FTUEStartViewController: BaseViewController {
         let textView = UILabel(frame: .zero)
         textView.text = "|"
         textView.font = .volvoSansLight(size: 12)
-        textView.textColor = .luxeDarkGray()
+        textView.textColor = .luxeLightGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView

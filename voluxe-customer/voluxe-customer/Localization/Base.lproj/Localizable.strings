@@ -43,14 +43,14 @@
 "MobilePhoneNumber_Placeholder" = "(555) 555-5555";
 "MobilePhoneNumberExplain" = "We require your phone number to coordinate during pickup and delivery.";
 "MobilePhoneNumberResetPassword" = "We require your phone number to reset your password.";
-"MobilePhoneNumberConfirm" = "We'll send you a text message to confirm the number";
+"MobilePhoneNumberConfirm" = "We’ll send you a text message to confirm the number";
 "PhoneNumberVerifLabel" = "Type the confirmation code you received via SMS.";
 "ResendCode" = "Resend Code";
 "PhoneNumberVerif_Placeholder" = "0000";
 "WelcomeToAppLabel" = "Welcome to Luxe, %@. Your Volvo account is now active with Luxe.";
 "FirstName" = "First Name";
 "LastName" = "Last Name";
-"WelcomeSignup" = "Welcome to Luxe by Volvo. Let's create your account.";
+"WelcomeSignup" = "Welcome to Luxe by Volvo. Let’s create your account.";
 "FirstNamePlaceholder" = "Johan";
 "LastNamePlaceholder" = "Johansson";
 "CreatePassword" = "Create a password.";
@@ -116,7 +116,7 @@
 "SelectDropoffDate" = "Select dropoff date and time";
 "DeliveryTimes" = "Delivery Times";
 "DropOffTimes" = "Dropoff Times";
-"NoDatesForDealership" = "Unfortunatelly no date are available for this dealership, please try again later or call dealership.";
+"NoDatesForDealership" = "Unfortunately no dates are available for this dealership. Please try again later or call the dealership.";
 
 /***************** ScheduledPickup ***************/
 "SchedulePickup" = "Schedule Pickup";
@@ -128,7 +128,7 @@
 "PickupWindow" = "Pickup window";
 "EstimatedPickupTime" = "Estimated Pickup Time";
 "DriverDrivingToDealership" = "Our driver is driving your vehicle to %@";
-"YourVehicleHasArrived" = "Your vehicle has arrived safely at %@. We'll alert you next when it's ready.";
+"YourVehicleHasArrived" = "Your vehicle has arrived safely at %@. We’ll alert you next when it’s ready.";
 "ContactDriver" = "Contact Driver";
 "CallDriver" = "Call Driver";
 "TextDriver" = "Text Driver";
@@ -164,7 +164,7 @@
 "ScheduledService" = "Scheduled Service";
 "AreYouSureCancelPickup" = "Are you sure you want to cancel your pickup?";
 "AreYouSureCancelDropOff" = "Are you sure you want to cancel your dropoff?";
-"NewServiceIntro" = "Is your Volvo in need of service? Please identify what part of your Volvo needs work, and write a short description of what you're experiencing.\n\nYou can then schedule pickup directly through this app.";
+"NewServiceIntro" = "Is your Volvo in need of service? Please identify what part of your Volvo needs work, and write a short description of what you’re experiencing.\n\nYou can then schedule pickup directly through this app.";
 "MilestoneServices" = "Milestone services";
 "RecallServices" = "Recall services";
 "OtherMaintenanceRepairs" = "Other maintenance and repairs";
@@ -172,7 +172,7 @@
 "WhatPartRequiresService" = "What part of your Volvo requires service?";
 "SelectAllThatApply" = "Select all that apply";
 "IsVolvoDrivable" = "Is your Volvo currently drivable?";
-"ImNotSure" = "I'm not sure";
+"ImNotSure" = "I’m not sure";
 "NewServiceDescription" = "Is there anything else you can tell us about your Volvo?";
 "TypeDescriptionHere" = "Type description here";
 "AddDescription" = "Add Description";

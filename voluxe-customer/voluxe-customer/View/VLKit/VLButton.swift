@@ -50,7 +50,7 @@ class VLButton : UIButton {
     /**
      Need to make constraints after initializing the button
      */
-    init(type: VLButtonType, title: String?, actionBlock:(()->())?) {
+    init(type: VLButtonType, title: String?, kern: Float? = nil, actionBlock:(()->())?) {
         super.init(frame: .zero)
         
         setType(type: type)
@@ -69,6 +69,10 @@ class VLButton : UIButton {
         activityIndicator.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.height.equalTo(25)
+        }
+        
+        if let kern = kern {
+            self.addCharacterSpacing(kernValue: kern)
         }
     }
     

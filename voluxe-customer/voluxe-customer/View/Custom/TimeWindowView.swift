@@ -29,6 +29,7 @@ class TimeWindowView: UIView {
         titleLabel.font = .volvoSansLightBold(size: 10)
         titleLabel.textAlignment = .center
         titleLabel.text = (.PickupWindow as String).uppercased()
+        titleLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         return titleLabel
     }()
     

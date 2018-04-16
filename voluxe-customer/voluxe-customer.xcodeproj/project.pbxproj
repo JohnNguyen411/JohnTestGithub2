@@ -137,6 +137,9 @@
 		6C4D91BB1FDB15F90031E3CB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
 		6C4D91BC1FDB15F90031E3CB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
 		6C4D91BD1FDB15F90031E3CB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
+		6C522452208509A10078D9B9 /* UIButton+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */; };
+		6C522453208509A10078D9B9 /* UIButton+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */; };
+		6C522454208509A10078D9B9 /* UIButton+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */; };
 		6C5832C51FB3899800F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
 		6C5832C61FB38C9000F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
 		6C5832C71FB38C9000F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
@@ -653,6 +656,7 @@
 		6C497102207823E100FF33E9 /* VehicleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAPI.swift; sourceTree = "<group>"; };
 		6C4971062078272400FF33E9 /* VehicleMake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleMake.swift; sourceTree = "<group>"; };
 		6C4D91BA1FDB15F90031E3CB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
+		6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Voluxe.swift"; sourceTree = "<group>"; };
 		6C5832C41FB3899700F6BFE0 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		6C5832F41FB3AF5600F6BFE0 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		6C5832F51FB3AF5600F6BFE0 /* AlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
@@ -1041,6 +1045,7 @@
 				6C7DDE121FDB664D000E2822 /* String+Utils.swift */,
 				6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */,
 				6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */,
+				6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -2063,6 +2068,7 @@
 				6C20E1AD1FBE408B00E5D9A0 /* SchedulingViewController.swift in Sources */,
 				6C58330F1FB3AF5600F6BFE0 /* CrossDissolveAnimation.swift in Sources */,
 				6CBB4E911FB4DF7D00C31183 /* FSCalendarCollectionViewLayout.m in Sources */,
+				6C522452208509A10078D9B9 /* UIButton+Voluxe.swift in Sources */,
 				6C345A0F1FD897E4006CAC32 /* Config.swift in Sources */,
 				6CBB4E8B1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				6C3FB2B91FA297A300B22EAB /* Date+DateTools.swift in Sources */,
@@ -2253,6 +2259,7 @@
 				6C497104207823E100FF33E9 /* VehicleAPI.swift in Sources */,
 				6C9B320C202CFE28006380B9 /* AccountSettingsViewController.swift in Sources */,
 				6C20E1B71FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift in Sources */,
+				6C522453208509A10078D9B9 /* UIButton+Voluxe.swift in Sources */,
 				6C5832C61FB38C9000F6BFE0 /* LocationManager.swift in Sources */,
 				6C20E1C41FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */,
 				6CCCF2382048B161004BF1A6 /* Color.swift in Sources */,
@@ -2508,6 +2515,7 @@
 				6CB1181F208017C7008FB2FE /* Signin_UITests.swift in Sources */,
 				6C6F4BD01FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6CBB4EAB1FB4DF7D00C31183 /* FSCalendarExtensions.m in Sources */,
+				6C522454208509A10078D9B9 /* UIButton+Voluxe.swift in Sources */,
 				6C5C6A121FD8AACD00D70BF6 /* UserManager.swift in Sources */,
 				6CE687892037A3D000D915FC /* ScheduledBookingViewController.swift in Sources */,
 				6C88DC9F1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
