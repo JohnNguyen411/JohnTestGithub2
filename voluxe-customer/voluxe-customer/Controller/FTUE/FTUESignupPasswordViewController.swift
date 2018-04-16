@@ -25,7 +25,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     let passwordConditionLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.font = .volvoSansLightBold(size: 11)
+        textView.font = .volvoSansProMedium(size: 11)
         textView.textColor = .luxeDarkGray()
         textView.text = .PasswordCondition
         textView.backgroundColor = .clear

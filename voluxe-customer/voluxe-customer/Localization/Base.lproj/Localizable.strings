@@ -54,7 +54,7 @@
 "FirstNamePlaceholder" = "Johan";
 "LastNamePlaceholder" = "Johansson";
 "CreatePassword" = "Create a password.";
-"PasswordCondition" = "(At least 8 characters with at least one letter and one numeral)";
+"PasswordCondition" = "(At least 8 characters with at least one letter and one number)";
 "Password" = "Password";
 "RepeatPassword" = "Repeat Password";
 "Login" = "Login";
