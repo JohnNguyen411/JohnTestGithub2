@@ -99,6 +99,7 @@ class VLButton : UIButton {
             backgroundColor = .luxeCobaltBlue()
             applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeWhite(), highlightedFontColor: .luxeLightGray())
             layer.borderWidth = 0
+            addShadow()
             break
         case .blueSecondary:
             backgroundColor = .clear
@@ -121,6 +122,7 @@ class VLButton : UIButton {
             backgroundColor = .white
             applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeOrange(), highlightedFontColor: .luxeLightGray())
             layer.borderWidth = 0
+            addShadow()
             break
         case .orangeSecondary:
             backgroundColor = .clear
@@ -136,6 +138,7 @@ class VLButton : UIButton {
             backgroundColor = UIColor.luxeCobaltBlue()
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: .white, highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
+            addShadow()
             break
         }
     }
@@ -178,6 +181,16 @@ class VLButton : UIButton {
                 self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             }
         }
+    }
+    
+    private func addShadow() {
+        
+        self.layer.masksToBounds = false
+        
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.33
+        self.layer.shadowRadius = 2
+        self.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
     }
     
     override func layoutSubviews() {
