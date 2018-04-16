@@ -27,8 +27,26 @@ class VLButton : UIButton {
 
     let activityIndicator = UIActivityIndicatorView(frame: .zero)
     var iconView: UIImageView?
+    var normalBackgroundColor = UIColor.clear
+    var highlightBackgroundColor: UIColor?
     var type: VLButtonType?
     var titleText = ""
+    
+    override open var isHighlighted: Bool {
+        didSet {
+            if let highlightBackgroundColor = highlightBackgroundColor {
+                UIView.animate(withDuration: 0.2, animations: {
+                    if self.isHighlighted {
+                        self.backgroundColor = highlightBackgroundColor
+                    } else {
+                        self.backgroundColor = self.normalBackgroundColor
+                    }
+                })
+            } else {
+                backgroundColor = normalBackgroundColor
+            }
+        }
+    }
     
     var isLoading = false {
         didSet {
@@ -96,8 +114,10 @@ class VLButton : UIButton {
         self.type = type
         switch type {
         case .bluePrimary:
-            backgroundColor = .luxeCobaltBlue()
-            applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeWhite(), highlightedFontColor: .luxeLightGray())
+            normalBackgroundColor = .luxeCobaltBlue()
+            highlightBackgroundColor = .luxeLightCobaltBlue()
+            backgroundColor = normalBackgroundColor
+            applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeWhite(), highlightedFontColor: nil)
             layer.borderWidth = 0
             addShadow()
             break
@@ -120,7 +140,7 @@ class VLButton : UIButton {
             break
         case .orangePrimary:
             backgroundColor = .white
-            applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeOrange(), highlightedFontColor: .luxeLightGray())
+            applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeOrange(), highlightedFontColor: nil)
             layer.borderWidth = 0
             addShadow()
             break
@@ -135,7 +155,9 @@ class VLButton : UIButton {
             layer.borderWidth = 0
             break
         case .blueSecondarySelected:
-            backgroundColor = UIColor.luxeCobaltBlue()
+            normalBackgroundColor = .luxeCobaltBlue()
+            highlightBackgroundColor = .luxeLightCobaltBlue()
+            backgroundColor = normalBackgroundColor
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: .white, highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             addShadow()
@@ -191,6 +213,7 @@ class VLButton : UIButton {
         self.layer.shadowOpacity = 0.33
         self.layer.shadowRadius = 2
         self.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        self.contentEdgeInsets = UIEdgeInsetsMake(4, 0, 0, 0)
     }
     
     override func layoutSubviews() {
