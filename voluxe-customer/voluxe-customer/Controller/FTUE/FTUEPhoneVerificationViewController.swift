@@ -15,7 +15,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     let codeLength = 4
     let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder)
     
-    let updatePhoneNumberButton = VLButton(type: .blueSecondary, title: .UpdatePhoneNumber, actionBlock: nil)
+    let updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.ChangePhoneNumber.uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
     var ftuePhoneType: FTUEPhoneType = .update
     
@@ -127,7 +127,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             
             isLoading = true
             
-            showProgressHUD()
+            self.showProgressHUD()
 
             CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
                 self.hideProgressHUD()
@@ -155,7 +155,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         
         if let customer = UserManager.sharedInstance.getCustomer(), customer.phoneNumberVerified {
-            showProgressHUD()
+            self.showProgressHUD()
 
             CustomerAPI().requestPasswordChange(customerId: customer.id).onSuccess { result in
                 self.hideProgressHUD()
@@ -173,7 +173,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         isLoading = true
         
-        showProgressHUD()
+        self.showProgressHUD()
 
         CustomerAPI().requestPhoneVerificationCode(customerId: customerId!).onSuccess { result in
             self.hideProgressHUD()
@@ -244,7 +244,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             
             isLoading = true
             
-            showProgressHUD()
+            self.showProgressHUD()
 
             // verify phone number
             CustomerAPI().verifyPhoneNumber(customerId: customerId!, verificationCode: codeTextField.textField.text!).onSuccess { result in

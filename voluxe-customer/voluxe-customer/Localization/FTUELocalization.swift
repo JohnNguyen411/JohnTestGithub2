@@ -53,7 +53,7 @@ extension String {
     static let AccountAlreadyExist = NSLocalizedString("AccountAlreadyExist")
     static let InvalidVerificationCode = NSLocalizedString("InvalidVerificationCode")
     static let InvalidCredentials = NSLocalizedString("InvalidCredentials")
-    static let UpdatePhoneNumber = NSLocalizedString("UpdatePhoneNumber")
+    static let ChangePhoneNumber = NSLocalizedString("ChangePhoneNumber")
     static let PhoneNumberAlreadyExist = NSLocalizedString("PhoneNumberAlreadyExist")
     static let PasswordResetLogin = NSLocalizedString("PasswordResetLogin")
 

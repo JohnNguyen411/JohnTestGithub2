@@ -264,6 +264,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     }
     
     override func goToNext() {
+        self.hideProgressHUD()
         self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
     }
 }

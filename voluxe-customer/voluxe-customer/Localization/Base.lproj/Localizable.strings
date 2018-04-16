@@ -73,7 +73,7 @@
 "AccountAlreadyExist" = "An account already exist with that email, please try Login instead.";
 "InvalidVerificationCode" = "Invalid Code.";
 "InvalidCredentials" = "The email or password provided is invalid.";
-"UpdatePhoneNumber" = "Update phone number";
+"ChangePhoneNumber" = "Change phone number";
 "PhoneNumberAlreadyExist" = "An account already exist with that phone number, please try Login instead.";
 "UpdatePassword" = "Update your password.";
 "ForgotPassword" = "Forgot password?";
