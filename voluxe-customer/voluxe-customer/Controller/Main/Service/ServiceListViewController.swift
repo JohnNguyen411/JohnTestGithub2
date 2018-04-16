@@ -36,7 +36,7 @@ class ServiceListViewController: BaseViewController {
         tableView.register(ServiceCell.self, forCellReuseIdentifier: ServiceCell.reuseId)
         tableView.isHidden = true
         
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        showProgressHUD()
         RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
             if let services = services?.data?.result {
                 if let realm = try? Realm() {
@@ -48,10 +48,10 @@ class ServiceListViewController: BaseViewController {
                     self.showServices(services: Array(filteredResults))
                 }
             }
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.hideProgressHUD()
             }.onFailure { error in
                 Logger.print(error)
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
         }
         
         self.navigationItem.title = self.title

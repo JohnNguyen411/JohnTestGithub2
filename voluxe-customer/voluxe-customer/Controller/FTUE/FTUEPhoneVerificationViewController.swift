@@ -127,17 +127,17 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             
             isLoading = true
             
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            
+            showProgressHUD()
+
             CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
                 if result?.error != nil {
                     self.showOkDialog(title: .Error, message: .GenericError)
                 }
                 self.isLoading = false
                 self.codeTextField.textField.text = ""
                 }.onFailure { error in
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError)
                     self.isLoading = false
             }
@@ -155,16 +155,16 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         
         if let customer = UserManager.sharedInstance.getCustomer(), customer.phoneNumberVerified {
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            
+            showProgressHUD()
+
             CustomerAPI().requestPasswordChange(customerId: customer.id).onSuccess { result in
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
                 if result?.error != nil {
                     self.showOkDialog(title: .Error, message: .GenericError)
                 }
                 self.isLoading = false
                 }.onFailure { error in
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError)
                     self.isLoading = false
             }
@@ -173,16 +173,16 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         isLoading = true
         
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        
+        showProgressHUD()
+
         CustomerAPI().requestPhoneVerificationCode(customerId: customerId!).onSuccess { result in
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.hideProgressHUD()
             if result?.error != nil {
                 self.showOkDialog(title: .Error, message: .GenericError)
             }
             self.isLoading = false
         }.onFailure { error in
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.hideProgressHUD()
             self.showOkDialog(title: .Error, message: .GenericError)
             self.isLoading = false
         }
@@ -244,11 +244,11 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             
             isLoading = true
             
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            
+            showProgressHUD()
+
             // verify phone number
             CustomerAPI().verifyPhoneNumber(customerId: customerId!, verificationCode: codeTextField.textField.text!).onSuccess { result in
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
                 if result?.error != nil {
                     self.showOkDialog(title: .Error, message: .GenericError)
                 } else {
@@ -257,7 +257,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 
                 self.isLoading = false
                 }.onFailure { error in
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError)
                     self.isLoading = false
             }

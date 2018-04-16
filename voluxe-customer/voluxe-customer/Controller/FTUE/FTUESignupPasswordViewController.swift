@@ -154,9 +154,9 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         }
         signupInProgress = loading
         if loading {
-            MBProgressHUD.showAdded(to: self.view, animated: true)
+            showProgressHUD()
         } else {
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.hideProgressHUD()
         }
     }
     

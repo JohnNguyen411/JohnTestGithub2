@@ -132,7 +132,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     }
     
     func resetPassword() {
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        showProgressHUD()
         if let customerId = UserManager.sharedInstance.getCustomerId() {
             CustomerAPI().requestPasswordChange(customerId: customerId).onSuccess { response in
                 if let _ = response?.error {
@@ -142,10 +142,10 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
                     FTUEStartViewController.flowType = .signup
                     self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
                 }
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
                 }.onFailure { error in
                     self.showOkDialog(title: .Error, message: .GenericError)
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.hideProgressHUD()
             }
         }
     }

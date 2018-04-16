@@ -159,7 +159,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     override func onLocationSelected(customerAddress: CustomerAddress) {
         // need to check that location is within range
         currentPresentrVC?.dismiss(animated: true, completion: {
-            self.showBlockingLoading()
+            self.showProgressHUD()
         })
         
         if dropoffScheduleState.rawValue < ScheduleDropoffState.location.rawValue {
@@ -172,7 +172,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
             
             self.fetchDealershipsForLocation(location: customerAddress.location?.getLocation(), completion: { error in
                 // hide loader
-                self.hideBlockingLoading()
+                self.hideProgressHUD()
                 var bookingDealership = RequestedServiceManager.sharedInstance.getDealership()
                 if bookingDealership == nil {
                     if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: self.vehicle) {
@@ -256,7 +256,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     }
     
     private func manageNewDropoffRequest(dropOffRequest: Request, booking: Booking) {
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        showProgressHUD()
 
         if let realm = self.realm {
             try? realm.write {
@@ -281,7 +281,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
         RequestedServiceManager.sharedInstance.reset()
         appDelegate?.showVehiclesView(animated: false)
         
-        MBProgressHUD.hide(for: self.view, animated: true)
+        hideProgressHUD()
 
     }
     

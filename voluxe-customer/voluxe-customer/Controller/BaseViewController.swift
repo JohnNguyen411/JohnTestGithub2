@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 class BaseViewController: UIViewController, PresentrDelegate {
     
@@ -21,8 +22,6 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     var keyboardShowing = false
     var keyboardHeight: CGFloat = 0
-    
-    let blockingLoadingView = UIAlertController(title: nil, message: "", preferredStyle: .alert)
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -56,20 +55,6 @@ class BaseViewController: UIViewController, PresentrDelegate {
     }
     
     func styleViews() {
-        
-        blockingLoadingView.view.tintColor = UIColor.black
-        let loadingIndicator = UIActivityIndicatorView(frame: .zero) as UIActivityIndicatorView
-        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-        loadingIndicator.color = .luxeCobaltBlue()
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.startAnimating()
-        
-        blockingLoadingView.view.addSubview(loadingIndicator)
-        
-        loadingIndicator.snp.makeConstraints{ make in
-            make.center.equalToSuperview()
-            make.width.height.equalTo(100)
-        }
         
         self.view.backgroundColor = .white
         setGradientBackground()
@@ -127,21 +112,6 @@ class BaseViewController: UIViewController, PresentrDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    func showBlockingLoading() {
-        self.blockingLoadingView.view.alpha = 0
-        present(blockingLoadingView, animated: false, completion: {
-            self.blockingLoadingView.view.snp.remakeConstraints { make in
-                make.width.height.equalTo(150)
-                make.center.equalToSuperview()
-            }
-            self.blockingLoadingView.view.animateAlpha(show: true)
-        })
-    }
-    
-    func hideBlockingLoading() {
-        blockingLoadingView.dismiss(animated: true, completion: nil)
     }
     
     //MARK: PresentR
@@ -271,6 +241,21 @@ extension UIViewController {
         
         alert.addAction(button)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func getViewForHUD() -> UIView {
+        if let navigationController = self.navigationController {
+           return navigationController.view
+        }
+        return self.view
+    }
+    
+    func showProgressHUD() {
+        MBProgressHUD.showAdded(to: getViewForHUD(), animated: true)
+    }
+    
+    func hideProgressHUD() {
+        MBProgressHUD.hide(for: getViewForHUD(), animated: true)
     }
     
 }

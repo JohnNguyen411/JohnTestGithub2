@@ -152,17 +152,17 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         if ftuePhoneType == .resetPassword {
             isLoading = true
             
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            
+            showProgressHUD()
+
             CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
                 if result?.error != nil {
                     self.showOkDialog(title: .Error, message: .GenericError)
                 }
                 self.isLoading = false
                 self.goToNext()
                 }.onFailure { error in
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError)
                     self.isLoading = false
             }
@@ -180,17 +180,17 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         
         isLoading = true
         
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        
+        showProgressHUD()
+
         CustomerAPI().updatePhoneNumber(customerId: customerId!, phoneNumber: phoneNumber).onSuccess { result in
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.hideProgressHUD()
             if result?.error != nil {
                 self.showOkDialog(title: .Error, message: .GenericError)
             }
             self.isLoading = false
             self.goToNext()
             }.onFailure { error in
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
                 self.showOkDialog(title: .Error, message: .GenericError)
                 self.isLoading = false
         }

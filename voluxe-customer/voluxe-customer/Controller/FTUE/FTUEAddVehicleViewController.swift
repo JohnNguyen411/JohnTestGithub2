@@ -58,15 +58,15 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         
         canGoNext(nextEnabled: false)
         
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        
+        showProgressHUD()
+
         VehicleAPI().vehicleModels(makeId: nil).onSuccess { result in
             if let vehicles = result?.data?.result {
                 self.models = vehicles
             }
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.hideProgressHUD()
             }.onFailure { error in
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
             }
     }
     
@@ -191,7 +191,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
             }.onFailure { error in
                 self.callVehicle(customerId: customerId)
             }
-            MBProgressHUD.showAdded(to: self.view, animated: true)
+            showProgressHUD()
         }
     }
     
@@ -222,11 +222,11 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
                     self.appDelegate?.loadMainScreen()
                 }
             }
-            MBProgressHUD.hide(for: self.view, animated: true)
-            
+            self.hideProgressHUD()
+
             }.onFailure { error in
                 // todo show error
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
         }
     }
     

@@ -93,7 +93,7 @@ class SchedulingPickupViewController: SchedulingViewController {
     override func onLocationSelected(customerAddress: CustomerAddress) {
         
         currentPresentrVC?.dismiss(animated: true, completion: {
-            self.showBlockingLoading()
+            self.showProgressHUD()
         })
         
         var openNext = false
@@ -109,7 +109,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             
             self.fetchDealershipsForLocation(location: customerAddress.location?.getLocation(), completion: { error in
                 // hide loader
-                self.hideBlockingLoading()
+                self.hideProgressHUD()
                 if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
                     self.pickupLocationView.hideError()
                     self.dealershipView.descLeftLabel.text = dealership.name
@@ -331,7 +331,7 @@ class SchedulingPickupViewController: SchedulingViewController {
     }
     
     private func refreshFinalBooking(customerId: Int, bookingId: Int) {
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        showProgressHUD()
         
         BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
             if let booking = result?.data?.result {
@@ -348,11 +348,11 @@ class SchedulingPickupViewController: SchedulingViewController {
             RequestedServiceManager.sharedInstance.reset()
             self.appDelegate?.showVehiclesView(animated: false)
             
-            MBProgressHUD.hide(for: self.view, animated: true)
-            
+            self.hideProgressHUD()
+
             }.onFailure { error in
                 // retry
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
                 self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 })
