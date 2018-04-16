@@ -37,13 +37,13 @@ class VLVerticalTextField : VLTextField {
         
         textField.textAlignment = .left
         titleLabel.textAlignment = .left
-        textField.textColor = .luxeCobaltBlue()
+        
         titleLabel.textColor = .luxeCobaltBlue()
-        textField.tintColor = .luxeCobaltBlue()
-        textField.font = .volvoSansLight(size: 18)
+        
+        textField.font = .volvoSansProMedium(size: 16)
         titleLabel.font = .volvoSansLightBold(size: 12)
         
-        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedStringKey.font: UIFont.volvoSansLight(size: 18), NSAttributedStringKey.foregroundColor: UIColor.luxeLightGray()])
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedStringKey.font: UIFont.volvoSansProMedium(size: 16), NSAttributedStringKey.foregroundColor: UIColor.luxeLightGray()])
 
     }
     

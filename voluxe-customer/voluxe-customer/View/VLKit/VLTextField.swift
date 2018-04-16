@@ -60,9 +60,8 @@ class VLTextField : UIView {
         } else {
             textField = UITextField()
         }
-        
-        textField.textColor = ColorDefinitions.lightGray
-        textField.font = Fonts.FONT_B2
+        textField.font = .volvoSansProMedium(size: 16)
+        textField.textColor = .luxeDarkGray()
         textField.textAlignment = .right
         
         self.title = title
