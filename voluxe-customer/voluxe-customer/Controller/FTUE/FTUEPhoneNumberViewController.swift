@@ -78,7 +78,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width-40, height: CGFloat(MAXFLOAT)))
 
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalToSuperview().offset(80)
+            make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(sizeThatFits)

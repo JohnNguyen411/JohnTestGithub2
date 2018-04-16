@@ -89,7 +89,6 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(30)
         }
         
         passwordConditionLabel.snp.makeConstraints { (make) -> Void in

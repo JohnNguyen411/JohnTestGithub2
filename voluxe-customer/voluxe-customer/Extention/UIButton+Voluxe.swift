@@ -11,8 +11,10 @@ import Foundation
 extension UIButton {
     
     func addCharacterSpacing(kernValue: Float) {
-        let attributedText =  NSAttributedString(string: self.titleLabel!.text!, attributes: [NSAttributedStringKey.kern:kernValue, NSAttributedStringKey.font:self.titleLabel!.font, NSAttributedStringKey.foregroundColor:self.titleLabel!.textColor])
-        self.setAttributedTitle(attributedText, for: UIControlState.normal)
+        if let titleLabel = self.titleLabel, let text = titleLabel.text {
+            let attributedText =  NSAttributedString(string: text, attributes: [NSAttributedStringKey.kern:kernValue, NSAttributedStringKey.font:titleLabel.font, NSAttributedStringKey.foregroundColor: titleLabel.textColor])
+            self.setAttributedTitle(attributedText, for: UIControlState.normal)
+        }
         
     }
     

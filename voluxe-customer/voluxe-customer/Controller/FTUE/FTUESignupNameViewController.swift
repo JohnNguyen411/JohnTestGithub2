@@ -58,12 +58,11 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
             make.left.equalToSuperview().offset(20)
             make.top.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(80)
         }
         
         firstNameTextField.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(welcomeLabel)
-            make.top.equalTo(welcomeLabel.snp.bottom).offset(10)
+            make.top.equalTo(welcomeLabel.snp.bottom).offset(20)
             make.height.equalTo(80)
         }
         

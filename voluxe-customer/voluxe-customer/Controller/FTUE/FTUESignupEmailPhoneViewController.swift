@@ -87,13 +87,12 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
             make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(80)
         }
         
         emailTextField.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.top.equalTo(phoneNumberLabel.snp.bottom).offset(15)
+            make.top.equalTo(phoneNumberLabel.snp.bottom).offset(20)
             make.height.equalTo(VLVerticalTextField.height)
         }
         
