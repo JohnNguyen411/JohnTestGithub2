@@ -29,7 +29,7 @@ extension UILabel {
     }
     
     static func uppercasedKern() -> Float {
-        return 1.6
+        return 1.3
     }
     
     static func defaultKern() -> Float {

@@ -30,6 +30,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
             self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .resetPassword), animated: true)
         })
         
+        passwordTextField.rightLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         
         emailTextField.textField.autocorrectionType = .no
         passwordTextField.textField.autocorrectionType = .no

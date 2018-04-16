@@ -66,9 +66,9 @@ class VLVerticalTextField : VLTextField {
         
         rightLabel.snp.makeConstraints { (make) -> Void in
             make.right.equalToSuperview()
-            make.top.equalTo(textField.snp.top)
+            make.bottom.equalTo(textField.snp.bottom)
             make.height.equalTo(20)
-            make.width.equalTo(sizeThatFits.width)
+            make.width.equalTo(sizeThatFits.width+20)
         }
         
         if let actionBlock = actionBlock {
