@@ -13,7 +13,7 @@ import MBProgressHUD
 class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let codeLength = 4
-    let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder)
+    let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder, kern: 4.0)
     
     let updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.ChangePhoneNumber.uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
@@ -104,7 +104,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         updatePhoneNumberButton.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.top.equalTo(codeTextField.snp.bottom).offset(20)
+            make.top.equalTo(codeTextField.snp.bottom).offset(15)
             make.height.equalTo(20)
         }
         

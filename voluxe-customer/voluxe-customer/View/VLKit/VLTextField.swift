@@ -49,11 +49,11 @@ class VLTextField : UIView {
     
     var leftPlaceholderConstraint: Constraint?
     
-    convenience init(title: String, placeholder: String) {
+    convenience init(title: String, placeholder: String, kern: Float? = nil) {
         self.init(title: title, placeholder: placeholder, isPhoneNumber: false)
     }
     
-    init(title:String, placeholder:String, isPhoneNumber: Bool) {
+    init(title:String, placeholder:String, isPhoneNumber: Bool, kern: Float? = nil) {
         
         if isPhoneNumber {
             textField = PhoneNumberTextField()
@@ -64,6 +64,10 @@ class VLTextField : UIView {
         textField.textColor = .luxeDarkGray()
         textField.textAlignment = .right
         
+        if let kern = kern {
+            textField.defaultTextAttributes
+                .updateValue(kern, forKey: NSAttributedStringKey.kern.rawValue)
+        }
         self.title = title
         
         //make the tap area huge for selecting the textField

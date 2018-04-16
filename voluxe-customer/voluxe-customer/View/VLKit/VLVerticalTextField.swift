@@ -24,13 +24,13 @@ class VLVerticalTextField : VLTextField {
         return textView
     }()
     
-    convenience init(title: String, placeholder: String) {
-        self.init(title: title, placeholder: placeholder, isPhoneNumber: false)
+    convenience init(title: String, placeholder: String, kern: Float? = nil) {
+        self.init(title: title, placeholder: placeholder, isPhoneNumber: false, kern: kern)
     }
     
     // MARK: Initializers
-    override init(title:String, placeholder:String, isPhoneNumber: Bool) {
-        super.init(title: title, placeholder: placeholder, isPhoneNumber: isPhoneNumber)
+    override init(title:String, placeholder:String, isPhoneNumber: Bool, kern: Float? = nil) {
+        super.init(title: title, placeholder: placeholder, isPhoneNumber: isPhoneNumber, kern: kern)
         
         backgroundColor = .clear
         textField.placeholder = nil
@@ -43,7 +43,15 @@ class VLVerticalTextField : VLTextField {
         textField.font = .volvoSansProMedium(size: 16)
         titleLabel.font = .volvoSansLightBold(size: 12)
         
-        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedStringKey.font: UIFont.volvoSansProMedium(size: 16), NSAttributedStringKey.foregroundColor: UIColor.luxeLightGray()])
+        var placeholderAttributes: [NSAttributedStringKey : Any] = [NSAttributedStringKey.font: UIFont.volvoSansProMedium(size: 16), NSAttributedStringKey.foregroundColor: UIColor.luxeLightGray()]
+        
+        if let kern = kern {
+            placeholderAttributes[NSAttributedStringKey.kern] = kern
+            textField.defaultTextAttributes
+                .updateValue(kern, forKey: NSAttributedStringKey.kern.rawValue)
+        }
+        
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: placeholderAttributes)
 
     }
     
