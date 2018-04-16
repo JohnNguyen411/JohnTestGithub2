@@ -64,7 +64,7 @@ class FTUEStartViewController: BaseViewController {
             //signup
             UserManager.sharedInstance.signupCustomer = SignupCustomer()
             FTUEStartViewController.flowType = .signup
-            self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
+            self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
         }
         
     }

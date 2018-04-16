@@ -33,8 +33,8 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         return textView
     }()
     
-    let volvoPwdTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••")
-    let volvoPwdConfirmTextField = VLVerticalTextField(title: .RepeatPassword, placeholder: "••••••••")
+    let volvoPwdTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••", kern: 4.0)
+    let volvoPwdConfirmTextField = VLVerticalTextField(title: .RepeatPassword, placeholder: "••••••••", kern: 4.0)
     
     var signupInProgress = false
     var realm : Realm?
