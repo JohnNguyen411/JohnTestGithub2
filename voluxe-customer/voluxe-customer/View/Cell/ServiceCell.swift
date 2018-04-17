@@ -43,7 +43,8 @@ class ServiceCell: UITableViewCell {
     
     private func setupViews() {
         serviceLabel.snp.makeConstraints { make in
-            make.top.bottom.right.equalToSuperview()
+            make.centerY.equalToSuperview().offset(2)
+            make.bottom.right.equalToSuperview()
             make.left.equalToSuperview().offset(20)
         }
         

@@ -23,7 +23,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     let introLabelBold: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .SelectAllThatApply
-        textView.font = .volvoSansBold(size: 12)
+        textView.font = .volvoSansProMedium(size: 12)
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
@@ -70,7 +70,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
 
         
-        showServices(services: ["Exterior Body", "Doors or cabin interior", "Steering wheel or Dashboard", "Tires, wheels, or brakes", "Engine or transmission", "Battery, lights, AC, or electrical", "Something under the hood", "Other", "I don't know"])
+        showServices(services: [.VehicleExt, .VehicleInt, .UnderTheHood, .IDontKnow])
         
         confirmButton.setActionBlock {
             guard let services = self.services else {

@@ -182,6 +182,10 @@
 "TypeDescriptionHere" = "Type description here";
 "AddDescription" = "Add Description";
 "DiagnosticAndService" = "Diagnostic and service";
+"VehicleExt" = "Vehicle Exterior";
+"VehicleInt" = "Vehicle Interior";
+"UnderTheHood" = "Under the hood";
+"IDontKnow" = "I don't know";
 "FactoryScheduledMaintenance" = "Factory Scheduled Maintenance";
 
 /***************** Settings ***************/

@@ -40,12 +40,13 @@ class CheckableTableViewCell: UITableViewCell {
         self.addSubview(separator)
         
         self.checkView.snp.makeConstraints { make in
-            make.left.centerY.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
             make.width.height.equalTo(20)
         }
         
         self.label.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(2)
             make.left.equalTo(self.checkView.snp.right).offset(20)
         }
         

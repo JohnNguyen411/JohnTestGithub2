@@ -29,4 +29,8 @@ extension String {
     static let AddDescription = NSLocalizedString("AddDescription")
     static let DiagnosticAndService = NSLocalizedString("DiagnosticAndService")
     static let FactoryScheduledMaintenance = NSLocalizedString("FactoryScheduledMaintenance")
+    static let VehicleExt = NSLocalizedString("VehicleExt")
+    static let VehicleInt = NSLocalizedString("VehicleInt")
+    static let UnderTheHood = NSLocalizedString("UnderTheHood")
+    static let IDontKnow = NSLocalizedString("IDontKnow")
 }
