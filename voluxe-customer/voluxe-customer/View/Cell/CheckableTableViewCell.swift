@@ -50,7 +50,7 @@ class CheckableTableViewCell: UITableViewCell {
         }
         
         separator.snp.makeConstraints { make in
-            make.bottom.right.equalToSuperview()
+            make.top.right.equalToSuperview()
             make.left.equalTo(checkView)
             make.height.equalTo(1)
         }

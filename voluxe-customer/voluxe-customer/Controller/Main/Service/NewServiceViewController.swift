@@ -70,12 +70,8 @@ class NewServiceViewController: BaseViewController {
     override func setupViews() {
         super.setupViews()
         
-        let separator = UIView(frame: .zero)
-        separator.backgroundColor = .luxeLightGray()
-        
         self.view.addSubview(introLabel)
         self.view.addSubview(tableView)
-        self.view.addSubview(separator)
 
         let labelHeight = introLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
 
@@ -88,15 +84,13 @@ class NewServiceViewController: BaseViewController {
         tableView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(introLabel.snp.bottom).offset(40)
-            make.height.equalTo(ServiceCell.height*2)
+            make.height.equalTo(ServiceCell.height*2+1)
         }
         
-        separator.snp.makeConstraints { make in
-            make.right.top.equalTo(tableView)
-            make.left.equalToSuperview().offset(20)
-            make.height.equalTo(1)
-        }
+        let separator = UIView(frame: CGRect(x: 20, y: 0, width: self.view.frame.width-20, height: 1))
+        separator.backgroundColor = .luxeLightGray()
         
+        self.tableView.tableFooterView = separator
     }
     
     private func showServices(repairOrderTypes: [String]) {

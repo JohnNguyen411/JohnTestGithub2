@@ -60,7 +60,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         tableView.tableHeaderView = UIView(frame: .zero)
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.separatorStyle = .none
-
+        
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         } else {
@@ -99,10 +99,6 @@ class ServiceMultiselectListViewController: BaseViewController {
         containerView.addSubview(tableView)
         containerView.addSubview(confirmButton)
         
-        let separator = UIView(frame: .zero)
-        separator.backgroundColor = .luxeLightGray()
-        containerView.addSubview(separator)
-        
         let labelHeight = introLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
         
         containerView.snp.makeConstraints { make in
@@ -134,11 +130,10 @@ class ServiceMultiselectListViewController: BaseViewController {
             make.bottom.equalTo(confirmButton.snp.top).offset(-20)
         }
         
-        separator.snp.makeConstraints { make in
-            make.right.top.equalTo(tableView)
-            make.left.equalToSuperview().offset(20)
-            make.height.equalTo(1)
-        }
+        let separator = UIView(frame: CGRect(x: 20, y: 0, width: self.view.frame.width-20, height: 1))
+        separator.backgroundColor = .luxeLightGray()
+        
+        self.tableView.tableFooterView = separator
         
     }
     

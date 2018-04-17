@@ -63,20 +63,16 @@ class ServiceListViewController: BaseViewController {
         super.setupViews()
         self.view.addSubview(tableView)
         
-        let separator = UIView(frame: .zero)
-        separator.backgroundColor = .luxeLightGray()
-        self.view.addSubview(separator)
-
         tableView.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
             make.top.equalToSuperview().offset(20)
         }
         
-        separator.snp.makeConstraints { make in
-            make.right.top.equalTo(tableView)
-            make.left.equalToSuperview().offset(20)
-            make.height.equalTo(1)
-        }
+        let separator = UIView(frame: CGRect(x: 20, y: 0, width: self.view.frame.width-20, height: 1))
+        separator.backgroundColor = .luxeLightGray()
+        
+        self.tableView.tableFooterView = separator
+        
     }
     
     private func showServices(services: [RepairOrderType]) {
@@ -90,7 +86,7 @@ class ServiceListViewController: BaseViewController {
             tableView.snp.remakeConstraints { make in
                 make.left.right.equalToSuperview()
                 make.top.equalToSuperview().offset(20)
-                make.height.equalTo(servicesHeight)
+                make.height.equalTo(servicesHeight+1)
             }
         }
         

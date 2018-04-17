@@ -48,7 +48,7 @@ class ServiceCell: UITableViewCell {
         }
         
         separator.snp.makeConstraints { make in
-            make.bottom.right.equalToSuperview()
+            make.top.right.equalToSuperview()
             make.left.equalTo(serviceLabel)
             make.height.equalTo(1)
         }
