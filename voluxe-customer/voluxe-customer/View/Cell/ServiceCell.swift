@@ -31,6 +31,7 @@ class ServiceCell: UITableViewCell {
         
         self.backgroundColor = .clear
         self.accessoryType = .disclosureIndicator
+        self.tintColor = .luxeCobaltBlue()
         self.contentView.addSubview(serviceLabel)
         self.addSubview(separator)
         setupViews()

@@ -34,6 +34,8 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         let descriptionTextView = UITextView(frame: .zero)
         descriptionTextView.font = .volvoSansLight(size: 18)
         descriptionTextView.isScrollEnabled = false
+        descriptionTextView.text = .TypeDescriptionHere
+        descriptionTextView.textColor = .luxeLightGray()
         return descriptionTextView
     }()
     
@@ -86,10 +88,12 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         tableView.delegate = self
         tableView.register(ServiceCell.self, forCellReuseIdentifier: ServiceCell.reuseId)
         tableView.isScrollEnabled = false
+        tableView.separatorStyle = .none
         
         scrollView.keyboardDismissMode = .onDrag
         
-        descriptionTextView.textContainer.maximumNumberOfLines = 10
+        descriptionTextView.textContainer.maximumNumberOfLines = 8
+        descriptionTextView.textContainer.lineBreakMode = .byTruncatingTail
         descriptionTextView.delegate = self
         
         confirmButton.setActionBlock {
@@ -138,7 +142,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         var labelHeight = volvoDrivableLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
         
         volvoDrivableLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(30)
+            make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(labelHeight)
@@ -147,21 +151,27 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         tableView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(volvoDrivableLabel.snp.bottom).offset(20)
-            make.height.equalTo( Int(ServiceCell.height) * drivability.count)
+            make.height.equalTo( Int(ServiceCell.height) * drivability.count + 1)
         }
+        
+        let tableViewSeparator = UIView(frame: CGRect(x: 20, y: 0, width: self.view.frame.width-20, height: 1))
+        tableViewSeparator.backgroundColor = .luxeLightGray()
+        
+        self.tableView.tableFooterView = tableViewSeparator
         
         labelHeight = descriptionLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
         
         descriptionLabel.snp.makeConstraints { make in
             make.left.right.equalTo(volvoDrivableLabel)
-            make.top.equalTo(tableView.snp.bottom).offset(30)
+            make.top.equalTo(tableView.snp.bottom).offset(40)
             make.height.equalTo(labelHeight)
         }
         
         descriptionTextView.snp.makeConstraints { make in
-            make.left.right.equalTo(volvoDrivableLabel)
-            make.top.equalTo(descriptionLabel.snp.bottom).offset(20)
-            make.height.equalTo(30)
+            make.left.equalToSuperview().offset(15)
+            make.right.equalToSuperview().offset(-15)
+            make.top.equalTo(descriptionLabel.snp.bottom).offset(15)
+            make.height.equalTo(35)
         }
         
         separator.snp.makeConstraints { make in
@@ -224,10 +234,14 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     }
     
     func textViewDidBeginEditing(_ textView: UITextView) {
-        let offset = CGPoint(x: 0, y: descriptionLabel.frame.origin.y)
+        let offset = CGPoint(x: 0, y: descriptionLabel.frame.origin.y - 10)
         scrollView.setContentOffset(offset, animated: true)
         if let scrollViewSize = scrollViewSize {
             scrollView.contentSize = CGSize(width: scrollViewSize.width, height: scrollViewSize.height + 2)
+        }
+        if textView.textColor == .luxeLightGray() {
+            textView.text = nil
+            textView.textColor = .luxeDarkGray()
         }
     }
     
@@ -237,7 +251,11 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             scrollView.contentSize = scrollViewSize
         }
         scrollView.setContentOffset(offset, animated: true)
-
+        
+        if textView.text.isEmpty {
+            textView.text = .TypeDescriptionHere
+            textView.textColor = .luxeLightGray()
+        }
     }
 
     
