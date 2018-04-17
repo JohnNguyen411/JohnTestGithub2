@@ -103,6 +103,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     func showPickupLocationModal(dismissOnTap: Bool) {
         let locationVC = AddLocationViewController(title: .AddNewLocation, buttonTitle: .Add)
         locationVC.pickupLocationDelegate = self
+        locationVC.presentrDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
         currentPresentrVC = locationVC
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
@@ -148,6 +149,13 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
                     self.hideProgressHUD()
             }
         }
+    }
+    
+    override func presentrShouldDismiss(keyboardShowing: Bool) -> Bool {
+        if let locationVC = currentPresentrVC as? AddLocationViewController {
+            locationVC.newLocationTextField.closeAutocomplete()
+        }
+        return super.presentrShouldDismiss(keyboardShowing: keyboardShowing)
     }
     
 }
