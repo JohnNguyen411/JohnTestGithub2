@@ -14,6 +14,11 @@ extension UIButton {
         if let titleLabel = self.titleLabel, let text = titleLabel.text {
             let attributedText =  NSAttributedString(string: text, attributes: [NSAttributedStringKey.kern:kernValue, NSAttributedStringKey.font:titleLabel.font, NSAttributedStringKey.foregroundColor: titleLabel.textColor])
             self.setAttributedTitle(attributedText, for: UIControlState.normal)
+            
+            if let highlightedTextColor = self.titleColor(for: .highlighted) {
+                let highlightedAttributedText =  NSAttributedString(string: text, attributes: [NSAttributedStringKey.kern:kernValue, NSAttributedStringKey.font:titleLabel.font, NSAttributedStringKey.foregroundColor: highlightedTextColor])
+                self.setAttributedTitle(highlightedAttributedText, for: UIControlState.highlighted)
+            }
         }
         
     }

@@ -15,6 +15,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
     let passwordTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••")
+    let forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
     var loginInProgress = false
     var realm : Realm?
@@ -26,11 +27,10 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         emailTextField.accessibilityIdentifier = "volvoIdTextField"
         passwordTextField.accessibilityIdentifier = "volvoPwdTextField"
-        passwordTextField.setRightButtonText(rightButtonText: String.ForgotPassword.uppercased(), actionBlock: {
-            self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .resetPassword), animated: true)
-        })
         
-        passwordTextField.rightLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        forgotPassword.setActionBlock {
+            self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .resetPassword), animated: true)
+        }
         
         emailTextField.textField.autocorrectionType = .no
         passwordTextField.textField.autocorrectionType = .no
@@ -57,10 +57,11 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         self.view.addSubview(emailTextField)
         self.view.addSubview(passwordTextField)
+        self.view.addSubview(forgotPassword)
         
         emailTextField.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(20)
-            make.top.equalToSuperview().offset(80)
+            make.top.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(80)
         }
@@ -69,6 +70,12 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
             make.left.right.equalTo(emailTextField)
             make.top.equalTo(emailTextField.snp.bottom)
             make.height.equalTo(80)
+        }
+        
+        forgotPassword.snp.makeConstraints { (make) -> Void in
+            make.right.equalTo(passwordTextField)
+            make.centerY.equalTo(passwordTextField.snp.centerY)
+            make.height.equalTo(20)
         }
     }
     
