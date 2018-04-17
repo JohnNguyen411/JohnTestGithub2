@@ -16,7 +16,7 @@ class ServiceCell: UITableViewCell {
     let serviceLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.volvoSansBold(size: 16)
-        label.textColor = .black
+        label.textColor = .luxeDarkGray()
         return label
     }()
     

@@ -71,7 +71,7 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
             settingLabel.font = UIFont.volvoSansLightBold(size: 15)
         } else {
             settingLabel.addCharacterSpacing(kernValue: UILabel.defaultKern())
-            settingLabel.textColor = .black
+            settingLabel.textColor = .luxeDarkGray()
             settingLabel.font = UIFont.volvoSansLightBold(size: 18)
         }
         
