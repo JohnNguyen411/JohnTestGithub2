@@ -247,6 +247,27 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    func showDestructiveDialog(title: String, message: String, cancelButtonTitle: String, destructiveButtonTitle: String, destructiveCompletion: @escaping (() -> Swift.Void)) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        
+        // Submit button
+        let backAction = UIAlertAction(title: cancelButtonTitle, style: .default, handler: { (action) -> Void in
+            alert.dismiss(animated: true, completion: nil)
+        })
+        
+        // Delete button
+        let deleteAction = UIAlertAction(title: destructiveButtonTitle, style: .destructive, handler: { (action) -> Void in
+            alert.dismiss(animated: true, completion: nil)
+            destructiveCompletion()
+        })
+        
+        alert.addAction(backAction)
+        alert.addAction(deleteAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     private func getViewForHUD() -> UIView {
         if let navigationController = self.navigationController {
            return navigationController.view

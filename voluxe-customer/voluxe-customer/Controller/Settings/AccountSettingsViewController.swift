@@ -282,13 +282,10 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     func onEditClicked(_ cell: UITableViewCell) {
         if let indexPath = tableView.indexPath(for: cell) {
             if indexPath.section == 0 {
-                if let realm = self.realm, let addresses = self.addresses {
-                    try? realm.write {
-                        realm.delete(addresses[indexPath.row])
-                        self.addressesCount = addresses.count
-                    }
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-                }
+                self.showDestructiveDialog(title: .Confirm, message: String(format: .AreYouSureDeleteAddress, self.getTextForIndexPath(indexPath: indexPath)), cancelButtonTitle: .Cancel, destructiveButtonTitle: .Delete, destructiveCompletion: {
+                    self.deleteAddressAtIndexPath(indexPath)
+                })
+                
             } else if indexPath.section == 2 {
                 // pwd
                 self.resetPassword()
@@ -299,6 +296,16 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         }
     }
     
+    
+    private func deleteAddressAtIndexPath(_ indexPath: IndexPath) {
+        if let realm = self.realm, let addresses = self.addresses {
+            try? realm.write {
+                realm.delete(addresses[indexPath.row])
+                self.addressesCount = addresses.count
+            }
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
     
     
 }

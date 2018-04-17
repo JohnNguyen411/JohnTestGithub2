@@ -30,6 +30,8 @@
 "Map" = "Map";
 "Retry" = "Retry";
 "Success" = "Success";
+"Confirm" = "Confirm";
+"Delete" = "Delete";
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
@@ -79,6 +81,7 @@
 "ForgotPassword" = "Forgot password?";
 "PasswordResetLogin" = "Password successfully reset, please proceed to login.";
 "PasswordUnauthorizedChars" = "Your password contains unauthorized characters. Authorized characters: @$!%*?&.";
+"AreYouSureDeleteAddress" = "Are you sure you want to delete that address %@?";
 
 
 /***************** SchedulePickup ***************/

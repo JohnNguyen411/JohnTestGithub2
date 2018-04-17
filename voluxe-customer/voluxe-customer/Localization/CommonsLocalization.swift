@@ -32,5 +32,6 @@ extension String {
     static let Map = NSLocalizedString("Map")
     static let Retry = NSLocalizedString("Retry")
     static let Success = NSLocalizedString("Success")
-
+    static let Confirm = NSLocalizedString("Confirm")
+    static let Delete = NSLocalizedString("Delete")
 }
