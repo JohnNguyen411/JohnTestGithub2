@@ -222,11 +222,15 @@ extension UIViewController {
         return Swift.min(statusBarSize.width, statusBarSize.height)
     }
     
-    func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil) {
-        showDialog(title: title, message: message, buttonTitle: .Ok, completion: completion)
+    func showOkDialog(title: String, message: String) {
+        showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: nil)
     }
     
-    func showDialog(title: String, message: String, buttonTitle: String? = nil, completion: (() -> Swift.Void)? = nil) {
+    func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil) {
+        showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: completion)
+    }
+    
+    func showDialog(title: String, message: String, buttonTitle: String, completion: (() -> Swift.Void)? = nil) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)

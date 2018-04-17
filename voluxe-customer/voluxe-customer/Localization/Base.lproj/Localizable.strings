@@ -78,6 +78,8 @@
 "UpdatePassword" = "Update your password.";
 "ForgotPassword" = "Forgot password?";
 "PasswordResetLogin" = "Password successfully reset, please proceed to login.";
+"PasswordUnauthorizedChars" = "Your password contains unauthorized characters. Authorized characters: @$!%*?&.";
+
 
 /***************** SchedulePickup ***************/
 "ScheduleService" = "Schedule Service";

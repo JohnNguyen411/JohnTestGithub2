@@ -122,10 +122,18 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         if password.isEmpty || password.count < 8 {
             return false
         }
-        
+        //Matches
         return password.containsNumber() && password.containsLetter()
+        
     }
     
+    private func containsUnauthorizedChars(password: String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: "^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9@$!%*?&]{8,60}")
+        let range = NSMakeRange(0, password.utf16.count)
+        let matchRange = regex.rangeOfFirstMatch(in: password, options: .reportProgress, range: range)
+        let valid = matchRange == range
+        return !valid
+    }
     
     override func checkTextFieldsValidity() -> Bool {
         let enabled = isPasswordValid(password: volvoPwdTextField.textField.text) && isPasswordValid(password: volvoPwdConfirmTextField.textField.text) && String.areSimilar(stringOne: volvoPwdTextField.textField.text, stringTwo: volvoPwdConfirmTextField.textField.text)
@@ -188,6 +196,11 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         let signupCustomer = UserManager.sharedInstance.signupCustomer
         
         if signupInProgress {
+            return
+        }
+        
+        if let password = volvoPwdConfirmTextField.textField.text, containsUnauthorizedChars(password: password) {
+            self.showOkDialog(title: .Error, message: .PasswordUnauthorizedChars)
             return
         }
         

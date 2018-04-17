@@ -56,5 +56,6 @@ extension String {
     static let ChangePhoneNumber = NSLocalizedString("ChangePhoneNumber")
     static let PhoneNumberAlreadyExist = NSLocalizedString("PhoneNumberAlreadyExist")
     static let PasswordResetLogin = NSLocalizedString("PasswordResetLogin")
-
+    static let PasswordUnauthorizedChars = NSLocalizedString("PasswordUnauthorizedChars")
+    
 }
