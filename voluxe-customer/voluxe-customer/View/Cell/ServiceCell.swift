@@ -20,12 +20,19 @@ class ServiceCell: UITableViewCell {
         return label
     }()
     
+    let separator: UIView = {
+        let separator = UIView(frame: .zero)
+        separator.backgroundColor = .luxeLightGray()
+        return separator
+    }()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
         self.backgroundColor = .clear
         self.accessoryType = .disclosureIndicator
         self.contentView.addSubview(serviceLabel)
+        self.addSubview(separator)
         setupViews()
         
     }
@@ -38,6 +45,12 @@ class ServiceCell: UITableViewCell {
         serviceLabel.snp.makeConstraints { make in
             make.top.bottom.right.equalToSuperview()
             make.left.equalToSuperview().offset(20)
+        }
+        
+        separator.snp.makeConstraints { make in
+            make.bottom.right.equalToSuperview()
+            make.left.equalTo(serviceLabel)
+            make.height.equalTo(1)
         }
     }
     

@@ -23,7 +23,7 @@ class NewServiceViewController: BaseViewController {
     }()
     
     let vehicle: Vehicle
-    let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
+    let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
     var services: [String]?
     
     init(vehicle: Vehicle) {
@@ -47,6 +47,7 @@ class NewServiceViewController: BaseViewController {
         tableView.delegate = self
         tableView.register(ServiceCell.self, forCellReuseIdentifier: ServiceCell.reuseId)
         tableView.isScrollEnabled = false
+        tableView.separatorStyle = .none
         
         RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
             if let services = services?.data?.result {
@@ -69,8 +70,13 @@ class NewServiceViewController: BaseViewController {
     override func setupViews() {
         super.setupViews()
         
+        let separator = UIView(frame: .zero)
+        separator.backgroundColor = .luxeLightGray()
+        
         self.view.addSubview(introLabel)
         self.view.addSubview(tableView)
+        self.view.addSubview(separator)
+
         let labelHeight = introLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
 
         introLabel.snp.makeConstraints { make in
@@ -80,9 +86,15 @@ class NewServiceViewController: BaseViewController {
         }
         
         tableView.snp.makeConstraints { make in
-            make.left.right.equalTo(introLabel)
-            make.top.equalTo(introLabel.snp.bottom).offset(20)
-            make.height.equalTo(ServiceCell.height*4)
+            make.left.right.equalToSuperview()
+            make.top.equalTo(introLabel.snp.bottom).offset(40)
+            make.height.equalTo(ServiceCell.height*2)
+        }
+        
+        separator.snp.makeConstraints { make in
+            make.right.top.equalTo(tableView)
+            make.left.equalToSuperview().offset(20)
+            make.height.equalTo(1)
         }
         
     }

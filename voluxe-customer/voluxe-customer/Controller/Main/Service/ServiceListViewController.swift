@@ -35,6 +35,7 @@ class ServiceListViewController: BaseViewController {
         tableView.delegate = self
         tableView.register(ServiceCell.self, forCellReuseIdentifier: ServiceCell.reuseId)
         tableView.isHidden = true
+        tableView.separatorStyle = .none
         
         showProgressHUD()
         RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
@@ -62,9 +63,19 @@ class ServiceListViewController: BaseViewController {
         super.setupViews()
         self.view.addSubview(tableView)
         
+        let separator = UIView(frame: .zero)
+        separator.backgroundColor = .luxeLightGray()
+        self.view.addSubview(separator)
+
         tableView.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
             make.top.equalToSuperview().offset(20)
+        }
+        
+        separator.snp.makeConstraints { make in
+            make.right.top.equalTo(tableView)
+            make.left.equalToSuperview().offset(20)
+            make.height.equalTo(1)
         }
     }
     

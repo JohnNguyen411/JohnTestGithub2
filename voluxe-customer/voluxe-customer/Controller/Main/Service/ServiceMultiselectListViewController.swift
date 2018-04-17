@@ -59,6 +59,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         tableView.isScrollEnabled = true
         tableView.tableHeaderView = UIView(frame: .zero)
         tableView.tableFooterView = UIView(frame: .zero)
+        tableView.separatorStyle = .none
 
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
@@ -98,16 +99,20 @@ class ServiceMultiselectListViewController: BaseViewController {
         containerView.addSubview(tableView)
         containerView.addSubview(confirmButton)
         
+        let separator = UIView(frame: .zero)
+        separator.backgroundColor = .luxeLightGray()
+        containerView.addSubview(separator)
+        
         let labelHeight = introLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
         
         containerView.snp.makeConstraints { make in
-            make.left.top.equalToSuperview().offset(20)
-            make.right.bottom.equalToSuperview().offset(-20)
+            make.left.top.right.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-20)
         }
         
         introLabel.snp.makeConstraints { make in
-            make.left.top.equalToSuperview()
-            make.right.equalToSuperview()
+            make.top.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
             make.height.equalTo(labelHeight)
         }
         
@@ -124,9 +129,15 @@ class ServiceMultiselectListViewController: BaseViewController {
         }
         
         tableView.snp.makeConstraints { make in
-            make.left.right.equalTo(introLabel)
+            make.left.right.equalToSuperview()
             make.top.equalTo(introLabelBold.snp.bottom).offset(10)
             make.bottom.equalTo(confirmButton.snp.top).offset(-20)
+        }
+        
+        separator.snp.makeConstraints { make in
+            make.right.top.equalTo(tableView)
+            make.left.equalToSuperview().offset(20)
+            make.height.equalTo(1)
         }
         
     }

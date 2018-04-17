@@ -22,6 +22,12 @@ class CheckableTableViewCell: UITableViewCell {
         return label
     }()
     
+    let separator: UIView = {
+        let separator = UIView(frame: .zero)
+        separator.backgroundColor = .luxeLightGray()
+        return separator
+    }()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         checkView = UIImageView(image: UIImage(named: "checkmark"))
         checkView.contentMode = .scaleAspectFit
@@ -31,6 +37,7 @@ class CheckableTableViewCell: UITableViewCell {
         self.accessoryType = .none
         self.addSubview(checkView)
         self.addSubview(label)
+        self.addSubview(separator)
         
         self.checkView.snp.makeConstraints { make in
             make.left.centerY.equalToSuperview()
@@ -40,6 +47,12 @@ class CheckableTableViewCell: UITableViewCell {
         self.label.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.left.equalTo(self.checkView.snp.right).offset(20)
+        }
+        
+        separator.snp.makeConstraints { make in
+            make.bottom.right.equalToSuperview()
+            make.left.equalTo(checkView)
+            make.height.equalTo(1)
         }
     }
     
