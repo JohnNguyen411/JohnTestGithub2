@@ -154,8 +154,6 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
 
 extension AccountSettingsViewController: UITableViewDataSource, UITableViewDelegate, SettingsCellProtocol {
     
-    
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
             // need at least one for "Add a New Volvo"
