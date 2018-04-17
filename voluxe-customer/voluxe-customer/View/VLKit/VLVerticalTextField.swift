@@ -24,6 +24,10 @@ class VLVerticalTextField : VLTextField {
         return textView
     }()
     
+    var showHidePassword = false
+    
+    let passwordToggleIcon = PasswordToggleVisibilityView()
+    
     convenience init(title: String, placeholder: String, kern: Float? = nil) {
         self.init(title: title, placeholder: placeholder, isPhoneNumber: false, kern: kern)
     }
@@ -84,10 +88,27 @@ class VLVerticalTextField : VLTextField {
                 actionBlock()
             }
         }
-        
-        
     }
     
+    func setShowHidePassword(showHidePassword: Bool) {
+        self.textField.keyboardType = .asciiCapable
+        self.showHidePassword = showHidePassword
+        if showHidePassword && passwordToggleIcon.superview == nil {
+            
+            self.addSubview(passwordToggleIcon)
+            passwordToggleIcon.snp.makeConstraints { (make) -> Void in
+                make.right.equalToSuperview()
+                make.bottom.equalTo(textField.snp.bottom)
+                make.height.equalTo(20)
+                make.width.equalTo(30)
+            }
+            passwordToggleIcon.delegate = self
+            passwordToggleIcon.tintColor = .luxeCobaltBlue()
+            
+        } else if !showHidePassword && passwordToggleIcon.superview == nil {
+            passwordToggleIcon.removeFromSuperview()
+        }
+    }
     
     override func applyConstraints() {
         textField.snp.makeConstraints { (make) -> Void in
@@ -141,5 +162,23 @@ class VLVerticalTextField : VLTextField {
     
     @objc internal func runActionBlock() {
         rightActionBlock?()
+    }
+}
+
+// MARK: PasswordToggleVisibilityDelegate
+extension VLVerticalTextField: PasswordToggleVisibilityDelegate {
+    func viewWasToggled(passwordToggleVisibilityView: PasswordToggleVisibilityView, isSelected selected: Bool) {
+        
+        // hack to fix a bug with padding when switching between secureTextEntry state
+        let hackString = self.textField.text
+        self.textField.text = " "
+        self.textField.text = hackString
+        
+        // hack to save our correct font.  The order here is VERY finicky
+        self.textField.isSecureTextEntry = !selected
+
+        if selected {
+            self.textField.keyboardType = .asciiCapable
+        }
     }
 }

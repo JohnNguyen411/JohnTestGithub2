@@ -54,6 +54,9 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         volvoPwdTextField.accessibilityIdentifier = "volvoPwdTextField"
         volvoPwdConfirmTextField.accessibilityIdentifier = "volvoPwdConfirmTextField"
+                
+        volvoPwdTextField.setShowHidePassword(showHidePassword: true)
+        volvoPwdConfirmTextField.setShowHidePassword(showHidePassword: true)
         
         volvoPwdTextField.textField.autocorrectionType = .no
         volvoPwdConfirmTextField.textField.autocorrectionType = .no
