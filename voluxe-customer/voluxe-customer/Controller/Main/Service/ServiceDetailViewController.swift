@@ -86,7 +86,7 @@ class ServiceDetailViewController: BaseViewController {
         
         confirmButton.snp.makeConstraints { make in
             make.right.left.equalTo(serviceTitle)
-            make.bottom.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().offset(-20)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
