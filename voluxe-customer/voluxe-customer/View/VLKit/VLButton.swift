@@ -140,7 +140,9 @@ class VLButton : UIButton {
             layer.borderColor = UIColor.luxeGray().cgColor
             break
         case .orangePrimary:
-            backgroundColor = .white
+            normalBackgroundColor = .white
+            highlightBackgroundColor = .luxeLightestGray()
+            backgroundColor = normalBackgroundColor
             applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeOrange(), highlightedFontColor: nil)
             layer.borderWidth = 0
             addShadow()
