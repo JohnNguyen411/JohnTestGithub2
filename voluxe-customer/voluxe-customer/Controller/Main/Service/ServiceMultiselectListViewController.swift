@@ -56,9 +56,8 @@ class ServiceMultiselectListViewController: BaseViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CheckableTableViewCell.self, forCellReuseIdentifier: CheckableTableViewCell.reuseId)
-        tableView.isScrollEnabled = true
+        tableView.isScrollEnabled = false
         tableView.tableHeaderView = UIView(frame: .zero)
-        tableView.tableFooterView = UIView(frame: .zero)
         tableView.separatorStyle = .none
         
         if #available(iOS 11.0, *) {
@@ -69,7 +68,6 @@ class ServiceMultiselectListViewController: BaseViewController {
         
         self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
 
-        
         showServices(services: [.VehicleExt, .VehicleInt, .UnderTheHood, .IDontKnow])
         
         confirmButton.setActionBlock {
@@ -98,9 +96,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         containerView.addSubview(introLabelBold)
         containerView.addSubview(tableView)
         containerView.addSubview(confirmButton)
-        
-        let labelHeight = introLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
-        
+                
         containerView.snp.makeConstraints { make in
             make.left.top.right.equalToSuperview()
             make.bottom.equalToSuperview().offset(-20)
@@ -109,13 +105,11 @@ class ServiceMultiselectListViewController: BaseViewController {
         introLabel.snp.makeConstraints { make in
             make.top.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(labelHeight)
         }
         
         introLabelBold.snp.makeConstraints { make in
             make.left.right.equalTo(introLabel)
             make.top.equalTo(introLabel.snp.bottom).offset(5)
-            make.height.equalTo(10)
         }
         
         confirmButton.snp.makeConstraints { make in
@@ -126,7 +120,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         
         tableView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(introLabelBold.snp.bottom).offset(10)
+            make.top.equalTo(introLabelBold.snp.bottom).offset(30)
             make.bottom.equalTo(confirmButton.snp.top).offset(-20)
         }
         

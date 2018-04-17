@@ -29,7 +29,7 @@ class CheckableTableViewCell: UITableViewCell {
     }()
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        checkView = UIImageView(image: UIImage(named: "checkmark"))
+        checkView = UIImageView(image: UIImage(named: "empty_checkbox"))
         checkView.contentMode = .scaleAspectFit
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -58,13 +58,13 @@ class CheckableTableViewCell: UITableViewCell {
     }
     
     required init?(coder aDecoder: NSCoder) {
-        checkView = UIImageView(image: UIImage(named: "checkmark"))
+        checkView = UIImageView(image: UIImage(named: "empty_checkbox"))
         super.init(coder: aDecoder)
     }
     
     
     func setText(text: String, selected: Bool) {
         self.label.text = text
-        checkView.image = selected ? UIImage(named: "checkmark") : nil
+        checkView.image = selected ? UIImage(named: "checked_circle") : UIImage(named: "empty_checkbox")
     }
 }
