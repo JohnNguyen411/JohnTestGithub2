@@ -81,7 +81,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
             if let addresses = addresses {
                 addressesCount = addresses.count
                 for (index, address) in addresses.enumerated() {
-                    addLocation(location: (address.location?.address)!)
+                    addLocation(location: (address.location?.getShortAddress())!)
                     if let selectedLocation = selectedLocation, selectedLocation.id == address.location?.id {
                         preselectedIndex = index
                     }

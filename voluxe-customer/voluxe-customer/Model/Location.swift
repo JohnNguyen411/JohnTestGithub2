@@ -1,9 +1,9 @@
 //
 //  Location.swift
-//  hse
+//  voluxe-customer
 //
-//  Created by Kimmo Lahdenkangas on 05/04/16.
-//  Copyright © 2016 Volvo. All rights reserved.
+//  Created by Giroux, Johan on 2/26/18.
+//  Copyright © 2018 Luxe - Volvo Cars. All rights reserved.
 //
 
 import Foundation
@@ -70,6 +70,24 @@ class Location: Object, Mappable {
         location = CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)
         
         return location
+    }
+    
+    func getShortAddress() -> String? {
+        if let address = address {
+            let tok = address.components(separatedBy:",")
+            var shortAddress = ""
+            if tok.count > 0 {
+                for (index, string) in tok.enumerated() {
+                    if index > 1 {
+                        break
+                    }
+                    shortAddress += string + ","
+                }
+                shortAddress.removeLast()
+                return shortAddress
+            }
+        }
+        return address
     }
     
     func toJSON() -> [String : Any] {

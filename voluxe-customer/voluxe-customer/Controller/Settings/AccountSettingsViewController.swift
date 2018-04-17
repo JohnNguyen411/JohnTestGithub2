@@ -73,7 +73,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     func getTextForIndexPath(indexPath: IndexPath) -> String {
         if indexPath.section == 0 {
             if let addresses = addresses, addressesCount > indexPath.row {
-                return (addresses[indexPath.row].location?.address)!
+                return (addresses[indexPath.row].location?.getShortAddress())!
             }
             return .AddNewLocation
         } else if indexPath.section == 1 {
