@@ -207,10 +207,10 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         noDateLabel.isHidden = true
         
         let separatorOne = UIView(frame: .zero)
-        separatorOne.backgroundColor = .luxeLightGray()
+        separatorOne.backgroundColor = .luxeLightestGray()
         separatorOne.clipsToBounds = false
         let separatorTwo = UIView(frame: .zero)
-        separatorTwo.backgroundColor = .luxeLightGray()
+        separatorTwo.backgroundColor = .luxeLightestGray()
         separatorTwo.clipsToBounds = false
         
         loanerContainerView.addSubview(separatorOne)
@@ -294,7 +294,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     override func height() -> Int {
-        return (170 + calendarViewHeight) + VLPresentrViewController.baseHeight + hoursViewHeight + loanerViewHeight
+        return (175 + calendarViewHeight) + VLPresentrViewController.baseHeight + hoursViewHeight + loanerViewHeight
     }
     
     override func onButtonClick() {

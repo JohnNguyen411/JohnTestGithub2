@@ -22,7 +22,7 @@ class CheckmarkCell: UITableViewCell {
     
     let separator: UIView = {
         let separator = UIView(frame: .zero)
-        separator.backgroundColor = .luxeLightGray()
+        separator.backgroundColor = .luxeLightestGray()
         return separator
     }()
     

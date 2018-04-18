@@ -166,7 +166,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         }
         
         let tableViewSeparator = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width-20, height: 1))
-        tableViewSeparator.backgroundColor = .luxeLightGray()
+        tableViewSeparator.backgroundColor = .luxeLightestGray()
         
         self.tableView.tableFooterView = tableViewSeparator
         

@@ -125,7 +125,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         }
         
         let separator = UIView(frame: CGRect(x: 20, y: 0, width: self.view.frame.width-20, height: 1))
-        separator.backgroundColor = .luxeLightGray()
+        separator.backgroundColor = .luxeLightestGray()
         
         self.tableView.tableFooterView = separator
         

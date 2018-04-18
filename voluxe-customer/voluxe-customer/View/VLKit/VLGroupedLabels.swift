@@ -111,7 +111,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
         
         if topBottomSeparator {
             let separator = UIView()
-            separator.backgroundColor = .luxeLightGray()
+            separator.backgroundColor = .luxeLightestGray()
             
             addSubview(separator)
             
@@ -137,7 +137,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
             addBottomSeparator(previousLabel: luxeLabel)
         } else {
             let separator = UIView()
-            separator.backgroundColor = .luxeLightGray()
+            separator.backgroundColor = .luxeLightestGray()
             
             addSubview(separator)
             
@@ -151,7 +151,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
     
     private func addBottomSeparator(previousLabel: VLSelectableLabel) {
         let separator = UIView()
-        separator.backgroundColor = .luxeLightGray()
+        separator.backgroundColor = .luxeLightestGray()
         
         addSubview(separator)
         
