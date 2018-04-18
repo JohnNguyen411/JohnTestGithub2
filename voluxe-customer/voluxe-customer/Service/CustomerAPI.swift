@@ -130,7 +130,7 @@ class CustomerAPI: NSObject {
             "verification_code": verificationCode
         ]
         
-        NetworkRequest.request(url: "/v1/customers/confirm-signup", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/signup/confirm", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSON { response in
             
             var responseObject: ResponseObject<MappableDataObject<Customer>>?
             

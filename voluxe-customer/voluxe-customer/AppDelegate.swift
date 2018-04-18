@@ -297,8 +297,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
 extension UIApplication {
     public static var isRunningTest: Bool {
-        //return ProcessInfo().arguments.contains("testMode")
-        return true
+        return ProcessInfo().arguments.contains("testMode")
     }
     
     public static var shouldReset: Bool {
