@@ -28,6 +28,10 @@ class SettingsCarViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.title = vehicle.vehicleDescription()
+        
+        vehicleImageView.contentMode = .scaleAspectFit
+        vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
+        vehicle.setVehicleImage(imageView: vehicleImageView)
     }
     
     override func setupViews() {
@@ -59,10 +63,7 @@ class SettingsCarViewController: BaseViewController {
         
         contentView.snp.makeConstraints { make in
             make.edges.equalToSuperview().inset(UIEdgeInsetsMake(10, 20, 20, 20))
-        }
-        
-        vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
-        vehicle.setVehicleImage(imageView: vehicleImageView)
+        }        
     }
     
 }
