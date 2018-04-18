@@ -39,11 +39,26 @@ class DealershipTimeSlot: Object, Mappable {
         return "id"
     }
     
-    func getTimeSlot(calendar: Calendar, showAMPM: Bool) -> String? {
+    func getTimeSlot(calendar: Calendar, showAMPM: Bool, shortSymbol: Bool? = nil) -> String? {
         guard let from = from, let to = to else {
             return nil
         }
-        return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: showAMPM))-\(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM))"
+        
+        if showAMPM {
+            let hourFrom = Calendar.current.component(.hour, from: Date())
+            let hourTo = Calendar.current.component(.hour, from: Date())
+            
+            if hourFrom < 12 && hourTo < 12 {
+                return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: false, shortSymbol: shortSymbol))-\(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))"
+            } else if hourFrom > 12 && hourTo > 12 {
+                return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: false, shortSymbol: shortSymbol))-\(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))"
+            } else {
+                return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))-\(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))"
+            }
+            
+        } else {
+            return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))-\(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))"
+        }
     }
     
     public static func mockTimeSlotForDate(dealershipId: Int, date: Date) -> DealershipTimeSlot {

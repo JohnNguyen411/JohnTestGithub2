@@ -294,7 +294,11 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     override func height() -> Int {
-        return (175 + calendarViewHeight) + VLPresentrViewController.baseHeight + hoursViewHeight + loanerViewHeight
+        var height = (169 + calendarViewHeight) + VLPresentrViewController.baseHeight + hoursViewHeight + loanerViewHeight
+        if !noDateLabel.isHidden {
+            height += 5
+        }
+        return height
     }
     
     override func onButtonClick() {
@@ -359,6 +363,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         containerView.addSubview(calendar)
         
         calendar.appearance.headerDateFormat = monthFormatter.dateFormat
+        calendar.appearance.headerTitleFont = .volvoSansLightBold(size: 12)
+        
         calendar.calendarHeaderView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
         calendar.calendarWeekdayView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
         calendar.appearance.titleOffset = CGPoint(x: 0, y: 4)
@@ -546,7 +552,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         currentSlots = slots
         
         for (index, slot) in slots.enumerated() {
-            let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: false), actionBlock: nil)
+            let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true), actionBlock: nil)
             slotButton.setActionBlock {
                 self.slotClicked(viewIndex: index, slot: slot)
             }

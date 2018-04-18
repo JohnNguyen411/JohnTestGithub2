@@ -51,10 +51,12 @@ class VLPresentrViewController: UIViewController {
     
     func setTitle(title: String) {
         titleLabel.text = title
+        titleLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
     }
     
     func setButtonTitle(title: String) {
         bottomButton.setTitle(title: title)
+        bottomButton.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
     }
     
     func setupViews() {

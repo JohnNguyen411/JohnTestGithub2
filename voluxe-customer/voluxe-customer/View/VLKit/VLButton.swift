@@ -14,7 +14,7 @@ enum VLButtonType{
     case blueSecondary
     case blueSecondaryWithBorder
     case blueSecondaryWithBorderDisabled
-    case blueSecondarySelected //orange
+    case blueSecondarySelected
     case orangePrimary
     case orangeSecondary
     case orangeSecondarySmall
@@ -168,7 +168,6 @@ class VLButton : UIButton {
             backgroundColor = normalBackgroundColor
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: .white, highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
-            addShadow()
             break
         }
     }

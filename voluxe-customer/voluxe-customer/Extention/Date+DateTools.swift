@@ -124,7 +124,7 @@ extension Date {
         return "\(minTime) \(maxTime)"
     }
     
-    public static func formatHourMin(date: Date, calendar: Calendar, showAMPM: Bool) -> String {
+    public static func formatHourMin(date: Date, calendar: Calendar, showAMPM: Bool, shortSymbol: Bool? = nil) -> String {
         let dateString : String = DateFormatter.dateFormat(fromTemplate: "h:mm", options: 0, locale: Locale.current)!
         let hourFormatter = DateFormatter()
         hourFormatter.dateFormat = dateString
@@ -132,10 +132,13 @@ extension Date {
         if !showAMPM {
             hourFormatter.amSymbol = ""
             hourFormatter.pmSymbol = ""
+        } else if let shortSymbol = shortSymbol, shortSymbol {
+            hourFormatter.amSymbol = "a"
+            hourFormatter.pmSymbol = "p"
         }
         
         var hourFormatted = hourFormatter.string(from: date)
-        
+        hourFormatted = hourFormatted.replacingOccurrences(of: " ", with: "")
         return hourFormatted.lowercased()
     }
 
