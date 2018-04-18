@@ -28,7 +28,7 @@ class VLTitledLabel: UIView {
     let descLeftLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.font = .volvoSansLightBold(size: 18)
+        titleLabel.font = .volvoSansLightBold(size: 16)
         titleLabel.textAlignment = .left
         return titleLabel
     }()
@@ -36,7 +36,7 @@ class VLTitledLabel: UIView {
     let descRightLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.font = .volvoSansLightBold(size: 18)
+        titleLabel.font = .volvoSansLightBold(size: 16)
         titleLabel.textAlignment = .right
         return titleLabel
     }()
