@@ -11,6 +11,7 @@ import Foundation
 extension String {
     static let Settings = NSLocalizedString("Settings")
     static let YourVolvos = NSLocalizedString("YourVolvos")
+    static let YourVolvo = NSLocalizedString("YourVolvo")
     static let ActiveBookings = NSLocalizedString("ActiveBookings")
     static let AddANewVolvo = NSLocalizedString("AddANewVolvo")
     static let YourAccount = NSLocalizedString("YourAccount")

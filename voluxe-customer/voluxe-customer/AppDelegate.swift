@@ -77,7 +77,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         
         navigationController = uiNavigationController
-        navigationController?.setTitle(title: .YourVolvos)
+        navigationController?.setTitle(title: UserManager.sharedInstance.yourVolvoStringTitle())
 
         leftViewController.mainNavigationViewController = navigationController
         //leftViewController.mainViewController = mainViewController

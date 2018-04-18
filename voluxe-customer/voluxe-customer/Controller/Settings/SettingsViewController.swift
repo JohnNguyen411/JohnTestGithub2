@@ -63,7 +63,7 @@ class SettingsViewController: ChildViewController, SettingsCellProtocol {
     
     func getTitleForSection(section: Int) -> String {
         if section == 0 {
-            return .YourVolvos
+            return UserManager.sharedInstance.yourVolvoStringTitle()
         } else if section == 1 {
             return .YourAccount
         } else {
