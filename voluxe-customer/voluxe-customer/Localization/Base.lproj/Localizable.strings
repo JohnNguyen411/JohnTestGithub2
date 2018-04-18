@@ -26,7 +26,7 @@
 "CancelPickup" = "Cancel Pickup";
 "CancelDropOff" = "Cancel DropOff";
 "Error" = "Error";
-"GenericError" = "An unknown error has occurred, please try again later.";
+"GenericError" = "An unknown error has occurred. Please try again later.";
 "Map" = "Map";
 "Retry" = "Retry";
 "Success" = "Success";
