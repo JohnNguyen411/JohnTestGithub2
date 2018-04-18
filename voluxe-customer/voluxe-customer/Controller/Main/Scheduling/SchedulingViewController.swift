@@ -245,10 +245,18 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             make.right.equalTo(dealershipMapLabel.snp.left)
         }
         
-        scheduledPickupView.snp.makeConstraints { make in
-            make.left.right.equalTo(scheduledServiceView)
-            make.top.equalTo(dealershipView.snp.bottom)
-            make.height.equalTo(SchedulingViewController.vlLabelHeight)
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
+            scheduledPickupView.snp.makeConstraints { make in
+                make.left.right.equalTo(scheduledServiceView)
+                make.top.equalTo(loanerView.snp.bottom)
+                make.height.equalTo(SchedulingViewController.vlLabelHeight)
+            }
+        } else {
+            scheduledPickupView.snp.makeConstraints { make in
+                make.left.right.equalTo(scheduledServiceView)
+                make.top.equalTo(dealershipView.snp.bottom)
+                make.height.equalTo(SchedulingViewController.vlLabelHeight)
+            }
         }
         
         confirmButton.snp.makeConstraints { make in
