@@ -15,6 +15,11 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
     private static let maxCount = 4
     
+    private static let newLocationButtonHeight = 0
+    private static let newLocationTextFieldHeight = VLVerticalTextField.height
+
+    var newLocationHeight = newLocationButtonHeight
+    
     var user: Customer?
     
     var addresses: Results<CustomerAddress>?
@@ -50,6 +55,8 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         titleLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         return titleLabel
     }()
+    
+    let newLocationButton = VLButton(type: .blueSecondary, title: (.AddNewLocation as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
     let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
@@ -98,6 +105,10 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                 selectIndex(selectedIndex: preselectedIndex)
             }
         }
+        
+        newLocationButton.setActionBlock {
+            self.addNewLocationClicked()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -132,6 +143,10 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         containerView.addSubview(tableView)
         containerView.addSubview(newLocationLabel)
         containerView.addSubview(newLocationTextField)
+        containerView.addSubview(newLocationButton)
+        
+        newLocationLabel.isHidden = true
+        newLocationTextField.isHidden = true
         
         newLocationTextField.snp.makeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-30)
@@ -145,13 +160,18 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
             make.height.equalTo(25)
         }
         
+        newLocationButton.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.bottom.equalTo(bottomButton.snp.top).offset(-20)
+        }
+        
         let tableViewSeparator = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width-20, height: 1))
         tableViewSeparator.backgroundColor = .luxeLightGray()
         
         self.tableView.tableFooterView = tableViewSeparator
         
         tableView.snp.makeConstraints { make in
-            make.bottom.equalTo(newLocationLabel.snp.top).offset(-20)
+            make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
             make.left.equalToSuperview()
             make.right.equalToSuperview().offset(15)
             make.height.equalTo(self.tableViewHeight())
@@ -173,7 +193,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     }
     
     override func height() -> Int {
-        return (tableViewHeight()) + VLPresentrViewController.baseHeight + VLVerticalTextField.height + 100
+        return (tableViewHeight()) + VLPresentrViewController.baseHeight + newLocationHeight + 100
     }
     
     func autocompleteWithText(userText: String){
@@ -264,6 +284,35 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         }
     }
     
+    private func addNewLocationClicked() {
+        showNewLocationTextField(show: true)
+        onLocationAdded()
+    }
+    
+    private func showNewLocationTextField(show: Bool) {
+        newLocationLabel.animateAlpha(show: show)
+        newLocationTextField.animateAlpha(show: show)
+        newLocationButton.animateAlpha(show: !show)
+        
+        if show {
+            tableView.snp.remakeConstraints { make in
+                make.bottom.equalTo(newLocationLabel.snp.top).offset(-20)
+                make.left.equalToSuperview()
+                make.right.equalToSuperview().offset(15)
+                make.height.equalTo(self.tableViewHeight())
+            }
+        } else {
+            tableView.snp.remakeConstraints { make in
+                make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
+                make.left.equalToSuperview()
+                make.right.equalToSuperview().offset(15)
+                make.height.equalTo(self.tableViewHeight())
+            }
+        }
+        
+        newLocationHeight = show ? LocationPickupViewController.newLocationTextFieldHeight : LocationPickupViewController.newLocationButtonHeight
+    }
+    
     // MARK: protocol UITextFieldDelegate
     
     func onAutocompleteSelected(selectedIndex: Int) {
@@ -285,6 +334,8 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
             return
         }
         
+        showNewLocationTextField(show: false)
+        
         // add location to realm
         let customerAddress = CustomerAddress()
         
@@ -295,6 +346,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         if let realm = self.realm {
             try? realm.write {
                 realm.add(customerAddress)
+                
                 if let addresses = addresses {
                     addressesCount = addresses.count
                 }
@@ -302,10 +354,12 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                 self.newLocationTextField.clearResults()
                 self.resetValues()
                 self.newLocationTextField.textField.resignFirstResponder()
+                self.selectIndex(selectedIndex: addressesCount - 1)
             }
         }
         
         self.bottomButton.isEnabled = true
+
     }
     
     
