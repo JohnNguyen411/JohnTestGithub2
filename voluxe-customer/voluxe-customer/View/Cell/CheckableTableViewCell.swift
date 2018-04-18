@@ -18,12 +18,18 @@ class CheckableTableViewCell: UITableViewCell {
     let label: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.volvoSansBold(size: 16)
-        label.textColor = .black
+        label.textColor = .luxeDarkGray()
         return label
     }()
     
+    let separator: UIView = {
+        let separator = UIView(frame: .zero)
+        separator.backgroundColor = .luxeLightestGray()
+        return separator
+    }()
+    
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
-        checkView = UIImageView(image: UIImage(named: "checkmark"))
+        checkView = UIImageView(image: UIImage(named: "empty_checkbox"))
         checkView.contentMode = .scaleAspectFit
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.selectionStyle = .none
@@ -31,26 +37,34 @@ class CheckableTableViewCell: UITableViewCell {
         self.accessoryType = .none
         self.addSubview(checkView)
         self.addSubview(label)
+        self.addSubview(separator)
         
         self.checkView.snp.makeConstraints { make in
-            make.left.centerY.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
             make.width.height.equalTo(20)
         }
         
         self.label.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(2)
             make.left.equalTo(self.checkView.snp.right).offset(20)
+        }
+        
+        separator.snp.makeConstraints { make in
+            make.top.right.equalToSuperview()
+            make.left.equalTo(checkView)
+            make.height.equalTo(1)
         }
     }
     
     required init?(coder aDecoder: NSCoder) {
-        checkView = UIImageView(image: UIImage(named: "checkmark"))
+        checkView = UIImageView(image: UIImage(named: "empty_checkbox"))
         super.init(coder: aDecoder)
     }
     
     
     func setText(text: String, selected: Bool) {
         self.label.text = text
-        checkView.image = selected ? UIImage(named: "checkmark") : nil
+        checkView.image = selected ? UIImage(named: "checked_circle") : UIImage(named: "empty_checkbox")
     }
 }

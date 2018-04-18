@@ -7,15 +7,37 @@
 //
 
 import Foundation
+import ObjectMapper
+import RealmSwift
 
-class VehicleModel: NSObject {
+class VehicleModel: Object, Mappable {
     
-    let make: String
-    let model: String
+    @objc dynamic var id: Int = -1
+    @objc dynamic var make: String?
+    @objc dynamic var name: String?
+    @objc dynamic var managed: Bool = true
+    @objc dynamic var createdAt: Date?
+    @objc dynamic var updatedAt: Date?
     
-    init(make: String, model: String) {
+    convenience init(make: String, model: String) {
+        self.init()
         self.make = make
-        self.model = model
-        super.init()
+        self.name = model
+    }
+    
+    required convenience init?(map: Map) {
+        self.init()
+    }
+    
+    func mapping(map: Map) {
+        id <- map["id"]
+        name <- map["name"]
+        managed <- map["managed"]
+        createdAt <- (map["created_at"], VLISODateTransform())
+        updatedAt <- (map["updated_at"], VLISODateTransform())
+    }
+    
+    override static func primaryKey() -> String? {
+        return "id"
     }
 }

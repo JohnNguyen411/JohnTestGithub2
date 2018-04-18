@@ -137,21 +137,13 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         return nil
     }
     
-    func setTitle(title: String?) {
-        if let title = title {
-            self.navigationController?.title = title
-            self.navigationController?.navigationItem.title = title
-            self.navigationController?.navigationBar.topItem?.title = title
-        }
-    }
-    
     func setTitleFromChild(title: String) {
         setTitle(title: title)
     }
     
     func pushViewController(controller: UIViewController, animated: Bool, backLabel: String?, title: String?) {
         self.navigationController?.pushViewController(controller, animated: animated)
-        let backItem = UIBarButtonItem(title: .Back, style: .plain, target: nil, action: nil)
+        let backItem = UIBarButtonItem(title: backLabel, style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = backItem
     }
     

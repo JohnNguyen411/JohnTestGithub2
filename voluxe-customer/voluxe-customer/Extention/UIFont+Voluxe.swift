@@ -14,5 +14,6 @@ extension UIFont {
     public class func volvoSansLightBold(size: CGFloat) -> UIFont   { return UIFont(name: "VolvoSansLight-Bold", size: size) ?? UIFont.systemFont(ofSize:size) }
     public class func volvoSansBold(size: CGFloat) -> UIFont   { return UIFont(name: "VolvoSansPro-Bold", size: size) ?? UIFont.systemFont(ofSize:size) }
     public class func volvoSansLight(size: CGFloat) -> UIFont   { return UIFont(name: "VolvoSansLight", size: size) ?? UIFont.systemFont(ofSize:size) }
-    
+    public class func volvoSansProMedium(size: CGFloat) -> UIFont   { return UIFont(name: "VolvoSansPro-Medium", size: size) ?? UIFont.systemFont(ofSize:size) }
+
 }

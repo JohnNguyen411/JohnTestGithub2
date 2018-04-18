@@ -12,9 +12,7 @@ import RealmSwift
 
 class LoadingViewController: ChildViewController {
     
-    let loadingView = UIActivityIndicatorView(frame: .zero)
     var realm : Realm?
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,17 +32,7 @@ class LoadingViewController: ChildViewController {
     override func setupViews() {
         super.setupViews()
         
-        loadingView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-        loadingView.color = .luxeDarkBlue()
-        
-        self.view.addSubview(loadingView)
-        
-        loadingView.snp.makeConstraints{ make in
-            make.center.equalToSuperview()
-            make.width.height.equalTo(100)
-        }
-        
-        loadingView.startAnimating()
+        self.showProgressHUD()
     }
     
     private func logout() {

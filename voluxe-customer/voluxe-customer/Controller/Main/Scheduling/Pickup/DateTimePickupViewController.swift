@@ -15,7 +15,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     private static let hourButtonWidth = 80
     
-    private static let smallCalendarHeight = 187
+    private static let rowHeight = 46
+
+    private static let smallCalendarHeight = 180
     private static let tallCalendarHeight = 220
     
     var delegate: PickupDateDelegate?
@@ -28,6 +30,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         firstMonthHeader.textColor = .luxeGray()
         firstMonthHeader.font = .volvoSansLightBold(size: 12)
         firstMonthHeader.textAlignment = .center
+        firstMonthHeader.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         return firstMonthHeader
     }()
     
@@ -37,7 +40,18 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         timeSlotsHeader.font = .volvoSansLightBold(size: 12)
         timeSlotsHeader.textAlignment = .center
         timeSlotsHeader.text = (.PickupTimes as String).uppercased()
+        timeSlotsHeader.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         return timeSlotsHeader
+    }()
+    
+    let noDateLabel: UILabel = {
+        let noDateLabel = UILabel()
+        noDateLabel.textColor = .black
+        noDateLabel.font = .volvoSansLightBold(size: 12)
+        noDateLabel.textAlignment = .center
+        noDateLabel.text = String.NoDatesForDealership
+        noDateLabel.numberOfLines = 0
+        return noDateLabel
     }()
     
     fileprivate let gregorian = Calendar(identifier: .gregorian)
@@ -94,7 +108,13 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         super.init(title: title, buttonTitle: buttonTitle)
         realm = try? Realm()
         getTimeSlots()
-        loanerSwitch.setOn(RequestedServiceManager.sharedInstance.getLoaner(), animated: false)
+        if let loaner = RequestedServiceManager.sharedInstance.getLoaner() {
+            loanerSwitch.setOn(loaner, animated: false)
+        } else {
+            loanerSwitch.setOn(false, animated: false)
+        }
+
+        
         loanerSwitch.addTarget(self, action: #selector(switchChanged(uiswitch:)), for: .valueChanged)
     }
     
@@ -132,12 +152,17 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             formatter.locale = Locale(identifier: "en_US_POSIX")
             formatter.timeZone = TimeZone(secondsFromGMT: 0)
             formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSXXXXX"
-            let from = formatter.string(from: todaysDate)
-            let to = formatter.string(from: maxDate)
+            let from = formatter.string(from: todaysDate.beginningOfDay())
+            let to = formatter.string(from: maxDate.endOfDay())
             
             var timeSlotType = "driver"
             
-            DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: RequestedServiceManager.sharedInstance.getLoaner(), from: from, to: to).onSuccess { result in
+            var loaner = false
+            if let selectedLoaner = RequestedServiceManager.sharedInstance.getLoaner() {
+                loaner = selectedLoaner
+            }
+            
+            DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: loaner, from: from, to: to).onSuccess { result in
                 if let slots = result?.data?.result {
                     if let realm = self.realm {
                         try? realm.write {
@@ -178,12 +203,14 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         containerView.addSubview(hoursView)
         containerView.addSubview(timeSlotsHeader)
         containerView.addSubview(loanerContainerView)
+        containerView.addSubview(noDateLabel)
+        noDateLabel.isHidden = true
         
         let separatorOne = UIView(frame: .zero)
-        separatorOne.backgroundColor = .luxeLightGray()
+        separatorOne.backgroundColor = .luxeLightestGray()
         separatorOne.clipsToBounds = false
         let separatorTwo = UIView(frame: .zero)
-        separatorTwo.backgroundColor = .luxeLightGray()
+        separatorTwo.backgroundColor = .luxeLightestGray()
         separatorTwo.clipsToBounds = false
         
         loanerContainerView.addSubview(separatorOne)
@@ -211,6 +238,12 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             make.bottom.equalTo(timeSlotsHeader.snp.top).offset(-28)
             make.left.right.equalToSuperview()
             make.height.equalTo(calendarViewHeight)
+        }
+        
+        noDateLabel.snp.makeConstraints { make in
+            make.center.equalTo(calendar)
+            make.width.equalToSuperview()
+            make.height.equalTo(50)
         }
         
         firstMonthHeader.snp.makeConstraints { make in
@@ -255,13 +288,17 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         
         titleLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(loanerContainerView.snp.top).offset(-10)
+            make.bottom.equalTo(loanerContainerView.snp.top).offset(-8)
             make.height.equalTo(20)
         }
     }
     
     override func height() -> Int {
-        return (170 + calendarViewHeight) + VLPresentrViewController.baseHeight + hoursViewHeight + loanerViewHeight
+        var height = (169 + calendarViewHeight) + VLPresentrViewController.baseHeight + hoursViewHeight + loanerViewHeight
+        if !noDateLabel.isHidden {
+            height += 5
+        }
+        return height
     }
     
     override func onButtonClick() {
@@ -301,7 +338,14 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         
         maxDate = Calendar.current.date(byAdding: .day, value: 3*7, to: todaysDate)!
         let weekday = Calendar.current.component(.weekday, from: maxDate) // 1 is sunday for Gregorian
-        maxDate = Calendar.current.date(byAdding: .day, value: 7-weekday+1, to: maxDate)!
+        let weekMonth = Calendar.current.component(.weekOfMonth, from: maxDate)
+
+        let day = Calendar.current.component(.day, from: maxDate)
+        if day >= 1 && day <= 7 && weekMonth == 1 {
+            maxDate = Calendar.current.date(byAdding: .day, value: -day, to: maxDate)!
+        } else {
+            maxDate = Calendar.current.date(byAdding: .day, value: 7-weekday+1, to: maxDate)!
+        }
         
         let monthMax = Calendar.current.component(.month, from: maxDate)
         let monthCurrent = Calendar.current.component(.month, from: todaysDate)
@@ -312,11 +356,14 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         }
         
         let calendar = FSCalendar(frame: .zero)
-        calendar.rowHeight = 46
+        calendar.rowHeight = CGFloat(DateTimePickupViewController.rowHeight)
         calendar.dataSource = self
         calendar.delegate = self
         calendar.allowsMultipleSelection = true
         containerView.addSubview(calendar)
+        
+        calendar.appearance.headerDateFormat = monthFormatter.dateFormat
+        calendar.appearance.headerTitleFont = .volvoSansLightBold(size: 12)
         
         calendar.calendarHeaderView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
         calendar.calendarWeekdayView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
@@ -326,10 +373,10 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         calendar.appearance.titleFont = .volvoSansLightBold(size: 12)
         calendar.appearance.headerTitleColor = .luxeGray()
         calendar.appearance.caseOptions = FSCalendarCaseOptions.headerUsesUpperCase
-        calendar.appearance.borderSelectionColor = .luxeDeepBlue()
-        calendar.appearance.borderDefaultColor = .luxeDeepBlue()
-        calendar.appearance.selectionColor = .luxeDeepBlue()
-        calendar.appearance.titleDefaultColor = .luxeDeepBlue()
+        calendar.appearance.borderSelectionColor = .luxeCobaltBlue()
+        calendar.appearance.borderDefaultColor = .luxeCobaltBlue()
+        calendar.appearance.selectionColor = .luxeCobaltBlue()
+        calendar.appearance.titleDefaultColor = .luxeCobaltBlue()
         calendar.appearance.titleSelectionColor = .white
         calendar.appearance.borderRadius = 0
         
@@ -341,9 +388,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         calendar.allowsSelection = true
         calendar.setCollectionViewScrollEnabled(false)
         calendar.placeholderType = .none
-        
-        //calendar.setCollectionViewScrollEnabled(false)
-        
+                
         calendar.calendarWeekdayView.isHidden = true
         calendar.weekdayHeight = 0
         //calendar.preferredWeekdayHeight = 0
@@ -356,7 +401,6 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         
         self.calendar = calendar
         self.calendar.alpha = 0
-        
         
     }
     
@@ -416,17 +460,34 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             if let selectedDate = selectedDate {
                 _ = self.calendar(self.calendar, shouldSelect: selectedDate, at: .current)
                 self.calendar.select(selectedDate)
+                self.showError(error: false)
+            } else {
+                DispatchQueue.main.asyncAfter(deadline: .now() + 1.25, execute: {
+                    self.calendar.scroll(to: self.maxDate, animated: false)
+                })
+                self.showError(error: true)
             }
             self.selectFirstEnabledButton()
             
             self.initWeekDayView()
             self.showLoading(loading: false)
-            self.calendar.animateAlpha(show: true)
+            if let _ = selectedDate {
+                self.calendar.animateAlpha(show: true)
+            }
         })
     }
     
     
     // MARK: Private Methods
+    
+    private func showError(error: Bool) {
+        
+        self.noDateLabel.isHidden = !error
+        self.calendar.isHidden = error
+        self.weekdayViews.isHidden = error
+        self.firstMonthHeader.isHidden = error
+        self.timeSlotsHeader.isHidden = error
+    }
     
     @objc internal func switchChanged(uiswitch: UISwitch) {
         RequestedServiceManager.sharedInstance.setLoaner(loaner: uiswitch.isOn)
@@ -491,7 +552,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         currentSlots = slots
         
         for (index, slot) in slots.enumerated() {
-            let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: false), actionBlock: nil)
+            let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true), actionBlock: nil)
             slotButton.setActionBlock {
                 self.slotClicked(viewIndex: index, slot: slot)
             }
@@ -574,17 +635,6 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             }
         }
         return -1
-    }
-    
-    func minMax(index: Int) -> (min: Int, max: Int) {
-        if index == 0 {
-            return (9, 12)
-        } else if index == 1 {
-            return (12, 15)
-        } else if index == 2 {
-            return (15, 18)
-        }
-        return (0, 0)
     }
     
     // MARK:- FSCalendarDataSource

@@ -84,16 +84,15 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         self.view.addSubview(phoneNumberTextField)
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalToSuperview().offset(80)
+            make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(80)
         }
         
         emailTextField.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.top.equalTo(phoneNumberLabel.snp.bottom).offset(15)
+            make.top.equalTo(phoneNumberLabel.snp.bottom).offset(20)
             make.height.equalTo(VLVerticalTextField.height)
         }
         
@@ -106,7 +105,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         phoneNumberConfirmLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(phoneNumberLabel)
-            make.top.equalTo(phoneNumberTextField.snp.bottom)
+            make.top.equalTo(phoneNumberTextField.snp.bottom).offset(-4)
             make.height.equalTo(20)
         }
     }
@@ -170,9 +169,9 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         }
         signupInProgress = loading
         if loading {
-            MBProgressHUD.showAdded(to: self.view, animated: true)
+            showProgressHUD()
         } else {
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.hideProgressHUD()
         }
     }
     
@@ -231,6 +230,20 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
             return
         }
         
+        if UIApplication.isRunningTest {
+            let customer = Customer.mockCustomer()
+            if let realm = self.realm {
+                try? realm.write {
+                    realm.deleteAll()
+                    realm.add(customer)
+                }
+            }
+            UserManager.sharedInstance.setCustomer(customer: customer)
+            UserManager.sharedInstance.tempCustomerId = customer.id
+            self.goToNext()
+            return
+        }
+        
         CustomerAPI().signup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, languageCode: Locale.preferredLanguages[0].uppercased()).onSuccess { result in
             if let customer = result?.data?.result {
                 if let realm = self.realm {
@@ -251,6 +264,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     }
     
     override func goToNext() {
+        self.hideProgressHUD()
         self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
     }
 }

@@ -38,6 +38,8 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.navigationItem.title = .YourAccount
+        
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
@@ -71,7 +73,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     func getTextForIndexPath(indexPath: IndexPath) -> String {
         if indexPath.section == 0 {
             if let addresses = addresses, addressesCount > indexPath.row {
-                return (addresses[indexPath.row].location?.address)!
+                return (addresses[indexPath.row].location?.getShortAddress())!
             }
             return .AddNewLocation
         } else if indexPath.section == 1 {
@@ -101,6 +103,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     func showPickupLocationModal(dismissOnTap: Bool) {
         let locationVC = AddLocationViewController(title: .AddNewLocation, buttonTitle: .Add)
         locationVC.pickupLocationDelegate = self
+        locationVC.presentrDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
         currentPresentrVC = locationVC
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
@@ -130,7 +133,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     }
     
     func resetPassword() {
-        MBProgressHUD.showAdded(to: self.view, animated: true)
+        showProgressHUD()
         if let customerId = UserManager.sharedInstance.getCustomerId() {
             CustomerAPI().requestPasswordChange(customerId: customerId).onSuccess { response in
                 if let _ = response?.error {
@@ -140,19 +143,24 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
                     FTUEStartViewController.flowType = .signup
                     self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
                 }
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
                 }.onFailure { error in
                     self.showOkDialog(title: .Error, message: .GenericError)
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.hideProgressHUD()
             }
         }
+    }
+    
+    override func presentrShouldDismiss(keyboardShowing: Bool) -> Bool {
+        if let locationVC = currentPresentrVC as? AddLocationViewController {
+            locationVC.newLocationTextField.closeAutocomplete()
+        }
+        return super.presentrShouldDismiss(keyboardShowing: keyboardShowing)
     }
     
 }
 
 extension AccountSettingsViewController: UITableViewDataSource, UITableViewDelegate, SettingsCellProtocol {
-    
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
@@ -169,7 +177,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ServiceCell.height
+        return CheckmarkCell.height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -183,7 +191,9 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
             cell.setCellType(type: .button)
             text = text.uppercased()
         } else {
-            if indexPath.section == 1 {
+            if indexPath.section == 0 {
+                editImage = "edit"
+            } else if indexPath.section == 1 {
                 editImage = "edit"
                 if indexPath.row == 0 {
                     leftImage = "message"
@@ -209,19 +219,14 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     }
     
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
-        if indexPath.section == 0 && indexPath.row < addressesCount {
-            return .delete
-        }
         return .none
     }
     
     func tableView(_ tableView: UITableView, shouldIndentWhileEditingRowAt indexPath: IndexPath) -> Bool {
-        if indexPath.section == 0 && indexPath.row < addressesCount {
-            return true
-        }
         return false
     }
     
+    /*
     func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
         if indexPath.section == 0 && indexPath.row < addressesCount {
             let delete = UITableViewRowAction(style: .destructive, title: "Delete", handler: { (action, indexPath) in
@@ -252,22 +257,23 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         
         return []
     }
-    
+    */
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return ServiceCell.height
+        return CheckmarkCell.height
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: SettingsCell.height))
         view.backgroundColor = UIColor.clear
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: SettingsCell.height))
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.textColor = UIColor.luxeDarkGray()
+        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.textColor = UIColor.luxeGray()
         label.text = getTitleForSection(section: section).uppercased()
+        label.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         view.addSubview(label)
         return view
     }
@@ -283,16 +289,31 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     
     func onEditClicked(_ cell: UITableViewCell) {
         if let indexPath = tableView.indexPath(for: cell) {
-            if indexPath.section == 2 {
+            if indexPath.section == 0 {
+                self.showDestructiveDialog(title: .Confirm, message: String(format: .AreYouSureDeleteAddress, self.getTextForIndexPath(indexPath: indexPath)), cancelButtonTitle: .Cancel, destructiveButtonTitle: .Delete, destructiveCompletion: {
+                    self.deleteAddressAtIndexPath(indexPath)
+                })
+                
+            } else if indexPath.section == 2 {
                 // pwd
                 self.resetPassword()
             } else if indexPath.section == 1 || indexPath.row == 1 {
                 // update phone number
-                self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
+                self.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true, backLabel: .Back)
             }
         }
     }
     
+    
+    private func deleteAddressAtIndexPath(_ indexPath: IndexPath) {
+        if let realm = self.realm, let addresses = self.addresses {
+            try? realm.write {
+                realm.delete(addresses[indexPath.row])
+                self.addressesCount = addresses.count
+            }
+            tableView.deleteRows(at: [indexPath], with: .automatic)
+        }
+    }
     
     
 }

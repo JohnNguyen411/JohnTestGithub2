@@ -58,12 +58,12 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     let contentView = UIView()
     let dealershipAddressView = UIView()
     let scheduledServiceView = VLTitledLabel(padding: insetPadding)
-    let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
+    let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     let dealershipView = VLTitledLabel(padding: insetPadding)
     let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "", padding: insetPadding)
     let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "", padding: insetPadding)
-    let loanerView = VLTitledLabel(title: .ComplimentaryLoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmPickup as String).uppercased(), actionBlock: nil)
+    let loanerView = VLTitledLabel(title: .NeedALoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
+    let confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmPickup as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
     let dealershipAddressLabel: UILabel = {
         let dealershipAddressLabel = UILabel()
@@ -77,10 +77,11 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     
     let dealershipMapLabel: UILabel = {
         let dealershipMapLabel = UILabel()
-        dealershipMapLabel.textColor = .luxeDeepBlue()
+        dealershipMapLabel.textColor = .luxeCobaltBlue()
         dealershipMapLabel.font = .volvoSansLightBold(size: 12)
         dealershipMapLabel.text = String.Map.uppercased()
         dealershipMapLabel.textAlignment = .left
+        dealershipMapLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         return dealershipMapLabel
     }()
     
@@ -118,7 +119,11 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         
         // onLoanerChanged
         SwiftEventBus.onMainThread(self, name: "onLoanerChanged") { result in
-            self.loanerView.descLeftLabel.text = RequestedServiceManager.sharedInstance.getLoaner() ? .Yes : .No
+            var loaner = false
+            if let selectedLoaner = RequestedServiceManager.sharedInstance.getLoaner() {
+                loaner = selectedLoaner
+            }
+            self.loanerView.descLeftLabel.text = loaner ? .Yes : .No
         }
     }
     
@@ -240,10 +245,18 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             make.right.equalTo(dealershipMapLabel.snp.left)
         }
         
-        scheduledPickupView.snp.makeConstraints { make in
-            make.left.right.equalTo(scheduledServiceView)
-            make.top.equalTo(dealershipView.snp.bottom)
-            make.height.equalTo(SchedulingViewController.vlLabelHeight)
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
+            scheduledPickupView.snp.makeConstraints { make in
+                make.left.right.equalTo(scheduledServiceView)
+                make.top.equalTo(loanerView.snp.bottom)
+                make.height.equalTo(SchedulingViewController.vlLabelHeight)
+            }
+        } else {
+            scheduledPickupView.snp.makeConstraints { make in
+                make.left.right.equalTo(scheduledServiceView)
+                make.top.equalTo(dealershipView.snp.bottom)
+                make.height.equalTo(SchedulingViewController.vlLabelHeight)
+            }
         }
         
         confirmButton.snp.makeConstraints { make in
@@ -278,7 +291,12 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         
         fillDealership()
         
-        loanerView.descLeftLabel.text = RequestedServiceManager.sharedInstance.getLoaner() ? .Yes : .No
+        var loaner = false
+        if let selectedLoaner = RequestedServiceManager.sharedInstance.getLoaner() {
+            loaner = selectedLoaner
+        }
+        
+        loanerView.descLeftLabel.text = loaner ? .Yes : .No
         
         confirmButton.setTitle(title: getConfirmButtonTitle())
     }
@@ -551,7 +569,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
         
         let dateTime = formatter.string(from: timeSlot.from!)
-        scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")", rightDescription: "")
+        scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true) ?? "")", rightDescription: "")
     }
     
     func onSizeChanged() {
@@ -560,6 +578,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         let presentationType = getPresenterPresentationType(heightInPixels: newHeight, customYOrigin: BaseViewController.fakeYOrigin)
         currentPresentr?.currentPresentationController?.updateToNewFrame(presentationType: presentationType)
     }
+    
     
     func onLocationSelected(customerAddress: CustomerAddress) {
         

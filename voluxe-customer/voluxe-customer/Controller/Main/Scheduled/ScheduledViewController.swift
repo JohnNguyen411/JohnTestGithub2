@@ -63,7 +63,7 @@ class ScheduledViewController: ChildViewController {
         return titleLabel
     }()
     
-    private let driverContact = VLButton(type: .orangeSecondarySmall, title: (.Contact as String).uppercased(), actionBlock: nil)
+    private let driverContact = VLButton(type: .orangeSecondarySmall, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
     init(vehicle: Vehicle) {
         self.vehicle = vehicle

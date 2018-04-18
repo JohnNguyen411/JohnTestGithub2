@@ -33,7 +33,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     let preferedDealershipView = VLTitledLabel(title: .PreferredDealership, leftDescription: "", rightDescription: "")
     let scheduledServiceView = VLTitledLabel()
     let contentView = UIView(frame: .zero)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.NewService as String).uppercased(), actionBlock: nil)
+    let confirmButton = VLButton(type: .bluePrimary, title: (.NewService as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
 
     //MARK: Lifecycle methods
     init(state: ServiceState) {
@@ -58,6 +58,8 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         super.viewDidLoad()
         
         setNavigationBarItem()
+        self.navigationItem.title = .NewService
+
         // init tap events
         scheduledServiceView.isUserInteractionEnabled = true
         let scheduledServiceTap = UITapGestureRecognizer(target: self, action: #selector(self.scheduledServiceClick))
@@ -182,7 +184,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
             } else {
                 if let request = booking.dropoffRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
                     let dateTime = formatter.string(from: date)
-                    scheduledServiceView.setTitle(title: .ScheduledDelivery, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+                    scheduledServiceView.setTitle(title: .ScheduledDelivery, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true) ?? "" )", rightDescription: "")
                 } else {
                     scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName())
                 }
@@ -209,7 +211,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     func confirmButtonClick() {
         if let selectedVehicle = selectedVehicle {
             RequestedServiceManager.sharedInstance.reset()
-            self.navigationController?.pushViewController(NewServiceViewController(vehicle: selectedVehicle), animated: true)
+            self.pushViewController(NewServiceViewController(vehicle: selectedVehicle), animated: true, backLabel: .Back)
         }
     }
     

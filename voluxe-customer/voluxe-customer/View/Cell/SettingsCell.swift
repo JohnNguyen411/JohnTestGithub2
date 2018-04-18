@@ -66,9 +66,13 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
     
     private func applyTextStyle(type: SettingsCellType) {
         if type == .button {
-            settingLabel.textColor = .luxeDarkBlue()
+            settingLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+            settingLabel.textColor = .luxeCobaltBlue()
+            settingLabel.font = UIFont.volvoSansLightBold(size: 15)
         } else {
-            settingLabel.textColor = .black
+            settingLabel.addCharacterSpacing(kernValue: UILabel.defaultKern())
+            settingLabel.textColor = .luxeDarkGray()
+            settingLabel.font = UIFont.volvoSansLightBold(size: 18)
         }
         
     }
@@ -106,6 +110,17 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
                 make.top.bottom.right.equalToSuperview()
                 make.left.equalTo(leftImage.snp.right).offset(15)
             }
+        } else {
+            leftImage.image = nil
+            leftImage.snp.remakeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.left.equalTo(editImage.snp.right)
+                make.width.equalTo(0)
+            }
+            settingLabel.snp.remakeConstraints { make in
+                make.top.bottom.right.equalToSuperview()
+                make.left.equalTo(leftImage.snp.right).offset(15)
+            }
         }
         if let editImageName = editImageName {
             editImage.image = UIImage(named: editImageName)
@@ -139,11 +154,11 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
     
     private func resetConstraints() {
         if editImage.image == nil {
-            settingLabel.isUserInteractionEnabled = false
+            editImage.isUserInteractionEnabled = false
             return
         }
-        settingLabel.isUserInteractionEnabled = true
-        settingLabel.addGestureRecognizer(singleTap!)
+        editImage.isUserInteractionEnabled = true
+        editImage.addGestureRecognizer(singleTap!)
         UIView.animate(withDuration: 0.3, animations: {
             if self.isEditing {
                 self.editImage.alpha = 1

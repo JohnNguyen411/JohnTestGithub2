@@ -12,6 +12,8 @@ extension String {
     
     static let Login = NSLocalizedString("Login")
     static let Signup = NSLocalizedString("Signup")
+    static let SignIn = NSLocalizedString("SignIn")
+    static let CreateAccount = NSLocalizedString("CreateAccount")
     static let FTUEStartOne = NSLocalizedString("FTUEStartOne")
     static let FTUEStartTwo = NSLocalizedString("FTUEStartTwo")
     static let VolvoUserId = NSLocalizedString("VolvoUserId")
@@ -51,8 +53,10 @@ extension String {
     static let AccountAlreadyExist = NSLocalizedString("AccountAlreadyExist")
     static let InvalidVerificationCode = NSLocalizedString("InvalidVerificationCode")
     static let InvalidCredentials = NSLocalizedString("InvalidCredentials")
-    static let UpdatePhoneNumber = NSLocalizedString("UpdatePhoneNumber")
+    static let ChangePhoneNumber = NSLocalizedString("ChangePhoneNumber")
     static let PhoneNumberAlreadyExist = NSLocalizedString("PhoneNumberAlreadyExist")
     static let PasswordResetLogin = NSLocalizedString("PasswordResetLogin")
-
+    static let PasswordUnauthorizedChars = NSLocalizedString("PasswordUnauthorizedChars")
+    static let AreYouSureDeleteAddress = NSLocalizedString("AreYouSureDeleteAddress")
+    
 }

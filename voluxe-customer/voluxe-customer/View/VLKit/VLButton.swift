@@ -14,10 +14,11 @@ enum VLButtonType{
     case blueSecondary
     case blueSecondaryWithBorder
     case blueSecondaryWithBorderDisabled
-    case blueSecondarySelected //orange
+    case blueSecondarySelected
     case orangePrimary
     case orangeSecondary
     case orangeSecondarySmall
+    case orangeSecondaryVerySmall
 }
 
 class VLButton : UIButton {
@@ -27,8 +28,26 @@ class VLButton : UIButton {
 
     let activityIndicator = UIActivityIndicatorView(frame: .zero)
     var iconView: UIImageView?
+    var normalBackgroundColor = UIColor.clear
+    var highlightBackgroundColor: UIColor?
     var type: VLButtonType?
     var titleText = ""
+    
+    override open var isHighlighted: Bool {
+        didSet {
+            if let highlightBackgroundColor = highlightBackgroundColor {
+                UIView.animate(withDuration: 0.2, animations: {
+                    if self.isHighlighted {
+                        self.backgroundColor = highlightBackgroundColor
+                    } else {
+                        self.backgroundColor = self.normalBackgroundColor
+                    }
+                })
+            } else {
+                backgroundColor = normalBackgroundColor
+            }
+        }
+    }
     
     var isLoading = false {
         didSet {
@@ -50,7 +69,7 @@ class VLButton : UIButton {
     /**
      Need to make constraints after initializing the button
      */
-    init(type: VLButtonType, title: String?, actionBlock:(()->())?) {
+    init(type: VLButtonType, title: String?, kern: Float? = nil, actionBlock:(()->())?) {
         super.init(frame: .zero)
         
         setType(type: type)
@@ -69,6 +88,10 @@ class VLButton : UIButton {
         activityIndicator.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.width.height.equalTo(25)
+        }
+        
+        if let kern = kern {
+            self.addCharacterSpacing(kernValue: kern)
         }
     }
     
@@ -92,20 +115,23 @@ class VLButton : UIButton {
         self.type = type
         switch type {
         case .bluePrimary:
-            backgroundColor = .luxeDeepBlue()
-            applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeWhite(), highlightedFontColor: .luxeLightGray())
+            normalBackgroundColor = .luxeCobaltBlue()
+            highlightBackgroundColor = .luxeLightCobaltBlue()
+            backgroundColor = normalBackgroundColor
+            applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeWhite(), highlightedFontColor: nil)
             layer.borderWidth = 0
+            addShadow()
             break
         case .blueSecondary:
             backgroundColor = .clear
-            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeDeepBlue(), highlightedFontColor: .luxeGray())
+            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeCobaltBlue(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
         case .blueSecondaryWithBorder:
             backgroundColor = .clear
-            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeDeepBlue(), highlightedFontColor: .luxeGray())
+            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeCobaltBlue(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 1
-            layer.borderColor = UIColor.luxeDeepBlue().cgColor
+            layer.borderColor = UIColor.luxeCobaltBlue().cgColor
             break
         case .blueSecondaryWithBorderDisabled:
             backgroundColor = .clear
@@ -114,9 +140,12 @@ class VLButton : UIButton {
             layer.borderColor = UIColor.luxeGray().cgColor
             break
         case .orangePrimary:
-            backgroundColor = .white
-            applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeOrange(), highlightedFontColor: .luxeLightGray())
+            normalBackgroundColor = .white
+            highlightBackgroundColor = .luxeLightestGray()
+            backgroundColor = normalBackgroundColor
+            applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeOrange(), highlightedFontColor: nil)
             layer.borderWidth = 0
+            addShadow()
             break
         case .orangeSecondary:
             backgroundColor = .clear
@@ -128,8 +157,15 @@ class VLButton : UIButton {
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 14), fontColor: UIColor.luxeOrange(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
+        case .orangeSecondaryVerySmall:
+            backgroundColor = .clear
+            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeOrange(), highlightedFontColor: .luxeGray())
+            layer.borderWidth = 0
+            break
         case .blueSecondarySelected:
-            backgroundColor = UIColor.luxeDeepBlue()
+            normalBackgroundColor = .luxeCobaltBlue()
+            highlightBackgroundColor = .luxeLightCobaltBlue()
+            backgroundColor = normalBackgroundColor
             applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: .white, highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
@@ -174,6 +210,17 @@ class VLButton : UIButton {
                 self.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
             }
         }
+    }
+    
+    private func addShadow() {
+        
+        self.layer.masksToBounds = false
+        
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.33
+        self.layer.shadowRadius = 2
+        self.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
+        self.contentEdgeInsets = UIEdgeInsetsMake(4, 0, 0, 0)
     }
     
     override func layoutSubviews() {

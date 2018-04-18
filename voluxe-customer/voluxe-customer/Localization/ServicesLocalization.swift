@@ -19,6 +19,7 @@ extension String {
     static let MilestoneServices = NSLocalizedString("MilestoneServices")
     static let RecallServices = NSLocalizedString("RecallServices")
     static let OtherMaintenanceRepairs = NSLocalizedString("OtherMaintenanceRepairs")
+    static let OtherMaintenance = NSLocalizedString("OtherMaintenance")
     static let WhatPartRequiresService = NSLocalizedString("WhatPartRequiresService")
     static let SelectAllThatApply = NSLocalizedString("SelectAllThatApply")
     static let IsVolvoDrivable = NSLocalizedString("IsVolvoDrivable")
@@ -28,4 +29,8 @@ extension String {
     static let AddDescription = NSLocalizedString("AddDescription")
     static let DiagnosticAndService = NSLocalizedString("DiagnosticAndService")
     static let FactoryScheduledMaintenance = NSLocalizedString("FactoryScheduledMaintenance")
+    static let VehicleExt = NSLocalizedString("VehicleExt")
+    static let VehicleInt = NSLocalizedString("VehicleInt")
+    static let UnderTheHood = NSLocalizedString("UnderTheHood")
+    static let IDontKnow = NSLocalizedString("IDontKnow")
 }

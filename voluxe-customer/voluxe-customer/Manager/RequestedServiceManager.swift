@@ -16,7 +16,7 @@ final class RequestedServiceManager {
     private var selfInitiated = false
     private var repairOrder: RepairOrder?
     private var dealership: Dealership?
-    private var loaner: Bool = true
+    private var loaner: Bool?
     
     private var pickupRequestLocation: Location?
     private var pickupTimeSlot: DealershipTimeSlot?
@@ -32,7 +32,7 @@ final class RequestedServiceManager {
     }
     
     func reset() {
-        loaner = true
+        loaner = nil
         pickupTimeSlot = nil
         pickupRequestLocation = nil
         dropOffRequestLocation = nil
@@ -57,11 +57,9 @@ final class RequestedServiceManager {
         return dropOffRequestType
     }
     
-    func setRepairOrder(repairOrder: RepairOrder, selfInitiated: Bool? = nil) {
+    func setRepairOrder(repairOrder: RepairOrder, selfInitiated: Bool = true) {
         self.repairOrder = repairOrder
-        if let selfInitiated = selfInitiated {
-            self.selfInitiated = selfInitiated
-        }
+        self.selfInitiated = selfInitiated
     }
     
     func setDealership(dealership: Dealership?) {
@@ -80,7 +78,7 @@ final class RequestedServiceManager {
         return dealership
     }
     
-    func getLoaner() -> Bool {
+    func getLoaner() -> Bool? {
         return loaner
     }
     

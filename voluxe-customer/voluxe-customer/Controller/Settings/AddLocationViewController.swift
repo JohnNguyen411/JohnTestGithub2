@@ -10,11 +10,12 @@ import Foundation
 import UIKit
 import CoreLocation
 
-class AddLocationViewController: VLPresentrViewController, LocationManagerDelegate, UITextFieldDelegate, VLVerticalSearchTextFieldDelegate {
+class AddLocationViewController: VLPresentrViewController, LocationManagerDelegate, UITextFieldDelegate, VLVerticalSearchTextFieldDelegate, PresentrDelegate {
     
     var pickupLocationDelegate: AddLocationDelegate?
     var locationManager = LocationManager.sharedInstance
     
+    var presentrDelegate: PresentrDelegate?
     var selectedLocationInfo: NSDictionary?
     var selectedLocationPlacemark: CLPlacemark?
     
@@ -154,6 +155,13 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     func resetValues() {
         autoCompleteCharacterCount = 0
         self.newLocationTextField.textField.text = ""
+    }
+    
+    func presentrShouldDismiss(keyboardShowing: Bool) -> Bool {
+        if let presentrDelegate = presentrDelegate {
+            return presentrDelegate.presentrShouldDismiss!(keyboardShowing: keyboardShowing)
+        }
+        return true
     }
 }
 

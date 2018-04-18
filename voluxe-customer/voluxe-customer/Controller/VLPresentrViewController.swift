@@ -22,10 +22,11 @@ class VLPresentrViewController: UIViewController {
         titleLabel.textColor = .luxeGray()
         titleLabel.font = .volvoSansLightBold(size: 12)
         titleLabel.textAlignment = .left
+        titleLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         return titleLabel
     }()
     
-    let bottomButton = VLButton(type: .bluePrimary, title: nil, actionBlock: nil)
+    let bottomButton = VLButton(type: .bluePrimary, title: nil, kern: UILabel.uppercasedKern(), actionBlock: nil)
     
     init(title: String, buttonTitle: String) {
         super.init(nibName: nil, bundle: nil)
@@ -50,10 +51,12 @@ class VLPresentrViewController: UIViewController {
     
     func setTitle(title: String) {
         titleLabel.text = title
+        titleLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
     }
     
     func setButtonTitle(title: String) {
         bottomButton.setTitle(title: title)
+        bottomButton.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
     }
     
     func setupViews() {
@@ -69,7 +72,7 @@ class VLPresentrViewController: UIViewController {
         }
         
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-        activityIndicator.color = .luxeDarkBlue()
+        activityIndicator.color = .luxeCobaltBlue()
         
         bottomButton.accessibilityIdentifier = "bottomButton"
         

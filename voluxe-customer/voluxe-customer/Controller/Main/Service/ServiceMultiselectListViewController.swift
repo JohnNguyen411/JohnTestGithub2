@@ -23,7 +23,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     let introLabelBold: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .SelectAllThatApply
-        textView.font = .volvoSansBold(size: 12)
+        textView.font = .volvoSansProMedium(size: 12)
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
@@ -31,7 +31,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     }()
     
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), actionBlock: nil)
+    let confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
 
     let vehicle: Vehicle
     let repairOrderType: RepairOrderType
@@ -56,10 +56,10 @@ class ServiceMultiselectListViewController: BaseViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(CheckableTableViewCell.self, forCellReuseIdentifier: CheckableTableViewCell.reuseId)
-        tableView.isScrollEnabled = true
+        tableView.isScrollEnabled = false
         tableView.tableHeaderView = UIView(frame: .zero)
-        tableView.tableFooterView = UIView(frame: .zero)
-
+        tableView.separatorStyle = .none
+        
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         } else {
@@ -68,8 +68,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         
         self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
 
-        
-        showServices(services: ["Exterior Body", "Doors or cabin interior", "Steering wheel or Dashboard", "Tires, wheels, or brakes", "Engine or transmission", "Battery, lights, AC, or electrical", "Something under the hood", "Other", "I don't know"])
+        showServices(services: [.VehicleExt, .VehicleInt, .UnderTheHood, .IDontKnow])
         
         confirmButton.setActionBlock {
             guard let services = self.services else {
@@ -81,8 +80,10 @@ class ServiceMultiselectListViewController: BaseViewController {
                     selectedService.append(services[dictElement.element.key])
                 }
             }
-            self.navigationController?.pushViewController(OtherServiceViewController(vehicle: self.vehicle, repairOrderType: self.repairOrderType, services: selectedService), animated: true)
+            self.pushViewController(OtherServiceViewController(vehicle: self.vehicle, repairOrderType: self.repairOrderType, services: selectedService), animated: true, backLabel: .Back)
         }
+        
+        self.navigationItem.title = .OtherMaintenance
     }
     
     override func setupViews() {
@@ -95,24 +96,20 @@ class ServiceMultiselectListViewController: BaseViewController {
         containerView.addSubview(introLabelBold)
         containerView.addSubview(tableView)
         containerView.addSubview(confirmButton)
-        
-        let labelHeight = introLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
-        
+                
         containerView.snp.makeConstraints { make in
-            make.left.top.equalToSuperview().offset(20)
-            make.right.bottom.equalToSuperview().offset(-20)
+            make.left.top.right.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-20)
         }
         
         introLabel.snp.makeConstraints { make in
-            make.left.top.equalToSuperview()
-            make.right.equalToSuperview()
-            make.height.equalTo(labelHeight)
+            make.top.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview().offset(-20)
         }
         
         introLabelBold.snp.makeConstraints { make in
             make.left.right.equalTo(introLabel)
             make.top.equalTo(introLabel.snp.bottom).offset(5)
-            make.height.equalTo(10)
         }
         
         confirmButton.snp.makeConstraints { make in
@@ -122,10 +119,15 @@ class ServiceMultiselectListViewController: BaseViewController {
         }
         
         tableView.snp.makeConstraints { make in
-            make.left.right.equalTo(introLabel)
-            make.top.equalTo(introLabelBold.snp.bottom).offset(10)
+            make.left.right.equalToSuperview()
+            make.top.equalTo(introLabelBold.snp.bottom).offset(30)
             make.bottom.equalTo(confirmButton.snp.top).offset(-20)
         }
+        
+        let separator = UIView(frame: CGRect(x: 20, y: 0, width: self.view.frame.width-20, height: 1))
+        separator.backgroundColor = .luxeLightestGray()
+        
+        self.tableView.tableFooterView = separator
         
     }
     

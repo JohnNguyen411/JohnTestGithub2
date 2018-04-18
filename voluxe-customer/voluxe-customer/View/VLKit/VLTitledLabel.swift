@@ -28,7 +28,7 @@ class VLTitledLabel: UIView {
     let descLeftLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.font = .volvoSansLightBold(size: 18)
+        titleLabel.font = .volvoSansLightBold(size: 16)
         titleLabel.textAlignment = .left
         return titleLabel
     }()
@@ -36,7 +36,7 @@ class VLTitledLabel: UIView {
     let descRightLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.font = .volvoSansLightBold(size: 18)
+        titleLabel.font = .volvoSansLightBold(size: 16)
         titleLabel.textAlignment = .right
         return titleLabel
     }()
@@ -46,6 +46,7 @@ class VLTitledLabel: UIView {
         errorLabel.textColor = .luxeOrange()
         errorLabel.font = .volvoSansLightBold(size: 12)
         errorLabel.textAlignment = .right
+        errorLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         return errorLabel
     }()
     
@@ -56,7 +57,7 @@ class VLTitledLabel: UIView {
     var isEditable = false {
         didSet {
             if isEditable {
-                descLeftLabel.textColor = .luxeDeepBlue()
+                descLeftLabel.textColor = .luxeCobaltBlue()
             } else {
                 descLeftLabel.textColor = .luxeDarkGray()
             }
@@ -155,7 +156,7 @@ class VLTitledLabel: UIView {
     func hideError() {
         titleLabel.textColor = .luxeGray()
         separator.backgroundColor = .luxeGray()
-        descLeftLabel.textColor = isEditable ? .luxeDeepBlue() :  .luxeDarkGray()
+        descLeftLabel.textColor = isEditable ? .luxeCobaltBlue() :  .luxeDarkGray()
         descRightLabel.textColor = .luxeDarkGray()
         self.backgroundColor = .clear
 

@@ -16,6 +16,8 @@ class ChildViewController: BaseViewController {
     func setTitle(title: String) {
         if let childViewDelegate = childViewDelegate {
             childViewDelegate.setTitleFromChild(title: title)
+        } else {
+            super.setTitle(title: title)
         }
     }
     

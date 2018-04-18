@@ -11,7 +11,14 @@ import UIKit
 import CoreLocation
 import RealmSwift
 
-class LocationPickupViewController: VLPresentrViewController, LocationManagerDelegate, UITextFieldDelegate, VLGroupedLabelsDelegate, VLVerticalSearchTextFieldDelegate {
+class LocationPickupViewController: VLPresentrViewController, LocationManagerDelegate, UITextFieldDelegate, VLVerticalSearchTextFieldDelegate {
+    
+    private static let maxCount = 4
+    
+    private static let newLocationButtonHeight = 0
+    private static let newLocationTextFieldHeight = VLVerticalTextField.height + 5
+
+    var newLocationHeight = newLocationButtonHeight
     
     var user: Customer?
     
@@ -23,7 +30,6 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     var locationManager = LocationManager.sharedInstance
     
     // current location == user current location
-    var currentLocationIndex = -1
     var currentLocationInfo: NSDictionary?
     var currentLocationPlacemark: CLPlacemark?
     
@@ -46,11 +52,14 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         titleLabel.text = (.AddNewLocation as String).uppercased()
         titleLabel.font = .volvoSansLightBold(size: 12)
         titleLabel.textAlignment = .left
+        titleLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         return titleLabel
     }()
     
+    let newLocationButton = VLButton(type: .blueSecondary, title: (.AddNewLocation as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    
     let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
-    let groupedLabels = VLGroupedLabels(singleChoice: true, topBottomSeparator: true)
+    let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
     
     override init(title: String, buttonTitle: String) {
         super.init(title: title, buttonTitle: buttonTitle)
@@ -67,7 +76,13 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         bottomButton.isEnabled = false
-        groupedLabels.delegate = self
+        
+        tableView.backgroundColor = .clear
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.register(CheckmarkCell.self, forCellReuseIdentifier: CheckmarkCell.reuseId)
+        tableView.isScrollEnabled = true
+        tableView.separatorStyle = .none
         
         user = UserManager.sharedInstance.getCustomer()
         var selectedLocation = RequestedServiceManager.sharedInstance.getPickupLocation()
@@ -80,15 +95,19 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
             if let addresses = addresses {
                 addressesCount = addresses.count
                 for (index, address) in addresses.enumerated() {
-                    addLocation(location: (address.location?.address)!)
+                    self.onLocationAdded()
                     if let selectedLocation = selectedLocation, selectedLocation.id == address.location?.id {
                         preselectedIndex = index
                     }
                 }
             }
             if preselectedIndex >= 0 {
-                groupedLabels.select(selectedIndex: preselectedIndex, selected: true)
+                selectIndex(selectedIndex: preselectedIndex)
             }
+        }
+        
+        newLocationButton.setActionBlock {
+            self.addNewLocationClicked()
         }
     }
     
@@ -101,30 +120,33 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         locationManager.stopUpdatingLocation()
     }
     
-    func addLocation(location: String) {
-        groupedLabels.addItem(item: location)
+    func onLocationAdded() {
+        tableView.reloadData()
         
         containerView.snp.updateConstraints{ make in
             make.height.equalTo(height())
         }
         
-        groupedLabels.snp.updateConstraints{ make in
-            make.height.equalTo(groupedLabels.items.count * VLSelectableLabel.height)
+        tableView.snp.updateConstraints{ make in
+            make.height.equalTo(self.tableViewHeight())
         }
         
         if let pickupLocationDelegate = self.pickupLocationDelegate {
             pickupLocationDelegate.onSizeChanged()
         }
+        
     }
     
     override func setupViews() {
         super.setupViews()
         
-        groupedLabels.clipsToBounds = true
-        
-        containerView.addSubview(groupedLabels)
+        containerView.addSubview(tableView)
         containerView.addSubview(newLocationLabel)
         containerView.addSubview(newLocationTextField)
+        containerView.addSubview(newLocationButton)
+        
+        newLocationLabel.isHidden = true
+        newLocationTextField.isHidden = true
         
         newLocationTextField.snp.makeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-30)
@@ -138,21 +160,40 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
             make.height.equalTo(25)
         }
         
-        groupedLabels.snp.makeConstraints { make in
-            make.bottom.equalTo(newLocationLabel.snp.top).offset(-20)
-            make.left.right.equalToSuperview()
-            make.height.equalTo(groupedLabels.items.count * VLSelectableLabel.height)
+        newLocationButton.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.bottom.equalTo(bottomButton.snp.top).offset(-20)
+        }
+        
+        let tableViewSeparator = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width-20, height: 1))
+        tableViewSeparator.backgroundColor = .luxeLightestGray()
+        
+        self.tableView.tableFooterView = tableViewSeparator
+        
+        tableView.snp.makeConstraints { make in
+            make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
+            make.left.equalToSuperview()
+            make.right.equalToSuperview().offset(15)
+            make.height.equalTo(self.tableViewHeight())
         }
         
         titleLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(groupedLabels.snp.top).offset(-10)
+            make.bottom.equalTo(tableView.snp.top).offset(-10)
             make.height.equalTo(25)
         }
     }
     
+    func tableViewHeight() -> Int {
+        if numberOfRows() > LocationPickupViewController.maxCount {
+            return LocationPickupViewController.maxCount * Int(CheckmarkCell.height) + 1
+        } else {
+            return numberOfRows() * Int(CheckmarkCell.height) + 1
+        }
+    }
+    
     override func height() -> Int {
-        return (groupedLabels.items.count * VLSelectableLabel.height) + VLPresentrViewController.baseHeight + VLVerticalTextField.height + 100
+        return (tableViewHeight()) + VLPresentrViewController.baseHeight + newLocationHeight + 100
     }
     
     func autocompleteWithText(userText: String){
@@ -194,11 +235,10 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                 Logger.print("Address found")
                 Logger.print(reverseGeocodeInfo["formattedAddress"] ?? "")
                 DispatchQueue.main.sync {
-                    self.addLocation(location: .YourLocation)
-                    self.currentLocationIndex = self.groupedLabels.items.count - 1
+                    self.onLocationAdded()
                     self.bottomButton.isEnabled = true
                     if self.preselectedIndex >= 0 {
-                        self.groupedLabels.select(selectedIndex: self.preselectedIndex, selected: true)
+                        self.selectIndex(selectedIndex: self.preselectedIndex)
                     }
                 }
             }
@@ -207,7 +247,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
     override func onButtonClick() {
         if let pickupLocationDelegate = pickupLocationDelegate {
-            if selectedIndex == currentLocationIndex {
+            if self.currentLocationInfo != nil && selectedIndex == self.numberOfRows() - 1 {
                 
                 guard let currentLocationInfo = currentLocationInfo, let currentLocationPlacemark = currentLocationPlacemark else {
                     return
@@ -237,19 +277,40 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                 
                 pickupLocationDelegate.onLocationSelected(customerAddress: customerAddress)
             } else {
-                var realmSelectedIndex = selectedIndex
-                if currentLocationIndex > -1 {
-                    if currentLocationIndex < selectedIndex {
-                        realmSelectedIndex = selectedIndex - 1
-                    }
-                }
-                
                 if let addresses = addresses {
-                    pickupLocationDelegate.onLocationSelected(customerAddress: addresses[realmSelectedIndex])
+                    pickupLocationDelegate.onLocationSelected(customerAddress: addresses[selectedIndex])
                 }
             }
-            
         }
+    }
+    
+    private func addNewLocationClicked() {
+        showNewLocationTextField(show: true)
+        onLocationAdded()
+    }
+    
+    private func showNewLocationTextField(show: Bool) {
+        newLocationLabel.animateAlpha(show: show)
+        newLocationTextField.animateAlpha(show: show)
+        newLocationButton.animateAlpha(show: !show)
+        
+        if show {
+            tableView.snp.remakeConstraints { make in
+                make.bottom.equalTo(newLocationLabel.snp.top).offset(-20)
+                make.left.equalToSuperview()
+                make.right.equalToSuperview().offset(15)
+                make.height.equalTo(self.tableViewHeight())
+            }
+        } else {
+            tableView.snp.remakeConstraints { make in
+                make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
+                make.left.equalToSuperview()
+                make.right.equalToSuperview().offset(15)
+                make.height.equalTo(self.tableViewHeight())
+            }
+        }
+        
+        newLocationHeight = show ? LocationPickupViewController.newLocationTextFieldHeight : LocationPickupViewController.newLocationButtonHeight
     }
     
     // MARK: protocol UITextFieldDelegate
@@ -273,6 +334,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
             return
         }
         
+        showNewLocationTextField(show: false)
         
         // add location to realm
         let customerAddress = CustomerAddress()
@@ -284,17 +346,20 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         if let realm = self.realm {
             try? realm.write {
                 realm.add(customerAddress)
+                
                 if let addresses = addresses {
                     addressesCount = addresses.count
                 }
-                self.addLocation(location: selectedLocationInfo["formattedAddress"] as! String)
+                self.onLocationAdded()
                 self.newLocationTextField.clearResults()
                 self.resetValues()
                 self.newLocationTextField.textField.resignFirstResponder()
+                self.selectIndex(selectedIndex: addressesCount - 1)
             }
         }
         
         self.bottomButton.isEnabled = true
+
     }
     
     
@@ -320,14 +385,47 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         self.newLocationTextField.textField.text = ""
     }
     
-    // MARK: protocol VLGroupedLabelsDelegate
-    func onSelectionChanged(selected: Bool, selectedIndex: Int) {
-        if selected {
-            self.selectedIndex = selectedIndex
-        }
+    func selectIndex(selectedIndex: Int) {
+        self.selectedIndex = selectedIndex
         if self.selectedIndex > -1 {
             self.bottomButton.isEnabled = true
         }
+    }
+    
+    func numberOfRows() -> Int {
+        if self.currentLocationInfo != nil {
+            return addressesCount + 1
+        }
+        return addressesCount
+    }
+    
+}
+
+extension LocationPickupViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return numberOfRows()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return CheckmarkCell.height
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: CheckmarkCell.reuseId, for: indexPath) as! CheckmarkCell
+        if let addresses = self.addresses, addressesCount > indexPath.row, let location = addresses[indexPath.row].location {
+            cell.setTitle(title: location.getShortAddress() ?? "")
+        } else if let _ = self.currentLocationInfo {
+            cell.setTitle(title: .CurrentLocation)
+        }
+        cell.setChecked(checked: indexPath.row == selectedIndex)
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        selectIndex(selectedIndex: indexPath.row)
+        tableView.reloadData()
     }
     
 }

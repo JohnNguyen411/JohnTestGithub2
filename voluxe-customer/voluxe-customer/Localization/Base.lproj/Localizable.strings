@@ -21,15 +21,17 @@
 "Update" = "Update";
 "New" = "New";
 "Login" = "Login";
-"Logout" = "Logout";
+"Signout" = "Sign Out";
 "Cancel" = "Cancel";
 "CancelPickup" = "Cancel Pickup";
 "CancelDropOff" = "Cancel DropOff";
 "Error" = "Error";
-"GenericError" = "An unknown error has occurred, please try again later.";
+"GenericError" = "An unknown error has occurred. Please try again later.";
 "Map" = "Map";
 "Retry" = "Retry";
 "Success" = "Success";
+"Confirm" = "Confirm";
+"Delete" = "Delete";
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
@@ -43,25 +45,27 @@
 "MobilePhoneNumber_Placeholder" = "(555) 555-5555";
 "MobilePhoneNumberExplain" = "We require your phone number to coordinate during pickup and delivery.";
 "MobilePhoneNumberResetPassword" = "We require your phone number to reset your password.";
-"MobilePhoneNumberConfirm" = "We'll send you a text message to confirm the number";
+"MobilePhoneNumberConfirm" = "We’ll send you a text message to confirm the number";
 "PhoneNumberVerifLabel" = "Type the confirmation code you received via SMS.";
 "ResendCode" = "Resend Code";
 "PhoneNumberVerif_Placeholder" = "0000";
 "WelcomeToAppLabel" = "Welcome to Luxe, %@. Your Volvo account is now active with Luxe.";
 "FirstName" = "First Name";
 "LastName" = "Last Name";
-"WelcomeSignup" = "Welcome to Luxe by Volvo. Let's create your account.";
+"WelcomeSignup" = "Welcome to Luxe by Volvo. Let’s create your account.";
 "FirstNamePlaceholder" = "Johan";
 "LastNamePlaceholder" = "Johansson";
 "CreatePassword" = "Create a password.";
-"PasswordCondition" = "(At least 8 characters with at least one letter and one numeral)";
+"PasswordCondition" = "(At least 8 characters with at least one letter and one number)";
 "Password" = "Password";
 "RepeatPassword" = "Repeat Password";
 "Login" = "Login";
 "Signup" = "Signup";
+"SignIn" = "Sign-In";
+"CreateAccount" = "Create Account";
 "EmailAddress" = "Email Address";
 "EmailPlaceholder" = "name@domain.com";
-"SelectYourVehicle" = "Select your vehicle.";
+"SelectYourVehicle" = "Select your vehicle year of manufacture, model and paint color.";
 "Year" = "Year";
 "Model" = "Model";
 "Color" = "Color";
@@ -71,11 +75,14 @@
 "AccountAlreadyExist" = "An account already exist with that email, please try Login instead.";
 "InvalidVerificationCode" = "Invalid Code.";
 "InvalidCredentials" = "The email or password provided is invalid.";
-"UpdatePhoneNumber" = "Update phone number";
+"ChangePhoneNumber" = "Change phone number";
 "PhoneNumberAlreadyExist" = "An account already exist with that phone number, please try Login instead.";
 "UpdatePassword" = "Update your password.";
 "ForgotPassword" = "Forgot password?";
 "PasswordResetLogin" = "Password successfully reset, please proceed to login.";
+"PasswordUnauthorizedChars" = "Your password contains unauthorized characters. Authorized characters: @$!%*?&.";
+"AreYouSureDeleteAddress" = "Are you sure you want to delete that address %@?";
+
 
 /***************** SchedulePickup ***************/
 "ScheduleService" = "Schedule Service";
@@ -91,14 +98,14 @@
 "AddressForPickupPlaceholder" = "123 Main Street, San Francisco";
 "AddressForPickup" = "Address for Pickup";
 "PickupLocationTitle" = "Where should we meet you?";
-"YourLocation" = "Your Location";
+"CurrentLocation" = "Current Location";
 "DoYouNeedLoanerVehicle" = "Do you need a loaner vehicle?";
 "SelectPickupDate" = "Select pickup date and time";
 "NineToTwelve" = "9:00-12:00";
 "TwelveToThree" = "12:00-3:00";
 "ThreeToSix" = "3:00-6:00";
 "PickupLocation" = "Pickup Location";
-"ComplimentaryLoaner" = "Complimentary Loaner?";
+"NeedALoaner" = "Need a Loaner?";
 "ConfirmPickup" = "Confirm Pickup";
 "NotePickup" = "Note: Volvo pickup is only offered near the dealership.";
 "NoteDelivery" = "Note: Volvo delivery is only offered near the dealership.";
@@ -114,6 +121,7 @@
 "SelectDropoffDate" = "Select dropoff date and time";
 "DeliveryTimes" = "Delivery Times";
 "DropOffTimes" = "Dropoff Times";
+"NoDatesForDealership" = "Unfortunately no dates are available for this dealership. Please try again later or call the dealership.";
 
 /***************** ScheduledPickup ***************/
 "SchedulePickup" = "Schedule Pickup";
@@ -125,7 +133,7 @@
 "PickupWindow" = "Pickup window";
 "EstimatedPickupTime" = "Estimated Pickup Time";
 "DriverDrivingToDealership" = "Our driver is driving your vehicle to %@";
-"YourVehicleHasArrived" = "Your vehicle has arrived safely at %@. We'll alert you next when it's ready.";
+"YourVehicleHasArrived" = "Your vehicle has arrived safely at %@. We’ll alert you next when it’s ready.";
 "ContactDriver" = "Contact Driver";
 "CallDriver" = "Call Driver";
 "TextDriver" = "Text Driver";
@@ -161,23 +169,29 @@
 "ScheduledService" = "Scheduled Service";
 "AreYouSureCancelPickup" = "Are you sure you want to cancel your pickup?";
 "AreYouSureCancelDropOff" = "Are you sure you want to cancel your dropoff?";
-"NewServiceIntro" = "Is your Volvo in need of service? Please identify what part of your Volvo needs work, and write a short description of what you're experiencing.\n\nYou can then schedule pickup directly through this app.";
+"NewServiceIntro" = "Is your Volvo in need of service? Please identify what part of your Volvo needs work, and write a short description of what you’re experiencing.\n\nYou can then schedule pickup directly through this app.";
 "MilestoneServices" = "Milestone services";
 "RecallServices" = "Recall services";
 "OtherMaintenanceRepairs" = "Other maintenance and repairs";
+"OtherMaintenance" = "Other Maintenance";
 "WhatPartRequiresService" = "What part of your Volvo requires service?";
 "SelectAllThatApply" = "Select all that apply";
-"IsVolvoDrivable" = "Is your Volvo currently drivable?";
-"ImNotSure" = "I'm not sure";
+"IsVolvoDrivable" = "Is your Volvo drivable?";
+"ImNotSure" = "I’m not sure";
 "NewServiceDescription" = "Is there anything else you can tell us about your Volvo?";
 "TypeDescriptionHere" = "Type description here";
 "AddDescription" = "Add Description";
 "DiagnosticAndService" = "Diagnostic and service";
+"VehicleExt" = "Vehicle Exterior";
+"VehicleInt" = "Vehicle Interior";
+"UnderTheHood" = "Under the hood";
+"IDontKnow" = "I don't know";
 "FactoryScheduledMaintenance" = "Factory Scheduled Maintenance";
 
 /***************** Settings ***************/
 "Settings" = "Settings";
 "YourVolvos" = "Your Volvos";
+"YourVolvo" = "Your Volvo";
 "ActiveBookings" = "Active Bookings";
 "AddANewVolvo" = "Add a New Volvo";
 "YourAccount" = "Your Account";

@@ -25,7 +25,7 @@ class ServiceDetailViewController: BaseViewController {
     var repairOrder: RepairOrder?
     let vehicle: Vehicle
     let service: RepairOrderType
-    let confirmButton = VLButton(type: .bluePrimary, title: (.ScheduleService as String).uppercased(), actionBlock: nil)
+    let confirmButton = VLButton(type: .bluePrimary, title: (.ScheduleService as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
 
     convenience init(vehicle: Vehicle, service: RepairOrder) {
         self.init(vehicle: vehicle, service: service.repairOrderType!, canSchedule: false)
@@ -52,6 +52,9 @@ class ServiceDetailViewController: BaseViewController {
         } else {
             label.text = service.desc
         }
+        
+        self.navigationItem.title = .NewService
+
         label.sizeToFit()
         
         if !canSchedule || RequestedServiceManager.sharedInstance.getRepairOrder() != nil{
@@ -83,7 +86,7 @@ class ServiceDetailViewController: BaseViewController {
         
         confirmButton.snp.makeConstraints { make in
             make.right.left.equalTo(serviceTitle)
-            make.bottom.equalToSuperview().offset(-10)
+            make.bottom.equalToSuperview().offset(-20)
             make.height.equalTo(VLButton.primaryHeight)
         }
         

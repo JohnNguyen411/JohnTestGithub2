@@ -11,7 +11,7 @@ import RealmSwift
 
 class SettingsCarViewController: BaseViewController {
     
-    let removeVehicleButton = VLButton(type: .orangePrimary, title: (.RemoveVehicle as String).uppercased(), actionBlock: nil)
+    let removeVehicleButton = VLButton(type: .orangePrimary, title: (.RemoveVehicle as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     let vehicleImageView = UIImageView(frame: .zero)
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
     let vehicle: Vehicle
@@ -23,6 +23,11 @@ class SettingsCarViewController: BaseViewController {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.navigationItem.title = vehicle.vehicleDescription()
     }
     
     override func setupViews() {

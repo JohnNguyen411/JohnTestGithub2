@@ -219,6 +219,7 @@
     }
     text = usesUpperCase ? text.uppercaseString : text;
     cell.titleLabel.text = text;
+    cell.titleLabel.textAlignment = NSTextAlignmentCenter;
     [cell setNeedsLayout];
 }
 

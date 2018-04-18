@@ -15,8 +15,8 @@ class ScheduledBookingViewController: SchedulingViewController {
     let booking: Booking
     let delegate: ScheduledBookingDelegate?
     
-    let leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), actionBlock: nil)
-    let rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), actionBlock: nil)
+    let leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
     init(booking: Booking, delegate: ScheduledBookingDelegate?) {
         self.booking = booking
@@ -94,7 +94,7 @@ class ScheduledBookingViewController: SchedulingViewController {
             if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
                 title = .ScheduledDelivery
             }
-            scheduledPickupView.setTitle(title: title, leftDescription: "\(dateTime) \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+            scheduledPickupView.setTitle(title: title, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true) ?? "" )", rightDescription: "")
         }
         
         if let requestLocation = request.location {
@@ -153,7 +153,7 @@ class ScheduledBookingViewController: SchedulingViewController {
     func cancelRequest() {
         // todo submit cancel request with API && Refresh bookings
         if let dropoffRequest = booking.dropoffRequest, let type = dropoffRequest.getType() {
-            MBProgressHUD.showAdded(to: self.view, animated: true)
+            showProgressHUD()
 
             BookingAPI().cancelDropoffRequest(customerId: UserManager.sharedInstance.getCustomerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff).onSuccess { result in
                 if let _ = result?.error {
@@ -161,15 +161,15 @@ class ScheduledBookingViewController: SchedulingViewController {
                 } else {
                     self.onDelete()
                 }
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
                 }.onFailure { error in
                     self.showOkDialog(title: .Error, message: .GenericError)
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.hideProgressHUD()
             }
             
             
         } else if let pickupRequest = booking.pickupRequest, let type = pickupRequest.getType() {
-            MBProgressHUD.showAdded(to: self.view, animated: true)
+            showProgressHUD()
 
             BookingAPI().cancelPickupRequest(customerId: UserManager.sharedInstance.getCustomerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup).onSuccess { result in
                 if let _ = result?.error {
@@ -177,11 +177,11 @@ class ScheduledBookingViewController: SchedulingViewController {
                 } else {
                     self.onDelete()
                 }
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
 
                 }.onFailure { error in
                     self.showOkDialog(title: .Error, message: .GenericError)
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.hideProgressHUD()
 
             }
         }

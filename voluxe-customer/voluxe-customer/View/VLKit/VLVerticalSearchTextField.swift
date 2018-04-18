@@ -14,7 +14,7 @@ import UIKit
  */
 class VLVerticalSearchTextField : VLVerticalTextField {
     
-    public static let defaultCellHeight: CGFloat = 30
+    public static let defaultCellHeight: CGFloat = 34
 
     open var delegate: VLVerticalSearchTextFieldDelegate?
     /// Maximum number of results to be shown in the suggestions list
@@ -22,7 +22,7 @@ class VLVerticalSearchTextField : VLVerticalTextField {
     
     // Move the table around to customize for your layout
     open var tableXOffset: CGFloat = 0.0
-    open var tableYOffset: CGFloat = 0.0
+    open var tableYOffset: CGFloat = 2.0
     open var tableCornerRadius: CGFloat = 2.0
     open var tableBottomMargin: CGFloat = 10.0
     
@@ -35,7 +35,6 @@ class VLVerticalSearchTextField : VLVerticalTextField {
     open var forceNoFiltering: Bool = false
     
     fileprivate var tableView: UITableView?
-    fileprivate var shadowView: UIView?
     fileprivate static let cellIdentifier = "VLVerticalSearchTextField"
     
     fileprivate var filteredResults = [SearchTextFieldItem]()
@@ -90,22 +89,16 @@ class VLVerticalSearchTextField : VLVerticalTextField {
     
     // Create the filter table and shadow view
     fileprivate func buildSearchTableView() {
-        if let tableView = tableView, let shadowView = shadowView {
+        if let tableView = tableView {
+            tableView.accessibilityLabel = "VLVerticalSearchTextField.tableView"
             tableView.layer.masksToBounds = true
-            tableView.layer.borderWidth = theme.borderWidth > 0 ? theme.borderWidth : 0.5
+            tableView.layer.borderWidth = theme.borderWidth > 0 ? theme.borderWidth : 1
             tableView.dataSource = self
             tableView.delegate = self
             tableView.separatorInset = UIEdgeInsets.zero
-            
-            shadowView.backgroundColor = UIColor.lightText
-            shadowView.layer.shadowColor = UIColor.black.cgColor
-            shadowView.layer.shadowOffset = CGSize.zero
-            shadowView.layer.shadowOpacity = 1
-            
             self.window?.addSubview(tableView)
         } else {
             tableView = UITableView(frame: CGRect.zero)
-            shadowView = UIView(frame: CGRect.zero)
         }
         
         redrawSearchTableView()
@@ -128,24 +121,15 @@ class VLVerticalSearchTextField : VLVerticalTextField {
                 tableHeight -= tableBottomMargin
             }
             
-            var tableViewFrame = CGRect(x: 0, y: 0, width: frame.size.width - 4, height: tableHeight)
+            var tableViewFrame = CGRect(x: 0, y: 0, width: frame.size.width + 6, height: tableHeight)
             tableViewFrame.origin = self.convert(tableViewFrame.origin, to: nil)
-            tableViewFrame.origin.x += 2 + tableXOffset
-            tableViewFrame.origin.y += frame.size.height + 2 + tableYOffset
+            tableViewFrame.origin.x += tableXOffset - 3
+            tableViewFrame.origin.y += frame.size.height + tableYOffset
             UIView.animate(withDuration: 0.2, animations: { [weak self] in
                 self?.tableView?.frame = tableViewFrame
             })
             
-            Logger.print("tableViewFrame \(tableViewFrame)")
-            
-            var shadowFrame = CGRect(x: 0, y: 0, width: frame.size.width - 6, height: 1)
-            shadowFrame.origin = self.convert(shadowFrame.origin, to: nil)
-            shadowFrame.origin.x += 3
-            shadowFrame.origin.y = tableView.frame.origin.y
-            shadowView!.frame = shadowFrame
-            
             superview?.bringSubview(toFront: tableView)
-            superview?.bringSubview(toFront: shadowView!)
             
             if self.isFirstResponder {
                 superview?.bringSubview(toFront: self)
@@ -165,7 +149,6 @@ class VLVerticalSearchTextField : VLVerticalTextField {
 extension VLVerticalSearchTextField: UITableViewDelegate, UITableViewDataSource {
     public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         tableView.isHidden = !interactedWith || (filteredResults.count == 0)
-        shadowView?.isHidden = !interactedWith || (filteredResults.count == 0)
         
         if maxNumberOfResults > 0 {
             return min(filteredResults.count, maxNumberOfResults)
@@ -236,11 +219,11 @@ public struct SearchTextFieldTheme {
     }
     
     public static func lightTheme() -> SearchTextFieldTheme {
-        return SearchTextFieldTheme(cellHeight: VLVerticalSearchTextField.defaultCellHeight, bgColor: UIColor (red: 1, green: 1, blue: 1, alpha: 1.0), borderColor: UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0), separatorColor: UIColor.clear, font: UIFont.systemFont(ofSize: 10), fontColor: UIColor.black)
+        return SearchTextFieldTheme(cellHeight: VLVerticalSearchTextField.defaultCellHeight, bgColor: UIColor (red: 1, green: 1, blue: 1, alpha: 1.0), borderColor: UIColor (red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0), separatorColor: UIColor.clear, font: .volvoSansLight(size: 14), fontColor: .luxeDarkGray())
     }
     
     public static func darkTheme() -> SearchTextFieldTheme {
-        return SearchTextFieldTheme(cellHeight: VLVerticalSearchTextField.defaultCellHeight, bgColor: UIColor (red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0), borderColor: UIColor (red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0), separatorColor: UIColor.clear, font: UIFont.systemFont(ofSize: 10), fontColor: UIColor.white)
+        return SearchTextFieldTheme(cellHeight: VLVerticalSearchTextField.defaultCellHeight, bgColor: UIColor (red: 0.8, green: 0.8, blue: 0.8, alpha: 1.0), borderColor: UIColor (red: 0.7, green: 0.7, blue: 0.7, alpha: 1.0), separatorColor: UIColor.clear, font:.volvoSansLight(size: 14), fontColor: UIColor.white)
     }
 }
 

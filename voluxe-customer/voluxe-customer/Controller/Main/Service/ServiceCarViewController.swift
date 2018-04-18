@@ -28,11 +28,12 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         textView.text = (.New as String).uppercased()
         textView.font = .volvoSansLightBold(size: 14)
         textView.textColor = .white
-        textView.backgroundColor = .luxeDeepBlue()
+        textView.backgroundColor = .luxeCobaltBlue()
         textView.numberOfLines = 0
         textView.layer.masksToBounds = true
         textView.textAlignment = .center
         textView.layer.cornerRadius = 5
+        textView.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         return textView
     }()
     
@@ -62,13 +63,13 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     let vehicle: Vehicle
 
     let scheduledServiceView = VLTitledLabel()
-    let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), actionBlock: nil)
+    let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
     let vehicleImageView = UIImageView(frame: .zero)
     
-    let leftButton = VLButton(type: .bluePrimary, title: (.SelfDrop as String).uppercased(), actionBlock: nil)
-    let rightButton = VLButton(type: .bluePrimary, title: (.VolvoPickup as String).uppercased(), actionBlock: nil)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), actionBlock: nil)
+    let leftButton = VLButton(type: .bluePrimary, title: (.SelfDrop as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let rightButton = VLButton(type: .bluePrimary, title: (.VolvoPickup as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
     
     //MARK: Lifecycle methods
@@ -219,9 +220,9 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             var title = String.RecommendedService
             if RequestedServiceManager.sharedInstance.isSelfInitiated() {
                 title = .SelectedService
-                showUpdateLabel(show: false, title: .New, width: 40, right: true)
+                showUpdateLabel(show: false, title: String.New.uppercased(), width: 40, right: true)
             } else {
-                showUpdateLabel(show: true, title: .New, width: 40, right: true)
+                showUpdateLabel(show: true, title: String.New.uppercased(), width: 40, right: true)
             }
             scheduledServiceView.setTitle(title: title, leftDescription: service.name!, rightDescription: "")
         }

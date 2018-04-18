@@ -24,26 +24,38 @@ class VLVerticalTextField : VLTextField {
         return textView
     }()
     
-    convenience init(title: String, placeholder: String) {
-        self.init(title: title, placeholder: placeholder, isPhoneNumber: false)
+    var showHidePassword = false
+    
+    let passwordToggleIcon = PasswordToggleVisibilityView()
+    
+    convenience init(title: String, placeholder: String, kern: Float? = nil) {
+        self.init(title: title, placeholder: placeholder, isPhoneNumber: false, kern: kern)
     }
     
     // MARK: Initializers
-    override init(title:String, placeholder:String, isPhoneNumber: Bool) {
-        super.init(title: title, placeholder: placeholder, isPhoneNumber: isPhoneNumber)
+    override init(title:String, placeholder:String, isPhoneNumber: Bool, kern: Float? = nil) {
+        super.init(title: title, placeholder: placeholder, isPhoneNumber: isPhoneNumber, kern: kern)
         
         backgroundColor = .clear
         textField.placeholder = nil
         
         textField.textAlignment = .left
         titleLabel.textAlignment = .left
-        textField.textColor = .luxeDarkBlue()
-        titleLabel.textColor = .luxeDarkBlue()
-        textField.tintColor = .luxeDarkBlue()
-        textField.font = .volvoSansLight(size: 18)
+        
+        titleLabel.textColor = .luxeCobaltBlue()
+        
+        textField.font = .volvoSansProMedium(size: 16)
         titleLabel.font = .volvoSansLightBold(size: 12)
         
-        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: [NSAttributedStringKey.font: UIFont.volvoSansLight(size: 18), NSAttributedStringKey.foregroundColor: UIColor.luxeLightGray()])
+        var placeholderAttributes: [NSAttributedStringKey : Any] = [NSAttributedStringKey.font: UIFont.volvoSansProMedium(size: 16), NSAttributedStringKey.foregroundColor: UIColor.luxeLightGray()]
+        
+        if let kern = kern {
+            placeholderAttributes[NSAttributedStringKey.kern] = kern
+            textField.defaultTextAttributes
+                .updateValue(kern, forKey: NSAttributedStringKey.kern.rawValue)
+        }
+        
+        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: placeholderAttributes)
 
     }
     
@@ -66,9 +78,9 @@ class VLVerticalTextField : VLTextField {
         
         rightLabel.snp.makeConstraints { (make) -> Void in
             make.right.equalToSuperview()
-            make.top.equalTo(textField.snp.top)
+            make.bottom.equalTo(textField.snp.bottom)
             make.height.equalTo(20)
-            make.width.equalTo(sizeThatFits.width)
+            make.width.equalTo(sizeThatFits.width+20)
         }
         
         if let actionBlock = actionBlock {
@@ -76,10 +88,27 @@ class VLVerticalTextField : VLTextField {
                 actionBlock()
             }
         }
-        
-        
     }
     
+    func setShowHidePassword(showHidePassword: Bool) {
+        self.textField.keyboardType = .asciiCapable
+        self.showHidePassword = showHidePassword
+        if showHidePassword && passwordToggleIcon.superview == nil {
+            
+            self.addSubview(passwordToggleIcon)
+            passwordToggleIcon.snp.makeConstraints { (make) -> Void in
+                make.right.equalToSuperview()
+                make.bottom.equalTo(textField.snp.bottom)
+                make.height.equalTo(20)
+                make.width.equalTo(30)
+            }
+            passwordToggleIcon.delegate = self
+            passwordToggleIcon.tintColor = .luxeCobaltBlue()
+            
+        } else if !showHidePassword && passwordToggleIcon.superview == nil {
+            passwordToggleIcon.removeFromSuperview()
+        }
+    }
     
     override func applyConstraints() {
         textField.snp.makeConstraints { (make) -> Void in
@@ -89,7 +118,7 @@ class VLVerticalTextField : VLTextField {
         }
        
         let separator0 = UIView()
-        separator0.backgroundColor = .luxeDarkBlue()
+        separator0.backgroundColor = .luxeCobaltBlue()
         addSubview(separator0)
         
         separator0.snp.makeConstraints { (make) -> Void in
@@ -100,20 +129,20 @@ class VLVerticalTextField : VLTextField {
         
         titleLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalToSuperview()
-            make.top.equalTo(separator0.snp.bottom).offset(4)
+            make.top.equalTo(separator0.snp.bottom).offset(5)
         }
     }
     
     override func applyErrorState() {
-        textField.textColor = .luxeDarkBlue()
+        textField.textColor = .luxeCobaltBlue()
         titleLabel.textColor = .red
         backgroundColor = .blue
     }
 
     override func resetErrorState() {
         titleLabel.text = self.title
-        titleLabel.textColor = .luxeDarkBlue()
-        textField.textColor = .luxeDarkBlue()
+        titleLabel.textColor = .luxeCobaltBlue()
+        textField.textColor = .luxeCobaltBlue()
         backgroundColor = .clear
     }
 
@@ -133,5 +162,23 @@ class VLVerticalTextField : VLTextField {
     
     @objc internal func runActionBlock() {
         rightActionBlock?()
+    }
+}
+
+// MARK: PasswordToggleVisibilityDelegate
+extension VLVerticalTextField: PasswordToggleVisibilityDelegate {
+    func viewWasToggled(passwordToggleVisibilityView: PasswordToggleVisibilityView, isSelected selected: Bool) {
+        
+        // hack to fix a bug with padding when switching between secureTextEntry state
+        let hackString = self.textField.text
+        self.textField.text = " "
+        self.textField.text = hackString
+        
+        // hack to save our correct font.  The order here is VERY finicky
+        self.textField.isSecureTextEntry = !selected
+
+        if selected {
+            self.textField.keyboardType = .asciiCapable
+        }
     }
 }

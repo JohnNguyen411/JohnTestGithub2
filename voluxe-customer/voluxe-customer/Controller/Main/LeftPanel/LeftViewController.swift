@@ -36,7 +36,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     let activeBookingsContainer = UIView(frame: .zero)
     
     var tableView = UITableView(frame: .zero)
-    var menus = [String.YourVolvos, String.Settings, String.Logout]
+    var menus = [UserManager.sharedInstance.yourVolvoStringTitle(), String.Settings, String.Signout]
     var activeBookings: [Booking] = []
     var mainNavigationViewController: UIViewController!
     
@@ -131,9 +131,10 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         }
     }
     
-    func changeMainViewController(uiNavigationController: UINavigationController) {
+    func changeMainViewController(uiNavigationController: UINavigationController, title: String?) {
         self.slideMenuController()?.changeMainViewController(uiNavigationController, close: true)
         self.updateNotificationBadge()
+        uiNavigationController.setTitle(title: title)
     }
     
     private func setActiveBooking(bookings: [Booking]) {

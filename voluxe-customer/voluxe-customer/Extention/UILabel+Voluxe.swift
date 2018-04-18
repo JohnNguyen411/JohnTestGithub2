@@ -19,4 +19,21 @@ extension UILabel {
         
         self.attributedText = attrStr
     }
+    
+    func addCharacterSpacing(kernValue: Float) {
+        if let labelText = text, labelText.count > 0 {
+            let attributedString = NSMutableAttributedString(string: labelText)
+            attributedString.addAttribute(NSAttributedStringKey.kern, value: kernValue, range: NSRange(location: 0, length: attributedString.length - 1))
+            attributedText = attributedString
+        }
+    }
+    
+    static func uppercasedKern() -> Float {
+        return 0.4
+    }
+    
+    static func defaultKern() -> Float {
+        return 0.0
+    }
+    
 }

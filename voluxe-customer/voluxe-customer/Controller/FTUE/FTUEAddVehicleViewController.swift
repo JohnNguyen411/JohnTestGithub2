@@ -21,7 +21,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     
     let colors = [Color(baseColor: "beige", color: "Beige"), Color(baseColor: "black", color: "Black"), Color(baseColor: "blue", color: "Blue"), Color(baseColor: "brown", color: "Brown"), Color(baseColor: "copper", color: "Copper"), Color(baseColor: "gold", color: "Gold"), Color(baseColor: "green", color: "Green"), Color(baseColor: "grey", color: "Grey"), Color(baseColor: "orange", color: "Orange"), Color(baseColor: "purple", color: "Purple"), Color(baseColor: "red", color: "Red"), Color(baseColor: "sand", color: "Sand"), Color(baseColor: "silver", color: "Silver"), Color(baseColor: "white", color: "White"), Color(baseColor: "yellow", color: "Yellow")]
     let years = [2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995]
-    let models = [VehicleModel(make: "Volvo", model: "XC90"), VehicleModel(make: "Volvo", model: "XC60"), VehicleModel(make: "Volvo", model: "XC40"), VehicleModel(make: "Volvo", model: "S90"), VehicleModel(make: "Volvo", model: "S60")]
+    var models: [VehicleModel] = [VehicleModel(make: "Volvo", model: "XC90"), VehicleModel(make: "Volvo", model: "XC60"), VehicleModel(make: "Volvo", model: "XC40"), VehicleModel(make: "Volvo", model: "S90"), VehicleModel(make: "Volvo", model: "S60")]
     
     var realm: Realm?
     
@@ -57,6 +57,17 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         colorLabel.textField.delegate = self
         
         canGoNext(nextEnabled: false)
+        
+        showProgressHUD()
+
+        VehicleAPI().vehicleModels(makeId: nil).onSuccess { result in
+            if let vehicles = result?.data?.result {
+                self.models = vehicles
+            }
+            self.hideProgressHUD()
+            }.onFailure { error in
+                self.hideProgressHUD()
+            }
     }
     
     override func setupViews() {
@@ -69,7 +80,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         label.snp.makeConstraints { (make) -> Void in
             make.left.top.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(40)
+            make.height.equalTo(60)
         }
         
         yearLabel.snp.makeConstraints { (make) -> Void in
@@ -98,7 +109,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
             yearLabel.textField.text = "\(years[row])"
         } else if pickerType == .model {
             selectedModel = row
-            modelLabel.textField.text = models[row].model
+            modelLabel.textField.text = models[row].name
         } else {
             selectedColor = row
             colorLabel.textField.text = colors[row].color
@@ -148,10 +159,11 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         
         // Adding Button ToolBar
         let doneButton = UIBarButtonItem(title: .Done, style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.donePicker))
-        doneButton.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.luxeDarkBlue()], for: .normal)
+        UIViewController.styleBarButtonItem(barButton: doneButton)
+
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
         let cancelButton = UIBarButtonItem(title: .Cancel, style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.cancelPicker))
-        cancelButton.setTitleTextAttributes([NSAttributedStringKey.foregroundColor: UIColor.luxeDarkBlue()], for: .normal)
+        UIViewController.styleBarButtonItem(barButton: cancelButton)
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
         textField.inputAccessoryView = toolBar
@@ -169,7 +181,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     override func nextButtonTap() {
         // todo add car to user
         if let customerId = UserManager.sharedInstance.getCustomerId(), let baseColor = colors[selectedColor].baseColor {
-            CustomerAPI().addVehicle(customerId: customerId, make: models[selectedModel].make, model: models[selectedModel].model, baseColor: baseColor, year: years[selectedYear]).onSuccess { response in
+            CustomerAPI().addVehicle(customerId: customerId, make: models[selectedModel].make!, model: models[selectedModel].name!, baseColor: baseColor, year: years[selectedYear]).onSuccess { response in
                 if (response?.data?.result) != nil {
                     // success
                 } else {
@@ -179,7 +191,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
             }.onFailure { error in
                 self.callVehicle(customerId: customerId)
             }
-            MBProgressHUD.showAdded(to: self.view, animated: true)
+            showProgressHUD()
         }
     }
     
@@ -210,11 +222,11 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
                     self.appDelegate?.loadMainScreen()
                 }
             }
-            MBProgressHUD.hide(for: self.view, animated: true)
-            
+            self.hideProgressHUD()
+
             }.onFailure { error in
                 // todo show error
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
         }
     }
     
@@ -241,7 +253,7 @@ extension FTUEAddVehicleViewController: UIPickerViewDelegate, UIPickerViewDataSo
         if pickerType == .year {
             return "\(years[row])"
         } else if pickerType == .model {
-            return models[row].model
+            return models[row].name
         } else {
             return colors[row].color
         }

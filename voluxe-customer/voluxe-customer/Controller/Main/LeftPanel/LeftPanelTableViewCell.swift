@@ -37,8 +37,8 @@ open class LeftPanelTableViewCell : UITableViewCell {
     
     open func setData(_ data: Any?) {
         self.backgroundColor = .clear
-        self.textLabel?.font = .volvoSansLight(size: 16)
-        self.textLabel?.textColor = .black
+        self.textLabel?.font = .volvoSansLightBold(size: 16)
+        self.textLabel?.textColor = .luxeCobaltBlue()
         if let menuText = data as? String {
             self.textLabel?.text = menuText
         }

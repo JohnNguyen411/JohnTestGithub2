@@ -25,7 +25,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     let passwordConditionLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.font = .volvoSansLightBold(size: 12)
+        textView.font = .volvoSansProMedium(size: 11)
         textView.textColor = .luxeDarkGray()
         textView.text = .PasswordCondition
         textView.backgroundColor = .clear
@@ -33,8 +33,8 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         return textView
     }()
     
-    let volvoPwdTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••")
-    let volvoPwdConfirmTextField = VLVerticalTextField(title: .RepeatPassword, placeholder: "••••••••")
+    let volvoPwdTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••", kern: 4.0)
+    let volvoPwdConfirmTextField = VLVerticalTextField(title: .RepeatPassword, placeholder: "••••••••", kern: 4.0)
     
     var signupInProgress = false
     var realm : Realm?
@@ -54,6 +54,9 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         volvoPwdTextField.accessibilityIdentifier = "volvoPwdTextField"
         volvoPwdConfirmTextField.accessibilityIdentifier = "volvoPwdConfirmTextField"
+                
+        volvoPwdTextField.setShowHidePassword(showHidePassword: true)
+        volvoPwdConfirmTextField.setShowHidePassword(showHidePassword: true)
         
         volvoPwdTextField.textField.autocorrectionType = .no
         volvoPwdConfirmTextField.textField.autocorrectionType = .no
@@ -86,15 +89,14 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         self.view.addSubview(volvoPwdConfirmTextField)
         
         passwordLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalToSuperview().offset(80)
+            make.top.equalToSuperview().offset(20)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(30)
         }
         
         passwordConditionLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(passwordLabel)
-            make.top.equalTo(passwordLabel.snp.bottom)
+            make.top.equalTo(passwordLabel.snp.bottom).offset(-5)
             make.height.equalTo(30)
         }
         
@@ -120,10 +122,18 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         if password.isEmpty || password.count < 8 {
             return false
         }
-        
+        //Matches
         return password.containsNumber() && password.containsLetter()
+        
     }
     
+    private func containsUnauthorizedChars(password: String) -> Bool {
+        let regex = try! NSRegularExpression(pattern: "^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9@$!%*?&]{8,60}")
+        let range = NSMakeRange(0, password.utf16.count)
+        let matchRange = regex.rangeOfFirstMatch(in: password, options: .reportProgress, range: range)
+        let valid = matchRange == range
+        return !valid
+    }
     
     override func checkTextFieldsValidity() -> Bool {
         let enabled = isPasswordValid(password: volvoPwdTextField.textField.text) && isPasswordValid(password: volvoPwdConfirmTextField.textField.text) && String.areSimilar(stringOne: volvoPwdTextField.textField.text, stringTwo: volvoPwdConfirmTextField.textField.text)
@@ -155,9 +165,9 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         }
         signupInProgress = loading
         if loading {
-            MBProgressHUD.showAdded(to: self.view, animated: true)
+            showProgressHUD()
         } else {
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.hideProgressHUD()
         }
     }
     
@@ -189,7 +199,17 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             return
         }
         
+        if let password = volvoPwdConfirmTextField.textField.text, containsUnauthorizedChars(password: password) {
+            self.showOkDialog(title: .Error, message: .PasswordUnauthorizedChars)
+            return
+        }
+        
         showLoading(loading: true)
+        
+        if UIApplication.isRunningTest {
+            loginUser(email: "johan@luxe.com", password: "Ch@ngeth1s")
+            return
+        }
         
         // if accessToken, it's a password update
         if let code = UserManager.sharedInstance.signupCustomer.verificationCode,

@@ -1252,7 +1252,7 @@ typedef NS_ENUM(NSUInteger, FSCalendarOrientation) {
     } else if (self.hasValidateVisibleLayout) {
         [_collectionViewLayout layoutAttributesForElementsInRect:_collectionView.bounds];
         CGRect cellFrame = [self.collectionView layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForItem:dayOffset inSection:sectionOffset]].frame;
-        CGPoint targetOffset = CGPointMake(0, MIN(cellFrame.origin.y,MAX(0,_collectionViewLayout.collectionViewContentSize.height-_collectionView.fs_bottom)));
+        CGPoint targetOffset = CGPointMake(0, cellFrame.origin.y);//MIN(cellFrame.origin.y,MAX(0,_collectionViewLayout.collectionViewContentSize.height-_collectionView.fs_bottom)));
         [_collectionView setContentOffset:targetOffset animated:animated];
     }
     /*

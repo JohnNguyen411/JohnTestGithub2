@@ -13,9 +13,9 @@ import MBProgressHUD
 class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let codeLength = 4
-    let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder)
+    let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder, kern: 4.0)
     
-    let updatePhoneNumberButton = VLButton(type: .blueSecondary, title: .UpdatePhoneNumber, actionBlock: nil)
+    let updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.ChangePhoneNumber.uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
     var ftuePhoneType: FTUEPhoneType = .update
     
@@ -53,6 +53,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         codeTextField.setRightButtonText(rightButtonText: (.ResendCode as String).uppercased(), actionBlock: {
             self.resendCode()
         })
+        codeTextField.rightLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
         
         updatePhoneNumberButton.setActionBlock {
             self.updatePhoneNumber()
@@ -88,13 +89,9 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         updatePhoneNumberButton.contentHorizontalAlignment = .left
         
-        let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT)))
-
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalToSuperview().offset(80)
-            make.left.equalToSuperview().offset(20)
+            make.top.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(sizeThatFits)
         }
         
         codeTextField.snp.makeConstraints { (make) -> Void in
@@ -107,7 +104,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         updatePhoneNumberButton.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.top.equalTo(codeTextField.snp.bottom).offset(20)
+            make.top.equalTo(codeTextField.snp.bottom).offset(15)
             make.height.equalTo(20)
         }
         
@@ -130,17 +127,17 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             
             isLoading = true
             
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            
+            self.showProgressHUD()
+
             CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
                 if result?.error != nil {
                     self.showOkDialog(title: .Error, message: .GenericError)
                 }
                 self.isLoading = false
                 self.codeTextField.textField.text = ""
                 }.onFailure { error in
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError)
                     self.isLoading = false
             }
@@ -158,16 +155,16 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         
         if let customer = UserManager.sharedInstance.getCustomer(), customer.phoneNumberVerified {
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            
+            self.showProgressHUD()
+
             CustomerAPI().requestPasswordChange(customerId: customer.id).onSuccess { result in
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
                 if result?.error != nil {
                     self.showOkDialog(title: .Error, message: .GenericError)
                 }
                 self.isLoading = false
                 }.onFailure { error in
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError)
                     self.isLoading = false
             }
@@ -176,16 +173,16 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         isLoading = true
         
-        MBProgressHUD.showAdded(to: self.view, animated: true)
-        
+        self.showProgressHUD()
+
         CustomerAPI().requestPhoneVerificationCode(customerId: customerId!).onSuccess { result in
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.hideProgressHUD()
             if result?.error != nil {
                 self.showOkDialog(title: .Error, message: .GenericError)
             }
             self.isLoading = false
         }.onFailure { error in
-            MBProgressHUD.hide(for: self.view, animated: true)
+            self.hideProgressHUD()
             self.showOkDialog(title: .Error, message: .GenericError)
             self.isLoading = false
         }
@@ -247,11 +244,11 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             
             isLoading = true
             
-            MBProgressHUD.showAdded(to: self.view, animated: true)
-            
+            self.showProgressHUD()
+
             // verify phone number
             CustomerAPI().verifyPhoneNumber(customerId: customerId!, verificationCode: codeTextField.textField.text!).onSuccess { result in
-                MBProgressHUD.hide(for: self.view, animated: true)
+                self.hideProgressHUD()
                 if result?.error != nil {
                     self.showOkDialog(title: .Error, message: .GenericError)
                 } else {
@@ -260,7 +257,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 
                 self.isLoading = false
                 }.onFailure { error in
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                    self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError)
                     self.isLoading = false
             }

@@ -27,7 +27,7 @@ class VLSelectableLabel : UIView, UIGestureRecognizerDelegate {
     private let label: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.font = .volvoSansLightBold(size: 18)
+        titleLabel.font = .volvoSansLightBold(size: 16)
         titleLabel.textAlignment = .left
         titleLabel.numberOfLines = 1
         titleLabel.lineBreakMode = .byTruncatingTail
@@ -73,7 +73,7 @@ class VLSelectableLabel : UIView, UIGestureRecognizerDelegate {
         addSubview(checkmarkView)
         
         checkmarkView.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview().offset(-15)
+            make.right.equalToSuperview()
             make.width.height.equalTo(15)
             make.centerY.equalToSuperview()
         }

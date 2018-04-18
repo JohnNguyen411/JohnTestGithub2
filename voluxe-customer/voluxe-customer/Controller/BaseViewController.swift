@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 class BaseViewController: UIViewController, PresentrDelegate {
     
@@ -21,8 +22,6 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     var keyboardShowing = false
     var keyboardHeight: CGFloat = 0
-    
-    let blockingLoadingView = UIAlertController(title: nil, message: "", preferredStyle: .alert)
     
     init() {
         super.init(nibName: nil, bundle: nil)
@@ -39,21 +38,23 @@ class BaseViewController: UIViewController, PresentrDelegate {
         styleNavigationBar(navigationBar: self.navigationController?.navigationBar)
     }
     
-    func styleViews() {
-        
-        blockingLoadingView.view.tintColor = UIColor.black
-        let loadingIndicator = UIActivityIndicatorView(frame: .zero) as UIActivityIndicatorView
-        loadingIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-        loadingIndicator.color = .luxeDarkBlue()
-        loadingIndicator.hidesWhenStopped = true
-        loadingIndicator.startAnimating()
-        
-        blockingLoadingView.view.addSubview(loadingIndicator)
-        
-        loadingIndicator.snp.makeConstraints{ make in
-            make.center.equalToSuperview()
-            make.width.height.equalTo(100)
+    func setTitle(title: String?) {
+        if let title = title {
+            self.navigationController?.title = title
+            self.navigationController?.navigationItem.title = title
+            self.navigationController?.navigationBar.topItem?.title = title
+            self.navigationItem.title = title
         }
+        self.title = title
+    }
+    
+    func pushViewController(_ controller: UIViewController, animated: Bool, backLabel: String) {
+        self.navigationController?.pushViewController(controller, animated: animated)
+        let backItem = UIBarButtonItem(title: backLabel, style: .plain, target: self, action: #selector(onBackClicked))
+        navigationItem.backBarButtonItem = backItem
+    }
+    
+    func styleViews() {
         
         self.view.backgroundColor = .white
         setGradientBackground()
@@ -63,6 +64,12 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     func stateDidChange(state: ServiceState) {}
     
+    
+    @objc func onBackClicked() {
+        
+    }
+        
+        
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -105,21 +112,6 @@ class BaseViewController: UIViewController, PresentrDelegate {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
-    }
-    
-    func showBlockingLoading() {
-        self.blockingLoadingView.view.alpha = 0
-        present(blockingLoadingView, animated: false, completion: {
-            self.blockingLoadingView.view.snp.remakeConstraints { make in
-                make.width.height.equalTo(150)
-                make.center.equalToSuperview()
-            }
-            self.blockingLoadingView.view.animateAlpha(show: true)
-        })
-    }
-    
-    func hideBlockingLoading() {
-        blockingLoadingView.dismiss(animated: true, completion: nil)
     }
     
     //MARK: PresentR
@@ -195,9 +187,26 @@ extension UIViewController {
             navigationBar.isTranslucent = false
             navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationBar.shadowImage = UIImage()
-            navigationBar.tintColor = .luxeDeepBlue()
+            navigationBar.tintColor = .luxeCobaltBlue()
             navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
         }
+    }
+    
+    static func styleBarButtonItem(barButton: UIBarButtonItem) {
+        barButton.setTitleTextAttributes([
+            NSAttributedStringKey.font : UIFont.volvoSansLightBold(size: 16),
+            NSAttributedStringKey.foregroundColor : UIColor.luxeCobaltBlue()],
+                                          for: UIControlState.normal)
+        
+        barButton.setTitleTextAttributes([
+            NSAttributedStringKey.font : UIFont.volvoSansLightBold(size: 16),
+            NSAttributedStringKey.foregroundColor : UIColor.luxeLightGray()],
+                                         for: UIControlState.selected)
+        
+        barButton.setTitleTextAttributes([
+            NSAttributedStringKey.font : UIFont.volvoSansLightBold(size: 16),
+            NSAttributedStringKey.foregroundColor : UIColor.luxeLightGray()],
+                                         for: UIControlState.disabled)
     }
     
     
@@ -213,11 +222,15 @@ extension UIViewController {
         return Swift.min(statusBarSize.width, statusBarSize.height)
     }
     
-    func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil) {
-        showDialog(title: title, message: message, buttonTitle: .Ok, completion: completion)
+    func showOkDialog(title: String, message: String) {
+        showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: nil)
     }
     
-    func showDialog(title: String, message: String, buttonTitle: String? = nil, completion: (() -> Swift.Void)? = nil) {
+    func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil) {
+        showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: completion)
+    }
+    
+    func showDialog(title: String, message: String, buttonTitle: String, completion: (() -> Swift.Void)? = nil) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
@@ -232,6 +245,42 @@ extension UIViewController {
         
         alert.addAction(button)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    func showDestructiveDialog(title: String, message: String, cancelButtonTitle: String, destructiveButtonTitle: String, destructiveCompletion: @escaping (() -> Swift.Void)) {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        
+        // Submit button
+        let backAction = UIAlertAction(title: cancelButtonTitle, style: .default, handler: { (action) -> Void in
+            alert.dismiss(animated: true, completion: nil)
+        })
+        
+        // Delete button
+        let deleteAction = UIAlertAction(title: destructiveButtonTitle, style: .destructive, handler: { (action) -> Void in
+            alert.dismiss(animated: true, completion: nil)
+            destructiveCompletion()
+        })
+        
+        alert.addAction(backAction)
+        alert.addAction(deleteAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func getViewForHUD() -> UIView {
+        if let navigationController = self.navigationController {
+           return navigationController.view
+        }
+        return self.view
+    }
+    
+    func showProgressHUD() {
+        MBProgressHUD.showAdded(to: getViewForHUD(), animated: true)
+    }
+    
+    func hideProgressHUD() {
+        MBProgressHUD.hide(for: getViewForHUD(), animated: true)
     }
     
 }

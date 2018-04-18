@@ -22,10 +22,8 @@ class NewServiceViewController: BaseViewController {
         return textView
     }()
     
-    let activityIndicator = UIActivityIndicatorView(frame: .zero)
-
     let vehicle: Vehicle
-    let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
+    let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
     var services: [String]?
     
     init(vehicle: Vehicle) {
@@ -40,15 +38,16 @@ class NewServiceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
-        activityIndicator.color = .luxeDarkBlue()
-        activityIndicator.startAnimating()
+        self.navigationItem.title = .NewService
+
+        self.showProgressHUD()
         
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(ServiceCell.self, forCellReuseIdentifier: ServiceCell.reuseId)
+        tableView.register(CheckmarkCell.self, forCellReuseIdentifier: CheckmarkCell.reuseId)
         tableView.isScrollEnabled = false
+        tableView.separatorStyle = .none
         
         RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
             if let services = services?.data?.result {
@@ -60,10 +59,10 @@ class NewServiceViewController: BaseViewController {
                     self.showServices(repairOrderTypes: [String.MilestoneServices, String.OtherMaintenanceRepairs])
                 }
             }
-            self.activityIndicator.animateAlpha(show: false)
+            self.hideProgressHUD()
             }.onFailure { error in
                 Logger.print(error)
-                self.activityIndicator.animateAlpha(show: false)
+                self.hideProgressHUD()
         }
         
     }
@@ -73,7 +72,7 @@ class NewServiceViewController: BaseViewController {
         
         self.view.addSubview(introLabel)
         self.view.addSubview(tableView)
-        self.view.addSubview(activityIndicator)
+
         let labelHeight = introLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
 
         introLabel.snp.makeConstraints { make in
@@ -83,24 +82,22 @@ class NewServiceViewController: BaseViewController {
         }
         
         tableView.snp.makeConstraints { make in
-            make.left.right.equalTo(introLabel)
-            make.top.equalTo(introLabel.snp.bottom).offset(20)
-            make.height.equalTo(ServiceCell.height*4)
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview()
+            make.top.equalTo(introLabel.snp.bottom).offset(40)
+            make.height.equalTo(CheckmarkCell.height*2+1)
         }
         
-        activityIndicator.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.centerY.equalTo(tableView)
-            make.height.equalTo(100)
-        }
+        let separator = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width-20, height: 1))
+        separator.backgroundColor = .luxeLightestGray()
         
+        self.tableView.tableFooterView = separator
     }
     
     private func showServices(repairOrderTypes: [String]) {
         self.services = repairOrderTypes
         tableView.reloadData()
     }
-    
     
 }
 
@@ -114,25 +111,25 @@ extension NewServiceViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ServiceCell.height
+        return CheckmarkCell.height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ServiceCell.reuseId, for: indexPath) as! ServiceCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CheckmarkCell.reuseId, for: indexPath) as! CheckmarkCell
         if let groupService = services {
-            cell.setService(service: groupService[indexPath.row])
+            cell.setTitle(title: groupService[indexPath.row])
         }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        if indexPath.row == 0 {
-            self.navigationController?.pushViewController(ServiceListViewController(vehicle: vehicle), animated: true)
+        if let groupService = services, indexPath.row == 0 {
+            self.pushViewController(ServiceListViewController(vehicle: vehicle, title: groupService[indexPath.row]), animated: true, backLabel: .Back)
         } else {
             if let realm = try? Realm() {
                 if let filteredResults = realm.objects(RepairOrderType.self).filter("category = '\(RepairOrderCategory.custom.rawValue)'").first {
-                    self.navigationController?.pushViewController(ServiceMultiselectListViewController(vehicle: vehicle, repairOrderType: filteredResults), animated: true)
+                    self.pushViewController(ServiceMultiselectListViewController(vehicle: vehicle, repairOrderType: filteredResults), animated: true, backLabel: .Back)
                 }
             }
         }
