@@ -86,7 +86,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(ServiceCell.self, forCellReuseIdentifier: ServiceCell.reuseId)
+        tableView.register(CheckmarkCell.self, forCellReuseIdentifier: CheckmarkCell.reuseId)
         tableView.isScrollEnabled = false
         tableView.separatorStyle = .none
         
@@ -149,12 +149,13 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         }
         
         tableView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview()
             make.top.equalTo(volvoDrivableLabel.snp.bottom).offset(20)
-            make.height.equalTo( Int(ServiceCell.height) * drivability.count + 1)
+            make.height.equalTo( Int(CheckmarkCell.height) * drivability.count + 1)
         }
         
-        let tableViewSeparator = UIView(frame: CGRect(x: 20, y: 0, width: self.view.frame.width-20, height: 1))
+        let tableViewSeparator = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width-20, height: 1))
         tableViewSeparator.backgroundColor = .luxeLightGray()
         
         self.tableView.tableFooterView = tableViewSeparator
@@ -268,12 +269,12 @@ extension OtherServiceViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ServiceCell.height
+        return CheckmarkCell.height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ServiceCell.reuseId, for: indexPath) as! ServiceCell
-        cell.setService(service: getDrivabilityTitle(type: drivability[indexPath.row]))
+        let cell = tableView.dequeueReusableCell(withIdentifier: CheckmarkCell.reuseId, for: indexPath) as! CheckmarkCell
+        cell.setTitle(title: getDrivabilityTitle(type: drivability[indexPath.row]))
         cell.setChecked(checked: indexPath.row == checkedCellIndex)
         return cell
     }

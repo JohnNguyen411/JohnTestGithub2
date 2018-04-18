@@ -33,7 +33,7 @@ class ServiceListViewController: BaseViewController {
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(ServiceCell.self, forCellReuseIdentifier: ServiceCell.reuseId)
+        tableView.register(CheckmarkCell.self, forCellReuseIdentifier: CheckmarkCell.reuseId)
         tableView.isHidden = true
         tableView.separatorStyle = .none
         
@@ -64,11 +64,12 @@ class ServiceListViewController: BaseViewController {
         self.view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
+            make.right.bottom.equalToSuperview()
             make.top.equalToSuperview().offset(20)
         }
         
-        let separator = UIView(frame: CGRect(x: 20, y: 0, width: self.view.frame.width-20, height: 1))
+        let separator = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width-20, height: 1))
         separator.backgroundColor = .luxeLightGray()
         
         self.tableView.tableFooterView = separator
@@ -81,8 +82,8 @@ class ServiceListViewController: BaseViewController {
         self.tableView.reloadData()
         
         let viewHeight = self.view.frame.height
-        let servicesHeight = CGFloat(services.count) * ServiceCell.height
-        if servicesHeight < CGFloat(viewHeight - ServiceCell.height) {
+        let servicesHeight = CGFloat(services.count) * CheckmarkCell.height
+        if servicesHeight < CGFloat(viewHeight - CheckmarkCell.height) {
             tableView.snp.remakeConstraints { make in
                 make.left.right.equalToSuperview()
                 make.top.equalToSuperview().offset(20)
@@ -103,16 +104,16 @@ extension ServiceListViewController: UITableViewDataSource, UITableViewDelegate 
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ServiceCell.height
+        return CheckmarkCell.height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ServiceCell.reuseId, for: indexPath) as! ServiceCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CheckmarkCell.reuseId, for: indexPath) as! CheckmarkCell
         // Similar to above, first check if there is a valid section of table.
         // Then we check that for the section there is a row.
         if let services = services {
             let service = services[indexPath.row]
-            cell.setService(service: service.name!)
+            cell.setTitle(title: service.name!)
         }
         return cell
     }

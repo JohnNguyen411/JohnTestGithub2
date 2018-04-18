@@ -98,7 +98,7 @@
 "AddressForPickupPlaceholder" = "123 Main Street, San Francisco";
 "AddressForPickup" = "Address for Pickup";
 "PickupLocationTitle" = "Where should we meet you?";
-"YourLocation" = "Your Location";
+"CurrentLocation" = "Current Location";
 "DoYouNeedLoanerVehicle" = "Do you need a loaner vehicle?";
 "SelectPickupDate" = "Select pickup date and time";
 "NineToTwelve" = "9:00-12:00";

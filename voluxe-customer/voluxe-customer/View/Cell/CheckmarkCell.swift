@@ -1,5 +1,5 @@
 //
-//  ServiceCell.swift
+//  CheckmarkCell.swift
 //  voluxe-customer
 //
 //  Created by Giroux, Johan on 2/1/18.
@@ -8,12 +8,12 @@
 
 import Foundation
 
-class ServiceCell: UITableViewCell {
+class CheckmarkCell: UITableViewCell {
     
     static let height: CGFloat = 50
-    static let reuseId = "ServiceCell"
+    static let reuseId = "CheckmarkCell"
     
-    let serviceLabel: UILabel = {
+    let titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.volvoSansBold(size: 16)
         label.textColor = .luxeDarkGray()
@@ -32,7 +32,7 @@ class ServiceCell: UITableViewCell {
         self.backgroundColor = .clear
         self.accessoryType = .disclosureIndicator
         self.tintColor = .luxeCobaltBlue()
-        self.contentView.addSubview(serviceLabel)
+        self.contentView.addSubview(titleLabel)
         self.addSubview(separator)
         setupViews()
         
@@ -43,21 +43,21 @@ class ServiceCell: UITableViewCell {
     }
     
     private func setupViews() {
-        serviceLabel.snp.makeConstraints { make in
+        titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview().offset(2)
             make.bottom.right.equalToSuperview()
-            make.left.equalToSuperview().offset(20)
+            make.left.equalToSuperview()
         }
         
         separator.snp.makeConstraints { make in
             make.top.right.equalToSuperview()
-            make.left.equalTo(serviceLabel)
+            make.left.equalTo(titleLabel)
             make.height.equalTo(1)
         }
     }
     
-    public func setService(service: String) {
-        serviceLabel.text = service
+    public func setTitle(title: String) {
+        titleLabel.text = title
     }
     
     public func setChecked(checked: Bool) {

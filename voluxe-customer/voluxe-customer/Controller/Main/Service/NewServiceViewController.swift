@@ -45,7 +45,7 @@ class NewServiceViewController: BaseViewController {
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(ServiceCell.self, forCellReuseIdentifier: ServiceCell.reuseId)
+        tableView.register(CheckmarkCell.self, forCellReuseIdentifier: CheckmarkCell.reuseId)
         tableView.isScrollEnabled = false
         tableView.separatorStyle = .none
         
@@ -82,12 +82,13 @@ class NewServiceViewController: BaseViewController {
         }
         
         tableView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.left.equalToSuperview().offset(20)
+            make.right.equalToSuperview()
             make.top.equalTo(introLabel.snp.bottom).offset(40)
-            make.height.equalTo(ServiceCell.height*2+1)
+            make.height.equalTo(CheckmarkCell.height*2+1)
         }
         
-        let separator = UIView(frame: CGRect(x: 20, y: 0, width: self.view.frame.width-20, height: 1))
+        let separator = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width-20, height: 1))
         separator.backgroundColor = .luxeLightGray()
         
         self.tableView.tableFooterView = separator
@@ -110,13 +111,13 @@ extension NewServiceViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ServiceCell.height
+        return CheckmarkCell.height
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ServiceCell.reuseId, for: indexPath) as! ServiceCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: CheckmarkCell.reuseId, for: indexPath) as! CheckmarkCell
         if let groupService = services {
-            cell.setService(service: groupService[indexPath.row])
+            cell.setTitle(title: groupService[indexPath.row])
         }
         return cell
     }
