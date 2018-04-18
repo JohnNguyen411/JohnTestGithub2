@@ -9,14 +9,16 @@
 import Foundation
 import UIKit
 
-class LoanerPickupViewController: VLPresentrViewController {
+class LoanerPickupViewController: VLPresentrViewController, VLGroupedLabelsDelegate {
     
     var delegate: PickupLoanerDelegate?
     
-    let groupedLabels = VLGroupedLabels(items: [.Yes, .No], singleChoice: true, topBottomSeparator: true)
+    let groupedLabels = VLGroupedLabels(items: [.Yes, .No], singleChoice: true, selectDefault: false, topBottomSeparator: true)
     
     override func setupViews() {
         super.setupViews()
+        
+        groupedLabels.delegate = self
         containerView.addSubview(groupedLabels)
         
         groupedLabels.snp.makeConstraints { make in
@@ -31,8 +33,11 @@ class LoanerPickupViewController: VLPresentrViewController {
             make.height.equalTo(25)
         }
         
-        let loaner = RequestedServiceManager.sharedInstance.getLoaner()
-        groupedLabels.select(selectedIndex: loaner ? 0 : 1, selected: true)
+        if let loaner = RequestedServiceManager.sharedInstance.getLoaner() {
+            groupedLabels.select(selectedIndex: loaner ? 0 : 1, selected: true)
+        } else {
+            bottomButton.isEnabled = false
+        }
     }
     
     override func height() -> Int {
@@ -44,6 +49,10 @@ class LoanerPickupViewController: VLPresentrViewController {
             let index = groupedLabels.getLastSelectedIndex()
             delegate.onLoanerSelected(loanerNeeded: index == 0 ? true : false)
         }
+    }
+    
+    func onSelectionChanged(selected: Bool, selectedIndex: Int) {
+        bottomButton.isEnabled = true
     }
     
 }

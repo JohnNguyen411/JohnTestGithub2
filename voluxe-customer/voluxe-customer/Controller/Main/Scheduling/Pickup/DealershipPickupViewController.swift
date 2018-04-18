@@ -43,7 +43,7 @@ class DealershipPickupViewController: VLPresentrViewController {
             }
         }
         
-        groupedLabels = VLGroupedLabels(items: items, singleChoice: true, topBottomSeparator: true)
+        groupedLabels = VLGroupedLabels(items: items, singleChoice: true, selectDefault: true, topBottomSeparator: true)
         if selectedIndex > -1 {
             groupedLabels?.select(selectedIndex: selectedIndex, selected: true)
         }

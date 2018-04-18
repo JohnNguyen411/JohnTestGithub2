@@ -85,7 +85,8 @@ class ServiceListViewController: BaseViewController {
         let servicesHeight = CGFloat(services.count) * CheckmarkCell.height
         if servicesHeight < CGFloat(viewHeight - CheckmarkCell.height) {
             tableView.snp.remakeConstraints { make in
-                make.left.right.equalToSuperview()
+                make.left.equalToSuperview().offset(20)
+                make.right.equalToSuperview()
                 make.top.equalToSuperview().offset(20)
                 make.height.equalTo(servicesHeight+1)
             }

@@ -16,7 +16,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     private static let maxCount = 4
     
     private static let newLocationButtonHeight = 0
-    private static let newLocationTextFieldHeight = VLVerticalTextField.height
+    private static let newLocationTextFieldHeight = VLVerticalTextField.height + 5
 
     var newLocationHeight = newLocationButtonHeight
     

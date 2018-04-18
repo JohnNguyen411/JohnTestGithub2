@@ -119,7 +119,11 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         
         // onLoanerChanged
         SwiftEventBus.onMainThread(self, name: "onLoanerChanged") { result in
-            self.loanerView.descLeftLabel.text = RequestedServiceManager.sharedInstance.getLoaner() ? .Yes : .No
+            var loaner = false
+            if let selectedLoaner = RequestedServiceManager.sharedInstance.getLoaner() {
+                loaner = selectedLoaner
+            }
+            self.loanerView.descLeftLabel.text = loaner ? .Yes : .No
         }
     }
     
@@ -279,7 +283,12 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         
         fillDealership()
         
-        loanerView.descLeftLabel.text = RequestedServiceManager.sharedInstance.getLoaner() ? .Yes : .No
+        var loaner = false
+        if let selectedLoaner = RequestedServiceManager.sharedInstance.getLoaner() {
+            loaner = selectedLoaner
+        }
+        
+        loanerView.descLeftLabel.text = loaner ? .Yes : .No
         
         confirmButton.setTitle(title: getConfirmButtonTitle())
     }

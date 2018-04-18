@@ -160,7 +160,9 @@ class SchedulingPickupViewController: SchedulingViewController {
     }
     
     override func confirmButtonClick() {
-        createBooking(loaner: RequestedServiceManager.sharedInstance.getLoaner())
+        if let loaner = RequestedServiceManager.sharedInstance.getLoaner() {
+            createBooking(loaner: loaner)
+        }
     }
     
     override func showConfirmButtonIfNeeded() {

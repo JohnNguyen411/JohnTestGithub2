@@ -108,7 +108,13 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         super.init(title: title, buttonTitle: buttonTitle)
         realm = try? Realm()
         getTimeSlots()
-        loanerSwitch.setOn(RequestedServiceManager.sharedInstance.getLoaner(), animated: false)
+        if let loaner = RequestedServiceManager.sharedInstance.getLoaner() {
+            loanerSwitch.setOn(loaner, animated: false)
+        } else {
+            loanerSwitch.setOn(false, animated: false)
+        }
+
+        
         loanerSwitch.addTarget(self, action: #selector(switchChanged(uiswitch:)), for: .valueChanged)
     }
     
@@ -151,7 +157,12 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             
             var timeSlotType = "driver"
             
-            DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: RequestedServiceManager.sharedInstance.getLoaner(), from: from, to: to).onSuccess { result in
+            var loaner = false
+            if let selectedLoaner = RequestedServiceManager.sharedInstance.getLoaner() {
+                loaner = selectedLoaner
+            }
+            
+            DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: loaner, from: from, to: to).onSuccess { result in
                 if let slots = result?.data?.result {
                     if let realm = self.realm {
                         try? realm.write {
