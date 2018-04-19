@@ -46,7 +46,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         vehicleCollectionView.backgroundColor = UIColor.clear
         vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
         
-        confirmButton = VLButton(type: .bluePrimary, title: (.NewService as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickNewService, screenName: AnalyticsConstants.paramNameYourVolvosView)
+        confirmButton = VLButton(type: .bluePrimary, title: (.NewService as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNewService, screenName: AnalyticsConstants.paramNameYourVolvosView)
         
         super.init(screenName: AnalyticsConstants.paramNameYourVolvosView)
     }

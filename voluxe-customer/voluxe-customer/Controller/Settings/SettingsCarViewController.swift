@@ -18,7 +18,7 @@ class SettingsCarViewController: BaseViewController {
     
     init(vehicle: Vehicle) {
         self.vehicle = vehicle
-        removeVehicleButton = VLButton(type: .orangePrimary, title: (.RemoveVehicle as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickRemoveVehicle ,screenName: AnalyticsConstants.paramNameSettingsVehicleDetailsView)
+        removeVehicleButton = VLButton(type: .orangePrimary, title: (.RemoveVehicle as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickRemoveVehicle ,screenName: AnalyticsConstants.paramNameSettingsVehicleDetailsView)
         super.init(screenName: AnalyticsConstants.paramNameSettingsVehicleDetailsView)
     }
     

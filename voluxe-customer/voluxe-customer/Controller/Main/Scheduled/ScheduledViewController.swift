@@ -67,7 +67,7 @@ class ScheduledViewController: ChildViewController {
     
     init(vehicle: Vehicle, screenName: String) {
         self.vehicle = vehicle
-        driverContact = VLButton(type: .orangeSecondarySmall, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickContactDriver, screenName: screenName)
+        driverContact = VLButton(type: .orangeSecondarySmall, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickContactDriver, screenName: screenName)
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
         super.init(screenName: screenName)
         generateSteps()

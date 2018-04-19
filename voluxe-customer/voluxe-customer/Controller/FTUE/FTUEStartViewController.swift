@@ -18,9 +18,9 @@ class FTUEStartViewController: BaseViewController {
     
     public static var flowType: FTUEFlowType = .login
     
-    let loginButton = VLButton(type: .blueSecondary, title: (.SignIn as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickSignin, screenName: AnalyticsConstants.paramNameLandingView)
+    let loginButton = VLButton(type: .blueSecondary, title: (.SignIn as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickSignin, screenName: AnalyticsConstants.paramNameLandingView)
     
-    let signupButton = VLButton(type: .blueSecondary, title: (.CreateAccount as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickCreateAccount, screenName: AnalyticsConstants.paramNameLandingView)
+    let signupButton = VLButton(type: .blueSecondary, title: (.CreateAccount as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickCreateAccount, screenName: AnalyticsConstants.paramNameLandingView)
 
     let logo: UIImageView = {
         let imageView = UIImageView()

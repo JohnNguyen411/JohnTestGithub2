@@ -21,7 +21,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     var realm : Realm?
     
     init() {
-        forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickForgotPassword, screenName: AnalyticsConstants.paramNameLoginView)
+        forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickForgotPassword, screenName: AnalyticsConstants.paramNameLoginView)
         
         super.init(screenName: AnalyticsConstants.paramNameLoginView)
     }

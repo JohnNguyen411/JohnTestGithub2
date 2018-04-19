@@ -89,8 +89,8 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     init(vehicle: Vehicle, state: ServiceState, screenName: String) {
         self.vehicle = vehicle
         self.serviceState = state
-        descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickShowServiceDescription, screenName: screenName)
-        confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmPickup as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+        descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickShowServiceDescription, screenName: screenName)
+        confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmPickup as String).uppercased(), kern: UILabel.uppercasedKern())
         
         super.init(screenName: screenName)
     }

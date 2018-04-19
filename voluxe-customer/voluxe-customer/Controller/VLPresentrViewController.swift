@@ -31,7 +31,7 @@ class VLPresentrViewController: UIViewController {
     
     init(title: String, buttonTitle: String, screenName: String) {
         self.screenName = screenName
-        bottomButton = VLButton(type: .bluePrimary, title: nil, kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickNext, screenName: screenName)
+        bottomButton = VLButton(type: .bluePrimary, title: nil, kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNext, screenName: screenName)
         super.init(nibName: nil, bundle: nil)
         setupViews()
         
