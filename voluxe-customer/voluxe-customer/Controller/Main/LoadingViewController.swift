@@ -15,7 +15,7 @@ class LoadingViewController: ChildViewController {
     var realm : Realm?
     
     init() {
-        super.init(screenName: AnalyticsConstants.ParamNameLoadingView)
+        super.init(screenName: AnalyticsConstants.paramNameLoadingView)
     }
     
     required init?(coder aDecoder: NSCoder) {

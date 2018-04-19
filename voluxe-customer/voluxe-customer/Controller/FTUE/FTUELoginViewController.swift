@@ -21,7 +21,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     var realm : Realm?
     
     init() {
-        super.init(screenName: AnalyticsConstants.ParamNameLoginView)
+        super.init(screenName: AnalyticsConstants.paramNameLoginView)
     }
     
     required init?(coder aDecoder: NSCoder) {

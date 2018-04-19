@@ -28,7 +28,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
                 addressesCount = addresses.count
             }
         }
-        super.init(screenName: AnalyticsConstants.ParamNameSettingsAccountView)
+        super.init(screenName: AnalyticsConstants.paramNameSettingsAccountView)
     }
     
     required init?(coder aDecoder: NSCoder) {

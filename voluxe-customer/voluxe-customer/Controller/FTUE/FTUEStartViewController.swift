@@ -49,7 +49,7 @@ class FTUEStartViewController: BaseViewController {
     
     
     init() {
-        super.init(screenName: AnalyticsConstants.ParamNameLandingView)
+        super.init(screenName: AnalyticsConstants.paramNameLandingView)
     }
     
     required init?(coder aDecoder: NSCoder) {

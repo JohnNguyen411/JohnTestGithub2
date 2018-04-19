@@ -37,9 +37,9 @@ class ServiceDetailViewController: BaseViewController {
         self.canSchedule = canSchedule
         self.service = service
         serviceTitle = VLTitledLabel(title: .FactoryScheduledMaintenance, leftDescription: service.name!, rightDescription: "")
-        var analyticName = canSchedule ? AnalyticsConstants.ParamNameServiceMilestoneDetailsSchedulingView : AnalyticsConstants.ParamNameServiceMilestoneDetailsView
+        var analyticName = canSchedule ? AnalyticsConstants.paramNameServiceMilestoneDetailsSchedulingView : AnalyticsConstants.paramNameServiceMilestoneDetailsView
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
-            analyticName = AnalyticsConstants.ParamNameServiceCustomDetailsView
+            analyticName = AnalyticsConstants.paramNameServiceCustomDetailsView
         }
         super.init(screenName: analyticName)
     }
@@ -69,7 +69,7 @@ class ServiceDetailViewController: BaseViewController {
         confirmButton.setActionBlock {
             // shedule service
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: RepairOrder(repairOrderType: self.service))
-            StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id)
+            StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id, booking: nil)
             self.appDelegate?.loadViewForVehicle(vehicle: self.vehicle, state: .needService)
         }
     }

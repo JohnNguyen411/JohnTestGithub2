@@ -173,7 +173,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
     func logViewScreen() {
         // send event when screen name isn't empty, little trick for same VC with state change (MainViewController, ServiceCarViewController)
         if screenName.count > 0 {
-            Analytics.logEvent(AnalyticsConstants.EventViewScreen, parameters: [AnalyticsConstants.ParamScreenName: screenName])
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventViewScreen, paramName: AnalyticsConstants.paramScreenName, paramValue: screenName)
         }
     }
     

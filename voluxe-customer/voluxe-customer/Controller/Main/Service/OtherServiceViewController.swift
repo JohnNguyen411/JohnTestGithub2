@@ -73,7 +73,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             serviceTitle += "\n• \(service). "
         }
         self.service = RepairOrder(repairOrderType: repairOrderType, customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
-        super.init(screenName: AnalyticsConstants.ParamNameServiceCustomNotesView)
+        super.init(screenName: AnalyticsConstants.paramNameServiceCustomNotesView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -105,7 +105,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             self.service.notes = notes
             
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: self.service)
-            StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id)
+            StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id, booking: nil)
             self.appDelegate?.loadViewForVehicle(vehicle: self.vehicle, state: .needService)
             
         }

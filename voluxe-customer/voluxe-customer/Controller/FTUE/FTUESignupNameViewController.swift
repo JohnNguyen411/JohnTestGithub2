@@ -25,7 +25,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     let lastNameTextField = VLVerticalTextField(title: .LastName, placeholder: .LastNamePlaceholder)
     
     init() {
-        super.init(screenName: AnalyticsConstants.ParamNameSignupNameView)
+        super.init(screenName: AnalyticsConstants.paramNameSignupNameView)
     }
     
     required init?(coder aDecoder: NSCoder) {

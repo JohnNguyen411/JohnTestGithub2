@@ -190,7 +190,7 @@ class ScheduledViewController: ChildViewController {
                 }
                 self.newDriver(driver: ScheduledViewController.mockDriver)
                 self.newDriverLocation(location: driverLocation)
-                StateServiceManager.sharedInstance.updateState(state: self.states[index], vehicleId: self.vehicle.id)
+                StateServiceManager.sharedInstance.updateState(state: self.states[index], vehicleId: self.vehicle.id, booking: nil)
                 self.getEta(fromLocation: driverLocation, toLocation: ScheduledViewController.officeLocation)
             })
             
@@ -200,10 +200,10 @@ class ScheduledViewController: ChildViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + mockDelay, execute: {
 
             if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
-                StateServiceManager.sharedInstance.updateState(state: .enRouteForService, vehicleId: self.vehicle.id)
+                StateServiceManager.sharedInstance.updateState(state: .enRouteForService, vehicleId: self.vehicle.id, booking: nil)
             } else {
                 RequestedServiceManager.sharedInstance.reset()
-                StateServiceManager.sharedInstance.updateState(state: .completed, vehicleId: self.vehicle.id)
+                StateServiceManager.sharedInstance.updateState(state: .completed, vehicleId: self.vehicle.id, booking: nil)
             }
         })
     }

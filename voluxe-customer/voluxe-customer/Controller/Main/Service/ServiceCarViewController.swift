@@ -298,7 +298,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .serviceCompleted, vehicleId: self.vehicle.id)
+                        StateServiceManager.sharedInstance.updateState(state: .serviceCompleted, vehicleId: self.vehicle.id, booking: nil)
                     })
                 }
             } else if state == .enRouteForService {
@@ -309,7 +309,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .service, vehicleId: self.vehicle.id)
+                        StateServiceManager.sharedInstance.updateState(state: .service, vehicleId: self.vehicle.id, booking: nil)
                     })
                 }
                 
@@ -322,7 +322,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .service, vehicleId: self.vehicle.id)
+                        StateServiceManager.sharedInstance.updateState(state: .service, vehicleId: self.vehicle.id, booking: nil)
                     })
                 }
                 

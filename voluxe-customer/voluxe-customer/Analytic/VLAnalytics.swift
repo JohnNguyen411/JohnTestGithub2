@@ -15,8 +15,7 @@ class VLAnalytics {
     static let serviceTypeParam = "serviceType"
 
     
-    static let stateChangeEvent = "stateChange"
-    static let stateParam = "state"
+    
     
     static func logEventWithName(_ eventName: String) {
         Analytics.logEvent(eventName, parameters: nil)

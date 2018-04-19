@@ -48,7 +48,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     var pickerView: UIPickerView!
     
     init(fromSettings: Bool) {
-        super.init(screenName: fromSettings ? AnalyticsConstants.ParamNameSettingsAddVehicleView : AnalyticsConstants.ParamNameSignupAddVehicleView)
+        super.init(screenName: fromSettings ? AnalyticsConstants.paramNameSettingsAddVehicleView : AnalyticsConstants.paramNameSignupAddVehicleView)
     }
     
     required init?(coder aDecoder: NSCoder) {

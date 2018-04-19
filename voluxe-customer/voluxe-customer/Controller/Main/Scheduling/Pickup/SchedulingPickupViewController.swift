@@ -13,7 +13,7 @@ import MBProgressHUD
 class SchedulingPickupViewController: SchedulingViewController {
     
     init(vehicle: Vehicle, state: ServiceState) {
-        super.init(vehicle: vehicle, state: state, screenName: AnalyticsConstants.ParamNameSchedulingInboundView)
+        super.init(vehicle: vehicle, state: state, screenName: AnalyticsConstants.paramNameSchedulingInboundView)
     }
     
     required init?(coder aDecoder: NSCoder) {

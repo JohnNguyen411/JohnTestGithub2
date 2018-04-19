@@ -46,7 +46,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         vehicleCollectionView.backgroundColor = UIColor.clear
         vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
 
-        super.init(screenName: AnalyticsConstants.ParamNameYourVolvosView)
+        super.init(screenName: AnalyticsConstants.paramNameYourVolvosView)
     }
     
     

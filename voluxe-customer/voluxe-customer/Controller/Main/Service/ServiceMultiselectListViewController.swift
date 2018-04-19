@@ -41,7 +41,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     init(vehicle: Vehicle, repairOrderType: RepairOrderType) {
         self.vehicle = vehicle
         self.repairOrderType = repairOrderType
-        super.init(screenName: AnalyticsConstants.ParamNameServiceCustomView)
+        super.init(screenName: AnalyticsConstants.paramNameServiceCustomView)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -19,7 +19,7 @@ final class StateServiceManager {
     init() {
     }
     
-    func updateState(state: ServiceState, vehicleId: Int) {
+    func updateState(state: ServiceState, vehicleId: Int, booking: Booking?) {
         var oldState = states[vehicleId]
         if oldState == nil || oldState != state {
             // state did change
@@ -32,7 +32,10 @@ final class StateServiceManager {
             }
             
             SwiftEventBus.post("stateDidChange", sender: Vehicle(id: vehicleId))
-            
+            if let booking = booking {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventStateChange, paramName: AnalyticsConstants.paramNameState, paramValue: "\(booking.state)")
+            }
+
             BookingSyncManager.sharedInstance.syncBookings()
         } else if state == .enRouteForDropoff || state == .enRouteForPickup || state == .nearbyForPickup || state == .nearbyForDropoff {
             // update driver's location

@@ -149,6 +149,9 @@
 		6C5224622089033B0078D9B9 /* AnalyticsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5224612089033B0078D9B9 /* AnalyticsConstants.swift */; };
 		6C5224632089033B0078D9B9 /* AnalyticsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5224612089033B0078D9B9 /* AnalyticsConstants.swift */; };
 		6C5224642089033B0078D9B9 /* AnalyticsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5224612089033B0078D9B9 /* AnalyticsConstants.swift */; };
+		6C52246A20892E240078D9B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C52246920892E240078D9B9 /* GoogleService-Info.plist */; };
+		6C52246B20892E240078D9B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C52246920892E240078D9B9 /* GoogleService-Info.plist */; };
+		6C52246C20892E240078D9B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C52246920892E240078D9B9 /* GoogleService-Info.plist */; };
 		6C5832C51FB3899800F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
 		6C5832C61FB38C9000F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
 		6C5832C71FB38C9000F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
@@ -265,9 +268,6 @@
 		6C7DDE131FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
 		6C7DDE141FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
 		6C7DDE151FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
-		6C7DDE181FE1B03F000E2822 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */; };
-		6C7DDE191FE1B03F000E2822 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */; };
-		6C7DDE1A1FE1B03F000E2822 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */; };
 		6C7DDE1D1FE1B864000E2822 /* VLAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */; };
 		6C7DDE1E1FE1B864000E2822 /* VLAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */; };
 		6C7DDE1F1FE1B864000E2822 /* VLAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */; };
@@ -669,6 +669,7 @@
 		6C522455208568E90078D9B9 /* PasswordToggleVisibilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordToggleVisibilityView.swift; sourceTree = "<group>"; };
 		6C522459208815580078D9B9 /* VLSlideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLSlideMenuController.swift; sourceTree = "<group>"; };
 		6C5224612089033B0078D9B9 /* AnalyticsConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsConstants.swift; sourceTree = "<group>"; };
+		6C52246920892E240078D9B9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6C5832C41FB3899700F6BFE0 /* LocationManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		6C5832F41FB3AF5600F6BFE0 /* AlertViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		6C5832F51FB3AF5600F6BFE0 /* AlertViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AlertViewController.xib; sourceTree = "<group>"; };
@@ -709,7 +710,6 @@
 		6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MappableDataObject.swift; sourceTree = "<group>"; };
 		6C7DDE0E1FDB64CC000E2822 /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
 		6C7DDE121FDB664D000E2822 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
-		6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLAnalytics.swift; sourceTree = "<group>"; };
 		6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulePickupLocalization.swift; sourceTree = "<group>"; };
 		6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseObject.swift; sourceTree = "<group>"; };
@@ -1136,7 +1136,7 @@
 		6C7DDE161FE1AFE6000E2822 /* Dev */ = {
 			isa = PBXGroup;
 			children = (
-				6C7DDE171FE1B03F000E2822 /* GoogleService-Info.plist */,
+				6C52246920892E240078D9B9 /* GoogleService-Info.plist */,
 			);
 			path = Dev;
 			sourceTree = "<group>";
@@ -1144,6 +1144,7 @@
 		6C7DDE1B1FE1B5D6000E2822 /* Analytic */ = {
 			isa = PBXGroup;
 			children = (
+				6C5224612089033B0078D9B9 /* AnalyticsConstants.swift */,
 				6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */,
 			);
 			path = Analytic;
@@ -1352,7 +1353,6 @@
 			isa = PBXGroup;
 			children = (
 				6C32C3051FBCC0CB00B1218C /* Data */,
-				6C5224612089033B0078D9B9 /* AnalyticsConstants.swift */,
 				6C3FB2B51FA289F000B22EAB /* ColorDefinitions.swift */,
 				6C3FB2B11FA2824200B22EAB /* Constants.swift */,
 				6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */,
@@ -1638,12 +1638,12 @@
 				6CE68792203F7D5A00D915FC /* InfoPlist.strings in Resources */,
 				6CFBF9B21FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf in Resources */,
 				6CC83A841FA140D300FE0633 /* sensus_prod.json in Resources */,
-				6C7DDE181FE1B03F000E2822 /* GoogleService-Info.plist in Resources */,
 				6CFBF9B31FA1131700D3AA78 /* VolvoSansPro-Light.ttf in Resources */,
 				6C9543AE1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
 				6CCD42951FA013E3000AC6C9 /* Assets.xcassets in Resources */,
 				6CC83A821FA140D300FE0633 /* localhost.json in Resources */,
 				6CFBF9B51FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf in Resources */,
+				6C52246A20892E240078D9B9 /* GoogleService-Info.plist in Resources */,
 				6CC83A811FA140D300FE0633 /* mock.json in Resources */,
 				6C58330A1FB3AF5600F6BFE0 /* AlertViewController.xib in Resources */,
 			);
@@ -1654,8 +1654,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C58332F1FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */,
-				6C7DDE191FE1B03F000E2822 /* GoogleService-Info.plist in Resources */,
 				6C9543AC1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
+				6C52246B20892E240078D9B9 /* GoogleService-Info.plist in Resources */,
 				6C9543AF1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
 				6C58333D1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
 				6C9543A91FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */,
@@ -1681,12 +1681,12 @@
 				6CE68794203F7D5A00D915FC /* InfoPlist.strings in Resources */,
 				6CBF9FEA1FC5FB9A002BC7FC /* VolvoSerifPro-Italic.ttf in Resources */,
 				6CBF9FEB1FC5FB9A002BC7FC /* VolvoSerifPro-Regular.ttf in Resources */,
-				6C7DDE1A1FE1B03F000E2822 /* GoogleService-Info.plist in Resources */,
 				6C5833301FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */,
 				6C9543AD1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
 				6C9543B01FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
 				6C58333E1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
 				6C9543AA1FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */,
+				6C52246C20892E240078D9B9 /* GoogleService-Info.plist in Resources */,
 				6C6F4BC51FA8FBCF00087FE7 /* Localizable.strings in Resources */,
 				6C58331E1FB3AF7200F6BFE0 /* AlertViewController.xib in Resources */,
 			);

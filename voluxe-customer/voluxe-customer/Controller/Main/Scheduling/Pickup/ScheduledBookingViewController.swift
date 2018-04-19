@@ -21,7 +21,7 @@ class ScheduledBookingViewController: SchedulingViewController {
     init(booking: Booking, delegate: ScheduledBookingDelegate?) {
         self.booking = booking
         self.delegate = delegate
-        super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screenName: AnalyticsConstants.ParamNameReservationDetailsView)
+        super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screenName: AnalyticsConstants.paramNameReservationDetailsView)
     }
     
     required init?(coder aDecoder: NSCoder) {

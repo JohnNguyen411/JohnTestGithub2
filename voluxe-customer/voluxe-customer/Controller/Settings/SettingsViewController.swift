@@ -21,7 +21,7 @@ class SettingsViewController: ChildViewController, SettingsCellProtocol {
         if let vehicles = vehicles {
             vehicleCount = vehicles.count
         }
-        super.init(screenName: AnalyticsConstants.ParamNameSettingsView)
+        super.init(screenName: AnalyticsConstants.paramNameSettingsView)
     }
     
     required init?(coder aDecoder: NSCoder) {

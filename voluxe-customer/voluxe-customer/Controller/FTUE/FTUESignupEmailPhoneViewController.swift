@@ -44,7 +44,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     var realm : Realm?
     
     init() {
-        super.init(screenName: AnalyticsConstants.ParamNameSignupEmailPhoneView)
+        super.init(screenName: AnalyticsConstants.paramNameSignupEmailPhoneView)
     }
     
     required init?(coder aDecoder: NSCoder) {

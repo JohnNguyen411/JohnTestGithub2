@@ -30,7 +30,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     }()
     
     init() {
-        super.init(screenName: FTUEStartViewController.flowType == .signup ? AnalyticsConstants.ParamNameSignupPhoneVerificationView : AnalyticsConstants.ParamNamePhoneVerificationView)
+        super.init(screenName: FTUEStartViewController.flowType == .signup ? AnalyticsConstants.paramNameSignupPhoneVerificationView : AnalyticsConstants.paramNamePhoneVerificationView)
     }
     
     convenience init(type: FTUEPhoneType) {

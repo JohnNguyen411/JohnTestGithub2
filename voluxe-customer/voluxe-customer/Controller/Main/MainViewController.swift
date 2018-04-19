@@ -24,7 +24,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         self.vehicle = vehicle
         self.vehicleId = vehicle.id
         self.serviceState = state
-        super.init(screenName: "")
+        super.init(screenName: "") // no screenName for MainViewController
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -57,9 +57,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     }
     
     func updateState(state: ServiceState) {
-        
-        VLAnalytics.logEventWithName(VLAnalytics.stateChangeEvent, paramName: VLAnalytics.stateParam, paramValue: "\(state.rawValue)")
-        
+                
         setTitle(title: getTitleForState(state: state))
         
         var changeView = true

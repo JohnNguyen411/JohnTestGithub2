@@ -18,7 +18,7 @@ class SettingsCarViewController: BaseViewController {
     
     init(vehicle: Vehicle) {
         self.vehicle = vehicle
-        super.init(screenName: AnalyticsConstants.ParamNameSettingsVehicleDetailsView)
+        super.init(screenName: AnalyticsConstants.paramNameSettingsVehicleDetailsView)
     }
     
     required init?(coder aDecoder: NSCoder) {

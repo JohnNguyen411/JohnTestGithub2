@@ -42,7 +42,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     init() {
         accessToken = UserManager.sharedInstance.getAccessToken()
-        super.init(screenName: AnalyticsConstants.ParamNameSignupPasswordView)
+        super.init(screenName: AnalyticsConstants.paramNameSignupPasswordView)
     }
     
     required init?(coder aDecoder: NSCoder) {
