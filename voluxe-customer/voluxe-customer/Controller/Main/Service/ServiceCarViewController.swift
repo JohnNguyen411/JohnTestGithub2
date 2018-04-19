@@ -76,7 +76,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     init(vehicle: Vehicle, state: ServiceState) {
         self.vehicle = vehicle
         self.serviceState = state
-        super.init()
+        super.init(screenName: "")
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -73,7 +73,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             serviceTitle += "\n• \(service). "
         }
         self.service = RepairOrder(repairOrderType: repairOrderType, customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
-        super.init()
+        super.init(screenName: AnalyticsConstants.ParamNameServiceCustomNotesView)
     }
     
     required init?(coder aDecoder: NSCoder) {

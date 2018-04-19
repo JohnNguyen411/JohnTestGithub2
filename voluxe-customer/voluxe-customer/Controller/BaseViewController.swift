@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MBProgressHUD
+import Firebase
 
 class BaseViewController: UIViewController, PresentrDelegate {
     
@@ -16,6 +17,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
 
+    let screenName: String
     let presentrCornerRadius: CGFloat = 4.0
     var currentPresentr: Presentr?
     var currentPresentrVC: VLPresentrViewController?
@@ -23,7 +25,8 @@ class BaseViewController: UIViewController, PresentrDelegate {
     var keyboardShowing = false
     var keyboardHeight: CGFloat = 0
     
-    init() {
+    init(screenName: String) {
+        self.screenName = screenName
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -36,6 +39,11 @@ class BaseViewController: UIViewController, PresentrDelegate {
         styleViews()
         setupViews()
         styleNavigationBar(navigationBar: self.navigationController?.navigationBar)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        logViewScreen()
     }
     
     func setTitle(title: String?) {
@@ -160,6 +168,13 @@ class BaseViewController: UIViewController, PresentrDelegate {
         let customType = PresentationType.custom(width: width, height: height, center: center)
         
         return customType
+    }
+    
+    func logViewScreen() {
+        // send event when screen name isn't empty, little trick for same VC with state change (MainViewController, ServiceCarViewController)
+        if screenName.count > 0 {
+            Analytics.logEvent(AnalyticsConstants.EventViewScreen, parameters: [AnalyticsConstants.ParamScreenName: screenName])
+        }
     }
     
 }

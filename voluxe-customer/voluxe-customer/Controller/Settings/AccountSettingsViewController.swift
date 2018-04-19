@@ -19,7 +19,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     var realm : Realm?
     var uiBarButton: UIBarButtonItem?
     
-    override init() {
+    init() {
         user = UserManager.sharedInstance.getCustomer()
         realm = try? Realm()
         if let realm = self.realm, let user = user {
@@ -28,7 +28,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
                 addressesCount = addresses.count
             }
         }
-        super.init()
+        super.init(screenName: AnalyticsConstants.ParamNameSettingsAccountView)
     }
     
     required init?(coder aDecoder: NSCoder) {

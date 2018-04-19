@@ -37,7 +37,11 @@ class ServiceDetailViewController: BaseViewController {
         self.canSchedule = canSchedule
         self.service = service
         serviceTitle = VLTitledLabel(title: .FactoryScheduledMaintenance, leftDescription: service.name!, rightDescription: "")
-        super.init()
+        var analyticName = canSchedule ? AnalyticsConstants.ParamNameServiceMilestoneDetailsSchedulingView : AnalyticsConstants.ParamNameServiceMilestoneDetailsView
+        if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
+            analyticName = AnalyticsConstants.ParamNameServiceCustomDetailsView
+        }
+        super.init(screenName: analyticName)
     }
     
     required init?(coder aDecoder: NSCoder) {

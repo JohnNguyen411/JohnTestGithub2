@@ -41,7 +41,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     
     init(type: FTUEPhoneType) {
         self.ftuePhoneType = type
-        super.init()
+        super.init(screenName: type == .update ? AnalyticsConstants.ParamNameUpdatePasswordView : AnalyticsConstants.ParamNameResetPasswordView)
     }
     
     required init?(coder aDecoder: NSCoder) {

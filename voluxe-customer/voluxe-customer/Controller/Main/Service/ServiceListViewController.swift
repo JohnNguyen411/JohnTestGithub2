@@ -19,7 +19,7 @@ class ServiceListViewController: BaseViewController {
     
     init(vehicle: Vehicle, title: String) {
         self.vehicle = vehicle
-        super.init()
+        super.init(screenName: AnalyticsConstants.ParamNameServiceMilestoneView)
         self.title = title
     }
     

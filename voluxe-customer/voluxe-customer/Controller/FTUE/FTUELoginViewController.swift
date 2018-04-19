@@ -20,6 +20,14 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     var loginInProgress = false
     var realm : Realm?
     
+    init() {
+        super.init(screenName: AnalyticsConstants.ParamNameLoginView)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

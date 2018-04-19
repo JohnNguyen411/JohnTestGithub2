@@ -43,6 +43,14 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     var signupInProgress = false
     var realm : Realm?
     
+    init() {
+        super.init(screenName: AnalyticsConstants.ParamNameSignupEmailPhoneView)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

@@ -24,7 +24,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         self.vehicle = vehicle
         self.vehicleId = vehicle.id
         self.serviceState = state
-        super.init()
+        super.init(screenName: "")
     }
     
     required init?(coder aDecoder: NSCoder) {

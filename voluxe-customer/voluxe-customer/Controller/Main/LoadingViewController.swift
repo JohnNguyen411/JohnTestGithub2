@@ -14,6 +14,14 @@ class LoadingViewController: ChildViewController {
     
     var realm : Realm?
     
+    init() {
+        super.init(screenName: AnalyticsConstants.ParamNameLoadingView)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         realm = try? Realm()

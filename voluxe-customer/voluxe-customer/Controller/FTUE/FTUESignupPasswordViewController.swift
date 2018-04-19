@@ -40,9 +40,9 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     var realm : Realm?
     let accessToken: String?
     
-    override init() {
+    init() {
         accessToken = UserManager.sharedInstance.getAccessToken()
-        super.init()
+        super.init(screenName: AnalyticsConstants.ParamNameSignupPasswordView)
     }
     
     required init?(coder aDecoder: NSCoder) {

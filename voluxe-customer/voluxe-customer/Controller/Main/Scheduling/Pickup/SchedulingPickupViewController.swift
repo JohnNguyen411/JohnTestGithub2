@@ -12,6 +12,14 @@ import MBProgressHUD
 
 class SchedulingPickupViewController: SchedulingViewController {
     
+    init(vehicle: Vehicle, state: ServiceState) {
+        super.init(vehicle: vehicle, state: state, screenName: AnalyticsConstants.ParamNameSchedulingInboundView)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func setupViews() {
         super.setupViews()
         loanerView.snp.makeConstraints { make in
@@ -19,8 +27,6 @@ class SchedulingPickupViewController: SchedulingViewController {
             make.top.equalTo(dealershipView.snp.bottom)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
-        
-        
     }
     
     override func fillViews() {

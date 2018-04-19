@@ -86,10 +86,10 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }()
     
     
-    init(vehicle: Vehicle, state: ServiceState) {
+    init(vehicle: Vehicle, state: ServiceState, screenName: String) {
         self.vehicle = vehicle
         self.serviceState = state
-        super.init()
+        super.init(screenName: screenName)
     }
     
     required init?(coder aDecoder: NSCoder) {
