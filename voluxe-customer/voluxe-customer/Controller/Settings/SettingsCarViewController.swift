@@ -11,13 +11,14 @@ import RealmSwift
 
 class SettingsCarViewController: BaseViewController {
     
-    let removeVehicleButton = VLButton(type: .orangePrimary, title: (.RemoveVehicle as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let removeVehicleButton: VLButton
     let vehicleImageView = UIImageView(frame: .zero)
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
     let vehicle: Vehicle
     
     init(vehicle: Vehicle) {
         self.vehicle = vehicle
+        removeVehicleButton = VLButton(type: .orangePrimary, title: (.RemoveVehicle as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickRemoveVehicle ,screenName: AnalyticsConstants.paramNameSettingsVehicleDetailsView)
         super.init(screenName: AnalyticsConstants.paramNameSettingsVehicleDetailsView)
     }
     

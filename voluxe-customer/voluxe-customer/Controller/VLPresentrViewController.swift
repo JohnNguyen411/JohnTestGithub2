@@ -13,6 +13,7 @@ class VLPresentrViewController: UIViewController {
     
     static let baseHeight = 80
     
+    let screenName: String
     let loadingView = UIView(frame: .zero)
     let activityIndicator = UIActivityIndicatorView(frame: .zero)
     let containerView = UIView(frame: .zero)
@@ -26,22 +27,24 @@ class VLPresentrViewController: UIViewController {
         return titleLabel
     }()
     
-    let bottomButton = VLButton(type: .bluePrimary, title: nil, kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let bottomButton: VLButton
     
-    init(title: String, buttonTitle: String) {
+    init(title: String, buttonTitle: String, screenName: String) {
+        self.screenName = screenName
+        bottomButton = VLButton(type: .bluePrimary, title: nil, kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickNext, screenName: screenName)
         super.init(nibName: nil, bundle: nil)
         setupViews()
         
         setTitle(title: title.uppercased())
-        setButtonTitle(title: buttonTitle.uppercased())
+        setButtonTitle(title: buttonTitle.uppercased(), eventName: AnalyticsConstants.eventClickNext)
     }
     
-    convenience init(title: String) {
-        self.init(title: title, buttonTitle: "")
+    convenience init(title: String, screenName: String) {
+        self.init(title: title, buttonTitle: "", screenName: screenName)
     }
     
-    convenience init() {
-        self.init(title: "", buttonTitle: "")
+    convenience init(screenName: String) {
+        self.init(title: "", buttonTitle: "", screenName: screenName)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -54,9 +57,12 @@ class VLPresentrViewController: UIViewController {
         titleLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
     }
     
-    func setButtonTitle(title: String) {
+    func setButtonTitle(title: String, eventName: String?) {
         bottomButton.setTitle(title: title)
         bottomButton.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        if let eventName = eventName {
+            bottomButton.setEventName(eventName)
+        }
     }
     
     func setupViews() {

@@ -15,12 +15,21 @@ class ScheduledBookingViewController: SchedulingViewController {
     let booking: Booking
     let delegate: ScheduledBookingDelegate?
     
-    let leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
-    let rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let leftButton: VLButton
+    let rightButton: VLButton
     
     init(booking: Booking, delegate: ScheduledBookingDelegate?) {
         self.booking = booking
         self.delegate = delegate
+        
+        var cancelEvent =  AnalyticsConstants.eventClickCancelInbound
+        if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
+            cancelEvent =  AnalyticsConstants.eventClickCancelOutbound
+        }
+
+        leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: cancelEvent, screenName: AnalyticsConstants.paramNameReservationDetailsView)
+        rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickDone, screenName: AnalyticsConstants.paramNameReservationDetailsView)
+        
         super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screenName: AnalyticsConstants.paramNameReservationDetailsView)
     }
     

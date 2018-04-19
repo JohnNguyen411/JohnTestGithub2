@@ -56,13 +56,14 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         return titleLabel
     }()
     
-    let newLocationButton = VLButton(type: .blueSecondary, title: (.AddNewLocation as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let newLocationButton: VLButton
     
     let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
     
-    override init(title: String, buttonTitle: String) {
-        super.init(title: title, buttonTitle: buttonTitle)
+    override init(title: String, buttonTitle: String, screenName: String) {
+        newLocationButton = VLButton(type: .blueSecondary, title: (.AddNewLocation as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickAddNewLocation, screenName: screenName)
+        super.init(title: title, buttonTitle: buttonTitle, screenName: screenName)
         newLocationTextField.textField.autocorrectionType = .no
         newLocationTextField.tableYOffset = -20
         newLocationTextField.tableBottomMargin = 0

@@ -59,7 +59,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     let contentView = UIView(frame: .zero)
 
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let confirmButton: VLButton
     
     let drivability = [DrivableType.yes, DrivableType.no, DrivableType.notSure]
     var checkedCellIndex = 0
@@ -73,6 +73,9 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             serviceTitle += "\n• \(service). "
         }
         self.service = RepairOrder(repairOrderType: repairOrderType, customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
+        
+        confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickNext, screenName: AnalyticsConstants.paramNameServiceCustomNotesView)
+        
         super.init(screenName: AnalyticsConstants.paramNameServiceCustomNotesView)
     }
     

@@ -101,7 +101,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     }
     
     func showPickupLocationModal(dismissOnTap: Bool) {
-        let locationVC = AddLocationViewController(title: .AddNewLocation, buttonTitle: .Add)
+        let locationVC = AddLocationViewController(title: .AddNewLocation, buttonTitle: .Add, screenName: AnalyticsConstants.paramNameSettingsLocationModalView)
         locationVC.pickupLocationDelegate = self
         locationVC.presentrDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"

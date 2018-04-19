@@ -58,12 +58,12 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     let contentView = UIView()
     let dealershipAddressView = UIView()
     let scheduledServiceView = VLTitledLabel(padding: insetPadding)
-    let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let descriptionButton: VLButton
     let dealershipView = VLTitledLabel(padding: insetPadding)
     let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "", padding: insetPadding)
     let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "", padding: insetPadding)
     let loanerView = VLTitledLabel(title: .NeedALoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmPickup as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let confirmButton: VLButton
     
     let dealershipAddressLabel: UILabel = {
         let dealershipAddressLabel = UILabel()
@@ -89,6 +89,9 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     init(vehicle: Vehicle, state: ServiceState, screenName: String) {
         self.vehicle = vehicle
         self.serviceState = state
+        descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickShowServiceDescription, screenName: screenName)
+        confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmPickup as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+        
         super.init(screenName: screenName)
     }
     
@@ -299,6 +302,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         loanerView.descLeftLabel.text = loaner ? .Yes : .No
         
         confirmButton.setTitle(title: getConfirmButtonTitle())
+        confirmButton.setEventName(getConfirmButtonEvent(), screenName: screenName)
     }
     
     func fillDealership() {
@@ -411,13 +415,15 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     func showPickupLocationModal(dismissOnTap: Bool) {
         
         var title: String = .PickupLocationTitle
+        var modalScreenName = AnalyticsConstants.paramNameSchedulingOBLocationModalView
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
                 title = .DealershipCloseToLocation
             }
+            modalScreenName = AnalyticsConstants.paramNameSchedulingIBLocationModalView
         }
         
-        let locationVC = LocationPickupViewController(title: title, buttonTitle: .Next)
+        let locationVC = LocationPickupViewController(title: title, buttonTitle: .Next, screenName: modalScreenName)
         locationVC.pickupLocationDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
         currentPresentrVC = locationVC
@@ -426,7 +432,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func showPickupLoanerModal(dismissOnTap: Bool) {
-        let loanerVC = LoanerPickupViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next)
+        let loanerVC = LoanerPickupViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, screenName: AnalyticsConstants.paramNameSchedulingIBLoanerModalView)
         loanerVC.delegate = self
         loanerVC.view.accessibilityIdentifier = "loanerVC"
         currentPresentrVC = loanerVC
@@ -509,6 +515,22 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             }
         }
         return title.uppercased()
+    }
+    
+    func getConfirmButtonEvent() -> String {
+        var event = AnalyticsConstants.eventClickConfirmVolvoIB
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
+            if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
+                title = AnalyticsConstants.eventClickConfirmSelfIB
+            }
+        } else {
+            if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
+                title = AnalyticsConstants.eventClickConfirmSelfOB
+            } else {
+                event = AnalyticsConstants.eventClickConfirmVolvoOB
+            }
+        }
+        return event
         
     }
     

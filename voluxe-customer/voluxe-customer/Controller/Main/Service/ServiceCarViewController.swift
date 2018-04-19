@@ -71,6 +71,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     let rightButton = VLButton(type: .bluePrimary, title: (.VolvoPickup as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
     
+    var analyticScreenName = ""
     
     //MARK: Lifecycle methods
     init(vehicle: Vehicle, state: ServiceState) {
@@ -229,6 +230,13 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     }
     
     
+    override func logViewScreen(screenName: String) {
+        analyticScreenName = screenName
+        super.logViewScreen(screenName: screenName)
+        descriptionButton.setEventName(AnalyticsConstants.eventClickShowServiceDescription, screenName: screenName)
+        confirmButton.setEventName(AnalyticsConstants.eventClickOk, screenName: screenName)
+    }
+    
     func showCheckupLabel(show: Bool, alpha: Bool, animated: Bool) {
         self.checkupLabel.changeVisibility(show: show, alpha: alpha, animated: animated, height: self.checkupLabelHeight)
     }
@@ -331,11 +339,18 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         
         
         if ServiceState.isPickup(state: state) {
+            
+            leftButton.setEventName(AnalyticsConstants.eventClickSelfIB, screenName: analyticScreenName)
+            rightButton.setEventName(AnalyticsConstants.eventClickVolvoIB, screenName: analyticScreenName)
+            
             leftButton.setTitle(title: (.SelfDrop as String).uppercased())
             rightButton.setTitle(title: (.VolvoPickup as String).uppercased())
         } else {
             leftButton.setTitle(title: (.SelfPickup as String).uppercased())
             rightButton.setTitle(title: (.VolvoDelivery as String).uppercased())
+            
+            leftButton.setEventName(AnalyticsConstants.eventClickSelfOB, screenName: analyticScreenName)
+            rightButton.setEventName(AnalyticsConstants.eventClickVolvoOB, screenName: analyticScreenName)
         }
     }
     

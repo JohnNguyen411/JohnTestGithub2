@@ -14,6 +14,32 @@ class AnalyticsConstants {
     static let eventViewScreen = "view_screen"
     static let eventStateChange = "state_change"
 
+    
+    static let eventClickSignin = "click_signin"
+    static let eventClickCreateAccount = "click_create_account"
+    static let eventClickContactDriver = "click_contact_driver"
+    static let eventClickUpdatePhoneNumber = "click_update_phone_number"
+    static let eventClickNewService = "click_new_service"
+    static let eventClickNext = "click_next"
+    static let eventClickOk = "click_ok"
+    static let eventClickAddNewLocation = "click_add_new_location"
+    static let eventClickTimeslot = "click_timeslot"
+    static let eventClickRemoveVehicle = "click_remove_vehicle"
+    static let eventClickForgotPassword = "click_forgot_password"
+    static let eventClickCancelInbound = "click_cancel_inbound"
+    static let eventClickCancelOutbound = "click_cancel_outbound"
+    static let eventClickDone = "click_done"
+    static let eventClickScheduleService = "click_schedule_service"
+    static let eventClickShowServiceDescription = "click_show_service_description"
+    static let eventClickSelfIB = "click_self_inbound"
+    static let eventClickVolvoIB = "click_volvo_inbound"
+    static let eventClickSelfOB = "click_self_outbound"
+    static let eventClickVolvoOB = "click_volvo_outbound"
+    static let eventClickConfirmVolvoIB = "click_confirm_volvo_inbound"
+    static let eventClickConfirmVolvoOB = "click_confirm_volvo_outbound"
+    static let eventClickConfirmSelfIB = "click_confirm_self_inbound"
+    static let eventClickConfirmSelfOB = "click_confirm_self_outbound"
+
     // Params
     static let paramScreenName = "screen_name"
     
@@ -29,6 +55,7 @@ class AnalyticsConstants {
 
     static let paramNameSettingsView = "settings_view"
     static let paramNameSettingsAccountView = "settings_account_view"
+    static let paramNameSettingsLocationModalView = "settings_location_modal_view"
     static let paramNameSignupPhoneVerificationView = "signup_phone_verification_view" // Signup only
     static let paramNamePhoneVerificationView = "phone_verification_view" // Need verification after update
     static let paramNameSignupNameView = "signup_name_view"
@@ -44,6 +71,15 @@ class AnalyticsConstants {
     static let paramNameActiveInboundView = "active_inbound_view" // scheduled
     static let paramNameActiveOutboundView = "active_outbound_view"  // scheduled
 
+    static let paramNameSchedulingIBDateTimeModalView = "scheduling_inbound_datetime_modal_view"
+    static let paramNameSchedulingOBDateTimeModalView = "scheduling_outbound_datetime_modal_view"
+    static let paramNameSchedulingIBLocationModalView = "scheduling_inbound_location_modal_view"
+    static let paramNameSchedulingOBLocationModalView = "scheduling_outbound_location_modal_view"
+    static let paramNameSchedulingIBDealershipModalView = "scheduling_inbound_dealership_modal_view"
+    static let paramNameSchedulingOBDealershipModalView = "scheduling_outbound_dealership_modal_view"
+    static let paramNameSchedulingIBLoanerModalView = "scheduling_inbound_loaner_modal_view"
+    static let paramNameSchedulingOBLoanerModalView = "scheduling_outbound_loaner_modal_view"
+    
     static let paramNameServiceNewView = "service_new_view"
     static let paramNameServiceMilestoneView = "service_milestone_view"
     static let paramNameServiceCustomView = "service_custom_view"
@@ -60,5 +96,6 @@ class AnalyticsConstants {
     static let paramNameServiceInRouteView = "service_in_route_view" // Driver driving to dealership to service vehicle
     static let paramNameReservationCompletedView = "reservation_completed_view" // Reservation completed
 
+    
 
 }

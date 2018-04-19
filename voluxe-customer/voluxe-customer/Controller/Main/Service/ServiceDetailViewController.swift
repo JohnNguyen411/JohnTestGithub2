@@ -25,7 +25,7 @@ class ServiceDetailViewController: BaseViewController {
     var repairOrder: RepairOrder?
     let vehicle: Vehicle
     let service: RepairOrderType
-    let confirmButton = VLButton(type: .bluePrimary, title: (.ScheduleService as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let confirmButton: VLButton
 
     convenience init(vehicle: Vehicle, service: RepairOrder) {
         self.init(vehicle: vehicle, service: service.repairOrderType!, canSchedule: false)
@@ -41,6 +41,8 @@ class ServiceDetailViewController: BaseViewController {
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
             analyticName = AnalyticsConstants.paramNameServiceCustomDetailsView
         }
+        confirmButton = VLButton(type: .bluePrimary, title: (.ScheduleService as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickScheduleService, screenName: analyticName)
+
         super.init(screenName: analyticName)
     }
     

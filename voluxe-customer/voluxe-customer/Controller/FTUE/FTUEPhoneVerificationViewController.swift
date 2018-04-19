@@ -15,7 +15,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     let codeLength = 4
     let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder, kern: 4.0)
     
-    let updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.ChangePhoneNumber.uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let updatePhoneNumberButton: VLButton
     
     var ftuePhoneType: FTUEPhoneType = .update
     
@@ -30,7 +30,10 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     }()
     
     init() {
-        super.init(screenName: FTUEStartViewController.flowType == .signup ? AnalyticsConstants.paramNameSignupPhoneVerificationView : AnalyticsConstants.paramNamePhoneVerificationView)
+        let analyticsName = FTUEStartViewController.flowType == .signup ? AnalyticsConstants.paramNameSignupPhoneVerificationView : AnalyticsConstants.paramNamePhoneVerificationView
+        updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.ChangePhoneNumber.uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickUpdatePhoneNumber, screenName: analyticsName)
+        
+        super.init(screenName: analyticsName)
     }
     
     convenience init(type: FTUEPhoneType) {

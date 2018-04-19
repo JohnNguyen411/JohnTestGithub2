@@ -18,7 +18,7 @@ class DealershipPickupViewController: VLPresentrViewController {
     var groupedLabels: VLGroupedLabels?
     
     init(title: String, buttonTitle: String, dealerships: [Dealership]) {
-        super.init(title: title, buttonTitle: buttonTitle)
+        super.init(title: title, buttonTitle: buttonTitle, screenName: AnalyticsConstants.paramNameSchedulingIBDealershipModalView)
         setDealerhips(dealerships: dealerships)
     }
     

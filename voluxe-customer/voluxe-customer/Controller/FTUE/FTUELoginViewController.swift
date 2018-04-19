@@ -15,12 +15,14 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
     let passwordTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••")
-    let forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let forgotPassword: VLButton
     
     var loginInProgress = false
     var realm : Realm?
     
     init() {
+        forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil, eventName: AnalyticsConstants.eventClickForgotPassword, screenName: AnalyticsConstants.paramNameLoginView)
+        
         super.init(screenName: AnalyticsConstants.paramNameLoginView)
     }
     

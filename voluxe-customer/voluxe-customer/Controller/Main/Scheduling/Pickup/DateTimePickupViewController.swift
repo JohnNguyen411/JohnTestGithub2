@@ -105,7 +105,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             }
         }
         dealership = currentDealership
-        super.init(title: title, buttonTitle: buttonTitle)
+        
+        super.init(title: title, buttonTitle: buttonTitle, screenName: isPickup ? AnalyticsConstants.paramNameSchedulingIBDateTimeModalView : AnalyticsConstants.paramNameSchedulingOBDateTimeModalView)
+        
         realm = try? Realm()
         getTimeSlots()
         if let loaner = RequestedServiceManager.sharedInstance.getLoaner() {
@@ -552,7 +554,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         currentSlots = slots
         
         for (index, slot) in slots.enumerated() {
-            let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true), actionBlock: nil)
+            let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true), actionBlock: nil, eventName: AnalyticsConstants.eventClickTimeslot, screenName: screenName)
             slotButton.setActionBlock {
                 self.slotClicked(viewIndex: index, slot: slot)
             }
