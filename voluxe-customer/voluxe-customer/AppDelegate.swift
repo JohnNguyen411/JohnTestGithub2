@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         leftViewController.mainNavigationViewController = navigationController
         //leftViewController.mainViewController = mainViewController
         
-        let menuController = SlideMenuController(mainViewController: uiNavigationController, leftMenuViewController: leftViewController)
+        let menuController = VLSlideMenuController(mainViewController: uiNavigationController, leftMenuViewController: leftViewController)
         menuController.automaticallyAdjustsScrollViewInsets = true
         menuController.delegate = mainViewController
         menuController.opacityView.removeFromSuperview()
@@ -150,7 +150,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
                 let uiNavigationController = UINavigationController(rootViewController: MainViewController(vehicle: vehicle, state: state))
                 styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: nil)
+                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: nil, animated: true)
             }
         }
     }
@@ -160,7 +160,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
                 let uiNavigationController = UINavigationController(rootViewController: SettingsViewController())
                 styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .Settings)
+                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .Settings, animated: true)
             }
         }
     }

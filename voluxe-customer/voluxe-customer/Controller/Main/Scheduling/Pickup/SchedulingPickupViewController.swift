@@ -345,8 +345,6 @@ class SchedulingPickupViewController: SchedulingViewController {
                     }
                 }
                 UserManager.sharedInstance.addBooking(booking: booking)
-                
-                self.navigationController?.popToRootViewController(animated: false)
             }
             
             RequestedServiceManager.sharedInstance.reset()

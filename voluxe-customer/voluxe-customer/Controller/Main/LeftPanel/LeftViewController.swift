@@ -38,7 +38,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     var tableView = UITableView(frame: .zero)
     var menus = [UserManager.sharedInstance.yourVolvoStringTitle(), String.Settings, String.Signout]
     var activeBookings: [Booking] = []
-    var mainNavigationViewController: UIViewController!
+    var mainNavigationViewController: UINavigationController!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -119,7 +119,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     func changeViewController(_ menu: LeftMenu, indexPath: IndexPath) {
         switch menu {
         case .main:
-            self.slideMenuController()?.changeMainViewController(self.mainNavigationViewController, close: true)
+            self.changeMainViewController(uiNavigationController: self.mainNavigationViewController, title: nil, animated: true)
             self.updateNotificationBadge()
         case .settings:
             weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
@@ -131,8 +131,13 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         }
     }
     
-    func changeMainViewController(uiNavigationController: UINavigationController, title: String?) {
-        self.slideMenuController()?.changeMainViewController(uiNavigationController, close: true)
+    func changeMainViewController(uiNavigationController: UINavigationController, title: String?, animated: Bool) {
+        if let slideMenuController = self.slideMenuController() as? VLSlideMenuController {
+            slideMenuController.changeMainViewController(uiNavigationController, close: true, animated: animated)
+        } else {
+            self.slideMenuController()?.changeMainViewController(uiNavigationController, close: true)
+        }
+        
         self.updateNotificationBadge()
         uiNavigationController.setTitle(title: title)
     }

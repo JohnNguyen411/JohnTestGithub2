@@ -275,8 +275,6 @@ class SchedulingDropoffViewController: SchedulingViewController {
             }
             let bookings = realm.objects(Booking.self).filter("customerId = \(booking.customerId)")
             UserManager.sharedInstance.setBookings(bookings: Array(bookings))
-            
-            self.navigationController?.popToRootViewController(animated: false)
         }
         RequestedServiceManager.sharedInstance.reset()
         appDelegate?.showVehiclesView(animated: false)
