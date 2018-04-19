@@ -11,11 +11,6 @@ import FirebaseAnalytics
 
 class VLAnalytics {
     
-    static let needServiceScreen = "needServiceScreen"
-    static let serviceTypeParam = "serviceType"
-
-    
-    
     
     static func logEventWithName(_ eventName: String) {
         Analytics.logEvent(eventName, parameters: nil)
