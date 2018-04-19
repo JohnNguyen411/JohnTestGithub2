@@ -54,7 +54,11 @@ class AnalyticsConstants {
     static let paramNameServiceCustomDetailsView = "service_custom_details_view" // read only, can't schedule from here
     
     static let paramNameReservationDetailsView = "reservation_details_view"
-
+    static let paramNameNeedServiceView = "need_service_view" // selected service, need to choose Self-Drop or Volvo Pickup
+    static let paramNameServiceCompletedView = "service_completed_view" // service completed (after IB), need to choose Self-Pickup or Volvo Delivery
+    static let paramNameServiceInProgressView = "service_in_progress_view" // service in progress at dealership
+    static let paramNameServiceInRouteView = "service_in_route_view" // Driver driving to dealership to service vehicle
+    static let paramNameReservationCompletedView = "reservation_completed_view" // Reservation completed
 
 
 }

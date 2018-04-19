@@ -252,6 +252,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             descriptionButton.isHidden = false
             
             if state == .needService {
+                logViewScreen(screenName: AnalyticsConstants.paramNameNeedServiceView)
                 dealershipPrefetching()
                 checkupLabel.text = .ScheduleDropDealership
             } else {
@@ -261,6 +262,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                     scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
                 }
+                logViewScreen(screenName: AnalyticsConstants.paramNameServiceCompletedView)
             }
             noteLabel.isHidden = false
             
@@ -301,6 +303,8 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                         StateServiceManager.sharedInstance.updateState(state: .serviceCompleted, vehicleId: self.vehicle.id, booking: nil)
                     })
                 }
+                logViewScreen(screenName: AnalyticsConstants.paramNameServiceInProgressView)
+
             } else if state == .enRouteForService {
                 confirmButton.isHidden = true
                 leftButton.isHidden = true
@@ -313,18 +317,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                     })
                 }
                 
-            } else if state == .service { // TODO: merge with upstairs
-                
-                showUpdateLabel(show: true, title: (.Update as String).uppercased(), width: 70, right: false)
-                
-                confirmButton.isHidden = false
-                checkupLabel.text = String(format: NSLocalizedString(.YourVehicleHasArrived), (dealership?.name)!)
-
-                if Config.sharedInstance.isMock {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .service, vehicleId: self.vehicle.id, booking: nil)
-                    })
-                }
+                logViewScreen(screenName: AnalyticsConstants.paramNameServiceInRouteView)
                 
             } else if state == .completed {
                 confirmButton.isHidden = false
@@ -332,6 +325,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 rightButton.isHidden = true
                 
                 checkupLabel.text = String(format: NSLocalizedString(.DeliveryComplete), (dealership?.name)!)
+                logViewScreen(screenName: AnalyticsConstants.paramNameReservationCompletedView)
             }
         }
         
