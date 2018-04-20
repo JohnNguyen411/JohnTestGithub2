@@ -172,13 +172,15 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         CustomerAPI().login(email: email, password: password).onSuccess { result in
             if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventLoginSuccess, screenName: self.screenName)
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiLoginSuccess, screenName: self.screenName)
                 
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
                 UserManager.sharedInstance.tempCustomerId = customerId
                 CustomerAPI().getMe().onSuccess { result in
                     if let customer = result?.data?.result {
+                        VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetMeSuccess, screenName: self.screenName)
+
                         if let realm = self.realm {
                             try? realm.write {
                                 realm.deleteAll()
@@ -199,12 +201,15 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
                         self.appDelegate?.phoneVerificationScreen()
                     }
                     }.onFailure { error in
+                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, statusCode: error.responseCode)
                         self.onLoginError()
                 }
             } else {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: self.screenName, errorCode: result?.error?.code)
                 self.onLoginError(error: result?.error)
             }
             }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: self.screenName, statusCode: error.responseCode)
                 self.onLoginError()
         }
         
@@ -213,7 +218,6 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     private func onLoginError(error: ResponseError? = nil) {
         //todo show error message
         self.showLoading(loading: false)
-        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventLoginFail, screenName: screenName, errorCode: error?.code)
         
         if error?.code == "E2005" {
             self.showOkDialog(title: .Error, message: .InvalidCredentials, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)

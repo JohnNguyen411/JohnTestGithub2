@@ -44,14 +44,17 @@ class VLAnalytics {
         Analytics.logEvent(eventName, parameters: parameters)
     }
     
-    static func logErrorEventWithName(_ eventName: String, screenName: String? = nil, errorCode: String? = nil) {
-        var params: [String: String] = [:]
+    static func logErrorEventWithName(_ eventName: String, screenName: String? = nil, statusCode: Int? = nil, errorCode: String? = nil) {
+        var params: [String: Any] = [:]
         if let screenName = screenName {
             params[AnalyticsConstants.paramScreenName] = screenName
+        }
+        if let statusCode = statusCode {
+            params[AnalyticsConstants.paramStatusCode] = statusCode
         }
         if let errorCode = errorCode {
             params[AnalyticsConstants.paramErrorCode] = errorCode
         }
-        VLAnalytics.logEventWithName(eventName, parameters: params)
+        Analytics.logEvent(eventName, parameters: params)
     }
 }

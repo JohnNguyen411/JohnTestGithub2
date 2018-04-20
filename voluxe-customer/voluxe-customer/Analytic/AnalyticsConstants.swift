@@ -78,8 +78,10 @@ class AnalyticsConstants {
     static let eventSettingsAccountAddressDeleted = "settings_account_address_deleted" // pass index of select row in params
     static let eventSettingsVehicleDeleted = "settings_vehicle_deleted" // pass index of select row in params
 
-    static let eventLoginSuccess = "login_success"
-    static let eventLoginFail = "login_fail"
+    static let eventApiLoginSuccess = "api_login_success"
+    static let eventApiLoginFail = "api_login_fail"
+    static let eventApiGetMeSuccess = "api_me_success"
+    static let eventApiGetMeFail = "api_me_fail"
 
 
     // Params
@@ -88,6 +90,7 @@ class AnalyticsConstants {
     static let modalName = "modal_name"
     
     static let paramErrorCode = "error_code"
+    static let paramStatusCode = "status_code"
 
     // Param Names
     static let paramNameState = "state"
