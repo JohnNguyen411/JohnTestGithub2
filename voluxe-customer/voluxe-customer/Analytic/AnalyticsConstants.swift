@@ -14,6 +14,8 @@ class AnalyticsConstants {
     static let eventViewScreen = "view_screen"
     static let eventStateChange = "state_change"
     
+    // Click events
+
     static let eventClickSignin = "click_signin"
     static let eventClickCreateAccount = "click_create_account"
     static let eventClickContactDriver = "click_contact_driver"
@@ -48,6 +50,16 @@ class AnalyticsConstants {
     static let eventClickLeftPanelMenuLogout = "click_navigation_left_panel_logout"
     static let eventClickLeftPanelMenuActiveBookings = "click_navigation_left_panel_active_bookings"
     static let eventClickSelectVehicle = "click_select_vehicle"
+    
+    // Settings click events
+    static let eventClickSettingsVehicle = "click_settings_vehicle_" // add index of clicked car
+    static let eventClickSettingsAddVehicle = "click_settings_add_vehicle"
+    static let eventClickSettingsAccount = "click_settings_account"
+    static let eventClickSettingsAccountAddAddress = "click_settings_account_add_address"
+    static let eventClickSettingsAccountDeleteAddress = "click_settings_account_delete_address_" // add index of address
+    static let eventClickSettingsAccountEditPhone = "click_settings_account_edit_phone"
+    static let eventClickSettingsAccountEditPassword = "click_settings_account_edit_password"
+
 
     // Params
     static let paramScreenName = "screen_name"

@@ -18,7 +18,6 @@ class VLAnalytics {
         } else {
             Analytics.logEvent(eventName, parameters: nil)
         }
-        
     }
     
     static func logEventWithName(_ eventName: String, paramName: String, paramValue: String) {
