@@ -78,12 +78,17 @@ class AnalyticsConstants {
     static let eventSettingsAccountAddressDeleted = "settings_account_address_deleted_" // add index of address
     static let eventSettingsVehicleDeleted = "settings_vehicle_deleted_" // add index of address
 
+    static let eventLoginSuccess = "login_success"
+    static let eventLoginFail = "login_fail"
+
 
     // Params
     static let paramScreenName = "screen_name"
     static let paramDialogName = "dialog_name"
     static let modalName = "modal_name"
     
+    static let paramErrorCode = "error_code"
+
     // Param Names
     static let paramNameState = "state"
     

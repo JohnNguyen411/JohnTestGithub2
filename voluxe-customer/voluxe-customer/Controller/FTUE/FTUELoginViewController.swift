@@ -172,6 +172,8 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         CustomerAPI().login(email: email, password: password).onSuccess { result in
             if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventLoginSuccess, screenName: screenName)
+                
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
                 UserManager.sharedInstance.tempCustomerId = customerId
@@ -211,6 +213,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     private func onLoginError(error: ResponseError? = nil) {
         //todo show error message
         self.showLoading(loading: false)
+        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventLoginFail, screenName: screenName, errorCode: error?.code)
         
         if error?.code == "E2005" {
             self.showOkDialog(title: .Error, message: .InvalidCredentials, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)

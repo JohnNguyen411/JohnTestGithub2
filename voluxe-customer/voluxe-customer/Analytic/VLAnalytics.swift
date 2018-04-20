@@ -27,4 +27,15 @@ class VLAnalytics {
     static func logEventWithName(_ eventName: String, parameters: [String: String]) {
         Analytics.logEvent(eventName, parameters: parameters)
     }
+    
+    static func logErrorEventWithName(_ eventName: String, screenName: String? = nil, errorCode: String? = nil) {
+        var params: [String: String] = [:]
+        if let screenName = screenName {
+            params[AnalyticsConstants.paramScreenName] = screenName
+        }
+        if let errorCode = errorCode {
+            params[AnalyticsConstants.paramErrorCode] = errorCode
+        }
+        VLAnalytics.logEventWithName(eventName, parameters: params)
+    }
 }
