@@ -14,7 +14,8 @@ class AnalyticsConstants {
     static let eventViewScreen = "view_screen"
     static let eventStateChange = "state_change"
     static let eventViewDialog = "view_dialog"
-    
+    static let eventViewModal = "view_modal" // modal used for scheduling, etc
+
     static let eventClickDimissDialog = "dialog_action_dismiss"
     static let eventClickDestructiveDialog = "dialog_action_destructive"
     
@@ -60,6 +61,8 @@ class AnalyticsConstants {
     static let eventClickSelectServiceCustom = "click_select_service_custom_" // add index of custom service
     static let eventClickDeselectServiceCustom = "click_deselect_service_custom_" // add index of custom service
     static let eventClickServiceCustomDrivableIndex = "click_service_custom_drivable_" // add index of custom service
+    
+    static let eventClickSchedulingLocation = "click_scheduling_location_" // add index of address
 
     // Settings click events
     static let eventClickSettingsVehicle = "click_settings_vehicle_" // add index of clicked car
@@ -78,6 +81,7 @@ class AnalyticsConstants {
     // Params
     static let paramScreenName = "screen_name"
     static let paramDialogName = "dialog_name"
+    static let modalName = "modal_name"
     
     // Param Names
     static let paramNameState = "state"
