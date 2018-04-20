@@ -119,12 +119,15 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     func changeViewController(_ menu: LeftMenu, indexPath: IndexPath) {
         switch menu {
         case .main:
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickLeftPanelMenuYourVolvos)
             self.changeMainViewController(uiNavigationController: self.mainNavigationViewController, title: nil, animated: true)
             self.updateNotificationBadge()
         case .settings:
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickLeftPanelMenuSettings)
             weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
             appDelegate?.settingsScreen()
         case .logout:
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickLeftPanelMenuLogout)
             UserManager.sharedInstance.logout()
             weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
             appDelegate?.startApp()
@@ -241,6 +244,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         if let booking = sender.booking, let vehicle = booking.vehicle, let appDelegate = UIApplication.shared.delegate as? AppDelegate {
             appDelegate.loadViewForVehicle(vehicle: vehicle, state: Booking.getStateForBooking(booking: booking))
             showRedDot(vehicleId: vehicle.id, show: false)
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickLeftPanelMenuActiveBookings)
         }
     }
 }

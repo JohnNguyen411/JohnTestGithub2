@@ -43,6 +43,10 @@ class AnalyticsConstants {
     static let eventClickNavigationDone = "click_navigation_done"
     static let eventClickNavigationEdit = "click_navigation_edit"
     static let eventClickNavigationLeftMenuIcon = "click_navigation_left_menu_icon"
+    static let eventClickLeftPanelMenuYourVolvos = "click_navigation_left_panel_your_volvos"
+    static let eventClickLeftPanelMenuSettings = "click_navigation_left_panel_settings"
+    static let eventClickLeftPanelMenuLogout = "click_navigation_left_panel_logout"
+    static let eventClickLeftPanelMenuActiveBookings = "click_navigation_left_panel_active_bookings"
 
     // Params
     static let paramScreenName = "screen_name"
