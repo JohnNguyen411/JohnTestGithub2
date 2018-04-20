@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class DealershipPickupViewController: VLPresentrViewController {
+class DealershipPickupViewController: VLPresentrViewController, VLGroupedLabelsDelegate {
     
     var delegate: PickupDealershipDelegate?
     
@@ -62,6 +62,7 @@ class DealershipPickupViewController: VLPresentrViewController {
                 make.bottom.equalTo(groupedLabels.snp.top).offset(-10)
                 make.height.equalTo(25)
             }
+            groupedLabels.delegate = self
         }
         
         containerView.snp.updateConstraints{ make in
@@ -84,6 +85,12 @@ class DealershipPickupViewController: VLPresentrViewController {
     override func onButtonClick() {
         if let delegate = delegate, let groupedLabels = groupedLabels {
             delegate.onDealershipSelected(dealership: dealerships[groupedLabels.getLastSelectedIndex()!])
+        }
+    }
+    
+    func onSelectionChanged(selected: Bool, selectedIndex: Int) {
+        if selected {
+            VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickSelectDealershipIndex)\(selectedIndex)", screenName: screenName)
         }
     }
 }

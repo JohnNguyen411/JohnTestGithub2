@@ -61,8 +61,9 @@ class AnalyticsConstants {
     static let eventClickSelectServiceCustom = "click_select_service_custom_" // add index of custom service
     static let eventClickDeselectServiceCustom = "click_deselect_service_custom_" // add index of custom service
     static let eventClickServiceCustomDrivableIndex = "click_service_custom_drivable_" // add index of custom service
-    
-    static let eventClickSchedulingLocation = "click_scheduling_location_" // add index of address
+    static let eventClickSelectLocationIndex = "click_select_location_index_" // add index of address
+    static let eventClickSelectDealershipIndex = "click_select_dealership_index_" // add index of dealership
+    static let eventClickSelectLoanerIndex = "click_select_loaner_index_" // add index of loaner // 0 for yes, 1 for No
 
     // Settings click events
     static let eventClickSettingsVehicle = "click_settings_vehicle_" // add index of clicked car

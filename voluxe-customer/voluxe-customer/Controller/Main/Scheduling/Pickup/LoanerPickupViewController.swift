@@ -53,6 +53,9 @@ class LoanerPickupViewController: VLPresentrViewController, VLGroupedLabelsDeleg
     
     func onSelectionChanged(selected: Bool, selectedIndex: Int) {
         bottomButton.isEnabled = true
+        if selected {
+            VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickSelectLoanerIndex)\(selectedIndex)", screenName: screenName)
+        }
     }
     
 }
