@@ -13,6 +13,10 @@ class AnalyticsConstants {
     // Events
     static let eventViewScreen = "view_screen"
     static let eventStateChange = "state_change"
+    static let eventViewDialog = "view_dialog"
+    
+    static let eventClickDimissDialog = "dialog_action_dismiss"
+    static let eventClickDestructiveDialog = "dialog_action_destructive"
     
     // Click events
 
@@ -63,6 +67,7 @@ class AnalyticsConstants {
 
     // Params
     static let paramScreenName = "screen_name"
+    static let paramDialogName = "dialog_name"
     
     // Param Names
     static let paramNameState = "state"
@@ -117,6 +122,10 @@ class AnalyticsConstants {
     static let paramNameServiceInRouteView = "service_in_route_view" // Driver driving to dealership to service vehicle
     static let paramNameReservationCompletedView = "reservation_completed_view" // Reservation completed
 
-    
+    static let paramNameDeleteAddressDialog = "delete_address_dialog"
+    static let paramNameErrorDialog = "delete_error_dialog" // decided to have the same tag for every error dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
+    static let paramNameSuccessDialog = "delete_success_dialog" // decided to have the same tag for every success dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
+    static let paramNameConfirmDialog = "delete_confirm_dialog" // decided to have the same tag for every confirm dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
+
 
 }

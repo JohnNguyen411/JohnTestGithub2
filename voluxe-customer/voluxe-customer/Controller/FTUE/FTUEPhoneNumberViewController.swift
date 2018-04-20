@@ -158,13 +158,13 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
                 self.hideProgressHUD()
                 if result?.error != nil {
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 }
                 self.isLoading = false
                 self.goToNext()
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.isLoading = false
             }
             return
@@ -186,13 +186,13 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         CustomerAPI().updatePhoneNumber(customerId: customerId!, phoneNumber: phoneNumber).onSuccess { result in
             self.hideProgressHUD()
             if result?.error != nil {
-                self.showOkDialog(title: .Error, message: .GenericError)
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             }
             self.isLoading = false
             self.goToNext()
             }.onFailure { error in
                 self.hideProgressHUD()
-                self.showOkDialog(title: .Error, message: .GenericError)
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.isLoading = false
         }
     }

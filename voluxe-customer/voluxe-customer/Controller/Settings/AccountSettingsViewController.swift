@@ -140,14 +140,14 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
             CustomerAPI().requestPasswordChange(customerId: customerId).onSuccess { response in
                 if let _ = response?.error {
                     // show error
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 } else {
                     FTUEStartViewController.flowType = .signup
                     self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
                 }
                 self.hideProgressHUD()
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.hideProgressHUD()
             }
         }
@@ -292,15 +292,18 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     func onEditClicked(_ cell: UITableViewCell) {
         if let indexPath = tableView.indexPath(for: cell) {
             if indexPath.section == 0 {
+                VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickSettingsAccountDeleteAddress)\(indexPath.row)", screenName: screenName)
                 self.showDestructiveDialog(title: .Confirm, message: String(format: .AreYouSureDeleteAddress, self.getTextForIndexPath(indexPath: indexPath)), cancelButtonTitle: .Cancel, destructiveButtonTitle: .Delete, destructiveCompletion: {
                     self.deleteAddressAtIndexPath(indexPath)
-                })
+                }, analyticDialogName: AnalyticsConstants.paramNameConfirmDialog, screenName: screenName)
                 
             } else if indexPath.section == 2 {
                 // pwd
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccountEditPassword, screenName: screenName)
                 self.resetPassword()
             } else if indexPath.section == 1 || indexPath.row == 1 {
                 // update phone number
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccountEditPhone, screenName: screenName)
                 self.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true, backLabel: .Back)
             }
         }

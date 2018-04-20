@@ -317,7 +317,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     // an error occured while creating the request, try again with same booking
                     self.showDialog(title: .Error, message: .GenericError, buttonTitle: String.Retry, completion: {
                         self.createPickupRequest(customerId: customerId, booking: booking)
-                    })
+                    }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             }
         }
     }
@@ -363,7 +363,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 self.hideProgressHUD()
                 self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
-                })
+                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         }
     }
     

@@ -24,7 +24,7 @@ class VLAnalytics {
         Analytics.logEvent(eventName, parameters: [paramName : paramValue])
     }
     
-    static func logEventWithName(_ eventName: String, parameters: [String:String]) {
+    static func logEventWithName(_ eventName: String, parameters: [String: String]) {
         Analytics.logEvent(eventName, parameters: parameters)
     }
 }

@@ -166,13 +166,13 @@ class ScheduledBookingViewController: SchedulingViewController {
 
             BookingAPI().cancelDropoffRequest(customerId: UserManager.sharedInstance.getCustomerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff).onSuccess { result in
                 if let _ = result?.error {
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 } else {
                     self.onDelete()
                 }
                 self.hideProgressHUD()
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.hideProgressHUD()
             }
             
@@ -182,14 +182,14 @@ class ScheduledBookingViewController: SchedulingViewController {
 
             BookingAPI().cancelPickupRequest(customerId: UserManager.sharedInstance.getCustomerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup).onSuccess { result in
                 if let _ = result?.error {
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 } else {
                     self.onDelete()
                 }
                 self.hideProgressHUD()
 
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.hideProgressHUD()
 
             }

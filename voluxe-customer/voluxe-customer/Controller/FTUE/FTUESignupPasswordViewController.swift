@@ -148,13 +148,13 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         if error?.code == "E5001" {
             self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                 self.loadLandingPage()
-            })
+            }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         } else if error?.code == "E4012" {
             self.showOkDialog(title: .Error, message: .InvalidVerificationCode, completion: {
                 self.navigationController?.popViewController(animated: true)
-            })
+            }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError)
+            self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         }
         
     }
@@ -201,7 +201,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         }
         
         if let password = volvoPwdConfirmTextField.textField.text, containsUnauthorizedChars(password: password) {
-            self.showOkDialog(title: .Error, message: .PasswordUnauthorizedChars)
+            self.showOkDialog(title: .Error, message: .PasswordUnauthorizedChars, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             return
         }
         
@@ -219,12 +219,12 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             CustomerAPI().passwordChange(customerId: customerId, code: code, password: password).onSuccess { result in
                 if let _ = result?.error {
                     // error
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 } else {
                     self.navigationController?.popToRootViewController(animated: true)
                 }
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 }
                     
             return
@@ -239,16 +239,16 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             CustomerAPI().passwordResetConfirm(phoneNumber: phoneNumber, code: code, password: password).onSuccess { result in
                 if let _ = result?.error {
                     // error
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 } else {
                     // password successfully updated, proceed to login
                     self.navigationController?.popToRootViewController(animated: true)
                     self.showOkDialog(title: .Success, message: .PasswordResetLogin, completion: {
                         self.navigationController?.pushViewController(FTUELoginViewController(), animated: true)
-                    });
+                    }, analyticDialogName: AnalyticsConstants.paramNameSuccessDialog, screenName: self.screenName);
                 }
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             }
             return
         }

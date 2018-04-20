@@ -155,7 +155,7 @@ class LoadingViewController: ChildViewController {
             
             self.showOkDialog(title: .Error, message: .GenericError, completion: {
                 self.callCustomer(customerId: customerId)
-            })
+            }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         }
     }
     
@@ -195,7 +195,7 @@ class LoadingViewController: ChildViewController {
         }
         self.showOkDialog(title: .Error, message: .GenericError, completion: {
             self.callVehicle(customerId: customerId)
-        })
+        }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
     }
     
     private func getBookings(customerId: Int) {

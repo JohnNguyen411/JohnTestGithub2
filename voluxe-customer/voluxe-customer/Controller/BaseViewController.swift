@@ -253,21 +253,21 @@ extension UIViewController {
         return Swift.min(statusBarSize.width, statusBarSize.height)
     }
     
-    func showOkDialog(title: String, message: String) {
-        showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: nil)
+    func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil, analyticDialogName: String, screenName: String) {
+        showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: completion, analyticDialogName: analyticDialogName, screenName: screenName)
     }
     
-    func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil) {
-        showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: completion)
-    }
-    
-    func showDialog(title: String, message: String, buttonTitle: String, completion: (() -> Swift.Void)? = nil) {
+    func showDialog(title: String, message: String, buttonTitle: String, completion: (() -> Swift.Void)? = nil, analyticDialogName: String, screenName: String) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
         
+        let params = getAnalyticsParamsForDialog(analyticDialogName, screenName: screenName)
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventViewDialog, parameters: params)
+        
         // Submit button
         let button = UIAlertAction(title: buttonTitle, style: .default, handler: { (action) -> Void in
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDimissDialog, parameters: params)
             if let completion = completion {
                 completion()
             }
@@ -278,18 +278,22 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func showDestructiveDialog(title: String, message: String, cancelButtonTitle: String, destructiveButtonTitle: String, destructiveCompletion: @escaping (() -> Swift.Void)) {
+    func showDestructiveDialog(title: String, message: String, cancelButtonTitle: String, destructiveButtonTitle: String, destructiveCompletion: @escaping (() -> Swift.Void), analyticDialogName: String, screenName: String) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
         
+        let params = getAnalyticsParamsForDialog(analyticDialogName, screenName: screenName)
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventViewDialog, parameters: params)
         // Submit button
         let backAction = UIAlertAction(title: cancelButtonTitle, style: .default, handler: { (action) -> Void in
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDimissDialog, parameters: params)
             alert.dismiss(animated: true, completion: nil)
         })
         
         // Delete button
         let deleteAction = UIAlertAction(title: destructiveButtonTitle, style: .destructive, handler: { (action) -> Void in
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDestructiveDialog, parameters: params)
             alert.dismiss(animated: true, completion: nil)
             destructiveCompletion()
         })
@@ -297,6 +301,11 @@ extension UIViewController {
         alert.addAction(backAction)
         alert.addAction(deleteAction)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func getAnalyticsParamsForDialog(_ dialogName: String, screenName: String) -> [String: String] {
+        var params = [AnalyticsConstants.paramDialogName : dialogName, AnalyticsConstants.paramScreenName: screenName]
+        return params
     }
     
     private func getViewForHUD() -> UIView {

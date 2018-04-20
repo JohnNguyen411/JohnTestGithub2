@@ -159,13 +159,13 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         
         if error?.code == "E5001" {
-            self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist)
+            self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         } else if error?.code == "E4011" {
             self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                 self.loadLandingPage()
-            })
+            }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError)
+            self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         }
         
         

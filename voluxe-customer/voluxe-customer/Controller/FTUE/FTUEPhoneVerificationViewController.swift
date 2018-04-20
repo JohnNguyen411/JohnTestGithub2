@@ -135,13 +135,13 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
                 self.hideProgressHUD()
                 if result?.error != nil {
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 }
                 self.isLoading = false
                 self.codeTextField.textField.text = ""
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.isLoading = false
             }
             return
@@ -163,12 +163,12 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             CustomerAPI().requestPasswordChange(customerId: customer.id).onSuccess { result in
                 self.hideProgressHUD()
                 if result?.error != nil {
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 }
                 self.isLoading = false
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.isLoading = false
             }
             return
@@ -181,12 +181,12 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         CustomerAPI().requestPhoneVerificationCode(customerId: customerId!).onSuccess { result in
             self.hideProgressHUD()
             if result?.error != nil {
-                self.showOkDialog(title: .Error, message: .GenericError)
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             }
             self.isLoading = false
         }.onFailure { error in
             self.hideProgressHUD()
-            self.showOkDialog(title: .Error, message: .GenericError)
+            self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             self.isLoading = false
         }
         
@@ -254,7 +254,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             CustomerAPI().verifyPhoneNumber(customerId: customerId!, verificationCode: codeTextField.textField.text!).onSuccess { result in
                 self.hideProgressHUD()
                 if result?.error != nil {
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 } else {
                     self.loadMainScreen()
                 }
@@ -262,7 +262,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 self.isLoading = false
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.isLoading = false
             }
         }
