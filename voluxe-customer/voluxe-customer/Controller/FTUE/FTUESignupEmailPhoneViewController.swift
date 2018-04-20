@@ -157,7 +157,6 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         //todo show error message
         self.showLoading(loading: false)
         
-        
         if error?.code == "E5001" {
             self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         } else if error?.code == "E4011" {
@@ -255,6 +254,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         CustomerAPI().signup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, languageCode: Locale.preferredLanguages[0].uppercased()).onSuccess { result in
             if let customer = result?.data?.result {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupSuccess, screenName: self.screenName)
+
                 if let realm = self.realm {
                     try? realm.write {
                         realm.deleteAll()
@@ -265,9 +266,11 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 UserManager.sharedInstance.tempCustomerId = customer.id
                 self.goToNext()
             } else {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, errorCode: result?.error?.code)
                 self.onSignupError(error: result?.error)
             }
             }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, statusCode: error.responseCode)
                 self.onSignupError()
         }
     }

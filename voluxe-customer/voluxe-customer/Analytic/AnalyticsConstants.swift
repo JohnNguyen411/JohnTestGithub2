@@ -82,7 +82,10 @@ class AnalyticsConstants {
     static let eventApiLoginFail = "api_login_fail"
     static let eventApiGetMeSuccess = "api_me_success"
     static let eventApiGetMeFail = "api_me_fail"
-
+    static let eventApiSignupSuccess = "api_signup_success"
+    static let eventApiSignupFail = "api_signup_fail"
+    static let eventApiVerifyPhoneSuccess = "api_verify_phone_success"
+    static let eventApiVerifyPhoneFail = "api_verify_phone_fail"
 
     // Params
     static let paramScreenName = "screen_name"

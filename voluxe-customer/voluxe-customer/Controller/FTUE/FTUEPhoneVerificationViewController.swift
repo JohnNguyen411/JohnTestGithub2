@@ -254,13 +254,16 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             CustomerAPI().verifyPhoneNumber(customerId: customerId!, verificationCode: codeTextField.textField.text!).onSuccess { result in
                 self.hideProgressHUD()
                 if result?.error != nil {
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiVerifyPhoneFail, screenName: self.screenName, errorCode: result?.error?.code)
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 } else {
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiVerifyPhoneSuccess, screenName: self.screenName)
                     self.loadMainScreen()
                 }
                 
                 self.isLoading = false
                 }.onFailure { error in
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiVerifyPhoneFail, screenName: self.screenName, statusCode: error.responseCode)
                     self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.isLoading = false
