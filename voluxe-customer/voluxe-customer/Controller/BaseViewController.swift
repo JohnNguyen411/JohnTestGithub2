@@ -79,17 +79,17 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     @objc func onBackClicked(analyticEventName: String? = nil) {
         if let analyticEventName = analyticEventName {
-            VLAnalytics.logEventWithName(analyticEventName, paramName: AnalyticsConstants.paramScreenName, paramValue: self.screenName)
+            VLAnalytics.logEventWithName(analyticEventName, screenName: screenName)
         } else {
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickNavigationLeft, paramName: AnalyticsConstants.paramScreenName, paramValue: self.screenName)
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickNavigationLeft, screenName: screenName)
         }
     }
     
     @objc func onRightClicked(analyticEventName: String? = nil) {
         if let analyticEventName = analyticEventName {
-            VLAnalytics.logEventWithName(analyticEventName, paramName: AnalyticsConstants.paramScreenName, paramValue: self.screenName)
+            VLAnalytics.logEventWithName(analyticEventName, screenName: screenName)
         } else {
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickNavigationRight, paramName: AnalyticsConstants.paramScreenName, paramValue: self.screenName)
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickNavigationRight, screenName: screenName)
         }
     }
         

@@ -12,8 +12,13 @@ import FirebaseAnalytics
 class VLAnalytics {
     
     
-    static func logEventWithName(_ eventName: String) {
-        Analytics.logEvent(eventName, parameters: nil)
+    static func logEventWithName(_ eventName: String, screenName: String? = nil) {
+        if let screenName = screenName {
+            Analytics.logEvent(eventName, parameters: [AnalyticsConstants.paramScreenName : screenName])
+        } else {
+            Analytics.logEvent(eventName, parameters: nil)
+        }
+        
     }
     
     static func logEventWithName(_ eventName: String, paramName: String, paramValue: String) {

@@ -254,6 +254,7 @@ extension VehiclesViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectVehicle(vehicle: vehicles![indexPath.row])
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSelectVehicle, screenName: screenName)
     }
 }
 
