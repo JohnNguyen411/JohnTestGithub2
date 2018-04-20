@@ -311,6 +311,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     
     
     private func deleteAddressAtIndexPath(_ indexPath: IndexPath) {
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventSettingsAccountAddressDeleted, screenName: screenName)
         if let realm = self.realm, let addresses = self.addresses {
             try? realm.write {
                 realm.delete(addresses[indexPath.row])

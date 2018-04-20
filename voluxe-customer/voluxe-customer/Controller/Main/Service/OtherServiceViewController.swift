@@ -285,6 +285,7 @@ extension OtherServiceViewController: UITableViewDataSource, UITableViewDelegate
         tableView.deselectRow(at: indexPath, animated: true)
         checkedCellIndex = indexPath.row
         tableView.reloadData()
+        VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickServiceCustomDrivableIndex)\(indexPath.row)", screenName: screenName)
     }
     
 }

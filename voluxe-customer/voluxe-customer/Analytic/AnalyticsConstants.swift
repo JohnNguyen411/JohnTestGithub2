@@ -54,7 +54,13 @@ class AnalyticsConstants {
     static let eventClickLeftPanelMenuLogout = "click_navigation_left_panel_logout"
     static let eventClickLeftPanelMenuActiveBookings = "click_navigation_left_panel_active_bookings"
     static let eventClickSelectVehicle = "click_select_vehicle"
-    
+    static let eventClickServiceTypeMilestone = "click_service_type_milestone"
+    static let eventClickServiceTypeCustom = "click_service_type_custom"
+    static let eventClickServiceMilestone = "click_service_milestone_" // add index of milestone service
+    static let eventClickSelectServiceCustom = "click_select_service_custom_" // add index of custom service
+    static let eventClickDeselectServiceCustom = "click_deselect_service_custom_" // add index of custom service
+    static let eventClickServiceCustomDrivableIndex = "click_service_custom_drivable_" // add index of custom service
+
     // Settings click events
     static let eventClickSettingsVehicle = "click_settings_vehicle_" // add index of clicked car
     static let eventClickSettingsAddVehicle = "click_settings_add_vehicle"
@@ -63,6 +69,10 @@ class AnalyticsConstants {
     static let eventClickSettingsAccountDeleteAddress = "click_settings_account_delete_address_" // add index of address
     static let eventClickSettingsAccountEditPhone = "click_settings_account_edit_phone"
     static let eventClickSettingsAccountEditPassword = "click_settings_account_edit_password"
+    
+    // Success Result (ie: Address deleted, Address Added, Password changed, etc)
+    static let eventSettingsAccountAddressDeleted = "settings_account_address_deleted_" // add index of address
+    static let eventSettingsVehicleDeleted = "settings_vehicle_deleted_" // add index of address
 
 
     // Params
@@ -126,6 +136,7 @@ class AnalyticsConstants {
     static let paramNameErrorDialog = "delete_error_dialog" // decided to have the same tag for every error dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
     static let paramNameSuccessDialog = "delete_success_dialog" // decided to have the same tag for every success dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
     static let paramNameConfirmDialog = "delete_confirm_dialog" // decided to have the same tag for every confirm dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
+    static let paramNameSelectedCustomServices = "selected_custom_services" // index of selected services
 
 
 }

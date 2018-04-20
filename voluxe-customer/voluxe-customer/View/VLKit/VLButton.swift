@@ -128,6 +128,10 @@ class VLButton : UIButton {
         }
     }
     
+    func setOptionalParams(params: [String: String]) {
+        self.optionalParameters = params
+    }
+    
     func setType(type: VLButtonType) {
         self.type = type
         switch type {

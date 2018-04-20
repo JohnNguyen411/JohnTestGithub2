@@ -173,11 +173,15 @@ extension ServiceMultiselectListViewController: UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let rowSelected = selected[indexPath.row] {
             selected[indexPath.row] = !rowSelected
+            VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickDeselectCustomService)\(indexPath.row)", screenName: screenName)
         } else {
             selected[indexPath.row] = true
+            VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickSelectCustomService)\(indexPath.row)", screenName: screenName)
         }
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
+        
+        confirmButton.setOptionalParams(params: [AnalyticsConstants.paramNameSelectedCustomServices: getSelectedIndex()])
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -186,5 +190,18 @@ extension ServiceMultiselectListViewController: UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
+    }
+    
+    func getSelectedIndex() -> String {
+        var selectedIndex = ""
+        for dictElement in selected {
+            if dictElement.value {
+                selectedIndex += "\(dictElement.key),"
+            }
+        }
+        if selectedIndex.count > 0 {
+            selectedIndex.removeLast()
+        }
+        return selectedIndex
     }
 }
