@@ -173,10 +173,10 @@ extension ServiceMultiselectListViewController: UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let rowSelected = selected[indexPath.row] {
             selected[indexPath.row] = !rowSelected
-            VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickDeselectServiceCustom)\(indexPath.row)", screenName: screenName)
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDeselectServiceCustom, screenName: screenName, index: indexPath.row)
         } else {
             selected[indexPath.row] = true
-            VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickSelectServiceCustom)\(indexPath.row)", screenName: screenName)
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSelectServiceCustom, screenName: screenName, index: indexPath.row)
         }
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)

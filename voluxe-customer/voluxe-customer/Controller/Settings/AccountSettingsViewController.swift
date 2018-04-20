@@ -293,7 +293,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     func onEditClicked(_ cell: UITableViewCell) {
         if let indexPath = tableView.indexPath(for: cell) {
             if indexPath.section == 0 {
-                VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickSettingsAccountDeleteAddress)\(indexPath.row)", screenName: screenName)
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccountDeleteAddress, screenName: screenName, index: indexPath.row)
                 self.showDestructiveDialog(title: .Confirm, message: String(format: .AreYouSureDeleteAddress, self.getTextForIndexPath(indexPath: indexPath)), cancelButtonTitle: .Cancel, destructiveButtonTitle: .Delete, destructiveCompletion: {
                     self.deleteAddressAtIndexPath(indexPath)
                 }, analyticDialogName: AnalyticsConstants.paramNameConfirmDialog, screenName: screenName)
@@ -312,7 +312,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     
     
     private func deleteAddressAtIndexPath(_ indexPath: IndexPath) {
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventSettingsAccountAddressDeleted, screenName: screenName)
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventSettingsAccountAddressDeleted, screenName: screenName, index: indexPath.row)
         if let realm = self.realm, let addresses = self.addresses {
             try? realm.write {
                 realm.delete(addresses[indexPath.row])

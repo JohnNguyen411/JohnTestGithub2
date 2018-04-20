@@ -425,7 +425,7 @@ extension LocationPickupViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickSelectLocationIndex)\(indexPath.row)", screenName: screenName)
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSelectLocationIndex, screenName: screenName, index: indexPath.row)
         selectIndex(selectedIndex: indexPath.row)
         tableView.reloadData()
     }

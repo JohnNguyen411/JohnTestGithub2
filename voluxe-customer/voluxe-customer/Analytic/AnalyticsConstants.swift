@@ -57,26 +57,26 @@ class AnalyticsConstants {
     static let eventClickSelectVehicle = "click_select_vehicle"
     static let eventClickServiceTypeMilestone = "click_service_type_milestone"
     static let eventClickServiceTypeCustom = "click_service_type_custom"
-    static let eventClickServiceMilestone = "click_service_milestone_" // add index of milestone service
-    static let eventClickSelectServiceCustom = "click_select_service_custom_" // add index of custom service
-    static let eventClickDeselectServiceCustom = "click_deselect_service_custom_" // add index of custom service
-    static let eventClickServiceCustomDrivableIndex = "click_service_custom_drivable_" // add index of custom service
-    static let eventClickSelectLocationIndex = "click_select_location_index_" // add index of address
-    static let eventClickSelectDealershipIndex = "click_select_dealership_index_" // add index of dealership
-    static let eventClickSelectLoanerIndex = "click_select_loaner_index_" // add index of loaner // 0 for yes, 1 for No
+    static let eventClickServiceMilestone = "click_service_milestone" // pass index of select row in params
+    static let eventClickSelectServiceCustom = "click_select_service_custom" // pass index of select row in params
+    static let eventClickDeselectServiceCustom = "click_deselect_service_custom" // pass index of select row in params
+    static let eventClickServiceCustomDrivableIndex = "click_service_custom_drivable" // pass index of select row in params
+    static let eventClickSelectLocationIndex = "click_select_location_index" // pass index of select row in params
+    static let eventClickSelectDealershipIndex = "click_select_dealership_index" // pass index of select row in params
+    static let eventClickSelectLoanerIndex = "click_select_loaner_index" // pass index of select row in params
 
     // Settings click events
-    static let eventClickSettingsVehicle = "click_settings_vehicle_" // add index of clicked car
+    static let eventClickSettingsVehicle = "click_settings_vehicle" // pass index of select row in params
     static let eventClickSettingsAddVehicle = "click_settings_add_vehicle"
     static let eventClickSettingsAccount = "click_settings_account"
     static let eventClickSettingsAccountAddAddress = "click_settings_account_add_address"
-    static let eventClickSettingsAccountDeleteAddress = "click_settings_account_delete_address_" // add index of address
+    static let eventClickSettingsAccountDeleteAddress = "click_settings_account_delete_address" // pass index of select row in params
     static let eventClickSettingsAccountEditPhone = "click_settings_account_edit_phone"
     static let eventClickSettingsAccountEditPassword = "click_settings_account_edit_password"
     
     // Success Result (ie: Address deleted, Address Added, Password changed, etc)
-    static let eventSettingsAccountAddressDeleted = "settings_account_address_deleted_" // add index of address
-    static let eventSettingsVehicleDeleted = "settings_vehicle_deleted_" // add index of address
+    static let eventSettingsAccountAddressDeleted = "settings_account_address_deleted" // pass index of select row in params
+    static let eventSettingsVehicleDeleted = "settings_vehicle_deleted" // pass index of select row in params
 
     static let eventLoginSuccess = "login_success"
     static let eventLoginFail = "login_fail"
@@ -91,7 +91,8 @@ class AnalyticsConstants {
 
     // Param Names
     static let paramNameState = "state"
-    
+    static let paramNameIndex = "index"
+
     static let paramNameLandingView = "landing_view"
     static let paramNameLoadingView = "loading_view"
 

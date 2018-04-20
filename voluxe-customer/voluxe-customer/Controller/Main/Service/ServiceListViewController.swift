@@ -122,7 +122,7 @@ extension ServiceListViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickServiceMilestone)\(indexPath.row)", screenName: screenName)
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventClickServiceMilestone, screenName: screenName, index: indexPath.row)
         self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: services![indexPath.row], canSchedule: true), animated: true, backLabel: .Back)
     }
     

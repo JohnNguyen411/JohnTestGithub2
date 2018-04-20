@@ -172,7 +172,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         CustomerAPI().login(email: email, password: password).onSuccess { result in
             if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventLoginSuccess, screenName: screenName)
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventLoginSuccess, screenName: self.screenName)
                 
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))

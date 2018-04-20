@@ -153,14 +153,14 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 vehicle = vehicles[indexPath.row]
             }
             if let vehicle = vehicle {
-                VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickSettingsVehicle)\(indexPath.row)", screenName: screenName)
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsVehicle, screenName: screenName, index: indexPath.row)
                 self.pushViewController(SettingsCarViewController(vehicle: vehicle), animated: true, backLabel: .Back)
             } else {
-                VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickSettingsAddVehicle)", screenName: screenName)
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAddVehicle, screenName: screenName)
                 self.pushViewController(FTUEAddVehicleViewController(fromSettings: true), animated: true, backLabel: .Back)
             }
         } else if indexPath.section == 1 {
-            VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickSettingsAccount)", screenName: screenName)
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccount, screenName: screenName)
             self.pushViewController(AccountSettingsViewController(), animated: true, backLabel: .Back)
         }
     }

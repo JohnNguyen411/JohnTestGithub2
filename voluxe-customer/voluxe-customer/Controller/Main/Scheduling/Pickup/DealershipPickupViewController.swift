@@ -90,7 +90,7 @@ class DealershipPickupViewController: VLPresentrViewController, VLGroupedLabelsD
     
     func onSelectionChanged(selected: Bool, selectedIndex: Int) {
         if selected {
-            VLAnalytics.logEventWithName("\(AnalyticsConstants.eventClickSelectDealershipIndex)\(selectedIndex)", screenName: screenName)
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSelectDealershipIndex, screenName: screenName, index: selectedIndex)
         }
     }
 }
