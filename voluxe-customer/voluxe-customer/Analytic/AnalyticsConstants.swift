@@ -13,7 +13,6 @@ class AnalyticsConstants {
     // Events
     static let eventViewScreen = "view_screen"
     static let eventStateChange = "state_change"
-
     
     static let eventClickSignin = "click_signin"
     static let eventClickCreateAccount = "click_create_account"
@@ -39,6 +38,11 @@ class AnalyticsConstants {
     static let eventClickConfirmVolvoOB = "click_confirm_volvo_outbound"
     static let eventClickConfirmSelfIB = "click_confirm_self_inbound"
     static let eventClickConfirmSelfOB = "click_confirm_self_outbound"
+    static let eventClickNavigationLeft = "click_navigation_left" // left navigation button, usually "Back"
+    static let eventClickNavigationRight = "click_navigation_right" // right navigation button, usually "Next" or "Done"
+    static let eventClickNavigationDone = "click_navigation_done"
+    static let eventClickNavigationEdit = "click_navigation_edit"
+    static let eventClickNavigationLeftMenuIcon = "click_navigation_left_menu_icon"
 
     // Params
     static let paramScreenName = "screen_name"

@@ -89,12 +89,14 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     }
     
     @objc func edit() {
+        super.onRightClicked(analyticEventName: AnalyticsConstants.eventClickNavigationEdit)
         uiBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
         self.navigationItem.rightBarButtonItem = uiBarButton
         tableView.setEditing(true, animated: true)
     }
     
     @objc func done() {
+        super.onRightClicked(analyticEventName: AnalyticsConstants.eventClickNavigationDone)
         uiBarButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
         self.navigationItem.rightBarButtonItem = uiBarButton
         tableView.setEditing(false, animated: true)

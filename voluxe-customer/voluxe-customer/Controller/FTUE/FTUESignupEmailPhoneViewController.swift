@@ -200,7 +200,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
             phoneNumberTextField.textField.becomeFirstResponder()
         } else {
             if checkTextFieldsValidity() {
-                nextButtonTap()
+                self.onRightClicked()
             } else {
                 // show error
             }
@@ -210,7 +210,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     
     //MARK: FTUEStartViewController
     
-    override func nextButtonTap() {
+    override func onRightClicked(analyticEventName: String? = nil) {
+        super.onRightClicked(analyticEventName: analyticEventName)
         guard let validPhoneNumber = validPhoneNumber else {
             return
         }

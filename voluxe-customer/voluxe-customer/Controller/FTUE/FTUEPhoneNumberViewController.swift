@@ -128,7 +128,8 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     
     //MARK: FTUEStartViewController
     
-    override func nextButtonTap() {
+    override func onRightClicked(analyticEventName: String? = nil) {
+        super.onRightClicked(analyticEventName: analyticEventName)
         guard let validPhoneNumber = validPhoneNumber else {
             return
         }

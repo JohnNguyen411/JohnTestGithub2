@@ -141,8 +141,10 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     
     func pushViewController(controller: UIViewController, animated: Bool, backLabel: String?, title: String?) {
         self.navigationController?.pushViewController(controller, animated: animated)
-        let backItem = UIBarButtonItem(title: backLabel, style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
+        if let backLabel = backLabel {
+            let backItem = UIBarButtonItem(title: backLabel, style: .plain, target: self, action: #selector(onBackClicked))
+            navigationItem.backBarButtonItem = backItem
+        }
     }
     
     func popViewController(animated: Bool) {

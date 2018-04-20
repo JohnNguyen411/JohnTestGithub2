@@ -130,7 +130,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
             passwordTextField.textField.becomeFirstResponder()
         } else {
             if checkTextFieldsValidity() {
-                self.nextButtonTap()
+                self.onRightClicked()
             } else {
                 // show error
             }
@@ -156,7 +156,8 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
     //MARK: FTUEStartViewController
     
-    override func nextButtonTap() {
+    override func onRightClicked(analyticEventName: String? = nil) {
+        super.onRightClicked(analyticEventName: analyticEventName)
         if loginInProgress {
             return
         }

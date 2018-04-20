@@ -178,7 +178,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             volvoPwdConfirmTextField.textField.becomeFirstResponder()
         } else {
             if checkTextFieldsValidity() {
-                self.nextButtonTap()
+                self.onRightClicked()
             } else {
                 // show error
             }
@@ -192,7 +192,8 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     //MARK: FTUEStartViewController
     
-    override func nextButtonTap() {
+    override func onRightClicked(analyticEventName: String? = nil) {
+        super.onRightClicked(analyticEventName: analyticEventName)
         let signupCustomer = UserManager.sharedInstance.signupCustomer
         
         if signupInProgress {

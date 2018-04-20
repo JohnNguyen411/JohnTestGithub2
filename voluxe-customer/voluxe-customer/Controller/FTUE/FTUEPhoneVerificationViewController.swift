@@ -225,7 +225,8 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     //MARK: FTUEStartViewController
     
-    override func nextButtonTap() {
+    override func onRightClicked(analyticEventName: String? = nil) {
+        super.onRightClicked(analyticEventName: analyticEventName)
         UserManager.sharedInstance.signupCustomer.verificationCode = codeTextField.textField.text
         goToNext()
     }

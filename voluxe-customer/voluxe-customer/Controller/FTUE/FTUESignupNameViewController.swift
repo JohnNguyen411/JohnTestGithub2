@@ -121,7 +121,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
             lastNameTextField.textField.becomeFirstResponder()
         } else {
             if checkTextFieldsValidity() {
-                nextButtonTap()
+                self.onRightClicked()
             } else {
                 // show error
             }
@@ -130,7 +130,8 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     }
     
     //MARK: FTUEStartViewController
-    override func nextButtonTap() {
+    override func onRightClicked(analyticEventName: String? = nil) {
+        super.onRightClicked(analyticEventName: analyticEventName)
         UserManager.sharedInstance.signupCustomer.lastName = lastNameTextField.textField.text
         UserManager.sharedInstance.signupCustomer.firstName = firstNameTextField.textField.text
         goToNext()

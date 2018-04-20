@@ -56,6 +56,10 @@ class BaseViewController: UIViewController, PresentrDelegate {
         self.title = title
     }
     
+    func setRightButtonTitle(rightButtonTitle: String) {
+        
+    }
+    
     func pushViewController(_ controller: UIViewController, animated: Bool, backLabel: String) {
         self.navigationController?.pushViewController(controller, animated: animated)
         let backItem = UIBarButtonItem(title: backLabel, style: .plain, target: self, action: #selector(onBackClicked))
@@ -73,8 +77,20 @@ class BaseViewController: UIViewController, PresentrDelegate {
     func stateDidChange(state: ServiceState) {}
     
     
-    @objc func onBackClicked() {
-        
+    @objc func onBackClicked(analyticEventName: String? = nil) {
+        if let analyticEventName = analyticEventName {
+            VLAnalytics.logEventWithName(analyticEventName, paramName: AnalyticsConstants.paramScreenName, paramValue: self.screenName)
+        } else {
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickNavigationLeft, paramName: AnalyticsConstants.paramScreenName, paramValue: self.screenName)
+        }
+    }
+    
+    @objc func onRightClicked(analyticEventName: String? = nil) {
+        if let analyticEventName = analyticEventName {
+            VLAnalytics.logEventWithName(analyticEventName, paramName: AnalyticsConstants.paramScreenName, paramValue: self.screenName)
+        } else {
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickNavigationRight, paramName: AnalyticsConstants.paramScreenName, paramValue: self.screenName)
+        }
     }
         
         

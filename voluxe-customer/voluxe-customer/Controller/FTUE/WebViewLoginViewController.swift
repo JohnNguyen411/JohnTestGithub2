@@ -112,9 +112,6 @@ class WebViewLoginViewController: FTUEChildViewController, UIWebViewDelegate {
     func didSelectPage() {
     }
     
-    override func nextButtonTap() {
-    }
-    
     func convertToDictionary(text: String) -> [String: Any]? {
         if let data = text.data(using: .utf8) {
             do {
