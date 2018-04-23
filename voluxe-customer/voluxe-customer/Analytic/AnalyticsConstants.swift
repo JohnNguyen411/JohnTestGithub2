@@ -86,7 +86,12 @@ class AnalyticsConstants {
     static let eventApiSignupFail = "api_signup_fail"
     static let eventApiVerifyPhoneSuccess = "api_verify_phone_success"
     static let eventApiVerifyPhoneFail = "api_verify_phone_fail"
-
+    static let eventApiUpdatePhoneNumberSuccess = "api_update_phone_success"
+    static let eventApiUpdatePhoneNumberFail = "api_update_phone_fail"
+    static let eventApiPasswordResetCodeRequestSuccess = "api_password_reset_code_request_success"
+    static let eventApiPasswordResetCodeRequestFail = "api_password_reset_code_request_fail"
+    
+    
     // Params
     static let paramScreenName = "screen_name"
     static let paramDialogName = "dialog_name"

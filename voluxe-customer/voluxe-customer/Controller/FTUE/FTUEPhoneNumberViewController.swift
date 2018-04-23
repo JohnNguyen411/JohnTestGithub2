@@ -154,15 +154,20 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             isLoading = true
             
             showProgressHUD()
-
+            
             CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
                 self.hideProgressHUD()
-                if result?.error != nil {
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                }
                 self.isLoading = false
-                self.goToNext()
+
+                if result?.error != nil {
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetCodeRequestFail, screenName: self.screenName, errorCode: result?.error?.code)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                } else {
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetCodeRequestSuccess, screenName: self.screenName)
+                    self.goToNext()
+                }
                 }.onFailure { error in
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetCodeRequestFail, screenName: self.screenName, statusCode: error.responseCode)
                     self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.isLoading = false
@@ -183,14 +188,19 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         
         showProgressHUD()
 
+
         CustomerAPI().updatePhoneNumber(customerId: customerId!, phoneNumber: phoneNumber).onSuccess { result in
             self.hideProgressHUD()
+            self.isLoading = false
             if result?.error != nil {
                 self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberFail, screenName: self.screenName, errorCode: result?.error?.code)
+            } else {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberSuccess, screenName: self.screenName)
+                self.goToNext()
             }
-            self.isLoading = false
-            self.goToNext()
             }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberFail, screenName: self.screenName, statusCode: error.responseCode)
                 self.hideProgressHUD()
                 self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.isLoading = false

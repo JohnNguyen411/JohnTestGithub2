@@ -58,7 +58,6 @@ class CustomerAPI: NSObject {
         
         NetworkRequest.request(url: "/v1/users/login", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSON { response in
             
-            
             var responseObject: ResponseObject<MappableDataObject<Token>>?
             
             if let json = response.result.value as? [String: Any] {

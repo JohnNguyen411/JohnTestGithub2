@@ -139,6 +139,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 }
                 self.isLoading = false
                 self.codeTextField.textField.text = ""
+
                 }.onFailure { error in
                     self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
