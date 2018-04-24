@@ -51,6 +51,7 @@ class NewServiceViewController: BaseViewController {
         
         RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
             if let services = services?.data?.result {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetROTypesSuccess, screenName: self.screenName)
                 if let realm = try? Realm() {
                     try? realm.write {
                         realm.add(services, update: true)
@@ -58,9 +59,12 @@ class NewServiceViewController: BaseViewController {
                     
                     self.showServices(repairOrderTypes: [String.MilestoneServices, String.OtherMaintenanceRepairs])
                 }
+            } else {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetROTypesFail, screenName: self.screenName, errorCode: services?.error?.code)
             }
             self.hideProgressHUD()
             }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetROTypesFail, screenName: self.screenName, statusCode: error.responseCode)
                 Logger.print(error)
                 self.hideProgressHUD()
         }
