@@ -132,6 +132,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             
             self.showProgressHUD()
 
+            // initiate password reset with phone number (request code)
             CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
                 self.hideProgressHUD()
                 if result?.error != nil {
@@ -160,7 +161,8 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         if let customer = UserManager.sharedInstance.getCustomer(), customer.phoneNumberVerified {
             self.showProgressHUD()
-
+            
+            // initiate password reset with phone number (request code)
             CustomerAPI().requestPasswordChange(customerId: customer.id).onSuccess { result in
                 self.hideProgressHUD()
                 if result?.error != nil {
@@ -179,6 +181,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         self.showProgressHUD()
 
+        // resend phone verification code
         CustomerAPI().requestPhoneVerificationCode(customerId: customerId!).onSuccess { result in
             self.hideProgressHUD()
             if result?.error != nil {
