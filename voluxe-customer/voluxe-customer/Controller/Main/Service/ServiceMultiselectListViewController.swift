@@ -31,7 +31,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     }()
     
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let confirmButton: VLButton
 
     let vehicle: Vehicle
     let repairOrderType: RepairOrderType
@@ -41,7 +41,9 @@ class ServiceMultiselectListViewController: BaseViewController {
     init(vehicle: Vehicle, repairOrderType: RepairOrderType) {
         self.vehicle = vehicle
         self.repairOrderType = repairOrderType
-        super.init()
+        confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNext, screenName: AnalyticsConstants.paramNameServiceCustomView)
+        
+        super.init(screenName: AnalyticsConstants.paramNameServiceCustomView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -171,11 +173,15 @@ extension ServiceMultiselectListViewController: UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let rowSelected = selected[indexPath.row] {
             selected[indexPath.row] = !rowSelected
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDeselectServiceCustom, screenName: screenName, index: indexPath.row)
         } else {
             selected[indexPath.row] = true
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSelectServiceCustom, screenName: screenName, index: indexPath.row)
         }
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
+        
+        confirmButton.setOptionalParams(params: [AnalyticsConstants.paramNameSelectedCustomServices: getSelectedIndex()])
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -184,5 +190,18 @@ extension ServiceMultiselectListViewController: UITableViewDataSource, UITableVi
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0
+    }
+    
+    func getSelectedIndex() -> String {
+        var selectedIndex = ""
+        for dictElement in selected {
+            if dictElement.value {
+                selectedIndex += "\(dictElement.key),"
+            }
+        }
+        if selectedIndex.count > 0 {
+            selectedIndex.removeLast()
+        }
+        return selectedIndex
     }
 }

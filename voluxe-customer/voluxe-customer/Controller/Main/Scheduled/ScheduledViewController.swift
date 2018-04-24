@@ -63,12 +63,13 @@ class ScheduledViewController: ChildViewController {
         return titleLabel
     }()
     
-    private let driverContact = VLButton(type: .orangeSecondarySmall, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    private let driverContact: VLButton
     
-    init(vehicle: Vehicle) {
+    init(vehicle: Vehicle, screenName: String) {
         self.vehicle = vehicle
+        driverContact = VLButton(type: .orangeSecondarySmall, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickContactDriver, screenName: screenName)
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
-        super.init()
+        super.init(screenName: screenName)
         generateSteps()
         
         if Config.sharedInstance.isMock {
@@ -190,7 +191,7 @@ class ScheduledViewController: ChildViewController {
                 }
                 self.newDriver(driver: ScheduledViewController.mockDriver)
                 self.newDriverLocation(location: driverLocation)
-                StateServiceManager.sharedInstance.updateState(state: self.states[index], vehicleId: self.vehicle.id)
+                StateServiceManager.sharedInstance.updateState(state: self.states[index], vehicleId: self.vehicle.id, booking: nil)
                 self.getEta(fromLocation: driverLocation, toLocation: ScheduledViewController.officeLocation)
             })
             
@@ -200,10 +201,10 @@ class ScheduledViewController: ChildViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + mockDelay, execute: {
 
             if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
-                StateServiceManager.sharedInstance.updateState(state: .enRouteForService, vehicleId: self.vehicle.id)
+                StateServiceManager.sharedInstance.updateState(state: .enRouteForService, vehicleId: self.vehicle.id, booking: nil)
             } else {
                 RequestedServiceManager.sharedInstance.reset()
-                StateServiceManager.sharedInstance.updateState(state: .completed, vehicleId: self.vehicle.id)
+                StateServiceManager.sharedInstance.updateState(state: .completed, vehicleId: self.vehicle.id, booking: nil)
             }
         })
     }
@@ -314,6 +315,7 @@ class ScheduledViewController: ChildViewController {
         
         BookingAPI().contactDriver(customerId: customerId, bookingId: booking.id, mode: mode).onSuccess { result in
             if let contactDriver = result?.data?.result {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiContactDriverSuccess, screenName: self.screenName)
                 if mode == "text_only" {
                     // sms
                     let number = "sms:\(contactDriver.textPhoneNumber ?? "")"
@@ -322,9 +324,15 @@ class ScheduledViewController: ChildViewController {
                     let number = "telprompt:\(contactDriver.voicePhoneNumber ?? "")"
                     UIApplication.shared.openURL(URL(string: number)!)
                 }
+            } else {
+                if let error = result?.error {
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiContactDriverFail, screenName: self.screenName, errorCode: error.code)
+                }
             }
         }.onFailure { error in
-            // todo handle error
+            self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+            VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiContactDriverFail, screenName: self.screenName, statusCode: error.responseCode)
         }
     }
     

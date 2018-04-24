@@ -43,6 +43,14 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     var signupInProgress = false
     var realm : Realm?
     
+    init() {
+        super.init(screenName: AnalyticsConstants.paramNameSignupEmailPhoneView)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -149,15 +157,14 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         //todo show error message
         self.showLoading(loading: false)
         
-        
         if error?.code == "E5001" {
-            self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist)
+            self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         } else if error?.code == "E4011" {
             self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                 self.loadLandingPage()
-            })
+            }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError)
+            self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         }
         
         
@@ -192,7 +199,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
             phoneNumberTextField.textField.becomeFirstResponder()
         } else {
             if checkTextFieldsValidity() {
-                nextButtonTap()
+                self.onRightClicked()
             } else {
                 // show error
             }
@@ -202,7 +209,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     
     //MARK: FTUEStartViewController
     
-    override func nextButtonTap() {
+    override func onRightClicked(analyticEventName: String? = nil) {
+        super.onRightClicked(analyticEventName: analyticEventName)
         guard let validPhoneNumber = validPhoneNumber else {
             return
         }
@@ -246,6 +254,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         CustomerAPI().signup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, languageCode: Locale.preferredLanguages[0].uppercased()).onSuccess { result in
             if let customer = result?.data?.result {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupSuccess, screenName: self.screenName)
+
                 if let realm = self.realm {
                     try? realm.write {
                         realm.deleteAll()
@@ -256,9 +266,11 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 UserManager.sharedInstance.tempCustomerId = customer.id
                 self.goToNext()
             } else {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, errorCode: result?.error?.code)
                 self.onSignupError(error: result?.error)
             }
             }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, statusCode: error.responseCode)
                 self.onSignupError()
         }
     }

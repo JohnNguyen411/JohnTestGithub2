@@ -15,13 +15,22 @@ class ScheduledBookingViewController: SchedulingViewController {
     let booking: Booking
     let delegate: ScheduledBookingDelegate?
     
-    let leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
-    let rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let leftButton: VLButton
+    let rightButton: VLButton
     
     init(booking: Booking, delegate: ScheduledBookingDelegate?) {
         self.booking = booking
         self.delegate = delegate
-        super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking))
+        
+        var cancelEvent =  AnalyticsConstants.eventClickCancelInbound
+        if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
+            cancelEvent =  AnalyticsConstants.eventClickCancelOutbound
+        }
+
+        leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: cancelEvent, screenName: AnalyticsConstants.paramNameReservationDetailsView)
+        rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickDone, screenName: AnalyticsConstants.paramNameReservationDetailsView)
+        
+        super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screenName: AnalyticsConstants.paramNameReservationDetailsView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -156,14 +165,17 @@ class ScheduledBookingViewController: SchedulingViewController {
             showProgressHUD()
 
             BookingAPI().cancelDropoffRequest(customerId: UserManager.sharedInstance.getCustomerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff).onSuccess { result in
-                if let _ = result?.error {
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                if let error = result?.error {
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCancelDropoffFail, screenName: self.screenName, errorCode: error.code)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 } else {
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCancelDropoffSuccess, screenName: self.screenName)
                     self.onDelete()
                 }
                 self.hideProgressHUD()
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCancelDropoffFail, screenName: self.screenName, statusCode: error.responseCode)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.hideProgressHUD()
             }
             
@@ -172,15 +184,18 @@ class ScheduledBookingViewController: SchedulingViewController {
             showProgressHUD()
 
             BookingAPI().cancelPickupRequest(customerId: UserManager.sharedInstance.getCustomerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup).onSuccess { result in
-                if let _ = result?.error {
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                if let error = result?.error {
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCancelPickupFail, screenName: self.screenName, errorCode: error.code)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 } else {
                     self.onDelete()
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCancelPickupSuccess, screenName: self.screenName)
                 }
                 self.hideProgressHUD()
 
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCancelPickupFail, screenName: self.screenName, statusCode: error.responseCode)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.hideProgressHUD()
 
             }

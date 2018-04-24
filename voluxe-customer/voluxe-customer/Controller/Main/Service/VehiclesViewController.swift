@@ -33,7 +33,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     let preferedDealershipView = VLTitledLabel(title: .PreferredDealership, leftDescription: "", rightDescription: "")
     let scheduledServiceView = VLTitledLabel()
     let contentView = UIView(frame: .zero)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.NewService as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let confirmButton: VLButton
 
     //MARK: Lifecycle methods
     init(state: ServiceState) {
@@ -45,8 +45,10 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         vehicleCollectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         vehicleCollectionView.backgroundColor = UIColor.clear
         vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
-
-        super.init()
+        
+        confirmButton = VLButton(type: .bluePrimary, title: (.NewService as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNewService, screenName: AnalyticsConstants.paramNameYourVolvosView)
+        
+        super.init(screenName: AnalyticsConstants.paramNameYourVolvosView)
     }
     
     
@@ -252,6 +254,7 @@ extension VehiclesViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         selectVehicle(vehicle: vehicles![indexPath.row])
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSelectVehicle, screenName: screenName)
     }
 }
 

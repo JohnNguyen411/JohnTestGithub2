@@ -46,6 +46,4 @@ class FTUEAllSetViewController: FTUEChildViewController {
         
     }
     
-    override func nextButtonTap() {
-    }
 }

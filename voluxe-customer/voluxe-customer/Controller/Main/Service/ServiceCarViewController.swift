@@ -63,20 +63,21 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     let vehicle: Vehicle
 
     let scheduledServiceView = VLTitledLabel()
-    let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern())
     
     let vehicleImageView = UIImageView(frame: .zero)
     
-    let leftButton = VLButton(type: .bluePrimary, title: (.SelfDrop as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
-    let rightButton = VLButton(type: .bluePrimary, title: (.VolvoPickup as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let leftButton = VLButton(type: .bluePrimary, title: (.SelfDrop as String).uppercased(), kern: UILabel.uppercasedKern())
+    let rightButton = VLButton(type: .bluePrimary, title: (.VolvoPickup as String).uppercased(), kern: UILabel.uppercasedKern())
+    let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), kern: UILabel.uppercasedKern())
     
+    var analyticScreenName = ""
     
     //MARK: Lifecycle methods
     init(vehicle: Vehicle, state: ServiceState) {
         self.vehicle = vehicle
         self.serviceState = state
-        super.init()
+        super.init(screenName: "")
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -229,6 +230,13 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     }
     
     
+    override func logViewScreen(screenName: String) {
+        analyticScreenName = screenName
+        super.logViewScreen(screenName: screenName)
+        descriptionButton.setEventName(AnalyticsConstants.eventClickShowServiceDescription, screenName: screenName)
+        confirmButton.setEventName(AnalyticsConstants.eventClickOk, screenName: screenName)
+    }
+    
     func showCheckupLabel(show: Bool, alpha: Bool, animated: Bool) {
         self.checkupLabel.changeVisibility(show: show, alpha: alpha, animated: animated, height: self.checkupLabelHeight)
     }
@@ -252,6 +260,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             descriptionButton.isHidden = false
             
             if state == .needService {
+                logViewScreen(screenName: AnalyticsConstants.paramNameNeedServiceView)
                 dealershipPrefetching()
                 checkupLabel.text = .ScheduleDropDealership
             } else {
@@ -261,6 +270,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                     scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
                 }
+                logViewScreen(screenName: AnalyticsConstants.paramNameServiceCompletedView)
             }
             noteLabel.isHidden = false
             
@@ -298,9 +308,11 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .serviceCompleted, vehicleId: self.vehicle.id)
+                        StateServiceManager.sharedInstance.updateState(state: .serviceCompleted, vehicleId: self.vehicle.id, booking: nil)
                     })
                 }
+                logViewScreen(screenName: AnalyticsConstants.paramNameServiceInProgressView)
+
             } else if state == .enRouteForService {
                 confirmButton.isHidden = true
                 leftButton.isHidden = true
@@ -309,22 +321,11 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
 
                 if Config.sharedInstance.isMock {
                     DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .service, vehicleId: self.vehicle.id)
+                        StateServiceManager.sharedInstance.updateState(state: .service, vehicleId: self.vehicle.id, booking: nil)
                     })
                 }
                 
-            } else if state == .service { // TODO: merge with upstairs
-                
-                showUpdateLabel(show: true, title: (.Update as String).uppercased(), width: 70, right: false)
-                
-                confirmButton.isHidden = false
-                checkupLabel.text = String(format: NSLocalizedString(.YourVehicleHasArrived), (dealership?.name)!)
-
-                if Config.sharedInstance.isMock {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .service, vehicleId: self.vehicle.id)
-                    })
-                }
+                logViewScreen(screenName: AnalyticsConstants.paramNameServiceInRouteView)
                 
             } else if state == .completed {
                 confirmButton.isHidden = false
@@ -332,16 +333,24 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 rightButton.isHidden = true
                 
                 checkupLabel.text = String(format: NSLocalizedString(.DeliveryComplete), (dealership?.name)!)
+                logViewScreen(screenName: AnalyticsConstants.paramNameReservationCompletedView)
             }
         }
         
         
         if ServiceState.isPickup(state: state) {
+            
+            leftButton.setEventName(AnalyticsConstants.eventClickSelfIB, screenName: analyticScreenName)
+            rightButton.setEventName(AnalyticsConstants.eventClickVolvoIB, screenName: analyticScreenName)
+            
             leftButton.setTitle(title: (.SelfDrop as String).uppercased())
             rightButton.setTitle(title: (.VolvoPickup as String).uppercased())
         } else {
             leftButton.setTitle(title: (.SelfPickup as String).uppercased())
             rightButton.setTitle(title: (.VolvoDelivery as String).uppercased())
+            
+            leftButton.setEventName(AnalyticsConstants.eventClickSelfOB, screenName: analyticScreenName)
+            rightButton.setEventName(AnalyticsConstants.eventClickVolvoOB, screenName: analyticScreenName)
         }
     }
     

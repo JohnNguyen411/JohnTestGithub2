@@ -113,7 +113,7 @@ class SyncTimer {
                     }
                 }
                 let serviceState = Booking.getStateForBooking(booking: booking)
-                StateServiceManager.sharedInstance.updateState(state: serviceState, vehicleId: booking.vehicleId)
+                StateServiceManager.sharedInstance.updateState(state: serviceState, vehicleId: booking.vehicleId, booking: booking)
             } else {
                 // error
             }

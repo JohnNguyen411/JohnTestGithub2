@@ -24,7 +24,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         self.vehicle = vehicle
         self.vehicleId = vehicle.id
         self.serviceState = state
-        super.init()
+        super.init(screenName: "") // no screenName for MainViewController
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -57,9 +57,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     }
     
     func updateState(state: ServiceState) {
-        
-        VLAnalytics.logEventWithName(VLAnalytics.stateChangeEvent, paramName: VLAnalytics.stateParam, paramValue: "\(state.rawValue)")
-        
+                
         setTitle(title: getTitleForState(state: state))
         
         var changeView = true
@@ -143,8 +141,10 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     
     func pushViewController(controller: UIViewController, animated: Bool, backLabel: String?, title: String?) {
         self.navigationController?.pushViewController(controller, animated: animated)
-        let backItem = UIBarButtonItem(title: backLabel, style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = backItem
+        if let backLabel = backLabel {
+            let backItem = UIBarButtonItem(title: backLabel, style: .plain, target: self, action: #selector(onBackClicked))
+            navigationItem.backBarButtonItem = backItem
+        }
     }
     
     func popViewController(animated: Bool) {

@@ -105,7 +105,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             }
         }
         dealership = currentDealership
-        super.init(title: title, buttonTitle: buttonTitle)
+        
+        super.init(title: title, buttonTitle: buttonTitle, screenName: isPickup ? AnalyticsConstants.paramNameSchedulingIBDateTimeModalView : AnalyticsConstants.paramNameSchedulingOBDateTimeModalView)
+        
         realm = try? Realm()
         getTimeSlots()
         if let loaner = RequestedServiceManager.sharedInstance.getLoaner() {
@@ -164,6 +166,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             
             DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: loaner, from: from, to: to).onSuccess { result in
                 if let slots = result?.data?.result {
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetDealershipTimeslotsSuccess, screenName: self.screenName)
                     if let realm = self.realm {
                         try? realm.write {
                             realm.add(slots, update: true)
@@ -171,11 +174,10 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                     }
                     self.showCalendar()
                 } else {
-                    // todo show error
-                    
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipTimeslotsFail, screenName: self.screenName, errorCode: result?.error?.code)
                 }
                 }.onFailure { error in
-                    // todo show error
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipTimeslotsFail, screenName: self.screenName, statusCode: error.responseCode)
             }
         }
     }
@@ -552,7 +554,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         currentSlots = slots
         
         for (index, slot) in slots.enumerated() {
-            let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true), actionBlock: nil)
+            let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true), eventName: AnalyticsConstants.eventClickTimeslot, screenName: screenName)
             slotButton.setActionBlock {
                 self.slotClicked(viewIndex: index, slot: slot)
             }

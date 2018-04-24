@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import MBProgressHUD
+import Firebase
 
 class BaseViewController: UIViewController, PresentrDelegate {
     
@@ -16,6 +17,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
 
+    let screenName: String
     let presentrCornerRadius: CGFloat = 4.0
     var currentPresentr: Presentr?
     var currentPresentrVC: VLPresentrViewController?
@@ -23,7 +25,8 @@ class BaseViewController: UIViewController, PresentrDelegate {
     var keyboardShowing = false
     var keyboardHeight: CGFloat = 0
     
-    init() {
+    init(screenName: String) {
+        self.screenName = screenName
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,6 +41,11 @@ class BaseViewController: UIViewController, PresentrDelegate {
         styleNavigationBar(navigationBar: self.navigationController?.navigationBar)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        logViewScreen(screenName: self.screenName)
+    }
+    
     func setTitle(title: String?) {
         if let title = title {
             self.navigationController?.title = title
@@ -46,6 +54,10 @@ class BaseViewController: UIViewController, PresentrDelegate {
             self.navigationItem.title = title
         }
         self.title = title
+    }
+    
+    func setRightButtonTitle(rightButtonTitle: String) {
+        
     }
     
     func pushViewController(_ controller: UIViewController, animated: Bool, backLabel: String) {
@@ -65,8 +77,20 @@ class BaseViewController: UIViewController, PresentrDelegate {
     func stateDidChange(state: ServiceState) {}
     
     
-    @objc func onBackClicked() {
-        
+    @objc func onBackClicked(analyticEventName: String? = nil) {
+        if let analyticEventName = analyticEventName {
+            VLAnalytics.logEventWithName(analyticEventName, screenName: screenName)
+        } else {
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickNavigationLeft, screenName: screenName)
+        }
+    }
+    
+    @objc func onRightClicked(analyticEventName: String? = nil) {
+        if let analyticEventName = analyticEventName {
+            VLAnalytics.logEventWithName(analyticEventName, screenName: screenName)
+        } else {
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickNavigationRight, screenName: screenName)
+        }
     }
         
         
@@ -162,6 +186,13 @@ class BaseViewController: UIViewController, PresentrDelegate {
         return customType
     }
     
+    func logViewScreen(screenName: String) {
+        // send event when screen name isn't empty, little trick for same VC with state change (MainViewController, ServiceCarViewController)
+        if screenName.count > 0 {
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventViewScreen, paramName: AnalyticsConstants.paramScreenName, paramValue: screenName)
+        }
+    }
+    
 }
 
 extension UIViewController {
@@ -222,21 +253,21 @@ extension UIViewController {
         return Swift.min(statusBarSize.width, statusBarSize.height)
     }
     
-    func showOkDialog(title: String, message: String) {
-        showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: nil)
+    func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil, analyticDialogName: String, screenName: String) {
+        showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: completion, analyticDialogName: analyticDialogName, screenName: screenName)
     }
     
-    func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil) {
-        showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: completion)
-    }
-    
-    func showDialog(title: String, message: String, buttonTitle: String, completion: (() -> Swift.Void)? = nil) {
+    func showDialog(title: String, message: String, buttonTitle: String, completion: (() -> Swift.Void)? = nil, analyticDialogName: String, screenName: String) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
         
+        let params = getAnalyticsParamsForDialog(analyticDialogName, screenName: screenName)
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventViewDialog, parameters: params)
+        
         // Submit button
         let button = UIAlertAction(title: buttonTitle, style: .default, handler: { (action) -> Void in
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDimissDialog, parameters: params)
             if let completion = completion {
                 completion()
             }
@@ -247,18 +278,22 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func showDestructiveDialog(title: String, message: String, cancelButtonTitle: String, destructiveButtonTitle: String, destructiveCompletion: @escaping (() -> Swift.Void)) {
+    func showDestructiveDialog(title: String, message: String, cancelButtonTitle: String, destructiveButtonTitle: String, destructiveCompletion: @escaping (() -> Swift.Void), analyticDialogName: String, screenName: String) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
         
+        let params = getAnalyticsParamsForDialog(analyticDialogName, screenName: screenName)
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventViewDialog, parameters: params)
         // Submit button
         let backAction = UIAlertAction(title: cancelButtonTitle, style: .default, handler: { (action) -> Void in
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDimissDialog, parameters: params)
             alert.dismiss(animated: true, completion: nil)
         })
         
         // Delete button
         let deleteAction = UIAlertAction(title: destructiveButtonTitle, style: .destructive, handler: { (action) -> Void in
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDestructiveDialog, parameters: params)
             alert.dismiss(animated: true, completion: nil)
             destructiveCompletion()
         })
@@ -266,6 +301,11 @@ extension UIViewController {
         alert.addAction(backAction)
         alert.addAction(deleteAction)
         self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func getAnalyticsParamsForDialog(_ dialogName: String, screenName: String) -> [String: String] {
+        var params = [AnalyticsConstants.paramDialogName : dialogName, AnalyticsConstants.paramScreenName: screenName]
+        return params
     }
     
     private func getViewForHUD() -> UIView {

@@ -128,7 +128,7 @@ final class UserManager {
                 }
                 self.bookings.append(booking)
                 self.vehicleBookings[vehicleId] = carBookings
-                StateServiceManager.sharedInstance.updateState(state: Booking.getStateForBooking(booking: booking), vehicleId: booking.vehicleId)
+                StateServiceManager.sharedInstance.updateState(state: Booking.getStateForBooking(booking: booking), vehicleId: booking.vehicleId, booking: booking)
             }
             // empty array
             if bookings.count == 0 {
@@ -176,7 +176,7 @@ final class UserManager {
         }
         self.bookings.append(booking)
         self.vehicleBookings[booking.vehicleId] = carBookings
-        StateServiceManager.sharedInstance.updateState(state: Booking.getStateForBooking(booking: booking), vehicleId: booking.vehicleId)
+        StateServiceManager.sharedInstance.updateState(state: Booking.getStateForBooking(booking: booking), vehicleId: booking.vehicleId, booking: booking)
 
         SwiftEventBus.post("setActiveBooking")
     }

@@ -14,8 +14,7 @@ class FTUEChildViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let nextButton = UIBarButtonItem(title: rightButtonTitle(), style: .plain, target: self, action: #selector(self.nextButtonTap))
-        self.navigationItem.rightBarButtonItem = nextButton
+        setRightButtonTitle(rightButtonTitle: rightButtonTitle())
     }
     
     
@@ -39,13 +38,6 @@ class FTUEChildViewController: BaseViewController {
     func goToNext() {
     }
     
-    @objc func nextButtonTap() {
-        
-    }
-    
-    @objc func backButtonTap() {
-        self.navigationController?.popViewController(animated: true)
-    }
     
     func loadMainScreen() {
         appDelegate?.loadMainScreen()

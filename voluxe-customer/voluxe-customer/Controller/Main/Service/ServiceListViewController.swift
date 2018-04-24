@@ -19,7 +19,7 @@ class ServiceListViewController: BaseViewController {
     
     init(vehicle: Vehicle, title: String) {
         self.vehicle = vehicle
-        super.init()
+        super.init(screenName: AnalyticsConstants.paramNameServiceMilestoneView)
         self.title = title
     }
     
@@ -40,6 +40,7 @@ class ServiceListViewController: BaseViewController {
         showProgressHUD()
         RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
             if let services = services?.data?.result {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetROTypesSuccess, screenName: self.screenName)
                 if let realm = try? Realm() {
                     try? realm.write {
                         realm.add(services, update: true)
@@ -48,9 +49,12 @@ class ServiceListViewController: BaseViewController {
                     let filteredResults = realm.objects(RepairOrderType.self).filter("name != 'Custom'")
                     self.showServices(services: Array(filteredResults))
                 }
+            } else {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetROTypesFail, screenName: self.screenName, errorCode: services?.error?.code)
             }
             self.hideProgressHUD()
             }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetROTypesFail, screenName: self.screenName, statusCode: error.responseCode)
                 Logger.print(error)
                 self.hideProgressHUD()
         }
@@ -122,6 +126,7 @@ extension ServiceListViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventClickServiceMilestone, screenName: screenName, index: indexPath.row)
         self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: services![indexPath.row], canSchedule: true), animated: true, backLabel: .Back)
     }
     

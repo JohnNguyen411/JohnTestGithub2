@@ -25,7 +25,7 @@ class ServiceDetailViewController: BaseViewController {
     var repairOrder: RepairOrder?
     let vehicle: Vehicle
     let service: RepairOrderType
-    let confirmButton = VLButton(type: .bluePrimary, title: (.ScheduleService as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let confirmButton: VLButton
 
     convenience init(vehicle: Vehicle, service: RepairOrder) {
         self.init(vehicle: vehicle, service: service.repairOrderType!, canSchedule: false)
@@ -37,7 +37,13 @@ class ServiceDetailViewController: BaseViewController {
         self.canSchedule = canSchedule
         self.service = service
         serviceTitle = VLTitledLabel(title: .FactoryScheduledMaintenance, leftDescription: service.name!, rightDescription: "")
-        super.init()
+        var analyticName = canSchedule ? AnalyticsConstants.paramNameServiceMilestoneDetailsSchedulingView : AnalyticsConstants.paramNameServiceMilestoneDetailsView
+        if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
+            analyticName = AnalyticsConstants.paramNameServiceCustomDetailsView
+        }
+        confirmButton = VLButton(type: .bluePrimary, title: (.ScheduleService as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickScheduleService, screenName: analyticName)
+
+        super.init(screenName: analyticName)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -65,7 +71,7 @@ class ServiceDetailViewController: BaseViewController {
         confirmButton.setActionBlock {
             // shedule service
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: RepairOrder(repairOrderType: self.service))
-            StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id)
+            StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id, booking: nil)
             self.appDelegate?.loadViewForVehicle(vehicle: self.vehicle, state: .needService)
         }
     }

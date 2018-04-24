@@ -59,7 +59,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     let contentView = UIView(frame: .zero)
 
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let confirmButton: VLButton
     
     let drivability = [DrivableType.yes, DrivableType.no, DrivableType.notSure]
     var checkedCellIndex = 0
@@ -73,7 +73,10 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             serviceTitle += "\n• \(service). "
         }
         self.service = RepairOrder(repairOrderType: repairOrderType, customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
-        super.init()
+        
+        confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNext, screenName: AnalyticsConstants.paramNameServiceCustomNotesView)
+        
+        super.init(screenName: AnalyticsConstants.paramNameServiceCustomNotesView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -105,7 +108,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             self.service.notes = notes
             
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: self.service)
-            StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id)
+            StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id, booking: nil)
             self.appDelegate?.loadViewForVehicle(vehicle: self.vehicle, state: .needService)
             
         }
@@ -282,6 +285,7 @@ extension OtherServiceViewController: UITableViewDataSource, UITableViewDelegate
         tableView.deselectRow(at: indexPath, animated: true)
         checkedCellIndex = indexPath.row
         tableView.reloadData()
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventClickServiceCustomDrivableIndex, screenName: screenName, index: indexPath.row)
     }
     
 }

@@ -28,7 +28,7 @@ class NewServiceViewController: BaseViewController {
     
     init(vehicle: Vehicle) {
         self.vehicle = vehicle
-        super.init()
+        super.init(screenName: AnalyticsConstants.paramNameServiceNewView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -51,6 +51,7 @@ class NewServiceViewController: BaseViewController {
         
         RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
             if let services = services?.data?.result {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetROTypesSuccess, screenName: self.screenName)
                 if let realm = try? Realm() {
                     try? realm.write {
                         realm.add(services, update: true)
@@ -58,9 +59,12 @@ class NewServiceViewController: BaseViewController {
                     
                     self.showServices(repairOrderTypes: [String.MilestoneServices, String.OtherMaintenanceRepairs])
                 }
+            } else {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetROTypesFail, screenName: self.screenName, errorCode: services?.error?.code)
             }
             self.hideProgressHUD()
             }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetROTypesFail, screenName: self.screenName, statusCode: error.responseCode)
                 Logger.print(error)
                 self.hideProgressHUD()
         }
@@ -125,10 +129,12 @@ extension NewServiceViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if let groupService = services, indexPath.row == 0 {
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickServiceTypeMilestone, screenName: screenName)
             self.pushViewController(ServiceListViewController(vehicle: vehicle, title: groupService[indexPath.row]), animated: true, backLabel: .Back)
         } else {
             if let realm = try? Realm() {
                 if let filteredResults = realm.objects(RepairOrderType.self).filter("category = '\(RepairOrderCategory.custom.rawValue)'").first {
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventClickServiceTypeCustom, screenName: screenName)
                     self.pushViewController(ServiceMultiselectListViewController(vehicle: vehicle, repairOrderType: filteredResults), animated: true, backLabel: .Back)
                 }
             }

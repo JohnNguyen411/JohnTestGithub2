@@ -175,7 +175,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func showAddVehicleScreen() {
         window = UIWindow(frame: UIScreen.main.bounds)
-        let uiNavigationController = UINavigationController(rootViewController: FTUEAddVehicleViewController())
+        let uiNavigationController = UINavigationController(rootViewController: FTUEAddVehicleViewController(fromSettings: false))
         styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         window!.rootViewController = uiNavigationController
         window!.makeKeyAndVisible()

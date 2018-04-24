@@ -56,4 +56,9 @@ class VLSlideMenuController: SlideMenuController {
             _viewController.removeFromParentViewController()
         }
     }
+    
+    override func toggleLeft() {
+        super.toggleLeft()
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventClickNavigationLeftMenuIcon)
+    }
 }

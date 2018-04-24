@@ -15,10 +15,20 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
     let passwordTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••")
-    let forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), actionBlock: nil)
+    let forgotPassword: VLButton
     
     var loginInProgress = false
     var realm : Realm?
+    
+    init() {
+        forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickForgotPassword, screenName: AnalyticsConstants.paramNameLoginView)
+        
+        super.init(screenName: AnalyticsConstants.paramNameLoginView)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -120,7 +130,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
             passwordTextField.textField.becomeFirstResponder()
         } else {
             if checkTextFieldsValidity() {
-                self.nextButtonTap()
+                self.onRightClicked()
             } else {
                 // show error
             }
@@ -146,7 +156,8 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
     //MARK: FTUEStartViewController
     
-    override func nextButtonTap() {
+    override func onRightClicked(analyticEventName: String? = nil) {
+        super.onRightClicked(analyticEventName: analyticEventName)
         if loginInProgress {
             return
         }
@@ -161,11 +172,15 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         CustomerAPI().login(email: email, password: password).onSuccess { result in
             if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiLoginSuccess, screenName: self.screenName)
+                
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
                 UserManager.sharedInstance.tempCustomerId = customerId
                 CustomerAPI().getMe().onSuccess { result in
                     if let customer = result?.data?.result {
+                        VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetMeSuccess, screenName: self.screenName)
+
                         if let realm = self.realm {
                             try? realm.write {
                                 realm.deleteAll()
@@ -182,16 +197,20 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
                             self.appDelegate?.startApp()
                         }
                     } else {
+                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, errorCode: result?.error?.code)
                         self.showLoading(loading: false)
                         self.appDelegate?.phoneVerificationScreen()
                     }
                     }.onFailure { error in
+                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, statusCode: error.responseCode)
                         self.onLoginError()
                 }
             } else {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: self.screenName, errorCode: result?.error?.code)
                 self.onLoginError(error: result?.error)
             }
             }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: self.screenName, statusCode: error.responseCode)
                 self.onLoginError()
         }
         
@@ -202,9 +221,9 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         self.showLoading(loading: false)
         
         if error?.code == "E2005" {
-            self.showOkDialog(title: .Error, message: .InvalidCredentials)
+            self.showOkDialog(title: .Error, message: .InvalidCredentials, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError)
+            self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         }
     }
 }

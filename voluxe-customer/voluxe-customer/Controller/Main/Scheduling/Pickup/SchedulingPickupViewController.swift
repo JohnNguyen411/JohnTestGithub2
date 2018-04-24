@@ -12,6 +12,14 @@ import MBProgressHUD
 
 class SchedulingPickupViewController: SchedulingViewController {
     
+    init(vehicle: Vehicle, state: ServiceState) {
+        super.init(vehicle: vehicle, state: state, screenName: AnalyticsConstants.paramNameSchedulingInboundView)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func setupViews() {
         super.setupViews()
         loanerView.snp.makeConstraints { make in
@@ -19,8 +27,6 @@ class SchedulingPickupViewController: SchedulingViewController {
             make.top.equalTo(dealershipView.snp.bottom)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
-        
-        
     }
     
     override func fillViews() {
@@ -208,6 +214,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         BookingAPI().createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner).onSuccess { result in
             if let booking = result?.data?.result {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCreateBookingSuccess, screenName: self.screenName)
                 if let realm = self.realm {
                     try? realm.write {
                         if booking.customerId == -1 {
@@ -218,13 +225,15 @@ class SchedulingPickupViewController: SchedulingViewController {
                 }
                 self.createRepairOrder(customerId: customerId, booking: booking, repairOrder: repairOrder)
             } else {
-                // todo show error
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.confirmButton.isLoading = false
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateBookingFail, screenName: self.screenName, errorCode: result?.error?.code)
             }
             
             }.onFailure { error in
-                // todo show error
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.confirmButton.isLoading = false
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateBookingFail, screenName: self.screenName, statusCode: error.responseCode)
         }
     }
     
@@ -258,6 +267,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         RepairOrderAPI().createRepairOrder(customerId: customerId, bookingId: booking.id, dealershipRepairOrderId: dealershipRepairOrder.id, notes: repairOrder.notes).onSuccess { result in
             if let repairOrder = result?.data?.result {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCreateROSuccess, screenName: self.screenName)
                 try? realm.write {
                     realm.add(repairOrder, update: true)
                     if booking.repairOrderRequests.count == 0 {
@@ -268,14 +278,15 @@ class SchedulingPickupViewController: SchedulingViewController {
                 self.createPickupRequest(customerId: customerId, booking: booking)
                 return
             } else {
-                // todo show error
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.confirmButton.isLoading = false
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateROFail, screenName: self.screenName, errorCode: result?.error?.code)
             }
-            // todo show error
             self.confirmButton.isLoading = false
             }.onFailure { error in
-                // todo show error
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.confirmButton.isLoading = false
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateROFail, screenName: self.screenName, statusCode: error.responseCode)
         }
         
     }
@@ -297,21 +308,23 @@ class SchedulingPickupViewController: SchedulingViewController {
             
             BookingAPI().createPickupRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: isDriver).onSuccess { result in
                 if let pickupRequest = result?.data?.result {
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCreatePickupSuccess, screenName: self.screenName)
                     self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
                     self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
                 } else {
-                    // todo show error
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreatePickupFail, screenName: self.screenName, errorCode: result?.error?.code)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.confirmButton.isLoading = false
                 }
-                // todo show error
                 self.confirmButton.isLoading = false
                 }.onFailure { error in
-                    // todo show error
                     self.confirmButton.isLoading = false
                     // an error occured while creating the request, try again with same booking
                     self.showDialog(title: .Error, message: .GenericError, buttonTitle: String.Retry, completion: {
                         self.createPickupRequest(customerId: customerId, booking: booking)
-                    })
+                    }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreatePickupFail, screenName: self.screenName, statusCode: error.responseCode)
             }
         }
     }
@@ -357,7 +370,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 self.hideProgressHUD()
                 self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
-                })
+                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         }
     }
     

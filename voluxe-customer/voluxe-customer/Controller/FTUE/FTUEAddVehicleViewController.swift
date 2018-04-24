@@ -47,6 +47,14 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     
     var pickerView: UIPickerView!
     
+    init(fromSettings: Bool) {
+        super.init(screenName: fromSettings ? AnalyticsConstants.paramNameSettingsAddVehicleView : AnalyticsConstants.paramNameSignupAddVehicleView)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -178,18 +186,23 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         }
     }
     
-    override func nextButtonTap() {
+    override func onRightClicked(analyticEventName: String? = nil) {
+        super.onRightClicked(analyticEventName: analyticEventName)
         // todo add car to user
         if let customerId = UserManager.sharedInstance.getCustomerId(), let baseColor = colors[selectedColor].baseColor {
             CustomerAPI().addVehicle(customerId: customerId, make: models[selectedModel].make!, model: models[selectedModel].name!, baseColor: baseColor, year: years[selectedYear]).onSuccess { response in
                 if (response?.data?.result) != nil {
                     // success
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiAddVehicleSuccess, screenName: self.screenName)
                 } else {
                     // error
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiAddVehicleFail, screenName: self.screenName, errorCode: response?.error?.code)
+
                 }
                 self.callVehicle(customerId: customerId)
             }.onFailure { error in
                 self.callVehicle(customerId: customerId)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiAddVehicleFail, screenName: self.screenName, statusCode: error.responseCode)
             }
             showProgressHUD()
         }

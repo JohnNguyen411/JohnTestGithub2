@@ -33,6 +33,11 @@ class VLButton : UIButton {
     var type: VLButtonType?
     var titleText = ""
     
+    // Analytics
+    private var eventName: String?
+    private var screenName: String?
+    private var optionalParameters: [String: String]?
+    
     override open var isHighlighted: Bool {
         didSet {
             if let highlightBackgroundColor = highlightBackgroundColor {
@@ -69,9 +74,11 @@ class VLButton : UIButton {
     /**
      Need to make constraints after initializing the button
      */
-    init(type: VLButtonType, title: String?, kern: Float? = nil, actionBlock:(()->())?) {
+    init(type: VLButtonType, title: String?, kern: Float? = nil, actionBlock:(()->())? = nil, eventName: String? = nil, screenName: String? = nil) {
         super.init(frame: .zero)
         
+        self.eventName = eventName
+        self.screenName = screenName
         setType(type: type)
         
         if let title = title {
@@ -109,6 +116,20 @@ class VLButton : UIButton {
     func setTitle(title: String) {
         self.setTitle(title, for: .normal)
         self.accessibilityLabel = title
+    }
+    
+    func setEventName(_ eventName: String, screenName: String? = nil, params: [String: String]? = nil) {
+        self.eventName = eventName
+        if let screenName = screenName {
+            self.screenName = screenName
+        }
+        if let params = params {
+            self.optionalParameters = params
+        }
+    }
+    
+    func setOptionalParams(params: [String: String]) {
+        self.optionalParameters = params
     }
     
     func setType(type: VLButtonType) {
@@ -248,6 +269,18 @@ class VLButton : UIButton {
     }
     
     @objc internal func runActionBlock() {
+        var params: [String: String] = [:]
+        
+        if let optionalParameters = optionalParameters {
+            params = optionalParameters
+        }
+        if let screenName = screenName {
+            params[AnalyticsConstants.paramScreenName] = screenName
+        }
+        
+        if let eventName = eventName {
+            VLAnalytics.logEventWithName(eventName, parameters: params)
+        }
         actionBlock?()
     }
     

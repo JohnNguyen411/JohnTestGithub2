@@ -19,7 +19,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     var realm : Realm?
     var uiBarButton: UIBarButtonItem?
     
-    override init() {
+    init() {
         user = UserManager.sharedInstance.getCustomer()
         realm = try? Realm()
         if let realm = self.realm, let user = user {
@@ -28,7 +28,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
                 addressesCount = addresses.count
             }
         }
-        super.init()
+        super.init(screenName: AnalyticsConstants.paramNameSettingsAccountView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -89,19 +89,21 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     }
     
     @objc func edit() {
+        super.onRightClicked(analyticEventName: AnalyticsConstants.eventClickNavigationEdit)
         uiBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
         self.navigationItem.rightBarButtonItem = uiBarButton
         tableView.setEditing(true, animated: true)
     }
     
     @objc func done() {
+        super.onRightClicked(analyticEventName: AnalyticsConstants.eventClickNavigationDone)
         uiBarButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
         self.navigationItem.rightBarButtonItem = uiBarButton
         tableView.setEditing(false, animated: true)
     }
     
     func showPickupLocationModal(dismissOnTap: Bool) {
-        let locationVC = AddLocationViewController(title: .AddNewLocation, buttonTitle: .Add)
+        let locationVC = AddLocationViewController(title: .AddNewLocation, buttonTitle: .Add, screenName: AnalyticsConstants.paramNameSettingsLocationModalView)
         locationVC.pickupLocationDelegate = self
         locationVC.presentrDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
@@ -138,14 +140,14 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
             CustomerAPI().requestPasswordChange(customerId: customerId).onSuccess { response in
                 if let _ = response?.error {
                     // show error
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 } else {
                     FTUEStartViewController.flowType = .signup
                     self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
                 }
                 self.hideProgressHUD()
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.hideProgressHUD()
             }
         }
@@ -281,6 +283,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if (indexPath.section == 0 && indexPath.row >= addressesCount) {
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickAddNewLocation, screenName: screenName)
             showPickupLocationModal(dismissOnTap: true)
         }
     }
@@ -290,15 +293,18 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     func onEditClicked(_ cell: UITableViewCell) {
         if let indexPath = tableView.indexPath(for: cell) {
             if indexPath.section == 0 {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccountDeleteAddress, screenName: screenName, index: indexPath.row)
                 self.showDestructiveDialog(title: .Confirm, message: String(format: .AreYouSureDeleteAddress, self.getTextForIndexPath(indexPath: indexPath)), cancelButtonTitle: .Cancel, destructiveButtonTitle: .Delete, destructiveCompletion: {
                     self.deleteAddressAtIndexPath(indexPath)
-                })
+                }, analyticDialogName: AnalyticsConstants.paramNameConfirmDialog, screenName: screenName)
                 
             } else if indexPath.section == 2 {
                 // pwd
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccountEditPassword, screenName: screenName)
                 self.resetPassword()
             } else if indexPath.section == 1 || indexPath.row == 1 {
                 // update phone number
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccountEditPhone, screenName: screenName)
                 self.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true, backLabel: .Back)
             }
         }
@@ -306,6 +312,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     
     
     private func deleteAddressAtIndexPath(_ indexPath: IndexPath) {
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventSettingsAccountAddressDeleted, screenName: screenName, index: indexPath.row)
         if let realm = self.realm, let addresses = self.addresses {
             try? realm.write {
                 realm.delete(addresses[indexPath.row])

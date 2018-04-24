@@ -15,13 +15,13 @@ class SettingsViewController: ChildViewController, SettingsCellProtocol {
     var vehicles: [Vehicle]?
     var vehicleCount = 0
     
-    override init() {
+    init() {
         user = UserManager.sharedInstance.getCustomer()
         vehicles = UserManager.sharedInstance.getVehicles()
         if let vehicles = vehicles {
             vehicleCount = vehicles.count
         }
-        super.init()
+        super.init(screenName: AnalyticsConstants.paramNameSettingsView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -153,11 +153,14 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 vehicle = vehicles[indexPath.row]
             }
             if let vehicle = vehicle {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsVehicle, screenName: screenName, index: indexPath.row)
                 self.pushViewController(SettingsCarViewController(vehicle: vehicle), animated: true, backLabel: .Back)
             } else {
-                self.pushViewController(FTUEAddVehicleViewController(), animated: true, backLabel: .Back)
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAddVehicle, screenName: screenName)
+                self.pushViewController(FTUEAddVehicleViewController(fromSettings: true), animated: true, backLabel: .Back)
             }
         } else if indexPath.section == 1 {
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccount, screenName: screenName)
             self.pushViewController(AccountSettingsViewController(), animated: true, backLabel: .Back)
         }
     }

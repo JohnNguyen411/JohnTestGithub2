@@ -24,6 +24,14 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     let firstNameTextField = VLVerticalTextField(title: .FirstName, placeholder: .FirstNamePlaceholder)
     let lastNameTextField = VLVerticalTextField(title: .LastName, placeholder: .LastNamePlaceholder)
     
+    init() {
+        super.init(screenName: AnalyticsConstants.paramNameSignupNameView)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -113,7 +121,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
             lastNameTextField.textField.becomeFirstResponder()
         } else {
             if checkTextFieldsValidity() {
-                nextButtonTap()
+                self.onRightClicked()
             } else {
                 // show error
             }
@@ -122,7 +130,8 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     }
     
     //MARK: FTUEStartViewController
-    override func nextButtonTap() {
+    override func onRightClicked(analyticEventName: String? = nil) {
+        super.onRightClicked(analyticEventName: analyticEventName)
         UserManager.sharedInstance.signupCustomer.lastName = lastNameTextField.textField.text
         UserManager.sharedInstance.signupCustomer.firstName = firstNameTextField.textField.text
         goToNext()

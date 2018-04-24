@@ -41,7 +41,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     
     init(type: FTUEPhoneType) {
         self.ftuePhoneType = type
-        super.init()
+        super.init(screenName: type == .update ? AnalyticsConstants.paramNameUpdatePasswordView : AnalyticsConstants.paramNameResetPasswordView)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -128,7 +128,8 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     
     //MARK: FTUEStartViewController
     
-    override func nextButtonTap() {
+    override func onRightClicked(analyticEventName: String? = nil) {
+        super.onRightClicked(analyticEventName: analyticEventName)
         guard let validPhoneNumber = validPhoneNumber else {
             return
         }
@@ -153,17 +154,22 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             isLoading = true
             
             showProgressHUD()
-
+            
             CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
                 self.hideProgressHUD()
-                if result?.error != nil {
-                    self.showOkDialog(title: .Error, message: .GenericError)
-                }
                 self.isLoading = false
-                self.goToNext()
+
+                if result?.error != nil {
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetCodeRequestFail, screenName: self.screenName, errorCode: result?.error?.code)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                } else {
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetCodeRequestSuccess, screenName: self.screenName)
+                    self.goToNext()
+                }
                 }.onFailure { error in
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetCodeRequestFail, screenName: self.screenName, statusCode: error.responseCode)
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.isLoading = false
             }
             return
@@ -182,16 +188,21 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         
         showProgressHUD()
 
+
         CustomerAPI().updatePhoneNumber(customerId: customerId!, phoneNumber: phoneNumber).onSuccess { result in
             self.hideProgressHUD()
-            if result?.error != nil {
-                self.showOkDialog(title: .Error, message: .GenericError)
-            }
             self.isLoading = false
-            self.goToNext()
+            if result?.error != nil {
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberFail, screenName: self.screenName, errorCode: result?.error?.code)
+            } else {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberSuccess, screenName: self.screenName)
+                self.goToNext()
+            }
             }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberFail, screenName: self.screenName, statusCode: error.responseCode)
                 self.hideProgressHUD()
-                self.showOkDialog(title: .Error, message: .GenericError)
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.isLoading = false
         }
     }
