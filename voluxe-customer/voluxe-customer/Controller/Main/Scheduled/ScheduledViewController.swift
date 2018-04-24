@@ -331,7 +331,6 @@ class ScheduledViewController: ChildViewController {
                 }
             }
         }.onFailure { error in
-            // todo handle error
             self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiContactDriverFail, screenName: self.screenName, statusCode: error.responseCode)
         }

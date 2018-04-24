@@ -240,15 +240,16 @@ class SchedulingDropoffViewController: SchedulingViewController {
             
             BookingAPI().createDropoffRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: isDriver).onSuccess { result in
                 if let dropOffRequest = result?.data?.result {
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCreateDropoffSuccess, screenName: self.screenName)
                     self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
                 } else {
-                    // todo show error
-                    self.confirmButton.isLoading = false
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateDropoffFail, screenName: self.screenName, errorCode: result?.error?.code)
                 }
-                // todo show error
                 self.confirmButton.isLoading = false
                 }.onFailure { error in
-                    // todo show error
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateDropoffFail, screenName: self.screenName, statusCode: error.responseCode)
                     self.confirmButton.isLoading = false
             }
             

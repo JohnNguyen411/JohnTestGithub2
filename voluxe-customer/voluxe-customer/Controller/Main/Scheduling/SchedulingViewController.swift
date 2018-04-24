@@ -316,11 +316,15 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         if let location = location {
             DealershipAPI().getDealerships(location: location).onSuccess { result in
                 if let dealerships = result?.data?.result {
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetDealershipsSuccess, screenName: self.screenName)
+
                     if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
                         if dealerships.count > 0 {
                             
                             //todo check with getDealershipRepairOrder if available ONLY at pickup
                             RepairOrderAPI().getDealershipRepairOrder(dealerships: dealerships, repairOrderTypeId: RequestedServiceManager.sharedInstance.getRepairOrder()?.repairOrderType?.id).onSuccess { result in
+                                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetDealershipROSuccess, screenName: self.screenName)
+
                                 var error: String? = nil
                                 if let dealershipsRO = result?.data?.result {
                                     if let realm = self.realm {
@@ -334,6 +338,8 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                                         error = String.ServiceNotOfferedInArea
                                     }
                                 } else {
+                                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipROFail, screenName: self.screenName, errorCode: result?.error?.code)
+
                                     error = String.ServiceNotOfferedInArea
                                 }
                                 
@@ -342,6 +348,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                                 }
 
                                 }.onFailure { error in
+                                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipROFail, screenName: self.screenName, statusCode: error.responseCode)
                                     if let completion = completion {
                                         completion(String.ServiceNotOfferedInArea)
                                     }
@@ -359,6 +366,9 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                         }
                     }
                 } else {
+                    if let error = result?.error {
+                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipsFail, screenName: self.screenName, errorCode: error.code)
+                    }
                     if let completion = completion {
                         completion(nil)
                     }
@@ -366,6 +376,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                 }
                 
                 }.onFailure { error in
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipsFail, screenName: self.screenName, statusCode: error.responseCode)
                     if let completion = completion {
                         completion(nil)
                     }
