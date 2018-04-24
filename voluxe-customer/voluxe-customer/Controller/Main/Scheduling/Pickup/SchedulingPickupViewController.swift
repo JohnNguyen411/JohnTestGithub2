@@ -214,6 +214,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         BookingAPI().createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner).onSuccess { result in
             if let booking = result?.data?.result {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCreateBookingSuccess, screenName: self.screenName)
                 if let realm = self.realm {
                     try? realm.write {
                         if booking.customerId == -1 {
@@ -224,13 +225,15 @@ class SchedulingPickupViewController: SchedulingViewController {
                 }
                 self.createRepairOrder(customerId: customerId, booking: booking, repairOrder: repairOrder)
             } else {
-                // todo show error
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.confirmButton.isLoading = false
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateBookingFail, screenName: self.screenName, errorCode: result?.error?.code)
             }
             
             }.onFailure { error in
-                // todo show error
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.confirmButton.isLoading = false
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateBookingFail, screenName: self.screenName, statusCode: error.responseCode)
         }
     }
     
