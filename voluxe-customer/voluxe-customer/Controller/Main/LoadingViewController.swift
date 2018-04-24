@@ -166,8 +166,8 @@ class LoadingViewController: ChildViewController {
         // Get Customer's Vehicles based on ID
         
         CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetVehiclesSuccess, screenName: self.screenName)
             if let cars = result?.data?.result {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetVehiclesSuccess, screenName: self.screenName)
                 if let realm = self.realm {
                     try? realm.write {
                         realm.add(cars, update: true)
