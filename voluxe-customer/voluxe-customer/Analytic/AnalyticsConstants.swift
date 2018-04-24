@@ -90,10 +90,13 @@ class AnalyticsConstants {
     static let eventApiUpdatePhoneNumberFail = "api_update_phone_fail"
     static let eventApiPasswordResetCodeRequestSuccess = "api_password_reset_code_request_success"
     static let eventApiPasswordResetCodeRequestFail = "api_password_reset_code_request_fail"
-    
     static let eventApiAddVehicleSuccess = "api_add_vehicle_success"
     static let eventApiAddVehicleFail = "api_add_vehicle_fail"
+    static let eventApiGetVehiclesSuccess = "api_get_vehicles_success"
+    static let eventApiGetVehiclesFail = "api_get_vehicles_fail"
     
+    static let eventApiGetBookingsSuccess = "api_get_bookings_success"
+    static let eventApiGetBookingsFail = "api_get_bookings_fail"
     
     // Params
     static let paramScreenName = "screen_name"

@@ -197,6 +197,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
                             self.appDelegate?.startApp()
                         }
                     } else {
+                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, errorCode: result?.error?.code)
                         self.showLoading(loading: false)
                         self.appDelegate?.phoneVerificationScreen()
                     }
