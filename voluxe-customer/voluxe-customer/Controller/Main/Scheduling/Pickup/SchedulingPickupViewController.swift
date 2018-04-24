@@ -267,6 +267,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         RepairOrderAPI().createRepairOrder(customerId: customerId, bookingId: booking.id, dealershipRepairOrderId: dealershipRepairOrder.id, notes: repairOrder.notes).onSuccess { result in
             if let repairOrder = result?.data?.result {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCreateROSuccess, screenName: self.screenName)
                 try? realm.write {
                     realm.add(repairOrder, update: true)
                     if booking.repairOrderRequests.count == 0 {
@@ -277,14 +278,15 @@ class SchedulingPickupViewController: SchedulingViewController {
                 self.createPickupRequest(customerId: customerId, booking: booking)
                 return
             } else {
-                // todo show error
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.confirmButton.isLoading = false
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateROFail, screenName: self.screenName, errorCode: result?.error?.code)
             }
-            // todo show error
             self.confirmButton.isLoading = false
             }.onFailure { error in
-                // todo show error
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.confirmButton.isLoading = false
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateROFail, screenName: self.screenName, statusCode: error.responseCode)
         }
         
     }
