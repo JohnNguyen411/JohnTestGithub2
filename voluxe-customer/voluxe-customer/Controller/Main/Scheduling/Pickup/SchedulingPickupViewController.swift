@@ -308,21 +308,23 @@ class SchedulingPickupViewController: SchedulingViewController {
             
             BookingAPI().createPickupRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: isDriver).onSuccess { result in
                 if let pickupRequest = result?.data?.result {
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCreatePickupSuccess, screenName: self.screenName)
                     self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
                     self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
                 } else {
-                    // todo show error
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreatePickupFail, screenName: self.screenName, errorCode: result?.error?.code)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.confirmButton.isLoading = false
                 }
-                // todo show error
                 self.confirmButton.isLoading = false
                 }.onFailure { error in
-                    // todo show error
                     self.confirmButton.isLoading = false
                     // an error occured while creating the request, try again with same booking
                     self.showDialog(title: .Error, message: .GenericError, buttonTitle: String.Retry, completion: {
                         self.createPickupRequest(customerId: customerId, booking: booking)
                     }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreatePickupFail, screenName: self.screenName, statusCode: error.responseCode)
             }
         }
     }

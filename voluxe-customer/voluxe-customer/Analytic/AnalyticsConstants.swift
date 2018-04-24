@@ -111,6 +111,8 @@ class AnalyticsConstants {
     static let eventApiCreateBookingFail = "api_create_booking_fail"
     static let eventApiCreateROSuccess = "api_create_ro_success"
     static let eventApiCreateROFail = "api_create_ro_fail"
+    static let eventApiCreatePickupSuccess = "api_create_pickup_success"
+    static let eventApiCreatePickupFail = "api_create_pickup_fail"
     
     // Params
     static let paramScreenName = "screen_name"
