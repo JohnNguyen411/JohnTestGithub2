@@ -94,6 +94,8 @@ class AnalyticsConstants {
     static let eventApiAddVehicleFail = "api_add_vehicle_fail"
     static let eventApiGetVehiclesSuccess = "api_get_vehicles_success"
     static let eventApiGetVehiclesFail = "api_get_vehicles_fail"
+    static let eventApiContactDriverSuccess = "api_contact_driver_success"
+    static let eventApiContactDriverFail = "api_contact_driver_fail"
     
     static let eventApiGetBookingsSuccess = "api_get_bookings_success"
     static let eventApiGetBookingsFail = "api_get_bookings_fail"

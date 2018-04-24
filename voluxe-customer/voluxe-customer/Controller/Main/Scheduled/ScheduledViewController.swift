@@ -315,6 +315,7 @@ class ScheduledViewController: ChildViewController {
         
         BookingAPI().contactDriver(customerId: customerId, bookingId: booking.id, mode: mode).onSuccess { result in
             if let contactDriver = result?.data?.result {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiContactDriverSuccess, screenName: self.screenName)
                 if mode == "text_only" {
                     // sms
                     let number = "sms:\(contactDriver.textPhoneNumber ?? "")"
@@ -323,9 +324,16 @@ class ScheduledViewController: ChildViewController {
                     let number = "telprompt:\(contactDriver.voicePhoneNumber ?? "")"
                     UIApplication.shared.openURL(URL(string: number)!)
                 }
+            } else {
+                if let error = result?.error {
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiContactDriverFail, screenName: self.screenName, errorCode: error.code)
+                }
             }
         }.onFailure { error in
             // todo handle error
+            self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+            VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiContactDriverFail, screenName: self.screenName, statusCode: error.responseCode)
         }
     }
     
