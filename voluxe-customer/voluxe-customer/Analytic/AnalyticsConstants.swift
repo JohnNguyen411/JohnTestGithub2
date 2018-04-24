@@ -78,6 +78,7 @@ class AnalyticsConstants {
     static let eventSettingsAccountAddressDeleted = "settings_account_address_deleted" // pass index of select row in params
     static let eventSettingsVehicleDeleted = "settings_vehicle_deleted" // pass index of select row in params
 
+    // API
     static let eventApiLoginSuccess = "api_login_success"
     static let eventApiLoginFail = "api_login_fail"
     static let eventApiGetMeSuccess = "api_me_success"
@@ -96,7 +97,6 @@ class AnalyticsConstants {
     static let eventApiGetVehiclesFail = "api_get_vehicles_fail"
     static let eventApiContactDriverSuccess = "api_contact_driver_success"
     static let eventApiContactDriverFail = "api_contact_driver_fail"
-    
     static let eventApiGetBookingsSuccess = "api_get_bookings_success"
     static let eventApiGetBookingsFail = "api_get_bookings_fail"
     static let eventApiGetDealershipsSuccess = "api_get_dealerships_success"
@@ -113,6 +113,11 @@ class AnalyticsConstants {
     static let eventApiCreateROFail = "api_create_ro_fail"
     static let eventApiCreatePickupSuccess = "api_create_pickup_success"
     static let eventApiCreatePickupFail = "api_create_pickup_fail"
+    
+    static let eventApiCancelPickupSuccess = "api_cancel_pickup_success"
+    static let eventApiCancelPickupFail = "api_cancel_pickup_fail"
+    static let eventApiCancelDropoffSuccess = "api_cancel_dropoff_success"
+    static let eventApiCancelDropoffFail = "api_cancel_dropoff_fail"
     
     // Params
     static let paramScreenName = "screen_name"
