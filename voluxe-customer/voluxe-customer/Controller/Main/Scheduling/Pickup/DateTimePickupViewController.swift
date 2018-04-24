@@ -166,6 +166,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             
             DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: loaner, from: from, to: to).onSuccess { result in
                 if let slots = result?.data?.result {
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetDealershipTimeslotsSuccess, screenName: self.screenName)
                     if let realm = self.realm {
                         try? realm.write {
                             realm.add(slots, update: true)
@@ -173,11 +174,10 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                     }
                     self.showCalendar()
                 } else {
-                    // todo show error
-                    
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipTimeslotsFail, screenName: self.screenName, errorCode: result?.error?.code)
                 }
                 }.onFailure { error in
-                    // todo show error
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipTimeslotsFail, screenName: self.screenName, statusCode: error.responseCode)
             }
         }
     }
