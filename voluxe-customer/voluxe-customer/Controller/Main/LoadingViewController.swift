@@ -105,16 +105,17 @@ class LoadingViewController: ChildViewController {
             } else {
                 // error
                 if let error = result?.error {
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, errorCode: error.code)
                     if error.code == "E3004" {
+                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, errorCode: error.code)
                         // code not verified
                         UserManager.sharedInstance.tempCustomerId = customerId
                         FTUEStartViewController.flowType = .login
                         self.appDelegate?.phoneVerificationScreen()
-                    } else {
-                        //todo show error
+                        return
                     }
                 }
+                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, errorCode: result?.error?.code)
             }
             }.onFailure { error in
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, statusCode: error.responseCode)
