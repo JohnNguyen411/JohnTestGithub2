@@ -23,7 +23,7 @@ class DealershipAPI: NSObject {
     func getDealerships() -> Future<ResponseObject<MappableDataArray<Dealership>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/dealerships", queryParameters: [:], withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/dealerships", queryParameters: [:], withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataArray<Dealership>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -49,7 +49,7 @@ class DealershipAPI: NSObject {
     func getDealerships(location: CLLocationCoordinate2D) -> Future<ResponseObject<MappableDataArray<Dealership>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/dealerships/near", queryParameters: ["latitude": "\(location.latitude)", "longitude" : "\(location.longitude)"], withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/dealerships/near", queryParameters: ["latitude": "\(location.latitude)", "longitude" : "\(location.longitude)"], withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataArray<Dealership>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -86,7 +86,7 @@ class DealershipAPI: NSObject {
             "to__lte": to,
             ] as [String : Any]
         
-        NetworkRequest.request(url: "/v1/dealership-time-slots", queryParameters: queryParams, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/dealership-time-slots", queryParameters: queryParams, withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataArray<DealershipTimeSlot>>?
             
             if let json = response.result.value as? [String: Any] {

@@ -24,7 +24,7 @@ class RepairOrderAPI: NSObject {
         let promise = Promise<ResponseObject<MappableDataArray<RepairOrderType>>?, AFError>()
         
         
-        NetworkRequest.request(url: "/v1/repair-order-types", queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/repair-order-types", queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataArray<RepairOrderType>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -71,7 +71,7 @@ class RepairOrderAPI: NSObject {
             params += "&repair_order_type_id=\(repairOrderTypeId)"
         }
         
-        NetworkRequest.request(url: "/v1/dealership-repair-orders?\(params)", queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/dealership-repair-orders?\(params)", queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataArray<DealershipRepairOrder>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -105,7 +105,7 @@ class RepairOrderAPI: NSObject {
             "dealership_repair_order_id": dealershipRepairOrderId
             ]
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/repair-order-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/repair-order-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataObject<RepairOrder>>?
             
             if let json = response.result.value as? [String: Any] {
