@@ -56,7 +56,7 @@ class CustomerAPI: NSObject {
             "password": password
         ]
         
-        NetworkRequest.request(url: "/v1/users/login", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSON { response in
+        NetworkRequest.request(url: "/v1/users/login", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSONErrorCheck { response in
             
             var responseObject: ResponseObject<MappableDataObject<Token>>?
             

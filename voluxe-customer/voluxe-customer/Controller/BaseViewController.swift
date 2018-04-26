@@ -57,7 +57,8 @@ class BaseViewController: UIViewController, PresentrDelegate {
     }
     
     func setRightButtonTitle(rightButtonTitle: String) {
-        
+        let rightItem = UIBarButtonItem(title: rightButtonTitle, style: .plain, target: self, action: #selector(onRightClicked))
+        navigationItem.rightBarButtonItem = rightItem
     }
     
     func pushViewController(_ controller: UIViewController, animated: Bool, backLabel: String) {
@@ -304,8 +305,7 @@ extension UIViewController {
     }
     
     private func getAnalyticsParamsForDialog(_ dialogName: String, screenName: String) -> [String: String] {
-        var params = [AnalyticsConstants.paramDialogName : dialogName, AnalyticsConstants.paramScreenName: screenName]
-        return params
+        return [AnalyticsConstants.paramDialogName : dialogName, AnalyticsConstants.paramScreenName: screenName]
     }
     
     private func getViewForHUD() -> UIView {

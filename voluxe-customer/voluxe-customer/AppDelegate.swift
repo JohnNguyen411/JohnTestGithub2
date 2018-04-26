@@ -122,25 +122,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         _ = Logger.init()
         GMSServices.provideAPIKey(Bundle.main.object(forInfoDictionaryKey: "GoogleMapsAPIKey") as! String)
         
-        // call ForceUpgrade route then launch app
-        
-        UtilAPI().needForceUpgrade().onSuccess { result in
-            if let result = result?.data?.result, UIApplication.appBuild() < result.buildNumber {
-                // force upgrade
-                self.showForceUpgradeDialog()
-            } else {
-                self.startApp()
-            }
-            
-        }.onFailure { error in
-            self.startApp()
-        }
-        
+        startApp()
         
         return true
     }
     
-    private func showForceUpgradeDialog() {
+    func showForceUpgradeDialog() {
         let alert = UIAlertController(title: .ForceUpgradeTitle, message: .ForceUpgradeMessage, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: NSLocalizedString(.Ok, comment: "Update"), style: .default, handler: { _ in
             // todo open app store
@@ -326,7 +313,8 @@ extension UIApplication {
     }
     
     class func appBuild() -> Int {
-        return Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! Int
+        let appBuild = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+        return Int(appBuild)!
     }
 }
 
