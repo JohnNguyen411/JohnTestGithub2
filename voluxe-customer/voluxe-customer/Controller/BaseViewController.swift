@@ -77,6 +77,13 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     func stateDidChange(state: ServiceState) {}
     
+    @objc func onBackClicked() {
+        self.onBackClicked(analyticEventName: nil)
+    }
+
+    @objc func onRightClicked() {
+        self.onRightClicked(analyticEventName: nil)
+    }
     
     @objc func onBackClicked(analyticEventName: String? = nil) {
         if let analyticEventName = analyticEventName {

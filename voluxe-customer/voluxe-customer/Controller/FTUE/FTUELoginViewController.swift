@@ -220,7 +220,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         //todo show error message
         self.showLoading(loading: false)
         
-        if error?.code == "E2005" {
+        if error?.getCode() == .E2005 {
             self.showOkDialog(title: .Error, message: .InvalidCredentials, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         } else {
             self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
