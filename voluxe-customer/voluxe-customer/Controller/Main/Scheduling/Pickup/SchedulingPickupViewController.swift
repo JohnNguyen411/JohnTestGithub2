@@ -16,6 +16,15 @@ class SchedulingPickupViewController: SchedulingViewController {
         super.init(vehicle: vehicle, state: state, screenName: AnalyticsConstants.paramNameSchedulingInboundView)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
+            setTitle(title: .SelfDrop)
+        } else {
+            setTitle(title: .SchedulePickup)
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

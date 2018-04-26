@@ -21,6 +21,15 @@ class SchedulingDropoffViewController: SchedulingViewController {
         super.init(vehicle: booking.vehicle!, state: state, screenName: AnalyticsConstants.paramNameSchedulingOutboundView)
     }
     
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        if let requestType = RequestedServiceManager.sharedInstance.getDropoffRequestType(), requestType == .advisorDropoff {
+            setTitle(title: .SelfPickup)
+        } else {
+            setTitle(title: .ScheduleDelivery)
+        }
+    }
+    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
