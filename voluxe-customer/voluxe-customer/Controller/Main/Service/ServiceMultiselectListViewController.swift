@@ -101,7 +101,7 @@ class ServiceMultiselectListViewController: BaseViewController {
                 
         containerView.snp.makeConstraints { make in
             make.left.top.right.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-20)
+            make.equalsToBottom(view: self.view, offset: -20)
         }
         
         introLabel.snp.makeConstraints { make in

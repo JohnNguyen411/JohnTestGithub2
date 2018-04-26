@@ -205,7 +205,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         stateTestView.textColor = .clear
         
         scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edgesEqualsToView(view: self.view)
         }
         
         let leftRightPadding = UIEdgeInsetsMake(0, 20, 0, 20)

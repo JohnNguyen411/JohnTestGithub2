@@ -289,6 +289,9 @@
 		6C88DC9D1FAA96D2009F2FC3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */; };
 		6C88DC9E1FAA96D2009F2FC3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */; };
 		6C88DC9F1FAA96D2009F2FC3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */; };
+		6C8A16E1209289EB00F888D6 /* ConstraintMaker+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A16E0209289EB00F888D6 /* ConstraintMaker+Voluxe.swift */; };
+		6C8A16E2209289EB00F888D6 /* ConstraintMaker+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A16E0209289EB00F888D6 /* ConstraintMaker+Voluxe.swift */; };
+		6C8A16E3209289EB00F888D6 /* ConstraintMaker+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A16E0209289EB00F888D6 /* ConstraintMaker+Voluxe.swift */; };
 		6C90CC1220113323002594F5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC1120113323002594F5 /* LoadingViewController.swift */; };
 		6C90CC1320113323002594F5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC1120113323002594F5 /* LoadingViewController.swift */; };
 		6C90CC1420113323002594F5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC1120113323002594F5 /* LoadingViewController.swift */; };
@@ -717,6 +720,7 @@
 		6C88DC931FAA8C28009F2FC3 /* LeftViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LeftViewController.swift; path = "voluxe-customer/Controller/Main/LeftPanel/LeftViewController.swift"; sourceTree = SOURCE_ROOT; };
 		6C88DC971FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftPanelTableViewCell.swift; sourceTree = "<group>"; };
 		6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		6C8A16E0209289EB00F888D6 /* ConstraintMaker+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConstraintMaker+Voluxe.swift"; sourceTree = "<group>"; };
 		6C90CC1120113323002594F5 /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		6C90CC15201156AF002594F5 /* ResponseError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseError.swift; sourceTree = "<group>"; };
 		6C91BBD61FA7D6220033C2B1 /* ViewPager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewPager.swift; sourceTree = "<group>"; };
@@ -1059,6 +1063,7 @@
 				6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */,
 				6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */,
 				6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */,
+				6C8A16E0209289EB00F888D6 /* ConstraintMaker+Voluxe.swift */,
 			);
 			path = Extention;
 			sourceTree = "<group>";
@@ -1157,7 +1162,6 @@
 				6C20E1AA1FBE3EF500E5D9A0 /* Scheduled */,
 				6C20E1A91FBE3EE000E5D9A0 /* Scheduling */,
 				6CA7C942201A928D009C00F6 /* Service */,
-				6CA968AF20229F4200FBEEAB /* Vehicle */,
 				6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */,
 				6C20E1EB1FC3A5C000E5D9A0 /* ChildViewController.swift */,
 				6C90CC1120113323002594F5 /* LoadingViewController.swift */,
@@ -1217,13 +1221,6 @@
 				6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		6CA968AF20229F4200FBEEAB /* Vehicle */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Vehicle;
 			sourceTree = "<group>";
 		};
 		6CA968BD2023CBA300FBEEAB /* Cell */ = {
@@ -2121,6 +2118,7 @@
 				6C6F4BCA1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
 				6C22087C1FBD0C6700874882 /* Driver.swift in Sources */,
 				6C3FB2B41FA289A700B22EAB /* TransmissionType.swift in Sources */,
+				6C8A16E1209289EB00F888D6 /* ConstraintMaker+Voluxe.swift in Sources */,
 				6C9B320F202E0CED006380B9 /* CustomerAddress.swift in Sources */,
 				6C937065204F64360084443C /* SettingsCarViewController.swift in Sources */,
 				6CBAA6CB2023FEE800F35ECF /* CheckmarkCell.swift in Sources */,
@@ -2211,6 +2209,7 @@
 				6C497100207580C800FF33E9 /* LeftPanelActiveBooking.swift in Sources */,
 				6CBB4E8C1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				6C20E1ED1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */,
+				6C8A16E2209289EB00F888D6 /* ConstraintMaker+Voluxe.swift in Sources */,
 				6C20E1C81FBE6D2400E5D9A0 /* StateService.swift in Sources */,
 				6C7DDE1E1FE1B864000E2822 /* VLAnalytics.swift in Sources */,
 				6C20E1D11FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
@@ -2384,6 +2383,7 @@
 				6CC37E551FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
 				6CDCC61C20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */,
 				6CD47D161FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
+				6C8A16E3209289EB00F888D6 /* ConstraintMaker+Voluxe.swift in Sources */,
 				6C522458208568E90078D9B9 /* PasswordToggleVisibilityView.swift in Sources */,
 				6C20E19A1FBE14E300E5D9A0 /* GMLegs.swift in Sources */,
 				6C91BBE21FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
