@@ -17,6 +17,7 @@ class ChildViewController: BaseViewController {
         if let childViewDelegate = childViewDelegate {
             childViewDelegate.setTitleFromChild(title: title)
         } else {
+            self.navigationController?.setTitle(title: title)
             super.setTitle(title: title)
         }
     }
