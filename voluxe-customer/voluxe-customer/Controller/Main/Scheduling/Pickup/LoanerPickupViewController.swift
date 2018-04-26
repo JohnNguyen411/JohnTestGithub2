@@ -41,7 +41,7 @@ class LoanerPickupViewController: VLPresentrViewController, VLGroupedLabelsDeleg
     }
     
     override func height() -> Int {
-        return (groupedLabels.items.count * VLSelectableLabel.height) + VLPresentrViewController.baseHeight + 60
+        return (groupedLabels.items.count * VLSelectableLabel.height) + baseHeight + 60
     }
     
     override func onButtonClick() {

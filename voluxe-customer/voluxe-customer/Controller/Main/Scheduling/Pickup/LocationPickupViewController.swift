@@ -194,7 +194,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     }
     
     override func height() -> Int {
-        return (tableViewHeight()) + VLPresentrViewController.baseHeight + newLocationHeight + 100
+        return (tableViewHeight()) + baseHeight + newLocationHeight + 100
     }
     
     func autocompleteWithText(userText: String){

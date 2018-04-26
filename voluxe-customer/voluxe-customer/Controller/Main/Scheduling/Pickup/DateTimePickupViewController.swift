@@ -296,7 +296,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     override func height() -> Int {
-        var height = (169 + calendarViewHeight) + VLPresentrViewController.baseHeight + hoursViewHeight + loanerViewHeight
+        var height = (169 + calendarViewHeight) + baseHeight + hoursViewHeight + loanerViewHeight
         if !noDateLabel.isHidden {
             height += 5
         }

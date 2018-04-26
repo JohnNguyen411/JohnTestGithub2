@@ -76,9 +76,9 @@ class DealershipPickupViewController: VLPresentrViewController, VLGroupedLabelsD
     
     override func height() -> Int {
         if let groupedLabels = groupedLabels {
-            return (groupedLabels.items.count * VLSelectableLabel.height) + VLPresentrViewController.baseHeight + 60
+            return (groupedLabels.items.count * VLSelectableLabel.height) + baseHeight + 60
         }
-        return VLPresentrViewController.baseHeight + 60
+        return baseHeight + 60
         
     }
     
