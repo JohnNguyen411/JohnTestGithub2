@@ -87,7 +87,7 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
         self.bottomButton.isEnabled = false
 
         self.locationManager.autocompleteUsingGoogleAddressString(address: self.newLocationTextField.text as NSString, onAutocompleteCompletionHandler: { (gecodeInfos: [NSDictionary]?, placemarks: [CLPlacemark]?, error: String?) in
-            if let error = error {
+            if let _ = error {
                 DispatchQueue.main.sync {
                     
                     self.newLocationTextField.text = userText

@@ -5,14 +5,14 @@ PODS:
   - AlamofireObjectMapper (5.0.0):
     - Alamofire (~> 4.1)
     - ObjectMapper (~> 3.0)
-  - BrightFutures (6.0.0):
+  - BrightFutures (6.0.1):
     - Result (~> 3.2.4)
   - CocoaLumberjack/Default (3.3.0)
   - CocoaLumberjack/Swift (3.3.0):
     - CocoaLumberjack/Default
   - Crashlytics (3.10.1):
     - Fabric (~> 1.7.5)
-  - DateToolsSwift (2.0.3)
+  - DateToolsSwift (4.0.0)
   - Fabric (1.7.5)
   - Firebase/Core (4.7.0):
     - FirebaseAnalytics (= 4.0.5)
@@ -94,10 +94,10 @@ DEPENDENCIES:
   - Alamofire (= 4.5.1)
   - AlamofireNetworkActivityLogger (= 2.2)
   - AlamofireObjectMapper (= 5.0.0)
-  - BrightFutures (= 6.0.0)
+  - BrightFutures (= 6.0.1)
   - CocoaLumberjack/Swift (= 3.3.0)
   - Crashlytics (= 3.10.1)
-  - DateToolsSwift (= 2.0.3)
+  - DateToolsSwift (= 4.0.0)
   - Fabric (= 1.7.5)
   - Firebase/Core (= 4.7.0)
   - Firebase/Messaging (= 4.7.0)
@@ -120,10 +120,10 @@ SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireNetworkActivityLogger: a7ae1842988b3f6248a49213268375bd27b515f0
   AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
-  BrightFutures: 9e7604f511aed9f0d6a49b04ac9b3fca6b117758
+  BrightFutures: 9c03dab79e73ffe504b7bafc15c5bfdaeee54890
   CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
   Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
-  DateToolsSwift: bf69bf9056d9e53c5c03f06e51f219b9b8b02f9e
+  DateToolsSwift: 875d97ff9e3a5d54abdd67a269b3f51c757b71ab
   Fabric: ae7146a5f505ea370a1e44820b4b1dc8890e2890
   Firebase: dbfb98ccec2dcfcd21ab9cc1b4981a3f3c8c5e26
   FirebaseABTesting: d07d0ee833b842d5153549e4c7e2e2cb1c23a3f9
@@ -152,6 +152,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: dc88934f85fb50b263b1632b9cbad3402505783e
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: 1d314f118045b40ea3923e3158cd4186f7994caf
+PODFILE CHECKSUM: e3ca6b71b008250234a68590ee3546937a6c2664
 
 COCOAPODS: 1.4.0
