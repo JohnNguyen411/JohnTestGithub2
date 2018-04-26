@@ -43,38 +43,7 @@ class NetworkRequest {
         
         return finalRequest!
     }
-    
-    static func checkErrors(response: DataResponse<Any>) {
-        // check for custom errors
-        if let json = response.result.value as? [String: Any] {
-            let responseObject = ResponseObject<EmptyMappableObject>(json: json)
-            if let error = responseObject.error, let code = error.getCode() {
-                weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
-                
-                switch code {
-                // invalid token
-                case .E2001, .E2002, .E2003, .E2004:
-                    // logout
-                    UserManager.sharedInstance.logout()
-                    appDelegate?.startApp()
-                // User Disabled
-                case .E3001:
-                    // logout
-                    UserManager.sharedInstance.logout()
-                    appDelegate?.startApp()
-                // Need Force Upgrade
-                case .E3006:
-                    appDelegate?.showForceUpgradeDialog()
-                default:
-                    break
-                    
-                }
-            }
-        }
-    }
-    
-    
-    
+
     //MARK: Helper methods
     static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, headers: HTTPHeaders, addBearer: Bool) -> DataRequest {
         var mutHeader = headers
@@ -125,6 +94,36 @@ class NetworkRequest {
         params.removeLast()
         return params
     }
+    
+    static func checkErrors(response: DataResponse<Any>) {
+        // check for custom errors
+        if let json = response.result.value as? [String: Any] {
+            let responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            if let error = responseObject.error, let code = error.getCode() {
+                weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
+                
+                switch code {
+                // invalid token
+                case .E2001, .E2002, .E2003, .E2004:
+                    // logout
+                    UserManager.sharedInstance.logout()
+                    appDelegate?.startApp()
+                // User Disabled
+                case .E3001:
+                    // logout
+                    UserManager.sharedInstance.logout()
+                    appDelegate?.startApp()
+                // Need Force Upgrade
+                case .E3006:
+                    appDelegate?.showForceUpgradeDialog()
+                default:
+                    break
+                    
+                }
+            }
+        }
+    }
+    
 }
 
 extension DataRequest {
