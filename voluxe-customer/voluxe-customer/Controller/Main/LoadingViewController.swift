@@ -105,7 +105,7 @@ class LoadingViewController: ChildViewController {
             } else {
                 // error
                 if let error = result?.error {
-                    if error.code == "E3004" {
+                    if error.getCode() == .E3004 {
                         VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, errorCode: error.code)
                         // code not verified
                         UserManager.sharedInstance.tempCustomerId = customerId
@@ -131,7 +131,7 @@ class LoadingViewController: ChildViewController {
     private func errorRetrievingCustomer(customerId: Int, error: ResponseError?) {
         
         if let error = error {
-            if error.code == "E3004" {
+            if error.getCode() == .E3004 {
                 // code not verified
                 UserManager.sharedInstance.tempCustomerId = customerId
                 FTUEStartViewController.flowType = .login

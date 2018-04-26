@@ -18,6 +18,7 @@ import BrightFutures
  ***/
 class NetworkRequest {
     
+    // Single entry point for all our API requests
     static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, bodyParameters: Parameters? = nil, bodyEncoding: ParameterEncoding = URLEncoding.httpBody, headers: HTTPHeaders) -> DataRequest {
         let finalUrl = "\(Config.sharedInstance.apiEndpoint())\(url)"
         
@@ -26,6 +27,7 @@ class NetworkRequest {
         
         var mutHeader = headers
         mutHeader["X-CLIENT-ID"] = Config.sharedInstance.apiClientId()
+        mutHeader["application_name"] = "luxe_by_volvo_customer_ios:\(UIApplication.appBuild())"
 
         do {
             originalRequest = try URLRequest(url: finalUrl, method: method, headers: mutHeader)
@@ -38,9 +40,11 @@ class NetworkRequest {
         } catch {
             finalRequest = Alamofire.request(originalRequest!)
         }
+        
         return finalRequest!
     }
-    
+
+    //MARK: Helper methods
     static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, headers: HTTPHeaders, addBearer: Bool) -> DataRequest {
         var mutHeader = headers
         if addBearer {
@@ -90,4 +94,61 @@ class NetworkRequest {
         params.removeLast()
         return params
     }
+    
+    static func checkErrors(response: DataResponse<Any>) {
+        // check for custom errors
+        if let json = response.result.value as? [String: Any] {
+            let responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            if let error = responseObject.error, let code = error.getCode() {
+                weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
+                
+                switch code {
+                // invalid token
+                case .E2001, .E2002, .E2003, .E2004:
+                    // logout
+                    UserManager.sharedInstance.logout()
+                    appDelegate?.startApp()
+                // User Disabled
+                case .E3001:
+                    // logout
+                    UserManager.sharedInstance.logout()
+                    appDelegate?.startApp()
+                // Need Force Upgrade
+                case .E3006:
+                    appDelegate?.showForceUpgradeDialog()
+                default:
+                    break
+                    
+                }
+            }
+        }
+    }
+    
 }
+
+extension DataRequest {
+    
+    /// Adds a handler to be called once the request has finished.
+    ///
+    /// - parameter options:           The JSON serialization reading options. Defaults to `.allowFragments`.
+    /// - parameter completionHandler: A closure to be executed once the request has finished.
+    ///
+    /// - returns: The request.
+    @discardableResult
+    public func responseJSONErrorCheck(
+        queue: DispatchQueue? = nil,
+        options: JSONSerialization.ReadingOptions = .allowFragments,
+        completionHandler: @escaping (DataResponse<Any>) -> Void)
+        -> Self
+    {
+        return response(
+            queue: queue,
+            responseSerializer: DataRequest.jsonResponseSerializer(options: options),
+            completionHandler: { response in
+                NetworkRequest.checkErrors(response: response)
+                completionHandler(response)
+            }
+        )
+    }
+}
+

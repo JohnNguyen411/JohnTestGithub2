@@ -32,7 +32,7 @@ class BookingAPI: NSObject {
             "loaner_vehicle_requested": loaner,
         ]
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataObject<Booking>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -58,7 +58,7 @@ class BookingAPI: NSObject {
     func getBooking(customerId: Int, bookingId: Int) -> Future<ResponseObject<MappableDataObject<Booking>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, AFError>()
 
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)", queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)", queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataObject<Booking>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -89,7 +89,7 @@ class BookingAPI: NSObject {
             params = "?active=\(active ? "true" : "false")"
         }
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings\(params)", queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings\(params)", queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
                 var responseObject: ResponseObject<MappableDataArray<Booking>>?
                 
                 if let json = response.result.value as? [String: Any] {
@@ -127,7 +127,7 @@ class BookingAPI: NSObject {
             endpoint = "advisor-pickup-requests"
         }
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataObject<Request>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -165,7 +165,7 @@ class BookingAPI: NSObject {
             endpoint = "advisor-dropoff-requests"
         }
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataObject<Request>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -197,7 +197,7 @@ class BookingAPI: NSObject {
             endpoint = "advisor-pickup-requests"
         }
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)/\(requestId)/cancel", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)/\(requestId)/cancel", method: .put, queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<EmptyMappableObject>?
             
             if let json = response.result.value as? [String: Any] {
@@ -229,7 +229,7 @@ class BookingAPI: NSObject {
             endpoint = "advisor-dropoff-requests"
         }
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)/\(requestId)/cancel", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)/\(requestId)/cancel", method: .put, queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<EmptyMappableObject>?
             
             if let json = response.result.value as? [String: Any] {
@@ -261,7 +261,7 @@ class BookingAPI: NSObject {
             "mode": mode
         ]
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/contact-driver", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/contact-driver", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataObject<ContactDriver>>?
             
             if let json = response.result.value as? [String: Any] {

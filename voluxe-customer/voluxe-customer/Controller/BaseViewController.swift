@@ -57,7 +57,8 @@ class BaseViewController: UIViewController, PresentrDelegate {
     }
     
     func setRightButtonTitle(rightButtonTitle: String) {
-        
+        let rightItem = UIBarButtonItem(title: rightButtonTitle, style: .plain, target: self, action: #selector(onRightClicked))
+        navigationItem.rightBarButtonItem = rightItem
     }
     
     func pushViewController(_ controller: UIViewController, animated: Bool, backLabel: String) {
@@ -76,6 +77,13 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     func stateDidChange(state: ServiceState) {}
     
+    @objc func onBackClicked() {
+        self.onBackClicked(analyticEventName: nil)
+    }
+
+    @objc func onRightClicked() {
+        self.onRightClicked(analyticEventName: nil)
+    }
     
     @objc func onBackClicked(analyticEventName: String? = nil) {
         if let analyticEventName = analyticEventName {
@@ -304,8 +312,7 @@ extension UIViewController {
     }
     
     private func getAnalyticsParamsForDialog(_ dialogName: String, screenName: String) -> [String: String] {
-        var params = [AnalyticsConstants.paramDialogName : dialogName, AnalyticsConstants.paramScreenName: screenName]
-        return params
+        return [AnalyticsConstants.paramDialogName : dialogName, AnalyticsConstants.paramScreenName: screenName]
     }
     
     private func getViewForHUD() -> UIView {

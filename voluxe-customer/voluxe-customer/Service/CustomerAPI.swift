@@ -24,7 +24,7 @@ class CustomerAPI: NSObject {
     func logout() -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
         let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/users/logout", queryParameters: [:], withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/users/logout", queryParameters: [:], withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<EmptyMappableObject>?
             
             if let json = response.result.value as? [String: Any] {
@@ -56,7 +56,7 @@ class CustomerAPI: NSObject {
             "password": password
         ]
         
-        NetworkRequest.request(url: "/v1/users/login", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSON { response in
+        NetworkRequest.request(url: "/v1/users/login", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSONErrorCheck { response in
             
             var responseObject: ResponseObject<MappableDataObject<Token>>?
             
@@ -94,7 +94,7 @@ class CustomerAPI: NSObject {
             "language_code": languageCode
         ]
         
-        NetworkRequest.request(url: "/v1/customers/signup", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/signup", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSONErrorCheck { response in
             
             var responseObject: ResponseObject<MappableDataObject<Customer>>?
             
@@ -129,7 +129,7 @@ class CustomerAPI: NSObject {
             "verification_code": verificationCode
         ]
         
-        NetworkRequest.request(url: "/v1/customers/signup/confirm", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/signup/confirm", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSONErrorCheck { response in
             
             var responseObject: ResponseObject<MappableDataObject<Customer>>?
             
@@ -155,7 +155,7 @@ class CustomerAPI: NSObject {
     func requestPhoneVerificationCode(customerId: Int) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
         let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/phone-number/request-verification", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/phone-number/request-verification", method: .put, queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             
@@ -186,7 +186,7 @@ class CustomerAPI: NSObject {
             "verification_code": verificationCode
         ]
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/phone-number/verify", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/phone-number/verify", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             
@@ -217,7 +217,7 @@ class CustomerAPI: NSObject {
             "phone_number": phoneNumber
         ]
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)", method: .patch, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)", method: .patch, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             
@@ -243,7 +243,7 @@ class CustomerAPI: NSObject {
     func requestPasswordChange(customerId: Int) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
         let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/password/request-change", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/password/request-change", method: .put, queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             
@@ -276,7 +276,7 @@ class CustomerAPI: NSObject {
             "password": password
         ]
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/password/change", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/password/change", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             
@@ -306,7 +306,7 @@ class CustomerAPI: NSObject {
             "phone_number": phoneNumber
         ]
         
-        NetworkRequest.request(url: "/v1/customers/password-reset/request", method: .put, queryParameters: nil, bodyParameters: params,  withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/password-reset/request", method: .put, queryParameters: nil, bodyParameters: params,  withBearer: true).responseJSONErrorCheck { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             
@@ -340,7 +340,7 @@ class CustomerAPI: NSObject {
             "password": password
         ]
         
-        NetworkRequest.request(url: "/v1/customers/password-reset/confirm", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/password-reset/confirm", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             
@@ -366,7 +366,7 @@ class CustomerAPI: NSObject {
     func getCustomer(id: Int) -> Future<ResponseObject<MappableDataObject<Customer>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/customers/\(id)", queryParameters: [:], withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(id)", queryParameters: [:], withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataObject<Customer>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -390,7 +390,7 @@ class CustomerAPI: NSObject {
     func getMe() -> Future<ResponseObject<MappableDataObject<Customer>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/users/me", queryParameters: [:], withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/users/me", queryParameters: [:], withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataObject<Customer>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -416,7 +416,7 @@ class CustomerAPI: NSObject {
     func getVehicles(customerId: Int) -> Future<ResponseObject<MappableDataArray<Vehicle>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataArray<Vehicle>>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/vehicles", queryParameters: [:], withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/vehicles", queryParameters: [:], withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataArray<Vehicle>>?
             
             if let json = response.result.value as? [String: Any] {
@@ -452,7 +452,7 @@ class CustomerAPI: NSObject {
             "year": year
         ]
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/vehicles", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/vehicles", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
 
             var responseObject: ResponseObject<MappableDataObject<Vehicle>>?
             

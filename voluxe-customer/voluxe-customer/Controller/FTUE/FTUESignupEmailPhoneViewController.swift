@@ -157,9 +157,9 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         //todo show error message
         self.showLoading(loading: false)
         
-        if error?.code == "E5001" {
+        if error?.getCode() == .E5001 {
             self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-        } else if error?.code == "E4011" {
+        } else if error?.getCode() == .E4011 {
             self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                 self.loadLandingPage()
             }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)

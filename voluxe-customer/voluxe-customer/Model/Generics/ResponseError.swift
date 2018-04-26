@@ -24,5 +24,10 @@ class ResponseError: Mappable {
         message <- map["message"]
     }
     
-    
+    func getCode() -> Errors.ErrorCode? {
+        if let code = code {
+            return Errors.ErrorCode(rawValue: code)
+        }
+        return nil
+    }
 }

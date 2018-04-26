@@ -32,6 +32,9 @@
 "Success" = "Success";
 "Confirm" = "Confirm";
 "Delete" = "Delete";
+"ForceUpgradeTitle" = "Software Update";
+"ForceUpgradeMessage" = "There is a new version of Luxe aby Volvo vailable for download.\n\nTo have the best possible experience, please update now.";
+
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";

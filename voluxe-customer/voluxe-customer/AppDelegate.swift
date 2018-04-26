@@ -122,9 +122,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         _ = Logger.init()
         GMSServices.provideAPIKey(Bundle.main.object(forInfoDictionaryKey: "GoogleMapsAPIKey") as! String)
         
-       startApp()
+        startApp()
         
         return true
+    }
+    
+    func showForceUpgradeDialog() {
+        let alert = UIAlertController(title: .ForceUpgradeTitle, message: .ForceUpgradeMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: NSLocalizedString(.Ok, comment: "Update"), style: .default, handler: { _ in
+            // todo open app store
+        }))
+        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
     }
     
     func startApp() {
@@ -302,6 +310,11 @@ extension UIApplication {
     
     public static var shouldReset: Bool {
         return ProcessInfo().arguments.contains("reset")
+    }
+    
+    class func appBuild() -> Int {
+        let appBuild = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
+        return Int(appBuild)!
     }
 }
 
