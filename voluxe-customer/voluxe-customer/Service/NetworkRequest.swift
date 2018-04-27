@@ -27,7 +27,7 @@ class NetworkRequest {
         
         var mutHeader = headers
         mutHeader["X-CLIENT-ID"] = Config.sharedInstance.apiClientId()
-        mutHeader["application_name"] = "luxe_by_volvo_customer_ios:\(UIApplication.appBuild())"
+        mutHeader["x-application-version"] = "luxe_by_volvo_customer_ios:\(UIApplication.appBuild())"
 
         do {
             originalRequest = try URLRequest(url: finalUrl, method: method, headers: mutHeader)

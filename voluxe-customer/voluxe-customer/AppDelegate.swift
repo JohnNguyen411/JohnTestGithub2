@@ -128,11 +128,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func showForceUpgradeDialog() {
-        let alert = UIAlertController(title: .ForceUpgradeTitle, message: .ForceUpgradeMessage, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: NSLocalizedString(.Ok, comment: "Update"), style: .default, handler: { _ in
-            // todo open app store
-        }))
-        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        if let window = self.window, let rootViewController = window.rootViewController {
+            // check if already added
+            if let _ = rootViewController.presentedViewController as? VLAlertViewController {
+                return
+            }
+            let alert = VLAlertViewController(title: String.ForceUpgradeTitle, message: String.ForceUpgradeMessage, cancelButtonTitle: nil, okButtonTitle: String.Ok.uppercased())
+            alert.delegate = self
+            alert.dismissOnTap = false
+            
+            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+        }
     }
     
     func startApp() {
@@ -301,6 +307,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // TODO: If necessary send token to application server.
         // Note: This callback is fired at each app startup and whenever a new token is generated.
     }
+}
+
+extension AppDelegate: VLAlertViewDelegate {
+    
+    func okButtonTapped() {
+        if let url = URL(string: "http://itunes.apple.com/app/idXXXXXXXXX"), UIApplication.shared.canOpenURL(url) {
+            // Attempt to open the URL.
+            UIApplication.shared.openURL(url)
+        }
+    }
+    
+    func cancelButtonTapped() {
+        
+    }
+    
+    
+    
 }
 
 extension UIApplication {
