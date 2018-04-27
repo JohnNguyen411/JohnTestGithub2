@@ -96,8 +96,8 @@ class FTUEStartViewController: BaseViewController {
         
         container.snp.makeConstraints { (make) -> Void in
             make.top.equalToSuperview().offset(120)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.width.equalTo(315)
+            make.centerX.equalToSuperview()
             make.height.equalTo(100)
         }
         
