@@ -11,7 +11,8 @@ import UIKit
 
 class VLPresentrViewController: UIViewController {
     
-    static let baseHeight = 80
+    static let minHeight = 80
+    let baseHeight: Int
     
     let screenName: String
     let loadingView = UIView(frame: .zero)
@@ -31,6 +32,7 @@ class VLPresentrViewController: UIViewController {
     
     init(title: String, buttonTitle: String, screenName: String) {
         self.screenName = screenName
+        self.baseHeight = VLPresentrViewController.minHeight + VLPresentrViewController.safeAreaBottomHeight()
         bottomButton = VLButton(type: .bluePrimary, title: nil, kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNext, screenName: screenName)
         super.init(nibName: nil, bundle: nil)
         setupViews()
@@ -104,7 +106,8 @@ class VLPresentrViewController: UIViewController {
         }
         
         containerView.snp.makeConstraints { make in
-            make.bottom.left.right.equalToSuperview().inset(UIEdgeInsetsMake(20, 15, 20, 15))
+            make.left.right.equalToSuperview().inset(UIEdgeInsetsMake(20, 15, 20, 15))
+            make.equalsToBottom(view: self.view, offset: -20)
             make.height.equalTo(height())
         }
         
@@ -116,7 +119,7 @@ class VLPresentrViewController: UIViewController {
     }
     
     func height() -> Int {
-        return VLPresentrViewController.baseHeight
+        return baseHeight
     }
     
     func onButtonClick() {}
@@ -135,6 +138,19 @@ class VLPresentrViewController: UIViewController {
         containerView.animateAlpha(show: !loading)
     }
     
+    
+    private static func safeAreaBottomHeight() -> Int {
+        #if swift(>=3.2)
+            if #available(iOS 11.0, *) {
+                if let window = UIApplication.shared.keyWindow {
+                    return Int(window.safeAreaInsets.bottom)
+                }
+            }
+            return 0
+        #else
+            return 0
+        #endif
+    }
 }
 
 protocol VLPresentrViewDelegate: class {

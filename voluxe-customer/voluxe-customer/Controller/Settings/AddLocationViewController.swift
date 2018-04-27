@@ -70,7 +70,7 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     }
     
     override func height() -> Int {
-        return VLPresentrViewController.baseHeight + VLVerticalTextField.height + 50
+        return baseHeight + VLVerticalTextField.height + 50
     }
     
     

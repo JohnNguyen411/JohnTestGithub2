@@ -63,7 +63,7 @@ class SettingsCarViewController: BaseViewController {
         }
         
         contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsetsMake(10, 20, 20, 20))
+            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(10, 20, 20, 20))
         }
     }
     

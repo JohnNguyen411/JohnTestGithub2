@@ -113,7 +113,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
                 self.view.addSubview(view)
                 
                 view.snp.makeConstraints { make in
-                    make.edges.equalToSuperview()
+                    make.edgesEqualsToView(view: self.view)
                 }
             }
         }

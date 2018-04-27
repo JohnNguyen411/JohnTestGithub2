@@ -134,7 +134,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         contentView.addSubview(confirmButton)
         
         scrollView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.edgesEqualsToView(view: self.view)
         }
         
         contentView.snp.makeConstraints { make in
@@ -191,7 +191,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         
         confirmButton.snp.makeConstraints { make in
             make.left.right.equalTo(volvoDrivableLabel)
-            make.bottom.equalToSuperview().offset(-20)
+            make.equalsToBottom(view: contentView, offset: -20)
             make.height.equalTo(VLButton.primaryHeight)
         }
         

@@ -114,7 +114,7 @@ class FTUEStartViewController: BaseViewController {
         
         buttonContainer.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-40)
+            make.equalsToBottom(view: self.view, offset: -40)
             make.width.equalTo(180)
             make.height.equalTo(VLButton.primaryHeight)
         }

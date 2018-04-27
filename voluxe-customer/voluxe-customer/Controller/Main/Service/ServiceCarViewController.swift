@@ -143,7 +143,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         updateLabel.isHidden = true
         
         contentView.snp.makeConstraints { make in
-            make.edges.equalToSuperview().inset(UIEdgeInsetsMake(20, 20, 20, 20))
+            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(20, 20, 20, 20))
         }
         
         vehicleImageView.snp.makeConstraints { make in
