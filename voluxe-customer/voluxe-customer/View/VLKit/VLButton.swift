@@ -117,6 +117,7 @@ class VLButton : UIButton {
     
     func setTitle(title: String) {
         self.setTitle(title, for: .normal)
+        self.setTitle(title, for: .highlighted)
         self.accessibilityLabel = title
         if let kern = kern {
             self.addCharacterSpacing(kernValue: kern)
