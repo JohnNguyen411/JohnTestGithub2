@@ -110,6 +110,7 @@ class Vehicle: Object, Mappable {
     }
     
     func setVehicleImage(imageView: UIImageView) {
+        // todo, remove code to only use real photoURL
         imageView.image = UIImage(named: localImageName())
         return
         

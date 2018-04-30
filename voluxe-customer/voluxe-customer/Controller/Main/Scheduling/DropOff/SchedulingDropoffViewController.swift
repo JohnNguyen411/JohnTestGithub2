@@ -251,6 +251,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 if let dropOffRequest = result?.data?.result {
                     VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCreateDropoffSuccess, screenName: self.screenName)
                     self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
+                    self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
                 } else {
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateDropoffFail, screenName: self.screenName, errorCode: result?.error?.code)
@@ -283,14 +284,41 @@ class SchedulingDropoffViewController: SchedulingViewController {
                     realm.add(booking, update: true)
                 }
             }
-            let bookings = realm.objects(Booking.self).filter("customerId = \(booking.customerId)")
-            UserManager.sharedInstance.setBookings(bookings: Array(bookings))
         }
-        RequestedServiceManager.sharedInstance.reset()
-        appDelegate?.showVehiclesView(animated: false)
         
         hideProgressHUD()
 
+    }
+    
+    private func refreshFinalBooking(customerId: Int, bookingId: Int) {
+        showProgressHUD()
+        
+        BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
+            if let booking = result?.data?.result {
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(booking, update: true)
+                    }
+                }
+            }
+            
+            if let realm = self.realm {
+                let bookings = realm.objects(Booking.self).filter("customerId = \(self.booking.customerId)")
+                UserManager.sharedInstance.setBookings(bookings: Array(bookings))
+            }
+            
+            RequestedServiceManager.sharedInstance.reset()
+            self.appDelegate?.showVehiclesView(animated: false)
+            
+            self.hideProgressHUD()
+            
+            }.onFailure { error in
+                // retry
+                self.hideProgressHUD()
+                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                    self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
+                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+        }
     }
     
     
