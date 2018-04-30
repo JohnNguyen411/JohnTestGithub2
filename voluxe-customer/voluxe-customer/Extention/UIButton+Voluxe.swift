@@ -16,6 +16,12 @@ extension UIButton {
     
     func addCharacterSpacing(kernValue: Float) {
         if let titleLabel = self.titleLabel, let text = titleLabel.text {
+            addCharacterSpacing(kernValue: kernValue, text: text)
+        }
+    }
+    
+    func addCharacterSpacing(kernValue: Float, text: String) {
+        if let titleLabel = self.titleLabel {
             let attributedText =  NSAttributedString(string: text, attributes: [NSAttributedStringKey.kern:kernValue, NSAttributedStringKey.font:titleLabel.font, NSAttributedStringKey.foregroundColor: titleLabel.textColor])
             self.setAttributedTitle(attributedText, for: UIControlState.normal)
             
@@ -25,6 +31,7 @@ extension UIButton {
             }
         }
     }
+    
     
     public func addBorder(side: UIButtonBorderSide, color: UIColor, width: CGFloat) {
         let border = CALayer()

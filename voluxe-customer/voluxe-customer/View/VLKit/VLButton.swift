@@ -120,7 +120,7 @@ class VLButton : UIButton {
         self.setTitle(title, for: .highlighted)
         self.accessibilityLabel = title
         if let kern = kern {
-            self.addCharacterSpacing(kernValue: kern)
+            self.addCharacterSpacing(kernValue: kern, text: title)
         }
     }
     
