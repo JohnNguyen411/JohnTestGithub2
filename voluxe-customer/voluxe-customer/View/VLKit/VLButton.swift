@@ -32,6 +32,7 @@ class VLButton : UIButton {
     var highlightBackgroundColor: UIColor?
     var type: VLButtonType?
     var titleText = ""
+    let kern: Float?
     
     // Analytics
     private var eventName: String?
@@ -75,6 +76,7 @@ class VLButton : UIButton {
      Need to make constraints after initializing the button
      */
     init(type: VLButtonType, title: String?, kern: Float? = nil, actionBlock:(()->())? = nil, eventName: String? = nil, screenName: String? = nil) {
+        self.kern = kern
         super.init(frame: .zero)
         
         self.eventName = eventName
@@ -116,6 +118,9 @@ class VLButton : UIButton {
     func setTitle(title: String) {
         self.setTitle(title, for: .normal)
         self.accessibilityLabel = title
+        if let kern = kern {
+            self.addCharacterSpacing(kernValue: kern)
+        }
     }
     
     func setEventName(_ eventName: String, screenName: String? = nil, params: [String: String]? = nil) {

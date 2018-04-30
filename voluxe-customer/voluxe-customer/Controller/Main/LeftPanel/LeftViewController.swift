@@ -202,20 +202,48 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         showRedDot(vehicleId: vehicleId, show: true)
     }
     
+    private func isShowingScreenForVehicle(vehicleId: Int) -> Bool {
+        var showingScreen = false
+        if let viewController = self.slideMenuController()?.mainViewController {
+            if let baseController = viewController as? BaseViewController {
+                if baseController is VehiclesViewController || baseController is MainViewController || baseController is SettingsViewController {
+                    if let mainVc = baseController as? MainViewController, mainVc.vehicleId == vehicleId {
+                        // screen showing car info, don't show notif
+                        showingScreen = true
+                    } else {
+                        showingScreen = false
+                    }
+                }
+            } else if let navController = viewController as? UINavigationController, navController.childViewControllers.count > 0 {
+                for controller in navController.childViewControllers {
+                    if controller is VehiclesViewController || controller is MainViewController || controller is SettingsViewController {
+                        // screen showing car info, don't show notif
+                        if let mainVc = controller as? MainViewController, mainVc.vehicleId == vehicleId {
+                            showingScreen = true
+                        } else {
+                            showingScreen = false
+                        }
+                    }
+                }
+            }
+        }
+        return showingScreen
+    }
+    
     func showRedDot(vehicleId: Int, show: Bool) {
         for subview in activeBookingsContainer.subviews {
             let activeBookingLabel = subview as! LeftPanelActiveBooking
-            if activeBookingLabel.booking.vehicleId == vehicleId {
+            if activeBookingLabel.booking.vehicleId == vehicleId && !isShowingScreenForVehicle(vehicleId: vehicleId){
                 activeBookingLabel.showRedDot(show: show)
             }
         }
-        
         updateNotificationBadge()
     }
     
+    
     private func updateNotificationBadge() {
         var isShowingNotif = false
-
+        
         for subview in activeBookingsContainer.subviews {
             let activeBookingLabel = subview as! LeftPanelActiveBooking
             
@@ -228,12 +256,10 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
                 if baseController is VehiclesViewController || baseController is MainViewController || baseController is SettingsViewController {
                     baseController.setNavigationBarItem(showNotif: isShowingNotif)
                 }
-            } else if let navController = viewController as? UINavigationController {
-                if navController.childViewControllers.count > 0 {
-                    for controller in navController.childViewControllers {
-                        if controller is VehiclesViewController || controller is MainViewController || controller is SettingsViewController {
-                            controller.setNavigationBarItem(showNotif: isShowingNotif)
-                        }
+            } else if let navController = viewController as? UINavigationController, navController.childViewControllers.count > 0 {
+                for controller in navController.childViewControllers {
+                    if controller is VehiclesViewController || controller is MainViewController || controller is SettingsViewController {
+                        controller.setNavigationBarItem(showNotif: isShowingNotif)
                     }
                 }
             }
