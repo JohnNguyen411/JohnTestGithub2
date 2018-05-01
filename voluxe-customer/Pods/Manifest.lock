@@ -13,7 +13,7 @@ PODS:
   - Crashlytics (3.10.1):
     - Fabric (~> 1.7.5)
   - DateToolsSwift (4.0.0)
-  - Fabric (1.7.5)
+  - Fabric (1.7.6)
   - Firebase/Core (4.7.0):
     - FirebaseAnalytics (= 4.0.5)
     - FirebaseCore (= 4.0.12)
@@ -98,7 +98,7 @@ DEPENDENCIES:
   - CocoaLumberjack/Swift (= 3.3.0)
   - Crashlytics (= 3.10.1)
   - DateToolsSwift (= 4.0.0)
-  - Fabric (= 1.7.5)
+  - Fabric (= 1.7.6)
   - Firebase/Core (= 4.7.0)
   - Firebase/Messaging (= 4.7.0)
   - Firebase/RemoteConfig (= 4.7.0)
@@ -124,7 +124,7 @@ SPEC CHECKSUMS:
   CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
   Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
   DateToolsSwift: 875d97ff9e3a5d54abdd67a269b3f51c757b71ab
-  Fabric: ae7146a5f505ea370a1e44820b4b1dc8890e2890
+  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
   Firebase: dbfb98ccec2dcfcd21ab9cc1b4981a3f3c8c5e26
   FirebaseABTesting: d07d0ee833b842d5153549e4c7e2e2cb1c23a3f9
   FirebaseAnalytics: 5b02a63ead2c3f0259cfc7f15e053e440587ecf8
@@ -152,6 +152,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: dc88934f85fb50b263b1632b9cbad3402505783e
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: e3ca6b71b008250234a68590ee3546937a6c2664
+PODFILE CHECKSUM: 215e774618062cda8324b492a1ae1239fa104761
 
 COCOAPODS: 1.4.0

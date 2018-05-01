@@ -6,14 +6,15 @@
 //  Copyright © 2017 Luxe - Volvo Cars. All rights reserved.
 //
 
-import UIKit
-import SlideMenuControllerSwift
-import GoogleMaps
+import AlamofireNetworkActivityLogger
+import Crashlytics
+import Fabric
 import Firebase
 import FirebaseMessaging
-import Crashlytics
+import GoogleMaps
+import SlideMenuControllerSwift
+import UIKit
 import UserNotifications
-import AlamofireNetworkActivityLogger
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -121,7 +122,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         _ = Logger.init()
         GMSServices.provideAPIKey(Bundle.main.object(forInfoDictionaryKey: "GoogleMapsAPIKey") as! String)
-        
+
+        Fabric.with([Crashlytics.self])
+
         startApp()
         
         return true

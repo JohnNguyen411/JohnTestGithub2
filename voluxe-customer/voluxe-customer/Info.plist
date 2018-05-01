@@ -73,5 +73,19 @@
 	<string>$(OPENID_REDIRECT_URI)</string>
 	<key>com.volvocars.hse.openIdTokenEndpoint</key>
 	<string>$(OPENID_TOKEN_ENDPOINT)</string>
+    <key>Fabric</key>
+    <dict>
+        <key>APIKey</key>
+        <string>09254e520e351430e89eaaeb71ebd9fb51390026</string>
+        <key>Kits</key>
+        <array>
+            <dict>
+                <key>KitInfo</key>
+                <dict/>
+                <key>KitName</key>
+                <string>Crashlytics</string>
+            </dict>
+        </array>
+    </dict>
 </dict>
 </plist>
