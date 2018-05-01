@@ -37,7 +37,6 @@ class ScheduledBookingViewController: SchedulingViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
     override func setupViews() {
         super.setupViews()
         
@@ -46,6 +45,12 @@ class ScheduledBookingViewController: SchedulingViewController {
         if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
             title = .CancelDropOff
             leftButton.setTitle(title: title.uppercased())
+        }
+        
+        loanerView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(dealershipView.snp.bottom)
+            make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         contentView.addSubview(leftButton)
@@ -126,7 +131,7 @@ class ScheduledBookingViewController: SchedulingViewController {
             self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
         }
         
-        loanerView.descLeftLabel.text = booking.loanerVehicle != nil ? .Yes : .No
+        loanerView.descLeftLabel.text = booking.loanerVehicleRequested ? .Yes : .No
     }
     
     func leftButtonClick() {
