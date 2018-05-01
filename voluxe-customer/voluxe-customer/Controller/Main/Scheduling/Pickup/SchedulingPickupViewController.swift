@@ -200,13 +200,17 @@ class SchedulingPickupViewController: SchedulingViewController {
             return
         }
         
+        guard let realm = self.realm else {
+            // todo show error
+            return
+        }
+        
         if Config.sharedInstance.isMock {
             let booking = Booking.mockBooking(customer: UserManager.sharedInstance.getCustomer()!, vehicle: vehicle, dealership: RequestedServiceManager.sharedInstance.getDealership()!)
-            if let realm = self.realm {
-                try? realm.write {
-                    realm.add(booking, update: true)
-                }
+            try? realm.write {
+                realm.add(booking, update: true)
             }
+            
             self.createPickupRequest(customerId: customerId, booking: booking)
             
             return
@@ -215,13 +219,23 @@ class SchedulingPickupViewController: SchedulingViewController {
         guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else {
             return
         }
+        
         guard let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() else {
+            return
+        }
+        
+        guard let repairOrderType = repairOrder.repairOrderType else {
+            return
+        }
+        
+        guard let dealershipRepairOrder = realm.objects(DealershipRepairOrder.self).filter("repairOrderTypeId = \(repairOrderType.id) AND dealershipId = \(dealership.id) AND enabled = true").first else {
+            // todo show error
             return
         }
         
         confirmButton.isLoading = true
         
-        BookingAPI().createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner).onSuccess { result in
+        BookingAPI().createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner, dealershipRepairId: dealershipRepairOrder.id, repairNotes: repairOrder.notes).onSuccess { result in
             if let booking = result?.data?.result {
                 VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCreateBookingSuccess, screenName: self.screenName)
                 if let realm = self.realm {
@@ -232,7 +246,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                         realm.add(booking, update: true)
                     }
                 }
-                self.createRepairOrder(customerId: customerId, booking: booking, repairOrder: repairOrder)
+                self.createPickupRequest(customerId: customerId, booking: booking)
             } else {
                 self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.confirmButton.isLoading = false
@@ -246,59 +260,6 @@ class SchedulingPickupViewController: SchedulingViewController {
         }
     }
     
-    private func createRepairOrder(customerId: Int, booking: Booking, repairOrder: RepairOrder) {
-        
-        if Config.sharedInstance.isMock {
-            // if mock, skip service for now
-            createPickupRequest(customerId: customerId, booking: booking)
-            return
-        }
-        
-        guard let repairOrderType = repairOrder.repairOrderType else {
-            // todo show error
-            return
-        }
-        
-        guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else {
-            // todo show error
-            return
-        }
-        
-        guard let realm = self.realm else {
-            // todo show error
-            return
-        }
-        
-        guard let dealershipRepairOrder = realm.objects(DealershipRepairOrder.self).filter("repairOrderTypeId = \(repairOrderType.id) AND dealershipId = \(dealership.id) AND enabled = true").first else {
-            // todo show error
-            return
-        }
-        
-        RepairOrderAPI().createRepairOrder(customerId: customerId, bookingId: booking.id, dealershipRepairOrderId: dealershipRepairOrder.id, notes: repairOrder.notes).onSuccess { result in
-            if let repairOrder = result?.data?.result {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCreateROSuccess, screenName: self.screenName)
-                try? realm.write {
-                    realm.add(repairOrder, update: true)
-                    if booking.repairOrderRequests.count == 0 {
-                        booking.repairOrderRequests.append(repairOrder)
-                        realm.add(booking, update: true)
-                    }
-                }
-                self.createPickupRequest(customerId: customerId, booking: booking)
-                return
-            } else {
-                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                self.confirmButton.isLoading = false
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateROFail, screenName: self.screenName, errorCode: result?.error?.code)
-            }
-            self.confirmButton.isLoading = false
-            }.onFailure { error in
-                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                self.confirmButton.isLoading = false
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateROFail, screenName: self.screenName, statusCode: error.responseCode)
-        }
-        
-    }
     
     private func createPickupRequest(customerId: Int, booking: Booking) {
         if let timeSlot = RequestedServiceManager.sharedInstance.getPickupTimeSlot(),
