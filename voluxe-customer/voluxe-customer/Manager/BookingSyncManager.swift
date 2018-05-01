@@ -48,4 +48,13 @@ final class BookingSyncManager {
         }
     }
     
+    public func stopTimerForBooking(bookingId: Int) {
+        if timers.count > 0 {
+            if var timer = timers[bookingId] {
+                timer?.suspend()
+                timers.removeValue(forKey: bookingId)
+                timer = nil
+            }
+        }
+    }
 }
