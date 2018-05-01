@@ -1518,8 +1518,8 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CCD42B21FA013E3000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-customer" */;
 			buildPhases = (
-				539F626F2092ABD90023DF59 /* ShellScript */,
 				AE0541E111E1DB1394BACA05 /* [CP] Check Pods Manifest.lock */,
+				539F626F2092ABD90023DF59 /* ShellScript */,
 				6CCD42861FA013E3000AC6C9 /* Sources */,
 				6CCD42871FA013E3000AC6C9 /* Frameworks */,
 				6CCD42881FA013E3000AC6C9 /* Resources */,

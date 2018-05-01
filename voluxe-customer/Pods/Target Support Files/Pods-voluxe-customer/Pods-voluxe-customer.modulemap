@@ -1,0 +1,6 @@
+framework module Pods_voluxe_customer {
+  umbrella header "Pods-voluxe-customer-umbrella.h"
+
+  export *
+  module * { export * }
+}

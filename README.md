@@ -13,9 +13,10 @@ Develop: ![alt text](https://travis-ci.com/volvo-cars/ios.svg?token=pqTNF8Rmrhqv
 
 ### Installation
 * Clone this repository
-* Install CocoaPods: https://guides.cocoapods.org/using/getting-started.html
-* Install the dependencies, go to the Driver and the Customer folder and do `pods install`
-* Open the `.xcworkspace` file with XCode
+* To work on the Customer app, open the `voluxe-customer/voluxe-customer.xcworkspace`  file
+* To work on the Driver app, open the `voluxe-driver/voluxe-driver.xcworkspace` file
+
+Note that all dependencies are included in the repo and should not require `pod install` before building the project.
 
 ### Release
 // Todo
