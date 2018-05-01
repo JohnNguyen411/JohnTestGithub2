@@ -21,16 +21,29 @@ class BookingAPI: NSObject {
      - parameter vehicleId: Customer's vehicle that needs to be serviced
      - parameter dealershipId: Dealership choosed by the Customer
      - parameter loaner: If the customer requested a Loaner
+     - parameter dealershipRepairId: The dealership repairOrderId, or nil if repair_order created separately
+     - parameter repairNotes: The repair_order notes, or nil if repair_order created separately
      
      - Returns: A Future ResponseObject containing a Booking, or an AFError if an error occured
      */
-    func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool) -> Future<ResponseObject<MappableDataObject<Booking>>?, AFError> {
+    func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool, dealershipRepairId: Int?, repairNotes: String?) -> Future<ResponseObject<MappableDataObject<Booking>>?, AFError> {
         let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, AFError>()
-        let params: Parameters = [
+        var params: Parameters = [
             "vehicle_id": vehicleId,
             "dealership_id": dealershipId,
             "loaner_vehicle_requested": loaner,
         ]
+        
+        if let dealershipRepairId = dealershipRepairId {
+            var repairOrder: Parameters = [
+                "dealership_repair_order_id": dealershipRepairId
+            ]
+            if let notes = repairNotes {
+                repairOrder["notes"] = notes
+            }
+            params["repair_order_requests"] = [repairOrder]
+        }
+        
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataObject<Booking>>?
