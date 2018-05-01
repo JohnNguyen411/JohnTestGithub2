@@ -41,6 +41,12 @@ final class StateServiceManager {
             // update driver's location
             SwiftEventBus.post("driverLocationUpdate")
         }
+        
+        if let booking = booking {
+            if state == .completed || booking.getState() == .canceled {
+                BookingSyncManager.sharedInstance.stopTimerForBooking(bookingId: booking.id)
+            }
+        }
     }
     
     func addDelegate(delegate: StateServiceManagerProtocol) {
