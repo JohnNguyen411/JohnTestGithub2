@@ -60,7 +60,7 @@ class SyncTimer {
         if booking.pickupRequest != nil || booking.dropoffRequest != nil {
             if booking.getState() != .serviceCompleted && booking.getState() != .completed && booking.getState() != .canceled {
                 if booking.getState() == .enRouteForPickup || booking.getState() == .enRouteForDropoff {
-                    syncBooking(every: 10)
+                    syncBooking(every: 5)
                 } else {
                     syncBooking(every: 60)
                 }
