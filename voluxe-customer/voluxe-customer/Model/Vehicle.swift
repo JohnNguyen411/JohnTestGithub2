@@ -110,19 +110,18 @@ class Vehicle: Object, Mappable {
     }
     
     func setVehicleImage(imageView: UIImageView) {
-        // todo, remove code to only use real photoURL
-        imageView.image = UIImage(named: localImageName())
-        return
-        
-        if var imageUrl = photoUrl, !imageUrl.isEmpty {
-            if imageUrl.contains("http://") {
-                imageUrl = imageUrl.replacingOccurrences(of: "http://", with: "https://")
-            }
-            let url = URL(string: imageUrl)
-            imageView.kf.setImage(with: url)
-        } else {
-            imageView.image = UIImage(named: localImageName())
-        }
-    }
 
+        // TODO https://github.com/volvo-cars/ios/issues/86
+        // remove code to only use real photoURL
+        imageView.image = UIImage(named: localImageName())
+//        if var imageUrl = photoUrl, !imageUrl.isEmpty {
+//            if imageUrl.contains("http://") {
+//                imageUrl = imageUrl.replacingOccurrences(of: "http://", with: "https://")
+//            }
+//            let url = URL(string: imageUrl)
+//            imageView.kf.setImage(with: url)
+//        } else {
+//            imageView.image = UIImage(named: localImageName())
+//        }
+    }
 }
