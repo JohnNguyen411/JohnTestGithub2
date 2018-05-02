@@ -92,7 +92,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         activeBookingsLabel.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(30)
             make.right.equalToSuperview().offset(-15)
-            make.top.equalToSuperview().offset(30)
+            make.equalsToTop(view: self.view, offset: 30)
             make.height.equalTo(20)
         }
         

@@ -30,5 +30,9 @@ extension ConstraintMaker {
         self.top.equalTo(view.safeArea.top)
     }
     
+    func equalsToTop(view: UIView, offset: ConstraintOffsetTarget) {
+        self.top.equalTo(view.safeArea.top).offset(offset)
+    }
+    
     
 }
