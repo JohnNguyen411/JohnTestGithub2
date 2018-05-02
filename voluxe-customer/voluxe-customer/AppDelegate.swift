@@ -208,7 +208,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     private func setupFirebase(_ application: UIApplication) {
-        FirebaseApp.configure()
+
+        guard let path = Bundle.pathForGoogleServicePlist() else { return }
+        guard let options = FirebaseOptions(contentsOfFile: path) else { return }
+        FirebaseApp.configure(options: options)
 
         // uncomment for Push Notification
         /*

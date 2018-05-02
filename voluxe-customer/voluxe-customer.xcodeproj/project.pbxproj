@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		4919A11892F7C3DF8E3B27E1 /* Pods_voluxe_customerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FF37696ECA3479BE741D40 /* Pods_voluxe_customerTests.framework */; };
 		4F168EBDD50184A5503B6E44 /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
+		53D9A7AC2098E679008BE93E /* GoogleService-Info-Development.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53D9A7AA2098E678008BE93E /* GoogleService-Info-Development.plist */; };
+		53D9A7AD2098E679008BE93E /* GoogleService-Info-AppStore.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53D9A7AB2098E679008BE93E /* GoogleService-Info-AppStore.plist */; };
+		53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		6C11208E2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
 		6C11208F2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
 		6C1120902016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
@@ -615,6 +618,9 @@
 		4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
 		4B49F366D485907B0CD58867 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
 		539F626E2092AB6A0023DF59 /* confirm_team_id.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = confirm_team_id.rb; path = ../scripts/confirm_team_id.rb; sourceTree = "<group>"; };
+		53D9A7AA2098E678008BE93E /* GoogleService-Info-Development.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Development.plist"; sourceTree = "<group>"; };
+		53D9A7AB2098E679008BE93E /* GoogleService-Info-AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-AppStore.plist"; sourceTree = "<group>"; };
+		53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Voluxe.swift"; sourceTree = "<group>"; };
 		54E9A9FC051BC64540A65AF6 /* Pods-voluxe-customerTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.appstore.xcconfig"; sourceTree = "<group>"; };
 		5B073D73742601FC967B4DD1 /* Pods-voluxe-customer.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.production.xcconfig"; sourceTree = "<group>"; };
 		6796259E2527512DC57B3E09 /* Pods-voluxe-customerUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.staging.xcconfig"; sourceTree = "<group>"; };
@@ -902,6 +908,19 @@
 			path = "New Group";
 			sourceTree = "<group>";
 		};
+		53D9A7A92098E638008BE93E /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6CCD42941FA013E3000AC6C9 /* Assets.xcassets */,
+				53D9A7AA2098E678008BE93E /* GoogleService-Info-Development.plist */,
+				53D9A7AB2098E679008BE93E /* GoogleService-Info-AppStore.plist */,
+				6CCD42991FA013E3000AC6C9 /* Info.plist */,
+				6CE68796203F7D5A00D915FC /* InfoPlist.strings */,
+				6C2A0B392063211200A5A637 /* voluxe-customer.entitlements */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		6C20E18E1FBE14A000E5D9A0 /* GoogleMapAPI */ = {
 			isa = PBXGroup;
 			children = (
@@ -1063,22 +1082,23 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
-		6C3FB2B71FA2971D00B22EAB /* Extention */ = {
+		6C3FB2B71FA2971D00B22EAB /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				6C95439D1FABEBBC0099AC84 /* UIColors+Voluxe.swift */,
-				6C9543A11FABEE1D0099AC84 /* UIFont+Voluxe.swift */,
+				53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */,
+				6C8A16E0209289EB00F888D6 /* ConstraintMaker+Voluxe.swift */,
 				6C3FB2B81FA297A300B22EAB /* Date+DateTools.swift */,
 				6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */,
-				6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */,
-				6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */,
 				6C7DDE121FDB664D000E2822 /* String+Utils.swift */,
+				6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */,
+				6C95439D1FABEBBC0099AC84 /* UIColors+Voluxe.swift */,
+				6C9543A11FABEE1D0099AC84 /* UIFont+Voluxe.swift */,
+				6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */,
 				6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */,
 				6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */,
-				6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */,
-				6C8A16E0209289EB00F888D6 /* ConstraintMaker+Voluxe.swift */,
+				6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */,
 			);
-			path = Extention;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		6C5832C21FB3899700F6BFE0 /* shared */ = {
@@ -1399,26 +1419,23 @@
 		6CCD428C1FA013E3000AC6C9 /* voluxe-customer */ = {
 			isa = PBXGroup;
 			children = (
-				6C2A0B392063211200A5A637 /* voluxe-customer.entitlements */,
+				6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */,
+				6C2B324B1FB3C88D00B943AC /* Objc-Bridge-Header.h */,
 				6C7DDE1B1FE1B5D6000E2822 /* Analytic */,
 				6CC83A791FA140A600FE0633 /* Config */,
 				6CC37E431FA7ADB000DA8F01 /* Controller */,
-				6C3FB2B71FA2971D00B22EAB /* Extention */,
+				6C3FB2B71FA2971D00B22EAB /* Extension */,
 				6C3FB2AE1FA2820500B22EAB /* Font */,
 				6CBB4E5E1FB4DF3900C31183 /* FSCalendar */,
 				6C91BBDE1FA8EB1B0033C2B1 /* Localization */,
-				6C3FB2A51FA16A0200B22EAB /* Model */,
 				6C20E1CE1FBF712700E5D9A0 /* Manager */,
+				6C3FB2A51FA16A0200B22EAB /* Model */,
 				6C5832F31FB3AF5600F6BFE0 /* Presentr */,
+				53D9A7A92098E638008BE93E /* Resources */,
 				6CC83A861FA1478100FE0633 /* Service */,
 				6CFBF9AC1FA1119A00D3AA78 /* Supporting Files */,
 				6CC83A891FA147E100FE0633 /* Util */,
 				6CC37E4D1FA7AFC300DA8F01 /* View */,
-				6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */,
-				6CCD42941FA013E3000AC6C9 /* Assets.xcassets */,
-				6CCD42991FA013E3000AC6C9 /* Info.plist */,
-				6C2B324B1FB3C88D00B943AC /* Objc-Bridge-Header.h */,
-				6CE68796203F7D5A00D915FC /* InfoPlist.strings */,
 			);
 			path = "voluxe-customer";
 			sourceTree = "<group>";
@@ -1640,7 +1657,9 @@
 				6C5833141FB3AF5600F6BFE0 /* Montserrat-Regular.ttf in Resources */,
 				6C58331B1FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
 				6CC83A831FA140D300FE0633 /* sensus_test.json in Resources */,
+				53D9A7AD2098E679008BE93E /* GoogleService-Info-AppStore.plist in Resources */,
 				6CC83A851FA140D300FE0633 /* sensus_qa.json in Resources */,
+				53D9A7AC2098E679008BE93E /* GoogleService-Info-Development.plist in Resources */,
 				6CFBF9B41FA1131700D3AA78 /* VolvoSansPro-Medium.ttf in Resources */,
 				6C6F4BC31FA8FBCF00087FE7 /* Localizable.strings in Resources */,
 				6C9543AB1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
@@ -1900,6 +1919,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/bash -l";
 			shellScript = "echo \"CHECKING TEAM ID\"\n\nSCRIPT=$PROJECT_DIR/../shared/scripts/confirm_team_id.rb\nif [ ! -f \"$SCRIPT\" ];\nthen\n    echo \"CANNOT FIND SCRIPT FILE\"\n    echo $SCRIPT\n    exit 1\nfi\n\nRESULT=$(ruby $SCRIPT)\nif [ -z \"$RESULT\" ];\nthen\n    echo \"TEAM ID IS CORRECT\"\nelse\n    echo $RESULT\n    exit 1\nfi";
+		};
+		53D9A7B320993051008BE93E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Copies a Google Service plist to the app bundle based on the build config i.e.\n# GoogleService-Info-<configuration name>.plist is copied as GoogleService-Info.plist\n# Note that this is fragile and if build configuration names are changed, this script\n# will most likely break.  Also, if a build configuration is used without a matching\n# plist, this script will break.\ncp -r \"${PROJECT_DIR}/voluxe-customer/Resources/GoogleService-Info-${CONFIGURATION}.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n";
 		};
 		6C479377205098CC0005B8D4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2188,6 +2220,7 @@
 				6C2F1DD61FAD0A8F00C28C6E /* SchedulingPickupViewController.swift in Sources */,
 				6C58330E1FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */,
 				6C5C6A101FD8AACD00D70BF6 /* UserManager.swift in Sources */,
+				53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */,
 				6C91BBDB1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C3FB2B01FA2823800B22EAB /* Fonts.swift in Sources */,
 				6CD3BCA220098EF2001DD79B /* BookingAPI.swift in Sources */,
@@ -2712,12 +2745,12 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/voluxe-customer.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/voluxe-customer.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				ENVIRONMENT = mock;
-				INFOPLIST_FILE = "voluxe-customer/Info.plist";
+				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.mock;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -2916,11 +2949,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/voluxe-customer.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/voluxe-customer.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
-				INFOPLIST_FILE = "voluxe-customer/Info.plist";
+				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3119,11 +3152,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/voluxe-customer.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/voluxe-customer.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
-				INFOPLIST_FILE = "voluxe-customer/Info.plist";
+				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.staging;
@@ -3300,6 +3333,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_STORE;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = "";
@@ -3315,11 +3349,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/voluxe-customer.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/voluxe-customer.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DTE5P7QRF9;
-				INFOPLIST_FILE = "voluxe-customer/Info.plist";
+				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3507,11 +3541,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/voluxe-customer.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/voluxe-customer.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
-				INFOPLIST_FILE = "voluxe-customer/Info.plist";
+				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.prod;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -3699,11 +3733,11 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/voluxe-customer.entitlements";
+				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/voluxe-customer.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
-				INFOPLIST_FILE = "voluxe-customer/Info.plist";
+				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
