@@ -241,12 +241,6 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         scrollView.setContentOffset(offset, animated: true)
         if let scrollViewSize = scrollViewSize {
             scrollView.contentSize = CGSize(width: scrollViewSize.width, height: scrollViewSize.height + 2)
-            
-            confirmButton.snp.remakeConstraints { make in
-                make.left.right.equalTo(volvoDrivableLabel)
-                make.bottom.equalTo(scrollViewSize).offset((offset.y-keyboardHeight) - 20)
-                make.height.equalTo(VLButton.primaryHeight)
-            }
         }
         if textView.textColor == .luxeLightGray() {
             textView.text = nil
@@ -261,18 +255,34 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         }
         scrollView.setContentOffset(offset, animated: true)
         
-        confirmButton.snp.remakeConstraints { make in
-            make.left.right.equalTo(volvoDrivableLabel)
-            make.equalsToBottom(view: contentView, offset: -20)
-            make.height.equalTo(VLButton.primaryHeight)
-        }
-        
         if textView.text.isEmpty {
             textView.text = .TypeDescriptionHere
             textView.textColor = .luxeLightGray()
         }
     }
+
+    override func keyboardWillAppear(_ notification: Notification) {
+        super.keyboardWillAppear(notification)
+        if self.view.safeAreaBottomHeight > 0 {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.confirmButton.snp.updateConstraints { make in
+                    make.equalsToBottom(view: self.contentView, offset: -(self.view.safeAreaBottomHeight+30))
+                }
+            })
+        }
+    }
     
+    override func keyboardWillDisappear(_ notification: Notification) {
+        super.keyboardWillDisappear(notification)
+        
+        if self.view.safeAreaBottomHeight > 0 {
+            UIView.animate(withDuration: 0.5, animations: {
+                self.confirmButton.snp.updateConstraints { make in
+                    make.equalsToBottom(view: self.contentView, offset: -20)
+                }
+            })
+        }
+    }
     
 }
 
