@@ -74,6 +74,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         newLocationTextField.rightLabel.isHidden = true
         newLocationTextField.rightLabel.accessibilityIdentifier = "newLocationTextField.rightLabel"
   
+        locationManager.autoUpdate = true
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         bottomButton.isEnabled = false
