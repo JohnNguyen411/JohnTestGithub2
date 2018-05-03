@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>971806988512-135lmavis3kn9rur7ibqs3opmtu0epr8.apps.googleusercontent.com</string>
+	<string>971806988512-k2m8f0n1ek4r59pare7l2eihuglm2hii.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.971806988512-135lmavis3kn9rur7ibqs3opmtu0epr8</string>
+	<string>com.googleusercontent.apps.971806988512-k2m8f0n1ek4r59pare7l2eihuglm2hii</string>
 	<key>API_KEY</key>
 	<string>AIzaSyDttDpi-qSy_4-MwUs2tbsZrJqCjz_gowM</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.luxe.luxebyvolvo</string>
+	<string>com.luxe.luxebyvolvo.development</string>
 	<key>PROJECT_ID</key>
 	<string>volvo-4aee2</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:971806988512:ios:dafe2d0e67f14661</string>
+	<string>1:971806988512:ios:677946e1cf2e8333</string>
 	<key>DATABASE_URL</key>
 	<string>https://volvo-4aee2.firebaseio.com</string>
 </dict>
