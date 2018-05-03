@@ -239,6 +239,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber,
             UserManager.sharedInstance.getCustomerId() == nil, signupCustomer.email == nil, accessToken == nil {
             CustomerAPI().passwordResetConfirm(phoneNumber: phoneNumber, code: code, password: password).onSuccess { result in
+                self.showLoading(loading: false)
                 if let _ = result?.error {
                     VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmFail, screenName: self.screenName)
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
@@ -251,6 +252,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                     }, analyticDialogName: AnalyticsConstants.paramNameSuccessDialog, screenName: self.screenName);
                 }
                 }.onFailure { error in
+                    self.showLoading(loading: false)
                     VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmFail, screenName: self.screenName, statusCode: error.responseCode)
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             }

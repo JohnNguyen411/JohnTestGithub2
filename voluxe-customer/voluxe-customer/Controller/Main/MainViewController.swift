@@ -129,7 +129,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
             return .CurrentService
         } else if state.rawValue == ServiceState.serviceCompleted.rawValue {
             return .ReturnVehicle
-        } else if state.rawValue > ServiceState.dropoffScheduled.rawValue {
+        } else if state.rawValue >= ServiceState.dropoffScheduled.rawValue {
             return .ScheduledDelivery
         }
         return nil
