@@ -24,7 +24,7 @@ class CustomerAPI: NSObject {
     func logout() -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
         let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/users/logout", queryParameters: [:], withBearer: true).responseJSONErrorCheck { response in
+        NetworkRequest.request(url: "/v1/users/logout", method: .post, queryParameters: [:], withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<EmptyMappableObject>?
             
             if let json = response.result.value as? [String: Any] {

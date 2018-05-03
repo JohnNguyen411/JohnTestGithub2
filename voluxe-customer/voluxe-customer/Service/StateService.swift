@@ -59,6 +59,10 @@ final class StateServiceManager {
         }
     }
     
+    func removeAllDelegates() {
+        delegates.removeAll()
+    }
+    
     func getState(vehicleId: Int) -> ServiceState {
         if let serviceState = states[vehicleId] {
             return serviceState

@@ -9,6 +9,7 @@
 import Foundation
 import KeychainAccess
 import SwiftEventBus
+import RealmSwift
 
 final class UserManager {
     
@@ -75,6 +76,14 @@ final class UserManager {
         self.tempCustomerId = nil
         self.signupCustomer = SignupCustomer()
         RequestedServiceManager.sharedInstance.reset()
+        BookingSyncManager.sharedInstance.stopAllTimers()
+        StateServiceManager.sharedInstance.removeAllDelegates()
+
+        if let realm = try? Realm() {
+            try? realm.write {
+                realm.deleteAll()
+            }
+        }
     }
     
     public func setCustomer(customer: Customer) {

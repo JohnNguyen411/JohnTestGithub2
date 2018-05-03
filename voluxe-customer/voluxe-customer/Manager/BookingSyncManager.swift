@@ -57,4 +57,15 @@ final class BookingSyncManager {
             }
         }
     }
+    
+    public func stopAllTimers() {
+        timers.forEach { syncTimer in
+            var timer = syncTimer.value
+            if timer != nil {
+                timer!.suspend()
+            }
+            timer = nil
+        }
+        timers.removeAll()
+    }
 }

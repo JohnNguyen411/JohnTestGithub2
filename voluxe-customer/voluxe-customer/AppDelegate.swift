@@ -151,6 +151,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             UserManager.sharedInstance.logout()
         }
         
+        if let slideMenuController = slideMenuController {
+            slideMenuController.mainViewController?.dismiss(animated: false, completion: nil)
+            slideMenuController.leftViewController?.dismiss(animated: false, completion: nil)
+        }
+        
+        if let window = window, let rootVC = window.rootViewController {
+            rootVC.dismiss(animated: false, completion: {})
+        }
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         
         if UserManager.sharedInstance.getAccessToken() == nil {
