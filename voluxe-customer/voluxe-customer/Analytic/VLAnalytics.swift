@@ -22,26 +22,26 @@ class VLAnalytics {
         }
         
         if params.count > 0 {
-            Analytics.logEvent(eventName, parameters: params)
+            self.firebaseLogEvent(eventName, parameters: params)
         } else {
-            Analytics.logEvent(eventName, parameters: nil)
+            self.firebaseLogEvent(eventName, parameters: nil)
         }
     }
     
     static func logEventWithName(_ eventName: String, screenName: String? = nil) {
         if let screenName = screenName {
-            Analytics.logEvent(eventName, parameters: [AnalyticsConstants.paramScreenName : screenName])
+            self.firebaseLogEvent(eventName, parameters: [AnalyticsConstants.paramScreenName : screenName])
         } else {
-            Analytics.logEvent(eventName, parameters: nil)
+            self.firebaseLogEvent(eventName, parameters: nil)
         }
     }
     
     static func logEventWithName(_ eventName: String, paramName: String, paramValue: String) {
-        Analytics.logEvent(eventName, parameters: [paramName : paramValue])
+        self.firebaseLogEvent(eventName, parameters: [paramName : paramValue])
     }
     
     static func logEventWithName(_ eventName: String, parameters: [String: String]) {
-        Analytics.logEvent(eventName, parameters: parameters)
+        self.firebaseLogEvent(eventName, parameters: parameters)
     }
     
     static func logErrorEventWithName(_ eventName: String, screenName: String? = nil, statusCode: Int? = nil, errorCode: String? = nil) {
@@ -55,6 +55,17 @@ class VLAnalytics {
         if let errorCode = errorCode {
             params[AnalyticsConstants.paramErrorCode] = errorCode
         }
+        self.firebaseLogEvent(eventName, parameters: params)
+    }
+
+    /// Private method to wrap the actual Firebase log event call.
+    /// If Firebase has been disabled from the debug menu, this is
+    /// a no-op.  Because the UserDefaults check will happen a lot,
+    /// the check is only done for DEBUG builds.
+    static private func firebaseLogEvent(_ eventName: String, parameters params: [String: Any]?) {
+        #if DEBUG
+            guard UserDefaults.standard.disableFirebase == false else { return }
+        #endif
         Analytics.logEvent(eventName, parameters: params)
     }
 }

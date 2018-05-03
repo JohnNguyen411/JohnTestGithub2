@@ -113,10 +113,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        #if DEBUG
+
+        if UserDefaults.standard.enableAlamoFireLogging {
             NetworkActivityLogger.shared.level = .debug
             NetworkActivityLogger.shared.startLogging()
-        #endif
+        }
         
         setupFirebase(application)
         
@@ -209,9 +210,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     private func setupFirebase(_ application: UIApplication) {
 
-        guard let path = Bundle.pathForGoogleServicePlist() else { return }
-        guard let options = FirebaseOptions(contentsOfFile: path) else { return }
-        FirebaseApp.configure(options: options)
+        if UserDefaults.standard.disableFirebase == false {
+            FirebaseApp.configure()
+        }
 
         // uncomment for Push Notification
         /*

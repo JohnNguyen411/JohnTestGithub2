@@ -9,9 +9,13 @@
 /* Begin PBXBuildFile section */
 		4919A11892F7C3DF8E3B27E1 /* Pods_voluxe_customerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FF37696ECA3479BE741D40 /* Pods_voluxe_customerTests.framework */; };
 		4F168EBDD50184A5503B6E44 /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
-		53D9A7AC2098E679008BE93E /* GoogleService-Info-Development.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53D9A7AA2098E678008BE93E /* GoogleService-Info-Development.plist */; };
-		53D9A7AD2098E679008BE93E /* GoogleService-Info-AppStore.plist in Resources */ = {isa = PBXBuildFile; fileRef = 53D9A7AB2098E679008BE93E /* GoogleService-Info-AppStore.plist */; };
 		53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
+		53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */; };
+		53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */; };
+		53D9A7BB209A50D2008BE93E /* DebugSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BA209A50D2008BE93E /* DebugSettingsViewController.swift */; };
+		53D9A7BD209A5E2F008BE93E /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
+		53D9A7BF209A79C8008BE93E /* DebugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BE209A79C8008BE93E /* DebugTableViewCell.swift */; };
+		53D9A7C1209A7D01008BE93E /* NSObject+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7C0209A7D01008BE93E /* NSObject+Voluxe.swift */; };
 		6C11208E2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
 		6C11208F2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
 		6C1120902016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
@@ -618,9 +622,15 @@
 		4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
 		4B49F366D485907B0CD58867 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
 		539F626E2092AB6A0023DF59 /* confirm_team_id.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = confirm_team_id.rb; path = ../scripts/confirm_team_id.rb; sourceTree = "<group>"; };
-		53D9A7AA2098E678008BE93E /* GoogleService-Info-Development.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Development.plist"; sourceTree = "<group>"; };
+		53D9A7AA2098E678008BE93E /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
 		53D9A7AB2098E679008BE93E /* GoogleService-Info-AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-AppStore.plist"; sourceTree = "<group>"; };
 		53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Voluxe.swift"; sourceTree = "<group>"; };
+		53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugTableViewController.swift; sourceTree = "<group>"; };
+		53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VLSlideMenuController+Debug.swift"; sourceTree = "<group>"; };
+		53D9A7BA209A50D2008BE93E /* DebugSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugSettingsViewController.swift; sourceTree = "<group>"; };
+		53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Debug.swift"; sourceTree = "<group>"; };
+		53D9A7BE209A79C8008BE93E /* DebugTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugTableViewCell.swift; sourceTree = "<group>"; };
+		53D9A7C0209A7D01008BE93E /* NSObject+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Voluxe.swift"; sourceTree = "<group>"; };
 		54E9A9FC051BC64540A65AF6 /* Pods-voluxe-customerTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.appstore.xcconfig"; sourceTree = "<group>"; };
 		5B073D73742601FC967B4DD1 /* Pods-voluxe-customer.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.production.xcconfig"; sourceTree = "<group>"; };
 		6796259E2527512DC57B3E09 /* Pods-voluxe-customerUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.staging.xcconfig"; sourceTree = "<group>"; };
@@ -912,13 +922,25 @@
 			isa = PBXGroup;
 			children = (
 				6CCD42941FA013E3000AC6C9 /* Assets.xcassets */,
-				53D9A7AA2098E678008BE93E /* GoogleService-Info-Development.plist */,
+				53D9A7AA2098E678008BE93E /* GoogleService-Info-Dev.plist */,
 				53D9A7AB2098E679008BE93E /* GoogleService-Info-AppStore.plist */,
 				6CCD42991FA013E3000AC6C9 /* Info.plist */,
 				6CE68796203F7D5A00D915FC /* InfoPlist.strings */,
 				6C2A0B392063211200A5A637 /* voluxe-customer.entitlements */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		53D9A7B4209A3EA7008BE93E /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				53D9A7BA209A50D2008BE93E /* DebugSettingsViewController.swift */,
+				53D9A7BE209A79C8008BE93E /* DebugTableViewCell.swift */,
+				53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */,
+				53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */,
+				53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */,
+			);
+			path = Debug;
 			sourceTree = "<group>";
 		};
 		6C20E18E1FBE14A000E5D9A0 /* GoogleMapAPI */ = {
@@ -1088,6 +1110,7 @@
 				53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */,
 				6C8A16E0209289EB00F888D6 /* ConstraintMaker+Voluxe.swift */,
 				6C3FB2B81FA297A300B22EAB /* Date+DateTools.swift */,
+				53D9A7C0209A7D01008BE93E /* NSObject+Voluxe.swift */,
 				6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */,
 				6C7DDE121FDB664D000E2822 /* String+Utils.swift */,
 				6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */,
@@ -1310,12 +1333,13 @@
 		6CC37E431FA7ADB000DA8F01 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */,
 				6C2208751FBCEF4D00874882 /* Common */,
-				6C88DC921FAA8ADC009F2FC3 /* Main */,
+				53D9A7B4209A3EA7008BE93E /* Debug */,
 				6CC37E441FA7AE0F00DA8F01 /* FTUE */,
+				6C88DC921FAA8ADC009F2FC3 /* Main */,
 				6C9B31FD202A4F4F006380B9 /* Settings */,
 				6C73420B1FB12E6C00E90F7E /* VLPresentrViewController.swift */,
-				6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1540,6 +1564,7 @@
 				6CCD42861FA013E3000AC6C9 /* Sources */,
 				6CCD42871FA013E3000AC6C9 /* Frameworks */,
 				6CCD42881FA013E3000AC6C9 /* Resources */,
+				53D9A7C2209AA14C008BE93E /* ShellScript */,
 				C40DDEDC559FCC13D140C7DC /* [CP] Embed Pods Frameworks */,
 				D86524E80D5D1E4794E1C4CE /* [CP] Copy Pods Resources */,
 				6C479377205098CC0005B8D4 /* ShellScript */,
@@ -1657,9 +1682,7 @@
 				6C5833141FB3AF5600F6BFE0 /* Montserrat-Regular.ttf in Resources */,
 				6C58331B1FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
 				6CC83A831FA140D300FE0633 /* sensus_test.json in Resources */,
-				53D9A7AD2098E679008BE93E /* GoogleService-Info-AppStore.plist in Resources */,
 				6CC83A851FA140D300FE0633 /* sensus_qa.json in Resources */,
-				53D9A7AC2098E679008BE93E /* GoogleService-Info-Development.plist in Resources */,
 				6CFBF9B41FA1131700D3AA78 /* VolvoSansPro-Medium.ttf in Resources */,
 				6C6F4BC31FA8FBCF00087FE7 /* Localizable.strings in Resources */,
 				6C9543AB1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
@@ -1920,7 +1943,7 @@
 			shellPath = "/bin/bash -l";
 			shellScript = "echo \"CHECKING TEAM ID\"\n\nSCRIPT=$PROJECT_DIR/../shared/scripts/confirm_team_id.rb\nif [ ! -f \"$SCRIPT\" ];\nthen\n    echo \"CANNOT FIND SCRIPT FILE\"\n    echo $SCRIPT\n    exit 1\nfi\n\nRESULT=$(ruby $SCRIPT)\nif [ -z \"$RESULT\" ];\nthen\n    echo \"TEAM ID IS CORRECT\"\nelse\n    echo $RESULT\n    exit 1\nfi";
 		};
-		53D9A7B320993051008BE93E /* ShellScript */ = {
+		53D9A7C2209AA14C008BE93E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1931,7 +1954,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Copies a Google Service plist to the app bundle based on the build config i.e.\n# GoogleService-Info-<configuration name>.plist is copied as GoogleService-Info.plist\n# Note that this is fragile and if build configuration names are changed, this script\n# will most likely break.  Also, if a build configuration is used without a matching\n# plist, this script will break.\ncp -r \"${PROJECT_DIR}/voluxe-customer/Resources/GoogleService-Info-${CONFIGURATION}.plist\" \"${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\"\n";
+			shellScript = "# Copies a Google Service plist to the app bundle based on the build config i.e.\n# GoogleService-Info-<configuration name>.plist is copied as GoogleService-Info.plist\n# Note that this is fragile and if build configuration names are changed, this script\n# will most likely break.  Also, if a build configuration is used without a matching\n# plist, this script will break.\ncp -r ${PROJECT_DIR}/voluxe-customer/Resources/GoogleService-Info-${CONFIGURATION}.plist ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist";
 		};
 		6C479377205098CC0005B8D4 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2132,6 +2155,7 @@
 				6CD0C8831FD9FB73008E4A72 /* DealershipAPI.swift in Sources */,
 				6C20E1D01FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
 				6CDCC616205C461100DFA831 /* RepairOrderType.swift in Sources */,
+				53D9A7BF209A79C8008BE93E /* DebugTableViewCell.swift in Sources */,
 				6CBB4EAC1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */,
 				6C5833191FB3AF5600F6BFE0 /* PresentrController.swift in Sources */,
 				6C4970F72064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */,
@@ -2142,6 +2166,7 @@
 				6C345A0F1FD897E4006CAC32 /* Config.swift in Sources */,
 				6C52245A208815580078D9B9 /* VLSlideMenuController.swift in Sources */,
 				6CBB4E8B1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
+				53D9A7BD209A5E2F008BE93E /* UserDefaults+Debug.swift in Sources */,
 				6C3FB2B91FA297A300B22EAB /* Date+DateTools.swift in Sources */,
 				6CBAA6C72023FD3300F35ECF /* ServiceListViewController.swift in Sources */,
 				6C9543A21FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
@@ -2172,6 +2197,7 @@
 				6CD474B8204616C10082A44A /* CarPickerViewController.swift in Sources */,
 				6CBB4E971FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */,
 				6C88DC9D1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
+				53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */,
 				6CBB4EA31FB4DF7D00C31183 /* FSCalendarHeaderView.m in Sources */,
 				6C20E1831FBD206E00E5D9A0 /* ServiceState.swift in Sources */,
 				6C6F4BCA1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
@@ -2179,6 +2205,7 @@
 				6C3FB2B41FA289A700B22EAB /* TransmissionType.swift in Sources */,
 				6C8A16E1209289EB00F888D6 /* ConstraintMaker+Voluxe.swift in Sources */,
 				6C9B320F202E0CED006380B9 /* CustomerAddress.swift in Sources */,
+				53D9A7BB209A50D2008BE93E /* DebugSettingsViewController.swift in Sources */,
 				6C937065204F64360084443C /* SettingsCarViewController.swift in Sources */,
 				6CBAA6CB2023FEE800F35ECF /* CheckmarkCell.swift in Sources */,
 				6C7DDE131FDB664D000E2822 /* String+Utils.swift in Sources */,
@@ -2232,8 +2259,10 @@
 				6C20E18B1FBE0E6200E5D9A0 /* GoogleDirectionAPI.swift in Sources */,
 				6C20E1871FBE061A00E5D9A0 /* ETAMarker.swift in Sources */,
 				6C20E1B21FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift in Sources */,
+				53D9A7C1209A7D01008BE93E /* NSObject+Voluxe.swift in Sources */,
 				6CDCC602205743DB00DFA831 /* NewServiceViewController.swift in Sources */,
 				6C7342081FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */,
+				53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */,
 				6C69267E1FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */,
 				6C3FB2AD1FA2574C00B22EAB /* FuelData.swift in Sources */,
 				6C4D91BB1FDB15F90031E3CB /* Token.swift in Sources */,
