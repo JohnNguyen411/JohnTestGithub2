@@ -25,6 +25,8 @@ enum GeoCodingType{
 
 class LocationManager: NSObject,CLLocationManagerDelegate {
     
+    private static let defaultMinDistanceFilter = 5.0
+    
     /* Private variables */
     fileprivate var completionHandler: LMLocationCompletionHandler
     
@@ -138,6 +140,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
+        locationManager.distanceFilter = CLLocationDistance(LocationManager.defaultMinDistanceFilter)
         // locationManager.locationServicesEnabled
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
