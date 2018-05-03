@@ -74,6 +74,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         newLocationTextField.rightLabel.isHidden = true
         newLocationTextField.rightLabel.accessibilityIdentifier = "newLocationTextField.rightLabel"
   
+        locationManager.autoUpdate = true
         locationManager.delegate = self
         locationManager.startUpdatingLocation()
         bottomButton.isEnabled = false
@@ -288,6 +289,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     private func addNewLocationClicked() {
         showNewLocationTextField(show: true)
         onLocationAdded()
+        newLocationTextField.textField.becomeFirstResponder()
     }
     
     private func showNewLocationTextField(show: Bool) {
@@ -302,6 +304,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                 make.right.equalToSuperview().offset(15)
                 make.height.equalTo(self.tableViewHeight())
             }
+            
         } else {
             tableView.snp.remakeConstraints { make in
                 make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
@@ -388,6 +391,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
     func selectIndex(selectedIndex: Int) {
         self.selectedIndex = selectedIndex
+        self.preselectedIndex = selectedIndex
         if self.selectedIndex > -1 {
             self.bottomButton.isEnabled = true
         }

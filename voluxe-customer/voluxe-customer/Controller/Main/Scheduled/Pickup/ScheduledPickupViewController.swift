@@ -73,6 +73,7 @@ class ScheduledPickupViewController: ScheduledViewController {
             var refreshTimeSlot = true
 
             if let driver = pickupRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock, state != .pickupScheduled {
+                Logger.print(coordinates)
                 self.mapVC.updateDriverLocation(location: coordinates)
                 if let pickupRequestLocation = pickupRequest.location, let pickupRequestCoordinates = pickupRequestLocation.getLocation() {
                     self.getEta(fromLocation: coordinates, toLocation: pickupRequestCoordinates)

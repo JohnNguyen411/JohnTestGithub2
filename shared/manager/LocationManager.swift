@@ -25,6 +25,8 @@ enum GeoCodingType{
 
 class LocationManager: NSObject,CLLocationManagerDelegate {
     
+    private static let defaultMinDistanceFilter = 5.0
+    
     /* Private variables */
     fileprivate var completionHandler: LMLocationCompletionHandler
     
@@ -62,7 +64,8 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     var hasLastKnownLocation: Bool = true
     
     var autoUpdate: Bool = false
-    
+    var permissionAlways: Bool = false
+
     var showVerboseMessage = false
     
     var isRunning = false
@@ -116,6 +119,9 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     func stopUpdatingLocation(){
+        guard let locationManager = locationManager else {
+            return
+        }
         if (autoUpdate) {
             locationManager.stopUpdatingLocation()
         } else {
@@ -134,6 +140,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         
         locationManager = CLLocationManager()
         locationManager.delegate = self
+        locationManager.distanceFilter = CLLocationDistance(LocationManager.defaultMinDistanceFilter)
         // locationManager.locationServicesEnabled
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
         
@@ -144,7 +151,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         let iOS8 = iosVersion >= 8
         
         if iOS8 {
-            if UIApplication.isRunningTest {
+            if UIApplication.isRunningTest || !permissionAlways {
                 locationManager.requestWhenInUseAuthorization() // add in plist NSLocationWhenInUseUsageDescription
             } else {
                 locationManager.requestAlwaysAuthorization() // add in plist NSLocationAlwaysUsageDescription

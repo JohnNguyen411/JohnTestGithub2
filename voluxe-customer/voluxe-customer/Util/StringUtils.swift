@@ -227,7 +227,7 @@ class StringUtils {
         if (strings.count < 1) {
             return ""
         } else if (strings.count > 2) {
-            mutableStrings = strings.enumerated().compactMap { $0.offset < 2 ? $0.element : nil }
+            mutableStrings = strings.enumerated().flatMap { $0.offset < 2 ? $0.element : nil }
         } else {
             mutableStrings = strings
         }

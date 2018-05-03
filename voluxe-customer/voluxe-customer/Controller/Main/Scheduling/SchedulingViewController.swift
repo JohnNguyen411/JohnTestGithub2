@@ -103,6 +103,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         super.viewDidLoad()
         
         locationManager.delegate = self
+        locationManager.autoUpdate = true
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
         }
@@ -130,9 +131,18 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
     }
     
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        locationManager.stopUpdatingLocation()
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        locationManager.delegate = self
+        locationManager.autoUpdate = true
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
         stateDidChange(state: serviceState)
     }
     

@@ -89,11 +89,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         
         vehicleImageView.contentMode = .scaleAspectFit
         
-        locationManager.delegate = self
-        if CLLocationManager.locationServicesEnabled() {
-            locationManager.startUpdatingLocation()
-        }
-        
         leftButton.setActionBlock {
             self.leftButtonClick()
         }
@@ -112,6 +107,20 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         fillViews()
         
         stateDidChange(state: serviceState)
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        locationManager.delegate = self
+        locationManager.autoUpdate = true
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        locationManager.stopUpdatingLocation()
     }
     
     
