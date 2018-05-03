@@ -530,6 +530,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             
             if date.isToday {
                 from = self.todaysDate as NSDate
+                from = from.addingTimeInterval(2*60*60) // add a 2 hours delay
                 to = date.endOfDay() as NSDate
                 predicate = NSPredicate(format: "to >= %@ AND to <= %@ AND dealershipId = %d", from, to, dealership.id)
             }
@@ -554,6 +555,10 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         currentSlots = slots
         
         for (index, slot) in slots.enumerated() {
+            // limit to 6 timeslots
+            if index > 5 {
+                break
+            }
             let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true), eventName: AnalyticsConstants.eventClickTimeslot, screenName: screenName)
             slotButton.setActionBlock {
                 self.slotClicked(viewIndex: index, slot: slot)
