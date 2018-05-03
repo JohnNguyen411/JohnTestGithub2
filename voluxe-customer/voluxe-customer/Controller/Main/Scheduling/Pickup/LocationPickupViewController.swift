@@ -389,6 +389,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
     func selectIndex(selectedIndex: Int) {
         self.selectedIndex = selectedIndex
+        self.preselectedIndex = selectedIndex
         if self.selectedIndex > -1 {
             self.bottomButton.isEnabled = true
         }
