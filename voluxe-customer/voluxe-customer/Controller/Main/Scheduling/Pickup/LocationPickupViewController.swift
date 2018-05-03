@@ -289,6 +289,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     private func addNewLocationClicked() {
         showNewLocationTextField(show: true)
         onLocationAdded()
+        newLocationTextField.textField.becomeFirstResponder()
     }
     
     private func showNewLocationTextField(show: Bool) {
@@ -303,6 +304,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                 make.right.equalToSuperview().offset(15)
                 make.height.equalTo(self.tableViewHeight())
             }
+            
         } else {
             tableView.snp.remakeConstraints { make in
                 make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
