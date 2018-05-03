@@ -117,6 +117,9 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     func stopUpdatingLocation(){
+        guard let locationManager = locationManager else {
+            return
+        }
         if (autoUpdate) {
             locationManager.stopUpdatingLocation()
         } else {
