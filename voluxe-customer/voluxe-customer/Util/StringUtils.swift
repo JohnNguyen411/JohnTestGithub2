@@ -227,7 +227,18 @@ class StringUtils {
         if (strings.count < 1) {
             return ""
         } else if (strings.count > 2) {
-            mutableStrings = strings.enumerated().flatMap { $0.offset < 2 ? $0.element : nil }
+            /// Xcode 9.3 includes the Swift 4.1 compiler which has deprecated flatMap()
+            /// https://useyourloaf.com/blog/replacing-flatmap-with-compactmap/
+            /// The replacement compactMap() is identical but was renamed to better reflect
+            /// the difference to map().  Unfortunately not all dev computers can be updated
+            /// to Xcode 9.3 (because it requires High Sierra) so this workaround is used
+            /// to clear the deprecated warning and still support older Xcodes.
+            #if swift(>=4.1)
+                mutableStrings = strings.enumerated().compactMap { $0.offset < 2 ? $0.element : nil }
+            #else
+                mutableStrings = strings.enumerated().flatMap { $0.offset < 2 ? $0.element : nil }
+            #endif
+
         } else {
             mutableStrings = strings
         }
