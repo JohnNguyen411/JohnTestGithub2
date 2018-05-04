@@ -112,6 +112,13 @@ class LoadingViewController: ChildViewController {
                         FTUEStartViewController.flowType = .login
                         self.appDelegate?.phoneVerificationScreen()
                         return
+                    } else if error.getCode() == .E5001 || error.getCode() == .E5002 {
+                        // 500 unknown
+                        self.showOkDialog(title: .Error, message: .GenericError, completion: {
+                            self.callCustomer(customerId: customerId)
+                        }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, errorCode: result?.error?.code)
+                        return
                     }
                 }
                 self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
