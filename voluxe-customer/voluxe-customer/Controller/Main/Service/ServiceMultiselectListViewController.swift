@@ -70,7 +70,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         
         self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
 
-        showServices(services: [.VehicleExt, .VehicleInt, .UnderTheHood, .IDontKnow])
+        showServices(services: [.UnderTheHood, .VehicleInt, .VehicleExt, .IDontKnow])
         
         confirmButton.setActionBlock {
             guard let services = self.services else {

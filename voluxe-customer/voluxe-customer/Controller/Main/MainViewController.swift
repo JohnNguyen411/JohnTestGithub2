@@ -63,7 +63,7 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
         var changeView = true
         serviceState = state
         
-       if serviceState == .needService || serviceState == .enRouteForService {
+       if serviceState == .enRouteForService || serviceState == .service || serviceState == .serviceCompleted || serviceState == .completed {
             
             if currentViewController != nil && (currentViewController?.isKind(of: ServiceCarViewController.self))! {
                 changeView = false
@@ -80,14 +80,6 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
                 currentViewController = scheduledPickupViewController
             }
             
-        } else if serviceState == .service || serviceState == .serviceCompleted || serviceState == .completed {
-            
-            if currentViewController != nil && (currentViewController?.isKind(of: ServiceCarViewController.self))! {
-                changeView = false
-            } else {
-                let serviceCarViewController = ServiceCarViewController(vehicle: vehicle, state: serviceState)
-                currentViewController = serviceCarViewController
-            }
         } else if serviceState.rawValue >= ServiceState.dropoffScheduled.rawValue && serviceState.rawValue <= ServiceState.arrivedForDropoff.rawValue {
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
                 changeView = false

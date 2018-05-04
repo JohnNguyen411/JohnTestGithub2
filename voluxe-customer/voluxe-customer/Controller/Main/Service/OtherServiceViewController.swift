@@ -109,8 +109,8 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: self.service)
             StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id, booking: nil)
-            self.appDelegate?.loadViewForVehicle(vehicle: self.vehicle, state: .needService)
-            
+            self.pushViewController(ServiceCarViewController(vehicle: self.vehicle, state: .needService), animated: true, backLabel: .Back)
+
         }
         //descriptionTextView.placeholder
         self.navigationItem.title = .OtherMaintenance
