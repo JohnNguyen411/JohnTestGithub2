@@ -426,10 +426,13 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             
             var selectedDate: Date?
             // select preselected date, otherwise fallback to next day
+            var selectedTimeSlot: DealershipTimeSlot? = nil
             if self.isPickup {
-                selectedDate = RequestedServiceManager.sharedInstance.getPickupTimeSlot()?.from
+                selectedTimeSlot = RequestedServiceManager.sharedInstance.getPickupTimeSlot()
+                selectedDate = selectedTimeSlot?.from
             } else {
-                selectedDate = RequestedServiceManager.sharedInstance.getDropoffTimeSlot()?.from
+                selectedTimeSlot = RequestedServiceManager.sharedInstance.getDropoffTimeSlot()
+                selectedDate = selectedTimeSlot?.from
             }
             
             if selectedDate == nil {
@@ -470,7 +473,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                 })
                 self.showError(error: true)
             }
-            self.selectFirstEnabledButton()
+            
+            self.selectTimeslot(timeSlot: selectedTimeSlot)
             
             self.initWeekDayView()
             self.showLoading(loading: false)
@@ -564,6 +568,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             slotButton.setActionBlock {
                 self.slotClicked(viewIndex: index, slot: slot)
             }
+            slotButton.tag = slot.id
             slotViews.append(slotButton)
             hoursView.addSubview(slotButton)
         }
@@ -603,6 +608,22 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     func updateButtons(date: Date) {
         for slotView in slotViews {
             setButtonEnabled(enable: true, selected: false, button: slotView)
+        }
+    }
+    
+    func selectTimeslot(timeSlot: DealershipTimeSlot?) {
+        guard let timeSlot = timeSlot else {
+            selectFirstEnabledButton()
+            return
+        }
+        guard let currentSlots = currentSlots else {
+            return
+        }
+        for (index, slotView) in slotViews.enumerated() {
+            if slotView.isEnabled, slotView.tag == timeSlot.id {
+                slotClicked(viewIndex: index, slot: currentSlots[index])
+                break
+            }
         }
     }
     
