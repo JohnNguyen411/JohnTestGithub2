@@ -82,6 +82,7 @@ class DealershipAPI: NSObject {
         let queryParams = [
             "dealership_id": dealershipId,
             "type": type,
+            "limit": 100,
             "from__gte": from,
             "to__lte": to,
             ] as [String : Any]

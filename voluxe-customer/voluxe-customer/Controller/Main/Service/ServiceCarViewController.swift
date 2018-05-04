@@ -33,7 +33,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         textView.layer.masksToBounds = true
         textView.textAlignment = .center
         textView.layer.cornerRadius = 5
-        textView.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        textView.addUppercasedCharacterSpacing()
         return textView
     }()
     
@@ -218,11 +218,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     }
     
     func fillViews() {
-        if serviceState == .idle || serviceState == .needService {
-            noteLabel.text = .NotePickup
-        } else if serviceState == .serviceCompleted {
-            noteLabel.text = .NoteDelivery
-        }
         
         vehicle.setVehicleImage(imageView: vehicleImageView)
         
@@ -257,6 +252,12 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
+        
+        if serviceState == .idle || serviceState == .needService {
+            noteLabel.text = .NotePickup
+        } else if serviceState == .serviceCompleted {
+            noteLabel.text = .NoteDelivery
+        }
         
         stateTestView.accessibilityIdentifier = "schedulingTestView\(state)"
         stateTestView.text = "schedulingTestView\(state)"

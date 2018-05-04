@@ -10,6 +10,9 @@ import Foundation
 import UIKit
 import CoreLocation
 import RealmSwift
+import GooglePlaces
+import MBProgressHUD
+
 
 class LocationPickupViewController: VLPresentrViewController, LocationManagerDelegate, UITextFieldDelegate, VLVerticalSearchTextFieldDelegate {
     
@@ -30,17 +33,13 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     var locationManager = LocationManager.sharedInstance
     
     // current location == user current location
-    var currentLocationInfo: NSDictionary?
-    var currentLocationPlacemark: CLPlacemark?
+    var currentLocationAddress: GMSAddress?
     
     // selected Location == selected from autocomplete
-    var selectedLocationInfo: NSDictionary?
-    var selectedLocationPlacemark: CLPlacemark?
+    var selectedLocation: GMSAutocompletePrediction?
     
     // locations displayed in autocomplete
-    var locationInfoArray: [NSDictionary]?
-    var locationPlacemarkArray: [CLPlacemark]?
-    
+    var autocompletePredictions: [GMSAutocompletePrediction]?
     var autoCompleteCharacterCount = 0
     
     var selectedIndex = 0
@@ -52,7 +51,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         titleLabel.text = (.AddNewLocation as String).uppercased()
         titleLabel.font = .volvoSansLightBold(size: 12)
         titleLabel.textAlignment = .left
-        titleLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        titleLabel.addUppercasedCharacterSpacing()
         return titleLabel
     }()
     
@@ -199,49 +198,39 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     }
     
     func autocompleteWithText(userText: String){
-        selectedLocationInfo = nil
-        selectedLocationPlacemark = nil
+        selectedLocation = nil
         self.bottomButton.isEnabled = false
         
-        self.locationManager.autocompleteUsingGoogleAddressString(address: self.newLocationTextField.text as NSString, onAutocompleteCompletionHandler: { (gecodeInfos: [NSDictionary]?, placemarks: [CLPlacemark]?, error: String?) in
-            if let _ = error {
-                DispatchQueue.main.sync {
-                    
+        if userText.count > 2 {
+            self.locationManager.googlePlacesAutocomplete(address: self.newLocationTextField.text) { (autocompletePredictions, error) in
+                if let _ = error {
                     self.newLocationTextField.text = userText
                     self.autoCompleteCharacterCount = 0
-                }
-                
-            } else if let gecodeInfos = gecodeInfos {
-                
-                self.locationInfoArray = gecodeInfos
-                self.locationPlacemarkArray = placemarks
-                
-                var formattedAddress: [String] = []
-                for gecodeInfo in gecodeInfos {
-                    formattedAddress.append(gecodeInfo["formattedAddress"] as! String)
-                }
-                
-                DispatchQueue.main.sync {
+                } else if let autocompletePredictions = autocompletePredictions {
+                    self.autocompletePredictions = autocompletePredictions
+                    var formattedAddress: [NSAttributedString] = []
+                    autocompletePredictions.forEach { prediction in
+                        formattedAddress.append(prediction.attributedFullText)
+                    }
                     self.newLocationTextField.filteredStrings(formattedAddress)
                 }
             }
-        })
+        }
     }
     
     func locationFound(_ latitude: Double, longitude: Double) {
-        locationManager.reverseGeocodeLocationUsingGoogleWithLatLon(latitude: latitude, longitude: longitude) { (reverseGeocodeInfo, placemark, error) -> Void in
-            if let reverseGeocodeInfo = reverseGeocodeInfo {
-                self.currentLocationInfo = reverseGeocodeInfo
-                self.currentLocationPlacemark = placemark
+        
+        locationManager.reverseGeocodeLocation(latitude: latitude, longitude: longitude) { (reverseGeocodeResponse, error) in
+            if let response = reverseGeocodeResponse, let address = response.firstResult() {
+                
+                self.currentLocationAddress = address
                 
                 Logger.print("Address found")
-                Logger.print(reverseGeocodeInfo["formattedAddress"] ?? "")
-                DispatchQueue.main.sync {
-                    self.onLocationAdded()
-                    self.bottomButton.isEnabled = true
-                    if self.preselectedIndex >= 0 {
-                        self.selectIndex(selectedIndex: self.preselectedIndex)
-                    }
+                Logger.print(self.currentLocationAddress?.thoroughfare ?? "")
+                self.onLocationAdded()
+                self.bottomButton.isEnabled = true
+                if self.preselectedIndex >= 0 {
+                    self.selectIndex(selectedIndex: self.preselectedIndex)
                 }
             }
         }
@@ -249,16 +238,16 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
     override func onButtonClick() {
         if let pickupLocationDelegate = pickupLocationDelegate {
-            if self.currentLocationInfo != nil && selectedIndex == self.numberOfRows() - 1 {
+            if self.currentLocationAddress != nil && selectedIndex == self.numberOfRows() - 1 {
                 
-                guard let currentLocationInfo = currentLocationInfo, let currentLocationPlacemark = currentLocationPlacemark else {
+                guard let currentLocationInfo = currentLocationAddress else {
                     return
                 }
                 // add location to realm
                 var customerAddress = CustomerAddress()
-                let addressString: String = currentLocationInfo["formattedAddress"] as! String
+                let addressString: String = currentLocationInfo.fullAddress()
                 
-                customerAddress.location = Location(name: addressString, latitude: nil, longitude: nil, location: currentLocationPlacemark.location?.coordinate)
+                customerAddress.location = Location(name: addressString, latitude: nil, longitude: nil, location: currentLocationInfo.coordinate)
                 customerAddress.createdAt = Date()
                 customerAddress.volvoCustomerId = user!.email
                 
@@ -323,47 +312,52 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
         
         newLocationTextField.closeAutocomplete()
         
-        guard let locationPlacemarkArray = locationPlacemarkArray, let locationInfoArray = locationInfoArray else {
+        guard let autocompletePredictions = autocompletePredictions else {
             return
         }
         
-        if selectedIndex > locationPlacemarkArray.count {
+        if selectedIndex > autocompletePredictions.count {
             return
         }
         
-        selectedLocationInfo = locationInfoArray[selectedIndex]
-        selectedLocationPlacemark = locationPlacemarkArray[selectedIndex]
+        selectedLocation = autocompletePredictions[selectedIndex]
         
-        guard let selectedLocationInfo = selectedLocationInfo, let selectedLocationPlacemark = selectedLocationPlacemark else {
+        guard let selectedLocation = selectedLocation, let placeId = selectedLocation.placeID, let superview = self.view.superview else {
             return
         }
         
         showNewLocationTextField(show: false)
         
-        // add location to realm
-        let customerAddress = CustomerAddress()
+        MBProgressHUD.showAdded(to: superview, animated: true)
         
-        customerAddress.location = Location(name: selectedLocationInfo["formattedAddress"] as? String, latitude: nil, longitude: nil, location: selectedLocationPlacemark.location?.coordinate)
-        customerAddress.createdAt = Date()
-        customerAddress.volvoCustomerId = user!.email
-        
-        if let realm = self.realm {
-            try? realm.write {
-                realm.add(customerAddress)
+        self.locationManager.getPlace(placeId: placeId) { (gmsPlace, error) in
+            MBProgressHUD.hide(for: superview, animated: true)
+            if let place = gmsPlace {
+                // add location to realm
+                let customerAddress = CustomerAddress()
                 
-                if let addresses = addresses {
-                    addressesCount = addresses.count
+                customerAddress.location = Location(name: selectedLocation.attributedFullText.string, latitude: nil, longitude: nil, location: place.coordinate)
+                customerAddress.createdAt = Date()
+                customerAddress.volvoCustomerId = self.user!.email
+                
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(customerAddress)
+                        
+                        if let addresses = self.addresses {
+                            self.addressesCount = addresses.count
+                        }
+                        self.onLocationAdded()
+                        self.newLocationTextField.clearResults()
+                        self.resetValues()
+                        self.newLocationTextField.textField.resignFirstResponder()
+                        self.selectIndex(selectedIndex: self.addressesCount - 1)
+                    }
                 }
-                self.onLocationAdded()
-                self.newLocationTextField.clearResults()
-                self.resetValues()
-                self.newLocationTextField.textField.resignFirstResponder()
-                self.selectIndex(selectedIndex: addressesCount - 1)
+                
+                self.bottomButton.isEnabled = true
             }
         }
-        
-        self.bottomButton.isEnabled = true
-
     }
     
     
@@ -398,7 +392,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     }
     
     func numberOfRows() -> Int {
-        if self.currentLocationInfo != nil {
+        if self.currentLocationAddress != nil {
             return addressesCount + 1
         }
         return addressesCount
@@ -420,7 +414,7 @@ extension LocationPickupViewController: UITableViewDelegate, UITableViewDataSour
         let cell = tableView.dequeueReusableCell(withIdentifier: CheckmarkCell.reuseId, for: indexPath) as! CheckmarkCell
         if let addresses = self.addresses, addressesCount > indexPath.row, let location = addresses[indexPath.row].location {
             cell.setTitle(title: location.getShortAddress() ?? "")
-        } else if let _ = self.currentLocationInfo {
+        } else if let _ = self.currentLocationAddress {
             cell.setTitle(title: .CurrentLocation)
         }
         cell.setChecked(checked: indexPath.row == selectedIndex)

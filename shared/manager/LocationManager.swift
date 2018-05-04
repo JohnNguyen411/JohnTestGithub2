@@ -10,10 +10,8 @@ import Foundation
 import UIKit
 import CoreLocation
 import MapKit
+import GooglePlaces
 
-typealias LMReverseGeocodeCompletionHandler = ((_ reverseGecodeInfo:NSDictionary?,_ placemark:CLPlacemark?, _ error:String?)->Void)?
-typealias LMGeocodeCompletionHandler = ((_ gecodeInfo:NSDictionary?,_ placemark:CLPlacemark?, _ error:String?)->Void)?
-typealias LMAutocompleteCompletionHandler = ((_ gecodeInfos:[NSDictionary]?,_ placemarks:[CLPlacemark]?, _ error:String?)->Void)?
 typealias LMLocationCompletionHandler = ((_ latitude:Double, _ longitude:Double, _ status:String, _ verboseMessage:String, _ error:String?)->())?
 
 // Todo: Keep completion handler differerent for all services, otherwise only one will work
@@ -30,9 +28,8 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     /* Private variables */
     fileprivate var completionHandler: LMLocationCompletionHandler
     
-    fileprivate var reverseGeocodingCompletionHandler: LMReverseGeocodeCompletionHandler
-    fileprivate var geocodingCompletionHandler: LMGeocodeCompletionHandler
-    fileprivate var autocompleteCompletionHandler: LMAutocompleteCompletionHandler
+    fileprivate var googlePlacesClient: GMSPlacesClient!
+    fileprivate var googleGeocoder: GMSGeocoder!
 
     fileprivate var locationStatus: NSString = "Calibrating"// to pass in handler
     fileprivate var locationManager: CLLocationManager!
@@ -45,7 +42,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
                                                 CLAuthorizationStatus.authorizedWhenInUse:"You have granted authorization to use your location only when the app is visible to you."]
     
     
-    var delegate:LocationManagerDelegate? = nil
+    var delegate: LocationManagerDelegate? = nil
     
     var latitude: Double = 0.0
     var longitude: Double = 0.0
@@ -80,6 +77,8 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     
     
     fileprivate override init() {
+        googlePlacesClient = GMSPlacesClient()
+        googleGeocoder = GMSGeocoder()
         
         super.init()
         
@@ -289,232 +288,27 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     
-    func reverseGeocodeLocationWithLatLon(latitude: Double, longitude: Double, onReverseGeocodingCompletionHandler: LMReverseGeocodeCompletionHandler) {
+    func googlePlacesAutocomplete(address: String, onAutocompleteCompletionHandler: @escaping GMSAutocompletePredictionsCallback) {
+        let filter = GMSAutocompleteFilter()
+        filter.type = .noFilter
         
-        let location:CLLocation = CLLocation(latitude: latitude, longitude: longitude)
-        
-        reverseGeocodeLocationWithCoordinates(location, onReverseGeocodingCompletionHandler: onReverseGeocodingCompletionHandler)
-        
-    }
-    
-    func reverseGeocodeLocationWithCoordinates(_ coord: CLLocation, onReverseGeocodingCompletionHandler: LMReverseGeocodeCompletionHandler) {
-        
-        self.reverseGeocodingCompletionHandler = onReverseGeocodingCompletionHandler
-        
-        reverseGocode(coord)
-    }
-    
-    fileprivate func reverseGocode(_ location:CLLocation) {
-        
-        let geocoder: CLGeocoder = CLGeocoder()
-        
-        geocoder.reverseGeocodeLocation(location, completionHandler: {(placemarks, error) -> Void in
-            
-            if (error != nil) {
-                self.reverseGeocodingCompletionHandler!(nil, nil, error!.localizedDescription)
-            }
-            else {
-                if let placemark = placemarks?.first {
-                    let address = AddressParser()
-                    address.parseAppleLocationData(placemark)
-                    let addressDict = address.getAddressDictionary()
-                    self.reverseGeocodingCompletionHandler!(addressDict, placemark, nil)
-                }
-                else {
-                    self.reverseGeocodingCompletionHandler!(nil, nil, "No Placemarks Found!")
-                    return
-                }
-            }
-        })
-    }
-    
-    
-    
-    func geocodeAddressString(address:NSString, onGeocodingCompletionHandler:LMGeocodeCompletionHandler) {
-        self.geocodingCompletionHandler = onGeocodingCompletionHandler
-        geoCodeAddress(address)
-    }
-    
-    
-    fileprivate func geoCodeAddress(_ address:NSString) {
-        
-        let geocoder = CLGeocoder()
-        geocoder.geocodeAddressString(address as String, completionHandler: {(placemarks: [CLPlacemark]?, error: NSError?) -> Void in
-            
-            if (error != nil) {
-                self.geocodingCompletionHandler!(nil,nil,error!.localizedDescription)
-            } else {
-                if let placemark = placemarks?.first {
-                    let address = AddressParser()
-                    address.parseAppleLocationData(placemark)
-                    let addressDict = address.getAddressDictionary()
-                    self.geocodingCompletionHandler!(addressDict,placemark,nil)
-                } else {
-                    self.geocodingCompletionHandler!(nil, nil, "invalid address: \(address)")
-                }
-            }
-            
-        } as! CLGeocodeCompletionHandler)
-        
-    }
-    
-    
-    func autocompleteUsingGoogleAddressString(address:NSString, onAutocompleteCompletionHandler:LMAutocompleteCompletionHandler){
-        self.autocompleteCompletionHandler = onAutocompleteCompletionHandler
-        autocompleteUsignGoogleAddress(address)
-    }
-    
-    func geocodeUsingGoogleAddressString(address:NSString, onGeocodingCompletionHandler:LMGeocodeCompletionHandler){
-        self.geocodingCompletionHandler = onGeocodingCompletionHandler
-        geoCodeUsignGoogleAddress(address)
-    }
-    
-    fileprivate func autocompleteUsignGoogleAddress(_ address:NSString){
-
-        let key = Bundle.main.object(forInfoDictionaryKey: "GoogleMapsGeocodeAPIKey") as! String
-        var urlString = "https://maps.googleapis.com/maps/api/geocode/json?address=\(address)&sensor=true&key=\(key)" as NSString
-        urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! as NSString
-        performAutocompleteOperationForURL(urlString, type: GeoCodingType.geocoding)
-    }
-    
-    fileprivate func geoCodeUsignGoogleAddress(_ address:NSString){
-        let key = Bundle.main.object(forInfoDictionaryKey: "GoogleMapsGeocodeAPIKey") as! String
-        var urlString = "https://maps.googleapis.com/maps/api/geocode/json?address=\(address)&sensor=true=\(key)" as NSString
-        urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! as NSString
-        performOperationForURL(urlString, type: GeoCodingType.geocoding)
-    }
-    
-    func reverseGeocodeLocationUsingGoogleWithLatLon(latitude:Double, longitude: Double, onReverseGeocodingCompletionHandler: LMReverseGeocodeCompletionHandler) {
-        self.reverseGeocodingCompletionHandler = onReverseGeocodingCompletionHandler
-        reverseGocodeUsingGoogle(latitude: latitude, longitude: longitude)
-    }
-    
-    func reverseGeocodeLocationUsingGoogleWithCoordinates(_ coord:CLLocation, onReverseGeocodingCompletionHandler: LMReverseGeocodeCompletionHandler) {
-        reverseGeocodeLocationUsingGoogleWithLatLon(latitude: coord.coordinate.latitude, longitude: coord.coordinate.longitude, onReverseGeocodingCompletionHandler: onReverseGeocodingCompletionHandler)
-    }
-    
-    fileprivate func reverseGocodeUsingGoogle(latitude:Double, longitude: Double) {
-        let key = Bundle.main.object(forInfoDictionaryKey: "GoogleMapsGeocodeAPIKey") as! String
-        var urlString = "https://maps.googleapis.com/maps/api/geocode/json?latlng=\(latitude),\(longitude)&sensor=true\(key)" as NSString
-        urlString = urlString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)! as NSString
-        performOperationForURL(urlString, type: GeoCodingType.reverseGeocoding)
-    }
-    
-    fileprivate func performAutocompleteOperationForURL(_ urlString: NSString, type:GeoCodingType) {
-        
-        let url:URL? = URL(string:urlString as String)
-        let request:URLRequest = URLRequest(url: url!)
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-            
-            if (error != nil) {
-                self.setCompletionHandler(responseInfo: nil, placemark: nil, error: error!.localizedDescription, type: type)
-            } else{
-                let kStatus = "status"
-                let kOK = "ok"
-                let kZeroResults = "ZERO_RESULTS"
-                let kAPILimit = "OVER_QUERY_LIMIT"
-                let kRequestDenied = "REQUEST_DENIED"
-                let kInvalidRequest = "INVALID_REQUEST"
-                let kInvalidInput =  "Invalid Input"
-                
-                //let dataAsString: NSString? = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                
-                let jsonResult: NSDictionary = (try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSDictionary
-                
-                var status = jsonResult.value(forKey: kStatus) as! NSString
-                status = status.lowercased as NSString
-                
-                if (status.isEqual(to: kOK)) {
-                    
-                    let address = AddressParser()
-                    let locationsDict = (jsonResult.value(forKey: "results") as! NSArray)
-                    
-                    var addressDictArray: [NSDictionary] = []
-                    var placemarksArray: [CLPlacemark] = []
-
-                    for locationDict in locationsDict {
-                        address.parseGoogleLocationData(locationDict as! NSDictionary)
-                        addressDictArray.append(address.getAddressDictionary())
-                        placemarksArray.append(address.getPlacemark())
-                    }
-                    
-                    self.setAutoCompletionHandler(responseInfo: addressDictArray, placemark: placemarksArray, error: nil)
-                    
-                } else if (!status.isEqual(to: kZeroResults) && !status.isEqual(to: kAPILimit) && !status.isEqual(to: kRequestDenied) && !status.isEqual(to: kInvalidRequest)) {
-                    self.setAutoCompletionHandler(responseInfo:nil, placemark:nil, error:kInvalidInput)
-                } else {
-                    //status = (status.componentsSeparatedByString("_") as NSArray).componentsJoinedByString(" ").capitalizedString
-                    self.setAutoCompletionHandler(responseInfo:nil, placemark:nil, error:status as String)
-                }
-            }
-        })
-        
-        task.resume()
-        
-    }
-    
-    fileprivate func performOperationForURL(_ urlString: NSString, type:GeoCodingType) {
-        
-        let url:URL? = URL(string:urlString as String)
-        let request:URLRequest = URLRequest(url: url!)
-        let task = URLSession.shared.dataTask(with: request, completionHandler: { (data, response, error) in
-            
-            if (error != nil) {
-                self.setCompletionHandler(responseInfo: nil, placemark: nil, error: error!.localizedDescription, type: type)
-            } else{
-                let kStatus = "status"
-                let kOK = "ok"
-                let kZeroResults = "ZERO_RESULTS"
-                let kAPILimit = "OVER_QUERY_LIMIT"
-                let kRequestDenied = "REQUEST_DENIED"
-                let kInvalidRequest = "INVALID_REQUEST"
-                let kInvalidInput =  "Invalid Input"
-                
-                //let dataAsString: NSString? = NSString(data: data!, encoding: NSUTF8StringEncoding)
-                
-                let jsonResult: NSDictionary = (try! JSONSerialization.jsonObject(with: data!, options: JSONSerialization.ReadingOptions.mutableContainers)) as! NSDictionary
-                
-                var status = jsonResult.value(forKey: kStatus) as! NSString
-                status = status.lowercased as NSString
-                
-                if (status.isEqual(to: kOK)) {
-                    
-                    let address = AddressParser()
-                    let locationDict = (jsonResult.value(forKey: "results") as! NSArray).firstObject as! NSDictionary
-                    
-                    address.parseGoogleLocationData(locationDict)
-                    
-                    let addressDict = address.getAddressDictionary()
-                    let placemark:CLPlacemark = address.getPlacemark()
-                    
-                    self.setCompletionHandler(responseInfo: addressDict, placemark: placemark, error: nil, type: type)
-                    
-                } else if (!status.isEqual(to: kZeroResults) && !status.isEqual(to: kAPILimit) && !status.isEqual(to: kRequestDenied) && !status.isEqual(to: kInvalidRequest)) {
-                    self.setCompletionHandler(responseInfo:nil, placemark:nil, error:kInvalidInput, type:type)
-                } else {
-                    //status = (status.componentsSeparatedByString("_") as NSArray).componentsJoinedByString(" ").capitalizedString
-                    self.setCompletionHandler(responseInfo:nil, placemark:nil, error:status as String, type:type)
-                }
-            }
-        })
-        
-        task.resume()
-        
-    }
-    
-    fileprivate func setCompletionHandler(responseInfo: NSDictionary?, placemark:CLPlacemark?, error:String?,type:GeoCodingType) {
-        if (type == GeoCodingType.geocoding) {
-            self.geocodingCompletionHandler!(responseInfo,placemark,error)
-        } else {
-            self.reverseGeocodingCompletionHandler!(responseInfo,placemark,error)
+        var bounds: GMSCoordinateBounds? = nil
+        if let locationManager = self.locationManager, let location = locationManager.location {
+            bounds = GMSCoordinateBounds(coordinate: location.coordinate, coordinate: location.coordinate)
         }
+        
+        googlePlacesClient.autocompleteQuery(address, bounds: bounds, boundsMode: .bias, filter: filter, callback: onAutocompleteCompletionHandler)
+    }
+ 
+    func reverseGeocodeLocation(latitude:Double, longitude: Double, completionHandler: @escaping GMSReverseGeocodeCallback) {
+        googleGeocoder.reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: latitude, longitude: longitude), completionHandler: completionHandler)
     }
     
-    fileprivate func setAutoCompletionHandler(responseInfo: [NSDictionary]?, placemark:[CLPlacemark]?, error:String?) {
-        self.autocompleteCompletionHandler!(responseInfo, placemark, error)
+    func getPlace(placeId: String, callback: @escaping GMSPlaceResultCallback) {
+        googlePlacesClient.lookUpPlaceID(placeId, callback: callback)
     }
+    
 }
-
 
 @objc protocol LocationManagerDelegate : NSObjectProtocol
 {
@@ -523,164 +317,4 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     @objc optional func locationManagerStatus(_ status:NSString)
     @objc optional func locationManagerReceivedError(_ error:NSString)
     @objc optional func locationManagerVerboseMessage(_ message:NSString)
-}
-
-private class AddressParser: NSObject{
-    
-    fileprivate var latitude = NSString()
-    fileprivate var longitude  = NSString()
-    fileprivate var streetNumber = NSString()
-    fileprivate var route = NSString()
-    fileprivate var locality = NSString()
-    fileprivate var subLocality = NSString()
-    fileprivate var formattedAddress = NSString()
-    fileprivate var administrativeArea = NSString()
-    fileprivate var administrativeAreaCode = NSString()
-    fileprivate var subAdministrativeArea = NSString()
-    fileprivate var postalCode = NSString()
-    fileprivate var country = NSString()
-    fileprivate var subThoroughfare = NSString()
-    fileprivate var thoroughfare = NSString()
-    fileprivate var ISOcountryCode = NSString()
-    fileprivate var state = NSString()
-    
-    
-    override init(){
-        super.init()
-    }
-    
-    fileprivate func getAddressDictionary()-> NSDictionary{
-        
-        let addressDict = NSMutableDictionary()
-        
-        addressDict.setValue(latitude, forKey: "latitude")
-        addressDict.setValue(longitude, forKey: "longitude")
-        addressDict.setValue(streetNumber, forKey: "streetNumber")
-        addressDict.setValue(locality, forKey: "locality")
-        addressDict.setValue(subLocality, forKey: "subLocality")
-        addressDict.setValue(administrativeArea, forKey: "administrativeArea")
-        addressDict.setValue(postalCode, forKey: "postalCode")
-        addressDict.setValue(country, forKey: "country")
-        addressDict.setValue(formattedAddress, forKey: "formattedAddress")
-        
-        return addressDict
-    }
-    
-    
-    fileprivate func parseAppleLocationData(_ placemark: CLPlacemark) {
-        
-        let addressLines = placemark.addressDictionary!["FormattedAddressLines"] as! NSArray
-        
-        //self.streetNumber = placemark.subThoroughfare ? placemark.subThoroughfare : ""
-        self.streetNumber = (placemark.thoroughfare != nil ? placemark.thoroughfare : "")! as NSString
-        self.locality = (placemark.locality != nil ? placemark.locality : "")! as NSString
-        self.postalCode = (placemark.postalCode != nil ? placemark.postalCode : "")! as NSString
-        self.subLocality = (placemark.subLocality != nil ? placemark.subLocality : "")! as NSString
-        self.administrativeArea = (placemark.administrativeArea != nil ? placemark.administrativeArea : "")! as NSString
-        self.country = (placemark.country != nil ?  placemark.country : "")! as NSString
-        self.longitude = placemark.location!.coordinate.longitude.description as NSString;
-        self.latitude = placemark.location!.coordinate.latitude.description as NSString
-        if (addressLines.count > 0) {
-            self.formattedAddress = addressLines.componentsJoined(by: ", ") as NSString
-        } else {
-            self.formattedAddress = ""
-        }
-    }
-    
-    
-    fileprivate func parseGoogleLocationData(_ locationDict:NSDictionary) {
-        
-        let formattedAddrs = locationDict.object(forKey: "formatted_address") as! NSString
-        
-        let geometry = locationDict.object(forKey: "geometry") as! NSDictionary
-        let location = geometry.object(forKey: "location") as! NSDictionary
-        let lat = location.object(forKey: "lat") as! Double
-        let lng = location.object(forKey: "lng") as! Double
-        
-        self.latitude = lat.description as NSString
-        self.longitude = lng.description as NSString
-        
-        let addressComponents = locationDict.object(forKey: "address_components") as! NSArray
-        
-        self.subThoroughfare = component("street_number", inArray: addressComponents, ofType: "long_name")
-        self.thoroughfare = component("route", inArray: addressComponents, ofType: "long_name")
-        self.streetNumber = self.subThoroughfare
-        self.locality = component("locality", inArray: addressComponents, ofType: "long_name")
-        self.postalCode = component("postal_code", inArray: addressComponents, ofType: "long_name")
-        self.route = component("route", inArray: addressComponents, ofType: "long_name")
-        self.subLocality = component("subLocality", inArray: addressComponents, ofType: "long_name")
-        self.administrativeArea = component("administrative_area_level_1", inArray: addressComponents, ofType: "long_name")
-        self.administrativeAreaCode = component("administrative_area_level_1", inArray: addressComponents, ofType: "short_name")
-        self.subAdministrativeArea = component("administrative_area_level_2", inArray: addressComponents, ofType: "long_name")
-        self.country =  component("country", inArray: addressComponents, ofType: "long_name")
-        self.ISOcountryCode =  component("country", inArray: addressComponents, ofType: "short_name")
-        self.formattedAddress = formattedAddrs;
-    }
-    
-    fileprivate func component(_ component:NSString,inArray:NSArray,ofType:NSString) -> NSString{
-        let index = inArray.indexOfObject(passingTest:) {obj, idx, stop in
-            let objDict:NSDictionary = obj as! NSDictionary
-            let types:NSArray = objDict.object(forKey: "types") as! NSArray
-            let type = types.firstObject as! NSString
-            return type.isEqual(to: component as String)
-        }
-        
-        if (index == NSNotFound) {
-            return ""
-        }
-        
-        if (index >= inArray.count) {
-            return ""
-        }
-        
-        let type = ((inArray.object(at: index) as! NSDictionary).value(forKey: ofType as String)!) as! NSString
-        if (type.length > 0) {
-            return type
-        }
-        return ""
-    }
-    
-    fileprivate func getPlacemark() -> CLPlacemark {
-        
-        var addressDict = [String : AnyObject]()
-        
-        let formattedAddressArray = self.formattedAddress.components(separatedBy: ", ") as Array
-        
-        let kSubAdministrativeArea = "SubAdministrativeArea"
-        let kSubLocality           = "SubLocality"
-        let kState                 = "State"
-        let kStreet                = "Street"
-        let kThoroughfare          = "Thoroughfare"
-        let kFormattedAddressLines = "FormattedAddressLines"
-        let kSubThoroughfare       = "SubThoroughfare"
-        let kPostCodeExtension     = "PostCodeExtension"
-        let kCity                  = "City"
-        let kZIP                   = "ZIP"
-        let kCountry               = "Country"
-        let kCountryCode           = "CountryCode"
-        
-        addressDict[kSubAdministrativeArea] = self.subAdministrativeArea
-        addressDict[kSubLocality] = self.subLocality as NSString
-        addressDict[kState] = self.administrativeAreaCode
-        
-        addressDict[kStreet] = formattedAddressArray.first! as NSString
-        addressDict[kThoroughfare] = self.thoroughfare
-        addressDict[kFormattedAddressLines] = formattedAddressArray as AnyObject?
-        addressDict[kSubThoroughfare] = self.subThoroughfare
-        addressDict[kPostCodeExtension] = "" as AnyObject?
-        addressDict[kCity] = self.locality
-        
-        addressDict[kZIP] = self.postalCode
-        addressDict[kCountry] = self.country
-        addressDict[kCountryCode] = self.ISOcountryCode
-        
-        let lat = self.latitude.doubleValue
-        let lng = self.longitude.doubleValue
-        let coordinate = CLLocationCoordinate2D(latitude: lat, longitude: lng)
-        
-        let placemark = MKPlacemark(coordinate: coordinate, addressDictionary: addressDict as [String : AnyObject]?)
-        
-        return (placemark as CLPlacemark)
-    }
-    
 }

@@ -24,8 +24,8 @@
 	<string>$(ENABLE_DEBUG_INFO)</string>
 	<key>GoogleMapsAPIKey</key>
 	<string>AIzaSyCf1Ub4aMgqWeISdHPEcFawx-N-OrmxBTM</string>
-	<key>GoogleMapsGeocodeAPIKey</key>
-	<string>AIzaSyDttDpi-qSy_4-MwUs2tbsZrJqCjz_gowM</string>
+	<key>GooglePlacesAPIKey</key>
+	<string>AIzaSyA65M4H5PG82NbkDRcTmvq9ouqAZJKCil8</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
@@ -73,19 +73,19 @@
 	<string>$(OPENID_REDIRECT_URI)</string>
 	<key>com.volvocars.hse.openIdTokenEndpoint</key>
 	<string>$(OPENID_TOKEN_ENDPOINT)</string>
-    <key>Fabric</key>
-    <dict>
-        <key>APIKey</key>
-        <string>09254e520e351430e89eaaeb71ebd9fb51390026</string>
-        <key>Kits</key>
-        <array>
-            <dict>
-                <key>KitInfo</key>
-                <dict/>
-                <key>KitName</key>
-                <string>Crashlytics</string>
-            </dict>
-        </array>
-    </dict>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>09254e520e351430e89eaaeb71ebd9fb51390026</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 </dict>
 </plist>

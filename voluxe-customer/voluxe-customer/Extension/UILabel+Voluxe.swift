@@ -28,6 +28,11 @@ extension UILabel {
         }
     }
     
+    func addUppercasedCharacterSpacing() {
+        self.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+    }
+    
+    
     static func uppercasedKern() -> Float {
         return 0.4
     }

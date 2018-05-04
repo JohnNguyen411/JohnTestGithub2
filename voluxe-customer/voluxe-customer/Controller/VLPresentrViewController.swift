@@ -24,7 +24,7 @@ class VLPresentrViewController: UIViewController {
         titleLabel.textColor = .luxeGray()
         titleLabel.font = .volvoSansLightBold(size: 12)
         titleLabel.textAlignment = .left
-        titleLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        titleLabel.addUppercasedCharacterSpacing()
         return titleLabel
     }()
     
@@ -59,12 +59,12 @@ class VLPresentrViewController: UIViewController {
     
     func setTitle(title: String) {
         titleLabel.text = title
-        titleLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        titleLabel.addUppercasedCharacterSpacing()
     }
     
     func setButtonTitle(title: String, eventName: String?) {
         bottomButton.setTitle(title: title)
-        bottomButton.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        bottomButton.addUppercasedCharacterSpacing()
         if let eventName = eventName {
             bottomButton.setEventName(eventName)
         }

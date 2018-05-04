@@ -14,8 +14,11 @@ import GoogleMaps
 import BrightFutures
 import Result
 import SwiftEventBus
+import MBProgressHUD
 
 class ScheduledViewController: ChildViewController {
+    
+    private static let ETARefreshThrottle: Double = 15
     
     static let officeLocation = CLLocationCoordinate2D(latitude: 37.788866, longitude: -122.398210)
     static let driverLocation1 = CLLocationCoordinate2D(latitude: 37.7686497, longitude: -122.4175534)
@@ -42,7 +45,7 @@ class ScheduledViewController: ChildViewController {
     // UITest
     let testView = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
     
-    private let googleDirectionAPI = GoogleDirectionAPI()
+    private let googleDistanceMatrixAPI = GoogleDistanceMatrixAPI()
     
     var steps: [Step] = []
     private var driver: Driver?
@@ -63,11 +66,13 @@ class ScheduledViewController: ChildViewController {
         return titleLabel
     }()
     
+    private var lastRefresh: Date? = nil
+
     private let driverContact: VLButton
     
     init(vehicle: Vehicle, screenName: String) {
         self.vehicle = vehicle
-        driverContact = VLButton(type: .orangeSecondarySmall, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickContactDriver, screenName: screenName)
+        driverContact = VLButton(type: .blueSecondary, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickContactDriver, screenName: screenName)
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
         super.init(screenName: screenName)
         generateSteps()
@@ -159,7 +164,7 @@ class ScheduledViewController: ChildViewController {
             }
             
             driverName.snp.makeConstraints { make in
-                make.left.equalTo(driverIcon.snp.right).offset(20)
+                make.left.equalTo(driverIcon.snp.right).offset(10)
                 make.centerY.right.equalToSuperview()
                 make.height.equalTo(35)
             }
@@ -270,13 +275,16 @@ class ScheduledViewController: ChildViewController {
     }
     
     func getEta(fromLocation: CLLocationCoordinate2D, toLocation: CLLocationCoordinate2D) {
-        googleDirectionAPI.getDirection(origin: GoogleDirectionAPI.coordinatesToString(coordinate: fromLocation), destination: GoogleDirectionAPI.coordinatesToString(coordinate: toLocation), mode: nil).onSuccess { direction in
-            if let direction = direction {
-                self.mapVC.updateETA(eta: direction.getEta())
-                self.timeWindowView.setETA(eta: direction.getEta())
+        if lastRefresh == nil || lastRefresh!.timeIntervalSinceNow < -ScheduledViewController.ETARefreshThrottle {
+            lastRefresh = Date()
+            googleDistanceMatrixAPI.getDirection(origin: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: fromLocation), destination: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: toLocation), mode: nil).onSuccess { distanceMatrix in
+                if let distanceMatrix = distanceMatrix {
+                    self.mapVC.updateETA(eta: distanceMatrix.getEta())
+                    self.timeWindowView.setETA(eta: distanceMatrix.getEta())
+                }
+                }.onFailure { error in
+                    Logger.print(error)
             }
-            }.onFailure { error in
-                Logger.print(error)
         }
         
     }
@@ -313,8 +321,11 @@ class ScheduledViewController: ChildViewController {
             return
         }
         
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
         BookingAPI().contactDriver(customerId: customerId, bookingId: booking.id, mode: mode).onSuccess { result in
             if let contactDriver = result?.data?.result {
+                MBProgressHUD.hide(for: self.view, animated: true)
                 VLAnalytics.logEventWithName(AnalyticsConstants.eventApiContactDriverSuccess, screenName: self.screenName)
                 if mode == "text_only" {
                     // sms
@@ -331,6 +342,7 @@ class ScheduledViewController: ChildViewController {
                 }
             }
         }.onFailure { error in
+            MBProgressHUD.hide(for: self.view, animated: true)
             self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiContactDriverFail, screenName: self.screenName, statusCode: error.responseCode)
         }

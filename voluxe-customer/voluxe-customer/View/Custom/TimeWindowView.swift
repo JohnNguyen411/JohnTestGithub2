@@ -29,7 +29,7 @@ class TimeWindowView: UIView {
         titleLabel.font = .volvoSansLightBold(size: 10)
         titleLabel.textAlignment = .center
         titleLabel.text = (.PickupWindow as String).uppercased()
-        titleLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        titleLabel.addUppercasedCharacterSpacing()
         return titleLabel
     }()
     
@@ -79,11 +79,13 @@ class TimeWindowView: UIView {
         }
         
         subtitleView.text = (.EstimatedPickupTime as String).uppercased()
+        subtitleView.addUppercasedCharacterSpacing()
 
     }
     
     func setTimeWindows(timeWindows: String) {
         subtitleView.text = (.PickupWindow as String).uppercased()
+        subtitleView.addUppercasedCharacterSpacing()
         titleView.text = timeWindows
     }
 }

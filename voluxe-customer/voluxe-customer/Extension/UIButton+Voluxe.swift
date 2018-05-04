@@ -14,6 +14,10 @@ public enum UIButtonBorderSide {
 
 extension UIButton {
     
+    func addUppercasedCharacterSpacing() {
+        self.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+    }
+    
     func addCharacterSpacing(kernValue: Float) {
         if let titleLabel = self.titleLabel, let text = titleLabel.text {
             addCharacterSpacing(kernValue: kernValue, text: text)

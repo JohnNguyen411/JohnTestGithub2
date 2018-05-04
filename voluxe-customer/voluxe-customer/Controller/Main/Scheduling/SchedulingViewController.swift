@@ -81,7 +81,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         dealershipMapLabel.font = .volvoSansLightBold(size: 12)
         dealershipMapLabel.text = String.Map.uppercased()
         dealershipMapLabel.textAlignment = .left
-        dealershipMapLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        dealershipMapLabel.addUppercasedCharacterSpacing()
         return dealershipMapLabel
     }()
     
@@ -518,6 +518,8 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
                 title = .ScheduledSelfDrop
             }
+        } else {
+            title = .ScheduledDelivery
         }
         return title
     }

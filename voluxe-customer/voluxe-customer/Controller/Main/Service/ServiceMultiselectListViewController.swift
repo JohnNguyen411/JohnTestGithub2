@@ -86,6 +86,9 @@ class ServiceMultiselectListViewController: BaseViewController {
         }
         
         self.navigationItem.title = .OtherMaintenance
+
+        enableConfirmButton()
+
     }
     
     override func setupViews() {
@@ -143,6 +146,10 @@ class ServiceMultiselectListViewController: BaseViewController {
         self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
     
+    func enableConfirmButton() {
+        confirmButton.isEnabled = getSelectedIndex().count > 0
+    }
+    
 }
 
 extension ServiceMultiselectListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -182,6 +189,7 @@ extension ServiceMultiselectListViewController: UITableViewDataSource, UITableVi
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
         
         confirmButton.setOptionalParams(params: [AnalyticsConstants.paramNameSelectedCustomServices: getSelectedIndex()])
+        enableConfirmButton()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

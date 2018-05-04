@@ -114,10 +114,10 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         })
     }
     
-    func onLocationAdded(responseInfo: NSDictionary?, placemark: CLPlacemark?) {
+    func onLocationAdded(location: Location?) {
         let customerAddress = CustomerAddress()
         
-        customerAddress.location = Location(name: responseInfo!.value(forKey: "formattedAddress") as? String, latitude: nil, longitude: nil, location: placemark?.location?.coordinate)
+        customerAddress.location = location
         customerAddress.createdAt = Date()
         customerAddress.volvoCustomerId = user!.email
         
@@ -275,7 +275,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         label.font = UIFont.boldSystemFont(ofSize: 14)
         label.textColor = UIColor.luxeGray()
         label.text = getTitleForSection(section: section).uppercased()
-        label.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        label.addUppercasedCharacterSpacing()
         view.addSubview(label)
         return view
     }

@@ -1,15 +1,15 @@
 //
-//  GMLegs.swift
+//  GMElements.swift
 //  voluxe-customer
 //
-//  Created by Giroux, Johan on 11/16/17.
-//  Copyright © 2017 Luxe - Volvo Cars. All rights reserved.
+//  Created by Giroux, Johan on 5/4/18.
+//  Copyright © 2018 Luxe - Volvo Cars. All rights reserved.
 //
 
 import Foundation
 import ObjectMapper
 
-class GMLegs: NSObject, Mappable {
+class GMElements: NSObject, Mappable {
     
     var distance: GMTextValueObject?
     var duration: GMTextValueObject?

@@ -9,6 +9,8 @@
 import Foundation
 import UIKit
 import CoreLocation
+import GooglePlaces
+import MBProgressHUD
 
 class AddLocationViewController: VLPresentrViewController, LocationManagerDelegate, UITextFieldDelegate, VLVerticalSearchTextFieldDelegate, PresentrDelegate {
     
@@ -16,12 +18,9 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     var locationManager = LocationManager.sharedInstance
     
     var presentrDelegate: PresentrDelegate?
-    var selectedLocationInfo: NSDictionary?
-    var selectedLocationPlacemark: CLPlacemark?
+    var selectedLocation: GMSPlace?
     
-    var locationInfoArray: [NSDictionary]?
-    var locationPlacemarkArray: [CLPlacemark]?
-    
+    var autocompletePredictions: [GMSAutocompletePrediction]?
     var autoCompleteCharacterCount = 0
     
     let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
@@ -75,40 +74,36 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     
     
     override func onButtonClick() {
-        if let pickupLocationDelegate = pickupLocationDelegate, let selectedLocationInfo = selectedLocationInfo, let selectedLocationPlacemark = selectedLocationPlacemark {
-            pickupLocationDelegate.onLocationAdded(responseInfo: selectedLocationInfo, placemark: selectedLocationPlacemark)
+        if let pickupLocationDelegate = pickupLocationDelegate, let selectedLocation = selectedLocation {
+            let location = Location(name: selectedLocation.formattedAddress, latitude: nil, longitude: nil, location: selectedLocation.coordinate)
+            pickupLocationDelegate.onLocationAdded(location: location)
         }
     }
     
     
     func autocompleteWithText(userText: String){
-        selectedLocationInfo = nil
-        selectedLocationPlacemark = nil
+        selectedLocation = nil
         self.bottomButton.isEnabled = false
-
-        self.locationManager.autocompleteUsingGoogleAddressString(address: self.newLocationTextField.text as NSString, onAutocompleteCompletionHandler: { (gecodeInfos: [NSDictionary]?, placemarks: [CLPlacemark]?, error: String?) in
-            if let _ = error {
-                DispatchQueue.main.sync {
-                    
+        
+        if userText.count > 2 {
+            
+            self.locationManager.googlePlacesAutocomplete(address: userText) { (autocompletePredictions, error) in
+                if let _ = error {
                     self.newLocationTextField.text = userText
                     self.autoCompleteCharacterCount = 0
-                }
-
-            } else if let gecodeInfos = gecodeInfos {
-                
-                self.locationInfoArray = gecodeInfos
-                self.locationPlacemarkArray = placemarks
-                
-                var formattedAddress: [String] = []
-                for gecodeInfo in gecodeInfos {
-                   formattedAddress.append(gecodeInfo["formattedAddress"] as! String)
-                }
-
-                DispatchQueue.main.sync {
-                   self.newLocationTextField.filteredStrings(formattedAddress)
+                    
+                } else if let autocompletePredictions = autocompletePredictions {
+                    self.autocompletePredictions = autocompletePredictions
+                    var formattedAddress: [NSAttributedString] = []
+                    autocompletePredictions.forEach { prediction in
+                        formattedAddress.append(prediction.attributedFullText)
+                    }
+                    self.newLocationTextField.filteredStrings(formattedAddress)
                 }
             }
-        })
+        } else {
+            self.newLocationTextField.filteredStrings([])
+        }
     }
     
     func locationFound(_ latitude: Double, longitude: Double) {
@@ -120,18 +115,30 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
         
         newLocationTextField.closeAutocomplete()
         
-        guard let locationPlacemarkArray = locationPlacemarkArray, let locationInfoArray = locationInfoArray else {
+        guard let autocompletePredictions = autocompletePredictions, let superview = self.view.superview else {
             return
         }
         
-        if selectedIndex > locationPlacemarkArray.count {
+        if selectedIndex > autocompletePredictions.count {
             return
         }
         
-        selectedLocationInfo = locationInfoArray[selectedIndex]
-        selectedLocationPlacemark = locationPlacemarkArray[selectedIndex]
+        let selectedPrediction = autocompletePredictions[selectedIndex]
         
-        self.bottomButton.isEnabled = true
+        guard let placeId = selectedPrediction.placeID else {
+            return
+        }
+        
+        MBProgressHUD.showAdded(to: superview, animated: true)
+        
+        self.locationManager.getPlace(placeId: placeId) { (gmsPlace, error) in
+            MBProgressHUD.hide(for: superview, animated: true)
+            if let place = gmsPlace {
+                self.selectedLocation = place
+                self.bottomButton.isEnabled = true
+            }
+        }
+        
         //self.newLocationTextField.textField.resignFirstResponder()
     }
     
@@ -167,6 +174,6 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
 
 // MARK: protocol AddLocationDelegate
 protocol AddLocationDelegate: class {
-    func onLocationAdded(responseInfo: NSDictionary?, placemark: CLPlacemark?)
+    func onLocationAdded(location: Location?)
     
 }

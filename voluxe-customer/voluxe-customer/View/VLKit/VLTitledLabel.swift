@@ -46,7 +46,7 @@ class VLTitledLabel: UIView {
         errorLabel.textColor = .luxeOrange()
         errorLabel.font = .volvoSansLightBold(size: 12)
         errorLabel.textAlignment = .right
-        errorLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        errorLabel.addUppercasedCharacterSpacing()
         return errorLabel
     }()
     

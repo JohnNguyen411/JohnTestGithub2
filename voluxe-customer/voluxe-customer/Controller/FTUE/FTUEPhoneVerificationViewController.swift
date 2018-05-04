@@ -56,7 +56,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         codeTextField.setRightButtonText(rightButtonText: (.ResendCode as String).uppercased(), actionBlock: {
             self.resendCode()
         })
-        codeTextField.rightLabel.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        codeTextField.rightLabel.addUppercasedCharacterSpacing()
         
         updatePhoneNumberButton.setActionBlock {
             self.updatePhoneNumber()

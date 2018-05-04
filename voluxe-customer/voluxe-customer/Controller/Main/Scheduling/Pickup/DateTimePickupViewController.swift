@@ -30,7 +30,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         firstMonthHeader.textColor = .luxeGray()
         firstMonthHeader.font = .volvoSansLightBold(size: 12)
         firstMonthHeader.textAlignment = .center
-        firstMonthHeader.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        firstMonthHeader.addUppercasedCharacterSpacing()
         return firstMonthHeader
     }()
     
@@ -40,7 +40,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         timeSlotsHeader.font = .volvoSansLightBold(size: 12)
         timeSlotsHeader.textAlignment = .center
         timeSlotsHeader.text = (.PickupTimes as String).uppercased()
-        timeSlotsHeader.addCharacterSpacing(kernValue: UILabel.uppercasedKern())
+        timeSlotsHeader.addUppercasedCharacterSpacing()
         return timeSlotsHeader
     }()
     
@@ -422,6 +422,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             if let header = header, header.titleLabel.text == firstMonth {
                 self.firstMonthHeader.isHidden = true
             }
+            self.firstMonthHeader.addUppercasedCharacterSpacing()
             
             var selectedDate: Date?
             // select preselected date, otherwise fallback to next day
@@ -586,7 +587,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                 make.top.equalTo(index <= 2 ? hoursView.snp.top : (VLButton.secondaryHeight + 10))
                 make.left.equalTo(prevView == nil ? hoursView.snp.left : prevView!.snp.right).offset(prevView == nil ? 0 : 10)
                 make.height.equalTo(VLButton.secondaryHeight)
-                make.width.equalToSuperview().dividedBy(3).offset(-10)
+                make.width.equalToSuperview().dividedBy(3).offset(-22/3)
             }
             
             prevView = view

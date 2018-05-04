@@ -75,7 +75,7 @@ class VLVerticalSearchTextField : VLVerticalTextField {
     }
     
     /// Set an array of strings to be used for suggestions
-    open func filteredStrings(_ strings: [String]) {
+    open func filteredStrings(_ strings: [NSAttributedString]) {
         var items = [SearchTextFieldItem]()
         
         for value in strings {
@@ -108,6 +108,29 @@ class VLVerticalSearchTextField : VLVerticalTextField {
     // Re-set frames and theme colors
     fileprivate func redrawSearchTableView() {
         if let tableView = tableView {
+            
+            checkTableViewSize()
+            
+            superview?.bringSubview(toFront: tableView)
+            
+            if self.isFirstResponder {
+                superview?.bringSubview(toFront: self)
+            }
+            
+            tableView.layer.borderColor = theme.borderColor.cgColor
+            tableView.layer.cornerRadius = tableCornerRadius
+            tableView.separatorColor = theme.separatorColor
+            tableView.backgroundColor = theme.bgColor
+            
+            tableView.reloadData()
+            
+            checkTableViewSize()
+        }
+    }
+    
+    private func checkTableViewSize() {
+        if let tableView = tableView {
+            
             guard let frame = self.superview?.convert(self.frame, to: nil) else { return }
             
             var tableHeight = min((tableView.contentSize.height), (UIScreen.main.bounds.size.height - frame.origin.y - frame.height))
@@ -128,19 +151,6 @@ class VLVerticalSearchTextField : VLVerticalTextField {
             UIView.animate(withDuration: 0.2, animations: { [weak self] in
                 self?.tableView?.frame = tableViewFrame
             })
-            
-            superview?.bringSubview(toFront: tableView)
-            
-            if self.isFirstResponder {
-                superview?.bringSubview(toFront: self)
-            }
-            
-            tableView.layer.borderColor = theme.borderColor.cgColor
-            tableView.layer.cornerRadius = tableCornerRadius
-            tableView.separatorColor = theme.separatorColor
-            tableView.backgroundColor = theme.bgColor
-            
-            tableView.reloadData()
         }
     }
 }
@@ -172,7 +182,7 @@ extension VLVerticalSearchTextField: UITableViewDelegate, UITableViewDataSource 
             cell!.textLabel?.font = theme.font
             cell!.textLabel?.textColor = theme.fontColor
             
-            cell!.textLabel?.text = filteredResults[(indexPath as NSIndexPath).row].title
+            cell!.textLabel?.attributedText = filteredResults[(indexPath as NSIndexPath).row].title
             //cell!.textLabel?.attributedText = filteredResults[(indexPath as NSIndexPath).row].attributedTitle
             
             cell!.selectionStyle = .none
@@ -186,7 +196,7 @@ extension VLVerticalSearchTextField: UITableViewDelegate, UITableViewDataSource 
     }
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.text = filteredResults[(indexPath as NSIndexPath).row].title
+        self.text = filteredResults[(indexPath as NSIndexPath).row].title.string
         if let delegate = delegate {
             delegate.onAutocompleteSelected(selectedIndex: indexPath.row)
         }
@@ -232,15 +242,15 @@ public struct SearchTextFieldTheme {
 open class SearchTextFieldItem {
     
     // Public interface
-    public var title: String
-    public var subtitle: String?
+    public var title: NSAttributedString
+    public var subtitle: NSAttributedString?
     
-    public init(title: String, subtitle: String?) {
+    public init(title: NSAttributedString, subtitle: NSAttributedString?) {
         self.title = title
         self.subtitle = subtitle
     }
     
-    public init(title: String) {
+    public init(title: NSAttributedString) {
         self.title = title
     }
 }

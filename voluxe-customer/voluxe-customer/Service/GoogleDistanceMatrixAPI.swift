@@ -1,5 +1,5 @@
 //
-//  GoogleDirectionAPI.swift
+//  GoogleDistanceMatrixAPI.swift
 //  voluxe-customer
 //
 //  Created by Giroux, Johan on 11/16/17.
@@ -12,12 +12,12 @@ import Alamofire
 import AlamofireObjectMapper
 import BrightFutures
 
-class GoogleDirectionAPI: NSObject {
+class GoogleDistanceMatrixAPI: NSObject {
     
-    func getDirection(origin: String!, destination: String!, mode: String?) -> Future<GMDirection?, AFError> {
-        let promise = Promise<GMDirection?, AFError>()
+    func getDirection(origin: String!, destination: String!, mode: String?) -> Future<GMDistanceMatrix?, AFError> {
+        let promise = Promise<GMDistanceMatrix?, AFError>()
 
-        Alamofire.request("https://maps.googleapis.com/maps/api/directions/json", parameters: ["origin": origin, "destination": destination]).responseObject { (resp: DataResponse<GMDirection>) in
+        Alamofire.request("https://maps.googleapis.com/maps/api/distancematrix/json", parameters: ["origins": origin, "destinations": destination]).responseObject { (resp: DataResponse<GMDistanceMatrix>) in
             if resp.error == nil {
                 promise.success(resp.value)
             } else {

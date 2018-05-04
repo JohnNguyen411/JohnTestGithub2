@@ -15,6 +15,7 @@ import GoogleMaps
 import SlideMenuControllerSwift
 import UIKit
 import UserNotifications
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
@@ -123,6 +124,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         _ = Logger.init()
         GMSServices.provideAPIKey(Bundle.main.object(forInfoDictionaryKey: "GoogleMapsAPIKey") as! String)
+        GMSPlacesClient.provideAPIKey(Bundle.main.object(forInfoDictionaryKey: "GooglePlacesAPIKey") as! String)
 
         Fabric.with([Crashlytics.self])
 

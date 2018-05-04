@@ -101,7 +101,7 @@
 "AddressForPickupPlaceholder" = "123 Main Street, San Francisco";
 "AddressForPickup" = "Address for Pickup";
 "PickupLocationTitle" = "Where should we meet you?";
-"CurrentLocation" = "Current Location";
+"CurrentLocation" = "Current location";
 "DoYouNeedLoanerVehicle" = "Do you need a loaner vehicle?";
 "SelectPickupDate" = "Select pickup date and time";
 "NineToTwelve" = "9:00-12:00";
@@ -135,7 +135,7 @@
 "DriverArrived" = "Driver has arrived";
 "PickupWindow" = "Pickup window";
 "EstimatedPickupTime" = "Estimated Pickup Time";
-"DriverDrivingToDealership" = "Our driver is driving your vehicle to %@";
+"DriverDrivingToDealership" = "Our driver is driving your vehicle to %@.";
 "YourVehicleHasArrived" = "Your vehicle has arrived safely at %@. We’ll alert you next when it’s ready.";
 "ContactDriver" = "Contact Driver";
 "CallDriver" = "Call Driver";
@@ -146,7 +146,7 @@
 "CurrentService" = "Current Service";
 "VolvoCurrentlyServicing" = "Your Volvo is currently being serviced. We will alert you when the service is completed.";
 "ReturnVehicle" = "Return Vehicle";
-"VolvoServiceComplete" = "Your Volvo service is completed. You can pick it up from the dealership or schedule delivery.";
+"VolvoServiceComplete" = "You can pick up your car from the dealership or arrange for Volvo to deliver your vehicle to the location of your choosing.";
 "SelfPickup" = "Self Pickup";
 "VolvoDelivery" = "Volvo Delivery";
 "SelectYourPreferredDeliveryTime" = "Select your preferred delivery time";
@@ -159,7 +159,7 @@
 /***************** Scheduled Dropoff ***************/
 "VehicleIsReady" = "Vehicle is ready";
 "DeliveryWindow" = "Delivery window";
-"DeliveryComplete" = "Your delivery from %@ is complete. Thank you for letting us keep your Volvo in its best condition.";
+"DeliveryComplete" = "Your delivery from %@ is complete.";
 
 /***************** Vehicle ***************/
 "VolvoYearModel" = "Volvo Year/Model";
@@ -185,8 +185,8 @@
 "TypeDescriptionHere" = "Type description here";
 "AddDescription" = "Add Description";
 "DiagnosticAndService" = "Diagnostic and service";
-"VehicleExt" = "Vehicle Exterior";
-"VehicleInt" = "Vehicle Interior";
+"VehicleExt" = "Vehicle exterior";
+"VehicleInt" = "Vehicle interior";
 "UnderTheHood" = "Under the hood";
 "IDontKnow" = "I don't know";
 "FactoryScheduledMaintenance" = "Factory Scheduled Maintenance";
