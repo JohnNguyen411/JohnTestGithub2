@@ -194,10 +194,11 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
             text = text.uppercased()
         } else {
             if indexPath.section == 0 {
-                editImage = "edit"
+                editImage = "remove"
             } else if indexPath.section == 1 {
                 editImage = "edit"
                 if indexPath.row == 0 {
+                    editImage = nil
                     leftImage = "message"
                 } else {
                     leftImage = "phone"
