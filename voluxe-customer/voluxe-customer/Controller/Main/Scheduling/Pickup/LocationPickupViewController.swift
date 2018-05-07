@@ -215,6 +215,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                     self.newLocationTextField.filteredStrings(formattedAddress)
                 }
             }
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsPlace, screenName: screenName)
         }
     }
     
@@ -234,6 +235,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                 }
             }
         }
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsGeocode, screenName: screenName)
     }
     
     override func onButtonClick() {
@@ -358,6 +360,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                 self.bottomButton.isEnabled = true
             }
         }
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsPlace, screenName: screenName)
     }
     
     

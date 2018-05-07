@@ -126,10 +126,15 @@ class AnalyticsConstants {
     static let eventApiGetROTypesSuccess = "api_get_ro_types_success"
     static let eventApiGetROTypesFail = "api_get_ro_types_fail"
     
+    // Google Maps
+    static let eventGmapsRequest = "gmaps_api_request"
+
+    
     // Params
     static let paramScreenName = "screen_name"
     static let paramDialogName = "dialog_name"
-    static let modalName = "modal_name"
+    static let paramModalName = "modal_name"
+    static let paramGMapsType = "gmaps_type" // can be: paramNameGmapsPlace or paramNameGmapsGeocode
     
     static let paramErrorCode = "error_code"
     static let paramStatusCode = "status_code"
@@ -193,6 +198,9 @@ class AnalyticsConstants {
     static let paramNameSuccessDialog = "delete_success_dialog" // decided to have the same tag for every success dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
     static let paramNameConfirmDialog = "delete_confirm_dialog" // decided to have the same tag for every confirm dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
     static let paramNameSelectedCustomServices = "selected_custom_services" // index of selected services
+
+    static let paramNameGmapsPlace = "google_place_api"
+    static let paramNameGmapsGeocode = "google_geocode_api"
 
 
 }

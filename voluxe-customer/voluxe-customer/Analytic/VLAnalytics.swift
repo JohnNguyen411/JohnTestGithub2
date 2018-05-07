@@ -40,6 +40,10 @@ class VLAnalytics {
         self.firebaseLogEvent(eventName, parameters: [paramName : paramValue])
     }
     
+    static func logEventWithName(_ eventName: String, paramName: String, paramValue: String, screenName: String) {
+        self.firebaseLogEvent(eventName, parameters: [paramName : paramValue, AnalyticsConstants.paramScreenName : screenName])
+    }
+    
     static func logEventWithName(_ eventName: String, parameters: [String: String]) {
         self.firebaseLogEvent(eventName, parameters: parameters)
     }

@@ -14,13 +14,6 @@ import GooglePlaces
 
 typealias LMLocationCompletionHandler = ((_ latitude:Double, _ longitude:Double, _ status:String, _ verboseMessage:String, _ error:String?)->())?
 
-// Todo: Keep completion handler differerent for all services, otherwise only one will work
-enum GeoCodingType{
-    
-    case geocoding
-    case reverseGeocoding
-}
-
 class LocationManager: NSObject,CLLocationManagerDelegate {
     
     private static let defaultMinDistanceFilter = 5.0

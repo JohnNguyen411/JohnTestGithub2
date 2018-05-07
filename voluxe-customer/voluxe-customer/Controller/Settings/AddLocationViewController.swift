@@ -101,6 +101,7 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
                     self.newLocationTextField.filteredStrings(formattedAddress)
                 }
             }
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsPlace, screenName: screenName)
         } else {
             self.newLocationTextField.filteredStrings([])
         }
@@ -138,7 +139,8 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
                 self.bottomButton.isEnabled = true
             }
         }
-        
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsPlace, screenName: screenName)
+
         //self.newLocationTextField.textField.resignFirstResponder()
     }
     

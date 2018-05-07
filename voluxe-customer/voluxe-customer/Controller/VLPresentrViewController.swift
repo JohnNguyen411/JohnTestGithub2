@@ -41,7 +41,7 @@ class VLPresentrViewController: UIViewController {
         setButtonTitle(title: buttonTitle.uppercased(), eventName: AnalyticsConstants.eventClickNext)
         
         // log show event
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventViewModal, parameters: [AnalyticsConstants.modalName: screenName])
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventViewModal, parameters: [AnalyticsConstants.paramModalName: screenName])
     }
     
     convenience init(title: String, screenName: String) {
