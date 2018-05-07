@@ -192,17 +192,25 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             make.height.equalTo(VLButton.primaryHeight)
         }
         
-        leftButton.snp.makeConstraints { make in
-            make.left.bottom.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(2).offset(-10)
-            make.height.equalTo(VLButton.primaryHeight)
+        if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
+            leftButton.snp.makeConstraints { make in
+                make.left.bottom.equalToSuperview()
+                make.width.equalToSuperview().dividedBy(2).offset(-10)
+                make.height.equalTo(VLButton.primaryHeight)
+            }
+            
+            rightButton.snp.makeConstraints { make in
+                make.right.bottom.equalToSuperview()
+                make.width.equalToSuperview().dividedBy(2).offset(-10)
+                make.height.equalTo(VLButton.primaryHeight)
+            }
+        } else {
+            rightButton.snp.makeConstraints { make in
+                make.right.left.bottom.equalToSuperview()
+                make.height.equalTo(VLButton.primaryHeight)
+            }
         }
         
-        rightButton.snp.makeConstraints { make in
-            make.right.bottom.equalToSuperview()
-            make.width.equalToSuperview().dividedBy(2).offset(-10)
-            make.height.equalTo(VLButton.primaryHeight)
-        }
         
         confirmButton.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()

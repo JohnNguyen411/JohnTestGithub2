@@ -133,6 +133,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         return true
     }
     
+    private func loadRemoteConfig() {
+        RemoteConfigManager.sharedInstance.fetch()
+    }
+    
     func showForceUpgradeDialog() {
         if let window = self.window, let rootViewController = window.rootViewController {
             // check if already added
@@ -225,6 +229,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             FirebaseApp.configure()
         }
 
+        /* Firebase needs to be enabled for RemoteConfig to work.
+         * But we still need to init it if we disable Firebase in order to use the default values provided in RemoteConfigDefaults.plist
+         */
+        loadRemoteConfig()
+        
         // uncomment for Push Notification
         /*
         if #available(iOS 10.0, *) {
