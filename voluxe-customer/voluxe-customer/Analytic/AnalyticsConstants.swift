@@ -64,6 +64,7 @@ class AnalyticsConstants {
     static let eventClickSelectLocationIndex = "click_select_location_index" // pass index of select row in params
     static let eventClickSelectDealershipIndex = "click_select_dealership_index" // pass index of select row in params
     static let eventClickSelectLoanerIndex = "click_select_loaner_index" // pass index of select row in params
+    static let eventClickCallDealership = "click_call_dealership"
 
     // Settings click events
     static let eventClickSettingsVehicle = "click_settings_vehicle" // pass index of select row in params

@@ -54,6 +54,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         return noDateLabel
     }()
     
+    let callDealershipButton = VLButton(type: .blueSecondary, title: String.CallDealership.uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickCallDealership)
+    
     fileprivate let gregorian = Calendar(identifier: .gregorian)
     fileprivate let formatter: DateFormatter = {
         let formatter = DateFormatter()
@@ -115,7 +117,11 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         } else {
             loanerSwitch.setOn(false, animated: false)
         }
-
+        
+        callDealershipButton.setEventName(AnalyticsConstants.eventClickCallDealership, screenName: screenName, params: nil)
+        callDealershipButton.setActionBlock {  [weak self] in
+            self?.callDealership()
+        }
         
         loanerSwitch.addTarget(self, action: #selector(switchChanged(uiswitch:)), for: .valueChanged)
     }
@@ -206,7 +212,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         containerView.addSubview(timeSlotsHeader)
         containerView.addSubview(loanerContainerView)
         containerView.addSubview(noDateLabel)
+        containerView.addSubview(callDealershipButton)
         noDateLabel.isHidden = true
+        callDealershipButton.isHidden = true
         
         let separatorOne = UIView(frame: .zero)
         separatorOne.backgroundColor = .luxeLightestGray()
@@ -246,6 +254,12 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             make.center.equalTo(calendar)
             make.width.equalToSuperview()
             make.height.equalTo(50)
+        }
+        
+        callDealershipButton.snp.makeConstraints { make in
+            make.top.equalTo(noDateLabel.snp.bottom).offset(10)
+            make.width.equalToSuperview()
+            make.height.equalTo(VLButton.secondaryHeight)
         }
         
         firstMonthHeader.snp.makeConstraints { make in
@@ -296,7 +310,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     override func height() -> Int {
-        var height = (169 + calendarViewHeight) + baseHeight + hoursViewHeight + loanerViewHeight
+        var height = (170 + calendarViewHeight) + baseHeight + hoursViewHeight + loanerViewHeight
         if !noDateLabel.isHidden {
             height += 5
         }
@@ -304,9 +318,14 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     override func onButtonClick() {
-        if let delegate = delegate, let currentSlots = currentSlots {
-            let timeSlot = currentSlots[getButtonSelectedIndex()]
-            delegate.onDateTimeSelected(timeSlot: timeSlot)
+        if let delegate = delegate {
+            if let currentSlots = currentSlots {
+                let timeSlot = currentSlots[getButtonSelectedIndex()]
+                delegate.onDateTimeSelected(timeSlot: timeSlot)
+            } else {
+                // just close
+                delegate.closePresenter()
+            }
         }
     }
     
@@ -489,11 +508,18 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     private func showError(error: Bool) {
         
+        self.callDealershipButton.isHidden = !error
         self.noDateLabel.isHidden = !error
         self.calendar.isHidden = error
         self.weekdayViews.isHidden = error
         self.firstMonthHeader.isHidden = error
         self.timeSlotsHeader.isHidden = error
+        
+        if error {
+            self.bottomButton.setTitle(title: String.Close.uppercased())
+        } else {
+            self.bottomButton.setTitle(title: String.Next.uppercased())
+        }
     }
     
     @objc internal func switchChanged(uiswitch: UISwitch) {
@@ -504,12 +530,6 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     @objc func empty(_ sender:UIPanGestureRecognizer){
         Logger.print("empty")
-    }
-    
-    @objc func slotClicked(viewIndex: Int, slot: DealershipTimeSlot) {
-        for (index, view) in slotViews.enumerated() {
-            setButtonEnabled(enable: view.isEnabled, selected: index == viewIndex, button: view)
-        }
     }
     
     func dateIsSelectable(date: Date) -> Bool {
@@ -565,8 +585,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                 break
             }
             let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true), eventName: AnalyticsConstants.eventClickTimeslot, screenName: screenName)
-            slotButton.setActionBlock {
-                self.slotClicked(viewIndex: index, slot: slot)
+            slotButton.setActionBlock { [weak self] in
+                self?.slotClicked(viewIndex: index, slot: slot)
             }
             slotButton.tag = slot.id
             slotViews.append(slotButton)
@@ -665,6 +685,25 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         }
         return -1
     }
+    
+    // MARK:- Action Methods
+
+    @objc func slotClicked(viewIndex: Int, slot: DealershipTimeSlot) {
+        for (index, view) in slotViews.enumerated() {
+            setButtonEnabled(enable: view.isEnabled, selected: index == viewIndex, button: view)
+        }
+    }
+    
+    @objc func callDealership() {
+        if let dealership = dealership, let number = dealership.phoneNumber {
+            let number = "telprompt:\(number)"
+            guard let numberURL = URL(string: number) else {
+                return
+            }
+            UIApplication.shared.openURL(numberURL)
+        }
+    }
+
     
     // MARK:- FSCalendarDataSource
     

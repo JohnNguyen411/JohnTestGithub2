@@ -23,6 +23,7 @@
 "Login" = "Login";
 "Signout" = "Sign Out";
 "Cancel" = "Cancel";
+"Close" = "Close";
 "CancelPickup" = "Cancel Pickup";
 "CancelDropOff" = "Cancel DropOff";
 "Error" = "Error";
@@ -125,6 +126,7 @@
 "DeliveryTimes" = "Delivery Times";
 "DropOffTimes" = "Dropoff Times";
 "NoDatesForDealership" = "Unfortunately no dates are available for this dealership. Please try again later or call the dealership.";
+"CallDealership" = "Call Dealership";
 
 /***************** ScheduledPickup ***************/
 "SchedulePickup" = "Schedule Pickup";

@@ -29,14 +29,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     var navigationController: UINavigationController?
     var slideMenuController: SlideMenuController?
-
-    private static var navigationBarHeight: CGFloat = 0
-
-    
-    static func getNavigationBarHeight() -> CGFloat {
-        return AppDelegate.navigationBarHeight
-    }
-    
     
     fileprivate func showLoadingView() {
         //LoadingView Controller is the entry point of the app LoadingViewController
@@ -90,10 +82,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         menuController.opacityView.removeFromSuperview()
         
         slideMenuController = menuController
-        
-        if let navigationController = self.navigationController {
-            AppDelegate.navigationBarHeight = navigationController.navigationBar.frame.size.height
-        }
         
         slideMenuController?.view.accessibilityIdentifier = "slideMenuController"
 

@@ -25,6 +25,7 @@ extension String {
     static let Signout = NSLocalizedString("Signout")
     static let Back = NSLocalizedString("Back")
     static let Cancel = NSLocalizedString("Cancel")
+    static let Close = NSLocalizedString("Close")
     static let CancelPickup = NSLocalizedString("CancelPickup")
     static let CancelDropOff = NSLocalizedString("CancelDropOff")
     static let Error = NSLocalizedString("Error")

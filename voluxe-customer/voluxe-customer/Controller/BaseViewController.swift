@@ -176,7 +176,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
         let widthPerc = 0.95
         let width = ModalSize.fluid(percentage: Float(widthPerc))
         
-        let viewH = self.view.frame.height + AppDelegate.getNavigationBarHeight() + statusBarHeight() + presentrCornerRadius
+        let viewH = UIScreen.main.bounds.height + presentrCornerRadius
         let viewW = Double(self.view.frame.width)
         
         let percH = heightInPixels / viewH
@@ -254,11 +254,6 @@ extension UIViewController {
         self.navigationItem.rightBarButtonItem = nil
         self.slideMenuController()?.removeLeftGestures()
         self.slideMenuController()?.removeRightGestures()
-    }
-    
-    func statusBarHeight() -> CGFloat {
-        let statusBarSize = UIApplication.shared.statusBarFrame.size
-        return Swift.min(statusBarSize.width, statusBarSize.height)
     }
     
     func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil, analyticDialogName: String, screenName: String) {

@@ -101,6 +101,9 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                         preselectedIndex = index
                     }
                 }
+                if addressesCount > 0 && preselectedIndex < 0 {
+                    selectIndex(selectedIndex: selectedIndex)
+                }
             }
             if preselectedIndex >= 0 {
                 selectIndex(selectedIndex: preselectedIndex)
@@ -221,17 +224,22 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
     func locationFound(_ latitude: Double, longitude: Double) {
         
+        weak var weakSelf = self
+        
         locationManager.reverseGeocodeLocation(latitude: latitude, longitude: longitude) { (reverseGeocodeResponse, error) in
-            if let response = reverseGeocodeResponse, let address = response.firstResult() {
+            if let weakSelf = weakSelf, let response = reverseGeocodeResponse, let address = response.firstResult() {
                 
-                self.currentLocationAddress = address
+                weakSelf.currentLocationAddress = address
                 
                 Logger.print("Address found")
-                Logger.print(self.currentLocationAddress?.thoroughfare ?? "")
-                self.onLocationAdded()
-                self.bottomButton.isEnabled = true
-                if self.preselectedIndex >= 0 {
-                    self.selectIndex(selectedIndex: self.preselectedIndex)
+                Logger.print(weakSelf.currentLocationAddress?.thoroughfare ?? "")
+                weakSelf.onLocationAdded()
+                weakSelf.bottomButton.isEnabled = true
+                if weakSelf.preselectedIndex >= 0 {
+                    weakSelf.selectIndex(selectedIndex: weakSelf.preselectedIndex)
+                } else {
+                    weakSelf.selectIndex(selectedIndex: weakSelf.numberOfRows() - 1)
+                    weakSelf.tableView.scrollToRow(at: IndexPath(row: weakSelf.numberOfRows() - 1, section: 0), at: .bottom, animated: true)
                 }
             }
         }
@@ -388,7 +396,6 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
     func selectIndex(selectedIndex: Int) {
         self.selectedIndex = selectedIndex
-        self.preselectedIndex = selectedIndex
         if self.selectedIndex > -1 {
             self.bottomButton.isEnabled = true
         }

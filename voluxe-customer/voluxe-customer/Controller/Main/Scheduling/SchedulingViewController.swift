@@ -683,4 +683,8 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         })
     }
     
+    func closePresenter() {
+        currentPresentrVC?.dismiss(animated: true, completion: nil)
+    }
+    
 }

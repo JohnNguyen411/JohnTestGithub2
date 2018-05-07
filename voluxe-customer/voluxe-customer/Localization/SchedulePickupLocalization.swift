@@ -48,5 +48,6 @@ extension String {
     static let DeliveryTimes = NSLocalizedString("DeliveryTimes")
     static let DropOffTimes = NSLocalizedString("DropOffTimes")
     static let NoDatesForDealership = NSLocalizedString("NoDatesForDealership")
+    static let CallDealership = NSLocalizedString("CallDealership")
 
 }
