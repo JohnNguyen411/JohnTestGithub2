@@ -80,14 +80,12 @@ class DealershipAPI: NSObject {
         
         // "loaner": loaner,
         let queryParams = [
-            "dealership_id": dealershipId,
             "type": type,
-            "limit": 100,
-            "from__gte": from,
-            "to__lte": to,
+            "from": from,
+            "to": to,
             ] as [String : Any]
         
-        NetworkRequest.request(url: "/v1/dealership-time-slots", queryParameters: queryParams, withBearer: true).responseJSONErrorCheck { response in
+        NetworkRequest.request(url: "/v1/dealerships/\(dealershipId)/time-slots/scheduled", queryParameters: queryParams, withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataArray<DealershipTimeSlot>>?
             
             if let json = response.result.value as? [String: Any] {

@@ -238,8 +238,11 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
                 if weakSelf.preselectedIndex >= 0 {
                     weakSelf.selectIndex(selectedIndex: weakSelf.preselectedIndex)
                 } else {
+                    
                     weakSelf.selectIndex(selectedIndex: weakSelf.numberOfRows() - 1)
-                    weakSelf.tableView.scrollToRow(at: IndexPath(row: weakSelf.numberOfRows() - 1, section: 0), at: .bottom, animated: true)
+                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                        weakSelf.tableView.scrollToRow(at: IndexPath(row: weakSelf.numberOfRows() - 1, section: 0), at: .bottom, animated: true)
+                    })
                 }
             }
         }
