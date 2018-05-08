@@ -334,6 +334,7 @@
 		6C9543AE1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A71FACE0160099AC84 /* VolvoSansPro-Bold.ttf */; };
 		6C9543AF1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A71FACE0160099AC84 /* VolvoSansPro-Bold.ttf */; };
 		6C9543B01FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A71FACE0160099AC84 /* VolvoSansPro-Bold.ttf */; };
+		6C9B0E7720A12111009221B6 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6C9B0E7620A12111009221B6 /* Settings.bundle */; };
 		6C9B31FF202A51B3006380B9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */; };
 		6C9B3200202A51B3006380B9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */; };
 		6C9B3201202A51B4006380B9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */; };
@@ -758,6 +759,7 @@
 		6C9543A51FACE0160099AC84 /* VolvoSanLigBol.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VolvoSanLigBol.ttf; sourceTree = "<group>"; };
 		6C9543A61FACE0160099AC84 /* VolvoSanLigReg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VolvoSanLigReg.ttf; sourceTree = "<group>"; };
 		6C9543A71FACE0160099AC84 /* VolvoSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Bold.ttf"; sourceTree = "<group>"; };
+		6C9B0E7620A12111009221B6 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6C9B3202202A79FB006380B9 /* SettingsLocalizations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsLocalizations.swift; sourceTree = "<group>"; };
 		6C9B3206202A85B9006380B9 /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
@@ -940,6 +942,7 @@
 				6CE68796203F7D5A00D915FC /* InfoPlist.strings */,
 				6C2A0B392063211200A5A637 /* voluxe-customer.entitlements */,
 				6C9C906B209D163E00494068 /* RemoteConfigDefaults.plist */,
+				6C9B0E7620A12111009221B6 /* Settings.bundle */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -1714,6 +1717,7 @@
 				6CFBF9B51FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf in Resources */,
 				6C52246A20892E240078D9B9 /* GoogleService-Info.plist in Resources */,
 				6CC83A811FA140D300FE0633 /* mock.json in Resources */,
+				6C9B0E7720A12111009221B6 /* Settings.bundle in Resources */,
 				6C58330A1FB3AF5600F6BFE0 /* AlertViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
