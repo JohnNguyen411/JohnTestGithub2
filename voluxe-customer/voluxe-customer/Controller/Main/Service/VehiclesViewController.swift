@@ -26,6 +26,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     var serviceState: ServiceState
     var vehicles: [Vehicle]?
     var selectedVehicle: Vehicle?
+    var selectedVehicleIndex = 0
 
     let vehicleCollectionView: UICollectionView
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
@@ -80,12 +81,12 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         vehicleCollectionView.showsVerticalScrollIndicator = false
         vehicleCollectionView.showsHorizontalScrollIndicator = false
         
-        showVehicles(vehicles: UserManager.sharedInstance.getVehicles()!)
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        showVehicles(vehicles: UserManager.sharedInstance.getVehicles()!)
         stateDidChange(state: serviceState)
     }
     
@@ -123,13 +124,13 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         
         vehicleImageView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(vehicleTypeView.snp.bottom).offset(30)
-            make.height.equalTo(100)
+            make.top.equalTo(vehicleTypeView.snp.bottom)
+            make.height.equalTo(Vehicle.vehicleImageHeight)
         }
         
         preferedDealershipView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(vehicleImageView.snp.bottom).offset(30)
+            make.top.equalTo(vehicleImageView.snp.bottom)
             make.height.equalTo(VLTitledLabel.height)
         }
         
@@ -158,15 +159,23 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
             }
         }
         vehicleCollectionView.reloadData()
-        selectVehicle(vehicle: vehicles[0])
-        vehicleCollectionView.selectItem(at: IndexPath(item: 0, section: 0), animated: true, scrollPosition: .left)
+        selectVehicle(index: selectedVehicleIndex)
     }
     
-    func selectVehicle(vehicle: Vehicle) {
-        vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
-        vehicle.setVehicleImage(imageView: vehicleImageView)
-        selectedVehicle = vehicle
-        stateDidChange(state: serviceState)
+    func selectVehicle(index: Int) {
+        if let vehicles = vehicles {
+            selectedVehicleIndex = index
+            if index < vehicles.count {
+                let vehicle = vehicles[index]
+                vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
+                vehicle.setVehicleImage(imageView: vehicleImageView)
+                selectedVehicle = vehicle
+                stateDidChange(state: serviceState)
+                vehicleCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: index == 0 ? .right : .left)
+            } else if vehicles.count > 0 {
+                selectVehicle(index: 0)
+            }
+        }
     }
     
     override func stateDidChange(state: ServiceState) {
@@ -257,7 +266,7 @@ extension VehiclesViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectVehicle(vehicle: vehicles![indexPath.row])
+        selectVehicle(index: indexPath.row)
         VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSelectVehicle, screenName: screenName)
     }
 }

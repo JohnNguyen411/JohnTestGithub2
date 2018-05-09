@@ -21,7 +21,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     var serviceState: ServiceState
     var checkupLabelHeight: CGFloat = 0
-    var vehicleImageHeight: CGFloat = 100
     
     let updateLabel: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -152,24 +151,24 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         updateLabel.isHidden = true
         
         contentView.snp.makeConstraints { make in
-            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(20, 20, 20, 20))
+            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(0, 20, 20, 20))
         }
         
         vehicleImageView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview().offset(40)
-            make.height.equalTo(vehicleImageHeight)
+            make.top.equalToSuperview()
+            make.height.equalTo(Vehicle.vehicleImageHeight)
         }
         
         checkupLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(vehicleImageView.snp.bottom).offset(10)
+            make.top.equalTo(vehicleImageView.snp.bottom)
             make.height.equalTo(checkupLabelHeight)
         }
         
         scheduledServiceView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(vehicleImageView.snp.bottom).offset(40)
+            make.top.equalTo(vehicleImageView.snp.bottom)
             make.height.equalTo(VLTitledLabel.height)
         }
         
@@ -254,7 +253,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     }
     
     func showVehicleImage(show: Bool, alpha: Bool, animated: Bool) {
-        self.vehicleImageView.changeVisibility(show: show, alpha: alpha, animated: animated, height: self.vehicleImageHeight)
+        self.vehicleImageView.changeVisibility(show: show, alpha: alpha, animated: animated, height: Vehicle.vehicleImageHeight)
     }
     
     

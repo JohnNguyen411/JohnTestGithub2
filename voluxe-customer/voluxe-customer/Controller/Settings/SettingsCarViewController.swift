@@ -53,8 +53,8 @@ class SettingsCarViewController: BaseViewController {
         
         vehicleImageView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(vehicleTypeView.snp.bottom).offset(40)
-            make.height.equalTo(100)
+            make.top.equalTo(vehicleTypeView.snp.bottom)
+            make.height.equalTo(Vehicle.vehicleImageHeight)
         }
         
         removeVehicleButton.snp.makeConstraints { make in

@@ -43,7 +43,7 @@ class VehicleCell: UICollectionViewCell {
             make.left.equalToSuperview().offset(7)
             make.right.equalToSuperview().offset(-7)
             make.centerY.equalToSuperview()
-            make.height.equalTo(30)
+            make.height.equalTo(90)
         }
     }
     

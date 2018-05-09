@@ -14,6 +14,8 @@ import Kingfisher
 
 class Vehicle: Object, Mappable {
     
+    public static let vehicleImageHeight: CGFloat = 190
+
     @objc dynamic var id: Int = -1
     @objc dynamic var ownerId: Int = -1
     @objc dynamic var vin: String?
@@ -77,24 +79,15 @@ class Vehicle: Object, Mappable {
         }
         return "614"
     }
-/*
-    func imageUrl(scale: Int) -> String! {
-        let baseURL = Constants.VehicleImageBaseUrl
-        let trimLevel = trim != nil ? trim!.lowercased().replacingOccurrences(of: " ", with: "_").replacingOccurrences(of: "-", with: "_") : ""
-        let model = self.model != nil ? self.model! : ""
-        let scaleFragment = "@\(scale)x/"
-
-        let imageFragment = "\(model.lowercased())_\(trimLevel.lowercased())_\(colorCode()).jpg"
-        let imageUrl = baseURL + scaleFragment + imageFragment
-        return imageUrl
-    }
- */
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
     func vehicleDescription() -> String {
+        if let color = color, color.count > 0 {
+            return "\(color.capitalizingFirstLetter()) \(year) \(model ?? "")"
+        }
         return "\(baseColor?.capitalizingFirstLetter() ?? "") \(year) \(model ?? "")"
     }
     
@@ -111,17 +104,11 @@ class Vehicle: Object, Mappable {
     
     func setVehicleImage(imageView: UIImageView) {
 
-        // TODO https://github.com/volvo-cars/ios/issues/86
-        // remove code to only use real photoURL
-        imageView.image = UIImage(named: localImageName())
-//        if var imageUrl = photoUrl, !imageUrl.isEmpty {
-//            if imageUrl.contains("http://") {
-//                imageUrl = imageUrl.replacingOccurrences(of: "http://", with: "https://")
-//            }
-//            let url = URL(string: imageUrl)
-//            imageView.kf.setImage(with: url)
-//        } else {
-//            imageView.image = UIImage(named: localImageName())
-//        }
+        if let imageUrl = photoUrl, !imageUrl.isEmpty {
+            let url = URL(string: imageUrl)
+            imageView.kf.setImage(with: url)
+        } else {
+            imageView.image = UIImage(named: localImageName())
+        }
     }
 }
