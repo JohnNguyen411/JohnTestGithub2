@@ -32,6 +32,7 @@ class VehicleModel: Object, Mappable {
     func mapping(map: Map) {
         id <- map["id"]
         name <- map["name"]
+        make <- map["make"]
         managed <- map["managed"]
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())

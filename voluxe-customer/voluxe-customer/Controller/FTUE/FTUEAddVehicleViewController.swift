@@ -70,7 +70,14 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
 
         VehicleAPI().vehicleModels(makeId: nil).onSuccess { result in
             if let vehicles = result?.data?.result {
-                self.models = vehicles
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(vehicles, update: true)
+                    }
+                    
+                    let resultsVehicleModels = realm.objects(VehicleModel.self).sorted(byKeyPath: "name", ascending: true)
+                    self.models = Array(resultsVehicleModels)
+                }
             }
             self.hideProgressHUD()
             }.onFailure { error in
