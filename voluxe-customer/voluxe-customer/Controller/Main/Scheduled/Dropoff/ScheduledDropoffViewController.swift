@@ -56,6 +56,12 @@ class ScheduledDropoffViewController: ScheduledViewController {
         }
         if let dropoffRequest = booking.dropoffRequest, let location = dropoffRequest.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
             mapVC.updateRequestLocation(location: coordinates)
+            
+            weak var weakSelf = self
+            // force refresh camera update after 1 sec
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                weakSelf?.mapVC.updateRequestLocation(location: coordinates)
+            })
         }
     }
     
@@ -76,12 +82,11 @@ class ScheduledDropoffViewController: ScheduledViewController {
             var refreshTimeSlot = true
             
             if let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock, state != .pickupScheduled {
-                self.mapVC.updateDriverLocation(location: coordinates)
+                self.mapVC.updateDriverLocation(location: coordinates, refreshTime: booking.getRefreshTime())
                 if let dropoffRequestLocation = dropoffRequest.location, let dropoffRequestCoordinates = dropoffRequestLocation.getLocation() {
                     refreshTimeSlot = false
                     self.getEta(fromLocation: coordinates, toLocation: dropoffRequestCoordinates)
                 }
-                newDriverLocation(location: coordinates)
                 newDriver(driver: driver)
             }
             if let timeSlot = dropoffRequest.timeSlot, refreshTimeSlot {

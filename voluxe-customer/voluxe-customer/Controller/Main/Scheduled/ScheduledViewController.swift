@@ -18,7 +18,7 @@ import MBProgressHUD
 
 class ScheduledViewController: ChildViewController {
     
-    private static let ETARefreshThrottle: Double = 15
+    private static let ETARefreshThrottle: Double = 30
     
     static let officeLocation = CLLocationCoordinate2D(latitude: 37.788866, longitude: -122.398210)
     static let driverLocation1 = CLLocationCoordinate2D(latitude: 37.7686497, longitude: -122.4175534)
@@ -81,6 +81,8 @@ class ScheduledViewController: ChildViewController {
             generateStates()
             generateDriverLocations()
         }
+        mapVC.screenName = self.screenName
+
         verticalStepView = GroupedVerticalStepView(steps: steps)
         verticalStepView?.accessibilityIdentifier = "verticalStepView"
         mapVC.view.accessibilityIdentifier = "mapVC.view"
@@ -195,7 +197,7 @@ class ScheduledViewController: ChildViewController {
                     }
                 }
                 self.newDriver(driver: ScheduledViewController.mockDriver)
-                self.newDriverLocation(location: driverLocation)
+                self.mapVC.updateDriverLocation(location: driverLocation, refreshTime: 4)
                 StateServiceManager.sharedInstance.updateState(state: self.states[index], vehicleId: self.vehicle.id, booking: nil)
                 self.getEta(fromLocation: driverLocation, toLocation: ScheduledViewController.officeLocation)
             })
@@ -267,12 +269,6 @@ class ScheduledViewController: ChildViewController {
         
     }
     
-    func newDriverLocation(location: CLLocationCoordinate2D) {
-        // add a slight delay to prevent map bug
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
-            self.mapVC.updateDriverLocation(location: location)
-        })
-    }
     
     func getEta(fromLocation: CLLocationCoordinate2D, toLocation: CLLocationCoordinate2D) {
         if lastRefresh == nil || lastRefresh!.timeIntervalSinceNow < -ScheduledViewController.ETARefreshThrottle {

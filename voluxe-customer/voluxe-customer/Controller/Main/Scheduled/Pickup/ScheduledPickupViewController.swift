@@ -55,6 +55,12 @@ class ScheduledPickupViewController: ScheduledViewController {
         }
         if let pickupRequest = booking.pickupRequest, let location = pickupRequest.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
             mapVC.updateRequestLocation(location: coordinates)
+            
+            weak var weakSelf = self
+            // force refresh camera update after 1 sec
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+                weakSelf?.mapVC.updateRequestLocation(location: coordinates)
+            })
         }
     }
     
@@ -73,12 +79,11 @@ class ScheduledPickupViewController: ScheduledViewController {
             var refreshTimeSlot = true
 
             if let driver = pickupRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock, state != .pickupScheduled {
-                self.mapVC.updateDriverLocation(location: coordinates)
+                self.mapVC.updateDriverLocation(location: coordinates, refreshTime: booking.getRefreshTime())
                 if let pickupRequestLocation = pickupRequest.location, let pickupRequestCoordinates = pickupRequestLocation.getLocation() {
                     self.getEta(fromLocation: coordinates, toLocation: pickupRequestCoordinates)
                     refreshTimeSlot = false
                 }
-                newDriverLocation(location: coordinates)
                 newDriver(driver: driver)
             }
             

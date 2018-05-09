@@ -277,7 +277,6 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
                 delegate?.locationManagerStatus!(locationStatus)
             }
         }
-        
     }
     
     

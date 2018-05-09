@@ -14,6 +14,12 @@ import Realm
 
 class Booking: Object, Mappable {
     
+    private static let distanceTrigger = 500.0 // refresh more ofter when within 500m from origin or destination
+    
+    private static let defaultRefresh = 60
+    private static let refreshEnRouteClose = 10
+    private static let refreshEnRoute = 20
+    
     @objc dynamic var id: Int = -1
     @objc dynamic var customerId: Int = -1
     @objc dynamic var customer: Customer?
@@ -99,12 +105,65 @@ class Booking: Object, Mappable {
         return ""
     }
     
+    public func getRefreshTime() -> Int {
+        if pickupRequest != nil || dropoffRequest != nil {
+            if getState() != .serviceCompleted && getState() != .completed && getState() != .canceled {
+                if let pickupRequest = pickupRequest, let dealership = dealership, (getState() == .enRouteForPickup || getState() == .nearbyForPickup) {
+                    let distanceFromDestination = self.distanceFromDestination(request: pickupRequest)
+                    let distanceFromOrigin = self.distanceFromOrigin(request: pickupRequest, dealership: dealership)
+                    // if driver is close to dealership or destination
+                    if let distanceFromDestination = distanceFromDestination, let distanceFromOrigin = distanceFromOrigin,
+                        distanceFromDestination < Booking.distanceTrigger || distanceFromOrigin < Booking.distanceTrigger {
+                        return Booking.refreshEnRouteClose
+                    } else {
+                        return Booking.refreshEnRoute
+                    }
+                } else if let dropoffRequest = dropoffRequest, let dealership = dealership, (getState() == .enRouteForDropoff || getState() == .nearbyForDropoff) {
+                    let distanceFromDestination = self.distanceFromDestination(request: dropoffRequest)
+                    let distanceFromOrigin = self.distanceFromOrigin(request: dropoffRequest, dealership: dealership)
+                    // if driver is close to dealership or destination
+                    if let distanceFromDestination = distanceFromDestination, let distanceFromOrigin = distanceFromOrigin,
+                        distanceFromDestination < Booking.distanceTrigger || distanceFromOrigin < Booking.distanceTrigger {
+                        return Booking.refreshEnRouteClose
+                    } else {
+                        return Booking.refreshEnRoute
+                    }
+                    
+                } else {
+                    return Booking.defaultRefresh
+                }
+            }
+        }
+        return 0
+    }
+    
+    // returns distanceFromDestination in meters, nil if not applicable
+    private func distanceFromDestination(request: Request) -> Double? {
+        
+        if let driver = request.driver, let location = driver.location, let coordinates = location.getLocation(),
+            let requestLocation = request.location, let requestCoordinates = requestLocation.getLocation() {
+            return Location.distanceBetweenLocations(from: coordinates, to: requestCoordinates)
+        }
+        return nil
+    }
+    
+    // returns distanceFromOrigin in meters, nil if not applicable
+    private func distanceFromOrigin(request: Request, dealership: Dealership) -> Double? {
+        if let driver = request.driver, let location = driver.location, let coordinates = location.getLocation(),
+            let dealershipLocation = dealership.location, let dealershipCoordinates = dealershipLocation.getLocation() {
+            return Location.distanceBetweenLocations(from: coordinates, to: dealershipCoordinates)
+        }
+        return nil
+    }
+    
     public static func getStateForBooking(booking: Booking?) -> ServiceState {
         if let booking = booking {
             return ServiceState.appStateForBookingState(bookingState: booking.getState())
         }
         return .idle
     }
+    
+    
     
     static func mockBooking(customer: Customer, vehicle: Vehicle, dealership: Dealership) -> Booking {
         let booking = Booking()

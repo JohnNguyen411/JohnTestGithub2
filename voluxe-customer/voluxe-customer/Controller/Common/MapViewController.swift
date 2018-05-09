@@ -11,6 +11,7 @@ import GoogleMaps
 
 class MapViewController: UIViewController {
     
+    public var screenName = AnalyticsConstants.paramNameActiveInboundView
     private let mapView = GMSMapView()
     private let flagMarker = GMSMarker()
     private let driverMarker = GMSMarker()
@@ -32,6 +33,7 @@ class MapViewController: UIViewController {
         mapView.settings.zoomGestures = false
         
         driverMarker.appearAnimation = GMSMarkerAnimation.pop
+        driverMarker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
         
         flagMarker.iconView = etaMarker
         driverMarker.icon = UIImage(named: "marker_car")
@@ -57,10 +59,63 @@ class MapViewController: UIViewController {
         moveCamera()
     }
     
-    func updateDriverLocation(location: CLLocationCoordinate2D) {
-        // get ETA between location and flagMarker position
-
+    // refreshTime is the current time between 2 refresh depending on the state of reservation and how close is the driver from origin or destination
+    func updateDriverLocation(location: CLLocationCoordinate2D, refreshTime: Int) {
+        
         let prevLocation = self.driverMarker.position
+        let noPreviousLocation = prevLocation.latitude == -180 && prevLocation.longitude == -180
+        // proceed if location update is worthy
+        if !noPreviousLocation && Location.distanceBetweenLocations(from: prevLocation, to: location) < 5 {
+            return
+        }
+        
+        let animationDuration = Double(refreshTime)
+        weak var weakSelf = self
+        
+        if noPreviousLocation || !RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.snappedPointsKey) {
+            weakSelf?.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
+            return
+        }
+                
+        VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsRoads, screenName: screenName)
+        GoogleSnappedPointsAPI().getSnappedPoints(from: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: prevLocation), to: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: location)).onSuccess { results in
+            
+            guard let weakSelf = weakSelf else {
+                return
+            }
+            
+            if let results = results, let snappedPoints = results.snappedPoints {
+                // animate points
+                let pointsAnimationDuration = animationDuration / Double(snappedPoints.count)
+                var delay = 0.0
+                for (index, point) in snappedPoints.enumerated() {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
+                        if let location = point.location, let coordinates = location.getLocation() {
+                            weakSelf.updateLocation(location: coordinates, prevLocation: prevLocation , animationDuration: pointsAnimationDuration, updateCamera: index % 2 == 0)
+                        }
+                    })
+                    delay = delay + pointsAnimationDuration
+                }
+                weak var weakSelf = self
+                DispatchQueue.main.asyncAfter(deadline: .now() + delay + 0.5, execute: {
+                    weakSelf?.moveCamera()
+                })
+            } else {
+                weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
+            }
+            }.onFailure { error in
+                guard let weakSelf = weakSelf else {
+                    return
+                }
+                weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
+        }
+    }
+    
+    
+    private func updateLocation(location: CLLocationCoordinate2D, prevLocation: CLLocationCoordinate2D, animationDuration: Double, updateCamera: Bool) {
+        CATransaction.begin()
+        CATransaction.setValue(animationDuration, forKey: kCATransactionAnimationDuration)
+
         driverMarker.position = location
         driverMarker.map = mapView
         let noPreviousLocation = prevLocation.latitude == -180 && prevLocation.longitude == -180
@@ -68,8 +123,14 @@ class MapViewController: UIViewController {
             let degreeBearing = self.degreeBearing(from: prevLocation, to: location)
             driverMarker.rotation = degreeBearing
         }
+        CATransaction.commit()
         
-        moveCamera()
+        if updateCamera {
+            weak var weakSelf = self
+            DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration + 0.1, execute: {
+                weakSelf?.moveCamera()
+            })
+        }
     }
     
     func updateETA(eta: GMTextValueObject?) {
@@ -82,9 +143,21 @@ class MapViewController: UIViewController {
         }
     }
     
+    private func moveCamera(flagPosition: CLLocationCoordinate2D, futureDriverPosition: CLLocationCoordinate2D) {
+        Logger.print("***** moveCamera BEFORE ***** \(flagPosition),\(futureDriverPosition)")
+        var bounds = GMSCoordinateBounds()
+        bounds = bounds.includingCoordinate(flagPosition)
+        bounds = bounds.includingCoordinate(futureDriverPosition)
+        let update = GMSCameraUpdate.fit(bounds, with: UIEdgeInsets(top: 60, left: 30, bottom: 20, right: 30))
+        
+        mapView.animate(with: update)
+    }
+    
     func moveCamera() {
         
         if flagMarker.map != nil && driverMarker.map != nil {
+            Logger.print("***** moveCamera AFTER ***** \(flagMarker.position),\(driverMarker.position)")
+
             var bounds = GMSCoordinateBounds()
             bounds = bounds.includingCoordinate(flagMarker.position)
             bounds = bounds.includingCoordinate(driverMarker.position)

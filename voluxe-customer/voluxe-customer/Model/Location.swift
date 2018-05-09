@@ -98,4 +98,12 @@ class Location: Object, Mappable {
             "accuracy": accuracy
         ]
     }
+    
+    // Return distance between 2 locations in meters
+    public static func distanceBetweenLocations(from: CLLocationCoordinate2D, to: CLLocationCoordinate2D) -> Double {
+        let locationFrom = CLLocation(latitude: from.latitude, longitude: from.longitude)
+        let locationTo = CLLocation(latitude: to.latitude, longitude: to.longitude)
+        
+        return locationFrom.distance(from: locationTo)
+    }
 }

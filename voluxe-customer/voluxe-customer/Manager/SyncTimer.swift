@@ -56,14 +56,11 @@ class SyncTimer {
             // todo remove from manager?
             return
         }
-        // todo define timer for states
         if booking.pickupRequest != nil || booking.dropoffRequest != nil {
-            if booking.getState() != .serviceCompleted && booking.getState() != .completed && booking.getState() != .canceled {
-                if booking.getState() == .enRouteForPickup || booking.getState() == .enRouteForDropoff {
-                    syncBooking(every: 5)
-                } else {
-                    syncBooking(every: 60)
-                }
+            
+            let refreshRate = booking.getRefreshTime()
+            if refreshRate > 0 {
+                syncBooking(every: refreshRate)
             }
         }
     }
