@@ -106,6 +106,8 @@ class Booking: Object, Mappable {
     }
     
     public func getRefreshTime() -> Int {
+        let snappedPointsFeature = RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.snappedPointsKey)
+        var refreshTime = 0
         if pickupRequest != nil || dropoffRequest != nil {
             if getState() != .serviceCompleted && getState() != .completed && getState() != .canceled {
                 if let pickupRequest = pickupRequest, let dealership = dealership, (getState() == .enRouteForPickup || getState() == .nearbyForPickup) {
@@ -114,9 +116,14 @@ class Booking: Object, Mappable {
                     // if driver is close to dealership or destination
                     if let distanceFromDestination = distanceFromDestination, let distanceFromOrigin = distanceFromOrigin,
                         distanceFromDestination < Booking.distanceTrigger || distanceFromOrigin < Booking.distanceTrigger {
-                        return Booking.refreshEnRouteClose
+                        refreshTime = Booking.refreshEnRouteClose
                     } else {
-                        return Booking.refreshEnRoute
+                        refreshTime = Booking.refreshEnRoute
+                    }
+                    
+                    // if the SnappedPoint feature is Disabled, refresh more often when in route
+                    if !snappedPointsFeature {
+                        refreshTime = refreshTime/2
                     }
                 } else if let dropoffRequest = dropoffRequest, let dealership = dealership, (getState() == .enRouteForDropoff || getState() == .nearbyForDropoff) {
                     let distanceFromDestination = self.distanceFromDestination(request: dropoffRequest)
@@ -124,17 +131,23 @@ class Booking: Object, Mappable {
                     // if driver is close to dealership or destination
                     if let distanceFromDestination = distanceFromDestination, let distanceFromOrigin = distanceFromOrigin,
                         distanceFromDestination < Booking.distanceTrigger || distanceFromOrigin < Booking.distanceTrigger {
-                        return Booking.refreshEnRouteClose
+                        refreshTime = Booking.refreshEnRouteClose
                     } else {
-                        return Booking.refreshEnRoute
+                        refreshTime = Booking.refreshEnRoute
+                    }
+                    
+                    // if the SnappedPoint feature is Disabled, refresh more often when in route
+                    if !snappedPointsFeature {
+                        refreshTime = refreshTime/2
                     }
                     
                 } else {
-                    return Booking.defaultRefresh
+                    refreshTime = Booking.defaultRefresh
                 }
             }
         }
-        return 0
+        
+        return refreshTime
     }
     
     // returns distanceFromDestination in meters, nil if not applicable
