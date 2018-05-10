@@ -16,8 +16,10 @@ class GoogleDistanceMatrixAPI: NSObject {
     
     func getDirection(origin: String!, destination: String!, mode: String?) -> Future<GMDistanceMatrix?, AFError> {
         let promise = Promise<GMDistanceMatrix?, AFError>()
+        
+        let key = Bundle.main.object(forInfoDictionaryKey: "GoogleMapsAPIKey") as! String
 
-        Alamofire.request("https://maps.googleapis.com/maps/api/distancematrix/json", parameters: ["origins": origin, "destinations": destination]).responseObject { (resp: DataResponse<GMDistanceMatrix>) in
+        Alamofire.request("https://maps.googleapis.com/maps/api/distancematrix/json", parameters: ["origins": origin, "destinations": destination, "key": key]).responseObject { (resp: DataResponse<GMDistanceMatrix>) in
             if resp.error == nil {
                 promise.success(resp.value)
             } else {
