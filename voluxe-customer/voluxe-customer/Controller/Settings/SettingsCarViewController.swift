@@ -8,8 +8,11 @@
 
 import Foundation
 import RealmSwift
+import MBProgressHUD
 
 class SettingsCarViewController: BaseViewController {
+    
+    var realm : Realm?
     
     let removeVehicleButton: VLButton
     let vehicleImageView = UIImageView(frame: .zero)
@@ -20,6 +23,8 @@ class SettingsCarViewController: BaseViewController {
         self.vehicle = vehicle
         removeVehicleButton = VLButton(type: .orangePrimary, title: (.RemoveVehicle as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickRemoveVehicle ,screenName: AnalyticsConstants.paramNameSettingsVehicleDetailsView)
         super.init(screenName: AnalyticsConstants.paramNameSettingsVehicleDetailsView)
+        
+        realm = try? Realm()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -33,6 +38,11 @@ class SettingsCarViewController: BaseViewController {
         vehicleImageView.contentMode = .scaleAspectFit
         vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
         vehicle.setVehicleImage(imageView: vehicleImageView)
+        
+        
+        removeVehicleButton.setActionBlock { [weak self] in
+            self?.removeVehicle()
+        }
     }
     
     override func setupViews() {
@@ -67,4 +77,71 @@ class SettingsCarViewController: BaseViewController {
         }
     }
     
+    private func removeVehicle() {
+        
+        guard let customerId = UserManager.sharedInstance.getCustomerId() else {
+            return
+        }
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        weak var weakSelf = self
+        CustomerAPI().deleteVehicle(customerId: customerId, vehicleId: vehicle.id).onSuccess { result in
+            if let _ = result?.error {
+                // error occured
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiDeleteVehicleFail, screenName: weakSelf?.screenName, errorCode: result?.error?.code)
+                weakSelf?.deleteVehicleFailed()
+            } else if let customerId = UserManager.sharedInstance.getCustomerId() {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiDeleteVehicleSuccess, screenName: weakSelf?.screenName)
+                weakSelf?.callVehicles(customerId: customerId)
+            }
+            }.onFailure { error in
+                // error occured
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiDeleteVehicleFail, screenName: weakSelf?.screenName, statusCode: error.responseCode)
+                weakSelf?.deleteVehicleFailed()
+            }
+    }
+    
+    private func deleteVehicleFailed() {
+        MBProgressHUD.hide(for: self.view, animated: true)
+        showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: screenName)
+    }
+    
+    
+    private func callVehicles(customerId: Int) {
+        
+        weak var weakSelf = self
+        CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
+            if let cars = result?.data?.result {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetVehiclesSuccess, screenName: self.screenName)
+                if let realm = weakSelf?.realm {
+                    try? realm.write {
+                        realm.add(cars, update: true)
+                    }
+                }
+                if let view = weakSelf?.view {
+                    MBProgressHUD.hide(for: view, animated: true)
+                }
+                if cars.count == 0 {
+                    FTUEStartViewController.flowType = .login
+                    weakSelf?.appDelegate?.showAddVehicleScreen()
+                } else {
+                    UserManager.sharedInstance.setVehicles(vehicles: cars)
+                    weakSelf?.navigationController?.popViewController(animated: true)
+                }
+            } else {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetVehiclesFail, screenName: weakSelf?.screenName, errorCode: result?.error?.code)
+                weakSelf?.retrieveVehiclesFailed()
+            }
+            
+            }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetVehiclesFail, screenName: weakSelf?.screenName, statusCode: error.responseCode)
+                weakSelf?.retrieveVehiclesFailed()
+        }
+    }
+    
+    private func retrieveVehiclesFailed() {
+        MBProgressHUD.hide(for: self.view, animated: true)
+        appDelegate?.startApp()
+    }
 }

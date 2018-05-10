@@ -126,6 +126,8 @@ class AnalyticsConstants {
     static let eventApiCancelDropoffFail = "api_cancel_dropoff_fail"
     static let eventApiGetROTypesSuccess = "api_get_ro_types_success"
     static let eventApiGetROTypesFail = "api_get_ro_types_fail"
+    static let eventApiDeleteVehicleSuccess = "api_delete_vehicle_success"
+    static let eventApiDeleteVehicleFail = "api_delete_vehicle_fail"
     
     // Google Maps
     static let eventGmapsRequest = "gmaps_api_request"

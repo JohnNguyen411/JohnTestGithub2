@@ -468,5 +468,33 @@ class CustomerAPI: NSObject {
         }
         return promise.future
     }
+    
+    
+    /**
+     Endpoint to remove a vehicle from Customer
+     - parameter customerId: Customer's ID
+     - parameter vehicleId: Vehicle ID
+     
+     - Returns: A Future ResponseObject Empty, or an AFError if an error occured
+     */
+    func deleteVehicle(customerId: Int, vehicleId: Int) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/vehicles/\(vehicleId)", method: .delete, queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
+            
+            var responseObject: ResponseObject<EmptyMappableObject>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
 }
 
