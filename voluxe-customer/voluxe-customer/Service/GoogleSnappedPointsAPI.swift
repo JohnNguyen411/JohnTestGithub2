@@ -17,7 +17,7 @@ class GoogleSnappedPointsAPI: NSObject {
     func getSnappedPoints(from: String, to: String) -> Future<GMSnappedPoints?, AFError> {
         let promise = Promise<GMSnappedPoints?, AFError>()
         
-        let key = Bundle.main.object(forInfoDictionaryKey: "GoogleMapsAPIKey") as! String
+        let key = Config.sharedInstance.mapAPIKey()
         
         let url = "https://roads.googleapis.com/v1/snapToRoads?path=\(from)|\(to)&interpolate=true&key=\(key)"
         if let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {

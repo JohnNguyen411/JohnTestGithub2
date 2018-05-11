@@ -111,8 +111,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         setupFirebase(application)
         
         _ = Logger.init()
-        GMSServices.provideAPIKey(Bundle.main.object(forInfoDictionaryKey: "GoogleMapsAPIKey") as! String)
-        GMSPlacesClient.provideAPIKey(Bundle.main.object(forInfoDictionaryKey: "GooglePlacesAPIKey") as! String)
+        GMSServices.provideAPIKey(Config.sharedInstance.mapAPIKey())
+        GMSPlacesClient.provideAPIKey(Config.sharedInstance.mapAPIKey())
 
         Fabric.with([Crashlytics.self])
 

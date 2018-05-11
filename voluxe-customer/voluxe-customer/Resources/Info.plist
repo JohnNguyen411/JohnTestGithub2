@@ -22,10 +22,6 @@
 	<string>1</string>
 	<key>ENABLE_DEBUG_INFO</key>
 	<string>$(ENABLE_DEBUG_INFO)</string>
-	<key>GoogleMapsAPIKey</key>
-	<string>AIzaSyCf1Ub4aMgqWeISdHPEcFawx-N-OrmxBTM</string>
-	<key>GooglePlacesAPIKey</key>
-	<string>AIzaSyA65M4H5PG82NbkDRcTmvq9ouqAZJKCil8</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

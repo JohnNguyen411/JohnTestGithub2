@@ -23,7 +23,7 @@ class MainController_UITests: XCTestCase {
         
         // Init GMSServices
         let testBundle = Bundle(for: type(of: self))
-        let mapApiKey = testBundle.object(forInfoDictionaryKey: "GoogleMapsAPIKey")
+        let mapApiKey = Config.sharedInstance.mapAPIKey()
         XCTAssertNotNil(mapApiKey)
         GMSServices.provideAPIKey(mapApiKey as! String)
         

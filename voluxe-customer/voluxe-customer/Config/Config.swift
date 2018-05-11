@@ -11,6 +11,11 @@ import UIKit
 
 class Config: NSObject {
     
+    private static let googleAPIDebugKey = "AIzaSyCf1Ub4aMgqWeISdHPEcFawx-N-OrmxBTM"
+    private static let googleAPIReleaseKey = "AIzaSyA65M4H5PG82NbkDRcTmvq9ouqAZJKCil8"
+    
+    private static let releaseBundleId = "com.volvocars.luxebyvolvo"
+    
     private static let devUrl = "https://development-uswest2.api.luxe.com"
     private static let stagingUrl = "https://development-uswest2.api.luxe.com"
     private static let prodUrl = "https://development-uswest2.api.luxe.com"
@@ -21,6 +26,7 @@ class Config: NSObject {
     
     private let baseUrl: String
     private let clientId: String
+    private let googleMapsAPIKey: String
     public let isMock: Bool
 
     // Singleton instance
@@ -32,6 +38,11 @@ class Config: NSObject {
         isMock = scheme == "Mock"
         baseUrl = Config.baseUrlForScheme(scheme: scheme)
         clientId = Config.clientIdForScheme(scheme: scheme)
+        if scheme == Config.releaseBundleId {
+            googleMapsAPIKey = "AIzaSyA65M4H5PG82NbkDRcTmvq9ouqAZJKCil8"
+        } else {
+            googleMapsAPIKey = "AIzaSyCf1Ub4aMgqWeISdHPEcFawx-N-OrmxBTM"
+        }
         super.init()
     }
     
@@ -63,6 +74,10 @@ extension Config {
     
     func apiClientId() -> String {
         return clientId
+    }
+    
+    func mapAPIKey() -> String {
+        return googleMapsAPIKey
     }
     
 }
