@@ -171,7 +171,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
                 vehicle.setVehicleImage(imageView: vehicleImageView)
                 selectedVehicle = vehicle
                 stateDidChange(state: serviceState)
-                vehicleCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: index == 0 ? .right : .left)
+                vehicleCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
             } else if vehicles.count > 0 {
                 selectVehicle(index: 0)
             }
