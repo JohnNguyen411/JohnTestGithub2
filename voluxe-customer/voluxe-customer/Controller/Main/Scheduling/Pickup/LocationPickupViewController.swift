@@ -203,19 +203,27 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     func autocompleteWithText(userText: String){
         selectedLocation = nil
         self.bottomButton.isEnabled = false
-        
+        weak var weakSelf = self
         if userText.count > 2 {
             self.locationManager.googlePlacesAutocomplete(address: self.newLocationTextField.text) { (autocompletePredictions, error) in
+                guard let weakSelf = weakSelf else {
+                    return
+                }
+                
+                if weakSelf.isBeingDismissed {
+                    return
+                }
+                
                 if let _ = error {
-                    self.newLocationTextField.text = userText
-                    self.autoCompleteCharacterCount = 0
+                    weakSelf.newLocationTextField.text = userText
+                    weakSelf.autoCompleteCharacterCount = 0
                 } else if let autocompletePredictions = autocompletePredictions {
-                    self.autocompletePredictions = autocompletePredictions
+                    weakSelf.autocompletePredictions = autocompletePredictions
                     var formattedAddress: [NSAttributedString] = []
                     autocompletePredictions.forEach { prediction in
                         formattedAddress.append(prediction.attributedFullText)
                     }
-                    self.newLocationTextField.filteredStrings(formattedAddress)
+                    weakSelf.newLocationTextField.filteredStrings(formattedAddress)
                 }
             }
             VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsPlace, screenName: screenName)
@@ -409,6 +417,11 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
             return addressesCount + 1
         }
         return addressesCount
+    }
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
+        newLocationTextField.closeAutocomplete()
     }
     
 }

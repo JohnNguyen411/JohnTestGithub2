@@ -86,8 +86,16 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
         self.bottomButton.isEnabled = false
         
         if userText.count > 2 {
-            
+            weak var weakSelf = self
+
             self.locationManager.googlePlacesAutocomplete(address: userText) { (autocompletePredictions, error) in
+                guard let weakSelf = weakSelf else {
+                    return
+                }
+                
+                if weakSelf.isBeingDismissed {
+                    return
+                }
                 if let _ = error {
                     self.newLocationTextField.text = userText
                     self.autoCompleteCharacterCount = 0
@@ -171,6 +179,11 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
             return presentrDelegate.presentrShouldDismiss!(keyboardShowing: keyboardShowing)
         }
         return true
+    }
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
+        newLocationTextField.closeAutocomplete()
     }
 }
 
