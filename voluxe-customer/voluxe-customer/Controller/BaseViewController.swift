@@ -188,6 +188,10 @@ class BaseViewController: UIViewController, PresentrDelegate {
             yOrigin = viewH - heightInPixels
         }
         
+        if keyboardShowing {
+            yOrigin -= keyboardHeight
+        }
+        
         let center = ModalCenterPosition.customOrigin(origin: CGPoint(x: leftRightMargin, y: Double(yOrigin)))
         let customType = PresentationType.custom(width: width, height: height, center: center)
         
