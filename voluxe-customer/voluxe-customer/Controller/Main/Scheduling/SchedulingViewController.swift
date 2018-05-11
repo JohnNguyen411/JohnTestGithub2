@@ -687,4 +687,14 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         currentPresentrVC?.dismiss(animated: true, completion: nil)
     }
     
+    
+    override func keyboardWillAppear(_ notification: Notification) {
+        super.keyboardWillAppear(notification)
+        onSizeChanged()
+    }
+    
+    override func keyboardWillDisappear(_ notification: Notification) {
+        super.keyboardWillDisappear(notification)
+        onSizeChanged()
+    }
 }
