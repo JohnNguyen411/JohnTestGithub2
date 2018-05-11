@@ -53,6 +53,14 @@ final class UserManager {
         accessToken = token
     }
     
+    public func setPushDeviceToken(deviceToken: String?) {
+        keychain["deviceToken"] = deviceToken
+    }
+    
+    public func getPushDeviceToken() -> String? {
+        return keychain["deviceToken"]
+    }
+    
     public func getAccessToken() -> String? {
         return accessToken
     }
@@ -66,6 +74,10 @@ final class UserManager {
     }
     
     public func logout() {
+        // unregister device for Push Notif
+        if let customerId = getCustomerId() {
+            _ = CustomerAPI().registerDevice(customerId: customerId, deviceToken: "")
+        }
         // logout from API
         _ = CustomerAPI().logout()
         saveAccessToken(token: nil, customerId: nil)

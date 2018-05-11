@@ -326,10 +326,12 @@ class ScheduledViewController: ChildViewController {
                 if mode == "text_only" {
                     // sms
                     let number = "sms:\(contactDriver.textPhoneNumber ?? "")"
-                    UIApplication.shared.openURL(URL(string: number)!)
+                    guard let url = URL(string: number) else { return }
+                    UIApplication.shared.open(url)
                 } else {
                     let number = "telprompt:\(contactDriver.voicePhoneNumber ?? "")"
-                    UIApplication.shared.openURL(URL(string: number)!)
+                    guard let url = URL(string: number) else { return }
+                    UIApplication.shared.open(url)
                 }
             } else {
                 if let error = result?.error {

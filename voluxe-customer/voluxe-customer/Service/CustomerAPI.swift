@@ -496,5 +496,45 @@ class CustomerAPI: NSObject {
         }
         return promise.future
     }
+    
+    
+    /**
+     Add new vehicle to Customer
+     - parameter customerId: Customer's Id
+     - parameter deviceToken: Device token for push notifs
+     
+     - Returns: A Future ResponseObject containing an empty data response, or an AFError if an error occured
+     */
+    func registerDevice(customerId: Int, deviceToken: String) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+        
+        var uuid = ""
+        if let identifierForVendor = UIDevice.current.identifierForVendor?.uuidString {
+            uuid = identifierForVendor
+        }
+        
+        let params: Parameters = [
+            "os": "ios",
+            "os_version": UIDevice.current.systemVersion,
+            "unique_identifier": uuid,
+            "address": deviceToken
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/devices/current", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
+            
+            var responseObject: ResponseObject<EmptyMappableObject>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<EmptyMappableObject>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
 }
 

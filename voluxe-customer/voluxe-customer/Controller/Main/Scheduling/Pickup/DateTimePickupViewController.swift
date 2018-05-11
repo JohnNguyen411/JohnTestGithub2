@@ -700,7 +700,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             guard let numberURL = URL(string: number) else {
                 return
             }
-            UIApplication.shared.openURL(numberURL)
+            UIApplication.shared.open(numberURL)
         }
     }
 

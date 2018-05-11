@@ -10,7 +10,6 @@ import AlamofireNetworkActivityLogger
 import Crashlytics
 import Fabric
 import Firebase
-import FirebaseMessaging
 import GoogleMaps
 import SlideMenuControllerSwift
 import UIKit
@@ -18,7 +17,7 @@ import UserNotifications
 import GooglePlaces
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate, MessagingDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
     let gcmMessageIDKey = "gcm.message_id"
 
@@ -99,26 +98,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.window?.rootViewController = slideMenuController
         }
         
-    }
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-
-        if UserDefaults.standard.enableAlamoFireLogging {
-            NetworkActivityLogger.shared.level = .debug
-            NetworkActivityLogger.shared.startLogging()
-        }
-        
-        setupFirebase(application)
-        
-        _ = Logger.init()
-        GMSServices.provideAPIKey(Config.sharedInstance.mapAPIKey())
-        GMSPlacesClient.provideAPIKey(Config.sharedInstance.mapAPIKey())
-
-        Fabric.with([Crashlytics.self])
-
-        startApp()
-        
-        return true
     }
     
     private func loadRemoteConfig() {
@@ -202,6 +181,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window!.makeKeyAndVisible()
     }
     
+    
     private func styleNavigationBar(navigationBar: UINavigationBar) {
         navigationBar.isTranslucent = false
         navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -210,38 +190,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
     }
-    
-    private func setupFirebase(_ application: UIApplication) {
 
-        if UserDefaults.standard.disableFirebase == false {
-            FirebaseApp.configure()
+    func loadMainScreen() {
+        showLoadingView()
+    }
+
+    // MARK:- Application support
+
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
+        if UserDefaults.standard.enableAlamoFireLogging {
+            NetworkActivityLogger.shared.level = .debug
+            NetworkActivityLogger.shared.startLogging()
         }
 
-        /* Firebase needs to be enabled for RemoteConfig to work.
-         * But we still need to init it if we disable Firebase in order to use the default values provided in RemoteConfigDefaults.plist
-         */
-        loadRemoteConfig()
-        
-        // uncomment for Push Notification
-        /*
-        if #available(iOS 10.0, *) {
-            
-            // For iOS 10 display notification (sent via APNS)
-            UNUserNotificationCenter.current().delegate = self
-            
-            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-            UNUserNotificationCenter.current().requestAuthorization(
-                options: authOptions,
-                completionHandler: {_, _ in })
-        } else {
-            let settings: UIUserNotificationSettings =
-                UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-            application.registerUserNotificationSettings(settings)
-        }
-        
-        application.registerForRemoteNotifications()
-        Messaging.messaging().delegate = self
-         */
+        setupFirebase(application)
+
+        _ = Logger.init()
+        GMSServices.provideAPIKey(Config.sharedInstance.mapAPIKey())
+        GMSPlacesClient.provideAPIKey(Config.sharedInstance.mapAPIKey())
+
+
+        Fabric.with([Crashlytics.self])
+
+        startApp()
+
+        return true
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -266,79 +240,97 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    func loadMainScreen() {
-        showLoadingView()
-    }
-    
-    //MARK: UNUserNotificationCenterDelegate
-    
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
-        Logger.print("didReceive")
-    }
-    
-    @available(iOS 10.0, *)
-    func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        Logger.print("willPresent")
-    }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            Logger.print("Message ID: \(messageID)")
+    // MARK:- Firebase
+
+    private func setupFirebase(_ application: UIApplication) {
+
+        if UserDefaults.standard.disableFirebase == false {
+            FirebaseApp.configure()
         }
         
-        // Print full message.
-        Logger.print(userInfo)
-    }
-    
-    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        // If you are receiving a notification message while your app is in the background,
-        // this callback will not be fired till the user taps on the notification launching the application.
-        // TODO: Handle data of notification
-        
-        // Print message ID.
-        if let messageID = userInfo[gcmMessageIDKey] {
-            Logger.print("Message ID: \(messageID)")
-        }
-        
-        // Print full message.
-        Logger.print(userInfo)
-        
-        completionHandler(UIBackgroundFetchResult.newData)
+        /* Firebase needs to be enabled for RemoteConfig to work.
+         * But we still need to init it if we disable Firebase in order to use the default values provided in RemoteConfigDefaults.plist
+         */
+        loadRemoteConfig()
+
     }
 
-    
-    //MARK: MessagingDelegate
-    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
-        let token = Messaging.messaging().fcmToken
-        Logger.print("FCM token: \(token ?? "")")
-        
-        // TODO: If necessary send token to application server.
-        // Note: This callback is fired at each app startup and whenever a new token is generated.
+    // MARK:- UNUserNotificationCenterDelegate
+
+    // TODO this is called when the user interacts with specific options on a notification
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                didReceive response: UNNotificationResponse,
+                                withCompletionHandler completionHandler: @escaping () -> Void)
+    {
+        Logger.print("FCM: user interacted with notification")
     }
+
+    // TODO this is called when a message is received in the foreground
+    // or when a notification is tapped on when app is in background
+    func userNotificationCenter(_ center: UNUserNotificationCenter,
+                                willPresent notification: UNNotification,
+                                withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
+    {
+        Logger.print("FCM: notification was received and will be presented")
+    }
+    
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
+        UserManager.sharedInstance.setPushDeviceToken(deviceToken: token)
+        // registerDevice for push notification if deviceToken Stored
+        if let deviceToken = UserManager.sharedInstance.getPushDeviceToken(), let customerId = UserManager.sharedInstance.getCustomerId() {
+            CustomerAPI().registerDevice(customerId: customerId, deviceToken: deviceToken).onSuccess { result in
+                }.onFailure { error in
+            }
+        }
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        if let customerId = UserManager.sharedInstance.getCustomerId() {
+            // unregister device
+            CustomerAPI().registerDevice(customerId: customerId, deviceToken: "").onSuccess { result in
+                }.onFailure { error in
+            }
+        }
+    }
+    
+    func getNotificationSettings() {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            Logger.print("Notification settings: \(settings)")
+            guard settings.authorizationStatus == .authorized else { return }
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+    }
+    
+    func registerForPushNotifications() {
+        UNUserNotificationCenter.current().delegate = self
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
+            (granted, error) in
+            Logger.print("Permission granted: \(granted)")
+            
+            guard granted else { return }
+            self.getNotificationSettings()
+        }
+    }
+    
 }
+
+// MARK:- Extensions
 
 extension AppDelegate: VLAlertViewDelegate {
     
     func okButtonTapped() {
+        
+        //TODO: Update Link App
+        // https://github.com/volvo-cars/ios/issues/133
         if let url = URL(string: "http://itunes.apple.com/app/idXXXXXXXXX"), UIApplication.shared.canOpenURL(url) {
-            // Attempt to open the URL.
-            UIApplication.shared.openURL(url)
+            UIApplication.shared.open(url)
         }
     }
     
     func cancelButtonTapped() {
         
     }
-    
-    
-    
 }
 
 extension UIApplication {

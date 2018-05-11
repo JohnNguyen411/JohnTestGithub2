@@ -30,6 +30,7 @@ class LoadingViewController: ChildViewController {
         //logout()
         
         if let customerId = UserManager.sharedInstance.getCustomerId() {
+            askPushNotificationPermission()
             callCustomer(customerId: customerId)
             return
         }
@@ -76,7 +77,7 @@ class LoadingViewController: ChildViewController {
                         
                         let bookings = realm.objects(Booking.self).filter("customerId = %@ AND (state = %@ OR state = %@)", customerId, "created", "started")
                         UserManager.sharedInstance.setBookings(bookings: Array(bookings))
-                        self.loadVehiclesViewController()
+                        self.loadVehiclesViewController(customerId:  customerId)
                     })
                 }
             }
@@ -232,20 +233,20 @@ class LoadingViewController: ChildViewController {
                 }
                 // set the bookings
                 UserManager.sharedInstance.setBookings(bookings: bookings)
-                self.loadVehiclesViewController()
+                self.loadVehiclesViewController(customerId: customerId)
                 
             } else {
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetBookingsFail, screenName: self.screenName, errorCode: result?.error?.code)
                 // error
                 UserManager.sharedInstance.setBookings(bookings: nil)
-                self.loadVehiclesViewController()
+                self.loadVehiclesViewController(customerId: customerId)
             }
             
             }.onFailure { error in
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetBookingsFail, screenName: self.screenName, statusCode: error.responseCode)
                 // todo show error
                 UserManager.sharedInstance.setBookings(bookings: nil)
-                self.loadVehiclesViewController()
+                self.loadVehiclesViewController(customerId: customerId)
         }
     }
     
@@ -263,7 +264,11 @@ class LoadingViewController: ChildViewController {
         }
     }
     
-    private func loadVehiclesViewController() {
+    private func askPushNotificationPermission() {
+        appDelegate?.registerForPushNotifications()
+    }
+    
+    private func loadVehiclesViewController(customerId: Int) {
         appDelegate?.showVehiclesView(animated: true)
     }
 }
