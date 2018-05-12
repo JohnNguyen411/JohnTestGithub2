@@ -74,7 +74,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     private var maxDate = Date()
     
     private var isPickup = true
-    
+    private var showLoaner = false
+
     private let loanerContainerView = UIView(frame: .zero)
     
     private let loanerLabel: UILabel = {
@@ -99,7 +100,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     init(vehicle: Vehicle, title: String, buttonTitle: String) {
         self.vehicle = vehicle
         isPickup = StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id)
-        loanerViewHeight = isPickup ? 48 : 0
+        showLoaner = isPickup && RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.loanerFeatureEnabledKey)
+        loanerViewHeight = showLoaner ? 48 : 0
         var currentDealership = RequestedServiceManager.sharedInstance.getDealership()
         if currentDealership == nil {
             if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
@@ -205,7 +207,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             }
         }
         
-        loanerContainerView.isHidden = !isPickup
+        loanerContainerView.isHidden = !showLoaner
         
         containerView.addSubview(firstMonthHeader)
         containerView.addSubview(hoursView)

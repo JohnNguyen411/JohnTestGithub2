@@ -298,7 +298,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
             Logger.print("Notification settings: \(settings)")
             guard settings.authorizationStatus == .authorized else { return }
-            UIApplication.shared.registerForRemoteNotifications()
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
         }
     }
     

@@ -258,7 +258,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             make.right.equalTo(dealershipMapLabel.snp.left)
         }
         
-        if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) && RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.loanerFeatureEnabledKey) {
             scheduledPickupView.snp.makeConstraints { make in
                 make.left.right.equalTo(scheduledServiceView)
                 make.top.equalTo(loanerView.snp.bottom)
