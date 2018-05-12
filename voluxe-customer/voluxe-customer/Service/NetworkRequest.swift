@@ -83,7 +83,9 @@ class NetworkRequest {
     }
     
     static func addBearer(header: inout [String: String]) {
-        header["Authorization"] = "Bearer \(UserManager.sharedInstance.getAccessToken() ?? "")"
+        if let accessToken = UserManager.sharedInstance.getAccessToken() {
+            header["Authorization"] = "Bearer \(accessToken)"
+        }
     }
     
     static func encodeParamsArray(array: [Any], key: String) -> String {

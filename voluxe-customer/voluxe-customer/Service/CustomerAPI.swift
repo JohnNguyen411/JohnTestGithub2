@@ -24,7 +24,7 @@ class CustomerAPI: NSObject {
     func logout() -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
         let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/users/logout", method: .post, queryParameters: [:], withBearer: true).responseJSONErrorCheck { response in
+        NetworkRequest.request(url: "/v1/users/logout", method: .post, queryParameters: [:], withBearer: true).responseJSON { response in
             var responseObject: ResponseObject<EmptyMappableObject>?
             
             if let json = response.result.value as? [String: Any] {
@@ -155,7 +155,7 @@ class CustomerAPI: NSObject {
     func requestPhoneVerificationCode(customerId: Int) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
         let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/phone-number/request-verification", method: .put, queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/phone-number/request-verification", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             
