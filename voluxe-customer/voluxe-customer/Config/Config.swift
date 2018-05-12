@@ -17,12 +17,12 @@ class Config: NSObject {
     private static let releaseBundleId = "com.volvocars.luxebyvolvo"
     
     private static let devUrl = "https://development-uswest2.api.luxe.com"
-    private static let stagingUrl = "https://development-uswest2.api.luxe.com"
-    private static let prodUrl = "https://development-uswest2.api.luxe.com"
+    private static let stagingUrl = "https://staging-uswest2.api.luxe.com"
+    private static let prodUrl = "https://uswest2.api.luxe.com"
     
     private static let clientIdDev = "P2HHU4CKLS3JDQCF9ILSCAVPOJRN0LFS"
-    private static let clientIdStaging = "P2HHU4CKLS3JDQCF9ILSCAVPOJRN0LFS"
-    private static let clientIdProd = "P2HHU4CKLS3JDQCF9ILSCAVPOJRN0LFS"
+    private static let clientIdStaging = "SZO87U0WG2LIZBKKV6E16S5PHAHU6ERJ"
+    private static let clientIdProd = "3K0M02Z9KT3FAEENWXS07X54AN2427Q5"
     
     private let baseUrl: String
     private let clientId: String
