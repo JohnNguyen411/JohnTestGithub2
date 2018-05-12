@@ -26,6 +26,7 @@ class MapViewController: UIViewController {
         mapView.setMinZoom(6, maxZoom: 18)
         mapView.isMyLocationEnabled = false
         mapView.isBuildingsEnabled = false
+        mapView.isUserInteractionEnabled = false
         mapView.settings.indoorPicker = false
         mapView.settings.scrollGestures = false
         mapView.settings.rotateGestures = false
