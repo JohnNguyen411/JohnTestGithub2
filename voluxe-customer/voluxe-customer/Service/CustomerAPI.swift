@@ -217,7 +217,7 @@ class CustomerAPI: NSObject {
             "phone_number": phoneNumber
         ]
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)", method: .patch, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)", method: .patch, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
             
             var responseObject: ResponseObject<EmptyMappableObject>?
             

@@ -180,20 +180,43 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         isLoading = true
         
         self.showProgressHUD()
-
-        // resend phone verification code
-        CustomerAPI().requestPhoneVerificationCode(customerId: customerId!).onSuccess { result in
-            self.hideProgressHUD()
-            if result?.error != nil {
-                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-            }
-            self.isLoading = false
-        }.onFailure { error in
-            self.hideProgressHUD()
-            self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-            self.isLoading = false
-        }
+        let signupCustomer = UserManager.sharedInstance.signupCustomer
         
+        if UserManager.sharedInstance.getAccessToken() != nil {
+            
+            // resend phone verification code
+            CustomerAPI().requestPhoneVerificationCode(customerId: customerId!).onSuccess { result in
+                self.hideProgressHUD()
+                if result?.error != nil {
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                }
+                self.isLoading = false
+                }.onFailure { error in
+                    self.hideProgressHUD()
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    self.isLoading = false
+            }
+        } else if let email = signupCustomer.email, let phoneNumber = signupCustomer.phoneNumber, let firstName = signupCustomer.firstName , let lastName = signupCustomer.lastName {
+            
+            var language = "EN" // default to EN
+            if let localeLang = Locale.current.languageCode {
+                language = localeLang.uppercased()
+            }
+            
+            CustomerAPI().signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language).onSuccess { result in
+                if let _ = result?.data?.result {
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiSignupSuccess, screenName: self.screenName)
+                } else {
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, errorCode: result?.error?.code)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                }
+                self.hideProgressHUD()
+                }.onFailure { error in
+                    self.hideProgressHUD()
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, statusCode: error.responseCode)
+                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+            }
+        }
     }
     
     func isCodeValid(code: String?) -> Bool {
