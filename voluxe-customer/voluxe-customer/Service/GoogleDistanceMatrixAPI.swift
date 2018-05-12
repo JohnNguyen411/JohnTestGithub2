@@ -18,8 +18,9 @@ class GoogleDistanceMatrixAPI: NSObject {
         let promise = Promise<GMDistanceMatrix?, AFError>()
         
         let key = Config.sharedInstance.mapAPIKey()
+        let headers: HTTPHeaders = ["Accept": "application/json", "Content-Type": "application/json"]
 
-        Alamofire.request("https://maps.googleapis.com/maps/api/distancematrix/json", parameters: ["origins": origin, "destinations": destination, "key": key]).responseObject { (resp: DataResponse<GMDistanceMatrix>) in
+        Alamofire.request("https://maps.googleapis.com/maps/api/distancematrix/json", method: .get, parameters: ["origins": origin, "destinations": destination, "key": key], encoding: JSONEncoding.default, headers : headers).responseObject { (resp: DataResponse<GMDistanceMatrix>) in
             if resp.error == nil {
                 promise.success(resp.value)
             } else {
