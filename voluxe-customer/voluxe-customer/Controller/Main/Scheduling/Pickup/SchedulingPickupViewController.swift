@@ -137,7 +137,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     }
                     if openNext {
                         self.dealershipView.animateAlpha(show: true)
-                        // show date time
+                        // show loaner
                         self.loanerClick()
                     }
                     
@@ -172,8 +172,14 @@ class SchedulingPickupViewController: SchedulingViewController {
     }
     
     @objc override func loanerClick() {
-        showPickupLoanerModal(dismissOnTap: pickupScheduleState.rawValue >= SchedulePickupState.loaner.rawValue)
-        super.loanerClick()
+        if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.loanerFeatureEnabledKey) {
+            showPickupLoanerModal(dismissOnTap: pickupScheduleState.rawValue >= SchedulePickupState.loaner.rawValue)
+            super.loanerClick()
+        } else {
+            RequestedServiceManager.sharedInstance.setLoaner(loaner: true)
+            pickupScheduleState = .loaner
+            scheduledPickupClick()
+        }
     }
     
     override func confirmButtonClick() {

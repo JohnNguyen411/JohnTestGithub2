@@ -13,8 +13,8 @@ final class RemoteConfigManager {
     
     public static let selfPickupEnabledKey = "self_pickup_enabled"
     public static let snappedPointsKey = "customer_ios_snapped_points_enabled"
+    public static let loanerFeatureEnabledKey = "loaner_feature_enabled"
 
-    
     static let sharedInstance = RemoteConfigManager()
     private let remoteConfig: RemoteConfig
     private var developerModeEnabled = false
