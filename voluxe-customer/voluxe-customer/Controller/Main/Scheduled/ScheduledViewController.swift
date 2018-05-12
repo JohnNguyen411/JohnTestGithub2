@@ -115,6 +115,18 @@ class ScheduledViewController: ChildViewController {
         mapVC.view.snp.updateConstraints { (make) -> Void in
             make.height.equalTo(ScheduledViewController.mapViewHeight + ScheduledViewController.driverViewHeight)
         }
+        
+        addShadow(toView: mapViewContainer)
+    }
+    
+    private func addShadow(toView: UIView) {
+        
+        toView.layer.masksToBounds = false
+        
+        toView.layer.shadowColor = UIColor.black.cgColor
+        toView.layer.shadowOpacity = 0.5
+        toView.layer.shadowRadius = 2
+        toView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
     }
     
     override func setupViews() {

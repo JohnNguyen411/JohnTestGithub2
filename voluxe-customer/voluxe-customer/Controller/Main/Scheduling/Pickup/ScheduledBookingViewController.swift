@@ -53,6 +53,21 @@ class ScheduledBookingViewController: SchedulingViewController {
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
+        if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.loanerFeatureEnabledKey) {
+            scheduledPickupView.snp.makeConstraints { make in
+                make.left.right.equalTo(scheduledServiceView)
+                make.top.equalTo(loanerView.snp.bottom)
+                make.height.equalTo(SchedulingViewController.vlLabelHeight)
+            }
+        } else {
+            scheduledPickupView.snp.makeConstraints { make in
+                make.left.right.equalTo(scheduledServiceView)
+                make.top.equalTo(dealershipView.snp.bottom)
+                make.height.equalTo(SchedulingViewController.vlLabelHeight)
+            }
+        }
+        
+        
         contentView.addSubview(leftButton)
         contentView.addSubview(rightButton)
         
@@ -87,7 +102,10 @@ class ScheduledBookingViewController: SchedulingViewController {
         scheduledPickupView.animateAlpha(show: true)
         pickupLocationView.animateAlpha(show: true)
         dealershipView.animateAlpha(show: true)
-        loanerView.animateAlpha(show: true)
+        
+        if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.loanerFeatureEnabledKey) {
+            loanerView.animateAlpha(show: true)
+        }
         
         scheduledPickupView.isUserInteractionEnabled = false
         pickupLocationView.isUserInteractionEnabled = false
