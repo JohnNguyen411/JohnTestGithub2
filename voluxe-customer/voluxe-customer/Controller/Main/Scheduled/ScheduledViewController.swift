@@ -273,6 +273,7 @@ class ScheduledViewController: ChildViewController {
     func getEta(fromLocation: CLLocationCoordinate2D, toLocation: CLLocationCoordinate2D) {
         if lastRefresh == nil || lastRefresh!.timeIntervalSinceNow < -ScheduledViewController.ETARefreshThrottle {
             lastRefresh = Date()
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsDistance, screenName: screenName)
             googleDistanceMatrixAPI.getDirection(origin: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: fromLocation), destination: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: toLocation), mode: nil).onSuccess { distanceMatrix in
                 if let distanceMatrix = distanceMatrix {
                     self.mapVC.updateETA(eta: distanceMatrix.getEta())

@@ -205,6 +205,7 @@ class AnalyticsConstants {
     static let paramNameGmapsPlace = "google_place_api"
     static let paramNameGmapsGeocode = "google_geocode_api"
     static let paramNameGmapsRoads = "google_roads_api"
+    static let paramNameGmapsDistance = "google_distance_api"
 
 
 }
