@@ -131,6 +131,8 @@ class AnalyticsConstants {
     
     // Google Maps
     static let eventGmapsRequest = "gmaps_api_request"
+    static let eventGmapsDistanceAPIFail = "gmaps_distance_api_fail"
+    static let eventGmapsDistanceAPISuccess = "gmaps_distance_api_success"
 
     
     // Params

@@ -19,7 +19,7 @@ class TimeWindowView: UIView {
         titleLabel.textColor = .white
         titleLabel.font = .volvoSansLight(size: 38)
         titleLabel.textAlignment = .center
-        titleLabel.text = "6:00 - 9:00"
+        titleLabel.text = "-:-- - -:--"
         return titleLabel
     }()
     

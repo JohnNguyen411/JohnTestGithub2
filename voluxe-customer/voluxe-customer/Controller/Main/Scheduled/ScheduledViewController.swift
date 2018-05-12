@@ -273,17 +273,29 @@ class ScheduledViewController: ChildViewController {
     func getEta(fromLocation: CLLocationCoordinate2D, toLocation: CLLocationCoordinate2D) {
         if lastRefresh == nil || lastRefresh!.timeIntervalSinceNow < -ScheduledViewController.ETARefreshThrottle {
             lastRefresh = Date()
+            
+            weak var weakSelf = self
+            
             VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsDistance, screenName: screenName)
             googleDistanceMatrixAPI.getDirection(origin: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: fromLocation), destination: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: toLocation), mode: nil).onSuccess { distanceMatrix in
+                
+                guard let weakSelf = weakSelf else {
+                    return
+                }
+                
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventGmapsDistanceAPISuccess, screenName: weakSelf.screenName)
                 if let distanceMatrix = distanceMatrix {
-                    self.mapVC.updateETA(eta: distanceMatrix.getEta())
-                    self.timeWindowView.setETA(eta: distanceMatrix.getEta())
+                    weakSelf.mapVC.updateETA(eta: distanceMatrix.getEta())
+                    weakSelf.timeWindowView.setETA(eta: distanceMatrix.getEta())
                 }
                 }.onFailure { error in
                     Logger.print(error)
+                    guard let weakSelf = weakSelf else {
+                        return
+                    }
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventGmapsDistanceAPIFail, screenName: weakSelf.screenName)
             }
         }
-        
     }
     
     func contactDriverActionSheet() {
