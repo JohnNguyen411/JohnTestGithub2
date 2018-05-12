@@ -68,12 +68,16 @@ class ServiceDetailViewController: BaseViewController {
             confirmButton.alpha = 0
         }
         
+        weak var weakself = self
         confirmButton.setActionBlock {
+            guard let weakself = weakself else {
+                return
+            }
             // shedule service
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: RepairOrder(repairOrderType: self.service))
             StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id, booking: nil)
             
-            self.pushViewController(ServiceCarViewController(vehicle: self.vehicle, state: .needService), animated: true, backLabel: .Back)
+            weakself.pushViewController(ServiceCarViewController(vehicle: self.vehicle, state: .needService), animated: true, backLabel: .Back)
         }
     }
     

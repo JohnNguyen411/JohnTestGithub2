@@ -32,12 +32,16 @@ final class RequestedServiceManager {
     }
     
     func reset() {
+        resetScheduling()
+        repairOrder = nil
+    }
+    
+    func resetScheduling() {
         loaner = nil
         pickupTimeSlot = nil
         pickupRequestLocation = nil
         dropOffRequestLocation = nil
         dropOffTimeSlot = nil
-        repairOrder = nil
     }
     
     

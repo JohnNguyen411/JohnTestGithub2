@@ -115,6 +115,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         if CLLocationManager.locationServicesEnabled() {
             locationManager.startUpdatingLocation()
         }
+        RequestedServiceManager.sharedInstance.resetScheduling()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -122,6 +123,12 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         locationManager.stopUpdatingLocation()
     }
     
+    override func willMove(toParentViewController parent: UIViewController?) {
+        super.willMove(toParentViewController: parent)
+        if parent == nil {
+            RequestedServiceManager.sharedInstance.reset()
+        }
+    }
     
     //MARK: Views methods
     override func setupViews() {
@@ -396,7 +403,11 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     //MARK: Actions methods
     func showDescriptionClick() {
         if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
-            childViewDelegate?.pushViewController(controller: ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true, backLabel: .Back, title: repairOrder.name)
+            if let childViewDelegate = self.childViewDelegate {
+            childViewDelegate.pushViewController(controller: ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true, backLabel: .Back, title: repairOrder.name)
+            } else {
+                self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true, backLabel: .Back)
+            }
         } else if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.repairOrderRequests.count > 0 {
             childViewDelegate?.pushViewController(controller: ServiceDetailViewController(vehicle: vehicle, service: booking.repairOrderRequests[0]), animated: true, backLabel: .Back, title: booking.repairOrderRequests[0].name)
         }
