@@ -27,7 +27,7 @@ class GoogleSnappedPointsAPI: NSObject {
                 if resp.error == nil {
                     promise.success(resp.value)
                 } else {
-                    promise.failure(resp.error as! AFError)
+                    promise.failure(Errors.safeAFError(error: resp.error!))
                 }
             }
         } else {
