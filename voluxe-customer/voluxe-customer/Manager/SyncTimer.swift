@@ -19,10 +19,12 @@ class SyncTimer {
     var timer: DispatchSourceTimer?
     let queue = DispatchQueue.main
     let booking: Booking
+    let bookingId: Int
     private var state: State = .suspended
     
     init(booking: Booking) {
         self.booking = booking
+        self.bookingId = booking.id
         sync()
     }
     
@@ -52,8 +54,8 @@ class SyncTimer {
     }
     
     public func sync() {
-        if booking.isInvalidated {
-            // todo remove from manager?
+        if booking.isInvalidated || booking.getState() == .canceled || booking.getState() == .completed {
+            BookingSyncManager.sharedInstance.stopTimerForBooking(bookingId: bookingId)
             return
         }
         if booking.pickupRequest != nil || booking.dropoffRequest != nil {
@@ -80,13 +82,16 @@ class SyncTimer {
         timer = DispatchSource.makeTimerSource(queue: queue)
         if let timer = timer {
             timer.schedule(deadline: .now(), repeating: .seconds(every), leeway: .seconds(1))
-            timer.setEventHandler(handler: {
-                if UserManager.sharedInstance.getAccessToken() == nil || self.booking.isInvalidated {
-                    self.suspend()
+            timer.setEventHandler(handler: { [weak self] in
+                guard let weakSelf = self else {
+                    return
+                }
+                if UserManager.sharedInstance.getAccessToken() == nil || weakSelf.booking.isInvalidated {
+                    weakSelf.suspend()
                     return
                 }
                 if let customerId = UserManager.sharedInstance.getCustomerId() {
-                    self.getBooking(customerId: customerId, bookingId: self.booking.id)
+                    weakSelf.getBooking(customerId: customerId, bookingId: weakSelf.bookingId)
                 }
             })
             timer.resume()

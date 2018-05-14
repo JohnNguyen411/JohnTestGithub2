@@ -257,21 +257,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK:- UNUserNotificationCenterDelegate
 
-    // TODO this is called when the user interacts with specific options on a notification
+    // This is called when the user interacts with specific options on a notification
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void)
     {
-        Logger.print("FCM: user interacted with notification")
+        BookingSyncManager.sharedInstance.syncBookings() // force sync now
+        completionHandler()
     }
 
-    // TODO this is called when a message is received in the foreground
+    // This is called when a message is received in the foreground
     // or when a notification is tapped on when app is in background
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
     {
-        Logger.print("FCM: notification was received and will be presented")
+        BookingSyncManager.sharedInstance.syncBookings() // force sync now
+        completionHandler([.alert, .badge, .sound]) // show foreground notifications
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
