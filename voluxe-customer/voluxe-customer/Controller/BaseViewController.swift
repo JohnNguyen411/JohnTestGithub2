@@ -260,11 +260,11 @@ extension UIViewController {
         self.slideMenuController()?.removeRightGestures()
     }
     
-    func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil, analyticDialogName: String, screenName: String) {
+    func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil, analyticDialogName: String, screenName: String?) {
         showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: completion, analyticDialogName: analyticDialogName, screenName: screenName)
     }
     
-    func showDialog(title: String, message: String, buttonTitle: String, completion: (() -> Swift.Void)? = nil, analyticDialogName: String, screenName: String) {
+    func showDialog(title: String, message: String, buttonTitle: String, completion: (() -> Swift.Void)? = nil, analyticDialogName: String, screenName: String?) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
@@ -310,8 +310,11 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    private func getAnalyticsParamsForDialog(_ dialogName: String, screenName: String) -> [String: String] {
-        return [AnalyticsConstants.paramDialogName : dialogName, AnalyticsConstants.paramScreenName: screenName]
+    private func getAnalyticsParamsForDialog(_ dialogName: String, screenName: String?) -> [String: String] {
+        if let screenName = screenName {
+            return [AnalyticsConstants.paramDialogName : dialogName, AnalyticsConstants.paramScreenName: screenName]
+        }
+        return [:]
     }
     
     private func getViewForHUD() -> UIView {

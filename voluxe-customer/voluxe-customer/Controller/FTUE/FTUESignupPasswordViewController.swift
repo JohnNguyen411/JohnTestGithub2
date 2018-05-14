@@ -212,21 +212,23 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             return
         }
         
+        weak var weakSelf = self
+        
         // if accessToken, it's a password update
         if let code = UserManager.sharedInstance.signupCustomer.verificationCode,
             let password = volvoPwdConfirmTextField.textField.text, let customerId = UserManager.sharedInstance.getCustomerId(),
             signupCustomer.email == nil, accessToken != nil {
             CustomerAPI().passwordChange(customerId: customerId, code: code, password: password).onSuccess { result in
                 if let _ = result?.error {
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordChangeFail, screenName: self.screenName)
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordChangeFail, screenName: weakSelf?.screenName ?? nil)
+                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: weakSelf?.screenName ?? nil)
                 } else {
-                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiPasswordChangeSuccess, screenName: self.screenName)
-                    self.navigationController?.popToRootViewController(animated: true)
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiPasswordChangeSuccess, screenName: weakSelf?.screenName ?? nil)
+                    weakSelf?.navigationController?.popToRootViewController(animated: true)
                 }
                 }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordChangeFail, screenName: self.screenName, statusCode: error.responseCode)
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordChangeFail, screenName: weakSelf?.screenName, statusCode: error.responseCode)
+                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: weakSelf?.screenName ?? nil)
                 }
                     
             return
@@ -241,20 +243,18 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             CustomerAPI().passwordResetConfirm(phoneNumber: phoneNumber, code: code, password: password).onSuccess { result in
                 self.showLoading(loading: false)
                 if let _ = result?.error {
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmFail, screenName: self.screenName)
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmFail, screenName: weakSelf?.screenName)
+                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: weakSelf?.screenName ?? nil)
                 } else {
-                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmSuccess, screenName: self.screenName)
-                    // password successfully updated, proceed to login
-                    self.navigationController?.popToRootViewController(animated: true)
-                    self.showOkDialog(title: .Success, message: .PasswordResetLogin, completion: {
-                        self.navigationController?.pushViewController(FTUELoginViewController(), animated: true)
-                    }, analyticDialogName: AnalyticsConstants.paramNameSuccessDialog, screenName: self.screenName);
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmSuccess, screenName: weakSelf?.screenName)
+                    // password successfully updated, login the user
+                    
+                    weakSelf?.loginUser(phoneNumber: phoneNumber, password: password)
                 }
                 }.onFailure { error in
-                    self.showLoading(loading: false)
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmFail, screenName: self.screenName, statusCode: error.responseCode)
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    weakSelf?.showLoading(loading: false)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmFail, screenName: weakSelf?.screenName, statusCode: error.responseCode)
+                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: weakSelf?.screenName ?? nil)
             }
             return
         }
@@ -275,43 +275,66 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 return
             }
         }
-        
+        weak var weakSelf = self
+
         CustomerAPI().confirmSignup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, password: volvoPwdConfirmTextField.textField.text!, verificationCode: signupCustomer.verificationCode!).onSuccess { result in
             if let customer = result?.data?.result {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiConfirmSignupSuccess, screenName: self.screenName)
-                if let realm = self.realm {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiConfirmSignupSuccess, screenName: weakSelf?.screenName ?? nil)
+                if let realm = weakSelf?.realm {
                     try? realm.write {
                         realm.deleteAll()
                         realm.add(customer)
                     }
                 }
                 UserManager.sharedInstance.setCustomer(customer: customer)
-                self.loginUser(email: signupCustomer.email!, password: self.volvoPwdConfirmTextField.textField.text!)
+                weakSelf?.loginUser(email: signupCustomer.email!, password: self.volvoPwdConfirmTextField.textField.text!)
             } else {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiConfirmSignupFail, screenName: self.screenName, errorCode: result?.error?.code)
-                self.onSignupError(error: result?.error)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiConfirmSignupFail, screenName: weakSelf?.screenName ?? nil, errorCode: result?.error?.code)
+                weakSelf?.onSignupError(error: result?.error)
             }
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiConfirmSignupFail, screenName: self.screenName, statusCode: error.responseCode)
-                self.onSignupError()
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiConfirmSignupFail, screenName: weakSelf?.screenName ?? nil, statusCode: error.responseCode)
+                weakSelf?.onSignupError()
         }
     }
     
     func loginUser(email: String, password: String) {
+        weak var weakSelf = self
+
         CustomerAPI().login(email: email, password: password).onSuccess { result in
             if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiLoginSuccess, screenName: self.screenName)
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiLoginSuccess, screenName: weakSelf?.screenName)
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
-                self.showLoading(loading: false)
-                self.goToNext()
+                weakSelf?.showLoading(loading: false)
+                weakSelf?.goToNext()
             } else {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: self.screenName, errorCode: result?.error?.code)
-                self.onSignupError()
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: weakSelf?.screenName ?? nil, errorCode: result?.error?.code)
+                weakSelf?.onSignupError()
             }
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: self.screenName, statusCode: error.responseCode)
-                self.onSignupError()
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: weakSelf?.screenName ?? nil, statusCode: error.responseCode)
+                weakSelf?.onSignupError()
+        }
+    }
+    
+    func loginUser(phoneNumber: String, password: String) {
+        weak var weakSelf = self
+
+        CustomerAPI().login(phoneNumber: phoneNumber, password: password).onSuccess { result in
+            if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiLoginSuccess, screenName: weakSelf?.screenName)
+                // Get Customer object with ID
+                UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
+                weakSelf?.showLoading(loading: false)
+                weakSelf?.goToNext()
+            } else {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: weakSelf?.screenName ?? nil, errorCode: result?.error?.code)
+                weakSelf?.onSignupError()
+            }
+            }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: weakSelf?.screenName ?? nil, statusCode: error.responseCode)
+                weakSelf?.onSignupError()
         }
     }
     

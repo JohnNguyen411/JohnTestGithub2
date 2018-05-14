@@ -98,7 +98,7 @@ final class UserManager {
         }
     }
     
-    public func setCustomer(customer: Customer) {
+    public func setCustomer(customer: Customer?) {
         self.customer = customer
     }
     

@@ -74,6 +74,38 @@ class CustomerAPI: NSObject {
     }
     
     /**
+     Login endpoint for Customer
+     - parameter phoneNumber: Customer's phone number
+     - parameter password: Customer's password
+     
+     - Returns: A Future ResponseObject containing a Token Object, or an AFError if an error occured
+     */
+    func login(phoneNumber: String, password: String) -> Future<ResponseObject<MappableDataObject<Token>>?, AFError> {
+        let promise = Promise<ResponseObject<MappableDataObject<Token>>?, AFError>()
+        
+        let params: Parameters = [
+            "phone_number": phoneNumber,
+            "password": password
+        ]
+        
+        NetworkRequest.request(url: "/v1/users/login", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSONErrorCheck { response in
+            
+            var responseObject: ResponseObject<MappableDataObject<Token>>?
+            
+            if let json = response.result.value as? [String: Any] {
+                responseObject = ResponseObject<MappableDataObject<Token>>(json: json)
+            }
+            
+            if response.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors.safeAFError(error: response.error!))
+            }
+        }
+        return promise.future
+    }
+    
+    /**
      Signup endpoint for Customer
      - parameter email: Customer's email
      - parameter phoneNumber: Customer's phoneNumber

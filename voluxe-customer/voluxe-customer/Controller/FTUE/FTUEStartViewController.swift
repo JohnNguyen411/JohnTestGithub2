@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 
 class FTUEStartViewController: BaseViewController {
     
@@ -16,6 +17,8 @@ class FTUEStartViewController: BaseViewController {
         case signup
     }
     
+    var realm : Realm?
+
     public static var flowType: FTUEFlowType = .login
     
     let loginButton = VLButton(type: .blueSecondary, title: (.SignIn as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickSignin, screenName: AnalyticsConstants.paramNameLandingView)
@@ -59,7 +62,8 @@ class FTUEStartViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        realm = try? Realm()
+
         UserManager.sharedInstance.signupCustomer = SignupCustomer()
 
         loginButton.setActionBlock {
@@ -76,6 +80,18 @@ class FTUEStartViewController: BaseViewController {
             self.navigationController?.pushViewController(FTUESignupNameViewController(), animated: true)
         }
         
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        // reset current customer
+        if let realm = self.realm {
+            try? realm.write {
+                realm.deleteAll()
+            }
+        }
+        UserManager.sharedInstance.setCustomer(customer: nil)
+        UserManager.sharedInstance.tempCustomerId = nil
     }
     
     override func setupViews() {
