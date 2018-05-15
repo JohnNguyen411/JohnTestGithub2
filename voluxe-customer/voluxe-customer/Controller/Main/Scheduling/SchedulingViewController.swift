@@ -90,7 +90,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         self.vehicle = vehicle
         self.serviceState = state
         descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickShowServiceDescription, screenName: screenName)
-        confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmPickup as String).uppercased(), kern: UILabel.uppercasedKern())
+        confirmButton = VLButton(type: .bluePrimary, title: SchedulingViewController.getConfirmButtonTitle(vehicleId: vehicle.id), kern: UILabel.uppercasedKern())
         
         super.init(screenName: screenName)
     }
@@ -311,7 +311,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         
         loanerView.descLeftLabel.text = loaner ? .Yes : .No
         
-        confirmButton.setTitle(title: getConfirmButtonTitle())
+        confirmButton.setTitle(title: SchedulingViewController.getConfirmButtonTitle(vehicleId: vehicle.id))
         confirmButton.setEventName(getConfirmButtonEvent(), screenName: screenName)
     }
     
@@ -524,9 +524,9 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         return title
     }
     
-    func getConfirmButtonTitle() -> String {
+    private static func getConfirmButtonTitle(vehicleId: Int) -> String {
         var title = String.ConfirmPickup
-        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
+        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicleId) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
                 title = .ConfirmSelfDrop
             }
