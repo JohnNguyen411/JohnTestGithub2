@@ -295,7 +295,7 @@ class ScheduledViewController: ChildViewController {
                     return
                 }
                 
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventGmapsDistanceAPISuccess, screenName: weakSelf.screenName)
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsDistanceAPISuccess, screenName: weakSelf.screenName)
                 if let distanceMatrix = distanceMatrix {
                     weakSelf.mapVC.updateETA(eta: distanceMatrix.getEta())
                     weakSelf.timeWindowView.setETA(eta: distanceMatrix.getEta())

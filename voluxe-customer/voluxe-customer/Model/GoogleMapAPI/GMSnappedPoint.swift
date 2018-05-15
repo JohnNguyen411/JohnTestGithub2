@@ -9,20 +9,13 @@
 import Foundation
 import ObjectMapper
 
-class GMSnappedPoint: NSObject, Mappable {
+class GMSnappedPoint: Mappable {
     
     var location: GMLocation?
     var originalIndex: Int?
     var placeId: String?
     
-    override init() {
-        super.init()
-    }
-    
     required init?(map: Map) {
-        location = map["location"].currentValue as? GMLocation
-        originalIndex = map["originalIndex"].currentValue as? Int
-        placeId = map["placeId"].currentValue as? String
     }
     
     func mapping(map: Map) {

@@ -9,18 +9,12 @@
 import Foundation
 import ObjectMapper
 
-class GMElements: NSObject, Mappable {
+class GMElements: Mappable {
     
     var distance: GMTextValueObject?
     var duration: GMTextValueObject?
     
-    override init() {
-        super.init()
-    }
-    
     required init?(map: Map) {
-        distance = map["distance"].currentValue as? GMTextValueObject
-        duration = map["duration"].currentValue as? GMTextValueObject
     }
     
     func mapping(map: Map) {

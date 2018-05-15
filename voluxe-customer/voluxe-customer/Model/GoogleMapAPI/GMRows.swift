@@ -9,16 +9,11 @@
 import Foundation
 import ObjectMapper
 
-class GMRows: NSObject, Mappable {
+class GMRows: Mappable {
     
     var elements: [GMElements]?
     
-    override init() {
-        super.init()
-    }
-    
     required init?(map: Map) {
-        elements = map["elements"].currentValue as? [GMElements]
     }
     
     func mapping(map: Map) {

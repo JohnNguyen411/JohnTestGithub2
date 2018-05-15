@@ -14,25 +14,25 @@ import BrightFutures
 
 class GoogleDistanceMatrixAPI: NSObject {
     
-    func getDirection(origin: String!, destination: String!, mode: String?) -> Future<GMDistanceMatrix?, AFError> {
+    func getDirection(origin: String, destination: String, mode: String?) -> Future<GMDistanceMatrix?, AFError> {
         let promise = Promise<GMDistanceMatrix?, AFError>()
         
         let key = Config.sharedInstance.mapAPIKey()
         let headers: HTTPHeaders = ["Accept": "application/json", "Content-Type": "application/json"]
-        do {
-            let originalRequest = try URLRequest(url: "https://maps.googleapis.com/maps/api/distancematrix/json", method: .get, headers: headers)
-            let queryEncodedURLRequest = try URLEncoding.default.encode(originalRequest, with: ["origins": origin, "destinations": destination, "key": key])
-            Alamofire.request(queryEncodedURLRequest).responseObject { (resp: DataResponse<GMDistanceMatrix>) in
+        let url = "https://maps.googleapis.com/maps/api/distancematrix/json?key=\(key)&origins=\(origin)&destinations=\(destination)"
+        if let encodedUrl = url.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
+            Alamofire.request(encodedUrl, method: .get, encoding: JSONEncoding.default, headers : headers).responseObject { (resp: DataResponse<GMDistanceMatrix>) in
                 if resp.error == nil {
                     promise.success(resp.value)
                 } else {
                     promise.failure(Errors.safeAFError(error: resp.error!))
                 }
             }
-            
-        } catch {
-            // cant do request
+        } else {
+            let error = AFError.invalidURL(url: url)
+            promise.failure(error)
         }
+        
         return promise.future
     }
     

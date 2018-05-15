@@ -9,18 +9,12 @@
 import Foundation
 import ObjectMapper
 
-class GMTextValueObject: NSObject, Mappable {
+class GMTextValueObject: Mappable {
     
     var text: String?
     var value: Int?
     
-    override init() {
-        super.init()
-    }
-    
     required init?(map: Map) {
-        text = map["text"].currentValue as? String
-        value = map["value"].currentValue as? Int
     }
     
     func mapping(map: Map) {

@@ -9,18 +9,12 @@
 import Foundation
 import ObjectMapper
 
-class GMDistanceMatrix: NSObject, Mappable {
+class GMDistanceMatrix: Mappable {
     
     var rows: [GMRows]?
     var status: String?
-    
-    override init() {
-        super.init()
-    }
-    
+
     required init?(map: Map) {
-        rows = map["rows"].currentValue as? [GMRows]
-        status = map["status"].currentValue as? String
     }
     
     func mapping(map: Map) {

@@ -9,18 +9,12 @@
 import Foundation
 import ObjectMapper
 
-class GMLocation: NSObject, Mappable {
+class GMLocation: Mappable {
     
     var latitude: Double = 0.0
     var longitude: Double = 0.0
     
-    override init() {
-        super.init()
-    }
-    
     required init?(map: Map) {
-        latitude = map["latitude"].currentValue as! Double
-        longitude = map["longitude"].currentValue as! Double
     }
     
     func mapping(map: Map) {
