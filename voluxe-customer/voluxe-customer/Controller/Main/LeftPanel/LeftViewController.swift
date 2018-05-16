@@ -254,12 +254,16 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         if let viewController = self.slideMenuController()?.mainViewController {
             if let baseController = viewController as? BaseViewController {
                 if baseController is VehiclesViewController || baseController is MainViewController || baseController is SettingsViewController {
-                    baseController.setNavigationBarItem(showNotif: isShowingNotif)
+                    baseController.setNavigationBarItem()
+                    baseController.showNotifBadge(isShowingNotif)
                 }
             } else if let navController = viewController as? UINavigationController, navController.childViewControllers.count > 0 {
                 for controller in navController.childViewControllers {
                     if controller is VehiclesViewController || controller is MainViewController || controller is SettingsViewController {
-                        controller.setNavigationBarItem(showNotif: isShowingNotif)
+                        controller.setNavigationBarItem()
+                        if let baseController = controller as? BaseViewController {
+                            baseController.showNotifBadge(isShowingNotif)
+                        }
                     }
                 }
             }

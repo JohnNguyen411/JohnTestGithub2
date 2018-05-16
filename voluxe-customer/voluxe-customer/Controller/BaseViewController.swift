@@ -25,6 +25,8 @@ class BaseViewController: UIViewController, PresentrDelegate {
     var keyboardShowing = false
     var keyboardHeight: CGFloat = 0
     
+    var shouldShowNotifBadge = false
+    
     init(screenName: String) {
         self.screenName = screenName
         super.init(nibName: nil, bundle: nil)
@@ -44,6 +46,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         logViewScreen(screenName: self.screenName)
+        showNotifBadge(shouldShowNotifBadge)
     }
     
     func setTitle(title: String?) {
@@ -205,19 +208,25 @@ class BaseViewController: UIViewController, PresentrDelegate {
         }
     }
     
+    func showNotifBadge(_ shouldShowBadge: Bool) {
+        if shouldShowBadge {
+            let added = self.navigationItem.leftBarButtonItem?.addBadge()
+            if let added = added, !added {
+                shouldShowNotifBadge = shouldShowBadge
+            }
+        } else {
+            self.navigationItem.leftBarButtonItem?.removeBadge()
+            shouldShowNotifBadge = false
+        }
+    }
+    
 }
 
 extension UIViewController {
     
-    func setNavigationBarItem(showNotif: Bool = false) {
-        if showNotif {
-            if let image = UIImage(named: "ic_menu_black_notif") {
-                self.addLeftBarButtonWithImage(image)
-            }
-        } else {
-            if let image = UIImage(named: "ic_menu_black_24dp") {
-                self.addLeftBarButtonWithImage(image)
-            }
+    func setNavigationBarItem() {
+        if let image = UIImage(named: "ic_menu") {
+            self.addLeftBarButtonWithImage(image)
         }
         self.slideMenuController()?.removeLeftGestures()
         self.slideMenuController()?.removeRightGestures()
