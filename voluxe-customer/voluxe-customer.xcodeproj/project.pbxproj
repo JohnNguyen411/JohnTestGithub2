@@ -646,7 +646,14 @@
 		446B7D7AA76D7E178415AA45 /* Pods-voluxe-customer.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.dev.xcconfig"; sourceTree = "<group>"; };
 		4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
 		4B49F366D485907B0CD58867 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
-		539F626E2092AB6A0023DF59 /* confirm_team_id.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; name = confirm_team_id.rb; path = ../scripts/confirm_team_id.rb; sourceTree = "<group>"; };
+		5365315520AA33F300116AC8 /* increment_build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = increment_build.sh; sourceTree = "<group>"; };
+		538FBDE020AB45EA0096480C /* release-notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "release-notes.txt"; sourceTree = "<group>"; };
+		538FBDE120AB61BC0096480C /* export-options-development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "export-options-development.plist"; sourceTree = "<group>"; };
+		538FBDE220AB62180096480C /* xcarchive-to-ipa.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "xcarchive-to-ipa.sh"; sourceTree = "<group>"; };
+		538FBDE420AB87280096480C /* ipa-to-fabric.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "ipa-to-fabric.sh"; sourceTree = "<group>"; };
+		538FBDE520AB8A0A0096480C /* export-options-enterprise.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "export-options-enterprise.plist"; sourceTree = "<group>"; };
+		538FBDE620AB8A0A0096480C /* export-options-appstore.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "export-options-appstore.plist"; sourceTree = "<group>"; };
+		539F626E2092AB6A0023DF59 /* confirm_team_id.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = confirm_team_id.rb; sourceTree = "<group>"; };
 		53AA2754209D10CC00781995 /* AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppStore.entitlements; sourceTree = "<group>"; };
 		53AA2755209D10CC00781995 /* Development.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Development.entitlements; sourceTree = "<group>"; };
 		53D9A7AA2098E678008BE93E /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
@@ -944,13 +951,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		538FBDE720ABB73F0096480C /* export */ = {
+			isa = PBXGroup;
+			children = (
+				538FBDE120AB61BC0096480C /* export-options-development.plist */,
+				538FBDE620AB8A0A0096480C /* export-options-appstore.plist */,
+				538FBDE520AB8A0A0096480C /* export-options-enterprise.plist */,
+			);
+			path = export;
+			sourceTree = "<group>";
+		};
 		539F626D2092AB4E0023DF59 /* scripts */ = {
 			isa = PBXGroup;
 			children = (
 				539F626E2092AB6A0023DF59 /* confirm_team_id.rb */,
+				5365315520AA33F300116AC8 /* increment_build.sh */,
+				538FBDE420AB87280096480C /* ipa-to-fabric.sh */,
+				538FBDE220AB62180096480C /* xcarchive-to-ipa.sh */,
 			);
-			name = scripts;
-			path = "New Group";
+			path = scripts;
 			sourceTree = "<group>";
 		};
 		53D9A7A92098E638008BE93E /* Resources */ = {
@@ -1465,13 +1484,15 @@
 		6CCD42811FA013E3000AC6C9 = {
 			isa = PBXGroup;
 			children = (
+				538FBDE720ABB73F0096480C /* export */,
+				C12FDB27F024C9663651767B /* Frameworks */,
+				DD0FFFE5E0D1BE41F3C9FA3D /* Pods */,
+				6CCD428B1FA013E3000AC6C9 /* Products */,
+				538FBDE020AB45EA0096480C /* release-notes.txt */,
 				6C5832C21FB3899700F6BFE0 /* shared */,
 				6CCD428C1FA013E3000AC6C9 /* voluxe-customer */,
 				6CCD42A11FA013E3000AC6C9 /* voluxe-customerTests */,
 				6CCD42AC1FA013E3000AC6C9 /* voluxe-customerUITests */,
-				6CCD428B1FA013E3000AC6C9 /* Products */,
-				C12FDB27F024C9663651767B /* Frameworks */,
-				DD0FFFE5E0D1BE41F3C9FA3D /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2849,7 +2870,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/Development.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				ENVIRONMENT = mock;
 				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
@@ -3053,7 +3073,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/Development.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3256,7 +3275,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/Development.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3452,7 +3470,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/AppStore.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = DTE5P7QRF9;
 				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3644,7 +3661,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/Development.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -3836,7 +3852,6 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/Development.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
