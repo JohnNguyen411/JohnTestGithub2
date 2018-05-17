@@ -49,12 +49,10 @@ class ServiceListViewController: BaseViewController {
                     let filteredResults = realm.objects(RepairOrderType.self).filter("name != 'Custom'")
                     self.showServices(services: Array(filteredResults))
                 }
-            } else {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetROTypesFail, screenName: self.screenName, errorCode: services?.error?.code)
             }
             self.hideProgressHUD()
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetROTypesFail, screenName: self.screenName, statusCode: error.responseCode)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetROTypesFail, screenName: self.screenName, error: error)
                 Logger.print(error)
                 self.hideProgressHUD()
         }

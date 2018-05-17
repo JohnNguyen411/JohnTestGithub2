@@ -21,20 +21,16 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing an empty Object, or an AFError if an error occured
      */
-    func logout() -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
-        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+    func logout() -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
         
         NetworkRequest.request(url: "/v1/users/logout", method: .post, queryParameters: [:], withBearer: true).responseJSON { response in
-            var responseObject: ResponseObject<EmptyMappableObject>?
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<EmptyMappableObject>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -48,8 +44,8 @@ class CustomerAPI: NSObject {
 
      - Returns: A Future ResponseObject containing a Token Object, or an AFError if an error occured
      */
-    func login(email: String, password: String) -> Future<ResponseObject<MappableDataObject<Token>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<Token>>?, AFError>()
+    func login(email: String, password: String) -> Future<ResponseObject<MappableDataObject<Token>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<Token>>?, Errors>()
         
         let params: Parameters = [
             "email": email,
@@ -58,16 +54,12 @@ class CustomerAPI: NSObject {
         
         NetworkRequest.request(url: "/v1/users/login", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSONErrorCheck { response in
             
-            var responseObject: ResponseObject<MappableDataObject<Token>>?
+            let responseObject = ResponseObject<MappableDataObject<Token>>(json: response.result.value, allowEmptyData: false)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<Token>>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -80,8 +72,8 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Token Object, or an AFError if an error occured
      */
-    func login(phoneNumber: String, password: String) -> Future<ResponseObject<MappableDataObject<Token>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<Token>>?, AFError>()
+    func login(phoneNumber: String, password: String) -> Future<ResponseObject<MappableDataObject<Token>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<Token>>?, Errors>()
         
         let params: Parameters = [
             "phone_number": phoneNumber,
@@ -90,17 +82,14 @@ class CustomerAPI: NSObject {
         
         NetworkRequest.request(url: "/v1/users/login", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSONErrorCheck { response in
             
-            var responseObject: ResponseObject<MappableDataObject<Token>>?
+            let responseObject = ResponseObject<MappableDataObject<Token>>(json: response.result.value, allowEmptyData: false)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<Token>>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
+           
         }
         return promise.future
     }
@@ -115,8 +104,8 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
      */
-    func signup(email: String, phoneNumber: String, firstName: String, lastName: String, languageCode: String) -> Future<ResponseObject<MappableDataObject<Customer>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
+    func signup(email: String, phoneNumber: String, firstName: String, lastName: String, languageCode: String) -> Future<ResponseObject<MappableDataObject<Customer>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, Errors>()
         
         let params: Parameters = [
             "email": email,
@@ -128,17 +117,14 @@ class CustomerAPI: NSObject {
         
         NetworkRequest.request(url: "/v1/customers/signup", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSONErrorCheck { response in
             
-            var responseObject: ResponseObject<MappableDataObject<Customer>>?
+            let responseObject = ResponseObject<MappableDataObject<Customer>>(json: response.result.value, allowEmptyData: false)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<Customer>>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
+            
         }
         return promise.future
     }
@@ -152,8 +138,8 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
      */
-    func confirmSignup(email: String, phoneNumber: String, password: String, verificationCode: String) -> Future<ResponseObject<MappableDataObject<Customer>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
+    func confirmSignup(email: String, phoneNumber: String, password: String, verificationCode: String) -> Future<ResponseObject<MappableDataObject<Customer>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, Errors>()
     
         let params: Parameters = [
             "email": email,
@@ -163,16 +149,12 @@ class CustomerAPI: NSObject {
         
         NetworkRequest.request(url: "/v1/customers/signup/confirm", queryParameters: nil, bodyParameters: params, withBearer: false).responseJSONErrorCheck { response in
             
-            var responseObject: ResponseObject<MappableDataObject<Customer>>?
+            let responseObject = ResponseObject<MappableDataObject<Customer>>(json: response.result.value, allowEmptyData: false)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<Customer>>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -184,22 +166,19 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
      */
-    func requestPhoneVerificationCode(customerId: Int) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
-        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+    func requestPhoneVerificationCode(customerId: Int) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/phone-number/request-verification", method: .put, queryParameters: nil, withBearer: true).responseJSON { response in
             
-            var responseObject: ResponseObject<EmptyMappableObject>?
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<EmptyMappableObject>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
+            
         }
         return promise.future
     }
@@ -211,8 +190,8 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
      */
-    func verifyPhoneNumber(customerId: Int, verificationCode: String) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
-        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+    func verifyPhoneNumber(customerId: Int, verificationCode: String) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
         
         let params: Parameters = [
             "verification_code": verificationCode
@@ -220,16 +199,12 @@ class CustomerAPI: NSObject {
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/phone-number/verify", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             
-            var responseObject: ResponseObject<EmptyMappableObject>?
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<EmptyMappableObject>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -242,8 +217,8 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
      */
-    func updatePhoneNumber(customerId: Int, phoneNumber: String) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
-        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+    func updatePhoneNumber(customerId: Int, phoneNumber: String) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
         
         let params: Parameters = [
             "phone_number": phoneNumber
@@ -251,16 +226,12 @@ class CustomerAPI: NSObject {
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)", method: .patch, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
             
-            var responseObject: ResponseObject<EmptyMappableObject>?
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<EmptyMappableObject>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -272,21 +243,17 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing an empty Object, or an AFError if an error occured
      */
-    func requestPasswordChange(customerId: Int) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
-        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+    func requestPasswordChange(customerId: Int) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/password/request-change", method: .put, queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
             
-            var responseObject: ResponseObject<EmptyMappableObject>?
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<EmptyMappableObject>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -300,8 +267,8 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing an empty Object, or an AFError if an error occured
      */
-    func passwordChange(customerId: Int, code: String, password: String) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
-        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+    func passwordChange(customerId: Int, code: String, password: String) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
         
         let params: Parameters = [
             "verification_code": code,
@@ -310,16 +277,12 @@ class CustomerAPI: NSObject {
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/password/change", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             
-            var responseObject: ResponseObject<EmptyMappableObject>?
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<EmptyMappableObject>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -331,8 +294,8 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing an empty Object, or an AFError if an error occured
      */
-    func passwordReset(phoneNumber: String) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
-        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+    func passwordReset(phoneNumber: String) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
         
         let params: Parameters = [
             "phone_number": phoneNumber
@@ -340,16 +303,12 @@ class CustomerAPI: NSObject {
         
         NetworkRequest.request(url: "/v1/customers/password-reset/request", method: .put, queryParameters: nil, bodyParameters: params,  withBearer: true).responseJSONErrorCheck { response in
             
-            var responseObject: ResponseObject<EmptyMappableObject>?
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<EmptyMappableObject>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -363,8 +322,8 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing an empty Object, or an AFError if an error occured
      */
-    func passwordResetConfirm(phoneNumber: String, code: String, password: String) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
-        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+    func passwordResetConfirm(phoneNumber: String, code: String, password: String) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
         
         let params: Parameters = [
             "phone_number": phoneNumber,
@@ -374,16 +333,12 @@ class CustomerAPI: NSObject {
         
         NetworkRequest.request(url: "/v1/customers/password-reset/confirm", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             
-            var responseObject: ResponseObject<EmptyMappableObject>?
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<EmptyMappableObject>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -395,20 +350,20 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
      */
-    func getCustomer(id: Int) -> Future<ResponseObject<MappableDataObject<Customer>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
+    func getCustomer(id: Int) -> Future<ResponseObject<MappableDataObject<Customer>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, Errors>()
         
         NetworkRequest.request(url: "/v1/customers/\(id)", queryParameters: [:], withBearer: true).responseJSONErrorCheck { response in
             var responseObject: ResponseObject<MappableDataObject<Customer>>?
             
             if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<Customer>>(json: json)
+                responseObject = ResponseObject<MappableDataObject<Customer>>(json: json, allowEmptyData: false)
             }
             
-            if response.error == nil {
+            if response.error == nil && responseObject?.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject?.error))
             }
         }
         return promise.future
@@ -419,21 +374,19 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
      */
-    func getMe() -> Future<ResponseObject<MappableDataObject<Customer>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, AFError>()
+    func getMe() -> Future<ResponseObject<MappableDataObject<Customer>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<Customer>>?, Errors>()
         
         NetworkRequest.request(url: "/v1/users/me", queryParameters: [:], withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<MappableDataObject<Customer>>?
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<Customer>>(json: json)
-            }
+            let responseObject = ResponseObject<MappableDataObject<Customer>>(json: response.result.value, allowEmptyData: false)
             
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
+            
         }
         return promise.future
     }
@@ -445,21 +398,19 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a list of Vehicle, or an AFError if an error occured
      */
-    func getVehicles(customerId: Int) -> Future<ResponseObject<MappableDataArray<Vehicle>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataArray<Vehicle>>?, AFError>()
+    func getVehicles(customerId: Int) -> Future<ResponseObject<MappableDataArray<Vehicle>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataArray<Vehicle>>?, Errors>()
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/vehicles", queryParameters: [:], withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<MappableDataArray<Vehicle>>?
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataArray<Vehicle>>(json: json)
-            }
+            let responseObject = ResponseObject<MappableDataArray<Vehicle>>(json: response.result.value, allowEmptyData: false)
             
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
+            
         }
         return promise.future
     }
@@ -474,8 +425,8 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing the added vehicle, or an AFError if an error occured
      */
-    func addVehicle(customerId: Int, make: String, model: String, baseColor: String, year: Int) -> Future<ResponseObject<MappableDataObject<Vehicle>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<Vehicle>>?, AFError>()
+    func addVehicle(customerId: Int, make: String, model: String, baseColor: String, year: Int) -> Future<ResponseObject<MappableDataObject<Vehicle>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<Vehicle>>?, Errors>()
         
         let params: Parameters = [
             "make": make,
@@ -486,17 +437,14 @@ class CustomerAPI: NSObject {
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/vehicles", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
 
-            var responseObject: ResponseObject<MappableDataObject<Vehicle>>?
+            let responseObject = ResponseObject<MappableDataObject<Vehicle>>(json: response.result.value, allowEmptyData: false)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<Vehicle>>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
+            
         }
         return promise.future
     }
@@ -509,21 +457,17 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject Empty, or an AFError if an error occured
      */
-    func deleteVehicle(customerId: Int, vehicleId: Int) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
-        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+    func deleteVehicle(customerId: Int, vehicleId: Int) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/vehicles/\(vehicleId)", method: .delete, queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
             
-            var responseObject: ResponseObject<EmptyMappableObject>?
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<EmptyMappableObject>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -537,8 +481,8 @@ class CustomerAPI: NSObject {
      
      - Returns: A Future ResponseObject containing an empty data response, or an AFError if an error occured
      */
-    func registerDevice(customerId: Int, deviceToken: String) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
-        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+    func registerDevice(customerId: Int, deviceToken: String) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
         
         var uuid = ""
         if let identifierForVendor = UIDevice.current.identifierForVendor?.uuidString {
@@ -554,16 +498,12 @@ class CustomerAPI: NSObject {
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/devices/current", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             
-            var responseObject: ResponseObject<EmptyMappableObject>?
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<EmptyMappableObject>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future

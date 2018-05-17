@@ -181,11 +181,9 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
                         }
                     }
                     self.showCalendar()
-                } else {
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipTimeslotsFail, screenName: self.screenName, errorCode: result?.error?.code)
                 }
                 }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipTimeslotsFail, screenName: self.screenName, statusCode: error.responseCode)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipTimeslotsFail, screenName: self.screenName, error: error)
             }
         }
     }

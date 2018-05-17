@@ -20,21 +20,18 @@ class RepairOrderAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a RepairOrderType, or an AFError if an error occured
      */
-    func getRepairOrderTypes() -> Future<ResponseObject<MappableDataArray<RepairOrderType>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataArray<RepairOrderType>>?, AFError>()
+    func getRepairOrderTypes() -> Future<ResponseObject<MappableDataArray<RepairOrderType>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataArray<RepairOrderType>>?, Errors>()
         
         
         NetworkRequest.request(url: "/v1/repair-order-types", queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<MappableDataArray<RepairOrderType>>?
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataArray<RepairOrderType>>(json: json)
-            }
+            let responseObject = ResponseObject<MappableDataArray<RepairOrderType>>(json: response.result.value, allowEmptyData: false)
             
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -45,7 +42,7 @@ class RepairOrderAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a RepairOrderType, or an AFError if an error occured
      */
-    func getDealershipRepairOrder(dealerships: [Dealership], repairOrderTypeId: Int?) -> Future<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, AFError> {
+    func getDealershipRepairOrder(dealerships: [Dealership], repairOrderTypeId: Int?) -> Future<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, Errors> {
         var ids: [Int] = []
         for dealership in dealerships {
             ids.append(dealership.id)
@@ -58,8 +55,8 @@ class RepairOrderAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a RepairOrderType, or an AFError if an error occured
      */
-    func getDealershipRepairOrder(dealershipIds: [Int], repairOrderTypeId: Int?) -> Future<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, AFError>()
+    func getDealershipRepairOrder(dealershipIds: [Int], repairOrderTypeId: Int?) -> Future<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataArray<DealershipRepairOrder>>?, Errors>()
         
         // todo remove tempfix
         //var params = NetworkRequest.encodeParamsArray(array: dealershipIds, key: "dealership_id__in")
@@ -72,17 +69,15 @@ class RepairOrderAPI: NSObject {
         }
         
         NetworkRequest.request(url: "/v1/dealership-repair-orders?\(params)", queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<MappableDataArray<DealershipRepairOrder>>?
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataArray<DealershipRepairOrder>>(json: json)
-            }
+            let responseObject = ResponseObject<MappableDataArray<DealershipRepairOrder>>(json: response.result.value, allowEmptyData: false)
             
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
+        
         }
         return promise.future
     }
@@ -97,8 +92,8 @@ class RepairOrderAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a RepairOrder, or an AFError if an error occured
      */
-    func createRepairOrder(customerId: Int, bookingId: Int, dealershipRepairOrderId: Int, notes: String) -> Future<ResponseObject<MappableDataObject<RepairOrder>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<RepairOrder>>?, AFError>()
+    func createRepairOrder(customerId: Int, bookingId: Int, dealershipRepairOrderId: Int, notes: String) -> Future<ResponseObject<MappableDataObject<RepairOrder>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<RepairOrder>>?, Errors>()
 
         let params: Parameters = [
             "notes": notes,
@@ -106,16 +101,13 @@ class RepairOrderAPI: NSObject {
             ]
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/repair-order-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<MappableDataObject<RepairOrder>>?
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<RepairOrder>>(json: json)
-            }
+            let responseObject = ResponseObject<MappableDataObject<RepairOrder>>(json: response.result.value, allowEmptyData: false)
             
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future

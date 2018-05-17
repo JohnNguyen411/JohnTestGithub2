@@ -358,16 +358,11 @@ class ScheduledViewController: ChildViewController {
                     guard let url = URL(string: number) else { return }
                     UIApplication.shared.open(url)
                 }
-            } else {
-                if let error = result?.error {
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiContactDriverFail, screenName: self.screenName, errorCode: error.code)
-                }
             }
         }.onFailure { error in
             MBProgressHUD.hide(for: self.view, animated: true)
             self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-            VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiContactDriverFail, screenName: self.screenName, statusCode: error.responseCode)
+            VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiContactDriverFail, screenName: self.screenName, error: error)
         }
     }
     

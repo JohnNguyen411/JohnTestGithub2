@@ -87,17 +87,13 @@ class SettingsCarViewController: BaseViewController {
         
         weak var weakSelf = self
         CustomerAPI().deleteVehicle(customerId: customerId, vehicleId: vehicle.id).onSuccess { result in
-            if let _ = result?.error {
-                // error occured
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiDeleteVehicleFail, screenName: weakSelf?.screenName, errorCode: result?.error?.code)
-                weakSelf?.deleteVehicleFailed()
-            } else if let customerId = UserManager.sharedInstance.getCustomerId() {
+           if let customerId = UserManager.sharedInstance.getCustomerId() {
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiDeleteVehicleSuccess, screenName: weakSelf?.screenName)
                 weakSelf?.callVehicles(customerId: customerId)
             }
             }.onFailure { error in
                 // error occured
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiDeleteVehicleFail, screenName: weakSelf?.screenName, statusCode: error.responseCode)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiDeleteVehicleFail, screenName: weakSelf?.screenName, error: error)
                 weakSelf?.deleteVehicleFailed()
             }
     }
@@ -129,13 +125,9 @@ class SettingsCarViewController: BaseViewController {
                     UserManager.sharedInstance.setVehicles(vehicles: cars)
                     weakSelf?.navigationController?.popViewController(animated: true)
                 }
-            } else {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetVehiclesFail, screenName: weakSelf?.screenName, errorCode: result?.error?.code)
-                weakSelf?.retrieveVehiclesFailed()
             }
-            
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetVehiclesFail, screenName: weakSelf?.screenName, statusCode: error.responseCode)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetVehiclesFail, screenName: weakSelf?.screenName, error: error)
                 weakSelf?.retrieveVehiclesFailed()
         }
     }

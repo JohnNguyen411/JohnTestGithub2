@@ -18,6 +18,9 @@ class ResponseError: Mappable {
     required init?(map: Map) {
     }
     
+    init() {
+    }
+    
     func mapping(map: Map) {
         error <- map["error"]
         code <- map["code"]
@@ -29,5 +32,12 @@ class ResponseError: Mappable {
             return Errors.ErrorCode(rawValue: code)
         }
         return nil
+    }
+    
+    static func emptyDataError() -> ResponseError {
+        let responseError = ResponseError()
+        responseError.code = Errors.ErrorCode.E5001.rawValue
+        responseError.error = true
+        return responseError
     }
 }

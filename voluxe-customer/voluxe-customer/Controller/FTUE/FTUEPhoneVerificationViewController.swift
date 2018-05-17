@@ -135,9 +135,6 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             // initiate password reset with phone number (request code)
             CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
                 self.hideProgressHUD()
-                if result?.error != nil {
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                }
                 self.isLoading = false
                 self.codeTextField.textField.text = ""
 
@@ -165,9 +162,6 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             // initiate password reset with phone number (request code)
             CustomerAPI().requestPasswordChange(customerId: customer.id).onSuccess { result in
                 self.hideProgressHUD()
-                if result?.error != nil {
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                }
                 self.isLoading = false
                 }.onFailure { error in
                     self.hideProgressHUD()
@@ -187,9 +181,6 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             // resend phone verification code
             CustomerAPI().requestPhoneVerificationCode(customerId: customerId!).onSuccess { result in
                 self.hideProgressHUD()
-                if result?.error != nil {
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                }
                 self.isLoading = false
                 }.onFailure { error in
                     self.hideProgressHUD()
@@ -206,14 +197,11 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             CustomerAPI().signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language).onSuccess { result in
                 if let _ = result?.data?.result {
                     VLAnalytics.logEventWithName(AnalyticsConstants.eventApiSignupSuccess, screenName: self.screenName)
-                } else {
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, errorCode: result?.error?.code)
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 }
                 self.hideProgressHUD()
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, statusCode: error.responseCode)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, error: error)
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             }
         }
@@ -279,18 +267,14 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
 
             // verify phone number
             CustomerAPI().verifyPhoneNumber(customerId: customerId!, verificationCode: codeTextField.textField.text!).onSuccess { result in
-                self.hideProgressHUD()
-                if result?.error != nil {
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiVerifyPhoneFail, screenName: self.screenName, errorCode: result?.error?.code)
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                } else {
-                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiVerifyPhoneSuccess, screenName: self.screenName)
-                    self.loadMainScreen()
-                }
                 
+                self.hideProgressHUD()
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiVerifyPhoneSuccess, screenName: self.screenName)
+                self.loadMainScreen()
                 self.isLoading = false
+                
                 }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiVerifyPhoneFail, screenName: self.screenName, statusCode: error.responseCode)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiVerifyPhoneFail, screenName: self.screenName, error: error)
                     self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.isLoading = false

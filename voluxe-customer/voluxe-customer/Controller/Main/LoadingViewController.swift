@@ -103,32 +103,27 @@ class LoadingViewController: ChildViewController {
                     self.refreshRepairOrderTypes()
                 }
                 
-            } else {
-                // error
-                if let error = result?.error {
-                    if error.getCode() == .E3004 {
-                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, errorCode: error.code)
+            }
+            }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, error: error)
+
+                if let apiError = error.apiError {
+                    if apiError.getCode() == .E3004 {
                         // code not verified
                         UserManager.sharedInstance.tempCustomerId = customerId
                         FTUEStartViewController.flowType = .login
                         self.appDelegate?.phoneVerificationScreen()
                         return
-                    } else if error.getCode() == .E5001 || error.getCode() == .E5002 {
+                    } else if apiError.getCode() == .E5001 || apiError.getCode() == .E5002 {
                         // 500 unknown
                         self.showOkDialog(title: .Error, message: .GenericError, completion: {
                             self.callCustomer(customerId: customerId)
                         }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, errorCode: result?.error?.code)
                         return
                     }
                 }
-                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, errorCode: result?.error?.code)
-            }
-            }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, statusCode: error.responseCode)
-                // todo show error
-                if error.responseCode == 404 || error.responseCode == 403 {
+                
+                if error.statusCode == 404 || error.statusCode == 403 {
                     self.logout()
                     return
                 }
@@ -189,13 +184,9 @@ class LoadingViewController: ChildViewController {
                     UserManager.sharedInstance.setVehicles(vehicles: cars)
                     self.getBookings(customerId: customerId)
                 }
-            } else {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetVehiclesFail, screenName: self.screenName, errorCode: result?.error?.code)
-                self.errorRetrievingVehicle(customerId: customerId)
-            }
-            
+            }            
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetVehiclesFail, screenName: self.screenName, statusCode: error.responseCode)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetVehiclesFail, screenName: self.screenName, error: error)
                 self.errorRetrievingVehicle(customerId: customerId)
         }
     }
@@ -237,14 +228,12 @@ class LoadingViewController: ChildViewController {
                 
             } else {
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetBookingsFail, screenName: self.screenName, errorCode: result?.error?.code)
-                // error
                 UserManager.sharedInstance.setBookings(bookings: nil)
                 self.loadVehiclesViewController(customerId: customerId)
             }
             
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetBookingsFail, screenName: self.screenName, statusCode: error.responseCode)
-                // todo show error
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetBookingsFail, screenName: self.screenName, error: error)
                 UserManager.sharedInstance.setBookings(bookings: nil)
                 self.loadVehiclesViewController(customerId: customerId)
         }

@@ -20,21 +20,19 @@ class DealershipAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a list of Dealership, or an AFError if an error occured
      */
-    func getDealerships() -> Future<ResponseObject<MappableDataArray<Dealership>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, AFError>()
+    func getDealerships() -> Future<ResponseObject<MappableDataArray<Dealership>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, Errors>()
         
         NetworkRequest.request(url: "/v1/dealerships", queryParameters: [:], withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<MappableDataArray<Dealership>>?
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataArray<Dealership>>(json: json)
-            }
+            let responseObject = ResponseObject<MappableDataArray<Dealership>>(json: response.result.value, allowEmptyData: false)
             
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
+            
         }
         return promise.future
     }
@@ -46,20 +44,16 @@ class DealershipAPI: NSObject {
 
      - Returns: A Future ResponseObject containing a list of Dealership around the location, or an AFError if an error occured
      */
-    func getDealerships(location: CLLocationCoordinate2D) -> Future<ResponseObject<MappableDataArray<Dealership>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, AFError>()
+    func getDealerships(location: CLLocationCoordinate2D) -> Future<ResponseObject<MappableDataArray<Dealership>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, Errors>()
         
         NetworkRequest.request(url: "/v1/dealerships/near", queryParameters: ["latitude": "\(location.latitude)", "longitude" : "\(location.longitude)"], withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<MappableDataArray<Dealership>>?
+            let responseObject = ResponseObject<MappableDataArray<Dealership>>(json: response.result.value, allowEmptyData: false)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataArray<Dealership>>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -75,8 +69,8 @@ class DealershipAPI: NSObject {
 
      - Returns: A Future ResponseObject containing a list of Time Slot available for a dealership, or an AFError if an error occured
      */
-    func getDealershipTimeSlot(dealershipId: Int, type: String, loaner: Bool, from: String, to: String) -> Future<ResponseObject<MappableDataArray<DealershipTimeSlot>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataArray<DealershipTimeSlot>>?, AFError>()
+    func getDealershipTimeSlot(dealershipId: Int, type: String, loaner: Bool, from: String, to: String) -> Future<ResponseObject<MappableDataArray<DealershipTimeSlot>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataArray<DealershipTimeSlot>>?, Errors>()
         
         // "loaner": loaner,
         let queryParams = [
@@ -86,17 +80,15 @@ class DealershipAPI: NSObject {
             ] as [String : Any]
         
         NetworkRequest.request(url: "/v1/dealerships/\(dealershipId)/time-slots/scheduled", queryParameters: queryParams, withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<MappableDataArray<DealershipTimeSlot>>?
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataArray<DealershipTimeSlot>>(json: json)
-            }
+            let responseObject = ResponseObject<MappableDataArray<DealershipTimeSlot>>(json: response.result.value, allowEmptyData: false)
             
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
+            
         }
         return promise.future
     }

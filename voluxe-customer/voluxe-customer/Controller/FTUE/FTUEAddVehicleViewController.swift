@@ -198,18 +198,11 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         // todo add car to user
         if let customerId = UserManager.sharedInstance.getCustomerId(), let baseColor = colors[selectedColor].baseColor {
             CustomerAPI().addVehicle(customerId: customerId, make: models[selectedModel].make!, model: models[selectedModel].name!, baseColor: baseColor, year: years[selectedYear]).onSuccess { response in
-                if (response?.data?.result) != nil {
-                    // success
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiAddVehicleSuccess, screenName: self.screenName)
-                } else {
-                    // error
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiAddVehicleFail, screenName: self.screenName, errorCode: response?.error?.code)
-
-                }
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiAddVehicleSuccess, screenName: self.screenName)
                 self.callVehicle(customerId: customerId)
             }.onFailure { error in
                 self.callVehicle(customerId: customerId)
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiAddVehicleFail, screenName: self.screenName, statusCode: error.responseCode)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiAddVehicleFail, screenName: self.screenName, error: error)
             }
             showProgressHUD()
         }

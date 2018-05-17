@@ -1081,6 +1081,7 @@
 		6C20E1CE1FBF712700E5D9A0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
+				6C20E1C61FBE6D2400E5D9A0 /* StateService.swift */,
 				6C11208D2016B2C70048A56D /* BookingSyncManager.swift */,
 				6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */,
 				6C5C6A0F1FD8AACD00D70BF6 /* UserManager.swift */,
@@ -1461,7 +1462,6 @@
 				6C79C43D20A283DB00443463 /* GoogleSnappedPointsAPI.swift */,
 				6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */,
 				6CDCC611205C40B400DFA831 /* RepairOrderAPI.swift */,
-				6C20E1C61FBE6D2400E5D9A0 /* StateService.swift */,
 				6C497102207823E100FF33E9 /* VehicleAPI.swift */,
 				6CE687992040CD0900D915FC /* Errors.swift */,
 			);

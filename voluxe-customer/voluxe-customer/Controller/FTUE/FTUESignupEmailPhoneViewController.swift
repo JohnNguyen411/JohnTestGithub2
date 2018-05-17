@@ -19,7 +19,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
     let phoneNumberKit = PhoneNumberKit()
     var validPhoneNumber: PhoneNumber?
-
+    
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .MobilePhoneNumberExplain
@@ -74,14 +74,14 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         emailTextField.textField.delegate = self
         phoneNumberTextField.textField.delegate = self
-
+        
         phoneNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         
         emailTextField.textField.becomeFirstResponder()
         canGoNext(nextEnabled: false)
-                
+        
     }
     
     override func setupViews() {
@@ -153,21 +153,21 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
     }
     
-    private func onSignupError(error: ResponseError? = nil) {
-        //todo show error message
+    private func onSignupError(error: Errors? = nil) {
         self.showLoading(loading: false)
         
-        if error?.getCode() == .E5001 {
-            self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-        } else if error?.getCode() == .E4011 {
-            self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
-                self.loadLandingPage()
-            }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+        if let apiError = error?.apiError {
+            
+            if apiError.getCode() == .E5001 {
+                self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+            } else if apiError.getCode() == .E4011 {
+                self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
+                    self.loadLandingPage()
+                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+            }
         } else {
             self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         }
-        
-        
     }
     
     func showLoading(loading: Bool) {
@@ -233,7 +233,9 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 self.showLoading(loading: false)
                 self.loadMainScreen()
             } else {
-                onSignupError(error: ResponseError(JSON: ["code" : "E4011"]))
+                self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
+                    self.loadLandingPage()
+                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             }
             return
         }
@@ -260,7 +262,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         CustomerAPI().signup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, languageCode: language).onSuccess { result in
             if let customer = result?.data?.result {
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupSuccess, screenName: self.screenName)
-
+                
                 if let realm = self.realm {
                     try? realm.write {
                         realm.deleteAll()
@@ -270,13 +272,10 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 UserManager.sharedInstance.setCustomer(customer: customer)
                 UserManager.sharedInstance.tempCustomerId = customer.id
                 self.goToNext()
-            } else {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, errorCode: result?.error?.code)
-                self.onSignupError(error: result?.error)
             }
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, statusCode: error.responseCode)
-                self.onSignupError()
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, error: error)
+                self.onSignupError(error: error)
         }
     }
     

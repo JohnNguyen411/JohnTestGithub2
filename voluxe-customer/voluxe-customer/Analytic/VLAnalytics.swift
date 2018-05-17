@@ -48,6 +48,14 @@ class VLAnalytics {
         self.firebaseLogEvent(eventName, parameters: parameters)
     }
     
+    static func logErrorEventWithName(_ eventName: String, screenName: String? = nil, error: Errors) {
+        if let apiError = error.apiError {
+            self.logErrorEventWithName(eventName, screenName: screenName, statusCode: error.statusCode, errorCode: apiError.code)
+        } else {
+            self.logErrorEventWithName(eventName, screenName: screenName, statusCode: error.statusCode)
+        }
+    }
+    
     static func logErrorEventWithName(_ eventName: String, screenName: String? = nil, statusCode: Int? = nil, errorCode: String? = nil) {
         var params: [String: Any] = [:]
         if let screenName = screenName {

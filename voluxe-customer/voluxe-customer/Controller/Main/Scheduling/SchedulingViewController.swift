@@ -358,7 +358,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                                 }
 
                                 }.onFailure { error in
-                                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipROFail, screenName: self.screenName, statusCode: error.responseCode)
+                                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipROFail, screenName: self.screenName, error: error)
                                     if let completion = completion {
                                         completion(String.ServiceNotOfferedInArea)
                                     }
@@ -376,9 +376,6 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                         }
                     }
                 } else {
-                    if let error = result?.error {
-                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipsFail, screenName: self.screenName, errorCode: error.code)
-                    }
                     if let completion = completion {
                         completion(nil)
                     }
@@ -386,7 +383,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                 }
                 
                 }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipsFail, screenName: self.screenName, statusCode: error.responseCode)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipsFail, screenName: self.screenName, error: error)
                     if let completion = completion {
                         completion(nil)
                     }

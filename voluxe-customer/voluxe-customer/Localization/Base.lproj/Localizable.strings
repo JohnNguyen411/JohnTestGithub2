@@ -81,6 +81,7 @@
 "InvalidCredentials" = "The email or password provided is invalid.";
 "ChangePhoneNumber" = "Change phone number";
 "PhoneNumberAlreadyExist" = "An account already exist with that phone number, please try Login instead.";
+"PhoneNumberNotInFile" = "We couldn't find any account for that phone number. Please verify the phone number and try again.";
 "UpdatePassword" = "Update your password.";
 "ForgotPassword" = "Forgot password?";
 "PasswordResetLogin" = "Password successfully reset, please proceed to login.";

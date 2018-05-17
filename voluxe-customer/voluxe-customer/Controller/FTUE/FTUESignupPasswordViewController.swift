@@ -141,18 +141,20 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         return enabled
     }
     
-    private func onSignupError(error: ResponseError? = nil) {
+    private func onSignupError(error: Errors? = nil) {
         //todo show error message
         self.showLoading(loading: false)
         
-        if error?.getCode() == .E5001 {
-            self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
-                self.loadLandingPage()
-            }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-        } else if error?.getCode() == .E4012 {
-            self.showOkDialog(title: .Error, message: .InvalidVerificationCode, completion: {
-                self.navigationController?.popViewController(animated: true)
-            }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+        if let apiError = error?.apiError {
+            if apiError.getCode() == .E5001 {
+                self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
+                    self.loadLandingPage()
+                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+            } else if apiError.getCode() == .E4012 {
+                self.showOkDialog(title: .Error, message: .InvalidVerificationCode, completion: {
+                    self.navigationController?.popViewController(animated: true)
+                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+            }
         } else {
             self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         }
@@ -219,18 +221,15 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             let password = volvoPwdConfirmTextField.textField.text, let customerId = UserManager.sharedInstance.getCustomerId(),
             signupCustomer.email == nil, accessToken != nil {
             CustomerAPI().passwordChange(customerId: customerId, code: code, password: password).onSuccess { result in
-                if let _ = result?.error {
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordChangeFail, screenName: weakSelf?.screenName ?? nil)
-                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: weakSelf?.screenName ?? nil)
-                } else {
-                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiPasswordChangeSuccess, screenName: weakSelf?.screenName ?? nil)
-                    weakSelf?.navigationController?.popToRootViewController(animated: true)
-                }
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiPasswordChangeSuccess, screenName: weakSelf?.screenName ?? nil)
+                weakSelf?.showLoading(loading: false)
+                weakSelf?.navigationController?.popToRootViewController(animated: true)
                 }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordChangeFail, screenName: weakSelf?.screenName, statusCode: error.responseCode)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordChangeFail, screenName: weakSelf?.screenName, error: error)
                     weakSelf?.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: weakSelf?.screenName ?? nil)
+                    weakSelf?.showLoading(loading: false)
                 }
-                    
+            
             return
         }
         
@@ -241,19 +240,14 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber,
             UserManager.sharedInstance.getCustomerId() == nil, signupCustomer.email == nil, accessToken == nil {
             CustomerAPI().passwordResetConfirm(phoneNumber: phoneNumber, code: code, password: password).onSuccess { result in
-                self.showLoading(loading: false)
-                if let _ = result?.error {
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmFail, screenName: weakSelf?.screenName)
-                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: weakSelf?.screenName ?? nil)
-                } else {
-                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmSuccess, screenName: weakSelf?.screenName)
-                    // password successfully updated, login the user
-                    
-                    weakSelf?.loginUser(phoneNumber: phoneNumber, password: password)
-                }
+                weakSelf?.showLoading(loading: false)
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmSuccess, screenName: weakSelf?.screenName)
+                // password successfully updated, login the user
+                weakSelf?.loginUser(phoneNumber: phoneNumber, password: password)
+                
                 }.onFailure { error in
                     weakSelf?.showLoading(loading: false)
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmFail, screenName: weakSelf?.screenName, statusCode: error.responseCode)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmFail, screenName: weakSelf?.screenName, error: error)
                     weakSelf?.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: weakSelf?.screenName ?? nil)
             }
             return
@@ -288,13 +282,10 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 }
                 UserManager.sharedInstance.setCustomer(customer: customer)
                 weakSelf?.loginUser(email: signupCustomer.email!, password: self.volvoPwdConfirmTextField.textField.text!)
-            } else {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiConfirmSignupFail, screenName: weakSelf?.screenName ?? nil, errorCode: result?.error?.code)
-                weakSelf?.onSignupError(error: result?.error)
             }
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiConfirmSignupFail, screenName: weakSelf?.screenName ?? nil, statusCode: error.responseCode)
-                weakSelf?.onSignupError()
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiConfirmSignupFail, screenName: weakSelf?.screenName ?? nil, error: error)
+                weakSelf?.onSignupError(error: error)
         }
     }
     
@@ -309,12 +300,12 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 weakSelf?.showLoading(loading: false)
                 weakSelf?.goToNext()
             } else {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: weakSelf?.screenName ?? nil, errorCode: result?.error?.code)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: weakSelf?.screenName ?? nil)
                 weakSelf?.onSignupError()
             }
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: weakSelf?.screenName ?? nil, statusCode: error.responseCode)
-                weakSelf?.onSignupError()
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: weakSelf?.screenName ?? nil, error: error)
+                weakSelf?.onSignupError(error: error)
         }
     }
     
@@ -329,12 +320,12 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 weakSelf?.showLoading(loading: false)
                 weakSelf?.goToNext()
             } else {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: weakSelf?.screenName ?? nil, errorCode: result?.error?.code)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: weakSelf?.screenName ?? nil)
                 weakSelf?.onSignupError()
             }
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: weakSelf?.screenName ?? nil, statusCode: error.responseCode)
-                weakSelf?.onSignupError()
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: weakSelf?.screenName ?? nil, error: error)
+                weakSelf?.onSignupError(error: error)
         }
     }
     

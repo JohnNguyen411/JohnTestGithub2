@@ -59,12 +59,10 @@ class NewServiceViewController: BaseViewController {
                     
                     self.showServices(repairOrderTypes: [String.MilestoneServices, String.OtherMaintenanceRepairs])
                 }
-            } else {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetROTypesFail, screenName: self.screenName, errorCode: services?.error?.code)
             }
             self.hideProgressHUD()
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetROTypesFail, screenName: self.screenName, statusCode: error.responseCode)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetROTypesFail, screenName: self.screenName, error: error)
                 Logger.print(error)
                 self.hideProgressHUD()
         }

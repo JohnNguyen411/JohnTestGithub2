@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-class Errors {
+class Errors: Error {
     
     // for all error code, see docs: https://development-docs.ingress.luxe.com/v1/docs/#/
     public enum ErrorCode: String {
@@ -49,6 +49,20 @@ class Errors {
         case E4023 = "E4023"
         case E5001 = "E5001"
         case E5002 = "E5002"
+    }
+    
+    public var afError: AFError? = nil
+    public let apiError: ResponseError?
+    public var statusCode: Int = 200
+    
+    init(dataResponse: DataResponse<Any>, apiError: ResponseError?) {
+        if let afError = dataResponse.error {
+            self.afError = Errors.safeAFError(error: afError)
+        }
+        if let httpUrlResponse = dataResponse.response {
+            statusCode = httpUrlResponse.statusCode
+        }
+        self.apiError = apiError
     }
     
     public static func safeAFError(error: Error) -> AFError {

@@ -196,31 +196,24 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
                             self.showLoading(loading: false)
                             self.appDelegate?.startApp()
                         }
-                    } else {
-                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, errorCode: result?.error?.code)
-                        self.showLoading(loading: false)
-                        self.appDelegate?.phoneVerificationScreen()
                     }
                     }.onFailure { error in
-                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, statusCode: error.responseCode)
+                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, error: error)
                         self.onLoginError()
                 }
-            } else {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: self.screenName, errorCode: result?.error?.code)
-                self.onLoginError(error: result?.error)
             }
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: self.screenName, statusCode: error.responseCode)
-                self.onLoginError()
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: self.screenName, error: error)
+                self.onLoginError(error: error)
         }
         
     }
     
-    private func onLoginError(error: ResponseError? = nil) {
+    private func onLoginError(error: Errors? = nil) {
         //todo show error message
         self.showLoading(loading: false)
         
-        if error?.getCode() == .E2005 {
+        if let apiError = error?.apiError, apiError.getCode() == .E2005 {
             self.showOkDialog(title: .Error, message: .InvalidCredentials, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
         } else {
             self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)

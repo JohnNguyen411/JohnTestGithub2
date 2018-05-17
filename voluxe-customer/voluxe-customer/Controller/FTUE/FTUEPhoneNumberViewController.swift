@@ -158,18 +158,17 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
                 self.hideProgressHUD()
                 self.isLoading = false
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetCodeRequestSuccess, screenName: self.screenName)
+                self.goToNext()
                 
-                if result?.error != nil {
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetCodeRequestFail, screenName: self.screenName, errorCode: result?.error?.code)
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                } else {
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetCodeRequestSuccess, screenName: self.screenName)
-                    self.goToNext()
-                }
                 }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetCodeRequestFail, screenName: self.screenName, statusCode: error.responseCode)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetCodeRequestFail, screenName: self.screenName, error: error)
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4001.rawValue {
+                        self.showOkDialog(title: .Error, message: .PhoneNumberNotInFile, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    } else {
+                        self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    }
                     self.isLoading = false
             }
             return
@@ -194,15 +193,10 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             CustomerAPI().updatePhoneNumber(customerId: customerId!, phoneNumber: phoneNumber).onSuccess { result in
                 self.hideProgressHUD()
                 self.isLoading = false
-                if result?.error != nil {
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberFail, screenName: self.screenName, errorCode: result?.error?.code)
-                } else {
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberSuccess, screenName: self.screenName)
-                    self.goToNext()
-                }
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberSuccess, screenName: self.screenName)
+                self.goToNext()
                 }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberFail, screenName: self.screenName, statusCode: error.responseCode)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberFail, screenName: self.screenName, error: error)
                     self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.isLoading = false
@@ -219,13 +213,10 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 if let _ = result?.data?.result {
                     VLAnalytics.logEventWithName(AnalyticsConstants.eventApiSignupSuccess, screenName: self.screenName)
                     self.goToNext()
-                } else {
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, errorCode: result?.error?.code)
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 }
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, statusCode: error.responseCode)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, error: error)
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             }
         }
@@ -237,7 +228,11 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             // enter need password
             self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(type: ftuePhoneType), animated: true)
         } else {
-            appDelegate?.startApp()
+            if UserManager.sharedInstance.getAccessToken() != nil {
+                appDelegate?.startApp()
+            } else {
+                self.navigationController?.popViewController(animated: true)
+            }
         }
     }
 }

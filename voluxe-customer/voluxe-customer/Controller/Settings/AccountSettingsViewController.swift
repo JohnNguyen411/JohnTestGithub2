@@ -138,14 +138,11 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         showProgressHUD()
         if let customerId = UserManager.sharedInstance.getCustomerId() {
             CustomerAPI().requestPasswordChange(customerId: customerId).onSuccess { response in
-                if let _ = response?.error {
-                    // show error
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                } else {
-                    FTUEStartViewController.flowType = .signup
-                    self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
-                }
+                
+                FTUEStartViewController.flowType = .signup
+                self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
                 self.hideProgressHUD()
+                
                 }.onFailure { error in
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.hideProgressHUD()

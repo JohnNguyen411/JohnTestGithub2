@@ -253,16 +253,12 @@ class SchedulingPickupViewController: SchedulingViewController {
                     }
                 }
                 self.createPickupRequest(customerId: customerId, booking: booking)
-            } else {
-                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                self.confirmButton.isLoading = false
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateBookingFail, screenName: self.screenName, errorCode: result?.error?.code)
             }
             
             }.onFailure { error in
                 self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.confirmButton.isLoading = false
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateBookingFail, screenName: self.screenName, statusCode: error.responseCode)
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateBookingFail, screenName: self.screenName, error: error)
         }
     }
     
@@ -287,10 +283,6 @@ class SchedulingPickupViewController: SchedulingViewController {
                     VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCreatePickupSuccess, screenName: self.screenName)
                     self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
                     self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
-                } else {
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreatePickupFail, screenName: self.screenName, errorCode: result?.error?.code)
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                    self.confirmButton.isLoading = false
                 }
                 self.confirmButton.isLoading = false
                 }.onFailure { error in
@@ -300,7 +292,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                         self.createPickupRequest(customerId: customerId, booking: booking)
                     }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreatePickupFail, screenName: self.screenName, statusCode: error.responseCode)
+                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreatePickupFail, screenName: self.screenName, error: error)
             }
         }
     }

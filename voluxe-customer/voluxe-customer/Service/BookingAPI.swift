@@ -26,8 +26,8 @@ class BookingAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Booking, or an AFError if an error occured
      */
-    func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool, dealershipRepairId: Int?, repairNotes: String?) -> Future<ResponseObject<MappableDataObject<Booking>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, AFError>()
+    func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool, dealershipRepairId: Int?, repairNotes: String?) -> Future<ResponseObject<MappableDataObject<Booking>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, Errors>()
         var params: Parameters = [
             "vehicle_id": vehicleId,
             "dealership_id": dealershipId,
@@ -46,16 +46,13 @@ class BookingAPI: NSObject {
         
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<MappableDataObject<Booking>>?
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<Booking>>(json: json)
-            }
+            let responseObject = ResponseObject<MappableDataObject<Booking>>(json: response.result.value, allowEmptyData: false)
             
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -68,21 +65,19 @@ class BookingAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Booking, or an AFError if an error occured
      */
-    func getBooking(customerId: Int, bookingId: Int) -> Future<ResponseObject<MappableDataObject<Booking>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, AFError>()
+    func getBooking(customerId: Int, bookingId: Int) -> Future<ResponseObject<MappableDataObject<Booking>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, Errors>()
 
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)", queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<MappableDataObject<Booking>>?
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<Booking>>(json: json)
-            }
+            let responseObject = ResponseObject<MappableDataObject<Booking>>(json: response.result.value, allowEmptyData: false)
             
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
+            
         }
         return promise.future
     }
@@ -94,8 +89,8 @@ class BookingAPI: NSObject {
 
      - Returns: A Future ResponseObject containing a list of Bookings, or an AFError if an error occured
      */
-    func getBookings(customerId: Int, active: Bool?) -> Future<ResponseObject<MappableDataArray<Booking>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataArray<Booking>>?, AFError>()
+    func getBookings(customerId: Int, active: Bool?) -> Future<ResponseObject<MappableDataArray<Booking>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataArray<Booking>>?, Errors>()
         
         var params = ""
         if let active = active {
@@ -103,17 +98,15 @@ class BookingAPI: NSObject {
         }
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings\(params)", queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
-                var responseObject: ResponseObject<MappableDataArray<Booking>>?
-                
-                if let json = response.result.value as? [String: Any] {
-                    responseObject = ResponseObject<MappableDataArray<Booking>>(json: json)
-                }
-                
-                if response.error == nil {
-                    promise.success(responseObject)
-                } else {
-                    promise.failure(Errors.safeAFError(error: response.error!))
-                }
+            
+            let responseObject = ResponseObject<MappableDataArray<Booking>>(json: response.result.value, allowEmptyData: false)
+            
+            if response.error == nil && responseObject.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
+            }
+    
         }
         return promise.future
     }
@@ -127,8 +120,8 @@ class BookingAPI: NSObject {
      
      - Returns: A Future ResponseObject containing the Pickup, or an AFError if an error occured
      */
-    func createPickupRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location, isDriver: Bool) -> Future<ResponseObject<MappableDataObject<Request>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<Request>>?, AFError>()
+    func createPickupRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location, isDriver: Bool) -> Future<ResponseObject<MappableDataObject<Request>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<Request>>?, Errors>()
 
         let params: Parameters = [
             "dealership_time_slot_id": timeSlotId,
@@ -141,17 +134,15 @@ class BookingAPI: NSObject {
         }
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<MappableDataObject<Request>>?
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<Request>>(json: json)
-            }
+            let responseObject = ResponseObject<MappableDataObject<Request>>(json: response.result.value, allowEmptyData: false)
             
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
+            
         }
         return promise.future
     }
@@ -165,8 +156,8 @@ class BookingAPI: NSObject {
      
      - Returns: A Future ResponseObject containing the Pickup, or an AFError if an error occured
      */
-    func createDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location, isDriver: Bool) -> Future<ResponseObject<MappableDataObject<Request>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<Request>>?, AFError>()
+    func createDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location, isDriver: Bool) -> Future<ResponseObject<MappableDataObject<Request>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<Request>>?, Errors>()
         
         let params: Parameters = [
             "dealership_time_slot_id": timeSlotId,
@@ -179,17 +170,15 @@ class BookingAPI: NSObject {
         }
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<MappableDataObject<Request>>?
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<Request>>(json: json)
-            }
+            let responseObject = ResponseObject<MappableDataObject<Request>>(json: response.result.value, allowEmptyData: false)
             
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
+            
         }
         return promise.future
     }
@@ -202,8 +191,8 @@ class BookingAPI: NSObject {
      
      - Returns: A Future EmptyMappableObject, or an AFError if an error occured
      */
-    func cancelPickupRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
-        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+    func cancelPickupRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
         
         var endpoint = "driver-pickup-requests"
         if !isDriver {
@@ -211,16 +200,13 @@ class BookingAPI: NSObject {
         }
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)/\(requestId)/cancel", method: .put, queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<EmptyMappableObject>?
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<EmptyMappableObject>(json: json)
-            }
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
             
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -234,8 +220,8 @@ class BookingAPI: NSObject {
      
      - Returns: A Future EmptyMappableObject, or an AFError if an error occured
      */
-    func cancelDropoffRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool) -> Future<ResponseObject<EmptyMappableObject>?, AFError> {
-        let promise = Promise<ResponseObject<EmptyMappableObject>?, AFError>()
+    func cancelDropoffRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
         
         var endpoint = "driver-dropoff-requests"
         if !isDriver {
@@ -243,16 +229,12 @@ class BookingAPI: NSObject {
         }
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)/\(requestId)/cancel", method: .put, queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<EmptyMappableObject>?
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<EmptyMappableObject>(json: json)
-            }
-            
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
         }
         return promise.future
@@ -267,25 +249,23 @@ class BookingAPI: NSObject {
      
      - Returns: A Future ResponseObject containing the ContactDriver object with text or voice phone number, or an AFError if an error occured
      */
-    func contactDriver(customerId: Int, bookingId: Int, mode: String) -> Future<ResponseObject<MappableDataObject<ContactDriver>>?, AFError> {
-        let promise = Promise<ResponseObject<MappableDataObject<ContactDriver>>?, AFError>()
+    func contactDriver(customerId: Int, bookingId: Int, mode: String) -> Future<ResponseObject<MappableDataObject<ContactDriver>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<ContactDriver>>?, Errors>()
         
         let params: Parameters = [
             "mode": mode
         ]
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/contact-driver", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
-            var responseObject: ResponseObject<MappableDataObject<ContactDriver>>?
             
-            if let json = response.result.value as? [String: Any] {
-                responseObject = ResponseObject<MappableDataObject<ContactDriver>>(json: json)
-            }
+            let responseObject = ResponseObject<MappableDataObject<ContactDriver>>(json: response.result.value, allowEmptyData: false)
             
-            if response.error == nil {
+            if response.error == nil && responseObject.error == nil {
                 promise.success(responseObject)
             } else {
-                promise.failure(Errors.safeAFError(error: response.error!))
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
             }
+            
         }
         return promise.future
     }
