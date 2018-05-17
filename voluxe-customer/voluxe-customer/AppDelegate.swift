@@ -252,6 +252,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
          * But we still need to init it if we disable Firebase in order to use the default values provided in RemoteConfigDefaults.plist
          */
         loadRemoteConfig()
+        
+        // set UserProperties
+        Analytics.setUserProperty(UIDevice.current.identifierForVendor?.uuidString, forName: AnalyticsConstants.userPropertiesDeviceId)
+        
+        if let customerId = UserManager.sharedInstance.getCustomerId() {
+            Analytics.setUserProperty(String(customerId), forName: AnalyticsConstants.userPropertiesCustomerId)
+        } else {
+            Analytics.setUserProperty(nil, forName: AnalyticsConstants.userPropertiesCustomerId)
+        }
 
     }
 

@@ -10,6 +10,11 @@ import Foundation
 
 class AnalyticsConstants {
     
+    
+    // User Properties
+    static let userPropertiesDeviceId = "device_id"
+    static let userPropertiesCustomerId = "customer_id"
+    
     // Events
     static let eventViewScreen = "view_screen"
     static let eventStateChange = "state_change"

@@ -10,6 +10,7 @@ import Foundation
 import KeychainAccess
 import SwiftEventBus
 import RealmSwift
+import FirebaseAnalytics
 
 final class UserManager {
     
@@ -51,6 +52,9 @@ final class UserManager {
             customerIdToken = nil
         }
         accessToken = token
+        
+        Analytics.setUserProperty(customerId, forName: AnalyticsConstants.userPropertiesCustomerId)
+        
     }
     
     public func setPushDeviceToken(deviceToken: String?) {
