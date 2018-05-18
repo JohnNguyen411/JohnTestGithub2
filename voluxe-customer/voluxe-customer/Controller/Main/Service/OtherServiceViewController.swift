@@ -99,17 +99,20 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         descriptionTextView.textContainer.lineBreakMode = .byTruncatingTail
         descriptionTextView.delegate = self
         
-        confirmButton.setActionBlock {
+        confirmButton.setActionBlock { [weak self] in
+            guard let weakSelf = self else { return }
             
-            var notes = self.service.notes
-            notes.append("\n\n\(self.descriptionTextView.text ?? "")")
-            notes.append("\n\n\(String.IsVolvoDrivable) \(self.drivability[self.checkedCellIndex].rawValue)")
+            var notes = "" // reset notes
+            if weakSelf.descriptionTextView.text != .TypeDescriptionHere {
+                notes.append("\n\n\(weakSelf.descriptionTextView.text ?? "")")
+            }
+            notes.append("\n\n\(String.IsVolvoDrivable) \(weakSelf.drivability[weakSelf.checkedCellIndex].rawValue)")
 
-            self.service.notes = notes
+            weakSelf.service.notes = notes
             
-            RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: self.service)
-            StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: self.vehicle.id, booking: nil)
-            self.pushViewController(ServiceCarViewController(vehicle: self.vehicle, state: .needService), animated: true, backLabel: .Back)
+            RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: weakSelf.service)
+            StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: weakSelf.vehicle.id, booking: nil)
+            weakSelf.pushViewController(ServiceCarViewController(vehicle: weakSelf.vehicle, state: .needService), animated: true, backLabel: .Back)
 
         }
         //descriptionTextView.placeholder
