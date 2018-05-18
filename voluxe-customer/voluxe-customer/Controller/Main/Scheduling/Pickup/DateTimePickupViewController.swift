@@ -75,6 +75,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     private var isPickup = true
     private var showLoaner = false
+    private var loanerRequired = false
 
     private let loanerContainerView = UIView(frame: .zero)
     
@@ -101,6 +102,11 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         self.vehicle = vehicle
         isPickup = StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id)
         showLoaner = isPickup && RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.loanerFeatureEnabledKey)
+        
+        if let loaner = RequestedServiceManager.sharedInstance.getLoaner() {
+            loanerRequired = isPickup && loaner
+        }
+        
         loanerViewHeight = showLoaner ? 48 : 0
         var currentDealership = RequestedServiceManager.sharedInstance.getDealership()
         if currentDealership == nil {
@@ -540,24 +546,24 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         if Config.sharedInstance.isMock {
             return true
         }
-        if let slots = getSlotsForDate(date: date) {
+        if let slots = getSlotsForDate(date: date, withLoaner: loanerRequired) {
             return slots.count > 0
         }
         return false
     }
     
-    private func getSlotsForDate(date: Date) -> Results<DealershipTimeSlot>? {
+    private func getSlotsForDate(date: Date, withLoaner: Bool) -> Results<DealershipTimeSlot>? {
         if let realm = realm, let dealership = self.dealership {
             var from: NSDate = date.beginningOfDay() as NSDate
             var to: NSDate = date.endOfDay() as NSDate
             
-            var predicate = NSPredicate(format: "from >= %@ AND to <= %@ AND dealershipId = %d", from, to, dealership.id)
+            var predicate = NSPredicate(format: "from >= %@ AND to <= %@ AND dealershipId = %d AND availableLoanerVehicleCount >= %d", from, to, dealership.id, withLoaner ? 1 : 0)
             
             if date.isToday {
                 from = self.todaysDate as NSDate
                 from = from.addingTimeInterval(2*60*60) // add a 2 hours delay
                 to = date.endOfDay() as NSDate
-                predicate = NSPredicate(format: "to >= %@ AND to <= %@ AND dealershipId = %d", from, to, dealership.id)
+                predicate = NSPredicate(format: "to >= %@ AND to <= %@ AND dealershipId = %d AND availableLoanerVehicleCount >= %d", from, to, dealership.id, withLoaner ? 1 : 0)
             }
             
             let slots = realm.objects(DealershipTimeSlot.self).filter(predicate)
@@ -742,7 +748,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition)   -> Bool {
         let selectable = dateIsSelectable(date: date)
         if selectable {
-            updateSlots(slots: getSlotsForDate(date: date))
+            updateSlots(slots: getSlotsForDate(date: date, withLoaner: loanerRequired))
             updateButtons(date: date)
             selectFirstEnabledButton()
         }

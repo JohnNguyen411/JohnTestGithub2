@@ -77,6 +77,7 @@ class DealershipAPI: NSObject {
             "type": type,
             "from": from,
             "to": to,
+            "compute[0]": "available_loaner_vehicle_count", // request the loaner vehicle count in the response
             ] as [String : Any]
         
         NetworkRequest.request(url: "/v1/dealerships/\(dealershipId)/time-slots/scheduled", queryParameters: queryParams, withBearer: true).responseJSONErrorCheck { response in

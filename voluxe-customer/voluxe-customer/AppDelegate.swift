@@ -213,7 +213,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         Fabric.with([Crashlytics.self])
 
-        startApp()
+        weak var weakSelf = self
+        // Run Realm Migration if needed, then open app
+        RealmManager.realmMigration(callback: { realm, error in
+            weakSelf?.startApp()
+        })
+        
 
         return true
     }
