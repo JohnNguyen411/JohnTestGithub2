@@ -1,2 +1,5 @@
-FIRST AUTOMATED BUILD AND UPLOAD!
-Edit and commit this file to summarize recent changes to the code.
+Misc bugfixes and improvments
+Fix Custom Service description bug
+Show Dealership TimeSlot based on loaner availability
+New AppIcon for iPhone only
+Make ETA great again
