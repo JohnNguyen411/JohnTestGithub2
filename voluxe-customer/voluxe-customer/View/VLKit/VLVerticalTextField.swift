@@ -17,7 +17,7 @@ class VLVerticalTextField : VLTextField {
     let rightLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.font = .volvoSansLightBold(size: 12)
-        textView.textColor = .luxeOrange()
+        textView.textColor = .luxeLipstick()
         textView.numberOfLines = 1
         textView.textAlignment = .right
         textView.backgroundColor = .clear

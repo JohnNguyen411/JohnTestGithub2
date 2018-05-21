@@ -402,7 +402,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         calendar.appearance.caseOptions = FSCalendarCaseOptions.headerUsesUpperCase
         calendar.appearance.borderSelectionColor = .luxeCobaltBlue()
         calendar.appearance.borderDefaultColor = .luxeCobaltBlue()
-        calendar.appearance.selectionColor = .luxeCobaltBlue()
+        calendar.appearance.selectionColor = .luxeDuskBlue()
         calendar.appearance.titleDefaultColor = .luxeCobaltBlue()
         calendar.appearance.titleSelectionColor = .white
         calendar.appearance.borderRadius = 0

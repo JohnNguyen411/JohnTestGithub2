@@ -44,7 +44,7 @@ class TimeWindowView: UIView {
     
     private func setupViews() {
         
-        self.backgroundColor = .luxeTundora()
+        self.backgroundColor = .luxeCharcoalGrey()
         
         addSubview(labelContainer)
         labelContainer.addSubview(titleView)
@@ -75,7 +75,7 @@ class TimeWindowView: UIView {
             let dateString : String = DateFormatter.dateFormat(fromTemplate: "j:mm", options: 0, locale: Locale.current)!
             let formatter = DateFormatter()
             formatter.dateFormat = dateString
-            titleView.text = formatter.string(from: date)
+            titleView.text = formatter.string(from: date).lowercased()
         }
         
         subtitleView.text = (.EstimatedPickupTime as String).uppercased()

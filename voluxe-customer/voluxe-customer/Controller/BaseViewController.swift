@@ -71,9 +71,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
     }
     
     func styleViews() {
-        
         self.view.backgroundColor = .white
-        setGradientBackground()
     }
     
     func setupViews() {}
@@ -110,7 +108,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    func setGradientBackground() {
+    private func setGradientBackground() {
         let colorTop =  UIColor.white.cgColor
         let colorBottom = UIColor.luxeLinearGradient().cgColor
         

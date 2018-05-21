@@ -15,7 +15,7 @@ class MapViewController: UIViewController {
     private let mapView = GMSMapView()
     private let flagMarker = GMSMarker()
     private let driverMarker = GMSMarker()
-    private let etaMarker = ETAMarker(frame: CGRect(x: 0, y: 0, width: 44, height: 54))
+    private let etaMarker = ETAMarker(frame: CGRect(x: 0, y: 0, width: 41, height: 62))
     
     convenience init(requestLocation: CLLocationCoordinate2D) {
         self.init()

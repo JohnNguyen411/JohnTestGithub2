@@ -58,7 +58,7 @@ extension UIBarButtonItem {
         
         let badgeFrame = CGRect(origin: CGPoint(x: x, y: y), size: CGSize(width: bWidth, height: bHeight))
         
-        badge.drawRoundedRect(rect: badgeFrame, andColor: UIColor.luxeOrange(), filled: true)
+        badge.drawRoundedRect(rect: badgeFrame, andColor: UIColor.luxeLipstick(), filled: true)
         view.layer.addSublayer(badge)
         
         //save Badge as UIBarButtonItem property

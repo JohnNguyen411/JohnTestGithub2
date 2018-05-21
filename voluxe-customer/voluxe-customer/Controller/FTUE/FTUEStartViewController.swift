@@ -27,7 +27,7 @@ class FTUEStartViewController: BaseViewController {
 
     let logo: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "volvo_logo")
+        imageView.image = UIImage(named: "luxeByVolvo")
         return imageView
     }()
     
@@ -41,16 +41,7 @@ class FTUEStartViewController: BaseViewController {
         return textView
     }()
     
-    let appName: UILabel = {
-        let textView = UILabel(frame: .zero)
-        textView.text = .AppName
-        textView.font = .volvoSansLight(size: 40)
-        textView.textColor = .luxeCobaltBlue()
-        textView.backgroundColor = .clear
-        textView.numberOfLines = 0
-        return textView
-    }()
-    
+  
     
     init() {
         super.init(screenName: AnalyticsConstants.paramNameLandingView)
@@ -99,33 +90,17 @@ class FTUEStartViewController: BaseViewController {
         loginButton.contentHorizontalAlignment = .right
         signupButton.contentHorizontalAlignment = .left
         
-        let container = UIView(frame: .zero)
-        self.view.addSubview(container)
-        container.addSubview(logo)
-        container.addSubview(appName)
-        
+        self.view.addSubview(logo)
+
         let buttonContainer = UIView(frame: .zero)
         self.view.addSubview(buttonContainer)
         buttonContainer.addSubview(pipeSeparator)
         buttonContainer.addSubview(loginButton)
         buttonContainer.addSubview(signupButton)
         
-        container.snp.makeConstraints { (make) -> Void in
-            make.top.equalToSuperview().offset(120)
-            make.width.equalTo(315)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(100)
-        }
-        
         logo.snp.makeConstraints { (make) -> Void in
-            make.left.centerY.equalToSuperview()
-            make.width.height.equalTo(70)
-        }
-        
-        appName.snp.makeConstraints { (make) -> Void in
-            make.centerY.equalTo(logo)
-            make.left.equalTo(logo.snp.right).offset(20)
-            make.height.equalTo(80)
+            make.equalsToTop(view: self.view, offset: 120)
+            make.centerX.equalToSuperview()
         }
         
         buttonContainer.snp.makeConstraints { (make) -> Void in

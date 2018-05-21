@@ -195,7 +195,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
             } else {
                 if let request = booking.dropoffRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
                     let dateTime = formatter.string(from: date)
-                    scheduledServiceView.setTitle(title: .ScheduledDelivery, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true) ?? "" )", rightDescription: "")
+                    scheduledServiceView.setTitle(title: .ScheduledDelivery, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                 } else {
                     if booking.getState() == .service {
                         scheduledServiceView.setTitle(title: .CurrentService, leftDescription: booking.getRepairOrderName())

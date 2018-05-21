@@ -21,7 +21,7 @@ class VLPresentrViewController: UIViewController {
     
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.textColor = .luxeGray()
+        titleLabel.textColor = .luxeLipstick()
         titleLabel.font = .volvoSansLightBold(size: 12)
         titleLabel.textAlignment = .left
         titleLabel.addUppercasedCharacterSpacing()

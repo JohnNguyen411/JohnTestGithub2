@@ -43,7 +43,7 @@ class VLTitledLabel: UIView {
     
     let errorLabel: UILabel = {
         let errorLabel = UILabel()
-        errorLabel.textColor = .luxeOrange()
+        errorLabel.textColor = .luxeLipstick()
         errorLabel.font = .volvoSansLightBold(size: 12)
         errorLabel.textAlignment = .right
         errorLabel.addUppercasedCharacterSpacing()
@@ -142,10 +142,10 @@ class VLTitledLabel: UIView {
     
     func showError(error: String?) {
         
-        separator.backgroundColor = .luxeOrange()
-        titleLabel.textColor = .luxeOrange()
-        descLeftLabel.textColor = .luxeOrange()
-        descRightLabel.textColor = .luxeOrange()
+        separator.backgroundColor = .luxeLipstick()
+        titleLabel.textColor = .luxeLipstick()
+        descLeftLabel.textColor = .luxeLipstick()
+        descRightLabel.textColor = .luxeLipstick()
         self.backgroundColor = .luxeLightOrange()
         
         errorLabel.text = error?.uppercased()

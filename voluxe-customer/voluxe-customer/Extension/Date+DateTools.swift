@@ -128,17 +128,22 @@ extension Date {
         let dateString : String = DateFormatter.dateFormat(fromTemplate: "h:mm", options: 0, locale: Locale.current)!
         let hourFormatter = DateFormatter()
         hourFormatter.dateFormat = dateString
+        var spaces = true
         
         if !showAMPM {
             hourFormatter.amSymbol = ""
             hourFormatter.pmSymbol = ""
+            spaces = false
         } else if let shortSymbol = shortSymbol, shortSymbol {
             hourFormatter.amSymbol = "a"
             hourFormatter.pmSymbol = "p"
+            spaces = false
         }
         
         var hourFormatted = hourFormatter.string(from: date)
-        hourFormatted = hourFormatted.replacingOccurrences(of: " ", with: "")
+        if !spaces {
+            hourFormatted = hourFormatted.replacingOccurrences(of: " ", with: "")
+        }
         return hourFormatted.lowercased()
     }
 

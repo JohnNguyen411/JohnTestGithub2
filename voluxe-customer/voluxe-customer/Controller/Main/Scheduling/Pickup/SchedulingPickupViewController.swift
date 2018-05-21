@@ -42,7 +42,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         if let timeSlot = RequestedServiceManager.sharedInstance.getPickupTimeSlot(), let date = timeSlot.from {
             let dateTime = formatter.string(from: date)
-            scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true) ?? "" ))", rightDescription: "")
+            scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" ))", rightDescription: "")
         }
         
         if let requestLocation = RequestedServiceManager.sharedInstance.getPickupLocation() {

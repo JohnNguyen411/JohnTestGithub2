@@ -37,6 +37,7 @@ final class RequestedServiceManager {
     }
     
     func resetScheduling() {
+        dealership = nil
         loaner = nil
         pickupTimeSlot = nil
         pickupRequestLocation = nil

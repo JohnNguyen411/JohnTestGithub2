@@ -14,7 +14,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         let textView = UILabel(frame: .zero)
         textView.text = .IsVolvoDrivable
         textView.font = .volvoSansLight(size: 18)
-        textView.textColor = .luxeDarkGray()
+        textView.textColor = .luxeLipstick()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -24,7 +24,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         let textView = UILabel(frame: .zero)
         textView.text = .NewServiceDescription
         textView.font = .volvoSansLight(size: 18)
-        textView.textColor = .luxeDarkGray()
+        textView.textColor = .luxeLipstick()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -65,6 +65,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     var checkedCellIndex = 0
     let service: RepairOrder
     let vehicle: Vehicle
+    let serviceTitle: String
     
     init(vehicle: Vehicle, repairOrderType: RepairOrderType, services: [String]) {
         self.vehicle = vehicle
@@ -72,6 +73,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         for service in services {
             serviceTitle += "\n• \(service). "
         }
+        self.serviceTitle = serviceTitle
         self.service = RepairOrder(repairOrderType: repairOrderType, customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
         
         confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNext, screenName: AnalyticsConstants.paramNameServiceCustomNotesView)
@@ -102,7 +104,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         confirmButton.setActionBlock { [weak self] in
             guard let weakSelf = self else { return }
             
-            var notes = "" // reset notes
+            var notes = weakSelf.serviceTitle // reset notes
             if weakSelf.descriptionTextView.text != .TypeDescriptionHere {
                 notes.append("\n\n\(weakSelf.descriptionTextView.text ?? "")")
             }

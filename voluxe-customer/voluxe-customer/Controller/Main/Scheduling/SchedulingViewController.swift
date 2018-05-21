@@ -611,7 +611,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
         
         let dateTime = formatter.string(from: timeSlot.from!)
-        scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true) ?? "")", rightDescription: "")
+        scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")", rightDescription: "")
     }
     
     func onSizeChanged() {

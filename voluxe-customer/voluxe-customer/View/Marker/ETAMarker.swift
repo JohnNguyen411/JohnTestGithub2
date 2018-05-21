@@ -14,7 +14,7 @@ class ETAMarker: UIView {
     let etaValue: UILabel = {
         let etaValue = UILabel()
         etaValue.textColor = .white
-        etaValue.font = .volvoSansLightBold(size: 16)
+        etaValue.font = .volvoSansProMedium(size: 15)
         etaValue.textAlignment = .center
         etaValue.numberOfLines = 1
         return etaValue
@@ -23,14 +23,14 @@ class ETAMarker: UIView {
     let etaLabel: UILabel = {
         let etaLabel = UILabel()
         etaLabel.textColor = .white
-        etaLabel.font = .volvoSansLightBold(size: 12)
+        etaLabel.font = .volvoSansLight(size: 11)
         etaLabel.textAlignment = .center
         etaLabel.numberOfLines = 1
         return etaLabel
     }()
     
    
-    let icon = UIImageView(image: UIImage(named: "pin_location"))
+    let icon = UIImageView(image: UIImage(named: "markerDot"))
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -48,17 +48,17 @@ class ETAMarker: UIView {
 
         icon.frame = self.frame
         etaValue.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(7)
+            make.top.equalToSuperview().offset(9)
             make.centerX.equalToSuperview()
-            make.width.equalToSuperview().offset(-10)
-            make.height.equalTo(15)
+            make.width.equalToSuperview()
+            make.height.equalTo(14)
         }
         
         etaLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.top.equalTo(etaValue.snp.bottom)
-            make.width.equalToSuperview().offset(-10)
-            make.height.equalTo(15)
+            make.width.equalToSuperview()
+            make.height.equalTo(8)
         }
     }
     
@@ -70,14 +70,17 @@ class ETAMarker: UIView {
         
         if etaValue.text != nil && !(etaValue.text?.isEmpty)! {
             etaLabel.text = (.smallMinute as String).lowercased()
+            icon.image = UIImage(named: "markerBlank")
         } else {
             etaLabel.text = ""
+            icon.image = UIImage(named: "markerDot")
         }
     }
     
     func hideEta() {
         etaLabel.text = ""
         etaValue.text = ""
+        icon.image = UIImage(named: "markerDot")
     }
     
 }

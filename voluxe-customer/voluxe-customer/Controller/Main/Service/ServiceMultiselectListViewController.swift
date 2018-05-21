@@ -14,7 +14,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         let textView = UILabel(frame: .zero)
         textView.text = .WhatPartRequiresService
         textView.font = .volvoSansLight(size: 18)
-        textView.textColor = .luxeDarkGray()
+        textView.textColor = .luxeLipstick()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView

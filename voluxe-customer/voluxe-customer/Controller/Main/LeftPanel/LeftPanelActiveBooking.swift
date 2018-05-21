@@ -31,7 +31,7 @@ class LeftPanelActiveBooking: UIView {
             activeBookingLabel.text = vehicle.vehicleDescription()
         }
         
-        redDot.image = UIImage(named: "red_dot")
+        redDot.image = UIImage(named: "notificationDot")
         showRedDot(show: false)
         
         setupViews()
