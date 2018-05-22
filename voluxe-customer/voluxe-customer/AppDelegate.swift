@@ -11,10 +11,12 @@ import Crashlytics
 import Fabric
 import Firebase
 import GoogleMaps
+import GooglePlaces
 import SlideMenuControllerSwift
+import SwiftEventBus
 import UIKit
 import UserNotifications
-import GooglePlaces
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
@@ -120,10 +122,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func startApp() {
         
-        if UIApplication.shouldReset {
-            UserManager.sharedInstance.logout()
-        }
-        
         if let slideMenuController = slideMenuController {
             slideMenuController.mainViewController?.dismiss(animated: false, completion: nil)
             slideMenuController.leftViewController?.dismiss(animated: false, completion: nil)
@@ -195,6 +193,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         showLoadingView()
     }
 
+    // MARK:- Register network layer notifications
+
+    private func registerEventBusNotifications() {
+
+        SwiftEventBus.onMainThread(self, name: "forceLogout") {
+            notification in
+            UserManager.sharedInstance.logout()
+            self.startApp()
+        }
+
+        SwiftEventBus.onMainThread(self, name: "forceUpgrade") {
+            notification in
+            self.showForceUpgradeDialog()
+        }
+    }
+
     // MARK:- Application support
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
@@ -210,15 +224,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         GMSServices.provideAPIKey(Config.sharedInstance.mapAPIKey())
         GMSPlacesClient.provideAPIKey(Config.sharedInstance.mapAPIKey())
 
+        // logoutOnLaunch can be specified as an executable argument
+        // Typically and currently this is only used by the UI test suite
+        if UIApplication.logoutOnLaunch {
+            UserManager.sharedInstance.logout()
+        }
 
-        Fabric.with([Crashlytics.self])
+        self.registerEventBusNotifications()
 
         weak var weakSelf = self
         // Run Realm Migration if needed, then open app
         RealmManager.realmMigration(callback: { realm, error in
             weakSelf?.startApp()
         })
-        
+
+        // Fabric recommends initializing Crashlytics at the end
+        Fabric.with([Crashlytics.self])
 
         return true
     }
@@ -352,17 +373,13 @@ extension AppDelegate: VLAlertViewDelegate {
 }
 
 extension UIApplication {
+
     public static var isRunningTest: Bool {
         return ProcessInfo().arguments.contains("testMode")
     }
     
-    public static var shouldReset: Bool {
-        return ProcessInfo().arguments.contains("reset")
-    }
-    
-    class func appBuild() -> Int {
-        let appBuild = Bundle.main.object(forInfoDictionaryKey: kCFBundleVersionKey as String) as! String
-        return Int(appBuild)!
+    public static var logoutOnLaunch: Bool {
+        return ProcessInfo().arguments.contains("logoutOnLaunch")
     }
 }
 

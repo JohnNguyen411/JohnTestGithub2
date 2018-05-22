@@ -209,11 +209,6 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         showLoading(loading: true)
         
-        if UIApplication.isRunningTest {
-            loginUser(email: "johan@luxe.com", password: "Ch@ngeth1s")
-            return
-        }
-        
         weak var weakSelf = self
         
         // if accessToken, it's a password update
@@ -256,7 +251,9 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         signup(signupCustomer: signupCustomer)
         
     }
-    
+
+    // TODO https://github.com/volvo-cars/ios/issues/184
+    // there's lot of potential crashes in this func, too many !s
     private func signup(signupCustomer: SignupCustomer) {
         if let customer = UserManager.sharedInstance.getCustomer() {
             

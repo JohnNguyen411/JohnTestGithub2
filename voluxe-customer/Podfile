@@ -42,7 +42,10 @@ target 'voluxe-customerTests' do
 end
 
 target 'voluxe-customerUITests' do
-    import_pods
+    pod 'Alamofire', '4.5.1'
+    pod 'AlamofireObjectMapper', '5.0.0'
+    pod 'AlamofireNetworkActivityLogger', '2.2'
+    pod 'BrightFutures', '6.0.1'
 end
 
 post_install do | installer |

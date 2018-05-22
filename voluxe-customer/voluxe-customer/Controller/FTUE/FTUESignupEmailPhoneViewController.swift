@@ -240,20 +240,6 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
             return
         }
         
-        if UIApplication.isRunningTest {
-            let customer = Customer.mockCustomer()
-            if let realm = self.realm {
-                try? realm.write {
-                    realm.deleteAll()
-                    realm.add(customer)
-                }
-            }
-            UserManager.sharedInstance.setCustomer(customer: customer)
-            UserManager.sharedInstance.tempCustomerId = customer.id
-            self.goToNext()
-            return
-        }
-        
         var language = "EN" // default to EN
         if let localeLang = Locale.current.languageCode {
             language = localeLang.uppercased()

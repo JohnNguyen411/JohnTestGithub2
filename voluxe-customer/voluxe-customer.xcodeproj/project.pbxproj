@@ -8,7 +8,19 @@
 
 /* Begin PBXBuildFile section */
 		4919A11892F7C3DF8E3B27E1 /* Pods_voluxe_customerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FF37696ECA3479BE741D40 /* Pods_voluxe_customerTests.framework */; };
-		4F168EBDD50184A5503B6E44 /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
+		52078A4D132E9D871CDD555D /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
+		5322408120AE231500D4E86C /* AdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408020AE231500D4E86C /* AdminAPI.swift */; };
+		5322408220AE50F900D4E86C /* MappableDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495DE1FDA1E870036FC08 /* MappableDataArray.swift */; };
+		5322408520AE586E00D4E86C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408320AE570000D4E86C /* User.swift */; };
+		5322408720AE5A2400D4E86C /* VerificationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408620AE5A2400D4E86C /* VerificationCode.swift */; };
+		5322408920AE688600D4E86C /* AdminAPI+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408820AE688600D4E86C /* AdminAPI+Test.swift */; };
+		5322408B20AE6ADA00D4E86C /* XCTest+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408A20AE6ADA00D4E86C /* XCTest+Test.swift */; };
+		5322408D20AE6B3500D4E86C /* String+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408C20AE6B3500D4E86C /* String+Test.swift */; };
+		5322408F20AE6B7500D4E86C /* Int+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408E20AE6B7500D4E86C /* Int+Test.swift */; };
+		5322409020B32CE600D4E86C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479420AE300B001F4BC7 /* RealmManager.swift */; };
+		5322409320B385C300D4E86C /* NetworkRequest+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409220B385C300D4E86C /* NetworkRequest+Admin.swift */; };
+		5322409520B38BF700D4E86C /* BotUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409420B38BF700D4E86C /* BotUser.swift */; };
+		5322409720B39FF700D4E86C /* CreateAccount_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */; };
 		53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */; };
 		53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */; };
@@ -16,99 +28,87 @@
 		53D9A7BD209A5E2F008BE93E /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		53D9A7BF209A79C8008BE93E /* DebugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BE209A79C8008BE93E /* DebugTableViewCell.swift */; };
 		53D9A7C1209A7D01008BE93E /* NSObject+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7C0209A7D01008BE93E /* NSObject+Voluxe.swift */; };
+		53EF28A920ACE38C006CC5FA /* SignIn_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FE01FC5F987002BC7FC /* SignIn_UITests.swift */; };
+		53EF28C820AE0553006CC5FA /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
+		53EF28CC20AE064E006CC5FA /* CustomerAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EF28CB20AE064E006CC5FA /* CustomerAPI+Login.swift */; };
+		53EF28CD20AE064E006CC5FA /* CustomerAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EF28CB20AE064E006CC5FA /* CustomerAPI+Login.swift */; };
+		53EF28CF20AE065F006CC5FA /* CustomerAPI+Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EF28CE20AE065F006CC5FA /* CustomerAPI+Signup.swift */; };
+		53EF28D220AE066B006CC5FA /* CustomerAPI+Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EF28D120AE066B006CC5FA /* CustomerAPI+Account.swift */; };
+		53EF28D520AE067C006CC5FA /* CustomerAPI+Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EF28D420AE067C006CC5FA /* CustomerAPI+Vehicle.swift */; };
+		53EF28D720AE0709006CC5FA /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */; };
+		53EF28D820AE077B006CC5FA /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */; };
+		53EF28D920AE0783006CC5FA /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
+		53EF28DA20AE0798006CC5FA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C345A0E1FD897E4006CAC32 /* Config.swift */; };
+		53EF28DB20AE079F006CC5FA /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC15201156AF002594F5 /* ResponseError.swift */; };
+		53EF28DC20AE07A5006CC5FA /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495D61FDA0CEB0036FC08 /* Meta.swift */; };
+		53EF28DD20AE07B4006CC5FA /* MappableDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */; };
+		53EF28DE20AE07BA006CC5FA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687992040CD0900D915FC /* Errors.swift */; };
+		53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
+		53EF28E020AE07DC006CC5FA /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
+		53EF28E120AE082E006CC5FA /* EmptyMappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF240204DFA9C004BF1A6 /* EmptyMappableObject.swift */; };
+		53EF28E220AE0834006CC5FA /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		6C11208E2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
 		6C11208F2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
-		6C1120902016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
 		6C20E1831FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
 		6C20E1841FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
-		6C20E1851FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
 		6C20E1871FBE061A00E5D9A0 /* ETAMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1861FBE061A00E5D9A0 /* ETAMarker.swift */; };
 		6C20E1881FBE061A00E5D9A0 /* ETAMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1861FBE061A00E5D9A0 /* ETAMarker.swift */; };
-		6C20E1891FBE061A00E5D9A0 /* ETAMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1861FBE061A00E5D9A0 /* ETAMarker.swift */; };
 		6C20E18B1FBE0E6200E5D9A0 /* GoogleDistanceMatrixAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E18A1FBE0E6200E5D9A0 /* GoogleDistanceMatrixAPI.swift */; };
 		6C20E18C1FBE0E6200E5D9A0 /* GoogleDistanceMatrixAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E18A1FBE0E6200E5D9A0 /* GoogleDistanceMatrixAPI.swift */; };
-		6C20E18D1FBE0E6200E5D9A0 /* GoogleDistanceMatrixAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E18A1FBE0E6200E5D9A0 /* GoogleDistanceMatrixAPI.swift */; };
 		6C20E1A01FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E19F1FBE152200E5D9A0 /* GMTextValueObject.swift */; };
 		6C20E1A11FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E19F1FBE152200E5D9A0 /* GMTextValueObject.swift */; };
-		6C20E1A21FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E19F1FBE152200E5D9A0 /* GMTextValueObject.swift */; };
 		6C20E1A61FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1A51FBE28C000E5D9A0 /* TimeWindowView.swift */; };
 		6C20E1A71FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1A51FBE28C000E5D9A0 /* TimeWindowView.swift */; };
-		6C20E1A81FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1A51FBE28C000E5D9A0 /* TimeWindowView.swift */; };
 		6C20E1AB1FBE3FE800E5D9A0 /* ScheduledPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C3121FBCCD8C00B1218C /* ScheduledPickupViewController.swift */; };
 		6C20E1AD1FBE408B00E5D9A0 /* SchedulingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1AC1FBE408B00E5D9A0 /* SchedulingViewController.swift */; };
 		6C20E1AE1FBE408B00E5D9A0 /* SchedulingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1AC1FBE408B00E5D9A0 /* SchedulingViewController.swift */; };
-		6C20E1AF1FBE408B00E5D9A0 /* SchedulingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1AC1FBE408B00E5D9A0 /* SchedulingViewController.swift */; };
 		6C20E1B21FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1B11FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift */; };
 		6C20E1B31FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1B11FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift */; };
-		6C20E1B41FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1B11FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift */; };
 		6C20E1B61FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1B51FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift */; };
 		6C20E1B71FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1B51FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift */; };
-		6C20E1B81FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1B51FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift */; };
 		6C20E1BB1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1BA1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift */; };
 		6C20E1BC1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1BA1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift */; };
-		6C20E1BD1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1BA1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift */; };
 		6C20E1BF1FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1BE1FBE635B00E5D9A0 /* ScheduledViewController.swift */; };
 		6C20E1C01FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1BE1FBE635B00E5D9A0 /* ScheduledViewController.swift */; };
-		6C20E1C11FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1BE1FBE635B00E5D9A0 /* ScheduledViewController.swift */; };
 		6C20E1C31FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1C21FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift */; };
 		6C20E1C41FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1C21FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift */; };
-		6C20E1C51FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1C21FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift */; };
 		6C20E1C71FBE6D2400E5D9A0 /* StateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1C61FBE6D2400E5D9A0 /* StateService.swift */; };
 		6C20E1C81FBE6D2400E5D9A0 /* StateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1C61FBE6D2400E5D9A0 /* StateService.swift */; };
-		6C20E1C91FBE6D2400E5D9A0 /* StateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1C61FBE6D2400E5D9A0 /* StateService.swift */; };
 		6C20E1CB1FBF698E00E5D9A0 /* Dealership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CA1FBF698E00E5D9A0 /* Dealership.swift */; };
 		6C20E1CC1FBF698E00E5D9A0 /* Dealership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CA1FBF698E00E5D9A0 /* Dealership.swift */; };
-		6C20E1CD1FBF698E00E5D9A0 /* Dealership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CA1FBF698E00E5D9A0 /* Dealership.swift */; };
 		6C20E1D01FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */; };
 		6C20E1D11FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */; };
-		6C20E1D21FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */; };
 		6C20E1D81FBF725F00E5D9A0 /* LocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */; };
 		6C20E1D91FBF725F00E5D9A0 /* LocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */; };
-		6C20E1DA1FBF725F00E5D9A0 /* LocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */; };
 		6C20E1E01FBF770C00E5D9A0 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1DF1FBF770C00E5D9A0 /* Request.swift */; };
 		6C20E1E11FBF770C00E5D9A0 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1DF1FBF770C00E5D9A0 /* Request.swift */; };
-		6C20E1E21FBF770C00E5D9A0 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1DF1FBF770C00E5D9A0 /* Request.swift */; };
 		6C20E1EC1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1EB1FC3A5C000E5D9A0 /* ChildViewController.swift */; };
 		6C20E1ED1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1EB1FC3A5C000E5D9A0 /* ChildViewController.swift */; };
-		6C20E1EE1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1EB1FC3A5C000E5D9A0 /* ChildViewController.swift */; };
 		6C2208771FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
 		6C2208781FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
-		6C2208791FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
 		6C22087C1FBD0C6700874882 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C22087B1FBD0C6700874882 /* Driver.swift */; };
 		6C22087D1FBD0C6700874882 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C22087B1FBD0C6700874882 /* Driver.swift */; };
-		6C22087E1FBD0C6700874882 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C22087B1FBD0C6700874882 /* Driver.swift */; };
 		6C2208801FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */; };
 		6C2208811FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */; };
-		6C2208821FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */; };
 		6C2AA2E720AB900F0089350B /* UIBarButtonItem+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2AA2E620AB900F0089350B /* UIBarButtonItem+Voluxe.swift */; };
 		6C2AA2E820AB900F0089350B /* UIBarButtonItem+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2AA2E620AB900F0089350B /* UIBarButtonItem+Voluxe.swift */; };
-		6C2AA2E920AB900F0089350B /* UIBarButtonItem+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2AA2E620AB900F0089350B /* UIBarButtonItem+Voluxe.swift */; };
 		6C2B32481FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B32471FB3C67100B943AC /* DateTimePickupViewController.swift */; };
 		6C2B32491FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B32471FB3C67100B943AC /* DateTimePickupViewController.swift */; };
-		6C2B324A1FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B32471FB3C67100B943AC /* DateTimePickupViewController.swift */; };
 		6C2F1DD61FAD0A8F00C28C6E /* SchedulingPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1DD51FAD0A8F00C28C6E /* SchedulingPickupViewController.swift */; };
 		6C2F1DD71FAD0A8F00C28C6E /* SchedulingPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1DD51FAD0A8F00C28C6E /* SchedulingPickupViewController.swift */; };
-		6C2F1DD81FAD0A8F00C28C6E /* SchedulingPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1DD51FAD0A8F00C28C6E /* SchedulingPickupViewController.swift */; };
 		6C32C3071FBCC0E900B1218C /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C3061FBCC0E900B1218C /* Step.swift */; };
 		6C32C3081FBCC0E900B1218C /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C3061FBCC0E900B1218C /* Step.swift */; };
-		6C32C3091FBCC0E900B1218C /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C3061FBCC0E900B1218C /* Step.swift */; };
 		6C32C30B1FBCC1DD00B1218C /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30A1FBCC1DD00B1218C /* StepView.swift */; };
 		6C32C30C1FBCC1DD00B1218C /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30A1FBCC1DD00B1218C /* StepView.swift */; };
-		6C32C30D1FBCC1DD00B1218C /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30A1FBCC1DD00B1218C /* StepView.swift */; };
 		6C32C30F1FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */; };
 		6C32C3101FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */; };
-		6C32C3111FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */; };
 		6C32C3141FBCCD8C00B1218C /* ScheduledPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C3121FBCCD8C00B1218C /* ScheduledPickupViewController.swift */; };
-		6C32C3151FBCCD8C00B1218C /* ScheduledPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C3121FBCCD8C00B1218C /* ScheduledPickupViewController.swift */; };
 		6C32C3171FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C3161FBCCFF200B1218C /* ScheduledPickupLocalization.swift */; };
 		6C32C3181FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C3161FBCCFF200B1218C /* ScheduledPickupLocalization.swift */; };
-		6C32C3191FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C3161FBCCFF200B1218C /* ScheduledPickupLocalization.swift */; };
 		6C345A0F1FD897E4006CAC32 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C345A0E1FD897E4006CAC32 /* Config.swift */; };
 		6C345A101FD897E4006CAC32 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C345A0E1FD897E4006CAC32 /* Config.swift */; };
-		6C345A111FD897E4006CAC32 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C345A0E1FD897E4006CAC32 /* Config.swift */; };
 		6C3A112F1FD8A1390069EF9C /* WebViewLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3A112E1FD8A1390069EF9C /* WebViewLoginViewController.swift */; };
 		6C3A11301FD8A1390069EF9C /* WebViewLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3A112E1FD8A1390069EF9C /* WebViewLoginViewController.swift */; };
-		6C3A11311FD8A1390069EF9C /* WebViewLoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3A112E1FD8A1390069EF9C /* WebViewLoginViewController.swift */; };
 		6C3FB2AA1FA2574C00B22EAB /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */; };
 		6C3FB2AC1FA2574C00B22EAB /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A81FA2574C00B22EAB /* Customer.swift */; };
 		6C3FB2AD1FA2574C00B22EAB /* FuelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A91FA2574C00B22EAB /* FuelData.swift */; };
@@ -122,40 +122,29 @@
 		6C3FB2BF1FA2A4CE00B22EAB /* VehicleLockStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */; };
 		6C4970F72064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */; };
 		6C4970F82064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */; };
-		6C4970F92064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */; };
 		6C4970FB20754E2700FF33E9 /* SyncTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970FA20754E2700FF33E9 /* SyncTimer.swift */; };
 		6C4970FC20754E2700FF33E9 /* SyncTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970FA20754E2700FF33E9 /* SyncTimer.swift */; };
-		6C4970FD20754E2700FF33E9 /* SyncTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970FA20754E2700FF33E9 /* SyncTimer.swift */; };
 		6C4970FF207580C800FF33E9 /* LeftPanelActiveBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970FE207580C800FF33E9 /* LeftPanelActiveBooking.swift */; };
 		6C497100207580C800FF33E9 /* LeftPanelActiveBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970FE207580C800FF33E9 /* LeftPanelActiveBooking.swift */; };
-		6C497101207580C800FF33E9 /* LeftPanelActiveBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970FE207580C800FF33E9 /* LeftPanelActiveBooking.swift */; };
 		6C497103207823E100FF33E9 /* VehicleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C497102207823E100FF33E9 /* VehicleAPI.swift */; };
 		6C497104207823E100FF33E9 /* VehicleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C497102207823E100FF33E9 /* VehicleAPI.swift */; };
-		6C497105207823E100FF33E9 /* VehicleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C497102207823E100FF33E9 /* VehicleAPI.swift */; };
 		6C4971072078272400FF33E9 /* VehicleMake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4971062078272400FF33E9 /* VehicleMake.swift */; };
 		6C4971082078272400FF33E9 /* VehicleMake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4971062078272400FF33E9 /* VehicleMake.swift */; };
-		6C4971092078272400FF33E9 /* VehicleMake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4971062078272400FF33E9 /* VehicleMake.swift */; };
 		6C4D91BB1FDB15F90031E3CB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
 		6C4D91BC1FDB15F90031E3CB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
-		6C4D91BD1FDB15F90031E3CB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
 		6C522452208509A10078D9B9 /* UIButton+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */; };
 		6C522453208509A10078D9B9 /* UIButton+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */; };
-		6C522454208509A10078D9B9 /* UIButton+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */; };
 		6C522456208568E90078D9B9 /* PasswordToggleVisibilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522455208568E90078D9B9 /* PasswordToggleVisibilityView.swift */; };
 		6C522457208568E90078D9B9 /* PasswordToggleVisibilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522455208568E90078D9B9 /* PasswordToggleVisibilityView.swift */; };
-		6C522458208568E90078D9B9 /* PasswordToggleVisibilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522455208568E90078D9B9 /* PasswordToggleVisibilityView.swift */; };
 		6C52245A208815580078D9B9 /* VLSlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522459208815580078D9B9 /* VLSlideMenuController.swift */; };
 		6C52245B208815580078D9B9 /* VLSlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522459208815580078D9B9 /* VLSlideMenuController.swift */; };
-		6C52245C208815580078D9B9 /* VLSlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522459208815580078D9B9 /* VLSlideMenuController.swift */; };
 		6C5224622089033B0078D9B9 /* AnalyticsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5224612089033B0078D9B9 /* AnalyticsConstants.swift */; };
 		6C5224632089033B0078D9B9 /* AnalyticsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5224612089033B0078D9B9 /* AnalyticsConstants.swift */; };
-		6C5224642089033B0078D9B9 /* AnalyticsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5224612089033B0078D9B9 /* AnalyticsConstants.swift */; };
 		6C52246A20892E240078D9B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C52246920892E240078D9B9 /* GoogleService-Info.plist */; };
 		6C52246B20892E240078D9B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C52246920892E240078D9B9 /* GoogleService-Info.plist */; };
 		6C52246C20892E240078D9B9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C52246920892E240078D9B9 /* GoogleService-Info.plist */; };
 		6C5832C51FB3899800F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
 		6C5832C61FB38C9000F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
-		6C5832C71FB38C9000F6BFE0 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832C41FB3899700F6BFE0 /* LocationManager.swift */; };
 		6C5833091FB3AF5600F6BFE0 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F41FB3AF5600F6BFE0 /* AlertViewController.swift */; };
 		6C58330A1FB3AF5600F6BFE0 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C5832F51FB3AF5600F6BFE0 /* AlertViewController.xib */; };
 		6C58330B1FB3AF5600F6BFE0 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F61FB3AF5600F6BFE0 /* BackgroundView.swift */; };
@@ -178,168 +167,108 @@
 		6C58331D1FB3AF7200F6BFE0 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C5832F51FB3AF5600F6BFE0 /* AlertViewController.xib */; };
 		6C58331E1FB3AF7200F6BFE0 /* AlertViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6C5832F51FB3AF5600F6BFE0 /* AlertViewController.xib */; };
 		6C58331F1FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F61FB3AF5600F6BFE0 /* BackgroundView.swift */; };
-		6C5833201FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F61FB3AF5600F6BFE0 /* BackgroundView.swift */; };
 		6C5833211FB3AF7800F6BFE0 /* CoverHorizontalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F71FB3AF5600F6BFE0 /* CoverHorizontalAnimation.swift */; };
-		6C5833221FB3AF7800F6BFE0 /* CoverHorizontalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F71FB3AF5600F6BFE0 /* CoverHorizontalAnimation.swift */; };
 		6C5833231FB3AF7B00F6BFE0 /* CoverVerticalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F81FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift */; };
 		6C5833241FB3AF7B00F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F91FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift */; };
-		6C5833251FB3AF7B00F6BFE0 /* CoverVerticalAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F81FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift */; };
-		6C5833261FB3AF7B00F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F91FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift */; };
 		6C5833271FB3AF8000F6BFE0 /* CrossDissolveAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FA1FB3AF5600F6BFE0 /* CrossDissolveAnimation.swift */; };
 		6C5833281FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FC1FB3AF5600F6BFE0 /* KeyboardTranslation.swift */; };
 		6C5833291FB3AF8000F6BFE0 /* ModalCenterPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FD1FB3AF5600F6BFE0 /* ModalCenterPosition.swift */; };
 		6C58332A1FB3AF8000F6BFE0 /* ModalSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FE1FB3AF5600F6BFE0 /* ModalSize.swift */; };
-		6C58332B1FB3AF8000F6BFE0 /* CrossDissolveAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FA1FB3AF5600F6BFE0 /* CrossDissolveAnimation.swift */; };
-		6C58332C1FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FC1FB3AF5600F6BFE0 /* KeyboardTranslation.swift */; };
-		6C58332D1FB3AF8000F6BFE0 /* ModalCenterPosition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FD1FB3AF5600F6BFE0 /* ModalCenterPosition.swift */; };
-		6C58332E1FB3AF8000F6BFE0 /* ModalSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832FE1FB3AF5600F6BFE0 /* ModalSize.swift */; };
 		6C58332F1FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5832FF1FB3AF5600F6BFE0 /* Montserrat-Regular.ttf */; };
 		6C5833301FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5832FF1FB3AF5600F6BFE0 /* Montserrat-Regular.ttf */; };
 		6C5833311FB3AF9200F6BFE0 /* PresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833001FB3AF5600F6BFE0 /* PresentationType.swift */; };
 		6C5833321FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833011FB3AF5600F6BFE0 /* Presentr+Equatable.swift */; };
-		6C5833331FB3AF9200F6BFE0 /* PresentationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833001FB3AF5600F6BFE0 /* PresentationType.swift */; };
-		6C5833341FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833011FB3AF5600F6BFE0 /* Presentr+Equatable.swift */; };
 		6C5833351FB3AF9900F6BFE0 /* Presentr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833031FB3AF5600F6BFE0 /* Presentr.swift */; };
 		6C5833361FB3AF9900F6BFE0 /* PresentrAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833041FB3AF5600F6BFE0 /* PresentrAnimation.swift */; };
 		6C5833371FB3AF9900F6BFE0 /* PresentrController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833051FB3AF5600F6BFE0 /* PresentrController.swift */; };
 		6C5833381FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833061FB3AF5600F6BFE0 /* PresentrShadow.swift */; };
-		6C5833391FB3AF9900F6BFE0 /* Presentr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833031FB3AF5600F6BFE0 /* Presentr.swift */; };
-		6C58333A1FB3AF9900F6BFE0 /* PresentrAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833041FB3AF5600F6BFE0 /* PresentrAnimation.swift */; };
-		6C58333B1FB3AF9900F6BFE0 /* PresentrController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833051FB3AF5600F6BFE0 /* PresentrController.swift */; };
-		6C58333C1FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833061FB3AF5600F6BFE0 /* PresentrShadow.swift */; };
 		6C58333D1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5833071FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf */; };
 		6C58333E1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C5833071FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf */; };
 		6C58333F1FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833081FB3AF5600F6BFE0 /* TransitionType.swift */; };
-		6C5833401FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5833081FB3AF5600F6BFE0 /* TransitionType.swift */; };
 		6C5C6A101FD8AACD00D70BF6 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5C6A0F1FD8AACD00D70BF6 /* UserManager.swift */; };
 		6C5C6A111FD8AACD00D70BF6 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5C6A0F1FD8AACD00D70BF6 /* UserManager.swift */; };
-		6C5C6A121FD8AACD00D70BF6 /* UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5C6A0F1FD8AACD00D70BF6 /* UserManager.swift */; };
 		6C5D866C2032539900BBADDC /* VLVerticalSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D866B2032539900BBADDC /* VLVerticalSearchTextField.swift */; };
 		6C5D866D2032539900BBADDC /* VLVerticalSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D866B2032539900BBADDC /* VLVerticalSearchTextField.swift */; };
-		6C5D866E2032539900BBADDC /* VLVerticalSearchTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D866B2032539900BBADDC /* VLVerticalSearchTextField.swift */; };
 		6C5DDECC20096CF8000847C9 /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */; };
 		6C5DDECD20096CF8000847C9 /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */; };
-		6C5DDECE20096CF8000847C9 /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */; };
 		6C5DDECF20096F3A000847C9 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A81FA2574C00B22EAB /* Customer.swift */; };
-		6C5DDED020096F3A000847C9 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A81FA2574C00B22EAB /* Customer.swift */; };
-		6C5EB98A1FCE38980019ACAA /* MainController_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5EB9891FCE38980019ACAA /* MainController_UITests.swift */; };
-		6C606ACE1FC501550030BBE3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
 		6C69267E1FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C69267D1FB3B3E3009495E9 /* LoanerPickupViewController.swift */; };
 		6C69267F1FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C69267D1FB3B3E3009495E9 /* LoanerPickupViewController.swift */; };
-		6C6926801FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C69267D1FB3B3E3009495E9 /* LoanerPickupViewController.swift */; };
 		6C6F4BC31FA8FBCF00087FE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */; };
 		6C6F4BC41FA8FBCF00087FE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */; };
 		6C6F4BC51FA8FBCF00087FE7 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC71FA8FBCF00087FE7 /* Localizable.strings */; };
 		6C6F4BCA1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC91FA9178700087FE7 /* FTUELoginViewController.swift */; };
 		6C6F4BCB1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC91FA9178700087FE7 /* FTUELoginViewController.swift */; };
-		6C6F4BCC1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BC91FA9178700087FE7 /* FTUELoginViewController.swift */; };
 		6C6F4BCE1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */; };
 		6C6F4BCF1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */; };
-		6C6F4BD01FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C6F4BCD1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift */; };
 		6C7341FF1FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7341FE1FB11DCE00E90F7E /* VLGroupedLabels.swift */; };
 		6C7342001FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7341FE1FB11DCE00E90F7E /* VLGroupedLabels.swift */; };
-		6C7342011FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7341FE1FB11DCE00E90F7E /* VLGroupedLabels.swift */; };
 		6C7342031FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342021FB11DF200E90F7E /* VLSelectableLabel.swift */; };
 		6C7342041FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342021FB11DF200E90F7E /* VLSelectableLabel.swift */; };
-		6C7342051FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342021FB11DF200E90F7E /* VLSelectableLabel.swift */; };
 		6C7342081FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342071FB127A300E90F7E /* DealershipPickupViewController.swift */; };
 		6C7342091FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342071FB127A300E90F7E /* DealershipPickupViewController.swift */; };
-		6C73420A1FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342071FB127A300E90F7E /* DealershipPickupViewController.swift */; };
 		6C73420C1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73420B1FB12E6C00E90F7E /* VLPresentrViewController.swift */; };
 		6C73420D1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73420B1FB12E6C00E90F7E /* VLPresentrViewController.swift */; };
-		6C73420E1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73420B1FB12E6C00E90F7E /* VLPresentrViewController.swift */; };
 		6C7342101FB136B000E90F7E /* CommonsLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73420F1FB136B000E90F7E /* CommonsLocalization.swift */; };
 		6C7342111FB136B000E90F7E /* CommonsLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73420F1FB136B000E90F7E /* CommonsLocalization.swift */; };
-		6C7342121FB136B000E90F7E /* CommonsLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C73420F1FB136B000E90F7E /* CommonsLocalization.swift */; };
 		6C7342141FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342131FB25F8C00E90F7E /* LocationPickupViewController.swift */; };
 		6C7342151FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342131FB25F8C00E90F7E /* LocationPickupViewController.swift */; };
-		6C7342161FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7342131FB25F8C00E90F7E /* LocationPickupViewController.swift */; };
 		6C7495D71FDA0CEB0036FC08 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495D61FDA0CEB0036FC08 /* Meta.swift */; };
 		6C7495D81FDA0CEB0036FC08 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495D61FDA0CEB0036FC08 /* Meta.swift */; };
-		6C7495D91FDA0CEB0036FC08 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495D61FDA0CEB0036FC08 /* Meta.swift */; };
 		6C7495DF1FDA1E870036FC08 /* MappableDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495DE1FDA1E870036FC08 /* MappableDataArray.swift */; };
 		6C7495E01FDA1E870036FC08 /* MappableDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495DE1FDA1E870036FC08 /* MappableDataArray.swift */; };
-		6C7495E11FDA1E870036FC08 /* MappableDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495DE1FDA1E870036FC08 /* MappableDataArray.swift */; };
 		6C7495E31FDA1F790036FC08 /* MappableDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */; };
 		6C7495E41FDA1F790036FC08 /* MappableDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */; };
-		6C7495E51FDA1F790036FC08 /* MappableDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */; };
 		6C79C42E20A27FD800443463 /* GMSnappedPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C79C42D20A27FD800443463 /* GMSnappedPoint.swift */; };
 		6C79C42F20A27FD800443463 /* GMSnappedPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C79C42D20A27FD800443463 /* GMSnappedPoint.swift */; };
-		6C79C43020A27FD800443463 /* GMSnappedPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C79C42D20A27FD800443463 /* GMSnappedPoint.swift */; };
 		6C79C43620A2800800443463 /* GMLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C79C43520A2800800443463 /* GMLocation.swift */; };
 		6C79C43720A2800800443463 /* GMLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C79C43520A2800800443463 /* GMLocation.swift */; };
-		6C79C43820A2800800443463 /* GMLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C79C43520A2800800443463 /* GMLocation.swift */; };
 		6C79C43A20A280AC00443463 /* GMSnappedPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C79C43920A280AC00443463 /* GMSnappedPoints.swift */; };
 		6C79C43B20A280AC00443463 /* GMSnappedPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C79C43920A280AC00443463 /* GMSnappedPoints.swift */; };
-		6C79C43C20A280AC00443463 /* GMSnappedPoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C79C43920A280AC00443463 /* GMSnappedPoints.swift */; };
 		6C79C43E20A283DB00443463 /* GoogleSnappedPointsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C79C43D20A283DB00443463 /* GoogleSnappedPointsAPI.swift */; };
 		6C79C43F20A283DB00443463 /* GoogleSnappedPointsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C79C43D20A283DB00443463 /* GoogleSnappedPointsAPI.swift */; };
-		6C79C44020A283DB00443463 /* GoogleSnappedPointsAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C79C43D20A283DB00443463 /* GoogleSnappedPointsAPI.swift */; };
 		6C7DDE0F1FDB64CD000E2822 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE0E1FDB64CC000E2822 /* Logger.swift */; };
 		6C7DDE101FDB64D0000E2822 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE0E1FDB64CC000E2822 /* Logger.swift */; };
-		6C7DDE111FDB64D1000E2822 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE0E1FDB64CC000E2822 /* Logger.swift */; };
 		6C7DDE131FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
 		6C7DDE141FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
-		6C7DDE151FDB664D000E2822 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
 		6C7DDE1D1FE1B864000E2822 /* VLAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */; };
 		6C7DDE1E1FE1B864000E2822 /* VLAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */; };
-		6C7DDE1F1FE1B864000E2822 /* VLAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */; };
 		6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
 		6C7E66E61FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
-		6C7E66E71FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7E66E41FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift */; };
 		6C8159B41FDA07F400B8DF31 /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */; };
 		6C8159B51FDA07F400B8DF31 /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */; };
-		6C8159B61FDA07F400B8DF31 /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */; };
 		6C88DC8F1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */; };
 		6C88DC901FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */; };
-		6C88DC911FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC8E1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift */; };
 		6C88DC941FAA8C28009F2FC3 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC931FAA8C28009F2FC3 /* LeftViewController.swift */; };
 		6C88DC951FAA8C28009F2FC3 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC931FAA8C28009F2FC3 /* LeftViewController.swift */; };
-		6C88DC961FAA8C28009F2FC3 /* LeftViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC931FAA8C28009F2FC3 /* LeftViewController.swift */; };
 		6C88DC981FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC971FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift */; };
 		6C88DC991FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC971FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift */; };
-		6C88DC9A1FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC971FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift */; };
 		6C88DC9D1FAA96D2009F2FC3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */; };
 		6C88DC9E1FAA96D2009F2FC3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */; };
-		6C88DC9F1FAA96D2009F2FC3 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C88DC9C1FAA96D2009F2FC3 /* MainViewController.swift */; };
 		6C8A16E1209289EB00F888D6 /* ConstraintMaker+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A16E0209289EB00F888D6 /* ConstraintMaker+Voluxe.swift */; };
 		6C8A16E2209289EB00F888D6 /* ConstraintMaker+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A16E0209289EB00F888D6 /* ConstraintMaker+Voluxe.swift */; };
-		6C8A16E3209289EB00F888D6 /* ConstraintMaker+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8A16E0209289EB00F888D6 /* ConstraintMaker+Voluxe.swift */; };
 		6C90CC1220113323002594F5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC1120113323002594F5 /* LoadingViewController.swift */; };
 		6C90CC1320113323002594F5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC1120113323002594F5 /* LoadingViewController.swift */; };
-		6C90CC1420113323002594F5 /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC1120113323002594F5 /* LoadingViewController.swift */; };
 		6C90CC16201156AF002594F5 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC15201156AF002594F5 /* ResponseError.swift */; };
 		6C90CC17201156AF002594F5 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC15201156AF002594F5 /* ResponseError.swift */; };
-		6C90CC18201156AF002594F5 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC15201156AF002594F5 /* ResponseError.swift */; };
 		6C91BBCE1FA7D3CE0033C2B1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2AF1FA2823800B22EAB /* Fonts.swift */; };
-		6C91BBCF1FA7D3CE0033C2B1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2AF1FA2823800B22EAB /* Fonts.swift */; };
 		6C91BBD01FA7D3D40033C2B1 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC83A8A1FA1481900FE0633 /* StringUtils.swift */; };
-		6C91BBD11FA7D3D50033C2B1 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC83A8A1FA1481900FE0633 /* StringUtils.swift */; };
 		6C91BBD21FA7D3D70033C2B1 /* ColorDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B51FA289F000B22EAB /* ColorDefinitions.swift */; };
-		6C91BBD31FA7D3D80033C2B1 /* ColorDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B51FA289F000B22EAB /* ColorDefinitions.swift */; };
 		6C91BBD41FA7D44D0033C2B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B11FA2824200B22EAB /* Constants.swift */; };
-		6C91BBD51FA7D44D0033C2B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B11FA2824200B22EAB /* Constants.swift */; };
 		6C91BBD71FA7D6220033C2B1 /* ViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBD61FA7D6220033C2B1 /* ViewPager.swift */; };
 		6C91BBD81FA7D6220033C2B1 /* ViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBD61FA7D6220033C2B1 /* ViewPager.swift */; };
-		6C91BBD91FA7D6220033C2B1 /* ViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBD61FA7D6220033C2B1 /* ViewPager.swift */; };
 		6C91BBDB1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDA1FA8E9730033C2B1 /* FTUEStartViewController.swift */; };
 		6C91BBDC1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDA1FA8E9730033C2B1 /* FTUEStartViewController.swift */; };
-		6C91BBDD1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDA1FA8E9730033C2B1 /* FTUEStartViewController.swift */; };
 		6C91BBE01FA8EB470033C2B1 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
 		6C91BBE11FA8EB470033C2B1 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
-		6C91BBE21FA8EB470033C2B1 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
 		6C91BBF11FA8F2A30033C2B1 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */; };
 		6C91BBF21FA8F2A30033C2B1 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */; };
-		6C91BBF31FA8F2A30033C2B1 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */; };
 		6C937065204F64360084443C /* SettingsCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C937064204F64360084443C /* SettingsCarViewController.swift */; };
 		6C937066204F64360084443C /* SettingsCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C937064204F64360084443C /* SettingsCarViewController.swift */; };
-		6C937067204F64360084443C /* SettingsCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C937064204F64360084443C /* SettingsCarViewController.swift */; };
 		6C95439E1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C95439D1FABEBBC0099AC84 /* UIColors+Voluxe.swift */; };
 		6C95439F1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C95439D1FABEBBC0099AC84 /* UIColors+Voluxe.swift */; };
-		6C9543A01FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C95439D1FABEBBC0099AC84 /* UIColors+Voluxe.swift */; };
 		6C9543A21FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9543A11FABEE1D0099AC84 /* UIFont+Voluxe.swift */; };
 		6C9543A31FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9543A11FABEE1D0099AC84 /* UIFont+Voluxe.swift */; };
-		6C9543A41FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9543A11FABEE1D0099AC84 /* UIFont+Voluxe.swift */; };
 		6C9543A81FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A51FACE0160099AC84 /* VolvoSanLigBol.ttf */; };
 		6C9543A91FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A51FACE0160099AC84 /* VolvoSanLigBol.ttf */; };
 		6C9543AA1FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A51FACE0160099AC84 /* VolvoSanLigBol.ttf */; };
@@ -352,124 +281,83 @@
 		6C9B0E7720A12111009221B6 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 6C9B0E7620A12111009221B6 /* Settings.bundle */; };
 		6C9B31FF202A51B3006380B9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */; };
 		6C9B3200202A51B3006380B9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */; };
-		6C9B3201202A51B4006380B9 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */; };
 		6C9B3203202A79FB006380B9 /* SettingsLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3202202A79FB006380B9 /* SettingsLocalizations.swift */; };
 		6C9B3204202A79FB006380B9 /* SettingsLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3202202A79FB006380B9 /* SettingsLocalizations.swift */; };
-		6C9B3205202A79FB006380B9 /* SettingsLocalizations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3202202A79FB006380B9 /* SettingsLocalizations.swift */; };
 		6C9B3207202A85B9006380B9 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3206202A85B9006380B9 /* SettingsCell.swift */; };
 		6C9B3208202A85B9006380B9 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3206202A85B9006380B9 /* SettingsCell.swift */; };
-		6C9B3209202A85B9006380B9 /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3206202A85B9006380B9 /* SettingsCell.swift */; };
 		6C9B320B202CFE28006380B9 /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B320A202CFE28006380B9 /* AccountSettingsViewController.swift */; };
 		6C9B320C202CFE28006380B9 /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B320A202CFE28006380B9 /* AccountSettingsViewController.swift */; };
-		6C9B320D202CFE28006380B9 /* AccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B320A202CFE28006380B9 /* AccountSettingsViewController.swift */; };
 		6C9B320F202E0CED006380B9 /* CustomerAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B320E202E0CED006380B9 /* CustomerAddress.swift */; };
 		6C9B3210202E0CED006380B9 /* CustomerAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B320E202E0CED006380B9 /* CustomerAddress.swift */; };
-		6C9B3211202E0CED006380B9 /* CustomerAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B320E202E0CED006380B9 /* CustomerAddress.swift */; };
 		6C9B3213202E7C23006380B9 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3212202E7C23006380B9 /* AddLocationViewController.swift */; };
 		6C9B3214202E7C23006380B9 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3212202E7C23006380B9 /* AddLocationViewController.swift */; };
-		6C9B3215202E7C23006380B9 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9B3212202E7C23006380B9 /* AddLocationViewController.swift */; };
 		6C9C7A7B1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */; };
 		6C9C7A7C1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */; };
-		6C9C7A7D1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */; };
 		6C9C9054209BD4CB00494068 /* GMSAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C9053209BD4CB00494068 /* GMSAddress.swift */; };
 		6C9C9055209BD4CB00494068 /* GMSAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C9053209BD4CB00494068 /* GMSAddress.swift */; };
-		6C9C9056209BD4CB00494068 /* GMSAddress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C9053209BD4CB00494068 /* GMSAddress.swift */; };
 		6C9C9058209CD8D400494068 /* GMRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C9057209CD8D400494068 /* GMRows.swift */; };
 		6C9C9059209CD8D400494068 /* GMRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C9057209CD8D400494068 /* GMRows.swift */; };
-		6C9C905A209CD8D400494068 /* GMRows.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C9057209CD8D400494068 /* GMRows.swift */; };
 		6C9C905C209CD8F500494068 /* GMElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C905B209CD8F500494068 /* GMElements.swift */; };
 		6C9C905D209CD8F500494068 /* GMElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C905B209CD8F500494068 /* GMElements.swift */; };
-		6C9C905E209CD8F500494068 /* GMElements.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C905B209CD8F500494068 /* GMElements.swift */; };
 		6C9C9060209CD96A00494068 /* GMDistanceMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C905F209CD96A00494068 /* GMDistanceMatrix.swift */; };
 		6C9C9061209CD96A00494068 /* GMDistanceMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C905F209CD96A00494068 /* GMDistanceMatrix.swift */; };
-		6C9C9062209CD96A00494068 /* GMDistanceMatrix.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C905F209CD96A00494068 /* GMDistanceMatrix.swift */; };
 		6C9C9068209D127100494068 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C9067209D127100494068 /* RemoteConfigManager.swift */; };
 		6C9C9069209D127100494068 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C9067209D127100494068 /* RemoteConfigManager.swift */; };
-		6C9C906A209D127100494068 /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C9067209D127100494068 /* RemoteConfigManager.swift */; };
 		6C9C906C209D163E00494068 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9C906B209D163E00494068 /* RemoteConfigDefaults.plist */; };
 		6C9C906D209D163E00494068 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9C906B209D163E00494068 /* RemoteConfigDefaults.plist */; };
 		6C9C906E209D163E00494068 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9C906B209D163E00494068 /* RemoteConfigDefaults.plist */; };
 		6CA20EF020939C6D00E1B549 /* VLAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA20EEF20939C6D00E1B549 /* VLAlertViewController.swift */; };
 		6CA20EF120939C6D00E1B549 /* VLAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA20EEF20939C6D00E1B549 /* VLAlertViewController.swift */; };
-		6CA20EF220939C6D00E1B549 /* VLAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA20EEF20939C6D00E1B549 /* VLAlertViewController.swift */; };
 		6CA7C944201A92A7009C00F6 /* ServiceCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA7C943201A92A7009C00F6 /* ServiceCarViewController.swift */; };
 		6CA7C945201A92A7009C00F6 /* ServiceCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA7C943201A92A7009C00F6 /* ServiceCarViewController.swift */; };
-		6CA7C946201A92A7009C00F6 /* ServiceCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA7C943201A92A7009C00F6 /* ServiceCarViewController.swift */; };
 		6CA968B120229FAD00FBEEAB /* VehiclesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA968B020229FAD00FBEEAB /* VehiclesViewController.swift */; };
 		6CA968B220229FAD00FBEEAB /* VehiclesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA968B020229FAD00FBEEAB /* VehiclesViewController.swift */; };
-		6CA968B320229FAD00FBEEAB /* VehiclesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA968B020229FAD00FBEEAB /* VehiclesViewController.swift */; };
 		6CA968B52023933800FBEEAB /* VehicleLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA968B42023933800FBEEAB /* VehicleLocalization.swift */; };
 		6CA968B62023933800FBEEAB /* VehicleLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA968B42023933800FBEEAB /* VehicleLocalization.swift */; };
-		6CA968B72023933800FBEEAB /* VehicleLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA968B42023933800FBEEAB /* VehicleLocalization.swift */; };
 		6CA968BF2023CBB500FBEEAB /* VehicleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA968BE2023CBB500FBEEAB /* VehicleCell.swift */; };
 		6CA968C02023CBB500FBEEAB /* VehicleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA968BE2023CBB500FBEEAB /* VehicleCell.swift */; };
-		6CA968C12023CBB500FBEEAB /* VehicleCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA968BE2023CBB500FBEEAB /* VehicleCell.swift */; };
 		6CB11819207D36D1008FB2FE /* UINavigationController+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */; };
 		6CB1181A207D36D1008FB2FE /* UINavigationController+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */; };
-		6CB1181B207D36D1008FB2FE /* UINavigationController+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */; };
-		6CB1181F208017C7008FB2FE /* Signin_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB1181C208017C7008FB2FE /* Signin_UITests.swift */; };
-		6CB11821208020D6008FB2FE /* Settings_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CB11820208020D6008FB2FE /* Settings_UITests.swift */; };
 		6CBAA6C72023FD3300F35ECF /* ServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6C62023FD3300F35ECF /* ServiceListViewController.swift */; };
 		6CBAA6C82023FD3300F35ECF /* ServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6C62023FD3300F35ECF /* ServiceListViewController.swift */; };
-		6CBAA6C92023FD3300F35ECF /* ServiceListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6C62023FD3300F35ECF /* ServiceListViewController.swift */; };
 		6CBAA6CB2023FEE800F35ECF /* CheckmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6CA2023FEE800F35ECF /* CheckmarkCell.swift */; };
 		6CBAA6CC2023FEE800F35ECF /* CheckmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6CA2023FEE800F35ECF /* CheckmarkCell.swift */; };
-		6CBAA6CD2023FEE800F35ECF /* CheckmarkCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6CA2023FEE800F35ECF /* CheckmarkCell.swift */; };
 		6CBAA6CF2024E91300F35ECF /* ServicesLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6CE2024E91300F35ECF /* ServicesLocalization.swift */; };
 		6CBAA6D02024E91300F35ECF /* ServicesLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6CE2024E91300F35ECF /* ServicesLocalization.swift */; };
-		6CBAA6D12024E91300F35ECF /* ServicesLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBAA6CE2024E91300F35ECF /* ServicesLocalization.swift */; };
 		6CBB4E821FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E651FB4DF7A00C31183 /* FSCalendarDelegationProxy.m */; };
 		6CBB4E831FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E651FB4DF7A00C31183 /* FSCalendarDelegationProxy.m */; };
-		6CBB4E841FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E651FB4DF7A00C31183 /* FSCalendarDelegationProxy.m */; };
 		6CBB4E851FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E661FB4DF7A00C31183 /* FSCalendarTransitionCoordinator.m */; };
 		6CBB4E861FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E661FB4DF7A00C31183 /* FSCalendarTransitionCoordinator.m */; };
-		6CBB4E871FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E661FB4DF7A00C31183 /* FSCalendarTransitionCoordinator.m */; };
 		6CBB4E881FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E681FB4DF7A00C31183 /* FSCalendarConstants.m */; };
 		6CBB4E891FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E681FB4DF7A00C31183 /* FSCalendarConstants.m */; };
-		6CBB4E8A1FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E681FB4DF7A00C31183 /* FSCalendarConstants.m */; };
 		6CBB4E8B1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E691FB4DF7A00C31183 /* FSCalendarCalculator.m */; };
 		6CBB4E8C1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E691FB4DF7A00C31183 /* FSCalendarCalculator.m */; };
-		6CBB4E8D1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E691FB4DF7A00C31183 /* FSCalendarCalculator.m */; };
 		6CBB4E8E1FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E6B1FB4DF7A00C31183 /* FSCalendarScopeHandle.m */; };
 		6CBB4E8F1FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E6B1FB4DF7A00C31183 /* FSCalendarScopeHandle.m */; };
-		6CBB4E901FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E6B1FB4DF7A00C31183 /* FSCalendarScopeHandle.m */; };
 		6CBB4E911FB4DF7D00C31183 /* FSCalendarCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E6C1FB4DF7A00C31183 /* FSCalendarCollectionViewLayout.m */; };
 		6CBB4E921FB4DF7D00C31183 /* FSCalendarCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E6C1FB4DF7A00C31183 /* FSCalendarCollectionViewLayout.m */; };
-		6CBB4E931FB4DF7D00C31183 /* FSCalendarCollectionViewLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E6C1FB4DF7A00C31183 /* FSCalendarCollectionViewLayout.m */; };
 		6CBB4E941FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E6D1FB4DF7A00C31183 /* FSCalendarStickyHeader.m */; };
 		6CBB4E951FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E6D1FB4DF7A00C31183 /* FSCalendarStickyHeader.m */; };
-		6CBB4E961FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E6D1FB4DF7A00C31183 /* FSCalendarStickyHeader.m */; };
 		6CBB4E971FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E711FB4DF7B00C31183 /* FSCalendarWeekdayView.m */; };
 		6CBB4E981FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E711FB4DF7B00C31183 /* FSCalendarWeekdayView.m */; };
-		6CBB4E991FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E711FB4DF7B00C31183 /* FSCalendarWeekdayView.m */; };
 		6CBB4E9A1FB4DF7D00C31183 /* FSCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E731FB4DF7B00C31183 /* FSCalendarCell.m */; };
 		6CBB4E9B1FB4DF7D00C31183 /* FSCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E731FB4DF7B00C31183 /* FSCalendarCell.m */; };
-		6CBB4E9C1FB4DF7D00C31183 /* FSCalendarCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E731FB4DF7B00C31183 /* FSCalendarCell.m */; };
 		6CBB4E9D1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E741FB4DF7B00C31183 /* FSCalendarDelegationFactory.m */; };
 		6CBB4E9E1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E741FB4DF7B00C31183 /* FSCalendarDelegationFactory.m */; };
-		6CBB4E9F1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E741FB4DF7B00C31183 /* FSCalendarDelegationFactory.m */; };
 		6CBB4EA01FB4DF7D00C31183 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E751FB4DF7B00C31183 /* FSCalendar.m */; };
 		6CBB4EA11FB4DF7D00C31183 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E751FB4DF7B00C31183 /* FSCalendar.m */; };
-		6CBB4EA21FB4DF7D00C31183 /* FSCalendar.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E751FB4DF7B00C31183 /* FSCalendar.m */; };
 		6CBB4EA31FB4DF7D00C31183 /* FSCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E771FB4DF7B00C31183 /* FSCalendarHeaderView.m */; };
 		6CBB4EA41FB4DF7D00C31183 /* FSCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E771FB4DF7B00C31183 /* FSCalendarHeaderView.m */; };
-		6CBB4EA51FB4DF7D00C31183 /* FSCalendarHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E771FB4DF7B00C31183 /* FSCalendarHeaderView.m */; };
 		6CBB4EA61FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E791FB4DF7C00C31183 /* FSCalendarCollectionView.m */; };
 		6CBB4EA71FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E791FB4DF7C00C31183 /* FSCalendarCollectionView.m */; };
-		6CBB4EA81FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E791FB4DF7C00C31183 /* FSCalendarCollectionView.m */; };
 		6CBB4EA91FB4DF7D00C31183 /* FSCalendarExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E7A1FB4DF7C00C31183 /* FSCalendarExtensions.m */; };
 		6CBB4EAA1FB4DF7D00C31183 /* FSCalendarExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E7A1FB4DF7C00C31183 /* FSCalendarExtensions.m */; };
-		6CBB4EAB1FB4DF7D00C31183 /* FSCalendarExtensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E7A1FB4DF7C00C31183 /* FSCalendarExtensions.m */; };
 		6CBB4EAC1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E7B1FB4DF7C00C31183 /* FSCalendar+Deprecated.m */; };
 		6CBB4EAD1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E7B1FB4DF7C00C31183 /* FSCalendar+Deprecated.m */; };
-		6CBB4EAE1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E7B1FB4DF7C00C31183 /* FSCalendar+Deprecated.m */; };
 		6CBB4EAF1FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E811FB4DF7D00C31183 /* FSCalendarAppearance.m */; };
 		6CBB4EB01FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E811FB4DF7D00C31183 /* FSCalendarAppearance.m */; };
-		6CBB4EB11FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4E811FB4DF7D00C31183 /* FSCalendarAppearance.m */; };
 		6CBB4EB31FB4E11800C31183 /* VLCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4EB21FB4E11800C31183 /* VLCalendarCell.swift */; };
 		6CBB4EB41FB4E11800C31183 /* VLCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4EB21FB4E11800C31183 /* VLCalendarCell.swift */; };
-		6CBB4EB51FB4E11800C31183 /* VLCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBB4EB21FB4E11800C31183 /* VLCalendarCell.swift */; };
-		6CBF9FE11FC5F987002BC7FC /* FTUEFlow_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FE01FC5F987002BC7FC /* FTUEFlow_UITests.swift */; };
 		6CBF9FE21FC5FB9A002BC7FC /* localhost.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7C1FA140D300FE0633 /* localhost.json */; };
 		6CBF9FE31FC5FB9A002BC7FC /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7B1FA140D300FE0633 /* mock.json */; };
 		6CBF9FE41FC5FB9A002BC7FC /* ngrok.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7A1FA140D300FE0633 /* ngrok.json */; };
@@ -483,16 +371,12 @@
 		6CBF9FEC1FC60104002BC7FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42941FA013E3000AC6C9 /* Assets.xcassets */; };
 		6CBF9FEE1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FED1FC62154002BC7FC /* FTUEChildViewController.swift */; };
 		6CBF9FEF1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FED1FC62154002BC7FC /* FTUEChildViewController.swift */; };
-		6CBF9FF01FC62154002BC7FC /* FTUEChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FED1FC62154002BC7FC /* FTUEChildViewController.swift */; };
 		6CC37E461FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */; };
 		6CC37E471FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */; };
-		6CC37E481FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */; };
 		6CC37E501FA7C41700DA8F01 /* VLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC37E4E1FA7C41700DA8F01 /* VLTextField.swift */; };
 		6CC37E511FA7C41700DA8F01 /* VLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC37E4E1FA7C41700DA8F01 /* VLTextField.swift */; };
-		6CC37E521FA7C41700DA8F01 /* VLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC37E4E1FA7C41700DA8F01 /* VLTextField.swift */; };
 		6CC37E531FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC37E4F1FA7C41700DA8F01 /* VLVerticalTextField.swift */; };
 		6CC37E541FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC37E4F1FA7C41700DA8F01 /* VLVerticalTextField.swift */; };
-		6CC37E551FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC37E4F1FA7C41700DA8F01 /* VLVerticalTextField.swift */; };
 		6CC83A801FA140D300FE0633 /* ngrok.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7A1FA140D300FE0633 /* ngrok.json */; };
 		6CC83A811FA140D300FE0633 /* mock.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7B1FA140D300FE0633 /* mock.json */; };
 		6CC83A821FA140D300FE0633 /* localhost.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7C1FA140D300FE0633 /* localhost.json */; };
@@ -501,119 +385,80 @@
 		6CC83A851FA140D300FE0633 /* sensus_qa.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7F1FA140D300FE0633 /* sensus_qa.json */; };
 		6CC83A8B1FA1481900FE0633 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC83A8A1FA1481900FE0633 /* StringUtils.swift */; };
 		6CC921A31FC4FB26009E5164 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F41FB3AF5600F6BFE0 /* AlertViewController.swift */; };
-		6CC921A41FC4FB26009E5164 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F41FB3AF5600F6BFE0 /* AlertViewController.swift */; };
-		6CC921A51FC4FBC7009E5164 /* Date+DateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B81FA297A300B22EAB /* Date+DateTools.swift */; };
 		6CC921A61FC4FBC8009E5164 /* Date+DateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B81FA297A300B22EAB /* Date+DateTools.swift */; };
 		6CCC821B20116B3A003BB3F0 /* DealershipTimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC821A20116B3A003BB3F0 /* DealershipTimeSlot.swift */; };
 		6CCC821C20116B3A003BB3F0 /* DealershipTimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC821A20116B3A003BB3F0 /* DealershipTimeSlot.swift */; };
-		6CCC821D20116B3A003BB3F0 /* DealershipTimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC821A20116B3A003BB3F0 /* DealershipTimeSlot.swift */; };
 		6CCCF23320488C5C004BF1A6 /* FTUEAddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF23220488C5C004BF1A6 /* FTUEAddVehicleViewController.swift */; };
 		6CCCF23420488C5C004BF1A6 /* FTUEAddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF23220488C5C004BF1A6 /* FTUEAddVehicleViewController.swift */; };
-		6CCCF23520488C5C004BF1A6 /* FTUEAddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF23220488C5C004BF1A6 /* FTUEAddVehicleViewController.swift */; };
 		6CCCF2372048B161004BF1A6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF2362048B161004BF1A6 /* Color.swift */; };
 		6CCCF2382048B161004BF1A6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF2362048B161004BF1A6 /* Color.swift */; };
-		6CCCF2392048B161004BF1A6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF2362048B161004BF1A6 /* Color.swift */; };
 		6CCCF23B2048BA33004BF1A6 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF23A2048BA33004BF1A6 /* VehicleModel.swift */; };
 		6CCCF23C2048BA33004BF1A6 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF23A2048BA33004BF1A6 /* VehicleModel.swift */; };
-		6CCCF23D2048BA33004BF1A6 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF23A2048BA33004BF1A6 /* VehicleModel.swift */; };
 		6CCCF241204DFA9C004BF1A6 /* EmptyMappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF240204DFA9C004BF1A6 /* EmptyMappableObject.swift */; };
 		6CCCF242204DFA9C004BF1A6 /* EmptyMappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF240204DFA9C004BF1A6 /* EmptyMappableObject.swift */; };
-		6CCCF243204DFA9C004BF1A6 /* EmptyMappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF240204DFA9C004BF1A6 /* EmptyMappableObject.swift */; };
 		6CCD428E1FA013E3000AC6C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
 		6CCD42951FA013E3000AC6C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42941FA013E3000AC6C9 /* Assets.xcassets */; };
 		6CCD42A31FA013E3000AC6C9 /* voluxe_customerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD42A21FA013E3000AC6C9 /* voluxe_customerTests.swift */; };
 		6CD0C8831FD9FB73008E4A72 /* DealershipAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8821FD9FB73008E4A72 /* DealershipAPI.swift */; };
 		6CD0C8841FD9FB73008E4A72 /* DealershipAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8821FD9FB73008E4A72 /* DealershipAPI.swift */; };
-		6CD0C8851FD9FB73008E4A72 /* DealershipAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8821FD9FB73008E4A72 /* DealershipAPI.swift */; };
 		6CD0C8871FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
 		6CD0C8881FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
-		6CD0C8891FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
 		6CD3BCA220098EF2001DD79B /* BookingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCA120098EF2001DD79B /* BookingAPI.swift */; };
 		6CD3BCA320098EF2001DD79B /* BookingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCA120098EF2001DD79B /* BookingAPI.swift */; };
-		6CD3BCA420098EF2001DD79B /* BookingAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCA120098EF2001DD79B /* BookingAPI.swift */; };
 		6CD3BCA520099596001DD79B /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */; };
-		6CD3BCA620099597001DD79B /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */; };
 		6CD3BCA7200995A2001DD79B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BA1FA29A1C00B22EAB /* Location.swift */; };
-		6CD3BCA8200995A2001DD79B /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BA1FA29A1C00B22EAB /* Location.swift */; };
 		6CD3BCAA200E727A001DD79B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCA9200E727A001DD79B /* Booking.swift */; };
 		6CD3BCAB200E727A001DD79B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCA9200E727A001DD79B /* Booking.swift */; };
-		6CD3BCAC200E727A001DD79B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCA9200E727A001DD79B /* Booking.swift */; };
 		6CD3BCAE200E85FE001DD79B /* RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */; };
 		6CD3BCAF200E85FE001DD79B /* RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */; };
-		6CD3BCB0200E85FE001DD79B /* RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */; };
 		6CD474AC2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */; };
 		6CD474AD2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */; };
-		6CD474AE2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */; };
 		6CD474B0204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */; };
 		6CD474B1204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */; };
-		6CD474B2204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */; };
 		6CD474B420460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B320460C260082A44A /* FTUESignupPasswordViewController.swift */; };
 		6CD474B520460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B320460C260082A44A /* FTUESignupPasswordViewController.swift */; };
-		6CD474B620460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B320460C260082A44A /* FTUESignupPasswordViewController.swift */; };
 		6CD474B8204616C10082A44A /* CarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B7204616C10082A44A /* CarPickerViewController.swift */; };
 		6CD474B9204616C10082A44A /* CarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B7204616C10082A44A /* CarPickerViewController.swift */; };
-		6CD474BA204616C10082A44A /* CarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B7204616C10082A44A /* CarPickerViewController.swift */; };
 		6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D151FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
-		6CD47D161FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D181FAD190F00D794A6 /* VLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D171FAD190F00D794A6 /* VLButton.swift */; };
 		6CD47D191FAD190F00D794A6 /* VLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D171FAD190F00D794A6 /* VLButton.swift */; };
-		6CD47D1A1FAD190F00D794A6 /* VLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D171FAD190F00D794A6 /* VLButton.swift */; };
 		6CDCC5FE2053592700DFA831 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC5FD2053592700DFA831 /* RequestType.swift */; };
 		6CDCC5FF2053592700DFA831 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC5FD2053592700DFA831 /* RequestType.swift */; };
-		6CDCC6002053592700DFA831 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC5FD2053592700DFA831 /* RequestType.swift */; };
 		6CDCC602205743DB00DFA831 /* NewServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC601205743DB00DFA831 /* NewServiceViewController.swift */; };
 		6CDCC603205743DB00DFA831 /* NewServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC601205743DB00DFA831 /* NewServiceViewController.swift */; };
-		6CDCC604205743DB00DFA831 /* NewServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC601205743DB00DFA831 /* NewServiceViewController.swift */; };
 		6CDCC6062058411200DFA831 /* ServiceMultiselectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC6052058411200DFA831 /* ServiceMultiselectListViewController.swift */; };
 		6CDCC6072058411200DFA831 /* ServiceMultiselectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC6052058411200DFA831 /* ServiceMultiselectListViewController.swift */; };
-		6CDCC6082058411200DFA831 /* ServiceMultiselectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC6052058411200DFA831 /* ServiceMultiselectListViewController.swift */; };
 		6CDCC60A2058442800DFA831 /* CheckableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC6092058442800DFA831 /* CheckableTableViewCell.swift */; };
 		6CDCC60B2058442800DFA831 /* CheckableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC6092058442800DFA831 /* CheckableTableViewCell.swift */; };
-		6CDCC60C2058442800DFA831 /* CheckableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC6092058442800DFA831 /* CheckableTableViewCell.swift */; };
 		6CDCC60E2059983000DFA831 /* OtherServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC60D2059983000DFA831 /* OtherServiceViewController.swift */; };
 		6CDCC60F2059983000DFA831 /* OtherServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC60D2059983000DFA831 /* OtherServiceViewController.swift */; };
-		6CDCC6102059983000DFA831 /* OtherServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC60D2059983000DFA831 /* OtherServiceViewController.swift */; };
 		6CDCC612205C40B400DFA831 /* RepairOrderAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC611205C40B400DFA831 /* RepairOrderAPI.swift */; };
 		6CDCC613205C40B500DFA831 /* RepairOrderAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC611205C40B400DFA831 /* RepairOrderAPI.swift */; };
-		6CDCC614205C40B500DFA831 /* RepairOrderAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC611205C40B400DFA831 /* RepairOrderAPI.swift */; };
 		6CDCC616205C461100DFA831 /* RepairOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC615205C461100DFA831 /* RepairOrderType.swift */; };
 		6CDCC617205C461100DFA831 /* RepairOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC615205C461100DFA831 /* RepairOrderType.swift */; };
-		6CDCC618205C461100DFA831 /* RepairOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC615205C461100DFA831 /* RepairOrderType.swift */; };
 		6CDCC61A20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */; };
 		6CDCC61B20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */; };
-		6CDCC61C20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */; };
 		6CDCC61E20607EB400DFA831 /* DealershipRepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */; };
 		6CDCC61F20607EB400DFA831 /* DealershipRepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */; };
-		6CDCC62020607EB400DFA831 /* DealershipRepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */; };
 		6CDCD7F7200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		6CDCD7F8200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
-		6CDCD7F9200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
-		6CE1479520AE300B001F4BC7 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479420AE300B001F4BC7 /* RealmManager.swift */; };
-		6CE1479620AE300B001F4BC7 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479420AE300B001F4BC7 /* RealmManager.swift */; };
-		6CE1479720AE300B001F4BC7 /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479420AE300B001F4BC7 /* RealmManager.swift */; };
 		6CE5AC061FACF116009FD0D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
 		6CE5DFC220633A5600234C22 /* ArrayTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5DFC120633A5600234C22 /* ArrayTransform.swift */; };
 		6CE5DFC320633A5600234C22 /* ArrayTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5DFC120633A5600234C22 /* ArrayTransform.swift */; };
-		6CE5DFC420633A5600234C22 /* ArrayTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5DFC120633A5600234C22 /* ArrayTransform.swift */; };
 		6CE687832036634A00D915FC /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687822036634A00D915FC /* State.swift */; };
 		6CE687842036634A00D915FC /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687822036634A00D915FC /* State.swift */; };
-		6CE687852036634A00D915FC /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687822036634A00D915FC /* State.swift */; };
 		6CE687872037A3D000D915FC /* ScheduledBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */; };
 		6CE687882037A3D000D915FC /* ScheduledBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */; };
-		6CE687892037A3D000D915FC /* ScheduledBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */; };
 		6CE68792203F7D5A00D915FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CE68796203F7D5A00D915FC /* InfoPlist.strings */; };
 		6CE68793203F7D5A00D915FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CE68796203F7D5A00D915FC /* InfoPlist.strings */; };
 		6CE68794203F7D5A00D915FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CE68796203F7D5A00D915FC /* InfoPlist.strings */; };
 		6CE6879A2040CD0900D915FC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687992040CD0900D915FC /* Errors.swift */; };
 		6CE6879B2040CD0900D915FC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687992040CD0900D915FC /* Errors.swift */; };
-		6CE6879C2040CD0900D915FC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687992040CD0900D915FC /* Errors.swift */; };
 		6CE6879E2044CEAE00D915FC /* ContactDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE6879D2044CEAE00D915FC /* ContactDriver.swift */; };
 		6CE6879F2044CEAE00D915FC /* ContactDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE6879D2044CEAE00D915FC /* ContactDriver.swift */; };
-		6CE687A02044CEAE00D915FC /* ContactDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE6879D2044CEAE00D915FC /* ContactDriver.swift */; };
 		6CEA0D591FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
 		6CEA0D5A1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
-		6CEA0D5B1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
 		6CFBF9B21FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AE1FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf */; };
 		6CFBF9B31FA1131700D3AA78 /* VolvoSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */; };
 		6CFBF9B41FA1131700D3AA78 /* VolvoSansPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */; };
@@ -639,16 +484,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0E5AAE50AA8497BB1E6BE260 /* Pods-voluxe-customerUITests.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.mock.xcconfig"; sourceTree = "<group>"; };
 		0EA8211FDAE1534EB5CFACC1 /* Pods-voluxe-customer.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.appstore.xcconfig"; sourceTree = "<group>"; };
 		13FF37696ECA3479BE741D40 /* Pods_voluxe_customerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		157A6548901B512121063D4D /* Pods-voluxe-customerUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.staging.xcconfig"; sourceTree = "<group>"; };
 		2A1895FADFCBA7BA67D2D274 /* Pods-voluxe-customerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.release.xcconfig"; sourceTree = "<group>"; };
 		2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B6038B597B8FCF0776E4AE /* Pods-voluxe-customerTests.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.mock.xcconfig"; sourceTree = "<group>"; };
 		36F8C19BBDAC98004E8F0A9A /* Pods-voluxe-customerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		37952587A3C8FD52A3A4CA15 /* Pods-voluxe-customerUITests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.beta.xcconfig"; sourceTree = "<group>"; };
 		446B7D7AA76D7E178415AA45 /* Pods-voluxe-customer.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.dev.xcconfig"; sourceTree = "<group>"; };
 		4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
-		4B49F366D485907B0CD58867 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
+		4C64F631C2578E5AD1F6A474 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
+		5322408020AE231500D4E86C /* AdminAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminAPI.swift; sourceTree = "<group>"; };
+		5322408320AE570000D4E86C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		5322408620AE5A2400D4E86C /* VerificationCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCode.swift; sourceTree = "<group>"; };
+		5322408820AE688600D4E86C /* AdminAPI+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdminAPI+Test.swift"; sourceTree = "<group>"; };
+		5322408A20AE6ADA00D4E86C /* XCTest+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+Test.swift"; sourceTree = "<group>"; };
+		5322408C20AE6B3500D4E86C /* String+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Test.swift"; sourceTree = "<group>"; };
+		5322408E20AE6B7500D4E86C /* Int+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Test.swift"; sourceTree = "<group>"; };
+		5322409220B385C300D4E86C /* NetworkRequest+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRequest+Admin.swift"; sourceTree = "<group>"; };
+		5322409420B38BF700D4E86C /* BotUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotUser.swift; sourceTree = "<group>"; };
+		5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount_UITests.swift; sourceTree = "<group>"; };
 		5365315520AA33F300116AC8 /* increment_build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = increment_build.sh; sourceTree = "<group>"; };
 		538FBDE020AB45EA0096480C /* release-notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "release-notes.txt"; sourceTree = "<group>"; };
 		538FBDE120AB61BC0096480C /* export-options-development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "export-options-development.plist"; sourceTree = "<group>"; };
@@ -668,9 +524,13 @@
 		53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Debug.swift"; sourceTree = "<group>"; };
 		53D9A7BE209A79C8008BE93E /* DebugTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugTableViewCell.swift; sourceTree = "<group>"; };
 		53D9A7C0209A7D01008BE93E /* NSObject+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Voluxe.swift"; sourceTree = "<group>"; };
+		53EF28CB20AE064E006CC5FA /* CustomerAPI+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Login.swift"; sourceTree = "<group>"; };
+		53EF28CE20AE065F006CC5FA /* CustomerAPI+Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Signup.swift"; sourceTree = "<group>"; };
+		53EF28D120AE066B006CC5FA /* CustomerAPI+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Account.swift"; sourceTree = "<group>"; };
+		53EF28D420AE067C006CC5FA /* CustomerAPI+Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Vehicle.swift"; sourceTree = "<group>"; };
 		54E9A9FC051BC64540A65AF6 /* Pods-voluxe-customerTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.appstore.xcconfig"; sourceTree = "<group>"; };
+		584D4FE40136C325D769CD2E /* Pods-voluxe-customerUITests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.beta.xcconfig"; sourceTree = "<group>"; };
 		5B073D73742601FC967B4DD1 /* Pods-voluxe-customer.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.production.xcconfig"; sourceTree = "<group>"; };
-		6796259E2527512DC57B3E09 /* Pods-voluxe-customerUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.staging.xcconfig"; sourceTree = "<group>"; };
 		69AE2DE1F0F874762B0DBABE /* Pods_voluxe_customer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C11208D2016B2C70048A56D /* BookingSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSyncManager.swift; sourceTree = "<group>"; };
 		6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceState.swift; sourceTree = "<group>"; };
@@ -810,7 +670,6 @@
 		6CA968B42023933800FBEEAB /* VehicleLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleLocalization.swift; sourceTree = "<group>"; };
 		6CA968BE2023CBB500FBEEAB /* VehicleCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleCell.swift; sourceTree = "<group>"; };
 		6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Voluxe.swift"; sourceTree = "<group>"; };
-		6CB1181C208017C7008FB2FE /* Signin_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Signin_UITests.swift; sourceTree = "<group>"; };
 		6CB11820208020D6008FB2FE /* Settings_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Settings_UITests.swift; sourceTree = "<group>"; };
 		6CBAA6C62023FD3300F35ECF /* ServiceListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceListViewController.swift; sourceTree = "<group>"; };
 		6CBAA6CA2023FEE800F35ECF /* CheckmarkCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckmarkCell.swift; sourceTree = "<group>"; };
@@ -848,7 +707,7 @@
 		6CBB4E801FB4DF7C00C31183 /* FSCalendarAppearance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FSCalendarAppearance.h; sourceTree = "<group>"; };
 		6CBB4E811FB4DF7D00C31183 /* FSCalendarAppearance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FSCalendarAppearance.m; sourceTree = "<group>"; };
 		6CBB4EB21FB4E11800C31183 /* VLCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCalendarCell.swift; sourceTree = "<group>"; };
-		6CBF9FE01FC5F987002BC7FC /* FTUEFlow_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEFlow_UITests.swift; sourceTree = "<group>"; };
+		6CBF9FE01FC5F987002BC7FC /* SignIn_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn_UITests.swift; sourceTree = "<group>"; };
 		6CBF9FED1FC62154002BC7FC /* FTUEChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEChildViewController.swift; sourceTree = "<group>"; };
 		6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		6CC37E4E1FA7C41700DA8F01 /* VLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLTextField.swift; sourceTree = "<group>"; };
@@ -913,9 +772,8 @@
 		6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Medium.ttf"; sourceTree = "<group>"; };
 		6CFBF9B11FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSerifPro-Italic.ttf"; sourceTree = "<group>"; };
 		7FCDEDCAD410198A43AB504F /* Pods-voluxe-customer.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.staging.xcconfig"; sourceTree = "<group>"; };
-		803BAC3B2EF480CCA3456751 /* Pods-voluxe-customerUITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.production.xcconfig"; sourceTree = "<group>"; };
-		8195C5448AC6BC029902806A /* Pods-voluxe-customerUITests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.appstore.xcconfig"; sourceTree = "<group>"; };
 		830E0EB28610D29BD9577A43 /* Pods-voluxe-customerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.debug.xcconfig"; sourceTree = "<group>"; };
+		87CC82F62182FCB97FB5E935 /* Pods-voluxe-customerUITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.production.xcconfig"; sourceTree = "<group>"; };
 		933568A04AC5651273071D0D /* Pods-voluxe-customer.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.mock.xcconfig"; sourceTree = "<group>"; };
 		A4754A5C4909D3DF093D3ACF /* Pods-voluxe-customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.release.xcconfig"; sourceTree = "<group>"; };
 		AA96592C3EA6EA36370D05FB /* Pods-voluxe-customerTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.production.xcconfig"; sourceTree = "<group>"; };
@@ -924,7 +782,7 @@
 		B6E3B388CB760BA2DCBFB310 /* Pods-voluxe-customerTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.dev.xcconfig"; sourceTree = "<group>"; };
 		CB5930D7EB214B9171D1E545 /* Pods-voluxe-customerTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.beta.xcconfig"; sourceTree = "<group>"; };
 		D30969AB2ED2FFA25749FB68 /* Pods-voluxe-customerTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.staging.xcconfig"; sourceTree = "<group>"; };
-		E073151F8E5C7484B3BB2B46 /* Pods-voluxe-customerUITests.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.mock.xcconfig"; sourceTree = "<group>"; };
+		D84E7C82BDB9F161073CF3E3 /* Pods-voluxe-customerUITests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.appstore.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -948,7 +806,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F168EBDD50184A5503B6E44 /* Pods_voluxe_customerUITests.framework in Frameworks */,
+				52078A4D132E9D871CDD555D /* Pods_voluxe_customerUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1159,6 +1017,8 @@
 				6CDCC5FD2053592700DFA831 /* RequestType.swift */,
 				6CE687822036634A00D915FC /* State.swift */,
 				6C4D91BA1FDB15F90031E3CB /* Token.swift */,
+				5322408320AE570000D4E86C /* User.swift */,
+				5322408620AE5A2400D4E86C /* VerificationCode.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -1460,15 +1320,20 @@
 		6CC83A861FA1478100FE0633 /* Service */ = {
 			isa = PBXGroup;
 			children = (
+				5322408020AE231500D4E86C /* AdminAPI.swift */,
 				6CD3BCA120098EF2001DD79B /* BookingAPI.swift */,
 				6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */,
+				53EF28D120AE066B006CC5FA /* CustomerAPI+Account.swift */,
+				53EF28CB20AE064E006CC5FA /* CustomerAPI+Login.swift */,
+				53EF28CE20AE065F006CC5FA /* CustomerAPI+Signup.swift */,
+				53EF28D420AE067C006CC5FA /* CustomerAPI+Vehicle.swift */,
 				6CD0C8821FD9FB73008E4A72 /* DealershipAPI.swift */,
+				6CE687992040CD0900D915FC /* Errors.swift */,
 				6C20E18A1FBE0E6200E5D9A0 /* GoogleDistanceMatrixAPI.swift */,
 				6C79C43D20A283DB00443463 /* GoogleSnappedPointsAPI.swift */,
 				6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */,
 				6CDCC611205C40B400DFA831 /* RepairOrderAPI.swift */,
 				6C497102207823E100FF33E9 /* VehicleAPI.swift */,
-				6CE687992040CD0900D915FC /* Errors.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -1547,11 +1412,17 @@
 		6CCD42AC1FA013E3000AC6C9 /* voluxe-customerUITests */ = {
 			isa = PBXGroup;
 			children = (
-				6CBF9FE01FC5F987002BC7FC /* FTUEFlow_UITests.swift */,
-				6CB1181C208017C7008FB2FE /* Signin_UITests.swift */,
-				6CB11820208020D6008FB2FE /* Settings_UITests.swift */,
-				6C5EB9891FCE38980019ACAA /* MainController_UITests.swift */,
+				5322408820AE688600D4E86C /* AdminAPI+Test.swift */,
+				5322409420B38BF700D4E86C /* BotUser.swift */,
+				5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */,
 				6CCD42AF1FA013E3000AC6C9 /* Info.plist */,
+				5322408E20AE6B7500D4E86C /* Int+Test.swift */,
+				6C5EB9891FCE38980019ACAA /* MainController_UITests.swift */,
+				5322409220B385C300D4E86C /* NetworkRequest+Admin.swift */,
+				6CB11820208020D6008FB2FE /* Settings_UITests.swift */,
+				6CBF9FE01FC5F987002BC7FC /* SignIn_UITests.swift */,
+				5322408C20AE6B3500D4E86C /* String+Test.swift */,
+				5322408A20AE6ADA00D4E86C /* XCTest+Test.swift */,
 			);
 			path = "voluxe-customerUITests";
 			sourceTree = "<group>";
@@ -1602,7 +1473,6 @@
 				B6E3B388CB760BA2DCBFB310 /* Pods-voluxe-customerTests.dev.xcconfig */,
 				2A1895FADFCBA7BA67D2D274 /* Pods-voluxe-customerTests.release.xcconfig */,
 				36F8C19BBDAC98004E8F0A9A /* Pods-voluxe-customerUITests.debug.xcconfig */,
-				4B49F366D485907B0CD58867 /* Pods-voluxe-customerUITests.dev.xcconfig */,
 				B14C89A33603EA2EDE01A8EF /* Pods-voluxe-customerUITests.release.xcconfig */,
 				7FCDEDCAD410198A43AB504F /* Pods-voluxe-customer.staging.xcconfig */,
 				5B073D73742601FC967B4DD1 /* Pods-voluxe-customer.production.xcconfig */,
@@ -1610,15 +1480,16 @@
 				D30969AB2ED2FFA25749FB68 /* Pods-voluxe-customerTests.staging.xcconfig */,
 				AA96592C3EA6EA36370D05FB /* Pods-voluxe-customerTests.production.xcconfig */,
 				54E9A9FC051BC64540A65AF6 /* Pods-voluxe-customerTests.appstore.xcconfig */,
-				6796259E2527512DC57B3E09 /* Pods-voluxe-customerUITests.staging.xcconfig */,
-				803BAC3B2EF480CCA3456751 /* Pods-voluxe-customerUITests.production.xcconfig */,
-				8195C5448AC6BC029902806A /* Pods-voluxe-customerUITests.appstore.xcconfig */,
 				933568A04AC5651273071D0D /* Pods-voluxe-customer.mock.xcconfig */,
 				31B6038B597B8FCF0776E4AE /* Pods-voluxe-customerTests.mock.xcconfig */,
-				E073151F8E5C7484B3BB2B46 /* Pods-voluxe-customerUITests.mock.xcconfig */,
 				B453226A4ECDB078AE79C466 /* Pods-voluxe-customer.beta.xcconfig */,
 				CB5930D7EB214B9171D1E545 /* Pods-voluxe-customerTests.beta.xcconfig */,
-				37952587A3C8FD52A3A4CA15 /* Pods-voluxe-customerUITests.beta.xcconfig */,
+				4C64F631C2578E5AD1F6A474 /* Pods-voluxe-customerUITests.dev.xcconfig */,
+				0E5AAE50AA8497BB1E6BE260 /* Pods-voluxe-customerUITests.mock.xcconfig */,
+				157A6548901B512121063D4D /* Pods-voluxe-customerUITests.staging.xcconfig */,
+				87CC82F62182FCB97FB5E935 /* Pods-voluxe-customerUITests.production.xcconfig */,
+				D84E7C82BDB9F161073CF3E3 /* Pods-voluxe-customerUITests.appstore.xcconfig */,
+				584D4FE40136C325D769CD2E /* Pods-voluxe-customerUITests.beta.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1674,12 +1545,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CCD42B81FA013E3000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-customerUITests" */;
 			buildPhases = (
-				D872A81313767E138A2323D6 /* [CP] Check Pods Manifest.lock */,
+				FDE141B9FC44858AC6BC125F /* [CP] Check Pods Manifest.lock */,
 				6CCD42A51FA013E3000AC6C9 /* Sources */,
 				6CCD42A61FA013E3000AC6C9 /* Frameworks */,
 				6CCD42A71FA013E3000AC6C9 /* Resources */,
-				4FBBA4AC3B4DFEA2634B6525 /* [CP] Embed Pods Frameworks */,
-				5092F1ABA3BB1FAA8B99BBDF /* [CP] Copy Pods Resources */,
+				3C4849AA36DAD32C46B63825 /* [CP] Embed Pods Frameworks */,
+				3B2B55B7FF8742265B5DFEA4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1906,6 +1777,49 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3B2B55B7FF8742265B5DFEA4 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3C4849AA36DAD32C46B63825 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		4BEE99853E0F3B20689E5BB2 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1924,88 +1838,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4FBBA4AC3B4DFEA2634B6525 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEventBus.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		5092F1ABA3BB1FAA8B99BBDF /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		539F626F2092ABD90023DF59 /* ShellScript */ = {
@@ -2147,7 +1979,7 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D872A81313767E138A2323D6 /* [CP] Check Pods Manifest.lock */ = {
+		FDE141B9FC44858AC6BC125F /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -2194,6 +2026,7 @@
 				6CBB4EA61FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */,
 				6CBB4E851FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
 				6CCCF2372048B161004BF1A6 /* Color.swift in Sources */,
+				53EF28D220AE066B006CC5FA /* CustomerAPI+Account.swift in Sources */,
 				6C2B32481FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */,
 				6CB11819207D36D1008FB2FE /* UINavigationController+Voluxe.swift in Sources */,
 				6C7495E31FDA1F790036FC08 /* MappableDataObject.swift in Sources */,
@@ -2223,6 +2056,7 @@
 				6CD3BCAE200E85FE001DD79B /* RepairOrder.swift in Sources */,
 				6C88DC941FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6CCCF23B2048BA33004BF1A6 /* VehicleModel.swift in Sources */,
+				53EF28CC20AE064E006CC5FA /* CustomerAPI+Login.swift in Sources */,
 				6C9C905C209CD8F500494068 /* GMElements.swift in Sources */,
 				6CBB4EA01FB4DF7D00C31183 /* FSCalendar.m in Sources */,
 				6C32C3171FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */,
@@ -2239,7 +2073,6 @@
 				6CBB4EAC1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */,
 				6C5833191FB3AF5600F6BFE0 /* PresentrController.swift in Sources */,
 				6C4970F72064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */,
-				6CE1479520AE300B001F4BC7 /* RealmManager.swift in Sources */,
 				6C20E1AD1FBE408B00E5D9A0 /* SchedulingViewController.swift in Sources */,
 				6C58330F1FB3AF5600F6BFE0 /* CrossDissolveAnimation.swift in Sources */,
 				6CBB4E911FB4DF7D00C31183 /* FSCalendarCollectionViewLayout.m in Sources */,
@@ -2300,6 +2133,7 @@
 				6CE6879A2040CD0900D915FC /* Errors.swift in Sources */,
 				6C7DDE0F1FDB64CD000E2822 /* Logger.swift in Sources */,
 				6C4970FB20754E2700FF33E9 /* SyncTimer.swift in Sources */,
+				53EF28CF20AE065F006CC5FA /* CustomerAPI+Signup.swift in Sources */,
 				6C9B3207202A85B9006380B9 /* SettingsCell.swift in Sources */,
 				6CCCF23320488C5C004BF1A6 /* FTUEAddVehicleViewController.swift in Sources */,
 				6CCC821B20116B3A003BB3F0 /* DealershipTimeSlot.swift in Sources */,
@@ -2313,6 +2147,7 @@
 				6C9C7A7B1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
 				6C5D866C2032539900BBADDC /* VLVerticalSearchTextField.swift in Sources */,
 				6C2AA2E720AB900F0089350B /* UIBarButtonItem+Voluxe.swift in Sources */,
+				53EF28D520AE067C006CC5FA /* CustomerAPI+Vehicle.swift in Sources */,
 				6C6F4BCE1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6CC37E501FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6CD0C8871FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */,
@@ -2351,6 +2186,7 @@
 				53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */,
 				6C69267E1FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */,
 				6C3FB2AD1FA2574C00B22EAB /* FuelData.swift in Sources */,
+				5322409020B32CE600D4E86C /* RealmManager.swift in Sources */,
 				6C4D91BB1FDB15F90031E3CB /* Token.swift in Sources */,
 				6C3A112F1FD8A1390069EF9C /* WebViewLoginViewController.swift in Sources */,
 				6C497103207823E100FF33E9 /* VehicleAPI.swift in Sources */,
@@ -2430,7 +2266,6 @@
 				6C9C9069209D127100494068 /* RemoteConfigManager.swift in Sources */,
 				6C5833361FB3AF9900F6BFE0 /* PresentrAnimation.swift in Sources */,
 				6C7342041FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
-				6CE1479620AE300B001F4BC7 /* RealmManager.swift in Sources */,
 				6CDCC61F20607EB400DFA831 /* DealershipRepairOrder.swift in Sources */,
 				6CD0C8841FD9FB73008E4A72 /* DealershipAPI.swift in Sources */,
 				6C9C9061209CD96A00494068 /* GMDistanceMatrix.swift in Sources */,
@@ -2558,190 +2393,32 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CB11821208020D6008FB2FE /* Settings_UITests.swift in Sources */,
-				6C4970F92064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */,
-				6CBB4E931FB4DF7D00C31183 /* FSCalendarCollectionViewLayout.m in Sources */,
-				6C20E1851FBD206E00E5D9A0 /* ServiceState.swift in Sources */,
-				6C58332E1FB3AF8000F6BFE0 /* ModalSize.swift in Sources */,
-				6C9C905E209CD8F500494068 /* GMElements.swift in Sources */,
-				6C6926801FB3B3E3009495E9 /* LoanerPickupViewController.swift in Sources */,
-				6CC37E551FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
-				6CDCC61C20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */,
-				6C9C9062209CD96A00494068 /* GMDistanceMatrix.swift in Sources */,
-				6CD47D161FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
-				6C8A16E3209289EB00F888D6 /* ConstraintMaker+Voluxe.swift in Sources */,
-				6C522458208568E90078D9B9 /* PasswordToggleVisibilityView.swift in Sources */,
-				6C91BBE21FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
-				6C22087E1FBD0C6700874882 /* Driver.swift in Sources */,
-				6CBB4E8D1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
-				6CDCC6102059983000DFA831 /* OtherServiceViewController.swift in Sources */,
-				6C20E1EE1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */,
-				6C20E1C91FBE6D2400E5D9A0 /* StateService.swift in Sources */,
-				6C5DDED020096F3A000847C9 /* Customer.swift in Sources */,
-				6C79C43820A2800800443463 /* GMLocation.swift in Sources */,
-				6C20E1D21FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
-				6C9C906A209D127100494068 /* RemoteConfigManager.swift in Sources */,
-				6CBB4EA51FB4DF7D00C31183 /* FSCalendarHeaderView.m in Sources */,
-				6C91BBF31FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
-				6C20E1BD1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
-				6CBAA6D12024E91300F35ECF /* ServicesLocalization.swift in Sources */,
-				6C73420A1FB127A300E90F7E /* DealershipPickupViewController.swift in Sources */,
-				6C606ACE1FC501550030BBE3 /* AppDelegate.swift in Sources */,
-				6C7DDE111FDB64D1000E2822 /* Logger.swift in Sources */,
-				6CEA0D5B1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */,
-				6CBB4EB51FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
-				6CD3BCB0200E85FE001DD79B /* RepairOrder.swift in Sources */,
-				6CCCF23D2048BA33004BF1A6 /* VehicleModel.swift in Sources */,
-				6CBAA6CD2023FEE800F35ECF /* CheckmarkCell.swift in Sources */,
-				6CBB4EB11FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */,
-				6C79C44020A283DB00443463 /* GoogleSnappedPointsAPI.swift in Sources */,
-				6C5833391FB3AF9900F6BFE0 /* Presentr.swift in Sources */,
-				6C1120902016B2C70048A56D /* BookingSyncManager.swift in Sources */,
-				6CD474B2204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */,
-				6C8159B61FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
-				6CCC821D20116B3A003BB3F0 /* DealershipTimeSlot.swift in Sources */,
-				6CD474AE2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */,
-				6C9B3211202E0CED006380B9 /* CustomerAddress.swift in Sources */,
-				6CBF9FF01FC62154002BC7FC /* FTUEChildViewController.swift in Sources */,
-				6CA7C946201A92A7009C00F6 /* ServiceCarViewController.swift in Sources */,
-				6CC921A41FC4FB26009E5164 /* AlertViewController.swift in Sources */,
-				6CC37E481FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
-				6C58333B1FB3AF9900F6BFE0 /* PresentrController.swift in Sources */,
-				6C20E1DA1FBF725F00E5D9A0 /* LocationUtils.swift in Sources */,
-				6CDCC6082058411200DFA831 /* ServiceMultiselectListViewController.swift in Sources */,
-				6C497105207823E100FF33E9 /* VehicleAPI.swift in Sources */,
-				6C20E1E21FBF770C00E5D9A0 /* Request.swift in Sources */,
-				6C32C3091FBCC0E900B1218C /* Step.swift in Sources */,
-				6CD474BA204616C10082A44A /* CarPickerViewController.swift in Sources */,
-				6C937067204F64360084443C /* SettingsCarViewController.swift in Sources */,
-				6C7342161FB25F8C00E90F7E /* LocationPickupViewController.swift in Sources */,
-				6C79C43020A27FD800443463 /* GMSnappedPoint.swift in Sources */,
-				6CDCD7F9200EE5620099258C /* VLDateFormatter.swift in Sources */,
-				6C32C3151FBCCD8C00B1218C /* ScheduledPickupViewController.swift in Sources */,
-				6C58332B1FB3AF8000F6BFE0 /* CrossDissolveAnimation.swift in Sources */,
-				6CA968C12023CBB500FBEEAB /* VehicleCell.swift in Sources */,
-				6C73420E1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,
-				6CBB4E9C1FB4DF7D00C31183 /* FSCalendarCell.m in Sources */,
-				6C4970FD20754E2700FF33E9 /* SyncTimer.swift in Sources */,
-				6C7DDE1F1FE1B864000E2822 /* VLAnalytics.swift in Sources */,
-				6C9B3215202E7C23006380B9 /* AddLocationViewController.swift in Sources */,
-				6C5833221FB3AF7800F6BFE0 /* CoverHorizontalAnimation.swift in Sources */,
-				6C20E18D1FBE0E6200E5D9A0 /* GoogleDistanceMatrixAPI.swift in Sources */,
-				6C20E1B41FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift in Sources */,
-				6C58333A1FB3AF9900F6BFE0 /* PresentrAnimation.swift in Sources */,
-				6C7342051FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
-				6C88DC9A1FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
-				6CBB4E991FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */,
-				6C91BBD91FA7D6220033C2B1 /* ViewPager.swift in Sources */,
-				6C497101207580C800FF33E9 /* LeftPanelActiveBooking.swift in Sources */,
-				6CDCC62020607EB400DFA831 /* DealershipRepairOrder.swift in Sources */,
-				6CD3BCA620099597001DD79B /* Vehicle.swift in Sources */,
-				6C9B320D202CFE28006380B9 /* AccountSettingsViewController.swift in Sources */,
-				6C9543A41FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
-				6CE6879C2040CD0900D915FC /* Errors.swift in Sources */,
-				6C345A111FD897E4006CAC32 /* Config.swift in Sources */,
-				6CD0C8851FD9FB73008E4A72 /* DealershipAPI.swift in Sources */,
-				6CA20EF220939C6D00E1B549 /* VLAlertViewController.swift in Sources */,
-				6CA968B320229FAD00FBEEAB /* VehiclesViewController.swift in Sources */,
-				6C7495D91FDA0CEB0036FC08 /* Meta.swift in Sources */,
-				6CE5DFC420633A5600234C22 /* ArrayTransform.swift in Sources */,
-				6C4971092078272400FF33E9 /* VehicleMake.swift in Sources */,
-				6C20E1A21FBE152200E5D9A0 /* GMTextValueObject.swift in Sources */,
-				6C9B3201202A51B4006380B9 /* SettingsViewController.swift in Sources */,
-				6C7342011FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
-				6CBB4E9F1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
-				6C58332C1FB3AF8000F6BFE0 /* KeyboardTranslation.swift in Sources */,
-				6C20E1891FBE061A00E5D9A0 /* ETAMarker.swift in Sources */,
-				6CBB4EA21FB4DF7D00C31183 /* FSCalendar.m in Sources */,
-				6C91BBD31FA7D3D80033C2B1 /* ColorDefinitions.swift in Sources */,
-				6C9C905A209CD8D400494068 /* GMRows.swift in Sources */,
-				6CE1479720AE300B001F4BC7 /* RealmManager.swift in Sources */,
-				6C20E1A81FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */,
-				6C20E1B81FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift in Sources */,
-				6C5832C71FB38C9000F6BFE0 /* LocationManager.swift in Sources */,
-				6C20E1C51FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */,
-				6C5833201FB3AF7500F6BFE0 /* BackgroundView.swift in Sources */,
-				6C58333C1FB3AF9900F6BFE0 /* PresentrShadow.swift in Sources */,
-				6C9543A01FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
-				6C5D866E2032539900BBADDC /* VLVerticalSearchTextField.swift in Sources */,
-				6CDCC618205C461100DFA831 /* RepairOrderType.swift in Sources */,
-				6CDCC604205743DB00DFA831 /* NewServiceViewController.swift in Sources */,
-				6C91BBDD1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
-				6C91BBCF1FA7D3CE0033C2B1 /* Fonts.swift in Sources */,
-				6CBB4E901FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
-				6C7495E11FDA1E870036FC08 /* MappableDataArray.swift in Sources */,
-				6C58332D1FB3AF8000F6BFE0 /* ModalCenterPosition.swift in Sources */,
-				6C7DDE151FDB664D000E2822 /* String+Utils.swift in Sources */,
-				6C2AA2E920AB900F0089350B /* UIBarButtonItem+Voluxe.swift in Sources */,
-				6C32C3191FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */,
-				6CD474B620460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */,
-				6C2208821FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */,
-				6C7E66E71FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
-				6CBF9FE11FC5F987002BC7FC /* FTUEFlow_UITests.swift in Sources */,
-				6C2B324A1FB3C67100B943AC /* DateTimePickupViewController.swift in Sources */,
-				6CBB4EA81FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */,
-				6CDCC614205C40B500DFA831 /* RepairOrderAPI.swift in Sources */,
-				6C90CC1420113323002594F5 /* LoadingViewController.swift in Sources */,
-				6C9B3209202A85B9006380B9 /* SettingsCell.swift in Sources */,
-				6CE687A02044CEAE00D915FC /* ContactDriver.swift in Sources */,
-				6CDCC60C2058442800DFA831 /* CheckableTableViewCell.swift in Sources */,
-				6C5833401FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */,
-				6C79C43C20A280AC00443463 /* GMSnappedPoints.swift in Sources */,
-				6C32C3111FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */,
-				6C6F4BCC1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
-				6CBB4E8A1FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */,
-				6C20E1C11FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */,
-				6C3A11311FD8A1390069EF9C /* WebViewLoginViewController.swift in Sources */,
-				6C20E1CD1FBF698E00E5D9A0 /* Dealership.swift in Sources */,
-				6CC37E521FA7C41700DA8F01 /* VLTextField.swift in Sources */,
-				6C88DC911FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
-				6C9C9056209BD4CB00494068 /* GMSAddress.swift in Sources */,
-				6CBB4E841FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
-				6C5EB98A1FCE38980019ACAA /* MainController_UITests.swift in Sources */,
-				6C7495E51FDA1F790036FC08 /* MappableDataObject.swift in Sources */,
-				6CC921A51FC4FBC7009E5164 /* Date+DateTools.swift in Sources */,
-				6C5833341FB3AF9200F6BFE0 /* Presentr+Equatable.swift in Sources */,
-				6CBB4E871FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
-				6C52245C208815580078D9B9 /* VLSlideMenuController.swift in Sources */,
-				6C5DDECE20096CF8000847C9 /* CustomerAPI.swift in Sources */,
-				6CE687852036634A00D915FC /* State.swift in Sources */,
-				6C20E1AF1FBE408B00E5D9A0 /* SchedulingViewController.swift in Sources */,
-				6C2F1DD81FAD0A8F00C28C6E /* SchedulingPickupViewController.swift in Sources */,
-				6CBAA6C92023FD3300F35ECF /* ServiceListViewController.swift in Sources */,
-				6C2208791FBCEF7A00874882 /* MapViewController.swift in Sources */,
-				6CD3BCA8200995A2001DD79B /* Location.swift in Sources */,
-				6CCCF2392048B161004BF1A6 /* Color.swift in Sources */,
-				6CD47D1A1FAD190F00D794A6 /* VLButton.swift in Sources */,
-				6CCCF243204DFA9C004BF1A6 /* EmptyMappableObject.swift in Sources */,
-				6C7342121FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
-				6CB1181B207D36D1008FB2FE /* UINavigationController+Voluxe.swift in Sources */,
-				6CD3BCAC200E727A001DD79B /* Booking.swift in Sources */,
-				6C91BBD11FA7D3D50033C2B1 /* StringUtils.swift in Sources */,
-				6CA968B72023933800FBEEAB /* VehicleLocalization.swift in Sources */,
-				6CD3BCA420098EF2001DD79B /* BookingAPI.swift in Sources */,
-				6CBB4E961FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */,
-				6C32C30D1FBCC1DD00B1218C /* StepView.swift in Sources */,
-				6C4D91BD1FDB15F90031E3CB /* Token.swift in Sources */,
-				6C9B3205202A79FB006380B9 /* SettingsLocalizations.swift in Sources */,
-				6C5833331FB3AF9200F6BFE0 /* PresentationType.swift in Sources */,
-				6CDCC6002053592700DFA831 /* RequestType.swift in Sources */,
-				6C88DC961FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
-				6C91BBD51FA7D44D0033C2B1 /* Constants.swift in Sources */,
-				6CCCF23520488C5C004BF1A6 /* FTUEAddVehicleViewController.swift in Sources */,
-				6CB1181F208017C7008FB2FE /* Signin_UITests.swift in Sources */,
-				6C6F4BD01FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
-				6CBB4EAB1FB4DF7D00C31183 /* FSCalendarExtensions.m in Sources */,
-				6C522454208509A10078D9B9 /* UIButton+Voluxe.swift in Sources */,
-				6C5C6A121FD8AACD00D70BF6 /* UserManager.swift in Sources */,
-				6CE687892037A3D000D915FC /* ScheduledBookingViewController.swift in Sources */,
-				6C5224642089033B0078D9B9 /* AnalyticsConstants.swift in Sources */,
-				6C88DC9F1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
-				6C5833261FB3AF7B00F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */,
-				6CBB4EAE1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */,
-				6C5833251FB3AF7B00F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
-				6CD0C8891FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */,
-				6C90CC18201156AF002594F5 /* ResponseError.swift in Sources */,
-				6C9C7A7D1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
+				53EF28D720AE0709006CC5FA /* CustomerAPI.swift in Sources */,
+				53EF28E220AE0834006CC5FA /* VLDateFormatter.swift in Sources */,
+				53EF28D820AE077B006CC5FA /* ResponseObject.swift in Sources */,
+				53EF28C820AE0553006CC5FA /* UserDefaults+Debug.swift in Sources */,
+				5322409320B385C300D4E86C /* NetworkRequest+Admin.swift in Sources */,
+				53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */,
+				53EF28DA20AE0798006CC5FA /* Config.swift in Sources */,
+				53EF28E020AE07DC006CC5FA /* Bundle+Voluxe.swift in Sources */,
+				53EF28E120AE082E006CC5FA /* EmptyMappableObject.swift in Sources */,
+				53EF28A920ACE38C006CC5FA /* SignIn_UITests.swift in Sources */,
+				53EF28D920AE0783006CC5FA /* NetworkRequest.swift in Sources */,
+				5322408D20AE6B3500D4E86C /* String+Test.swift in Sources */,
+				5322408720AE5A2400D4E86C /* VerificationCode.swift in Sources */,
+				53EF28DD20AE07B4006CC5FA /* MappableDataObject.swift in Sources */,
+				5322408920AE688600D4E86C /* AdminAPI+Test.swift in Sources */,
+				5322408220AE50F900D4E86C /* MappableDataArray.swift in Sources */,
+				5322408B20AE6ADA00D4E86C /* XCTest+Test.swift in Sources */,
+				53EF28DE20AE07BA006CC5FA /* Errors.swift in Sources */,
+				5322409520B38BF700D4E86C /* BotUser.swift in Sources */,
+				5322408120AE231500D4E86C /* AdminAPI.swift in Sources */,
+				5322408520AE586E00D4E86C /* User.swift in Sources */,
+				53EF28CD20AE064E006CC5FA /* CustomerAPI+Login.swift in Sources */,
+				5322408F20AE6B7500D4E86C /* Int+Test.swift in Sources */,
+				53EF28DB20AE079F006CC5FA /* ResponseError.swift in Sources */,
+				53EF28DC20AE07A5006CC5FA /* Meta.swift in Sources */,
+				5322409720B39FF700D4E86C /* CreateAccount_UITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2917,44 +2594,13 @@
 		};
 		6C112094201A66290048A56D /* Mock */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E073151F8E5C7484B3BB2B46 /* Pods-voluxe-customerUITests.mock.xcconfig */;
+			baseConfigurationReference = 0E5AAE50AA8497BB1E6BE260 /* Pods-voluxe-customerUITests.mock.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/**",
-					"$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/**",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
-					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -2969,14 +2615,14 @@
 					"${PODS_ROOT}/**",
 				);
 				INFOPLIST_FILE = "voluxe-customerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3118,45 +2764,13 @@
 		};
 		6C3FB2A41FA1645800B22EAB /* Dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4B49F366D485907B0CD58867 /* Pods-voluxe-customerUITests.dev.xcconfig */;
+			baseConfigurationReference = 4C64F631C2578E5AD1F6A474 /* Pods-voluxe-customerUITests.dev.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/**",
-					"$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/**",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
-					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}\"/**",
-				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -3171,14 +2785,14 @@
 					"${PODS_ROOT}/**",
 				);
 				INFOPLIST_FILE = "voluxe-customerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3320,44 +2934,13 @@
 		};
 		6C7401A51FD89BBC001F94AF /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6796259E2527512DC57B3E09 /* Pods-voluxe-customerUITests.staging.xcconfig */;
+			baseConfigurationReference = 157A6548901B512121063D4D /* Pods-voluxe-customerUITests.staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/**",
-					"$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/**",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
-					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -3372,14 +2955,14 @@
 					"${PODS_ROOT}/**",
 				);
 				INFOPLIST_FILE = "voluxe-customerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -3513,44 +3096,13 @@
 		};
 		6C7401A91FD89BC4001F94AF /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8195C5448AC6BC029902806A /* Pods-voluxe-customerUITests.appstore.xcconfig */;
+			baseConfigurationReference = D84E7C82BDB9F161073CF3E3 /* Pods-voluxe-customerUITests.appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/**",
-					"$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/**",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
-					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -3565,14 +3117,14 @@
 					"${PODS_ROOT}/**",
 				);
 				INFOPLIST_FILE = "voluxe-customerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "voluxe-customer";
@@ -3704,44 +3256,13 @@
 		};
 		6CCD42BA1FA013E3000AC6C9 /* Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 803BAC3B2EF480CCA3456751 /* Pods-voluxe-customerUITests.production.xcconfig */;
+			baseConfigurationReference = 87CC82F62182FCB97FB5E935 /* Pods-voluxe-customerUITests.production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/**",
-					"$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/**",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
-					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -3756,14 +3277,14 @@
 					"${PODS_ROOT}/**",
 				);
 				INFOPLIST_FILE = "voluxe-customerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "voluxe-customer";
@@ -3896,44 +3417,13 @@
 		};
 		6CE6878D203DF4ED00D915FC /* Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37952587A3C8FD52A3A4CA15 /* Pods-voluxe-customerUITests.beta.xcconfig */;
+			baseConfigurationReference = 584D4FE40136C325D769CD2E /* Pods-voluxe-customerUITests.beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"${PODS_ROOT}/**",
-					"$BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)/**",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SDWebImage\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Base/Frameworks\"",
-					"\"${PODS_ROOT}/GoogleMaps/Maps/Frameworks\"",
-					"\"${PODS_ROOT}/GooglePlaces/Frameworks\"",
-				);
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -3948,14 +3438,14 @@
 					"${PODS_ROOT}/**",
 				);
 				INFOPLIST_FILE = "voluxe-customerUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = "$(inherited)";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "voluxe-customer";

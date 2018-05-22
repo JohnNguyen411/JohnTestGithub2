@@ -32,16 +32,6 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6CCD429D1FA013E3000AC6C9"
-               BuildableName = "voluxe-customerTests.xctest"
-               BlueprintName = "voluxe-customerTests"
-               ReferencedContainer = "container:voluxe-customer.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
                BlueprintIdentifier = "6CCD42A81FA013E3000AC6C9"
                BuildableName = "voluxe-customerUITests.xctest"
                BlueprintName = "voluxe-customerUITests"

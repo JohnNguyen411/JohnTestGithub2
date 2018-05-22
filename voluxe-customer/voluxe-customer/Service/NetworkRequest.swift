@@ -6,10 +6,11 @@
 //  Copyright © 2017 Luxe - Volvo Cars. All rights reserved.
 //
 
-import Foundation
 import Alamofire
 import AlamofireObjectMapper
 import BrightFutures
+import Foundation
+import SwiftEventBus
 
 /***
  *
@@ -17,17 +18,25 @@ import BrightFutures
  *
  ***/
 class NetworkRequest {
-    
+
+    // TODO https://github.com/volvo-cars/ios/issues/185
+    // To avoid this class referencing UserManager (which in turn
+    // references classes this class does not need to know about),
+    // the accessToken is exposed so that the UserManager can
+    // get/set it.  Do not set this directly.  When the TODO is
+    // done, make this write-only.
+    static var accessToken: String?
+
     // Single entry point for all our API requests
     static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, bodyParameters: Parameters? = nil, bodyEncoding: ParameterEncoding = URLEncoding.httpBody, headers: HTTPHeaders) -> DataRequest {
         let finalUrl = "\(Config.sharedInstance.apiEndpoint())\(url)"
         
         var originalRequest: URLRequest?
         var finalRequest: DataRequest?
-        
+
         var mutHeader = headers
         mutHeader["X-CLIENT-ID"] = Config.sharedInstance.apiClientId()
-        mutHeader["x-application-version"] = "luxe_by_volvo_customer_ios:\(UIApplication.appBuild())"
+        mutHeader["x-application-version"] = "luxe_by_volvo_customer_ios:\(Bundle.main.version)"
 
         do {
             originalRequest = try URLRequest(url: finalUrl, method: method, headers: mutHeader)
@@ -81,20 +90,10 @@ class NetworkRequest {
     static func request(url: String, queryParameters: Parameters?) -> DataRequest {
         return NetworkRequest.request(url: url, method: .get, queryParameters: queryParameters, headers: [:])
     }
-    
+
     static func addBearer(header: inout [String: String]) {
-        if let accessToken = UserManager.sharedInstance.getAccessToken() {
-            header["Authorization"] = "Bearer \(accessToken)"
-        }
-    }
-    
-    static func encodeParamsArray(array: [Any], key: String) -> String {
-        var params = "key="
-        for object in array {
-            params += "\(object),"
-        }
-        params.removeLast()
-        return params
+        guard let accessToken = NetworkRequest.accessToken else { return }
+        header["Authorization"] = "Bearer \(accessToken)"
     }
     
     static func checkErrors(response: DataResponse<Any>) {
@@ -102,30 +101,26 @@ class NetworkRequest {
         if let json = response.result.value as? [String: Any] {
             let responseObject = ResponseObject<EmptyMappableObject>(json: json)
             if let error = responseObject.error, let code = error.getCode() {
-                weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
-                
+
                 switch code {
+
                 // invalid token
                 case .E2001, .E2002, .E2003, .E2004:
-                    // logout
-                    UserManager.sharedInstance.logout()
-                    appDelegate?.startApp()
-                // User Disabled
+                    SwiftEventBus.post("forceLogout")
+
+                // user disabled
                 case .E3001:
-                    // logout
-                    UserManager.sharedInstance.logout()
-                    appDelegate?.startApp()
-                // Need Force Upgrade
+                    SwiftEventBus.post("forceLogout")
+
+                // forced upgrade
                 case .E3006:
-                    appDelegate?.showForceUpgradeDialog()
+                    SwiftEventBus.post("forceUpgrade")
                 default:
                     break
-                    
                 }
             }
         }
     }
-    
 }
 
 extension DataRequest {
@@ -153,4 +148,3 @@ extension DataRequest {
         )
     }
 }
-

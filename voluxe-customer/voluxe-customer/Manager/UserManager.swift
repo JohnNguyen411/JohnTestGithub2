@@ -23,9 +23,12 @@ final class UserManager {
     private var vehicleBookings = [Int: [Booking]]() // bookings dict (Vehicle Id : Booking array)
     private var bookings = [Booking]() // bookings dict (Vehicle Id : Booking array)
     private let serviceId: String
-    private var accessToken: String?
     private var customerIdToken: Int?
     private let keychain: Keychain
+
+    // TODO https://github.com/volvo-cars/ios/issues/185
+    // can local accessToken be replaced with NetworkRequest.token?
+    private var accessToken: String?
     
     init() {
         let bundle = Bundle(for: type(of: self))
@@ -35,7 +38,12 @@ final class UserManager {
     }
     
     private func loadAccessToken() {
+
+        // TODO https://github.com/volvo-cars/ios/issues/185
+        // can local accessToken be replaced with NetworkRequest.token?
         accessToken = keychain["token"]
+        NetworkRequest.accessToken = accessToken
+
         if let customerIdString = keychain["customerId"] {
             customerIdToken = Int(customerIdString)
         } else {
@@ -51,10 +59,13 @@ final class UserManager {
         } else {
             customerIdToken = nil
         }
+
+        // TODO https://github.com/volvo-cars/ios/issues/185
+        // can local accessToken be replaced with NetworkRequest.token?
         accessToken = token
-        
+        NetworkRequest.accessToken = token
+
         Analytics.setUserProperty(customerId, forName: AnalyticsConstants.userPropertiesCustomerId)
-        
     }
     
     public func setPushDeviceToken(deviceToken: String?) {
@@ -64,7 +75,10 @@ final class UserManager {
     public func getPushDeviceToken() -> String? {
         return keychain["deviceToken"]
     }
-    
+
+    // TODO https://github.com/volvo-cars/ios/issues/185
+    // can local accessToken be replaced with NetworkRequest.token?
+    // this seems to be used as an indicator for being logged in or not
     public func getAccessToken() -> String? {
         return accessToken
     }
