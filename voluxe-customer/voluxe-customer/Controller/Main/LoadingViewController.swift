@@ -14,6 +14,12 @@ class LoadingViewController: ChildViewController {
     
     var realm : Realm?
     
+    let logo: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "luxeByVolvo")
+        return imageView
+    }()
+    
     init() {
         super.init(screenName: AnalyticsConstants.paramNameLoadingView)
     }
@@ -40,6 +46,13 @@ class LoadingViewController: ChildViewController {
     
     override func setupViews() {
         super.setupViews()
+        
+        self.view.addSubview(logo)
+
+        logo.snp.makeConstraints { (make) -> Void in
+            make.equalsToTop(view: self.view, offset: 120)
+            make.centerX.equalToSuperview()
+        }
         
         self.showProgressHUD()
     }
