@@ -21,6 +21,7 @@ class DealershipTimeSlot: Object, Mappable {
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
     @objc dynamic var availableLoanerVehicleCount: Int = 0
+    @objc dynamic var availableAssignmentCount: Int = 0
     
     required convenience init?(map: Map) {
         self.init()
@@ -33,6 +34,7 @@ class DealershipTimeSlot: Object, Mappable {
         from <- (map["from"], VLISODateTransform())
         to <- (map["to"], VLISODateTransform())
         availableLoanerVehicleCount <- map["available_loaner_vehicle_count"]
+        availableAssignmentCount <- map["available_assignment_count"]
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
     }

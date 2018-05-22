@@ -557,13 +557,13 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             var from: NSDate = date.beginningOfDay() as NSDate
             var to: NSDate = date.endOfDay() as NSDate
             
-            var predicate = NSPredicate(format: "from >= %@ AND to <= %@ AND dealershipId = %d AND availableLoanerVehicleCount >= %d", from, to, dealership.id, withLoaner ? 1 : 0)
+            var predicate = NSPredicate(format: "from >= %@ AND to <= %@ AND dealershipId = %d AND availableLoanerVehicleCount >= %d AND availableAssignmentCount > 0", from, to, dealership.id, withLoaner ? 1 : 0)
             
             if date.isToday {
                 from = self.todaysDate as NSDate
                 from = from.addingTimeInterval(2*60*60) // add a 2 hours delay
                 to = date.endOfDay() as NSDate
-                predicate = NSPredicate(format: "to >= %@ AND to <= %@ AND dealershipId = %d AND availableLoanerVehicleCount >= %d", from, to, dealership.id, withLoaner ? 1 : 0)
+                predicate = NSPredicate(format: "to >= %@ AND to <= %@ AND dealershipId = %d AND availableLoanerVehicleCount >= %d AND availableAssignmentCount > 0", from, to, dealership.id, withLoaner ? 1 : 0)
             }
             
             let slots = realm.objects(DealershipTimeSlot.self).filter(predicate)
