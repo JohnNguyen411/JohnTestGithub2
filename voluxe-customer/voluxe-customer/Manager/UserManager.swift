@@ -7,10 +7,8 @@
 //
 
 import Foundation
-import KeychainAccess
 import SwiftEventBus
 import RealmSwift
-import FirebaseAnalytics
 
 final class UserManager {
     
@@ -22,83 +20,19 @@ final class UserManager {
     private var vehicles: [Vehicle]?
     private var vehicleBookings = [Int: [Booking]]() // bookings dict (Vehicle Id : Booking array)
     private var bookings = [Booking]() // bookings dict (Vehicle Id : Booking array)
-    private let serviceId: String
-    private var customerIdToken: Int?
-    private let keychain: Keychain
-
-    // TODO https://github.com/volvo-cars/ios/issues/185
-    // can local accessToken be replaced with NetworkRequest.token?
-    private var accessToken: String?
-    
-    init() {
-        let bundle = Bundle(for: type(of: self))
-        serviceId = bundle.object(forInfoDictionaryKey: "CFBundleIdentifier") as! String
-        keychain = Keychain(service: serviceId)
-        loadAccessToken()
-    }
-    
-    private func loadAccessToken() {
-
-        // TODO https://github.com/volvo-cars/ios/issues/185
-        // can local accessToken be replaced with NetworkRequest.token?
-        accessToken = keychain["token"]
-        NetworkRequest.accessToken = accessToken
-
-        if let customerIdString = keychain["customerId"] {
-            customerIdToken = Int(customerIdString)
-        } else {
-            customerIdToken = nil
-        }
-    }
-    
-    private func saveAccessToken(token: String?, customerId: String?) {
-        keychain["token"] = token
-        keychain["customerId"] = customerId
-        if let customerId = customerId {
-            customerIdToken = Int(customerId)
-        } else {
-            customerIdToken = nil
-        }
-
-        // TODO https://github.com/volvo-cars/ios/issues/185
-        // can local accessToken be replaced with NetworkRequest.token?
-        accessToken = token
-        NetworkRequest.accessToken = token
-
-        Analytics.setUserProperty(customerId, forName: AnalyticsConstants.userPropertiesCustomerId)
-    }
-    
-    public func setPushDeviceToken(deviceToken: String?) {
-        keychain["deviceToken"] = deviceToken
-    }
-    
-    public func getPushDeviceToken() -> String? {
-        return keychain["deviceToken"]
-    }
-
-    // TODO https://github.com/volvo-cars/ios/issues/185
-    // can local accessToken be replaced with NetworkRequest.token?
-    // this seems to be used as an indicator for being logged in or not
-    public func getAccessToken() -> String? {
-        return accessToken
-    }
-    
-    public func getCustomerId() -> Int? {
-        return customerIdToken
-    }
     
     public func loginSuccess(token: String, customerId: String?) {
-        saveAccessToken(token: token, customerId: customerId)
+        KeychainManager.sharedInstance.saveAccessToken(token: token, customerId: customerId)
     }
     
     public func logout() {
         // unregister device for Push Notif
-        if let customerId = getCustomerId() {
+        if let customerId = self.customerId() {
             _ = CustomerAPI().registerDevice(customerId: customerId, deviceToken: "")
         }
         // logout from API
         _ = CustomerAPI().logout()
-        saveAccessToken(token: nil, customerId: nil)
+        KeychainManager.sharedInstance.saveAccessToken(token: nil, customerId: nil)
         self.customer = nil
         self.vehicles = nil
         self.vehicleBookings = [Int: [Booking]]()
@@ -114,6 +48,21 @@ final class UserManager {
                 realm.deleteAll()
             }
         }
+    }
+    
+    public func isLoggedIn() -> Bool {
+        // make sure to load keychain just in case
+        _ = KeychainManager.sharedInstance
+        
+        // user loggedin if access token isn't nil and not empty
+        if let accessToken = NetworkRequest.accessToken, !accessToken.isEmpty {
+            return true
+        }
+        return false
+    }
+    
+    public func customerId() -> Int? {
+        return KeychainManager.sharedInstance.customerId
     }
     
     public func setCustomer(customer: Customer?) {

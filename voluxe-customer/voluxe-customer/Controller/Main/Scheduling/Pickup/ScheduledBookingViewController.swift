@@ -187,7 +187,7 @@ class ScheduledBookingViewController: SchedulingViewController {
         if let dropoffRequest = booking.dropoffRequest, let type = dropoffRequest.getType() {
             showProgressHUD()
 
-            BookingAPI().cancelDropoffRequest(customerId: UserManager.sharedInstance.getCustomerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff).onSuccess { result in
+            BookingAPI().cancelDropoffRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff).onSuccess { result in
                 
                 VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCancelDropoffSuccess, screenName: self.screenName)
                 self.onDelete()
@@ -203,7 +203,7 @@ class ScheduledBookingViewController: SchedulingViewController {
         } else if let pickupRequest = booking.pickupRequest, let type = pickupRequest.getType() {
             showProgressHUD()
 
-            BookingAPI().cancelPickupRequest(customerId: UserManager.sharedInstance.getCustomerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup).onSuccess { result in
+            BookingAPI().cancelPickupRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup).onSuccess { result in
                
                 self.onDelete()
                 VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCancelPickupSuccess, screenName: self.screenName)
@@ -236,7 +236,7 @@ class ScheduledBookingViewController: SchedulingViewController {
             }
             
             // reload bookings from DB
-            if let customerId = UserManager.sharedInstance.getCustomerId() {
+            if let customerId = UserManager.sharedInstance.customerId() {
                 let bookings = realm.objects(Booking.self).filter("customerId = %@", customerId)
                 UserManager.sharedInstance.setBookings(bookings: Array(bookings))
             }

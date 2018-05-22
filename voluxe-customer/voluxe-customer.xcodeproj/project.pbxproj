@@ -443,6 +443,8 @@
 		6CDCC61F20607EB400DFA831 /* DealershipRepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */; };
 		6CDCD7F7200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		6CDCD7F8200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
+		6CE147AA20B49E35001F4BC7 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE147A920B49E35001F4BC7 /* KeychainManager.swift */; };
+		6CE147AB20B49E35001F4BC7 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE147A920B49E35001F4BC7 /* KeychainManager.swift */; };
 		6CE5AC061FACF116009FD0D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
 		6CE5DFC220633A5600234C22 /* ArrayTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5DFC120633A5600234C22 /* ArrayTransform.swift */; };
 		6CE5DFC320633A5600234C22 /* ArrayTransform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE5DFC120633A5600234C22 /* ArrayTransform.swift */; };
@@ -755,6 +757,7 @@
 		6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealershipRepairOrder.swift; sourceTree = "<group>"; };
 		6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLDateFormatter.swift; sourceTree = "<group>"; };
 		6CE1479420AE300B001F4BC7 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
+		6CE147A920B49E35001F4BC7 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		6CE5DFC120633A5600234C22 /* ArrayTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayTransform.swift; sourceTree = "<group>"; };
 		6CE687822036634A00D915FC /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledBookingViewController.swift; sourceTree = "<group>"; };
@@ -950,6 +953,7 @@
 				6C4970FA20754E2700FF33E9 /* SyncTimer.swift */,
 				6C9C9067209D127100494068 /* RemoteConfigManager.swift */,
 				6CE1479420AE300B001F4BC7 /* RealmManager.swift */,
+				6CE147A920B49E35001F4BC7 /* KeychainManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -2083,6 +2087,7 @@
 				6CBB4E8B1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				53D9A7BD209A5E2F008BE93E /* UserDefaults+Debug.swift in Sources */,
 				6C3FB2B91FA297A300B22EAB /* Date+DateTools.swift in Sources */,
+				6CE147AA20B49E35001F4BC7 /* KeychainManager.swift in Sources */,
 				6CBAA6C72023FD3300F35ECF /* ServiceListViewController.swift in Sources */,
 				6C9543A21FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6C11208E2016B2C70048A56D /* BookingSyncManager.swift in Sources */,
@@ -2305,6 +2310,7 @@
 				6C8159B51FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
 				6CDCC603205743DB00DFA831 /* NewServiceViewController.swift in Sources */,
 				6CB1181A207D36D1008FB2FE /* UINavigationController+Voluxe.swift in Sources */,
+				6CE147AB20B49E35001F4BC7 /* KeychainManager.swift in Sources */,
 				6C91BBDC1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C7495E41FDA1F790036FC08 /* MappableDataObject.swift in Sources */,
 				6C522457208568E90078D9B9 /* PasswordToggleVisibilityView.swift in Sources */,

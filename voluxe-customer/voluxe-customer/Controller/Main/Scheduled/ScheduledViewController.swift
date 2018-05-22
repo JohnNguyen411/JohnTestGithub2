@@ -334,7 +334,7 @@ class ScheduledViewController: ChildViewController {
     
     func contactDriver(mode: String) {
         
-        guard let customerId = UserManager.sharedInstance.getCustomerId() else {
+        guard let customerId = UserManager.sharedInstance.customerId() else {
             return
         }
         

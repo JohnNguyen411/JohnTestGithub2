@@ -146,7 +146,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             return
         }
         
-        var customerId = UserManager.sharedInstance.getCustomerId()
+        var customerId = UserManager.sharedInstance.customerId()
         if customerId == nil {
             customerId = UserManager.sharedInstance.tempCustomerId
         }
@@ -176,7 +176,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         self.showProgressHUD()
         let signupCustomer = UserManager.sharedInstance.signupCustomer
         
-        if UserManager.sharedInstance.getAccessToken() != nil {
+        if UserManager.sharedInstance.isLoggedIn() {
             
             // resend phone verification code
             CustomerAPI().requestPhoneVerificationCode(customerId: customerId!).onSuccess { result in
@@ -252,7 +252,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
         } else {
             
-            var customerId = UserManager.sharedInstance.getCustomerId()
+            var customerId = UserManager.sharedInstance.customerId()
             if customerId == nil {
                 customerId = UserManager.sharedInstance.tempCustomerId
             }

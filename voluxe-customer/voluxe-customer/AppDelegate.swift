@@ -133,7 +133,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         window = UIWindow(frame: UIScreen.main.bounds)
         
-        if UserManager.sharedInstance.getAccessToken() == nil {
+        if !UserManager.sharedInstance.isLoggedIn() {
             let uiNavigationController = UINavigationController(rootViewController: FTUEStartViewController())
             styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
             window!.rootViewController = uiNavigationController
@@ -282,7 +282,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // set UserProperties
         Analytics.setUserProperty(UIDevice.current.identifierForVendor?.uuidString, forName: AnalyticsConstants.userPropertiesDeviceId)
         
-        if let customerId = UserManager.sharedInstance.getCustomerId() {
+        if let customerId = UserManager.sharedInstance.customerId() {
             Analytics.setUserProperty(String(customerId), forName: AnalyticsConstants.userPropertiesCustomerId)
         } else {
             Analytics.setUserProperty(nil, forName: AnalyticsConstants.userPropertiesCustomerId)
@@ -313,17 +313,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        UserManager.sharedInstance.setPushDeviceToken(deviceToken: token)
+        KeychainManager.sharedInstance.pushDeviceToken = token
         // registerDevice for push notification if deviceToken Stored
-        if let deviceToken = UserManager.sharedInstance.getPushDeviceToken(), let customerId = UserManager.sharedInstance.getCustomerId() {
-            CustomerAPI().registerDevice(customerId: customerId, deviceToken: deviceToken).onSuccess { result in
+        if let customerId = UserManager.sharedInstance.customerId() {
+            CustomerAPI().registerDevice(customerId: customerId, deviceToken: token).onSuccess { result in
                 }.onFailure { error in
             }
         }
     }
     
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        if let customerId = UserManager.sharedInstance.getCustomerId() {
+        if let customerId = UserManager.sharedInstance.customerId() {
             // unregister device
             CustomerAPI().registerDevice(customerId: customerId, deviceToken: "").onSuccess { result in
                 }.onFailure { error in

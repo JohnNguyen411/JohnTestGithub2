@@ -86,11 +86,11 @@ class SyncTimer {
                 guard let weakSelf = self else {
                     return
                 }
-                if UserManager.sharedInstance.getAccessToken() == nil || weakSelf.booking.isInvalidated {
+                if !UserManager.sharedInstance.isLoggedIn() || weakSelf.booking.isInvalidated {
                     weakSelf.suspend()
                     return
                 }
-                if let customerId = UserManager.sharedInstance.getCustomerId() {
+                if let customerId = UserManager.sharedInstance.customerId() {
                     weakSelf.getBooking(customerId: customerId, bookingId: weakSelf.bookingId)
                 }
             })

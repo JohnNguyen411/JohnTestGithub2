@@ -232,7 +232,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     }
     
     override func confirmButtonClick() {
-        guard let customerId = UserManager.sharedInstance.getCustomerId() else {
+        guard let customerId = UserManager.sharedInstance.customerId() else {
             return
         }
         
@@ -322,7 +322,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     
     override func showConfirmButtonIfNeeded() {
         
-        if let _ = UserManager.sharedInstance.getCustomerId(),
+        if let _ = UserManager.sharedInstance.customerId(),
             let _ = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle),
             let _ = RequestedServiceManager.sharedInstance.getDropoffTimeSlot(),
             RequestedServiceManager.sharedInstance.getDropoffLocation() != nil || RequestedServiceManager.sharedInstance.getDropoffRequestType() == .advisorDropoff {

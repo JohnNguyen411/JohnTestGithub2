@@ -190,7 +190,7 @@ class SchedulingPickupViewController: SchedulingViewController {
     
     override func showConfirmButtonIfNeeded() {
         
-        if let _ = UserManager.sharedInstance.getCustomerId(),
+        if let _ = UserManager.sharedInstance.customerId(),
             let _ = RequestedServiceManager.sharedInstance.getDealership(),
             let _ = RequestedServiceManager.sharedInstance.getPickupTimeSlot(),
             let _ = RequestedServiceManager.sharedInstance.getRepairOrder() {
@@ -202,7 +202,7 @@ class SchedulingPickupViewController: SchedulingViewController {
     
     private func createBooking(loaner: Bool) {
         
-        guard let customerId = UserManager.sharedInstance.getCustomerId() else {
+        guard let customerId = UserManager.sharedInstance.customerId() else {
             return
         }
         

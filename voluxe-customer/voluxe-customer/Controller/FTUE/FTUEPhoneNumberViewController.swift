@@ -174,7 +174,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             return
         }
         
-        var customerId = UserManager.sharedInstance.getCustomerId()
+        var customerId = UserManager.sharedInstance.customerId()
         if customerId == nil {
             customerId = UserManager.sharedInstance.tempCustomerId
         }
@@ -188,7 +188,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         showProgressHUD()
         let signupCustomer = UserManager.sharedInstance.signupCustomer
         
-        if UserManager.sharedInstance.getAccessToken() != nil {
+        if UserManager.sharedInstance.isLoggedIn() {
             
             CustomerAPI().updatePhoneNumber(customerId: customerId!, phoneNumber: phoneNumber).onSuccess { result in
                 self.hideProgressHUD()
@@ -228,7 +228,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             // enter need password
             self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(type: ftuePhoneType), animated: true)
         } else {
-            if UserManager.sharedInstance.getAccessToken() != nil {
+            if UserManager.sharedInstance.isLoggedIn() {
                 appDelegate?.startApp()
             } else {
                 self.navigationController?.popViewController(animated: true)

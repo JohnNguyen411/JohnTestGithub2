@@ -196,7 +196,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     override func onRightClicked(analyticEventName: String? = nil) {
         super.onRightClicked(analyticEventName: analyticEventName)
         // todo add car to user
-        if let customerId = UserManager.sharedInstance.getCustomerId(), let baseColor = colors[selectedColor].baseColor {
+        if let customerId = UserManager.sharedInstance.customerId(), let baseColor = colors[selectedColor].baseColor {
             CustomerAPI().addVehicle(customerId: customerId, make: models[selectedModel].make!, model: models[selectedModel].name!, baseColor: baseColor, year: years[selectedYear]).onSuccess { response in
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiAddVehicleSuccess, screenName: self.screenName)
                 self.callVehicle(customerId: customerId)

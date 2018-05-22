@@ -229,7 +229,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         if UserManager.sharedInstance.getCustomer() != nil {
             
-            if UserManager.sharedInstance.getAccessToken() != nil {
+            if UserManager.sharedInstance.isLoggedIn() {
                 self.showLoading(loading: false)
                 self.loadMainScreen()
             } else {

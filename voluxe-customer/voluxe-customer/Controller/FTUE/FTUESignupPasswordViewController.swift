@@ -38,10 +38,8 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     var signupInProgress = false
     var realm : Realm?
-    let accessToken: String?
     
     init() {
-        accessToken = UserManager.sharedInstance.getAccessToken()
         super.init(screenName: AnalyticsConstants.paramNameSignupPasswordView)
     }
     
@@ -76,7 +74,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         volvoPwdTextField.textField.becomeFirstResponder()
         canGoNext(nextEnabled: false)
         
-        if accessToken != nil {
+        if UserManager.sharedInstance.isLoggedIn() {
             passwordLabel.text = .UpdatePassword
         }
     }
@@ -211,10 +209,10 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         weak var weakSelf = self
         
-        // if accessToken, it's a password update
+        // if user is logged in, it's a password update
         if let code = UserManager.sharedInstance.signupCustomer.verificationCode,
-            let password = volvoPwdConfirmTextField.textField.text, let customerId = UserManager.sharedInstance.getCustomerId(),
-            signupCustomer.email == nil, accessToken != nil {
+            let password = volvoPwdConfirmTextField.textField.text, let customerId = UserManager.sharedInstance.customerId(),
+            signupCustomer.email == nil, UserManager.sharedInstance.isLoggedIn() {
             CustomerAPI().passwordChange(customerId: customerId, code: code, password: password).onSuccess { result in
                 VLAnalytics.logEventWithName(AnalyticsConstants.eventApiPasswordChangeSuccess, screenName: weakSelf?.screenName ?? nil)
                 weakSelf?.showLoading(loading: false)
@@ -229,11 +227,10 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         }
         
         // if no access token, no temp email, no cust id, and a phone number, it's a reset password
-        // if accessToken, it's a password update
         if let code = UserManager.sharedInstance.signupCustomer.verificationCode,
             let password = volvoPwdConfirmTextField.textField.text,
             let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber,
-            UserManager.sharedInstance.getCustomerId() == nil, signupCustomer.email == nil, accessToken == nil {
+            UserManager.sharedInstance.customerId() == nil, signupCustomer.email == nil, !UserManager.sharedInstance.isLoggedIn() {
             CustomerAPI().passwordResetConfirm(phoneNumber: phoneNumber, code: code, password: password).onSuccess { result in
                 weakSelf?.showLoading(loading: false)
                 VLAnalytics.logEventWithName(AnalyticsConstants.eventApiPasswordResetConfirmSuccess, screenName: weakSelf?.screenName)
@@ -257,7 +254,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     private func signup(signupCustomer: SignupCustomer) {
         if let customer = UserManager.sharedInstance.getCustomer() {
             
-            if UserManager.sharedInstance.getAccessToken() != nil {
+            if UserManager.sharedInstance.isLoggedIn() {
                 self.showLoading(loading: false)
                 self.loadMainScreen()
                 return

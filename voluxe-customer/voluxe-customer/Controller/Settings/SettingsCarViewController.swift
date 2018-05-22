@@ -79,7 +79,7 @@ class SettingsCarViewController: BaseViewController {
     
     private func removeVehicle() {
         
-        guard let customerId = UserManager.sharedInstance.getCustomerId() else {
+        guard let customerId = UserManager.sharedInstance.customerId() else {
             return
         }
         
@@ -87,7 +87,7 @@ class SettingsCarViewController: BaseViewController {
         
         weak var weakSelf = self
         CustomerAPI().deleteVehicle(customerId: customerId, vehicleId: vehicle.id).onSuccess { result in
-           if let customerId = UserManager.sharedInstance.getCustomerId() {
+           if let customerId = UserManager.sharedInstance.customerId() {
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiDeleteVehicleSuccess, screenName: weakSelf?.screenName)
                 weakSelf?.callVehicles(customerId: customerId)
             }

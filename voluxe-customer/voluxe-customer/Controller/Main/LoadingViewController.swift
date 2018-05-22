@@ -35,7 +35,7 @@ class LoadingViewController: ChildViewController {
         //DO NOT UNCOMMENT, DEBUG MODE ONLY
         //logout()
         
-        if let customerId = UserManager.sharedInstance.getCustomerId() {
+        if let customerId = UserManager.sharedInstance.customerId() {
             askPushNotificationPermission()
             callCustomer(customerId: customerId)
             return

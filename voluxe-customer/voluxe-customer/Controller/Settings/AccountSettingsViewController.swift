@@ -136,7 +136,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     
     func resetPassword() {
         showProgressHUD()
-        if let customerId = UserManager.sharedInstance.getCustomerId() {
+        if let customerId = UserManager.sharedInstance.customerId() {
             CustomerAPI().requestPasswordChange(customerId: customerId).onSuccess { response in
                 
                 FTUEStartViewController.flowType = .signup
