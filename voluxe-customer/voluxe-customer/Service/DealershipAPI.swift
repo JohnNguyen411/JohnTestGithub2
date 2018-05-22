@@ -75,8 +75,8 @@ class DealershipAPI: NSObject {
         // "loaner": loaner,
         let queryParams = [
             "type": type,
-            "from": from,
-            "to": to,
+            "start": from,
+            "end": to,
             "compute[0]": "available_loaner_vehicle_count", // request the loaner vehicle count in the response
             "compute[1]": "available_assignment_count", // request the number of available assignment for each slots
             ] as [String : Any]
