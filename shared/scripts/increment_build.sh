@@ -9,7 +9,7 @@
 # plist location
 # note that to test locally the script must be run
 # from the project root aka the directory the project file is in
-PROJECT_DIR="/Users/hermiteer/LuxeByVolvo/git/ios/voluxe-customer"
+#PROJECT_DIR="/Users/hermiteer/LuxeByVolvo/git/ios/voluxe-customer"
 PLIST=${PROJECT_DIR}/voluxe-customer/Resources/Info.plist
 
 # ensure path is correct
@@ -36,6 +36,7 @@ echo "BUNDLE_VERSION incremented to $BUNDLE_VERSION"
 plutil -replace CFBundleVersion -string ${BUNDLE_VERSION} ${PLIST}
 
 # commit and push to git
-git add ${PLIST}
+cd "${PROJECT_DIR}"
+git add "${PLIST}"
 git commit -m "Bump build number to ${BUNDLE_VERSION}"
 git push origin HEAD
