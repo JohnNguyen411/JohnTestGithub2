@@ -417,8 +417,6 @@
 		6CD474B1204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */; };
 		6CD474B420460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B320460C260082A44A /* FTUESignupPasswordViewController.swift */; };
 		6CD474B520460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B320460C260082A44A /* FTUESignupPasswordViewController.swift */; };
-		6CD474B8204616C10082A44A /* CarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B7204616C10082A44A /* CarPickerViewController.swift */; };
-		6CD474B9204616C10082A44A /* CarPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B7204616C10082A44A /* CarPickerViewController.swift */; };
 		6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D151FAD126000D794A6 /* VLTitledLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */; };
 		6CD47D181FAD190F00D794A6 /* VLButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD47D171FAD190F00D794A6 /* VLButton.swift */; };
@@ -743,7 +741,6 @@
 		6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUESignupNameViewController.swift; sourceTree = "<group>"; };
 		6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUESignupEmailPhoneViewController.swift; sourceTree = "<group>"; };
 		6CD474B320460C260082A44A /* FTUESignupPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUESignupPasswordViewController.swift; sourceTree = "<group>"; };
-		6CD474B7204616C10082A44A /* CarPickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarPickerViewController.swift; sourceTree = "<group>"; };
 		6CD47D131FAD126000D794A6 /* VLTitledLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLTitledLabel.swift; sourceTree = "<group>"; };
 		6CD47D171FAD190F00D794A6 /* VLButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLButton.swift; sourceTree = "<group>"; };
 		6CDCC5FD2053592700DFA831 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
@@ -1189,7 +1186,6 @@
 			children = (
 				6C9B320A202CFE28006380B9 /* AccountSettingsViewController.swift */,
 				6C9B3212202E7C23006380B9 /* AddLocationViewController.swift */,
-				6CD474B7204616C10082A44A /* CarPickerViewController.swift */,
 				6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */,
 				6C937064204F64360084443C /* SettingsCarViewController.swift */,
 			);
@@ -2123,7 +2119,6 @@
 				6CDCD7F7200EE5620099258C /* VLDateFormatter.swift in Sources */,
 				6C88DC981FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C3FB2B21FA2824200B22EAB /* Constants.swift in Sources */,
-				6CD474B8204616C10082A44A /* CarPickerViewController.swift in Sources */,
 				6CBB4E971FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */,
 				6C88DC9D1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
 				53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */,
@@ -2267,7 +2262,6 @@
 				6C4971082078272400FF33E9 /* VehicleMake.swift in Sources */,
 				6CDCC613205C40B500DFA831 /* RepairOrderAPI.swift in Sources */,
 				6C9C9059209CD8D400494068 /* GMRows.swift in Sources */,
-				6CD474B9204616C10082A44A /* CarPickerViewController.swift in Sources */,
 				6CD3BCA320098EF2001DD79B /* BookingAPI.swift in Sources */,
 				6CCCF23420488C5C004BF1A6 /* FTUEAddVehicleViewController.swift in Sources */,
 				6C73420D1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,

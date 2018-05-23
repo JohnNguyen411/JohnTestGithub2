@@ -226,38 +226,6 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         return false
     }
     
-    /*
-    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
-        if indexPath.section == 0 && indexPath.row < addressesCount {
-            let delete = UITableViewRowAction(style: .destructive, title: "Delete", handler: { (action, indexPath) in
-                if let realm = self.realm, let addresses = self.addresses {
-                    try? realm.write {
-                        realm.delete(addresses[indexPath.row])
-                        self.addressesCount = addresses.count
-                    }
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-                }
-                
-            })
-            return [delete]
-            
-        } else if indexPath.section == 1 || indexPath.section == 2 {
-            let edit = UITableViewRowAction(style: .normal, title: .Edit) { (action, indexPath) in
-                // edit item at indexPath
-                if indexPath.section == 2 {
-                    // pwd
-                    self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
-                } else if indexPath.section == 1 || indexPath.row == 1 {
-                    // update phone number
-                    self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
-                }
-            }
-            return [edit]
-        }
-        
-        return []
-    }
-    */
     func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
