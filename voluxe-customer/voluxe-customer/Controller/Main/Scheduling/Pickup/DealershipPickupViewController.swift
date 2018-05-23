@@ -97,6 +97,6 @@ class DealershipPickupViewController: VLPresentrViewController, VLGroupedLabelsD
 
 // MARK: protocol PickupDealershipDelegate
 protocol PickupDealershipDelegate: VLPresentrViewDelegate {
-    func onDealershipSelected(dealership: Dealership)
+    func onDealershipSelected(dealership: Dealership?)
 }
 

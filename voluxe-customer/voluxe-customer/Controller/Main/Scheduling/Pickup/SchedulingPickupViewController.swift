@@ -77,7 +77,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         }
     }
     
-    override func onDealershipSelected(dealership: Dealership) {
+    override func onDealershipSelected(dealership: Dealership?) {
         var openNext = false
         if pickupScheduleState.rawValue < SchedulePickupState.dealership.rawValue {
             pickupScheduleState = .dealership
@@ -85,16 +85,20 @@ class SchedulingPickupViewController: SchedulingViewController {
         }
         RequestedServiceManager.sharedInstance.setDealership(dealership: dealership)
         
-        dealershipView.descLeftLabel.text = dealership.name
-        currentPresentrVC?.dismiss(animated: true, completion: {
-            if openNext {
-                self.loanerClick()
-            } else {
-                // timeslots already selected, need to invalidate them
-                self.onDateTimeSelected(timeSlot: nil)
-                self.showConfirmButtonIfNeeded()
-            }
-        })
+        if let dealership = dealership {
+            dealershipView.descLeftLabel.text = dealership.name
+            currentPresentrVC?.dismiss(animated: true, completion: {
+                if openNext {
+                    self.loanerClick()
+                } else {
+                    // timeslots already selected, need to invalidate them
+                    self.onDateTimeSelected(timeSlot: nil)
+                    self.showConfirmButtonIfNeeded()
+                }
+            })
+        } else {
+            dealershipView.descLeftLabel.text = ""
+        }
     }
     
     override func onDateTimeSelected(timeSlot: DealershipTimeSlot?) {
@@ -135,14 +139,24 @@ class SchedulingPickupViewController: SchedulingViewController {
                         self.pickupScheduleState = .dealership
                         openNext = true
                     }
+                    self.dealershipView.animateAlpha(show: true)
                     if openNext {
-                        self.dealershipView.animateAlpha(show: true)
                         // show loaner
                         self.loanerClick()
                     }
                     
                 } else {
                     RequestedServiceManager.sharedInstance.setPickupRequestLocation(requestLocation: nil)
+                    
+                    // clear dealership and datetime selection
+                    self.onDateTimeSelected(timeSlot: nil)
+                    self.onDealershipSelected(dealership: nil)
+                    
+                    self.scheduledPickupView.animateAlpha(show: false)
+                    self.dealershipView.animateAlpha(show: false)
+                    
+                    self.pickupScheduleState = .start
+                    
                     if let error = error {
                         self.pickupLocationView.showError(error: error)
                     } else {

@@ -594,7 +594,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     
     //MARK: PresentR delegate methods
     
-    func onDealershipSelected(dealership: Dealership) {
+    func onDealershipSelected(dealership: Dealership?) {
     }
     
     func onDateTimeSelected(timeSlot: DealershipTimeSlot?) {
