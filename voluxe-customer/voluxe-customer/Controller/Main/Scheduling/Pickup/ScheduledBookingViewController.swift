@@ -88,11 +88,11 @@ class ScheduledBookingViewController: SchedulingViewController {
     
     override func fillViews() {
         
-        leftButton.setActionBlock {
-            self.leftButtonClick()
+        leftButton.setActionBlock { [weak self] in
+            self?.leftButtonClick()
         }
-        rightButton.setActionBlock {
-            self.rightButtonClick()
+        rightButton.setActionBlock { [weak self] in
+            self?.rightButtonClick()
         }
         
         confirmButton.animateAlpha(show: false)

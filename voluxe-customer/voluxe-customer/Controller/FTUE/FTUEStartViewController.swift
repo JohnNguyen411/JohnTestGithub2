@@ -57,18 +57,18 @@ class FTUEStartViewController: BaseViewController {
 
         UserManager.sharedInstance.signupCustomer = SignupCustomer()
 
-        loginButton.setActionBlock {
+        loginButton.setActionBlock { [weak self] in
             //login
             UserManager.sharedInstance.signupCustomer = SignupCustomer()
             FTUEStartViewController.flowType = .login
-            self.navigationController?.pushViewController(FTUELoginViewController(), animated: true)
+            self?.navigationController?.pushViewController(FTUELoginViewController(), animated: true)
         }
         
-        signupButton.setActionBlock {
+        signupButton.setActionBlock { [weak self] in
             //signup
             UserManager.sharedInstance.signupCustomer = SignupCustomer()
             FTUEStartViewController.flowType = .signup
-            self.navigationController?.pushViewController(FTUESignupNameViewController(), animated: true)
+            self?.navigationController?.pushViewController(FTUESignupNameViewController(), animated: true)
         }
         
     }

@@ -72,17 +72,22 @@ class ServiceMultiselectListViewController: BaseViewController {
 
         showServices(services: [.UnderTheHood, .VehicleInt, .VehicleExt, .IDontKnow])
         
-        confirmButton.setActionBlock {
-            guard let services = self.services else {
+        confirmButton.setActionBlock { [weak self] in
+            guard let weakSelf = self else {
                 return
             }
+            
+            guard let services = weakSelf.services else {
+                return
+            }
+            
             var selectedService: [String] = []
-            for dictElement in self.selected.enumerated() {
+            for dictElement in weakSelf.selected.enumerated() {
                 if dictElement.element.value {
                     selectedService.append(services[dictElement.element.key])
                 }
             }
-            self.pushViewController(OtherServiceViewController(vehicle: self.vehicle, repairOrderType: self.repairOrderType, services: selectedService), animated: true, backLabel: .Back)
+            weakSelf.pushViewController(OtherServiceViewController(vehicle: weakSelf.vehicle, repairOrderType: weakSelf.repairOrderType, services: selectedService), animated: true, backLabel: .Back)
         }
         
         self.navigationItem.title = .OtherMaintenance

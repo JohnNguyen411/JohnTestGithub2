@@ -70,8 +70,8 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         
         vehicleImageView.contentMode = .scaleAspectFit
         
-        confirmButton.setActionBlock {
-            self.confirmButtonClick()
+        confirmButton.setActionBlock { [weak self] in
+            self?.confirmButtonClick()
         }
         
         vehicleCollectionView.register(VehicleCell.self, forCellWithReuseIdentifier: VehicleCell.reuseId)

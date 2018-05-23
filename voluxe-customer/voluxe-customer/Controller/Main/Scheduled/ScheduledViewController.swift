@@ -106,8 +106,8 @@ class ScheduledViewController: ChildViewController {
             startMockDriving()
         }
         
-        driverContact.setActionBlock {
-            self.contactDriverActionSheet()
+        driverContact.setActionBlock { [weak self] in
+            self?.contactDriverActionSheet()
         }
         
         driverViewContainer.isHidden = true

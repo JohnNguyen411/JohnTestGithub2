@@ -53,13 +53,13 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         codeTextField.textField.delegate = self
         super.viewDidLoad()
         codeTextField.textField.keyboardType = .numberPad
-        codeTextField.setRightButtonText(rightButtonText: (.ResendCode as String).uppercased(), actionBlock: {
-            self.resendCode()
+        codeTextField.setRightButtonText(rightButtonText: (.ResendCode as String).uppercased(), actionBlock: {  [weak self] in
+            self?.resendCode()
         })
         codeTextField.rightLabel.addUppercasedCharacterSpacing()
         
-        updatePhoneNumberButton.setActionBlock {
-            self.updatePhoneNumber()
+        updatePhoneNumberButton.setActionBlock { [weak self] in
+            self?.updatePhoneNumber()
         }
         
         codeTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)

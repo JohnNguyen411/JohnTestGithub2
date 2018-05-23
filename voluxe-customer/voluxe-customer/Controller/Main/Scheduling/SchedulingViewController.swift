@@ -110,13 +110,13 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         
         realm = try? Realm()
         
-        descriptionButton.setActionBlock {
-            self.showDescriptionClick()
+        descriptionButton.setActionBlock { [weak self] in
+            self?.showDescriptionClick()
         }
         descriptionButton.contentHorizontalAlignment = .left
         
-        confirmButton.setActionBlock {
-            self.confirmButtonClick()
+        confirmButton.setActionBlock { [weak self] in
+            self?.confirmButtonClick()
         }
         
         fillViews()

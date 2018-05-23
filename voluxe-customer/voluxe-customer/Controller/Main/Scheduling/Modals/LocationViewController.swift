@@ -110,8 +110,8 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
             }
         }
         
-        newLocationButton.setActionBlock {
-            self.addNewLocationClicked()
+        newLocationButton.setActionBlock { [weak self] in
+            self?.addNewLocationClicked()
         }
     }
     

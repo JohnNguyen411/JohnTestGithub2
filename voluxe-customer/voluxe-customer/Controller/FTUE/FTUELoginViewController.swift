@@ -38,8 +38,8 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         emailTextField.accessibilityIdentifier = "volvoIdTextField"
         passwordTextField.accessibilityIdentifier = "volvoPwdTextField"
         
-        forgotPassword.setActionBlock {
-            self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .resetPassword), animated: true)
+        forgotPassword.setActionBlock { [weak self] in
+            self?.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .resetPassword), animated: true)
         }
         
         emailTextField.textField.autocorrectionType = .no
