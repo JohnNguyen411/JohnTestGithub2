@@ -64,16 +64,4 @@ class DealershipTimeSlot: Object, Mappable {
             return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))–\(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))"
         }
     }
-    
-    public static func mockTimeSlotForDate(dealershipId: Int, date: Date) -> DealershipTimeSlot {
-        let dealershipTimeSlot = DealershipTimeSlot()
-        dealershipTimeSlot.id = Int(arc4random_uniform(99999)) + 1
-        dealershipTimeSlot.dealershipId = dealershipId
-        dealershipTimeSlot.from = date.beginningOfDay()
-        dealershipTimeSlot.to = date.endOfDay()
-        dealershipTimeSlot.availableLoanerVehicleCount = 1
-        dealershipTimeSlot.createdAt = Date()
-        dealershipTimeSlot.updatedAt = Date()
-        return dealershipTimeSlot
-    }
 }

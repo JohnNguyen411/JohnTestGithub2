@@ -67,37 +67,6 @@ class LoadingViewController: ChildViewController {
     //MARK: API CALLS
     private func callCustomer(customerId: Int) {
         
-        if Config.sharedInstance.isMock {
-            if let realm = self.realm {
-                if let customer = realm.objects(Customer.self).filter("id = \(customerId)").first {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
-                        
-                        UserManager.sharedInstance.setCustomer(customer: customer)
-                        var cars = realm.objects(Vehicle.self)
-                        if cars.count == 1 {
-                            // create one more
-                            let vehicle = Vehicle()
-                            vehicle.id = 654654
-                            vehicle.baseColor = "White"
-                            vehicle.model = "XC40"
-                            vehicle.year = 2018
-                            try? realm.write {
-                                realm.add(vehicle)
-                            }
-                            cars = realm.objects(Vehicle.self)
-                        }
-                        UserManager.sharedInstance.setVehicles(vehicles: Array(cars))
-                        
-                        let bookings = realm.objects(Booking.self).filter("customerId = %@ AND (state = %@ OR state = %@)", customerId, "created", "started")
-                        UserManager.sharedInstance.setBookings(bookings: Array(bookings))
-                        self.loadVehiclesViewController(customerId:  customerId)
-                    })
-                }
-            }
-            
-            return
-        }
-        
         // Get Customer object with ID
         CustomerAPI().getMe().onSuccess { result in
             if let customer = result?.data?.result {

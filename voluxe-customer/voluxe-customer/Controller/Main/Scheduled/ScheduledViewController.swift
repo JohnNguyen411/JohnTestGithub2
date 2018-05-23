@@ -20,27 +20,11 @@ class ScheduledViewController: ChildViewController {
     
     private static let ETARefreshThrottle: Double = 30
     
-    static let officeLocation = CLLocationCoordinate2D(latitude: 37.788866, longitude: -122.398210)
-    static let driverLocation1 = CLLocationCoordinate2D(latitude: 37.7686497, longitude: -122.4175534)
-    static let driverLocation2 = CLLocationCoordinate2D(latitude: 37.772028, longitude: -122.418198)
-    static let driverLocation3 = CLLocationCoordinate2D(latitude: 37.773911, longitude: -122.417629)
-    static let driverLocation4 = CLLocationCoordinate2D(latitude: 37.776421, longitude: -122.414518)
-    static let driverLocation5 = CLLocationCoordinate2D(latitude: 37.779974, longitude: -122.409948)
-    static let driverLocation6 = CLLocationCoordinate2D(latitude: 37.783298, longitude: -122.405785)
-    static let driverLocation7 = CLLocationCoordinate2D(latitude: 37.786071, longitude: -122.402191)
-    static let driverLocation8 = CLLocationCoordinate2D(latitude: 37.788148, longitude: -122.399627)
-    static let driverLocation9 = CLLocationCoordinate2D(latitude: 37.789094, longitude: -122.398403)
-    
-    static let mockDriver = Driver.mockDriver(id: 0, name: "Michelle", iconUrl: "https://www.biography.com/.image/t_share/MTE5NDg0MDU0ODEyNzIyNzAz/michelle-obama-thumb-2.jpg")
-    
-    
     private static let mapViewHeight = 160
     private static let driverViewHeight = 55
     
-    // mock
     var states: [ServiceState] = []
     var driverLocations: [CLLocationCoordinate2D] = []
-    var mockDelay = 4.0
     
     // UITest
     let testView = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
@@ -75,12 +59,7 @@ class ScheduledViewController: ChildViewController {
         driverContact = VLButton(type: .blueSecondary, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickContactDriver, screenName: screenName)
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
         super.init(screenName: screenName)
-        generateSteps()
         
-        if Config.sharedInstance.isMock {
-            generateStates()
-            generateDriverLocations()
-        }
         mapVC.screenName = self.screenName
 
         verticalStepView = GroupedVerticalStepView(steps: steps)
@@ -94,18 +73,9 @@ class ScheduledViewController: ChildViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func generateSteps() {}
-    func generateStates() {}
-    func generateDriverLocations() {}
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if Config.sharedInstance.isMock {
-            mapVC.updateRequestLocation(location: ScheduledViewController.officeLocation)
-            startMockDriving()
-        }
-        
+      
         driverContact.setActionBlock { [weak self] in
             self?.contactDriverActionSheet()
         }
@@ -194,38 +164,6 @@ class ScheduledViewController: ChildViewController {
                 make.height.equalTo(TimeWindowView.height)
             }
         }
-    }
-    
-    private func startMockDriving() {
-        
-        for (index, driverLocation) in driverLocations.enumerated() {
-            DispatchQueue.main.asyncAfter(deadline: .now() + mockDelay, execute: {
-                if (self.testView.superview == nil) {
-                    self.view.addSubview(self.testView)
-                    self.testView.snp.makeConstraints { make in
-                        make.left.right.equalToSuperview()
-                        make.height.equalTo(1)
-                        make.bottom.equalTo(self.timeWindowView.snp.top)
-                    }
-                }
-                self.newDriver(driver: ScheduledViewController.mockDriver)
-                self.mapVC.updateDriverLocation(location: driverLocation, refreshTime: 4)
-                StateServiceManager.sharedInstance.updateState(state: self.states[index], vehicleId: self.vehicle.id, booking: nil)
-                self.getEta(fromLocation: driverLocation, toLocation: ScheduledViewController.officeLocation)
-            })
-            
-            mockDelay = mockDelay + 4
-        }
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + mockDelay, execute: {
-
-            if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
-                StateServiceManager.sharedInstance.updateState(state: .enRouteForService, vehicleId: self.vehicle.id, booking: nil)
-            } else {
-                RequestedServiceManager.sharedInstance.reset()
-                StateServiceManager.sharedInstance.updateState(state: .completed, vehicleId: self.vehicle.id, booking: nil)
-            }
-        })
     }
     
     override func stateDidChange(state: ServiceState) {

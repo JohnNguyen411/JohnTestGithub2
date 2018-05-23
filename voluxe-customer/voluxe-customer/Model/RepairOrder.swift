@@ -67,12 +67,6 @@ class RepairOrder: Object, Mappable {
         return ["drivable"]
     }
     
-    static func mockRepairOrder() -> RepairOrder {
-        let repairOrder = RepairOrder()
-        repairOrder.name = "10,000 miles checkup"
-        return repairOrder
-    }
-    
 }
 
 public enum DrivableType: String {

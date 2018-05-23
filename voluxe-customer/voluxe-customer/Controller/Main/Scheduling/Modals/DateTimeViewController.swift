@@ -140,27 +140,6 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     
     func getTimeSlots() {
         showLoading(loading: true)
-        if Config.sharedInstance.isMock {
-            
-            var selectedDate: Date?
-            // select preselected date, otherwise fallback to next day
-            if isPickup {
-                selectedDate = RequestedServiceManager.sharedInstance.getPickupTimeSlot()?.from
-            } else {
-                selectedDate = RequestedServiceManager.sharedInstance.getDropoffTimeSlot()?.from
-            }
-            
-            // clear DB slots
-            if let realm = self.realm, selectedDate == nil {
-                let slots = realm.objects(DealershipTimeSlot.self)
-                try? realm.write {
-                    realm.delete(slots)
-                }
-            }
-            self.showCalendar()
-            
-            return
-        }
         
         if let dealership = self.dealership {
             let formatter = DateFormatter()
@@ -463,20 +442,6 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             if selectedDate == nil {
                 var nextDay = self.todaysDate
                 
-                // Fake slots for Mock
-                if Config.sharedInstance.isMock {
-                    if let dealership = self.dealership {
-                        var mockDay = self.todaysDate
-                        try? self.realm?.write {
-                            for _ in 0...30 {
-                                let timeSlot = DealershipTimeSlot.mockTimeSlotForDate(dealershipId: dealership.id, date: mockDay)
-                                mockDay = Calendar.current.date(byAdding: .day, value: 1, to: mockDay)!
-                                self.realm?.add(timeSlot)
-                            }
-                        }
-                    }
-                }
-                
                 //var skippedDays = 0
                 while (!self.dateIsSelectable(date: nextDay) && nextDay <= self.maxDate) {
                     nextDay = Calendar.current.date(byAdding: .day, value: 1, to: nextDay)!
@@ -543,9 +508,6 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     }
     
     func hasAvailabilities(date: Date) -> Bool {
-        if Config.sharedInstance.isMock {
-            return true
-        }
         if let slots = getSlotsForDate(date: date, withLoaner: loanerRequired) {
             return slots.count > 0
         }

@@ -18,42 +18,12 @@ class ScheduledPickupViewController: ScheduledViewController {
         stateDidChange(state: state)
     }
     
-    override func generateStates() {
-        states = [ServiceState.enRouteForPickup, ServiceState.enRouteForPickup, ServiceState.enRouteForPickup, ServiceState.enRouteForPickup,
-                  ServiceState.enRouteForPickup, ServiceState.enRouteForPickup, ServiceState.nearbyForPickup, ServiceState.nearbyForPickup,
-                  ServiceState.arrivedForPickup]
-    }
-    
-    override func generateSteps() {
-        let step1 = Step(id: ServiceState.pickupScheduled, text: .ServiceScheduled, state: .done)
-        let step2 = Step(id: ServiceState.enRouteForPickup, text: .DriverEnRoute)
-        let step3 = Step(id: ServiceState.nearbyForPickup, text: .DriverNearby)
-        let step4 = Step(id: ServiceState.arrivedForPickup, text: .DriverArrived)
-        
-        steps.append(step1)
-        steps.append(step2)
-        steps.append(step3)
-        steps.append(step4)
-    }
-    
-    override func generateDriverLocations() {
-        driverLocations.append(ScheduledViewController.driverLocation1)
-        driverLocations.append(ScheduledViewController.driverLocation2)
-        driverLocations.append(ScheduledViewController.driverLocation3)
-        driverLocations.append(ScheduledViewController.driverLocation4)
-        driverLocations.append(ScheduledViewController.driverLocation5)
-        driverLocations.append(ScheduledViewController.driverLocation6)
-        driverLocations.append(ScheduledViewController.driverLocation7)
-        driverLocations.append(ScheduledViewController.driverLocation8)
-        driverLocations.append(ScheduledViewController.driverLocation9)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else {
             return
         }
-        if let pickupRequest = booking.pickupRequest, let location = pickupRequest.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
+        if let pickupRequest = booking.pickupRequest, let location = pickupRequest.location, let coordinates = location.getLocation() {
             mapVC.updateRequestLocation(location: coordinates)
             
             weak var weakSelf = self
@@ -78,7 +48,7 @@ class ScheduledPickupViewController: ScheduledViewController {
         if let pickupRequest = booking.pickupRequest {
             var refreshTimeSlot = true
 
-            if let driver = pickupRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock, state != .pickupScheduled {
+            if let driver = pickupRequest.driver, let location = driver.location, let coordinates = location.getLocation(), state != .pickupScheduled {
                 self.mapVC.updateDriverLocation(location: coordinates, refreshTime: booking.getRefreshTime())
                 if let pickupRequestLocation = pickupRequest.location, let pickupRequestCoordinates = pickupRequestLocation.getLocation() {
                     self.getEta(fromLocation: coordinates, toLocation: pickupRequestCoordinates)

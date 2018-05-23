@@ -221,18 +221,6 @@ class SchedulingPickupViewController: SchedulingViewController {
         }
         
         guard let realm = self.realm else {
-            // todo show error
-            return
-        }
-        
-        if Config.sharedInstance.isMock {
-            let booking = Booking.mockBooking(customer: UserManager.sharedInstance.getCustomer()!, vehicle: vehicle, dealership: RequestedServiceManager.sharedInstance.getDealership()!)
-            try? realm.write {
-                realm.add(booking, update: true)
-            }
-            
-            self.createPickupRequest(customerId: customerId, booking: booking)
-            
             return
         }
         
@@ -280,12 +268,6 @@ class SchedulingPickupViewController: SchedulingViewController {
     private func createPickupRequest(customerId: Int, booking: Booking) {
         if let timeSlot = RequestedServiceManager.sharedInstance.getPickupTimeSlot(),
             let location = RequestedServiceManager.sharedInstance.getPickupLocation() {
-            
-            if Config.sharedInstance.isMock {
-                let pickupRequest = Request.mockRequest(bookingId: booking.id, location: location, timeSlot: timeSlot)
-                self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
-                return
-            }
             
             var isDriver = true
             if let type = RequestedServiceManager.sharedInstance.getPickupRequestType(), type == .advisorPickup {
