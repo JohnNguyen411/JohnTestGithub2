@@ -1,5 +1,5 @@
 //
-//  DateTimePickupViewController.swift
+//  DateTimeViewController.swift
 //  voluxe-customer
 //
 //  Created by Giroux, Johan on 11/8/17.
@@ -11,7 +11,7 @@ import UIKit
 import RealmSwift
 import SwiftEventBus
 
-class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
+class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
     private static let hourButtonWidth = 80
     
@@ -377,13 +377,13 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         let monthMax = Calendar.current.component(.month, from: maxDate)
         let monthCurrent = Calendar.current.component(.month, from: todaysDate)
         if monthMax != monthCurrent {
-            calendarViewHeight = DateTimePickupViewController.tallCalendarHeight
+            calendarViewHeight = DateTimeViewController.tallCalendarHeight
         } else {
-            calendarViewHeight = DateTimePickupViewController.smallCalendarHeight
+            calendarViewHeight = DateTimeViewController.smallCalendarHeight
         }
         
         let calendar = FSCalendar(frame: .zero)
-        calendar.rowHeight = CGFloat(DateTimePickupViewController.rowHeight)
+        calendar.rowHeight = CGFloat(DateTimeViewController.rowHeight)
         calendar.dataSource = self
         calendar.delegate = self
         calendar.allowsMultipleSelection = true

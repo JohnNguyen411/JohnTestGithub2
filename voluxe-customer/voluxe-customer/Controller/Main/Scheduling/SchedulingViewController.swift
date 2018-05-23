@@ -422,7 +422,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         guard let dealerships = dealerships else {
             return
         }
-        let dealershipVC = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next, dealerships: dealerships)
+        let dealershipVC = DealershipViewController(title: .ChooseDealership, buttonTitle: .Next, dealerships: dealerships)
         dealershipVC.delegate = self
         dealershipVC.view.accessibilityIdentifier = "dealershipVC"
         currentPresentrVC = dealershipVC
@@ -441,7 +441,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             modalScreenName = AnalyticsConstants.paramNameSchedulingIBLocationModalView
         }
         
-        let locationVC = LocationPickupViewController(title: title, buttonTitle: .Next, screenName: modalScreenName)
+        let locationVC = LocationViewController(title: title, buttonTitle: .Next, screenName: modalScreenName)
         locationVC.pickupLocationDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
         currentPresentrVC = locationVC
@@ -450,7 +450,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func showPickupLoanerModal(dismissOnTap: Bool) {
-        let loanerVC = LoanerPickupViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, screenName: AnalyticsConstants.paramNameSchedulingIBLoanerModalView)
+        let loanerVC = LoanerViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, screenName: AnalyticsConstants.paramNameSchedulingIBLoanerModalView)
         loanerVC.delegate = self
         loanerVC.view.accessibilityIdentifier = "loanerVC"
         currentPresentrVC = loanerVC
@@ -473,7 +473,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             }
         }
         
-        let dateModal = DateTimePickupViewController(vehicle: vehicle, title: title, buttonTitle: .Next)
+        let dateModal = DateTimeViewController(vehicle: vehicle, title: title, buttonTitle: .Next)
         dateModal.delegate = self
         dateModal.view.accessibilityIdentifier = "dateModal"
         currentPresentrVC = dateModal

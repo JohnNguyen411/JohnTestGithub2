@@ -1,5 +1,5 @@
 //
-//  LocationPickupViewController.swift
+//  LocationViewController.swift
 //  voluxe-customer
 //
 //  Created by Giroux, Johan on 11/7/17.
@@ -14,7 +14,7 @@ import GooglePlaces
 import MBProgressHUD
 
 
-class LocationPickupViewController: VLPresentrViewController, LocationManagerDelegate, UITextFieldDelegate, VLVerticalSearchTextFieldDelegate {
+class LocationViewController: VLPresentrViewController, LocationManagerDelegate, UITextFieldDelegate, VLVerticalSearchTextFieldDelegate {
     
     private static let maxCount = 4
     
@@ -189,8 +189,8 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     }
     
     func tableViewHeight() -> Int {
-        if numberOfRows() > LocationPickupViewController.maxCount {
-            return LocationPickupViewController.maxCount * Int(CheckmarkCell.height) + 1
+        if numberOfRows() > LocationViewController.maxCount {
+            return LocationViewController.maxCount * Int(CheckmarkCell.height) + 1
         } else {
             return numberOfRows() * Int(CheckmarkCell.height) + 1
         }
@@ -324,7 +324,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
             }
         }
         
-        newLocationHeight = show ? LocationPickupViewController.newLocationTextFieldHeight : LocationPickupViewController.newLocationButtonHeight
+        newLocationHeight = show ? LocationViewController.newLocationTextFieldHeight : LocationViewController.newLocationButtonHeight
     }
     
     // MARK: protocol UITextFieldDelegate
@@ -426,7 +426,7 @@ class LocationPickupViewController: VLPresentrViewController, LocationManagerDel
     
 }
 
-extension LocationPickupViewController: UITableViewDelegate, UITableViewDataSource {
+extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return numberOfRows()
