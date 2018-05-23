@@ -18,6 +18,18 @@ class ScheduledPickupViewController: ScheduledViewController {
         stateDidChange(state: state)
     }
     
+    override func generateSteps() {
+        let step1 = Step(id: ServiceState.pickupScheduled, text: .ServiceScheduled, state: .done)
+        let step2 = Step(id: ServiceState.enRouteForPickup, text: .DriverEnRoute)
+        let step3 = Step(id: ServiceState.nearbyForPickup, text: .DriverNearby)
+        let step4 = Step(id: ServiceState.arrivedForPickup, text: .DriverArrived)
+        
+        steps.append(step1)
+        steps.append(step2)
+        steps.append(step3)
+        steps.append(step4)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else {

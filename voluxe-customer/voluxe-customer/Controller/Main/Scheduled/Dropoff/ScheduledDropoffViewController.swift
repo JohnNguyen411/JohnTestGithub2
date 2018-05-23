@@ -19,6 +19,17 @@ class ScheduledDropoffViewController: ScheduledViewController {
         stateDidChange(state: state)
     }
     
+    override func generateSteps() {
+        let step1 = Step(id: ServiceState.serviceCompleted, text: .VehicleIsReady, state: .done)
+        let step2 = Step(id: ServiceState.enRouteForDropoff, text: .DriverEnRoute)
+        let step3 = Step(id: ServiceState.nearbyForDropoff, text: .DriverNearby)
+        let step4 = Step(id: ServiceState.arrivedForDropoff, text: .DriverArrived)
+        
+        steps.append(step1)
+        steps.append(step2)
+        steps.append(step3)
+        steps.append(step4)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

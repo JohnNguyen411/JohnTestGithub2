@@ -59,7 +59,8 @@ class ScheduledViewController: ChildViewController {
         driverContact = VLButton(type: .blueSecondary, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickContactDriver, screenName: screenName)
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
         super.init(screenName: screenName)
-        
+        generateSteps()
+
         mapVC.screenName = self.screenName
 
         verticalStepView = GroupedVerticalStepView(steps: steps)
@@ -73,6 +74,8 @@ class ScheduledViewController: ChildViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    func generateSteps() {}
+
     override func viewDidLoad() {
         super.viewDidLoad()
       
