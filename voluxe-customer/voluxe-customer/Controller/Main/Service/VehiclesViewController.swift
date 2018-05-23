@@ -191,7 +191,12 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
             confirmButton.animateAlpha(show: false)
             
             if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: booking.getRepairOrderName())
+                if booking.getState() == .pickupScheduled, let request = booking.pickupRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
+                    let dateTime = formatter.string(from: date)
+                    scheduledServiceView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+                } else {
+                    scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: booking.getRepairOrderName())
+                }
             } else {
                 if let request = booking.dropoffRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
                     let dateTime = formatter.string(from: date)
