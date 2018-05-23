@@ -245,7 +245,12 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
             language = localeLang.uppercased()
         }
         
-        CustomerAPI().signup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, firstName: signupCustomer.firstName!, lastName: signupCustomer.lastName!, languageCode: language).onSuccess { result in
+        guard let email = signupCustomer.email else { return }
+        guard let phoneNumber = signupCustomer.phoneNumber else { return }
+        guard let firstName = signupCustomer.firstName else { return }
+        guard let lastName = signupCustomer.lastName else { return }
+
+        CustomerAPI().signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language).onSuccess { result in
             if let customer = result?.data?.result {
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupSuccess, screenName: self.screenName)
                 

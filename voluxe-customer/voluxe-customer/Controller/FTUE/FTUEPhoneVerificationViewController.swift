@@ -252,21 +252,24 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
         } else {
             
-            var customerId = UserManager.sharedInstance.customerId()
-            if customerId == nil {
-                customerId = UserManager.sharedInstance.tempCustomerId
+            var tempCustomerId = UserManager.sharedInstance.customerId()
+            if tempCustomerId == nil {
+                tempCustomerId = UserManager.sharedInstance.tempCustomerId
             }
             
-            if isLoading || customerId == nil {
+            if isLoading {
                 return
             }
+            
+            guard let customerId = tempCustomerId else { return }
+            guard let verificationCode = codeTextField.textField.text else { return }
             
             isLoading = true
             
             self.showProgressHUD()
 
             // verify phone number
-            CustomerAPI().verifyPhoneNumber(customerId: customerId!, verificationCode: codeTextField.textField.text!).onSuccess { result in
+            CustomerAPI().verifyPhoneNumber(customerId: customerId, verificationCode: verificationCode).onSuccess { result in
                 
                 self.hideProgressHUD()
                 VLAnalytics.logEventWithName(AnalyticsConstants.eventApiVerifyPhoneSuccess, screenName: self.screenName)
