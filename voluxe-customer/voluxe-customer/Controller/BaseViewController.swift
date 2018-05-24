@@ -267,11 +267,11 @@ extension UIViewController {
         self.slideMenuController()?.removeRightGestures()
     }
     
-    func showOkDialog(title: String, message: String, completion: (() -> Swift.Void)? = nil, analyticDialogName: String, screenName: String?) {
+    func showOkDialog(title: String, message: String, completion: (() -> ())? = nil, analyticDialogName: String, screenName: String?) {
         showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: completion, analyticDialogName: analyticDialogName, screenName: screenName)
     }
     
-    func showDialog(title: String, message: String, buttonTitle: String, completion: (() -> Swift.Void)? = nil, analyticDialogName: String, screenName: String?) {
+    func showDialog(title: String, message: String, buttonTitle: String, completion: (() -> ())? = nil, analyticDialogName: String, screenName: String?) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
@@ -292,7 +292,7 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func showDestructiveDialog(title: String, message: String, cancelButtonTitle: String, destructiveButtonTitle: String, destructiveCompletion: @escaping (() -> Swift.Void), analyticDialogName: String, screenName: String) {
+    func showDestructiveDialog(title: String, message: String, cancelButtonTitle: String, destructiveButtonTitle: String, destructiveCompletion: @escaping (() -> ()), analyticDialogName: String, screenName: String) {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)

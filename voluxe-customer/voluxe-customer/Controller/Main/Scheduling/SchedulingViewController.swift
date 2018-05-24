@@ -359,7 +359,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
     }
     
-    private func filterDealershipsForRepairOrder(_ repairOrderTypeId: Int, dealerships: [Dealership], completion: ((_ error: String?) -> Swift.Void)? = nil) {
+    private func filterDealershipsForRepairOrder(_ repairOrderTypeId: Int, dealerships: [Dealership], completion: ((_ error: String?) -> ())? = nil) {
         RepairOrderAPI().getDealershipRepairOrder(dealerships: dealerships, repairOrderTypeId: repairOrderTypeId).onSuccess { result in
             VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetDealershipROSuccess, screenName: self.screenName)
             
