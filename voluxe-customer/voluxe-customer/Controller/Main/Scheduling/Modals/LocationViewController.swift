@@ -206,13 +206,9 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         weak var weakSelf = self
         if userText.count > 2 {
             self.locationManager.googlePlacesAutocomplete(address: self.newLocationTextField.text) { (autocompletePredictions, error) in
-                guard let weakSelf = weakSelf else {
-                    return
-                }
+                guard let weakSelf = weakSelf else { return }
                 
-                if weakSelf.isBeingDismissed {
-                    return
-                }
+                if weakSelf.isBeingDismissed { return }
                 
                 if let _ = error {
                     weakSelf.newLocationTextField.text = userText
@@ -261,9 +257,8 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         if let pickupLocationDelegate = pickupLocationDelegate {
             if self.currentLocationAddress != nil && selectedIndex == self.numberOfRows() - 1 {
                 
-                guard let currentLocationInfo = currentLocationAddress else {
-                    return
-                }
+                guard let currentLocationInfo = currentLocationAddress else { return }
+                
                 // add location to realm
                 var customerAddress = CustomerAddress()
                 let addressString: String = currentLocationInfo.fullAddress()
@@ -333,19 +328,12 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         
         newLocationTextField.closeAutocomplete()
         
-        guard let autocompletePredictions = autocompletePredictions else {
-            return
-        }
-        
-        if selectedIndex > autocompletePredictions.count {
-            return
-        }
+        guard let autocompletePredictions = autocompletePredictions else { return }
+        if selectedIndex > autocompletePredictions.count { return }
         
         selectedLocation = autocompletePredictions[selectedIndex]
         
-        guard let selectedLocation = selectedLocation, let placeId = selectedLocation.placeID, let superview = self.view.superview else {
-            return
-        }
+        guard let selectedLocation = selectedLocation, let placeId = selectedLocation.placeID, let superview = self.view.superview else { return }
         
         showNewLocationTextField(show: false)
         

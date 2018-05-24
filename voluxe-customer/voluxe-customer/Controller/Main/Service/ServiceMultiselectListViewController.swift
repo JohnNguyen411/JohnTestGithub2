@@ -73,13 +73,8 @@ class ServiceMultiselectListViewController: BaseViewController {
         showServices(services: [.UnderTheHood, .VehicleInt, .VehicleExt, .IDontKnow])
         
         confirmButton.setActionBlock { [weak self] in
-            guard let weakSelf = self else {
-                return
-            }
-            
-            guard let services = weakSelf.services else {
-                return
-            }
+            guard let weakSelf = self else { return }
+            guard let services = weakSelf.services else { return }
             
             var selectedService: [String] = []
             for dictElement in weakSelf.selected.enumerated() {

@@ -83,9 +83,7 @@ class SyncTimer {
         if let timer = timer {
             timer.schedule(deadline: .now(), repeating: .seconds(every), leeway: .seconds(1))
             timer.setEventHandler(handler: { [weak self] in
-                guard let weakSelf = self else {
-                    return
-                }
+                guard let weakSelf = self else { return }
                 if !UserManager.sharedInstance.isLoggedIn() || weakSelf.booking.isInvalidated {
                     weakSelf.suspend()
                     return

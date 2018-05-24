@@ -247,9 +247,7 @@ extension PresentrController {
     // MARK: Animation
     
     override public func presentationTransitionWillBegin() {
-        guard let containerView = containerView else {
-            return
-        }
+        guard let containerView = containerView else { return }
 
         setupBackgroundView()
 

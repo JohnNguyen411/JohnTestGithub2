@@ -119,14 +119,10 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     @objc func resendCode() {
         
-        if isLoading {
-            return
-        }
+        if isLoading { return }
         
         if ftuePhoneType == .resetPassword {
-            guard let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber else {
-                return
-            }
+            guard let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber else { return }
             
             isLoading = true
             

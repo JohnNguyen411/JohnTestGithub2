@@ -33,9 +33,8 @@ class ScheduledDropoffViewController: ScheduledViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else {
-            return
-        }
+        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else { return }
+        
         if let dropoffRequest = booking.dropoffRequest, let location = dropoffRequest.location, let coordinates = location.getLocation() {
             mapVC.updateRequestLocation(location: coordinates)
             
@@ -55,9 +54,8 @@ class ScheduledDropoffViewController: ScheduledViewController {
     override func driverLocationUpdate() {
         super.driverLocationUpdate()
         
-        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else {
-            return
-        }
+        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else { return }
+        
         let state = StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id)
 
         if let dropoffRequest = booking.dropoffRequest {

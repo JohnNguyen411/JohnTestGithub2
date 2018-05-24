@@ -65,13 +65,8 @@ extension String {
     }
     
     public static func areSimilar(stringOne: String?, stringTwo: String?) -> Bool {
-        guard let stringOne = stringOne else {
-            return false
-        }
-        
-        guard let stringTwo = stringTwo else {
-            return false
-        }
+        guard let stringOne = stringOne else { return false }
+        guard let stringTwo = stringTwo else { return false }
         
         return stringOne == stringTwo
     }

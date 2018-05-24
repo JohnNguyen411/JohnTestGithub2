@@ -114,9 +114,8 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     //MARK: Validation methods
     
     func isPasswordValid(password: String?) -> Bool {
-        guard let password = password else {
-            return false
-        }
+        guard let password = password else { return false }
+        
         if password.isEmpty || password.count < 8 {
             return false
         }

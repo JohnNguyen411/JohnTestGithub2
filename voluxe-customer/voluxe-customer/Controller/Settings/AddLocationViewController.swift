@@ -89,13 +89,9 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
             weak var weakSelf = self
 
             self.locationManager.googlePlacesAutocomplete(address: userText) { (autocompletePredictions, error) in
-                guard let weakSelf = weakSelf else {
-                    return
-                }
+                guard let weakSelf = weakSelf else { return }
+                if weakSelf.isBeingDismissed { return }
                 
-                if weakSelf.isBeingDismissed {
-                    return
-                }
                 if let _ = error {
                     self.newLocationTextField.text = userText
                     self.autoCompleteCharacterCount = 0
@@ -124,19 +120,12 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
         
         newLocationTextField.closeAutocomplete()
         
-        guard let autocompletePredictions = autocompletePredictions, let superview = self.view.superview else {
-            return
-        }
-        
-        if selectedIndex > autocompletePredictions.count {
-            return
-        }
+        guard let autocompletePredictions = autocompletePredictions, let superview = self.view.superview else { return }
+        if selectedIndex > autocompletePredictions.count { return }
         
         let selectedPrediction = autocompletePredictions[selectedIndex]
         
-        guard let placeId = selectedPrediction.placeID else {
-            return
-        }
+        guard let placeId = selectedPrediction.placeID else { return }
         
         MBProgressHUD.showAdded(to: superview, animated: true)
         

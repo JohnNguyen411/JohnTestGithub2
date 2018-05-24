@@ -121,13 +121,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     //MARK: Validation methods
     
     func isEmailValid(email: String?) -> Bool {
-        guard let email = email else {
-            return false
-        }
-        
-        if email.isEmpty {
-            return false
-        }
+        guard let email = email else { return false }
+        if email.isEmpty { return false }
         
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
@@ -136,13 +131,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     }
     
     func isPhoneNumberValid(phoneNumber: String?) -> Bool {
-        guard let phoneNumber = phoneNumber else {
-            return false
-        }
-        
-        guard let textField = phoneNumberTextField.textField as? PhoneNumberTextField else {
-            return false
-        }
+        guard let phoneNumber = phoneNumber else { return false }
+        guard let textField = phoneNumberTextField.textField as? PhoneNumberTextField else { return false }
         
         do {
             validPhoneNumber = try phoneNumberKit.parse(phoneNumber, withRegion: textField.currentRegion, ignoreType: true)

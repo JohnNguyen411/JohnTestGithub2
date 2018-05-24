@@ -95,12 +95,9 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     }
     
     func isLastNameValid(lastName: String?) -> Bool {
-        guard let lastName = lastName else {
-            return false
-        }
-        if lastName.isEmpty {
-            return false
-        }
+        guard let lastName = lastName else { return false }
+        if lastName.isEmpty { return false }
+        
         return true
     }
     

@@ -243,9 +243,7 @@ class ScheduledViewController: ChildViewController {
                 }
                 }.onFailure { error in
                     Logger.print(error)
-                    guard let weakSelf = weakSelf else {
-                        return
-                    }
+                    guard let weakSelf = weakSelf else { return }
                     VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventGmapsDistanceAPIFail, screenName: weakSelf.screenName)
             }
         }
@@ -275,13 +273,8 @@ class ScheduledViewController: ChildViewController {
     
     func contactDriver(mode: String) {
         
-        guard let customerId = UserManager.sharedInstance.customerId() else {
-            return
-        }
-        
-        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else {
-            return
-        }
+        guard let customerId = UserManager.sharedInstance.customerId() else { return }
+        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else { return }
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         

@@ -216,30 +216,13 @@ class SchedulingPickupViewController: SchedulingViewController {
     
     private func createBooking(loaner: Bool) {
         
-        guard let customerId = UserManager.sharedInstance.customerId() else {
-            return
-        }
+        guard let customerId = UserManager.sharedInstance.customerId() else { return }
+        guard let realm = self.realm else { return }
+        guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else { return }
+        guard let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() else { return }
+        guard let repairOrderType = repairOrder.repairOrderType else { return }
         
-        guard let realm = self.realm else {
-            return
-        }
-        
-        guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else {
-            return
-        }
-        
-        guard let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() else {
-            return
-        }
-        
-        guard let repairOrderType = repairOrder.repairOrderType else {
-            return
-        }
-        
-        guard let dealershipRepairOrder = realm.objects(DealershipRepairOrder.self).filter("repairOrderTypeId = \(repairOrderType.id) AND dealershipId = \(dealership.id) AND enabled = true").first else {
-            // todo show error
-            return
-        }
+        guard let dealershipRepairOrder = realm.objects(DealershipRepairOrder.self).filter("repairOrderTypeId = \(repairOrderType.id) AND dealershipId = \(dealership.id) AND enabled = true").first else { return }
         
         confirmButton.isLoading = true
         

@@ -31,9 +31,7 @@ extension UIImageView {
     func applyCropImage(image: UIImage, scale: CGFloat) {
         let cropRect = CGRect(x: ((image.size.width - (image.size.width * scale)) / 2), y: 0, width: image.size.width * scale, height: image.size.height * scale)
         if let cgimage = image.cgImage {
-            guard let imageRef = cgimage.cropping(to: cropRect) else {
-                return
-            }
+            guard let imageRef = cgimage.cropping(to: cropRect) else { return }
             // or use the UIImage wherever you like
             self.image = UIImage(cgImage: imageRef)
         }

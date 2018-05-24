@@ -44,9 +44,7 @@ class DealershipTimeSlot: Object, Mappable {
     }
     
     func getTimeSlot(calendar: Calendar, showAMPM: Bool, shortSymbol: Bool? = nil) -> String? {
-        guard let from = from, let to = to else {
-            return nil
-        }
+        guard let from = from, let to = to else { return nil }
         
         if showAMPM {
             let hourFrom = Calendar.current.component(.hour, from: from)

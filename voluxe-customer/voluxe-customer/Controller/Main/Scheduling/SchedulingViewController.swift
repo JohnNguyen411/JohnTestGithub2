@@ -329,7 +329,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
      - Returns: A Future ResponseObject containing a list of Dealership around the location, or an AFError if an error occured
      */
     //
-    func fetchDealershipsForLocation(location: CLLocationCoordinate2D?, completion: ((_ error: String?) -> Swift.Void)? = nil) {
+    func fetchDealershipsForLocation(location: CLLocationCoordinate2D?, completion: ((_ error: String?) -> ())? = nil) {
         
         guard let location = location else { return }
         
@@ -342,28 +342,20 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                         self.filterDealershipsForRepairOrder(repairOrderTypeId, dealerships: dealerships, completion: completion)
                     } else {
                         RequestedServiceManager.sharedInstance.setDealership(dealership: nil)
-                        if let completion = completion {
-                            completion(nil)
-                        }
+                        completion?(nil)
                     }
                 } else {
                     self.handleDealershipsResponse(dealerships: dealerships)
-                    if let completion = completion {
-                        completion(nil)
-                    }
+                    completion?(nil)
                 }
             } else {
-                if let completion = completion {
-                    completion(nil)
-                }
+                completion?(nil)
                 self.dealerships = nil
             }
             
             }.onFailure { error in
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipsFail, screenName: self.screenName, error: error)
-                if let completion = completion {
-                    completion(nil)
-                }
+                completion?(nil)
         }
     }
     
@@ -428,9 +420,8 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func showDealershipModal(dismissOnTap: Bool) {
-        guard let dealerships = dealerships else {
-            return
-        }
+        guard let dealerships = dealerships else { return }
+        
         let dealershipVC = DealershipViewController(title: .ChooseDealership, buttonTitle: .Next, dealerships: dealerships)
         dealershipVC.delegate = self
         dealershipVC.view.accessibilityIdentifier = "dealershipVC"

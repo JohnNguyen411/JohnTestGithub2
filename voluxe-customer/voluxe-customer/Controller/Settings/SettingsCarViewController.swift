@@ -79,9 +79,7 @@ class SettingsCarViewController: BaseViewController {
     
     private func removeVehicle() {
         
-        guard let customerId = UserManager.sharedInstance.customerId() else {
-            return
-        }
+        guard let customerId = UserManager.sharedInstance.customerId() else { return }
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         

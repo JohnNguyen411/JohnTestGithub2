@@ -219,9 +219,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     }
     
     override func confirmButtonClick() {
-        guard let customerId = UserManager.sharedInstance.customerId() else {
-            return
-        }
+        guard let customerId = UserManager.sharedInstance.customerId() else { return }
         
         if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle),
             let timeSlot = RequestedServiceManager.sharedInstance.getDropoffTimeSlot(),

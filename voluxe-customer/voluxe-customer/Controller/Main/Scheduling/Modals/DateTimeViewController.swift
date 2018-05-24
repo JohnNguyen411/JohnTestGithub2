@@ -540,9 +540,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             view.removeFromSuperview()
         }
         
-        guard let slots = slots, slots.count > 0 else {
-            return
-        }
+        guard let slots = slots, slots.count > 0 else { return }
         
         slotViews = []
         currentSlots = slots
@@ -604,9 +602,8 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             selectFirstEnabledButton()
             return
         }
-        guard let currentSlots = currentSlots else {
-            return
-        }
+        guard let currentSlots = currentSlots else { return }
+        
         for (index, slotView) in slotViews.enumerated() {
             if slotView.isEnabled, slotView.tag == timeSlot.id {
                 slotClicked(viewIndex: index, slot: currentSlots[index])
@@ -616,9 +613,8 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     }
     
     func selectFirstEnabledButton() {
-        guard let currentSlots = currentSlots else {
-            return
-        }
+        guard let currentSlots = currentSlots else { return }
+        
         for (index, slotView) in slotViews.enumerated() {
             if slotView.isEnabled {
                 slotClicked(viewIndex: index, slot: currentSlots[index])
@@ -665,9 +661,8 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     @objc func callDealership() {
         if let dealership = dealership, let number = dealership.phoneNumber {
             let number = "telprompt:\(number)"
-            guard let numberURL = URL(string: number) else {
-                return
-            }
+            guard let numberURL = URL(string: number) else { return }
+            
             UIApplication.shared.open(numberURL)
         }
     }
