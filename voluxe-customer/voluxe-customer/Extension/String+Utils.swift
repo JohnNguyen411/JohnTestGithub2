@@ -63,6 +63,11 @@ extension String {
         }
         return false
     }
+
+    func isDigitsOnly() -> Bool {
+        let set = CharacterSet.decimalDigits.inverted
+        return self.rangeOfCharacter(from: set) != nil
+    }
     
     public static func areSimilar(stringOne: String?, stringTwo: String?) -> Bool {
         guard let stringOne = stringOne else { return false }
