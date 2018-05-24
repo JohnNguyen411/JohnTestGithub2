@@ -216,42 +216,13 @@ class SchedulingPickupViewController: SchedulingViewController {
     
     private func createBooking(loaner: Bool) {
         
-        guard let customerId = UserManager.sharedInstance.customerId() else {
-            return
-        }
+        guard let customerId = UserManager.sharedInstance.customerId() else { return }
+        guard let realm = self.realm else { return }
+        guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else { return }
+        guard let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() else { return }
+        guard let repairOrderType = repairOrder.repairOrderType else { return }
         
-        guard let realm = self.realm else {
-            // todo show error
-            return
-        }
-        
-        if Config.sharedInstance.isMock {
-            let booking = Booking.mockBooking(customer: UserManager.sharedInstance.getCustomer()!, vehicle: vehicle, dealership: RequestedServiceManager.sharedInstance.getDealership()!)
-            try? realm.write {
-                realm.add(booking, update: true)
-            }
-            
-            self.createPickupRequest(customerId: customerId, booking: booking)
-            
-            return
-        }
-        
-        guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else {
-            return
-        }
-        
-        guard let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() else {
-            return
-        }
-        
-        guard let repairOrderType = repairOrder.repairOrderType else {
-            return
-        }
-        
-        guard let dealershipRepairOrder = realm.objects(DealershipRepairOrder.self).filter("repairOrderTypeId = \(repairOrderType.id) AND dealershipId = \(dealership.id) AND enabled = true").first else {
-            // todo show error
-            return
-        }
+        guard let dealershipRepairOrder = realm.objects(DealershipRepairOrder.self).filter("repairOrderTypeId = \(repairOrderType.id) AND dealershipId = \(dealership.id) AND enabled = true").first else { return }
         
         confirmButton.isLoading = true
         
@@ -280,12 +251,6 @@ class SchedulingPickupViewController: SchedulingViewController {
     private func createPickupRequest(customerId: Int, booking: Booking) {
         if let timeSlot = RequestedServiceManager.sharedInstance.getPickupTimeSlot(),
             let location = RequestedServiceManager.sharedInstance.getPickupLocation() {
-            
-            if Config.sharedInstance.isMock {
-                let pickupRequest = Request.mockRequest(bookingId: booking.id, location: location, timeSlot: timeSlot)
-                self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
-                return
-            }
             
             var isDriver = true
             if let type = RequestedServiceManager.sharedInstance.getPickupRequestType(), type == .advisorPickup {

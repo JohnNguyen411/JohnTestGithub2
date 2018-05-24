@@ -21,15 +21,7 @@ class Driver: Object, Mappable {
         self.init()
     }
     
-    static func mockDriver(id: Int, name: String?, iconUrl: String) -> Driver {
-        let driver = Driver()
-        driver.id = id
-        driver.name = name
-        driver.iconUrl = iconUrl
-        return driver
-    }
-    
-    
+
     func mapping(map: Map) {
         id <- map["id"]
         name <- map["first_name"]

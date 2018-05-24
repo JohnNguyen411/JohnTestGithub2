@@ -27,7 +27,6 @@ class Config: NSObject {
     private let baseUrl: String
     private let clientId: String
     private let googleMapsAPIKey: String
-    public let isMock: Bool
 
     // Singleton instance
     static let sharedInstance = Config()
@@ -35,7 +34,6 @@ class Config: NSObject {
     override init() {
         let bundle = Bundle(for: type(of: self))
         let scheme = bundle.object(forInfoDictionaryKey: "Scheme") as! String
-        isMock = scheme == "Mock"
         baseUrl = Config.baseUrlForScheme(scheme: scheme)
         clientId = Config.clientIdForScheme(scheme: scheme)
         if scheme == Config.releaseBundleId {

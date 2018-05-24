@@ -1,5 +1,5 @@
 //
-//  DateTimePickupViewController.swift
+//  DateTimeViewController.swift
 //  voluxe-customer
 //
 //  Created by Giroux, Johan on 11/8/17.
@@ -11,7 +11,7 @@ import UIKit
 import RealmSwift
 import SwiftEventBus
 
-class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
+class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
     private static let hourButtonWidth = 80
     
@@ -20,7 +20,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     private static let smallCalendarHeight = 180
     private static let tallCalendarHeight = 220
     
-    var delegate: PickupDateDelegate?
+    weak var delegate: PickupDateDelegate?
     var realm: Realm?
     var dealership: Dealership?
     let vehicle: Vehicle
@@ -140,27 +140,6 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     
     func getTimeSlots() {
         showLoading(loading: true)
-        if Config.sharedInstance.isMock {
-            
-            var selectedDate: Date?
-            // select preselected date, otherwise fallback to next day
-            if isPickup {
-                selectedDate = RequestedServiceManager.sharedInstance.getPickupTimeSlot()?.from
-            } else {
-                selectedDate = RequestedServiceManager.sharedInstance.getDropoffTimeSlot()?.from
-            }
-            
-            // clear DB slots
-            if let realm = self.realm, selectedDate == nil {
-                let slots = realm.objects(DealershipTimeSlot.self)
-                try? realm.write {
-                    realm.delete(slots)
-                }
-            }
-            self.showCalendar()
-            
-            return
-        }
         
         if let dealership = self.dealership {
             let formatter = DateFormatter()
@@ -377,13 +356,13 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
         let monthMax = Calendar.current.component(.month, from: maxDate)
         let monthCurrent = Calendar.current.component(.month, from: todaysDate)
         if monthMax != monthCurrent {
-            calendarViewHeight = DateTimePickupViewController.tallCalendarHeight
+            calendarViewHeight = DateTimeViewController.tallCalendarHeight
         } else {
-            calendarViewHeight = DateTimePickupViewController.smallCalendarHeight
+            calendarViewHeight = DateTimeViewController.smallCalendarHeight
         }
         
         let calendar = FSCalendar(frame: .zero)
-        calendar.rowHeight = CGFloat(DateTimePickupViewController.rowHeight)
+        calendar.rowHeight = CGFloat(DateTimeViewController.rowHeight)
         calendar.dataSource = self
         calendar.delegate = self
         calendar.allowsMultipleSelection = true
@@ -463,20 +442,6 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             if selectedDate == nil {
                 var nextDay = self.todaysDate
                 
-                // Fake slots for Mock
-                if Config.sharedInstance.isMock {
-                    if let dealership = self.dealership {
-                        var mockDay = self.todaysDate
-                        try? self.realm?.write {
-                            for _ in 0...30 {
-                                let timeSlot = DealershipTimeSlot.mockTimeSlotForDate(dealershipId: dealership.id, date: mockDay)
-                                mockDay = Calendar.current.date(byAdding: .day, value: 1, to: mockDay)!
-                                self.realm?.add(timeSlot)
-                            }
-                        }
-                    }
-                }
-                
                 //var skippedDays = 0
                 while (!self.dateIsSelectable(date: nextDay) && nextDay <= self.maxDate) {
                     nextDay = Calendar.current.date(byAdding: .day, value: 1, to: nextDay)!
@@ -543,9 +508,6 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     func hasAvailabilities(date: Date) -> Bool {
-        if Config.sharedInstance.isMock {
-            return true
-        }
         if let slots = getSlotsForDate(date: date, withLoaner: loanerRequired) {
             return slots.count > 0
         }
@@ -578,9 +540,7 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             view.removeFromSuperview()
         }
         
-        guard let slots = slots, slots.count > 0 else {
-            return
-        }
+        guard let slots = slots, slots.count > 0 else { return }
         
         slotViews = []
         currentSlots = slots
@@ -642,9 +602,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
             selectFirstEnabledButton()
             return
         }
-        guard let currentSlots = currentSlots else {
-            return
-        }
+        guard let currentSlots = currentSlots else { return }
+        
         for (index, slotView) in slotViews.enumerated() {
             if slotView.isEnabled, slotView.tag == timeSlot.id {
                 slotClicked(viewIndex: index, slot: currentSlots[index])
@@ -654,9 +613,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     }
     
     func selectFirstEnabledButton() {
-        guard let currentSlots = currentSlots else {
-            return
-        }
+        guard let currentSlots = currentSlots else { return }
+        
         for (index, slotView) in slotViews.enumerated() {
             if slotView.isEnabled {
                 slotClicked(viewIndex: index, slot: currentSlots[index])
@@ -703,9 +661,8 @@ class DateTimePickupViewController: VLPresentrViewController, FSCalendarDataSour
     @objc func callDealership() {
         if let dealership = dealership, let number = dealership.phoneNumber {
             let number = "telprompt:\(number)"
-            guard let numberURL = URL(string: number) else {
-                return
-            }
+            guard let numberURL = URL(string: number) else { return }
+            
             UIApplication.shared.open(numberURL)
         }
     }

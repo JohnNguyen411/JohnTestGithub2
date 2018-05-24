@@ -75,7 +75,6 @@ class SyncTimer {
         }
         
         if booking.isInvalidated {
-            // todo remove from manager?
             return
         }
         
@@ -83,9 +82,7 @@ class SyncTimer {
         if let timer = timer {
             timer.schedule(deadline: .now(), repeating: .seconds(every), leeway: .seconds(1))
             timer.setEventHandler(handler: { [weak self] in
-                guard let weakSelf = self else {
-                    return
-                }
+                guard let weakSelf = self else { return }
                 if !UserManager.sharedInstance.isLoggedIn() || weakSelf.booking.isInvalidated {
                     weakSelf.suspend()
                     return
@@ -100,9 +97,6 @@ class SyncTimer {
     
     
     private func getBooking(customerId: Int, bookingId: Int) {
-        if Config.sharedInstance.isMock {
-            return
-        }
         // Get Customer's Vehicles based on ID
         BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
             if let booking = result?.data?.result {
@@ -116,12 +110,9 @@ class SyncTimer {
                 }
                 let serviceState = Booking.getStateForBooking(booking: booking)
                 StateServiceManager.sharedInstance.updateState(state: serviceState, vehicleId: booking.vehicleId, booking: booking)
-            } else {
-                // error
             }
             
             }.onFailure { error in
-                // todo show error
         }
     }
     

@@ -70,8 +70,8 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         
         vehicleImageView.contentMode = .scaleAspectFit
         
-        confirmButton.setActionBlock {
-            self.confirmButtonClick()
+        confirmButton.setActionBlock { [weak self] in
+            self?.confirmButtonClick()
         }
         
         vehicleCollectionView.register(VehicleCell.self, forCellWithReuseIdentifier: VehicleCell.reuseId)
@@ -182,7 +182,6 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         super.stateDidChange(state: state)
         // check if service scheduled
         
-        //todo: check service for selected vehicle
         if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle), !booking.isInvalidated {
             scheduledServiceView.snp.updateConstraints { make in
                 make.height.equalTo(100)

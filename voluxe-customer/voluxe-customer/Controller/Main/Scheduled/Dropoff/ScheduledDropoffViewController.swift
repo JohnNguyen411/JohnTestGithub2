@@ -19,12 +19,6 @@ class ScheduledDropoffViewController: ScheduledViewController {
         stateDidChange(state: state)
     }
     
-    override func generateStates() {
-        states = [ServiceState.enRouteForDropoff, ServiceState.enRouteForDropoff, ServiceState.enRouteForDropoff, ServiceState.enRouteForDropoff,
-                  ServiceState.enRouteForDropoff, ServiceState.enRouteForDropoff, ServiceState.nearbyForDropoff, ServiceState.nearbyForDropoff,
-                  ServiceState.arrivedForDropoff]
-    }
-    
     override func generateSteps() {
         let step1 = Step(id: ServiceState.serviceCompleted, text: .VehicleIsReady, state: .done)
         let step2 = Step(id: ServiceState.enRouteForDropoff, text: .DriverEnRoute)
@@ -37,24 +31,11 @@ class ScheduledDropoffViewController: ScheduledViewController {
         steps.append(step4)
     }
     
-    override func generateDriverLocations() {
-        driverLocations.append(ScheduledViewController.driverLocation1)
-        driverLocations.append(ScheduledViewController.driverLocation2)
-        driverLocations.append(ScheduledViewController.driverLocation3)
-        driverLocations.append(ScheduledViewController.driverLocation4)
-        driverLocations.append(ScheduledViewController.driverLocation5)
-        driverLocations.append(ScheduledViewController.driverLocation6)
-        driverLocations.append(ScheduledViewController.driverLocation7)
-        driverLocations.append(ScheduledViewController.driverLocation8)
-        driverLocations.append(ScheduledViewController.driverLocation9)
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else {
-            return
-        }
-        if let dropoffRequest = booking.dropoffRequest, let location = dropoffRequest.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock {
+        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else { return }
+        
+        if let dropoffRequest = booking.dropoffRequest, let location = dropoffRequest.location, let coordinates = location.getLocation() {
             mapVC.updateRequestLocation(location: coordinates)
             
             weak var weakSelf = self
@@ -73,15 +54,14 @@ class ScheduledDropoffViewController: ScheduledViewController {
     override func driverLocationUpdate() {
         super.driverLocationUpdate()
         
-        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else {
-            return
-        }
+        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else { return }
+        
         let state = StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id)
 
         if let dropoffRequest = booking.dropoffRequest {
             var refreshTimeSlot = true
             
-            if let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), !Config.sharedInstance.isMock, state != .dropoffScheduled {
+            if let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), state != .dropoffScheduled {
                 self.mapVC.updateDriverLocation(location: coordinates, refreshTime: booking.getRefreshTime())
                 if let dropoffRequestLocation = dropoffRequest.location, let dropoffRequestCoordinates = dropoffRequestLocation.getLocation() {
                     refreshTimeSlot = false

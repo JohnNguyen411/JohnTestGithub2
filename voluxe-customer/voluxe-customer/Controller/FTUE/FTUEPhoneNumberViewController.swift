@@ -99,13 +99,8 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     }
     
     func isPhoneNumberValid(phoneNumber: String?) -> Bool {
-        guard let phoneNumber = phoneNumber else {
-            return false
-        }
-        
-        guard let textField = phoneNumberTextField.textField as? PhoneNumberTextField else {
-            return false
-        }
+        guard let phoneNumber = phoneNumber else { return false }
+        guard let textField = phoneNumberTextField.textField as? PhoneNumberTextField else { return false }
         
         do {
             validPhoneNumber = try phoneNumberKit.parse(phoneNumber, withRegion: textField.currentRegion, ignoreType: true)
@@ -130,9 +125,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     
     override func onRightClicked(analyticEventName: String? = nil) {
         super.onRightClicked(analyticEventName: analyticEventName)
-        guard let validPhoneNumber = validPhoneNumber else {
-            return
-        }
+        guard let validPhoneNumber = validPhoneNumber else { return }
         
         UserManager.sharedInstance.signupCustomer.phoneNumber = phoneNumberKit.format(validPhoneNumber, toType: .e164)
         //update customer
@@ -142,13 +135,9 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     
     private func updatePhoneNumber() {
         
-        guard let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber else {
-            return
-        }
+        guard let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber else { return }
         
-        if isLoading {
-            return
-        }
+        if isLoading { return }
         
         if ftuePhoneType == .resetPassword {
             isLoading = true
@@ -174,14 +163,12 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             return
         }
         
-        var customerId = UserManager.sharedInstance.customerId()
-        if customerId == nil {
-            customerId = UserManager.sharedInstance.tempCustomerId
+        var tempCustomerId = UserManager.sharedInstance.customerId()
+        if tempCustomerId == nil {
+            tempCustomerId = UserManager.sharedInstance.tempCustomerId
         }
         
-        if customerId == nil {
-            return
-        }
+        guard let customerId = tempCustomerId else { return }
         
         isLoading = true
         
@@ -190,7 +177,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         
         if UserManager.sharedInstance.isLoggedIn() {
             
-            CustomerAPI().updatePhoneNumber(customerId: customerId!, phoneNumber: phoneNumber).onSuccess { result in
+            CustomerAPI().updatePhoneNumber(customerId: customerId, phoneNumber: phoneNumber).onSuccess { result in
                 self.hideProgressHUD()
                 self.isLoading = false
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberSuccess, screenName: self.screenName)

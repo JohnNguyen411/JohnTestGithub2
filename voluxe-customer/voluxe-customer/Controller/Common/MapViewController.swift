@@ -81,9 +81,7 @@ class MapViewController: UIViewController {
         VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsRoads, screenName: screenName)
         GoogleSnappedPointsAPI().getSnappedPoints(from: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: prevLocation), to: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: location)).onSuccess { results in
             
-            guard let weakSelf = weakSelf else {
-                return
-            }
+            guard let weakSelf = weakSelf else { return }
             
             if let results = results, let snappedPoints = results.snappedPoints {
                 // animate points
@@ -105,9 +103,7 @@ class MapViewController: UIViewController {
                 weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
             }
             }.onFailure { error in
-                guard let weakSelf = weakSelf else {
-                    return
-                }
+                guard let weakSelf = weakSelf else { return }
                 weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
         }
     }

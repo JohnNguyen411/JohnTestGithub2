@@ -16,7 +16,7 @@ class VLVerticalSearchTextField : VLVerticalTextField {
     
     public static let defaultCellHeight: CGFloat = 34
 
-    open var delegate: VLVerticalSearchTextFieldDelegate?
+    open weak var delegate: VLVerticalSearchTextFieldDelegate?
     /// Maximum number of results to be shown in the suggestions list
     open var maxNumberOfResults = 0
     
@@ -256,6 +256,6 @@ open class SearchTextFieldItem {
 }
 
 // MARK: protocol onSelectionChanged
-protocol VLVerticalSearchTextFieldDelegate {
+protocol VLVerticalSearchTextFieldDelegate: class {
     func onAutocompleteSelected(selectedIndex: Int)
 }

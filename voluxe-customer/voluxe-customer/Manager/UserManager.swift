@@ -55,7 +55,7 @@ final class UserManager {
         _ = KeychainManager.sharedInstance
         
         // user loggedin if access token isn't nil and not empty
-        if let accessToken = NetworkRequest.accessToken, !accessToken.isEmpty {
+        if let accessToken = KeychainManager.sharedInstance.accessToken, !accessToken.isEmpty {
             return true
         }
         return false

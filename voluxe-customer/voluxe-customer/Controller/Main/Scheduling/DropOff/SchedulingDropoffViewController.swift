@@ -103,19 +103,6 @@ class SchedulingDropoffViewController: SchedulingViewController {
         if let dealership = bookingDealership {
             showDealershipAddress(dealership: dealership)
         }
-        /*
-        dealershipView.snp.remakeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(pickupLocationView.snp.bottom)
-            make.height.equalTo(SchedulingViewController.vlLabelHeight)
-        }
-        
-        pickupLocationView.snp.remakeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(dealershipView.snp.bottom)
-            make.height.equalTo(SchedulingViewController.vlLabelHeight)
-        }
-         */
     }
     
     override func stateDidChange(state: ServiceState) {
@@ -232,9 +219,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     }
     
     override func confirmButtonClick() {
-        guard let customerId = UserManager.sharedInstance.customerId() else {
-            return
-        }
+        guard let customerId = UserManager.sharedInstance.customerId() else { return }
         
         if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle),
             let timeSlot = RequestedServiceManager.sharedInstance.getDropoffTimeSlot(),

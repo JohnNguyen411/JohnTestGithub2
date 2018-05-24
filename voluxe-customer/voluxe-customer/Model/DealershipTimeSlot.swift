@@ -44,9 +44,7 @@ class DealershipTimeSlot: Object, Mappable {
     }
     
     func getTimeSlot(calendar: Calendar, showAMPM: Bool, shortSymbol: Bool? = nil) -> String? {
-        guard let from = from, let to = to else {
-            return nil
-        }
+        guard let from = from, let to = to else { return nil }
         
         if showAMPM {
             let hourFrom = Calendar.current.component(.hour, from: from)
@@ -63,17 +61,5 @@ class DealershipTimeSlot: Object, Mappable {
         } else {
             return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))–\(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))"
         }
-    }
-    
-    public static func mockTimeSlotForDate(dealershipId: Int, date: Date) -> DealershipTimeSlot {
-        let dealershipTimeSlot = DealershipTimeSlot()
-        dealershipTimeSlot.id = Int(arc4random_uniform(99999)) + 1
-        dealershipTimeSlot.dealershipId = dealershipId
-        dealershipTimeSlot.from = date.beginningOfDay()
-        dealershipTimeSlot.to = date.endOfDay()
-        dealershipTimeSlot.availableLoanerVehicleCount = 1
-        dealershipTimeSlot.createdAt = Date()
-        dealershipTimeSlot.updatedAt = Date()
-        return dealershipTimeSlot
     }
 }

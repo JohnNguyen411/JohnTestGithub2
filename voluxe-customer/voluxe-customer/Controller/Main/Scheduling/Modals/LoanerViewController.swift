@@ -1,5 +1,5 @@
 //
-//  LoanerPickupViewController.swift
+//  LoanerViewController.swift
 //  voluxe-customer
 //
 //  Created by Giroux, Johan on 11/8/17.
@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class LoanerPickupViewController: VLPresentrViewController, VLGroupedLabelsDelegate {
+class LoanerViewController: VLPresentrViewController, VLGroupedLabelsDelegate {
     
-    var delegate: PickupLoanerDelegate?
+    weak var delegate: PickupLoanerDelegate?
     
     let groupedLabels = VLGroupedLabels(items: [.Yes, .No], singleChoice: true, selectDefault: false, topBottomSeparator: true)
     

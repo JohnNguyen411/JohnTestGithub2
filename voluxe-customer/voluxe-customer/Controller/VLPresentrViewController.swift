@@ -78,8 +78,8 @@ class VLPresentrViewController: UIViewController {
         containerView.isHidden = false
         containerView.alpha = 1
         
-        bottomButton.setActionBlock {
-            self.onButtonClick()
+        bottomButton.setActionBlock { [weak self] in
+            self?.onButtonClick()
         }
         
         activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge

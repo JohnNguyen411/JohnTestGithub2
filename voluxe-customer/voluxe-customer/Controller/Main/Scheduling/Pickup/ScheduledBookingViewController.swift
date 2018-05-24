@@ -13,7 +13,7 @@ import MBProgressHUD
 class ScheduledBookingViewController: SchedulingViewController {
     
     let booking: Booking
-    let delegate: ScheduledBookingDelegate?
+    weak var delegate: ScheduledBookingDelegate?
     
     let leftButton: VLButton
     let rightButton: VLButton
@@ -88,11 +88,11 @@ class ScheduledBookingViewController: SchedulingViewController {
     
     override func fillViews() {
         
-        leftButton.setActionBlock {
-            self.leftButtonClick()
+        leftButton.setActionBlock { [weak self] in
+            self?.leftButtonClick()
         }
-        rightButton.setActionBlock {
-            self.rightButtonClick()
+        rightButton.setActionBlock { [weak self] in
+            self?.rightButtonClick()
         }
         
         confirmButton.animateAlpha(show: false)
@@ -153,7 +153,6 @@ class ScheduledBookingViewController: SchedulingViewController {
     }
     
     func leftButtonClick() {
-        //todo alertview to cancel
         var title = String.CancelPickup
         var message = String.AreYouSureCancelPickup
         
@@ -183,7 +182,6 @@ class ScheduledBookingViewController: SchedulingViewController {
     }
     
     func cancelRequest() {
-        // todo submit cancel request with API && Refresh bookings
         if let dropoffRequest = booking.dropoffRequest, let type = dropoffRequest.getType() {
             showProgressHUD()
 
@@ -262,6 +260,6 @@ class ScheduledBookingViewController: SchedulingViewController {
 }
 
 // MARK: protocol PickupDealershipDelegate
-protocol ScheduledBookingDelegate {
+protocol ScheduledBookingDelegate: class {
     func onCancelRequest()
 }

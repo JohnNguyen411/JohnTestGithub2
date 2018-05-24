@@ -88,18 +88,18 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         
         vehicleImageView.contentMode = .scaleAspectFit
         
-        leftButton.setActionBlock {
-            self.leftButtonClick()
+        leftButton.setActionBlock { [weak self] in
+            self?.leftButtonClick()
         }
-        rightButton.setActionBlock {
-            self.rightButtonClick()
+        rightButton.setActionBlock { [weak self] in
+            self?.rightButtonClick()
         }
-        confirmButton.setActionBlock {
-            self.confirmButtonClick()
+        confirmButton.setActionBlock { [weak self] in
+            self?.confirmButtonClick()
         }
         
-        descriptionButton.setActionBlock {
-            self.showDescriptionClick()
+        descriptionButton.setActionBlock { [weak self] in
+            self?.showDescriptionClick()
         }
         descriptionButton.contentHorizontalAlignment = .left
         
@@ -330,11 +330,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 leftButton.isHidden = true
                 rightButton.isHidden = true
                 
-                if Config.sharedInstance.isMock {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .serviceCompleted, vehicleId: self.vehicle.id, booking: nil)
-                    })
-                }
                 logViewScreen(screenName: AnalyticsConstants.paramNameServiceInProgressView)
 
             } else if state == .enRouteForService {
@@ -342,12 +337,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 leftButton.isHidden = true
                 rightButton.isHidden = true
                 checkupLabel.text = String(format: NSLocalizedString(.DriverDrivingToDealership), (dealership?.name)!)
-
-                if Config.sharedInstance.isMock {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 10, execute: {
-                        StateServiceManager.sharedInstance.updateState(state: .service, vehicleId: self.vehicle.id, booking: nil)
-                    })
-                }
                 
                 logViewScreen(screenName: AnalyticsConstants.paramNameServiceInRouteView)
                 

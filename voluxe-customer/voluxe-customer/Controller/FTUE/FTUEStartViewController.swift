@@ -57,32 +57,38 @@ class FTUEStartViewController: BaseViewController {
 
         UserManager.sharedInstance.signupCustomer = SignupCustomer()
 
-        loginButton.setActionBlock {
+        loginButton.setActionBlock { [weak self] in
             //login
             UserManager.sharedInstance.signupCustomer = SignupCustomer()
             FTUEStartViewController.flowType = .login
-            self.navigationController?.pushViewController(FTUELoginViewController(), animated: true)
+            self?.navigationController?.pushViewController(FTUELoginViewController(), animated: true)
         }
         
-        signupButton.setActionBlock {
+        signupButton.setActionBlock { [weak self] in
             //signup
             UserManager.sharedInstance.signupCustomer = SignupCustomer()
             FTUEStartViewController.flowType = .signup
-            self.navigationController?.pushViewController(FTUESignupNameViewController(), animated: true)
+            self?.navigationController?.pushViewController(FTUESignupNameViewController(), animated: true)
         }
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // reset current customer
-        if let realm = self.realm {
-            try? realm.write {
-                realm.deleteAll()
-            }
-        }
         UserManager.sharedInstance.setCustomer(customer: nil)
         UserManager.sharedInstance.tempCustomerId = nil
+        
+        // check realm integrity
+        guard let realm = self.realm else {
+            self.showOkDialog(title: .Error, message: .DatabaseError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: screenName)
+            return
+        }
+        
+        // reset current customer
+        try? realm.write {
+            realm.deleteAll()
+        }
+        
     }
     
     override func setupViews() {

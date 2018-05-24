@@ -1,5 +1,5 @@
 //
-//  DealershipPickupViewController.swift
+//  DealershipViewController.swift
 //  voluxe-customer
 //
 //  Created by Giroux, Johan on 11/6/17.
@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class DealershipPickupViewController: VLPresentrViewController, VLGroupedLabelsDelegate {
+class DealershipViewController: VLPresentrViewController, VLGroupedLabelsDelegate {
     
-    var delegate: PickupDealershipDelegate?
+    weak var delegate: PickupDealershipDelegate?
     
     var dealerships: [Dealership] = []
     

@@ -12,28 +12,34 @@ import FirebaseAnalytics
     
 final class KeychainManager {
     
+    private static let accessTokenKey = "token"
+    private static let deviceUUIDKey = "deviceUUID"
+    private static let deviceTokenKey = "deviceToken"
+    private static let customerIdKey = "customerId"
+
     static let sharedInstance = KeychainManager()
     
     private let serviceId: String
     private let keychain: Keychain
     
-    var customerId: Int?
-    
+    private(set) var customerId: Int?
+    private(set) var accessToken: String?
+
     var deviceId: String? {
         set(newUUID) {
-            keychain["deviceUUID"] = newUUID
+            keychain[KeychainManager.deviceUUIDKey] = newUUID
         }
         get {
-            return keychain["deviceUUID"]
+            return keychain[KeychainManager.deviceUUIDKey]
         }
     }
     
     var pushDeviceToken: String? {
         set(newToken) {
-            keychain["deviceToken"] = newToken
+            keychain[KeychainManager.deviceTokenKey] = newToken
         }
         get {
-            return keychain["deviceToken"]
+            return keychain[KeychainManager.deviceTokenKey]
         }
     }
     
@@ -53,8 +59,9 @@ final class KeychainManager {
     }
     
     private func loadAccessToken() {
-        NetworkRequest.accessToken = keychain["token"]
-        if let customerIdString = keychain["customerId"] {
+        accessToken = keychain[KeychainManager.accessTokenKey]
+        NetworkRequest.setAccessToken(accessToken)
+        if let customerIdString = keychain[KeychainManager.customerIdKey] {
             self.customerId = Int(customerIdString)
         } else {
             self.customerId = nil
@@ -62,14 +69,15 @@ final class KeychainManager {
     }
     
     public func saveAccessToken(token: String?, customerId: String?) {
-        keychain["token"] = token
-        keychain["customerId"] = customerId
+        accessToken = token
+        keychain[KeychainManager.accessTokenKey] = token
+        keychain[KeychainManager.customerIdKey] = customerId
         if let customerId = customerId {
             self.customerId = Int(customerId)
         } else {
             self.customerId = nil
         }
-        NetworkRequest.accessToken = token
+        NetworkRequest.setAccessToken(token)
         
         Analytics.setUserProperty(customerId, forName: AnalyticsConstants.userPropertiesCustomerId)
     }

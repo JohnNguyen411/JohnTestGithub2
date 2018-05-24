@@ -114,9 +114,8 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     //MARK: Validation methods
     
     func isPasswordValid(password: String?) -> Bool {
-        guard let password = password else {
-            return false
-        }
+        guard let password = password else { return false }
+        
         if password.isEmpty || password.count < 8 {
             return false
         }
@@ -140,7 +139,6 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     }
     
     private func onSignupError(error: Errors? = nil) {
-        //todo show error message
         self.showLoading(loading: false)
         
         if let apiError = error?.apiError {
@@ -249,9 +247,11 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
     }
 
-    // TODO https://github.com/volvo-cars/ios/issues/184
-    // there's lot of potential crashes in this func, too many !s
     private func signup(signupCustomer: SignupCustomer) {
+        
+        guard let email = signupCustomer.email else { return }
+        guard let password = volvoPwdConfirmTextField.textField.text else { return }
+
         if let customer = UserManager.sharedInstance.getCustomer() {
             
             if UserManager.sharedInstance.isLoggedIn() {
@@ -259,13 +259,16 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 self.loadMainScreen()
                 return
             } else if !customer.passwordResetRequired {
-                loginUser(email: signupCustomer.email!, password: volvoPwdConfirmTextField.textField.text!)
+                loginUser(email: email, password: password)
                 return
             }
         }
         weak var weakSelf = self
 
-        CustomerAPI().confirmSignup(email: signupCustomer.email!, phoneNumber: signupCustomer.phoneNumber!, password: volvoPwdConfirmTextField.textField.text!, verificationCode: signupCustomer.verificationCode!).onSuccess { result in
+        guard let phoneNumber = signupCustomer.phoneNumber else { return }
+        guard let verificationCode = signupCustomer.verificationCode else { return }
+        
+        CustomerAPI().confirmSignup(email: email, phoneNumber: phoneNumber, password: password, verificationCode: verificationCode).onSuccess { result in
             if let customer = result?.data?.result {
                 VLAnalytics.logEventWithName(AnalyticsConstants.eventApiConfirmSignupSuccess, screenName: weakSelf?.screenName ?? nil)
                 if let realm = weakSelf?.realm {
@@ -275,7 +278,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                     }
                 }
                 UserManager.sharedInstance.setCustomer(customer: customer)
-                weakSelf?.loginUser(email: signupCustomer.email!, password: self.volvoPwdConfirmTextField.textField.text!)
+                weakSelf?.loginUser(email: email, password: password)
             }
             }.onFailure { error in
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiConfirmSignupFail, screenName: weakSelf?.screenName ?? nil, error: error)

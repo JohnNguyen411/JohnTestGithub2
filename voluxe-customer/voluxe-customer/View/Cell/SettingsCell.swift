@@ -24,7 +24,7 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
         case none
     }
     
-    var delegate: SettingsCellProtocol?
+    weak var delegate: SettingsCellProtocol?
     
     var singleTap: UITapGestureRecognizer?
     let editImage: UIImageView
@@ -209,7 +209,7 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
     
 }
 
-protocol SettingsCellProtocol {
+protocol SettingsCellProtocol: class {
     func switchChanged(_ cell: UITableViewCell)
     func onEditClicked(_ cell: UITableViewCell)
 }

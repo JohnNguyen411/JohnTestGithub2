@@ -53,13 +53,13 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         codeTextField.textField.delegate = self
         super.viewDidLoad()
         codeTextField.textField.keyboardType = .numberPad
-        codeTextField.setRightButtonText(rightButtonText: (.ResendCode as String).uppercased(), actionBlock: {
-            self.resendCode()
+        codeTextField.setRightButtonText(rightButtonText: (.ResendCode as String).uppercased(), actionBlock: {  [weak self] in
+            self?.resendCode()
         })
         codeTextField.rightLabel.addUppercasedCharacterSpacing()
         
-        updatePhoneNumberButton.setActionBlock {
-            self.updatePhoneNumber()
+        updatePhoneNumberButton.setActionBlock { [weak self] in
+            self?.updatePhoneNumber()
         }
         
         codeTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
@@ -119,14 +119,10 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     @objc func resendCode() {
         
-        if isLoading {
-            return
-        }
+        if isLoading { return }
         
         if ftuePhoneType == .resetPassword {
-            guard let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber else {
-                return
-            }
+            guard let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber else { return }
             
             isLoading = true
             
@@ -246,21 +242,24 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
         } else {
             
-            var customerId = UserManager.sharedInstance.customerId()
-            if customerId == nil {
-                customerId = UserManager.sharedInstance.tempCustomerId
+            var tempCustomerId = UserManager.sharedInstance.customerId()
+            if tempCustomerId == nil {
+                tempCustomerId = UserManager.sharedInstance.tempCustomerId
             }
             
-            if isLoading || customerId == nil {
+            if isLoading {
                 return
             }
+            
+            guard let customerId = tempCustomerId else { return }
+            guard let verificationCode = codeTextField.textField.text else { return }
             
             isLoading = true
             
             self.showProgressHUD()
 
             // verify phone number
-            CustomerAPI().verifyPhoneNumber(customerId: customerId!, verificationCode: codeTextField.textField.text!).onSuccess { result in
+            CustomerAPI().verifyPhoneNumber(customerId: customerId, verificationCode: verificationCode).onSuccess { result in
                 
                 self.hideProgressHUD()
                 VLAnalytics.logEventWithName(AnalyticsConstants.eventApiVerifyPhoneSuccess, screenName: self.screenName)

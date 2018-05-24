@@ -110,13 +110,13 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         
         realm = try? Realm()
         
-        descriptionButton.setActionBlock {
-            self.showDescriptionClick()
+        descriptionButton.setActionBlock { [weak self] in
+            self?.showDescriptionClick()
         }
         descriptionButton.contentHorizontalAlignment = .left
         
-        confirmButton.setActionBlock {
-            self.confirmButtonClick()
+        confirmButton.setActionBlock { [weak self] in
+            self?.confirmButtonClick()
         }
         
         fillViews()
@@ -321,80 +321,80 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
     }
     
-    func fetchDealershipsForLocation(location: CLLocationCoordinate2D?, completion: ((_ error: String?) -> Swift.Void)? = nil) {
+    /**
+     Fetch the dealership that server the provided location
+     - parameter location: the location
+     - parameter completion: the completion block to execute
+
+     - Returns: A Future ResponseObject containing a list of Dealership around the location, or an AFError if an error occured
+     */
+    //
+    func fetchDealershipsForLocation(location: CLLocationCoordinate2D?, completion: ((_ error: String?) -> ())? = nil) {
         
-        if let location = location {
-            DealershipAPI().getDealerships(location: location).onSuccess { result in
-                if let dealerships = result?.data?.result {
-                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetDealershipsSuccess, screenName: self.screenName)
-
-                    if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
-                        if dealerships.count > 0 {
-                            
-                            //todo check with getDealershipRepairOrder if available ONLY at pickup
-                            RepairOrderAPI().getDealershipRepairOrder(dealerships: dealerships, repairOrderTypeId: RequestedServiceManager.sharedInstance.getRepairOrder()?.repairOrderType?.id).onSuccess { result in
-                                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetDealershipROSuccess, screenName: self.screenName)
-
-                                var error: String? = nil
-                                if let dealershipsRO = result?.data?.result {
-                                    if let realm = self.realm {
-                                        try? realm.write {
-                                            realm.add(dealershipsRO, update: true)
-                                        }
-                                    }
-                                    if dealershipsRO.count > 0 {
-                                        self.handleDealershipsResponse(dealerships: dealerships)
-                                    } else {
-                                        error = String.ServiceNotOfferedInArea
-                                    }
-                                } else {
-                                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipROFail, screenName: self.screenName, errorCode: result?.error?.code)
-
-                                    error = String.ServiceNotOfferedInArea
-                                }
-                                
-                                if let completion = completion {
-                                    completion(error)
-                                }
-
-                                }.onFailure { error in
-                                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipROFail, screenName: self.screenName, error: error)
-                                    if let completion = completion {
-                                        completion(String.ServiceNotOfferedInArea)
-                                    }
-                            }
-                        } else {
-                            RequestedServiceManager.sharedInstance.setDealership(dealership: nil)
-                            if let completion = completion {
-                                completion(nil)
-                            }
-                        }
+        guard let location = location else { return }
+        
+        DealershipAPI().getDealerships(location: location).onSuccess { result in
+            if let dealerships = result?.data?.result {
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetDealershipsSuccess, screenName: self.screenName)
+                
+                if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
+                    if let repairOrderTypeId = RequestedServiceManager.sharedInstance.getRepairOrder()?.repairOrderType?.id, dealerships.count > 0 {
+                        self.filterDealershipsForRepairOrder(repairOrderTypeId, dealerships: dealerships, completion: completion)
                     } else {
-                        self.handleDealershipsResponse(dealerships: dealerships)
-                        if let completion = completion {
-                            completion(nil)
-                        }
+                        RequestedServiceManager.sharedInstance.setDealership(dealership: nil)
+                        completion?(nil)
                     }
                 } else {
-                    if let completion = completion {
-                        completion(nil)
-                    }
-                    self.dealerships = nil
+                    self.handleDealershipsResponse(dealerships: dealerships)
+                    completion?(nil)
                 }
-                
-                }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipsFail, screenName: self.screenName, error: error)
-                    if let completion = completion {
-                        completion(nil)
-                    }
+            } else {
+                completion?(nil)
+                self.dealerships = nil
             }
+            
+            }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipsFail, screenName: self.screenName, error: error)
+                completion?(nil)
+        }
+    }
+    
+    private func filterDealershipsForRepairOrder(_ repairOrderTypeId: Int, dealerships: [Dealership], completion: ((_ error: String?) -> ())? = nil) {
+        RepairOrderAPI().getDealershipRepairOrder(dealerships: dealerships, repairOrderTypeId: repairOrderTypeId).onSuccess { result in
+            VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetDealershipROSuccess, screenName: self.screenName)
+            
+            var error: String? = nil
+            if let dealershipsRO = result?.data?.result {
+                if let realm = self.realm {
+                    try? realm.write {
+                        realm.add(dealershipsRO, update: true)
+                    }
+                }
+                if dealershipsRO.count > 0 {
+                    self.handleDealershipsResponse(dealerships: dealerships)
+                } else {
+                    error = String.ServiceNotOfferedInArea
+                }
+            } else {
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipROFail, screenName: self.screenName, errorCode: result?.error?.code)
+                error = String.ServiceNotOfferedInArea
+            }
+            
+            if let completion = completion {
+                completion(error)
+            }
+            
+            }.onFailure { error in
+                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipROFail, screenName: self.screenName, error: error)
+                if let completion = completion {
+                    completion(String.ServiceNotOfferedInArea)
+                }
         }
     }
     
     // From list of dealership, check if offering service
     private func handleDealershipsResponse(dealerships: [Dealership]?) {
         if let dealerships = dealerships {
-            //todo: hide loading if needed
             self.dealerships = dealerships
             if dealerships.count > 0 {
                 
@@ -419,10 +419,9 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func showDealershipModal(dismissOnTap: Bool) {
-        guard let dealerships = dealerships else {
-            return
-        }
-        let dealershipVC = DealershipPickupViewController(title: .ChooseDealership, buttonTitle: .Next, dealerships: dealerships)
+        guard let dealerships = dealerships else { return }
+        
+        let dealershipVC = DealershipViewController(title: .ChooseDealership, buttonTitle: .Next, dealerships: dealerships)
         dealershipVC.delegate = self
         dealershipVC.view.accessibilityIdentifier = "dealershipVC"
         currentPresentrVC = dealershipVC
@@ -441,7 +440,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             modalScreenName = AnalyticsConstants.paramNameSchedulingIBLocationModalView
         }
         
-        let locationVC = LocationPickupViewController(title: title, buttonTitle: .Next, screenName: modalScreenName)
+        let locationVC = LocationViewController(title: title, buttonTitle: .Next, screenName: modalScreenName)
         locationVC.pickupLocationDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
         currentPresentrVC = locationVC
@@ -450,7 +449,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func showPickupLoanerModal(dismissOnTap: Bool) {
-        let loanerVC = LoanerPickupViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, screenName: AnalyticsConstants.paramNameSchedulingIBLoanerModalView)
+        let loanerVC = LoanerViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, screenName: AnalyticsConstants.paramNameSchedulingIBLoanerModalView)
         loanerVC.delegate = self
         loanerVC.view.accessibilityIdentifier = "loanerVC"
         currentPresentrVC = loanerVC
@@ -473,7 +472,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             }
         }
         
-        let dateModal = DateTimePickupViewController(vehicle: vehicle, title: title, buttonTitle: .Next)
+        let dateModal = DateTimeViewController(vehicle: vehicle, title: title, buttonTitle: .Next)
         dateModal.delegate = self
         dateModal.view.accessibilityIdentifier = "dateModal"
         currentPresentrVC = dateModal

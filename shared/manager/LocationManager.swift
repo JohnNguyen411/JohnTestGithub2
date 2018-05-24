@@ -35,7 +35,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
                                                 CLAuthorizationStatus.authorizedWhenInUse:"You have granted authorization to use your location only when the app is visible to you."]
     
     
-    var delegate: LocationManagerDelegate? = nil
+    weak var delegate: LocationManagerDelegate? = nil
     
     var latitude: Double = 0.0
     var longitude: Double = 0.0
@@ -111,9 +111,8 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     func stopUpdatingLocation(){
-        guard let locationManager = locationManager else {
-            return
-        }
+        guard let locationManager = locationManager else { return }
+        
         if (autoUpdate) {
             locationManager.stopUpdatingLocation()
         } else {
@@ -190,8 +189,8 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         if showVerboseMessage {verbose = verboseMessage}
         completionHandler?(0.0, 0.0, locationStatus as String, verbose,error.localizedDescription)
         
-        if ((delegate != nil) && (delegate?.responds(to: #selector(LocationManagerDelegate.locationManagerReceivedError(_:))))!) {
-            delegate?.locationManagerReceivedError!(error.localizedDescription as NSString)
+        if let delegate = self.delegate, delegate.responds(to: #selector(LocationManagerDelegate.locationManagerReceivedError(_:))) {
+            delegate.locationManagerReceivedError!(error.localizedDescription as NSString)
         }
     }
     
@@ -223,12 +222,12 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         
         hasLastKnownLocation = true
         
-        if (delegate != nil) {
-            if ((delegate?.responds(to: #selector(LocationManagerDelegate.locationFoundGetAsString(_:longitude:))))!){
-                delegate?.locationFoundGetAsString!(latitudeAsString as NSString,longitude:longitudeAsString as NSString)
+        if let delegate = self.delegate {
+            if (delegate.responds(to: #selector(LocationManagerDelegate.locationFoundGetAsString(_:longitude:)))) {
+                delegate.locationFoundGetAsString!(latitudeAsString as NSString, longitude: longitudeAsString as NSString)
             }
-            if ((delegate?.responds(to: #selector(LocationManagerDelegate.locationFound(_:longitude:))))!){
-                delegate?.locationFound(latitude,longitude:longitude)
+            if (delegate.responds(to: #selector(LocationManagerDelegate.locationFound(_:longitude:)))) {
+                delegate.locationFound(latitude, longitude:longitude)
             }
         }
     }
@@ -264,8 +263,8 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
                     
                     verbose = verboseMessage
                     
-                    if ((delegate != nil) && (delegate?.responds(to: #selector(LocationManagerDelegate.locationManagerVerboseMessage(_:))))!) {
-                        delegate?.locationManagerVerboseMessage!(verbose as NSString)
+                    if let delegate = self.delegate, delegate.responds(to: #selector(LocationManagerDelegate.locationManagerVerboseMessage(_:))) {
+                        delegate.locationManagerVerboseMessage!(verbose as NSString)
                     }
                 }
                 
@@ -273,8 +272,8 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
                     completionHandler?(latitude, longitude, locationStatus as String, verbose,nil)
                 }
             }
-            if ((delegate != nil) && (delegate?.responds(to: #selector(LocationManagerDelegate.locationManagerStatus(_:))))!) {
-                delegate?.locationManagerStatus!(locationStatus)
+            if let delegate = self.delegate, delegate.responds(to: #selector(LocationManagerDelegate.locationManagerStatus(_:))) {
+                delegate.locationManagerStatus!(locationStatus)
             }
         }
     }

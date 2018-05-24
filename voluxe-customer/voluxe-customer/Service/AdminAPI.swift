@@ -85,7 +85,7 @@ class AdminAPI {
         request.onSuccess {
             result in
             let tokenObject = result?.data?.result
-            NetworkRequest.accessToken = tokenObject?.token
+            NetworkRequest.setAccessToken(tokenObject?.token)
 
             // get customer ID for customer email
             let request = AdminAPI.user(for: customerEmail)

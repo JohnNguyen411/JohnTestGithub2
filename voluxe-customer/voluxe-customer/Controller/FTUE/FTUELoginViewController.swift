@@ -38,8 +38,8 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         emailTextField.accessibilityIdentifier = "volvoIdTextField"
         passwordTextField.accessibilityIdentifier = "volvoPwdTextField"
         
-        forgotPassword.setActionBlock {
-            self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .resetPassword), animated: true)
+        forgotPassword.setActionBlock { [weak self] in
+            self?.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .resetPassword), animated: true)
         }
         
         emailTextField.textField.autocorrectionType = .no
@@ -92,13 +92,9 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     //MARK: Validation methods
     
     func isEmailValid(email: String?) -> Bool {
-        guard let email = email else {
-            return false
-        }
+        guard let email = email else { return false }
         
-        if email.isEmpty {
-            return false
-        }
+        if email.isEmpty { return false }
         
         let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
         
@@ -107,12 +103,8 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     }
     
     func isPasswordValid(password: String?) -> Bool {
-        guard let password = password else {
-            return false
-        }
-        if password.isEmpty || password.count < 5 {
-            return false
-        }
+        guard let password = password else { return false }
+        if password.isEmpty || password.count < 5 { return false }
         
         return true
     }
@@ -210,7 +202,6 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     }
     
     private func onLoginError(error: Errors? = nil) {
-        //todo show error message
         self.showLoading(loading: false)
         
         if let apiError = error?.apiError, apiError.getCode() == .E2005 {
