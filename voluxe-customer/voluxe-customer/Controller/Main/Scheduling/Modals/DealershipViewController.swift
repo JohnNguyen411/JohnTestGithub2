@@ -11,7 +11,7 @@ import UIKit
 
 class DealershipViewController: VLPresentrViewController, VLGroupedLabelsDelegate {
     
-    var delegate: PickupDealershipDelegate?
+    weak var delegate: PickupDealershipDelegate?
     
     var dealerships: [Dealership] = []
     

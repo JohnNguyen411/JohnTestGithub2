@@ -13,7 +13,7 @@ import MBProgressHUD
 class ScheduledBookingViewController: SchedulingViewController {
     
     let booking: Booking
-    let delegate: ScheduledBookingDelegate?
+    weak var delegate: ScheduledBookingDelegate?
     
     let leftButton: VLButton
     let rightButton: VLButton
@@ -262,6 +262,6 @@ class ScheduledBookingViewController: SchedulingViewController {
 }
 
 // MARK: protocol PickupDealershipDelegate
-protocol ScheduledBookingDelegate {
+protocol ScheduledBookingDelegate: class {
     func onCancelRequest()
 }

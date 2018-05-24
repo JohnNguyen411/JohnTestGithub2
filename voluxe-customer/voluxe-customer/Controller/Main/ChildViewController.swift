@@ -11,7 +11,7 @@ import UIKit
 
 class ChildViewController: BaseViewController {
     
-    var childViewDelegate: ChildViewDelegate?
+    weak var childViewDelegate: ChildViewDelegate?
     
     func setTitle(title: String) {
         if let childViewDelegate = childViewDelegate {

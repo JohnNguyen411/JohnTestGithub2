@@ -20,7 +20,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     private static let smallCalendarHeight = 180
     private static let tallCalendarHeight = 220
     
-    var delegate: PickupDateDelegate?
+    weak var delegate: PickupDateDelegate?
     var realm: Realm?
     var dealership: Dealership?
     let vehicle: Vehicle

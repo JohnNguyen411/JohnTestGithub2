@@ -29,7 +29,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     var addressesCount = 0
     var realm : Realm?
     
-    var pickupLocationDelegate: PickupLocationDelegate?
+    weak var pickupLocationDelegate: PickupLocationDelegate?
     var locationManager = LocationManager.sharedInstance
     
     // current location == user current location

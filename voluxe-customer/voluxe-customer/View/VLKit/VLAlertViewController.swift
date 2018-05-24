@@ -47,7 +47,7 @@ class VLAlertViewController: UIViewController {
         return okButton
     }()
     
-    var delegate: VLAlertViewDelegate?
+    weak var delegate: VLAlertViewDelegate?
     
     private let cancelButtonVisible: Bool
     private let okButtonVisible: Bool
@@ -193,7 +193,7 @@ class VLAlertViewController: UIViewController {
     
 }
 
-protocol VLAlertViewDelegate {
+protocol VLAlertViewDelegate: class {
     func okButtonTapped()
     func cancelButtonTapped()
 }

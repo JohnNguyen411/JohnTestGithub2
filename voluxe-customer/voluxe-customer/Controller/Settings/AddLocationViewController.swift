@@ -14,10 +14,10 @@ import MBProgressHUD
 
 class AddLocationViewController: VLPresentrViewController, LocationManagerDelegate, UITextFieldDelegate, VLVerticalSearchTextFieldDelegate, PresentrDelegate {
     
-    var pickupLocationDelegate: AddLocationDelegate?
+    weak var pickupLocationDelegate: AddLocationDelegate?
     var locationManager = LocationManager.sharedInstance
     
-    var presentrDelegate: PresentrDelegate?
+    weak var presentrDelegate: PresentrDelegate?
     var selectedLocation: GMSPlace?
     
     var autocompletePredictions: [GMSAutocompletePrediction]?

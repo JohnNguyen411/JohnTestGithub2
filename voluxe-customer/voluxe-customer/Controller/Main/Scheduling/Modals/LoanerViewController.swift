@@ -11,7 +11,7 @@ import UIKit
 
 class LoanerViewController: VLPresentrViewController, VLGroupedLabelsDelegate {
     
-    var delegate: PickupLoanerDelegate?
+    weak var delegate: PickupLoanerDelegate?
     
     let groupedLabels = VLGroupedLabels(items: [.Yes, .No], singleChoice: true, selectDefault: false, topBottomSeparator: true)
     
