@@ -35,6 +35,13 @@ class LoadingViewController: ChildViewController {
         //DO NOT UNCOMMENT, DEBUG MODE ONLY
         //logout()
         
+        // check realm integrity
+        guard let _ = self.realm else {
+            // logout will take the user back to the LandingPage where the db error will be displayed
+            logout()
+            return
+        }
+        
         if let customerId = UserManager.sharedInstance.customerId() {
             askPushNotificationPermission()
             callCustomer(customerId: customerId)

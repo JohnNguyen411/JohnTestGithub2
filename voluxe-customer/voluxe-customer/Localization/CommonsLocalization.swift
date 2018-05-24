@@ -37,5 +37,6 @@ extension String {
     static let Delete = NSLocalizedString("Delete")
     static let ForceUpgradeTitle = NSLocalizedString("ForceUpgradeTitle")
     static let ForceUpgradeMessage = NSLocalizedString("ForceUpgradeMessage")
+    static let DatabaseError = NSLocalizedString("DatabaseError")
     
 }

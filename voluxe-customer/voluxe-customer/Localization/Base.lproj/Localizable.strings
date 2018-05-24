@@ -35,7 +35,7 @@
 "Delete" = "Delete";
 "ForceUpgradeTitle" = "Software Update";
 "ForceUpgradeMessage" = "There is a new version of Luxe by Volvo available for download.\n\nTo have the best possible experience, please update now.";
-
+"DatabaseError" = "An unexpected error as occured. Please try restarting the app.";
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";

@@ -75,14 +75,20 @@ class FTUEStartViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        // reset current customer
-        if let realm = self.realm {
-            try? realm.write {
-                realm.deleteAll()
-            }
-        }
         UserManager.sharedInstance.setCustomer(customer: nil)
         UserManager.sharedInstance.tempCustomerId = nil
+        
+        // check realm integrity
+        guard let realm = self.realm else {
+            self.showOkDialog(title: .Error, message: .DatabaseError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: screenName)
+            return
+        }
+        
+        // reset current customer
+        try? realm.write {
+            realm.deleteAll()
+        }
+        
     }
     
     override func setupViews() {
