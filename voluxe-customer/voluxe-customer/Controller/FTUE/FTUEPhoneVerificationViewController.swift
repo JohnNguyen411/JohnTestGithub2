@@ -208,11 +208,10 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     }
     
     func isCodeValid(code: String?) -> Bool {
-        // check code validity
-        if let code = code {
-            return code.count == codeLength
-        }
-        return false
+        guard let code = code else { return false }
+        guard code.count == codeLength else { return false }
+        guard code.isDigitsOnly() == false else { return false }
+        return true
     }
     
     override func checkTextFieldsValidity() -> Bool {
@@ -226,13 +225,8 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     }
     
     //MARK: UITextFieldDelegate
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        Logger.print("textFieldDidBeginEditing")
-    }
-    
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        Logger.print("textField shouldChangeCharactersIn")
         guard let text = textField.text else { return true }
         let newLength = text.count + string.count - range.length
         return newLength <= codeLength // Bool

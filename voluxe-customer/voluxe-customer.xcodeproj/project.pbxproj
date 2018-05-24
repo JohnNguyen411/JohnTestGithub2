@@ -47,6 +47,8 @@
 		53EF28E020AE07DC006CC5FA /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		53EF28E120AE082E006CC5FA /* EmptyMappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF240204DFA9C004BF1A6 /* EmptyMappableObject.swift */; };
 		53EF28E220AE0834006CC5FA /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
+		53FDF12020B4EB500004B8A1 /* XCUIElement+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FDF11F20B4EB500004B8A1 /* XCUIElement+Test.swift */; };
+		53FDF12120B5E0050004B8A1 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
 		6C11208E2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
 		6C11208F2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
 		6C20E1831FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
@@ -530,6 +532,7 @@
 		53EF28CE20AE065F006CC5FA /* CustomerAPI+Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Signup.swift"; sourceTree = "<group>"; };
 		53EF28D120AE066B006CC5FA /* CustomerAPI+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Account.swift"; sourceTree = "<group>"; };
 		53EF28D420AE067C006CC5FA /* CustomerAPI+Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Vehicle.swift"; sourceTree = "<group>"; };
+		53FDF11F20B4EB500004B8A1 /* XCUIElement+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+Test.swift"; sourceTree = "<group>"; };
 		54E9A9FC051BC64540A65AF6 /* Pods-voluxe-customerTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.appstore.xcconfig"; sourceTree = "<group>"; };
 		584D4FE40136C325D769CD2E /* Pods-voluxe-customerUITests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.beta.xcconfig"; sourceTree = "<group>"; };
 		5B073D73742601FC967B4DD1 /* Pods-voluxe-customer.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.production.xcconfig"; sourceTree = "<group>"; };
@@ -1427,6 +1430,7 @@
 				6CBF9FE01FC5F987002BC7FC /* SignIn_UITests.swift */,
 				5322408C20AE6B3500D4E86C /* String+Test.swift */,
 				5322408A20AE6ADA00D4E86C /* XCTest+Test.swift */,
+				53FDF11F20B4EB500004B8A1 /* XCUIElement+Test.swift */,
 			);
 			path = "voluxe-customerUITests";
 			sourceTree = "<group>";
@@ -2411,6 +2415,7 @@
 				53EF28A920ACE38C006CC5FA /* SignIn_UITests.swift in Sources */,
 				53EF28D920AE0783006CC5FA /* NetworkRequest.swift in Sources */,
 				5322408D20AE6B3500D4E86C /* String+Test.swift in Sources */,
+				53FDF12120B5E0050004B8A1 /* String+Utils.swift in Sources */,
 				5322408720AE5A2400D4E86C /* VerificationCode.swift in Sources */,
 				53EF28DD20AE07B4006CC5FA /* MappableDataObject.swift in Sources */,
 				5322408920AE688600D4E86C /* AdminAPI+Test.swift in Sources */,
@@ -2423,6 +2428,7 @@
 				53EF28CD20AE064E006CC5FA /* CustomerAPI+Login.swift in Sources */,
 				5322408F20AE6B7500D4E86C /* Int+Test.swift in Sources */,
 				53EF28DB20AE079F006CC5FA /* ResponseError.swift in Sources */,
+				53FDF12020B4EB500004B8A1 /* XCUIElement+Test.swift in Sources */,
 				53EF28DC20AE07A5006CC5FA /* Meta.swift in Sources */,
 				5322409720B39FF700D4E86C /* CreateAccount_UITests.swift in Sources */,
 			);

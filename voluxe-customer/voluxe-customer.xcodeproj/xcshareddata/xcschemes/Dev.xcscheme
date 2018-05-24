@@ -37,6 +37,23 @@
                BlueprintName = "voluxe-customerUITests"
                ReferencedContainer = "container:voluxe-customer.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "CreateAccount_UITests/test00_loginAsAdminAndGetVerificationCode()">
+               </Test>
+               <Test
+                  Identifier = "CreateAccount_UITests/test10_invalidNames()">
+               </Test>
+               <Test
+                  Identifier = "CreateAccount_UITests/test31_wrongVerificationCode()">
+               </Test>
+               <Test
+                  Identifier = "CreateAccount_UITests/test90_finishCreateAccount()">
+               </Test>
+               <Test
+                  Identifier = "CreateAccount_UITests/test90_launchAndCreateAccountHappyPath()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
       <MacroExpansion>
