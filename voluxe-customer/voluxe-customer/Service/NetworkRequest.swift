@@ -19,13 +19,11 @@ import SwiftEventBus
  ***/
 class NetworkRequest {
 
-    // TODO https://github.com/volvo-cars/ios/issues/185
-    // To avoid this class referencing UserManager (which in turn
-    // references classes this class does not need to know about),
-    // the accessToken is exposed so that the UserManager can
-    // get/set it.  Do not set this directly.  When the TODO is
-    // done, make this write-only.
-    static var accessToken: String?
+    private static var accessToken: String?
+    
+    static func setAccessToken(_ accessToken: String?) {
+        NetworkRequest.accessToken = accessToken
+    }
 
     // Single entry point for all our API requests
     static func request(url: String, method: HTTPMethod, queryParameters: Parameters?, bodyParameters: Parameters? = nil, bodyEncoding: ParameterEncoding = URLEncoding.httpBody, headers: HTTPHeaders) -> DataRequest {

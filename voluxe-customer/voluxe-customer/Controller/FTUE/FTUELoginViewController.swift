@@ -202,7 +202,6 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     }
     
     private func onLoginError(error: Errors? = nil) {
-        //todo show error message
         self.showLoading(loading: false)
         
         if let apiError = error?.apiError, apiError.getCode() == .E2005 {

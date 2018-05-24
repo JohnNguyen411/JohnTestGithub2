@@ -75,7 +75,6 @@ class SyncTimer {
         }
         
         if booking.isInvalidated {
-            // todo remove from manager?
             return
         }
         
@@ -111,12 +110,9 @@ class SyncTimer {
                 }
                 let serviceState = Booking.getStateForBooking(booking: booking)
                 StateServiceManager.sharedInstance.updateState(state: serviceState, vehicleId: booking.vehicleId, booking: booking)
-            } else {
-                // error
             }
             
             }.onFailure { error in
-                // todo show error
         }
     }
     

@@ -182,7 +182,6 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         super.stateDidChange(state: state)
         // check if service scheduled
         
-        //todo: check service for selected vehicle
         if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle), !booking.isInvalidated {
             scheduledServiceView.snp.updateConstraints { make in
                 make.height.equalTo(100)

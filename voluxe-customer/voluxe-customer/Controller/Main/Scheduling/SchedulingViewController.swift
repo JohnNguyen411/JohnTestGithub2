@@ -395,7 +395,6 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     // From list of dealership, check if offering service
     private func handleDealershipsResponse(dealerships: [Dealership]?) {
         if let dealerships = dealerships {
-            //todo: hide loading if needed
             self.dealerships = dealerships
             if dealerships.count > 0 {
                 

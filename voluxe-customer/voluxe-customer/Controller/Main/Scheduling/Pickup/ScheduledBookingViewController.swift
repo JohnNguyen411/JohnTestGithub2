@@ -153,7 +153,6 @@ class ScheduledBookingViewController: SchedulingViewController {
     }
     
     func leftButtonClick() {
-        //todo alertview to cancel
         var title = String.CancelPickup
         var message = String.AreYouSureCancelPickup
         
@@ -183,7 +182,6 @@ class ScheduledBookingViewController: SchedulingViewController {
     }
     
     func cancelRequest() {
-        // todo submit cancel request with API && Refresh bookings
         if let dropoffRequest = booking.dropoffRequest, let type = dropoffRequest.getType() {
             showProgressHUD()
 
