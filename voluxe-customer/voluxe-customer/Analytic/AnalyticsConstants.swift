@@ -153,6 +153,7 @@ class AnalyticsConstants {
     static let paramNameState = "state"
     static let paramNameIndex = "index"
 
+    static let paramNameSplashScreenView = "splashscreen_view"
     static let paramNameLandingView = "landing_view"
     static let paramNameLoadingView = "loading_view"
 

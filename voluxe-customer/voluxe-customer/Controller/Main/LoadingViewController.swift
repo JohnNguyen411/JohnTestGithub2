@@ -10,14 +10,15 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class LoadingViewController: ChildViewController {
+class LoadingViewController: LogoViewController {
     
     var realm : Realm?
     
-    let logo: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "luxeByVolvo")
-        return imageView
+    let activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(frame: .zero)
+        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicator.color = .black
+        return activityIndicator
     }()
     
     init() {
@@ -54,14 +55,16 @@ class LoadingViewController: ChildViewController {
     override func setupViews() {
         super.setupViews()
         
-        self.view.addSubview(logo)
-
-        logo.snp.makeConstraints { (make) -> Void in
-            make.equalsToTop(view: self.view, offset: 120)
+        self.view.addSubview(activityIndicator)
+        
+        activityIndicator.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.height.width.equalTo(100)
         }
         
-        self.showProgressHUD()
+        activityIndicator.startAnimating()
+        
     }
     
     private func logout() {

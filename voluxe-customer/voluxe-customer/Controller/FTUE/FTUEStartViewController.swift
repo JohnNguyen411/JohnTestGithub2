@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import RealmSwift
 
-class FTUEStartViewController: BaseViewController {
+class FTUEStartViewController: LogoViewController {
     
     enum FTUEFlowType {
         case login
@@ -25,11 +25,6 @@ class FTUEStartViewController: BaseViewController {
     
     let signupButton = VLButton(type: .blueSecondary, title: (.CreateAccount as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickCreateAccount, screenName: AnalyticsConstants.paramNameLandingView)
 
-    let logo: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = UIImage(named: "luxeByVolvo")
-        return imageView
-    }()
     
     let pipeSeparator: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -42,7 +37,6 @@ class FTUEStartViewController: BaseViewController {
     }()
     
   
-    
     init() {
         super.init(screenName: AnalyticsConstants.paramNameLandingView)
     }
@@ -92,22 +86,15 @@ class FTUEStartViewController: BaseViewController {
     }
     
     override func setupViews() {
-        
+        super.setupViews()
         loginButton.contentHorizontalAlignment = .right
         signupButton.contentHorizontalAlignment = .left
-        
-        self.view.addSubview(logo)
 
         let buttonContainer = UIView(frame: .zero)
         self.view.addSubview(buttonContainer)
         buttonContainer.addSubview(pipeSeparator)
         buttonContainer.addSubview(loginButton)
         buttonContainer.addSubview(signupButton)
-        
-        logo.snp.makeConstraints { (make) -> Void in
-            make.equalsToTop(view: self.view, offset: 120)
-            make.centerX.equalToSuperview()
-        }
         
         buttonContainer.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()

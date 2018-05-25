@@ -441,11 +441,12 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
         
         let locationVC = LocationViewController(title: title, buttonTitle: .Next, screenName: modalScreenName)
+        locationVC.isModalInPopover = true
         locationVC.pickupLocationDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
         currentPresentrVC = locationVC
         currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
-        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
+        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: nil)
     }
     
     func showPickupLoanerModal(dismissOnTap: Bool) {

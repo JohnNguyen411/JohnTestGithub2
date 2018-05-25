@@ -119,11 +119,13 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         fatalError("init(coder:) has not been implemented")
     }
     
-    deinit {
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
         locationManager.delegate = nil
         locationManager.stopUpdatingLocation()
     }
     
+  
     func onLocationAdded() {
         tableView.reloadData()
         

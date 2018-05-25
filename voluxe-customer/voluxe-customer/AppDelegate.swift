@@ -68,7 +68,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         SlideMenuOptions.contentViewScale = 1.0
         SlideMenuOptions.pointOfNoReturnWidth = 0.0
-    
+        SlideMenuOptions.shadowOpacity = 0.3
+        SlideMenuOptions.shadowRadius = 2.0
+        SlideMenuOptions.shadowOffset = CGSize(width: 5, height: 0)
+        SlideMenuOptions.contentViewOpacity = 0.3
+
         styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         
         navigationController = uiNavigationController
@@ -80,7 +84,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let menuController = VLSlideMenuController(mainViewController: uiNavigationController, leftMenuViewController: leftViewController)
         menuController.automaticallyAdjustsScrollViewInsets = true
         menuController.delegate = mainViewController
-        menuController.opacityView.removeFromSuperview()
         
         slideMenuController = menuController
         
@@ -90,7 +93,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             slideMenuController?.view.addSubview(snapShot)
             self.window?.rootViewController = slideMenuController
             
-            UIView.animate(withDuration: 0.3, animations: {
+            UIView.animate(withDuration: 0.75, animations: {
                 snapShot.layer.opacity = 0
                 snapShot.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5)
             }, completion: { finished in
@@ -131,7 +134,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             rootVC.dismiss(animated: false, completion: {})
         }
         
-        window = UIWindow(frame: UIScreen.main.bounds)
+        if window == nil {
+            window = UIWindow(frame: UIScreen.main.bounds)
+        }
         
         if !UserManager.sharedInstance.isLoggedIn() {
             let uiNavigationController = UINavigationController(rootViewController: FTUEStartViewController())
@@ -164,7 +169,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func phoneVerificationScreen() {
-        window = UIWindow(frame: UIScreen.main.bounds)
+        if window == nil {
+            window = UIWindow(frame: UIScreen.main.bounds)
+        }
         let uiNavigationController = UINavigationController(rootViewController: FTUEPhoneVerificationViewController())
         styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         window!.rootViewController = uiNavigationController
@@ -172,7 +179,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func showAddVehicleScreen() {
-        window = UIWindow(frame: UIScreen.main.bounds)
+        if window == nil {
+            window = UIWindow(frame: UIScreen.main.bounds)
+        }
         let uiNavigationController = UINavigationController(rootViewController: FTUEAddVehicleViewController(fromSettings: false))
         styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         window!.rootViewController = uiNavigationController
@@ -213,6 +222,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window!.rootViewController = LogoViewController(screenName: AnalyticsConstants.paramNameSplashScreenView)
+        window!.makeKeyAndVisible()
+        
         if UserDefaults.standard.enableAlamoFireLogging {
             NetworkActivityLogger.shared.level = .debug
             NetworkActivityLogger.shared.startLogging()
