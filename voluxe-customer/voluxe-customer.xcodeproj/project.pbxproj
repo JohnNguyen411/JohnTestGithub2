@@ -444,6 +444,15 @@
 		6CDCC61F20607EB400DFA831 /* DealershipRepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */; };
 		6CDCD7F7200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		6CDCD7F8200EE5620099258C /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
+		6CE1479A20AE4F8D001F4BC7 /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479920AE4F8D001F4BC7 /* PermissionViewController.swift */; };
+		6CE1479B20AE4F8D001F4BC7 /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479920AE4F8D001F4BC7 /* PermissionViewController.swift */; };
+		6CE1479C20AE4F8D001F4BC7 /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479920AE4F8D001F4BC7 /* PermissionViewController.swift */; };
+		6CE1479E20AF3BDA001F4BC7 /* PermissionViewController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479D20AF3BD9001F4BC7 /* PermissionViewController+Notifications.swift */; };
+		6CE1479F20AF3BDA001F4BC7 /* PermissionViewController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479D20AF3BD9001F4BC7 /* PermissionViewController+Notifications.swift */; };
+		6CE147A020AF3BDA001F4BC7 /* PermissionViewController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479D20AF3BD9001F4BC7 /* PermissionViewController+Notifications.swift */; };
+		6CE147A220AF4FFD001F4BC7 /* PermissionViewController+Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE147A120AF4FFD001F4BC7 /* PermissionViewController+Locations.swift */; };
+		6CE147A320AF4FFD001F4BC7 /* PermissionViewController+Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE147A120AF4FFD001F4BC7 /* PermissionViewController+Locations.swift */; };
+		6CE147A420AF4FFD001F4BC7 /* PermissionViewController+Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE147A120AF4FFD001F4BC7 /* PermissionViewController+Locations.swift */; };
 		6CE147AA20B49E35001F4BC7 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE147A920B49E35001F4BC7 /* KeychainManager.swift */; };
 		6CE147AB20B49E35001F4BC7 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE147A920B49E35001F4BC7 /* KeychainManager.swift */; };
 		6CE5AC061FACF116009FD0D7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
@@ -758,6 +767,9 @@
 		6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealershipRepairOrder.swift; sourceTree = "<group>"; };
 		6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLDateFormatter.swift; sourceTree = "<group>"; };
+		6CE1479920AE4F8D001F4BC7 /* PermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
+		6CE1479D20AF3BD9001F4BC7 /* PermissionViewController+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PermissionViewController+Notifications.swift"; sourceTree = "<group>"; };
+		6CE147A120AF4FFD001F4BC7 /* PermissionViewController+Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PermissionViewController+Locations.swift"; sourceTree = "<group>"; };
 		6CE1479420AE300B001F4BC7 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		6CE147A920B49E35001F4BC7 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		6CE5DFC120633A5600234C22 /* ArrayTransform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrayTransform.swift; sourceTree = "<group>"; };
@@ -1282,6 +1294,7 @@
 				53D9A7B4209A3EA7008BE93E /* Debug */,
 				6CC37E441FA7AE0F00DA8F01 /* FTUE */,
 				6C88DC921FAA8ADC009F2FC3 /* Main */,
+				6CE1479820AE4F4F001F4BC7 /* Permissions */,
 				6C9B31FD202A4F4F006380B9 /* Settings */,
 				6C73420B1FB12E6C00E90F7E /* VLPresentrViewController.swift */,
 			);
@@ -1440,6 +1453,16 @@
 				53FDF11F20B4EB500004B8A1 /* XCUIElement+Test.swift */,
 			);
 			path = "voluxe-customerUITests";
+			sourceTree = "<group>";
+		};
+		6CE1479820AE4F4F001F4BC7 /* Permissions */ = {
+			isa = PBXGroup;
+			children = (
+				6CE1479920AE4F8D001F4BC7 /* PermissionViewController.swift */,
+				6CE1479D20AF3BD9001F4BC7 /* PermissionViewController+Notifications.swift */,
+				6CE147A120AF4FFD001F4BC7 /* PermissionViewController+Locations.swift */,
+			);
+			path = Permissions;
 			sourceTree = "<group>";
 		};
 		6CFBF9AC1FA1119A00D3AA78 /* Supporting Files */ = {
@@ -2123,6 +2146,7 @@
 				6C20E1A61FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */,
 				6C58331A1FB3AF5600F6BFE0 /* PresentrShadow.swift in Sources */,
 				6C7495D71FDA0CEB0036FC08 /* Meta.swift in Sources */,
+				6CE147A220AF4FFD001F4BC7 /* PermissionViewController+Locations.swift in Sources */,
 				6C90CC16201156AF002594F5 /* ResponseError.swift in Sources */,
 				6C88DC8F1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6CDCD7F7200EE5620099258C /* VLDateFormatter.swift in Sources */,
@@ -2159,6 +2183,7 @@
 				6C5833181FB3AF5600F6BFE0 /* PresentrAnimation.swift in Sources */,
 				6C4970FF207580C800FF33E9 /* LeftPanelActiveBooking.swift in Sources */,
 				6C7DDE1D1FE1B864000E2822 /* VLAnalytics.swift in Sources */,
+				6CE1479A20AE4F8D001F4BC7 /* PermissionViewController.swift in Sources */,
 				6CBB4EB31FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
 				6C20E1C31FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */,
 				6C9C7A7B1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
@@ -2205,6 +2230,7 @@
 				6C3FB2AD1FA2574C00B22EAB /* FuelData.swift in Sources */,
 				5322409020B32CE600D4E86C /* RealmManager.swift in Sources */,
 				6C4D91BB1FDB15F90031E3CB /* Token.swift in Sources */,
+				6CE1479E20AF3BDA001F4BC7 /* PermissionViewController+Notifications.swift in Sources */,
 				6C497103207823E100FF33E9 /* VehicleAPI.swift in Sources */,
 				6C73420C1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,
 				6C7341FF1FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
@@ -2259,6 +2285,7 @@
 				6C9C9055209BD4CB00494068 /* GMSAddress.swift in Sources */,
 				6CE5DFC320633A5600234C22 /* ArrayTransform.swift in Sources */,
 				6C7495E01FDA1E870036FC08 /* MappableDataArray.swift in Sources */,
+				6CE1479B20AE4F8D001F4BC7 /* PermissionViewController.swift in Sources */,
 				6C4970FC20754E2700FF33E9 /* SyncTimer.swift in Sources */,
 				6C20E1E11FBF770C00E5D9A0 /* Request.swift in Sources */,
 				6C32C3081FBCC0E900B1218C /* Step.swift in Sources */,
@@ -2304,6 +2331,7 @@
 				6C20E1A71FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */,
 				6CE687842036634A00D915FC /* State.swift in Sources */,
 				6C497104207823E100FF33E9 /* VehicleAPI.swift in Sources */,
+				6CE1479F20AF3BDA001F4BC7 /* PermissionViewController+Notifications.swift in Sources */,
 				6C9B320C202CFE28006380B9 /* AccountSettingsViewController.swift in Sources */,
 				6C20E1B71FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift in Sources */,
 				6C522453208509A10078D9B9 /* UIButton+Voluxe.swift in Sources */,
@@ -2316,6 +2344,7 @@
 				6C11208F2016B2C70048A56D /* BookingSyncManager.swift in Sources */,
 				6C95439F1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C79C43B20A280AC00443463 /* GMSnappedPoints.swift in Sources */,
+				6CE147A320AF4FFD001F4BC7 /* PermissionViewController+Locations.swift in Sources */,
 				6C5DDECD20096CF8000847C9 /* CustomerAPI.swift in Sources */,
 				6C8159B51FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
 				6CDCC603205743DB00DFA831 /* NewServiceViewController.swift in Sources */,

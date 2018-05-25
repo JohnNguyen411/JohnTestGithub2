@@ -59,5 +59,6 @@ extension String {
     static let PasswordUnauthorizedChars = NSLocalizedString("PasswordUnauthorizedChars")
     static let AreYouSureDeleteAddress = NSLocalizedString("AreYouSureDeleteAddress")
     static let PhoneNumberNotInFile = NSLocalizedString("PhoneNumberNotInFile")
+    static let NotificationPermissionText = NSLocalizedString("NotificationPermissionText")
     
 }

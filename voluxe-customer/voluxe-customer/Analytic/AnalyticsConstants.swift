@@ -80,6 +80,15 @@ class AnalyticsConstants {
     static let eventClickSettingsAccountEditPhone = "click_settings_account_edit_phone"
     static let eventClickSettingsAccountEditPassword = "click_settings_account_edit_password"
     
+    // Permissions
+    static let eventClickPermissionNotificationGrant = "click_permission_notification_grant"
+    static let eventPermissionNotificationGranted = "permission_notification_granted"
+    static let eventPermissionNotificationDenied = "permission_notification_denied"
+    static let eventClickPermissionLocationGrant = "click_permission_location_grant"
+    static let eventPermissionLocationGranted = "permission_location_granted"
+    static let eventPermissionLocationDenied = "permission_location_denied"
+
+    
     // Success Result (ie: Address deleted, Address Added, Password changed, etc)
     static let eventSettingsAccountAddressDeleted = "settings_account_address_deleted" // pass index of select row in params
     static let eventSettingsVehicleDeleted = "settings_vehicle_deleted" // pass index of select row in params
@@ -209,6 +218,9 @@ class AnalyticsConstants {
     static let paramNameSuccessDialog = "success_dialog" // decided to have the same tag for every success dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
     static let paramNameConfirmDialog = "confirm_dialog" // decided to have the same tag for every confirm dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
     static let paramNameSelectedCustomServices = "selected_custom_services" // index of selected services
+
+    static let paramNamePermissionLocationView = "permission_location_view"
+    static let paramNamePermissionNotificationView = "permission_notification_view"
 
     static let paramNameGmapsPlace = "google_place_api"
     static let paramNameGmapsGeocode = "google_geocode_api"

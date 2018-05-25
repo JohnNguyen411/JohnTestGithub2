@@ -14,7 +14,7 @@ import GooglePlaces
 
 typealias LMLocationCompletionHandler = ((_ latitude:Double, _ longitude:Double, _ status:String, _ verboseMessage:String, _ error:String?)->())?
 
-class LocationManager: NSObject,CLLocationManagerDelegate {
+class LocationManager: NSObject, CLLocationManagerDelegate {
     
     private static let defaultMinDistanceFilter = 5.0
     
@@ -25,7 +25,6 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     fileprivate var googleGeocoder: GMSGeocoder!
 
     fileprivate var locationStatus: NSString = "Calibrating"// to pass in handler
-    fileprivate var locationManager: CLLocationManager!
     fileprivate var verboseMessage = "Calibrating"
     
     fileprivate let verboseMessageDictionary = [CLAuthorizationStatus.notDetermined:"You have not yet made a choice with regards to this application.",
@@ -43,7 +42,6 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     var latitudeAsString: String = ""
     var longitudeAsString: String = ""
     
-    
     var lastKnownLatitude: Double = 0.0
     var lastKnownLongitude:Double = 0.0
     
@@ -52,18 +50,17 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     
     var keepLastKnownLocation: Bool = true
     var hasLastKnownLocation: Bool = true
-    
     var autoUpdate: Bool = false
     var permissionAlways: Bool = false
-
     var showVerboseMessage = false
-    
     var isRunning = false
     
+    var locationManager = CLLocationManager()
+
     
     class var sharedInstance: LocationManager {
         struct Static {
-            static let instance: LocationManager = LocationManager()
+            static let instance = LocationManager()
         }
         return Static.instance
     }
@@ -106,13 +103,11 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     }
     
     
-    func startUpdatingLocation(){
+    func startUpdatingLocation() {
         initLocationManager()
     }
     
     func stopUpdatingLocation(){
-        guard let locationManager = locationManager else { return }
-        
         if (autoUpdate) {
             locationManager.stopUpdatingLocation()
         } else {
@@ -128,8 +123,7 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
     fileprivate func initLocationManager() {
         
         // App might be unreliable if someone changes autoupdate status in between and stops it
-        
-        locationManager = CLLocationManager()
+       
         locationManager.delegate = self
         locationManager.distanceFilter = CLLocationDistance(LocationManager.defaultMinDistanceFilter)
         // locationManager.locationServicesEnabled
@@ -278,13 +272,29 @@ class LocationManager: NSObject,CLLocationManagerDelegate {
         }
     }
     
+    func authorizationStatus() -> CLAuthorizationStatus {
+        return CLLocationManager.authorizationStatus()
+    }
+    
+    func isAuthorizationGranted() -> Bool {
+        let status = authorizationStatus()
+        if status == .authorizedAlways || status == .authorizedWhenInUse {
+            return true
+        }
+        return false
+    }
+    
+    func canUpdateLocation() -> Bool {
+        return isAuthorizationGranted() && CLLocationManager.locationServicesEnabled()
+    }
+    
     
     func googlePlacesAutocomplete(address: String, onAutocompleteCompletionHandler: @escaping GMSAutocompletePredictionsCallback) {
         let filter = GMSAutocompleteFilter()
         filter.type = .noFilter
         
         var bounds: GMSCoordinateBounds? = nil
-        if let locationManager = self.locationManager, let location = locationManager.location {
+        if let location = locationManager.location {
             bounds = GMSCoordinateBounds(coordinate: location.coordinate, coordinate: location.coordinate)
         }
         

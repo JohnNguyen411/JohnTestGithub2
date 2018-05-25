@@ -344,26 +344,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    func getNotificationSettings() {
+   
+    func registerForPushNotifications() {
+        
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
-            Logger.print("Notification settings: \(settings)")
-            guard settings.authorizationStatus == .authorized else { return }
-            DispatchQueue.main.async {
-                UIApplication.shared.registerForRemoteNotifications()
+            if settings.authorizationStatus == .notDetermined {
+                // request
+                let permissionController = PermissionViewController(permissionType: .notification, completion: {})
+                self.window?.rootViewController?.definesPresentationContext = true
+                self.window?.rootViewController?.present(permissionController, animated: true, completion: nil)
+            } else {
+                guard settings.authorizationStatus == .authorized else { return }
+                DispatchQueue.main.async {
+                    UIApplication.shared.registerForRemoteNotifications()
+                }
             }
         }
     }
     
-    func registerForPushNotifications() {
-        UNUserNotificationCenter.current().delegate = self
-        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
-            (granted, error) in
-            Logger.print("Permission granted: \(granted)")
-            
-            guard granted else { return }
-            self.getNotificationSettings()
-        }
-    }
     
 }
 

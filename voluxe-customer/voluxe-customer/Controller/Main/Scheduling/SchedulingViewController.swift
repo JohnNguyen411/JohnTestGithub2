@@ -104,7 +104,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         
         locationManager.delegate = self
         locationManager.autoUpdate = true
-        if CLLocationManager.locationServicesEnabled() {
+        if locationManager.canUpdateLocation() {
             locationManager.startUpdatingLocation()
         }
         
@@ -140,7 +140,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         super.viewDidAppear(animated)
         locationManager.delegate = self
         locationManager.autoUpdate = true
-        if CLLocationManager.locationServicesEnabled() {
+        if locationManager.canUpdateLocation() {
             locationManager.startUpdatingLocation()
         }
         stateDidChange(state: serviceState)

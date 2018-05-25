@@ -21,8 +21,13 @@ class LogoViewController: BaseViewController {
         super.setupViews()
         self.view.addSubview(logo)
         
+        var offset: CGFloat = 120.0
+        if let navigationController = self.navigationController {
+            offset = 120.0 - navigationController.navigationBar.frame.height
+        }
+        
         logo.snp.makeConstraints { (make) -> Void in
-            make.equalsToTop(view: self.view, offset: 120)
+            make.equalsToTop(view: self.view, offset: offset)
             make.centerX.equalToSuperview()
         }
     }

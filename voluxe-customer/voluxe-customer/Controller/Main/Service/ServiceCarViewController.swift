@@ -112,7 +112,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         super.viewDidAppear(animated)
         locationManager.delegate = self
         locationManager.autoUpdate = true
-        if CLLocationManager.locationServicesEnabled() {
+        if locationManager.canUpdateLocation() {
             locationManager.startUpdatingLocation()
         }
         RequestedServiceManager.sharedInstance.resetScheduling()
@@ -455,7 +455,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     //MARK: Prefetching methods
     
     func dealershipPrefetching() {
-        if CLLocationManager.locationServicesEnabled() && locationManager.lastKnownLatitude != 0 && locationManager.lastKnownLongitude != 0 && locationManager.hasLastKnownLocation {
+        if locationManager.canUpdateLocation() && locationManager.lastKnownLatitude != 0 && locationManager.lastKnownLongitude != 0 && locationManager.hasLastKnownLocation {
             DealershipAPI().getDealerships(location: CLLocationCoordinate2DMake(locationManager.lastKnownLatitude, locationManager.lastKnownLongitude)).onSuccess { result in
                 
                 self.saveDealerships(result: result)

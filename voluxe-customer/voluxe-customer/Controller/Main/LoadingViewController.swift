@@ -44,7 +44,6 @@ class LoadingViewController: LogoViewController {
         }
         
         if let customerId = UserManager.sharedInstance.customerId() {
-            askPushNotificationPermission()
             callCustomer(customerId: customerId)
             return
         }
@@ -251,5 +250,6 @@ class LoadingViewController: LogoViewController {
     
     private func loadVehiclesViewController(customerId: Int) {
         appDelegate?.showVehiclesView(animated: true)
+        askPushNotificationPermission()
     }
 }

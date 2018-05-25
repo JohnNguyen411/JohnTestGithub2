@@ -48,7 +48,6 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     
     deinit {
         locationManager.delegate = nil
-        locationManager.stopUpdatingLocation()
     }
     
     override func setupViews() {
