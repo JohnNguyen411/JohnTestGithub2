@@ -29,16 +29,23 @@ open class LeftPanelTableViewCell : UITableViewCell {
     }
     
     open func setup() {
+        self.backgroundColor = .clear
     }
     
     open class func height() -> CGFloat {
         return 48
     }
     
-    open func setData(_ data: Any?) {
+    open func setData(_ data: Any?, isButton: Bool) {
         self.backgroundColor = .clear
         self.textLabel?.font = .volvoSansLightBold(size: 16)
-        self.textLabel?.textColor = .luxeCobaltBlue()
+        if isButton {
+            self.textLabel?.textColor = .luxeCobaltBlue()
+            self.accessoryType = .none
+        } else {
+            self.textLabel?.textColor = .luxeDarkGray()
+            self.accessoryType = .disclosureIndicator
+        }
         if let menuText = data as? String {
             self.textLabel?.text = menuText
         }

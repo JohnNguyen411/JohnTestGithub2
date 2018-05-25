@@ -66,6 +66,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let uiNavigationController = UINavigationController(rootViewController: mainViewController)
         uiNavigationController.view.accessibilityIdentifier = "uiNavigationController"
         
+        SlideMenuOptions.hideStatusBar = false
         SlideMenuOptions.contentViewScale = 1.0
         SlideMenuOptions.pointOfNoReturnWidth = 0.0
         SlideMenuOptions.shadowOpacity = 0.3

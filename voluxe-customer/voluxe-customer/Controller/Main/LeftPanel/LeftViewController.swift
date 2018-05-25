@@ -24,20 +24,19 @@ protocol LeftMenuProtocol : class {
 
 class LeftViewController : UIViewController, LeftMenuProtocol {
     
-    let activeBookingsLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.textColor = .black
-        titleLabel.font = .volvoSansLightBold(size: 16)
-        titleLabel.textAlignment = .left
-        titleLabel.text = .ActiveBookings
-        return titleLabel
-    }()
+    private static let headerHeight: CGFloat = 40
+    private static let maxActiveBookingHeight = 2
+    private static let maxTableViewBookingHeight: CGFloat = CGFloat(LeftViewController.maxActiveBookingHeight) * LeftPanelVehicleCell.height + LeftViewController.headerHeight
+
+    private let activeBookingsTableView = UITableView(frame: .zero)
+    private let menuTableView = UITableView(frame: .zero)
+    private let menus = [UserManager.sharedInstance.yourVolvoStringTitle(), String.Settings, String.Signout]
     
-    let activeBookingsContainer = UIView(frame: .zero)
-    
-    var tableView = UITableView(frame: .zero)
-    var menus = [UserManager.sharedInstance.yourVolvoStringTitle(), String.Settings, String.Signout]
-    var activeBookings: [Booking] = []
+    private let closeButton = UIButton(type: UIButtonType.custom)
+
+    private var activeBookings: [Booking] = []
+    private var notificationDict: [Int: Bool] = [:] // use to know if we should display a red dot notification for a vehicle
+
     var mainNavigationViewController: UINavigationController!
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,13 +58,22 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        closeButton.setImage(UIImage(named: "close"), for: .normal)
+        closeButton.addTarget(self, action: #selector(onCloseClicked), for: .touchUpInside)
+        
         self.view.backgroundColor = .white
         
-        self.tableView.isScrollEnabled = false
-        self.tableView.separatorColor = UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1.0)
-        self.tableView.register(LeftPanelTableViewCell.self, forCellReuseIdentifier: LeftPanelTableViewCell.identifier)
-        self.tableView.delegate = self
-        self.tableView.dataSource = self
+        self.menuTableView.isScrollEnabled = false
+        self.menuTableView.separatorColor = UIColor.luxeLightGray()
+        self.menuTableView.register(LeftPanelTableViewCell.self, forCellReuseIdentifier: LeftPanelTableViewCell.identifier)
+        self.menuTableView.delegate = self
+        self.menuTableView.dataSource = self
+        
+        self.activeBookingsTableView.isScrollEnabled = true
+        self.activeBookingsTableView.separatorColor = UIColor.luxeLightGray()
+        self.activeBookingsTableView.register(LeftPanelVehicleCell.self, forCellReuseIdentifier: LeftPanelVehicleCell.identifier)
+        self.activeBookingsTableView.delegate = self
+        self.activeBookingsTableView.dataSource = self
         
         setupViews()
         
@@ -85,33 +93,43 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     }
     
     func setupViews() {
-        self.view.addSubview(tableView)
-        self.view.addSubview(activeBookingsLabel)
-        self.view.addSubview(activeBookingsContainer)
+        self.view.addSubview(closeButton)
+        self.view.addSubview(menuTableView)
+        self.view.addSubview(activeBookingsTableView)
         
-        activeBookingsLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(30)
-            make.right.equalToSuperview().offset(-15)
-            make.equalsToTop(view: self.view, offset: 30)
-            make.height.equalTo(20)
+        var bookingsH = CGFloat(activeBookings.count) * LeftPanelVehicleCell.height + LeftViewController.headerHeight
+        if bookingsH > LeftViewController.maxTableViewBookingHeight {
+            bookingsH = LeftViewController.maxTableViewBookingHeight
         }
-        
-        let bookingsH = CGFloat(activeBookings.count) * LeftPanelTableViewCell.height()
-        
-        activeBookingsContainer.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(30)
-            make.right.equalToSuperview().offset(-15)
-            make.top.equalTo(activeBookingsLabel.snp.bottom)
+        activeBookingsTableView.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalToSuperview()
+            make.equalsToTop(view: self.view, offset: 80)
             make.height.equalTo(bookingsH)
         }
         
         let tableH = CGFloat(menus.count) * LeftPanelTableViewCell.height()
         
-        tableView.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(15)
-            make.right.equalToSuperview().offset(-15)
-            make.centerY.equalToSuperview()
+        let separator = UIView(frame: .zero)
+        separator.backgroundColor = .luxeLightGray()
+        self.view.addSubview(separator)
+        
+        menuTableView.snp.makeConstraints { (make) -> Void in
+            make.left.right.equalToSuperview()
+            make.centerY.equalToSuperview().offset(30)
             make.height.equalTo(tableH)
+        }
+        
+        separator.snp.makeConstraints { (make) -> Void in
+            make.left.equalToSuperview().offset(15)
+            make.bottom.equalTo(menuTableView.snp.top)
+            make.right.equalToSuperview()
+            make.height.equalTo(0.5)
+        }
+        
+        closeButton.snp.makeConstraints { make in
+            make.equalsToTop(view: self.view)
+            make.left.equalToSuperview()
+            make.width.height.equalTo(50)
         }
     }
     
@@ -147,34 +165,24 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     
     private func setActiveBooking(bookings: [Booking]) {
         activeBookings = bookings
-        for view in activeBookingsContainer.subviews {
-            view.removeFromSuperview()
-        }
         if activeBookings.count == 0 {
-            activeBookingsContainer.isHidden = true
-            activeBookingsLabel.isHidden = true
+            activeBookingsTableView.isHidden = true
         } else {
-            activeBookingsLabel.isHidden = false
-            activeBookingsContainer.isHidden = false
-            var previousLabel: UIView? = nil
-            for booking in activeBookings {
-                let bookingLabel = generateBookingLabel(booking)
-                activeBookingsContainer.addSubview(bookingLabel)
-                bookingLabel.snp.makeConstraints { make in
-                    make.left.equalToSuperview().offset(15)
-                    make.right.equalToSuperview().offset(-15)
-                    make.top.equalTo(previousLabel == nil ? activeBookingsContainer.snp.top : previousLabel!.snp.bottom)
-                    make.height.equalTo(LeftPanelTableViewCell.height())
-                }
-                previousLabel = bookingLabel
-                
+            if activeBookings.count > LeftViewController.maxActiveBookingHeight {
+                self.activeBookingsTableView.isScrollEnabled = true
+            } else {
+                self.activeBookingsTableView.isScrollEnabled = false
             }
-            let bookingsH = CGFloat(activeBookings.count) * LeftPanelTableViewCell.height()
-            
-            activeBookingsContainer.snp.updateConstraints { (make) -> Void in
+            activeBookingsTableView.isHidden = false
+            var bookingsH = CGFloat(activeBookings.count) * LeftPanelVehicleCell.height + LeftViewController.headerHeight
+            if bookingsH > LeftViewController.maxTableViewBookingHeight {
+                bookingsH = LeftViewController.maxTableViewBookingHeight
+            }
+            activeBookingsTableView.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(bookingsH)
             }
         }
+        activeBookingsTableView.reloadData()
     }
     
     private func generateBookingLabel(_ booking: Booking) -> LeftPanelActiveBooking {
@@ -231,12 +239,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     }
     
     func showRedDot(vehicleId: Int, show: Bool) {
-        for subview in activeBookingsContainer.subviews {
-            let activeBookingLabel = subview as! LeftPanelActiveBooking
-            if activeBookingLabel.booking.vehicleId == vehicleId && !isShowingScreenForVehicle(vehicleId: vehicleId){
-                activeBookingLabel.showRedDot(show: show)
-            }
-        }
+        notificationDict[vehicleId] = show
         updateNotificationBadge()
     }
     
@@ -244,10 +247,9 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     private func updateNotificationBadge() {
         var isShowingNotif = false
         
-        for subview in activeBookingsContainer.subviews {
-            let activeBookingLabel = subview as! LeftPanelActiveBooking
+        for dictValue in notificationDict {
             
-            if !isShowingNotif && activeBookingLabel.isShowingNotif {
+            if !isShowingNotif && dictValue.value {
                 isShowingNotif = true
             }
         }
@@ -277,6 +279,10 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
             VLAnalytics.logEventWithName(AnalyticsConstants.eventClickLeftPanelMenuActiveBookings)
         }
     }
+    
+    @objc func onCloseClicked() {
+        self.slideMenuController()?.closeLeft()
+    }
 }
 
 class BookingTapGesture: UITapGestureRecognizer {
@@ -285,34 +291,97 @@ class BookingTapGesture: UITapGestureRecognizer {
 
 extension LeftViewController : UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return LeftPanelTableViewCell.height()
+        if tableView == menuTableView {
+            return LeftPanelTableViewCell.height()
+        } else {
+            return SettingsCell.height
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let menu = LeftMenu(rawValue: indexPath.row) {
-            self.changeViewController(menu, indexPath: indexPath)
+        
+        if tableView == menuTableView {
+            if let menu = LeftMenu(rawValue: indexPath.row) {
+                self.changeViewController(menu, indexPath: indexPath)
+            }
+        } else {
+            tableView.deselectRow(at: indexPath, animated: true)
+
+            let booking = activeBookings[indexPath.row]
+            if let vehicle = booking.vehicle, let appDelegate = UIApplication.shared.delegate as? AppDelegate {
+                appDelegate.loadViewForVehicle(vehicle: vehicle, state: Booking.getStateForBooking(booking: booking))
+                showRedDot(vehicleId: vehicle.id, show: false)
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickLeftPanelMenuActiveBookings)
+            }
+            tableView.reloadData()
         }
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if self.tableView == scrollView {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if tableView == activeBookingsTableView {
+            let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: LeftViewController.headerHeight))
+            view.backgroundColor = UIColor.clear
             
+            let separator = UIView(frame: CGRect(x: 15, y: LeftViewController.headerHeight - 1, width: tableView.bounds.width, height: 0.5))
+            separator.backgroundColor = .luxeLightGray()
+            view.addSubview(separator)
+            
+            let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width, height: LeftViewController.headerHeight))
+            label.font = UIFont.volvoSansProMedium(size: 13)
+            label.textColor = UIColor.luxeGray()
+            label.text = String.ActiveBookings.uppercased()
+            label.addUppercasedCharacterSpacing()
+            view.addSubview(label)
+            return view
+        } else {
+            return nil
         }
     }
+    
+    
 }
 
 extension LeftViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menus.count
+        
+        if tableView == menuTableView {
+            return menus.count
+        } else {
+            return activeBookings.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = LeftPanelTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: LeftPanelTableViewCell.identifier)
-        cell.setData(menus[indexPath.row])
-        return cell
-        
+        if tableView == menuTableView {
+            let cell = LeftPanelTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: LeftPanelTableViewCell.identifier)
+            if indexPath.row == menus.count - 1 {
+                cell.setData(menus[indexPath.row], isButton: true)
+            } else {
+                cell.setData(menus[indexPath.row], isButton: false)
+            }
+            
+            return cell
+        } else {
+            let cell = LeftPanelVehicleCell(style: UITableViewCellStyle.value1, reuseIdentifier: LeftPanelVehicleCell.identifier)
+            if let vehicle = activeBookings[indexPath.row].vehicle {
+                cell.setText(text: vehicle.vehicleDescription())
+                if let showNotif = notificationDict[vehicle.id] {
+                    cell.showNotification(show: showNotif)
+                } else {
+                    cell.showNotification(show: false)
+                }
+            }
+            return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if tableView == menuTableView {
+            return 0
+        } else {
+            return LeftViewController.headerHeight
+        }
     }
     
     
