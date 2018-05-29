@@ -11,7 +11,6 @@ import SwiftEventBus
 
 final class StateServiceManager {
     
-    private var delegates: [StateServiceManagerProtocol] = []
     private var states = [Int: ServiceState]() // states dict (Vehicle Id : State)
     
     static let sharedInstance = StateServiceManager()
@@ -27,15 +26,11 @@ final class StateServiceManager {
             if oldState == nil {
                 oldState = .noninit
             }
-            delegates.forEach {delegate in
-                delegate.stateDidChange(vehicleId: vehicleId, oldState: oldState!, newState: state)
-            }
             
-            SwiftEventBus.post("stateDidChange", sender: Vehicle(id: vehicleId))
+            SwiftEventBus.post("stateDidChange", sender: StateChangeObject(vehicleId: vehicleId, oldState: oldState, newState: state))
             if let booking = booking {
                 VLAnalytics.logEventWithName(AnalyticsConstants.eventStateChange, paramName: AnalyticsConstants.paramNameState, paramValue: "\(booking.state)")
             }
-
             BookingSyncManager.sharedInstance.syncBookings()
         } else if state == .enRouteForDropoff || state == .enRouteForPickup || state == .nearbyForPickup || state == .nearbyForDropoff {
             // update driver's location
@@ -49,20 +44,7 @@ final class StateServiceManager {
         }
     }
     
-    func addDelegate(delegate: StateServiceManagerProtocol) {
-        delegates.append(delegate)
-    }
-    
-    func removeDelegate(delegate: StateServiceManagerProtocol) {
-        if let index = delegates.index(where: { $0 === delegate }) {
-            delegates.remove(at: index)
-        }
-    }
-    
-    func removeAllDelegates() {
-        delegates.removeAll()
-    }
-    
+   
     func getState(vehicleId: Int) -> ServiceState {
         if let serviceState = states[vehicleId] {
             return serviceState
@@ -75,6 +57,14 @@ final class StateServiceManager {
     }
 }
 
-protocol StateServiceManagerProtocol: class {
-    func stateDidChange(vehicleId: Int, oldState: ServiceState, newState: ServiceState)
+final class StateChangeObject {
+    let vehicleId: Int
+    let oldState: ServiceState?
+    let newState: ServiceState
+    
+    init(vehicleId: Int, oldState: ServiceState?, newState: ServiceState) {
+        self.vehicleId = vehicleId
+        self.oldState = oldState
+        self.newState = newState
+    }
 }

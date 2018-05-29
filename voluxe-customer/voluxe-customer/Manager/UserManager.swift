@@ -41,7 +41,6 @@ final class UserManager {
         self.signupCustomer = SignupCustomer()
         RequestedServiceManager.sharedInstance.reset()
         BookingSyncManager.sharedInstance.stopAllTimers()
-        StateServiceManager.sharedInstance.removeAllDelegates()
 
         if let realm = try? Realm() {
             try? realm.write {

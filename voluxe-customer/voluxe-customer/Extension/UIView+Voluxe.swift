@@ -66,6 +66,15 @@ extension UIView {
         }
     }
     
+    var hasSafeAreaCapability: Bool {
+        #if swift(>=3.2)
+            if #available(iOS 11.0, *) {
+                return true
+            }
+        #endif
+        return false
+    }
+    
     var safeArea: ConstraintBasicAttributesDSL {
         
         #if swift(>=3.2)

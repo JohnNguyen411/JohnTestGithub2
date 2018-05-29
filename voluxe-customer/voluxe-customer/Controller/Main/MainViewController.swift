@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 import SlideMenuControllerSwift
+import SwiftEventBus
 
-class MainViewController: BaseViewController, StateServiceManagerProtocol, ChildViewDelegate {
+class MainViewController: BaseViewController, ChildViewDelegate {
     
     private var serviceState = ServiceState.noninit
     
@@ -32,21 +33,24 @@ class MainViewController: BaseViewController, StateServiceManagerProtocol, Child
     }
     
     override func viewDidLoad() {
-        StateServiceManager.sharedInstance.addDelegate(delegate: self)
+        SwiftEventBus.onMainThread(self, name:"stateDidChange") { result in
+            let stateChange: StateChangeObject = result.object as! StateChangeObject
+            self.stateDidChange(vehicleId: stateChange.vehicleId, oldState: stateChange.oldState, newState: stateChange.newState)
+        }
         updateState(state: self.serviceState)
         super.viewDidLoad()
         setNavigationBarItem()
     }
     
     deinit {
-        StateServiceManager.sharedInstance.removeDelegate(delegate: self)
+        SwiftEventBus.unregister(self)
     }
     
     override func setupViews() {
         super.setupViews()
     }
     
-    func stateDidChange(vehicleId: Int, oldState: ServiceState, newState: ServiceState) {
+    func stateDidChange(vehicleId: Int, oldState: ServiceState?, newState: ServiceState) {
         if vehicleId != vehicle.id {
             return
         }
