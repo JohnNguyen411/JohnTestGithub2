@@ -371,7 +371,18 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
                     }
                 }
                 if dealershipsRO.count > 0 {
-                    self.handleDealershipsResponse(dealerships: dealerships)
+                    var filteredDealership: [Dealership] = []
+                    for dealershipRO in dealershipsRO {
+                        if !dealershipRO.enabled { continue }
+                        for dealership in dealerships {
+                            if dealership.enabled && dealershipRO.dealershipId == dealership.id {
+                                filteredDealership.append(dealership)
+                                break
+                            }
+                        }
+                    }
+                    
+                    self.handleDealershipsResponse(dealerships: filteredDealership)
                 } else {
                     error = String.ServiceNotOfferedInArea
                 }

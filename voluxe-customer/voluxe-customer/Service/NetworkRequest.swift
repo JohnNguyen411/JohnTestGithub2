@@ -94,6 +94,16 @@ class NetworkRequest {
         header["Authorization"] = "Bearer \(accessToken)"
     }
     
+    static func encodeParamsArray(array: [Any], key: String) -> String {
+        let keyParam = "\(key)"
+        var params = ""
+        for (index, object) in array.enumerated() {
+            params += "\(keyParam)[\(index)]=\(object)&"
+        }
+        params.removeLast()
+        return params
+    }
+    
     static func checkErrors(response: DataResponse<Any>) {
         // check for custom errors
         if let json = response.result.value as? [String: Any] {
