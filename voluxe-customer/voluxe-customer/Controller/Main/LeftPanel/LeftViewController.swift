@@ -201,15 +201,18 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     
     // show red dot update if needed
     func stateDidChange(vehicleId: Int) {
-        if let viewController = self.slideMenuController()?.mainViewController {
-            if let mainController = viewController as? MainViewController {
-                if mainController.vehicleId == vehicleId {
-                    // controller already on screen don't show update
-                    return
-                }
+        // show red dot if vehicleId is in active reservation and if vehicle not already current screen
+        var isVehicleActive = false
+        for booking in activeBookings {
+            if booking.vehicleId == vehicleId {
+                isVehicleActive = true
+                break
             }
         }
-        showRedDot(vehicleId: vehicleId, show: true)
+        if isVehicleActive {
+            let showNotif = !isShowingScreenForVehicle(vehicleId: vehicleId)
+            showRedDot(vehicleId: vehicleId, show: showNotif)
+        }
     }
     
     private func isShowingScreenForVehicle(vehicleId: Int) -> Bool {
@@ -242,6 +245,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     
     func showRedDot(vehicleId: Int, show: Bool) {
         notificationDict[vehicleId] = show
+        activeBookingsTableView.reloadData()
         updateNotificationBadge()
     }
     

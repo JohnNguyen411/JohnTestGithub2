@@ -25,7 +25,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
     var keyboardShowing = false
     var keyboardHeight: CGFloat = 0
     
-    var shouldShowNotifBadge = false
+    var shouldShowNotifBadge: Bool?
     
     init(screenName: String) {
         self.screenName = screenName
@@ -46,7 +46,9 @@ class BaseViewController: UIViewController, PresentrDelegate {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         logViewScreen(screenName: self.screenName)
-        showNotifBadge(shouldShowNotifBadge)
+        if let shouldShowNotifBadge = shouldShowNotifBadge {
+            showNotifBadge(shouldShowNotifBadge)
+        }
     }
     
     func setTitle(title: String?) {
