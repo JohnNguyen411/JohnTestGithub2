@@ -26,7 +26,6 @@
       buildConfiguration = "Dev"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -39,12 +38,6 @@
                ReferencedContainer = "container:voluxe-customer.xcodeproj">
             </BuildableReference>
             <SkippedTests>
-               <Test
-                  Identifier = "CreateAccount_UITests/test00_loginAsAdminAndGetVerificationCode()">
-               </Test>
-               <Test
-                  Identifier = "CreateAccount_UITests/test10_invalidNames()">
-               </Test>
                <Test
                   Identifier = "CreateAccount_UITests/test31_wrongVerificationCode()">
                </Test>
@@ -73,7 +66,6 @@
       buildConfiguration = "Dev"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
