@@ -307,7 +307,17 @@ class CreateAccount_UITests: XCTestCase {
     // MARK:- Confirm account created
 
     func test60_confirmCreateAccountComplete() {
+
         let app = XCUIApplication()
+
+        app.buttons["GRANT PERMISSION"].tap()
+        self.wait()
+
+        // this seems to be the only way to accept a permissions alert
+        // by default it will select "Allow"
+        app.tap()
+        self.wait()
+
         XCTAssertTrue(app.staticTexts["Your Volvo"].exists)
     }
 

@@ -27,6 +27,24 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "echo &quot;Attempting to reset simulator&quot;&#10;xcrun simctl list | grep Booted | grep -e &quot;[0-9A-F\-]\{36\}&quot; -o | xargs xcrun simctl shutdown&#10;xcrun simctl erase all&#10;echo &quot;DONE&quot;">
+               <EnvironmentBuildable>
+                  <BuildableReference
+                     BuildableIdentifier = "primary"
+                     BlueprintIdentifier = "6CCD42A81FA013E3000AC6C9"
+                     BuildableName = "voluxe-customerUITests.xctest"
+                     BlueprintName = "voluxe-customerUITests"
+                     ReferencedContainer = "container:voluxe-customer.xcodeproj">
+                  </BuildableReference>
+               </EnvironmentBuildable>
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -40,6 +58,9 @@
             <SkippedTests>
                <Test
                   Identifier = "CreateAccount_UITests/test31_wrongVerificationCode()">
+               </Test>
+               <Test
+                  Identifier = "CreateAccount_UITests/test70_launchAndCreateExistingAccount()">
                </Test>
                <Test
                   Identifier = "CreateAccount_UITests/test90_finishCreateAccount()">
