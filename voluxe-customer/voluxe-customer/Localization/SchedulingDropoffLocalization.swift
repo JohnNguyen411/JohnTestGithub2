@@ -12,7 +12,6 @@ extension String {
     static let CurrentService = NSLocalizedString("CurrentService")
     static let ReturnVehicle = NSLocalizedString("ReturnVehicle")
     static let VolvoCurrentlyServicing = NSLocalizedString("VolvoCurrentlyServicing")
-    static let VolvoServiceComplete = NSLocalizedString("VolvoServiceComplete")
     static let SelfPickup = NSLocalizedString("SelfPickup")
     static let VolvoDelivery = NSLocalizedString("VolvoDelivery")
     static let SelectYourPreferredDeliveryTime = NSLocalizedString("SelectYourPreferredDeliveryTime")

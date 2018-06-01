@@ -13,17 +13,21 @@ extension GMSAddress {
     
     func fullAddress() -> String {
         
-        var fullAddress = shortAddress()
-        
-        if let postalCode = self.postalCode, let administrativeArea = self.administrativeArea {
-            fullAddress += ", \(postalCode) \(administrativeArea)"
+        guard let lines = self.lines else {
+            var fullAddress = shortAddress()
+            
+            if let postalCode = self.postalCode, let administrativeArea = self.administrativeArea {
+                fullAddress += ", \(postalCode) \(administrativeArea)"
+            }
+            
+            if let country = self.country {
+                fullAddress += ", \(country)"
+            }
+            
+            return fullAddress
         }
         
-        if let country = self.country {
-            fullAddress += ", \(country)"
-        }
-        
-        return fullAddress
+        return lines.joined(separator: ", ")
     }
     
     func shortAddress() -> String {

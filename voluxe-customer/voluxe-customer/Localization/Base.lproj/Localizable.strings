@@ -38,6 +38,7 @@
 "GrantPermission" = "Grant Permission";
 "DatabaseError" = "An unexpected error as occured. Please try restarting the app.";
 "NotificationPermissionText" = "We need you to grant us the permission to send you notifications to give you updates regarding the status of your car";
+"PickupAndDelivery" = "Pickup & Delivery";
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
@@ -59,8 +60,8 @@
 "FirstName" = "First Name";
 "LastName" = "Last Name";
 "WelcomeSignup" = "Welcome to Luxe by Volvo. Let’s create your account.";
-"FirstNamePlaceholder" = "Johan";
-"LastNamePlaceholder" = "Johansson";
+"FirstNamePlaceholder" = "Thor";
+"LastNamePlaceholder" = "Odinson";
 "CreatePassword" = "Create a password.";
 "PasswordCondition" = "(At least 8 characters with at least one letter and one number)";
 "Password" = "Password";
@@ -93,6 +94,8 @@
 
 /***************** SchedulePickup ***************/
 "ScheduleService" = "Schedule Service";
+"SelectService" = "Select Service";
+"ServiceSummary" = "Service Summary";
 "ShowDescription" = "Show Description";
 "RecommendedService" = "Recommended Service";
 "SelectedService" = "Selected Service";
@@ -114,10 +117,11 @@
 "PickupLocation" = "Pickup Location";
 "NeedALoaner" = "Need a Loaner?";
 "ConfirmPickup" = "Confirm Pickup";
-"NotePickup" = "Note: Volvo pickup is only offered near the dealership.";
-"NoteDelivery" = "Note: Volvo delivery is only offered near the dealership.";
-"ScheduleDropDealership" = "You can drop your car at the dealership or arrange for Volvo to pickup your vehicle at the location of your choosing.";
-"SchedulePickupDealership" = "You can pickup your car from the dealership or arrange for Volvo to deliver your vehicle to the location of your choosing.";
+"NotePickup" = "Note: Luxe by Volvo is only offered at participating dealers.";
+"ScheduleDropDealership" = "Schedule pickup of your Volvo at any location within 10 miles of a dealership.";
+"ScheduleDropDealershipSelfEnabled" = "You can drop your car at the dealership or arrange for Volvo to pickup your vehicle at the location of your choosing.";
+"SchedulePickupDealership" = "Schedule delivery of your Volvo at any location within 10 miles of a dealership.";
+"SchedulePickupDealershipSelfEnabled" = "You can pick up your car from the dealership or arrange for Volvo to deliver your vehicle to the location of your choosing.";
 "OutOfPickupArea" = "Out of pickup area";
 "ServiceNotOfferedInArea" = "Service not offered in your area";
 "DatesLoanersOnly" = "Dates with available loaners only";
@@ -152,7 +156,6 @@
 "CurrentService" = "Current Service";
 "VolvoCurrentlyServicing" = "Your Volvo is currently being serviced. We will alert you when the service is completed.";
 "ReturnVehicle" = "Return Vehicle";
-"VolvoServiceComplete" = "You can pick up your car from the dealership or arrange for Volvo to deliver your vehicle to the location of your choosing.";
 "SelfPickup" = "Self Pickup";
 "VolvoDelivery" = "Volvo Delivery";
 "SelectYourPreferredDeliveryTime" = "Select your preferred delivery time";
@@ -178,7 +181,7 @@
 "ScheduledService" = "Scheduled Service";
 "AreYouSureCancelPickup" = "Are you sure you want to cancel your pickup?";
 "AreYouSureCancelDropOff" = "Are you sure you want to cancel your dropoff?";
-"NewServiceIntro" = "Is your Volvo in need of service? Please identify what part of your Volvo needs work, and write a short description of what you’re experiencing.\n\nYou can then schedule pickup directly through this app.";
+"NewServiceIntro" = "Does your Volvo need service? You can schedule pickup (with participating dealerships) through Luxe by Volvo.\n\nTo schedule pickup, first select service type.";
 "MilestoneServices" = "Milestone services";
 "RecallServices" = "Recall services";
 "OtherMaintenanceRepairs" = "Other maintenance and repairs";
@@ -196,6 +199,10 @@
 "UnderTheHood" = "Under the hood";
 "IDontKnow" = "I don't know";
 "FactoryScheduledMaintenance" = "Factory Scheduled Maintenance";
+"Repair" = "repair";
+"Interior" = "interior";
+"Exterior" = "exterior";
+"Mechanical" = "mechanical";
 
 /***************** Settings ***************/
 "Settings" = "Settings";

@@ -86,7 +86,7 @@ class NewServiceViewController: BaseViewController {
         tableView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview()
-            make.top.equalTo(introLabel.snp.bottom).offset(40)
+            make.top.equalTo(introLabel.snp.bottom).offset(25)
             make.height.equalTo(CheckmarkCell.height*2+1)
         }
         

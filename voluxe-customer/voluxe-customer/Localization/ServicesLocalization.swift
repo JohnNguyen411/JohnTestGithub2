@@ -33,4 +33,8 @@ extension String {
     static let VehicleInt = NSLocalizedString("VehicleInt")
     static let UnderTheHood = NSLocalizedString("UnderTheHood")
     static let IDontKnow = NSLocalizedString("IDontKnow")
+    static let Repair = NSLocalizedString("Repair")
+    static let Interior = NSLocalizedString("Interior")
+    static let Exterior = NSLocalizedString("Exterior")
+    static let Mechanical = NSLocalizedString("Mechanical")
 }

@@ -31,7 +31,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     let vehicleCollectionView: UICollectionView
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
     let vehicleImageView = UIImageView(frame: .zero)
-    let preferedDealershipView = VLTitledLabel(title: .PreferredDealership, leftDescription: "", rightDescription: "")
+    let preferedDealershipView = VLTitledLabel(title: .Dealership, leftDescription: "", rightDescription: "")
     let scheduledServiceView = VLTitledLabel()
     let contentView = UIView(frame: .zero)
     let confirmButton: VLButton
@@ -67,6 +67,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         scheduledServiceView.isUserInteractionEnabled = true
         let scheduledServiceTap = UITapGestureRecognizer(target: self, action: #selector(self.scheduledServiceClick))
         scheduledServiceView.addGestureRecognizer(scheduledServiceTap)
+        scheduledServiceView.isEditable = true
         
         vehicleImageView.contentMode = .scaleAspectFit
         
@@ -128,16 +129,15 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
             make.height.equalTo(Vehicle.vehicleImageHeight)
         }
         
-        preferedDealershipView.snp.makeConstraints { make in
+        scheduledServiceView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom)
             make.height.equalTo(VLTitledLabel.height)
         }
         
-        
-        scheduledServiceView.snp.makeConstraints { make in
+        preferedDealershipView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(preferedDealershipView.snp.bottom).offset(20)
+            make.top.equalTo(scheduledServiceView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
         
@@ -184,10 +184,12 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         
         if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle), !booking.isInvalidated {
             scheduledServiceView.snp.updateConstraints { make in
-                make.height.equalTo(100)
+                make.height.equalTo(VLTitledLabel.height)
             }
             scheduledServiceView.isHidden = false
             confirmButton.animateAlpha(show: false)
+            
+            var location: String? = nil
             
             if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
                 if booking.getState() == .pickupScheduled, let request = booking.pickupRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
@@ -195,6 +197,9 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
                     scheduledServiceView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                 } else {
                     scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: booking.getRepairOrderName())
+                }
+                if let request = booking.pickupRequest, let requestLocation = request.location {
+                    location = requestLocation.address
                 }
             } else {
                 if let request = booking.dropoffRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
@@ -207,14 +212,25 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
                         scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName())
                     }
                 }
+                if let request = booking.dropoffRequest, let requestLocation = request.location {
+                    location = requestLocation.address
+                }
             }
             
             
-            if let dealership = booking.dealership {
+            if let location = location {
                 preferedDealershipView.isHidden = false
-                preferedDealershipView.setLeftDescription(leftDescription: dealership.name!)
+                if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
+                    preferedDealershipView.setTitle(title: .PickupLocation, leftDescription: location)
+                } else {
+                    preferedDealershipView.setTitle(title: .DeliveryLocation, leftDescription: location)
+                }
+            } else {
+                if let dealership = booking.dealership {
+                    preferedDealershipView.isHidden = false
+                    preferedDealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!)
+                }
             }
-            
         } else {
             scheduledServiceView.snp.updateConstraints { make in
                 make.height.equalTo(0)

@@ -10,6 +10,8 @@ import Foundation
 
 extension String {
     static let ScheduleService = NSLocalizedString("ScheduleService")
+    static let SelectService = NSLocalizedString("SelectService")
+    static let ServiceSummary = NSLocalizedString("ServiceSummary")
     static let ShowDescription = NSLocalizedString("ShowDescription")
     static let RecommendedService = NSLocalizedString("RecommendedService")
     static let SelectedService = NSLocalizedString("SelectedService")
@@ -35,9 +37,10 @@ extension String {
     static let ConfirmPickup = NSLocalizedString("ConfirmPickup")
     static let YourVehicleHasArrived = NSLocalizedString("YourVehicleHasArrived")
     static let NotePickup = NSLocalizedString("NotePickup")
-    static let NoteDelivery = NSLocalizedString("NoteDelivery")
     static let ScheduleDropDealership = NSLocalizedString("ScheduleDropDealership")
     static let SchedulePickupDealership = NSLocalizedString("SchedulePickupDealership")
+    static let ScheduleDropDealershipSelfEnabled = NSLocalizedString("ScheduleDropDealershipSelfEnabled")
+    static let SchedulePickupDealershipSelfEnabled = NSLocalizedString("SchedulePickupDealershipSelfEnabled")
     static let DriverDrivingToDealership = NSLocalizedString("DriverDrivingToDealership")
     static let OutOfPickupArea = NSLocalizedString("OutOfPickupArea")
     static let ServiceNotOfferedInArea = NSLocalizedString("ServiceNotOfferedInArea")    

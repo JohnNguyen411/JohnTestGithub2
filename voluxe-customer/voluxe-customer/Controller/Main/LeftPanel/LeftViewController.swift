@@ -30,7 +30,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
 
     private let activeBookingsTableView = UITableView(frame: .zero)
     private let menuTableView = UITableView(frame: .zero)
-    private let menus = [UserManager.sharedInstance.yourVolvoStringTitle(), String.Settings, String.Signout]
+    private let menus = [.PickupAndDelivery, String.Settings, String.Signout]
     
     private let closeButton = UIButton(type: UIButtonType.custom)
 

@@ -61,6 +61,8 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     let stateTestView = UILabel(frame: .zero)
     let vehicle: Vehicle
 
+    let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
+
     let scheduledServiceView = VLTitledLabel()
     let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern())
     
@@ -71,11 +73,13 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), kern: UILabel.uppercasedKern())
     
     var analyticScreenName = ""
+    var screenTitle: String?
     
     //MARK: Lifecycle methods
-    init(vehicle: Vehicle, state: ServiceState) {
+    init(title: String? = nil, vehicle: Vehicle, state: ServiceState) {
         self.vehicle = vehicle
         self.serviceState = state
+        self.screenTitle = title
         super.init(screenName: "")
     }
     
@@ -86,6 +90,12 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        if let title = self.screenTitle {
+            self.navigationItem.title = title
+        }
+        
+        vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
+
         vehicleImageView.contentMode = .scaleAspectFit
         
         leftButton.setActionBlock { [weak self] in
@@ -145,6 +155,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         contentView.addSubview(stateTestView)
         stateTestView.textColor = .clear
         
+        contentView.addSubview(vehicleTypeView)
         contentView.addSubview(vehicleImageView)
         contentView.addSubview(scheduledServiceView)
         contentView.addSubview(descriptionButton)
@@ -161,9 +172,15 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(0, 20, 20, 20))
         }
         
+        vehicleTypeView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
+            make.height.equalTo(VLTitledLabel.height)
+        }
+        
         vehicleImageView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview()
+            make.top.equalTo(vehicleTypeView.snp.bottom)
             make.height.equalTo(Vehicle.vehicleImageHeight)
         }
         
@@ -195,7 +212,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         noteLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.bottom.equalTo(confirmButton.snp.top).offset(-20)
-            make.height.equalTo(VLButton.primaryHeight)
         }
         
         if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
@@ -267,10 +283,8 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         
-        if serviceState == .idle || serviceState == .needService {
+        if serviceState == .idle || serviceState == .needService || serviceState == .serviceCompleted {
             noteLabel.text = .NotePickup
-        } else if serviceState == .serviceCompleted {
-            noteLabel.text = .NoteDelivery
         }
         
         stateTestView.accessibilityIdentifier = "schedulingTestView\(state)"
@@ -286,11 +300,18 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             if state == .needService {
                 logViewScreen(screenName: AnalyticsConstants.paramNameNeedServiceView)
                 dealershipPrefetching()
-                checkupLabel.text = .ScheduleDropDealership
+                if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
+                    checkupLabel.text = .ScheduleDropDealershipSelfEnabled
+                } else {
+                    checkupLabel.text = .ScheduleDropDealership
+                }
             } else {
-                checkupLabel.text = .SchedulePickupDealership
+                if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
+                    checkupLabel.text = .SchedulePickupDealershipSelfEnabled
+                } else {
+                    checkupLabel.text = .SchedulePickupDealership
+                }
                 showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: true)
-                checkupLabel.text = .VolvoServiceComplete
                 if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                     scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
                 }
@@ -357,10 +378,18 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             rightButton.setEventName(AnalyticsConstants.eventClickVolvoIB, screenName: analyticScreenName)
             
             leftButton.setTitle(title: (.SelfDrop as String).uppercased())
-            rightButton.setTitle(title: (.VolvoPickup as String).uppercased())
+            if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
+                rightButton.setTitle(title: (.VolvoPickup as String).uppercased())
+            } else {
+                rightButton.setTitle(title: (.SchedulePickup as String).uppercased())
+            }
         } else {
             leftButton.setTitle(title: (.SelfPickup as String).uppercased())
-            rightButton.setTitle(title: (.VolvoDelivery as String).uppercased())
+            if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
+                rightButton.setTitle(title: (.VolvoDelivery as String).uppercased())
+            } else {
+                rightButton.setTitle(title: (.ScheduleDelivery as String).uppercased())
+            }
             
             leftButton.setEventName(AnalyticsConstants.eventClickSelfOB, screenName: analyticScreenName)
             rightButton.setEventName(AnalyticsConstants.eventClickVolvoOB, screenName: analyticScreenName)

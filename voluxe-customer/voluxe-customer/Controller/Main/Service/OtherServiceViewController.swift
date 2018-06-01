@@ -114,7 +114,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: weakSelf.service)
             StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: weakSelf.vehicle.id, booking: nil)
-            weakSelf.pushViewController(ServiceCarViewController(vehicle: weakSelf.vehicle, state: .needService), animated: true, backLabel: .Back)
+            weakSelf.pushViewController(ServiceCarViewController(title: .ServiceSummary, vehicle: weakSelf.vehicle, state: .needService), animated: true, backLabel: .Back)
 
         }
         //descriptionTextView.placeholder
