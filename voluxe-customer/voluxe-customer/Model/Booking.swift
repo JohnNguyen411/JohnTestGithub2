@@ -176,4 +176,15 @@ class Booking: Object, Mappable {
         return .idle
     }
     
+    public func isActive() -> Bool {
+        let state = getState()
+        if hasUpcomingRequestToday() || (state == .service || state == .serviceCompleted
+            || state == .enRouteForDropoff || state == .enRouteForPickup
+            || state == .nearbyForDropoff || state == .nearbyForPickup
+            || state == .arrivedForDropoff || state == .arrivedForPickup) {
+            return true
+        }
+        return false
+    }
+    
 }

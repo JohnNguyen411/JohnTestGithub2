@@ -124,8 +124,6 @@
 		6C4970F82064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */; };
 		6C4970FB20754E2700FF33E9 /* SyncTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970FA20754E2700FF33E9 /* SyncTimer.swift */; };
 		6C4970FC20754E2700FF33E9 /* SyncTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970FA20754E2700FF33E9 /* SyncTimer.swift */; };
-		6C4970FF207580C800FF33E9 /* LeftPanelActiveBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970FE207580C800FF33E9 /* LeftPanelActiveBooking.swift */; };
-		6C497100207580C800FF33E9 /* LeftPanelActiveBooking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970FE207580C800FF33E9 /* LeftPanelActiveBooking.swift */; };
 		6C497103207823E100FF33E9 /* VehicleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C497102207823E100FF33E9 /* VehicleAPI.swift */; };
 		6C497104207823E100FF33E9 /* VehicleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C497102207823E100FF33E9 /* VehicleAPI.swift */; };
 		6C4971072078272400FF33E9 /* VehicleMake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4971062078272400FF33E9 /* VehicleMake.swift */; };
@@ -588,7 +586,6 @@
 		6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLockStatus.swift; sourceTree = "<group>"; };
 		6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Voluxe.swift"; sourceTree = "<group>"; };
 		6C4970FA20754E2700FF33E9 /* SyncTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTimer.swift; sourceTree = "<group>"; };
-		6C4970FE207580C800FF33E9 /* LeftPanelActiveBooking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeftPanelActiveBooking.swift; sourceTree = "<group>"; };
 		6C497102207823E100FF33E9 /* VehicleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAPI.swift; sourceTree = "<group>"; };
 		6C4971062078272400FF33E9 /* VehicleMake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleMake.swift; sourceTree = "<group>"; };
 		6C4D91BA1FDB15F90031E3CB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
@@ -1177,7 +1174,6 @@
 			isa = PBXGroup;
 			children = (
 				6C88DC931FAA8C28009F2FC3 /* LeftViewController.swift */,
-				6C4970FE207580C800FF33E9 /* LeftPanelActiveBooking.swift */,
 				6C522459208815580078D9B9 /* VLSlideMenuController.swift */,
 			);
 			path = LeftPanel;
@@ -2183,7 +2179,6 @@
 				6CA968B52023933800FBEEAB /* VehicleLocalization.swift in Sources */,
 				6CBB4E8E1FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
 				6C5833181FB3AF5600F6BFE0 /* PresentrAnimation.swift in Sources */,
-				6C4970FF207580C800FF33E9 /* LeftPanelActiveBooking.swift in Sources */,
 				6C7DDE1D1FE1B864000E2822 /* VLAnalytics.swift in Sources */,
 				6CE1479A20AE4F8D001F4BC7 /* PermissionViewController.swift in Sources */,
 				6CBB4EB31FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
@@ -2260,7 +2255,6 @@
 				6CD47D151FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
 				6C91BBE11FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
 				6C22087D1FBD0C6700874882 /* Driver.swift in Sources */,
-				6C497100207580C800FF33E9 /* LeftPanelActiveBooking.swift in Sources */,
 				6CBB4E8C1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				6C20E1ED1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */,
 				6C8A16E2209289EB00F888D6 /* ConstraintMaker+Voluxe.swift in Sources */,

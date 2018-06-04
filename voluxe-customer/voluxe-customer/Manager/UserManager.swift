@@ -70,6 +70,7 @@ final class UserManager {
     
     public func setVehicles(vehicles: [Vehicle]) {
         self.vehicles = vehicles
+        SwiftEventBus.post("setUserVehicles")
     }
     
     public func getVehicles() -> [Vehicle]? {
@@ -175,10 +176,7 @@ final class UserManager {
                 continue
             }
             
-            if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted
-                || booking.getState() == .enRouteForDropoff || booking.getState() == .enRouteForPickup
-                || booking.getState() == .nearbyForDropoff || booking.getState() == .nearbyForPickup
-                || booking.getState() == .arrivedForDropoff || booking.getState() == .arrivedForPickup) {
+            if booking.isActive() {
                 todaysBookings.append(booking)
             }
         }

@@ -17,6 +17,8 @@ import Alamofire
 
 class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
 
+    public static var selectedVehicleIndex = 0
+
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
         formatter.dateFormat = "EEEE, MMM d"
@@ -26,7 +28,6 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     var serviceState: ServiceState
     var vehicles: [Vehicle]?
     var selectedVehicle: Vehicle?
-    var selectedVehicleIndex = 0
 
     let vehicleCollectionView: UICollectionView
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
@@ -159,12 +160,12 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
             }
         }
         vehicleCollectionView.reloadData()
-        selectVehicle(index: selectedVehicleIndex)
+        selectVehicle(index: VehiclesViewController.selectedVehicleIndex)
     }
     
     func selectVehicle(index: Int) {
         if let vehicles = vehicles {
-            selectedVehicleIndex = index
+            VehiclesViewController.selectedVehicleIndex = index
             if index < vehicles.count {
                 let vehicle = vehicles[index]
                 vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())

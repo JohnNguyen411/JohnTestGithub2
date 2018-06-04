@@ -64,13 +64,15 @@ class LeftPanelVehicleCell: UITableViewCell, UITextFieldDelegate {
         settingLabel.text = text
     }
     
-    public func showNotification(show: Bool) {
-        notificationImage.animateAlpha(show: show)
-        if show {
+    public func showNotification(notificationType: NotificationType?) {
+        if let notificationType = notificationType {
+            notificationImage.animateAlpha(show: true)
             settingLabel.snp.updateConstraints { make in
                 make.left.equalToSuperview().offset(35)
             }
+            notificationImage.image = UIImage(named: notificationType == .active ? "notificationDot" : "notificationDotGray")
         } else {
+            notificationImage.animateAlpha(show: false)
             settingLabel.snp.updateConstraints { make in
                 make.left.equalToSuperview().offset(15)
             }
@@ -85,5 +87,10 @@ class LeftPanelVehicleCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
+}
+
+enum NotificationType {
+    case active
+    case inactive
 }
 
