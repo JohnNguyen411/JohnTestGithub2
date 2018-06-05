@@ -24,6 +24,8 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     let firstNameTextField = VLVerticalTextField(title: .FirstName, placeholder: .FirstNamePlaceholder)
     let lastNameTextField = VLVerticalTextField(title: .LastName, placeholder: .LastNamePlaceholder)
     
+    var deeplinkEventConsumed = false
+    
     init() {
         super.init(screenName: AnalyticsConstants.paramNameSignupNameView)
     }
@@ -54,6 +56,27 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         firstNameTextField.textField.becomeFirstResponder()
         canGoNext(nextEnabled: false)
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if DeeplinkManager.sharedInstance.isPrefillSignup() && !deeplinkEventConsumed {
+            if let firstName = DeeplinkManager.sharedInstance.getDeeplinkObject()?.firstName {
+                firstNameTextField.textField.text = firstName
+            }
+            if let lastName = DeeplinkManager.sharedInstance.getDeeplinkObject()?.lastName {
+                lastNameTextField.textField.text = lastName
+            }
+            
+            deeplinkEventConsumed = true
+            
+            if checkTextFieldsValidity() {
+                if DeeplinkManager.sharedInstance.prefillSignupContinue {
+                    self.onRightClicked()
+                }
+            }
+        }
     }
     
     override func setupViews() {

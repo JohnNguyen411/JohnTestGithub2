@@ -271,6 +271,9 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         CustomerAPI().confirmSignup(email: email, phoneNumber: phoneNumber, password: password, verificationCode: verificationCode).onSuccess { result in
             if let customer = result?.data?.result {
                 VLAnalytics.logEventWithName(AnalyticsConstants.eventApiConfirmSignupSuccess, screenName: weakSelf?.screenName ?? nil)
+                if DeeplinkManager.sharedInstance.isPrefillSignup() {
+                    VLAnalytics.logEventWithName(AnalyticsConstants.eventDeeplinkSignupSuccess, screenName: weakSelf?.screenName ?? nil)
+                }
                 if let realm = weakSelf?.realm {
                     try? realm.write {
                         realm.deleteAll()

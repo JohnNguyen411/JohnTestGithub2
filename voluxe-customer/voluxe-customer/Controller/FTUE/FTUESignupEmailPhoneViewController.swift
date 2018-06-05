@@ -42,6 +42,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     
     var signupInProgress = false
     var realm : Realm?
+    var deeplinkEventConsumed = false
     
     init() {
         super.init(screenName: AnalyticsConstants.paramNameSignupEmailPhoneView)
@@ -81,6 +82,28 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         emailTextField.textField.becomeFirstResponder()
         canGoNext(nextEnabled: false)
+        
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if DeeplinkManager.sharedInstance.isPrefillSignup() && !deeplinkEventConsumed {
+            if let email = DeeplinkManager.sharedInstance.getDeeplinkObject()?.email {
+                emailTextField.textField.text = email
+            }
+            if let phoneNumber = DeeplinkManager.sharedInstance.getDeeplinkObject()?.phoneNumber {
+                phoneNumberTextField.textField.text = phoneNumber
+            }
+            
+            deeplinkEventConsumed = true
+            
+            if checkTextFieldsValidity() {
+                if DeeplinkManager.sharedInstance.prefillSignupContinue {
+                    self.onRightClicked()
+                }
+            }
+        }
         
     }
     

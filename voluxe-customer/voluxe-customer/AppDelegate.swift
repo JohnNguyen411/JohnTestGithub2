@@ -16,6 +16,8 @@ import SlideMenuControllerSwift
 import SwiftEventBus
 import UIKit
 import UserNotifications
+import Branch
+import ObjectMapper
 
 
 @UIApplicationMain
@@ -233,6 +235,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
 
         setupFirebase(application)
+        setupBranch(application, launchOptions: launchOptions)
 
         _ = Logger.init()
         GMSServices.provideAPIKey(Config.sharedInstance.mapAPIKey())
@@ -303,6 +306,45 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
 
     }
+    
+    // MARK:- Branch
+    
+    private func setupBranch(_ application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        
+        #if DEBUG
+            Branch.setUseTestBranchKey(true)
+            Branch.getInstance().setDebug()
+        #endif
+        
+        
+        SwiftEventBus.onMainThread(self, name: "channelDealershipSignup") {
+            notification in
+            UserManager.sharedInstance.logout()
+            self.startApp()
+        }
+        
+        // listener for Branch Deep Link data
+        Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
+            // do stuff with deep link data (nav to page, display content, etc)
+            print(params as? [String: AnyObject] ?? {})
+            if let params = params as? [String: AnyObject] {
+                let deeplinkObject = Mapper<BranchDeeplink>().map(JSON: params)
+                DeeplinkManager.sharedInstance.handleDeeplink(deeplinkObject: deeplinkObject)
+            }
+        }
+    }
+    
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        Branch.getInstance().application(app, open: url, options: options)
+        return true
+    }
+    
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        // handler for Universal Links
+        Branch.getInstance().continue(userActivity)
+        return true
+    }
+    
 
     // MARK:- UNUserNotificationCenterDelegate
 

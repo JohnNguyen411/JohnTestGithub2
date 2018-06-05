@@ -22,13 +22,23 @@ class LogoViewController: BaseViewController {
         self.view.addSubview(logo)
         
         var offset: CGFloat = 120.0
-        if let navigationController = self.navigationController {
-            offset = 120.0 - navigationController.navigationBar.frame.height
-        }
-        
-        logo.snp.makeConstraints { (make) -> Void in
-            make.equalsToTop(view: self.view, offset: offset)
-            make.centerX.equalToSuperview()
+        if self.view.hasSafeAreaCapability {
+            if let navigationController = self.navigationController {
+                offset = 120.0 - (navigationController.navigationBar.frame.height)
+            }
+            logo.snp.makeConstraints { (make) -> Void in
+                make.equalsToTop(view: self.view, offset: offset)
+                make.centerX.equalToSuperview()
+            }
+        } else {
+            if let navigationController = self.navigationController {
+                offset = 120.0 - (navigationController.navigationBar.frame.height + navigationController.navigationBar.frame.origin.y)
+            }
+            
+            logo.snp.makeConstraints { (make) -> Void in
+                make.top.equalTo(self.view).offset(offset)
+                make.centerX.equalToSuperview()
+            }
         }
     }
 }

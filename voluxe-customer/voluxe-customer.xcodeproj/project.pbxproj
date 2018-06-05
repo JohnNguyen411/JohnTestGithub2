@@ -51,6 +51,11 @@
 		53FDF12120B5E0050004B8A1 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
 		6C11208E2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
 		6C11208F2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
+		6C1CE1E220C07E6500A2E054 /* Development.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 53AA2755209D10CC00781995 /* Development.entitlements */; };
+		6C1CE1E420C5E9E600A2E054 /* BranchDeeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1CE1E320C5E9E600A2E054 /* BranchDeeplink.swift */; };
+		6C1CE1E520C5E9E600A2E054 /* BranchDeeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1CE1E320C5E9E600A2E054 /* BranchDeeplink.swift */; };
+		6C1CE1E720C5F0CF00A2E054 /* DeeplinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1CE1E620C5F0CF00A2E054 /* DeeplinkManager.swift */; };
+		6C1CE1E820C5F0CF00A2E054 /* DeeplinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1CE1E620C5F0CF00A2E054 /* DeeplinkManager.swift */; };
 		6C20E1831FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
 		6C20E1841FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
 		6C20E1871FBE061A00E5D9A0 /* ETAMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1861FBE061A00E5D9A0 /* ETAMarker.swift */; };
@@ -543,6 +548,8 @@
 		5B073D73742601FC967B4DD1 /* Pods-voluxe-customer.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.production.xcconfig"; sourceTree = "<group>"; };
 		69AE2DE1F0F874762B0DBABE /* Pods_voluxe_customer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C11208D2016B2C70048A56D /* BookingSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSyncManager.swift; sourceTree = "<group>"; };
+		6C1CE1E320C5E9E600A2E054 /* BranchDeeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchDeeplink.swift; sourceTree = "<group>"; };
+		6C1CE1E620C5F0CF00A2E054 /* DeeplinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkManager.swift; sourceTree = "<group>"; };
 		6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceState.swift; sourceTree = "<group>"; };
 		6C20E1861FBE061A00E5D9A0 /* ETAMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAMarker.swift; sourceTree = "<group>"; };
 		6C20E18A1FBE0E6200E5D9A0 /* GoogleDistanceMatrixAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleDistanceMatrixAPI.swift; sourceTree = "<group>"; };
@@ -967,6 +974,7 @@
 				6C9C9067209D127100494068 /* RemoteConfigManager.swift */,
 				6CE1479420AE300B001F4BC7 /* RealmManager.swift */,
 				6CE147A920B49E35001F4BC7 /* KeychainManager.swift */,
+				6C1CE1E620C5F0CF00A2E054 /* DeeplinkManager.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -1014,6 +1022,7 @@
 				6C7495E61FDA23010036FC08 /* Generics */,
 				6C20E18E1FBE14A000E5D9A0 /* GoogleMapAPI */,
 				6CD3BCA9200E727A001DD79B /* Booking.swift */,
+				6C1CE1E320C5E9E600A2E054 /* BranchDeeplink.swift */,
 				6CCCF2362048B161004BF1A6 /* Color.swift */,
 				6CE6879D2044CEAE00D915FC /* ContactDriver.swift */,
 				6C3FB2A81FA2574C00B22EAB /* Customer.swift */,
@@ -1618,6 +1627,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
 						};
 					};
 					6CCD429D1FA013E3000AC6C9 = {
@@ -1659,6 +1671,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C1CE1E220C07E6500A2E054 /* Development.entitlements in Resources */,
 				6C5833141FB3AF5600F6BFE0 /* Montserrat-Regular.ttf in Resources */,
 				6C58331B1FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
 				6CC83A831FA140D300FE0633 /* sensus_test.json in Resources */,
@@ -1761,6 +1774,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
 				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
@@ -1787,6 +1801,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
@@ -1943,6 +1958,7 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
 				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
@@ -1969,6 +1985,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
@@ -2047,6 +2064,7 @@
 				6C5833111FB3AF5600F6BFE0 /* KeyboardTranslation.swift in Sources */,
 				6CE687832036634A00D915FC /* State.swift in Sources */,
 				6C7342141FB25F8C00E90F7E /* LocationViewController.swift in Sources */,
+				6C1CE1E420C5E9E600A2E054 /* BranchDeeplink.swift in Sources */,
 				6C20E1CB1FBF698E00E5D9A0 /* Dealership.swift in Sources */,
 				6C3FB2B61FA289F000B22EAB /* ColorDefinitions.swift in Sources */,
 				6C79C43620A2800800443463 /* GMLocation.swift in Sources */,
@@ -2222,6 +2240,7 @@
 				53D9A7C1209A7D01008BE93E /* NSObject+Voluxe.swift in Sources */,
 				6CDCC602205743DB00DFA831 /* NewServiceViewController.swift in Sources */,
 				6C7342081FB127A300E90F7E /* DealershipViewController.swift in Sources */,
+				6C1CE1E720C5F0CF00A2E054 /* DeeplinkManager.swift in Sources */,
 				53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */,
 				6C69267E1FB3B3E3009495E9 /* LoanerViewController.swift in Sources */,
 				6C3FB2AD1FA2574C00B22EAB /* FuelData.swift in Sources */,
@@ -2254,6 +2273,7 @@
 				6CC37E541FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
 				6CD47D151FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
 				6C91BBE11FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
+				6C1CE1E520C5E9E600A2E054 /* BranchDeeplink.swift in Sources */,
 				6C22087D1FBD0C6700874882 /* Driver.swift in Sources */,
 				6CBB4E8C1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				6C20E1ED1FC3A5C000E5D9A0 /* ChildViewController.swift in Sources */,
@@ -2367,6 +2387,7 @@
 				6CE687882037A3D000D915FC /* ScheduledBookingViewController.swift in Sources */,
 				6C2B32491FB3C67100B943AC /* DateTimeViewController.swift in Sources */,
 				6CD3BCAB200E727A001DD79B /* Booking.swift in Sources */,
+				6C1CE1E820C5F0CF00A2E054 /* DeeplinkManager.swift in Sources */,
 				6C2AA2E820AB900F0089350B /* UIBarButtonItem+Voluxe.swift in Sources */,
 				6CBB4EA71FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */,
 				6C58333F1FB3AF9E00F6BFE0 /* TransitionType.swift in Sources */,
@@ -2508,6 +2529,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				BRANCH_APP_DOMAIN = "99lg.test-app.link";
+				BRANCH_APP_ID = 530779017297548092;
+				BRANCH_KEY = key_test_nhFXFF3zJ9DiQ1Cca74lEdafzrdZo32e;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2681,6 +2705,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				BRANCH_APP_DOMAIN = "99lg.test-app.link";
+				BRANCH_APP_ID = 530779017297548092;
+				BRANCH_KEY = key_test_nhFXFF3zJ9DiQ1Cca74lEdafzrdZo32e;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -2852,6 +2879,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				BRANCH_APP_DOMAIN = "99lg.test-app.link";
+				BRANCH_APP_ID = 530779017297548092;
+				BRANCH_KEY = key_test_nhFXFF3zJ9DiQ1Cca74lEdafzrdZo32e;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3023,6 +3053,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				BRANCH_APP_DOMAIN = 99lg.app.link;
+				BRANCH_APP_ID = 530779017297548091;
+				BRANCH_KEY = key_live_ciuZDD6sM5xjV1BpkW9gybklvygYpXL8;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3185,6 +3218,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				BRANCH_APP_DOMAIN = "99lg.test-app.link";
+				BRANCH_APP_ID = 530779017297548092;
+				BRANCH_KEY = key_test_nhFXFF3zJ9DiQ1Cca74lEdafzrdZo32e;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -3346,6 +3382,9 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "";
+				BRANCH_APP_DOMAIN = 99lg.app.link;
+				BRANCH_APP_ID = 530779017297548091;
+				BRANCH_KEY = key_live_ciuZDD6sM5xjV1BpkW9gybklvygYpXL8;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";

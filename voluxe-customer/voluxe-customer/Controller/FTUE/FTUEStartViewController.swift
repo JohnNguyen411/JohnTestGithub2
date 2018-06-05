@@ -18,6 +18,7 @@ class FTUEStartViewController: LogoViewController {
     }
     
     var realm : Realm?
+    var deeplinkEventConsumed = false
 
     public static var flowType: FTUEFlowType = .login
     
@@ -81,6 +82,17 @@ class FTUEStartViewController: LogoViewController {
         // reset current customer
         try? realm.write {
             realm.deleteAll()
+        }
+        
+        if DeeplinkManager.sharedInstance.isPrefillSignup() && !deeplinkEventConsumed {
+            UserManager.sharedInstance.signupCustomer = SignupCustomer()
+            FTUEStartViewController.flowType = .signup
+            if DeeplinkManager.sharedInstance.prefillSignupContinue {
+                self.navigationController?.pushViewController(FTUESignupNameViewController(), animated: true)
+            }
+            deeplinkEventConsumed = true
+        } else if deeplinkEventConsumed {
+            DeeplinkManager.sharedInstance.prefillSignupContinue = false
         }
         
     }

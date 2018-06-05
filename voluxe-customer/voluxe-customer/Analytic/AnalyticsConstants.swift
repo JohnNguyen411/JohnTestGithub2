@@ -147,7 +147,10 @@ class AnalyticsConstants {
     static let eventGmapsRequest = "gmaps_api_request"
     static let eventGmapsDistanceAPIFail = "gmaps_distance_api_fail"
     static let eventGmapsDistanceAPISuccess = "gmaps_distance_api_success"
-
+    
+    // Branch
+    static let eventDeeplinkSignup = "deeplink_signup"
+    static let eventDeeplinkSignupSuccess = "deeplink_signup_success"
     
     // Params
     static let paramScreenName = "screen_name"

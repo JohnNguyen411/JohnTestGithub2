@@ -9,6 +9,7 @@ def import_pods
     pod 'Alamofire', '4.5.1'
     pod 'AlamofireObjectMapper', '5.0.0'
     pod 'AlamofireNetworkActivityLogger', '2.2'
+    pod 'Branch', '0.25.0'
     pod 'BrightFutures', '6.0.1'
     pod 'CocoaLumberjack/Swift', '3.3.0'
     pod 'Crashlytics', '3.10.1'
