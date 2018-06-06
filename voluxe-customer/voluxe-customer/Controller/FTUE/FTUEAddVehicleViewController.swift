@@ -28,7 +28,8 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     let label: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .SelectYourVehicle
-        textView.font = .volvoSansLight(size: 18)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
@@ -93,27 +94,28 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         
         
         label.snp.makeConstraints { (make) -> Void in
-            make.left.top.equalToSuperview().offset(20)
+            make.left.equalToSuperview().offset(20)
+            make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(60)
         }
         
         yearLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(label)
-            make.top.equalTo(label.snp.bottom).offset(10)
-            make.height.equalTo(VLVerticalTextField.height)
+            make.top.equalTo(label.snp.bottom).offset(BaseViewController.defaultTopYOffset)
+            make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         modelLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(label)
-            make.top.equalTo(yearLabel.snp.bottom).offset(20)
-            make.height.equalTo(VLVerticalTextField.height)
+            make.top.equalTo(yearLabel.snp.bottom)
+            make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         colorLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(label)
-            make.top.equalTo(modelLabel.snp.bottom).offset(20)
-            make.height.equalTo(VLVerticalTextField.height)
+            make.top.equalTo(modelLabel.snp.bottom)
+            make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
     }
     

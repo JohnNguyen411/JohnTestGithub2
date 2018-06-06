@@ -28,7 +28,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     let firstMonthHeader: UILabel = {
         let firstMonthHeader = UILabel()
         firstMonthHeader.textColor = .luxeGray()
-        firstMonthHeader.font = .volvoSansLightBold(size: 12)
+        firstMonthHeader.font = .volvoSansProMedium(size: 12)
         firstMonthHeader.textAlignment = .center
         firstMonthHeader.addUppercasedCharacterSpacing()
         return firstMonthHeader
@@ -37,7 +37,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     let timeSlotsHeader: UILabel = {
         let timeSlotsHeader = UILabel()
         timeSlotsHeader.textColor = .luxeGray()
-        timeSlotsHeader.font = .volvoSansLightBold(size: 12)
+        timeSlotsHeader.font = .volvoSansProMedium(size: 12)
         timeSlotsHeader.textAlignment = .center
         timeSlotsHeader.text = (.PickupTimes as String).uppercased()
         timeSlotsHeader.addUppercasedCharacterSpacing()
@@ -47,7 +47,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     let noDateLabel: UILabel = {
         let noDateLabel = UILabel()
         noDateLabel.textColor = .black
-        noDateLabel.font = .volvoSansLightBold(size: 12)
+        noDateLabel.font = .volvoSansProMedium(size: 12)
         noDateLabel.textAlignment = .center
         noDateLabel.text = String.NoDatesForDealership
         noDateLabel.numberOfLines = 0
@@ -81,7 +81,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     
     private let loanerLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = UIFont.volvoSansLightBold(size: 16)
+        label.font = UIFont.volvoSansProMedium(size: 16)
         label.text = .DatesLoanersOnly
         return label
     }()
@@ -287,15 +287,10 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             make.top.equalToSuperview()
         }
         
-        titleLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(loanerContainerView.snp.top).offset(-8)
-            make.height.equalTo(20)
-        }
     }
     
     override func height() -> Int {
-        var height = (170 + calendarViewHeight) + baseHeight + hoursViewHeight + loanerViewHeight
+        var height = (155 + calendarViewHeight) + baseHeight + hoursViewHeight + loanerViewHeight
         if !noDateLabel.isHidden {
             height += 5
         }
@@ -326,7 +321,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             label.text = weekday
             label.textAlignment = .center
             label.textColor = .luxeGray()
-            label.font = .volvoSansLightBold(size: 12)
+            label.font = .volvoSansProMedium(size: 12)
             
             weekdayViews.addSubview(label)
             
@@ -369,14 +364,14 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         containerView.addSubview(calendar)
         
         calendar.appearance.headerDateFormat = monthFormatter.dateFormat
-        calendar.appearance.headerTitleFont = .volvoSansLightBold(size: 12)
+        calendar.appearance.headerTitleFont = .volvoSansProMedium(size: 12)
         
         calendar.calendarHeaderView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
         calendar.calendarWeekdayView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.1)
-        calendar.appearance.titleOffset = CGPoint(x: 0, y: 4)
+        calendar.appearance.titleOffset = CGPoint(x: 0, y: 6)
         calendar.appearance.eventSelectionColor = UIColor.white
-        calendar.appearance.headerTitleFont = .volvoSansLightBold(size: 12)
-        calendar.appearance.titleFont = .volvoSansLightBold(size: 12)
+        calendar.appearance.headerTitleFont = .volvoSansProMedium(size: 12)
+        calendar.appearance.titleFont = .volvoSansProMedium(size: 12)
         calendar.appearance.headerTitleColor = .luxeGray()
         calendar.appearance.caseOptions = FSCalendarCaseOptions.headerUsesUpperCase
         calendar.appearance.borderSelectionColor = .luxeCobaltBlue()

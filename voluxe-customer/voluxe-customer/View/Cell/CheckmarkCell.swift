@@ -10,12 +10,12 @@ import Foundation
 
 class CheckmarkCell: UITableViewCell {
     
-    static let height: CGFloat = 50
+    static let height: CGFloat = 44
     static let reuseId = "CheckmarkCell"
     
     let titleLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = UIFont.volvoSansBold(size: 16)
+        label.font = UIFont.volvoSansProMedium(size: 14)
         label.textColor = .luxeDarkGray()
         return label
     }()

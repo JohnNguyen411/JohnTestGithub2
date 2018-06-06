@@ -22,7 +22,7 @@ class StepView: UIView {
     let titleView: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.font = .volvoSansLight(size: 18)
+        titleLabel.font = .volvoSansProRegular(size: 15)
         titleLabel.textAlignment = .left
         return titleLabel
     }()
@@ -62,8 +62,7 @@ class StepView: UIView {
         titleView.snp.makeConstraints{ make in
             make.right.equalToSuperview()
             make.left.equalTo(icon.snp.right).offset(20)
-            make.top.equalToSuperview().offset(3)
-            make.height.equalTo(20)
+            make.centerY.equalTo(icon).offset(2) // need some extra spacing because of the font
         }
     }
     
@@ -89,9 +88,9 @@ class StepView: UIView {
     
     func setCurrent(isCurrent: Bool) {
         if isCurrent {
-            titleView.font = .volvoSansLightBold(size: 18)
+            titleView.font = .volvoSansProBold(size: 15)
         } else {
-            titleView.font = .volvoSansLight(size: 18)
+            titleView.font = .volvoSansProRegular(size: 15)
         }
     }
     

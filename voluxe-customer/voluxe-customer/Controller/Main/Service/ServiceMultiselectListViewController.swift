@@ -13,7 +13,8 @@ class ServiceMultiselectListViewController: BaseViewController {
     let introLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .WhatPartRequiresService
-        textView.font = .volvoSansLight(size: 18)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
         textView.textColor = .luxeLipstick()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
@@ -103,12 +104,12 @@ class ServiceMultiselectListViewController: BaseViewController {
         containerView.addSubview(confirmButton)
                 
         containerView.snp.makeConstraints { make in
-            make.left.top.right.equalToSuperview()
-            make.equalsToBottom(view: self.view, offset: -20)
+            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(0, 0, 20, 0))
         }
         
         introLabel.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(BaseViewController.defaultTopYOffset)
+            make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
         }
         
@@ -125,7 +126,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         
         tableView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(introLabelBold.snp.bottom).offset(30)
+            make.top.equalTo(introLabelBold.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.bottom.equalTo(confirmButton.snp.top).offset(-20)
         }
         

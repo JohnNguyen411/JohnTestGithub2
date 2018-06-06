@@ -25,5 +25,6 @@ extension UIColor {
     public class func luxeLightestGray() -> UIColor { return UIColor("#ECECEC") }
     public class func luxeLightCobaltBlue() -> UIColor { return UIColor("#3f82d9") }
     public class func luxeLipstick() -> UIColor { return UIColor("#eb2853") }
+    public class func luxeRed() -> UIColor { return UIColor("#DA3731") }
     
 }

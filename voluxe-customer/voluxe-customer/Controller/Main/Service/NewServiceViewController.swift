@@ -15,7 +15,8 @@ class NewServiceViewController: BaseViewController {
     let introLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .NewServiceIntro
-        textView.font = .volvoSansLight(size: 18)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
@@ -78,7 +79,8 @@ class NewServiceViewController: BaseViewController {
         let labelHeight = introLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
 
         introLabel.snp.makeConstraints { make in
-            make.left.top.equalToSuperview().offset(20)
+            make.left.equalToSuperview().offset(20)
+            make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(labelHeight)
         }
@@ -86,7 +88,7 @@ class NewServiceViewController: BaseViewController {
         tableView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview()
-            make.top.equalTo(introLabel.snp.bottom).offset(25)
+            make.top.equalTo(introLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(CheckmarkCell.height*2+1)
         }
         

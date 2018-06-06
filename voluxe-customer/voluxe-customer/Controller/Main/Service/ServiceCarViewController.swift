@@ -25,9 +25,9 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     let updateLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = (.New as String).uppercased()
-        textView.font = .volvoSansLightBold(size: 14)
+        textView.font = .volvoSansProMedium(size: 12)
         textView.textColor = .white
-        textView.backgroundColor = .luxeCobaltBlue()
+        textView.backgroundColor = .luxeLipstick()
         textView.numberOfLines = 0
         textView.layer.masksToBounds = true
         textView.textAlignment = .center
@@ -39,7 +39,8 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     let checkupLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .ScheduleDropDealership
-        textView.font = .volvoSansLight(size: 18)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
@@ -49,7 +50,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     let noteLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .NotePickup
-        textView.font = .volvoSansLightBold(size: 12)
+        textView.font = .volvoSansProMedium(size: 12)
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
@@ -169,12 +170,11 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         updateLabel.isHidden = true
         
         contentView.snp.makeConstraints { make in
-            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(0, 20, 20, 20))
+            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(BaseViewController.defaultTopYOffset, 20, 20, 20))
         }
         
         vehicleTypeView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalToSuperview().offset(20)
+            make.left.top.right.equalToSuperview()
             make.height.equalTo(VLTitledLabel.height)
         }
         
@@ -205,7 +205,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         
         descriptionButton.snp.makeConstraints { make in
             make.left.right.equalTo(scheduledServiceView)
-            make.top.equalTo(scheduledServiceView.snp.bottom).offset(10)
+            make.top.equalTo(scheduledServiceView.snp.bottom)
             make.height.equalTo(VLButton.secondaryHeight)
         }
         
@@ -301,15 +301,15 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 logViewScreen(screenName: AnalyticsConstants.paramNameNeedServiceView)
                 dealershipPrefetching()
                 if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
-                    checkupLabel.text = .ScheduleDropDealershipSelfEnabled
+                    self.updateLabelText(text: .ScheduleDropDealershipSelfEnabled)
                 } else {
-                    checkupLabel.text = .ScheduleDropDealership
+                    self.updateLabelText(text: .ScheduleDropDealership)
                 }
             } else {
                 if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
-                    checkupLabel.text = .SchedulePickupDealershipSelfEnabled
+                    self.updateLabelText(text: .SchedulePickupDealershipSelfEnabled)
                 } else {
-                    checkupLabel.text = .SchedulePickupDealership
+                    self.updateLabelText(text: .SchedulePickupDealership)
                 }
                 showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: true)
                 if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
@@ -347,7 +347,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: false)
             
             if state == .service {
-                checkupLabel.text = .VolvoCurrentlyServicing
+                self.updateLabelText(text: .VolvoCurrentlyServicing)
                 leftButton.isHidden = true
                 rightButton.isHidden = true
                 
@@ -357,8 +357,8 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 confirmButton.isHidden = true
                 leftButton.isHidden = true
                 rightButton.isHidden = true
-                checkupLabel.text = String(format: NSLocalizedString(.DriverDrivingToDealership), (dealership?.name)!)
                 
+                self.updateLabelText(text: String(format: NSLocalizedString(.DriverDrivingToDealership), (dealership?.name)!))
                 logViewScreen(screenName: AnalyticsConstants.paramNameServiceInRouteView)
                 
             } else if state == .completed {
@@ -366,7 +366,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 leftButton.isHidden = true
                 rightButton.isHidden = true
                 
-                checkupLabel.text = String(format: NSLocalizedString(.DeliveryComplete), (dealership?.name)!)
+                self.updateLabelText(text: String(format: NSLocalizedString(.DeliveryComplete), (dealership?.name)!))
                 logViewScreen(screenName: AnalyticsConstants.paramNameReservationCompletedView)
             }
         }
@@ -480,6 +480,11 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         }
     }
     
+    
+    func updateLabelText(text: String) {
+        checkupLabel.text = text
+        checkupLabel.volvoProLineSpacing()
+    }
     
     //MARK: Prefetching methods
     

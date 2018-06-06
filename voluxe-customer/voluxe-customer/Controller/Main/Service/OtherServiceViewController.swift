@@ -13,7 +13,8 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     let volvoDrivableLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .IsVolvoDrivable
-        textView.font = .volvoSansLight(size: 18)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
         textView.textColor = .luxeLipstick()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
@@ -23,7 +24,8 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     let descriptionLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .NewServiceDescription
-        textView.font = .volvoSansLight(size: 18)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
         textView.textColor = .luxeLipstick()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
@@ -32,7 +34,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     
     let descriptionTextView: UITextView = {
         let descriptionTextView = UITextView(frame: .zero)
-        descriptionTextView.font = .volvoSansLight(size: 18)
+        descriptionTextView.font = .volvoSansProRegular(size: 16)
         descriptionTextView.isScrollEnabled = false
         descriptionTextView.text = .TypeDescriptionHere
         descriptionTextView.textColor = .luxeLightGray()
@@ -48,7 +50,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     let descriptionTitle: UILabel = {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.textColor = UIColor.luxeCobaltBlue()
-        titleLabel.font = .volvoSansLightBold(size: 12)
+        titleLabel.font = .volvoSansProMedium(size: 12)
         titleLabel.text = .AddDescription
         return titleLabel
     }()
@@ -149,7 +151,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         var labelHeight = volvoDrivableLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
         
         volvoDrivableLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(20)
+            make.top.equalToSuperview().offset(BaseViewController.defaultTopYOffset)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(labelHeight)

@@ -16,7 +16,8 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     let passwordLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .CreatePassword
-        textView.font = .volvoSansLight(size: 18)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
@@ -87,7 +88,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         self.view.addSubview(volvoPwdConfirmTextField)
         
         passwordLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalToSuperview().offset(20)
+            make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
         }
@@ -100,14 +101,14 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         volvoPwdTextField.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(passwordConditionLabel)
-            make.top.equalTo(passwordConditionLabel.snp.bottom).offset(20)
-            make.height.equalTo(80)
+            make.top.equalTo(passwordConditionLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
+            make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         volvoPwdConfirmTextField.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(volvoPwdTextField)
             make.top.equalTo(volvoPwdTextField.snp.bottom)
-            make.height.equalTo(80)
+            make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
     }
     

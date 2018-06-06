@@ -14,7 +14,7 @@ class ServiceDetailViewController: BaseViewController {
     let serviceTitle: VLTitledLabel
     let label: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.font = .volvoSansLight(size: 16)
+        textView.font = .volvoSansProRegular(size: 14)
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -61,6 +61,7 @@ class ServiceDetailViewController: BaseViewController {
         
         self.navigationItem.title = .NewService
 
+        label.volvoProLineSpacing()
         label.sizeToFit()
         
         if !canSchedule || RequestedServiceManager.sharedInstance.getRepairOrder() != nil{

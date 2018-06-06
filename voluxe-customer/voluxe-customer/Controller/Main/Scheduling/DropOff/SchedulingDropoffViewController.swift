@@ -62,7 +62,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
         
         scheduledPickupView.snp.remakeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(descriptionButton.snp.bottom)
+            make.top.equalTo(descriptionButton.snp.bottom).offset(10)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         

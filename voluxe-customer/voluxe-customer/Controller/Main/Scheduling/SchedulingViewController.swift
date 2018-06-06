@@ -68,7 +68,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     let dealershipAddressLabel: UILabel = {
         let dealershipAddressLabel = UILabel()
         dealershipAddressLabel.textColor = .luxeGray()
-        dealershipAddressLabel.font = .volvoSansLightBold(size: 12)
+        dealershipAddressLabel.font = .volvoSansProMedium(size: 12)
         dealershipAddressLabel.textAlignment = .left
         dealershipAddressLabel.numberOfLines = 1
         dealershipAddressLabel.lineBreakMode = .byTruncatingTail
@@ -78,7 +78,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     let dealershipMapLabel: UILabel = {
         let dealershipMapLabel = UILabel()
         dealershipMapLabel.textColor = .luxeCobaltBlue()
-        dealershipMapLabel.font = .volvoSansLightBold(size: 12)
+        dealershipMapLabel.font = .volvoSansProMedium(size: 12)
         dealershipMapLabel.text = String.Map.uppercased()
         dealershipMapLabel.textAlignment = .left
         dealershipMapLabel.addUppercasedCharacterSpacing()
@@ -226,19 +226,19 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         
         scheduledServiceView.snp.makeConstraints { make in
             make.right.left.equalToSuperview()
-            make.top.equalToSuperview().offset(SchedulingViewController.insetPadding)
+            make.top.equalToSuperview().offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         descriptionButton.snp.makeConstraints { make in
             make.left.right.equalTo(scheduledServiceView).inset(leftRightPadding)
-            make.top.equalTo(scheduledServiceView.snp.bottom)
+            make.top.equalTo(scheduledServiceView.snp.bottom).offset(-10)
             make.height.equalTo(VLButton.secondaryHeight)
         }
         
         pickupLocationView.snp.makeConstraints { make in
             make.left.right.equalTo(scheduledServiceView)
-            make.top.equalTo(descriptionButton.snp.bottom).offset(SchedulingViewController.insetPadding)
+            make.top.equalTo(descriptionButton.snp.bottom).offset(10)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         

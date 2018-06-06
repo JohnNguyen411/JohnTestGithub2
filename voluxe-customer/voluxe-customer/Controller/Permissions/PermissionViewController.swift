@@ -27,7 +27,7 @@ class PermissionViewController: BaseViewController {
     let permissionText: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .NotificationPermissionText
-        textView.font = .volvoSansLight(size: 16)
+        textView.font = .volvoSansProRegular(size: 16)
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0

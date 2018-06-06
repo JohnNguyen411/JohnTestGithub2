@@ -57,7 +57,7 @@ class SettingsCarViewController: BaseViewController {
         
         vehicleTypeView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview().offset(20)
+            make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
             make.height.equalTo(VLTitledLabel.height)
         }
         

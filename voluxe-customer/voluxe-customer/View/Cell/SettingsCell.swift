@@ -10,7 +10,7 @@ import Foundation
 
 class SettingsCell: UITableViewCell, UITextFieldDelegate {
     
-    static let height: CGFloat = 50
+    static let height: CGFloat = 44
     static let reuseIdIndicator = "SettingsCell"
     static let reuseIdToogle = "SettingsCellToogle"
     static let reuseIdLeftImg = "SettingsCellLeftImg"
@@ -32,7 +32,7 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
     
     let settingLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = UIFont.volvoSansLightBold(size: 18)
+        label.font = UIFont.volvoSansProMedium(size: 14)
         return label
     }()
     
@@ -68,11 +68,11 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
         if type == .button {
             settingLabel.addUppercasedCharacterSpacing()
             settingLabel.textColor = .luxeCobaltBlue()
-            settingLabel.font = UIFont.volvoSansLightBold(size: 15)
+            settingLabel.font = UIFont.volvoSansProMedium(size: 13)
         } else {
             settingLabel.addCharacterSpacing(kernValue: UILabel.defaultKern())
             settingLabel.textColor = .luxeDarkGray()
-            settingLabel.font = UIFont.volvoSansLightBold(size: 18)
+            settingLabel.font = UIFont.volvoSansProMedium(size: 14)
         }
         
     }

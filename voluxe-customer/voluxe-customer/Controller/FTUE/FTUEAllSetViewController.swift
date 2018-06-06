@@ -14,7 +14,8 @@ class FTUEAllSetViewController: FTUEChildViewController {
     let allSetLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .WelcomeToAppLabel
-        textView.font = .volvoSansLight(size: 18)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0

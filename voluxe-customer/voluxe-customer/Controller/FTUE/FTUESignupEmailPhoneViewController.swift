@@ -23,7 +23,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .MobilePhoneNumberExplain
-        textView.font = .volvoSansLight(size: 18)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
@@ -32,7 +33,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     
     let phoneNumberConfirmLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.font = .volvoSansLight(size: 12)
+        textView.font = .volvoSansProRegular(size: 12)
         textView.textColor = .luxeDarkGray()
         textView.text = .MobilePhoneNumberConfirm
         textView.backgroundColor = .clear
@@ -115,7 +116,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         self.view.addSubview(phoneNumberTextField)
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
-            make.top.equalToSuperview().offset(20)
+            make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
         }
@@ -123,20 +124,20 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         emailTextField.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.top.equalTo(phoneNumberLabel.snp.bottom).offset(20)
-            make.height.equalTo(VLVerticalTextField.height)
+            make.top.equalTo(phoneNumberLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
+            make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         phoneNumberTextField.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
-            make.top.equalTo(emailTextField.snp.bottom).offset(15)
-            make.height.equalTo(VLVerticalTextField.height)
+            make.top.equalTo(emailTextField.snp.bottom)
+            make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         phoneNumberConfirmLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(phoneNumberLabel)
-            make.top.equalTo(phoneNumberTextField.snp.bottom).offset(-4)
+            make.top.equalTo(phoneNumberTextField.snp.bottom).offset(-34)
             make.height.equalTo(20)
         }
     }

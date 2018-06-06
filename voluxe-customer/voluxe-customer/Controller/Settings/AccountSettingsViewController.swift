@@ -56,7 +56,8 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         self.view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.left.right.bottom.equalToSuperview()
+            make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
         }
     }
     
@@ -238,7 +239,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         let view = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: SettingsCell.height))
         view.backgroundColor = UIColor.clear
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: SettingsCell.height))
-        label.font = UIFont.boldSystemFont(ofSize: 14)
+        label.font = .volvoSansProMedium(size: 13)
         label.textColor = UIColor.luxeGray()
         label.text = getTitleForSection(section: section).uppercased()
         label.addUppercasedCharacterSpacing()

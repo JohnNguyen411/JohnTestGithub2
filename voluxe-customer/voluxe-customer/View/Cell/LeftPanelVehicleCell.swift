@@ -14,13 +14,13 @@ class LeftPanelVehicleCell: UITableViewCell, UITextFieldDelegate {
         return String(describing: self)
     }
     
-    static let height: CGFloat = 50
+    static let height: CGFloat = 44
     
     let notificationImage: UIImageView
     
     let settingLabel: UILabel = {
         let label = UILabel(frame: .zero)
-        label.font = UIFont.volvoSansLightBold(size: 16)
+        label.font = UIFont.volvoSansProMedium(size: 14)
         label.textColor = .luxeDarkGray()
         return label
     }()
@@ -70,7 +70,7 @@ class LeftPanelVehicleCell: UITableViewCell, UITextFieldDelegate {
             settingLabel.snp.updateConstraints { make in
                 make.left.equalToSuperview().offset(35)
             }
-            notificationImage.image = UIImage(named: notificationType == .active ? "notificationDot" : "notificationDotGray")
+            notificationImage.image = UIImage(named: notificationType == .active ? "notificationDot" : "notificationDotGrey")
         } else {
             notificationImage.animateAlpha(show: false)
             settingLabel.snp.updateConstraints { make in

@@ -68,7 +68,7 @@ class ServiceListViewController: BaseViewController {
         tableView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(20)
             make.right.bottom.equalToSuperview()
-            make.top.equalToSuperview().offset(20)
+            make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
         }
         
         let separator = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width-20, height: 1))
@@ -89,7 +89,7 @@ class ServiceListViewController: BaseViewController {
             tableView.snp.remakeConstraints { make in
                 make.left.equalToSuperview().offset(20)
                 make.right.equalToSuperview()
-                make.top.equalToSuperview().offset(20)
+                make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
                 make.height.equalTo(servicesHeight+1)
             }
         }

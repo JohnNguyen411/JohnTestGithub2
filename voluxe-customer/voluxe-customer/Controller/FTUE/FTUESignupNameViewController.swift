@@ -14,7 +14,9 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     let welcomeLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .WelcomeSignup
-        textView.font = .volvoSansLight(size: 18)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
+        textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
@@ -87,20 +89,20 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         
         welcomeLabel.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(20)
-            make.top.equalToSuperview().offset(20)
+            make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
             make.right.equalToSuperview().offset(-20)
         }
         
         firstNameTextField.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(welcomeLabel)
-            make.top.equalTo(welcomeLabel.snp.bottom).offset(20)
-            make.height.equalTo(80)
+            make.top.equalTo(welcomeLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
+            make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         lastNameTextField.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(firstNameTextField)
             make.top.equalTo(firstNameTextField.snp.bottom)
-            make.height.equalTo(80)
+            make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
     }
     

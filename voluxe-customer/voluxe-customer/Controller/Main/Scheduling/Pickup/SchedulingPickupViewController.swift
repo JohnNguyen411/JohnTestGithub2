@@ -83,6 +83,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             pickupScheduleState = .dealership
             openNext = true
         }
+        let preselectedDealership = RequestedServiceManager.sharedInstance.getDealership()
         RequestedServiceManager.sharedInstance.setDealership(dealership: dealership)
         
         if let dealership = dealership {
@@ -92,7 +93,9 @@ class SchedulingPickupViewController: SchedulingViewController {
                     self.loanerClick()
                 } else {
                     // timeslots already selected, need to invalidate them
-                    self.onDateTimeSelected(timeSlot: nil)
+                    if preselectedDealership == nil || preselectedDealership!.id != dealership.id {
+                        self.onDateTimeSelected(timeSlot: nil)
+                    }
                     self.showConfirmButtonIfNeeded()
                 }
             })

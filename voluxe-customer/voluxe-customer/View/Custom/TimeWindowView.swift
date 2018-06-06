@@ -17,7 +17,7 @@ class TimeWindowView: UIView {
     let titleView: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .white
-        titleLabel.font = .volvoSansLight(size: 38)
+        titleLabel.font = .volvoSansProLight(size: 38)
         titleLabel.textAlignment = .center
         titleLabel.text = "-:-- - -:--"
         return titleLabel
@@ -26,7 +26,7 @@ class TimeWindowView: UIView {
     let subtitleView: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .white
-        titleLabel.font = .volvoSansLightBold(size: 10)
+        titleLabel.font = .volvoSansProMedium(size: 10)
         titleLabel.textAlignment = .center
         titleLabel.text = (.PickupWindow as String).uppercased()
         titleLabel.addUppercasedCharacterSpacing()

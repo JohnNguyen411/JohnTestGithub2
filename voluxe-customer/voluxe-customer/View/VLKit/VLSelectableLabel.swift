@@ -27,7 +27,7 @@ class VLSelectableLabel : UIView, UIGestureRecognizerDelegate {
     private let label: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.font = .volvoSansLightBold(size: 16)
+        titleLabel.font = .volvoSansProMedium(size: 14)
         titleLabel.textAlignment = .left
         titleLabel.numberOfLines = 1
         titleLabel.lineBreakMode = .byTruncatingTail

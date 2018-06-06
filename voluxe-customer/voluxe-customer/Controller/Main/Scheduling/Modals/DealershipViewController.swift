@@ -57,11 +57,6 @@ class DealershipViewController: VLPresentrViewController, VLGroupedLabelsDelegat
                 make.height.equalTo(groupedLabels.items.count * VLSelectableLabel.height)
             }
             
-            titleLabel.snp.makeConstraints { make in
-                make.left.right.equalToSuperview()
-                make.bottom.equalTo(groupedLabels.snp.top).offset(-10)
-                make.height.equalTo(25)
-            }
             groupedLabels.delegate = self
         }
         
@@ -76,7 +71,7 @@ class DealershipViewController: VLPresentrViewController, VLGroupedLabelsDelegat
     
     override func height() -> Int {
         if let groupedLabels = groupedLabels {
-            return (groupedLabels.items.count * VLSelectableLabel.height) + baseHeight + 60
+            return (groupedLabels.items.count * VLSelectableLabel.height) + baseHeight + 70
         }
         return baseHeight + 60
         

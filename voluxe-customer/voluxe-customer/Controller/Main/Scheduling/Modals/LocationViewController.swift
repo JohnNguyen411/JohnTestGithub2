@@ -20,7 +20,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     private static let maxCount = 4
     
     private static let newLocationButtonHeight = 0
-    private static let newLocationTextFieldHeight = VLVerticalTextField.height + 5
+    private static let newLocationTextFieldHeight = VLVerticalTextField.height - 5
 
     var newLocationHeight = newLocationButtonHeight
     var permissionHeight = 0 // permission note + margins. Used to get the modalview height
@@ -48,16 +48,6 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     
     var selectedIndex = 0
     var preselectedIndex = -1
-    
-    let newLocationLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.textColor = .luxeGray()
-        titleLabel.text = (.AddNewLocation as String).uppercased()
-        titleLabel.font = .volvoSansLightBold(size: 12)
-        titleLabel.textAlignment = .left
-        titleLabel.addUppercasedCharacterSpacing()
-        return titleLabel
-    }()
     
     let notePermissionLabel: UILabel = {
         let titleLabel = UILabel()
@@ -187,25 +177,17 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         super.setupViews()
         
         containerView.addSubview(tableView)
-        containerView.addSubview(newLocationLabel)
         containerView.addSubview(newLocationTextField)
         containerView.addSubview(newLocationButton)
         containerView.addSubview(notePermissionLabel)
         
         notePermissionLabel.isHidden = true
-        newLocationLabel.isHidden = true
         newLocationTextField.isHidden = true
         
         newLocationTextField.snp.makeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-30)
             make.left.right.equalToSuperview()
             make.height.equalTo(VLVerticalTextField.height)
-        }
-        
-        newLocationLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(newLocationTextField.snp.top)
-            make.height.equalTo(25)
         }
         
         newLocationButton.snp.makeConstraints { make in
@@ -230,23 +212,25 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
             make.left.right.equalToSuperview()
         }
         
-        titleLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(tableView.snp.top).offset(-10)
-            make.height.equalTo(25)
-        }
     }
     
     func tableViewHeight() -> Int {
+        var viewHeight = 0
         if numberOfRows() > LocationViewController.maxCount {
-            return LocationViewController.maxCount * Int(CheckmarkCell.height) + 1
+            viewHeight = LocationViewController.maxCount * Int(CheckmarkCell.height) + 1
         } else {
-            return numberOfRows() * Int(CheckmarkCell.height) + 1
+            viewHeight = numberOfRows() * Int(CheckmarkCell.height) + 1
         }
+        
+        if viewHeight < Int(CheckmarkCell.height) {
+            viewHeight = Int(CheckmarkCell.height)
+        }
+        
+        return viewHeight
     }
     
     override func height() -> Int {
-        return (tableViewHeight()) + baseHeight + newLocationHeight + permissionHeight + 100
+        return (tableViewHeight()) + baseHeight + newLocationHeight + permissionHeight + 73
     }
     
     func autocompleteWithText(userText: String){
@@ -347,14 +331,13 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     }
     
     private func showNewLocationTextField(show: Bool) {
-        newLocationLabel.animateAlpha(show: show)
         newLocationTextField.animateAlpha(show: show)
         newLocationButton.animateAlpha(show: !show)
         
         if show {
             showPermissionNote(show: false)
             tableView.snp.remakeConstraints { make in
-                make.bottom.equalTo(newLocationLabel.snp.top).offset(-20)
+                make.bottom.equalTo(newLocationTextField.snp.top).offset(-20)
                 make.left.equalToSuperview()
                 make.right.equalToSuperview().offset(15)
                 make.height.equalTo(self.tableViewHeight())

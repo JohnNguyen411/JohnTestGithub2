@@ -45,7 +45,7 @@ class ScheduledViewController: ChildViewController {
     let driverName: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.font = .volvoSansLightBold(size: 18)
+        titleLabel.font = .volvoSansProMedium(size: 14)
         titleLabel.textAlignment = .left
         return titleLabel
     }()
@@ -120,7 +120,7 @@ class ScheduledViewController: ChildViewController {
             
             verticalStepView.snp.makeConstraints { make in
                 make.left.equalToSuperview().offset(30)
-                make.top.equalToSuperview().offset(30)
+                make.top.equalToSuperview().offset(BaseViewController.defaultTopYOffset)
                 make.right.equalToSuperview().offset(-30)
                 make.height.equalTo(verticalStepView.height)
             }

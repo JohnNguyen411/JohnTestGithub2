@@ -15,12 +15,13 @@ import SnapKit
  */
 class VLTitledLabel: UIView {
     
-    static let height = 50
+    static let height = 60
 
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeGray()
-        titleLabel.font = .volvoSansLightBold(size: 12)
+        titleLabel.font = .volvoSansProMedium(size: 12)
+        titleLabel.volvoProLineSpacing()
         titleLabel.textAlignment = .left
         return titleLabel
     }()
@@ -28,7 +29,8 @@ class VLTitledLabel: UIView {
     let descLeftLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.font = .volvoSansLightBold(size: 16)
+        titleLabel.font = .volvoSansProMedium(size: 15)
+        titleLabel.volvoProLineSpacing()
         titleLabel.textAlignment = .left
         return titleLabel
     }()
@@ -36,15 +38,16 @@ class VLTitledLabel: UIView {
     let descRightLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.font = .volvoSansLightBold(size: 16)
+        titleLabel.font = .volvoSansProMedium(size: 15)
+        titleLabel.volvoProLineSpacing()
         titleLabel.textAlignment = .right
         return titleLabel
     }()
     
     let errorLabel: UILabel = {
         let errorLabel = UILabel()
-        errorLabel.textColor = .luxeLipstick()
-        errorLabel.font = .volvoSansLightBold(size: 12)
+        errorLabel.textColor = .luxeRed()
+        errorLabel.font = .volvoSansProMedium(size: 12)
         errorLabel.textAlignment = .right
         errorLabel.addUppercasedCharacterSpacing()
         return errorLabel
@@ -87,15 +90,20 @@ class VLTitledLabel: UIView {
         descLeftLabel.text = leftDescription
         if let rightDescription = rightDescription {
             descRightLabel.text = rightDescription
+            descRightLabel.volvoProLineSpacing()
         }
+        descLeftLabel.volvoProLineSpacing()
+        titleLabel.volvoProLineSpacing()
     }
     
     func setTitle(title: String) {
         titleLabel.text = title
+        titleLabel.volvoProLineSpacing()
     }
     
     func setLeftDescription(leftDescription: String) {
         descLeftLabel.text = leftDescription
+        descLeftLabel.volvoProLineSpacing()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -118,18 +126,18 @@ class VLTitledLabel: UIView {
         
         separator.snp.makeConstraints { (make) -> Void in
             make.left.right.equalToSuperview()
-            make.top.equalTo(titleLabel.snp.bottom).offset(1)
+            make.top.equalTo(titleLabel.snp.bottom).offset(3)
             make.height.equalTo(1)
         }
         
         descLeftLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalToSuperview()
-            make.top.equalTo(separator.snp.bottom).offset(4)
+            make.top.equalTo(separator.snp.bottom).offset(10)
         }
         
         descRightLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalToSuperview()
-            make.top.equalTo(separator.snp.bottom).offset(4)
+            make.top.equalTo(separator.snp.bottom).offset(10)
         }
         
         errorLabel.snp.makeConstraints { (make) -> Void in
@@ -142,13 +150,14 @@ class VLTitledLabel: UIView {
     
     func showError(error: String?) {
         
-        separator.backgroundColor = .luxeLipstick()
-        titleLabel.textColor = .luxeLipstick()
-        descLeftLabel.textColor = .luxeLipstick()
-        descRightLabel.textColor = .luxeLipstick()
+        separator.backgroundColor = .luxeRed()
+        titleLabel.textColor = .luxeRed()
+        descLeftLabel.textColor = .luxeRed()
+        descRightLabel.textColor = .luxeRed()
         self.backgroundColor = .luxeLightOrange()
         
         errorLabel.text = error?.uppercased()
+        errorLabel.volvoProLineSpacing()
         if errorLabel.isHidden {
             errorLabel.animateAlpha(show: true)
         }

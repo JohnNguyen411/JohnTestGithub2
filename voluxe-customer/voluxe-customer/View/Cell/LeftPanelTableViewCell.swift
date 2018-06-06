@@ -33,12 +33,12 @@ open class LeftPanelTableViewCell : UITableViewCell {
     }
     
     open class func height() -> CGFloat {
-        return 48
+        return 44
     }
     
     open func setData(_ data: Any?, isButton: Bool) {
         self.backgroundColor = .clear
-        self.textLabel?.font = .volvoSansLightBold(size: 16)
+        self.textLabel?.font = .volvoSansProMedium(size: 14)
         if isButton {
             self.textLabel?.textColor = .luxeCobaltBlue()
             self.accessoryType = .none

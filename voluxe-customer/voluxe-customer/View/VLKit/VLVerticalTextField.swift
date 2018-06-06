@@ -14,9 +14,11 @@ import UIKit
  */
 class VLVerticalTextField : VLTextField {
     
+    static let verticalHeight = 80
+    
     let rightLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.font = .volvoSansLightBold(size: 12)
+        textView.font = .volvoSansProMedium(size: 12)
         textView.textColor = .luxeLipstick()
         textView.numberOfLines = 1
         textView.textAlignment = .right
@@ -44,10 +46,10 @@ class VLVerticalTextField : VLTextField {
         
         titleLabel.textColor = .luxeCobaltBlue()
         
-        textField.font = .volvoSansProMedium(size: 16)
-        titleLabel.font = .volvoSansLightBold(size: 12)
+        textField.font = .volvoSansProRegular(size: 14)
+        titleLabel.font = .volvoSansProMedium(size: 12)
         
-        var placeholderAttributes: [NSAttributedStringKey : Any] = [NSAttributedStringKey.font: UIFont.volvoSansProMedium(size: 16), NSAttributedStringKey.foregroundColor: UIColor.luxeLightGray()]
+        var placeholderAttributes: [NSAttributedStringKey : Any] = [NSAttributedStringKey.font: UIFont.volvoSansProRegular(size: 14), NSAttributedStringKey.foregroundColor: UIColor.luxeLightGray()]
         
         if let kern = kern {
             placeholderAttributes[NSAttributedStringKey.kern] = kern

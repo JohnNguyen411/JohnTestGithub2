@@ -15,7 +15,7 @@ class VLAlertViewController: UIViewController {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.textAlignment = .center
         titleLabel.numberOfLines = 1
-        titleLabel.font = .volvoSansLightBold(size: 20)
+        titleLabel.font = .volvoSansProMedium(size: 20)
         titleLabel.textColor = .luxeDarkGray()
         return titleLabel
     }()
@@ -24,7 +24,7 @@ class VLAlertViewController: UIViewController {
         let messageLabel = UILabel(frame: .zero)
         messageLabel.textAlignment = .center
         messageLabel.numberOfLines = 0
-        messageLabel.font = .volvoSansLight(size: 15)
+        messageLabel.font = .volvoSansProLight(size: 15)
         messageLabel.textColor = .luxeDarkGray()
         return messageLabel
     }()

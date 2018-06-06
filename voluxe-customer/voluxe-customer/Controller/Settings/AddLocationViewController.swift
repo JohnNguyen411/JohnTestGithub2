@@ -50,6 +50,11 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
         locationManager.delegate = nil
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        newLocationTextField.textField.becomeFirstResponder()
+    }
+    
     override func setupViews() {
         super.setupViews()
         containerView.addSubview(newLocationTextField)
@@ -60,11 +65,6 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
             make.height.equalTo(VLVerticalTextField.height)
         }
         
-        titleLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(newLocationTextField.snp.top).offset(-10)
-            make.height.equalTo(25)
-        }
     }
     
     override func height() -> Int {

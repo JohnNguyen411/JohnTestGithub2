@@ -14,7 +14,7 @@ class ETAMarker: UIView {
     let etaValue: UILabel = {
         let etaValue = UILabel()
         etaValue.textColor = .white
-        etaValue.font = .volvoSansProMedium(size: 15)
+        etaValue.font = .volvoSansProMedium(size: 16)
         etaValue.textAlignment = .center
         etaValue.numberOfLines = 1
         return etaValue
@@ -23,7 +23,7 @@ class ETAMarker: UIView {
     let etaLabel: UILabel = {
         let etaLabel = UILabel()
         etaLabel.textColor = .white
-        etaLabel.font = .volvoSansLight(size: 11)
+        etaLabel.font = .volvoSansProRegular(size: 9)
         etaLabel.textAlignment = .center
         etaLabel.numberOfLines = 1
         return etaLabel
@@ -48,14 +48,13 @@ class ETAMarker: UIView {
 
         icon.frame = self.frame
         etaValue.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(9)
-            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(10)
+            make.centerX.equalToSuperview().offset(1)
             make.width.equalToSuperview()
-            make.height.equalTo(14)
         }
         
         etaLabel.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
+            make.centerX.equalToSuperview().offset(1)
             make.top.equalTo(etaValue.snp.bottom)
             make.width.equalToSuperview()
             make.height.equalTo(8)

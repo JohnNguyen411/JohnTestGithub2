@@ -71,15 +71,15 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         emailTextField.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(20)
-            make.top.equalToSuperview().offset(20)
+            make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
             make.right.equalToSuperview().offset(-20)
-            make.height.equalTo(80)
+            make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         passwordTextField.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(emailTextField)
             make.top.equalTo(emailTextField.snp.bottom)
-            make.height.equalTo(80)
+            make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         forgotPassword.snp.makeConstraints { (make) -> Void in

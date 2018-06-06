@@ -27,11 +27,6 @@ class LoanerViewController: VLPresentrViewController, VLGroupedLabelsDelegate {
             make.height.equalTo(groupedLabels.items.count * VLSelectableLabel.height)
         }
         
-        titleLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(groupedLabels.snp.top).offset(-10)
-            make.height.equalTo(25)
-        }
         
         if let loaner = RequestedServiceManager.sharedInstance.getLoaner() {
             groupedLabels.select(selectedIndex: loaner ? 0 : 1, selected: true)

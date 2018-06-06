@@ -33,6 +33,24 @@ extension UILabel {
     }
     
     
+    func lineSpacing(lineSpacing: CGFloat) {
+        if let labelText = text, labelText.count > 0 {
+            
+            let paragraphStyle = NSMutableParagraphStyle()
+            //line height size
+            paragraphStyle.lineSpacing = lineSpacing
+            
+            let attributedString = NSMutableAttributedString(string: labelText)
+            attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+            attributedText = attributedString
+        }
+    }
+    
+    
+    func volvoProLineSpacing() {
+        self.lineSpacing(lineSpacing: 4.0)
+    }
+    
     static func uppercasedKern() -> Float {
         return 0.4
     }

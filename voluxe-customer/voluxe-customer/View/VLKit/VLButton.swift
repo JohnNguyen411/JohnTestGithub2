@@ -145,24 +145,24 @@ class VLButton : UIButton {
             normalBackgroundColor = .luxeDuskBlue()
             highlightBackgroundColor = .luxeLightCobaltBlue()
             backgroundColor = normalBackgroundColor
-            applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeWhite(), highlightedFontColor: nil)
+            applyTextStyle(font: UIFont.volvoSansProBold(size: 14), fontColor: UIColor.luxeWhite(), highlightedFontColor: nil)
             layer.borderWidth = 0
             addShadow()
             break
         case .blueSecondary:
             backgroundColor = .clear
-            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeCobaltBlue(), highlightedFontColor: .luxeGray())
+            applyTextStyle(font: UIFont.volvoSansProMedium(size: 13), fontColor: UIColor.luxeCobaltBlue(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
         case .blueSecondaryWithBorder:
             backgroundColor = .clear
-            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeCobaltBlue(), highlightedFontColor: .luxeGray())
+            applyTextStyle(font: UIFont.volvoSansProMedium(size: 12), fontColor: UIColor.luxeCobaltBlue(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 1
             layer.borderColor = UIColor.luxeCobaltBlue().cgColor
             break
         case .blueSecondaryWithBorderDisabled:
             backgroundColor = .clear
-            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeGray(), highlightedFontColor: .luxeGray())
+            applyTextStyle(font: UIFont.volvoSansProMedium(size: 12), fontColor: UIColor.luxeGray(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 1
             layer.borderColor = UIColor.luxeGray().cgColor
             break
@@ -170,37 +170,37 @@ class VLButton : UIButton {
             normalBackgroundColor = .white
             highlightBackgroundColor = .luxeLightestGray()
             backgroundColor = normalBackgroundColor
-            applyTextStyle(font: UIFont.volvoSansBold(size: 14), fontColor: UIColor.luxeLipstick(), highlightedFontColor: nil)
+            applyTextStyle(font: UIFont.volvoSansProMedium(size: 14), fontColor: UIColor.luxeLipstick(), highlightedFontColor: nil)
             layer.borderWidth = 0
             addShadow()
             break
         case .orangeSecondary:
             backgroundColor = .clear
-            applyTextStyle(font: UIFont.volvoSansLightBold(size: 18), fontColor: UIColor.luxeLipstick(), highlightedFontColor: .luxeGray())
+            applyTextStyle(font: UIFont.volvoSansProMedium(size: 18), fontColor: UIColor.luxeLipstick(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
         case .orangeSecondarySmall:
             backgroundColor = .clear
-            applyTextStyle(font: UIFont.volvoSansLightBold(size: 14), fontColor: UIColor.luxeLipstick(), highlightedFontColor: .luxeGray())
+            applyTextStyle(font: UIFont.volvoSansProMedium(size: 14), fontColor: UIColor.luxeLipstick(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
         case .orangeSecondaryVerySmall:
             backgroundColor = .clear
-            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: UIColor.luxeLipstick(), highlightedFontColor: .luxeGray())
+            applyTextStyle(font: UIFont.volvoSansProMedium(size: 12), fontColor: UIColor.luxeLipstick(), highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
         case .blueSecondarySelected:
             normalBackgroundColor = .luxeDuskBlue()
             highlightBackgroundColor = .luxeLightCobaltBlue()
             backgroundColor = normalBackgroundColor
-            applyTextStyle(font: UIFont.volvoSansLightBold(size: 12), fontColor: .white, highlightedFontColor: .luxeGray())
+            applyTextStyle(font: UIFont.volvoSansProMedium(size: 12), fontColor: .white, highlightedFontColor: .luxeGray())
             layer.borderWidth = 0
             break
         }
     }
     
     private func applyTextStyle(font: UIFont, fontColor: UIColor, highlightedFontColor: UIColor?) {
-        applyTextStyle(font: font, fontColor: fontColor, highlightedFontColor: highlightedFontColor, edgeInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        applyTextStyle(font: font, fontColor: fontColor, highlightedFontColor: highlightedFontColor, edgeInsets: UIEdgeInsets(top: 2, left: 0, bottom: 0, right: 0))
     }
     
     private func applyTextStyle(font: UIFont, fontColor: UIColor, highlightedFontColor: UIColor?, edgeInsets: UIEdgeInsets) {

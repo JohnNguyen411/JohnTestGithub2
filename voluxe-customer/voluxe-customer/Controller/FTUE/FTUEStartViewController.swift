@@ -30,7 +30,7 @@ class FTUEStartViewController: LogoViewController {
     let pipeSeparator: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = "|"
-        textView.font = .volvoSansLight(size: 12)
+        textView.font = .volvoSansProRegular(size: 12)
         textView.textColor = .luxeLightGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0

@@ -21,11 +21,18 @@ class VLPresentrViewController: UIViewController {
     
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.textColor = .luxeLipstick()
-        titleLabel.font = .volvoSansLightBold(size: 12)
+        titleLabel.textColor = UIColor.white
+        titleLabel.font = .volvoSansProMedium(size: 12)
         titleLabel.textAlignment = .left
         titleLabel.addUppercasedCharacterSpacing()
         return titleLabel
+    }()
+    
+    let headerView: UIView = {
+        let headerView = UIView()
+        headerView.backgroundColor = UIColor.luxeCharcoalGrey()
+        headerView.clipsToBounds = true
+        return headerView
     }()
     
     let bottomButton: VLButton
@@ -57,6 +64,17 @@ class VLPresentrViewController: UIViewController {
     }
     
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        headerView.roundCorners([.topLeft, .topRight], radius: 5.0)
+        
+        titleLabel.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.centerY.equalTo(headerView).offset(2)
+            make.height.equalTo(25)
+        }
+    }
+    
     func setTitle(title: String) {
         titleLabel.text = title
         titleLabel.addUppercasedCharacterSpacing()
@@ -78,6 +96,9 @@ class VLPresentrViewController: UIViewController {
         containerView.isHidden = false
         containerView.alpha = 1
         
+        headerView.isHidden = false
+        headerView.alpha = 1
+        
         bottomButton.setActionBlock { [weak self] in
             self?.onButtonClick()
         }
@@ -89,11 +110,17 @@ class VLPresentrViewController: UIViewController {
         
         self.view.backgroundColor = .white
         
+        self.view.addSubview(headerView)
         self.view.addSubview(loadingView)
         self.view.addSubview(containerView)
         loadingView.addSubview(activityIndicator)
         containerView.addSubview(titleLabel)
         containerView.addSubview(bottomButton)
+        
+        headerView.snp.makeConstraints { make in
+            make.top.left.right.equalToSuperview()
+            make.height.equalTo(36)
+        }
         
         loadingView.snp.makeConstraints { make in
             make.bottom.left.right.equalToSuperview()
@@ -136,6 +163,7 @@ class VLPresentrViewController: UIViewController {
         
         loadingView.animateAlpha(show: loading)
         containerView.animateAlpha(show: !loading)
+        headerView.animateAlpha(show: !loading)
     }
     
     
