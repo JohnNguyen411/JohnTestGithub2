@@ -369,7 +369,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     
     private func showPermissionNote(show: Bool) {
         notePermissionLabel.animateAlpha(show: show)
-        permissionHeight = show ? 30 : 0
+        permissionHeight = show ? 34 : 0
     }
     
     
