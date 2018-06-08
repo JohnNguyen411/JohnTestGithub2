@@ -75,7 +75,7 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     override func onButtonClick() {
         if let pickupLocationDelegate = pickupLocationDelegate, let selectedLocation = selectedLocation {
             let location = Location(name: selectedLocation.formattedAddress, latitude: nil, longitude: nil, location: selectedLocation.coordinate)
-            pickupLocationDelegate.onLocationAdded(location: location)
+            pickupLocationDelegate.onLocationAdded(location: location, placeId: selectedLocation.placeID)
         }
     }
     
@@ -177,6 +177,6 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
 
 // MARK: protocol AddLocationDelegate
 protocol AddLocationDelegate: class {
-    func onLocationAdded(location: Location?)
+    func onLocationAdded(location: Location?, placeId: String)
     
 }

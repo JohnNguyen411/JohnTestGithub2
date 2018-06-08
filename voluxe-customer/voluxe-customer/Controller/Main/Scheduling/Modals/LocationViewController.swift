@@ -293,9 +293,9 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                 guard let currentLocationInfo = currentLocationAddress else { return }
                 
                 // add location to realm
-                var customerAddress = CustomerAddress()
                 let addressString: String = currentLocationInfo.fullAddress()
-                
+                var customerAddress = CustomerAddress(id: addressString)
+
                 customerAddress.location = Location(name: addressString, latitude: nil, longitude: nil, location: currentLocationInfo.coordinate)
                 customerAddress.createdAt = Date()
                 customerAddress.volvoCustomerId = user!.email
@@ -305,7 +305,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                     let existingAddress = realm.objects(CustomerAddress.self).filter("location.address = %@ AND volvoCustomerId = %@", addressString, user!.email ?? "").first
                     if existingAddress == nil {
                         try? realm.write {
-                            realm.add(customerAddress)
+                            realm.add(customerAddress, update: true)
                             if let addresses = addresses {
                                 addressesCount = addresses.count
                             }
@@ -394,15 +394,15 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
             MBProgressHUD.hide(for: superview, animated: true)
             if let place = gmsPlace {
                 // add location to realm
-                let customerAddress = CustomerAddress()
                 
+                let customerAddress = CustomerAddress(id: selectedLocation.attributedFullText.string)
                 customerAddress.location = Location(name: selectedLocation.attributedFullText.string, latitude: nil, longitude: nil, location: place.coordinate)
                 customerAddress.createdAt = Date()
                 customerAddress.volvoCustomerId = self.user!.email
                 
                 if let realm = self.realm {
                     try? realm.write {
-                        realm.add(customerAddress)
+                        realm.add(customerAddress, update: true)
                         
                         if let addresses = self.addresses {
                             self.addressesCount = addresses.count

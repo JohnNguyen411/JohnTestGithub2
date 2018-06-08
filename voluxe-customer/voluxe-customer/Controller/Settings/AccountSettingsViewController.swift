@@ -115,16 +115,15 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         })
     }
     
-    func onLocationAdded(location: Location?) {
-        let customerAddress = CustomerAddress()
-        
+    func onLocationAdded(location: Location?, placeId: String) {
+        let customerAddress = CustomerAddress(id: location?.address)
         customerAddress.location = location
         customerAddress.createdAt = Date()
         customerAddress.volvoCustomerId = user!.email
         
         if let realm = self.realm {
             try? realm.write {
-                realm.add(customerAddress)
+                realm.add(customerAddress, update: true)
                 if let addresses = addresses {
                     addressesCount = addresses.count
                 }

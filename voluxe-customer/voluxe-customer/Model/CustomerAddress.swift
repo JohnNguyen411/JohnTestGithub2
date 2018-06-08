@@ -24,6 +24,13 @@ class CustomerAddress: Object, Mappable {
         self.init()
     }
     
+    convenience init(id: String?) {
+        self.init()
+        if let id = id {
+            self.id = id
+        }
+    }
+    
     func mapping(map: Map) {
         id <- map["id"]
         volvoCustomerId <- map["volvo_customer_id"]
