@@ -248,16 +248,6 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
-        dealershipMapLabel.snp.makeConstraints { make in
-            make.right.centerY.height.equalToSuperview()
-            make.width.equalTo(60)
-        }
-        
-        dealershipAddressLabel.snp.makeConstraints { make in
-            make.left.height.centerY.equalToSuperview()
-            make.right.equalTo(dealershipMapLabel.snp.left)
-        }
-        
         if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) && RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.loanerFeatureEnabledKey) {
             scheduledPickupView.snp.makeConstraints { make in
                 make.left.right.equalTo(scheduledServiceView)
@@ -497,6 +487,16 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
             make.left.right.equalTo(scheduledServiceView).inset(UIEdgeInsetsMake(0, 20, 0, 20))
             make.top.equalTo(dealershipView.snp.bottom).offset(-5)
             make.height.equalTo(25)
+        }
+        
+        dealershipMapLabel.snp.makeConstraints { make in
+            make.right.centerY.height.equalToSuperview()
+            make.width.equalTo(60)
+        }
+        
+        dealershipAddressLabel.snp.makeConstraints { make in
+            make.left.height.centerY.equalToSuperview()
+            make.right.equalTo(dealershipMapLabel.snp.left)
         }
         
         scheduledPickupView.snp.remakeConstraints { make in
