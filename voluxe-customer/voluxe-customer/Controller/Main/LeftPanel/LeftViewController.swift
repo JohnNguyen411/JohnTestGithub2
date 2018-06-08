@@ -83,7 +83,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         
         SwiftEventBus.onMainThread(self, name: "setUserVehicles") { result in
             // UI thread
-            self.setActiveBooking(bookings: UserManager.sharedInstance.getActiveBookings())
+            self.updateVehicles(vehicles: UserManager.sharedInstance.getVehicles())
         }
         
         SwiftEventBus.onMainThread(self, name: "setActiveBooking") { result in
@@ -105,7 +105,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         self.view.addSubview(vehicleTableView)
         
         var vehiclesH = CGFloat(vehicles.count) * LeftPanelVehicleCell.height + LeftViewController.headerHeight
-        if vehicles.count > 1 {
+        if vehicles.count > 0 {
             if vehiclesH > LeftViewController.maxTableViewVehicleHeight {
                 vehiclesH = LeftViewController.maxTableViewVehicleHeight
             }
@@ -183,7 +183,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         } else {
             self.vehicles.removeAll()
         }
-        if self.vehicles.count <= 1 {
+        if self.vehicles.count < 1 {
             vehicleTableView.isHidden = true
             vehicleTableView.snp.updateConstraints { (make) -> Void in
                 make.height.equalTo(0)
@@ -347,7 +347,7 @@ extension LeftViewController : UITableViewDelegate {
             let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width, height: LeftViewController.headerHeight))
             label.font = UIFont.volvoSansProMedium(size: 13)
             label.textColor = UIColor.luxeGray()
-            label.text = String.YourVolvos.uppercased()
+            label.text = UserManager.sharedInstance.yourVolvoStringTitle().uppercased()
             label.addUppercasedCharacterSpacing()
             view.addSubview(label)
             return view
