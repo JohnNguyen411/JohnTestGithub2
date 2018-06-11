@@ -51,8 +51,8 @@ class CreateAccount_UITests: XCTestCase {
 
         let app = XCUIApplication()
 
-        let firstNameTextfield = app.textFields["Johan"]
-        let lastNameTextfield = app.textFields["Johansson"]
+        let firstNameTextfield = app.textFields[String.FirstNamePlaceholder]
+        let lastNameTextfield = app.textFields[String.LastNamePlaceholder]
         let next = app.navigationBars.firstMatch.buttons["Next"]
 
         // next button is disabled by default
@@ -77,11 +77,11 @@ class CreateAccount_UITests: XCTestCase {
 
         let app = XCUIApplication()
 
-        var textField = app.textFields["Johan"]
+        var textField = app.textFields[String.FirstNamePlaceholder]
         textField.tapAndClearText()
         textField.typeText(BotUserData.firstName)
 
-        textField = app.textFields["Johansson"]
+        textField = app.textFields[String.LastNamePlaceholder]
         textField.tapAndClearText()
         textField.typeText(BotUserData.lastName)
 
@@ -97,8 +97,8 @@ class CreateAccount_UITests: XCTestCase {
 
         let app = XCUIApplication()
 
-        let emailTextfield = app.textFields["name@domain.com"]
-        let phoneTextfield = app.textFields["(555) 555-5555"]
+        let emailTextfield = app.textFields[String.EmailPlaceholder]
+        let phoneTextfield = app.textFields[String.MobilePhoneNumber_Placeholder]
         let next = app.navigationBars.firstMatch.buttons["Next"]
 
         // next button is disabled by default
@@ -157,11 +157,11 @@ class CreateAccount_UITests: XCTestCase {
 
         let app = XCUIApplication()
 
-        var textField = app.textFields["name@domain.com"]
+        var textField = app.textFields[String.EmailPlaceholder]
         textField.tapAndClearText()
         textField.typeText(BotUserData.email)
 
-        textField = app.textFields["(555) 555-5555"]
+        textField = app.textFields[String.MobilePhoneNumber_Placeholder]
         textField.tapAndClearText()
         textField.typeText(BotUserData.phone)
 
@@ -306,7 +306,7 @@ class CreateAccount_UITests: XCTestCase {
 
     // MARK:- Confirm account created
 
-    func test60_confirmCreateAccountComplete() {
+    func test60_allowPushNotifications() {
 
         let app = XCUIApplication()
 
@@ -314,11 +314,16 @@ class CreateAccount_UITests: XCTestCase {
         self.wait()
 
         // this seems to be the only way to accept a permissions alert
-        // by default it will select "Allow"
-        app.tap()
+        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
+        springboard.buttons["Allow"].tap()
         self.wait()
+    }
 
-        XCTAssertTrue(app.staticTexts["Your Volvo"].exists)
+    func test61_confirmCreateAccountComplete() {
+
+        let app = XCUIApplication()
+
+        XCTAssertTrue(app.otherElements["Pickup & Delivery"].exists)
     }
 
     // MARK:- Account already exists
@@ -334,22 +339,22 @@ class CreateAccount_UITests: XCTestCase {
         app.buttons["CREATE ACCOUNT"].tap()
         self.wait()
 
-        var textField = app.textFields["Johan"]
+        var textField = app.textFields[String.FirstNamePlaceholder]
         textField.tap()
         textField.typeText(BotUserData.firstName)
 
-        textField = app.textFields["Johansson"]
+        textField = app.textFields[String.LastNamePlaceholder]
         textField.tap()
         textField.typeText(BotUserData.lastName)
 
         app.navigationBars.firstMatch.buttons["Next"].tap()
         self.wait()
 
-        textField = app.textFields["name@domain.com"]
+        textField = app.textFields[String.EmailPlaceholder]
         textField.tap()
         textField.typeText(BotUserData.email)
 
-        textField = app.textFields["(555) 555-5555"]
+        textField = app.textFields[String.MobilePhoneNumber_Placeholder]
         textField.tap()
         textField.typeText(BotUserData.phone)
 
@@ -360,80 +365,5 @@ class CreateAccount_UITests: XCTestCase {
         // that the error text matches the offending input
         let alert = app.alerts["Error"]
         XCTAssertTrue(alert.exists)
-    }
-
-    // MARK:- Create account from launch
-
-    func _test90_launchAndCreateAccountHappyPath() {
-
-        let app = XCUIApplication()
-        app.launchArguments = ["logoutOnLaunch", "testMode"]
-        app.launch()
-        self.wait()
-
-        XCTAssertTrue(app.buttons["SIGN-IN"].exists)
-        app.buttons["CREATE ACCOUNT"].tap()
-        self.wait()
-
-        var textField = app.textFields["Johan"]
-        textField.tap()
-        textField.typeText(BotUserData.firstName)
-
-        textField = app.textFields["Johansson"]
-        textField.tap()
-        textField.typeText(BotUserData.lastName)
-
-        app.navigationBars.firstMatch.buttons["Next"].tap()
-        self.wait()
-
-        textField = app.textFields["name@domain.com"]
-        textField.tap()
-        textField.typeText(BotUserData.email)
-
-        textField = app.textFields["(555) 555-5555"]
-        textField.tap()
-        textField.typeText(BotUserData.phone)
-
-        app.navigationBars.firstMatch.buttons["Next"].tap()
-        self.wait()
-
-        AdminAPI.loginAndRequestVerificationCode(for: BotUserData.email) {
-            code in
-            XCTAssertNotNil(code, "expected verification code is nil")
-            XCTAssertNil(code?.usedAt, "verification code has already been used")
-            app.textFields["0000"].typeText("\(code?.value ?? "")")
-        }
-        self.wait(for: 5, label: "getting verification code")
-
-        app.navigationBars.firstMatch.buttons["Next"].tap()
-        self.wait()
-
-        textField = app.otherElements["volvoPwdTextField"]
-        textField.tap()
-        textField.typeText(BotUserData.password)
-
-        textField = app.otherElements["volvoPwdConfirmTextField"]
-        textField.tap()
-        textField.typeText(BotUserData.password)
-
-        app.navigationBars.firstMatch.buttons["Next"].tap()
-        self.wait(for: 10, label: "waiting for verification code to be accepted")
-
-        app.textFields["2018"].tap()
-        app.toolbars["Toolbar"].buttons["Done"].tap()
-        self.wait()
-
-        app.textFields["S90"].tap()
-        app.toolbars["Toolbar"].buttons["Done"].tap()
-        self.wait()
-
-        app.textFields["Black"].tap()
-        app.toolbars["Toolbar"].buttons["Done"].tap()
-        self.wait()
-
-        app.navigationBars.firstMatch.buttons["Done"].tap()
-        self.wait(for: 10, label: "waiting for vehicle to be created")
-
-        XCTAssertTrue(app.staticTexts["Your Volvo"].exists)
     }
 }

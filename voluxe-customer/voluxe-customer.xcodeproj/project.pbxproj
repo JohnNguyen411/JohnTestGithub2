@@ -23,6 +23,7 @@
 		5322409520B38BF700D4E86C /* BotUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409420B38BF700D4E86C /* BotUser.swift */; };
 		5322409720B39FF700D4E86C /* CreateAccount_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */; };
 		532E235B20CB4B5F00ADA87F /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E235A20CB4B5E00ADA87F /* BlurEffect.swift */; };
+		53C7301220CF2FF000BCE926 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
 		53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */; };
 		53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */; };
@@ -2481,6 +2482,7 @@
 				53EF28DD20AE07B4006CC5FA /* MappableDataObject.swift in Sources */,
 				5322408920AE688600D4E86C /* AdminAPI+Test.swift in Sources */,
 				5322408220AE50F900D4E86C /* MappableDataArray.swift in Sources */,
+				53C7301220CF2FF000BCE926 /* FTUELocalization.swift in Sources */,
 				5322408B20AE6ADA00D4E86C /* XCTest+Test.swift in Sources */,
 				53EF28DE20AE07BA006CC5FA /* Errors.swift in Sources */,
 				5322409520B38BF700D4E86C /* BotUser.swift in Sources */,

@@ -31,7 +31,7 @@ extension XCTestCase {
         app.buttons["SIGN-IN"].tap()
         self.wait()
 
-        var textField = app.textFields["name@domain.com"]
+        var textField = app.textFields[String.EmailPlaceholder]
         textField.tap()
         textField.typeText(BotUserData.email)
 
@@ -42,13 +42,15 @@ extension XCTestCase {
         app.navigationBars.firstMatch.buttons["Next"].tap()
         self.wait(for: 10, label: "logging in")
 
-        XCTAssertTrue(app.staticTexts["Your Volvo"].exists)
+        XCTAssertTrue(app.otherElements["Pickup & Delivery"].exists)
     }
 
     func logout(_ app: XCUIApplication) {
 
         app.navigationBars.firstMatch.buttons["ic menu"].tap()
-        app/*@START_MENU_TOKEN@*/.tables.staticTexts["Sign Out"]/*[[".otherElements[\"slideMenuController\"]",".otherElements[\"leftViewController\"].tables",".cells.staticTexts[\"Sign Out\"]",".staticTexts[\"Sign Out\"]",".tables"],[[[-1,4,2],[-1,1,2],[-1,0,1]],[[-1,4,2],[-1,1,2]],[[-1,3],[-1,2]]],[0,0]]@END_MENU_TOKEN@*/.tap()
+        self.wait()
+
+        app.otherElements["leftViewController"].staticTexts["Sign Out"].tap()
         self.wait()
 
         XCTAssertTrue(app.buttons["SIGN-IN"].exists)
