@@ -291,7 +291,3 @@ extension VehiclesViewController: UICollectionViewDataSource, UICollectionViewDe
         VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSelectVehicle, screenName: screenName)
     }
 }
-
-extension VehiclesViewController: SlideMenuControllerDelegate {
-    
-}

@@ -10,7 +10,13 @@ import Foundation
 import UIKit
 
 extension UIColor {
-    
+
+    // MARK:- Color constants
+
+    // more condensed method to declare a color constant and more
+    // consistent with how UIColor declares its constants
+    static let luxeBlurTint = UIColor(hex6: 0xf1f1e0, alpha: 0.3)
+
     // MARK: - Color Scheme
     
     public class func luxeWhite() -> UIColor { return .white }
@@ -26,5 +32,4 @@ extension UIColor {
     public class func luxeLightCobaltBlue() -> UIColor { return UIColor("#3f82d9") }
     public class func luxeLipstick() -> UIColor { return UIColor("#eb2853") }
     public class func luxeRed() -> UIColor { return UIColor("#DA3731") }
-    
 }

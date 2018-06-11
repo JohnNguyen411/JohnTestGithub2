@@ -67,14 +67,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         let uiNavigationController = UINavigationController(rootViewController: mainViewController)
         uiNavigationController.view.accessibilityIdentifier = "uiNavigationController"
-        
-        SlideMenuOptions.hideStatusBar = false
-        SlideMenuOptions.contentViewScale = 1.0
-        SlideMenuOptions.pointOfNoReturnWidth = 0.0
-        SlideMenuOptions.shadowOpacity = 0.3
-        SlideMenuOptions.shadowRadius = 2.0
-        SlideMenuOptions.shadowOffset = CGSize(width: 5, height: 0)
-        SlideMenuOptions.contentViewOpacity = 0.3
 
         styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         
@@ -82,19 +74,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         navigationController?.setTitle(title: .PickupAndDelivery)
 
         leftViewController.mainNavigationViewController = navigationController
-        //leftViewController.mainViewController = mainViewController
         
         let menuController = VLSlideMenuController(mainViewController: uiNavigationController, leftMenuViewController: leftViewController)
         menuController.automaticallyAdjustsScrollViewInsets = true
-        menuController.delegate = mainViewController
-        
-        slideMenuController = menuController
-        
-        slideMenuController?.view.accessibilityIdentifier = "slideMenuController"
+        menuController.view.accessibilityIdentifier = "slideMenuController"
+        self.slideMenuController = menuController
 
+        // TODO this could be a UIView animation extension
         if let snapShot = self.window?.snapshotView(afterScreenUpdates: true), animated {
             slideMenuController?.view.addSubview(snapShot)
-            self.window?.rootViewController = slideMenuController
+            self.window?.rootViewController = self.slideMenuController
             
             UIView.animate(withDuration: 0.75, animations: {
                 snapShot.layer.opacity = 0
@@ -103,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 snapShot.removeFromSuperview()
             })
         } else {
-            self.window?.rootViewController = slideMenuController
+            self.window?.rootViewController = self.slideMenuController
         }
         
     }
@@ -125,10 +114,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.window?.rootViewController?.present(alert, animated: true, completion: nil)
         }
     }
-    
+
+    // TODO Move view controller management from AppDelegate to AppController
+    // https://github.com/volvo-cars/ios/issues/225
     func startApp() {
         
-        if let slideMenuController = slideMenuController {
+        if let slideMenuController = self.slideMenuController {
             slideMenuController.mainViewController?.dismiss(animated: false, completion: nil)
             slideMenuController.leftViewController?.dismiss(animated: false, completion: nil)
         }

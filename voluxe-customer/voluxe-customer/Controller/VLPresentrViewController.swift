@@ -62,7 +62,19 @@ class VLPresentrViewController: UIViewController {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    // Asks the app controller to blur.  Note that doing this
+    // here means that ALL VLPresenteViewController uses will
+    // cause blurring, and that is desired behaviour right now.
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        VLSlideMenuController.shared?.blur()
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        VLSlideMenuController.shared?.unblur()
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

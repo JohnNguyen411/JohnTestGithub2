@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4919A11892F7C3DF8E3B27E1 /* Pods_voluxe_customerTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 13FF37696ECA3479BE741D40 /* Pods_voluxe_customerTests.framework */; };
 		52078A4D132E9D871CDD555D /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
+		5321B1B720C9A980006C1E14 /* UIView+Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5321B1B620C9A980006C1E14 /* UIView+Blur.swift */; };
 		5322408120AE231500D4E86C /* AdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408020AE231500D4E86C /* AdminAPI.swift */; };
 		5322408220AE50F900D4E86C /* MappableDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495DE1FDA1E870036FC08 /* MappableDataArray.swift */; };
 		5322408520AE586E00D4E86C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408320AE570000D4E86C /* User.swift */; };
@@ -21,6 +22,7 @@
 		5322409320B385C300D4E86C /* NetworkRequest+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409220B385C300D4E86C /* NetworkRequest+Admin.swift */; };
 		5322409520B38BF700D4E86C /* BotUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409420B38BF700D4E86C /* BotUser.swift */; };
 		5322409720B39FF700D4E86C /* CreateAccount_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */; };
+		532E235B20CB4B5F00ADA87F /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E235A20CB4B5E00ADA87F /* BlurEffect.swift */; };
 		53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */; };
 		53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */; };
@@ -509,6 +511,7 @@
 		446B7D7AA76D7E178415AA45 /* Pods-voluxe-customer.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.dev.xcconfig"; sourceTree = "<group>"; };
 		4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
 		4C64F631C2578E5AD1F6A474 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
+		5321B1B620C9A980006C1E14 /* UIView+Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Blur.swift"; sourceTree = "<group>"; };
 		5322408020AE231500D4E86C /* AdminAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminAPI.swift; sourceTree = "<group>"; };
 		5322408320AE570000D4E86C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5322408620AE5A2400D4E86C /* VerificationCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCode.swift; sourceTree = "<group>"; };
@@ -519,6 +522,7 @@
 		5322409220B385C300D4E86C /* NetworkRequest+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRequest+Admin.swift"; sourceTree = "<group>"; };
 		5322409420B38BF700D4E86C /* BotUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotUser.swift; sourceTree = "<group>"; };
 		5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount_UITests.swift; sourceTree = "<group>"; };
+		532E235A20CB4B5E00ADA87F /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
 		5365315520AA33F300116AC8 /* increment_build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = increment_build.sh; sourceTree = "<group>"; };
 		538FBDE020AB45EA0096480C /* release-notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "release-notes.txt"; sourceTree = "<group>"; };
 		538FBDE120AB61BC0096480C /* export-options-development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "export-options-development.plist"; sourceTree = "<group>"; };
@@ -1062,21 +1066,23 @@
 		6C3FB2B71FA2971D00B22EAB /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				532E235A20CB4B5E00ADA87F /* BlurEffect.swift */,
 				53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */,
 				6C8A16E0209289EB00F888D6 /* ConstraintMaker+Voluxe.swift */,
 				6C3FB2B81FA297A300B22EAB /* Date+DateTools.swift */,
+				6C9C9053209BD4CB00494068 /* GMSAddress.swift */,
 				53D9A7C0209A7D01008BE93E /* NSObject+Voluxe.swift */,
 				6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */,
 				6C7DDE121FDB664D000E2822 /* String+Utils.swift */,
+				6C2AA2E620AB900F0089350B /* UIBarButtonItem+Voluxe.swift */,
 				6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */,
 				6C95439D1FABEBBC0099AC84 /* UIColors+Voluxe.swift */,
 				6C9543A11FABEE1D0099AC84 /* UIFont+Voluxe.swift */,
 				6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */,
 				6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */,
 				6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */,
+				5321B1B620C9A980006C1E14 /* UIView+Blur.swift */,
 				6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */,
-				6C9C9053209BD4CB00494068 /* GMSAddress.swift */,
-				6C2AA2E620AB900F0089350B /* UIBarButtonItem+Voluxe.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -2114,6 +2120,7 @@
 				6CCCF23B2048BA33004BF1A6 /* VehicleModel.swift in Sources */,
 				53EF28CC20AE064E006CC5FA /* CustomerAPI+Login.swift in Sources */,
 				6C9C905C209CD8F500494068 /* GMElements.swift in Sources */,
+				532E235B20CB4B5F00ADA87F /* BlurEffect.swift in Sources */,
 				6CBB4EA01FB4DF7D00C31183 /* FSCalendar.m in Sources */,
 				6C32C3171FBCCFF200B1218C /* ScheduledPickupLocalization.swift in Sources */,
 				6CD47D181FAD190F00D794A6 /* VLButton.swift in Sources */,
@@ -2204,6 +2211,7 @@
 				6C9C7A7B1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
 				6C5D866C2032539900BBADDC /* VLVerticalSearchTextField.swift in Sources */,
 				6C2AA2E720AB900F0089350B /* UIBarButtonItem+Voluxe.swift in Sources */,
+				5321B1B720C9A980006C1E14 /* UIView+Blur.swift in Sources */,
 				53EF28D520AE067C006CC5FA /* CustomerAPI+Vehicle.swift in Sources */,
 				6C6F4BCE1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6CC37E501FA7C41700DA8F01 /* VLTextField.swift in Sources */,

@@ -10,55 +10,98 @@ import Foundation
 import SlideMenuControllerSwift
 
 class VLSlideMenuController: SlideMenuController {
-    
-    func changeMainViewController(_ mainViewController: UIViewController, close: Bool, animated: Bool) {
+
+    // Since this subclass is acting as the delegate for itself,
+    // we should actively prevent any assignment of the delegate
+    // from any part of this sytem.  This is an example of how to
+    // change an inherited read-write property to read-only.
+    internal override var delegate: SlideMenuControllerDelegate? {
+        get { return self }
+        set {}
+    }
+
+    override func initView() {
+
+        // always do the super
+        super.initView()
+
+        // general init
+        SlideMenuOptions.hideStatusBar = false
+        SlideMenuOptions.contentViewScale = 1.0
+        SlideMenuOptions.pointOfNoReturnWidth = 0.0
+        SlideMenuOptions.shadowOpacity = 0.15
+        SlideMenuOptions.shadowRadius = 2.0
+        SlideMenuOptions.shadowOffset = CGSize(width: 2, height: 0)
+
+        // init for blurring effect when opened
+        SlideMenuOptions.panGesturesEnabled = false
+        SlideMenuOptions.animationDuration = 0.25
+        SlideMenuOptions.animationOptions = [.curveEaseInOut]
+        SlideMenuOptions.opacityViewBackgroundColor = UIColor.clear
+        SlideMenuOptions.contentViewOpacity = 0
+    }
+
+    func changeMainViewController(_ controller: UIViewController, close: Bool, animated: Bool) {
         
         if close {
             closeLeft()
             closeRight()
         }
-        
-        if let formerMainViewController = self.mainViewController, let snapShot = formerMainViewController.view.snapshotView(afterScreenUpdates: true), animated {
-            mainViewController.view.addSubview(snapShot);
-            changeController(mainViewController)
-            
-            UIView.animate(withDuration: 0.30, animations: {
-                snapShot.layer.opacity = 0
-            }, completion: { finished in
-                snapShot.removeFromSuperview()
-            })
-        } else {
-            changeController(mainViewController)
-        }
+
+        // swap controllers
+        self.removeViewController(controller: self.mainViewController)
+        self.addChildViewController(controller)
+        self.mainViewController = controller
+
+        // swap controller views
+        controller.view.frame = self.mainContainerView.bounds
+        self.mainContainerView.addSubviewBelowBlurredView(subview: controller.view)
+        controller.didMove(toParentViewController: self)
     }
-    
-    fileprivate func changeController(_ mainViewController: UIViewController) {
-        removeViewController(viewController: self.mainViewController)
-        self.mainViewController = mainViewController
-        setUpViewController(targetView: mainContainerView, targetViewController: mainViewController)
-    }
-    
-    private func setUpViewController(targetView: UIView, targetViewController: UIViewController?) {
-        if let viewController = targetViewController {
-            addChildViewController(viewController)
-            viewController.view.frame = targetView.bounds
-            targetView.addSubview(viewController.view)
-            viewController.didMove(toParentViewController: self)
-        }
-    }
-    
-    
-    private func removeViewController(viewController: UIViewController?) {
-        if let _viewController = viewController {
-            _viewController.view.layer.removeAllAnimations()
-            _viewController.willMove(toParentViewController: nil)
-            _viewController.view.removeFromSuperview()
-            _viewController.removeFromParentViewController()
-        }
+
+    private func removeViewController(controller: UIViewController?) {
+        guard let controller = controller else { return }
+        controller.view.layer.removeAllAnimations()
+        controller.willMove(toParentViewController: nil)
+        controller.view.removeFromSuperview()
+        controller.removeFromParentViewController()
     }
     
     override func toggleLeft() {
         super.toggleLeft()
         VLAnalytics.logEventWithName(AnalyticsConstants.eventClickNavigationLeftMenuIcon)
+    }
+
+    // TODO Move view controller management from AppDelegate to AppController
+    // https://github.com/volvo-cars/ios/issues/225
+    static var shared: VLSlideMenuController? {
+        let delegate = UIApplication.shared.delegate as? AppDelegate
+        return delegate?.window?.rootViewController as? VLSlideMenuController
+    }
+}
+
+// MARK:- Global blur support
+
+extension VLSlideMenuController {
+
+    func blur(animated: Bool = true) {
+        self.mainContainerView.blurByLuxe()
+    }
+
+    func unblur(animated: Bool = true) {
+        self.mainContainerView.unblurByLuxe()
+    }
+}
+
+// MARK:- SlideMenuControllerDelegate
+
+extension VLSlideMenuController: SlideMenuControllerDelegate {
+
+    func leftWillOpen() {
+        self.mainContainerView.blurByLuxe(duration: TimeInterval(SlideMenuOptions.animationDuration))
+    }
+
+    func leftWillClose() {
+        self.mainContainerView.unblurByLuxe(duration: TimeInterval(SlideMenuOptions.animationDuration))
     }
 }

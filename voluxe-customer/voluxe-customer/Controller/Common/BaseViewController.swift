@@ -161,8 +161,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
         customPresenter.transitionType = .coverVertical
         customPresenter.roundCorners = true
         customPresenter.cornerRadius = presentrCornerRadius
-        customPresenter.blurBackground = true
-        customPresenter.blurStyle = UIBlurEffectStyle.light
+        customPresenter.backgroundOpacity = 0
         customPresenter.dismissOnSwipe = false
         customPresenter.keyboardTranslationType = .moveUp
         customPresenter.dismissOnTap = dismissOnTap
@@ -323,9 +322,16 @@ extension UIViewController {
         }
         return [:]
     }
-    
+
+    // TODO Move view controller management from AppDelegate to AppController
+    // https://github.com/volvo-cars/ios/issues/225
+    /// The VLSlideMenuController is sorta acting like an app controller
+    /// so in this context it is the best view for the HUD to use.
     private func getViewForHUD() -> UIView {
-        if let navigationController = self.navigationController {
+        if let view = VLSlideMenuController.shared?.view {
+            return view
+        }
+        else if let navigationController = self.navigationController {
            return navigationController.view
         }
         return self.view
