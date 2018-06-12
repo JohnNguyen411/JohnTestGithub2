@@ -30,10 +30,10 @@ class Config: NSObject {
 
     // Singleton instance
     static let sharedInstance = Config()
-    
+
     override init() {
         let bundle = Bundle(for: type(of: self))
-        let scheme = bundle.object(forInfoDictionaryKey: "Scheme") as! String
+        let scheme = bundle.scheme
         baseUrl = Config.baseUrlForScheme(scheme: scheme)
         clientId = Config.clientIdForScheme(scheme: scheme)
         if scheme == Config.releaseBundleId {

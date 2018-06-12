@@ -15,14 +15,37 @@
 		5322408520AE586E00D4E86C /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408320AE570000D4E86C /* User.swift */; };
 		5322408720AE5A2400D4E86C /* VerificationCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408620AE5A2400D4E86C /* VerificationCode.swift */; };
 		5322408920AE688600D4E86C /* AdminAPI+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408820AE688600D4E86C /* AdminAPI+Test.swift */; };
-		5322408B20AE6ADA00D4E86C /* XCTest+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408A20AE6ADA00D4E86C /* XCTest+Test.swift */; };
-		5322408D20AE6B3500D4E86C /* String+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408C20AE6B3500D4E86C /* String+Test.swift */; };
-		5322408F20AE6B7500D4E86C /* Int+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408E20AE6B7500D4E86C /* Int+Test.swift */; };
 		5322409020B32CE600D4E86C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479420AE300B001F4BC7 /* RealmManager.swift */; };
 		5322409320B385C300D4E86C /* NetworkRequest+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409220B385C300D4E86C /* NetworkRequest+Admin.swift */; };
-		5322409520B38BF700D4E86C /* BotUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409420B38BF700D4E86C /* BotUser.swift */; };
 		5322409720B39FF700D4E86C /* CreateAccount_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */; };
 		532E235B20CB4B5F00ADA87F /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E235A20CB4B5E00ADA87F /* BlurEffect.swift */; };
+		536D6D6220CF3AA400A269D4 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
+		536D6D6420CF3B5C00A269D4 /* voluxe_customerAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FDF20A20B761D20004B8A1 /* voluxe_customerAPITests.swift */; };
+		536D6D6520CF3EC200A269D4 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */; };
+		538FE74820BF46F900C3CE17 /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */; };
+		538FE74920BF472A00C3CE17 /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */; };
+		538FE74A20BF473100C3CE17 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
+		538FE74B20BF474D00C3CE17 /* MappableDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */; };
+		538FE74C20BF475300C3CE17 /* EmptyMappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF240204DFA9C004BF1A6 /* EmptyMappableObject.swift */; };
+		538FE74D20BF475A00C3CE17 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687992040CD0900D915FC /* Errors.swift */; };
+		538FE74E20BF476000C3CE17 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495D61FDA0CEB0036FC08 /* Meta.swift */; };
+		538FE74F20BF476800C3CE17 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC15201156AF002594F5 /* ResponseError.swift */; };
+		538FE75020BF47AD00C3CE17 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A81FA2574C00B22EAB /* Customer.swift */; };
+		538FE75120BF47B400C3CE17 /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
+		538FE75220BF482400C3CE17 /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
+		538FE75320BF482C00C3CE17 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BA1FA29A1C00B22EAB /* Location.swift */; };
+		538FE75720BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE75520BF4AB800C3CE17 /* XCUIElement+Test.swift */; };
+		538FE75820BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE75520BF4AB800C3CE17 /* XCUIElement+Test.swift */; };
+		538FE75920BF4AB800C3CE17 /* XCTest+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE75620BF4AB800C3CE17 /* XCTest+Test.swift */; };
+		538FE75A20BF4AB800C3CE17 /* XCTest+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE75620BF4AB800C3CE17 /* XCTest+Test.swift */; };
+		538FE75B20BF4B4E00C3CE17 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C345A0E1FD897E4006CAC32 /* Config.swift */; };
+		538FE75D20BF4B6900C3CE17 /* BotUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE75C20BF4B6900C3CE17 /* BotUser.swift */; };
+		538FE75E20BF4B6900C3CE17 /* BotUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE75C20BF4B6900C3CE17 /* BotUser.swift */; };
+		538FE76020BF4B9F00C3CE17 /* String+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE75F20BF4B9E00C3CE17 /* String+Test.swift */; };
+		538FE76120BF4B9F00C3CE17 /* String+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE75F20BF4B9E00C3CE17 /* String+Test.swift */; };
+		538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE76220BF4BC000C3CE17 /* Int+Test.swift */; };
+		538FE76420BF4BC000C3CE17 /* Int+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE76220BF4BC000C3CE17 /* Int+Test.swift */; };
+		539E502920BF440100FDF3F1 /* CustomerAPI+Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EF28CE20AE065F006CC5FA /* CustomerAPI+Signup.swift */; };
 		53C7301220CF2FF000BCE926 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
 		53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */; };
@@ -31,6 +54,7 @@
 		53D9A7BD209A5E2F008BE93E /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		53D9A7BF209A79C8008BE93E /* DebugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BE209A79C8008BE93E /* DebugTableViewCell.swift */; };
 		53D9A7C1209A7D01008BE93E /* NSObject+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7C0209A7D01008BE93E /* NSObject+Voluxe.swift */; };
+		53E2521720C731D500D8C32D /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E2521620C731D500D8C32D /* TestConstants.swift */; };
 		53EF28A920ACE38C006CC5FA /* SignIn_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FE01FC5F987002BC7FC /* SignIn_UITests.swift */; };
 		53EF28C820AE0553006CC5FA /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		53EF28CC20AE064E006CC5FA /* CustomerAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EF28CB20AE064E006CC5FA /* CustomerAPI+Login.swift */; };
@@ -50,8 +74,8 @@
 		53EF28E020AE07DC006CC5FA /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		53EF28E120AE082E006CC5FA /* EmptyMappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF240204DFA9C004BF1A6 /* EmptyMappableObject.swift */; };
 		53EF28E220AE0834006CC5FA /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
-		53FDF12020B4EB500004B8A1 /* XCUIElement+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FDF11F20B4EB500004B8A1 /* XCUIElement+Test.swift */; };
 		53FDF12120B5E0050004B8A1 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
+		55FDD9C1DDD4186608975079 /* Pods_voluxe_customerAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1135FC81A29AC457B5EC2AD2 /* Pods_voluxe_customerAPITests.framework */; };
 		6C11208E2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
 		6C11208F2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
 		6C1CE1E220C07E6500A2E054 /* Development.entitlements in Resources */ = {isa = PBXBuildFile; fileRef = 53AA2755209D10CC00781995 /* Development.entitlements */; };
@@ -484,6 +508,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		539E502A20BF444800FDF3F1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6CCD42821FA013E3000AC6C9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6CCD42891FA013E3000AC6C9;
+			remoteInfo = "voluxe-customer";
+		};
 		6CCD429F1FA013E3000AC6C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6CCD42821FA013E3000AC6C9 /* Project object */;
@@ -500,14 +531,29 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		534D994420BF57960050819C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		04CDB8F585B8F0CBBB728770 /* Pods-voluxe-customerAPITests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerAPITests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests.appstore.xcconfig"; sourceTree = "<group>"; };
 		0E5AAE50AA8497BB1E6BE260 /* Pods-voluxe-customerUITests.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.mock.xcconfig"; sourceTree = "<group>"; };
 		0EA8211FDAE1534EB5CFACC1 /* Pods-voluxe-customer.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.appstore.xcconfig"; sourceTree = "<group>"; };
+		1135FC81A29AC457B5EC2AD2 /* Pods_voluxe_customerAPITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customerAPITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		13FF37696ECA3479BE741D40 /* Pods_voluxe_customerTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customerTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		157A6548901B512121063D4D /* Pods-voluxe-customerUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.staging.xcconfig"; sourceTree = "<group>"; };
 		2A1895FADFCBA7BA67D2D274 /* Pods-voluxe-customerTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.release.xcconfig"; sourceTree = "<group>"; };
 		2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customerUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		31B6038B597B8FCF0776E4AE /* Pods-voluxe-customerTests.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.mock.xcconfig"; sourceTree = "<group>"; };
+		33E2BC1E6053A93E806D2C4F /* Pods-voluxe-customerAPITests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerAPITests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests.beta.xcconfig"; sourceTree = "<group>"; };
 		36F8C19BBDAC98004E8F0A9A /* Pods-voluxe-customerUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		446B7D7AA76D7E178415AA45 /* Pods-voluxe-customer.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.dev.xcconfig"; sourceTree = "<group>"; };
 		4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
@@ -517,11 +563,7 @@
 		5322408320AE570000D4E86C /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		5322408620AE5A2400D4E86C /* VerificationCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationCode.swift; sourceTree = "<group>"; };
 		5322408820AE688600D4E86C /* AdminAPI+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdminAPI+Test.swift"; sourceTree = "<group>"; };
-		5322408A20AE6ADA00D4E86C /* XCTest+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTest+Test.swift"; sourceTree = "<group>"; };
-		5322408C20AE6B3500D4E86C /* String+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Test.swift"; sourceTree = "<group>"; };
-		5322408E20AE6B7500D4E86C /* Int+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+Test.swift"; sourceTree = "<group>"; };
 		5322409220B385C300D4E86C /* NetworkRequest+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRequest+Admin.swift"; sourceTree = "<group>"; };
-		5322409420B38BF700D4E86C /* BotUser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BotUser.swift; sourceTree = "<group>"; };
 		5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount_UITests.swift; sourceTree = "<group>"; };
 		532E235A20CB4B5E00ADA87F /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
 		5365315520AA33F300116AC8 /* increment_build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = increment_build.sh; sourceTree = "<group>"; };
@@ -531,6 +573,11 @@
 		538FBDE420AB87280096480C /* ipa-to-fabric.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "ipa-to-fabric.sh"; sourceTree = "<group>"; };
 		538FBDE520AB8A0A0096480C /* export-options-enterprise.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "export-options-enterprise.plist"; sourceTree = "<group>"; };
 		538FBDE620AB8A0A0096480C /* export-options-appstore.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "export-options-appstore.plist"; sourceTree = "<group>"; };
+		538FE75520BF4AB800C3CE17 /* XCUIElement+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCUIElement+Test.swift"; sourceTree = "<group>"; };
+		538FE75620BF4AB800C3CE17 /* XCTest+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Test.swift"; sourceTree = "<group>"; };
+		538FE75C20BF4B6900C3CE17 /* BotUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BotUser.swift; sourceTree = "<group>"; };
+		538FE75F20BF4B9E00C3CE17 /* String+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Test.swift"; sourceTree = "<group>"; };
+		538FE76220BF4BC000C3CE17 /* Int+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Test.swift"; sourceTree = "<group>"; };
 		539F626E2092AB6A0023DF59 /* confirm_team_id.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = confirm_team_id.rb; sourceTree = "<group>"; };
 		53AA2754209D10CC00781995 /* AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppStore.entitlements; sourceTree = "<group>"; };
 		53AA2755209D10CC00781995 /* Development.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Development.entitlements; sourceTree = "<group>"; };
@@ -543,13 +590,17 @@
 		53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Debug.swift"; sourceTree = "<group>"; };
 		53D9A7BE209A79C8008BE93E /* DebugTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugTableViewCell.swift; sourceTree = "<group>"; };
 		53D9A7C0209A7D01008BE93E /* NSObject+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Voluxe.swift"; sourceTree = "<group>"; };
+		53E2521620C731D500D8C32D /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		53EF28CB20AE064E006CC5FA /* CustomerAPI+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Login.swift"; sourceTree = "<group>"; };
 		53EF28CE20AE065F006CC5FA /* CustomerAPI+Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Signup.swift"; sourceTree = "<group>"; };
 		53EF28D120AE066B006CC5FA /* CustomerAPI+Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Account.swift"; sourceTree = "<group>"; };
 		53EF28D420AE067C006CC5FA /* CustomerAPI+Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Vehicle.swift"; sourceTree = "<group>"; };
-		53FDF11F20B4EB500004B8A1 /* XCUIElement+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCUIElement+Test.swift"; sourceTree = "<group>"; };
+		53FDF20820B761D10004B8A1 /* voluxe-customerAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "voluxe-customerAPITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53FDF20A20B761D20004B8A1 /* voluxe_customerAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voluxe_customerAPITests.swift; sourceTree = "<group>"; };
+		53FDF20C20B761D20004B8A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		54E9A9FC051BC64540A65AF6 /* Pods-voluxe-customerTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.appstore.xcconfig"; sourceTree = "<group>"; };
 		584D4FE40136C325D769CD2E /* Pods-voluxe-customerUITests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.beta.xcconfig"; sourceTree = "<group>"; };
+		5A61815F1308AE46D7A23ADC /* Pods-voluxe-customerAPITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerAPITests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests.production.xcconfig"; sourceTree = "<group>"; };
 		5B073D73742601FC967B4DD1 /* Pods-voluxe-customer.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.production.xcconfig"; sourceTree = "<group>"; };
 		69AE2DE1F0F874762B0DBABE /* Pods_voluxe_customer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C11208D2016B2C70048A56D /* BookingSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSyncManager.swift; sourceTree = "<group>"; };
@@ -801,17 +852,28 @@
 		830E0EB28610D29BD9577A43 /* Pods-voluxe-customerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		87CC82F62182FCB97FB5E935 /* Pods-voluxe-customerUITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.production.xcconfig"; sourceTree = "<group>"; };
 		933568A04AC5651273071D0D /* Pods-voluxe-customer.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.mock.xcconfig"; sourceTree = "<group>"; };
+		9804196EB97BABAE723A2671 /* Pods-voluxe-customerAPITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerAPITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests.dev.xcconfig"; sourceTree = "<group>"; };
+		9E0FC5812BB12B6301D7275B /* Pods-voluxe-customerAPITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerAPITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests.staging.xcconfig"; sourceTree = "<group>"; };
 		A4754A5C4909D3DF093D3ACF /* Pods-voluxe-customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.release.xcconfig"; sourceTree = "<group>"; };
 		AA96592C3EA6EA36370D05FB /* Pods-voluxe-customerTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.production.xcconfig"; sourceTree = "<group>"; };
 		B14C89A33603EA2EDE01A8EF /* Pods-voluxe-customerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B453226A4ECDB078AE79C466 /* Pods-voluxe-customer.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.beta.xcconfig"; sourceTree = "<group>"; };
 		B6E3B388CB760BA2DCBFB310 /* Pods-voluxe-customerTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.dev.xcconfig"; sourceTree = "<group>"; };
+		CAEBFA03988BA1140FA9E112 /* Pods-voluxe-customerAPITests.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerAPITests.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests.mock.xcconfig"; sourceTree = "<group>"; };
 		CB5930D7EB214B9171D1E545 /* Pods-voluxe-customerTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.beta.xcconfig"; sourceTree = "<group>"; };
 		D30969AB2ED2FFA25749FB68 /* Pods-voluxe-customerTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.staging.xcconfig"; sourceTree = "<group>"; };
 		D84E7C82BDB9F161073CF3E3 /* Pods-voluxe-customerUITests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.appstore.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		53FDF20520B761D10004B8A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				55FDD9C1DDD4186608975079 /* Pods_voluxe_customerAPITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6CCD42871FA013E3000AC6C9 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -847,6 +909,19 @@
 				538FBDE520AB8A0A0096480C /* export-options-enterprise.plist */,
 			);
 			path = export;
+			sourceTree = "<group>";
+		};
+		538FE75420BF4AB800C3CE17 /* tests */ = {
+			isa = PBXGroup;
+			children = (
+				538FE75C20BF4B6900C3CE17 /* BotUser.swift */,
+				538FE76220BF4BC000C3CE17 /* Int+Test.swift */,
+				538FE75F20BF4B9E00C3CE17 /* String+Test.swift */,
+				53E2521620C731D500D8C32D /* TestConstants.swift */,
+				538FE75620BF4AB800C3CE17 /* XCTest+Test.swift */,
+				538FE75520BF4AB800C3CE17 /* XCUIElement+Test.swift */,
+			);
+			path = tests;
 			sourceTree = "<group>";
 		};
 		539F626D2092AB4E0023DF59 /* scripts */ = {
@@ -887,6 +962,15 @@
 				53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */,
 			);
 			path = Debug;
+			sourceTree = "<group>";
+		};
+		53FDF20920B761D20004B8A1 /* voluxe-customerAPITests */ = {
+			isa = PBXGroup;
+			children = (
+				53FDF20A20B761D20004B8A1 /* voluxe_customerAPITests.swift */,
+				53FDF20C20B761D20004B8A1 /* Info.plist */,
+			);
+			path = "voluxe-customerAPITests";
 			sourceTree = "<group>";
 		};
 		6C20E18E1FBE14A000E5D9A0 /* GoogleMapAPI */ = {
@@ -1091,8 +1175,9 @@
 		6C5832C21FB3899700F6BFE0 /* shared */ = {
 			isa = PBXGroup;
 			children = (
-				539F626D2092AB4E0023DF59 /* scripts */,
 				6C5832C31FB3899700F6BFE0 /* manager */,
+				539F626D2092AB4E0023DF59 /* scripts */,
+				538FE75420BF4AB800C3CE17 /* tests */,
 			);
 			name = shared;
 			path = ../shared;
@@ -1401,6 +1486,7 @@
 				538FBDE020AB45EA0096480C /* release-notes.txt */,
 				6C5832C21FB3899700F6BFE0 /* shared */,
 				6CCD428C1FA013E3000AC6C9 /* voluxe-customer */,
+				53FDF20920B761D20004B8A1 /* voluxe-customerAPITests */,
 				6CCD42A11FA013E3000AC6C9 /* voluxe-customerTests */,
 				6CCD42AC1FA013E3000AC6C9 /* voluxe-customerUITests */,
 			);
@@ -1412,6 +1498,7 @@
 				6CCD428A1FA013E3000AC6C9 /* voluxe-customer.app */,
 				6CCD429E1FA013E3000AC6C9 /* voluxe-customerTests.xctest */,
 				6CCD42A91FA013E3000AC6C9 /* voluxe-customerUITests.xctest */,
+				53FDF20820B761D10004B8A1 /* voluxe-customerAPITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1453,17 +1540,12 @@
 			isa = PBXGroup;
 			children = (
 				5322408820AE688600D4E86C /* AdminAPI+Test.swift */,
-				5322409420B38BF700D4E86C /* BotUser.swift */,
 				5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */,
 				6CCD42AF1FA013E3000AC6C9 /* Info.plist */,
-				5322408E20AE6B7500D4E86C /* Int+Test.swift */,
 				6C5EB9891FCE38980019ACAA /* MainController_UITests.swift */,
 				5322409220B385C300D4E86C /* NetworkRequest+Admin.swift */,
 				6CB11820208020D6008FB2FE /* Settings_UITests.swift */,
 				6CBF9FE01FC5F987002BC7FC /* SignIn_UITests.swift */,
-				5322408C20AE6B3500D4E86C /* String+Test.swift */,
-				5322408A20AE6ADA00D4E86C /* XCTest+Test.swift */,
-				53FDF11F20B4EB500004B8A1 /* XCUIElement+Test.swift */,
 			);
 			path = "voluxe-customerUITests";
 			sourceTree = "<group>";
@@ -1510,6 +1592,7 @@
 				69AE2DE1F0F874762B0DBABE /* Pods_voluxe_customer.framework */,
 				13FF37696ECA3479BE741D40 /* Pods_voluxe_customerTests.framework */,
 				2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */,
+				1135FC81A29AC457B5EC2AD2 /* Pods_voluxe_customerAPITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1541,6 +1624,12 @@
 				87CC82F62182FCB97FB5E935 /* Pods-voluxe-customerUITests.production.xcconfig */,
 				D84E7C82BDB9F161073CF3E3 /* Pods-voluxe-customerUITests.appstore.xcconfig */,
 				584D4FE40136C325D769CD2E /* Pods-voluxe-customerUITests.beta.xcconfig */,
+				9804196EB97BABAE723A2671 /* Pods-voluxe-customerAPITests.dev.xcconfig */,
+				CAEBFA03988BA1140FA9E112 /* Pods-voluxe-customerAPITests.mock.xcconfig */,
+				9E0FC5812BB12B6301D7275B /* Pods-voluxe-customerAPITests.staging.xcconfig */,
+				5A61815F1308AE46D7A23ADC /* Pods-voluxe-customerAPITests.production.xcconfig */,
+				04CDB8F585B8F0CBBB728770 /* Pods-voluxe-customerAPITests.appstore.xcconfig */,
+				33E2BC1E6053A93E806D2C4F /* Pods-voluxe-customerAPITests.beta.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1548,6 +1637,28 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		53FDF20720B761D10004B8A1 /* voluxe-customerAPITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53FDF21320B761D20004B8A1 /* Build configuration list for PBXNativeTarget "voluxe-customerAPITests" */;
+			buildPhases = (
+				CF5AB6AAD9A949CA5D1844C5 /* [CP] Check Pods Manifest.lock */,
+				53FDF20420B761D10004B8A1 /* Sources */,
+				53FDF20520B761D10004B8A1 /* Frameworks */,
+				53FDF20620B761D10004B8A1 /* Resources */,
+				32B20CEA990AA1891FDFE778 /* [CP] Embed Pods Frameworks */,
+				DC6728CE6F504FDB567C2D8F /* [CP] Copy Pods Resources */,
+				534D994420BF57960050819C /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				539E502B20BF444800FDF3F1 /* PBXTargetDependency */,
+			);
+			name = "voluxe-customerAPITests";
+			productName = "voluxe-customerAPITests";
+			productReference = 53FDF20820B761D10004B8A1 /* voluxe-customerAPITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		6CCD42891FA013E3000AC6C9 /* voluxe-customer */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CCD42B21FA013E3000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-customer" */;
@@ -1619,10 +1730,14 @@
 		6CCD42821FA013E3000AC6C9 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
+				LastSwiftUpdateCheck = 0930;
 				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Luxe - Volvo Cars";
 				TargetAttributes = {
+					53FDF20720B761D10004B8A1 = {
+						CreatedOnToolsVersion = 9.3.1;
+						ProvisioningStyle = Automatic;
+					};
 					6CCD42891FA013E3000AC6C9 = {
 						CreatedOnToolsVersion = 9.0;
 						LastSwiftMigration = 0910;
@@ -1668,12 +1783,20 @@
 			targets = (
 				6CCD42891FA013E3000AC6C9 /* voluxe-customer */,
 				6CCD429D1FA013E3000AC6C9 /* voluxe-customerTests */,
+				53FDF20720B761D10004B8A1 /* voluxe-customerAPITests */,
 				6CCD42A81FA013E3000AC6C9 /* voluxe-customerUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		53FDF20620B761D10004B8A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6CCD42881FA013E3000AC6C9 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1769,6 +1892,38 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		32B20CEA990AA1891FDFE778 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
+				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		356A2D862C1FFF741C588B39 /* [CP] Embed Pods Frameworks */ = {
@@ -2019,6 +2174,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		CF5AB6AAD9A949CA5D1844C5 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-voluxe-customerAPITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 		D86524E80D5D1E4794E1C4CE /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -2037,6 +2210,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DC6728CE6F504FDB567C2D8F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FDE141B9FC44858AC6BC125F /* [CP] Check Pods Manifest.lock */ = {
@@ -2060,6 +2248,36 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		53FDF20420B761D10004B8A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				539E502920BF440100FDF3F1 /* CustomerAPI+Signup.swift in Sources */,
+				538FE74920BF472A00C3CE17 /* ResponseObject.swift in Sources */,
+				538FE75920BF4AB800C3CE17 /* XCTest+Test.swift in Sources */,
+				538FE76020BF4B9F00C3CE17 /* String+Test.swift in Sources */,
+				536D6D6220CF3AA400A269D4 /* FTUELocalization.swift in Sources */,
+				538FE75120BF47B400C3CE17 /* Bundle+Voluxe.swift in Sources */,
+				538FE75B20BF4B4E00C3CE17 /* Config.swift in Sources */,
+				538FE74820BF46F900C3CE17 /* CustomerAPI.swift in Sources */,
+				538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */,
+				538FE74D20BF475A00C3CE17 /* Errors.swift in Sources */,
+				538FE75320BF482C00C3CE17 /* Location.swift in Sources */,
+				53E2521720C731D500D8C32D /* TestConstants.swift in Sources */,
+				538FE74B20BF474D00C3CE17 /* MappableDataObject.swift in Sources */,
+				538FE74A20BF473100C3CE17 /* NetworkRequest.swift in Sources */,
+				538FE75220BF482400C3CE17 /* VLDateFormatter.swift in Sources */,
+				536D6D6520CF3EC200A269D4 /* String+Localized.swift in Sources */,
+				538FE75D20BF4B6900C3CE17 /* BotUser.swift in Sources */,
+				538FE75020BF47AD00C3CE17 /* Customer.swift in Sources */,
+				538FE74F20BF476800C3CE17 /* ResponseError.swift in Sources */,
+				538FE75720BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */,
+				536D6D6420CF3B5C00A269D4 /* voluxe_customerAPITests.swift in Sources */,
+				538FE74C20BF475300C3CE17 /* EmptyMappableObject.swift in Sources */,
+				538FE74E20BF476000C3CE17 /* Meta.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		6CCD42861FA013E3000AC6C9 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -2467,31 +2685,31 @@
 			files = (
 				53EF28D720AE0709006CC5FA /* CustomerAPI.swift in Sources */,
 				53EF28E220AE0834006CC5FA /* VLDateFormatter.swift in Sources */,
+				538FE76420BF4BC000C3CE17 /* Int+Test.swift in Sources */,
 				53EF28D820AE077B006CC5FA /* ResponseObject.swift in Sources */,
 				53EF28C820AE0553006CC5FA /* UserDefaults+Debug.swift in Sources */,
 				5322409320B385C300D4E86C /* NetworkRequest+Admin.swift in Sources */,
 				53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */,
 				53EF28DA20AE0798006CC5FA /* Config.swift in Sources */,
+				538FE76120BF4B9F00C3CE17 /* String+Test.swift in Sources */,
 				53EF28E020AE07DC006CC5FA /* Bundle+Voluxe.swift in Sources */,
 				53EF28E120AE082E006CC5FA /* EmptyMappableObject.swift in Sources */,
 				53EF28A920ACE38C006CC5FA /* SignIn_UITests.swift in Sources */,
 				53EF28D920AE0783006CC5FA /* NetworkRequest.swift in Sources */,
-				5322408D20AE6B3500D4E86C /* String+Test.swift in Sources */,
 				53FDF12120B5E0050004B8A1 /* String+Utils.swift in Sources */,
 				5322408720AE5A2400D4E86C /* VerificationCode.swift in Sources */,
+				538FE75A20BF4AB800C3CE17 /* XCTest+Test.swift in Sources */,
 				53EF28DD20AE07B4006CC5FA /* MappableDataObject.swift in Sources */,
 				5322408920AE688600D4E86C /* AdminAPI+Test.swift in Sources */,
 				5322408220AE50F900D4E86C /* MappableDataArray.swift in Sources */,
 				53C7301220CF2FF000BCE926 /* FTUELocalization.swift in Sources */,
-				5322408B20AE6ADA00D4E86C /* XCTest+Test.swift in Sources */,
+				538FE75820BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */,
 				53EF28DE20AE07BA006CC5FA /* Errors.swift in Sources */,
-				5322409520B38BF700D4E86C /* BotUser.swift in Sources */,
+				538FE75E20BF4B6900C3CE17 /* BotUser.swift in Sources */,
 				5322408120AE231500D4E86C /* AdminAPI.swift in Sources */,
 				5322408520AE586E00D4E86C /* User.swift in Sources */,
 				53EF28CD20AE064E006CC5FA /* CustomerAPI+Login.swift in Sources */,
-				5322408F20AE6B7500D4E86C /* Int+Test.swift in Sources */,
 				53EF28DB20AE079F006CC5FA /* ResponseError.swift in Sources */,
-				53FDF12020B4EB500004B8A1 /* XCUIElement+Test.swift in Sources */,
 				53EF28DC20AE07A5006CC5FA /* Meta.swift in Sources */,
 				5322409720B39FF700D4E86C /* CreateAccount_UITests.swift in Sources */,
 			);
@@ -2500,6 +2718,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		539E502B20BF444800FDF3F1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6CCD42891FA013E3000AC6C9 /* voluxe-customer */;
+			targetProxy = 539E502A20BF444800FDF3F1 /* PBXContainerItemProxy */;
+		};
 		6CCD42A01FA013E3000AC6C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6CCD42891FA013E3000AC6C9 /* voluxe-customer */;
@@ -2533,6 +2756,390 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		53FDF20D20B761D20004B8A1 /* Dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9804196EB97BABAE723A2671 /* Pods-voluxe-customerAPITests.dev.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-customerAPITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerAPITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+			};
+			name = Dev;
+		};
+		53FDF20E20B761D20004B8A1 /* Mock */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CAEBFA03988BA1140FA9E112 /* Pods-voluxe-customerAPITests.mock.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-customerAPITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerAPITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Mock;
+		};
+		53FDF20F20B761D20004B8A1 /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E0FC5812BB12B6301D7275B /* Pods-voluxe-customerAPITests.staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-customerAPITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerAPITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Staging;
+		};
+		53FDF21020B761D20004B8A1 /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A61815F1308AE46D7A23ADC /* Pods-voluxe-customerAPITests.production.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-customerAPITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerAPITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Production;
+		};
+		53FDF21120B761D20004B8A1 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 04CDB8F585B8F0CBBB728770 /* Pods-voluxe-customerAPITests.appstore.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-customerAPITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerAPITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = AppStore;
+		};
+		53FDF21220B761D20004B8A1 /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33E2BC1E6053A93E806D2C4F /* Pods-voluxe-customerAPITests.beta.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-customerAPITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 11.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks $(FRAMEWORK_SEARCH_PATHS)";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerAPITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Beta;
+		};
 		6C112091201A66290048A56D /* Mock */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -3554,6 +4161,19 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		53FDF21320B761D20004B8A1 /* Build configuration list for PBXNativeTarget "voluxe-customerAPITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53FDF20D20B761D20004B8A1 /* Dev */,
+				53FDF20E20B761D20004B8A1 /* Mock */,
+				53FDF20F20B761D20004B8A1 /* Staging */,
+				53FDF21020B761D20004B8A1 /* Production */,
+				53FDF21120B761D20004B8A1 /* AppStore */,
+				53FDF21220B761D20004B8A1 /* Beta */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Dev;
+		};
 		6CCD42851FA013E3000AC6C9 /* Build configuration list for PBXProject "voluxe-customer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

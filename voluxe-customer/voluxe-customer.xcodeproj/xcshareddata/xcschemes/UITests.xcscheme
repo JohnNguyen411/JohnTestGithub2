@@ -8,15 +8,29 @@
       <BuildActionEntries>
          <BuildActionEntry
             buildForTesting = "YES"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6CCD42891FA013E3000AC6C9"
                BuildableName = "voluxe-customer.app"
                BlueprintName = "voluxe-customer"
+               ReferencedContainer = "container:voluxe-customer.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "53FDF20720B761D10004B8A1"
+               BuildableName = "voluxe-customerAPITests.xctest"
+               BlueprintName = "voluxe-customerAPITests"
                ReferencedContainer = "container:voluxe-customer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -27,6 +41,15 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <PreActions>
+         <ExecutionAction
+            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
+            <ActionContent
+               title = "Run Script"
+               scriptText = "echo &quot;Attempting to reset simulator&quot;&#10;xcrun simctl list | grep Booted | grep -e &quot;[0-9A-F\-]\{36\}&quot; -o | xargs xcrun simctl shutdown&#10;xcrun simctl erase all&#10;echo &quot;DONE&quot;">
+            </ActionContent>
+         </ExecutionAction>
+      </PreActions>
       <Testables>
          <TestableReference
             skipped = "NO">
@@ -38,6 +61,9 @@
                ReferencedContainer = "container:voluxe-customer.xcodeproj">
             </BuildableReference>
             <SkippedTests>
+               <Test
+                  Identifier = "CreateAccount_UITests/test00_loginAsAdminAndGetVerificationCode()">
+               </Test>
                <Test
                   Identifier = "CreateAccount_UITests/test31_wrongVerificationCode()">
                </Test>
@@ -51,16 +77,6 @@
                   Identifier = "CreateAccount_UITests/test90_launchAndCreateAccountHappyPath()">
                </Test>
             </SkippedTests>
-         </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "53FDF20720B761D10004B8A1"
-               BuildableName = "voluxe-customerAPITests.xctest"
-               BlueprintName = "voluxe-customerAPITests"
-               ReferencedContainer = "container:voluxe-customer.xcodeproj">
-            </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
@@ -85,16 +101,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6CCD42891FA013E3000AC6C9"
-            BuildableName = "voluxe-customer.app"
-            BlueprintName = "voluxe-customer"
-            ReferencedContainer = "container:voluxe-customer.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <CommandLineArguments>
          <CommandLineArgument
             argument = "-FIRAnalyticsDebugEnabled"
@@ -114,16 +120,6 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6CCD42891FA013E3000AC6C9"
-            BuildableName = "voluxe-customer.app"
-            BlueprintName = "voluxe-customer"
-            ReferencedContainer = "container:voluxe-customer.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Dev">
@@ -131,41 +127,5 @@
    <ArchiveAction
       buildConfiguration = "Dev"
       revealArchiveInOrganizer = "NO">
-      <PreActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "# Uncomment the next line to log script output&#10;exec &gt; ~/Desktop/archive-pre.log 2&gt;&amp;1&#10;${PROJECT_DIR}/../shared/scripts/increment_build.sh">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "6CCD42891FA013E3000AC6C9"
-                     BuildableName = "voluxe-customer.app"
-                     BlueprintName = "voluxe-customer"
-                     ReferencedContainer = "container:voluxe-customer.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PreActions>
-      <PostActions>
-         <ExecutionAction
-            ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
-            <ActionContent
-               title = "Run Script"
-               scriptText = "# Uncomment the next line to log script output&#10;exec &gt; ~/Desktop/archive-post.log 2&gt;&amp;1&#10;${PROJECT_DIR}/../shared/scripts/xcarchive-to-ipa.sh&#10;${PROJECT_DIR}/../shared/scripts/ipa-to-fabric.sh">
-               <EnvironmentBuildable>
-                  <BuildableReference
-                     BuildableIdentifier = "primary"
-                     BlueprintIdentifier = "6CCD42891FA013E3000AC6C9"
-                     BuildableName = "voluxe-customer.app"
-                     BlueprintName = "voluxe-customer"
-                     ReferencedContainer = "container:voluxe-customer.xcodeproj">
-                  </BuildableReference>
-               </EnvironmentBuildable>
-            </ActionContent>
-         </ExecutionAction>
-      </PostActions>
    </ArchiveAction>
 </Scheme>

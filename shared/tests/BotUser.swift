@@ -25,4 +25,5 @@ class BotUserData {
     static let email = String.uniqueEmailString()
     static let phone = String.uniquePhoneNumberString()
     static let password = String.uniquePassword()
+    static let language = "EN"
 }
