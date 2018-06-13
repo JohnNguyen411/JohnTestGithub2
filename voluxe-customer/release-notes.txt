@@ -1,5 +1,5 @@
 Misc bugfixes and improvments
-Fix Custom Service description bug
-Show Dealership TimeSlot based on loaner availability
-New AppIcon for iPhone only
-Make ETA great again
+New Blur
+New Volvo Design Style
+New left panel navigation
+Signup deeplinking
