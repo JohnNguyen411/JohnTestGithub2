@@ -46,6 +46,7 @@
 		538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE76220BF4BC000C3CE17 /* Int+Test.swift */; };
 		538FE76420BF4BC000C3CE17 /* Int+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE76220BF4BC000C3CE17 /* Int+Test.swift */; };
 		539E502920BF440100FDF3F1 /* CustomerAPI+Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EF28CE20AE065F006CC5FA /* CustomerAPI+Signup.swift */; };
+		53B8DB8920D1B44C006F8096 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */; };
 		53C7301220CF2FF000BCE926 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
 		53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */; };
@@ -2709,6 +2710,7 @@
 				53EF28DE20AE07BA006CC5FA /* Errors.swift in Sources */,
 				538FE75E20BF4B6900C3CE17 /* BotUser.swift in Sources */,
 				5322408120AE231500D4E86C /* AdminAPI.swift in Sources */,
+				53B8DB8920D1B44C006F8096 /* String+Localized.swift in Sources */,
 				5322408520AE586E00D4E86C /* User.swift in Sources */,
 				53EF28CD20AE064E006CC5FA /* CustomerAPI+Login.swift in Sources */,
 				53EF28DB20AE079F006CC5FA /* ResponseError.swift in Sources */,
