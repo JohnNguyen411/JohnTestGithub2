@@ -21,7 +21,6 @@
 		532E235B20CB4B5F00ADA87F /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E235A20CB4B5E00ADA87F /* BlurEffect.swift */; };
 		536D6D6220CF3AA400A269D4 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
 		536D6D6420CF3B5C00A269D4 /* voluxe_customerAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FDF20A20B761D20004B8A1 /* voluxe_customerAPITests.swift */; };
-		536D6D6520CF3EC200A269D4 /* String+Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */; };
 		538FE74820BF46F900C3CE17 /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */; };
 		538FE74920BF472A00C3CE17 /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */; };
 		538FE74A20BF473100C3CE17 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
@@ -2269,7 +2268,6 @@
 				538FE74B20BF474D00C3CE17 /* MappableDataObject.swift in Sources */,
 				538FE74A20BF473100C3CE17 /* NetworkRequest.swift in Sources */,
 				538FE75220BF482400C3CE17 /* VLDateFormatter.swift in Sources */,
-				536D6D6520CF3EC200A269D4 /* String+Localized.swift in Sources */,
 				538FE75D20BF4B6900C3CE17 /* BotUser.swift in Sources */,
 				538FE75020BF47AD00C3CE17 /* Customer.swift in Sources */,
 				538FE74F20BF476800C3CE17 /* ResponseError.swift in Sources */,
