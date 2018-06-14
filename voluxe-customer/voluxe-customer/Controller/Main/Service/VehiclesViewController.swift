@@ -28,6 +28,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     var serviceState: ServiceState
     var vehicles: [Vehicle]?
     var selectedVehicle: Vehicle?
+    var vehicleCount = 0
 
     let vehicleCollectionView: UICollectionView
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
@@ -159,8 +160,17 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
                 make.height.equalTo(0)
             }
         }
-        vehicleCollectionView.reloadData()
-        selectVehicle(index: VehiclesViewController.selectedVehicleIndex)
+        
+        if vehicles.count != vehicleCount {
+            vehicleCollectionView.setNeedsLayout()
+        }
+        
+        DispatchQueue.main.async {
+            self.vehicleCollectionView.reloadData()
+            self.selectVehicle(index: VehiclesViewController.selectedVehicleIndex)
+        }
+        
+        vehicleCount = vehicles.count
     }
     
     func selectVehicle(index: Int) {

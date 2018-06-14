@@ -41,7 +41,7 @@ class SettingsCarViewController: BaseViewController {
         
         
         removeVehicleButton.setActionBlock { [weak self] in
-            self?.removeVehicle()
+            self?.removeVehicleAlert()
         }
     }
     
@@ -77,6 +77,14 @@ class SettingsCarViewController: BaseViewController {
         }
     }
     
+    private func removeVehicleAlert() {
+        
+        self.showDestructiveDialog(title: .RemoveVehicle, message: .RemoveVehicleConfirmation, cancelButtonTitle: .Cancel, destructiveButtonTitle: .Remove, destructiveCompletion: { [weak self] in
+            self?.removeVehicle()
+            }, analyticDialogName: AnalyticsConstants.paramNameDeleteVehicleDialog, screenName: self.screenName)
+        
+    }
+    
     private func removeVehicle() {
         
         guard let customerId = UserManager.sharedInstance.customerId() else { return }
@@ -85,7 +93,7 @@ class SettingsCarViewController: BaseViewController {
         
         weak var weakSelf = self
         CustomerAPI().deleteVehicle(customerId: customerId, vehicleId: vehicle.id).onSuccess { result in
-           if let customerId = UserManager.sharedInstance.customerId() {
+            if let customerId = UserManager.sharedInstance.customerId() {
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiDeleteVehicleSuccess, screenName: weakSelf?.screenName)
                 weakSelf?.callVehicles(customerId: customerId)
             }
@@ -93,7 +101,7 @@ class SettingsCarViewController: BaseViewController {
                 // error occured
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiDeleteVehicleFail, screenName: weakSelf?.screenName, error: error)
                 weakSelf?.deleteVehicleFailed()
-            }
+        }
     }
     
     private func deleteVehicleFailed() {

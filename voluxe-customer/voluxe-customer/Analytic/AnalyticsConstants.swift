@@ -217,6 +217,7 @@ class AnalyticsConstants {
     static let paramNameReservationCompletedView = "reservation_completed_view" // Reservation completed
 
     static let paramNameDeleteAddressDialog = "delete_address_dialog"
+    static let paramNameDeleteVehicleDialog = "delete_vehicle_dialog"
     static let paramNameErrorDialog = "error_dialog" // decided to have the same tag for every error dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
     static let paramNameSuccessDialog = "success_dialog" // decided to have the same tag for every success dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
     static let paramNameConfirmDialog = "confirm_dialog" // decided to have the same tag for every confirm dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.

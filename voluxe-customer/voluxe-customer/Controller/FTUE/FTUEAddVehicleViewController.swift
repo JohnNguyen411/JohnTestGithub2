@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MBProgressHUD
 import RealmSwift
+import SDWebImage
 
 class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate {
     
@@ -20,7 +21,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     }
     
     let colors = [Color(baseColor: "beige", color: "Beige"), Color(baseColor: "black", color: "Black"), Color(baseColor: "blue", color: "Blue"), Color(baseColor: "brown", color: "Brown"), Color(baseColor: "copper", color: "Copper"), Color(baseColor: "gold", color: "Gold"), Color(baseColor: "green", color: "Green"), Color(baseColor: "grey", color: "Grey"), Color(baseColor: "orange", color: "Orange"), Color(baseColor: "purple", color: "Purple"), Color(baseColor: "red", color: "Red"), Color(baseColor: "sand", color: "Sand"), Color(baseColor: "silver", color: "Silver"), Color(baseColor: "white", color: "White"), Color(baseColor: "yellow", color: "Yellow")]
-    let years = [2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995]
+    let years = [2019, 2018, 2017, 2016, 2015, 2014, 2013, 2012, 2011, 2010, 2009, 2008, 2007, 2006, 2005, 2004, 2003, 2002, 2001, 2000, 1999, 1998, 1997, 1996, 1995]
     var models: [VehicleModel] = [VehicleModel(make: "Volvo", model: "XC90"), VehicleModel(make: "Volvo", model: "XC60"), VehicleModel(make: "Volvo", model: "XC40"), VehicleModel(make: "Volvo", model: "S90"), VehicleModel(make: "Volvo", model: "S60")]
     
     var realm: Realm?
@@ -199,6 +200,9 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         super.onRightClicked(analyticEventName: analyticEventName)
         if let customerId = UserManager.sharedInstance.customerId(), let baseColor = colors[selectedColor].baseColor {
             CustomerAPI().addVehicle(customerId: customerId, make: models[selectedModel].make!, model: models[selectedModel].name!, baseColor: baseColor, year: years[selectedYear]).onSuccess { response in
+                if let vehicle = response?.data?.result, let photoUrl = vehicle.photoUrl, let photoURL = URL(string: photoUrl) {
+                    SDWebImagePrefetcher.shared().prefetchURLs([photoURL])
+                }
                 VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiAddVehicleSuccess, screenName: self.screenName)
                 self.callVehicle(customerId: customerId)
             }.onFailure { error in

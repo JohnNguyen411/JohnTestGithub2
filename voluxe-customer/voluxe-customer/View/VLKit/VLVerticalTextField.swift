@@ -182,5 +182,16 @@ extension VLVerticalTextField: PasswordToggleVisibilityDelegate {
         if selected {
             self.textField.keyboardType = .asciiCapable
         }
+        
+        self.textField.text = " "
+        self.textField.text = hackString
+
+        if let selectedRange = textField.selectedTextRange {
+            let cursorPosition = textField.offset(from: textField.beginningOfDocument, to: selectedRange.start)
+            if let textposition = textField.position(from: textField.beginningOfDocument, offset: cursorPosition) {
+                self.textField.selectedTextRange = textField.textRange(from: textposition, to: textposition)
+            }
+        }
+
     }
 }

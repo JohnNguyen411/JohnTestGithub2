@@ -35,6 +35,7 @@ extension String {
     static let Success = NSLocalizedString("Success")
     static let Confirm = NSLocalizedString("Confirm")
     static let Delete = NSLocalizedString("Delete")
+    static let Remove = NSLocalizedString("Remove")
     static let ForceUpgradeTitle = NSLocalizedString("ForceUpgradeTitle")
     static let ForceUpgradeMessage = NSLocalizedString("ForceUpgradeMessage")
     static let GrantPermission = NSLocalizedString("GrantPermission")    

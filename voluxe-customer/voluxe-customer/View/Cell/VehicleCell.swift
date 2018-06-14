@@ -22,12 +22,6 @@ class VehicleCell: UICollectionViewCell {
 
         super.init(frame: frame)
         
-        let selectedView = UIView(frame: .zero)
-        selectedView.backgroundColor = .luxeLightestGray()
-        selectedView.layer.cornerRadius = self.frame.size.height/2
-        
-        self.selectedBackgroundView = selectedView
-        
         self.contentView.addSubview(vehicleImageView)
         
         setupViews()
@@ -47,9 +41,20 @@ class VehicleCell: UICollectionViewCell {
         }
     }
     
+    
     public func setVehicle(vehicle: Vehicle) {
         vehicle.setVehicleImage(imageView: vehicleImageView)
     }
     
+ 
+    override func layoutSubviews() {
+        let selectedView = UIView(frame: .zero)
+        selectedView.backgroundColor = .luxeLightestGray()
+        selectedView.layer.cornerRadius = self.frame.size.height/2
+        
+        self.selectedBackgroundView = selectedView
+        super.layoutSubviews()
+        
+    }
     
 }

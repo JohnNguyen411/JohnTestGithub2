@@ -190,7 +190,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         }
         signupInProgress = loading
         if loading {
-            showProgressHUD()
+            self.showProgressHUD()
         } else {
             self.hideProgressHUD()
         }
@@ -241,17 +241,20 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         showLoading(loading: true)
         
-        if UserManager.sharedInstance.getCustomer() != nil {
+        if let createdCustomer = UserManager.sharedInstance.getCustomer() {
             
             if UserManager.sharedInstance.isLoggedIn() {
                 self.showLoading(loading: false)
                 self.loadMainScreen()
+                return
             } else {
-                self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
-                    self.loadLandingPage()
-                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                if createdCustomer.phoneNumberVerified {
+                    self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
+                        self.loadLandingPage()
+                    }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    return
+                }
             }
-            return
         }
         
         var language = "EN" // default to EN
@@ -285,7 +288,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     }
     
     override func goToNext() {
-        self.hideProgressHUD()
+        self.showLoading(loading: false)
         self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
     }
 }

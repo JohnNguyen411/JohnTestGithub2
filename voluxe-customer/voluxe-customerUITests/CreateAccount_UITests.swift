@@ -288,7 +288,7 @@ class CreateAccount_UITests: XCTestCase {
 
         let app = XCUIApplication()
 
-        app.textFields["2018"].tap()
+        app.textFields["2019"].tap()
         app.toolbars["Toolbar"].buttons["Done"].tap()
         self.wait()
 

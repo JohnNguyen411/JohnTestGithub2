@@ -21,5 +21,6 @@ extension String {
     static let ContactInformation = NSLocalizedString("ContactInformation")
     static let AccountPassword = NSLocalizedString("AccountPassword")
     static let RemoveVehicle = NSLocalizedString("RemoveVehicle")
+    static let RemoveVehicleConfirmation = NSLocalizedString("RemoveVehicleConfirmation")
 
 }

@@ -33,6 +33,7 @@
 "Success" = "Success";
 "Confirm" = "Confirm";
 "Delete" = "Delete";
+"Remove" = "Remove";
 "ForceUpgradeTitle" = "Software Update";
 "ForceUpgradeMessage" = "There is a new version of Luxe by Volvo available for download.\n\nTo have the best possible experience, please update now.";
 "GrantPermission" = "Grant Permission";
@@ -72,11 +73,11 @@
 "CreateAccount" = "Create Account";
 "EmailAddress" = "Email Address";
 "EmailPlaceholder" = "name@domain.com";
-"SelectYourVehicle" = "Select your vehicle year of manufacture, model and paint color.";
+"SelectYourVehicle" = "Select your vehicle year, model and paint color.";
 "Year" = "Year";
 "Model" = "Model";
 "Color" = "Color";
-"YearPlaceholder" = "2018";
+"YearPlaceholder" = "2019";
 "ModelPlaceholder" = "S90";
 "ColorPlaceholder" = "Black";
 "AccountAlreadyExist" = "An account already exist with that email, please try Login instead.";
@@ -217,4 +218,4 @@
 "ContactInformation" = "Contact Information";
 "AccountPassword" = "Account Password";
 "RemoveVehicle" = "Remove Vehicle";
-
+"RemoveVehicleConfirmation" = "Are you sure you want to remove that car from your account?";
