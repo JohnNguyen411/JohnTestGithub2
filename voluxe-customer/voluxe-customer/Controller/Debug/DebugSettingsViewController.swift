@@ -17,6 +17,7 @@ class DebugSettingsViewController: DebugTableViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(close))
         self.navigationItem.title = "Debug"
         self.settings = [self.applicationSettings(),
+                         self.userSettings(),
                          self.alamoFireSettings(),
                          self.firebaseSettings()]
     }
@@ -39,6 +40,54 @@ class DebugSettingsViewController: DebugTableViewController {
                                              actionClosure: nil)]
 
         return ("Application", settings)
+    }
+
+    private func userSettings() -> (String, [DebugTableViewCellModel]) {
+
+        var settings: [DebugTableViewCellModel] = []
+
+        settings += [DebugTableViewCellModel(title: "customer_id",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                let id = UserManager.sharedInstance.customerId() ?? 0
+                let text = (id != 0 ? "\(id)" : "Unknown")
+                cell.detailTextLabel?.text = text
+            },
+                                             actionClosure: nil)]
+
+        settings += [DebugTableViewCellModel(title: "Vehicles",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                let text = "\(UserManager.sharedInstance.getVehicles()?.count ?? 0)"
+                cell.detailTextLabel?.text = text
+        },
+                                             actionClosure: nil)]
+
+        settings += [DebugTableViewCellModel(title: "Active Bookings",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                let text = "\(UserManager.sharedInstance.getActiveBookings().count)"
+                cell.detailTextLabel?.text = text
+            },
+                                             actionClosure: nil)]
+
+        settings += [DebugTableViewCellModel(title: "Total Bookings",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                let text = "\(UserManager.sharedInstance.getActiveBookings().count)"
+                cell.detailTextLabel?.text = text
+        },
+                                             actionClosure: nil)]
+
+        return ("User", settings)
     }
 
     private func firebaseSettings() -> (String, [DebugTableViewCellModel]) {
