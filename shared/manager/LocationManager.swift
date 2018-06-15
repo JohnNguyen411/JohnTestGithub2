@@ -298,7 +298,26 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             bounds = GMSCoordinateBounds(coordinate: location.coordinate, coordinate: location.coordinate)
         }
         
-        googlePlacesClient.autocompleteQuery(address, bounds: bounds, boundsMode: .bias, filter: filter, callback: onAutocompleteCompletionHandler)
+        googlePlacesClient.autocompleteQuery(address, bounds: bounds, boundsMode: .bias, filter: filter, callback: { (autocompletePredictions, error) in
+        
+            var filteredPredictions:[GMSAutocompletePrediction] = []
+            if let autocompletePredictions = autocompletePredictions {
+                for prediction in autocompletePredictions {
+                    var shouldAdd = false
+                    for type in prediction.types {
+                        if type == "street_number" || type == "street_address" || type == "establishment" || type == "route" {
+                            shouldAdd = true
+                            break
+                        }
+                    }
+                    if shouldAdd {
+                        filteredPredictions.append(prediction)
+                    }
+                }
+            }
+            
+             onAutocompleteCompletionHandler(filteredPredictions, error)
+        })
     }
  
     func reverseGeocodeLocation(latitude:Double, longitude: Double, completionHandler: @escaping GMSReverseGeocodeCallback) {

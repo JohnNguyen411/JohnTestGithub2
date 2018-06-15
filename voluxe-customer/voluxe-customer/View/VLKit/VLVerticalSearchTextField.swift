@@ -72,6 +72,10 @@ class VLVerticalSearchTextField : VLVerticalTextField {
         }
         filteredResults = items
         redrawSearchTableView()
+        
+        if items.count == 0 && text.count == 0 {
+            clearResults()
+        }
     }
     
     /// Set an array of strings to be used for suggestions

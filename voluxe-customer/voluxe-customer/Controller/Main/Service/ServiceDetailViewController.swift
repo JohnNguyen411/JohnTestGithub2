@@ -41,7 +41,7 @@ class ServiceDetailViewController: BaseViewController {
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
             analyticName = AnalyticsConstants.paramNameServiceCustomDetailsView
         }
-        confirmButton = VLButton(type: .bluePrimary, title: (.SelectService as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickScheduleService, screenName: analyticName)
+        confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmService as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickScheduleService, screenName: analyticName)
 
         super.init(screenName: analyticName)
     }

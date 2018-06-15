@@ -21,7 +21,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
 
     let formatter: DateFormatter = {
         let formatter = DateFormatter()
-        formatter.dateFormat = "EEEE, MMM d"
+        formatter.dateFormat = "EEEE, MMMM d"
         return formatter
     }()
     

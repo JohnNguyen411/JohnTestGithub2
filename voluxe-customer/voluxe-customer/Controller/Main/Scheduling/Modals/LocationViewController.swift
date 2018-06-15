@@ -122,7 +122,9 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         
         if locationManager.authorizationStatus() == .notDetermined {
             shouldShowPermissionNote = true
-            selectedIndex = -1
+            if preselectedIndex < 0 {
+                selectedIndex = -1
+            }
             // Fake Adding location to make space for "Current Location" and ask for permission
             onLocationAdded()
         }
@@ -256,6 +258,8 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                 }
             }
             VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsPlace, screenName: screenName)
+        } else {
+            self.newLocationTextField.filteredStrings([])
         }
     }
     

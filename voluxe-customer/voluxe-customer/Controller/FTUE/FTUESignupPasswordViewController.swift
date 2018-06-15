@@ -27,15 +27,15 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     let passwordConditionLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.font = .volvoSansProMedium(size: 11)
-        textView.textColor = .luxeDarkGray()
+        textView.textColor = .luxeGray()
         textView.text = .PasswordCondition
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
     }()
     
-    let volvoPwdTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••", kern: 4.0)
-    let volvoPwdConfirmTextField = VLVerticalTextField(title: .RepeatPassword, placeholder: "••••••••", kern: 4.0)
+    let volvoPwdTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••", kern: 2.0)
+    let volvoPwdConfirmTextField = VLVerticalTextField(title: .RepeatPassword, placeholder: "••••••••", kern: 2.0)
     
     var signupInProgress = false
     var realm : Realm?
@@ -95,7 +95,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         passwordConditionLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(passwordLabel)
-            make.top.equalTo(passwordLabel.snp.bottom).offset(-5)
+            make.top.equalTo(passwordLabel.snp.bottom).offset(-2)
             make.height.equalTo(30)
         }
         
@@ -117,11 +117,19 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     func isPasswordValid(password: String?) -> Bool {
         guard let password = password else { return false }
         
+        if checkPasswordLength(password: password) {
+            return password.containsNumber() && password.containsLetter()
+        }
+        return false
+    }
+    
+    func checkPasswordLength(password: String?) -> Bool {
+        guard let password = password else { return false }
+        
         if password.isEmpty || password.count < 8 {
             return false
         }
-        //Matches
-        return password.containsNumber() && password.containsLetter()
+        return true
         
     }
     
@@ -134,7 +142,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     }
     
     override func checkTextFieldsValidity() -> Bool {
-        let enabled = isPasswordValid(password: volvoPwdTextField.textField.text) && isPasswordValid(password: volvoPwdConfirmTextField.textField.text) && String.areSimilar(stringOne: volvoPwdTextField.textField.text, stringTwo: volvoPwdConfirmTextField.textField.text)
+        let enabled = checkPasswordLength(password: volvoPwdTextField.textField.text) && checkPasswordLength(password: volvoPwdConfirmTextField.textField.text)
         canGoNext(nextEnabled: enabled)
         return enabled
     }
@@ -187,9 +195,18 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     @objc func textFieldDidChange(_ textField: UITextField) {
         _ = checkTextFieldsValidity()
+        if let text = volvoPwdConfirmTextField.bottomRightLabel.text, text.count > 0 {
+            volvoPwdConfirmTextField.resetErrorState()
+            volvoPwdConfirmTextField.bottomRightLabel.text = ""
+        }
     }
     
     //MARK: FTUEStartViewController
+    
+    private func inlineError(error: String) {
+        volvoPwdConfirmTextField.applyErrorState()
+        volvoPwdConfirmTextField.setBottomRightText(bottomRightText: error.uppercased(), actionBlock: nil)
+    }
     
     override func onRightClicked(analyticEventName: String? = nil) {
         super.onRightClicked(analyticEventName: analyticEventName)
@@ -199,8 +216,21 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             return
         }
         
-        if let password = volvoPwdConfirmTextField.textField.text, containsUnauthorizedChars(password: password) {
-            self.showOkDialog(title: .Error, message: .PasswordUnauthorizedChars, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+        if !String.areSimilar(stringOne: volvoPwdTextField.textField.text, stringTwo: volvoPwdConfirmTextField.textField.text) {
+            //DOES NOT MATCH
+            inlineError(error: .DoesNotMatch)
+            return
+        } else if let password = volvoPwdConfirmTextField.textField.text, !password.containsLetter() {
+            inlineError(error: .RequiresALetter)
+            return
+        } else if let password = volvoPwdConfirmTextField.textField.text, !password.containsNumber() {
+            inlineError(error: .RequiresANumber)
+            return
+        } else if let password = volvoPwdConfirmTextField.textField.text, containsUnauthorizedChars(password: password) {
+            inlineError(error: .InvalidCharacter)
+            volvoPwdConfirmTextField.setBottomRightActionBlock { [weak self] in
+                self?.showOkDialog(title: .Error, message: .PasswordUnauthorizedChars, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self?.screenName)
+            }
             return
         }
         

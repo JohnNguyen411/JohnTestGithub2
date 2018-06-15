@@ -51,10 +51,10 @@
 "VehicleIdentificationNumber_Placeholder" = "0AVAV00AVA00000";
 "MobilePhoneNumber" = "Mobile Phone Number";
 "MobilePhoneNumber_Placeholder" = "(555) 555-5555";
-"MobilePhoneNumberExplain" = "We require your phone number to coordinate during pickup and delivery.";
-"MobilePhoneNumberResetPassword" = "We require your phone number to reset your password.";
-"MobilePhoneNumberConfirm" = "We’ll send you a text message to confirm the number";
-"PhoneNumberVerifLabel" = "Type the confirmation code you received via SMS.";
+"MobilePhoneNumberExplain" = "We require your phone number to coordinate during pickup and delivery";
+"MobilePhoneNumberResetPassword" = "We require your phone number to reset your password";
+"MobilePhoneNumberConfirm" = "We’ll send you a text message to confirm the number.";
+"PhoneNumberVerifLabel" = "Type the confirmation code you received via SMS";
 "ResendCode" = "Resend Code";
 "PhoneNumberVerif_Placeholder" = "0000";
 "WelcomeToAppLabel" = "Welcome to Luxe, %@. Your Volvo account is now active with Luxe.";
@@ -63,7 +63,7 @@
 "WelcomeSignup" = "Welcome to Luxe by Volvo. Let’s create your account.";
 "FirstNamePlaceholder" = "Thor";
 "LastNamePlaceholder" = "Odinson";
-"CreatePassword" = "Create a password.";
+"CreatePassword" = "Create a password";
 "PasswordCondition" = "(At least 8 characters with at least one letter and one number)";
 "Password" = "Password";
 "RepeatPassword" = "Repeat Password";
@@ -73,7 +73,7 @@
 "CreateAccount" = "Create Account";
 "EmailAddress" = "Email Address";
 "EmailPlaceholder" = "name@domain.com";
-"SelectYourVehicle" = "Select your vehicle year, model and paint color.";
+"SelectYourVehicle" = "Select your vehicle’s year, model and color";
 "Year" = "Year";
 "Model" = "Model";
 "Color" = "Color";
@@ -91,11 +91,15 @@
 "PasswordResetLogin" = "Password successfully reset, please proceed to login.";
 "PasswordUnauthorizedChars" = "Your password contains unauthorized characters. Authorized characters: @$!%*?&.";
 "AreYouSureDeleteAddress" = "Are you sure you want to delete that address %@?";
-
+"RequiresANumber" = "Requires a letter";
+"RequiresANumber" = "Requires a number";
+"InvalidCharacter" = "Invalid character";
+"DoesNotMatch" = "Does not match";
 
 /***************** SchedulePickup ***************/
 "ScheduleService" = "Schedule Service";
 "SelectService" = "Select Service";
+"ConfirmService" = "Confirm Service";
 "ServiceSummary" = "Service Summary";
 "ShowDescription" = "Show Description";
 "RecommendedService" = "Recommended Service";
@@ -109,7 +113,7 @@
 "AddressForPickupPlaceholder" = "123 Main Street, San Francisco";
 "AddressForPickup" = "Address for Pickup";
 "PickupLocationTitle" = "Where should we meet you?";
-"CurrentLocation" = "Current location";
+"CurrentLocation" = "Current Location";
 "DoYouNeedLoanerVehicle" = "Do you need a loaner vehicle?";
 "SelectPickupDate" = "Select pickup date and time";
 "NineToTwelve" = "9:00-12:00";

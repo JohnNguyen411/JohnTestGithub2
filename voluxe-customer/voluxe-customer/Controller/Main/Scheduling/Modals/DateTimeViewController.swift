@@ -169,6 +169,9 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                 }
                 }.onFailure { error in
                     VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipTimeslotsFail, screenName: self.screenName, error: error)
+                    self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                        self.getTimeSlots()
+                    }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             }
         }
     }

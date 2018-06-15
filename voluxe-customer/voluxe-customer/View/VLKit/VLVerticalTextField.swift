@@ -26,6 +26,18 @@ class VLVerticalTextField : VLTextField {
         return textView
     }()
     
+    let bottomRightLabel: UILabel = {
+        let textView = UILabel(frame: .zero)
+        textView.font = .volvoSansProMedium(size: 12)
+        textView.textColor = .luxeLipstick()
+        textView.numberOfLines = 1
+        textView.textAlignment = .right
+        textView.backgroundColor = .clear
+        return textView
+    }()
+    
+    let separator = UIView()
+    
     var showHidePassword = false
     
     let passwordToggleIcon = PasswordToggleVisibilityView()
@@ -92,6 +104,34 @@ class VLVerticalTextField : VLTextField {
         }
     }
     
+    func setBottomRightText(bottomRightText: String, actionBlock: (()->())?) {
+        bottomRightLabel.text = bottomRightText
+        
+        if bottomRightLabel.superview == nil {
+            addSubview(bottomRightLabel)
+        }
+        
+        let sizeThatFits = bottomRightLabel.sizeThatFits(CGSize(width: 150, height: 20))
+        
+        titleLabel.snp.updateConstraints { (make) -> Void in
+            make.right.equalToSuperview().offset(-sizeThatFits.width)
+        }
+        
+        bottomRightLabel.snp.makeConstraints { (make) -> Void in
+            make.right.equalToSuperview()
+            make.top.equalTo(titleLabel.snp.top)
+            make.height.equalTo(sizeThatFits.height)
+            make.width.equalTo(sizeThatFits.width+20)
+        }
+        
+        if let actionBlock = actionBlock {
+            setRightActionBlock {
+                actionBlock()
+            }
+        }
+    }
+    
+    
     func setShowHidePassword(showHidePassword: Bool) {
         self.textField.keyboardType = .asciiCapable
         self.showHidePassword = showHidePassword
@@ -119,11 +159,10 @@ class VLVerticalTextField : VLTextField {
             make.height.equalTo(25)
         }
        
-        let separator0 = UIView()
-        separator0.backgroundColor = .luxeCobaltBlue()
-        addSubview(separator0)
+        separator.backgroundColor = .luxeCobaltBlue()
+        addSubview(separator)
         
-        separator0.snp.makeConstraints { (make) -> Void in
+        separator.snp.makeConstraints { (make) -> Void in
             make.left.right.equalToSuperview()
             make.top.equalTo(textField.snp.bottom).offset(1)
             make.height.equalTo(1)
@@ -131,20 +170,22 @@ class VLVerticalTextField : VLTextField {
         
         titleLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalToSuperview()
-            make.top.equalTo(separator0.snp.bottom).offset(5)
+            make.top.equalTo(separator.snp.bottom).offset(5)
         }
     }
     
     override func applyErrorState() {
-        textField.textColor = .luxeCobaltBlue()
-        titleLabel.textColor = .red
-        backgroundColor = .blue
+        textField.textColor = .luxeRed()
+        titleLabel.textColor = .luxeRed()
+        separator.backgroundColor = .luxeRed()
+        backgroundColor = .clear
     }
 
     override func resetErrorState() {
         titleLabel.text = self.title
         titleLabel.textColor = .luxeCobaltBlue()
         textField.textColor = .luxeCobaltBlue()
+        separator.backgroundColor = .luxeCobaltBlue()
         backgroundColor = .clear
     }
 
@@ -162,8 +203,23 @@ class VLVerticalTextField : VLTextField {
         
     }
     
+    private var bottomRightActionBlock:(()->())?
+
+    func setBottomRightActionBlock(actionBlock: @escaping (()->())) {
+        self.bottomRightActionBlock = actionBlock
+        
+        bottomRightLabel.isUserInteractionEnabled = true
+        let rightLabelTap = UITapGestureRecognizer(target: self, action: #selector(self.runBottomActionBlock))
+        bottomRightLabel.addGestureRecognizer(rightLabelTap)
+        
+    }
+    
     @objc internal func runActionBlock() {
         rightActionBlock?()
+    }
+    
+    @objc internal func runBottomActionBlock() {
+        bottomRightActionBlock?()
     }
 }
 

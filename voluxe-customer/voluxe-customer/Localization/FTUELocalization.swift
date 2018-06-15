@@ -60,5 +60,9 @@ extension String {
     static let AreYouSureDeleteAddress = NSLocalizedString("AreYouSureDeleteAddress")
     static let PhoneNumberNotInFile = NSLocalizedString("PhoneNumberNotInFile")
     static let NotificationPermissionText = NSLocalizedString("NotificationPermissionText")
+    static let RequiresANumber = NSLocalizedString("RequiresANumber")
+    static let RequiresALetter = NSLocalizedString("RequiresALetter")
+    static let InvalidCharacter = NSLocalizedString("InvalidCharacter")
+    static let DoesNotMatch = NSLocalizedString("DoesNotMatch")
     
 }

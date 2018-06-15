@@ -11,6 +11,7 @@ import Foundation
 extension String {
     static let ScheduleService = NSLocalizedString("ScheduleService")
     static let SelectService = NSLocalizedString("SelectService")
+    static let ConfirmService = NSLocalizedString("ConfirmService")
     static let ServiceSummary = NSLocalizedString("ServiceSummary")
     static let ShowDescription = NSLocalizedString("ShowDescription")
     static let RecommendedService = NSLocalizedString("RecommendedService")
