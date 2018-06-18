@@ -62,9 +62,6 @@
             </BuildableReference>
             <SkippedTests>
                <Test
-                  Identifier = "CreateAccount_UITests/test00_loginAsAdminAndGetVerificationCode()">
-               </Test>
-               <Test
                   Identifier = "CreateAccount_UITests/test31_wrongVerificationCode()">
                </Test>
                <Test

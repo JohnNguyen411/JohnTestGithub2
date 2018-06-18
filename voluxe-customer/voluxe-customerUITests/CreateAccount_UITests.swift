@@ -16,7 +16,7 @@ class CreateAccount_UITests: XCTestCase {
         continueAfterFailure = false
     }
 
-    // MARK:- Utilities
+    // MARK:- Launch
 
     func test00_loginAsAdminAndGetVerificationCode() {
 
@@ -227,7 +227,7 @@ class CreateAccount_UITests: XCTestCase {
             field.tapAndClearText()
             field.typeText(code?.value ?? "")
         }
-        self.wait(for: 5, label: "getting verification code")
+        self.wait(for: 10, label: "getting verification code")
 
         app.navigationBars.firstMatch.buttons["Next"].tap()
         self.wait()
@@ -254,16 +254,20 @@ class CreateAccount_UITests: XCTestCase {
         XCTAssertFalse(next.isEnabled)
 
         // 8+ characters but no digit
+        // this will allow the Next button to be enabled
+        // but will change the UI to show an error state
         passwordTextField.tap(andType: "abcdefgh")
         confirmTextField.tap(andType: "abcdefgh")
-        XCTAssertFalse(next.isEnabled)
+        XCTAssertTrue(next.isEnabled)
+        next.tap()
+        XCTAssertTrue(app.staticTexts["REQUIRES A NUMBER"].exists)
 
         // mismatched
-        passwordTextField.tapAndClearText()
-        passwordTextField.typeText("abcdefghi9")
-        confirmTextField.tapAndClearText()
-        confirmTextField.typeText("abcdefghi8")
-        XCTAssertFalse(next.isEnabled)
+        passwordTextField.clear(andType: "abcdefghi9")
+        confirmTextField.clear(andType: "abcdefghi8")
+        XCTAssertTrue(next.isEnabled)
+        next.tap()
+        XCTAssertTrue(app.staticTexts["DOES NOT MATCH"].exists)
     }
 
     func test41_validPassword() {
@@ -284,7 +288,54 @@ class CreateAccount_UITests: XCTestCase {
 
     // MARK:- Create account add vehicle
 
-    func test50_validVehicleOptions() {
+    func test50_invalidVehicleOptions() {
+
+        let app = XCUIApplication()
+        let yearTextfield = app.textFields["2019"]
+        let modelTextfield = app.textFields["S90"]
+        let colorTextfield = app.textFields["Black"]
+
+        // should be disabled without any input
+        let done = app.navigationBars.firstMatch.buttons["Done"]
+        XCTAssertFalse(done.isEnabled)
+
+        // year only allows 4 digits
+        modelTextfield.clear(andType: "S90")
+        colorTextfield.clear(andType: "Black")
+        yearTextfield.clear(andType: "1")
+        XCTAssertFalse(done.isEnabled)
+        yearTextfield.clear(andType: "12345")
+        XCTAssertFalse(done.isEnabled)
+        yearTextfield.clear(andType: "abcd")
+        XCTAssertFalse(done.isEnabled)
+        yearTextfield.clear(andType: "📭🆒🍌😶")
+        XCTAssertFalse(done.isEnabled)
+
+        // model allows alphanumeric only
+        yearTextfield.clear(andType: "2019")
+        colorTextfield.clear(andType: "Black")
+        modelTextfield.clear(andType: "📭🆒🍌😶")
+        XCTAssertFalse(done.isEnabled)
+        modelTextfield.clear(andType: "abcdefgh777")
+        XCTAssertFalse(done.isEnabled)
+
+        // color only allows alpha
+        yearTextfield.clear(andType: "2019")
+        modelTextfield.clear(andType: "S90")
+        colorTextfield.clear(andType: "random")
+        XCTAssertFalse(done.isEnabled)
+        colorTextfield.clear(andType: "123456")
+        XCTAssertFalse(done.isEnabled)
+        colorTextfield.clear(andType: "📭🆒🍌😶")
+        XCTAssertFalse(done.isEnabled)
+
+        // clear all fields
+        yearTextfield.tapAndClearText()
+        modelTextfield.tapAndClearText()
+        colorTextfield.tapAndClearText()
+    }
+
+    func test51_validVehicleOptions() {
 
         let app = XCUIApplication()
 
