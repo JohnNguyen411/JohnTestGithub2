@@ -19,7 +19,8 @@ class DebugSettingsViewController: DebugTableViewController {
         self.settings = [self.applicationSettings(),
                          self.userSettings(),
                          self.alamoFireSettings(),
-                         self.firebaseSettings()]
+                         self.firebaseSettings(),
+                         self.fontTestingSettings()]
     }
 
     @objc private func close() {
@@ -138,5 +139,22 @@ class DebugSettingsViewController: DebugTableViewController {
         )]
 
         return ("AlamoFire", settings)
+    }
+    
+    private func fontTestingSettings() -> (String, [DebugTableViewCellModel]) {
+        
+        var settings: [DebugTableViewCellModel] = []
+        
+        settings += [DebugTableViewCellModel(title: "Font Testing",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure: nil,
+                                             actionClosure:
+            {
+                _ in
+                self.navigationController?.pushViewController(DebugFontViewController(), animated: true)
+        }
+            )]
+        
+        return ("Font Testing", settings)
     }
 }

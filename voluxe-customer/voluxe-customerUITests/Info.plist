@@ -27,8 +27,19 @@
 		<string>VolvoSanLigBol.ttf</string>
 		<string>VolvoSanLigReg.ttf</string>
 		<string>VolvoSansPro-Bold.ttf</string>
+		<string>VolvoSansPro-Super.ttf</string>
 		<string>Montserrat-Regular.ttf</string>
 		<string>SourceSansPro-Regular.ttf</string>
+		<string>Volvo Novum-Bold.otf</string>
+		<string>Volvo Novum-BoldItalic.otf</string>
+		<string>Volvo Novum-Italic.otf</string>
+		<string>Volvo Novum-Light.otf</string>
+		<string>Volvo Novum-LightItalic.otf</string>
+		<string>Volvo Novum-Medium.otf</string>
+		<string>Volvo Novum-MediumItalic.otf</string>
+		<string>Volvo Novum-Regular.otf</string>
+		<string>Volvo Novum-SemiLight.otf</string>
+		<string>Volvo Novum-SemiLightItalic.otf</string>
 	</array>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Volvo needs to know your location in order to have an address for the Pickup and Delivery of your vehicle.</string>

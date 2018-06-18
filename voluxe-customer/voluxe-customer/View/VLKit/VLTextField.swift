@@ -20,8 +20,8 @@ class VLTextField : UIView {
 
     let titleLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.textColor = ColorDefinitions.lightGray
-        titleLabel.font = Fonts.FONT_B2
+        titleLabel.textColor = .luxeLightGray()
+        titleLabel.font = .volvoSansProRegular(size: 14)
         titleLabel.textAlignment = .left
         return titleLabel
     }()

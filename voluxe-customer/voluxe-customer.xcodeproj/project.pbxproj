@@ -45,13 +45,13 @@
 		538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE76220BF4BC000C3CE17 /* Int+Test.swift */; };
 		538FE76420BF4BC000C3CE17 /* Int+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE76220BF4BC000C3CE17 /* Int+Test.swift */; };
 		539E502920BF440100FDF3F1 /* CustomerAPI+Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EF28CE20AE065F006CC5FA /* CustomerAPI+Signup.swift */; };
-		53C7301220CF2FF000BCE926 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
 		53C7300B20CEE5F400BCE926 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7300620CEE5F300BCE926 /* Scene.swift */; };
 		53C7300C20CEE5F400BCE926 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7300720CEE5F300BCE926 /* Extensions.swift */; };
 		53C7300D20CEE5F400BCE926 /* Shiny.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7300820CEE5F400BCE926 /* Shiny.swift */; };
 		53C7300E20CEE5F400BCE926 /* Gyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7300920CEE5F400BCE926 /* Gyro.swift */; };
 		53C7300F20CEE5F400BCE926 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7300A20CEE5F400BCE926 /* Gradient.swift */; };
 		53C7301120CEE71C00BCE926 /* VLShinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7301020CEE71C00BCE926 /* VLShinyView.swift */; };
+		53C7301220CF2FF000BCE926 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
 		53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */; };
 		53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */; };
@@ -88,6 +88,36 @@
 		6C1CE1E520C5E9E600A2E054 /* BranchDeeplink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1CE1E320C5E9E600A2E054 /* BranchDeeplink.swift */; };
 		6C1CE1E720C5F0CF00A2E054 /* DeeplinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1CE1E620C5F0CF00A2E054 /* DeeplinkManager.swift */; };
 		6C1CE1E820C5F0CF00A2E054 /* DeeplinkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C1CE1E620C5F0CF00A2E054 /* DeeplinkManager.swift */; };
+		6C1CE22720D04A2B00A2E054 /* Volvo Novum-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE21D20D04A2900A2E054 /* Volvo Novum-Bold.otf */; };
+		6C1CE22820D04A2B00A2E054 /* Volvo Novum-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE21D20D04A2900A2E054 /* Volvo Novum-Bold.otf */; };
+		6C1CE22920D04A2B00A2E054 /* Volvo Novum-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE21D20D04A2900A2E054 /* Volvo Novum-Bold.otf */; };
+		6C1CE22A20D04A2B00A2E054 /* Volvo Novum-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE21E20D04A2900A2E054 /* Volvo Novum-Regular.otf */; };
+		6C1CE22B20D04A2B00A2E054 /* Volvo Novum-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE21E20D04A2900A2E054 /* Volvo Novum-Regular.otf */; };
+		6C1CE22C20D04A2B00A2E054 /* Volvo Novum-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE21E20D04A2900A2E054 /* Volvo Novum-Regular.otf */; };
+		6C1CE22D20D04A2B00A2E054 /* Volvo Novum-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE21F20D04A2A00A2E054 /* Volvo Novum-MediumItalic.otf */; };
+		6C1CE22E20D04A2B00A2E054 /* Volvo Novum-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE21F20D04A2A00A2E054 /* Volvo Novum-MediumItalic.otf */; };
+		6C1CE22F20D04A2B00A2E054 /* Volvo Novum-MediumItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE21F20D04A2A00A2E054 /* Volvo Novum-MediumItalic.otf */; };
+		6C1CE23020D04A2B00A2E054 /* Volvo Novum-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22020D04A2A00A2E054 /* Volvo Novum-Italic.otf */; };
+		6C1CE23120D04A2B00A2E054 /* Volvo Novum-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22020D04A2A00A2E054 /* Volvo Novum-Italic.otf */; };
+		6C1CE23220D04A2B00A2E054 /* Volvo Novum-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22020D04A2A00A2E054 /* Volvo Novum-Italic.otf */; };
+		6C1CE23320D04A2B00A2E054 /* Volvo Novum-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22120D04A2A00A2E054 /* Volvo Novum-BoldItalic.otf */; };
+		6C1CE23420D04A2B00A2E054 /* Volvo Novum-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22120D04A2A00A2E054 /* Volvo Novum-BoldItalic.otf */; };
+		6C1CE23520D04A2B00A2E054 /* Volvo Novum-BoldItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22120D04A2A00A2E054 /* Volvo Novum-BoldItalic.otf */; };
+		6C1CE23620D04A2B00A2E054 /* Volvo Novum-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22220D04A2A00A2E054 /* Volvo Novum-Medium.otf */; };
+		6C1CE23720D04A2B00A2E054 /* Volvo Novum-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22220D04A2A00A2E054 /* Volvo Novum-Medium.otf */; };
+		6C1CE23820D04A2B00A2E054 /* Volvo Novum-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22220D04A2A00A2E054 /* Volvo Novum-Medium.otf */; };
+		6C1CE23920D04A2B00A2E054 /* Volvo Novum-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22320D04A2A00A2E054 /* Volvo Novum-LightItalic.otf */; };
+		6C1CE23A20D04A2B00A2E054 /* Volvo Novum-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22320D04A2A00A2E054 /* Volvo Novum-LightItalic.otf */; };
+		6C1CE23B20D04A2B00A2E054 /* Volvo Novum-LightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22320D04A2A00A2E054 /* Volvo Novum-LightItalic.otf */; };
+		6C1CE23C20D04A2B00A2E054 /* Volvo Novum-SemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22420D04A2B00A2E054 /* Volvo Novum-SemiLight.otf */; };
+		6C1CE23D20D04A2B00A2E054 /* Volvo Novum-SemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22420D04A2B00A2E054 /* Volvo Novum-SemiLight.otf */; };
+		6C1CE23E20D04A2B00A2E054 /* Volvo Novum-SemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22420D04A2B00A2E054 /* Volvo Novum-SemiLight.otf */; };
+		6C1CE23F20D04A2B00A2E054 /* Volvo Novum-SemiLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22520D04A2B00A2E054 /* Volvo Novum-SemiLightItalic.otf */; };
+		6C1CE24020D04A2B00A2E054 /* Volvo Novum-SemiLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22520D04A2B00A2E054 /* Volvo Novum-SemiLightItalic.otf */; };
+		6C1CE24120D04A2B00A2E054 /* Volvo Novum-SemiLightItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22520D04A2B00A2E054 /* Volvo Novum-SemiLightItalic.otf */; };
+		6C1CE24220D04A2B00A2E054 /* Volvo Novum-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22620D04A2B00A2E054 /* Volvo Novum-Light.otf */; };
+		6C1CE24320D04A2B00A2E054 /* Volvo Novum-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22620D04A2B00A2E054 /* Volvo Novum-Light.otf */; };
+		6C1CE24420D04A2B00A2E054 /* Volvo Novum-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 6C1CE22620D04A2B00A2E054 /* Volvo Novum-Light.otf */; };
 		6C20E1831FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
 		6C20E1841FBD206E00E5D9A0 /* ServiceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */; };
 		6C20E1871FBE061A00E5D9A0 /* ETAMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1861FBE061A00E5D9A0 /* ETAMarker.swift */; };
@@ -289,7 +319,6 @@
 		6C90CC16201156AF002594F5 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC15201156AF002594F5 /* ResponseError.swift */; };
 		6C90CC17201156AF002594F5 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC15201156AF002594F5 /* ResponseError.swift */; };
 		6C91BBCE1FA7D3CE0033C2B1 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2AF1FA2823800B22EAB /* Fonts.swift */; };
-		6C91BBD01FA7D3D40033C2B1 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC83A8A1FA1481900FE0633 /* StringUtils.swift */; };
 		6C91BBD21FA7D3D70033C2B1 /* ColorDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B51FA289F000B22EAB /* ColorDefinitions.swift */; };
 		6C91BBD41FA7D44D0033C2B1 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B11FA2824200B22EAB /* Constants.swift */; };
 		6C91BBD71FA7D6220033C2B1 /* ViewPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBD61FA7D6220033C2B1 /* ViewPager.swift */; };
@@ -306,12 +335,6 @@
 		6C95439F1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C95439D1FABEBBC0099AC84 /* UIColors+Voluxe.swift */; };
 		6C9543A21FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9543A11FABEE1D0099AC84 /* UIFont+Voluxe.swift */; };
 		6C9543A31FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9543A11FABEE1D0099AC84 /* UIFont+Voluxe.swift */; };
-		6C9543A81FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A51FACE0160099AC84 /* VolvoSanLigBol.ttf */; };
-		6C9543A91FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A51FACE0160099AC84 /* VolvoSanLigBol.ttf */; };
-		6C9543AA1FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A51FACE0160099AC84 /* VolvoSanLigBol.ttf */; };
-		6C9543AB1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A61FACE0160099AC84 /* VolvoSanLigReg.ttf */; };
-		6C9543AC1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A61FACE0160099AC84 /* VolvoSanLigReg.ttf */; };
-		6C9543AD1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A61FACE0160099AC84 /* VolvoSanLigReg.ttf */; };
 		6C9543AE1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A71FACE0160099AC84 /* VolvoSansPro-Bold.ttf */; };
 		6C9543AF1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A71FACE0160099AC84 /* VolvoSansPro-Bold.ttf */; };
 		6C9543B01FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6C9543A71FACE0160099AC84 /* VolvoSansPro-Bold.ttf */; };
@@ -403,11 +426,20 @@
 		6CBF9FE71FC5FB9A002BC7FC /* sensus_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7D1FA140D300FE0633 /* sensus_test.json */; };
 		6CBF9FE81FC5FB9A002BC7FC /* VolvoSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */; };
 		6CBF9FE91FC5FB9A002BC7FC /* VolvoSansPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */; };
-		6CBF9FEA1FC5FB9A002BC7FC /* VolvoSerifPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B11FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf */; };
-		6CBF9FEB1FC5FB9A002BC7FC /* VolvoSerifPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AE1FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf */; };
 		6CBF9FEC1FC60104002BC7FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42941FA013E3000AC6C9 /* Assets.xcassets */; };
 		6CBF9FEE1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FED1FC62154002BC7FC /* FTUEChildViewController.swift */; };
 		6CBF9FEF1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FED1FC62154002BC7FC /* FTUEChildViewController.swift */; };
+		6CBFD82520D1BE040097D4AB /* DebugFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBFD82420D1BE040097D4AB /* DebugFontViewController.swift */; };
+		6CBFD82720D1C2550097D4AB /* DebugFontTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBFD82620D1C2550097D4AB /* DebugFontTestViewController.swift */; };
+		6CBFD82A20D1C9F40097D4AB /* DebugFontCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBFD82920D1C9F40097D4AB /* DebugFontCellView.swift */; };
+		6CBFD82C20D47E7E0097D4AB /* VolvoSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CBFD82B20D47E740097D4AB /* VolvoSansPro-Regular.ttf */; };
+		6CBFD82D20D47E880097D4AB /* VolvoSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */; };
+		6CBFD82E20D47E8A0097D4AB /* VolvoSansPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */; };
+		6CBFD82F20D47E8D0097D4AB /* VolvoSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CBFD82B20D47E740097D4AB /* VolvoSansPro-Regular.ttf */; };
+		6CBFD83020D47E8D0097D4AB /* VolvoSansPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CBFD82B20D47E740097D4AB /* VolvoSansPro-Regular.ttf */; };
+		6CBFD83220D47EE10097D4AB /* VolvoSansPro-Super.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CBFD83120D47EE10097D4AB /* VolvoSansPro-Super.ttf */; };
+		6CBFD83320D47EE10097D4AB /* VolvoSansPro-Super.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CBFD83120D47EE10097D4AB /* VolvoSansPro-Super.ttf */; };
+		6CBFD83420D47EE10097D4AB /* VolvoSansPro-Super.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CBFD83120D47EE10097D4AB /* VolvoSansPro-Super.ttf */; };
 		6CC3542F20B7961100FF98A6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CC3542E20B7961100FF98A6 /* LaunchScreen.storyboard */; };
 		6CC3543120B87E7C00FF98A6 /* LogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC3543020B87E7C00FF98A6 /* LogoViewController.swift */; };
 		6CC3543320B87E8200FF98A6 /* LogoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC3543020B87E7C00FF98A6 /* LogoViewController.swift */; };
@@ -423,7 +455,6 @@
 		6CC83A831FA140D300FE0633 /* sensus_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7D1FA140D300FE0633 /* sensus_test.json */; };
 		6CC83A841FA140D300FE0633 /* sensus_prod.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7E1FA140D300FE0633 /* sensus_prod.json */; };
 		6CC83A851FA140D300FE0633 /* sensus_qa.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7F1FA140D300FE0633 /* sensus_qa.json */; };
-		6CC83A8B1FA1481900FE0633 /* StringUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CC83A8A1FA1481900FE0633 /* StringUtils.swift */; };
 		6CC921A31FC4FB26009E5164 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5832F41FB3AF5600F6BFE0 /* AlertViewController.swift */; };
 		6CC921A61FC4FBC8009E5164 /* Date+DateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B81FA297A300B22EAB /* Date+DateTools.swift */; };
 		6CCC821B20116B3A003BB3F0 /* DealershipTimeSlot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCC821A20116B3A003BB3F0 /* DealershipTimeSlot.swift */; };
@@ -505,10 +536,8 @@
 		6CE6879F2044CEAE00D915FC /* ContactDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE6879D2044CEAE00D915FC /* ContactDriver.swift */; };
 		6CEA0D591FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
 		6CEA0D5A1FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
-		6CFBF9B21FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AE1FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf */; };
 		6CFBF9B31FA1131700D3AA78 /* VolvoSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */; };
 		6CFBF9B41FA1131700D3AA78 /* VolvoSansPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */; };
-		6CFBF9B51FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B11FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf */; };
 		F09D8352AF5AF508F65D2A08 /* Pods_voluxe_customer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AE2DE1F0F874762B0DBABE /* Pods_voluxe_customer.framework */; };
 /* End PBXBuildFile section */
 
@@ -617,6 +646,16 @@
 		6C11208D2016B2C70048A56D /* BookingSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSyncManager.swift; sourceTree = "<group>"; };
 		6C1CE1E320C5E9E600A2E054 /* BranchDeeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchDeeplink.swift; sourceTree = "<group>"; };
 		6C1CE1E620C5F0CF00A2E054 /* DeeplinkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeeplinkManager.swift; sourceTree = "<group>"; };
+		6C1CE21D20D04A2900A2E054 /* Volvo Novum-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-Bold.otf"; sourceTree = "<group>"; };
+		6C1CE21E20D04A2900A2E054 /* Volvo Novum-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-Regular.otf"; sourceTree = "<group>"; };
+		6C1CE21F20D04A2A00A2E054 /* Volvo Novum-MediumItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-MediumItalic.otf"; sourceTree = "<group>"; };
+		6C1CE22020D04A2A00A2E054 /* Volvo Novum-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-Italic.otf"; sourceTree = "<group>"; };
+		6C1CE22120D04A2A00A2E054 /* Volvo Novum-BoldItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-BoldItalic.otf"; sourceTree = "<group>"; };
+		6C1CE22220D04A2A00A2E054 /* Volvo Novum-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-Medium.otf"; sourceTree = "<group>"; };
+		6C1CE22320D04A2A00A2E054 /* Volvo Novum-LightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-LightItalic.otf"; sourceTree = "<group>"; };
+		6C1CE22420D04A2B00A2E054 /* Volvo Novum-SemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-SemiLight.otf"; sourceTree = "<group>"; };
+		6C1CE22520D04A2B00A2E054 /* Volvo Novum-SemiLightItalic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-SemiLightItalic.otf"; sourceTree = "<group>"; };
+		6C1CE22620D04A2B00A2E054 /* Volvo Novum-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-Light.otf"; sourceTree = "<group>"; };
 		6C1CE24D20D081DE00A2E054 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
 		6C20E1821FBD206E00E5D9A0 /* ServiceState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceState.swift; sourceTree = "<group>"; };
 		6C20E1861FBE061A00E5D9A0 /* ETAMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ETAMarker.swift; sourceTree = "<group>"; };
@@ -731,8 +770,6 @@
 		6C937064204F64360084443C /* SettingsCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCarViewController.swift; sourceTree = "<group>"; };
 		6C95439D1FABEBBC0099AC84 /* UIColors+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColors+Voluxe.swift"; sourceTree = "<group>"; };
 		6C9543A11FABEE1D0099AC84 /* UIFont+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Voluxe.swift"; sourceTree = "<group>"; };
-		6C9543A51FACE0160099AC84 /* VolvoSanLigBol.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VolvoSanLigBol.ttf; sourceTree = "<group>"; };
-		6C9543A61FACE0160099AC84 /* VolvoSanLigReg.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = VolvoSanLigReg.ttf; sourceTree = "<group>"; };
 		6C9543A71FACE0160099AC84 /* VolvoSansPro-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Bold.ttf"; sourceTree = "<group>"; };
 		6C9B0E7620A12111009221B6 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		6C9B31FE202A51B3006380B9 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
@@ -793,6 +830,11 @@
 		6CBB4EB21FB4E11800C31183 /* VLCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCalendarCell.swift; sourceTree = "<group>"; };
 		6CBF9FE01FC5F987002BC7FC /* SignIn_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignIn_UITests.swift; sourceTree = "<group>"; };
 		6CBF9FED1FC62154002BC7FC /* FTUEChildViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEChildViewController.swift; sourceTree = "<group>"; };
+		6CBFD82420D1BE040097D4AB /* DebugFontViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugFontViewController.swift; sourceTree = "<group>"; };
+		6CBFD82620D1C2550097D4AB /* DebugFontTestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugFontTestViewController.swift; sourceTree = "<group>"; };
+		6CBFD82920D1C9F40097D4AB /* DebugFontCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugFontCellView.swift; sourceTree = "<group>"; };
+		6CBFD82B20D47E740097D4AB /* VolvoSansPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Regular.ttf"; sourceTree = "<group>"; };
+		6CBFD83120D47EE10097D4AB /* VolvoSansPro-Super.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Super.ttf"; sourceTree = "<group>"; };
 		6CC3542E20B7961100FF98A6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6CC3543020B87E7C00FF98A6 /* LogoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoViewController.swift; sourceTree = "<group>"; };
 		6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
@@ -804,7 +846,6 @@
 		6CC83A7D1FA140D300FE0633 /* sensus_test.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sensus_test.json; sourceTree = "<group>"; };
 		6CC83A7E1FA140D300FE0633 /* sensus_prod.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sensus_prod.json; sourceTree = "<group>"; };
 		6CC83A7F1FA140D300FE0633 /* sensus_qa.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sensus_qa.json; sourceTree = "<group>"; };
-		6CC83A8A1FA1481900FE0633 /* StringUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringUtils.swift; sourceTree = "<group>"; };
 		6CCC821A20116B3A003BB3F0 /* DealershipTimeSlot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealershipTimeSlot.swift; sourceTree = "<group>"; };
 		6CCCF23220488C5C004BF1A6 /* FTUEAddVehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEAddVehicleViewController.swift; sourceTree = "<group>"; };
 		6CCCF2362048B161004BF1A6 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
@@ -856,10 +897,8 @@
 		6CE902161FA14C1200EE106C /* DateToolsSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DateToolsSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CE902171FA14C1200EE106C /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEPhoneVerificationViewController.swift; sourceTree = "<group>"; };
-		6CFBF9AE1FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSerifPro-Regular.ttf"; sourceTree = "<group>"; };
 		6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Light.ttf"; sourceTree = "<group>"; };
 		6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Medium.ttf"; sourceTree = "<group>"; };
-		6CFBF9B11FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSerifPro-Italic.ttf"; sourceTree = "<group>"; };
 		7FCDEDCAD410198A43AB504F /* Pods-voluxe-customer.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.staging.xcconfig"; sourceTree = "<group>"; };
 		830E0EB28610D29BD9577A43 /* Pods-voluxe-customerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		87CC82F62182FCB97FB5E935 /* Pods-voluxe-customerUITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.production.xcconfig"; sourceTree = "<group>"; };
@@ -982,6 +1021,7 @@
 		53D9A7B4209A3EA7008BE93E /* Debug */ = {
 			isa = PBXGroup;
 			children = (
+				6CBFD82820D1C9640097D4AB /* Font */,
 				53D9A7BA209A50D2008BE93E /* DebugSettingsViewController.swift */,
 				53D9A7BE209A79C8008BE93E /* DebugTableViewCell.swift */,
 				53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */,
@@ -1401,6 +1441,16 @@
 			path = FSCalendar;
 			sourceTree = "<group>";
 		};
+		6CBFD82820D1C9640097D4AB /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				6CBFD82420D1BE040097D4AB /* DebugFontViewController.swift */,
+				6CBFD82620D1C2550097D4AB /* DebugFontTestViewController.swift */,
+				6CBFD82920D1C9F40097D4AB /* DebugFontCellView.swift */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
 		6CC3542D20B6015B00FF98A6 /* Modals */ = {
 			isa = PBXGroup;
 			children = (
@@ -1498,7 +1548,6 @@
 				6C3FB2B11FA2824200B22EAB /* Constants.swift */,
 				6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */,
 				6C7DDE0E1FDB64CC000E2822 /* Logger.swift */,
-				6CC83A8A1FA1481900FE0633 /* StringUtils.swift */,
 			);
 			path = Util;
 			sourceTree = "<group>";
@@ -1599,13 +1648,21 @@
 		6CFBF9AD1FA112A500D3AA78 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				6C9543A51FACE0160099AC84 /* VolvoSanLigBol.ttf */,
-				6C9543A61FACE0160099AC84 /* VolvoSanLigReg.ttf */,
+				6C1CE21D20D04A2900A2E054 /* Volvo Novum-Bold.otf */,
+				6C1CE22120D04A2A00A2E054 /* Volvo Novum-BoldItalic.otf */,
+				6C1CE22020D04A2A00A2E054 /* Volvo Novum-Italic.otf */,
+				6C1CE22620D04A2B00A2E054 /* Volvo Novum-Light.otf */,
+				6C1CE22320D04A2A00A2E054 /* Volvo Novum-LightItalic.otf */,
+				6C1CE22220D04A2A00A2E054 /* Volvo Novum-Medium.otf */,
+				6C1CE21F20D04A2A00A2E054 /* Volvo Novum-MediumItalic.otf */,
+				6C1CE21E20D04A2900A2E054 /* Volvo Novum-Regular.otf */,
+				6C1CE22420D04A2B00A2E054 /* Volvo Novum-SemiLight.otf */,
+				6C1CE22520D04A2B00A2E054 /* Volvo Novum-SemiLightItalic.otf */,
 				6C9543A71FACE0160099AC84 /* VolvoSansPro-Bold.ttf */,
 				6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */,
 				6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */,
-				6CFBF9B11FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf */,
-				6CFBF9AE1FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf */,
+				6CBFD82B20D47E740097D4AB /* VolvoSansPro-Regular.ttf */,
+				6CBFD83120D47EE10097D4AB /* VolvoSansPro-Super.ttf */,
 			);
 			path = Fonts;
 			sourceTree = "<group>";
@@ -1831,27 +1888,35 @@
 			files = (
 				6C1CE1E220C07E6500A2E054 /* Development.entitlements in Resources */,
 				6C5833141FB3AF5600F6BFE0 /* Montserrat-Regular.ttf in Resources */,
+				6C1CE23920D04A2B00A2E054 /* Volvo Novum-LightItalic.otf in Resources */,
 				6C58331B1FB3AF5600F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
 				6CC83A831FA140D300FE0633 /* sensus_test.json in Resources */,
 				6CC83A851FA140D300FE0633 /* sensus_qa.json in Resources */,
 				6CFBF9B41FA1131700D3AA78 /* VolvoSansPro-Medium.ttf in Resources */,
 				6C6F4BC31FA8FBCF00087FE7 /* Localizable.strings in Resources */,
-				6C9543AB1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
 				6CC83A801FA140D300FE0633 /* ngrok.json in Resources */,
-				6C9543A81FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */,
+				6CBFD82C20D47E7E0097D4AB /* VolvoSansPro-Regular.ttf in Resources */,
+				6CBFD83220D47EE10097D4AB /* VolvoSansPro-Super.ttf in Resources */,
 				6CC3542F20B7961100FF98A6 /* LaunchScreen.storyboard in Resources */,
 				6CE68792203F7D5A00D915FC /* InfoPlist.strings in Resources */,
-				6CFBF9B21FA1131700D3AA78 /* VolvoSerifPro-Regular.ttf in Resources */,
+				6C1CE23C20D04A2B00A2E054 /* Volvo Novum-SemiLight.otf in Resources */,
 				6CC83A841FA140D300FE0633 /* sensus_prod.json in Resources */,
 				6CFBF9B31FA1131700D3AA78 /* VolvoSansPro-Light.ttf in Resources */,
 				6C9543AE1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
+				6C1CE23620D04A2B00A2E054 /* Volvo Novum-Medium.otf in Resources */,
 				6CCD42951FA013E3000AC6C9 /* Assets.xcassets in Resources */,
 				6C9C906C209D163E00494068 /* RemoteConfigDefaults.plist in Resources */,
+				6C1CE22720D04A2B00A2E054 /* Volvo Novum-Bold.otf in Resources */,
+				6C1CE23020D04A2B00A2E054 /* Volvo Novum-Italic.otf in Resources */,
+				6C1CE23F20D04A2B00A2E054 /* Volvo Novum-SemiLightItalic.otf in Resources */,
 				6CC83A821FA140D300FE0633 /* localhost.json in Resources */,
-				6CFBF9B51FA1131700D3AA78 /* VolvoSerifPro-Italic.ttf in Resources */,
 				6C52246A20892E240078D9B9 /* GoogleService-Info.plist in Resources */,
 				6CC83A811FA140D300FE0633 /* mock.json in Resources */,
+				6C1CE24220D04A2B00A2E054 /* Volvo Novum-Light.otf in Resources */,
 				6C9B0E7720A12111009221B6 /* Settings.bundle in Resources */,
+				6C1CE23320D04A2B00A2E054 /* Volvo Novum-BoldItalic.otf in Resources */,
+				6C1CE22A20D04A2B00A2E054 /* Volvo Novum-Regular.otf in Resources */,
+				6C1CE22D20D04A2B00A2E054 /* Volvo Novum-MediumItalic.otf in Resources */,
 				6C58330A1FB3AF5600F6BFE0 /* AlertViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1860,14 +1925,26 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6CBFD82D20D47E880097D4AB /* VolvoSansPro-Light.ttf in Resources */,
 				6C58332F1FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */,
-				6C9543AC1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
+				6C1CE23D20D04A2B00A2E054 /* Volvo Novum-SemiLight.otf in Resources */,
 				6C52246B20892E240078D9B9 /* GoogleService-Info.plist in Resources */,
+				6C1CE24320D04A2B00A2E054 /* Volvo Novum-Light.otf in Resources */,
+				6CBFD82E20D47E8A0097D4AB /* VolvoSansPro-Medium.ttf in Resources */,
+				6CBFD83320D47EE10097D4AB /* VolvoSansPro-Super.ttf in Resources */,
 				6C9543AF1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
 				6C58333D1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
-				6C9543A91FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */,
+				6C1CE23120D04A2B00A2E054 /* Volvo Novum-Italic.otf in Resources */,
+				6C1CE23720D04A2B00A2E054 /* Volvo Novum-Medium.otf in Resources */,
+				6C1CE23420D04A2B00A2E054 /* Volvo Novum-BoldItalic.otf in Resources */,
+				6C1CE22E20D04A2B00A2E054 /* Volvo Novum-MediumItalic.otf in Resources */,
 				6C9C906D209D163E00494068 /* RemoteConfigDefaults.plist in Resources */,
+				6CBFD82F20D47E8D0097D4AB /* VolvoSansPro-Regular.ttf in Resources */,
+				6C1CE23A20D04A2B00A2E054 /* Volvo Novum-LightItalic.otf in Resources */,
 				6C6F4BC41FA8FBCF00087FE7 /* Localizable.strings in Resources */,
+				6C1CE22B20D04A2B00A2E054 /* Volvo Novum-Regular.otf in Resources */,
+				6C1CE24020D04A2B00A2E054 /* Volvo Novum-SemiLightItalic.otf in Resources */,
+				6C1CE22820D04A2B00A2E054 /* Volvo Novum-Bold.otf in Resources */,
 				6CE68793203F7D5A00D915FC /* InfoPlist.strings in Resources */,
 				6C58331D1FB3AF7200F6BFE0 /* AlertViewController.xib in Resources */,
 			);
@@ -1877,27 +1954,35 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6C1CE23B20D04A2B00A2E054 /* Volvo Novum-LightItalic.otf in Resources */,
 				6CBF9FEC1FC60104002BC7FC /* Assets.xcassets in Resources */,
 				6CBF9FE21FC5FB9A002BC7FC /* localhost.json in Resources */,
 				6CBF9FE31FC5FB9A002BC7FC /* mock.json in Resources */,
+				6C1CE23E20D04A2B00A2E054 /* Volvo Novum-SemiLight.otf in Resources */,
 				6CBF9FE41FC5FB9A002BC7FC /* ngrok.json in Resources */,
 				6CBF9FE51FC5FB9A002BC7FC /* sensus_prod.json in Resources */,
 				6CBF9FE61FC5FB9A002BC7FC /* sensus_qa.json in Resources */,
 				6CBF9FE71FC5FB9A002BC7FC /* sensus_test.json in Resources */,
 				6CBF9FE81FC5FB9A002BC7FC /* VolvoSansPro-Light.ttf in Resources */,
+				6C1CE23220D04A2B00A2E054 /* Volvo Novum-Italic.otf in Resources */,
+				6C1CE22920D04A2B00A2E054 /* Volvo Novum-Bold.otf in Resources */,
 				6CBF9FE91FC5FB9A002BC7FC /* VolvoSansPro-Medium.ttf in Resources */,
+				6CBFD83420D47EE10097D4AB /* VolvoSansPro-Super.ttf in Resources */,
+				6C1CE22F20D04A2B00A2E054 /* Volvo Novum-MediumItalic.otf in Resources */,
 				6CE68794203F7D5A00D915FC /* InfoPlist.strings in Resources */,
-				6CBF9FEA1FC5FB9A002BC7FC /* VolvoSerifPro-Italic.ttf in Resources */,
-				6CBF9FEB1FC5FB9A002BC7FC /* VolvoSerifPro-Regular.ttf in Resources */,
 				6C5833301FB3AF8400F6BFE0 /* Montserrat-Regular.ttf in Resources */,
-				6C9543AD1FACE0160099AC84 /* VolvoSanLigReg.ttf in Resources */,
 				6C9543B01FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
+				6C1CE24120D04A2B00A2E054 /* Volvo Novum-SemiLightItalic.otf in Resources */,
 				6C9C906E209D163E00494068 /* RemoteConfigDefaults.plist in Resources */,
 				6C58333E1FB3AF9C00F6BFE0 /* SourceSansPro-Regular.ttf in Resources */,
-				6C9543AA1FACE0160099AC84 /* VolvoSanLigBol.ttf in Resources */,
+				6C1CE22C20D04A2B00A2E054 /* Volvo Novum-Regular.otf in Resources */,
+				6C1CE24420D04A2B00A2E054 /* Volvo Novum-Light.otf in Resources */,
+				6C1CE23820D04A2B00A2E054 /* Volvo Novum-Medium.otf in Resources */,
 				6C52246C20892E240078D9B9 /* GoogleService-Info.plist in Resources */,
 				6C6F4BC51FA8FBCF00087FE7 /* Localizable.strings in Resources */,
+				6C1CE23520D04A2B00A2E054 /* Volvo Novum-BoldItalic.otf in Resources */,
 				6C58331E1FB3AF7200F6BFE0 /* AlertViewController.xib in Resources */,
+				6CBFD83020D47E8D0097D4AB /* VolvoSansPro-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2359,7 +2444,6 @@
 				6C5DDECC20096CF8000847C9 /* CustomerAPI.swift in Sources */,
 				6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
 				6CDCC612205C40B400DFA831 /* RepairOrderAPI.swift in Sources */,
-				6CC83A8B1FA1481900FE0633 /* StringUtils.swift in Sources */,
 				6CC3543120B87E7C00FF98A6 /* LogoViewController.swift in Sources */,
 				6C3FB2AC1FA2574C00B22EAB /* Customer.swift in Sources */,
 				53C7300F20CEE5F400BCE926 /* Gradient.swift in Sources */,
@@ -2417,6 +2501,7 @@
 				6C5833121FB3AF5600F6BFE0 /* ModalCenterPosition.swift in Sources */,
 				6C3FB2BD1FA29A1C00B22EAB /* VehicleLocation.swift in Sources */,
 				6C20E1A61FBE28C000E5D9A0 /* TimeWindowView.swift in Sources */,
+				6CBFD82520D1BE040097D4AB /* DebugFontViewController.swift in Sources */,
 				6C58331A1FB3AF5600F6BFE0 /* PresentrShadow.swift in Sources */,
 				6C7495D71FDA0CEB0036FC08 /* Meta.swift in Sources */,
 				6CE147A220AF4FFD001F4BC7 /* PermissionViewController+Locations.swift in Sources */,
@@ -2452,6 +2537,7 @@
 				6CCCF23320488C5C004BF1A6 /* FTUEAddVehicleViewController.swift in Sources */,
 				6CCC821B20116B3A003BB3F0 /* DealershipTimeSlot.swift in Sources */,
 				6CA968B52023933800FBEEAB /* VehicleLocalization.swift in Sources */,
+				6CBFD82A20D1C9F40097D4AB /* DebugFontCellView.swift in Sources */,
 				6CBB4E8E1FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
 				6C5833181FB3AF5600F6BFE0 /* PresentrAnimation.swift in Sources */,
 				6C7DDE1D1FE1B864000E2822 /* VLAnalytics.swift in Sources */,
@@ -2511,6 +2597,7 @@
 				6C73420C1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,
 				6C7341FF1FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
 				6C20E1BF1FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */,
+				6CBFD82720D1C2550097D4AB /* DebugFontTestViewController.swift in Sources */,
 				6C3FB2BF1FA2A4CE00B22EAB /* VehicleLockStatus.swift in Sources */,
 				6C20E1E01FBF770C00E5D9A0 /* Request.swift in Sources */,
 				6C522456208568E90078D9B9 /* PasswordToggleVisibilityView.swift in Sources */,
@@ -2680,7 +2767,6 @@
 				6CE6879F2044CEAE00D915FC /* ContactDriver.swift in Sources */,
 				6CD47D191FAD190F00D794A6 /* VLButton.swift in Sources */,
 				6C7342111FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
-				6C91BBD01FA7D3D40033C2B1 /* StringUtils.swift in Sources */,
 				6CBB4E951FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */,
 				6C32C30C1FBCC1DD00B1218C /* StepView.swift in Sources */,
 				6C5833311FB3AF9200F6BFE0 /* PresentationType.swift in Sources */,

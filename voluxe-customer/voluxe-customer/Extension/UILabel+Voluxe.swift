@@ -41,9 +41,15 @@ extension UILabel {
             paragraphStyle.lineSpacing = lineSpacing
             paragraphStyle.alignment = self.textAlignment
             
-            let attributedString = NSMutableAttributedString(string: labelText)
-            attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
-            attributedText = attributedString
+            if let attributedText = self.attributedText {
+                let attributedString = NSMutableAttributedString(attributedString: attributedText)
+                attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+                self.attributedText = attributedString
+            } else {
+                let attributedString = NSMutableAttributedString(string: labelText)
+                attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+                self.attributedText = attributedString
+            }
         }
     }
     
