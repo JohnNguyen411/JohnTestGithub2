@@ -102,6 +102,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
             if checkTextFieldsValidity() {
                 if DeeplinkManager.sharedInstance.prefillSignupContinue {
                     self.onRightClicked()
+                    DeeplinkManager.sharedInstance.prefillSignupContinue = false
                 }
             }
         }

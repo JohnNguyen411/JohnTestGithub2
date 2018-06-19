@@ -140,6 +140,10 @@
 "NoDatesForDealership" = "Unfortunately no dates are available for this dealership. Please try again later or call the dealership.";
 "CallDealership" = "Call Dealership";
 "NotePermissionLocation" = "Note: to access your current location, we’ll need to ask you for permission next.";
+"AllowNotifications" = "Allow Notifications?";
+"NotificationPermissionBody" = "We only send you updates on the status of your vehicle during pickups and deliveries.";
+"NotNow" = "Not now";
+"Allow" = "Allow";
 
 /***************** ScheduledPickup ***************/
 "SchedulePickup" = "Schedule Pickup";

@@ -357,20 +357,7 @@ class CreateAccount_UITests: XCTestCase {
 
     // MARK:- Confirm account created
 
-    func test60_allowPushNotifications() {
-
-        let app = XCUIApplication()
-
-        app.buttons["GRANT PERMISSION"].tap()
-        self.wait()
-
-        // this seems to be the only way to accept a permissions alert
-        let springboard = XCUIApplication(bundleIdentifier: "com.apple.springboard")
-        springboard.buttons["Allow"].tap()
-        self.wait()
-    }
-
-    func test61_confirmCreateAccountComplete() {
+    func test60_confirmCreateAccountComplete() {
 
         let app = XCUIApplication()
 

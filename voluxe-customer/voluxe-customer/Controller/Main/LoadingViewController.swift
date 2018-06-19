@@ -244,12 +244,8 @@ class LoadingViewController: LogoViewController {
         }
     }
     
-    private func askPushNotificationPermission() {
-        appDelegate?.registerForPushNotifications()
-    }
-    
     private func loadVehiclesViewController(customerId: Int) {
         appDelegate?.showVehiclesView(animated: true)
-        askPushNotificationPermission()
+        appDelegate?.registerForPushNotificationsIfGranted()
     }
 }

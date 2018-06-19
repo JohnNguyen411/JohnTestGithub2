@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import MBProgressHUD
 import Firebase
+import SwiftEventBus
 
 class BaseViewController: UIViewController, PresentrDelegate {
     
@@ -50,6 +51,15 @@ class BaseViewController: UIViewController, PresentrDelegate {
         if let shouldShowNotifBadge = shouldShowNotifBadge {
             showNotifBadge(shouldShowNotifBadge)
         }
+        
+        SwiftEventBus.onMainThread(self, name: "requestNotifPermission", handler: { result in
+            self.showNotificationPermissionModal(dismissOnTap: false)
+        })
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        SwiftEventBus.unregister(self)
     }
     
     func setTitle(title: String?) {
@@ -196,6 +206,17 @@ class BaseViewController: UIViewController, PresentrDelegate {
         let customType = PresentationType.custom(width: width, height: height, center: center)
         
         return customType
+    }
+    
+    func showNotificationPermissionModal(dismissOnTap: Bool) {
+        if let appDelegate = self.appDelegate, !NotificationPermissionViewController.isShowing {
+            let permissionVC = NotificationPermissionViewController(title: .AllowNotifications, screenName: AnalyticsConstants.paramNameSettingsLocationModalView, delegate: appDelegate)
+            permissionVC.view.accessibilityIdentifier = "permissionVC"
+            currentPresentrVC = permissionVC
+            currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
+            customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: nil)
+            NotificationPermissionViewController.isShowing = true
+        }
     }
     
     func logViewScreen(screenName: String) {

@@ -55,6 +55,27 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 }
             }
         })
+        
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            guard settings.authorizationStatus == .notDetermined else { return }
+
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
+                if UserManager.sharedInstance.getBookings().count > 0 {
+                    var requestPermission = false
+                    for booking in UserManager.sharedInstance.getBookings() {
+                        if booking.isInvalidated || booking.getState() == .canceled || booking.getState() == .completed { continue }
+                        if UserDefaults.standard.shouldShowNotifPermissionForBooking(booking: booking) {
+                            UserDefaults.standard.showNotifPermissionForBooking(booking: booking, shouldShow: true)
+                            requestPermission = true
+                            break
+                        }
+                    }
+                    if requestPermission {
+                        SwiftEventBus.post("requestNotifPermission")
+                    }
+                }
+            })
+        }
     }
     
     fileprivate func createMenuView(animated: Bool) {
@@ -379,19 +400,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
    
-    func registerForPushNotifications() {
+    func registerForPushNotificationsIfGranted() {
         
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
-            if settings.authorizationStatus == .notDetermined {
-                // request
-                let permissionController = PermissionViewController(permissionType: .notification, completion: {})
-                self.window?.rootViewController?.definesPresentationContext = true
-                self.window?.rootViewController?.present(permissionController, animated: true, completion: nil)
-            } else {
-                guard settings.authorizationStatus == .authorized else { return }
-                DispatchQueue.main.async {
-                    UIApplication.shared.registerForRemoteNotifications()
-                }
+            guard settings.authorizationStatus == .authorized else { return }
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
             }
         }
     }

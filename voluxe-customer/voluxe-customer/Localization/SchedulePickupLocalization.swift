@@ -54,6 +54,9 @@ extension String {
     static let NoDatesForDealership = NSLocalizedString("NoDatesForDealership")
     static let CallDealership = NSLocalizedString("CallDealership")
     static let NotePermissionLocation = NSLocalizedString("NotePermissionLocation")
-
+    static let AllowNotifications = NSLocalizedString("AllowNotifications")
+    static let NotificationPermissionBody = NSLocalizedString("NotificationPermissionBody")
+    static let NotNow = NSLocalizedString("NotNow")
+    static let Allow = NSLocalizedString("Allow")
 
 }
