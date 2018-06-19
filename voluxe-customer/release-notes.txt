@@ -1,4 +1,9 @@
+v1.0(53):
 Misc bugfixes and improvments
+New Notification permission Modal
+New Font View in debug menu (shake phone to open debug menu)
+
+v1.0(47):
 New Blur
 New Volvo Design Style
 New left panel navigation
