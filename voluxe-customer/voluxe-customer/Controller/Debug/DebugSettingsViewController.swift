@@ -144,14 +144,14 @@ class DebugSettingsViewController: DebugTableViewController {
     private func fontTestingSettings() -> (String, [DebugTableViewCellModel]) {
         
         var settings: [DebugTableViewCellModel] = []
-        
+        unowned let unownedSelf = self
         settings += [DebugTableViewCellModel(title: "Font Testing",
                                              cellReuseIdentifier: DebugValueTableViewCell.className,
                                              valueClosure: nil,
                                              actionClosure:
             {
                 _ in
-                self.navigationController?.pushViewController(DebugFontViewController(), animated: true)
+                unownedSelf.navigationController?.pushViewController(DebugFontViewController(), animated: true)
         }
             )]
         
