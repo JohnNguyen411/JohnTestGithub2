@@ -32,6 +32,17 @@ class TimeWindowView: UIView {
         titleLabel.addUppercasedCharacterSpacing()
         return titleLabel
     }()
+
+    // TODO move to static creator func
+    let shinyView: ShinyView = {
+        let view = VLShinyView(frame: CGRect.zero)
+        view.alpha = 0.5
+        view.axis = .all
+        view.colors = VLShinyView.luxeColors
+        view.clipsToBounds = true
+        view.scale = 3
+        return view
+    }()
     
     init() {
         super.init(frame: .zero)
@@ -40,6 +51,10 @@ class TimeWindowView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        self.shinyView.stopUpdates()
     }
     
     private func setupViews() {
@@ -65,6 +80,17 @@ class TimeWindowView: UIView {
             make.top.equalTo(titleView.snp.bottom).offset(10)
             make.height.equalTo(10)
         }
+
+        self.insertSubview(self.shinyView, at: 0)
+        self.shinyView.snp.makeConstraints {
+            (make) -> Void in
+            make.edges.equalToSuperview()
+        }
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.shinyView.startUpdates()
     }
     
     func setETA(eta: GMTextValueObject?) {

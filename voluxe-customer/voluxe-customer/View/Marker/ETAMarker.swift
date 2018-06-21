@@ -28,9 +28,19 @@ class ETAMarker: UIView {
         etaLabel.numberOfLines = 1
         return etaLabel
     }()
-    
    
     let icon = UIImageView(image: UIImage(named: "markerDot"))
+
+    let shinyView: VLShinyView = {
+        let view = VLShinyView(frame: CGRect.zero)
+        view.alpha = 0.2
+        view.axis = .all
+        view.clipsToBounds = true
+        view.colors = VLShinyView.highlightColors
+        view.scale = 3
+        view.setMask(image: UIImage(named: "markerDot"))
+        return view
+    }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -39,6 +49,10 @@ class ETAMarker: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        self.shinyView.stopUpdates()
     }
     
     private func setupViews() {
@@ -59,6 +73,17 @@ class ETAMarker: UIView {
             make.width.equalToSuperview()
             make.height.equalTo(8)
         }
+
+        self.addSubview(self.shinyView)
+        self.shinyView.snp.makeConstraints {
+            (make) -> Void in
+            make.edges.equalTo(self.icon)
+        }
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.shinyView.startUpdates()
     }
     
     func setETA(eta: GMTextValueObject?) {

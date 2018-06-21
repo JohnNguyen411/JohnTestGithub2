@@ -28,6 +28,8 @@ class VLShinyView: ShinyView {
     // occur (like a non-zero frame) and prevents multiple calls.
     override func startUpdates() {
 
+        self.updateLayerMaskFrame()
+
         guard self.frame.equalTo(CGRect.zero) == false else { return }
         guard self.updating == false else { return }
         self.updating = true
@@ -53,6 +55,21 @@ class VLShinyView: ShinyView {
         self.updating = false
     }
 
+    // MARK:- Layout
+
+    /// Syncs the mask layer's frame to the current view bounds.
+    /// Layer frames are not updated when view bounds change, so
+    /// this makes it easy.  This is also called in layoutSubviews()
+    /// so it may not be necessary to call directly either.
+    func updateLayerMaskFrame() {
+        self.layer.mask?.frame = self.layer.bounds
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        self.updateLayerMaskFrame()
+    }
+
     // Convenience function to apply a mask (based on a CGImage)
     // to the view.  The specified mask image must be RGBA where
     // the alpha is used to determine which pixels are visible.
@@ -63,6 +80,17 @@ class VLShinyView: ShinyView {
             let mask = CALayer()
             mask.contents = image?.cgImage
             self.layer.mask = mask
+        }
+    }
+
+    // MARK:- Animation
+
+    var alphaForFadeIn = CGFloat(1.0)
+
+    // TODO does this need arguments?
+    func fadeIn() {
+        UIView.animate(withDuration: 1) {
+            self.alpha = self.alphaForFadeIn
         }
     }
 }
