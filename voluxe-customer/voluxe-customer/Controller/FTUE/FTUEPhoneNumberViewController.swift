@@ -186,7 +186,11 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 }.onFailure { error in
                     VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberFail, screenName: self.screenName, error: error)
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4011.rawValue {
+                        self.showOkDialog(title: .Error, message: .UpdatePhoneNumberAlreadyExist, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    } else {
+                        self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    }
                     self.isLoading = false
             }
         } else if let email = signupCustomer.email, let phoneNumber = signupCustomer.phoneNumber, let firstName = signupCustomer.firstName , let lastName = signupCustomer.lastName {

@@ -86,6 +86,7 @@
 "ChangePhoneNumber" = "Change phone number";
 "PhoneNumberAlreadyExist" = "An account already exist with that phone number, please try Login instead.";
 "PhoneNumberNotInFile" = "We couldn't find any account for that phone number. Please verify the phone number and try again.";
+"UpdatePhoneNumberAlreadyExist" = "An account already exist with that phone number, please verify the phone number and try again.";
 "UpdatePassword" = "Update your password.";
 "ForgotPassword" = "Forgot password?";
 "PasswordResetLogin" = "Password successfully reset, please proceed to login.";
@@ -95,6 +96,7 @@
 "RequiresANumber" = "Requires a number";
 "InvalidCharacter" = "Invalid character";
 "DoesNotMatch" = "Does not match";
+"WrongVerificationCode" = "The verification code you entered is incorrect. Please try again or tap Resend Code to receive a new code.";
 
 /***************** SchedulePickup ***************/
 "ScheduleService" = "Schedule Service";

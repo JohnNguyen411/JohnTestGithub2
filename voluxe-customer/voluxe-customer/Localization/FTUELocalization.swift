@@ -55,6 +55,7 @@ extension String {
     static let InvalidCredentials = NSLocalizedString("InvalidCredentials")
     static let ChangePhoneNumber = NSLocalizedString("ChangePhoneNumber")
     static let PhoneNumberAlreadyExist = NSLocalizedString("PhoneNumberAlreadyExist")
+    static let UpdatePhoneNumberAlreadyExist = NSLocalizedString("UpdatePhoneNumberAlreadyExist")
     static let PasswordResetLogin = NSLocalizedString("PasswordResetLogin")
     static let PasswordUnauthorizedChars = NSLocalizedString("PasswordUnauthorizedChars")
     static let AreYouSureDeleteAddress = NSLocalizedString("AreYouSureDeleteAddress")
@@ -64,5 +65,6 @@ extension String {
     static let RequiresALetter = NSLocalizedString("RequiresALetter")
     static let InvalidCharacter = NSLocalizedString("InvalidCharacter")
     static let DoesNotMatch = NSLocalizedString("DoesNotMatch")
-    
+    static let WrongVerificationCode = NSLocalizedString("WrongVerificationCode")
+
 }

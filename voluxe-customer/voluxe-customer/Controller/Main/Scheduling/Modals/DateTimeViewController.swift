@@ -14,9 +14,8 @@ import SwiftEventBus
 class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FSCalendarDelegate, FSCalendarDelegateAppearance {
     
     private static let hourButtonWidth = 80
-    
     private static let rowHeight = 46
-
+    private static let maxHourRows = 3
     private static let smallCalendarHeight = 180
     private static let tallCalendarHeight = 220
     
@@ -92,6 +91,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     private var hoursViewHeight = VLButton.secondaryHeight
     private var calendarViewHeight = smallCalendarHeight
     
+    private let hoursScrollView = UIScrollView(frame: .zero)
     private let hoursView = UIView(frame: .zero)
     private var slotViews: [VLButton] = []
     private var weekdayViews = UIView(frame: .zero)
@@ -196,7 +196,8 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         loanerContainerView.isHidden = !showLoaner
         
         containerView.addSubview(firstMonthHeader)
-        containerView.addSubview(hoursView)
+        containerView.addSubview(hoursScrollView)
+        hoursScrollView.addSubview(hoursView)
         containerView.addSubview(timeSlotsHeader)
         containerView.addSubview(loanerContainerView)
         containerView.addSubview(noDateLabel)
@@ -220,15 +221,21 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         
         initCalendar()
         
-        hoursView.snp.makeConstraints { make in
+        hoursScrollView.snp.makeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-28)
             make.left.right.equalToSuperview()
             make.height.equalTo(VLButton.secondaryHeight)
         }
         
+        hoursView.snp.makeConstraints { make in
+            make.edges.equalTo(hoursScrollView).inset(UIEdgeInsets.zero)
+            make.width.equalTo(hoursScrollView)
+            make.height.equalTo(VLButton.secondaryHeight)
+        }
+        
         timeSlotsHeader.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.bottom.equalTo(hoursView.snp.top).offset(-5)
+            make.bottom.equalTo(hoursScrollView.snp.top).offset(-5)
             make.height.equalTo(20)
         }
         
@@ -544,10 +551,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         currentSlots = slots
         
         for (index, slot) in slots.enumerated() {
-            // limit to 6 timeslots
-            if index > 5 {
-                break
-            }
+            
             let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true), eventName: AnalyticsConstants.eventClickTimeslot, screenName: screenName)
             slotButton.setActionBlock { [weak self] in
                 self?.slotClicked(viewIndex: index, slot: slot)
@@ -556,31 +560,58 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             slotViews.append(slotButton)
             hoursView.addSubview(slotButton)
         }
+
+        let rows: Int = Int(CGFloat(CGFloat(slots.count)/CGFloat(3.0)).rounded(.up))
         
-        hoursViewHeight = slots.count > 3 ? (VLButton.secondaryHeight * 2) + 10 : VLButton.secondaryHeight
+        hoursViewHeight = (VLButton.secondaryHeight * rows) + 10 * rows
+        let scrollViewH = rows > DateTimeViewController.maxHourRows ? (VLButton.secondaryHeight * DateTimeViewController.maxHourRows) + 10 * DateTimeViewController.maxHourRows : hoursViewHeight
         
-        hoursView.snp.remakeConstraints { make in
+        hoursScrollView.snp.remakeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-20)
             make.width.centerX.equalToSuperview()
+            make.height.equalTo(scrollViewH)
+        }
+        
+        hoursView.snp.updateConstraints { make in
             make.height.equalTo(hoursViewHeight)
         }
         
+        hoursView.sizeToFit()
+
         var prevView: UIView? = nil
         for (index, view) in slotViews.enumerated() {
             
-            if index == 3 {
+            if index > 0 && index % 3 == 0 {
                 prevView = nil
+                var top = (VLButton.secondaryHeight + 10)
+                if index > 3 {
+                    top *= index / 3
+                }
+                
+                view.snp.makeConstraints { make in
+                    make.top.equalTo(top)
+                    make.left.equalTo(prevView == nil ? hoursView.snp.left : prevView!.snp.right).offset(prevView == nil ? 0 : 10)
+                    make.height.equalTo(VLButton.secondaryHeight)
+                    make.width.equalToSuperview().dividedBy(3).offset(-22/3)
+                }
+            } else {
+                view.snp.makeConstraints { make in
+                    make.top.equalTo(prevView == nil ? hoursView.snp.top : prevView!.snp.top)
+                    make.left.equalTo(prevView == nil ? hoursView.snp.left : prevView!.snp.right).offset(prevView == nil ? 0 : 10)
+                    make.height.equalTo(VLButton.secondaryHeight)
+                    make.width.equalToSuperview().dividedBy(3).offset(-22/3)
+                }
             }
-            
-            view.snp.makeConstraints { make in
-                make.top.equalTo(index <= 2 ? hoursView.snp.top : (VLButton.secondaryHeight + 10))
-                make.left.equalTo(prevView == nil ? hoursView.snp.left : prevView!.snp.right).offset(prevView == nil ? 0 : 10)
-                make.height.equalTo(VLButton.secondaryHeight)
-                make.width.equalToSuperview().dividedBy(3).offset(-22/3)
-            }
-            
             prevView = view
         }
+        
+        hoursView.snp.updateConstraints { make in
+            make.height.equalTo(hoursViewHeight)
+        }
+        
+        hoursView.sizeToFit()
+        
+        hoursScrollView.contentSize = CGSize(width: hoursScrollView.contentSize.width, height: CGFloat(hoursViewHeight))
         
         if let delegate = delegate {
             delegate.onSizeChanged()

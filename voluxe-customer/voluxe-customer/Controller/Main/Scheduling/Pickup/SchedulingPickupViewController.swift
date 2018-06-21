@@ -95,6 +95,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     // timeslots already selected, need to invalidate them
                     if preselectedDealership == nil || preselectedDealership!.id != dealership.id {
                         self.onDateTimeSelected(timeSlot: nil)
+                        self.scheduledPickupClick()
                     }
                     self.showConfirmButtonIfNeeded()
                 }
@@ -139,13 +140,21 @@ class SchedulingPickupViewController: SchedulingViewController {
                     self.dealershipView.descLeftLabel.text = dealership.name
                     
                     if self.pickupScheduleState.rawValue < SchedulePickupState.dealership.rawValue {
-                        self.pickupScheduleState = .dealership
+                        if let dealerships = self.dealerships, dealerships.count > 1 {
+                            self.pickupScheduleState = .location
+                        } else {
+                            self.pickupScheduleState = .dealership
+                        }
                         openNext = true
                     }
                     self.dealershipView.animateAlpha(show: true)
                     if openNext {
-                        // show loaner
-                        self.loanerClick()
+                        if self.pickupScheduleState == .location {
+                            self.dealershipClick()
+                        } else {
+                            // show loaner
+                            self.loanerClick()
+                        }
                     }
                     
                 } else {

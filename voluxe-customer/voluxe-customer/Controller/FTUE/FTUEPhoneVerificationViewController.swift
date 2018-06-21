@@ -219,7 +219,11 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
-        _ = checkTextFieldsValidity()
+        let enabled  = checkTextFieldsValidity()
+        if let text = textField.text, text.count == codeLength, enabled {
+            UserManager.sharedInstance.signupCustomer.verificationCode = codeTextField.textField.text
+            goToNext()
+        }
     }
     
     //MARK: UITextFieldDelegate
@@ -271,7 +275,11 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 }.onFailure { error in
                     VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiVerifyPhoneFail, screenName: self.screenName, error: error)
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4012.rawValue {
+                        self.showOkDialog(title: .Error, message: .WrongVerificationCode, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    } else {
+                        self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    }
                     self.isLoading = false
             }
         }
