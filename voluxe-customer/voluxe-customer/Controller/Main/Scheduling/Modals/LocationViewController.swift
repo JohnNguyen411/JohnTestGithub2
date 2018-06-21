@@ -108,11 +108,15 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                     }
                 }
                 if addressesCount > 0 && preselectedIndex < 0 {
-                    selectIndex(selectedIndex: selectedIndex)
+                    // select the last added location
+                    preselectedIndex = addressesCount - 1
                 }
             }
             if preselectedIndex >= 0 {
                 selectIndex(selectedIndex: preselectedIndex)
+                DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                    self.tableView.scrollToRow(at: IndexPath(row: self.preselectedIndex, section: 0), at: .bottom, animated: true)
+                })
             }
         }
         

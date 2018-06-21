@@ -162,6 +162,8 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                     VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetDealershipTimeslotsSuccess, screenName: self.screenName)
                     if let realm = self.realm {
                         try? realm.write {
+                            let objects = realm.objects(DealershipTimeSlot.self).filter("dealershipId == \(dealership.id)")
+                            realm.delete(objects)
                             realm.add(slots, update: true)
                         }
                     }
@@ -563,17 +565,18 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
 
         let rows: Int = Int(CGFloat(CGFloat(slots.count)/CGFloat(3.0)).rounded(.up))
         
-        hoursViewHeight = (VLButton.secondaryHeight * rows) + 10 * rows
-        let scrollViewH = rows > DateTimeViewController.maxHourRows ? (VLButton.secondaryHeight * DateTimeViewController.maxHourRows) + 10 * DateTimeViewController.maxHourRows : hoursViewHeight
+        let contentViewHeight = (VLButton.secondaryHeight * rows) + 10 * rows
+        
+        hoursViewHeight = rows > DateTimeViewController.maxHourRows ? (VLButton.secondaryHeight * DateTimeViewController.maxHourRows) + 10 * DateTimeViewController.maxHourRows : contentViewHeight
         
         hoursScrollView.snp.remakeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-20)
             make.width.centerX.equalToSuperview()
-            make.height.equalTo(scrollViewH)
+            make.height.equalTo(hoursViewHeight)
         }
         
         hoursView.snp.updateConstraints { make in
-            make.height.equalTo(hoursViewHeight)
+            make.height.equalTo(contentViewHeight)
         }
         
         hoursView.sizeToFit()
@@ -606,12 +609,12 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         }
         
         hoursView.snp.updateConstraints { make in
-            make.height.equalTo(hoursViewHeight)
+            make.height.equalTo(contentViewHeight)
         }
         
         hoursView.sizeToFit()
         
-        hoursScrollView.contentSize = CGSize(width: hoursScrollView.contentSize.width, height: CGFloat(hoursViewHeight))
+        hoursScrollView.contentSize = CGSize(width: hoursScrollView.contentSize.width, height: CGFloat(contentViewHeight))
         
         if let delegate = delegate {
             delegate.onSizeChanged()
