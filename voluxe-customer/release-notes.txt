@@ -1,3 +1,9 @@
+v1.0(54):
+Autosubmit code after 4 char for phone verification
+Automatically show Date/Time modal picker when changing dealership on Pickup
+Show Dealership modal when more than 1 dealership available
+Show all timeslot on Date/Time picker in a ScrollView
+
 v1.0(53):
 Misc bugfixes and improvments
 New Notification permission Modal
