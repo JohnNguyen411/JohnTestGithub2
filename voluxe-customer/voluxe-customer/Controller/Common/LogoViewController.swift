@@ -17,17 +17,18 @@ class LogoViewController: BaseViewController {
         return imageView
     }()
 
-    private let shinyViewAlpha = CGFloat(1)
+    // temporarily disabling shiny logo
+    // https://github.com/volvo-cars/ios/issues/263
+//    private let shinyViewAlpha = CGFloat(1)
+//    let shinyView: ShinyView = {
+//        let view = VLShinyView(frame: CGRect.zero)
+//        view.axis = .all
+//        view.colors = VLShinyView.luxeColors
+//        view.scale = 3
+//        view.setMask(image: UIImage(named: "luxeByVolvo"))
+//        return view
+//    }()
 
-    let shinyView: ShinyView = {
-        let view = VLShinyView(frame: CGRect.zero)
-        view.axis = .all
-        view.colors = VLShinyView.luxeColors
-        view.scale = 3
-        view.setMask(image: UIImage(named: "luxeByVolvo"))
-        return view
-    }()
-    
     override func setupViews() {
         super.setupViews()
         self.view.addSubview(logo)
@@ -52,33 +53,37 @@ class LogoViewController: BaseViewController {
             }
         }
 
-        self.view.addSubview(self.shinyView)
-        self.shinyView.snp.makeConstraints {
-            (make) -> Void in
-            make.edges.equalTo(logo)
-        }
+        // temporarily disabling shiny logo
+        // https://github.com/volvo-cars/ios/issues/263
+//        self.view.addSubview(self.shinyView)
+//        self.shinyView.snp.makeConstraints {
+//            (make) -> Void in
+//            make.edges.equalTo(logo)
+//        }
     }
 
+    // temporarily disabling shiny logo
+    // https://github.com/volvo-cars/ios/issues/263
     // Autolayout will not adjust manually added layers,
     // and since the shiny view has a layer mask, this is
     // required to get it to be sized correctly.
-    override func viewDidLayoutSubviews() {
-        self.shinyView.layer.mask?.frame = self.shinyView.layer.bounds
-        self.shinyView.startUpdates()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.shinyView.alpha = 0
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        UIView.animate(withDuration: 1) { self.shinyView.alpha = self.shinyViewAlpha }
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        self.shinyView.stopUpdates()
-    }
+//    override func viewDidLayoutSubviews() {
+//        self.shinyView.layer.mask?.frame = self.shinyView.layer.bounds
+//        self.shinyView.startUpdates()
+//    }
+//
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//        self.shinyView.alpha = 0
+//    }
+//
+//    override func viewDidAppear(_ animated: Bool) {
+//        super.viewDidAppear(animated)
+//        UIView.animate(withDuration: 1) { self.shinyView.alpha = self.shinyViewAlpha }
+//    }
+//
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        self.shinyView.stopUpdates()
+//    }
 }
