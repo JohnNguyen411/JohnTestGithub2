@@ -97,6 +97,8 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
             selectedLocation = RequestedServiceManager.sharedInstance.getDropoffLocation()
         }
         realm = try? Realm()
+        var recentlySelectedAddress: CustomerAddress? = nil
+        var recentlySelectedAddressIndex: Int = -1
         if let realm = self.realm, let user = user {
             addresses = realm.objects(CustomerAddress.self).filter("volvoCustomerId = %@", user.email ?? "")
             if let addresses = addresses {
@@ -105,11 +107,23 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                     self.onLocationAdded()
                     if let selectedLocation = selectedLocation, selectedLocation.id == address.location?.id {
                         preselectedIndex = index
+                    } else if recentlySelectedAddress == nil {
+                        recentlySelectedAddress = address
+                        recentlySelectedAddressIndex = index
+                    } else if let prevAddress = recentlySelectedAddress, let prevAddressUpdatedAt = prevAddress.updatedAt, let currentAddressUpdatedAt = address.updatedAt {
+                        if prevAddressUpdatedAt.isEarlier(than: currentAddressUpdatedAt) {
+                            recentlySelectedAddress = address
+                            recentlySelectedAddressIndex = index
+                        }
                     }
                 }
                 if addressesCount > 0 && preselectedIndex < 0 {
                     // select the last added location
-                    preselectedIndex = addressesCount - 1
+                    if recentlySelectedAddressIndex > -1 {
+                        preselectedIndex = recentlySelectedAddressIndex
+                    } else {
+                        preselectedIndex = addressesCount - 1
+                    }
                 }
             }
             if preselectedIndex >= 0 {
@@ -306,6 +320,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
 
                 customerAddress.location = Location(name: addressString, latitude: nil, longitude: nil, location: currentLocationInfo.coordinate)
                 customerAddress.createdAt = Date()
+                customerAddress.updatedAt = Date()
                 customerAddress.volvoCustomerId = user!.email
                 
                 if let realm = self.realm {
@@ -326,6 +341,14 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                 pickupLocationDelegate.onLocationSelected(customerAddress: customerAddress)
             } else {
                 if let addresses = addresses, addresses.count > selectedIndex {
+                    if let realm = self.realm {
+                        let address = addresses[selectedIndex]
+                        try? realm.write {
+                            address.updatedAt = Date()
+                            realm.add(address, update: true)
+                        }
+                    }
+                    
                     pickupLocationDelegate.onLocationSelected(customerAddress: addresses[selectedIndex])
                 }
             }
@@ -406,6 +429,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                 let customerAddress = CustomerAddress(id: selectedLocation.attributedFullText.string)
                 customerAddress.location = Location(name: selectedLocation.attributedFullText.string, latitude: nil, longitude: nil, location: place.coordinate)
                 customerAddress.createdAt = Date()
+                customerAddress.updatedAt = Date()
                 customerAddress.volvoCustomerId = self.user!.email
                 
                 if let realm = self.realm {

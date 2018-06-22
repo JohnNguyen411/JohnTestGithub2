@@ -119,6 +119,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         let customerAddress = CustomerAddress(id: location?.address)
         customerAddress.location = location
         customerAddress.createdAt = Date()
+        customerAddress.updatedAt = Date()
         customerAddress.volvoCustomerId = user!.email
         
         if let realm = self.realm {
