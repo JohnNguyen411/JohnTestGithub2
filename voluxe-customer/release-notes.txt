@@ -1,3 +1,6 @@
+v1.0(56):
+AutoSelect last selected location
+
 v1.0(54):
 Autosubmit code after 4 char for phone verification
 Automatically show Date/Time modal picker when changing dealership on Pickup
