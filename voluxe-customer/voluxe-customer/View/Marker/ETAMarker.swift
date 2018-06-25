@@ -33,12 +33,12 @@ class ETAMarker: UIView {
 
     let shinyView: VLShinyView = {
         let view = VLShinyView(frame: CGRect.zero)
-        view.alpha = 0.2
+        view.alpha = 0.15
         view.axis = .all
         view.clipsToBounds = true
         view.colors = VLShinyView.highlightColors
         view.scale = 3
-        view.setMask(image: UIImage(named: "markerDot"))
+        view.setMask(image: UIImage(named: "markerDot-mask"))
         return view
     }()
     

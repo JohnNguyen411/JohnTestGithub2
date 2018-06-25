@@ -19,6 +19,7 @@ import UIKit
 class VLShinyView: ShinyView {
 
     private var updating = false
+    private let gyro = GyroManager()
 
     // Tweaked implementation that inverts the direction of the
     // vertical gradient so that it matches how the lights are
@@ -35,7 +36,7 @@ class VLShinyView: ShinyView {
         self.updating = true
 
         sceneView.image = GradientSnapshotter.snapshot(frame: self.bounds, colors: colors, locations: locations, scale: scale)
-        Gyro.observe {
+        self.gyro.observe {
             [weak self] roll, pitch, yaw in
             guard let `self` = self else { return }
 
@@ -50,8 +51,10 @@ class VLShinyView: ShinyView {
         }
     }
 
+    /// Completely overrides the ShinyView implementation to manage
+    /// the updating flag and gyro object.
     override func stopUpdates() {
-        super.stopUpdates()
+        self.gyro.stopDeviceMotionUpdates()
         self.updating = false
     }
 
