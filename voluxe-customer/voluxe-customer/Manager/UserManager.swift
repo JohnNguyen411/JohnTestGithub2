@@ -26,10 +26,6 @@ final class UserManager {
     }
     
     public func logout() {
-        // unregister device for Push Notif
-        if let customerId = self.customerId() {
-            _ = CustomerAPI().registerDevice(customerId: customerId, deviceToken: "")
-        }
         // logout from API
         _ = CustomerAPI().logout()
         KeychainManager.sharedInstance.saveAccessToken(token: nil, customerId: nil)

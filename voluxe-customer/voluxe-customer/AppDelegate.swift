@@ -365,8 +365,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void)
     {
-        BookingSyncManager.sharedInstance.syncBookings() // force sync now
-        completionHandler()
+        if UserManager.sharedInstance.isLoggedIn() {
+            BookingSyncManager.sharedInstance.syncBookings() // force sync now
+            completionHandler()
+        }
     }
 
     // This is called when a message is received in the foreground
@@ -375,8 +377,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
     {
-        BookingSyncManager.sharedInstance.syncBookings() // force sync now
-        completionHandler([.alert, .badge, .sound]) // show foreground notifications
+        if UserManager.sharedInstance.isLoggedIn() {
+            BookingSyncManager.sharedInstance.syncBookings() // force sync now
+            completionHandler([.alert, .badge, .sound]) // show foreground notifications
+        }
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -390,14 +394,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        if let customerId = UserManager.sharedInstance.customerId() {
-            // unregister device
-            CustomerAPI().registerDevice(customerId: customerId, deviceToken: "").onSuccess { result in
-                }.onFailure { error in
-            }
-        }
-    }
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {}
     
    
     func registerForPushNotificationsIfGranted() {
