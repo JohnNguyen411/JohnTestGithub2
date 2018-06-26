@@ -37,6 +37,9 @@ class MapViewController: UIViewController {
         driverMarker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
         
         flagMarker.iconView = etaMarker
+        flagMarker.tracksViewChanges = false
+        
+        driverMarker.tracksViewChanges = false
         driverMarker.icon = UIImage(named: "marker_car")
         
         super.init(nibName: nil, bundle: nil)
@@ -55,9 +58,11 @@ class MapViewController: UIViewController {
     }
     
     func updateRequestLocation(location: CLLocationCoordinate2D) {
+        flagMarker.tracksViewChanges = true
         flagMarker.map = mapView
         flagMarker.position = location
         moveCamera()
+        flagMarker.tracksViewChanges = false
     }
     
     // refreshTime is the current time between 2 refresh depending on the state of reservation and how close is the driver from origin or destination
@@ -133,12 +138,15 @@ class MapViewController: UIViewController {
     }
     
     func updateETA(eta: GMTextValueObject?) {
+        flagMarker.tracksViewChanges = true
         etaMarker.setETA(eta: eta)
+        flagMarker.tracksViewChanges = false
     }
     
     func updateServiceState(state: ServiceState) {
         if state == .arrivedForPickup {
             etaMarker.hideEta()
+            flagMarker.tracksViewChanges = false
         }
     }
     
