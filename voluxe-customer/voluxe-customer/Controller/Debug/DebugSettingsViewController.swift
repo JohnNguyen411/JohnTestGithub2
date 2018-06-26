@@ -18,6 +18,7 @@ class DebugSettingsViewController: DebugTableViewController {
         self.navigationItem.title = "Debug"
         self.settings = [self.applicationSettings(),
                          self.userSettings(),
+                         self.bookingsSettings(),
                          self.alamoFireSettings(),
                          self.firebaseSettings(),
                          self.fontTestingSettings()]
@@ -63,32 +64,34 @@ class DebugSettingsViewController: DebugTableViewController {
                                              valueClosure:
             {
                 cell in
-                let text = "\(UserManager.sharedInstance.getVehicles()?.count ?? 0)"
-                cell.detailTextLabel?.text = text
-        },
-                                             actionClosure: nil)]
-
-        settings += [DebugTableViewCellModel(title: "Active Bookings",
-                                             cellReuseIdentifier: DebugValueTableViewCell.className,
-                                             valueClosure:
-            {
-                cell in
-                let text = "\(UserManager.sharedInstance.getActiveBookings().count)"
-                cell.detailTextLabel?.text = text
-            },
-                                             actionClosure: nil)]
-
-        settings += [DebugTableViewCellModel(title: "Total Bookings",
-                                             cellReuseIdentifier: DebugValueTableViewCell.className,
-                                             valueClosure:
-            {
-                cell in
-                let text = "\(UserManager.sharedInstance.getActiveBookings().count)"
+                let vehicles = UserManager.sharedInstance.getVehicles()
+                let ids = vehicles?.compactMap { "\($0.id)" }.joined(separator: ", ") ?? "no ids"
+                let text = "\(vehicles?.count ?? 0) (\(ids))"
                 cell.detailTextLabel?.text = text
         },
                                              actionClosure: nil)]
 
         return ("User", settings)
+    }
+
+    private func bookingsSettings() -> (String, [DebugTableViewCellModel]) {
+
+        var settings: [DebugTableViewCellModel] = []
+
+        let bookings = UserManager.sharedInstance.getActiveBookings()
+        for booking in bookings {
+            let title = "\(booking.id)"
+            settings += [DebugTableViewCellModel(title: title,
+                                                 cellReuseIdentifier: DebugValueTableViewCell.className,
+                                                 valueClosure:
+                {
+                    cell in
+                    cell.detailTextLabel?.text = "\(booking.state) for vehicle \(booking.vehicleId)"
+                },
+                                                 actionClosure: nil)]
+        }
+
+        return ("Bookings", settings)
     }
 
     private func firebaseSettings() -> (String, [DebugTableViewCellModel]) {
