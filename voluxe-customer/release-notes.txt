@@ -1,3 +1,8 @@
+v1.0(60):
+Booking rating and feedback
+API Analytics improvments
+Misc bugfixes and improvments
+
 v1.0(56):
 AutoSelect last selected location
 
