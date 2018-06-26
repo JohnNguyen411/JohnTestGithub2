@@ -240,7 +240,6 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         BookingAPI().createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner, dealershipRepairId: dealershipRepairOrder.id, repairNotes: repairOrder.notes).onSuccess { result in
             if let booking = result?.data?.result {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCreateBookingSuccess, screenName: self.screenName)
                 if let realm = self.realm {
                     try? realm.write {
                         if booking.customerId == -1 {
@@ -255,7 +254,6 @@ class SchedulingPickupViewController: SchedulingViewController {
             }.onFailure { error in
                 self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                 self.confirmButton.isLoading = false
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreateBookingFail, screenName: self.screenName, error: error)
         }
     }
     
@@ -271,7 +269,6 @@ class SchedulingPickupViewController: SchedulingViewController {
             
             BookingAPI().createPickupRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: isDriver).onSuccess { result in
                 if let pickupRequest = result?.data?.result {
-                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCreatePickupSuccess, screenName: self.screenName)
                     self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
                     self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
                 }
@@ -282,8 +279,6 @@ class SchedulingPickupViewController: SchedulingViewController {
                     self.showDialog(title: .Error, message: .GenericError, buttonTitle: String.Retry, completion: {
                         self.createPickupRequest(customerId: customerId, booking: booking)
                     }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-                    
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCreatePickupFail, screenName: self.screenName, error: error)
             }
         }
     }

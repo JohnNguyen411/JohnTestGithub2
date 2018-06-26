@@ -1,0 +1,6 @@
+framework module Pods_voluxe_customerUnitTests {
+  umbrella header "Pods-voluxe-customerUnitTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

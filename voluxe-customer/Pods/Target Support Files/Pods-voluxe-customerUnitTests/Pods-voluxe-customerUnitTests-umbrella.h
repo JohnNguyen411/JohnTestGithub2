@@ -11,6 +11,6 @@
 #endif
 
 
-FOUNDATION_EXPORT double Pods_voluxe_customerTestsVersionNumber;
-FOUNDATION_EXPORT const unsigned char Pods_voluxe_customerTestsVersionString[];
+FOUNDATION_EXPORT double Pods_voluxe_customerUnitTestsVersionNumber;
+FOUNDATION_EXPORT const unsigned char Pods_voluxe_customerUnitTestsVersionString[];
 

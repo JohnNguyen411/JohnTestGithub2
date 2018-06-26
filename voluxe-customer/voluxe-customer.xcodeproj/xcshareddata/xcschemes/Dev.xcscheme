@@ -62,6 +62,16 @@
                ReferencedContainer = "container:voluxe-customer.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6CCD429D1FA013E3000AC6C9"
+               BuildableName = "voluxe-customerUnitTests.xctest"
+               BlueprintName = "voluxe-customerUnitTests"
+               ReferencedContainer = "container:voluxe-customer.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

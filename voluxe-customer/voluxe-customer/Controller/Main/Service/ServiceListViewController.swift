@@ -40,7 +40,6 @@ class ServiceListViewController: BaseViewController {
         showProgressHUD()
         RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
             if let services = services?.data?.result {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetROTypesSuccess, screenName: self.screenName)
                 if let realm = try? Realm() {
                     try? realm.write {
                         realm.add(services, update: true)
@@ -52,7 +51,6 @@ class ServiceListViewController: BaseViewController {
             }
             self.hideProgressHUD()
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetROTypesFail, screenName: self.screenName, error: error)
                 Logger.print(error)
                 self.hideProgressHUD()
         }

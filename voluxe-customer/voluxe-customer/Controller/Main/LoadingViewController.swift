@@ -79,7 +79,6 @@ class LoadingViewController: LogoViewController {
         // Get Customer object with ID
         CustomerAPI().getMe().onSuccess { result in
             if let customer = result?.data?.result {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetMeSuccess, screenName: self.screenName)
                 if let realm = self.realm {
                     try? realm.write {
                         realm.add(customer, update: true)
@@ -96,7 +95,6 @@ class LoadingViewController: LogoViewController {
                 
             }
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, error: error)
 
                 if let apiError = error.apiError {
                     if apiError.getCode() == .E3004 {
@@ -162,7 +160,6 @@ class LoadingViewController: LogoViewController {
         
         CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
             if let cars = result?.data?.result {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetVehiclesSuccess, screenName: self.screenName)
                 if let realm = self.realm {
                     try? realm.write {
                         realm.add(cars, update: true)
@@ -177,7 +174,6 @@ class LoadingViewController: LogoViewController {
                 }
             }            
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetVehiclesFail, screenName: self.screenName, error: error)
                 self.errorRetrievingVehicle(customerId: customerId)
         }
     }
@@ -199,7 +195,6 @@ class LoadingViewController: LogoViewController {
     private func getBookings(customerId: Int) {
         // Get Customer's active Bookings based on ID
         BookingAPI().getBookings(customerId: customerId, active: true).onSuccess { result in
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetBookingsFail, screenName: self.screenName)
             if let bookings = result?.data?.result, bookings.count > 0 {
                 
                 for booking in bookings {
@@ -218,13 +213,11 @@ class LoadingViewController: LogoViewController {
                 self.loadVehiclesViewController(customerId: customerId)
                 
             } else {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetBookingsFail, screenName: self.screenName, errorCode: result?.error?.code)
                 UserManager.sharedInstance.setBookings(bookings: nil)
                 self.loadVehiclesViewController(customerId: customerId)
             }
             
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetBookingsFail, screenName: self.screenName, error: error)
                 UserManager.sharedInstance.setBookings(bookings: nil)
                 self.loadVehiclesViewController(customerId: customerId)
         }

@@ -34,11 +34,10 @@ def import_pods
 end
 
 target 'voluxe-customer' do
-    # Pods for voluxe-customer
     import_pods
 end
 
-target 'voluxe-customerTests' do
+target 'voluxe-customerUnitTests' do
     import_pods
 end
 

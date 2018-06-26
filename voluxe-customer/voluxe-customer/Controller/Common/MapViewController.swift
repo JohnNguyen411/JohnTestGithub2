@@ -77,10 +77,11 @@ class MapViewController: UIViewController {
             weakSelf?.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
             return
         }
-                
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsRoads, screenName: screenName)
+
         GoogleSnappedPointsAPI().getSnappedPoints(from: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: prevLocation), to: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: location)).onSuccess { results in
-            
+
+            analytics.trackCallGoogle(endpoint: .roads)
+
             guard let weakSelf = weakSelf else { return }
             
             if let results = results, let snappedPoints = results.snappedPoints {
@@ -103,6 +104,7 @@ class MapViewController: UIViewController {
                 weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
             }
             }.onFailure { error in
+                analytics.trackCallGoogle(endpoint: .roads, error: error)
                 guard let weakSelf = weakSelf else { return }
                 weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
         }

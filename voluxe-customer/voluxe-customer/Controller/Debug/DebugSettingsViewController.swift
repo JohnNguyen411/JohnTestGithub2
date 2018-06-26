@@ -19,9 +19,9 @@ class DebugSettingsViewController: DebugTableViewController {
         self.settings = [self.applicationSettings(),
                          self.userSettings(),
                          self.bookingsSettings(),
-                         self.alamoFireSettings(),
-                         self.firebaseSettings(),
-                         self.fontTestingSettings()]
+                         self.fontTestingSettings(),
+                         self.networkSettings(),
+                         self.analyticsSettings()]
     }
 
     @objc private func close() {
@@ -94,18 +94,33 @@ class DebugSettingsViewController: DebugTableViewController {
         return ("Bookings", settings)
     }
 
-    private func firebaseSettings() -> (String, [DebugTableViewCellModel]) {
+    private func analyticsSettings() -> (String, [DebugTableViewCellModel]) {
 
         var settings: [DebugTableViewCellModel] = []
 
-        settings += [DebugTableViewCellModel(title: "Disable",
+        settings += [DebugTableViewCellModel(title: "Taxonomy",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                [unowned self] _ in
+                let controller = TaxonomyTableViewController()
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Disable Firebase",
                                              cellReuseIdentifier: DebugSubtitleTableViewCell.className,
                                              valueClosure:
             {
                 cell in
                 cell.accessoryType = (UserDefaults.standard.disableFirebase ? .checkmark : .none)
                 cell.detailTextLabel?.text = "Requires relaunch to take effect"
-        },
+            },
                                              actionClosure:
             {
                 _ in
@@ -113,10 +128,10 @@ class DebugSettingsViewController: DebugTableViewController {
             }
         )]
 
-        return ("Firebase", settings)
+        return ("Analytics", settings)
     }
 
-    private func alamoFireSettings() -> (String, [DebugTableViewCellModel]) {
+    private func networkSettings() -> (String, [DebugTableViewCellModel]) {
 
         var settings: [DebugTableViewCellModel] = []
 
@@ -141,7 +156,7 @@ class DebugSettingsViewController: DebugTableViewController {
             }
         )]
 
-        return ("AlamoFire", settings)
+        return ("Network", settings)
     }
     
     private func fontTestingSettings() -> (String, [DebugTableViewCellModel]) {

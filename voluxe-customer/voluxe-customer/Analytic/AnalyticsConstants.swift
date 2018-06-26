@@ -9,8 +9,7 @@
 import Foundation
 
 class AnalyticsConstants {
-    
-    
+
     // User Properties
     static let userPropertiesDeviceId = "device_id"
     static let userPropertiesCustomerId = "customer_id"
@@ -92,61 +91,6 @@ class AnalyticsConstants {
     // Success Result (ie: Address deleted, Address Added, Password changed, etc)
     static let eventSettingsAccountAddressDeleted = "settings_account_address_deleted" // pass index of select row in params
     static let eventSettingsVehicleDeleted = "settings_vehicle_deleted" // pass index of select row in params
-
-    // API
-    static let eventApiLoginSuccess = "api_login_success"
-    static let eventApiLoginFail = "api_login_fail"
-    static let eventApiGetMeSuccess = "api_me_success"
-    static let eventApiGetMeFail = "api_me_fail"
-    static let eventApiSignupSuccess = "api_signup_success"
-    static let eventApiSignupFail = "api_signup_fail"
-    static let eventApiConfirmSignupSuccess = "api_confirm_signup_success"
-    static let eventApiConfirmSignupFail = "api_confirm_signup_fail"
-    static let eventApiVerifyPhoneSuccess = "api_verify_phone_success"
-    static let eventApiVerifyPhoneFail = "api_verify_phone_fail"
-    static let eventApiUpdatePhoneNumberSuccess = "api_update_phone_success"
-    static let eventApiUpdatePhoneNumberFail = "api_update_phone_fail"
-    static let eventApiPasswordResetCodeRequestSuccess = "api_password_reset_code_request_success"
-    static let eventApiPasswordResetCodeRequestFail = "api_password_reset_code_request_fail"
-    static let eventApiPasswordResetConfirmSuccess = "api_password_reset_confirm_success"
-    static let eventApiPasswordResetConfirmFail = "api_password_reset_confirm_fail"
-    static let eventApiPasswordChangeSuccess = "api_password_change_success"
-    static let eventApiPasswordChangeFail = "api_password_change_fail"
-    static let eventApiAddVehicleSuccess = "api_add_vehicle_success"
-    static let eventApiAddVehicleFail = "api_add_vehicle_fail"
-    static let eventApiGetVehiclesSuccess = "api_get_vehicles_success"
-    static let eventApiGetVehiclesFail = "api_get_vehicles_fail"
-    static let eventApiContactDriverSuccess = "api_contact_driver_success"
-    static let eventApiContactDriverFail = "api_contact_driver_fail"
-    static let eventApiGetBookingsSuccess = "api_get_bookings_success"
-    static let eventApiGetBookingsFail = "api_get_bookings_fail"
-    static let eventApiGetDealershipsSuccess = "api_get_dealerships_success"
-    static let eventApiGetDealershipsFail = "api_get_dealerships_fail"
-    static let eventApiGetDealershipROSuccess = "api_get_dealership_ro_success"
-    static let eventApiGetDealershipROFail = "api_get_dealership_ro_fail"
-    static let eventApiCreateDropoffSuccess = "api_create_dropoff_success"
-    static let eventApiCreateDropoffFail = "api_create_dropoff_fail"
-    static let eventApiGetDealershipTimeslotsSuccess = "api_get_dealership_timeslots_success"
-    static let eventApiGetDealershipTimeslotsFail = "api_get_dealership_timeslots_fail"
-    static let eventApiCreateBookingSuccess = "api_create_booking_success"
-    static let eventApiCreateBookingFail = "api_create_booking_fail"
-    static let eventApiCreateROSuccess = "api_create_ro_success"
-    static let eventApiCreateROFail = "api_create_ro_fail"
-    static let eventApiCreatePickupSuccess = "api_create_pickup_success"
-    static let eventApiCreatePickupFail = "api_create_pickup_fail"
-    static let eventApiCancelPickupSuccess = "api_cancel_pickup_success"
-    static let eventApiCancelPickupFail = "api_cancel_pickup_fail"
-    static let eventApiCancelDropoffSuccess = "api_cancel_dropoff_success"
-    static let eventApiCancelDropoffFail = "api_cancel_dropoff_fail"
-    static let eventApiGetROTypesSuccess = "api_get_ro_types_success"
-    static let eventApiGetROTypesFail = "api_get_ro_types_fail"
-    static let eventApiDeleteVehicleSuccess = "api_delete_vehicle_success"
-    static let eventApiDeleteVehicleFail = "api_delete_vehicle_fail"
-    
-    // Google Maps
-    static let eventGmapsRequest = "gmaps_api_request"
-    static let eventGmapsDistanceAPIFail = "gmaps_distance_api_fail"
-    static let eventGmapsDistanceAPISuccess = "gmaps_distance_api_success"
     
     // Branch
     static let eventDeeplinkSignup = "deeplink_signup"
@@ -156,8 +100,6 @@ class AnalyticsConstants {
     static let paramScreenName = "screen_name"
     static let paramDialogName = "dialog_name"
     static let paramModalName = "modal_name"
-    static let paramGMapsType = "gmaps_type" // can be: paramNameGmapsPlace or paramNameGmapsGeocode
-    
     static let paramErrorCode = "error_code"
     static let paramStatusCode = "status_code"
 
@@ -225,11 +167,69 @@ class AnalyticsConstants {
 
     static let paramNamePermissionLocationView = "permission_location_view"
     static let paramNamePermissionNotificationView = "permission_notification_view"
+}
 
+// deprecated constants
+@available(*, deprecated)
+extension AnalyticsConstants {
+
+    // Google
+    static let eventGmapsRequest = "gmaps_api_request"
+    static let eventGmapsDistanceAPIFail = "gmaps_distance_api_fail"
+    static let eventGmapsDistanceAPISuccess = "gmaps_distance_api_success"
+    static let paramGMapsType = "gmaps_type" // can be: paramNameGmapsPlace or paramNameGmapsGeocode
     static let paramNameGmapsPlace = "google_place_api"
     static let paramNameGmapsGeocode = "google_geocode_api"
     static let paramNameGmapsRoads = "google_roads_api"
     static let paramNameGmapsDistance = "google_distance_api"
 
-
+    // API
+    static let eventApiLoginSuccess = "api_login_success"
+    static let eventApiLoginFail = "api_login_fail"
+    static let eventApiGetMeSuccess = "api_me_success"
+    static let eventApiGetMeFail = "api_me_fail"
+    static let eventApiSignupSuccess = "api_signup_success"
+    static let eventApiSignupFail = "api_signup_fail"
+    static let eventApiConfirmSignupSuccess = "api_confirm_signup_success"
+    static let eventApiConfirmSignupFail = "api_confirm_signup_fail"
+    static let eventApiVerifyPhoneSuccess = "api_verify_phone_success"
+    static let eventApiVerifyPhoneFail = "api_verify_phone_fail"
+    static let eventApiUpdatePhoneNumberSuccess = "api_update_phone_success"
+    static let eventApiUpdatePhoneNumberFail = "api_update_phone_fail"
+    static let eventApiPasswordResetCodeRequestSuccess = "api_password_reset_code_request_success"
+    static let eventApiPasswordResetCodeRequestFail = "api_password_reset_code_request_fail"
+    static let eventApiPasswordResetConfirmSuccess = "api_password_reset_confirm_success"
+    static let eventApiPasswordResetConfirmFail = "api_password_reset_confirm_fail"
+    static let eventApiPasswordChangeSuccess = "api_password_change_success"
+    static let eventApiPasswordChangeFail = "api_password_change_fail"
+    static let eventApiAddVehicleSuccess = "api_add_vehicle_success"
+    static let eventApiAddVehicleFail = "api_add_vehicle_fail"
+    static let eventApiGetVehiclesSuccess = "api_get_vehicles_success"
+    static let eventApiGetVehiclesFail = "api_get_vehicles_fail"
+    static let eventApiContactDriverSuccess = "api_contact_driver_success"
+    static let eventApiContactDriverFail = "api_contact_driver_fail"
+    static let eventApiGetBookingsSuccess = "api_get_bookings_success"
+    static let eventApiGetBookingsFail = "api_get_bookings_fail"
+    static let eventApiGetDealershipsSuccess = "api_get_dealerships_success"
+    static let eventApiGetDealershipsFail = "api_get_dealerships_fail"
+    static let eventApiGetDealershipROSuccess = "api_get_dealership_ro_success"
+    static let eventApiGetDealershipROFail = "api_get_dealership_ro_fail"
+    static let eventApiCreateDropoffSuccess = "api_create_dropoff_success"
+    static let eventApiCreateDropoffFail = "api_create_dropoff_fail"
+    static let eventApiGetDealershipTimeslotsSuccess = "api_get_dealership_timeslots_success"
+    static let eventApiGetDealershipTimeslotsFail = "api_get_dealership_timeslots_fail"
+    static let eventApiCreateBookingSuccess = "api_create_booking_success"
+    static let eventApiCreateBookingFail = "api_create_booking_fail"
+    static let eventApiCreateROSuccess = "api_create_ro_success"
+    static let eventApiCreateROFail = "api_create_ro_fail"
+    static let eventApiCreatePickupSuccess = "api_create_pickup_success"
+    static let eventApiCreatePickupFail = "api_create_pickup_fail"
+    static let eventApiCancelPickupSuccess = "api_cancel_pickup_success"
+    static let eventApiCancelPickupFail = "api_cancel_pickup_fail"
+    static let eventApiCancelDropoffSuccess = "api_cancel_dropoff_success"
+    static let eventApiCancelDropoffFail = "api_cancel_dropoff_fail"
+    static let eventApiGetROTypesSuccess = "api_get_ro_types_success"
+    static let eventApiGetROTypesFail = "api_get_ro_types_fail"
+    static let eventApiDeleteVehicleSuccess = "api_delete_vehicle_success"
+    static let eventApiDeleteVehicleFail = "api_delete_vehicle_fail"
 }

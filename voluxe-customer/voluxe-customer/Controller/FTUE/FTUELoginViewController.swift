@@ -164,14 +164,12 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         CustomerAPI().login(email: email, password: password).onSuccess { result in
             if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiLoginSuccess, screenName: self.screenName)
-                
+
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
                 UserManager.sharedInstance.tempCustomerId = customerId
                 CustomerAPI().getMe().onSuccess { result in
                     if let customer = result?.data?.result {
-                        VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetMeSuccess, screenName: self.screenName)
 
                         if let realm = self.realm {
                             try? realm.write {
@@ -190,12 +188,10 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
                         }
                     }
                     }.onFailure { error in
-                        VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetMeFail, screenName: self.screenName, error: error)
                         self.onLoginError()
                 }
             }
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiLoginFail, screenName: self.screenName, error: error)
                 self.onLoginError(error: error)
         }
         

@@ -159,7 +159,6 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             
             DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: loaner, from: from, to: to).onSuccess { result in
                 if let slots = result?.data?.result {
-                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetDealershipTimeslotsSuccess, screenName: self.screenName)
                     if let realm = self.realm {
                         try? realm.write {
                             let objects = realm.objects(DealershipTimeSlot.self).filter("dealershipId == \(dealership.id)")
@@ -170,7 +169,6 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                     self.showCalendar()
                 }
                 }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetDealershipTimeslotsFail, screenName: self.screenName, error: error)
                     self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                         self.getTimeSlots()
                     }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)

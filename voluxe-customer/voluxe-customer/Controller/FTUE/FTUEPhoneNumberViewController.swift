@@ -148,11 +148,9 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
                 self.hideProgressHUD()
                 self.isLoading = false
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetCodeRequestSuccess, screenName: self.screenName)
                 self.goToNext()
                 
                 }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiPasswordResetCodeRequestFail, screenName: self.screenName, error: error)
                     self.hideProgressHUD()
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4001.rawValue {
                         self.showOkDialog(title: .Error, message: .PhoneNumberNotInFile, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
@@ -181,10 +179,8 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             CustomerAPI().updatePhoneNumber(customerId: customerId, phoneNumber: phoneNumber).onSuccess { result in
                 self.hideProgressHUD()
                 self.isLoading = false
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberSuccess, screenName: self.screenName)
                 self.goToNext()
                 }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiUpdatePhoneNumberFail, screenName: self.screenName, error: error)
                     self.hideProgressHUD()
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4011.rawValue {
                         self.showOkDialog(title: .Error, message: .UpdatePhoneNumberAlreadyExist, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
@@ -203,12 +199,10 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             CustomerAPI().signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language).onSuccess { result in
                 self.hideProgressHUD()
                 if let _ = result?.data?.result {
-                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiSignupSuccess, screenName: self.screenName)
                     self.goToNext()
                 }
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, error: error)
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             }
         }

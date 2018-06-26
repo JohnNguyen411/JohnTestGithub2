@@ -258,9 +258,12 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         self.bottomButton.isEnabled = false
         weak var weakSelf = self
         if userText.count > 2 {
-            self.locationManager.googlePlacesAutocomplete(address: self.newLocationTextField.text) { (autocompletePredictions, error) in
+            self.locationManager.googlePlacesAutocomplete(address: self.newLocationTextField.text) {
+                autocompletePredictions, error in
+
+                analytics.trackCallGoogle(endpoint: .places, error: error)
+
                 guard let weakSelf = weakSelf else { return }
-                
                 if weakSelf.isBeingDismissed { return }
                 
                 if let _ = error {
@@ -275,7 +278,6 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                     weakSelf.newLocationTextField.filteredStrings(formattedAddress)
                 }
             }
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsPlace, screenName: screenName)
         } else {
             self.newLocationTextField.filteredStrings([])
         }
@@ -286,6 +288,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         weak var weakSelf = self
         
         locationManager.reverseGeocodeLocation(latitude: latitude, longitude: longitude) { (reverseGeocodeResponse, error) in
+            analytics.trackCallGoogle(endpoint: .geocode, error: error)
             if let weakSelf = weakSelf, let response = reverseGeocodeResponse, let address = response.firstResult() {
                 
                 weakSelf.currentLocationAddress = address
@@ -305,7 +308,6 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                 }
             }
         }
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsGeocode, screenName: screenName)
     }
     
     override func onButtonClick() {
@@ -422,6 +424,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         MBProgressHUD.showAdded(to: superview, animated: true)
         
         self.locationManager.getPlace(placeId: placeId) { (gmsPlace, error) in
+            analytics.trackCallGoogle(endpoint: .places, error: error)
             MBProgressHUD.hide(for: superview, animated: true)
             if let place = gmsPlace {
                 // add location to realm
@@ -450,7 +453,6 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                 self.bottomButton.isEnabled = true
             }
         }
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsPlace, screenName: screenName)
     }
     
     

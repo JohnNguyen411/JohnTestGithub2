@@ -88,6 +88,7 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
             weak var weakSelf = self
 
             self.locationManager.googlePlacesAutocomplete(address: userText) { (autocompletePredictions, error) in
+                analytics.trackCallGoogle(endpoint: .places, error: error)
                 guard let weakSelf = weakSelf else { return }
                 if weakSelf.isBeingDismissed { return }
                 
@@ -104,7 +105,6 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
                     self.newLocationTextField.filteredStrings(formattedAddress)
                 }
             }
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsPlace, screenName: screenName)
         } else {
             self.newLocationTextField.filteredStrings([])
         }
@@ -129,15 +129,13 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
         MBProgressHUD.showAdded(to: superview, animated: true)
         
         self.locationManager.getPlace(placeId: placeId) { (gmsPlace, error) in
+            analytics.trackCallGoogle(endpoint: .places, error: error)
             MBProgressHUD.hide(for: superview, animated: true)
             if let place = gmsPlace {
                 self.selectedLocation = place
                 self.bottomButton.isEnabled = true
             }
         }
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsPlace, screenName: screenName)
-
-        //self.newLocationTextField.textField.resignFirstResponder()
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {

@@ -186,13 +186,11 @@ class ScheduledBookingViewController: SchedulingViewController {
             showProgressHUD()
 
             BookingAPI().cancelDropoffRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff).onSuccess { result in
-                
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCancelDropoffSuccess, screenName: self.screenName)
+
                 self.onDelete()
                 self.hideProgressHUD()
                 
                 }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCancelDropoffFail, screenName: self.screenName, error: error)
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.hideProgressHUD()
             }
@@ -204,11 +202,9 @@ class ScheduledBookingViewController: SchedulingViewController {
             BookingAPI().cancelPickupRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup).onSuccess { result in
                
                 self.onDelete()
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiCancelPickupSuccess, screenName: self.screenName)
                 self.hideProgressHUD()
 
                 }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiCancelPickupFail, screenName: self.screenName, error: error)
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
                     self.hideProgressHUD()
 

@@ -203,11 +203,9 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
                 if let vehicle = response?.data?.result, let photoUrl = vehicle.photoUrl, let photoURL = URL(string: photoUrl) {
                     SDWebImagePrefetcher.shared().prefetchURLs([photoURL])
                 }
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiAddVehicleSuccess, screenName: self.screenName)
                 self.callVehicle(customerId: customerId)
             }.onFailure { error in
                 self.callVehicle(customerId: customerId)
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiAddVehicleFail, screenName: self.screenName, error: error)
             }
             showProgressHUD()
         }

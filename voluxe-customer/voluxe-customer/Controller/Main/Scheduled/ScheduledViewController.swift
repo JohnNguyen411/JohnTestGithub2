@@ -228,23 +228,20 @@ class ScheduledViewController: ChildViewController {
             lastRefresh = Date()
             
             weak var weakSelf = self
-            
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsRequest, paramName: AnalyticsConstants.paramGMapsType, paramValue: AnalyticsConstants.paramNameGmapsDistance, screenName: screenName)
+
             googleDistanceMatrixAPI.getDirection(origin: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: fromLocation), destination: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: toLocation), mode: nil).onSuccess { distanceMatrix in
-                
-                guard let weakSelf = weakSelf else {
-                    return
-                }
-                
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventGmapsDistanceAPISuccess, screenName: weakSelf.screenName)
+
+                analytics.trackCallGoogle(endpoint: .distance)
+
+                guard let weakSelf = weakSelf else { return }
+
                 if let distanceMatrix = distanceMatrix {
                     weakSelf.mapVC.updateETA(eta: distanceMatrix.getEta())
                     weakSelf.timeWindowView.setETA(eta: distanceMatrix.getEta())
                 }
                 }.onFailure { error in
                     Logger.print(error)
-                    guard let weakSelf = weakSelf else { return }
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventGmapsDistanceAPIFail, screenName: weakSelf.screenName)
+                    analytics.trackCallGoogle(endpoint: .distance, error: error)
             }
         }
     }
@@ -281,7 +278,6 @@ class ScheduledViewController: ChildViewController {
         BookingAPI().contactDriver(customerId: customerId, bookingId: booking.id, mode: mode).onSuccess { result in
             if let contactDriver = result?.data?.result {
                 MBProgressHUD.hide(for: self.view, animated: true)
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiContactDriverSuccess, screenName: self.screenName)
                 if mode == "text_only" {
                     // sms
                     let number = "sms:\(contactDriver.textPhoneNumber ?? "")"
@@ -296,7 +292,6 @@ class ScheduledViewController: ChildViewController {
         }.onFailure { error in
             MBProgressHUD.hide(for: self.view, animated: true)
             self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
-            VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiContactDriverFail, screenName: self.screenName, error: error)
         }
     }
     

@@ -94,12 +94,9 @@ class SettingsCarViewController: BaseViewController {
         weak var weakSelf = self
         CustomerAPI().deleteVehicle(customerId: customerId, vehicleId: vehicle.id).onSuccess { result in
             if let customerId = UserManager.sharedInstance.customerId() {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiDeleteVehicleSuccess, screenName: weakSelf?.screenName)
                 weakSelf?.callVehicles(customerId: customerId)
             }
             }.onFailure { error in
-                // error occured
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiDeleteVehicleFail, screenName: weakSelf?.screenName, error: error)
                 weakSelf?.deleteVehicleFailed()
         }
     }
@@ -115,7 +112,6 @@ class SettingsCarViewController: BaseViewController {
         weak var weakSelf = self
         CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
             if let cars = result?.data?.result {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiGetVehiclesSuccess, screenName: self.screenName)
                 if let realm = weakSelf?.realm {
                     try? realm.write {
                         realm.add(cars, update: true)
@@ -133,7 +129,6 @@ class SettingsCarViewController: BaseViewController {
                 }
             }
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiGetVehiclesFail, screenName: weakSelf?.screenName, error: error)
                 weakSelf?.retrieveVehiclesFailed()
         }
     }

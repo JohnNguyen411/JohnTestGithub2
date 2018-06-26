@@ -29,8 +29,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6CCD429D1FA013E3000AC6C9"
-               BuildableName = "voluxe-customerTests.xctest"
-               BlueprintName = "voluxe-customerTests"
+               BuildableName = "voluxe-customerUnitTests.xctest"
+               BlueprintName = "voluxe-customerUnitTests"
                ReferencedContainer = "container:voluxe-customer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -54,7 +54,6 @@
       buildConfiguration = "Mock"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
@@ -62,8 +61,8 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6CCD429D1FA013E3000AC6C9"
-               BuildableName = "voluxe-customerTests.xctest"
-               BlueprintName = "voluxe-customerTests"
+               BuildableName = "voluxe-customerUnitTests.xctest"
+               BlueprintName = "voluxe-customerUnitTests"
                ReferencedContainer = "container:voluxe-customer.xcodeproj">
             </BuildableReference>
          </TestableReference>
@@ -94,7 +93,6 @@
       buildConfiguration = "Mock"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"

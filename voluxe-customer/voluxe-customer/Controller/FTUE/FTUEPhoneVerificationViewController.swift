@@ -194,12 +194,10 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             
             CustomerAPI().signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language).onSuccess { result in
                 if let _ = result?.data?.result {
-                    VLAnalytics.logEventWithName(AnalyticsConstants.eventApiSignupSuccess, screenName: self.screenName)
                 }
                 self.hideProgressHUD()
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, error: error)
                     self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
             }
         }
@@ -268,12 +266,10 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             CustomerAPI().verifyPhoneNumber(customerId: customerId, verificationCode: verificationCode).onSuccess { result in
                 
                 self.hideProgressHUD()
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventApiVerifyPhoneSuccess, screenName: self.screenName)
                 self.loadMainScreen()
                 self.isLoading = false
                 
                 }.onFailure { error in
-                    VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiVerifyPhoneFail, screenName: self.screenName, error: error)
                     self.hideProgressHUD()
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4012.rawValue {
                         self.showOkDialog(title: .Error, message: .WrongVerificationCode, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)

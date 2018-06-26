@@ -270,8 +270,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
 
         CustomerAPI().signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language).onSuccess { result in
             if let customer = result?.data?.result {
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupSuccess, screenName: self.screenName)
-                
+
                 if let realm = self.realm {
                     try? realm.write {
                         realm.deleteAll()
@@ -283,7 +282,6 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 self.goToNext()
             }
             }.onFailure { error in
-                VLAnalytics.logErrorEventWithName(AnalyticsConstants.eventApiSignupFail, screenName: self.screenName, error: error)
                 self.onSignupError(error: error)
         }
     }
