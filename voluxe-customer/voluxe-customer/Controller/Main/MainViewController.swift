@@ -67,8 +67,12 @@ class MainViewController: BaseViewController, ChildViewDelegate {
         var changeView = true
         serviceState = state
         
-       if serviceState == .enRouteForService || serviceState == .service || serviceState == .serviceCompleted || serviceState == .completed {
+        if serviceState == .enRouteForService || serviceState == .service || serviceState == .serviceCompleted || serviceState == .completed {
             
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), serviceState == .completed, booking.bookingFeedbackId > -1 {
+                appDelegate?.loadViewForVehicle(vehicle: vehicle, state: .completed)
+                return
+            }
             if currentViewController != nil && (currentViewController?.isKind(of: ServiceCarViewController.self))! {
                 changeView = false
             } else {

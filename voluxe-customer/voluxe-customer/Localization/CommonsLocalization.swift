@@ -22,6 +22,7 @@ extension String {
     static let Edit = NSLocalizedString("Edit")
     static let New = NSLocalizedString("New")
     static let Update = NSLocalizedString("Update")
+    static let Skip = NSLocalizedString("Skip")
     static let Signout = NSLocalizedString("Signout")
     static let Back = NSLocalizedString("Back")
     static let Cancel = NSLocalizedString("Cancel")

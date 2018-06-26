@@ -157,6 +157,7 @@ class AnalyticsConstants {
     static let paramNameServiceInProgressView = "service_in_progress_view" // service in progress at dealership
     static let paramNameServiceInRouteView = "service_in_route_view" // Driver driving to dealership to service vehicle
     static let paramNameReservationCompletedView = "reservation_completed_view" // Reservation completed
+    static let paramNameBookingFeedbackView = "reservation_feedback_view" // Rating Screen
 
     static let paramNameDeleteAddressDialog = "delete_address_dialog"
     static let paramNameDeleteVehicleDialog = "delete_vehicle_dialog"

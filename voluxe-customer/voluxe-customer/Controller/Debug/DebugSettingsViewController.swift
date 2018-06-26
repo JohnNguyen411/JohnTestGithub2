@@ -65,7 +65,7 @@ class DebugSettingsViewController: DebugTableViewController {
             {
                 cell in
                 let vehicles = UserManager.sharedInstance.getVehicles()
-                let ids = vehicles?.compactMap { "\($0.id)" }.joined(separator: ", ") ?? "no ids"
+                let ids = vehicles?.flatMap { "\($0.id)" }.joined(separator: ", ") ?? "no ids"
                 let text = "\(vehicles?.count ?? 0) (\(ids))"
                 cell.detailTextLabel?.text = text
         },

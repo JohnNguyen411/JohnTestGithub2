@@ -205,8 +205,8 @@ extension CustomerAPI {
         let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
 
         var uuid = ""
-        if let identifierForVendor = UIDevice.current.identifierForVendor?.uuidString {
-            uuid = identifierForVendor
+        if let deviceId = KeychainManager.sharedInstance.deviceId {
+            uuid = deviceId
         }
 
         let params: Parameters = [

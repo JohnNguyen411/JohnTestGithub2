@@ -319,7 +319,7 @@ extension LeftViewController : UITableViewDelegate {
             tableView.deselectRow(at: indexPath, animated: true)
             let vehicle = vehicles[indexPath.row]
 
-            let booking = UserManager.sharedInstance.getFirstBookingForVehicle(vehicle: vehicle)
+            let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle)
             if let booking = booking, booking.isActive() {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.loadViewForVehicle(vehicle: vehicle, state: Booking.getStateForBooking(booking: booking))
@@ -387,7 +387,7 @@ extension LeftViewController : UITableViewDataSource {
             if let showNotif = notificationDict[vehicle.id], showNotif {
                 cell.showNotification(notificationType: .active)
             } else {
-                if let _ = UserManager.sharedInstance.getFirstBookingForVehicle(vehicle: vehicle) {
+                if let _ = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                     cell.showNotification(notificationType: .inactive)
                 } else {
                     cell.showNotification(notificationType: nil)

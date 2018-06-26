@@ -271,5 +271,89 @@ class BookingAPI: NSObject {
     }
     
     
+    /**
+     Skip the Booking Feedback
+     - parameter customerId: Customer's Id
+     - parameter bookingId: The booking ID related to the pickup
+     - parameter feedback_booking_id: The Feedback Booking ID comming from the Booking Object
+     
+     - Returns: A Future EmptyMappableObject, or an AFError if an error occured
+     */
+    func skipBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/feedbacks/\(feedbackBookingId)/skip", method: .put, queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
+            
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value, allowEmptyData: true)
+            
+            if response.error == nil && responseObject.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
+            }
+            
+        }
+        return promise.future
+    }
+    
+    /**
+     Submit the Booking Feedback
+     - parameter customerId: Customer's Id
+     - parameter bookingId: The booking ID related to the pickup
+     - parameter feedbackBookingId: The Feedback Booking ID comming from the Booking Object
+     - parameter rating: The customer Rating from 1 to 10
+     - parameter comment: The customer comment, empty if nil
+     
+     - Returns: A Future EmptyMappableObject, or an AFError if an error occured
+     */
+    func submitBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int, rating: Int, comment: String?) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
+        
+        let params: Parameters = [
+            "rating": rating,
+            "comment": comment ?? ""
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/feedbacks/\(feedbackBookingId)/submit", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
+            
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value, allowEmptyData: true)
+            
+            if response.error == nil && responseObject.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
+            }
+            
+        }
+        return promise.future
+    }
+    
+    
+    /**
+     Get Booking Feedbacks
+     - parameter customerId: Customer's Id
+     - parameter state: The State of the feedback (pending|skipped|submitted)
+     
+     - Returns: A Future ResponseObject containing an Array of BookingFeedback, or an AFError if an error occured
+     */
+    func getBookingFeedbacks(customerId: Int, state: String) -> Future<ResponseObject<MappableDataArray<BookingFeedback>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataArray<BookingFeedback>>?, Errors>()
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/booking-feedbacks?state=\(state)", queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
+            
+            let responseObject = ResponseObject<MappableDataArray<BookingFeedback>>(json: response.result.value, allowEmptyData: false)
+            
+            if response.error == nil && responseObject.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
+            }
+            
+        }
+        return promise.future
+    }
+    
+    
+    
     
 }

@@ -238,7 +238,24 @@ class LoadingViewController: LogoViewController {
     }
     
     private func loadVehiclesViewController(customerId: Int) {
-        appDelegate?.showVehiclesView(animated: true)
-        appDelegate?.registerForPushNotificationsIfGranted()
+        // check BookingFeedbacks if no active reservation is here
+        if UserManager.sharedInstance.getActiveBookings().count == 0 {
+            BookingAPI().getBookingFeedbacks(customerId: customerId, state: "pending").onSuccess { results in
+                if let data = results?.data, let feedbacks = data.result, feedbacks.count > 0 {
+                    // just get the last one
+                    let bookingFeedback = feedbacks[feedbacks.count-1]
+                    self.appDelegate?.loadBookingFeedback(bookingFeedback: bookingFeedback)
+                } else {
+                    self.appDelegate?.showVehiclesView(animated: true)
+                    self.appDelegate?.registerForPushNotificationsIfGranted()
+                }
+                }.onFailure { error in
+                    self.appDelegate?.showVehiclesView(animated: true)
+                    self.appDelegate?.registerForPushNotificationsIfGranted()
+            }
+        } else {
+            self.appDelegate?.showVehiclesView(animated: true)
+            self.appDelegate?.registerForPushNotificationsIfGranted()
+        }
     }
 }

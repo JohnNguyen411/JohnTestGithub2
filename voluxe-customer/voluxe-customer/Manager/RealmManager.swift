@@ -12,7 +12,7 @@ import RealmSwift
 /// RealmManager is use to run Realm Migrations
 class RealmManager {
     
-    private static let dbVersion: UInt64 = 2
+    private static let dbVersion: UInt64 = 3
     
     public static func realmMigration(callback: @escaping (Realm?, Swift.Error?) -> Void) {
         
@@ -28,6 +28,14 @@ class RealmManager {
                     newObject!["availableAssignmentCount"] = 0
                 }
             }
+            
+            if oldSchemaVersion < 3 {
+                migration.enumerateObjects(ofType: Booking.className()) { oldObject, newObject in
+                    newObject!["bookingFeedbackId"] = -1
+                }
+            }
+            
+            
         })
         
         Realm.Configuration.defaultConfiguration = config

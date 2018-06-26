@@ -166,11 +166,32 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func loadViewForVehicle(vehicle: Vehicle, state: ServiceState) {
         if let slideMenu = slideMenuController {
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
-                let uiNavigationController = UINavigationController(rootViewController: MainViewController(vehicle: vehicle, state: state))
+                var vehicleViewController: BaseViewController?
+                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.bookingFeedbackId > -1, state == .completed {
+                    vehicleViewController = BookingRatingViewController(vehicle: vehicle)
+                } else {
+                    vehicleViewController = MainViewController(vehicle: vehicle, state: state)
+                }
+                let uiNavigationController = UINavigationController(rootViewController: vehicleViewController!)
                 styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
                 leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: nil, animated: true)
             }
         }
+    }
+    
+    func loadBookingFeedback(bookingFeedback: BookingFeedback) {
+        showMainView(animated: true)
+        // need to delay to make sure the leftpanel is created already
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
+            
+            if let slideMenu = self.slideMenuController {
+                if let leftVC = slideMenu.leftViewController as? LeftViewController {
+                    let uiNavigationController = UINavigationController(rootViewController: BookingRatingViewController(bookingFeedback: bookingFeedback))
+                    self.styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
+                    leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: nil, animated: true)
+                }
+            }
+        })
     }
     
     func settingsScreen() {
