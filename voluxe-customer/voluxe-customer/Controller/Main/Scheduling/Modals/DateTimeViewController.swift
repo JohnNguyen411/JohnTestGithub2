@@ -171,7 +171,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                 }.onFailure { error in
                     self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                         self.getTimeSlots()
-                    }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
             }
         }
     }

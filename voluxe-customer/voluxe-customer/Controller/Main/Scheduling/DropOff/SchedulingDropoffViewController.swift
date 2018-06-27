@@ -18,7 +18,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     
     init(state: ServiceState, booking: Booking) {
         self.booking = booking
-        super.init(vehicle: booking.vehicle!, state: state, screenName: AnalyticsConstants.paramNameSchedulingOutboundView)
+        super.init(vehicle: booking.vehicle!, state: state, screenNameEnum: .scheduleOutbound)
     }
     
     override func viewDidLoad() {
@@ -240,7 +240,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 
                 self.confirmButton.isLoading = false
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
                     self.confirmButton.isLoading = false
             }
             
@@ -298,7 +298,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 self.hideProgressHUD()
                 self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
-                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
         }
     }
     

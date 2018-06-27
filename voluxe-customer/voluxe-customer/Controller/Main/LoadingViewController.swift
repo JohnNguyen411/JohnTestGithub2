@@ -22,7 +22,7 @@ class LoadingViewController: LogoViewController {
     }()
     
     init() {
-        super.init(screenName: AnalyticsConstants.paramNameLoadingView)
+        super.init(screenNameEnum: .loading)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -107,7 +107,7 @@ class LoadingViewController: LogoViewController {
                         // 500 unknown
                         self.showOkDialog(title: .Error, message: .GenericError, completion: {
                             self.callCustomer(customerId: customerId)
-                        }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                        }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
                         return
                     }
                 }
@@ -151,7 +151,7 @@ class LoadingViewController: LogoViewController {
             
             self.showOkDialog(title: .Error, message: .GenericError, completion: {
                 self.callCustomer(customerId: customerId)
-            }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+            }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
         }
     }
     
@@ -189,7 +189,7 @@ class LoadingViewController: LogoViewController {
         }
         self.showOkDialog(title: .Error, message: .GenericError, completion: {
             self.callVehicles(customerId: customerId)
-        }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+        }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
     }
     
     private func getBookings(customerId: Int) {

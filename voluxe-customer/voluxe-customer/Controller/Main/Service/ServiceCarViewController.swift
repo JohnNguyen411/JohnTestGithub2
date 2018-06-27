@@ -298,7 +298,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             descriptionButton.isHidden = false
             
             if state == .needService {
-                logViewScreen(screenName: AnalyticsConstants.paramNameNeedServiceView)
+                Analytics.trackView(screen: .needService)
                 dealershipPrefetching()
                 if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
                     self.updateLabelText(text: .ScheduleDropDealershipSelfEnabled)

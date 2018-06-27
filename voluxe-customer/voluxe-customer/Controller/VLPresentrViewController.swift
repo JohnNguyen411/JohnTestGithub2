@@ -13,8 +13,14 @@ class VLPresentrViewController: UIViewController {
     
     static let minHeight = 80
     let baseHeight: Int
-    
-    let screenName: String
+
+    // TODO this is temporary until String screenName can be removed
+    let screenNameEnum: AnalyticsEnums.Name.Screen?
+    let _screenName: String?
+    var screenName: String {
+        return self._screenName ?? self.screenNameEnum?.rawValue ?? "no screen name"
+    }
+
     let loadingView = UIView(frame: .zero)
     let activityIndicator = UIActivityIndicatorView(frame: .zero)
     let containerView = UIView(frame: .zero)
@@ -36,9 +42,24 @@ class VLPresentrViewController: UIViewController {
     }()
     
     let bottomButton: VLButton
-    
+
+    init(title: String, buttonTitle: String, screenNameEnum: AnalyticsEnums.Name.Screen) {
+        self.screenNameEnum = screenNameEnum
+        self._screenName = nil
+        self.baseHeight = VLPresentrViewController.minHeight + VLPresentrViewController.safeAreaBottomHeight()
+        bottomButton = VLButton(type: .bluePrimary, title: nil, kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNext, screenName: screenNameEnum.rawValue)
+        super.init(nibName: nil, bundle: nil)
+        setupViews()
+
+        setTitle(title: title.uppercased())
+        setButtonTitle(title: buttonTitle.uppercased(), eventName: AnalyticsConstants.eventClickNext)
+        Analytics.trackView(screen: screenNameEnum)
+    }
+
+    // TODO temporary until String screenName is removed
     init(title: String, buttonTitle: String, screenName: String) {
-        self.screenName = screenName
+        self.screenNameEnum = nil
+        self._screenName = screenName
         self.baseHeight = VLPresentrViewController.minHeight + VLPresentrViewController.safeAreaBottomHeight()
         bottomButton = VLButton(type: .bluePrimary, title: nil, kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNext, screenName: screenName)
         super.init(nibName: nil, bundle: nil)
@@ -46,9 +67,6 @@ class VLPresentrViewController: UIViewController {
         
         setTitle(title: title.uppercased())
         setButtonTitle(title: buttonTitle.uppercased(), eventName: AnalyticsConstants.eventClickNext)
-        
-        // log show event
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventViewModal, parameters: [AnalyticsConstants.paramModalName: screenName])
     }
     
     convenience init(title: String, screenName: String) {

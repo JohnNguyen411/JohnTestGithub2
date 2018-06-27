@@ -154,14 +154,14 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             if apiError.getCode() == .E5001 {
                 self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                     self.loadLandingPage()
-                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
             } else if apiError.getCode() == .E4012 {
                 self.showOkDialog(title: .Error, message: .InvalidVerificationCode, completion: {
                     self.navigationController?.popViewController(animated: true)
-                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
             }
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+            self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
         }
         
     }
@@ -229,7 +229,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         } else if let password = volvoPwdConfirmTextField.textField.text, containsUnauthorizedChars(password: password) {
             inlineError(error: .InvalidCharacter)
             volvoPwdConfirmTextField.setBottomRightActionBlock { [weak self] in
-                self?.showOkDialog(title: .Error, message: .PasswordUnauthorizedChars, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self?.screenName)
+                self?.showOkDialog(title: .Error, message: .PasswordUnauthorizedChars, dialogNameEnum: .error, screenNameEnum: self?.screenNameEnum)
             }
             return
         }
@@ -246,7 +246,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 weakSelf?.showLoading(loading: false)
                 weakSelf?.navigationController?.popToRootViewController(animated: true)
                 }.onFailure { error in
-                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: weakSelf?.screenName ?? nil)
+                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: weakSelf?.screenNameEnum)
                     weakSelf?.showLoading(loading: false)
                 }
             
@@ -265,7 +265,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 
                 }.onFailure { error in
                     weakSelf?.showLoading(loading: false)
-                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: weakSelf?.screenName ?? nil)
+                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: weakSelf?.screenNameEnum)
             }
             return
         }

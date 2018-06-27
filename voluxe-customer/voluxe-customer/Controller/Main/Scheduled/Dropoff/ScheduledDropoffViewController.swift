@@ -15,7 +15,7 @@ import GoogleMaps
 class ScheduledDropoffViewController: ScheduledViewController {
     
     convenience init(vehicle: Vehicle, state: ServiceState) {
-        self.init(vehicle: vehicle, screenName: AnalyticsConstants.paramNameActiveOutboundView)
+        self.init(vehicle: vehicle, screenNameEnum: .activeOutbound)
         stateDidChange(state: state)
     }
     

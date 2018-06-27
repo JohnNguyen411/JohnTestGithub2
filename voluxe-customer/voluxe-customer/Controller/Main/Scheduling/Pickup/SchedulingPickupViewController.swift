@@ -13,7 +13,7 @@ import MBProgressHUD
 class SchedulingPickupViewController: SchedulingViewController {
     
     init(vehicle: Vehicle, state: ServiceState) {
-        super.init(vehicle: vehicle, state: state, screenName: AnalyticsConstants.paramNameSchedulingInboundView)
+        super.init(vehicle: vehicle, state: state, screenNameEnum:.scheduleInbound)
     }
     
     override func viewDidLoad() {
@@ -252,7 +252,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             }
             
             }.onFailure { error in
-                self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
                 self.confirmButton.isLoading = false
         }
     }
@@ -278,7 +278,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     // an error occured while creating the request, try again with same booking
                     self.showDialog(title: .Error, message: .GenericError, buttonTitle: String.Retry, completion: {
                         self.createPickupRequest(customerId: customerId, booking: booking)
-                    }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
             }
         }
     }
@@ -324,7 +324,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 self.hideProgressHUD()
                 self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
-                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
         }
     }
     

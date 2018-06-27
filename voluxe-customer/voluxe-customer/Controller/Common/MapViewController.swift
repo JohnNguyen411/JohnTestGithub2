@@ -10,8 +10,9 @@ import Foundation
 import GoogleMaps
 
 class MapViewController: UIViewController {
-    
-    public var screenName = AnalyticsConstants.paramNameActiveInboundView
+
+    // TODO temporary until String screenName can be removed
+    public var screenNameEnum = AnalyticsEnums.Name.Screen.activeInbound
     private let mapView = GMSMapView()
     private let flagMarker = GMSMarker()
     private let driverMarker = GMSMarker()
@@ -85,7 +86,7 @@ class MapViewController: UIViewController {
 
         GoogleSnappedPointsAPI().getSnappedPoints(from: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: prevLocation), to: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: location)).onSuccess { results in
 
-            analytics.trackCallGoogle(endpoint: .roads)
+            Analytics.trackCallGoogle(endpoint: .roads)
 
             guard let weakSelf = weakSelf else { return }
             
@@ -109,7 +110,7 @@ class MapViewController: UIViewController {
                 weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
             }
             }.onFailure { error in
-                analytics.trackCallGoogle(endpoint: .roads, error: error)
+                Analytics.trackCallGoogle(endpoint: .roads, error: error)
                 guard let weakSelf = weakSelf else { return }
                 weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
         }

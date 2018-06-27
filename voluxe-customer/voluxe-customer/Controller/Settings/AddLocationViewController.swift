@@ -24,9 +24,9 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     var autoCompleteCharacterCount = 0
     
     let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
-    
-    override init(title: String, buttonTitle: String, screenName: String) {
-        super.init(title: title, buttonTitle: buttonTitle, screenName: screenName)
+
+    init() {
+        super.init(title: .AddNewLocation, buttonTitle: .Add, screenNameEnum: .location)
         newLocationTextField.textField.autocorrectionType = .no
         newLocationTextField.tableYOffset = -20
         newLocationTextField.tableBottomMargin = 0
@@ -88,7 +88,7 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
             weak var weakSelf = self
 
             self.locationManager.googlePlacesAutocomplete(address: userText) { (autocompletePredictions, error) in
-                analytics.trackCallGoogle(endpoint: .places, error: error)
+                Analytics.trackCallGoogle(endpoint: .places, error: error)
                 guard let weakSelf = weakSelf else { return }
                 if weakSelf.isBeingDismissed { return }
                 
@@ -129,7 +129,7 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
         MBProgressHUD.showAdded(to: superview, animated: true)
         
         self.locationManager.getPlace(placeId: placeId) { (gmsPlace, error) in
-            analytics.trackCallGoogle(endpoint: .places, error: error)
+            Analytics.trackCallGoogle(endpoint: .places, error: error)
             MBProgressHUD.hide(for: superview, animated: true)
             if let place = gmsPlace {
                 self.selectedLocation = place

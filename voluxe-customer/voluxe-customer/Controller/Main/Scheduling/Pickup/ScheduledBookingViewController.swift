@@ -27,10 +27,10 @@ class ScheduledBookingViewController: SchedulingViewController {
             cancelEvent =  AnalyticsConstants.eventClickCancelOutbound
         }
 
-        leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: cancelEvent, screenName: AnalyticsConstants.paramNameReservationDetailsView)
-        rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickDone, screenName: AnalyticsConstants.paramNameReservationDetailsView)
+        leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: cancelEvent, screenNameEnum: .reservationDetail)
+        rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickDone, screenNameEnum: .reservationDetail)
         
-        super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screenName: AnalyticsConstants.paramNameReservationDetailsView)
+        super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screenNameEnum: .reservationDetail)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -191,7 +191,7 @@ class ScheduledBookingViewController: SchedulingViewController {
                 self.hideProgressHUD()
                 
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
                     self.hideProgressHUD()
             }
             
@@ -205,7 +205,7 @@ class ScheduledBookingViewController: SchedulingViewController {
                 self.hideProgressHUD()
 
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
                     self.hideProgressHUD()
 
             }

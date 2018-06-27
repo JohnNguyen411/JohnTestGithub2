@@ -218,7 +218,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if window == nil {
             window = UIWindow(frame: UIScreen.main.bounds)
         }
-        let uiNavigationController = UINavigationController(rootViewController: FTUEAddVehicleViewController(fromSettings: false))
+        let uiNavigationController = UINavigationController(rootViewController: FTUEAddVehicleViewController())
         styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         window!.rootViewController = uiNavigationController
         window!.makeKeyAndVisible()
@@ -259,7 +259,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window!.rootViewController = LogoViewController(screenName: AnalyticsConstants.paramNameSplashScreenView)
+        window!.rootViewController = LogoViewController(screenNameEnum: .splash)
         window!.makeKeyAndVisible()
         
         if UserDefaults.standard.enableAlamoFireLogging {
@@ -330,14 +330,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         loadRemoteConfig()
         
         // set UserProperties
-        Analytics.setUserProperty(UIDevice.current.identifierForVendor?.uuidString, forName: AnalyticsConstants.userPropertiesDeviceId)
-        
-        if let customerId = UserManager.sharedInstance.customerId() {
-            Analytics.setUserProperty(String(customerId), forName: AnalyticsConstants.userPropertiesCustomerId)
-        } else {
-            Analytics.setUserProperty(nil, forName: AnalyticsConstants.userPropertiesCustomerId)
-        }
-
+        Analytics.updateDeviceContext()
+        Analytics.updateUserContext()
     }
     
     // MARK:- Branch

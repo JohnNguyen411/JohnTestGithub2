@@ -34,11 +34,10 @@ class PermissionViewController: BaseViewController {
         return textView
     }()
     
-    public static func screenNameForPermission(type: PermissionType) -> String {
-        if type == .location {
-            return AnalyticsConstants.paramNamePermissionLocationView
-        } else {
-            return AnalyticsConstants.paramNamePermissionNotificationView
+    public static func screenNameForPermission(type: PermissionType) -> AnalyticsEnums.Name.Screen {
+        switch type {
+        case .location: return AnalyticsEnums.Name.Screen.permissionsLocation
+        case .notification: return AnalyticsEnums.Name.Screen.permissionsNotification
         }
     }
     
@@ -47,7 +46,7 @@ class PermissionViewController: BaseViewController {
         self.grantPermissionButton = VLButton(type: .bluePrimary, title: String.GrantPermission.uppercased(), kern: UILabel.uppercasedKern())
         self.completionBlock = completion
         
-        super.init(screenName: PermissionViewController.screenNameForPermission(type: permissionType))
+        super.init(screenNameEnum: PermissionViewController.screenNameForPermission(type: permissionType))
         
         if permissionType == .notification {
             self.grantPermissionButton.setEventName(AnalyticsConstants.eventClickPermissionNotificationGrant, screenName: screenName)

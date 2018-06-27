@@ -138,7 +138,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
 
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
                     self.isLoading = false
             }
             return
@@ -163,7 +163,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 self.isLoading = false
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
                     self.isLoading = false
             }
             return
@@ -182,7 +182,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 self.isLoading = false
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
                     self.isLoading = false
             }
         } else if let email = signupCustomer.email, let phoneNumber = signupCustomer.phoneNumber, let firstName = signupCustomer.firstName , let lastName = signupCustomer.lastName {
@@ -198,7 +198,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 self.hideProgressHUD()
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
             }
         }
     }
@@ -272,9 +272,9 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 }.onFailure { error in
                     self.hideProgressHUD()
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4012.rawValue {
-                        self.showOkDialog(title: .Error, message: .WrongVerificationCode, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                        self.showOkDialog(title: .Error, message: .WrongVerificationCode, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                        self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
                     }
                     self.isLoading = false
             }

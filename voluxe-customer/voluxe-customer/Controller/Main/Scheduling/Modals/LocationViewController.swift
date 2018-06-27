@@ -261,7 +261,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
             self.locationManager.googlePlacesAutocomplete(address: self.newLocationTextField.text) {
                 autocompletePredictions, error in
 
-                analytics.trackCallGoogle(endpoint: .places, error: error)
+                Analytics.trackCallGoogle(endpoint: .places, error: error)
 
                 guard let weakSelf = weakSelf else { return }
                 if weakSelf.isBeingDismissed { return }
@@ -288,7 +288,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         weak var weakSelf = self
         
         locationManager.reverseGeocodeLocation(latitude: latitude, longitude: longitude) { (reverseGeocodeResponse, error) in
-            analytics.trackCallGoogle(endpoint: .geocode, error: error)
+            Analytics.trackCallGoogle(endpoint: .geocode, error: error)
             if let weakSelf = weakSelf, let response = reverseGeocodeResponse, let address = response.firstResult() {
                 
                 weakSelf.currentLocationAddress = address
@@ -424,7 +424,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         MBProgressHUD.showAdded(to: superview, animated: true)
         
         self.locationManager.getPlace(placeId: placeId) { (gmsPlace, error) in
-            analytics.trackCallGoogle(endpoint: .places, error: error)
+            Analytics.trackCallGoogle(endpoint: .places, error: error)
             MBProgressHUD.hide(for: superview, animated: true)
             if let place = gmsPlace {
                 // add location to realm

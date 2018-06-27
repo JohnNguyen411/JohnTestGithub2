@@ -100,7 +100,7 @@ class MainViewController: BaseViewController, ChildViewDelegate {
         if !changeView {
             currentViewController?.stateDidChange(state: serviceState)
         }
-        
+
         if let currentViewController = currentViewController, changeView {
             currentViewController.view.accessibilityIdentifier = "currentViewController"
             currentViewController.childViewDelegate = self
@@ -116,6 +116,10 @@ class MainViewController: BaseViewController, ChildViewDelegate {
                     make.edgesEqualsToView(view: self.view)
                 }
             }
+            // TODO this has a bug where the current view controller never fires
+            // viewDidAppear() so the analytics fail, find the correct way to do this
+            // using the child view controller stuff
+            currentViewController.viewDidAppear(false)
         }
     }
     

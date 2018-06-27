@@ -9,11 +9,11 @@
 import FirebaseAnalytics
 import Foundation
 
-// TODO find a better var name later
 // global access for analytics
-let analytics = FBAnalytics()
+let Analytics = FBAnalytics()
 
-class FBAnalytics: Analytics2 {
+/// Subclass of AnalyticsCore with a Firebase Analytics implementation.
+class FBAnalytics: AnalyticsCore {
 
     /// Returns a underscored string that has merged the arguments.
     /// This is the preferred key format for Firebase.
@@ -61,6 +61,6 @@ class FBAnalytics: Analytics2 {
         #if DEBUG
             guard UserDefaults.standard.disableFirebase == false else { return }
         #endif
-        Analytics.logEvent(eventName, parameters: firebaseParams)
+        FirebaseAnalytics.Analytics.logEvent(eventName, parameters: firebaseParams)
     }
 }

@@ -30,10 +30,10 @@ class NotificationPermissionViewController: VLPresentrViewController, PresentrDe
     }()
     
     let appIcon = UIImageView(image: UIImage(named: "appIconNotif"))
-    
-    init(title: String, screenName: String, delegate: UNUserNotificationCenterDelegate) {
+
+    init(title: String, screenName: AnalyticsEnums.Name.Screen, delegate: UNUserNotificationCenterDelegate) {
         self.notifDelegate = delegate
-        super.init(title: title, buttonTitle: "", screenName: screenName)
+        super.init(title: title, buttonTitle: "", screenNameEnum: screenName)
 
         bottomButton.isHidden = true
         

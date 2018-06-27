@@ -28,7 +28,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
                 addressesCount = addresses.count
             }
         }
-        super.init(screenName: AnalyticsConstants.paramNameSettingsAccountView)
+        super.init(screenNameEnum: .account)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -104,7 +104,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     }
     
     func showPickupLocationModal(dismissOnTap: Bool) {
-        let locationVC = AddLocationViewController(title: .AddNewLocation, buttonTitle: .Add, screenName: AnalyticsConstants.paramNameSettingsLocationModalView)
+        let locationVC = AddLocationViewController()
         locationVC.pickupLocationDelegate = self
         locationVC.presentrDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
@@ -145,7 +145,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
                 self.hideProgressHUD()
                 
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
                     self.hideProgressHUD()
             }
         }
@@ -260,10 +260,14 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     func onEditClicked(_ cell: UITableViewCell) {
         if let indexPath = tableView.indexPath(for: cell) {
             if indexPath.section == 0 {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccountDeleteAddress, screenName: screenName, index: indexPath.row)
-                self.showDestructiveDialog(title: .Confirm, message: String(format: .AreYouSureDeleteAddress, self.getTextForIndexPath(indexPath: indexPath)), cancelButtonTitle: .Cancel, destructiveButtonTitle: .Delete, destructiveCompletion: {
-                    self.deleteAddressAtIndexPath(indexPath)
-                }, analyticDialogName: AnalyticsConstants.paramNameConfirmDialog, screenName: screenName)
+                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccountDeleteAddress, screenName: self.screenName, index: indexPath.row)
+                self.showDestructiveDialog(title: .Confirm,
+                                           message: String(format: .AreYouSureDeleteAddress, self.getTextForIndexPath(indexPath: indexPath)),
+                                           cancelButtonTitle: .Cancel,
+                                           destructiveButtonTitle: .Delete,
+                                           destructiveCompletion: { self.deleteAddressAtIndexPath(indexPath) },
+                                           dialogNameEnum: .confirm,
+                                           screenNameEnum: self.screenNameEnum)
                 
             } else if indexPath.section == 2 {
                 // pwd

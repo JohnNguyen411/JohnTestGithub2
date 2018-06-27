@@ -78,8 +78,7 @@ final class KeychainManager {
             self.customerId = nil
         }
         NetworkRequest.setAccessToken(token)
-        
-        Analytics.setUserProperty(customerId, forName: AnalyticsConstants.userPropertiesCustomerId)
+        Analytics.updateUserContext()
     }
     
     private func generateUUID() -> String {

@@ -19,7 +19,13 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
 
-    let screenName: String
+    // TODO this is temporary until String screenName can be removed
+    let screenNameEnum: AnalyticsEnums.Name.Screen?
+    let _screenName: String?
+    var screenName: String {
+        return self._screenName ?? self.screenNameEnum?.rawValue ?? "no screen name"
+    }
+
     let presentrCornerRadius: CGFloat = 4.0
     var currentPresentr: Presentr?
     var currentPresentrVC: VLPresentrViewController?
@@ -28,9 +34,17 @@ class BaseViewController: UIViewController, PresentrDelegate {
     var keyboardHeight: CGFloat = 0
     
     var shouldShowNotifBadge: Bool?
-    
+
+    // TODO this is temporary until String screenName can be removed
     init(screenName: String) {
-        self.screenName = screenName
+        self.screenNameEnum = nil
+        self._screenName = screenName
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    init(screenNameEnum: AnalyticsEnums.Name.Screen) {
+        self.screenNameEnum = screenNameEnum
+        self._screenName = nil
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -47,7 +61,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        logViewScreen(screenName: self.screenName)
+        self.logViewScreen()
         if let shouldShowNotifBadge = shouldShowNotifBadge {
             showNotifBadge(shouldShowNotifBadge)
         }
@@ -210,7 +224,9 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     func showNotificationPermissionModal(dismissOnTap: Bool) {
         if let appDelegate = self.appDelegate, !NotificationPermissionViewController.isShowing {
-            let permissionVC = NotificationPermissionViewController(title: .AllowNotifications, screenName: AnalyticsConstants.paramNameSettingsLocationModalView, delegate: appDelegate)
+            let permissionVC = NotificationPermissionViewController(title: .AllowNotifications,
+                                                                    screenName: .permissionsLocation,
+                                                                    delegate: appDelegate)
             permissionVC.view.accessibilityIdentifier = "permissionVC"
             currentPresentrVC = permissionVC
             currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
@@ -218,13 +234,14 @@ class BaseViewController: UIViewController, PresentrDelegate {
             NotificationPermissionViewController.isShowing = true
         }
     }
-    
-    func logViewScreen(screenName: String) {
-        // send event when screen name isn't empty, little trick for same VC with state change (MainViewController, ServiceCarViewController)
-        if screenName.count > 0 {
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventViewScreen, paramName: AnalyticsConstants.paramScreenName, paramValue: screenName)
-        }
+
+    func logViewScreen() {
+        guard let name = self.screenNameEnum else { return }
+        Analytics.trackView(screen: name)
     }
+
+    // TODO temporary until String screenName is removed
+    func logViewScreen(screenName: String) {}
     
     func showNotifBadge(_ shouldShowBadge: Bool) {
         if shouldShowBadge {
@@ -286,22 +303,39 @@ extension UIViewController {
         self.slideMenuController()?.removeLeftGestures()
         self.slideMenuController()?.removeRightGestures()
     }
-    
-    func showOkDialog(title: String, message: String, completion: (() -> ())? = nil, analyticDialogName: String, screenName: String?) {
+
+    // TODO temporary until String screenName can be removed
+    func showOkDialog(title: String,
+                      message: String,
+                      completion: (() -> ())? = nil,
+                      analyticDialogName: String? = nil,
+                      dialogNameEnum: AnalyticsEnums.Name.Screen? = nil,
+                      screenName: String? = nil,
+                      screenNameEnum: AnalyticsEnums.Name.Screen? = nil)
+    {
         showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: completion, analyticDialogName: analyticDialogName, screenName: screenName)
     }
-    
-    func showDialog(title: String, message: String, buttonTitle: String, completion: (() -> ())? = nil, analyticDialogName: String, screenName: String?) {
+
+    // TODO temporary until String screenName can be removed
+    func showDialog(title: String,
+                    message: String,
+                    buttonTitle: String,
+                    completion: (() -> ())? = nil,
+                    analyticDialogName: String? = nil,
+                    dialogNameEnum: AnalyticsEnums.Name.Screen? = nil,
+                    screenName: String? = nil,
+                    screenNameEnum: AnalyticsEnums.Name.Screen? = nil)
+    {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
-        
-        let params = getAnalyticsParamsForDialog(analyticDialogName, screenName: screenName)
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventViewDialog, parameters: params)
-        
+
+        if let name = screenNameEnum { Analytics.trackView(screen: name) }
+
         // Submit button
         let button = UIAlertAction(title: buttonTitle, style: .default, handler: { (action) -> Void in
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDimissDialog, parameters: params)
+            // TODO temporary until String screenName can be removed
+//            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDimissDialog, parameters: params)
             if let completion = completion {
                 completion()
             }
@@ -311,14 +345,27 @@ extension UIViewController {
         alert.addAction(button)
         self.present(alert, animated: true, completion: nil)
     }
-    
-    func showDestructiveDialog(title: String, message: String, cancelButtonTitle: String, destructiveButtonTitle: String, destructiveCompletion: @escaping (() -> ()), analyticDialogName: String, screenName: String) {
+
+    // TODO temporary until String screenName can be removed
+    func showDestructiveDialog(title: String,
+                               message: String,
+                               cancelButtonTitle: String,
+                               destructiveButtonTitle: String,
+                               destructiveCompletion: @escaping (() -> ()),
+                               analyticDialogName: String? = nil,
+                               dialogNameEnum: AnalyticsEnums.Name.Screen? = nil,
+                               screenName: String? = nil,
+                               screenNameEnum: AnalyticsEnums.Name.Screen? = nil)
+    {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
-        
-        let params = getAnalyticsParamsForDialog(analyticDialogName, screenName: screenName)
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventViewDialog, parameters: params)
+
+        if let screenName = screenNameEnum { Analytics.trackView(screen: screenName)}
+
+        // TODO temporary until String screenName can be removed
+        let params: [String: String] = [:]
+
         // Submit button
         let backAction = UIAlertAction(title: cancelButtonTitle, style: .default, handler: { (action) -> Void in
             VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDimissDialog, parameters: params)
@@ -335,13 +382,6 @@ extension UIViewController {
         alert.addAction(backAction)
         alert.addAction(deleteAction)
         self.present(alert, animated: true, completion: nil)
-    }
-    
-    private func getAnalyticsParamsForDialog(_ dialogName: String, screenName: String?) -> [String: String] {
-        if let screenName = screenName {
-            return [AnalyticsConstants.paramDialogName : dialogName, AnalyticsConstants.paramScreenName: screenName]
-        }
-        return [:]
     }
 
     // TODO Move view controller management from AppDelegate to AppController

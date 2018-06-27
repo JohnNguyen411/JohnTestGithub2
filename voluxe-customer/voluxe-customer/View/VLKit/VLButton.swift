@@ -76,12 +76,13 @@ class VLButton : UIButton {
     /**
      Need to make constraints after initializing the button
      */
-    init(type: VLButtonType, title: String?, kern: Float? = nil, actionBlock:(()->())? = nil, eventName: String? = nil, screenName: String? = nil) {
+    // TODO temporary until String screenName can be removed
+    init(type: VLButtonType, title: String?, kern: Float? = nil, actionBlock:(()->())? = nil, eventName: String? = nil, screenName: String? = nil, screenNameEnum: AnalyticsEnums.Name.Screen? = nil) {
         self.kern = kern
         super.init(frame: .zero)
         
         self.eventName = eventName
-        self.screenName = screenName
+        self.screenName = screenNameEnum?.rawValue ?? screenName
         setType(type: type)
         
         if let title = title {
@@ -134,7 +135,8 @@ class VLButton : UIButton {
             self.optionalParameters = params
         }
     }
-    
+
+    // TODO is this necessary?
     func setOptionalParams(params: [String: String]) {
         self.optionalParameters = params
     }
@@ -282,7 +284,8 @@ class VLButton : UIButton {
         self.actionBlock = actionBlock
         addTarget(self, action: #selector(VLButton.runActionBlock), for: .touchUpInside)
     }
-    
+
+    // TODO need to update with trackClick()
     @objc internal func runActionBlock() {
         var params: [String: String] = [:]
         
@@ -298,6 +301,4 @@ class VLButton : UIButton {
         }
         actionBlock?()
     }
-    
-    
 }

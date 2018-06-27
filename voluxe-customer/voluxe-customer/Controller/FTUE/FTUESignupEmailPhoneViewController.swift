@@ -174,14 +174,14 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         if let apiError = error?.apiError {
             
             if apiError.getCode() == .E5001 {
-                self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
             } else if apiError.getCode() == .E4011 {
                 self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                     self.loadLandingPage()
-                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
             }
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+            self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
         }
     }
     
@@ -252,7 +252,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 if createdCustomer.phoneNumberVerified {
                     self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                         self.loadLandingPage()
-                    }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                    }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
                     return
                 }
             }

@@ -15,15 +15,13 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
     let passwordTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••")
-    let forgotPassword: VLButton
+    let forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickForgotPassword, screenNameEnum: .login)
     
     var loginInProgress = false
     var realm : Realm?
     
     init() {
-        forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickForgotPassword, screenName: AnalyticsConstants.paramNameLoginView)
-        
-        super.init(screenName: AnalyticsConstants.paramNameLoginView)
+        super.init(screenNameEnum: .login)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -201,9 +199,9 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         self.showLoading(loading: false)
         
         if let apiError = error?.apiError, apiError.getCode() == .E2005 {
-            self.showOkDialog(title: .Error, message: .InvalidCredentials, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+            self.showOkDialog(title: .Error, message: .InvalidCredentials, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+            self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
         }
     }
 }

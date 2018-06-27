@@ -26,9 +26,9 @@ class Analytics_UnitTests: XCTestCase {
 
         analytics.trackOutputClosure = {
             name, params in
-            XCTAssertTrue(name == "call_api_gmaps")
+            XCTAssertTrue(name == "call_api_google")
         }
-        analytics.trackCall(api: .gmaps)
+        analytics.trackCall(api: .google)
 
         analytics.trackOutputClosure = {
             name, params in
@@ -37,18 +37,6 @@ class Analytics_UnitTests: XCTestCase {
         analytics.trackClick(button: .signIn)
 
         // TODO need state change test
-
-        analytics.trackOutputClosure = {
-            name, params in
-            XCTAssertTrue(name == "view_dialog_confirm")
-        }
-        analytics.trackView(dialog: .confirm)
-
-        analytics.trackOutputClosure = {
-            name, params in
-            XCTAssertTrue(name == "view_modal_settings_location")
-        }
-        analytics.trackView(modal: .settingsLocation)
 
         analytics.trackOutputClosure = {
             name, params in
@@ -74,6 +62,20 @@ class Analytics_UnitTests: XCTestCase {
             XCTAssertTrue((params?.values.first as? String?) == "some endpoint")
         }
         analytics.trackCall(api: .luxe, endpoint: "some endpoint")
+
+        // track view screen with from should produce params
+        analytics.trackOutputClosure = {
+            event, params in
+            XCTAssertTrue(params?.count == 1)
+        }
+        analytics.trackView(screen: .confirm, from: .settings)
+
+        // track view screen with no from should produce nil params
+        analytics.trackOutputClosure = {
+            event, params in
+            XCTAssertNil(params)
+        }
+        analytics.trackView(screen: .confirm)
 
         // error and status code params
         // checks that all 3 params are included and are strings

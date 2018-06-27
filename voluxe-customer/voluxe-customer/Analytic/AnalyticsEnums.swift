@@ -29,9 +29,6 @@ struct AnalyticsEnums {
         case api
         case booking
         case button
-        case dialog
-        case link
-        case modal
         case screen
     }
 
@@ -47,20 +44,32 @@ struct AnalyticsEnums {
             case createAccount = "createaccount"
         }
 
-        enum Dialog: String, CaseIterable {
+        enum Screen: String, CaseIterable {
+            case account
+            case activeInbound = "active_inbound"
+            case activeOutbound = "active_outbound"
+            case bookings   // Pickup & Delivery, my volvos, reservations?
             case confirm
             case error
-            case success
-        }
-
-        enum Modal: String, CaseIterable {
-            case settingsLocation = "settings_location"
-        }
-
-        enum Screen: String, CaseIterable {
             case landing
             case loading
+            case location
+            case login
+            case needService = "need_service"
+            case passwordReset = "password_reset"
+            case permissionsLocation = "permissions_location"
+            case permissionsNotification = "permissions_notification"
+            case phoneUpdate = "phone_update"
+            case reservations
+            case reservationDetail = "reservation_detail"
+            case scheduleInbound = "schedule_inbound"
+            case scheduleOutbound = "schedule_outbound"
+            case settings
             case splash
+            case success
+            case vehicleAdd = "vehicle_add"
+            case vehicleDelete = "vehicle_delete"
+            case vehicleDetail = "vehicle_detail"
         }
 
         // compiler seems to want this, must be related
@@ -69,15 +78,11 @@ struct AnalyticsEnums {
         case requiredCaseForRawValue
     }
 
-    // TODO these would map to Firebase fixed params
-    // TODO should enums have associated value or should the SDK specific extension do it?
-    enum Param: String {
+    enum Param: String, CaseIterable {
         case endpoint = "api_endpoint"
         case errorCode = "error_code"
         case errorMessage = "error_message"
         case screenName = "screen_name"
-//        case dialogName = "dialog_name"
-//        case modalName = "modal_name"
         case statusCode = "status_code"
     }
 
@@ -98,7 +103,7 @@ extension AnalyticsEnums {
 /// analytics SDK.  These methods are private and should not
 /// be called directly.  Instead, use the extensions which
 /// provide higher order funcs that easier to read and type.
-class Analytics2 {
+class AnalyticsCore {
 
     /// Convenience method that will create a AnalyticsEnums.Params
     /// dictionary from the param and value.
@@ -126,7 +131,7 @@ class Analytics2 {
     }
 }
 
-extension Analytics2 {
+extension AnalyticsCore {
 
     // MARK:- Calls
 
@@ -183,17 +188,19 @@ extension Analytics2 {
     // MARK:- Views
 
     // view_dialog_<name>
-    func trackView(dialog: AnalyticsEnums.Name.Dialog) {
-        self.track(event: .view, element: .dialog, name: dialog.rawValue)
-    }
-
-    // view_modal_<name>
-    func trackView(modal: AnalyticsEnums.Name.Modal) {
-        self.track(event: .view, element: .modal, name: modal.rawValue)
-    }
+//    func trackView(dialog: AnalyticsEnums.Name.Dialog) {
+//        self.track(event: .view, element: .dialog, name: dialog.rawValue)
+//    }
+//
+//    // view_modal_<name>
+//    func trackView(modal: AnalyticsEnums.Name.Modal) {
+//        self.track(event: .view, element: .modal, name: modal.rawValue)
+//    }
 
     // view_screen_<name>
-    func trackView(screen: AnalyticsEnums.Name.Screen) {
-        self.track(event: .view, element: .screen, name: screen.rawValue)
+    func trackView(screen: AnalyticsEnums.Name.Screen, from: AnalyticsEnums.Name.Screen? = nil) {
+        var params: AnalyticsEnums.Params = [:]
+        if let from = from { params[AnalyticsEnums.Param.screenName] = from.rawValue }
+        self.track(event: .view, element: .screen, name: screen.rawValue, params: params)
     }
 }

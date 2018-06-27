@@ -78,6 +78,6 @@ class VLAnalytics {
         #if DEBUG
             guard UserDefaults.standard.disableFirebase == false else { return }
         #endif
-        Analytics.logEvent(eventName, parameters: params)
+        FirebaseAnalytics.Analytics.logEvent(eventName, parameters: params)
     }
 }

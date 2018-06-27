@@ -9,16 +9,9 @@
 import Foundation
 
 class AnalyticsConstants {
-
-    // User Properties
-    static let userPropertiesDeviceId = "device_id"
-    static let userPropertiesCustomerId = "customer_id"
     
     // Events
-    static let eventViewScreen = "view_screen"
     static let eventStateChange = "state_change"
-    static let eventViewDialog = "view_dialog"
-    static let eventViewModal = "view_modal" // modal used for scheduling, etc
 
     static let eventClickDimissDialog = "dialog_action_dismiss"
     static let eventClickDestructiveDialog = "dialog_action_destructive"
@@ -98,8 +91,6 @@ class AnalyticsConstants {
     
     // Params
     static let paramScreenName = "screen_name"
-    static let paramDialogName = "dialog_name"
-    static let paramModalName = "modal_name"
     static let paramErrorCode = "error_code"
     static let paramStatusCode = "status_code"
 
@@ -107,31 +98,12 @@ class AnalyticsConstants {
     static let paramNameState = "state"
     static let paramNameIndex = "index"
 
-    static let paramNameSplashScreenView = "splashscreen_view"
-    static let paramNameLandingView = "landing_view"
-    static let paramNameLoadingView = "loading_view"
-
-    static let paramNameLoginView = "login_view"
-    static let paramNameResetPasswordView = "reset_password_view"
-    static let paramNameUpdatePasswordView = "update_password_view"
-
-    static let paramNameSettingsView = "settings_view"
-    static let paramNameSettingsAccountView = "settings_account_view"
-    static let paramNameSettingsLocationModalView = "settings_location_modal_view"
     static let paramNameSignupPhoneVerificationView = "signup_phone_verification_view" // Signup only
     static let paramNamePhoneVerificationView = "phone_verification_view" // Need verification after update
     static let paramNameSignupNameView = "signup_name_view"
     static let paramNameSignupEmailPhoneView = "signup_email_phone_view"
     static let paramNameSignupPasswordView = "signup_password_view"
     static let paramNameSignupAddVehicleView = "signup_add_vehicle_view" // Signup only
-    static let paramNameSettingsAddVehicleView = "settings_add_vehicle_view" // From App (Settings)
-    static let paramNameSettingsVehicleDetailsView = "settings_vehicle_details_view"
-
-    static let paramNameYourVolvosView = "your_volvos_view"
-    static let paramNameSchedulingInboundView = "scheduling_inbound_view" // scheduling
-    static let paramNameSchedulingOutboundView = "scheduling_outbound_view"  // scheduling
-    static let paramNameActiveInboundView = "active_inbound_view" // scheduled
-    static let paramNameActiveOutboundView = "active_outbound_view"  // scheduled
 
     static let paramNameSchedulingIBDateTimeModalView = "scheduling_inbound_datetime_modal_view"
     static let paramNameSchedulingOBDateTimeModalView = "scheduling_outbound_datetime_modal_view"
@@ -150,29 +122,56 @@ class AnalyticsConstants {
     static let paramNameServiceMilestoneDetailsView = "service_milestone_details_view" // only when user CAN'T schedule from here
     static let paramNameServiceMilestoneDetailsSchedulingView = "service_milestone_details_scheduling_view" // only when user CAN schedule from here
     static let paramNameServiceCustomDetailsView = "service_custom_details_view" // read only, can't schedule from here
-    
-    static let paramNameReservationDetailsView = "reservation_details_view"
-    static let paramNameNeedServiceView = "need_service_view" // selected service, need to choose Self-Drop or Volvo Pickup
     static let paramNameServiceCompletedView = "service_completed_view" // service completed (after IB), need to choose Self-Pickup or Volvo Delivery
     static let paramNameServiceInProgressView = "service_in_progress_view" // service in progress at dealership
     static let paramNameServiceInRouteView = "service_in_route_view" // Driver driving to dealership to service vehicle
     static let paramNameReservationCompletedView = "reservation_completed_view" // Reservation completed
     static let paramNameBookingFeedbackView = "reservation_feedback_view" // Rating Screen
 
-    static let paramNameDeleteAddressDialog = "delete_address_dialog"
-    static let paramNameDeleteVehicleDialog = "delete_vehicle_dialog"
-    static let paramNameErrorDialog = "error_dialog" // decided to have the same tag for every error dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
-    static let paramNameSuccessDialog = "success_dialog" // decided to have the same tag for every success dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
-    static let paramNameConfirmDialog = "confirm_dialog" // decided to have the same tag for every confirm dialog, as we are going to tag error from api on a different event anyway, and we also send the screen name.
     static let paramNameSelectedCustomServices = "selected_custom_services" // index of selected services
-
-    static let paramNamePermissionLocationView = "permission_location_view"
-    static let paramNamePermissionNotificationView = "permission_notification_view"
 }
 
 // deprecated constants
 @available(*, deprecated)
 extension AnalyticsConstants {
+
+    // screen names
+    static let paramNameActiveInboundView = "active_inbound_view"
+    static let paramNameActiveOutboundView = "active_outbound_view"
+    static let paramNameSchedulingInboundView = "scheduling_inbound_view"
+    static let paramNameSchedulingOutboundView = "scheduling_outbound_view"
+    static let paramNameReservationDetailsView = "reservation_details_view"
+    static let paramNameYourVolvosView = "your_volvos_view"
+    static let paramNameNeedServiceView = "need_service_view"
+    static let paramNameSettingsAddVehicleView = "settings_add_vehicle_view"
+    static let paramNameSettingsVehicleDetailsView = "settings_vehicle_details_view"
+    static let paramNameResetPasswordView = "reset_password_view"
+    static let paramNameUpdatePasswordView = "update_password_view"
+    static let paramNameLoginView = "login_view"
+    static let paramDialogName = "dialog_name"
+    static let paramModalName = "modal_name"
+    static let paramNameErrorDialog = "error_dialog"
+    static let paramNameDeleteAddressDialog = "delete_address_dialog"
+    static let paramNameDeleteVehicleDialog = "delete_vehicle_dialog"
+    static let paramNameSettingsAccountView = "settings_account_view"
+    static let paramNameSettingsView = "settings_view"
+    static let paramNameConfirmDialog = "confirm_dialog"
+    static let paramNameSplashScreenView = "splashscreen_view"
+    static let paramNameLandingView = "landing_view"
+    static let paramNameLoadingView = "loading_view"
+    static let paramNameSuccessDialog = "success_dialog"
+    static let paramNamePermissionLocationView = "permission_location_view"
+    static let paramNamePermissionNotificationView = "permission_notification_view"
+    static let paramNameSettingsLocationModalView = "settings_location_modal_view"
+
+    // views
+    static let eventViewScreen = "view_screen"
+    static let eventViewDialog = "view_dialog"
+    static let eventViewModal = "view_modal" // modal used for scheduling, etc
+
+    // User Properties
+    static let userPropertiesDeviceId = "device_id"
+    static let userPropertiesCustomerId = "customer_id"
 
     // Google
     static let eventGmapsRequest = "gmaps_api_request"

@@ -54,14 +54,14 @@ class ScheduledViewController: ChildViewController {
 
     private let driverContact: VLButton
     
-    init(vehicle: Vehicle, screenName: String) {
+    init(vehicle: Vehicle, screenNameEnum: AnalyticsEnums.Name.Screen) {
         self.vehicle = vehicle
-        driverContact = VLButton(type: .blueSecondary, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickContactDriver, screenName: screenName)
+        driverContact = VLButton(type: .blueSecondary, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickContactDriver, screenNameEnum: screenNameEnum)
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
-        super.init(screenName: screenName)
+        super.init(screenNameEnum: screenNameEnum)
         generateSteps()
 
-        mapVC.screenName = self.screenName
+        self.mapVC.screenNameEnum = screenNameEnum
 
         verticalStepView = GroupedVerticalStepView(steps: steps)
         verticalStepView?.accessibilityIdentifier = "verticalStepView"
@@ -231,7 +231,7 @@ class ScheduledViewController: ChildViewController {
 
             googleDistanceMatrixAPI.getDirection(origin: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: fromLocation), destination: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: toLocation), mode: nil).onSuccess { distanceMatrix in
 
-                analytics.trackCallGoogle(endpoint: .distance)
+                Analytics.trackCallGoogle(endpoint: .distance)
 
                 guard let weakSelf = weakSelf else { return }
 
@@ -241,7 +241,7 @@ class ScheduledViewController: ChildViewController {
                 }
                 }.onFailure { error in
                     Logger.print(error)
-                    analytics.trackCallGoogle(endpoint: .distance, error: error)
+                    Analytics.trackCallGoogle(endpoint: .distance, error: error)
             }
         }
     }
@@ -291,7 +291,7 @@ class ScheduledViewController: ChildViewController {
             }
         }.onFailure { error in
             MBProgressHUD.hide(for: self.view, animated: true)
-            self.showOkDialog(title: .Error, message: .GenericError, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+            self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
         }
     }
     

@@ -86,13 +86,13 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }()
     
     
-    init(vehicle: Vehicle, state: ServiceState, screenName: String) {
+    init(vehicle: Vehicle, state: ServiceState, screenNameEnum: AnalyticsEnums.Name.Screen) {
         self.vehicle = vehicle
         self.serviceState = state
-        descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickShowServiceDescription, screenName: screenName)
+        descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickShowServiceDescription, screenNameEnum: screenNameEnum)
         confirmButton = VLButton(type: .bluePrimary, title: SchedulingViewController.getConfirmButtonTitle(vehicleId: vehicle.id), kern: UILabel.uppercasedKern())
         
-        super.init(screenName: screenName)
+        super.init(screenNameEnum: screenNameEnum)
     }
     
     required init?(coder aDecoder: NSCoder) {

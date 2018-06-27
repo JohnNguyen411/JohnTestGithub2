@@ -21,7 +21,7 @@ class SettingsViewController: ChildViewController, SettingsCellProtocol {
         if let vehicles = vehicles {
             vehicleCount = vehicles.count
         }
-        super.init(screenName: AnalyticsConstants.paramNameSettingsView)
+        super.init(screenNameEnum: .settings)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -158,7 +158,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
                 self.pushViewController(SettingsCarViewController(vehicle: vehicle), animated: true, backLabel: .Back)
             } else {
                 VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAddVehicle, screenName: screenName)
-                self.pushViewController(FTUEAddVehicleViewController(fromSettings: true), animated: true, backLabel: .Back)
+                self.pushViewController(FTUEAddVehicleViewController(), animated: true, backLabel: .Back)
             }
         } else if indexPath.section == 1 {
             VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccount, screenName: screenName)

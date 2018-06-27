@@ -42,16 +42,10 @@ class TaxonomyTableViewController: UITableViewController {
         self.events += [(title: AnalyticsEnums.Event.click.rawValue, array: names.sorted())]
 
         names = []
-        for name in AnalyticsEnums.Name.Dialog.allCases { analytics.trackView(dialog: name) }
-        self.events += [(title: AnalyticsEnums.Event.view.rawValue, array: names.sorted())]
-
-        names = []
-        for name in AnalyticsEnums.Name.Modal.allCases { analytics.trackView(modal: name) }
-        self.events += [(title: AnalyticsEnums.Event.view.rawValue, array: names.sorted())]
-
-        names = []
         for name in AnalyticsEnums.Name.Screen.allCases { analytics.trackView(screen: name) }
         self.events += [(title: AnalyticsEnums.Event.view.rawValue, array: names.sorted())]
+
+        // TODO need to output params
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {

@@ -48,9 +48,9 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     let colorLabel = VLVerticalTextField(title: .Color, placeholder: .ColorPlaceholder)
     
     var pickerView: UIPickerView!
-    
-    init(fromSettings: Bool) {
-        super.init(screenName: fromSettings ? AnalyticsConstants.paramNameSettingsAddVehicleView : AnalyticsConstants.paramNameSignupAddVehicleView)
+
+    init() {
+        super.init(screenNameEnum: .vehicleAdd)
     }
     
     required init?(coder aDecoder: NSCoder) {
