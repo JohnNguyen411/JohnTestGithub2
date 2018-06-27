@@ -115,8 +115,8 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             }
         }
         dealership = currentDealership
-        
-        super.init(title: title, buttonTitle: buttonTitle, screenName: isPickup ? AnalyticsConstants.paramNameSchedulingIBDateTimeModalView : AnalyticsConstants.paramNameSchedulingOBDateTimeModalView)
+
+        super.init(title: title, buttonTitle: buttonTitle, screenNameEnum: isPickup ? .scheduleInboundDateTime : .scheduleOutboundDateTime)
         
         realm = try? Realm()
         getTimeSlots()

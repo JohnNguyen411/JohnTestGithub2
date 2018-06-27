@@ -18,7 +18,7 @@ class DealershipViewController: VLPresentrViewController, VLGroupedLabelsDelegat
     var groupedLabels: VLGroupedLabels?
     
     init(title: String, buttonTitle: String, dealerships: [Dealership]) {
-        super.init(title: title, buttonTitle: buttonTitle, screenName: AnalyticsConstants.paramNameSchedulingIBDealershipModalView)
+        super.init(title: title, buttonTitle: buttonTitle, screenNameEnum: .scheduleInboundDealership)
         setDealerhips(dealerships: dealerships)
     }
     

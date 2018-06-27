@@ -29,7 +29,7 @@ class NewServiceViewController: BaseViewController {
     
     init(vehicle: Vehicle) {
         self.vehicle = vehicle
-        super.init(screenName: AnalyticsConstants.paramNameServiceNewView)
+        super.init(screenNameEnum: .serviceNew)
     }
     
     required init?(coder aDecoder: NSCoder) {

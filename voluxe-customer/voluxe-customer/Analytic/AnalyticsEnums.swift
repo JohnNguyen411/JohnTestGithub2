@@ -48,6 +48,7 @@ struct AnalyticsEnums {
             case account
             case activeInbound = "active_inbound"
             case activeOutbound = "active_outbound"
+            case bookingFeedback = "booking_feedback"
             case bookings   // Pickup & Delivery, my volvos, reservations?
             case confirm
             case error
@@ -60,11 +61,34 @@ struct AnalyticsEnums {
             case permissionsLocation = "permissions_location"
             case permissionsNotification = "permissions_notification"
             case phoneUpdate = "phone_update"
+            case phoneVerification = "phone_verification"
             case reservations
+            case reservationCompleted = "reservation_completed"
             case reservationDetail = "reservation_detail"
             case scheduleInbound = "schedule_inbound"
+            case scheduleInboundDateTime = "schedule_inbound_datetime"
+            case scheduleInboundDealership = "schedule_inbound_dealership"
+            case scheduleInboundLoaner = "schedule_inbound_loaner"
+            case scheduleInboundLocation = "schedule_inbound_location"
             case scheduleOutbound = "schedule_outbound"
+            case scheduleOutboundDateTime = "schedule_outbound_datetime"
+            case scheduleOutboundLocation = "schedule_outbound_location"
+            case serviceCompleted = "service_completed"
+            case serviceCustom = "service_custom"
+            case serviceCustomDetail = "service_custom_detail"
+            case serviceCustomNotes = "service_custom_notes"
+            case serviceEnRoute = "service_en_route"
+            case serviceInProgress = "service_in_progress"
+            case serviceMilestone = "service_milestone"
+            case serviceMilestoneDetail = "service_milestone_detail"
+            case serviceMilestoneDetailDateTime = "service_milestone_detail_datetime"
+            case serviceNew = "service_new"
             case settings
+            case signupEmail = "signup_email"
+            case signupName = "signup_name"
+            case signupPassword = "signup_password"
+            case signupPhone = "signup_phone"
+            case signupPhoneVerification = "signup_phone_verification"
             case splash
             case success
             case vehicleAdd = "vehicle_add"

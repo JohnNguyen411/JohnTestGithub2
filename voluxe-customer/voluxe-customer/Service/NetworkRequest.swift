@@ -151,8 +151,20 @@ extension DataRequest {
             responseSerializer: DataRequest.jsonResponseSerializer(options: options),
             completionHandler: { response in
                 NetworkRequest.checkErrors(response: response)
+                Analytics.trackCallLuxe(response: response)
                 completionHandler(response)
             }
         )
+    }
+}
+
+extension AnalyticsCore {
+
+    func trackCallLuxe(response: DataResponse<Any>) {
+        guard let json = response.result.value as? [String: Any] else { return }
+        let responseObject = ResponseObject<EmptyMappableObject>(json: json)
+        self.trackCallLuxe(endpoint: response.request?.url?.path ?? "missing",
+                           errorCode: responseObject.error?.getCode(),
+                           statusCode: response.response?.statusCode)
     }
 }

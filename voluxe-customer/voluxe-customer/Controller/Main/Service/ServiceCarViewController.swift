@@ -315,7 +315,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                     scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
                 }
-                logViewScreen(screenName: AnalyticsConstants.paramNameServiceCompletedView)
+                Analytics.trackView(screen: .serviceCompleted)
             }
             noteLabel.isHidden = false
             
@@ -350,8 +350,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 self.updateLabelText(text: .VolvoCurrentlyServicing)
                 leftButton.isHidden = true
                 rightButton.isHidden = true
-                
-                logViewScreen(screenName: AnalyticsConstants.paramNameServiceInProgressView)
+                Analytics.trackView(screen: .serviceInProgress)
 
             } else if state == .enRouteForService {
                 confirmButton.isHidden = true
@@ -359,7 +358,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 rightButton.isHidden = true
                 
                 self.updateLabelText(text: String(format: NSLocalizedString(.DriverDrivingToDealership), (dealership?.name)!))
-                logViewScreen(screenName: AnalyticsConstants.paramNameServiceInRouteView)
+                Analytics.trackView(screen: .serviceEnRoute)
                 
             } else if state == .completed {
                 confirmButton.isHidden = false
@@ -367,7 +366,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 rightButton.isHidden = true
                 
                 self.updateLabelText(text: String(format: NSLocalizedString(.DeliveryComplete), (dealership?.name)!))
-                logViewScreen(screenName: AnalyticsConstants.paramNameReservationCompletedView)
+                Analytics.trackView(screen: .reservationCompleted)
             }
         }
         

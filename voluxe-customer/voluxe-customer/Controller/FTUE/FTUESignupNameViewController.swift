@@ -29,7 +29,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     var deeplinkEventConsumed = false
     
     init() {
-        super.init(screenName: AnalyticsConstants.paramNameSignupNameView)
+        super.init(screenNameEnum: .signupName)
     }
     
     required init?(coder aDecoder: NSCoder) {

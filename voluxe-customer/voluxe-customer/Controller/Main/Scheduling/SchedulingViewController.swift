@@ -428,15 +428,15 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     func showPickupLocationModal(dismissOnTap: Bool) {
         
         var title: String = .PickupLocationTitle
-        var modalScreenName = AnalyticsConstants.paramNameSchedulingOBLocationModalView
+        var screenNameEnum = AnalyticsEnums.Name.Screen.scheduleOutboundLocation
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
                 title = .DealershipCloseToLocation
             }
-            modalScreenName = AnalyticsConstants.paramNameSchedulingIBLocationModalView
+            screenNameEnum = AnalyticsEnums.Name.Screen.scheduleInboundLocation
         }
         
-        let locationVC = LocationViewController(title: title, buttonTitle: .Next, screenName: modalScreenName)
+        let locationVC = LocationViewController(title: title, buttonTitle: .Next, screenNameEnum: screenNameEnum)
         locationVC.isModalInPopover = true
         locationVC.pickupLocationDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
@@ -446,7 +446,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func showPickupLoanerModal(dismissOnTap: Bool) {
-        let loanerVC = LoanerViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, screenName: AnalyticsConstants.paramNameSchedulingIBLoanerModalView)
+        let loanerVC = LoanerViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, screenNameEnum: .scheduleInboundLoaner)
         loanerVC.delegate = self
         loanerVC.view.accessibilityIdentifier = "loanerVC"
         currentPresentrVC = loanerVC

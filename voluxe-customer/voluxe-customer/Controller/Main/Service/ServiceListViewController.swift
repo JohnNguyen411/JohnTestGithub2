@@ -19,7 +19,7 @@ class ServiceListViewController: BaseViewController {
     
     init(vehicle: Vehicle, title: String) {
         self.vehicle = vehicle
-        super.init(screenName: AnalyticsConstants.paramNameServiceMilestoneView)
+        super.init(screenNameEnum: .serviceMilestone)
         self.title = title.capitalized
     }
     

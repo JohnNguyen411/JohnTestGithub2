@@ -97,7 +97,7 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
     }
     
     init() {
-        super.init(screenName: AnalyticsConstants.paramNameBookingFeedbackView)
+        super.init(screenNameEnum: .bookingFeedback)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -329,7 +329,7 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                     self.sendFeedback(rating: rating, comment: comment)
-                }, analyticDialogName: AnalyticsConstants.paramNameErrorDialog, screenName: self.screenName)
+                }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
                 self.retryCount += 1
         }
     }

@@ -31,10 +31,10 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     }()
     
     init() {
-        let analyticsName = FTUEStartViewController.flowType == .signup ? AnalyticsConstants.paramNameSignupPhoneVerificationView : AnalyticsConstants.paramNamePhoneVerificationView
-        updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.ChangePhoneNumber.uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickUpdatePhoneNumber, screenName: analyticsName)
+        let analyticsName = FTUEStartViewController.flowType == .signup ? AnalyticsEnums.Name.Screen.signupPhoneVerification : AnalyticsEnums.Name.Screen.phoneVerification
+        updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.ChangePhoneNumber.uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickUpdatePhoneNumber, screenNameEnum: analyticsName)
         
-        super.init(screenName: analyticsName)
+        super.init(screenNameEnum: analyticsName)
     }
     
     convenience init(type: FTUEPhoneType) {

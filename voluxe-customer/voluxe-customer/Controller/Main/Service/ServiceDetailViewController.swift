@@ -37,13 +37,13 @@ class ServiceDetailViewController: BaseViewController {
         self.canSchedule = canSchedule
         self.service = service
         serviceTitle = VLTitledLabel(title: .FactoryScheduledMaintenance, leftDescription: service.name!, rightDescription: "")
-        var analyticName = canSchedule ? AnalyticsConstants.paramNameServiceMilestoneDetailsSchedulingView : AnalyticsConstants.paramNameServiceMilestoneDetailsView
+        var analyticName: AnalyticsEnums.Name.Screen = canSchedule ? .serviceMilestoneDetailDateTime : .serviceMilestoneDetail
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
-            analyticName = AnalyticsConstants.paramNameServiceCustomDetailsView
+            analyticName = AnalyticsEnums.Name.Screen.serviceCustomDetail
         }
-        confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmService as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickScheduleService, screenName: analyticName)
+        confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmService as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickScheduleService, screenNameEnum: analyticName)
 
-        super.init(screenName: analyticName)
+        super.init(screenNameEnum: analyticName)
     }
     
     required init?(coder aDecoder: NSCoder) {

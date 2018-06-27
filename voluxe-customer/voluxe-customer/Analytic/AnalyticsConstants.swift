@@ -10,14 +10,12 @@ import Foundation
 
 class AnalyticsConstants {
     
-    // Events
+    // State change events
     static let eventStateChange = "state_change"
-
-    static let eventClickDimissDialog = "dialog_action_dismiss"
-    static let eventClickDestructiveDialog = "dialog_action_destructive"
     
     // Click events
-
+    static let eventClickDimissDialog = "dialog_action_dismiss"
+    static let eventClickDestructiveDialog = "dialog_action_destructive"
     static let eventClickSignin = "click_signin"
     static let eventClickCreateAccount = "click_create_account"
     static let eventClickContactDriver = "click_contact_driver"
@@ -97,37 +95,6 @@ class AnalyticsConstants {
     // Param Names
     static let paramNameState = "state"
     static let paramNameIndex = "index"
-
-    static let paramNameSignupPhoneVerificationView = "signup_phone_verification_view" // Signup only
-    static let paramNamePhoneVerificationView = "phone_verification_view" // Need verification after update
-    static let paramNameSignupNameView = "signup_name_view"
-    static let paramNameSignupEmailPhoneView = "signup_email_phone_view"
-    static let paramNameSignupPasswordView = "signup_password_view"
-    static let paramNameSignupAddVehicleView = "signup_add_vehicle_view" // Signup only
-
-    static let paramNameSchedulingIBDateTimeModalView = "scheduling_inbound_datetime_modal_view"
-    static let paramNameSchedulingOBDateTimeModalView = "scheduling_outbound_datetime_modal_view"
-    static let paramNameSchedulingIBLocationModalView = "scheduling_inbound_location_modal_view"
-    static let paramNameSchedulingOBLocationModalView = "scheduling_outbound_location_modal_view"
-    static let paramNameSchedulingIBDealershipModalView = "scheduling_inbound_dealership_modal_view"
-    static let paramNameSchedulingOBDealershipModalView = "scheduling_outbound_dealership_modal_view"
-    static let paramNameSchedulingIBLoanerModalView = "scheduling_inbound_loaner_modal_view"
-    static let paramNameSchedulingOBLoanerModalView = "scheduling_outbound_loaner_modal_view"
-    
-    static let paramNameServiceNewView = "service_new_view"
-    static let paramNameServiceMilestoneView = "service_milestone_view"
-    static let paramNameServiceCustomView = "service_custom_view"
-    static let paramNameServiceCustomNotesView = "service_custom_notes_view"
-    
-    static let paramNameServiceMilestoneDetailsView = "service_milestone_details_view" // only when user CAN'T schedule from here
-    static let paramNameServiceMilestoneDetailsSchedulingView = "service_milestone_details_scheduling_view" // only when user CAN schedule from here
-    static let paramNameServiceCustomDetailsView = "service_custom_details_view" // read only, can't schedule from here
-    static let paramNameServiceCompletedView = "service_completed_view" // service completed (after IB), need to choose Self-Pickup or Volvo Delivery
-    static let paramNameServiceInProgressView = "service_in_progress_view" // service in progress at dealership
-    static let paramNameServiceInRouteView = "service_in_route_view" // Driver driving to dealership to service vehicle
-    static let paramNameReservationCompletedView = "reservation_completed_view" // Reservation completed
-    static let paramNameBookingFeedbackView = "reservation_feedback_view" // Rating Screen
-
     static let paramNameSelectedCustomServices = "selected_custom_services" // index of selected services
 }
 
@@ -136,6 +103,32 @@ class AnalyticsConstants {
 extension AnalyticsConstants {
 
     // screen names
+    static let paramNameBookingFeedbackView = "reservation_feedback_view"
+    static let paramNameReservationCompletedView = "reservation_completed_view"
+    static let paramNameServiceEnRouteView = "service_en_route_view"
+    static let paramNameServiceInProgressView = "service_in_progress_view"
+    static let paramNameServiceCompletedView = "service_completed_view"
+    static let paramNameServiceMilestoneDetailsView = "service_milestone_details_view"
+    static let paramNameServiceMilestoneDetailsSchedulingView = "service_milestone_details_scheduling_view"
+    static let paramNameServiceCustomDetailsView = "service_custom_details_view"
+    static let paramNameServiceNewView = "service_new_view"
+    static let paramNameServiceMilestoneView = "service_milestone_view"
+    static let paramNameServiceCustomView = "service_custom_view"
+    static let paramNameServiceCustomNotesView = "service_custom_notes_view"
+    static let paramNameSignupPhoneVerificationView = "signup_phone_verification_view"
+    static let paramNamePhoneVerificationView = "phone_verification_view"
+    static let paramNameSignupNameView = "signup_name_view"
+    static let paramNameSignupEmailPhoneView = "signup_email_phone_view"
+    static let paramNameSignupPasswordView = "signup_password_view"
+    static let paramNameSignupAddVehicleView = "signup_add_vehicle_view"
+    static let paramNameSchedulingIBDateTimeModalView = "scheduling_inbound_datetime_modal_view"
+    static let paramNameSchedulingOBDateTimeModalView = "scheduling_outbound_datetime_modal_view"
+    static let paramNameSchedulingIBLocationModalView = "scheduling_inbound_location_modal_view"
+    static let paramNameSchedulingOBLocationModalView = "scheduling_outbound_location_modal_view"
+    static let paramNameSchedulingIBDealershipModalView = "scheduling_inbound_dealership_modal_view"
+    static let paramNameSchedulingOBDealershipModalView = "scheduling_outbound_dealership_modal_view"
+    static let paramNameSchedulingIBLoanerModalView = "scheduling_inbound_loaner_modal_view"
+    static let paramNameSchedulingOBLoanerModalView = "scheduling_outbound_loaner_modal_view"
     static let paramNameActiveInboundView = "active_inbound_view"
     static let paramNameActiveOutboundView = "active_outbound_view"
     static let paramNameSchedulingInboundView = "scheduling_inbound_view"

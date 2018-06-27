@@ -41,7 +41,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     var realm : Realm?
     
     init() {
-        super.init(screenName: AnalyticsConstants.paramNameSignupPasswordView)
+        super.init(screenNameEnum: .signupPassword)
     }
     
     required init?(coder aDecoder: NSCoder) {
