@@ -70,6 +70,8 @@
 		53C7300F20CEE5F400BCE926 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7300A20CEE5F400BCE926 /* Gradient.swift */; };
 		53C7301120CEE71C00BCE926 /* VLShinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7301020CEE71C00BCE926 /* VLShinyView.swift */; };
 		53C7301220CF2FF000BCE926 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
+		53C8AD3B20E596C3008E07FF /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */; };
+		53C8AD3C20E596C4008E07FF /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */; };
 		53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */; };
 		53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */; };
@@ -2246,6 +2248,7 @@
 				538FE74F20BF476800C3CE17 /* ResponseError.swift in Sources */,
 				538FE75720BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */,
 				536D6D6420CF3B5C00A269D4 /* SignUp_APITests.swift in Sources */,
+				53C8AD3B20E596C3008E07FF /* AnalyticsEnums.swift in Sources */,
 				538FE74C20BF475300C3CE17 /* EmptyMappableObject.swift in Sources */,
 				538FE74E20BF476000C3CE17 /* Meta.swift in Sources */,
 			);
@@ -2522,6 +2525,7 @@
 				5322408220AE50F900D4E86C /* MappableDataArray.swift in Sources */,
 				53C7301220CF2FF000BCE926 /* FTUELocalization.swift in Sources */,
 				538FE75820BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */,
+				53C8AD3C20E596C4008E07FF /* AnalyticsEnums.swift in Sources */,
 				53EF28DE20AE07BA006CC5FA /* Errors.swift in Sources */,
 				538FE75E20BF4B6900C3CE17 /* BotUser.swift in Sources */,
 				5322408120AE231500D4E86C /* AdminAPI.swift in Sources */,
