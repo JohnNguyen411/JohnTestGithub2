@@ -276,7 +276,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         // logoutOnLaunch can be specified as an executable argument
         // Typically and currently this is only used by the UI test suite
-        if UIApplication.logoutOnLaunch {
+        if UIApplication.logoutOnLaunch || UserDefaults.standard.isFirstTimeLaunch {
             UserManager.sharedInstance.logout()
         }
 
