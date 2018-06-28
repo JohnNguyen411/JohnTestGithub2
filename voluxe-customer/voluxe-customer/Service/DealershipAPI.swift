@@ -39,7 +39,7 @@ class DealershipAPI: NSObject {
     
     
     /**
-     Get a list of Dealership near Location
+     Get a list of Dealership servicing a Location
      - parameter location: the location
 
      - Returns: A Future ResponseObject containing a list of Dealership around the location, or an AFError if an error occured
@@ -47,7 +47,7 @@ class DealershipAPI: NSObject {
     func getDealerships(location: CLLocationCoordinate2D) -> Future<ResponseObject<MappableDataArray<Dealership>>?, Errors> {
         let promise = Promise<ResponseObject<MappableDataArray<Dealership>>?, Errors>()
         
-        NetworkRequest.request(url: "/v1/dealerships/near", queryParameters: ["latitude": "\(location.latitude)", "longitude" : "\(location.longitude)"], withBearer: true).responseJSONErrorCheck { response in
+        NetworkRequest.request(url: "/v1/dealerships/within-coverage", queryParameters: ["latitude": "\(location.latitude)", "longitude" : "\(location.longitude)"], withBearer: true).responseJSONErrorCheck { response in
             let responseObject = ResponseObject<MappableDataArray<Dealership>>(json: response.result.value, allowEmptyData: false)
             
             if response.error == nil && responseObject.error == nil {
