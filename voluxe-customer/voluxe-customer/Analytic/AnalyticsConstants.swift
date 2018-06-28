@@ -9,10 +9,7 @@
 import Foundation
 
 class AnalyticsConstants {
-    
-    // State change events
-    static let eventStateChange = "state_change"
-    
+
     // Click events
     static let eventClickDimissDialog = "dialog_action_dismiss"
     static let eventClickDestructiveDialog = "dialog_action_destructive"
@@ -53,8 +50,6 @@ class AnalyticsConstants {
     static let eventClickServiceTypeMilestone = "click_service_type_milestone"
     static let eventClickServiceTypeCustom = "click_service_type_custom"
     static let eventClickServiceMilestone = "click_service_milestone" // pass index of select row in params
-    static let eventClickSelectServiceCustom = "click_select_service_custom" // pass index of select row in params
-    static let eventClickDeselectServiceCustom = "click_deselect_service_custom" // pass index of select row in params
     static let eventClickServiceCustomDrivableIndex = "click_service_custom_drivable" // pass index of select row in params
     static let eventClickSelectLocationIndex = "click_select_location_index" // pass index of select row in params
     static let eventClickSelectDealershipIndex = "click_select_dealership_index" // pass index of select row in params
@@ -69,15 +64,6 @@ class AnalyticsConstants {
     static let eventClickSettingsAccountDeleteAddress = "click_settings_account_delete_address" // pass index of select row in params
     static let eventClickSettingsAccountEditPhone = "click_settings_account_edit_phone"
     static let eventClickSettingsAccountEditPassword = "click_settings_account_edit_password"
-    
-    // Permissions
-    static let eventClickPermissionNotificationGrant = "click_permission_notification_grant"
-    static let eventPermissionNotificationGranted = "permission_notification_granted"
-    static let eventPermissionNotificationDenied = "permission_notification_denied"
-    static let eventClickPermissionLocationGrant = "click_permission_location_grant"
-    static let eventPermissionLocationGranted = "permission_location_granted"
-    static let eventPermissionLocationDenied = "permission_location_denied"
-
     
     // Success Result (ie: Address deleted, Address Added, Password changed, etc)
     static let eventSettingsAccountAddressDeleted = "settings_account_address_deleted" // pass index of select row in params
@@ -95,12 +81,28 @@ class AnalyticsConstants {
     // Param Names
     static let paramNameState = "state"
     static let paramNameIndex = "index"
-    static let paramNameSelectedCustomServices = "selected_custom_services" // index of selected services
+     // index of selected services
 }
 
 // deprecated constants
 @available(*, deprecated)
 extension AnalyticsConstants {
+
+    // Permissions
+    static let eventClickPermissionNotificationGrant = "click_permission_notification_grant"
+    static let eventPermissionNotificationGranted = "permission_notification_granted"
+    static let eventPermissionNotificationDenied = "permission_notification_denied"
+    static let eventClickPermissionLocationGrant = "click_permission_location_grant"
+    static let eventPermissionLocationGranted = "permission_location_granted"
+    static let eventPermissionLocationDenied = "permission_location_denied"
+
+    // selected service click and index
+    static let eventClickSelectServiceCustom = "click_select_service_custom"
+    static let paramNameSelectedCustomServices = "selected_custom_services"
+    static let eventClickDeselectServiceCustom = "click_deselect_service_custom"
+
+    // state change
+    static let eventStateChange = "state_change"
 
     // screen names
     static let paramNameBookingFeedbackView = "reservation_feedback_view"

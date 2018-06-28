@@ -545,12 +545,8 @@ extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
 extension LocationViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        if status == .authorizedWhenInUse || status == .authorizedAlways {
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventPermissionNotificationGranted, screenName: self.screenName)
-        } else {
-            // denied
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventPermissionNotificationDenied, screenName: self.screenName)
-        }
+        let granted = status == .authorizedWhenInUse || status == .authorizedAlways
+       Analytics.trackChangePermission(permission: .location, granted: granted, screen: self.screenNameEnum)
         SwiftEventBus.post("onLocationPermissionStatusChanged")
     }
 }

@@ -29,7 +29,7 @@ final class StateServiceManager {
             
             SwiftEventBus.post("stateDidChange", sender: StateChangeObject(vehicleId: vehicleId, oldState: oldState, newState: state))
             if let booking = booking {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventStateChange, paramName: AnalyticsConstants.paramNameState, paramValue: "\(booking.state)")
+               Analytics.trackChangeBooking(state: booking.state)
             }
             BookingSyncManager.sharedInstance.syncBookings()
         } else if state == .enRouteForDropoff || state == .enRouteForPickup || state == .nearbyForPickup || state == .nearbyForDropoff {

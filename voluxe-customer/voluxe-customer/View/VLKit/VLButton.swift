@@ -125,6 +125,11 @@ class VLButton : UIButton {
             self.addCharacterSpacing(kernValue: kern, text: title)
         }
     }
+
+    // TODO temporary until String screenName is removed
+    func setEvent(name: AnalyticsEnums.Name.Button, screen: AnalyticsEnums.Name.Screen? = nil) {
+        self.setEventName(name.rawValue, screenName: screen?.rawValue)
+    }
     
     func setEventName(_ eventName: String, screenName: String? = nil, params: [String: String]? = nil) {
         self.eventName = eventName
@@ -136,11 +141,6 @@ class VLButton : UIButton {
         }
     }
 
-    // TODO is this necessary?
-    func setOptionalParams(params: [String: String]) {
-        self.optionalParameters = params
-    }
-    
     func setType(type: VLButtonType) {
         self.type = type
         switch type {

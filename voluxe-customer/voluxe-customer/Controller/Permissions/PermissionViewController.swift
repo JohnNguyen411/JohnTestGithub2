@@ -36,8 +36,8 @@ class PermissionViewController: BaseViewController {
     
     public static func screenNameForPermission(type: PermissionType) -> AnalyticsEnums.Name.Screen {
         switch type {
-        case .location: return AnalyticsEnums.Name.Screen.permissionsLocation
-        case .notification: return AnalyticsEnums.Name.Screen.permissionsNotification
+        case .location: return AnalyticsEnums.Name.Screen.allowLocation
+        case .notification: return AnalyticsEnums.Name.Screen.allowNotifications
         }
     }
     
@@ -47,13 +47,7 @@ class PermissionViewController: BaseViewController {
         self.completionBlock = completion
         
         super.init(screenNameEnum: PermissionViewController.screenNameForPermission(type: permissionType))
-        
-        if permissionType == .notification {
-            self.grantPermissionButton.setEventName(AnalyticsConstants.eventClickPermissionNotificationGrant, screenName: screenName)
-        } else {
-            self.grantPermissionButton.setEventName(AnalyticsConstants.eventClickPermissionLocationGrant, screenName: screenName)
-        }
-        
+
         self.grantPermissionButton.setActionBlock { [weak self] in
             self?.onGrantPermissionClicked()
         }
@@ -70,8 +64,7 @@ class PermissionViewController: BaseViewController {
         super.viewDidLoad()
         self.modalPresentationStyle = .overCurrentContext
     }
-    
-    
+
     override func setupViews() {
         super.setupViews()
         
@@ -109,18 +102,17 @@ class PermissionViewController: BaseViewController {
         }
     }
     
-    
     func onGrantPermissionClicked() {
         if permissionType == .notification {
+            Analytics.trackClick(button: .requestNotifications, screen: self.screenNameEnum)
             requestPushNotifications()
         } else {
+            Analytics.trackClick(button: .requestLocation, screen: self.screenNameEnum)
             requestLocationPermission()
         }
     }
-    
-    
+
     @objc func onCloseClicked() {
         self.dismiss(animated: true)
     }
-    
 }

@@ -38,6 +38,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     let repairOrderType: RepairOrderType
     var services: [String]?
     var selected = [Int: Bool]()
+    var serviceAnalyticsEnums: [AnalyticsEnums.Name.Button] = []
     
     init(vehicle: Vehicle, repairOrderType: RepairOrderType) {
         self.vehicle = vehicle
@@ -72,6 +73,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
 
         showServices(services: [.UnderTheHood, .VehicleInt, .VehicleExt, .IDontKnow])
+        self.serviceAnalyticsEnums = [.vehicleEngine, .vehicleInterior, .vehicleExterior, .vehicleUnknown]
         
         confirmButton.setActionBlock { [weak self] in
             guard let weakSelf = self else { return }
@@ -150,7 +152,6 @@ class ServiceMultiselectListViewController: BaseViewController {
     func enableConfirmButton() {
         confirmButton.isEnabled = getSelectedIndex().count > 0
     }
-    
 }
 
 extension ServiceMultiselectListViewController: UITableViewDataSource, UITableViewDelegate {
@@ -181,16 +182,14 @@ extension ServiceMultiselectListViewController: UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let rowSelected = selected[indexPath.row] {
             selected[indexPath.row] = !rowSelected
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDeselectServiceCustom, screenName: screenName, index: indexPath.row)
+            Analytics.trackClick(button: self.serviceAnalyticsEnums[indexPath.row], screen: self.screenNameEnum, selected: false)
         } else {
             selected[indexPath.row] = true
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSelectServiceCustom, screenName: screenName, index: indexPath.row)
+            Analytics.trackClick(button: self.serviceAnalyticsEnums[indexPath.row], screen: self.screenNameEnum, selected: true)
         }
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
-        
-        confirmButton.setOptionalParams(params: [AnalyticsConstants.paramNameSelectedCustomServices: getSelectedIndex()])
-        enableConfirmButton()
+        self.enableConfirmButton()
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {

@@ -37,7 +37,7 @@ class ServiceDetailViewController: BaseViewController {
         self.canSchedule = canSchedule
         self.service = service
         serviceTitle = VLTitledLabel(title: .FactoryScheduledMaintenance, leftDescription: service.name!, rightDescription: "")
-        var analyticName: AnalyticsEnums.Name.Screen = canSchedule ? .serviceMilestoneDetailDateTime : .serviceMilestoneDetail
+        var analyticName: AnalyticsEnums.Name.Screen = canSchedule ? .serviceMilestoneDateTime : .serviceMilestoneDetail
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
             analyticName = AnalyticsEnums.Name.Screen.serviceCustomDetail
         }

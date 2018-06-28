@@ -87,27 +87,26 @@ class NotificationPermissionViewController: VLPresentrViewController, PresentrDe
     override func height() -> Int {
         return baseHeight + 190
     }
-    
+
     func requestPushNotifications() {
         weak var weakSelf = self
         UNUserNotificationCenter.current().delegate = self.notifDelegate
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) {
             (granted, error) in
-            guard let selfRef = weakSelf else { return }
+            guard let me = weakSelf else { return }
             Logger.print("Permission granted: \(granted)")
+            Analytics.trackChangePermission(permission: .notification, granted: granted, screen: me.screenNameEnum)
             if granted {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventPermissionNotificationGranted, screenName: selfRef.screenName)
                 UNUserNotificationCenter.current().getNotificationSettings { (settings) in
                     Logger.print("Notification settings: \(settings)")
                     guard settings.authorizationStatus == .authorized else { return }
                     DispatchQueue.main.async {
                         UIApplication.shared.registerForRemoteNotifications()
-                        selfRef.dismiss(animated: true)
+                        me.dismiss(animated: true)
                     }
                 }
             } else {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventPermissionNotificationDenied, screenName: selfRef.screenName)
-                selfRef.dismiss(animated: true)
+                me.dismiss(animated: true)
             }
         }
     }

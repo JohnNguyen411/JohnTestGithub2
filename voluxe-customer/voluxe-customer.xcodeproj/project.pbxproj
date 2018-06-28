@@ -9,9 +9,9 @@
 /* Begin PBXBuildFile section */
 		26E9A651470608F0E500FC21 /* Pods_voluxe_customerUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E181BDDE7AA2B89565331F15 /* Pods_voluxe_customerUnitTests.framework */; };
 		52078A4D132E9D871CDD555D /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
+		5303E2F320E45C1600B1F4BE /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */; };
 		5303E2F620E4622600B1F4BE /* UserDefaults_UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F520E4622600B1F4BE /* UserDefaults_UnitTests.swift */; };
 		5303E2F820E4631D00B1F4BE /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
-		5303E2F920E4631D00B1F4BE /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
 		5321B1B720C9A980006C1E14 /* UIView+Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5321B1B620C9A980006C1E14 /* UIView+Blur.swift */; };
 		5322408120AE231500D4E86C /* AdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322408020AE231500D4E86C /* AdminAPI.swift */; };
 		5322408220AE50F900D4E86C /* MappableDataArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495DE1FDA1E870036FC08 /* MappableDataArray.swift */; };
@@ -72,6 +72,14 @@
 		53C7301220CF2FF000BCE926 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
 		53C8AD3B20E596C3008E07FF /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */; };
 		53C8AD3C20E596C4008E07FF /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */; };
+		53C8AD4F20E59C9B008E07FF /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
+		53C8AD5020E59CAF008E07FF /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */; };
+		53C8AD5120E59CEF008E07FF /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */; };
+		53C8AD5220E59D0E008E07FF /* Enum+ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E91320D881F100B17D53 /* Enum+ForEach.swift */; };
+		53C8AD5520E59D4F008E07FF /* NullAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8AD5320E59D4F008E07FF /* NullAnalytics.swift */; };
+		53C8AD5620E59D4F008E07FF /* NullAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8AD5320E59D4F008E07FF /* NullAnalytics.swift */; };
+		53C8AD5720E59ED3008E07FF /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */; };
+		53C8AD5820E59EED008E07FF /* Enum+ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E91320D881F100B17D53 /* Enum+ForEach.swift */; };
 		53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */; };
 		53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */; };
@@ -425,6 +433,7 @@
 		4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
 		4C64F631C2578E5AD1F6A474 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
 		51EA00834FA121CCED3736C9 /* Pods-voluxe-customerUnitTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.beta.xcconfig"; sourceTree = "<group>"; };
+		5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsCore.swift; sourceTree = "<group>"; };
 		5303E2F520E4622600B1F4BE /* UserDefaults_UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults_UnitTests.swift; sourceTree = "<group>"; };
 		5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Voluxe.swift"; sourceTree = "<group>"; };
 		5321B1B620C9A980006C1E14 /* UIView+Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Blur.swift"; sourceTree = "<group>"; };
@@ -461,6 +470,7 @@
 		53C7300920CEE5F400BCE926 /* Gyro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gyro.swift; path = "voluxe-customer/Shiny/Sources/Gyro.swift"; sourceTree = SOURCE_ROOT; };
 		53C7300A20CEE5F400BCE926 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gradient.swift; path = "voluxe-customer/Shiny/Sources/Gradient.swift"; sourceTree = SOURCE_ROOT; };
 		53C7301020CEE71C00BCE926 /* VLShinyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VLShinyView.swift; path = "voluxe-customer/Shiny/VLShinyView.swift"; sourceTree = SOURCE_ROOT; };
+		53C8AD5320E59D4F008E07FF /* NullAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullAnalytics.swift; sourceTree = "<group>"; };
 		53D9A7AA2098E678008BE93E /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
 		53D9A7AB2098E679008BE93E /* GoogleService-Info-AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-AppStore.plist"; sourceTree = "<group>"; };
 		53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Voluxe.swift"; sourceTree = "<group>"; };
@@ -1179,8 +1189,10 @@
 				6C5224612089033B0078D9B9 /* AnalyticsConstants.swift */,
 				6C7DDE1C1FE1B864000E2822 /* VLAnalytics.swift */,
 				536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */,
+				5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */,
 				5340E90620D8514D00B17D53 /* FBAnalytics.swift */,
 				5340E92C20E2A45600B17D53 /* FBAnalytics+UserManager.swift */,
+				53C8AD5320E59D4F008E07FF /* NullAnalytics.swift */,
 			);
 			path = Analytic;
 			sourceTree = "<group>";
@@ -2238,13 +2250,16 @@
 				538FE74820BF46F900C3CE17 /* CustomerAPI.swift in Sources */,
 				538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */,
 				538FE74D20BF475A00C3CE17 /* Errors.swift in Sources */,
+				53C8AD5720E59ED3008E07FF /* AnalyticsCore.swift in Sources */,
 				538FE75320BF482C00C3CE17 /* Location.swift in Sources */,
 				53E2521720C731D500D8C32D /* TestConstants.swift in Sources */,
 				538FE74B20BF474D00C3CE17 /* MappableDataObject.swift in Sources */,
 				538FE74A20BF473100C3CE17 /* NetworkRequest.swift in Sources */,
+				53C8AD5820E59EED008E07FF /* Enum+ForEach.swift in Sources */,
 				538FE75220BF482400C3CE17 /* VLDateFormatter.swift in Sources */,
 				538FE75D20BF4B6900C3CE17 /* BotUser.swift in Sources */,
 				538FE75020BF47AD00C3CE17 /* Customer.swift in Sources */,
+				53C8AD5520E59D4F008E07FF /* NullAnalytics.swift in Sources */,
 				538FE74F20BF476800C3CE17 /* ResponseError.swift in Sources */,
 				538FE75720BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */,
 				536D6D6420CF3B5C00A269D4 /* SignUp_APITests.swift in Sources */,
@@ -2423,6 +2438,7 @@
 				6C20E1C31FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */,
 				6C9C7A7B1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
 				6C5D866C2032539900BBADDC /* VLVerticalSearchTextField.swift in Sources */,
+				5303E2F320E45C1600B1F4BE /* AnalyticsCore.swift in Sources */,
 				6C2AA2E720AB900F0089350B /* UIBarButtonItem+Voluxe.swift in Sources */,
 				5321B1B720C9A980006C1E14 /* UIView+Blur.swift in Sources */,
 				53EF28D520AE067C006CC5FA /* CustomerAPI+Vehicle.swift in Sources */,
@@ -2492,7 +2508,8 @@
 				5340E90D20D861C400B17D53 /* Analytics_UnitTests.swift in Sources */,
 				5340E91620D95E7400B17D53 /* AnalyticsEnums.swift in Sources */,
 				5340E91520D8822D00B17D53 /* Enum+ForEach.swift in Sources */,
-				5303E2F920E4631D00B1F4BE /* UserDefaults+Voluxe.swift in Sources */,
+				53C8AD4F20E59C9B008E07FF /* UserDefaults+Voluxe.swift in Sources */,
+				53C8AD5020E59CAF008E07FF /* AnalyticsCore.swift in Sources */,
 				5340E90B20D861AD00B17D53 /* UserDefaults+Debug.swift in Sources */,
 				5340E91720D9715100B17D53 /* Errors.swift in Sources */,
 				5340E90A20D861A800B17D53 /* FBAnalytics.swift in Sources */,
@@ -2509,6 +2526,7 @@
 				538FE76420BF4BC000C3CE17 /* Int+Test.swift in Sources */,
 				53EF28D820AE077B006CC5FA /* ResponseObject.swift in Sources */,
 				53EF28C820AE0553006CC5FA /* UserDefaults+Debug.swift in Sources */,
+				53C8AD5220E59D0E008E07FF /* Enum+ForEach.swift in Sources */,
 				5322409320B385C300D4E86C /* NetworkRequest+Admin.swift in Sources */,
 				53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */,
 				53EF28DA20AE0798006CC5FA /* Config.swift in Sources */,
@@ -2526,11 +2544,13 @@
 				53C7301220CF2FF000BCE926 /* FTUELocalization.swift in Sources */,
 				538FE75820BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */,
 				53C8AD3C20E596C4008E07FF /* AnalyticsEnums.swift in Sources */,
+				53C8AD5120E59CEF008E07FF /* AnalyticsCore.swift in Sources */,
 				53EF28DE20AE07BA006CC5FA /* Errors.swift in Sources */,
 				538FE75E20BF4B6900C3CE17 /* BotUser.swift in Sources */,
 				5322408120AE231500D4E86C /* AdminAPI.swift in Sources */,
 				5322408520AE586E00D4E86C /* User.swift in Sources */,
 				53EF28CD20AE064E006CC5FA /* CustomerAPI+Login.swift in Sources */,
+				53C8AD5620E59D4F008E07FF /* NullAnalytics.swift in Sources */,
 				53EF28DB20AE079F006CC5FA /* ResponseError.swift in Sources */,
 				53EF28DC20AE07A5006CC5FA /* Meta.swift in Sources */,
 				5322409720B39FF700D4E86C /* CreateAccount_UITests.swift in Sources */,
