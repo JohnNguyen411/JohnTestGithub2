@@ -17,13 +17,13 @@ extension UserDefaults {
     /// return true if should show permission screen, false otherwise
     
     func shouldShowNotifPermissionForBooking(booking: Booking) -> Bool {
-        if booking.getState() == .pickupScheduled {
+        if booking.getState() == .pickupScheduled || booking.getState() == .enRouteForPickup {
             if booking.hasUpcomingRequestToday() {
                 return !hasShownNotificationPermissionForToday
             } else {
                 return !hasShownNotificationPermissionForPickup
             }
-        } else if booking.getState() == .dropoffScheduled {
+        } else if booking.getState() == .dropoffScheduled || booking.getState() == .enRouteForDropoff {
             if booking.hasUpcomingRequestToday() {
                 return !hasShownNotificationPermissionForToday
             } else {
@@ -34,13 +34,13 @@ extension UserDefaults {
     }
     
     func showNotifPermissionForBooking(booking: Booking, shouldShow: Bool) {
-        if booking.getState() == .pickupScheduled {
+        if booking.getState() == .pickupScheduled || booking.getState() == .enRouteForPickup {
             if booking.hasUpcomingRequestToday() {
                 hasShownNotificationPermissionForToday = shouldShow
             } else {
                 hasShownNotificationPermissionForPickup = shouldShow
             }
-        } else if booking.getState() == .dropoffScheduled {
+        } else if booking.getState() == .dropoffScheduled || booking.getState() == .enRouteForDropoff {
             if booking.hasUpcomingRequestToday() {
                 hasShownNotificationPermissionForToday = shouldShow
             } else {

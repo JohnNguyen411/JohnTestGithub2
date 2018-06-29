@@ -167,7 +167,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if let slideMenu = slideMenuController {
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
                 var vehicleViewController: BaseViewController?
-                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.bookingFeedbackId > -1, state == .completed {
+                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.bookingFeedbackId > -1, booking.bookingFeedback == nil, state == .completed {
                     vehicleViewController = BookingRatingViewController(vehicle: vehicle)
                 } else {
                     vehicleViewController = MainViewController(vehicle: vehicle, state: state)
@@ -335,7 +335,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         if UserManager.sharedInstance.isLoggedIn() {
             if UserManager.sharedInstance.getBookings().count == 0 {
-                BookingSyncManager.sharedInstance.fetchActiveBookings() // force sync now
+                BookingSyncManager.sharedInstance.syncBookings() // force sync now
             } else {
                 BookingSyncManager.sharedInstance.syncBookings()
             }
@@ -413,7 +413,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     {
         if UserManager.sharedInstance.isLoggedIn() {
             if UserManager.sharedInstance.getBookings().count == 0 {
-                BookingSyncManager.sharedInstance.fetchActiveBookings() // force sync now
+                BookingSyncManager.sharedInstance.syncBookings() // force sync now
             } else {
                 BookingSyncManager.sharedInstance.syncBookings()
             }
@@ -429,7 +429,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     {
         if UserManager.sharedInstance.isLoggedIn() {
             if UserManager.sharedInstance.getBookings().count == 0 {
-                BookingSyncManager.sharedInstance.fetchActiveBookings() // force sync now
+                BookingSyncManager.sharedInstance.syncBookings() // force sync now
             } else {
                 BookingSyncManager.sharedInstance.syncBookings()
             }

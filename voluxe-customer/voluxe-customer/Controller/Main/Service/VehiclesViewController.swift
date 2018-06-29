@@ -192,7 +192,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         // check if service scheduled
-        
+        self.serviceState = state
         if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle), !booking.isInvalidated, booking.getState() != .canceled {
             scheduledServiceView.snp.updateConstraints { make in
                 make.height.equalTo(VLTitledLabel.height)

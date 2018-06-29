@@ -311,7 +311,8 @@ class SchedulingPickupViewController: SchedulingViewController {
                         realm.add(booking, update: true)
                     }
                 }
-                UserManager.sharedInstance.addBooking(booking: booking)
+                _ = UserManager.sharedInstance.addBooking(booking: booking)
+                BookingSyncManager.sharedInstance.syncBookings()
             }
             
             RequestedServiceManager.sharedInstance.reset()

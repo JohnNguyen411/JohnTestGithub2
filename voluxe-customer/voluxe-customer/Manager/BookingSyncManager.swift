@@ -11,50 +11,21 @@ import RealmSwift
 
 final class BookingSyncManager {
     
-    private var timers: [Int: SyncTimer?] = [:]
+    private var activeBookingTimer: ActiveBookingsSyncTimer?
+    private var timers: [Int: BookingSyncTimer?] = [:]
     private var isRefreshing = false
     
     static let sharedInstance = BookingSyncManager()
     
-    public func fetchActiveBookings() {
-        
-        if isRefreshing { return }
-        guard let customerId = UserManager.sharedInstance.customerId() else { return }
-        
-        isRefreshing = true
-        // Get Customer's active Bookings based on ID
-        BookingAPI().getBookings(customerId: customerId, active: true).onSuccess { result in
-            self.isRefreshing = false
-            if let bookings = result?.data?.result, bookings.count > 0 {
-                
-                for booking in bookings {
-                    if booking.customerId == -1 {
-                        booking.customerId = customerId
-                    }
-                }
-                
-                if let realm = try? Realm() {
-                    try? realm.write {
-                        realm.add(bookings, update: true)
-                    }
-                }
-                // set the bookings
-                UserManager.sharedInstance.setBookings(bookings: bookings)
-                
-            } else {
-                UserManager.sharedInstance.setBookings(bookings: nil)
-            }
-            
-            }.onFailure { error in
-                self.isRefreshing = false
-                UserManager.sharedInstance.setBookings(bookings: nil)
-        }
-    }
-    
-    
     public func syncBookings() {
         
-        stopAllTimers()
+        stopAllBookingsTimers()
+        
+        if activeBookingTimer == nil {
+            activeBookingTimer = ActiveBookingsSyncTimer()
+        } else if let activeBookingTimer = activeBookingTimer, activeBookingTimer.state == .suspended {
+            activeBookingTimer.sync()
+        }
         
         if UserManager.sharedInstance.getBookings().count == 0 {
             return
@@ -65,7 +36,7 @@ final class BookingSyncManager {
                 continue
             }
             
-            let newTimer = SyncTimer(booking: booking)
+            let newTimer = BookingSyncTimer(booking: booking)
             timers[booking.id] = newTimer
         }
         
@@ -90,5 +61,22 @@ final class BookingSyncManager {
             timer = nil
         }
         timers.removeAll()
+        
+        if activeBookingTimer != nil {
+            activeBookingTimer!.suspend()
+            activeBookingTimer = nil
+        }
     }
+    
+    public func stopAllBookingsTimers() {
+        timers.forEach { syncTimer in
+            var timer = syncTimer.value
+            if timer != nil {
+                timer!.suspend()
+            }
+            timer = nil
+        }
+        timers.removeAll()
+    }
+
 }

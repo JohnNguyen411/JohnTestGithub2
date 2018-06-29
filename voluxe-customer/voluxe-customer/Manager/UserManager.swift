@@ -94,9 +94,6 @@ final class UserManager {
     
     public func setBookings(bookings: [Booking]?) {
         
-        // do a dumb count to now if there is a new active booking
-        let bookingCount = self.bookings.count
-        
         if let bookings = bookings {
             
             self.vehicleBookings.removeAll()
@@ -131,19 +128,7 @@ final class UserManager {
         
         BookingSyncManager.sharedInstance.syncBookings()
         SwiftEventBus.post("setActiveBooking")
-        
-        let newCount = self.bookings.count
-
-        if bookingCount != newCount {
-            // previous count < then new booking
-            if bookingCount < newCount {
-                // new booking
-                SwiftEventBus.post("bookingAdded")
-            } else {
-                // booking removed/completed/cancelled/
-                SwiftEventBus.post("bookingRemoved")
-            }
-        }
+       
     }
     
     public func getBookings() -> [Booking] {
@@ -168,18 +153,55 @@ final class UserManager {
         return nil
     }
     
-    public func addBooking(booking: Booking) {
+    // return true if it's a new booking
+    public func addBooking(booking: Booking) -> Bool {
+        if booking.getState() == .completed && booking.bookingFeedback != nil {
+            // ignore
+            SwiftEventBus.post("setActiveBooking")
+
+            return false
+        }
+        
         var carBookings: [Booking]? = self.vehicleBookings[booking.vehicleId]
         if carBookings != nil {
+            var indexBooking = -1
+            for (index, carBook) in carBookings!.enumerated() {
+                if carBook.id == booking.id {
+                    // already exist
+                    indexBooking = index
+                    break
+                }
+            }
+            if indexBooking >= 0 {
+                carBookings!.remove(at: indexBooking)
+            }
             carBookings!.append(booking)
         } else {
             carBookings = [booking]
         }
+        
+        var indexBooking = -1
+        for (index, book) in self.bookings.enumerated() {
+            if book.id == booking.id {
+                // already exist
+                indexBooking = index
+                break
+            }
+        }
+        if indexBooking >= 0 {
+            self.bookings.remove(at: indexBooking)
+        }
+        
         self.bookings.append(booking)
         self.vehicleBookings[booking.vehicleId] = carBookings
-        StateServiceManager.sharedInstance.updateState(state: Booking.getStateForBooking(booking: booking), vehicleId: booking.vehicleId, booking: booking)
 
+        if indexBooking == -1 {
+            // new booking
+            SwiftEventBus.post("bookingAdded")
+        }
         SwiftEventBus.post("setActiveBooking")
+        
+        return indexBooking == -1
     }
     
     public func getActiveBookings() -> [Booking] {

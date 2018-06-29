@@ -1,5 +1,6 @@
-v1.0(63):
+v1.0(64):
 Improve refresh for bookings
+Fix notification permission issue
 
 v1.0(62):
 Analytics instrumentation for APIs and 100% of screens

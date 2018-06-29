@@ -168,6 +168,8 @@
 		6C2208771FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
 		6C22087C1FBD0C6700874882 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C22087B1FBD0C6700874882 /* Driver.swift */; };
 		6C2208801FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */; };
+		6C27FBC720E6CF4900EAA689 /* BookingSyncTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27FBC620E6CF4900EAA689 /* BookingSyncTimer.swift */; };
+		6C27FBC920E6CFDA00EAA689 /* ActiveBookingsSyncTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27FBC820E6CFDA00EAA689 /* ActiveBookingsSyncTimer.swift */; };
 		6C2AA2E720AB900F0089350B /* UIBarButtonItem+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2AA2E620AB900F0089350B /* UIBarButtonItem+Voluxe.swift */; };
 		6C2B32481FB3C67100B943AC /* DateTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B32471FB3C67100B943AC /* DateTimeViewController.swift */; };
 		6C2F1DD61FAD0A8F00C28C6E /* SchedulingPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1DD51FAD0A8F00C28C6E /* SchedulingPickupViewController.swift */; };
@@ -532,6 +534,8 @@
 		6C2208761FBCEF7A00874882 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		6C22087B1FBD0C6700874882 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Voluxe.swift"; sourceTree = "<group>"; };
+		6C27FBC620E6CF4900EAA689 /* BookingSyncTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSyncTimer.swift; sourceTree = "<group>"; };
+		6C27FBC820E6CFDA00EAA689 /* ActiveBookingsSyncTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveBookingsSyncTimer.swift; sourceTree = "<group>"; };
 		6C2AA2E620AB900F0089350B /* UIBarButtonItem+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Voluxe.swift"; sourceTree = "<group>"; };
 		6C2B32471FB3C67100B943AC /* DateTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeViewController.swift; sourceTree = "<group>"; };
 		6C2B324B1FB3C88D00B943AC /* Objc-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Objc-Bridge-Header.h"; sourceTree = "<group>"; };
@@ -992,6 +996,8 @@
 				6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */,
 				6C5C6A0F1FD8AACD00D70BF6 /* UserManager.swift */,
 				6C4970FA20754E2700FF33E9 /* SyncTimer.swift */,
+				6C27FBC820E6CFDA00EAA689 /* ActiveBookingsSyncTimer.swift */,
+				6C27FBC620E6CF4900EAA689 /* BookingSyncTimer.swift */,
 				6C9C9067209D127100494068 /* RemoteConfigManager.swift */,
 				6CE1479420AE300B001F4BC7 /* RealmManager.swift */,
 				6CE147A920B49E35001F4BC7 /* KeychainManager.swift */,
@@ -2434,6 +2440,7 @@
 				6C7DDE1D1FE1B864000E2822 /* VLAnalytics.swift in Sources */,
 				53C7300D20CEE5F400BCE926 /* Shiny.swift in Sources */,
 				6CE1479A20AE4F8D001F4BC7 /* PermissionViewController.swift in Sources */,
+				6C27FBC720E6CF4900EAA689 /* BookingSyncTimer.swift in Sources */,
 				6CBB4EB31FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
 				6C20E1C31FBE67C000E5D9A0 /* ScheduledDropoffLocalization.swift in Sources */,
 				6C9C7A7B1FB381D600FE40B5 /* UIView+Voluxe.swift in Sources */,
@@ -2480,6 +2487,7 @@
 				53D9A7C1209A7D01008BE93E /* NSObject+Voluxe.swift in Sources */,
 				6CDCC602205743DB00DFA831 /* NewServiceViewController.swift in Sources */,
 				6C7342081FB127A300E90F7E /* DealershipViewController.swift in Sources */,
+				6C27FBC920E6CFDA00EAA689 /* ActiveBookingsSyncTimer.swift in Sources */,
 				6C1CE1E720C5F0CF00A2E054 /* DeeplinkManager.swift in Sources */,
 				53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */,
 				6C69267E1FB3B3E3009495E9 /* LoanerViewController.swift in Sources */,
