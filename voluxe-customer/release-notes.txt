@@ -1,3 +1,9 @@
+v1.0(63):
+Improve refresh for bookings
+
+v1.0(62):
+Analytics instrumentation for APIs and 100% of screens
+
 v1.0(61):
 Analytics instrumentation for APIs and 50% of screens
 
