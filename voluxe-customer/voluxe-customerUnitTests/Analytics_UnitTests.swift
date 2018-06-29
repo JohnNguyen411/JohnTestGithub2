@@ -32,7 +32,7 @@ class Analytics_UnitTests: XCTestCase {
 
         analytics.trackOutputClosure = {
             name, params in
-            XCTAssertTrue(name == "click_button_signin")
+            XCTAssertTrue(name == "click_button_signIn")
         }
         analytics.trackClick(button: .signIn)
 
