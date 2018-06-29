@@ -252,6 +252,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             notification in
             self.showForceUpgradeDialog()
         }
+        
+        SwiftEventBus.onMainThread(self, name: "bookingAdded") {
+            notification in
+            // if a booking was added and there is only 1 active booking, show that screen
+            if UserManager.sharedInstance.getBookings().count > 0 {
+                let booking = UserManager.sharedInstance.getBookings()[0]
+                if let vehicle = booking.vehicle {
+                    self.loadViewForVehicle(vehicle: vehicle, state: ServiceState.appStateForBookingState(bookingState: booking.getState()))
+                }
+            }
+        }
+        
+        SwiftEventBus.onMainThread(self, name: "bookingRemoved") {
+            notification in
+            if UserManager.sharedInstance.getBookings().count > 0 {
+                let booking = UserManager.sharedInstance.getBookings()[0]
+                if let vehicle = booking.vehicle {
+                    self.loadViewForVehicle(vehicle: vehicle, state: ServiceState.appStateForBookingState(bookingState: booking.getState()))
+                }
+            } else {
+                // might be in rating state.
+            }
+        }
     }
 
     // MARK:- Application support
@@ -310,6 +333,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        if UserManager.sharedInstance.isLoggedIn() {
+            if UserManager.sharedInstance.getBookings().count == 0 {
+                BookingSyncManager.sharedInstance.fetchActiveBookings() // force sync now
+            } else {
+                BookingSyncManager.sharedInstance.syncBookings()
+            }
+        }
+        
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -381,7 +412,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 withCompletionHandler completionHandler: @escaping () -> Void)
     {
         if UserManager.sharedInstance.isLoggedIn() {
-            BookingSyncManager.sharedInstance.syncBookings() // force sync now
+            if UserManager.sharedInstance.getBookings().count == 0 {
+                BookingSyncManager.sharedInstance.fetchActiveBookings() // force sync now
+            } else {
+                BookingSyncManager.sharedInstance.syncBookings()
+            }
             completionHandler()
         }
     }
@@ -393,7 +428,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
     {
         if UserManager.sharedInstance.isLoggedIn() {
-            BookingSyncManager.sharedInstance.syncBookings() // force sync now
+            if UserManager.sharedInstance.getBookings().count == 0 {
+                BookingSyncManager.sharedInstance.fetchActiveBookings() // force sync now
+            } else {
+                BookingSyncManager.sharedInstance.syncBookings()
+            }
             completionHandler([.alert, .badge, .sound]) // show foreground notifications
         }
     }

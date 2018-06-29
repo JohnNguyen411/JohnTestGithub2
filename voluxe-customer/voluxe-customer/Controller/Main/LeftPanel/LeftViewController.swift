@@ -220,7 +220,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         // show red dot if vehicleId is in active reservation and if vehicle not already current screen
         var isVehicleActive = false
         for booking in activeBookings {
-            if booking.vehicleId == vehicleId {
+            if !booking.isInvalidated && booking.vehicleId == vehicleId {
                 isVehicleActive = true
                 break
             }
@@ -387,7 +387,7 @@ extension LeftViewController : UITableViewDataSource {
             if let showNotif = notificationDict[vehicle.id], showNotif {
                 cell.showNotification(notificationType: .active)
             } else {
-                if let _ = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
+                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.getState() != .canceled {
                     cell.showNotification(notificationType: .inactive)
                 } else {
                     cell.showNotification(notificationType: nil)

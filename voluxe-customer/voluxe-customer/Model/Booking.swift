@@ -36,6 +36,7 @@ class Booking: Object, Mappable {
     @objc dynamic var dropoffRequest: Request?
     @objc dynamic var dropoffRequestId: Int = -1
     @objc dynamic var bookingFeedbackId: Int = -1
+    @objc dynamic var bookingFeedback: BookingFeedback?
     var repairOrderRequests = List<RepairOrder>()
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
@@ -61,6 +62,7 @@ class Booking: Object, Mappable {
         dropoffRequest <- map["dropoff_request"]
         dropoffRequestId <- map["dropoff_request_id"]
         bookingFeedbackId <- map["booking_feedback_id"]
+        bookingFeedback <- map["booking_feedback"]
         repairOrderRequests <- (map["repair_order_requests"], ArrayTransform<RepairOrder>())
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())

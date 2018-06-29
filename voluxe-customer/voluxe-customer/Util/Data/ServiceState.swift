@@ -65,6 +65,8 @@ public enum ServiceState: Int {
         }
         else if bookingState == .arrivedForDropoff {
             return .arrivedForDropoff
+        } else if bookingState == .canceled {
+            return .idle
         }
         else {
             return .completed

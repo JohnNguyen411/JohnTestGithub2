@@ -93,6 +93,10 @@ final class UserManager {
     }
     
     public func setBookings(bookings: [Booking]?) {
+        
+        // do a dumb count to now if there is a new active booking
+        let bookingCount = self.bookings.count
+        
         if let bookings = bookings {
             
             self.vehicleBookings.removeAll()
@@ -124,9 +128,22 @@ final class UserManager {
             self.vehicleBookings.removeAll()
             self.bookings.removeAll()
         }
+        
         BookingSyncManager.sharedInstance.syncBookings()
-
         SwiftEventBus.post("setActiveBooking")
+        
+        let newCount = self.bookings.count
+
+        if bookingCount != newCount {
+            // previous count < then new booking
+            if bookingCount < newCount {
+                // new booking
+                SwiftEventBus.post("bookingAdded")
+            } else {
+                // booking removed/completed/cancelled/
+                SwiftEventBus.post("bookingRemoved")
+            }
+        }
     }
     
     public func getBookings() -> [Booking] {

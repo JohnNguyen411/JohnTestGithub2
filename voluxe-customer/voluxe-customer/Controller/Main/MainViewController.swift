@@ -95,6 +95,8 @@ class MainViewController: BaseViewController, ChildViewDelegate {
                 let scheduledDeliveryViewController = ScheduledDropoffViewController(vehicle: vehicle, state: serviceState)
                 currentViewController = scheduledDeliveryViewController
             }
+        } else if serviceState == .idle {
+            self.appDelegate?.showVehiclesView(animated: true)
         }
     
         if !changeView {
