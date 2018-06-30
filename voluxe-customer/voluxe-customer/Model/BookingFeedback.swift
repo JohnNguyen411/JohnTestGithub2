@@ -35,5 +35,9 @@ class BookingFeedback: Object, Mappable {
     override static func primaryKey() -> String? {
         return "id"
     }
+    
+    public func needsRating() -> Bool {
+        return state != nil && state! == "pending"
+    }
 
 }

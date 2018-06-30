@@ -191,4 +191,8 @@ class Booking: Object, Mappable {
         return false
     }
     
+    public func needsRating() -> Bool {
+        return self.bookingFeedbackId > -1 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
+    }
+    
 }

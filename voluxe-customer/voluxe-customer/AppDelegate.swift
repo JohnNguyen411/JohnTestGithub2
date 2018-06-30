@@ -167,7 +167,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if let slideMenu = slideMenuController {
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
                 var vehicleViewController: BaseViewController?
-                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.bookingFeedbackId > -1, booking.bookingFeedback == nil, state == .completed {
+                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.needsRating(), state == .completed {
                     vehicleViewController = BookingRatingViewController(vehicle: vehicle)
                 } else {
                     vehicleViewController = MainViewController(vehicle: vehicle, state: state)
