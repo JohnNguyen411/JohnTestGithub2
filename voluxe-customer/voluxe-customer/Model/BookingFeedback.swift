@@ -31,13 +31,14 @@ class BookingFeedback: Object, Mappable {
         comment <- map["comment"]
         state <- map["state"]
     }
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
+
+    // TODO temporary fix to avoid Realm migration issue
+    // https://github.com/volvo-cars/ios/issues/290
+//    override static func primaryKey() -> String? {
+//        return "id"
+//    }
     
     public func needsRating() -> Bool {
         return state != nil && state! == "pending"
     }
-
 }
