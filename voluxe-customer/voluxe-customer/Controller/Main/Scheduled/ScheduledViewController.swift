@@ -166,6 +166,22 @@ class ScheduledViewController: ChildViewController {
                 make.left.bottom.right.equalToSuperview()
                 make.height.equalTo(TimeWindowView.height)
             }
+
+            // Adds a filler view below the time window filling in
+            // the white space on an iPhone X.  SnapKit does not seem
+            // to support expressing a height outside of the safe area,
+            // which is weird because snp.bottom should refer to the
+            // bottom of the superview, but alas it does not work.  Instead
+            // a fixed height of 100 is used as a workaround.
+            let view = UIView()
+            view.backgroundColor = .luxeCharcoalGrey()
+            self.view.addSubview(view)
+            view.snp.makeConstraints {
+                make in
+                make.left.right.equalToSuperview()
+                make.top.equalTo(timeWindowView.snp.bottom)
+                make.height.equalTo(100)
+            }
         }
     }
     
