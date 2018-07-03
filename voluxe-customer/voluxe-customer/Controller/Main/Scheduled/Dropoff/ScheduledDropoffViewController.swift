@@ -66,11 +66,13 @@ class ScheduledDropoffViewController: ScheduledViewController {
                 if let dropoffRequestLocation = dropoffRequest.location, let dropoffRequestCoordinates = dropoffRequestLocation.getLocation() {
                     refreshTimeSlot = false
                     self.getEta(fromLocation: coordinates, toLocation: dropoffRequestCoordinates)
+                    self.timeWindowView.setSubtitle(text: .EstimatedDeliveryTime)
                 }
                 newDriver(driver: driver)
             }
             if let timeSlot = dropoffRequest.timeSlot, refreshTimeSlot {
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
+                self.timeWindowView.setSubtitle(text: .DeliveryWindow)
             }
         }
     }

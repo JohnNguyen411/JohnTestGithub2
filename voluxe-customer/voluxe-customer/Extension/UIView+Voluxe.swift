@@ -26,7 +26,10 @@ extension UIView {
         }
     }
     
-    
+    // Be careful with this API.  Actively changing the height constraint will
+    // affect how UILabel determine's its height with autolayout.  In general,
+    // you'll want Autolayout to determine height from intrinsic content and
+    // in the case of UILabel, this is the number of lines of text.
     func changeVisibility(show: Bool, alpha: Bool, animated: Bool, height: CGFloat) {
         if animated {
             if show {

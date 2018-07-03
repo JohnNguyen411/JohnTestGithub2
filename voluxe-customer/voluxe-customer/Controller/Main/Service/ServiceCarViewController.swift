@@ -20,7 +20,6 @@ import Kingfisher
 class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     var serviceState: ServiceState
-    var checkupLabelHeight: CGFloat = 0
     
     let updateLabel: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -51,7 +50,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         let textView = UILabel(frame: .zero)
         textView.text = .NotePickup
         textView.font = .volvoSansProMedium(size: 12)
-        textView.textColor = .luxeDarkGray()
+        textView.textColor = .luxeGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -146,8 +145,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         rightButton.accessibilityIdentifier = "rightButton"
         confirmButton.accessibilityIdentifier = "confirmButton"
         
-        checkupLabelHeight = checkupLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
-        
         let contentView = UIView(frame: .zero)
         
         self.view.addSubview(contentView)
@@ -186,7 +183,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         checkupLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom)
-            make.height.equalTo(checkupLabelHeight)
         }
         
         scheduledServiceView.snp.makeConstraints { make in
@@ -268,10 +264,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         self.confirmButton.setEvent(name: .ok, screen: self.screen)
     }
     
-    func showCheckupLabel(show: Bool, alpha: Bool, animated: Bool) {
-        self.checkupLabel.changeVisibility(show: show, alpha: alpha, animated: animated, height: self.checkupLabelHeight)
-    }
-    
     func showVehicleImage(show: Bool, alpha: Bool, animated: Bool) {
         self.vehicleImageView.changeVisibility(show: show, alpha: alpha, animated: animated, height: Vehicle.vehicleImageHeight)
     }
@@ -308,7 +300,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 } else {
                     self.updateLabelText(text: .SchedulePickupDealership)
                 }
-                showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: true)
+//                showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: true)
                 if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                     scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
                 }
@@ -319,7 +311,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             checkupLabel.snp.remakeConstraints { make in
                 make.left.right.equalToSuperview()
                 make.bottom.equalTo(noteLabel.snp.top).offset(-20)
-                make.height.equalTo(checkupLabelHeight)
             }
            
             leftButton.animateAlpha(show: true)
@@ -338,13 +329,12 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             checkupLabel.snp.remakeConstraints { make in
                 make.left.right.equalToSuperview()
                 make.top.equalTo(vehicleImageView.snp.bottom).offset(50)
-                make.height.equalTo(checkupLabelHeight)
             }
             
-            showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: false)
-            
+//            showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: false)
+
             if state == .service {
-                self.updateLabelText(text: .VolvoCurrentlyServicing)
+                self.updateLabelText(text: String(format: NSLocalizedString(.VolvoCurrentlyServicing), (dealership?.name)!))
                 leftButton.isHidden = true
                 rightButton.isHidden = true
                 Analytics.trackView(screen: .serviceInProgress)

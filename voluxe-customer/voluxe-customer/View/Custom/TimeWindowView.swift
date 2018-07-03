@@ -69,7 +69,6 @@ class TimeWindowView: UIView {
     
     func setETA(eta: GMTextValueObject?) {
         var date = Date()
-        
         if let eta = eta, let seconds = eta.value {
             date = Calendar.current.date(byAdding: .second, value: seconds, to: date)!
             let dateString : String = DateFormatter.dateFormat(fromTemplate: "j:mm", options: 0, locale: Locale.current)!
@@ -77,15 +76,14 @@ class TimeWindowView: UIView {
             formatter.dateFormat = dateString
             titleView.text = formatter.string(from: date).lowercased()
         }
-        
-        subtitleView.text = (.EstimatedPickupTime as String).uppercased()
-        subtitleView.addUppercasedCharacterSpacing()
-
     }
     
     func setTimeWindows(timeWindows: String) {
-        subtitleView.text = (.PickupWindow as String).uppercased()
-        subtitleView.addUppercasedCharacterSpacing()
         titleView.text = timeWindows
+    }
+
+    func setSubtitle(text: String) {
+        subtitleView.text = text.uppercased()
+        subtitleView.addUppercasedCharacterSpacing()
     }
 }

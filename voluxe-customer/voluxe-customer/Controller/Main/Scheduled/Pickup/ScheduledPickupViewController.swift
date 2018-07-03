@@ -55,6 +55,7 @@ class ScheduledPickupViewController: ScheduledViewController {
         guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else { return }
         
         let state = StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id)
+
         if let pickupRequest = booking.pickupRequest {
             var refreshTimeSlot = true
 
@@ -62,6 +63,7 @@ class ScheduledPickupViewController: ScheduledViewController {
                 self.mapVC.updateDriverLocation(location: coordinates, refreshTime: booking.getRefreshTime())
                 if let pickupRequestLocation = pickupRequest.location, let pickupRequestCoordinates = pickupRequestLocation.getLocation() {
                     self.getEta(fromLocation: coordinates, toLocation: pickupRequestCoordinates)
+                    self.timeWindowView.setSubtitle(text: .EstimatedPickupTime)
                     refreshTimeSlot = false
                 }
                 newDriver(driver: driver)
@@ -69,6 +71,7 @@ class ScheduledPickupViewController: ScheduledViewController {
             
             if let timeSlot = pickupRequest.timeSlot, refreshTimeSlot {
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
+                self.timeWindowView.setSubtitle(text: .PickupWindow)
             }
         }
     }

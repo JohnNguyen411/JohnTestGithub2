@@ -151,7 +151,7 @@
 /***************** ScheduledPickup ***************/
 "SchedulePickup" = "Schedule Pickup";
 "ScheduledPickup" = "Scheduled Pickup";
-"ServiceScheduled" = "Service is scheduled";
+"ServiceScheduled" = "Pickup is scheduled";
 "DriverEnRoute" = "Driver is en route";
 "DriverNearby" = "Driver is nearby";
 "DriverArrived" = "Driver has arrived";
@@ -166,7 +166,7 @@
 
 /***************** Scheduling Dropoff ***************/
 "CurrentService" = "Current Service";
-"VolvoCurrentlyServicing" = "Your Volvo is currently being serviced. We will alert you when the service is completed.";
+"VolvoCurrentlyServicing" = "Your Volvo is currently being serviced at %@. We will alert you when the service is complete.";
 "ReturnVehicle" = "Return Vehicle";
 "SelfPickup" = "Self Pickup";
 "VolvoDelivery" = "Volvo Delivery";
@@ -180,6 +180,7 @@
 /***************** Scheduled Dropoff ***************/
 "VehicleIsReady" = "Vehicle is ready";
 "DeliveryWindow" = "Delivery window";
+"EstimatedDeliveryTime" = "Estimated delivery time";
 "DeliveryComplete" = "Your delivery from %@ is complete.";
 
 /***************** Vehicle ***************/
