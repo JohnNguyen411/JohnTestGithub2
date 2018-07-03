@@ -86,13 +86,13 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }()
     
     
-    init(vehicle: Vehicle, state: ServiceState, screenNameEnum: AnalyticsEnums.Name.Screen) {
+    init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen) {
         self.vehicle = vehicle
         self.serviceState = state
-        descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickShowServiceDescription, screenNameEnum: screenNameEnum)
+        descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), event: .showService, screen: screen)
         confirmButton = VLButton(type: .bluePrimary, title: SchedulingViewController.getConfirmButtonTitle(vehicleId: vehicle.id), kern: UILabel.uppercasedKern())
         
-        super.init(screenNameEnum: screenNameEnum)
+        super.init(screen: screen)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -301,8 +301,8 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         
         loanerView.descLeftLabel.text = loaner ? .Yes : .No
         
-        confirmButton.setTitle(title: SchedulingViewController.getConfirmButtonTitle(vehicleId: vehicle.id))
-        confirmButton.setEventName(getConfirmButtonEvent(), screenName: screenName)
+        self.confirmButton.setTitle(title: SchedulingViewController.getConfirmButtonTitle(vehicleId: vehicle.id))
+        self.confirmButton.setEvent(name: self.getConfirmButtonEvent(), screen: self.screen)
     }
     
     func fillDealership() {
@@ -428,15 +428,15 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     func showPickupLocationModal(dismissOnTap: Bool) {
         
         var title: String = .PickupLocationTitle
-        var screenNameEnum = AnalyticsEnums.Name.Screen.scheduleOutboundLocation
+        var screen = AnalyticsEnums.Name.Screen.scheduleOutboundLocation
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
                 title = .DealershipCloseToLocation
             }
-            screenNameEnum = AnalyticsEnums.Name.Screen.scheduleInboundLocation
+            screen = AnalyticsEnums.Name.Screen.scheduleInboundLocation
         }
         
-        let locationVC = LocationViewController(title: title, buttonTitle: .Next, screenNameEnum: screenNameEnum)
+        let locationVC = LocationViewController(title: title, buttonTitle: .Next, screen: screen)
         locationVC.isModalInPopover = true
         locationVC.pickupLocationDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
@@ -446,7 +446,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func showPickupLoanerModal(dismissOnTap: Bool) {
-        let loanerVC = LoanerViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, screenNameEnum: .scheduleInboundLoaner)
+        let loanerVC = LoanerViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, screen: .scheduleInboundLoaner)
         loanerVC.delegate = self
         loanerVC.view.accessibilityIdentifier = "loanerVC"
         currentPresentrVC = loanerVC
@@ -542,24 +542,22 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         }
         return title.uppercased()
     }
-    
-    func getConfirmButtonEvent() -> String {
-        var event = AnalyticsConstants.eventClickConfirmVolvoIB
+
+    func getConfirmButtonEvent() -> AnalyticsEnums.Name.Button {
+        var event = AnalyticsEnums.Name.Button.inboundVolvoConfirm
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-                title = AnalyticsConstants.eventClickConfirmSelfIB
+                event = .inboundSelfConfirm
             }
         } else {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-                title = AnalyticsConstants.eventClickConfirmSelfOB
+                event = .outboundSelfConfirm
             } else {
-                event = AnalyticsConstants.eventClickConfirmVolvoOB
+                event = .outboundVolvoConfirm
             }
         }
         return event
-        
     }
-    
     
     //MARK: Actions methods
     func showDescriptionClick() {

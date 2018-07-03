@@ -72,8 +72,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     let leftButton = VLButton(type: .bluePrimary, title: (.SelfDrop as String).uppercased(), kern: UILabel.uppercasedKern())
     let rightButton = VLButton(type: .bluePrimary, title: (.VolvoPickup as String).uppercased(), kern: UILabel.uppercasedKern())
     let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), kern: UILabel.uppercasedKern())
-    
-    var analyticScreenName = ""
+
     var screenTitle: String?
     
     //MARK: Lifecycle methods
@@ -81,7 +80,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         self.vehicle = vehicle
         self.serviceState = state
         self.screenTitle = title
-        super.init(screenName: "")
+        super.init()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -262,13 +261,11 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             scheduledServiceView.setTitle(title: title, leftDescription: service.name!, rightDescription: "")
         }
     }
-    
-    
-    override func logViewScreen(screenName: String) {
-        analyticScreenName = screenName
-        super.logViewScreen(screenName: screenName)
-        descriptionButton.setEventName(AnalyticsConstants.eventClickShowServiceDescription, screenName: screenName)
-        confirmButton.setEventName(AnalyticsConstants.eventClickOk, screenName: screenName)
+
+    override func logViewScreen() {
+        super.logViewScreen()
+        self.descriptionButton.setEvent(name: .showService, screen: self.screen)
+        self.confirmButton.setEvent(name: .ok, screen: self.screen)
     }
     
     func showCheckupLabel(show: Bool, alpha: Bool, animated: Bool) {
@@ -372,9 +369,9 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         
         
         if ServiceState.isPickup(state: state) {
-            
-            leftButton.setEventName(AnalyticsConstants.eventClickSelfIB, screenName: analyticScreenName)
-            rightButton.setEventName(AnalyticsConstants.eventClickVolvoIB, screenName: analyticScreenName)
+
+            self.leftButton.setEvent(name: .inboundSelf, screen: self.screen)
+            self.rightButton.setEvent(name: .inboundVolvo, screen: self.screen)
             
             leftButton.setTitle(title: (.SelfDrop as String).uppercased())
             if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
@@ -389,9 +386,9 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             } else {
                 rightButton.setTitle(title: (.ScheduleDelivery as String).uppercased())
             }
-            
-            leftButton.setEventName(AnalyticsConstants.eventClickSelfOB, screenName: analyticScreenName)
-            rightButton.setEventName(AnalyticsConstants.eventClickVolvoOB, screenName: analyticScreenName)
+
+            self.leftButton.setEvent(name: .outboundSelf, screen: self.screen)
+            self.rightButton.setEvent(name: .outboundVolvo, screen: self.screen)
         }
     }
     

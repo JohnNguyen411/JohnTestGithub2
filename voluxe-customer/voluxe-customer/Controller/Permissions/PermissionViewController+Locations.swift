@@ -23,7 +23,7 @@ extension PermissionViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         let granted = status == .authorizedWhenInUse || status == .authorizedAlways
-        Analytics.trackChangePermission(permission: .location, granted: granted, screen: self.screenNameEnum)
+        Analytics.trackChangePermission(permission: .location, granted: granted, screen: self.screen)
         SwiftEventBus.post("onLocationPermissionStatusChanged")
         self.dismiss(animated: true)
 

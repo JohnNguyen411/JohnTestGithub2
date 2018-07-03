@@ -54,14 +54,14 @@ class ScheduledViewController: ChildViewController {
 
     private let driverContact: VLButton
     
-    init(vehicle: Vehicle, screenNameEnum: AnalyticsEnums.Name.Screen) {
+    init(vehicle: Vehicle, screen: AnalyticsEnums.Name.Screen) {
         self.vehicle = vehicle
-        driverContact = VLButton(type: .blueSecondary, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickContactDriver, screenNameEnum: screenNameEnum)
+        driverContact = VLButton(type: .blueSecondary, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), event: .contactDriver, screen: screen)
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
-        super.init(screenNameEnum: screenNameEnum)
+        super.init(screen: screen)
         generateSteps()
 
-        self.mapVC.screenNameEnum = screenNameEnum
+        self.mapVC.screen = screen
 
         verticalStepView = GroupedVerticalStepView(steps: steps)
         verticalStepView?.accessibilityIdentifier = "verticalStepView"
@@ -291,7 +291,7 @@ class ScheduledViewController: ChildViewController {
             }
         }.onFailure { error in
             MBProgressHUD.hide(for: self.view, animated: true)
-            self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+            self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
         }
     }
     

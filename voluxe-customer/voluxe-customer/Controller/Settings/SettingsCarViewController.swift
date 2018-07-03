@@ -21,8 +21,8 @@ class SettingsCarViewController: BaseViewController {
     
     init(vehicle: Vehicle) {
         self.vehicle = vehicle
-        removeVehicleButton = VLButton(type: .orangePrimary, title: (.RemoveVehicle as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickRemoveVehicle, screenNameEnum: .vehicleDetail)
-        super.init(screenNameEnum: .vehicleDetail)
+        removeVehicleButton = VLButton(type: .orangePrimary, title: (.RemoveVehicle as String).uppercased(), kern: UILabel.uppercasedKern(), event: .removeVehicle, screen: .vehicleDetail)
+        super.init(screen: .vehicleDetail)
         
         realm = try? Realm()
     }
@@ -78,15 +78,13 @@ class SettingsCarViewController: BaseViewController {
     }
     
     private func removeVehicleAlert() {
-
-        // TODO temporary until String screenName can be removed
         self.showDestructiveDialog(title: .RemoveVehicle,
                                    message: .RemoveVehicleConfirmation,
                                    cancelButtonTitle: .Cancel,
                                    destructiveButtonTitle: .Remove,
                                    destructiveCompletion: { [weak self] in self?.removeVehicle() },
-                                   dialogNameEnum: .vehicleDelete,
-                                   screenNameEnum: self.screenNameEnum)
+                                   dialog: .vehicleDelete,
+                                   screen: self.screen)
     }
     
     private func removeVehicle() {
@@ -107,7 +105,7 @@ class SettingsCarViewController: BaseViewController {
     
     private func deleteVehicleFailed() {
         MBProgressHUD.hide(for: self.view, animated: true)
-        showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+        showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
     }
     
     

@@ -36,9 +36,12 @@ class VLButton : UIButton {
     let kern: Float?
     
     // Analytics
-    private var eventName: String?
-    private var screenName: String?
+    // temporary until screenName can be removed
+    private var eventName: String? { return self.event?.rawValue }
+    private var screenName: String? { return self.screen?.rawValue }
     private var optionalParameters: [String: String]?
+    private var event: AnalyticsEnums.Name.Button?
+    private var screen: AnalyticsEnums.Name.Screen?
     
     override open var isHighlighted: Bool {
         didSet {
@@ -76,13 +79,18 @@ class VLButton : UIButton {
     /**
      Need to make constraints after initializing the button
      */
-    // TODO temporary until String screenName can be removed
-    init(type: VLButtonType, title: String?, kern: Float? = nil, actionBlock:(()->())? = nil, eventName: String? = nil, screenName: String? = nil, screenNameEnum: AnalyticsEnums.Name.Screen? = nil) {
+    init(type: VLButtonType,
+         title: String?,
+         kern: Float? = nil,
+         actionBlock:(()->())? = nil,
+         event: AnalyticsEnums.Name.Button? = nil,
+         screen: AnalyticsEnums.Name.Screen? = nil)
+    {
         self.kern = kern
         super.init(frame: .zero)
-        
-        self.eventName = eventName
-        self.screenName = screenNameEnum?.rawValue ?? screenName
+
+        self.event = event
+        self.screen = screen
         setType(type: type)
         
         if let title = title {
@@ -126,19 +134,9 @@ class VLButton : UIButton {
         }
     }
 
-    // TODO temporary until String screenName is removed
     func setEvent(name: AnalyticsEnums.Name.Button, screen: AnalyticsEnums.Name.Screen? = nil) {
-        self.setEventName(name.rawValue, screenName: screen?.rawValue)
-    }
-    
-    func setEventName(_ eventName: String, screenName: String? = nil, params: [String: String]? = nil) {
-        self.eventName = eventName
-        if let screenName = screenName {
-            self.screenName = screenName
-        }
-        if let params = params {
-            self.optionalParameters = params
-        }
+        self.event = name
+        self.screen = screen
     }
 
     func setType(type: VLButtonType) {
@@ -285,20 +283,8 @@ class VLButton : UIButton {
         addTarget(self, action: #selector(VLButton.runActionBlock), for: .touchUpInside)
     }
 
-    // TODO need to update with trackClick()
     @objc internal func runActionBlock() {
-        var params: [String: String] = [:]
-        
-        if let optionalParameters = optionalParameters {
-            params = optionalParameters
-        }
-        if let screenName = screenName {
-            params[AnalyticsConstants.paramScreenName] = screenName
-        }
-        
-        if let eventName = eventName {
-            VLAnalytics.logEventWithName(eventName, parameters: params)
-        }
+        if let event = self.event { Analytics.trackClick(button: event, screen: self.screen) }
         actionBlock?()
     }
 }

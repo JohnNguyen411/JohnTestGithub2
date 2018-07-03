@@ -25,7 +25,7 @@ class MainViewController: BaseViewController, ChildViewDelegate {
         self.vehicle = vehicle
         self.vehicleId = vehicle.id
         self.serviceState = state
-        super.init(screenName: "") // no screenName for MainViewController
+        super.init()
     }
     
     required init?(coder aDecoder: NSCoder) {

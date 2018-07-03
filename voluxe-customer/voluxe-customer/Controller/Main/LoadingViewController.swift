@@ -22,7 +22,7 @@ class LoadingViewController: LogoViewController {
     }()
     
     init() {
-        super.init(screenNameEnum: .loading)
+        super.init(screen: .loading)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -107,7 +107,7 @@ class LoadingViewController: LogoViewController {
                         // 500 unknown
                         self.showOkDialog(title: .Error, message: .GenericError, completion: {
                             self.callCustomer(customerId: customerId)
-                        }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                        }, dialog: .error, screen: self.screen)
                         return
                     }
                 }
@@ -151,7 +151,7 @@ class LoadingViewController: LogoViewController {
             
             self.showOkDialog(title: .Error, message: .GenericError, completion: {
                 self.callCustomer(customerId: customerId)
-            }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+            }, dialog: .error, screen: self.screen)
         }
     }
     
@@ -189,7 +189,7 @@ class LoadingViewController: LogoViewController {
         }
         self.showOkDialog(title: .Error, message: .GenericError, completion: {
             self.callVehicles(customerId: customerId)
-        }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+        }, dialog: .error, screen: self.screen)
     }
     
     private func getBookings(customerId: Int) {

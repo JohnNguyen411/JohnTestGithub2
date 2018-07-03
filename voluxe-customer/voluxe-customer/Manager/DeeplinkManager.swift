@@ -36,7 +36,7 @@ final class DeeplinkManager {
                 self.prefillSignup = true
                 self.prefillSignupContinue = true
                 SwiftEventBus.post("channelDealershipSignup")
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventDeeplinkSignup)
+                Analytics.trackView(app: .deeplinkSignup)
             }
         }
     }

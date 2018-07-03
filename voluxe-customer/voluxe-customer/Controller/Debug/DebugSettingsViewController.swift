@@ -68,7 +68,7 @@ class DebugSettingsViewController: DebugTableViewController {
                 let ids = vehicles?.flatMap { "\($0.id)" }.joined(separator: ", ") ?? "no ids"
                 let text = "\(vehicles?.count ?? 0) (\(ids))"
                 cell.detailTextLabel?.text = text
-        },
+            },
                                              actionClosure: nil)]
 
         return ("User", settings)

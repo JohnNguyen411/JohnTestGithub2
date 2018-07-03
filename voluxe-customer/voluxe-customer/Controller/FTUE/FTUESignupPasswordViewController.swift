@@ -41,7 +41,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     var realm : Realm?
     
     init() {
-        super.init(screenNameEnum: .signupPassword)
+        super.init(screen: .signupPassword)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -154,14 +154,14 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             if apiError.getCode() == .E5001 {
                 self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                     self.loadLandingPage()
-                }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                }, dialog: .error, screen: self.screen)
             } else if apiError.getCode() == .E4012 {
                 self.showOkDialog(title: .Error, message: .InvalidVerificationCode, completion: {
                     self.navigationController?.popViewController(animated: true)
-                }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                }, dialog: .error, screen: self.screen)
             }
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+            self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
         }
         
     }
@@ -208,8 +208,8 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         volvoPwdConfirmTextField.setBottomRightText(bottomRightText: error.uppercased(), actionBlock: nil)
     }
     
-    override func onRightClicked(analyticEventName: String? = nil) {
-        super.onRightClicked(analyticEventName: analyticEventName)
+    override func onRightClicked() {
+        super.onRightClicked()
         let signupCustomer = UserManager.sharedInstance.signupCustomer
         
         if signupInProgress {
@@ -229,7 +229,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         } else if let password = volvoPwdConfirmTextField.textField.text, containsUnauthorizedChars(password: password) {
             inlineError(error: .InvalidCharacter)
             volvoPwdConfirmTextField.setBottomRightActionBlock { [weak self] in
-                self?.showOkDialog(title: .Error, message: .PasswordUnauthorizedChars, dialogNameEnum: .error, screenNameEnum: self?.screenNameEnum)
+                self?.showOkDialog(title: .Error, message: .PasswordUnauthorizedChars, dialog: .error, screen: self?.screen)
             }
             return
         }
@@ -246,7 +246,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 weakSelf?.showLoading(loading: false)
                 weakSelf?.navigationController?.popToRootViewController(animated: true)
                 }.onFailure { error in
-                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: weakSelf?.screenNameEnum)
+                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: weakSelf?.screen)
                     weakSelf?.showLoading(loading: false)
                 }
             
@@ -265,7 +265,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 
                 }.onFailure { error in
                     weakSelf?.showLoading(loading: false)
-                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: weakSelf?.screenNameEnum)
+                    weakSelf?.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: weakSelf?.screen)
             }
             return
         }
@@ -298,7 +298,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         CustomerAPI().confirmSignup(email: email, phoneNumber: phoneNumber, password: password, verificationCode: verificationCode).onSuccess { result in
             if let customer = result?.data?.result {
                 if DeeplinkManager.sharedInstance.isPrefillSignup() {
-                    VLAnalytics.logEventWithName(AnalyticsConstants.eventDeeplinkSignupSuccess, screenName: weakSelf?.screenName ?? nil)
+                    Analytics.trackView(app: .deeplinkSuccess, screen: weakSelf?.screen)
                 }
                 if let realm = weakSelf?.realm {
                     try? realm.write {

@@ -64,9 +64,9 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
     
-    override init(title: String, buttonTitle: String, screenNameEnum: AnalyticsEnums.Name.Screen) {
-        newLocationButton = VLButton(type: .blueSecondary, title: (.AddNewLocation as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickAddNewLocation, screenNameEnum: screenNameEnum)
-        super.init(title: title, buttonTitle: buttonTitle, screenNameEnum: screenNameEnum)
+    override init(title: String, buttonTitle: String, screen: AnalyticsEnums.Name.Screen) {
+        newLocationButton = VLButton(type: .blueSecondary, title: (.AddNewLocation as String).uppercased(), kern: UILabel.uppercasedKern(), event: .addNewLocation, screen: screen)
+        super.init(title: title, buttonTitle: buttonTitle, screen: screen)
         newLocationTextField.textField.autocorrectionType = .no
         newLocationTextField.tableYOffset = -20
         newLocationTextField.tableBottomMargin = 0
@@ -535,7 +535,7 @@ extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
             locationManager.requestWhenInUseAuthorization()
             return
         }
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSelectLocationIndex, screenName: screenName, index: indexPath.row)
+        Analytics.trackClick(button: .selectLocation, screen: self.screen)
         selectIndex(selectedIndex: indexPath.row)
         tableView.reloadData()
     }
@@ -546,7 +546,7 @@ extension LocationViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         let granted = status == .authorizedWhenInUse || status == .authorizedAlways
-       Analytics.trackChangePermission(permission: .location, granted: granted, screen: self.screenNameEnum)
+       Analytics.trackChangePermission(permission: .location, granted: granted, screen: self.screen)
         SwiftEventBus.post("onLocationPermissionStatusChanged")
     }
 }

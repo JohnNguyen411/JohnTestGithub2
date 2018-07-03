@@ -19,7 +19,7 @@ class ServiceListViewController: BaseViewController {
     
     init(vehicle: Vehicle, title: String) {
         self.vehicle = vehicle
-        super.init(screenNameEnum: .serviceMilestone)
+        super.init(screen: .serviceMilestone)
         self.title = title.capitalized
     }
     
@@ -122,7 +122,7 @@ extension ServiceListViewController: UITableViewDataSource, UITableViewDelegate 
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventClickServiceMilestone, screenName: screenName, index: indexPath.row)
+        Analytics.trackClick(button: .serviceMilestone, screen: self.screen)
         self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: services![indexPath.row], canSchedule: true), animated: true, backLabel: .Back)
     }
     

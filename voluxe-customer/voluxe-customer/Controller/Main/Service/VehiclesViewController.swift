@@ -49,9 +49,9 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         vehicleCollectionView.backgroundColor = UIColor.clear
         vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
         
-        confirmButton = VLButton(type: .bluePrimary, title: (.NewService as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNewService, screenNameEnum: .bookings)
+        confirmButton = VLButton(type: .bluePrimary, title: (.NewService as String).uppercased(), kern: UILabel.uppercasedKern(), event: .newService, screen: .bookings)
         
-        super.init(screenNameEnum: .bookings)
+        super.init(screen: .bookings)
     }
     
     
@@ -297,7 +297,7 @@ extension VehiclesViewController: UICollectionViewDataSource, UICollectionViewDe
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectVehicle(index: indexPath.row)
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSelectVehicle, screenName: screenName)
+        self.selectVehicle(index: indexPath.row)
+        Analytics.trackClick(button: .selectVehicle, screen: self.screen)
     }
 }

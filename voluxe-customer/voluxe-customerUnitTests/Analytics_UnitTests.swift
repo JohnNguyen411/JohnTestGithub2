@@ -89,6 +89,29 @@ class Analytics_UnitTests: XCTestCase {
         let errors = Errors.with(responseError: responseError)
         analytics.trackCall(api: .luxe, endpoint: "some endpoint", error: errors)
     }
+
+    func test_FirebaseEventLength() {
+
+        let analytics = FBAnalytics()
+
+        var names: [String] = []
+        analytics.trackOutputClosure = {
+            name, params in
+            names += [name]
+        }
+
+        // generate events for all names
+        for name in AnalyticsEnums.Name.API.allCases { analytics.trackCall(api: name) }
+        for _ in AnalyticsEnums.Name.Booking.allCases { analytics.trackChangeBooking(state: "test") }
+        for name in AnalyticsEnums.Name.Button.allCases { analytics.trackClick(button: name) }
+        for name in AnalyticsEnums.Name.Permission.allCases { analytics.trackChangePermission(permission: name, granted: true) }
+        for name in AnalyticsEnums.Name.Screen.allCases { analytics.trackView(screen: name) }
+
+        // test each event name is less than the Firebase max of 40 characters
+        for name in names {
+            XCTAssertTrue(name.count <= 40, "\(name) is longer than Firebase max of 40 characters)")
+        }
+    }
 }
 
 extension Errors {

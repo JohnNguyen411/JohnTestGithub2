@@ -42,7 +42,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     
     init(type: FTUEPhoneType) {
         self.ftuePhoneType = type
-        super.init(screenNameEnum: type == .update ? AnalyticsEnums.Name.Screen.phoneUpdate : AnalyticsEnums.Name.Screen.passwordReset)
+        super.init(screen: type == .update ? AnalyticsEnums.Name.Screen.phoneUpdate : AnalyticsEnums.Name.Screen.passwordReset)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -124,8 +124,8 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     
     //MARK: FTUEStartViewController
     
-    override func onRightClicked(analyticEventName: String? = nil) {
-        super.onRightClicked(analyticEventName: analyticEventName)
+    override func onRightClicked() {
+        super.onRightClicked()
         guard let validPhoneNumber = validPhoneNumber else { return }
         
         UserManager.sharedInstance.signupCustomer.phoneNumber = phoneNumberKit.format(validPhoneNumber, toType: .e164)
@@ -153,9 +153,9 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 }.onFailure { error in
                     self.hideProgressHUD()
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4001.rawValue {
-                        self.showOkDialog(title: .Error, message: .PhoneNumberNotInFile, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                        self.showOkDialog(title: .Error, message: .PhoneNumberNotInFile, dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
             }
@@ -183,9 +183,9 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 }.onFailure { error in
                     self.hideProgressHUD()
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4011.rawValue {
-                        self.showOkDialog(title: .Error, message: .UpdatePhoneNumberAlreadyExist, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                        self.showOkDialog(title: .Error, message: .UpdatePhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
             }
@@ -203,7 +203,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 }
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
             }
         }
     }

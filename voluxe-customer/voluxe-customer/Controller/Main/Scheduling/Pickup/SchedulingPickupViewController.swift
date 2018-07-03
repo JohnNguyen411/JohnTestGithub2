@@ -13,7 +13,7 @@ import MBProgressHUD
 class SchedulingPickupViewController: SchedulingViewController {
     
     init(vehicle: Vehicle, state: ServiceState) {
-        super.init(vehicle: vehicle, state: state, screenNameEnum:.scheduleInbound)
+        super.init(vehicle: vehicle, state: state, screen:.scheduleInbound)
     }
     
     override func viewDidLoad() {
@@ -252,7 +252,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             }
             
             }.onFailure { error in
-                self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                 self.confirmButton.isLoading = false
         }
     }
@@ -278,7 +278,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     // an error occured while creating the request, try again with same booking
                     self.showDialog(title: .Error, message: .GenericError, buttonTitle: String.Retry, completion: {
                         self.createPickupRequest(customerId: customerId, booking: booking)
-                    }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                    }, dialog: .error, screen: self.screen)
             }
         }
     }
@@ -325,7 +325,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 self.hideProgressHUD()
                 self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
-                }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                }, dialog: .error, screen: self.screen)
         }
     }
     

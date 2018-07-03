@@ -50,7 +50,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     var pickerView: UIPickerView!
 
     init() {
-        super.init(screenNameEnum: .vehicleAdd)
+        super.init(screen: .vehicleAdd)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -196,8 +196,8 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         }
     }
     
-    override func onRightClicked(analyticEventName: String? = nil) {
-        super.onRightClicked(analyticEventName: analyticEventName)
+    override func onRightClicked() {
+        super.onRightClicked()
         if let customerId = UserManager.sharedInstance.customerId(), let baseColor = colors[selectedColor].baseColor {
             CustomerAPI().addVehicle(customerId: customerId, make: models[selectedModel].make!, model: models[selectedModel].name!, baseColor: baseColor, year: years[selectedYear]).onSuccess { response in
                 if let vehicle = response?.data?.result, let photoUrl = vehicle.photoUrl, let photoURL = URL(string: photoUrl) {

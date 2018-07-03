@@ -29,7 +29,7 @@ class NewServiceViewController: BaseViewController {
     
     init(vehicle: Vehicle) {
         self.vehicle = vehicle
-        super.init(screenNameEnum: .serviceNew)
+        super.init(screen: .serviceNew)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -127,12 +127,12 @@ extension NewServiceViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if let groupService = services, indexPath.row == 0 {
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickServiceTypeMilestone, screenName: screenName)
+            Analytics.trackClick(button: .serviceMilestone, screen: self.screen)
             self.pushViewController(ServiceListViewController(vehicle: vehicle, title: groupService[indexPath.row]), animated: true, backLabel: .Back)
         } else {
             if let realm = try? Realm() {
                 if let filteredResults = realm.objects(RepairOrderType.self).filter("category = '\(RepairOrderCategory.custom.rawValue)'").first {
-                    VLAnalytics.logEventWithName(AnalyticsConstants.eventClickServiceTypeCustom, screenName: screenName)
+                    Analytics.trackClick(button: .serviceCustom, screen: self.screen)
                     self.pushViewController(ServiceMultiselectListViewController(vehicle: vehicle, repairOrderType: filteredResults), animated: true, backLabel: .Back)
                 }
             }

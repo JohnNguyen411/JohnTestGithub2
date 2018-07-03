@@ -69,7 +69,7 @@ class VLSlideMenuController: SlideMenuController {
     
     override func toggleLeft() {
         super.toggleLeft()
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventClickNavigationLeftMenuIcon)
+        Analytics.trackClick(button: .navigationLeft)
     }
 
     // TODO Move view controller management from AppDelegate to AppController

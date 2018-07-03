@@ -43,9 +43,9 @@ class ServiceMultiselectListViewController: BaseViewController {
     init(vehicle: Vehicle, repairOrderType: RepairOrderType) {
         self.vehicle = vehicle
         self.repairOrderType = repairOrderType
-        confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNext, screenNameEnum: .serviceCustomNotes)
+        confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), event: .next, screen: .serviceCustomNotes)
         
-        super.init(screenNameEnum: .serviceCustomNotes)
+        super.init(screen: .serviceCustomNotes)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -182,10 +182,10 @@ extension ServiceMultiselectListViewController: UITableViewDataSource, UITableVi
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if let rowSelected = selected[indexPath.row] {
             selected[indexPath.row] = !rowSelected
-            Analytics.trackClick(button: self.serviceAnalyticsEnums[indexPath.row], screen: self.screenNameEnum, selected: false)
+            Analytics.trackClick(button: self.serviceAnalyticsEnums[indexPath.row], screen: self.screen, selected: false)
         } else {
             selected[indexPath.row] = true
-            Analytics.trackClick(button: self.serviceAnalyticsEnums[indexPath.row], screen: self.screenNameEnum, selected: true)
+            Analytics.trackClick(button: self.serviceAnalyticsEnums[indexPath.row], screen: self.screen, selected: true)
         }
         tableView.deselectRow(at: indexPath, animated: true)
         tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)

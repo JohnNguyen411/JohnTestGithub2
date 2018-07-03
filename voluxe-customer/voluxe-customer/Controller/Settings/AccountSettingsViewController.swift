@@ -28,7 +28,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
                 addressesCount = addresses.count
             }
         }
-        super.init(screenNameEnum: .account)
+        super.init(screen: .account)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -90,14 +90,14 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     }
     
     @objc func edit() {
-        super.onRightClicked(analyticEventName: AnalyticsConstants.eventClickNavigationEdit)
+        Analytics.trackClick(button: .navigationEdit, screen: self.screen)
         uiBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
         self.navigationItem.rightBarButtonItem = uiBarButton
         tableView.setEditing(true, animated: true)
     }
     
     @objc func done() {
-        super.onRightClicked(analyticEventName: AnalyticsConstants.eventClickNavigationDone)
+        Analytics.trackClick(button: .navigationDone, screen: self.screen)
         uiBarButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
         self.navigationItem.rightBarButtonItem = uiBarButton
         tableView.setEditing(false, animated: true)
@@ -145,7 +145,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
                 self.hideProgressHUD()
                 
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
             }
         }
@@ -250,7 +250,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if (indexPath.section == 0 && indexPath.row >= addressesCount) {
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickAddNewLocation, screenName: screenName)
+            Analytics.trackClick(button: .addNewLocation, screen: self.screen)
             showPickupLocationModal(dismissOnTap: true)
         }
     }
@@ -258,32 +258,33 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
     func switchChanged(_ cell: UITableViewCell) {}
     
     func onEditClicked(_ cell: UITableViewCell) {
-        if let indexPath = tableView.indexPath(for: cell) {
-            if indexPath.section == 0 {
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccountDeleteAddress, screenName: self.screenName, index: indexPath.row)
-                self.showDestructiveDialog(title: .Confirm,
-                                           message: String(format: .AreYouSureDeleteAddress, self.getTextForIndexPath(indexPath: indexPath)),
-                                           cancelButtonTitle: .Cancel,
-                                           destructiveButtonTitle: .Delete,
-                                           destructiveCompletion: { self.deleteAddressAtIndexPath(indexPath) },
-                                           dialogNameEnum: .confirm,
-                                           screenNameEnum: self.screenNameEnum)
-                
-            } else if indexPath.section == 2 {
-                // pwd
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccountEditPassword, screenName: screenName)
-                self.resetPassword()
-            } else if indexPath.section == 1 || indexPath.row == 1 {
-                // update phone number
-                VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSettingsAccountEditPhone, screenName: screenName)
-                self.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true, backLabel: .Back)
-            }
+
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        if indexPath.section == 0 {
+            Analytics.trackClick(button: .settingsDeleteAddress, screen: self.screen)
+            self.showDestructiveDialog(title: .Confirm,
+                                       message: String(format: .AreYouSureDeleteAddress, self.getTextForIndexPath(indexPath: indexPath)),
+                                       cancelButtonTitle: .Cancel,
+                                       destructiveButtonTitle: .Delete,
+                                       destructiveCompletion: { self.deleteAddressAtIndexPath(indexPath) },
+                                       dialog: .confirm,
+                                       screen: self.screen)
+        }
+
+        else if indexPath.section == 2 {
+            Analytics.trackClick(button: .settingsEditPassword, screen: self.screen)
+            self.resetPassword()
+        }
+
+        else if indexPath.section == 1 || indexPath.row == 1 {
+            Analytics.trackClick(button: .settingsEditPhone, screen: self.screen)
+            self.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true, backLabel: .Back)
         }
     }
     
     
     private func deleteAddressAtIndexPath(_ indexPath: IndexPath) {
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventSettingsAccountAddressDeleted, screenName: screenName, index: indexPath.row)
+        Analytics.trackClick(button: .settingsDeleteAddress, screen: self.screen)
         if let realm = self.realm, let addresses = self.addresses {
             try? realm.write {
                 realm.delete(addresses[indexPath.row])

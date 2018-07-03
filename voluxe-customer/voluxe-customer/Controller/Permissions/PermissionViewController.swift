@@ -46,7 +46,7 @@ class PermissionViewController: BaseViewController {
         self.grantPermissionButton = VLButton(type: .bluePrimary, title: String.GrantPermission.uppercased(), kern: UILabel.uppercasedKern())
         self.completionBlock = completion
         
-        super.init(screenNameEnum: PermissionViewController.screenNameForPermission(type: permissionType))
+        super.init(screen: PermissionViewController.screenNameForPermission(type: permissionType))
 
         self.grantPermissionButton.setActionBlock { [weak self] in
             self?.onGrantPermissionClicked()
@@ -104,10 +104,10 @@ class PermissionViewController: BaseViewController {
     
     func onGrantPermissionClicked() {
         if permissionType == .notification {
-            Analytics.trackClick(button: .requestNotifications, screen: self.screenNameEnum)
+            Analytics.trackClick(button: .requestNotifications, screen: self.screen)
             requestPushNotifications()
         } else {
-            Analytics.trackClick(button: .requestLocation, screen: self.screenNameEnum)
+            Analytics.trackClick(button: .requestLocation, screen: self.screen)
             requestLocationPermission()
         }
     }

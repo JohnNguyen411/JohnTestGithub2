@@ -19,12 +19,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
 
-    // TODO this is temporary until String screenName can be removed
-    let screenNameEnum: AnalyticsEnums.Name.Screen?
-    let _screenName: String?
-    var screenName: String {
-        return self._screenName ?? self.screenNameEnum?.rawValue ?? "no screen name"
-    }
+    let screen: AnalyticsEnums.Name.Screen?
 
     let presentrCornerRadius: CGFloat = 4.0
     var currentPresentr: Presentr?
@@ -35,16 +30,8 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     var shouldShowNotifBadge: Bool?
 
-    // TODO this is temporary until String screenName can be removed
-    init(screenName: String) {
-        self.screenNameEnum = nil
-        self._screenName = screenName
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    init(screenNameEnum: AnalyticsEnums.Name.Screen) {
-        self.screenNameEnum = screenNameEnum
-        self._screenName = nil
+    init(screen: AnalyticsEnums.Name.Screen? = nil) {
+        self.screen = screen
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -101,35 +88,13 @@ class BaseViewController: UIViewController, PresentrDelegate {
     func setupViews() {}
     
     func stateDidChange(state: ServiceState) {}
-    
-    @objc func onBackClicked() {
-        self.onBackClicked(analyticEventName: nil)
-    }
 
-    @objc func onRightClicked() {
-        self.onRightClicked(analyticEventName: nil)
+    @objc func onBackClicked() {//button: AnalyticsEnums.Name.Button = .navigationLeft) {
+        Analytics.trackClick(button: .navigationLeft, screen: self.screen)
     }
     
-    @objc func onBackClicked(analyticEventName: String? = nil) {
-        if let analyticEventName = analyticEventName {
-            VLAnalytics.logEventWithName(analyticEventName, screenName: screenName)
-        } else {
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickNavigationLeft, screenName: screenName)
-        }
-    }
-    
-    @objc func onRightClicked(analyticEventName: String? = nil) {
-        if let analyticEventName = analyticEventName {
-            VLAnalytics.logEventWithName(analyticEventName, screenName: screenName)
-        } else {
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickNavigationRight, screenName: screenName)
-        }
-    }
-        
-        
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @objc func onRightClicked() {//button: AnalyticsEnums.Name.Button = .navigationRight) {
+        Analytics.trackClick(button: .navigationRight, screen: self.screen)
     }
     
     private func setGradientBackground() {
@@ -225,7 +190,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
     func showNotificationPermissionModal(dismissOnTap: Bool) {
         if let appDelegate = self.appDelegate, !NotificationPermissionViewController.isShowing {
             let permissionVC = NotificationPermissionViewController(title: .AllowNotifications,
-                                                                    screenName: .allowNotifications,
+                                                                    screen: .allowNotifications,
                                                                     delegate: appDelegate)
             permissionVC.view.accessibilityIdentifier = "permissionVC"
             currentPresentrVC = permissionVC
@@ -236,12 +201,9 @@ class BaseViewController: UIViewController, PresentrDelegate {
     }
 
     func logViewScreen() {
-        guard let name = self.screenNameEnum else { return }
-        Analytics.trackView(screen: name)
+        guard let screen = self.screen else { return }
+        Analytics.trackView(screen: screen)
     }
-
-    // TODO temporary until String screenName is removed
-    func logViewScreen(screenName: String) {}
     
     func showNotifBadge(_ shouldShowBadge: Bool) {
         if shouldShowBadge {
@@ -304,80 +266,73 @@ extension UIViewController {
         self.slideMenuController()?.removeRightGestures()
     }
 
-    // TODO temporary until String screenName can be removed
     func showOkDialog(title: String,
                       message: String,
                       completion: (() -> ())? = nil,
-                      analyticDialogName: String? = nil,
-                      dialogNameEnum: AnalyticsEnums.Name.Screen? = nil,
-                      screenName: String? = nil,
-                      screenNameEnum: AnalyticsEnums.Name.Screen? = nil)
+                      dialog: AnalyticsEnums.Name.Screen? = nil,
+                      screen: AnalyticsEnums.Name.Screen? = nil)
     {
-        showDialog(title: title, message: message, buttonTitle: String.Ok.uppercased(), completion: completion, analyticDialogName: analyticDialogName, screenName: screenName)
+        showDialog(title: title,
+                   message: message,
+                   buttonTitle: String.Ok.uppercased(),
+                   completion: completion,
+                   dialog: dialog,
+                   screen: screen)
     }
 
-    // TODO temporary until String screenName can be removed
     func showDialog(title: String,
                     message: String,
                     buttonTitle: String,
                     completion: (() -> ())? = nil,
-                    analyticDialogName: String? = nil,
-                    dialogNameEnum: AnalyticsEnums.Name.Screen? = nil,
-                    screenName: String? = nil,
-                    screenNameEnum: AnalyticsEnums.Name.Screen? = nil)
+                    dialog: AnalyticsEnums.Name.Screen? = nil,
+                    screen: AnalyticsEnums.Name.Screen? = nil)
     {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
 
-        if let name = screenNameEnum { Analytics.trackView(screen: name) }
+        if let screen = screen { Analytics.trackView(screen: screen) }
 
         // Submit button
-        let button = UIAlertAction(title: buttonTitle, style: .default, handler: { (action) -> Void in
-            // TODO temporary until String screenName can be removed
-//            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDimissDialog, parameters: params)
-            if let completion = completion {
-                completion()
-            }
+        let button = UIAlertAction(title: buttonTitle, style: .default) {
+            _ in
+            Analytics.trackClick(button: .dismissDialog, screen: screen)
+            completion?()
             alert.dismiss(animated: true, completion: nil)
-        })
+        }
         
         alert.addAction(button)
         self.present(alert, animated: true, completion: nil)
     }
 
-    // TODO temporary until String screenName can be removed
     func showDestructiveDialog(title: String,
                                message: String,
                                cancelButtonTitle: String,
                                destructiveButtonTitle: String,
                                destructiveCompletion: @escaping (() -> ()),
-                               analyticDialogName: String? = nil,
-                               dialogNameEnum: AnalyticsEnums.Name.Screen? = nil,
-                               screenName: String? = nil,
-                               screenNameEnum: AnalyticsEnums.Name.Screen? = nil)
+                               dialog: AnalyticsEnums.Name.Screen? = nil,
+                               screen: AnalyticsEnums.Name.Screen? = nil)
     {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
 
-        if let screenName = screenNameEnum { Analytics.trackView(screen: screenName)}
-
-        // TODO temporary until String screenName can be removed
-        let params: [String: String] = [:]
+        if let screen = screen { Analytics.trackView(screen: screen) }
 
         // Submit button
-        let backAction = UIAlertAction(title: cancelButtonTitle, style: .default, handler: { (action) -> Void in
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDimissDialog, parameters: params)
+        let backAction = UIAlertAction(title: cancelButtonTitle, style: .default) {
+            _ in
+            Analytics.trackClick(button: .dismissDialog, screen: screen)
             alert.dismiss(animated: true, completion: nil)
-        })
+        }
         
         // Delete button
-        let deleteAction = UIAlertAction(title: destructiveButtonTitle, style: .destructive, handler: { (action) -> Void in
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickDestructiveDialog, parameters: params)
+        let deleteAction = UIAlertAction(title: destructiveButtonTitle, style: .destructive) {
+            _ in
+            Analytics.trackClick(button: .destructiveDialog, screen: screen)
             alert.dismiss(animated: true, completion: nil)
             destructiveCompletion()
-        })
+        }
         
         alert.addAction(backAction)
         alert.addAction(deleteAction)

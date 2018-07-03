@@ -46,7 +46,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     var deeplinkEventConsumed = false
     
     init() {
-        super.init(screenNameEnum: .signupPhone)
+        super.init(screen: .signupPhone)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -174,14 +174,14 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         if let apiError = error?.apiError {
             
             if apiError.getCode() == .E5001 {
-                self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
             } else if apiError.getCode() == .E4011 {
                 self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                     self.loadLandingPage()
-                }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                }, dialog: .error, screen: self.screen)
             }
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+            self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
         }
     }
     
@@ -224,8 +224,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     
     //MARK: FTUEStartViewController
     
-    override func onRightClicked(analyticEventName: String? = nil) {
-        super.onRightClicked(analyticEventName: analyticEventName)
+    override func onRightClicked() {
+        super.onRightClicked()
         guard let validPhoneNumber = validPhoneNumber else {
             return
         }
@@ -252,7 +252,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 if createdCustomer.phoneNumberVerified {
                     self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                         self.loadLandingPage()
-                    }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                    }, dialog: .error, screen: self.screen)
                     return
                 }
             }

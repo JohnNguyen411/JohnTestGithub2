@@ -27,9 +27,8 @@ class AnalyticsCore {
         self.track(event: event, element: element, name: name, params: params)
     }
 
-    // TODO find a way to protect this from direct calls but still
-    // allow to be overridden by subclasses binding to SDKs.
     /// Override point for integration with 3rd party analytics SDKs.
+    /// This should not be called directly.
     func track(event: AnalyticsEnums.Event,
                element: AnalyticsEnums.Element,
                name: AnalyticsEnums.Name.RawValue,
@@ -100,6 +99,12 @@ extension AnalyticsCore {
     }
 
     // MARK:- Views
+
+    func trackView(app: AnalyticsEnums.Name.App, screen: AnalyticsEnums.Name.Screen? = nil) {
+        var params: AnalyticsEnums.Params = [:]
+        if let screen = screen { params[.screenName] = screen.rawValue }
+        self.track(event: .view, element: .screen, name: app.rawValue, params: params)
+    }
 
     // view_screen_<name>
     func trackView(screen: AnalyticsEnums.Name.Screen, from: AnalyticsEnums.Name.Screen? = nil) {

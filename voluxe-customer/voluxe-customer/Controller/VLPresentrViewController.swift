@@ -14,12 +14,7 @@ class VLPresentrViewController: UIViewController {
     static let minHeight = 80
     let baseHeight: Int
 
-    // TODO this is temporary until String screenName can be removed
-    let screenNameEnum: AnalyticsEnums.Name.Screen?
-    let _screenName: String?
-    var screenName: String {
-        return self._screenName ?? self.screenNameEnum?.rawValue ?? "no screen name"
-    }
+    var screen: AnalyticsEnums.Name.Screen?
 
     let loadingView = UIView(frame: .zero)
     let activityIndicator = UIActivityIndicatorView(frame: .zero)
@@ -43,40 +38,18 @@ class VLPresentrViewController: UIViewController {
     
     let bottomButton: VLButton
 
-    init(title: String, buttonTitle: String, screenNameEnum: AnalyticsEnums.Name.Screen) {
-        self.screenNameEnum = screenNameEnum
-        self._screenName = nil
+    init(title: String, buttonTitle: String, screen: AnalyticsEnums.Name.Screen) {
+        self.screen = screen
         self.baseHeight = VLPresentrViewController.minHeight + VLPresentrViewController.safeAreaBottomHeight()
-        bottomButton = VLButton(type: .bluePrimary, title: nil, kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNext, screenName: screenNameEnum.rawValue)
+        bottomButton = VLButton(type: .bluePrimary, title: nil, kern: UILabel.uppercasedKern(), event: .next, screen: screen)
         super.init(nibName: nil, bundle: nil)
         setupViews()
 
         setTitle(title: title.uppercased())
-        setButtonTitle(title: buttonTitle.uppercased(), eventName: AnalyticsConstants.eventClickNext)
-        Analytics.trackView(screen: screenNameEnum)
+        setButtonTitle(title: buttonTitle.uppercased(), event: .next)
+        Analytics.trackView(screen: screen)
     }
 
-    // TODO temporary until String screenName is removed
-    init(title: String, buttonTitle: String, screenName: String) {
-        self.screenNameEnum = nil
-        self._screenName = screenName
-        self.baseHeight = VLPresentrViewController.minHeight + VLPresentrViewController.safeAreaBottomHeight()
-        bottomButton = VLButton(type: .bluePrimary, title: nil, kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNext, screenName: screenName)
-        super.init(nibName: nil, bundle: nil)
-        setupViews()
-        
-        setTitle(title: title.uppercased())
-        setButtonTitle(title: buttonTitle.uppercased(), eventName: AnalyticsConstants.eventClickNext)
-    }
-    
-    convenience init(title: String, screenName: String) {
-        self.init(title: title, buttonTitle: "", screenName: screenName)
-    }
-    
-    convenience init(screenName: String) {
-        self.init(title: "", buttonTitle: "", screenName: screenName)
-    }
-    
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -110,12 +83,10 @@ class VLPresentrViewController: UIViewController {
         titleLabel.addUppercasedCharacterSpacing()
     }
     
-    func setButtonTitle(title: String, eventName: String?) {
+    func setButtonTitle(title: String, event: AnalyticsEnums.Name.Button? = nil) {
         bottomButton.setTitle(title: title)
         bottomButton.addUppercasedCharacterSpacing()
-        if let eventName = eventName {
-            bottomButton.setEventName(eventName)
-        }
+        if let event = event { bottomButton.setEvent(name: event) }
     }
     
     func setupViews() {

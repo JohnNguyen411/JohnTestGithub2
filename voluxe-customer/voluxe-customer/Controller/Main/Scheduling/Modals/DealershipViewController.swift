@@ -18,7 +18,7 @@ class DealershipViewController: VLPresentrViewController, VLGroupedLabelsDelegat
     var groupedLabels: VLGroupedLabels?
     
     init(title: String, buttonTitle: String, dealerships: [Dealership]) {
-        super.init(title: title, buttonTitle: buttonTitle, screenNameEnum: .scheduleInboundDealership)
+        super.init(title: title, buttonTitle: buttonTitle, screen: .scheduleInboundDealership)
         setDealerhips(dealerships: dealerships)
     }
     
@@ -84,9 +84,7 @@ class DealershipViewController: VLPresentrViewController, VLGroupedLabelsDelegat
     }
     
     func onSelectionChanged(selected: Bool, selectedIndex: Int) {
-        if selected {
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSelectDealershipIndex, screenName: screenName, index: selectedIndex)
-        }
+        Analytics.trackClick(button: .selectDealership, screen: self.screen, selected: selected)
     }
 }
 

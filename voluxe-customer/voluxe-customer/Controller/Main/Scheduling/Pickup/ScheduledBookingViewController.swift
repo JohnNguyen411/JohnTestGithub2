@@ -22,15 +22,15 @@ class ScheduledBookingViewController: SchedulingViewController {
         self.booking = booking
         self.delegate = delegate
         
-        var cancelEvent =  AnalyticsConstants.eventClickCancelInbound
+        var event = AnalyticsEnums.Name.Button.inboundCancel
         if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-            cancelEvent =  AnalyticsConstants.eventClickCancelOutbound
+            event = .outboundCancel
         }
 
-        leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: cancelEvent, screenNameEnum: .reservationDetail)
-        rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickDone, screenNameEnum: .reservationDetail)
+        leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), event: event, screen: .reservationDetail)
+        rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), event: .done, screen: .reservationDetail)
         
-        super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screenNameEnum: .reservationDetail)
+        super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screen: .reservationDetail)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -191,7 +191,7 @@ class ScheduledBookingViewController: SchedulingViewController {
                 self.hideProgressHUD()
                 
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
             }
             
@@ -205,7 +205,7 @@ class ScheduledBookingViewController: SchedulingViewController {
                 self.hideProgressHUD()
 
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
 
             }

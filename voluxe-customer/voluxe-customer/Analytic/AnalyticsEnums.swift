@@ -27,6 +27,7 @@ struct AnalyticsEnums {
 
     enum Element: String {
         case api
+        case app
         case booking
         case button
         case permission
@@ -40,15 +41,66 @@ struct AnalyticsEnums {
             case luxe
         }
 
+        enum App: String, CaseIterable {
+            case deeplinkSignup
+            case deeplinkSuccess
+        }
+
         enum Booking: String, CaseIterable {
             case state
         }
 
         enum Button: String, CaseIterable {
+            case addNewLocation
+            case callDealership
+            case cancel
+            case contactDriver
             case createAccount
+            case destructiveDialog
+            case dismissDialog
+            case done
+            case forgotPassword
+            case leftPanelBookings
+            case leftPanelSettings
+            case leftPanelLogout
+            case inboundCancel
+            case inboundSelf
+            case inboundSelfConfirm
+            case inboundVolvo
+            case inboundVolvoConfirm
+            case navigationDone
+            case navigationEdit
+            case navigationLeft
+            case navigationRight
+            case next
+            case newService
+            case ok
+            case outboundCancel
+            case outboundSelf
+            case outboundSelfConfirm
+            case outboundVolvo
+            case outboundVolvoConfirm
+            case removeVehicle
             case requestLocation
             case requestNotifications
+            case scheduleService
+            case selectDealership
+            case selectLoaner
+            case selectLocation
+            case selectVehicle
+            case serviceCustom
+            case serviceCustomDrivable
+            case serviceMilestone
+            case settingsVehicle
+            case settingsAddVehicle
+            case settingsAccount
+            case settingsDeleteAddress
+            case settingsEditPassword
+            case settingsEditPhone
+            case showService
             case signIn
+            case timeslot
+            case updatePhone
             case vehicleEngine
             case vehicleExterior
             case vehicleInterior

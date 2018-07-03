@@ -150,11 +150,11 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     func changeViewController(_ menu: LeftMenu, indexPath: IndexPath) {
         switch menu {
         case .settings:
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickLeftPanelMenuSettings)
+            Analytics.trackClick(button: .leftPanelSettings)
             weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
             appDelegate?.settingsScreen()
         case .logout:
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickLeftPanelMenuLogout)
+            Analytics.trackClick(button: .leftPanelLogout)
             UserManager.sharedInstance.logout()
             weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
             appDelegate?.startApp()
@@ -324,7 +324,7 @@ extension LeftViewController : UITableViewDelegate {
                 if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
                     appDelegate.loadViewForVehicle(vehicle: vehicle, state: Booking.getStateForBooking(booking: booking))
                     showRedDot(vehicleId: vehicle.id, show: false)
-                    VLAnalytics.logEventWithName(AnalyticsConstants.eventClickLeftPanelMenuActiveBookings)
+                   Analytics.trackClick(button: .leftPanelBookings)
                 }
             } else {
                 VehiclesViewController.selectedVehicleIndex = indexPath.row

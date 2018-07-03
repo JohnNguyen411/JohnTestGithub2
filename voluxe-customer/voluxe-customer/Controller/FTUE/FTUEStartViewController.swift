@@ -22,9 +22,9 @@ class FTUEStartViewController: LogoViewController {
 
     public static var flowType: FTUEFlowType = .login
 
-    let loginButton = VLButton(type: .blueSecondary, title: (.SignIn as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickSignin, screenNameEnum: .landing)
+    let loginButton = VLButton(type: .blueSecondary, title: (.SignIn as String).uppercased(), kern: UILabel.uppercasedKern(), event: .signIn, screen: .landing)
 
-    let signupButton = VLButton(type: .blueSecondary, title: (.CreateAccount as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickCreateAccount, screenNameEnum: .landing)
+    let signupButton = VLButton(type: .blueSecondary, title: (.CreateAccount as String).uppercased(), kern: UILabel.uppercasedKern(), event: .createAccount, screen: .landing)
 
 
     let pipeSeparator: UILabel = {
@@ -39,7 +39,7 @@ class FTUEStartViewController: LogoViewController {
 
 
     init() {
-        super.init(screenNameEnum: .landing)
+        super.init(screen: .landing)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -75,7 +75,7 @@ class FTUEStartViewController: LogoViewController {
 
         // check realm integrity
         guard let realm = self.realm else {
-            self.showOkDialog(title: .Error, message: .DatabaseError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+            self.showOkDialog(title: .Error, message: .DatabaseError, dialog: .error, screen: self.screen)
             return
         }
 

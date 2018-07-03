@@ -29,7 +29,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     var deeplinkEventConsumed = false
     
     init() {
-        super.init(screenNameEnum: .signupName)
+        super.init(screen: .signupName)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -136,7 +136,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         _ = checkTextFieldsValidity()
     }
     
-    // MARK: UITextFieldDelegate
+    // MARK:- UITextFieldDelegate
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.returnKeyType == .next {
@@ -151,9 +151,10 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         return false
     }
     
-    //MARK: FTUEStartViewController
-    override func onRightClicked(analyticEventName: String? = nil) {
-        super.onRightClicked(analyticEventName: analyticEventName)
+    // MARK:- FTUEStartViewController
+
+    override func onRightClicked() {
+        super.onRightClicked()
         UserManager.sharedInstance.signupCustomer.lastName = lastNameTextField.textField.text
         UserManager.sharedInstance.signupCustomer.firstName = firstNameTextField.textField.text
         goToNext()

@@ -78,9 +78,9 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         self.serviceTitle = serviceTitle
         self.service = RepairOrder(repairOrderType: repairOrderType, customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
         
-        confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickNext, screenNameEnum: .serviceCustomNotes)
+        confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), event: .next, screen: .serviceCustomNotes)
         
-        super.init(screenNameEnum: .serviceCustomNotes)
+        super.init(screen: .serviceCustomNotes)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -314,7 +314,7 @@ extension OtherServiceViewController: UITableViewDataSource, UITableViewDelegate
         tableView.deselectRow(at: indexPath, animated: true)
         checkedCellIndex = indexPath.row
         tableView.reloadData()
-        VLAnalytics.logEventWithName(AnalyticsConstants.eventClickServiceCustomDrivableIndex, screenName: screenName, index: indexPath.row)
+        Analytics.trackClick(button: .serviceCustomDrivable, screen: self.screen)
     }
     
 }

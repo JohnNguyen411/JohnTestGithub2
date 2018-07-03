@@ -33,8 +33,6 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
     let scrollView = UIScrollView(frame: .zero)
     let contentView = UIView(frame: .zero)
     let ratingSlider = VLMarkedSlider(step: 1, min: 1, max: 10, defaultValue: 8)
-    
-    var analyticScreenName = ""
     var screenTitle: String?
     var scrollViewSize: CGSize? = nil
     
@@ -97,7 +95,7 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
     }
     
     init() {
-        super.init(screenNameEnum: .bookingFeedback)
+        super.init(screen: .bookingFeedback)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -329,7 +327,7 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                     self.sendFeedback(rating: rating, comment: comment)
-                }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                }, dialog: .error, screen: self.screen)
                 self.retryCount += 1
         }
     }

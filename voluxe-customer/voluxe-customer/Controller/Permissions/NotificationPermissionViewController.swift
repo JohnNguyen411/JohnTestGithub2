@@ -31,9 +31,9 @@ class NotificationPermissionViewController: VLPresentrViewController, PresentrDe
     
     let appIcon = UIImageView(image: UIImage(named: "appIconNotif"))
 
-    init(title: String, screenName: AnalyticsEnums.Name.Screen, delegate: UNUserNotificationCenterDelegate) {
+    init(title: String, screen: AnalyticsEnums.Name.Screen, delegate: UNUserNotificationCenterDelegate) {
         self.notifDelegate = delegate
-        super.init(title: title, buttonTitle: "", screenNameEnum: screenName)
+        super.init(title: title, buttonTitle: "", screen: screen)
 
         bottomButton.isHidden = true
         
@@ -95,7 +95,7 @@ class NotificationPermissionViewController: VLPresentrViewController, PresentrDe
             (granted, error) in
             guard let me = weakSelf else { return }
             Logger.print("Permission granted: \(granted)")
-            Analytics.trackChangePermission(permission: .notification, granted: granted, screen: me.screenNameEnum)
+            Analytics.trackChangePermission(permission: .notification, granted: granted, screen: me.screen)
             if granted {
                 UNUserNotificationCenter.current().getNotificationSettings { (settings) in
                     Logger.print("Notification settings: \(settings)")

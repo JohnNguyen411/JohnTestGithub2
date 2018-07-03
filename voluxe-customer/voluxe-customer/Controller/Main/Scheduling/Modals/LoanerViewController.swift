@@ -48,11 +48,8 @@ class LoanerViewController: VLPresentrViewController, VLGroupedLabelsDelegate {
     
     func onSelectionChanged(selected: Bool, selectedIndex: Int) {
         bottomButton.isEnabled = true
-        if selected {
-            VLAnalytics.logEventWithName(AnalyticsConstants.eventClickSelectLoanerIndex, screenName: screenName, index: selectedIndex)
-        }
+        Analytics.trackClick(button: .selectLoaner, screen: self.screen, selected: selected)
     }
-    
 }
 
 // MARK: protocol PickupDealershipDelegate

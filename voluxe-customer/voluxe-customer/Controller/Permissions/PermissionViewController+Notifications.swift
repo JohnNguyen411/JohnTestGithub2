@@ -18,7 +18,7 @@ extension PermissionViewController {
             (granted, error) in
             guard let me = weakSelf else { return }
             Logger.print("Permission granted: \(granted)")
-            Analytics.trackChangePermission(permission: .notification, granted: granted, screen: me.screenNameEnum)
+            Analytics.trackChangePermission(permission: .notification, granted: granted, screen: me.screen)
             if granted {
                 UNUserNotificationCenter.current().getNotificationSettings { (settings) in
                     Logger.print("Notification settings: \(settings)")

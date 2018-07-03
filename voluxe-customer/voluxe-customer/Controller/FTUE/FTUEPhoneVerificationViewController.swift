@@ -31,10 +31,10 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     }()
     
     init() {
-        let analyticsName = FTUEStartViewController.flowType == .signup ? AnalyticsEnums.Name.Screen.signupPhoneVerification : AnalyticsEnums.Name.Screen.phoneVerification
-        updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.ChangePhoneNumber.uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickUpdatePhoneNumber, screenNameEnum: analyticsName)
+        let screen = FTUEStartViewController.flowType == .signup ? AnalyticsEnums.Name.Screen.signupPhoneVerification : AnalyticsEnums.Name.Screen.phoneVerification
+        updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.ChangePhoneNumber.uppercased(), kern: UILabel.uppercasedKern(), event: .updatePhone, screen: screen)
         
-        super.init(screenNameEnum: analyticsName)
+        super.init(screen: screen)
     }
     
     convenience init(type: FTUEPhoneType) {
@@ -138,7 +138,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
 
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.isLoading = false
             }
             return
@@ -163,7 +163,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 self.isLoading = false
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.isLoading = false
             }
             return
@@ -182,7 +182,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 self.isLoading = false
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.isLoading = false
             }
         } else if let email = signupCustomer.email, let phoneNumber = signupCustomer.phoneNumber, let firstName = signupCustomer.firstName , let lastName = signupCustomer.lastName {
@@ -198,7 +198,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 self.hideProgressHUD()
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
             }
         }
     }
@@ -234,13 +234,12 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     //MARK: FTUEStartViewController
     
-    override func onRightClicked(analyticEventName: String? = nil) {
-        super.onRightClicked(analyticEventName: analyticEventName)
+    override func onRightClicked() {
+        super.onRightClicked()
         UserManager.sharedInstance.signupCustomer.verificationCode = codeTextField.textField.text
-        goToNext()
+        self.goToNext()
     }
-    
-    
+
     override func goToNext() {
         if FTUEStartViewController.flowType == .signup || ftuePhoneType == .resetPassword {
             self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
@@ -272,9 +271,9 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 }.onFailure { error in
                     self.hideProgressHUD()
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4012.rawValue {
-                        self.showOkDialog(title: .Error, message: .WrongVerificationCode, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                        self.showOkDialog(title: .Error, message: .WrongVerificationCode, dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
             }

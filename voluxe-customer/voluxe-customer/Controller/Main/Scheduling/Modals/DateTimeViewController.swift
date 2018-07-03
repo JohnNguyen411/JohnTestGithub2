@@ -53,7 +53,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         return noDateLabel
     }()
     
-    let callDealershipButton = VLButton(type: .blueSecondary, title: String.CallDealership.uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickCallDealership)
+    let callDealershipButton = VLButton(type: .blueSecondary, title: String.CallDealership.uppercased(), kern: UILabel.uppercasedKern(), event: .callDealership)
     
     fileprivate let gregorian = Calendar(identifier: .gregorian)
     fileprivate let formatter: DateFormatter = {
@@ -116,7 +116,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         }
         dealership = currentDealership
 
-        super.init(title: title, buttonTitle: buttonTitle, screenNameEnum: isPickup ? .scheduleInboundDateTime : .scheduleOutboundDateTime)
+        super.init(title: title, buttonTitle: buttonTitle, screen: isPickup ? .scheduleInboundDateTime : .scheduleOutboundDateTime)
         
         realm = try? Realm()
         getTimeSlots()
@@ -126,7 +126,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             loanerSwitch.setOn(false, animated: false)
         }
         
-        callDealershipButton.setEventName(AnalyticsConstants.eventClickCallDealership, screenName: screenName, params: nil)
+        callDealershipButton.setEvent(name: .callDealership)
         callDealershipButton.setActionBlock {  [weak self] in
             self?.callDealership()
         }
@@ -171,7 +171,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                 }.onFailure { error in
                     self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                         self.getTimeSlots()
-                    }, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+                    }, dialog: .error, screen: self.screen)
             }
         }
     }
@@ -552,7 +552,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         
         for (index, slot) in slots.enumerated() {
             
-            let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true), eventName: AnalyticsConstants.eventClickTimeslot, screenName: screenName)
+            let slotButton = VLButton(type: .blueSecondaryWithBorder, title: slot.getTimeSlot(calendar: Calendar.current, showAMPM: true, shortSymbol: true), event: .timeslot, screen: self.screen)
             slotButton.setActionBlock { [weak self] in
                 self?.slotClicked(viewIndex: index, slot: slot)
             }

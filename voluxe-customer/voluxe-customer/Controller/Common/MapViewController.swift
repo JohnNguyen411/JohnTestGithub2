@@ -11,8 +11,7 @@ import GoogleMaps
 
 class MapViewController: UIViewController {
 
-    // TODO temporary until String screenName can be removed
-    public var screenNameEnum = AnalyticsEnums.Name.Screen.activeInbound
+    public var screen = AnalyticsEnums.Name.Screen.activeInbound
     private let mapView = GMSMapView()
     private let flagMarker = GMSMarker()
     private let driverMarker = GMSMarker()

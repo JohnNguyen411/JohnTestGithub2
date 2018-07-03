@@ -15,13 +15,13 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
     let passwordTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••")
-    let forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), eventName: AnalyticsConstants.eventClickForgotPassword, screenNameEnum: .login)
+    let forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), event: .forgotPassword, screen: .login)
     
     var loginInProgress = false
     var realm : Realm?
     
     init() {
-        super.init(screenNameEnum: .login)
+        super.init(screen: .login)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -146,8 +146,8 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
     //MARK: FTUEStartViewController
     
-    override func onRightClicked(analyticEventName: String? = nil) {
-        super.onRightClicked(analyticEventName: analyticEventName)
+    override func onRightClicked() {
+        super.onRightClicked()
         if loginInProgress {
             return
         }
@@ -199,9 +199,9 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         self.showLoading(loading: false)
         
         if let apiError = error?.apiError, apiError.getCode() == .E2005 {
-            self.showOkDialog(title: .Error, message: .InvalidCredentials, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+            self.showOkDialog(title: .Error, message: .InvalidCredentials, dialog: .error, screen: self.screen)
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError, dialogNameEnum: .error, screenNameEnum: self.screenNameEnum)
+            self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
         }
     }
 }
