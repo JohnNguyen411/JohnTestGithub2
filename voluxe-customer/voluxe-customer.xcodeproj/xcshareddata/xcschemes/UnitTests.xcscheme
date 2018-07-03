@@ -11,12 +11,26 @@
             buildForRunning = "NO"
             buildForProfiling = "NO"
             buildForArchiving = "NO"
-            buildForAnalyzing = "NO">
+            buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6CCD42891FA013E3000AC6C9"
                BuildableName = "voluxe-customer.app"
                BlueprintName = "voluxe-customer"
+               ReferencedContainer = "container:voluxe-customer.xcodeproj">
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO"
+            buildForAnalyzing = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "6CCD429D1FA013E3000AC6C9"
+               BuildableName = "voluxe-customerUnitTests.xctest"
+               BlueprintName = "voluxe-customerUnitTests"
                ReferencedContainer = "container:voluxe-customer.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
