@@ -19,7 +19,6 @@ class DebugSettingsViewController: DebugTableViewController {
         self.settings = [self.applicationSettings(),
                          self.userSettings(),
                          self.bookingsSettings(),
-                         self.fontTestingSettings(),
                          self.networkSettings(),
                          self.analyticsSettings()]
     }
@@ -40,6 +39,20 @@ class DebugSettingsViewController: DebugTableViewController {
                 cell.detailTextLabel?.text = Bundle.main.versionAndBuild
             },
                                              actionClosure: nil)]
+
+        settings += [DebugTableViewCellModel(title: "Fonts",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                [unowned self] _ in
+                self.navigationController?.pushViewController(DebugFontViewController(), animated: true)
+            }
+        )]
 
         return ("Application", settings)
     }
@@ -79,6 +92,8 @@ class DebugSettingsViewController: DebugTableViewController {
         var settings: [DebugTableViewCellModel] = []
 
         let bookings = UserManager.sharedInstance.getActiveBookings()
+
+        // active bookings
         for booking in bookings {
             let title = "\(booking.id)"
             settings += [DebugTableViewCellModel(title: title,
@@ -88,6 +103,14 @@ class DebugSettingsViewController: DebugTableViewController {
                     cell in
                     cell.detailTextLabel?.text = "\(booking.state) for vehicle \(booking.vehicleId)"
                 },
+                                                 actionClosure: nil)]
+        }
+
+        // no active bookings
+        if bookings.isEmpty {
+            settings += [DebugTableViewCellModel(title: "No active bookings",
+                                                 cellReuseIdentifier: DebugValueTableViewCell.className,
+                                                 valueClosure: nil,
                                                  actionClosure: nil)]
         }
 
@@ -157,22 +180,5 @@ class DebugSettingsViewController: DebugTableViewController {
         )]
 
         return ("Network", settings)
-    }
-    
-    private func fontTestingSettings() -> (String, [DebugTableViewCellModel]) {
-        
-        var settings: [DebugTableViewCellModel] = []
-        unowned let unownedSelf = self
-        settings += [DebugTableViewCellModel(title: "Font Testing",
-                                             cellReuseIdentifier: DebugValueTableViewCell.className,
-                                             valueClosure: nil,
-                                             actionClosure:
-            {
-                _ in
-                unownedSelf.navigationController?.pushViewController(DebugFontViewController(), animated: true)
-        }
-            )]
-        
-        return ("Font Testing", settings)
     }
 }

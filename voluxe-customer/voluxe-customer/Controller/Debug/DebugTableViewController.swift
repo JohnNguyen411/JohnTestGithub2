@@ -20,8 +20,8 @@ class DebugTableViewController: UITableViewController {
     /// Subclasses are encouraged to register their own custom UITableViewCells.
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.tableView.register(DebugValueTableViewCell.self, forCellReuseIdentifier: String(describing: DebugValueTableViewCell.self))
-        self.tableView.register(DebugSubtitleTableViewCell.self, forCellReuseIdentifier: String(describing: DebugSubtitleTableViewCell.self))
+        self.tableView.register(DebugValueTableViewCell.self, forCellReuseIdentifier: DebugValueTableViewCell.className)
+        self.tableView.register(DebugSubtitleTableViewCell.self, forCellReuseIdentifier: DebugSubtitleTableViewCell.className)
     }
 
     // MARK:- UITableViewDataSource
