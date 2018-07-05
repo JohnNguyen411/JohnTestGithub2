@@ -3594,7 +3594,7 @@
 				DEVELOPMENT_TEAM = DTE5P7QRF9;
 				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
@@ -3916,7 +3916,7 @@
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-customer/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.volvocars.luxebyvolvo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
