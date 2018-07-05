@@ -12,7 +12,7 @@ import RealmSwift
 /// RealmManager is use to run Realm Migrations
 class RealmManager {
     
-    private static let dbVersion: UInt64 = 4
+    private static let dbVersion: UInt64 = 5
     
     public static func realmMigration(callback: @escaping (Realm?, Swift.Error?) -> Void) {
         
@@ -37,9 +37,21 @@ class RealmManager {
             
             if oldSchemaVersion < 4 {
                 migration.enumerateObjects(ofType: Booking.className()) { oldObject, newObject in
-                    newObject!["bookingFeedback"] = BookingFeedback()
+                    let bookingFeedback = BookingFeedback()
+                    newObject!["bookingFeedback"] = bookingFeedback
                 }
             }
+            
+            if oldSchemaVersion < 5 {
+                var id = 1
+                migration.enumerateObjects(ofType: BookingFeedback.className()) { oldObject, newObject in
+                    if newObject!["id"] as! Int == -1 {
+                        newObject!["id"] = id
+                        id = id + 1
+                    }
+                }
+            }
+ 
             
             
         })
