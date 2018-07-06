@@ -470,9 +470,7 @@ extension AppDelegate: VLAlertViewDelegate {
     
     func okButtonTapped() {
         
-        //TODO: Update Link App
-        // https://github.com/volvo-cars/ios/issues/133
-        if let url = URL(string: "http://itunes.apple.com/app/idXXXXXXXXX"), UIApplication.shared.canOpenURL(url) {
+        if let url = URL(string: "https://itunes.apple.com/us/app/luxe-by-volvo/id1408457126"), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
         }
     }
