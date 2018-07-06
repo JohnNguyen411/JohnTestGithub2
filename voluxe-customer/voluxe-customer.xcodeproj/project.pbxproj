@@ -168,6 +168,9 @@
 		6C2208771FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
 		6C22087C1FBD0C6700874882 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C22087B1FBD0C6700874882 /* Driver.swift */; };
 		6C2208801FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */; };
+		6C27FBBD20E44C2000EAA689 /* VLCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27FBBC20E44C2000EAA689 /* VLCheckbox.swift */; };
+		6C27FBBF20E4599300EAA689 /* UITapGestureRecognizer+Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27FBBE20E4599300EAA689 /* UITapGestureRecognizer+Links.swift */; };
+		6C27FBC120E4619F00EAA689 /* VLWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27FBC020E4619F00EAA689 /* VLWebViewController.swift */; };
 		6C27FBC720E6CF4900EAA689 /* BookingSyncTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27FBC620E6CF4900EAA689 /* BookingSyncTimer.swift */; };
 		6C27FBC920E6CFDA00EAA689 /* ActiveBookingsSyncTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27FBC820E6CFDA00EAA689 /* ActiveBookingsSyncTimer.swift */; };
 		6C2AA2E720AB900F0089350B /* UIBarButtonItem+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2AA2E620AB900F0089350B /* UIBarButtonItem+Voluxe.swift */; };
@@ -534,6 +537,9 @@
 		6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Voluxe.swift"; sourceTree = "<group>"; };
 		6C27FBC620E6CF4900EAA689 /* BookingSyncTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSyncTimer.swift; sourceTree = "<group>"; };
 		6C27FBC820E6CFDA00EAA689 /* ActiveBookingsSyncTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveBookingsSyncTimer.swift; sourceTree = "<group>"; };
+		6C27FBBC20E44C2000EAA689 /* VLCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCheckbox.swift; sourceTree = "<group>"; };
+		6C27FBBE20E4599300EAA689 /* UITapGestureRecognizer+Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITapGestureRecognizer+Links.swift"; sourceTree = "<group>"; };
+		6C27FBC020E4619F00EAA689 /* VLWebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLWebViewController.swift; sourceTree = "<group>"; };
 		6C2AA2E620AB900F0089350B /* UIBarButtonItem+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Voluxe.swift"; sourceTree = "<group>"; };
 		6C2B32471FB3C67100B943AC /* DateTimeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateTimeViewController.swift; sourceTree = "<group>"; };
 		6C2B324B1FB3C88D00B943AC /* Objc-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Objc-Bridge-Header.h"; sourceTree = "<group>"; };
@@ -931,6 +937,7 @@
 				6CA20EEF20939C6D00E1B549 /* VLAlertViewController.swift */,
 				6C1CE1EF20CB3A7B00A2E054 /* VLSlider.swift */,
 				6C1CE1F220CB3D6000A2E054 /* VLMarkedSlider.swift */,
+				6C27FBBC20E44C2000EAA689 /* VLCheckbox.swift */,
 			);
 			path = VLKit;
 			sourceTree = "<group>";
@@ -1008,6 +1015,7 @@
 				6CC37E451FA7AE2F00DA8F01 /* BaseViewController.swift */,
 				6C2208761FBCEF7A00874882 /* MapViewController.swift */,
 				6CC3543020B87E7C00FF98A6 /* LogoViewController.swift */,
+				6C27FBC020E4619F00EAA689 /* VLWebViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1104,6 +1112,7 @@
 				5321B1B620C9A980006C1E14 /* UIView+Blur.swift */,
 				6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */,
 				5340E91320D881F100B17D53 /* Enum+ForEach.swift */,
+				6C27FBBE20E4599300EAA689 /* UITapGestureRecognizer+Links.swift */,
 				5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */,
 			);
 			path = Extension;
@@ -2314,6 +2323,7 @@
 				6C20E1BB1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
 				6C9C9060209CD96A00494068 /* GMDistanceMatrix.swift in Sources */,
 				6CD474AC2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */,
+				6C27FBC120E4619F00EAA689 /* VLWebViewController.swift in Sources */,
 				6C9B320B202CFE28006380B9 /* AccountSettingsViewController.swift in Sources */,
 				6C5833131FB3AF5600F6BFE0 /* ModalSize.swift in Sources */,
 				6CDCC61E20607EB400DFA831 /* DealershipRepairOrder.swift in Sources */,
@@ -2383,6 +2393,7 @@
 				6C79C42E20A27FD800443463 /* GMSnappedPoint.swift in Sources */,
 				5340E92D20E2A45600B17D53 /* FBAnalytics+UserManager.swift in Sources */,
 				6CC37E461FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
+				6C27FBBF20E4599300EAA689 /* UITapGestureRecognizer+Links.swift in Sources */,
 				6CBB4EA91FB4DF7D00C31183 /* FSCalendarExtensions.m in Sources */,
 				6C5833121FB3AF5600F6BFE0 /* ModalCenterPosition.swift in Sources */,
 				536D6D6720CF50FF00A269D4 /* AnalyticsEnums.swift in Sources */,
@@ -2444,6 +2455,7 @@
 				6C6F4BCE1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
 				6CC37E501FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6CD0C8871FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */,
+				6C27FBBD20E44C2000EAA689 /* VLCheckbox.swift in Sources */,
 				6CE687872037A3D000D915FC /* ScheduledBookingViewController.swift in Sources */,
 				6C9B3203202A79FB006380B9 /* SettingsLocalizations.swift in Sources */,
 				6C58331C1FB3AF5600F6BFE0 /* TransitionType.swift in Sources */,

@@ -98,6 +98,9 @@
 "InvalidCharacter" = "Invalid character";
 "DoesNotMatch" = "Does not match";
 "WrongVerificationCode" = "The verification code you entered is incorrect. Please try again or tap Resend Code to receive a new code.";
+"AgreeToTosAndPrivacyFormat" = "You agree to our %@ and %@.";
+"TermsAndConditions" = "Terms of Service";
+"PrivacyPolicy" = "Privacy Policy";
 
 /***************** SchedulePickup ***************/
 "ScheduleService" = "Schedule Service";

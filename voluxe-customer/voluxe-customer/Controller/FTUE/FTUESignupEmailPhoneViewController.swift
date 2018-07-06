@@ -14,6 +14,9 @@ import MBProgressHUD
 
 class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDelegate {
     
+    public static let tosURL = "https://terms.luxebyvolvo.luxe.com/"
+    public static let privacyURL = "https://privacy.luxebyvolvo.luxe.com/"
+    
     let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
     
     let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
@@ -41,6 +44,20 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         return textView
     }()
     
+    let tosCheckbox = VLCheckbox(title: nil)
+    
+    let tosLabel: UILabel = {
+        let textView = UILabel(frame: .zero)
+        textView.font = .volvoSansProRegular(size: 12)
+        textView.textColor = .luxeDarkGray()
+        textView.backgroundColor = .clear
+        textView.numberOfLines = 0
+        return textView
+    }()
+    
+    var tosNSRange: NSRange?
+    var privacyNSRange: NSRange?
+
     var signupInProgress = false
     var realm : Realm?
     var deeplinkEventConsumed = false
@@ -63,6 +80,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         phoneNumberTextField.accessibilityIdentifier = "phoneNumberTextField"
         emailTextField.accessibilityIdentifier = "emailTextField"
+        tosCheckbox.accessibilityIdentifier = "tosCheckbox"
         
         emailTextField.textField.autocorrectionType = .no
         phoneNumberTextField.textField.autocorrectionType = .no
@@ -82,6 +100,28 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         
         emailTextField.textField.becomeFirstResponder()
+        
+        
+        let tosString = String(format: NSLocalizedString(.AgreeToTosAndPrivacyFormat), String.TermsAndConditions, String.PrivacyPolicy)
+        let attributedString = NSMutableAttributedString(string: tosString)
+        let tosRange = attributedString.string.range(of: String.TermsAndConditions)
+        let privacyRange = attributedString.string.range(of: String.PrivacyPolicy)
+        
+        tosNSRange = NSRange(tosRange!, in: tosString)
+        privacyNSRange = NSRange(privacyRange!, in: tosString)
+
+        let linkAttributes: [NSAttributedStringKey : Any] = [NSAttributedStringKey.foregroundColor: UIColor.luxeCobaltBlue(), NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
+        
+        attributedString.addAttributes(linkAttributes, range: tosNSRange!)
+        attributedString.addAttributes(linkAttributes, range: privacyNSRange!)
+
+        tosLabel.attributedText = attributedString
+        tosLabel.isUserInteractionEnabled = true
+        let tosTap = UITapGestureRecognizer(target: self, action: #selector(self.tosTap(_:)))
+        tosLabel.addGestureRecognizer(tosTap)
+        
+        tosCheckbox.delegate = self
+        
         canGoNext(nextEnabled: false)
         
     }
@@ -115,6 +155,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         self.view.addSubview(phoneNumberConfirmLabel)
         self.view.addSubview(emailTextField)
         self.view.addSubview(phoneNumberTextField)
+        self.view.addSubview(tosCheckbox)
+        self.view.addSubview(tosLabel)
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
@@ -141,9 +183,32 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
             make.top.equalTo(phoneNumberTextField.snp.bottom).offset(-34)
             make.height.equalTo(20)
         }
+        
+        tosCheckbox.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(phoneNumberConfirmLabel.snp.bottom).offset(30)
+            make.left.equalTo(phoneNumberConfirmLabel)
+            make.height.equalTo(20)
+            make.width.equalTo(30)
+        }
+        
+        tosLabel.snp.makeConstraints { (make) -> Void in
+            make.centerY.equalTo(tosCheckbox)
+            make.left.equalTo(tosCheckbox.snp.right)
+            make.right.equalToSuperview().offset(-10)
+        }
     }
     
     //MARK: Validation methods
+    
+    @objc func tosTap(_ tapGesture: UITapGestureRecognizer) {
+        if tapGesture.didTapAttributedTextInLabel(tosLabel, inRange: tosNSRange!) {
+            Analytics.trackClick(button: .termsOfService)
+            self.pushViewController(VLWebViewController(urlAddress: FTUESignupEmailPhoneViewController.tosURL, title: .TermsAndConditions, showReloadButton: true), animated: true, backLabel: .Back)
+        } else if tapGesture.didTapAttributedTextInLabel(tosLabel, inRange: privacyNSRange!) {
+            Analytics.trackClick(button: .privacyPolicy)
+            self.pushViewController(VLWebViewController(urlAddress: FTUESignupEmailPhoneViewController.privacyURL, title: .PrivacyPolicy, showReloadButton: true), animated: true, backLabel: .Back)
+        }
+    }
     
     func isEmailValid(email: String?) -> Bool {
         guard let email = email else { return false }
@@ -198,7 +263,10 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     }
     
     override func checkTextFieldsValidity() -> Bool {
-        let enabled = isEmailValid(email: emailTextField.textField.text) && isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text)
+        var enabled = isEmailValid(email: emailTextField.textField.text) && isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text)
+        if enabled {
+            enabled = tosCheckbox.checked
+        }
         canGoNext(nextEnabled: enabled)
         return enabled
     }
@@ -289,5 +357,12 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     override func goToNext() {
         self.showLoading(loading: false)
         self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
+    }
+}
+
+extension FTUESignupEmailPhoneViewController : VLCheckboxDelegate {
+    
+    func onCheckChanged(checked: Bool) {
+        _ = checkTextFieldsValidity()
     }
 }

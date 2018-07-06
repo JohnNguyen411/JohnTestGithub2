@@ -97,12 +97,17 @@ class CreateAccount_UITests: XCTestCase {
 
         let app = XCUIApplication()
 
+        let tosCheckbox = app.otherElements["tosCheckbox"]
         let emailTextfield = app.textFields[String.EmailPlaceholder]
         let phoneTextfield = app.textFields[String.MobilePhoneNumber_Placeholder]
         let next = app.navigationBars.firstMatch.buttons["Next"]
 
         // next button is disabled by default
         XCTAssertFalse(next.isEnabled)
+        
+        // check the tosCheckbox to make sure next button not showing with invalid data
+        tosCheckbox.tap()
+        XCTAssertTrue(tosCheckbox.isEnabled)
 
         // next button is disabled if number is empty
         emailTextfield.tap(andType: BotUserData.email)
@@ -151,6 +156,14 @@ class CreateAccount_UITests: XCTestCase {
         phoneTextfield.tapAndClearText()
         phoneTextfield.typeText("415😶🍩💨555abc9999")
         XCTAssertTrue(next.isEnabled)
+
+        // uncheck the tosCheckbox to make sure next button is not showing when unchecked
+        tosCheckbox.tap()
+        XCTAssertFalse(next.isEnabled)
+        
+        // check the tosCheckbox to make sure next button is showing when checked and data valid
+        tosCheckbox.tap()
+        XCTAssertTrue(next.isEnabled)
     }
 
     func test21_validEmailAndPhone() {
@@ -164,13 +177,13 @@ class CreateAccount_UITests: XCTestCase {
         textField = app.textFields[String.MobilePhoneNumber_Placeholder]
         textField.tapAndClearText()
         textField.typeText(BotUserData.phone)
-
+        
         let next = app.navigationBars.firstMatch.buttons["Next"]
         XCTAssertTrue(next.isEnabled)
         next.tap()
         self.wait()
     }
-
+    
     // MARK:- Verify phone number
 
     func test30_invalidVerificationCode() {

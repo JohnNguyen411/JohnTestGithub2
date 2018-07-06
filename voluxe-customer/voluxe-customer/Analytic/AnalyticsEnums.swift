@@ -80,6 +80,7 @@ struct AnalyticsEnums {
             case outboundSelfConfirm
             case outboundVolvo
             case outboundVolvoConfirm
+            case privacyPolicy
             case removeVehicle
             case requestLocation
             case requestNotifications
@@ -99,6 +100,7 @@ struct AnalyticsEnums {
             case settingsEditPhone
             case showService
             case signIn
+            case termsOfService
             case timeslot
             case updatePhone
             case vehicleEngine
@@ -130,6 +132,7 @@ struct AnalyticsEnums {
             case passwordReset
             case phoneUpdate
             case phoneVerification
+            case privacyPolicy
             case reservations
             case reservationCompleted
             case reservationDetail
@@ -159,6 +162,7 @@ struct AnalyticsEnums {
             case signupPhoneVerification
             case splash
             case success
+            case termsOfService
             case vehicleAdd
             case vehicleDelete
             case vehicleDetail

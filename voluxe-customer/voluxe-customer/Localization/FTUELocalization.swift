@@ -66,5 +66,7 @@ extension String {
     static let InvalidCharacter = NSLocalizedString("InvalidCharacter")
     static let DoesNotMatch = NSLocalizedString("DoesNotMatch")
     static let WrongVerificationCode = NSLocalizedString("WrongVerificationCode")
-
+    static let AgreeToTosAndPrivacyFormat = NSLocalizedString("AgreeToTosAndPrivacyFormat")
+    static let TermsAndConditions = NSLocalizedString("TermsAndConditions")
+    static let PrivacyPolicy = NSLocalizedString("PrivacyPolicy")
 }
