@@ -6,10 +6,10 @@
 	<string>production</string>
 	<key>com.apple.developer.associated-domains</key>
 	<array>
-		<string>applinks:99lg.test-app.link</string>
-		<string>applinks:99lg-alternate.test-app.link</string>
-		<string>applinks:99lg.app.link</string>
-		<string>applinks:99lg-alternate.app.link</string>
+		<string>applinks:luxebyvolvo.test-app.link</string>
+		<string>applinks:luxebyvolvo-alternate.test-app.link</string>
+		<string>applinks:luxebyvolvo.app.link</string>
+		<string>applinks:luxebyvolvo-alternate.app.link</string>
 	</array>
 </dict>
 </plist>
