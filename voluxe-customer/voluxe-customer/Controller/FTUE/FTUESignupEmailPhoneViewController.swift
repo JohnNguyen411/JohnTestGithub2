@@ -14,8 +14,8 @@ import MBProgressHUD
 
 class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDelegate {
     
-    public static let tosURL = "https://terms.luxebyvolvo.luxe.com/"
-    public static let privacyURL = "https://privacy.luxebyvolvo.luxe.com/"
+    public static let tosURL = "https://terms-luxebyvolvo.luxe.com/"
+    public static let privacyURL = "https://privacy-luxebyvolvo.luxe.com/"
     
     let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
     
