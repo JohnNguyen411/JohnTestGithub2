@@ -14,7 +14,8 @@ import SwiftEventBus
 
 enum LeftMenu: Int {
     case settings = 0
-    case logout = 1
+    case help = 1
+    case logout = 2
 }
 
 protocol LeftMenuProtocol : class {
@@ -29,7 +30,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
 
     private let vehicleTableView = UITableView(frame: .zero)
     private let menuTableView = UITableView(frame: .zero)
-    private let menus = [String.Settings, String.Signout]
+    private let menus = [String.Settings, String.Help, String.Signout]
     
     private let closeButton = UIButton(type: UIButtonType.custom)
 
@@ -153,6 +154,10 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
             Analytics.trackClick(button: .leftPanelSettings)
             weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
             appDelegate?.settingsScreen()
+        case .help:
+            Analytics.trackClick(button: .leftPanelSettings) //todo update that too
+            weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
+            appDelegate?.helpScreen()
         case .logout:
             Analytics.trackClick(button: .leftPanelLogout)
             UserManager.sharedInstance.logout()

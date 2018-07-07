@@ -53,6 +53,8 @@ struct AnalyticsEnums {
         enum Button: String, CaseIterable {
             case addNewLocation
             case callDealership
+            case callHelp
+            case emailHelp
             case cancel
             case contactDriver
             case createAccount
@@ -62,6 +64,7 @@ struct AnalyticsEnums {
             case forgotPassword
             case leftPanelBookings
             case leftPanelSettings
+            case leftPanelHelp
             case leftPanelLogout
             case inboundCancel
             case inboundSelf
@@ -124,6 +127,9 @@ struct AnalyticsEnums {
             case bookings   // Pickup & Delivery, my volvos, reservations?
             case confirm
             case error
+            case help
+            case helpList
+            case helpDetail
             case landing
             case loading
             case location

@@ -36,6 +36,7 @@ class MapViewController: UIViewController {
         driverMarker.appearAnimation = GMSMarkerAnimation.pop
         driverMarker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
         
+        flagMarker.tracksViewChanges = false
         flagMarker.iconView = etaMarker
         flagMarker.tracksViewChanges = false
         
@@ -57,11 +58,11 @@ class MapViewController: UIViewController {
         }
     }
     
-    func updateRequestLocation(location: CLLocationCoordinate2D) {
+    func updateRequestLocation(location: CLLocationCoordinate2D, withZoom: Float? = nil) {
         flagMarker.tracksViewChanges = true
         flagMarker.map = mapView
         flagMarker.position = location
-        moveCamera()
+        moveCamera(withZoom)
         flagMarker.tracksViewChanges = false
     }
     
@@ -160,7 +161,7 @@ class MapViewController: UIViewController {
         mapView.animate(with: update)
     }
     
-    func moveCamera() {
+    func moveCamera(_ withZoom: Float? = nil) {
         
         if flagMarker.map != nil && driverMarker.map != nil {
             Logger.print("***** moveCamera AFTER ***** \(flagMarker.position),\(driverMarker.position)")
@@ -172,7 +173,11 @@ class MapViewController: UIViewController {
             mapView.animate(with: update)
         } else if flagMarker.map != nil {
             mapView.animate(toLocation: flagMarker.position)
-            mapView.animate(toZoom: 13)
+            if let withZoom = withZoom {
+                mapView.animate(toZoom: withZoom)
+            } else {
+                mapView.animate(toZoom: 13)
+            }
         }
     }
     

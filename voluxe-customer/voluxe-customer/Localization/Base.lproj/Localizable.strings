@@ -242,3 +242,76 @@
 "AccountPassword" = "Account Password";
 "RemoveVehicle" = "Remove Vehicle";
 "RemoveVehicleConfirmation" = "Are you sure you want to remove that car from your account?";
+
+/***************** Help ***************/
+"Help" = "Help";
+"YourLastDelivery" = "Your Last Delivery";
+"YourLastPickup" = "Your Last Pickup";
+"EmailDealer" = "Email Dealer";
+"CallDealer" = "Call Dealer";
+"EmailVolvo" = "Email Volvo";
+"CallVolvo" = "Call Volvo";
+
+"MyVehicleWasDamaged" = "My vehicle was damaged";
+"ILostAnItem" = "I lost an item";
+"MyPickupDeliveryLocationWasWrong" = "My pickup/delivery location was wrong";
+"MyDriverWasLate" = "My driver was late or never showed up";
+"IMissedMyPickupDelivery" = "I missed my pickup/delivery";
+"MyDriverDidntMatchThePicture" = "My driver didn’t match the picture in my app";
+"ICouldntContactMyDriver" = "I couldn’t contact my driver";
+"MyDriverWasUnprofessional" = "My driver was unprofessional";
+"SomethingUnsafeHappened" = "Something unsafe happened";
+"ThereWasAnIssueWithMyLoanerVehicle" = "There was an issue with my loaner vehicle";
+"ThereWasAnIssueWithMyPaperwork" = "There was an issue with my paperwork";
+"Other" = "Other…";
+"MyVehicleWasDamagedDetail" = "We inspect customers' vehicles before and after every trip to ensure safety and quality of service. In order to keep complete records of vehicles throughout service, our drivers photograph both customer and loaner vehicles at multiple points through pickup and delivery. If your vehicle was damaged as part of pickup or delivery, please let us know here.";
+"ILostAnItemDetail" = "If a driver finds an item left behind in a loaner, we make every attempt to contact customers, and return the item. Sometimes, the item might not be found immediately though. If you believe you lost something in your vehicle or your loaner, please get in touch with the dealership as soon as you notice its missing.\n\nGenerally lost items are kept for 45 days. If they go unclaimed, the items are donated to a charity or disposed of.";
+"MyPickupDeliveryLocationWasWrongDetail" = "If the driver met you somewhere other than the address you specified, its useful to know why. Sometimes choosing an address based on your current location can be inaccurate, especially in high-density neighborhoods, areas with challenging geography or sporadic GPS signal. Other times drivers can find themselves at the wrong location if the address has ambiguous signage, restricted parking, or unsafe conditions for exchanging vehicles. We do our best to meet you at the exact location that you choose. If you believe the driver was in error and met you in the wrong location, please let us know here.";
+"MyDriverWasLateDetail" = "Occassionally due to circumstances outside of our control, our pickup and delivery services can get a little behind schedule. We make every attempt to contact our customers to know if we are running late. If a driver didn't show up, usually they tried but failed to find the customer. In that case we try to connect the driver to the customer via phone. If the driver is still unable to find the customer, our policy is to bring the customer's car back to the dealership, and reschedule delivery for a later time. If our driver was unable to find you, or if you believe they never showed up, please let us know here.";
+"IMissedMyPickupDeliveryDetail" = "If you missed your pickup/delivery window, don't worry. If it was a pickup, the driver returned to the dealership with the loaner vehicle. If it was a delivery, the driver brought your vehicle back to the dealership. You can call or email the dealership to reschedule. ";
+"MyDriverDidntMatchThePictureDetail" = "For every pickup and delivery, the Luxe by Volvo app helps you recognize the driver who will be performing service for you. If you believe the driver was not who you were expecting, please let us know here.";
+"ICouldntContactMyDriverDetail" = "While rare, sometimes customers aren't able to contact their drivers. This is generally due to two reasons. Either the driver is temporarily passing through an area with no mobile connectivity, or it is an unsafe moment for the driver to respond to a message or receive a call. In that case, the driver will pull-over once it is safe and try to contact the customer.\n\nIf you're having trouble reaching your driver, you can wait a minute or two, and try contacting the driver again. If the problem persists, please let us know here.";
+"MyDriverWasUnprofessionalDetail" = "We hold high standards for our drivers' professionalism, communication skills, and responsibility. If you believe your driver has been unprofessional, impolite, or failed to live up to your expectations, please let us know.";
+"SomethingUnsafeHappenedDetail" = "At Volvo, safety is our number one priority. If you experienced an unsafe or distracted driver at any time during this service, please let us know here.";
+"ThereWasAnIssueWithMyLoanerVehicleDetail" = "We hope every loaner vehicle is delivered safe, comfortable, and in top working-order. While we can't guarantee the type of vehicle you'll receive, we keep all of our loaner interiors neat, clean, and free of strong or unpleasant odors. If the loaner for this service did not meet your expectations, please let us know here.";
+"ThereWasAnIssueWithMyPaperworkDetail" = "Apologies if there was an issue with your paperwork. We aim to have transparent and informative paperwork accompanying any maintenance. If you have questions about the paperwork you were provided, please let us know here.";
+"OtherDetail" = "Didn't see what you were looking for? Please let us know how we can help you with your Luxe by Volvo service.";
+
+"HowLuxebyVolvoWorks" = "How Luxe by Volvo Works";
+"ICantArrangeService" = "I can’t arrange service with my dealership";
+"NoParticipatingDealershipsInArea" = "No participating dealerships in my area";
+"ICantCancelMyPickupOrDelivery" = "I can’t cancel my pickup or delivery";
+"TooFewLoanersAvailable" = "Too few loaners available";
+"NoneOfTheAvailableTimesWorkForMe" = "None of the available times work for me";
+
+"ICantArrangeServiceDetail" = "Not every dealership currently offers Luxe by Volvo pickup and delivery. While the program is expanding globally across all dealerships, it may not be available at your preferred dealership at this time. Check back next time you need maintainence, and it'll hopefully be available at that time.";
+"NoParticipatingDealershipsInAreaDetail" = "Luxe by Volvo is only available at participating Volvo dealerships. If your preferred dealership is not offering Luxe by Volvo now, they may be offering it in the future. Starting in 2019, Luxe by Volvo will begin becoming avaialable in dealerships in the United States, and begin appearing in Europe and Asia.";
+"ICantCancelMyPickupOrDeliveryDetail" = "Cancellation is available up until the day of your pickup or delivery. If today is the day of your pickup or delivery, you'll need to contact the dealership directly to reschedule.";
+"TooFewLoanersAvailableDetail" = "At certain times, loaner vehicle inventory can become constrained. As a result, customers may need to scheedule service a little further ahead than usual. If you need service sooner than a loaner is available, consider foregoing a loaner to make an earlier appointment.";
+"NoneOfTheAvailableTimesWorkForMeDetail" = "If you're having difficulty finding a time-slot that works for your schedule, please contact your dealership directly. They may be able to make arrangements for you that accommodate your specific needs.";
+
+
+"TroubleWithTheLuxebyVolvoApp" = "Trouble with the Luxe by Volvo app";
+
+"TheAppIsntWorkingCorrectly" = "The app isn’t working correctly";
+"IForgotMyPassword" = "I forgot my password";
+"ICantUpdateMyPhone" = "I can’t update my phone or email";
+"MyCurrentLocationIsntWorking" = "My current location isn’t working";
+"PushNotificationsArentWorking" = "Push notifications aren’t working for me";
+"TermsOfService" = "Terms of service";
+"PrivacyPolicyInformation" = "Privacy policy information";
+"RequestingDataFromLuxebyVolvo" = "Requesting data from Luxe by Volvo";
+"DeleteMyLuxebyVolvoAccount" = "Delete my Luxe by Volvo account";
+
+"TheAppIsntWorkingCorrectlyDetail" = "Is something in the Luxe by Volvo app working incorrectly or not as you expected? Please let us know here what issue you're experiencing, and we'll work with you to troubleshoot the issue.";
+"IForgotMyPasswordDetail" = "If you forgot your password, you can create a new password at sign-in. Your password must be at least 8 characters long, and include at least one numeral and one letter. If you're having trouble resetting your password, please let us know here. ";
+"ICantUpdateMyPhoneDetail" = "Because of how we create your account, we base your Luxe by Volvo account on your email address. Currently, that is not editable. You can update your mobile phone number in 'Your Account,' which you can access by tapping the menu icon in the top-left of the app. ";
+"MyCurrentLocationIsntWorkingDetail" = "Check to make sure that you’ve enabled location services for Luxe by Volvo on your phone. For iOS users, go to Settings › Privacy › Location Services. For Android users, go to Settings › Apps › Application List › Luxe by Volvo › Permissions./n/nMake sure that cellular data or Wi-Fi is on and that you have an active connection. If both of those are working correctly and you’re still having trouble, please let us know here.";
+"PushNotificationsArentWorkingDetail" = "Check to make sure that you've enabled push notifications for Luxe by Volvo on your phone. For iOS users, go to Settings › Notifications › Luxe by Volvo. For Android users, go to Settings › Apps › Application List › Luxe by Volvo › Permissions./n/nMake sure that cellular data or Wi-Fi is on and that you have an active connection. If both of those are working correctly and you're still having trouble, please let us know here. ";
+"TermsOfServiceDetail" = "Our terms of service apply to all aspects of the Luxe by Volvo service. As a user of the platform, you've confirmed that you've read and agreed to the terms.";
+"PrivacyPolicyInformationDetail" = "Our privacy policy describes the information we collect and how its used. The policy applies to any users of Luxe by Volvo. ";
+"RequestingDataFromLuxebyVolvoDetail" = "Do you want data from your Luxe by Volvo usage in the past? You can request that data here, and we will provide it to you within 30 days.";
+"DeleteMyLuxebyVolvoAccountDetail" = "If you no longer wish to have your account in our system, you can request that we delete your account. We will remove your information, and notifiy you of its removal within 30 days.";
+"AppOtherDetail" = "Didn't see what you were looking for? Please let us know how we can help you with your Luxe by Volvo app.";
+
+

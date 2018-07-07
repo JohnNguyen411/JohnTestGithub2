@@ -16,6 +16,7 @@ class Dealership: Object, Mappable {
     @objc dynamic var id: Int = -1
     @objc dynamic var name: String?
     @objc dynamic var phoneNumber: String?
+    @objc dynamic var email: String?
     @objc dynamic var location: Location?
     @objc dynamic var coverageRadius: Int = 1
     @objc dynamic var currencyId: Int = 1
@@ -41,6 +42,7 @@ class Dealership: Object, Mappable {
         id <- map["id"]
         name <- map["name"]
         phoneNumber <- map["phone_number"]
+        email <- map["email"]
         location <- map["location"]
         coverageRadius <- map["coverage_radius"]
         currencyId <- map["currency_id"]

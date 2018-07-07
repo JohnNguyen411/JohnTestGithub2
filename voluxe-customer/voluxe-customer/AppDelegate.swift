@@ -204,6 +204,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
+    func helpScreen() {
+        if let slideMenu = slideMenuController {
+            if let leftVC = slideMenu.leftViewController as? LeftViewController {
+                let uiNavigationController = UINavigationController(rootViewController: HelpViewController())
+                styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
+                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .Help, animated: true)
+            }
+        }
+    }
+    
     func phoneVerificationScreen() {
         if window == nil {
             window = UIWindow(frame: UIScreen.main.bounds)

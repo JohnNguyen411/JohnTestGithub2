@@ -195,4 +195,13 @@ class Booking: Object, Mappable {
         return self.bookingFeedbackId > -1 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
     }
     
+    public func getLastCompletedRequest() -> Request? {
+        if let dropoffRequest = self.dropoffRequest, dropoffRequest.getState() == .completed {
+            return dropoffRequest
+        } else if let pickupRequest = self.pickupRequest, pickupRequest.getState() == .completed {
+            return pickupRequest
+        }
+        return nil
+    }
+    
 }

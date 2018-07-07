@@ -86,18 +86,22 @@ class BookingAPI: NSObject {
      Get the bookings of a customer
      - parameter customerId: Customer's Id
      - parameter active: true for active request only, false for non active, nil to ignore
+     - parameter sort: if we need the API to sort the bookings (i.e: using it to retrieve last bookings with sort: `-id`)
 
      - Returns: A Future ResponseObject containing a list of Bookings, or an AFError if an error occured
      */
-    func getBookings(customerId: Int, active: Bool?) -> Future<ResponseObject<MappableDataArray<Booking>>?, Errors> {
+    func getBookings(customerId: Int, active: Bool?, sort: String? = nil) -> Future<ResponseObject<MappableDataArray<Booking>>?, Errors> {
         let promise = Promise<ResponseObject<MappableDataArray<Booking>>?, Errors>()
         
-        var params = ""
+        var params: Parameters = [:]
         if let active = active {
-            params = "?active=\(active ? "true" : "false")"
+            params["active"] = active ? "true" : "false"
+        }
+        if let sort = sort {
+            params["sort[0]"] = sort
         }
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings\(params)", queryParameters: nil, withBearer: true).responseJSONErrorCheck { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings", queryParameters: params, withBearer: true).responseJSONErrorCheck { response in
             
             let responseObject = ResponseObject<MappableDataArray<Booking>>(json: response.result.value, allowEmptyData: false)
             

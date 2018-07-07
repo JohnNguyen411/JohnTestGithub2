@@ -57,7 +57,18 @@ class NewServiceViewController: BaseViewController {
                         realm.add(services, update: true)
                     }
                     
-                    self.showServices(repairOrderTypes: [String.MilestoneServices, String.OtherMaintenanceRepairs])
+                    var containsCustom = false
+                    for service in services {
+                        if service.getCategory() == .custom {
+                            containsCustom = true
+                            break
+                        }
+                    }
+                    if containsCustom {
+                        self.showServices(repairOrderTypes: [String.MilestoneServices, String.OtherMaintenanceRepairs])
+                    } else {
+                        self.showServices(repairOrderTypes: [String.MilestoneServices])
+                    }
                 }
             }
             self.hideProgressHUD()
