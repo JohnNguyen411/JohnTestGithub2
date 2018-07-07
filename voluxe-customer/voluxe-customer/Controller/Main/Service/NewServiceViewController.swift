@@ -54,6 +54,7 @@ class NewServiceViewController: BaseViewController {
             if let services = services?.data?.result {
                 if let realm = try? Realm() {
                     try? realm.write {
+                        realm.delete(realm.objects(RepairOrderType.self))
                         realm.add(services, update: true)
                     }
                     
