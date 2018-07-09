@@ -23,6 +23,8 @@ class ScheduledViewController: ChildViewController {
     private static let mapViewHeight = 160
     private static let driverViewHeight = 55
     
+    private var state: ServiceState? = nil
+    
     var states: [ServiceState] = []
     var driverLocations: [CLLocationCoordinate2D] = []
     
@@ -186,6 +188,12 @@ class ScheduledViewController: ChildViewController {
     }
     
     override func stateDidChange(state: ServiceState) {
+        if self.state != nil && (state == .pickupScheduled  || state == .dropoffScheduled) {
+            // reset if needed
+            hideDriver()
+            resetState(state: state)
+        }
+        self.state = state
         super.stateDidChange(state: state)
         self.updateState(id: state, stepState: .done)
         if state == .enRouteForDropoff || state == .enRouteForPickup || state == .nearbyForPickup || state == .nearbyForDropoff {
@@ -196,6 +204,16 @@ class ScheduledViewController: ChildViewController {
         } else {
             SwiftEventBus.unregister(self)
         }
+    }
+    
+    private func hideDriver() {
+        driverViewContainer.animateAlpha(show: false)
+        UIView.animate(withDuration: 0.25, animations: {
+            self.mapVC.view.snp.updateConstraints { (make) -> Void in
+                make.height.equalTo(ScheduledViewController.mapViewHeight + ScheduledViewController.driverViewHeight)
+            }
+        })
+        self.driver = nil
     }
     
     func newDriver(driver: Driver) {
@@ -232,6 +250,11 @@ class ScheduledViewController: ChildViewController {
             }
         }
         mapVC.updateServiceState(state: id)
+    }
+    
+    private func resetState(state: ServiceState) {
+        verticalStepView?.resetSteps()
+        mapVC.updateServiceState(state: state)
     }
     
     func driverLocationUpdate() {

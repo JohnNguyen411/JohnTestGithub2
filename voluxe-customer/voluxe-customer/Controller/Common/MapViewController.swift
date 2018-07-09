@@ -17,6 +17,8 @@ class MapViewController: UIViewController {
     private let driverMarker = GMSMarker()
     private let etaMarker = ETAMarker(frame: CGRect(x: 0, y: 0, width: 41, height: 62))
     
+    private var requestLocation: CLLocationCoordinate2D?
+    
     convenience init(requestLocation: CLLocationCoordinate2D) {
         self.init()
         updateRequestLocation(location: requestLocation)
@@ -36,7 +38,7 @@ class MapViewController: UIViewController {
         driverMarker.appearAnimation = GMSMarkerAnimation.pop
         driverMarker.groundAnchor = CGPoint(x: 0.5, y: 0.5)
         
-        flagMarker.tracksViewChanges = false
+        flagMarker.tracksViewChanges = true
         flagMarker.iconView = etaMarker
         flagMarker.tracksViewChanges = false
         
@@ -64,6 +66,7 @@ class MapViewController: UIViewController {
         flagMarker.position = location
         moveCamera(withZoom)
         flagMarker.tracksViewChanges = false
+        self.requestLocation = location
     }
     
     // refreshTime is the current time between 2 refresh depending on the state of reservation and how close is the driver from origin or destination
@@ -146,8 +149,17 @@ class MapViewController: UIViewController {
     
     func updateServiceState(state: ServiceState) {
         if state == .arrivedForPickup {
+            flagMarker.tracksViewChanges = true
             etaMarker.hideEta()
             flagMarker.tracksViewChanges = false
+        } else if state == .pickupScheduled || state == .dropoffScheduled {
+            flagMarker.tracksViewChanges = true
+            etaMarker.hideEta()
+            driverMarker.map = nil
+            flagMarker.tracksViewChanges = false
+            if let requestLocation = self.requestLocation {
+                updateRequestLocation(location: requestLocation)
+            }
         }
     }
     

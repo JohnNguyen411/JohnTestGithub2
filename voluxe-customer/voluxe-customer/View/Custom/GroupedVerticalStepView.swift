@@ -64,4 +64,17 @@ class GroupedVerticalStepView: UIView {
         steps[indexInList] = step
     }
     
+    func resetSteps() {
+        
+        for (index, step) in steps.enumerated() {
+            step.state = index == 0 ? .done : .todo
+        }
+        
+        for (index, stepView) in stepViews.enumerated() {
+            stepView.step.state = index == 0 ? .done : .todo
+            stepView.updateStep(step: stepView.step, index: index)
+            stepView.setCurrent(isCurrent: index == 0)
+        }
+    }
+    
 }
