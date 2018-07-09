@@ -12,11 +12,11 @@ import RealmSwift
 class ServiceDetailViewController: BaseViewController {
     
     let serviceTitle: VLTitledLabel
-    let label: UILabel = {
-        let textView = UILabel(frame: .zero)
+    let label: UITextView = {
+        let textView = UITextView(frame: .zero)
         textView.font = .volvoSansProRegular(size: 14)
         textView.backgroundColor = .clear
-        textView.numberOfLines = 0
+        textView.isEditable = false
         return textView
     }()
     
@@ -79,6 +79,7 @@ class ServiceDetailViewController: BaseViewController {
         }
     }
     
+    
     override func setupViews() {
         super.setupViews()
         
@@ -100,7 +101,13 @@ class ServiceDetailViewController: BaseViewController {
         
         label.snp.makeConstraints { make in
             make.right.left.equalTo(serviceTitle)
+            make.bottom.equalTo(confirmButton.snp.top).offset(-20)
             make.top.equalTo(serviceTitle.snp.bottom).offset(20)
         }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        label.setContentOffset(CGPoint.zero, animated: false)
     }
 }

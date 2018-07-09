@@ -387,6 +387,7 @@
 		6CE6879A2040CD0900D915FC /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687992040CD0900D915FC /* Errors.swift */; };
 		6CE6879E2044CEAE00D915FC /* ContactDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE6879D2044CEAE00D915FC /* ContactDriver.swift */; };
 		6CEA0D591FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */; };
+		6CF3F44F20F4113700A89214 /* UITextView+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CF3F44E20F4113700A89214 /* UITextView+Voluxe.swift */; };
 		6CFBF9B31FA1131700D3AA78 /* VolvoSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */; };
 		6CFBF9B41FA1131700D3AA78 /* VolvoSansPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */; };
 		F09D8352AF5AF508F65D2A08 /* Pods_voluxe_customer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 69AE2DE1F0F874762B0DBABE /* Pods_voluxe_customer.framework */; };
@@ -778,6 +779,7 @@
 		6CE902161FA14C1200EE106C /* DateToolsSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = DateToolsSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CE902171FA14C1200EE106C /* ObjectMapper.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ObjectMapper.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CEA0D581FA94B2800FFD079 /* FTUEPhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEPhoneVerificationViewController.swift; sourceTree = "<group>"; };
+		6CF3F44E20F4113700A89214 /* UITextView+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Voluxe.swift"; sourceTree = "<group>"; };
 		6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Light.ttf"; sourceTree = "<group>"; };
 		6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Medium.ttf"; sourceTree = "<group>"; };
 		7BE2945415E5965B4B341B12 /* Pods-voluxe-customerUnitTests.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.mock.xcconfig"; sourceTree = "<group>"; };
@@ -1129,6 +1131,7 @@
 				6C9543A11FABEE1D0099AC84 /* UIFont+Voluxe.swift */,
 				6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */,
 				6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */,
+				6CF3F44E20F4113700A89214 /* UITextView+Voluxe.swift */,
 				6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */,
 				5321B1B620C9A980006C1E14 /* UIView+Blur.swift */,
 				6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */,
@@ -2366,6 +2369,7 @@
 				6CC37E531FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
 				6CDAEE8620E407570040CDFF /* HelpSection.swift in Sources */,
 				53C7300E20CEE5F400BCE926 /* Gyro.swift in Sources */,
+				6CF3F44F20F4113700A89214 /* UITextView+Voluxe.swift in Sources */,
 				6C7342031FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6CDCC60A2058442800DFA831 /* CheckableTableViewCell.swift in Sources */,
 				5340E91220D876F400B17D53 /* DebugFontCellView.swift in Sources */,
