@@ -112,6 +112,18 @@ class VLButton : UIButton {
         if let kern = kern {
             self.addCharacterSpacing(kernValue: kern)
         }
+
+        let view = VLShinyView(frame: CGRect.zero)
+        view.axis = .all
+        view.colors = VLShinyView.luxeColors
+        view.scale = 3
+        view.isUserInteractionEnabled = false
+        self.addSubview(view)
+        view.snp.makeConstraints {
+            make in
+            make.edges.equalToSuperview()
+        }
+        view.startUpdates()
     }
     
     
