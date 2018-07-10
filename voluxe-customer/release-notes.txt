@@ -1,3 +1,8 @@
+v1.0(72):
+Misc bugfixes and improvments
+Help Section
+Add Prod AppIcons
+
 v1.0(69):
 Completed analytics (now to iterate and refine)
 Workaround for Realm migration issue
