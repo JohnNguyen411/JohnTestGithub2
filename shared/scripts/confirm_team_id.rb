@@ -6,7 +6,7 @@ project = Xcodeproj::Project.open(project_path)
 # expected values
 targetName = "voluxe-customer"
 appStoreConfigNamePrefix = "AppStore"
-appStoreTeamID = "DTE5P7QRF9"
+appStoreTeamID = "H3N44P4Y7Y"
 enterpriseTeamID = "396JF7EZ43"
 
 if project.targets.empty?

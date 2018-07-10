@@ -40,6 +40,15 @@ class DebugSettingsViewController: DebugTableViewController {
             },
                                              actionClosure: nil)]
 
+        settings += [DebugTableViewCellModel(title: "Bundle",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.detailTextLabel?.text = Bundle.main.bundleIdentifier
+        },
+                                             actionClosure: nil)]
+
         settings += [DebugTableViewCellModel(title: "Fonts",
                                              cellReuseIdentifier: DebugValueTableViewCell.className,
                                              valueClosure:
