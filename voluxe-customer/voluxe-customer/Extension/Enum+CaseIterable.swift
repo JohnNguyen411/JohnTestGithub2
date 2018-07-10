@@ -1,5 +1,5 @@
 //
-//  Enum+ForEach.swift
+//  Enum+CaseIterable.swift
 //  voluxe-customer
 //
 //  Created by Christoph on 6/18/18.

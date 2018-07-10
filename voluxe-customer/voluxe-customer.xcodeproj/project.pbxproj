@@ -30,8 +30,8 @@
 		5340E91020D876ED00B17D53 /* DebugFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBFD82420D1BE040097D4AB /* DebugFontViewController.swift */; };
 		5340E91120D876F100B17D53 /* DebugFontTestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBFD82620D1C2550097D4AB /* DebugFontTestViewController.swift */; };
 		5340E91220D876F400B17D53 /* DebugFontCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBFD82920D1C9F40097D4AB /* DebugFontCellView.swift */; };
-		5340E91420D881F100B17D53 /* Enum+ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E91320D881F100B17D53 /* Enum+ForEach.swift */; };
-		5340E91520D8822D00B17D53 /* Enum+ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E91320D881F100B17D53 /* Enum+ForEach.swift */; };
+		5340E91420D881F100B17D53 /* Enum+CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E91320D881F100B17D53 /* Enum+CaseIterable.swift */; };
+		5340E91520D8822D00B17D53 /* Enum+CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E91320D881F100B17D53 /* Enum+CaseIterable.swift */; };
 		5340E91620D95E7400B17D53 /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */; };
 		5340E91720D9715100B17D53 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687992040CD0900D915FC /* Errors.swift */; };
 		5340E91820D9716300B17D53 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC15201156AF002594F5 /* ResponseError.swift */; };
@@ -75,11 +75,11 @@
 		53C8AD4F20E59C9B008E07FF /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
 		53C8AD5020E59CAF008E07FF /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */; };
 		53C8AD5120E59CEF008E07FF /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */; };
-		53C8AD5220E59D0E008E07FF /* Enum+ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E91320D881F100B17D53 /* Enum+ForEach.swift */; };
+		53C8AD5220E59D0E008E07FF /* Enum+CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E91320D881F100B17D53 /* Enum+CaseIterable.swift */; };
 		53C8AD5520E59D4F008E07FF /* NullAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8AD5320E59D4F008E07FF /* NullAnalytics.swift */; };
 		53C8AD5620E59D4F008E07FF /* NullAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8AD5320E59D4F008E07FF /* NullAnalytics.swift */; };
 		53C8AD5720E59ED3008E07FF /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */; };
-		53C8AD5820E59EED008E07FF /* Enum+ForEach.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E91320D881F100B17D53 /* Enum+ForEach.swift */; };
+		53C8AD5820E59EED008E07FF /* Enum+CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E91320D881F100B17D53 /* Enum+CaseIterable.swift */; };
 		53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */; };
 		53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */; };
@@ -458,7 +458,7 @@
 		532E235A20CB4B5E00ADA87F /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
 		5340E90620D8514D00B17D53 /* FBAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAnalytics.swift; sourceTree = "<group>"; };
 		5340E90E20D86BD900B17D53 /* TaxonomyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxonomyTableViewController.swift; sourceTree = "<group>"; };
-		5340E91320D881F100B17D53 /* Enum+ForEach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+ForEach.swift"; sourceTree = "<group>"; };
+		5340E91320D881F100B17D53 /* Enum+CaseIterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+CaseIterable.swift"; sourceTree = "<group>"; };
 		5340E92C20E2A45600B17D53 /* FBAnalytics+UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FBAnalytics+UserManager.swift"; sourceTree = "<group>"; };
 		5365315520AA33F300116AC8 /* increment_build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = increment_build.sh; sourceTree = "<group>"; };
 		536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEnums.swift; sourceTree = "<group>"; };
@@ -1135,7 +1135,7 @@
 				6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */,
 				5321B1B620C9A980006C1E14 /* UIView+Blur.swift */,
 				6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */,
-				5340E91320D881F100B17D53 /* Enum+ForEach.swift */,
+				5340E91320D881F100B17D53 /* Enum+CaseIterable.swift */,
 				6C27FBBE20E4599300EAA689 /* UITapGestureRecognizer+Links.swift */,
 				5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */,
 			);
@@ -2301,7 +2301,7 @@
 				53E2521720C731D500D8C32D /* TestConstants.swift in Sources */,
 				538FE74B20BF474D00C3CE17 /* MappableDataObject.swift in Sources */,
 				538FE74A20BF473100C3CE17 /* NetworkRequest.swift in Sources */,
-				53C8AD5820E59EED008E07FF /* Enum+ForEach.swift in Sources */,
+				53C8AD5820E59EED008E07FF /* Enum+CaseIterable.swift in Sources */,
 				538FE75220BF482400C3CE17 /* VLDateFormatter.swift in Sources */,
 				538FE75D20BF4B6900C3CE17 /* BotUser.swift in Sources */,
 				538FE75020BF47AD00C3CE17 /* Customer.swift in Sources */,
@@ -2413,7 +2413,7 @@
 				6CBB4E8B1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				53D9A7BD209A5E2F008BE93E /* UserDefaults+Debug.swift in Sources */,
 				6C3FB2B91FA297A300B22EAB /* Date+DateTools.swift in Sources */,
-				5340E91420D881F100B17D53 /* Enum+ForEach.swift in Sources */,
+				5340E91420D881F100B17D53 /* Enum+CaseIterable.swift in Sources */,
 				6CE147AA20B49E35001F4BC7 /* KeychainManager.swift in Sources */,
 				6CBAA6C72023FD3300F35ECF /* ServiceListViewController.swift in Sources */,
 				6C9543A21FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
@@ -2565,7 +2565,7 @@
 				5303E2F620E4622600B1F4BE /* UserDefaults_UnitTests.swift in Sources */,
 				5340E90D20D861C400B17D53 /* Analytics_UnitTests.swift in Sources */,
 				5340E91620D95E7400B17D53 /* AnalyticsEnums.swift in Sources */,
-				5340E91520D8822D00B17D53 /* Enum+ForEach.swift in Sources */,
+				5340E91520D8822D00B17D53 /* Enum+CaseIterable.swift in Sources */,
 				53C8AD4F20E59C9B008E07FF /* UserDefaults+Voluxe.swift in Sources */,
 				53C8AD5020E59CAF008E07FF /* AnalyticsCore.swift in Sources */,
 				5340E90B20D861AD00B17D53 /* UserDefaults+Debug.swift in Sources */,
@@ -2584,7 +2584,7 @@
 				538FE76420BF4BC000C3CE17 /* Int+Test.swift in Sources */,
 				53EF28D820AE077B006CC5FA /* ResponseObject.swift in Sources */,
 				53EF28C820AE0553006CC5FA /* UserDefaults+Debug.swift in Sources */,
-				53C8AD5220E59D0E008E07FF /* Enum+ForEach.swift in Sources */,
+				53C8AD5220E59D0E008E07FF /* Enum+CaseIterable.swift in Sources */,
 				5322409320B385C300D4E86C /* NetworkRequest+Admin.swift in Sources */,
 				53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */,
 				53EF28DA20AE0798006CC5FA /* Config.swift in Sources */,

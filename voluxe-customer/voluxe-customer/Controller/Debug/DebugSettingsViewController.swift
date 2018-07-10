@@ -87,13 +87,21 @@ class DebugSettingsViewController: DebugTableViewController {
             {
                 cell in
                 let vehicles = UserManager.sharedInstance.getVehicles()
-                let ids = vehicles?.flatMap { "\($0.id)" }.joined(separator: ", ") ?? "no ids"
+                let ids = self.ids(for: vehicles)?.joined(separator: ", ") ?? "no ids"
                 let text = "\(vehicles?.count ?? 0) (\(ids))"
                 cell.detailTextLabel?.text = text
             },
                                              actionClosure: nil)]
 
         return ("User", settings)
+    }
+
+    private func ids(for vehicles: [Vehicle]?) -> [String]? {
+        #if swift(>=4.1)
+            return vehicles?.compactMap { "\($0.id)" }
+        #else
+            return vehicles?.flatMap { "\($0.id)" }
+        #endif
     }
 
     private func bookingsSettings() -> (String, [DebugTableViewCellModel]) {
