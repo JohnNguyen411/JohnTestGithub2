@@ -11,7 +11,7 @@ import GoogleMaps
 
 class MapViewController: UIViewController {
 
-    public var screen = AnalyticsEnums.Name.Screen.activeInbound
+    public var screen = AnalyticsEnums.Name.Screen.pickupActive
     private let mapView = GMSMapView()
     private let flagMarker = GMSMarker()
     private let driverMarker = GMSMarker()

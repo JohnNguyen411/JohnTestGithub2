@@ -13,7 +13,7 @@ import MBProgressHUD
 class SchedulingPickupViewController: SchedulingViewController {
     
     init(vehicle: Vehicle, state: ServiceState) {
-        super.init(vehicle: vehicle, state: state, screen:.scheduleInbound)
+        super.init(vehicle: vehicle, state: state, screen:.pickupNew)
     }
     
     override func viewDidLoad() {

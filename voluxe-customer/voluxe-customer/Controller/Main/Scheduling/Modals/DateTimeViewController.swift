@@ -116,7 +116,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         }
         dealership = currentDealership
 
-        super.init(title: title, buttonTitle: buttonTitle, screen: isPickup ? .scheduleInboundDateTime : .scheduleOutboundDateTime)
+        super.init(title: title, buttonTitle: buttonTitle, screen: isPickup ? .pickupDateTime : .dropoffDateTime)
         
         realm = try? Realm()
         getTimeSlots()

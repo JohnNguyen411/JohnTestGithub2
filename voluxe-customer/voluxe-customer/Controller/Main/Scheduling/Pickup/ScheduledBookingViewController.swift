@@ -27,10 +27,10 @@ class ScheduledBookingViewController: SchedulingViewController {
             event = .outboundCancel
         }
 
-        leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), event: event, screen: .reservationDetail)
-        rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), event: .done, screen: .reservationDetail)
+        leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), event: event, screen: .bookingDetail)
+        rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), event: .done, screen: .bookingDetail)
         
-        super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screen: .reservationDetail)
+        super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screen: .bookingDetail)
     }
     
     required init?(coder aDecoder: NSCoder) {

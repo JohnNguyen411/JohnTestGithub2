@@ -428,12 +428,12 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     func showPickupLocationModal(dismissOnTap: Bool) {
         
         var title: String = .PickupLocationTitle
-        var screen = AnalyticsEnums.Name.Screen.scheduleOutboundLocation
+        var screen = AnalyticsEnums.Name.Screen.dropoffLocation
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
                 title = .DealershipCloseToLocation
             }
-            screen = AnalyticsEnums.Name.Screen.scheduleInboundLocation
+            screen = AnalyticsEnums.Name.Screen.pickupLocation
         }
         
         let locationVC = LocationViewController(title: title, buttonTitle: .Next, screen: screen)
@@ -446,7 +446,7 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }
     
     func showPickupLoanerModal(dismissOnTap: Bool) {
-        let loanerVC = LoanerViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, screen: .scheduleInboundLoaner)
+        let loanerVC = LoanerViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, screen: .pickupLoaner)
         loanerVC.delegate = self
         loanerVC.view.accessibilityIdentifier = "loanerVC"
         currentPresentrVC = loanerVC

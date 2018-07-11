@@ -126,11 +126,14 @@ struct AnalyticsEnums {
 
         enum Screen: String, CaseIterable {
             case account
-            case activeInbound
-            case activeOutbound
+            case bookingCompleted
+            case bookingDetail
             case bookingFeedback
-            case bookings   // Pickup & Delivery, my volvos, reservations?
             case confirm
+            case dropoffActive
+            case dropoffNew
+            case dropoffDateTime
+            case dropoffLocation
             case error
             case help
             case helpList
@@ -140,23 +143,18 @@ struct AnalyticsEnums {
             case location
             case login
             case needService
+            case pickupActive
+            case pickupDateTime
+            case pickupDealership
+            case pickupLoaner
+            case pickupLocation
+            case pickupNew
             case passwordReset
             case phoneUpdate
             case phoneVerification
             case privacyPolicy
             case requestLocation
             case requestNotifications
-            case reservations
-            case reservationCompleted
-            case reservationDetail
-            case scheduleInbound
-            case scheduleInboundDateTime
-            case scheduleInboundDealership
-            case scheduleInboundLoaner
-            case scheduleInboundLocation
-            case scheduleOutbound
-            case scheduleOutboundDateTime
-            case scheduleOutboundLocation
             case serviceCompleted
             case serviceCustom
             case serviceCustomDetail
@@ -176,6 +174,7 @@ struct AnalyticsEnums {
             case splash
             case success
             case termsOfService
+            case vehicles
             case vehicleAdd
             case vehicleDelete
             case vehicleDetail

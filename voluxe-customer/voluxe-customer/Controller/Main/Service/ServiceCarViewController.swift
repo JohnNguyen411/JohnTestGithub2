@@ -331,7 +331,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 rightButton.isHidden = true
                 
                 self.updateLabelText(text: String(format: NSLocalizedString(.DeliveryComplete), (dealership?.name)!))
-                Analytics.trackView(screen: .reservationCompleted)
+                Analytics.trackView(screen: .bookingCompleted)
             }
         }
         

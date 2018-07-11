@@ -18,7 +18,7 @@ class DealershipViewController: VLPresentrViewController, VLGroupedLabelsDelegat
     var groupedLabels: VLGroupedLabels?
     
     init(title: String, buttonTitle: String, dealerships: [Dealership]) {
-        super.init(title: title, buttonTitle: buttonTitle, screen: .scheduleInboundDealership)
+        super.init(title: title, buttonTitle: buttonTitle, screen: .pickupDealership)
         setDealerhips(dealerships: dealerships)
     }
     

@@ -18,7 +18,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     
     init(state: ServiceState, booking: Booking) {
         self.booking = booking
-        super.init(vehicle: booking.vehicle!, state: state, screen: .scheduleOutbound)
+        super.init(vehicle: booking.vehicle!, state: state, screen: .dropoffNew)
     }
     
     override func viewDidLoad() {
