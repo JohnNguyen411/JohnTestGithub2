@@ -89,12 +89,12 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     func stateDidChange(state: ServiceState) {}
 
-    @objc func onBackClicked() {//button: AnalyticsEnums.Name.Button = .navigationLeft) {
-        Analytics.trackClick(button: .navigationLeft, screen: self.screen)
+    @objc func onBackClicked() {
+        Analytics.trackClick(navigation: .back, screen: self.screen)
     }
     
-    @objc func onRightClicked() {//button: AnalyticsEnums.Name.Button = .navigationRight) {
-        Analytics.trackClick(button: .navigationRight, screen: self.screen)
+    @objc func onRightClicked() {
+        Analytics.trackClick(navigation: .next, screen: self.screen)
     }
     
     private func setGradientBackground() {
@@ -190,7 +190,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
     func showNotificationPermissionModal(dismissOnTap: Bool) {
         if let appDelegate = self.appDelegate, !NotificationPermissionViewController.isShowing {
             let permissionVC = NotificationPermissionViewController(title: .AllowNotifications,
-                                                                    screen: .allowNotifications,
+                                                                    screen: .requestNotifications,
                                                                     delegate: appDelegate)
             permissionVC.view.accessibilityIdentifier = "permissionVC"
             currentPresentrVC = permissionVC

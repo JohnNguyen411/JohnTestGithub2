@@ -36,8 +36,8 @@ class PermissionViewController: BaseViewController {
     
     public static func screenNameForPermission(type: PermissionType) -> AnalyticsEnums.Name.Screen {
         switch type {
-        case .location: return AnalyticsEnums.Name.Screen.allowLocation
-        case .notification: return AnalyticsEnums.Name.Screen.allowNotifications
+        case .location: return AnalyticsEnums.Name.Screen.requestLocation
+        case .notification: return AnalyticsEnums.Name.Screen.requestNotifications
         }
     }
     

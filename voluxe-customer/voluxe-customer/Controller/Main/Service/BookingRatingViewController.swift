@@ -124,7 +124,11 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
         loadData()
         
         confirmButton.setActionBlock { [weak self] in
-            
+
+            // this will be titled OK or DONE depending on if
+            // the text comment block is visible or not
+            Analytics.trackClick(button: .ok, screen: self?.screen)
+
             guard let weakSelf = self else { return }
             
             if !weakSelf.isShowingComment {
@@ -138,7 +142,6 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
                 weakSelf.sendFeedback(rating: weakSelf.ratingSlider.currentIntValue(), comment: commentText)
             }
         }
-        
     }
     
     private func loadData() {
@@ -278,7 +281,9 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
     }
     
     @objc func skip() {
-        
+
+        Analytics.trackClick(navigation: .skip)
+
         if isShowingComment {
             // send rating
             sendFeedback(rating: ratingSlider.currentIntValue(), comment: "")

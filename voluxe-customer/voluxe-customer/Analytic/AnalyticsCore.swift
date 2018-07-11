@@ -43,7 +43,6 @@ extension AnalyticsCore {
 
     // MARK:- Calls
 
-    // call_api_<name> api_endpoint=<string> error_code=<string>
     func trackCall(api: AnalyticsEnums.Name.API, endpoint: String? = nil, error: Errors? = nil) {
         var params: AnalyticsEnums.Params = [:]
         if let endpoint = endpoint { params[.endpoint] = endpoint }
@@ -62,18 +61,16 @@ extension AnalyticsCore {
 
     /// Convenience func that instruments a call to a Google API endpoint with an
     /// optional error.  Note that because Error can be an arbitrary length string,
-    /// it is truncated to fixed number of characters to still be readable and reduce bytes.
+    /// it is truncated to 40 characters to save bytes and safety.
     func trackCallGoogle(endpoint: AnalyticsEnums.GoogleEndpoint, error: Error? = nil) {
         var params: AnalyticsEnums.Params = [:]
         params[.endpoint] = endpoint.rawValue
-        // TODO truncate to a max length
-        if let error = error { params[.errorMessage] = "\(error)" }
+        if let error = error { params[.errorMessage] = String("\(error)".prefix(40)) }
         self.track(event: .call, element: .api, name: AnalyticsEnums.Name.API.google.rawValue, params: params)
     }
 
     // MARK:- Clicks
 
-    // click_button_<name> screen_name=<string>
     func trackClick(button: AnalyticsEnums.Name.Button,
                     screen: AnalyticsEnums.Name.Screen? = nil,
                     selected: Bool? = nil)
@@ -84,11 +81,21 @@ extension AnalyticsCore {
         self.track(event: .click, element: .button, name: button.rawValue, params: params)
     }
 
+    func trackClick(navigation: AnalyticsEnums.Name.Navigation,
+                    screen: AnalyticsEnums.Name.Screen? = nil)
+    {
+        var params: AnalyticsEnums.Params = [:]
+        if let screen = screen { params[.screenName] = screen.rawValue }
+        self.track(event: .click, element: .navigation, name: navigation.rawValue, params: params)
+    }
+
     // MARK:- Changes
 
-    // change_booking_state?booking_state=<String>
-    func trackChangeBooking(state: String) {
-        self.track(event: .change, element: .booking, name: AnalyticsEnums.Name.Booking.state.rawValue, param: .bookingState, value: state)
+    func trackChangeBooking(state: String, id: Int? = nil) {
+        var params: AnalyticsEnums.Params = [:]
+        params[.bookingState] = state
+        if let id = id { params[.bookingID] = "\(id)" }
+        self.track(event: .change, element: .booking, name: AnalyticsEnums.Name.Booking.state.rawValue, params: params)
     }
 
     func trackChangePermission(permission: AnalyticsEnums.Name.Permission, granted: Bool, screen: AnalyticsEnums.Name.Screen? = nil) {
@@ -103,10 +110,9 @@ extension AnalyticsCore {
     func trackView(app: AnalyticsEnums.Name.App, screen: AnalyticsEnums.Name.Screen? = nil) {
         var params: AnalyticsEnums.Params = [:]
         if let screen = screen { params[.screenName] = screen.rawValue }
-        self.track(event: .view, element: .screen, name: app.rawValue, params: params)
+        self.track(event: .view, element: .app, name: app.rawValue, params: params)
     }
 
-    // view_screen_<name>
     func trackView(screen: AnalyticsEnums.Name.Screen, from: AnalyticsEnums.Name.Screen? = nil) {
         var params: AnalyticsEnums.Params = [:]
         if let from = from { params[.screenName] = from.rawValue }

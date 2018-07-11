@@ -111,6 +111,15 @@ class Analytics_UnitTests: XCTestCase {
         for name in names {
             XCTAssertTrue(name.count <= 40, "\(name) is longer than Firebase max of 40 characters)")
         }
+
+        // test that google error message is truncated
+        let error = NSError(domain: NSURLErrorDomain, code: NSURLErrorUnknown, userInfo: nil)
+        analytics.trackOutputClosure = {
+            name, params in
+            let message = params?["error_message"] as? String
+            XCTAssertTrue(message?.count == 40)
+        }
+        analytics.trackCallGoogle(endpoint: .distance, error: error)
     }
 }
 

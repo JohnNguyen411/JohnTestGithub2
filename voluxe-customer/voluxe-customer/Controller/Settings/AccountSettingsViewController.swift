@@ -90,14 +90,14 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     }
     
     @objc func edit() {
-        Analytics.trackClick(button: .navigationEdit, screen: self.screen)
+        Analytics.trackClick(navigation: .edit, screen: self.screen)
         uiBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
         self.navigationItem.rightBarButtonItem = uiBarButton
         tableView.setEditing(true, animated: true)
     }
     
     @objc func done() {
-        Analytics.trackClick(button: .navigationDone, screen: self.screen)
+        Analytics.trackClick(navigation: .done, screen: self.screen)
         uiBarButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
         self.navigationItem.rightBarButtonItem = uiBarButton
         tableView.setEditing(false, animated: true)

@@ -300,7 +300,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     }
     
     @objc func onCloseClicked() {
-        self.slideMenuController()?.closeLeft()
+        self.slideMenuController()?.toggleLeft()
     }
 }
 

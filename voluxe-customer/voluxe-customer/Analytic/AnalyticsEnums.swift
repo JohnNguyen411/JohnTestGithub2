@@ -30,6 +30,7 @@ struct AnalyticsEnums {
         case app
         case booking
         case button
+        case navigation
         case permission
         case screen
     }
@@ -71,10 +72,6 @@ struct AnalyticsEnums {
             case inboundSelfConfirm
             case inboundVolvo
             case inboundVolvoConfirm
-            case navigationDone
-            case navigationEdit
-            case navigationLeft
-            case navigationRight
             case next
             case newService
             case ok
@@ -112,6 +109,16 @@ struct AnalyticsEnums {
             case vehicleUnknown
         }
 
+        enum Navigation: String, CaseIterable {
+            case back
+            case close
+            case done
+            case edit
+            case menu
+            case next
+            case skip
+        }
+
         enum Permission: String, CaseIterable {
             case location
             case notification
@@ -121,8 +128,6 @@ struct AnalyticsEnums {
             case account
             case activeInbound
             case activeOutbound
-            case allowLocation
-            case allowNotifications
             case bookingFeedback
             case bookings   // Pickup & Delivery, my volvos, reservations?
             case confirm
@@ -139,6 +144,8 @@ struct AnalyticsEnums {
             case phoneUpdate
             case phoneVerification
             case privacyPolicy
+            case requestLocation
+            case requestNotifications
             case reservations
             case reservationCompleted
             case reservationDetail
@@ -181,6 +188,7 @@ struct AnalyticsEnums {
     }
 
     enum Param: String, CaseIterable {
+        case bookingID = "booking_id"
         case bookingState = "booking_state"
         case endpoint = "api_endpoint"
         case errorCode = "error_code"

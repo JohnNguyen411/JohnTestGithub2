@@ -533,6 +533,7 @@ extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
             let locationManager = LocationManager.sharedInstance.locationManager
             locationManager.delegate = self
             locationManager.requestWhenInUseAuthorization()
+            Analytics.trackView(screen: .requestLocation)
             return
         }
         Analytics.trackClick(button: .selectLocation, screen: self.screen)

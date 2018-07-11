@@ -66,10 +66,10 @@ class VLSlideMenuController: SlideMenuController {
         controller.view.removeFromSuperview()
         controller.removeFromParentViewController()
     }
-    
-    override func toggleLeft() {
-        super.toggleLeft()
-        Analytics.trackClick(button: .navigationLeft)
+
+    override func track(_ trackAction: SlideMenuController.TrackAction) {
+        if trackAction == .leftTapClose { Analytics.trackClick(navigation: .close) }
+        else if trackAction == .leftTapOpen { Analytics.trackClick(navigation: .menu) }
     }
 
     // TODO Move view controller management from AppDelegate to AppController
