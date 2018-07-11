@@ -241,7 +241,8 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         
         calendar.snp.makeConstraints { make in
             make.bottom.equalTo(timeSlotsHeader.snp.top).offset(-28)
-            make.left.right.equalToSuperview()
+            make.left.equalToSuperview().offset(-5)
+            make.right.equalToSuperview().offset(5)
             make.height.equalTo(calendarViewHeight)
         }
         

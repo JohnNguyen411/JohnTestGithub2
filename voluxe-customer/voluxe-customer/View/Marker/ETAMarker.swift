@@ -55,7 +55,7 @@ class ETAMarker: UIView {
         
         etaLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview().offset(1)
-            make.top.equalTo(etaValue.snp.bottom)
+            make.top.equalTo(etaValue.snp.bottom).offset(-2)
             make.width.equalToSuperview()
             make.height.equalTo(8)
         }
