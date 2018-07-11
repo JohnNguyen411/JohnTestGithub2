@@ -1,3 +1,8 @@
+v1.0.1(74):
+Misc bugfixes and improvments
+Taxonomy and debugging improvements
+Copy changes
+
 v1.0(72):
 Misc bugfixes and improvments
 Help Section
