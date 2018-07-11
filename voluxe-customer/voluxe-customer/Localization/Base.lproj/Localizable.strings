@@ -62,8 +62,8 @@
 "FirstName" = "First Name";
 "LastName" = "Last Name";
 "WelcomeSignup" = "Welcome to Luxe by Volvo. Let’s create your account.";
-"FirstNamePlaceholder" = "Thor";
-"LastNamePlaceholder" = "Odinson";
+"FirstNamePlaceholder" = "John";
+"LastNamePlaceholder" = "Smith";
 "CreatePassword" = "Create a password";
 "PasswordCondition" = "(At least 8 characters with at least one letter and one number)";
 "Password" = "Password";
@@ -197,7 +197,7 @@
 "ScheduledService" = "Scheduled Service";
 "AreYouSureCancelPickup" = "Are you sure you want to cancel your pickup?";
 "AreYouSureCancelDropOff" = "Are you sure you want to cancel your dropoff?";
-"NewServiceIntro" = "Does your Volvo need service? You can schedule pickup (with participating dealerships) through Luxe by Volvo.\n\nTo schedule pickup, first select service type.";
+"NewServiceIntro" = "You can schedule pickup (with participating dealerships) through Luxe by Volvo.\n\nTo schedule pickup, first select service type.";
 "MilestoneServices" = "Milestone services";
 "RecallServices" = "Recall services";
 "OtherMaintenanceRepairs" = "Other maintenance and repairs";
@@ -277,7 +277,7 @@
 "ThereWasAnIssueWithMyPaperworkDetail" = "Apologies if there was an issue with your paperwork. We aim to have transparent and informative paperwork accompanying any maintenance. If you have questions about the paperwork you were provided, please let us know here.";
 "OtherDetail" = "Didn't see what you were looking for? Please let us know how we can help you with your Luxe by Volvo service.";
 
-"HowLuxebyVolvoWorks" = "How Luxe by Volvo Works";
+"HowLuxebyVolvoWorks" = "How Luxe by Volvo works";
 "ICantArrangeService" = "I can’t arrange service with my dealership";
 "NoParticipatingDealershipsInArea" = "No participating dealerships in my area";
 "ICantCancelMyPickupOrDelivery" = "I can’t cancel my pickup or delivery";
