@@ -46,16 +46,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         return textView
     }()
     
-    let noteLabel: UILabel = {
-        let textView = UILabel(frame: .zero)
-        textView.text = .NotePickup
-        textView.font = .volvoSansProMedium(size: 12)
-        textView.textColor = .luxeGray()
-        textView.backgroundColor = .clear
-        textView.numberOfLines = 0
-        return textView
-    }()
-    
     var locationManager = LocationManager.sharedInstance
     
     let stateTestView = UILabel(frame: .zero)
@@ -157,7 +147,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         contentView.addSubview(scheduledServiceView)
         contentView.addSubview(descriptionButton)
         contentView.addSubview(checkupLabel)
-        contentView.addSubview(noteLabel)
         contentView.addSubview(leftButton)
         contentView.addSubview(rightButton)
         contentView.addSubview(confirmButton)
@@ -202,11 +191,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             make.left.right.equalTo(scheduledServiceView)
             make.top.equalTo(scheduledServiceView.snp.bottom)
             make.height.equalTo(VLButton.secondaryHeight)
-        }
-        
-        noteLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.bottom.equalTo(confirmButton.snp.top).offset(-20)
         }
         
         if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
@@ -272,10 +256,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         
-        if serviceState == .idle || serviceState == .needService || serviceState == .serviceCompleted {
-            noteLabel.text = .NotePickup
-        }
-        
         stateTestView.accessibilityIdentifier = "schedulingTestView\(state)"
         stateTestView.text = "schedulingTestView\(state)"
         
@@ -306,11 +286,10 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 }
                 Analytics.trackView(screen: .serviceCompleted)
             }
-            noteLabel.isHidden = false
             
             checkupLabel.snp.remakeConstraints { make in
                 make.left.right.equalToSuperview()
-                make.bottom.equalTo(noteLabel.snp.top).offset(-20)
+                make.bottom.equalTo(confirmButton.snp.top).offset(-20)
             }
            
             leftButton.animateAlpha(show: true)
@@ -322,7 +301,6 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             if dealership == nil, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                 dealership = booking.dealership
             }
-            noteLabel.isHidden = true
             scheduledServiceView.isHidden = true
             descriptionButton.isHidden = true
             

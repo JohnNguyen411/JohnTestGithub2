@@ -128,10 +128,9 @@
 "PickupLocation" = "Pickup Location";
 "NeedALoaner" = "Need a Loaner?";
 "ConfirmPickup" = "Confirm Pickup";
-"NotePickup" = "Note: Luxe by Volvo is only offered at participating dealers.";
-"ScheduleDropDealership" = "Schedule pickup of your Volvo at any location served by a participating dealership.";
+"ScheduleDropDealership" = "Schedule pickup at any location served by a participating dealership.";
 "ScheduleDropDealershipSelfEnabled" = "You can drop your car at the dealership or arrange for Volvo to pickup your vehicle at the location of your choosing.";
-"SchedulePickupDealership" = "Schedule delivery of your Volvo at any location served by a participating dealership.";
+"SchedulePickupDealership" = "Schedule delivery at any location served by a participating dealership.";
 "SchedulePickupDealershipSelfEnabled" = "You can pick up your car from the dealership or arrange for Volvo to deliver your vehicle to the location of your choosing.";
 "OutOfPickupArea" = "Out of pickup area";
 "ServiceNotOfferedInArea" = "Service not offered in your area";
