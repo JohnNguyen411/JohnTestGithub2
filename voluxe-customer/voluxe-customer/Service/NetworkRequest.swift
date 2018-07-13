@@ -129,12 +129,26 @@ class NetworkRequest {
             } else {
                 // check for possible update in header
                 if let allHeaderFields = response.response?.allHeaderFields {
-                    for field in allHeaderFields {
-                        Logger.print("\(field.key): \(field.value)")
+                    var updateAvailable = false
+                    var latestVersion: String? = nil
+                    
+                    if let headerUpdate = allHeaderFields["x-luxe-application-upgrade-available"] {
+                        if let canUpdate = headerUpdate as? String {
+                            let canUpdateInt = Int(canUpdate)
+                            updateAvailable = canUpdateInt == 1 ? true : false
+                        }
+                    }
+                    
+                    if let headerVersion = allHeaderFields["x-luxe-application-latest-version"] {
+                        if let version = headerVersion as? String {
+                            latestVersion = version
+                        }
+                    }
+                    
+                    if let version = latestVersion, updateAvailable, UserDefaults.standard.shouldShowUpdateForVersion(version) {
+                        SwiftEventBus.post("updateAvailable", sender: version as AnyObject)
                     }
                 }
-                
-                //x-luxe-application-upgrade-available
             }
         }
     }

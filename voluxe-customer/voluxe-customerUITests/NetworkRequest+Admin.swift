@@ -32,7 +32,7 @@ extension NetworkRequest {
         var mutHeader = headers
         if includeBearer { self.addBearer(header: &mutHeader) }
         if includeClient { mutHeader["X-CLIENT-ID"] = Config.sharedInstance.apiClientId() }
-        mutHeader["x-application-version"] = "luxe_by_volvo_customer_ios:\(Bundle.main.build)"
+        mutHeader["x-application-version"] = "luxe_by_volvo_customer_ios:\(Bundle.main.version)"
 
         // TODO clean up
         do {

@@ -36,7 +36,9 @@
 "Delete" = "Delete";
 "Remove" = "Remove";
 "ForceUpgradeTitle" = "Software Update";
-"ForceUpgradeMessage" = "There is a new version of Luxe by Volvo available for download.\n\nTo have the best possible experience, please update now.";
+"ForceUpgradeMessage" = "There is a new version of Luxe by Volvo available for download.\n\nThis is a required update. Please update now.";
+"SoftUpgradeTitle" = "Update Available";
+"SoftUpgradeMessage" = "There is a new version of Luxe by Volvo available for download.\n\nFor the best possible experience, please update now.";
 "GrantPermission" = "Grant Permission";
 "DatabaseError" = "An unexpected error as occured. Please try restarting the app.";
 "NotificationPermissionText" = "We need you to grant us the permission to send you notifications to give you updates regarding the status of your car";
