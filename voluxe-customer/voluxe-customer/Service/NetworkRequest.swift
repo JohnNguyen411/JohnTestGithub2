@@ -126,6 +126,15 @@ class NetworkRequest {
                 default:
                     break
                 }
+            } else {
+                // check for possible update in header
+                if let allHeaderFields = response.response?.allHeaderFields {
+                    for field in allHeaderFields {
+                        Logger.print("\(field.key): \(field.value)")
+                    }
+                }
+                
+                //x-luxe-application-upgrade-available
             }
         }
     }
