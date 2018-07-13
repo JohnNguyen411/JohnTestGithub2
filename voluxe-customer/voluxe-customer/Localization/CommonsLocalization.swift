@@ -39,6 +39,8 @@ extension String {
     static let Remove = NSLocalizedString("Remove")
     static let ForceUpgradeTitle = NSLocalizedString("ForceUpgradeTitle")
     static let ForceUpgradeMessage = NSLocalizedString("ForceUpgradeMessage")
+    static let SoftUpgradeTitle = NSLocalizedString("SoftUpgradeTitle")
+    static let SoftUpgradeMessage = NSLocalizedString("SoftUpgradeMessage")
     static let GrantPermission = NSLocalizedString("GrantPermission")    
     static let DatabaseError = NSLocalizedString("DatabaseError")
     static let PickupAndDelivery = NSLocalizedString("PickupAndDelivery")

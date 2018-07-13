@@ -23,4 +23,41 @@ extension UserDefaults {
             return true
         }
     }
+    
+    
+    // Return true if we should show the Dialog to update the app
+    // The dialog should be shown only once per new version
+    func shouldShowUpdateForVersion(_ version: String) -> Bool {
+        let currentVersion = Bundle.main.version
+        let lastVersion = latestCheckedVersion
+        
+        // if the install version is newer or equal to new version
+        if versionIsNewerOrEqualThan(currentVersion, compareVersion: version) {
+            return false
+        } else if lastVersion != nil && versionIsNewerOrEqualThan(lastVersion!, compareVersion: version) {
+            return false
+        } else {
+            return true
+        }
+    }
+    
+    
+    private func versionIsNewerOrEqualThan(_ version: String, compareVersion: String) -> Bool {
+        if version.compare(compareVersion, options: .numeric) == .orderedDescending || version.compare(compareVersion, options: .numeric) == .orderedSame {
+            return true
+        }
+        return false
+    }
+    
+    
+    // store the Last Checked Version for the Soft Update
+    var latestCheckedVersion: String? {
+        get {
+            return self.string(forKey: #function)
+        }
+        set {
+            self.set(newValue, forKey: #function)
+            self.synchronize()
+        }
+    }
 }

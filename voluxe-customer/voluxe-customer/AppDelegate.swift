@@ -135,6 +135,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             self.window?.rootViewController?.present(alert, animated: true, completion: nil)
         }
     }
+    
+    func showSoftUpgradeDialog(version: String) {
+        if let window = self.window, let rootViewController = window.rootViewController {
+            // don't show on LoadingViewController as it autodismiss
+            if rootViewController is LoadingViewController {
+                return
+            }
+            // check if already added
+            if let _ = rootViewController.presentedViewController as? VLAlertViewController {
+                return
+            }
+            
+            let alert = VLAlertViewController(title: String.SoftUpgradeTitle, message: String.SoftUpgradeMessage, cancelButtonTitle: String.NotNow, okButtonTitle: String.Ok.uppercased())
+            alert.delegate = self
+            alert.dismissOnTap = true
+            
+            self.window?.rootViewController?.present(alert, animated: true, completion: {
+                UserDefaults.standard.latestCheckedVersion = version
+            })
+
+        }
+    }
 
     // TODO Move view controller management from AppDelegate to AppController
     // https://github.com/volvo-cars/ios/issues/225
@@ -261,6 +283,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         SwiftEventBus.onMainThread(self, name: "forceUpgrade") {
             notification in
             self.showForceUpgradeDialog()
+        }
+        
+        SwiftEventBus.onMainThread(self, name: "updateAvailable") {
+            notification in
+            self.showSoftUpgradeDialog(version: notification.object as! String)
         }
         
         SwiftEventBus.onMainThread(self, name: "bookingAdded") {
