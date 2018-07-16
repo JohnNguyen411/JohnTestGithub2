@@ -21,6 +21,9 @@
 		5322409020B32CE600D4E86C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479420AE300B001F4BC7 /* RealmManager.swift */; };
 		5322409320B385C300D4E86C /* NetworkRequest+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409220B385C300D4E86C /* NetworkRequest+Admin.swift */; };
 		5322409720B39FF700D4E86C /* CreateAccount_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */; };
+		5328C8AA20FD40060006B448 /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
+		5328C8AB20FD40F90006B448 /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
+		5328C8AC20FD40FF0006B448 /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
 		532E235B20CB4B5F00ADA87F /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E235A20CB4B5E00ADA87F /* BlurEffect.swift */; };
 		5340E90720D8514D00B17D53 /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E90620D8514D00B17D53 /* FBAnalytics.swift */; };
 		5340E90A20D861A800B17D53 /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E90620D8514D00B17D53 /* FBAnalytics.swift */; };
@@ -2302,6 +2305,7 @@
 				53C8AD5720E59ED3008E07FF /* AnalyticsCore.swift in Sources */,
 				538FE75320BF482C00C3CE17 /* Location.swift in Sources */,
 				53E2521720C731D500D8C32D /* TestConstants.swift in Sources */,
+				5328C8AB20FD40F90006B448 /* UserDefaults+Voluxe.swift in Sources */,
 				538FE74B20BF474D00C3CE17 /* MappableDataObject.swift in Sources */,
 				538FE74A20BF473100C3CE17 /* NetworkRequest.swift in Sources */,
 				53C8AD5820E59EED008E07FF /* Enum+CaseIterable.swift in Sources */,
@@ -2574,6 +2578,7 @@
 				53C8AD5020E59CAF008E07FF /* AnalyticsCore.swift in Sources */,
 				5340E90B20D861AD00B17D53 /* UserDefaults+Debug.swift in Sources */,
 				5340E91720D9715100B17D53 /* Errors.swift in Sources */,
+				5328C8AA20FD40060006B448 /* Bundle+Voluxe.swift in Sources */,
 				5340E90A20D861A800B17D53 /* FBAnalytics.swift in Sources */,
 				5340E91820D9716300B17D53 /* ResponseError.swift in Sources */,
 			);
@@ -2588,6 +2593,7 @@
 				538FE76420BF4BC000C3CE17 /* Int+Test.swift in Sources */,
 				53EF28D820AE077B006CC5FA /* ResponseObject.swift in Sources */,
 				53EF28C820AE0553006CC5FA /* UserDefaults+Debug.swift in Sources */,
+				5328C8AC20FD40FF0006B448 /* UserDefaults+Voluxe.swift in Sources */,
 				53C8AD5220E59D0E008E07FF /* Enum+CaseIterable.swift in Sources */,
 				5322409320B385C300D4E86C /* NetworkRequest+Admin.swift in Sources */,
 				53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */,
