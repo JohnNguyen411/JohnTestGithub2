@@ -33,8 +33,8 @@ class NetworkRequest {
         var finalRequest: DataRequest?
 
         var mutHeader = headers
-        mutHeader["X-CLIENT-ID"] = Config.sharedInstance.apiClientId()
-        mutHeader["x-application-version"] = "luxe_by_volvo_customer_ios:\(Bundle.main.version)"
+        mutHeader["x-luxe-client-id"] = Config.sharedInstance.apiClientId()
+        mutHeader["x-luxe-application-version"] = "luxe_by_volvo_customer_ios:\(Bundle.main.version)"
 
         do {
             originalRequest = try URLRequest(url: finalUrl, method: method, headers: mutHeader)
