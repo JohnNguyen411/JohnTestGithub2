@@ -86,7 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         mainViewController.view.accessibilityIdentifier = "mainViewController"
         leftViewController.view.accessibilityIdentifier = "leftViewController"
         
-        let uiNavigationController = UINavigationController(rootViewController: mainViewController)
+        let uiNavigationController = VLNavigationController(rootViewController: mainViewController)
         uiNavigationController.view.accessibilityIdentifier = "uiNavigationController"
 
         styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
@@ -176,7 +176,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         if !UserManager.sharedInstance.isLoggedIn() {
-            let uiNavigationController = UINavigationController(rootViewController: FTUEStartViewController())
+            let uiNavigationController = VLNavigationController(rootViewController: FTUEStartViewController())
             styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
             window!.rootViewController = uiNavigationController
             window!.makeKeyAndVisible()
@@ -194,7 +194,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                 } else {
                     vehicleViewController = MainViewController(vehicle: vehicle, state: state)
                 }
-                let uiNavigationController = UINavigationController(rootViewController: vehicleViewController!)
+                let uiNavigationController = VLNavigationController(rootViewController: vehicleViewController!)
                 styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
                 leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: nil, animated: true)
             }
@@ -208,7 +208,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             
             if let slideMenu = self.slideMenuController {
                 if let leftVC = slideMenu.leftViewController as? LeftViewController {
-                    let uiNavigationController = UINavigationController(rootViewController: BookingRatingViewController(bookingFeedback: bookingFeedback))
+                    let uiNavigationController = VLNavigationController(rootViewController: BookingRatingViewController(bookingFeedback: bookingFeedback))
                     self.styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
                     leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: nil, animated: true)
                 }
@@ -219,7 +219,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func settingsScreen() {
         if let slideMenu = slideMenuController {
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
-                let uiNavigationController = UINavigationController(rootViewController: SettingsViewController())
+                let uiNavigationController = VLNavigationController(rootViewController: SettingsViewController())
                 styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
                 leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .Settings, animated: true)
             }
@@ -229,7 +229,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func helpScreen() {
         if let slideMenu = slideMenuController {
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
-                let uiNavigationController = UINavigationController(rootViewController: HelpViewController())
+                let uiNavigationController = VLNavigationController(rootViewController: HelpViewController())
                 styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
                 leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .Help, animated: true)
             }
@@ -240,7 +240,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if window == nil {
             window = UIWindow(frame: UIScreen.main.bounds)
         }
-        let uiNavigationController = UINavigationController(rootViewController: FTUEPhoneVerificationViewController())
+        let uiNavigationController = VLNavigationController(rootViewController: FTUEPhoneVerificationViewController())
         styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         window!.rootViewController = uiNavigationController
         window!.makeKeyAndVisible()
@@ -250,7 +250,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         if window == nil {
             window = UIWindow(frame: UIScreen.main.bounds)
         }
-        let uiNavigationController = UINavigationController(rootViewController: FTUEAddVehicleViewController())
+        let uiNavigationController = VLNavigationController(rootViewController: FTUEAddVehicleViewController())
         styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         window!.rootViewController = uiNavigationController
         window!.makeKeyAndVisible()

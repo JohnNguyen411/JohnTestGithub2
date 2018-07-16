@@ -40,6 +40,9 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     convenience init(type: FTUEPhoneType) {
         self.init()
         self.ftuePhoneType = type
+        if FTUEStartViewController.flowType == .login {
+            self.navigationItem.rightBarButtonItem?.title = .Done
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -76,15 +79,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             updatePhoneNumberButton.isHidden = true
         }
     }
-    
-    override func rightButtonTitle() -> String {
-        if FTUEStartViewController.flowType == .login {
-            return .Done
-        } else {
-            return super.rightButtonTitle()
-        }
-    }
-    
+
     override func setupViews() {
         
         self.view.addSubview(codeTextField)
@@ -116,7 +111,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     }
     
     @objc func updatePhoneNumber() {
-        self.navigationController?.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
+        self.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
     }
     
     @objc func resendCode() {
@@ -242,7 +237,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
 
     override func goToNext() {
         if FTUEStartViewController.flowType == .signup || ftuePhoneType == .resetPassword {
-            self.navigationController?.pushViewController(FTUESignupPasswordViewController(), animated: true)
+            self.pushViewController(FTUESignupPasswordViewController(), animated: true)
         } else {
             
             var tempCustomerId = UserManager.sharedInstance.customerId()

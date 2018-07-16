@@ -109,7 +109,7 @@ extension HelpListViewController: UITableViewDelegate {
                 actions.append(actionEmail)
             }
         }
-        self.pushViewController(HelpDetailViewController(type: self.helpSection.type, helpDetail: helpDetail, actions: actions), animated: true, backLabel: .Back)
+        self.pushViewController(HelpDetailViewController(type: self.helpSection.type, helpDetail: helpDetail, actions: actions), animated: true)
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

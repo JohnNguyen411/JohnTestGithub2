@@ -212,7 +212,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     override func goToNext() {
         if ftuePhoneType == .resetPassword {
             // enter need password
-            self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(type: ftuePhoneType), animated: true)
+            self.pushViewController(FTUEPhoneVerificationViewController(type: ftuePhoneType), animated: true)
         } else {
             if UserManager.sharedInstance.isLoggedIn() {
                 appDelegate?.startApp()

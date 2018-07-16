@@ -85,7 +85,7 @@ class ServiceMultiselectListViewController: BaseViewController {
                     selectedService.append(services[dictElement.element.key])
                 }
             }
-            weakSelf.pushViewController(OtherServiceViewController(vehicle: weakSelf.vehicle, repairOrderType: weakSelf.repairOrderType, services: selectedService), animated: true, backLabel: .Back)
+            weakSelf.pushViewController(OtherServiceViewController(vehicle: weakSelf.vehicle, repairOrderType: weakSelf.repairOrderType, services: selectedService), animated: true)
         }
         
         self.navigationItem.title = .OtherMaintenance

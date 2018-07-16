@@ -155,14 +155,14 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             }
             if let vehicle = vehicle {
                 Analytics.trackClick(button: .settingsVehicle, screen: self.screen)
-                self.pushViewController(SettingsCarViewController(vehicle: vehicle), animated: true, backLabel: .Back)
+                self.pushViewController(SettingsCarViewController(vehicle: vehicle), animated: true)
             } else {
                 Analytics.trackClick(button: .settingsAddVehicle, screen: self.screen)
-                self.pushViewController(FTUEAddVehicleViewController(), animated: true, backLabel: .Back)
+                self.pushViewController(FTUEAddVehicleViewController(), animated: true)
             }
         } else if indexPath.section == 1 {
             Analytics.trackClick(button: .settingsAccount, screen: self.screen)
-            self.pushViewController(AccountSettingsViewController(), animated: true, backLabel: .Back)
+            self.pushViewController(AccountSettingsViewController(), animated: true)
         }
     }
     

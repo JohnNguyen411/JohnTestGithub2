@@ -25,9 +25,10 @@ class ChildViewController: BaseViewController {
 }
 
 // MARK: protocol PickupDealershipDelegate
+
+// TODO https://github.com/volvo-cars/ios/issues/314
+// clarify the intent and use of this
 protocol ChildViewDelegate: class {
     func setTitleFromChild(title: String)
     func pushViewController(controller: UIViewController, animated: Bool, backLabel: String?, title: String?)
-    func popViewController(animated: Bool)
-    func popToRootViewController(animated: Bool)
 }

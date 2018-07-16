@@ -161,6 +161,6 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     }
     
     override func goToNext() {
-        self.navigationController?.pushViewController(FTUESignupEmailPhoneViewController(), animated: true)
+        self.pushViewController(FTUESignupEmailPhoneViewController(), animated: true)
     }
 }

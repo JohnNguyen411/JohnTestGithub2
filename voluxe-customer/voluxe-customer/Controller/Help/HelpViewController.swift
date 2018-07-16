@@ -75,7 +75,7 @@ class HelpViewController: ChildViewController {
             let headerSection = HelpSection(title: title, type: .booking, sections: HelpViewController.helpSectionBooking)
             let booking = headerView.booking
             let request = headerView.request
-            self.pushViewController(HelpListViewController(helpSection: headerSection, booking: booking, request: request), animated: true, backLabel: .Back)
+            self.pushViewController(HelpListViewController(helpSection: headerSection, booking: booking, request: request), animated: true)
         }
     }
 }
@@ -113,9 +113,9 @@ extension HelpViewController: UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let section = helpSections[indexPath.row]
         if indexPath.row == 0 {
-            self.pushViewController(HelpListViewController(helpSection: section), animated: true, backLabel: .Back)
+            self.pushViewController(HelpListViewController(helpSection: section), animated: true)
         } else {
-            self.pushViewController(HelpListViewController(helpSection: section), animated: true, backLabel: .Back)
+            self.pushViewController(HelpListViewController(helpSection: section), animated: true)
         }
     }
     

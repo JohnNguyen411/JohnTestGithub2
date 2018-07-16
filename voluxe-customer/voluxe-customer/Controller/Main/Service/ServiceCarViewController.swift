@@ -388,7 +388,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             if let childViewDelegate = self.childViewDelegate {
             childViewDelegate.pushViewController(controller: ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true, backLabel: .Back, title: repairOrder.name)
             } else {
-                self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true, backLabel: .Back)
+                self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true)
             }
         } else if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.repairOrderRequests.count > 0 {
             childViewDelegate?.pushViewController(controller: ServiceDetailViewController(vehicle: vehicle, service: booking.repairOrderRequests[0]), animated: true, backLabel: .Back, title: booking.repairOrderRequests[0].name)
@@ -401,7 +401,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             if let childViewDelegate = self.childViewDelegate {
                 childViewDelegate.pushViewController(controller: SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true, backLabel: .Back, title: nil)
             } else {
-                self.pushViewController(SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true, backLabel: .Back)
+                self.pushViewController(SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true)
             }
         } else {
             if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
@@ -409,7 +409,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 if let childViewDelegate = self.childViewDelegate {
                     childViewDelegate.pushViewController(controller: SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true, backLabel: .Back, title: nil)
                 } else {
-                    self.pushViewController(SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true, backLabel: .Back)
+                    self.pushViewController(SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true)
                 }
             }
         }
@@ -421,7 +421,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
             if let childViewDelegate = self.childViewDelegate {
                 childViewDelegate.pushViewController(controller: SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true, backLabel: .Back, title: nil)
             } else {
-                self.pushViewController(SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true, backLabel: .Back)
+                self.pushViewController(SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true)
             }
         } else {
             if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
@@ -430,7 +430,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
                 if let childViewDelegate = self.childViewDelegate {
                     childViewDelegate.pushViewController(controller: SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true, backLabel: .Back, title: nil)
                 } else {
-                    self.pushViewController(SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true, backLabel: .Back)
+                    self.pushViewController(SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true)
                 }
             }
         }

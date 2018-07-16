@@ -257,7 +257,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     func confirmButtonClick() {
         if let selectedVehicle = selectedVehicle {
             RequestedServiceManager.sharedInstance.reset()
-            self.pushViewController(NewServiceViewController(vehicle: selectedVehicle), animated: true, backLabel: .Back)
+            self.pushViewController(NewServiceViewController(vehicle: selectedVehicle), animated: true)
         }
     }
     
@@ -268,7 +268,8 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
             if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted) {
                 appDelegate?.loadViewForVehicle(vehicle: selectedVehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: selectedVehicle.id))
             } else {
-                self.navigationController?.pushViewController(ScheduledBookingViewController(booking: booking, delegate: self), animated: true)
+                let controller = ScheduledBookingViewController(booking: booking, delegate: self)
+                self.pushViewController(controller, animated: true)
             }
         }
     }

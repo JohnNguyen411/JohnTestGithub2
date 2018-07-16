@@ -45,10 +45,8 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         tableView.delegate = self
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdIndicator)
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdToogle)
-        
-        uiBarButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
-        self.navigationItem.rightBarButtonItem = uiBarButton
-        
+
+        self.navigationItem.rightBarButtonItem?.title = .Edit
     }
     
     override func setupViews() {
@@ -88,18 +86,20 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
             return "********"
         }
     }
+
+    override func onRightClicked() {
+        self.tableView.isEditing ? self.done() : self.edit()
+    }
     
-    @objc func edit() {
+    private func edit() {
         Analytics.trackClick(navigation: .edit, screen: self.screen)
-        uiBarButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(done))
-        self.navigationItem.rightBarButtonItem = uiBarButton
+        self.navigationItem.rightBarButtonItem?.title = .Done
         tableView.setEditing(true, animated: true)
     }
     
-    @objc func done() {
+    private func done() {
         Analytics.trackClick(navigation: .done, screen: self.screen)
-        uiBarButton = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(edit))
-        self.navigationItem.rightBarButtonItem = uiBarButton
+        self.navigationItem.rightBarButtonItem?.title = .Edit
         tableView.setEditing(false, animated: true)
     }
     
@@ -141,7 +141,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
             CustomerAPI().requestPasswordChange(customerId: customerId).onSuccess { response in
                 
                 FTUEStartViewController.flowType = .signup
-                self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
+                self.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
                 self.hideProgressHUD()
                 
                 }.onFailure { error in
@@ -278,7 +278,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
 
         else if indexPath.section == 1 || indexPath.row == 1 {
             Analytics.trackClick(button: .settingsEditPhone, screen: self.screen)
-            self.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true, backLabel: .Back)
+            self.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
         }
     }
     

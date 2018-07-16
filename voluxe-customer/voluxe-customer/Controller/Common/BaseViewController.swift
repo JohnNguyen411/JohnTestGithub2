@@ -33,6 +33,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
     init(screen: AnalyticsEnums.Name.Screen? = nil) {
         self.screen = screen
         super.init(nibName: nil, bundle: nil)
+        self.setDefaultBarButtonItems()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -70,17 +71,6 @@ class BaseViewController: UIViewController, PresentrDelegate {
         self.title = title
     }
     
-    func setRightButtonTitle(rightButtonTitle: String) {
-        let rightItem = UIBarButtonItem(title: rightButtonTitle, style: .plain, target: self, action: #selector(onRightClicked))
-        navigationItem.rightBarButtonItem = rightItem
-    }
-    
-    func pushViewController(_ controller: UIViewController, animated: Bool, backLabel: String) {
-        self.navigationController?.pushViewController(controller, animated: animated)
-        let backItem = UIBarButtonItem(title: backLabel, style: .plain, target: self, action: #selector(onBackClicked))
-        navigationItem.backBarButtonItem = backItem
-    }
-    
     func styleViews() {
         self.view.backgroundColor = .white
     }
@@ -88,14 +78,6 @@ class BaseViewController: UIViewController, PresentrDelegate {
     func setupViews() {}
     
     func stateDidChange(state: ServiceState) {}
-
-    @objc func onBackClicked() {
-        Analytics.trackClick(navigation: .back, screen: self.screen)
-    }
-    
-    @objc func onRightClicked() {
-        Analytics.trackClick(navigation: .next, screen: self.screen)
-    }
     
     private func setGradientBackground() {
         let colorTop =  UIColor.white.cgColor

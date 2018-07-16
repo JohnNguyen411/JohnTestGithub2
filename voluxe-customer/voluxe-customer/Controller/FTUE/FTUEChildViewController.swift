@@ -13,13 +13,7 @@ class FTUEChildViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setRightButtonTitle(rightButtonTitle: rightButtonTitle())
-    }
-    
-    
-    func rightButtonTitle() -> String {
-        return .Next
+        self.navigationItem.rightBarButtonItem?.title = .Next
     }
     
     func canGoBack(backEnabled: Bool) {

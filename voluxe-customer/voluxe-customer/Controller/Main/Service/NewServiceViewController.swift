@@ -140,12 +140,12 @@ extension NewServiceViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if let groupService = services, indexPath.row == 0 {
             Analytics.trackClick(button: .serviceMilestone, screen: self.screen)
-            self.pushViewController(ServiceListViewController(vehicle: vehicle, title: groupService[indexPath.row]), animated: true, backLabel: .Back)
+            self.pushViewController(ServiceListViewController(vehicle: vehicle, title: groupService[indexPath.row]), animated: true)
         } else {
             if let realm = try? Realm() {
                 if let filteredResults = realm.objects(RepairOrderType.self).filter("category = '\(RepairOrderCategory.custom.rawValue)'").first {
                     Analytics.trackClick(button: .serviceCustom, screen: self.screen)
-                    self.pushViewController(ServiceMultiselectListViewController(vehicle: vehicle, repairOrderType: filteredResults), animated: true, backLabel: .Back)
+                    self.pushViewController(ServiceMultiselectListViewController(vehicle: vehicle, repairOrderType: filteredResults), animated: true)
                 }
             }
         }

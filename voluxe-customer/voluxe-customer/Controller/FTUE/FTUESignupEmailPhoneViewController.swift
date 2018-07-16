@@ -203,10 +203,10 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     @objc func tosTap(_ tapGesture: UITapGestureRecognizer) {
         if tapGesture.didTapAttributedTextInLabel(tosLabel, inRange: tosNSRange!) {
             Analytics.trackClick(button: .termsOfService)
-            self.pushViewController(VLWebViewController(urlAddress: FTUESignupEmailPhoneViewController.tosURL, title: .TermsAndConditions, showReloadButton: true), animated: true, backLabel: .Back)
+            self.pushViewController(VLWebViewController(urlAddress: FTUESignupEmailPhoneViewController.tosURL, title: .TermsAndConditions, showReloadButton: true), animated: true)
         } else if tapGesture.didTapAttributedTextInLabel(tosLabel, inRange: privacyNSRange!) {
             Analytics.trackClick(button: .privacyPolicy)
-            self.pushViewController(VLWebViewController(urlAddress: FTUESignupEmailPhoneViewController.privacyURL, title: .PrivacyPolicy, showReloadButton: true), animated: true, backLabel: .Back)
+            self.pushViewController(VLWebViewController(urlAddress: FTUESignupEmailPhoneViewController.privacyURL, title: .PrivacyPolicy, showReloadButton: true), animated: true)
         }
     }
     
@@ -356,7 +356,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     
     override func goToNext() {
         self.showLoading(loading: false)
-        self.navigationController?.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
+        self.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
     }
 }
 

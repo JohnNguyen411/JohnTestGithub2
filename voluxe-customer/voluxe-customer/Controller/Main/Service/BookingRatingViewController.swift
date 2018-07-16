@@ -96,6 +96,7 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
     
     init() {
         super.init(screen: .bookingFeedback)
+        self.navigationItem.rightBarButtonItem?.title = .Skip
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -108,10 +109,7 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
         if let title = self.screenTitle {
             self.navigationItem.title = title
         }
-        
-        let uiBarButton = UIBarButtonItem(title: .Skip, style: .done, target: self, action: #selector(skip))
-        self.navigationItem.rightBarButtonItem = uiBarButton
-        
+
         scrollView.keyboardDismissMode = .onDrag
         
         ratingTextView.textContainer.maximumNumberOfLines = 6
@@ -280,7 +278,8 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
         showRatingTextView(show: false)
     }
     
-    @objc func skip() {
+//    @objc func skip() {
+    override func onRightClicked() {
 
         Analytics.trackClick(navigation: .skip)
 

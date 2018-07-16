@@ -144,7 +144,10 @@ class MainViewController: BaseViewController, ChildViewDelegate {
     func setTitleFromChild(title: String) {
         setTitle(title: title)
     }
-    
+
+    // TODO https://github.com/volvo-cars/ios/issues/314
+    // clarify the intent of this, it's deprecated but doesn't seem to be called
+    @available(*, deprecated)
     func pushViewController(controller: UIViewController, animated: Bool, backLabel: String?, title: String?) {
         self.navigationController?.pushViewController(controller, animated: animated)
         if let backLabel = backLabel {
@@ -152,15 +155,7 @@ class MainViewController: BaseViewController, ChildViewDelegate {
             navigationItem.backBarButtonItem = backItem
         }
     }
-    
-    func popViewController(animated: Bool) {
-        self.navigationController?.popViewController(animated: animated)
-    }
-    
-    func popToRootViewController(animated: Bool) {
-        self.navigationController?.popToRootViewController(animated: animated)
-    }
-    
+
     override func keyboardWillAppear(_ notification: Notification) {
         super.keyboardWillAppear(notification)
         if let currentViewController = currentViewController {

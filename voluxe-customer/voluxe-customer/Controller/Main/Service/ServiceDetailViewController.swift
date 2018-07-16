@@ -75,7 +75,7 @@ class ServiceDetailViewController: BaseViewController {
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: RepairOrder(repairOrderType: weakself.service))
             StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: weakself.vehicle.id, booking: nil)
             
-            weakself.pushViewController(ServiceCarViewController(title: .ServiceSummary, vehicle: weakself.vehicle, state: .needService), animated: true, backLabel: .Back)
+            weakself.pushViewController(ServiceCarViewController(title: .ServiceSummary, vehicle: weakself.vehicle, state: .needService), animated: true)
         }
     }
     

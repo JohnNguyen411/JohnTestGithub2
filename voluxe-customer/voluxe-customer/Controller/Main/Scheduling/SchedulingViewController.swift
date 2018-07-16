@@ -562,7 +562,8 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     //MARK: Actions methods
     func showDescriptionClick() {
         if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
-            self.navigationController?.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true)
+            let controller = ServiceDetailViewController(vehicle: vehicle, service: repairOrder)
+            self.pushViewController(controller, animated: true)
         }
     }
     

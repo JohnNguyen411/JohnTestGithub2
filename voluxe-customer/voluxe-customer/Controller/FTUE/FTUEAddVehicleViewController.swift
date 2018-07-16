@@ -51,6 +51,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
 
     init() {
         super.init(screen: .vehicleAdd)
+        self.navigationItem.rightBarButtonItem?.title = .Done
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -210,11 +211,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
             showProgressHUD()
         }
     }
-    
-    override func rightButtonTitle() -> String {
-        return .Done
-    }
-    
+
     override func checkTextFieldsValidity() -> Bool {
         let enabled = selectedColor >= 0 && selectedYear >= 0 && selectedModel >= 0
         canGoNext(nextEnabled: enabled)

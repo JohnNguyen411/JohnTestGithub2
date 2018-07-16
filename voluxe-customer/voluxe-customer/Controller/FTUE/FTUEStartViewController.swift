@@ -56,14 +56,14 @@ class FTUEStartViewController: LogoViewController {
             //login
             UserManager.sharedInstance.signupCustomer = SignupCustomer()
             FTUEStartViewController.flowType = .login
-            self?.navigationController?.pushViewController(FTUELoginViewController(), animated: true)
+            self?.pushViewController(FTUELoginViewController(), animated: true)
         }
 
         signupButton.setActionBlock { [weak self] in
             //signup
             UserManager.sharedInstance.signupCustomer = SignupCustomer()
             FTUEStartViewController.flowType = .signup
-            self?.navigationController?.pushViewController(FTUESignupNameViewController(), animated: true)
+            self?.pushViewController(FTUESignupNameViewController(), animated: true)
         }
 
     }
@@ -88,7 +88,7 @@ class FTUEStartViewController: LogoViewController {
             UserManager.sharedInstance.signupCustomer = SignupCustomer()
             FTUEStartViewController.flowType = .signup
             if DeeplinkManager.sharedInstance.prefillSignupContinue {
-                self.navigationController?.pushViewController(FTUESignupNameViewController(), animated: true)
+                self.pushViewController(FTUESignupNameViewController(), animated: true)
             }
             deeplinkEventConsumed = true
         } else if deeplinkEventConsumed {
