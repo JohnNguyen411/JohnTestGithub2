@@ -32,7 +32,16 @@ extension NetworkRequest {
         var mutHeader = headers
         if includeBearer { self.addBearer(header: &mutHeader) }
         if includeClient { mutHeader["X-CLIENT-ID"] = Config.sharedInstance.apiClientId() }
-        mutHeader["x-application-version"] = "luxe_by_volvo_customer_ios:\(Bundle.main.version)"
+
+        // IMPORTANT!
+        // This is set artificially high to avoid future version
+        // check failures, this is required because there does
+        // not seem to be a way to set or share the info.plist
+        // from the main app for the runner app that is created
+        // by UI tests.  If for some reason we release a client
+        // app that uses AdminAPI, we might have to reconsider
+        // this change.
+        mutHeader["x-application-version"] = "luxe_by_volvo_customer_ios:100.0.0"
 
         // TODO clean up
         do {

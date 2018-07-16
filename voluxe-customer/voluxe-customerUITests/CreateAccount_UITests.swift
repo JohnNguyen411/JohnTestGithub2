@@ -13,7 +13,7 @@ class CreateAccount_UITests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        continueAfterFailure = false
+        continueAfterFailure = true
     }
 
     // MARK:- Launch
@@ -193,7 +193,7 @@ class CreateAccount_UITests: XCTestCase {
         let next = app.navigationBars.firstMatch.buttons["Next"]
 
         // too short 0 to 3 characters
-        XCTAssertFalse(next.isEnabled)
+        XCTAssertFalse(next.isEnabled, "not code has been entered")
         field.tap(andType: "1")
         XCTAssertFalse(next.isEnabled, "code is too short")
         field.typeText("2")
@@ -309,7 +309,7 @@ class CreateAccount_UITests: XCTestCase {
         let colorTextfield = app.textFields["Black"]
 
         // should be disabled without any input
-        let done = app.navigationBars.firstMatch.buttons["Done"]
+        let done = app.navigationBars.firstMatch.buttons["Next"]
         XCTAssertFalse(done.isEnabled)
 
         // year only allows 4 digits
@@ -351,20 +351,21 @@ class CreateAccount_UITests: XCTestCase {
     func test51_validVehicleOptions() {
 
         let app = XCUIApplication()
+        let done = app.toolbars["Toolbar"].buttons["Done"]
 
         app.textFields["2019"].tap()
-        app.toolbars["Toolbar"].buttons["Done"].tap()
+        done.tap()
         self.wait()
 
         app.textFields["S90"].tap()
-        app.toolbars["Toolbar"].buttons["Done"].tap()
+        done.tap()
         self.wait()
 
         app.textFields["Black"].tap()
-        app.toolbars["Toolbar"].buttons["Done"].tap()
+        done.tap()
         self.wait()
 
-        app.navigationBars.firstMatch.buttons["Done"].tap()
+        app.navigationBars.firstMatch.buttons["Next"].tap()
         self.wait(for: 10, label: "waiting for vehicle to be created")
     }
 
