@@ -17,7 +17,7 @@ extension UserDefaults {
     /// return true if should show permission screen, false otherwise
     
     func shouldShowNotifPermissionForBooking(booking: Booking) -> Bool {
-        if booking.getState() == .pickupScheduled || booking.getState() == .enRouteForPickup {
+        if booking.getState() == .pickupScheduled || booking.getState() == .enRouteForPickup || booking.getState() == .service {
             if booking.hasUpcomingRequestToday() {
                 return !hasShownNotificationPermissionForToday
             } else {

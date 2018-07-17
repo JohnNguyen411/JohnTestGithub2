@@ -69,7 +69,7 @@ class MainViewController: BaseViewController, ChildViewDelegate {
         
         if serviceState == .enRouteForService || serviceState == .service || serviceState == .serviceCompleted || serviceState == .completed {
             
-            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), serviceState == .completed, booking.bookingFeedbackId > -1 {
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), serviceState == .completed, booking.bookingFeedbackId > 0 {
                 appDelegate?.loadViewForVehicle(vehicle: vehicle, state: .completed)
                 return
             }

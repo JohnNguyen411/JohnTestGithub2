@@ -192,7 +192,7 @@ class Booking: Object, Mappable {
     }
     
     public func needsRating() -> Bool {
-        return self.bookingFeedbackId > -1 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
+        return self.bookingFeedbackId > 0 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
     }
     
     public func getLastCompletedRequest() -> Request? {

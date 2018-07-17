@@ -22,7 +22,6 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
     var retryCount = 0
     var isShowingComment = false
     var serviceCompleteHeight: CGFloat = 0
-    var vehicle: Vehicle?
     var booking: Booking?
 
     var bookingFeedback: BookingFeedback?
@@ -88,9 +87,9 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
     }
     
     //MARK: Lifecycle methods
-    convenience init(vehicle: Vehicle) {
+    convenience init(booking: Booking) {
         self.init()
-        self.vehicle = vehicle
+        self.booking = Booking(value: booking)
         self.screenTitle = .ServiceComplete
     }
     
@@ -143,38 +142,41 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
     }
     
     private func loadData() {
-        if let vehicle = self.vehicle {
-            booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle)
-            self.updateDealership(dealership: booking?.dealership)
-            loadVehicle(vehicle: vehicle)
-            return
-        } else if let bookingFeedback = self.bookingFeedback {
+        if let bookingFeedback = self.bookingFeedback {
             // load booking if needed
             if let realm = try? Realm() {
                 if let booking = realm.objects(Booking.self).filter("id = \(bookingFeedback.bookingId)").first {
                     self.booking = booking
                     self.updateDealership(dealership: booking.dealership)
                     if let vehicle = booking.vehicle {
-                        self.vehicle = vehicle
                         loadVehicle(vehicle: vehicle)
                         return
                     }
                 }
             }
             guard let customerId = UserManager.sharedInstance.customerId() else { return }
-
+            
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
             BookingAPI().getBooking(customerId: customerId, bookingId: bookingFeedback.bookingId).onSuccess { result in
+                MBProgressHUD.hide(for: self.view, animated: true)
                 if let booking = result?.data?.result {
                     self.booking = booking
                     if let vehicle = booking.vehicle {
-                        self.vehicle = vehicle
                         self.loadVehicle(vehicle: vehicle)
                     }
                     self.updateDealership(dealership: booking.dealership)
                 }
                 }.onFailure { error in
+                    MBProgressHUD.hide(for: self.view, animated: true)
                     self.skipBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id)
-                }
+            }
+        } else if let booking = self.booking {
+            self.updateDealership(dealership: booking.dealership)
+            if let vehicle = booking.vehicle {
+                loadVehicle(vehicle: vehicle)
+            }
+            return
         }
     }
     
@@ -291,7 +293,7 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
             if let bookingFeedback = self.bookingFeedback {
                 skipBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id)
             } else if let booking = self.booking,
-                booking.bookingFeedbackId  > -1 {
+                booking.bookingFeedbackId  > 0 {
                 skipBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.bookingFeedbackId)
             }
         }
@@ -312,8 +314,7 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
 
         if let bookingFeedback = self.bookingFeedback {
             submitBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id, rating: rating, comment: comment)
-        } else if let booking = self.booking,
-            booking.bookingFeedbackId  > -1 {
+        } else if let booking = self.booking, booking.bookingFeedbackId  > 0 {
             submitBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.bookingFeedbackId, rating: rating, comment: comment)
             
         }

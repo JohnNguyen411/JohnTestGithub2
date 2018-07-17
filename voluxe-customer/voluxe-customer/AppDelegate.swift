@@ -51,7 +51,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if UserManager.sharedInstance.getActiveBookings().count > 0 {
                 let booking = UserManager.sharedInstance.getActiveBookings()[0]
                 if let vehicle = booking.vehicle {
-                    self.loadViewForVehicle(vehicle: vehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id))
+                    let state = StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id)
+                    if state != .idle {
+                        self.loadViewForVehicle(vehicle: vehicle, state: state)
+                    }
                 }
             }
         })
@@ -190,7 +193,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
                 var vehicleViewController: BaseViewController?
                 if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.needsRating(), state == .completed {
-                    vehicleViewController = BookingRatingViewController(vehicle: vehicle)
+                    vehicleViewController = BookingRatingViewController(booking: booking)
                 } else {
                     vehicleViewController = MainViewController(vehicle: vehicle, state: state)
                 }
