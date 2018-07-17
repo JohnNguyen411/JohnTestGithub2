@@ -21,6 +21,11 @@ class VLShinyView: ShinyView {
     private var updating = false
     private let gyro = GyroManager()
 
+    // TODO is this necessary?
+    deinit {
+        self.stopUpdates()
+    }
+
     // Tweaked implementation that inverts the direction of the
     // vertical gradient so that it matches how the lights are
     // reflected in the device screen.

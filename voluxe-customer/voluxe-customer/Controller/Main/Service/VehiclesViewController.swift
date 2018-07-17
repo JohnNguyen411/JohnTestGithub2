@@ -38,6 +38,17 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
     let contentView = UIView(frame: .zero)
     let confirmButton: VLButton
 
+    let shinyView: VLShinyView = {
+        let view = VLShinyView(frame: CGRect.zero)
+        view.alpha = 0.1
+        view.axis = .all
+        view.colors = VLShinyView.highlightColors
+        view.scale = 3
+        view.clipsToBounds = true
+//        view.setMask(image: UIImage(named: "luxeByVolvo"))
+        return view
+    }()
+
     //MARK: Lifecycle methods
     init(state: ServiceState) {
         self.serviceState = state
@@ -85,15 +96,18 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         vehicleCollectionView.showsHorizontalScrollIndicator = false
         
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        self.shinyView.startUpdates()
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         showVehicles(vehicles: UserManager.sharedInstance.getVehicles()!)
         stateDidChange(state: serviceState)
     }
-    
-    
+
     override func setupViews() {
         super.setupViews()
         
@@ -146,6 +160,14 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         confirmButton.snp.makeConstraints { make in
             make.left.right.bottom.equalToSuperview()
             make.height.equalTo(VLButton.primaryHeight)
+        }
+
+//        self.view.addSubview(self.shinyView)
+        self.confirmButton.insertSubview(self.shinyView, belowSubview: self.confirmButton.titleLabel!)
+        self.shinyView.snp.makeConstraints {
+            make in
+//            make.edges.equalTo(self.confirmButton)
+            make.edges.equalToSuperview()
         }
     }
     
