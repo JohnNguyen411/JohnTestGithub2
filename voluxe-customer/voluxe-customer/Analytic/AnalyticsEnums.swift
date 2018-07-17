@@ -193,6 +193,7 @@ struct AnalyticsEnums {
         case errorCode = "error_code"
         case errorMessage = "error_message"
         case granted
+        case requestID = "request_id"
         case screenName = "screen_name"
         case selected
         case statusCode = "status_code"

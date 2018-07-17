@@ -51,11 +51,16 @@ extension AnalyticsCore {
         self.track(event: .call, element: .api, name: api.rawValue, params: params)
     }
 
-    func trackCallLuxe(endpoint: String, errorCode: Errors.ErrorCode? = nil, statusCode: Int? = nil) {
+    func trackCallLuxe(endpoint: String,
+                       errorCode: Errors.ErrorCode? = nil,
+                       statusCode: Int? = nil,
+                       requestID: String? = nil)
+    {
         var params: AnalyticsEnums.Params = [:]
         params[.endpoint] = endpoint
         if let errorCode = errorCode { params[.errorCode] = errorCode.rawValue }
         if let statusCode = statusCode { params[.statusCode] = "\(statusCode)" }
+        if let requestID = requestID { params[.requestID] = "\(requestID)" }
         self.track(event: .call, element: .api, name: AnalyticsEnums.Name.API.luxe.rawValue, params: params)
     }
 

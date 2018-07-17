@@ -172,7 +172,8 @@ extension DataRequest {
         return response(
             queue: queue,
             responseSerializer: DataRequest.jsonResponseSerializer(options: options),
-            completionHandler: { response in
+            completionHandler: {
+                response in
                 NetworkRequest.checkErrors(response: response)
                 Analytics.trackCallLuxe(response: response)
                 completionHandler(response)
@@ -188,6 +189,14 @@ extension AnalyticsCore {
         let responseObject = ResponseObject<EmptyMappableObject>(json: json)
         self.trackCallLuxe(endpoint: response.request?.url?.path ?? "missing",
                            errorCode: responseObject.error?.getCode(),
-                           statusCode: response.response?.statusCode)
+                           statusCode: response.response?.statusCode,
+                           requestID: response.response?.xRequestID)
+    }
+}
+
+extension HTTPURLResponse {
+
+    var xRequestID: String? {
+        return self.allHeaderFields["x-request-id"] as? String
     }
 }
