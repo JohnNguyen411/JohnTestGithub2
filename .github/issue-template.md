@@ -1,6 +1,6 @@
-Device:
-OS:
-App:
+Device: iPhone
+iOS:    11.x 
+App:    1.0.x
 
 Steps to reproduce
 1.  <launch and how to navigate to feature>
