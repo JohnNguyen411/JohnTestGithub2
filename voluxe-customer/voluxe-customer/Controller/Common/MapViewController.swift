@@ -135,7 +135,11 @@ class MapViewController: UIViewController {
         
         if updateCamera {
             weak var weakSelf = self
-            DispatchQueue.main.asyncAfter(deadline: .now() + animationDuration + 0.1, execute: {
+            var delay = DispatchTime.now() + animationDuration + 0.1
+            if noPreviousLocation {
+                delay = DispatchTime.now() + 0.2
+            }
+            DispatchQueue.main.asyncAfter(deadline: delay, execute: {
                 weakSelf?.moveCamera()
             })
         }
