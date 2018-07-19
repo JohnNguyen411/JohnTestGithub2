@@ -41,7 +41,7 @@ class LogoViewController: BaseViewController {
             }
         }
 
-        // TODO need to add animation?
-        VLShinyView.withLuxeColors().add(to: self.logo)
+        // TODO missing fade in animation
+        VLShinyView.withLuxeColors().add(to: self.logo, mask: self.logo.image)
     }
 }

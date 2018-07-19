@@ -125,13 +125,6 @@ extension VLShinyView {
                                              .clear,
                                              .white,
                                              .clear]
-
-//    static func colors(from color)
-
-    // TODO func to generate array of base color + highlight color
-//    static func highlightColors(for color: UIColor) -> [UIColor] {
-//        return [color, .white, color, .white, color]
-//    }
 }
 
 // MARK:- Specific configurations
@@ -159,16 +152,16 @@ extension ShinyView {
 
     static func glossy(on color: UIColor) -> VLShinyView {
         let view = self.base()
-        view.alpha = 1.0
-        view.colors = [.red]//[color, .white, color, .white, color]
+        view.alpha = 0.7
+        view.colors = [color, .white, color, .white, color]
         return view
     }
 
-    static func rainbow() -> VLShinyView {
+    static func iridescent() -> VLShinyView {
         let view = self.base()
-        view.alpha = 1.0
+        view.alpha = 0.5
         view.colors = [.white, .red, .green, .blue,
-                       .clear,
+                       .white,
                        .blue, .green, .red, .white]
         return view
     }

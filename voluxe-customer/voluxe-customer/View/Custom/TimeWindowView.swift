@@ -46,6 +46,7 @@ class TimeWindowView: UIView {
         
         self.backgroundColor = .luxeCharcoalGrey()
 
+        // TODO on iPhone X this won't cover outside the bottom safe area
         VLShinyView.metallic().add(to: self)
 
         addSubview(labelContainer)

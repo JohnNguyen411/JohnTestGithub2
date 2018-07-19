@@ -41,27 +41,31 @@ class ETAMarker: UIView {
     }
 
     private func setupViews() {
+
         self.addSubview(icon)
+        VLShinyView.glossy(on: .luxeRed()).add(to: self, mask: UIImage(named: "markerDot-mask"))
         self.addSubview(etaLabel)
         self.addSubview(etaValue)
 
-        icon.frame = self.frame
+        icon.snp.makeConstraints {
+            make in
+            make.edges.equalToSuperview()
+        }
 
-        etaValue.snp.makeConstraints { make in
+        etaValue.snp.makeConstraints {
+            make in
             make.top.equalToSuperview().offset(10)
             make.centerX.equalToSuperview().offset(1)
             make.width.equalToSuperview()
         }
         
-        etaLabel.snp.makeConstraints { make in
+        etaLabel.snp.makeConstraints {
+            make in
             make.centerX.equalToSuperview().offset(1)
             make.top.equalTo(etaValue.snp.bottom).offset(-2)
             make.width.equalToSuperview()
             make.height.equalTo(8)
         }
-
-        // TODO this needs to have the same edges as icon
-        VLShinyView.glossy(on: .red).add(to: self, mask: UIImage(named: "markerDot-mask"))
     }
 
     func setETA(eta: GMTextValueObject?) {
@@ -84,5 +88,4 @@ class ETAMarker: UIView {
         etaValue.text = ""
         icon.image = UIImage(named: "markerDot")
     }
-    
 }
