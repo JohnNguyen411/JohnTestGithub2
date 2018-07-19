@@ -31,17 +31,6 @@ class ETAMarker: UIView {
    
     let icon = UIImageView(image: UIImage(named: "markerDot"))
 
-    let shinyView: VLShinyView = {
-        let view = VLShinyView(frame: CGRect.zero)
-        view.alpha = 0.15
-        view.axis = .all
-        view.clipsToBounds = true
-        view.colors = VLShinyView.highlightColors
-        view.scale = 3
-        view.setMask(image: UIImage(named: "markerDot-mask"))
-        return view
-    }()
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -51,16 +40,13 @@ class ETAMarker: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    deinit {
-        self.shinyView.stopUpdates()
-    }
-    
     private func setupViews() {
         self.addSubview(icon)
         self.addSubview(etaLabel)
         self.addSubview(etaValue)
 
         icon.frame = self.frame
+
         etaValue.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(10)
             make.centerX.equalToSuperview().offset(1)
@@ -74,18 +60,10 @@ class ETAMarker: UIView {
             make.height.equalTo(8)
         }
 
-        self.addSubview(self.shinyView)
-        self.shinyView.snp.makeConstraints {
-            (make) -> Void in
-            make.edges.equalTo(self.icon)
-        }
+        // TODO this needs to have the same edges as icon
+        VLShinyView.glossy(on: .red).add(to: self, mask: UIImage(named: "markerDot-mask"))
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        self.shinyView.startUpdates()
-    }
-    
     func setETA(eta: GMTextValueObject?) {
         if let eta = eta, let seconds = eta.value {
             let etaInMin = "\(seconds/60)"

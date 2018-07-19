@@ -21,8 +21,9 @@ class VLShinyView: ShinyView {
     private var updating = false
     private let gyro = GyroManager()
 
-    // TODO is this necessary?
+    // TODO this IS being called, need to double check
     deinit {
+        NSLog("\n\nVLShinyView.deinit\n\n")
         self.stopUpdates()
     }
 
@@ -75,7 +76,7 @@ class VLShinyView: ShinyView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.updateLayerMaskFrame()
+        self.startUpdates()
     }
 
     // Convenience function to apply a mask (based on a CGImage)
@@ -84,16 +85,20 @@ class VLShinyView: ShinyView {
     func setMask(image: UIImage?) {
         if image == nil {
             self.layer.mask = nil
+            self.layer.masksToBounds = true
         } else {
             let mask = CALayer()
             mask.contents = image?.cgImage
             self.layer.mask = mask
+            self.layer.masksToBounds = false
         }
     }
 
     // MARK:- Animation
 
-    var alphaForFadeIn = CGFloat(1.0)
+    var alphaForFadeIn = CGFloat(1)
+    var delayForFadeIn = TimeInterval(3)
+    var durationForFadeIn = TimeInterval(1)
 
     // TODO does this need arguments?
     func fadeIn() {
@@ -120,4 +125,67 @@ extension VLShinyView {
                                              .clear,
                                              .white,
                                              .clear]
+
+//    static func colors(from color)
+
+    // TODO func to generate array of base color + highlight color
+//    static func highlightColors(for color: UIColor) -> [UIColor] {
+//        return [color, .white, color, .white, color]
+//    }
+}
+
+// MARK:- Specific configurations
+
+extension ShinyView {
+
+    // basic view with useful defaults
+    fileprivate static func base() -> VLShinyView {
+        let view = VLShinyView(frame: CGRect.zero)
+        view.alpha = 0.5
+        view.axis = .all
+        view.clipsToBounds = true
+        view.layer.masksToBounds = true
+        view.scale = 3
+        view.isUserInteractionEnabled = false
+        return view
+    }
+
+    static func metallic() -> VLShinyView {
+        let view = self.base()
+        view.alpha = 0.1
+        view.colors = VLShinyView.highlightColors
+        return view
+    }
+
+    static func glossy(on color: UIColor) -> VLShinyView {
+        let view = self.base()
+        view.alpha = 1.0
+        view.colors = [.red]//[color, .white, color, .white, color]
+        return view
+    }
+
+    static func rainbow() -> VLShinyView {
+        let view = self.base()
+        view.alpha = 1.0
+        view.colors = [.white, .red, .green, .blue,
+                       .clear,
+                       .blue, .green, .red, .white]
+        return view
+    }
+}
+
+// MARK:- Luxe configurations
+
+extension VLShinyView {
+
+    static func withLuxeColors() -> VLShinyView {
+        let view = self.base()
+        view.alpha = 1
+        view.colors = VLShinyView.luxeColors
+        return view
+    }
+
+    static func forLuxeButtons() -> VLShinyView {
+        return VLShinyView.metallic()
+    }
 }

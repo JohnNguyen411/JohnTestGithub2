@@ -63,6 +63,20 @@ class DebugSettingsViewController: DebugTableViewController {
             }
         )]
 
+        settings += [DebugTableViewCellModel(title: "Shiny",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+        },
+                                             actionClosure:
+            {
+                [unowned self] _ in
+                self.navigationController?.pushViewController(ShinyViewController(), animated: true)
+            }
+        )]
+
         return ("Application", settings)
     }
 
