@@ -31,6 +31,7 @@
 "GenericError" = "An unknown error has occurred. Please try again later.";
 "Map" = "Map";
 "Retry" = "Retry";
+"Refresh" = "Refresh";
 "Success" = "Success";
 "Confirm" = "Confirm";
 "Delete" = "Delete";
@@ -43,6 +44,9 @@
 "DatabaseError" = "An unexpected error as occured. Please try restarting the app.";
 "NotificationPermissionText" = "We need you to grant us the permission to send you notifications to give you updates regarding the status of your car";
 "PickupAndDelivery" = "Pickup & Delivery";
+"DuplicateRequestError" = "A %@ is already scheduled for your car. Please refresh.";
+"Pickup" = "Pickup";
+"Delivery" = "Delivery";
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";

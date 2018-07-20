@@ -9,59 +9,22 @@
 import Foundation
 import UIKit
 import SlideMenuControllerSwift
-import SwiftEventBus
 
-class MainViewController: BaseViewController, ChildViewDelegate {
-    
-    private var serviceState = ServiceState.noninit
-    
-    private let vehicle: Vehicle
-    let vehicleId: Int
+class MainViewController: BaseVehicleViewController, ChildViewDelegate {
     
     var currentViewController: ChildViewController?
     var previousView: UIView?
-    
-    init(vehicle: Vehicle, state: ServiceState) {
-        self.vehicle = vehicle
-        self.vehicleId = vehicle.id
-        self.serviceState = state
-        super.init()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
+   
     override func viewDidLoad() {
-        SwiftEventBus.onMainThread(self, name:"stateDidChange") { result in
-            let stateChange: StateChangeObject = result.object as! StateChangeObject
-            self.stateDidChange(vehicleId: stateChange.vehicleId, oldState: stateChange.oldState, newState: stateChange.newState)
-        }
-        updateState(state: self.serviceState)
+        stateDidChange(state: self.serviceState)
         super.viewDidLoad()
         setNavigationBarItem()
     }
+
     
-    deinit {
-        SwiftEventBus.unregister(self)
-    }
     
-    override func setupViews() {
-        super.setupViews()
-    }
-    
-    func stateDidChange(vehicleId: Int, oldState: ServiceState?, newState: ServiceState) {
-        if vehicleId != vehicle.id {
-            return
-        }
-        if serviceState == newState {
-            return
-        }
-        updateState(state: newState)
-    }
-    
-    func updateState(state: ServiceState) {
-                
+    override func stateDidChange(state: ServiceState) {
+        
         setTitle(title: getTitleForState(state: state))
         
         var changeView = true

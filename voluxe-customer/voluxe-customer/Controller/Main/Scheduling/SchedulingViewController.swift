@@ -16,7 +16,7 @@ import Alamofire
 import SwiftEventBus
 import MBProgressHUD
 
-class SchedulingViewController: ChildViewController, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate, LocationManagerDelegate {
+class SchedulingViewController: BaseVehicleViewController, PickupDealershipDelegate, PickupDateDelegate, PickupLocationDelegate, PickupLoanerDelegate, LocationManagerDelegate {
     
     public enum SchedulePickupState: Int {
         case start = 0
@@ -41,12 +41,10 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         return formatter
     }()
     
-    let vehicle: Vehicle
     var realm : Realm?
     var locationManager = LocationManager.sharedInstance
     
     var dealerships: [Dealership]?
-    var serviceState: ServiceState
     
     var pickupScheduleState: SchedulePickupState = .start
     var dropoffScheduleState: ScheduleDropoffState = .start
@@ -86,13 +84,11 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
     }()
     
     
-    init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen) {
-        self.vehicle = vehicle
-        self.serviceState = state
+    override init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen? = nil) {
         descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), event: .showService, screen: screen)
         confirmButton = VLButton(type: .bluePrimary, title: SchedulingViewController.getConfirmButtonTitle(vehicleId: vehicle.id), kern: UILabel.uppercasedKern())
         
-        super.init(screen: screen)
+        super.init(vehicle: vehicle, state: state, screen: screen)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -150,6 +146,11 @@ class SchedulingViewController: ChildViewController, PickupDealershipDelegate, P
         super.stateDidChange(state: state)
         stateTestView.accessibilityIdentifier = "schedulingTestView\(state)"
         stateTestView.text = "schedulingTestView\(state)"
+        if (state != .schedulingDelivery && state != .schedulingService) {
+            // state has change for this car, possibly sync from BE.
+            RequestedServiceManager.sharedInstance.reset()
+            self.appDelegate?.showVehiclesView(animated: false)
+        }
     }
     
     deinit {

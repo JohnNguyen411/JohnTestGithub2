@@ -69,6 +69,7 @@ class ActiveBookingsSyncTimer: SyncTimer {
                 }
                 // add the bookings
                 for booking in bookings {
+                    BookingSyncTimer.updateBooking(booking: booking, customerId: customerId)
                     let added = UserManager.sharedInstance.addBooking(booking: booking)
                     if added {
                         BookingSyncManager.sharedInstance.syncBookings()

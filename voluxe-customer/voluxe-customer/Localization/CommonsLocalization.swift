@@ -33,6 +33,7 @@ extension String {
     static let GenericError = NSLocalizedString("GenericError")
     static let Map = NSLocalizedString("Map")
     static let Retry = NSLocalizedString("Retry")
+    static let Refresh = NSLocalizedString("Refresh")
     static let Success = NSLocalizedString("Success")
     static let Confirm = NSLocalizedString("Confirm")
     static let Delete = NSLocalizedString("Delete")
@@ -44,5 +45,8 @@ extension String {
     static let GrantPermission = NSLocalizedString("GrantPermission")    
     static let DatabaseError = NSLocalizedString("DatabaseError")
     static let PickupAndDelivery = NSLocalizedString("PickupAndDelivery")
+    static let DuplicateRequestError = NSLocalizedString("DuplicateRequestError")
+    static let Pickup = NSLocalizedString("Pickup")
+    static let Delivery = NSLocalizedString("Delivery")
 
 }

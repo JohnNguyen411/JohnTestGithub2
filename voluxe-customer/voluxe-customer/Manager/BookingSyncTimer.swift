@@ -69,19 +69,23 @@ class BookingSyncTimer: SyncTimer {
         // Get Customer's Vehicles based on ID
         BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
             if let booking = result?.data?.result {
-                if let realm = try? Realm() {
-                    try? realm.write {
-                        if booking.customerId == -1 {
-                            booking.customerId = customerId
-                        }
-                        realm.add(booking, update: true)
-                    }
-                }
-                let serviceState = Booking.getStateForBooking(booking: booking)
-                StateServiceManager.sharedInstance.updateState(state: serviceState, vehicleId: booking.vehicleId, booking: booking)
+                BookingSyncTimer.updateBooking(booking: booking, customerId: customerId)
             }
             
             }.onFailure { error in
         }
+    }
+    
+    public static func updateBooking(booking: Booking, customerId: Int) {
+        if let realm = try? Realm() {
+            try? realm.write {
+                if booking.customerId == -1 {
+                    booking.customerId = customerId
+                }
+                realm.add(booking, update: true)
+            }
+        }
+        let serviceState = Booking.getStateForBooking(booking: booking)
+        StateServiceManager.sharedInstance.updateState(state: serviceState, vehicleId: booking.vehicleId, booking: booking)
     }
 }

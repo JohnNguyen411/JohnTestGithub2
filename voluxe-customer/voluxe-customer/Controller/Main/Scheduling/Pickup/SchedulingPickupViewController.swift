@@ -252,8 +252,19 @@ class SchedulingPickupViewController: SchedulingViewController {
             }
             
             }.onFailure { error in
-                self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
-                self.confirmButton.isLoading = false
+                // 2 bookings for the same car, not currently handled
+                if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4049.rawValue || code == Errors.ErrorCode.E4050.rawValue {
+                    self.confirmButton.isLoading = false
+                    self.showDialog(title: .Error, message: String(format: String.DuplicateRequestError, String.Pickup), buttonTitle: .Refresh, completion: {
+                        BookingSyncManager.sharedInstance.syncBookings()
+                        RequestedServiceManager.sharedInstance.reset()
+                        self.appDelegate?.showVehiclesView(animated: false)
+                    }, dialog: .error, screen: self.screen)
+                    return
+                } else {
+                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.confirmButton.isLoading = false
+                }
         }
     }
     
@@ -274,11 +285,20 @@ class SchedulingPickupViewController: SchedulingViewController {
                 }
                 self.confirmButton.isLoading = false
                 }.onFailure { error in
-                    self.confirmButton.isLoading = false
-                    // an error occured while creating the request, try again with same booking
-                    self.showDialog(title: .Error, message: .GenericError, buttonTitle: String.Retry, completion: {
-                        self.createPickupRequest(customerId: customerId, booking: booking)
-                    }, dialog: .error, screen: self.screen)
+                    
+                    if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4049.rawValue || code == Errors.ErrorCode.E4050.rawValue {
+                        self.confirmButton.isLoading = false
+                        self.showDialog(title: .Error, message: String(format: String.DuplicateRequestError, String.Pickup), buttonTitle: .Refresh, completion: {
+                            self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
+                        }, dialog: .error, screen: self.screen)
+                        return
+                    } else {
+                        // an error occured while creating the request, try again with same booking
+                        self.showDialog(title: .Error, message: .GenericError, buttonTitle: String.Retry, completion: {
+                            self.createPickupRequest(customerId: customerId, booking: booking)
+                        }, dialog: .error, screen: self.screen)
+                    }
+                   
             }
         }
     }

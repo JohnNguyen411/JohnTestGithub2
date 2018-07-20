@@ -16,7 +16,6 @@ import BrightFutures
 import Alamofire
 import Kingfisher
 
-
 class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     
     var serviceState: ServiceState

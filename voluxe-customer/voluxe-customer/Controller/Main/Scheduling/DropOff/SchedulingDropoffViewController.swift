@@ -241,8 +241,15 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 
                 self.confirmButton.isLoading = false
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.confirmButton.isLoading = false
+                    if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4049.rawValue || code == Errors.ErrorCode.E4050.rawValue {
+                        self.showDialog(title: .Error, message: String(format: String.DuplicateRequestError, String.Delivery), buttonTitle: .Refresh, completion: {
+                            self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
+                        }, dialog: .error, screen: self.screen)
+                        return
+                    } else {
+                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    }
             }
             
         }

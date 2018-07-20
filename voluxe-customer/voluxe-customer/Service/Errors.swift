@@ -47,6 +47,8 @@ class Errors: Error {
         case E4021 = "E4021"
         case E4022 = "E4022"
         case E4023 = "E4023"
+        case E4049 = "E4049"
+        case E4050 = "E4050"
         case E5001 = "E5001"
         case E5002 = "E5002"
     }
