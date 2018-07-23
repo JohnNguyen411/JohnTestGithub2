@@ -152,7 +152,7 @@ class MapViewController: UIViewController {
     }
     
     func updateServiceState(state: ServiceState) {
-        if state == .arrivedForPickup {
+        if state == .arrivedForPickup || state == .arrivedForDropoff {
             flagMarker.tracksViewChanges = true
             etaMarker.hideEta()
             flagMarker.tracksViewChanges = false
