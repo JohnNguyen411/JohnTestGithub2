@@ -1,3 +1,10 @@
+v1.0.2(86):
+Misc bugfixes and improvments
+Soft update mechanism
+Fix tracking issue (Back, and Granted permission)
+Fix a Driver location update issue
+Prevent creating duplicate Requests
+
 v1.0.1(74):
 Misc bugfixes and improvments
 Taxonomy and debugging improvements
