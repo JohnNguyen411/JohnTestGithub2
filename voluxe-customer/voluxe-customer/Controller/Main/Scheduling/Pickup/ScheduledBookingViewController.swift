@@ -119,6 +119,10 @@ class ScheduledBookingViewController: SchedulingViewController {
         }
     }
     
+    override func stateDidChange(state: ServiceState) {
+        // no need to update this view on state change
+    }
+    
     private func fillViewsForRequest(request: Request) {
         if let timeSlot = request.timeSlot, let date = timeSlot.from {
             let dateTime = formatter.string(from: date)
