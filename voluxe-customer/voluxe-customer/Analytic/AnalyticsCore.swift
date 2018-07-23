@@ -106,7 +106,7 @@ extension AnalyticsCore {
     func trackChangePermission(permission: AnalyticsEnums.Name.Permission, granted: Bool, screen: AnalyticsEnums.Name.Screen? = nil) {
         var params: AnalyticsEnums.Params = [:]
         if let screen = screen { params[.screenName] = screen.rawValue }
-        params[.granted] = "\(granted)"
+        params[.granted] = granted ? 1 : 0
         self.track(event: .change, element: .permission, name: permission.rawValue, params: params)
     }
 

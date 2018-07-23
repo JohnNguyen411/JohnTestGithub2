@@ -199,7 +199,7 @@ struct AnalyticsEnums {
         case statusCode = "status_code"
     }
 
-    typealias Params = [Param: String]
+    typealias Params = [Param: Any]
 }
 
 extension AnalyticsEnums {
