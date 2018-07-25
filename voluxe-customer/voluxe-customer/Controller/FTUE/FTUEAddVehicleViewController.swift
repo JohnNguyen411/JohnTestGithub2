@@ -232,7 +232,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
                     // go back
                     self.navigationController?.popViewController(animated: true)
                 } else {
-                    self.appDelegate?.loadMainScreen()
+                    AppController.sharedInstance.showLoadingView()
                 }
             }
             self.hideProgressHUD()

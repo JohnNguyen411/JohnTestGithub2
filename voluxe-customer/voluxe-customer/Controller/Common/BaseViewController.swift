@@ -207,9 +207,9 @@ extension UIViewController {
         if let image = UIImage(named: "ic_menu") {
             self.addLeftBarButtonWithImage(image)
         }
-        self.slideMenuController()?.removeLeftGestures()
-        self.slideMenuController()?.removeRightGestures()
-        self.slideMenuController()?.addLeftGestures()
+        AppController.sharedInstance.slideMenuController?.removeLeftGestures()
+        AppController.sharedInstance.slideMenuController?.removeRightGestures()
+        AppController.sharedInstance.slideMenuController?.addLeftGestures()
     }
     
     
@@ -244,8 +244,8 @@ extension UIViewController {
     func removeNavigationBarItem() {
         self.navigationItem.leftBarButtonItem = nil
         self.navigationItem.rightBarButtonItem = nil
-        self.slideMenuController()?.removeLeftGestures()
-        self.slideMenuController()?.removeRightGestures()
+        AppController.sharedInstance.slideMenuController?.removeLeftGestures()
+        AppController.sharedInstance.slideMenuController?.removeRightGestures()
     }
 
     func showOkDialog(title: String,
@@ -321,12 +321,8 @@ extension UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
 
-    // TODO Move view controller management from AppDelegate to AppController
-    // https://github.com/volvo-cars/ios/issues/225
-    /// The VLSlideMenuController is sorta acting like an app controller
-    /// so in this context it is the best view for the HUD to use.
     private func getViewForHUD() -> UIView {
-        if let view = VLSlideMenuController.shared?.view {
+        if let view = AppController.sharedInstance.currentViewController?.view {
             return view
         }
         else if let navigationController = self.navigationController {

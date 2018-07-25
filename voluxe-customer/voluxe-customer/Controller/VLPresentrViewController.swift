@@ -59,12 +59,12 @@ class VLPresentrViewController: UIViewController {
     // cause blurring, and that is desired behaviour right now.
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        VLSlideMenuController.shared?.blur()
+        AppController.sharedInstance.currentViewController?.view.blurByLuxe()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        VLSlideMenuController.shared?.unblur()
+        AppController.sharedInstance.currentViewController?.view.unblurByLuxe()
     }
     
     override func viewDidAppear(_ animated: Bool) {

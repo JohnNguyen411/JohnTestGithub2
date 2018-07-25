@@ -297,7 +297,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
             }
             
             RequestedServiceManager.sharedInstance.reset()
-            self.appDelegate?.showVehiclesView(animated: false)
+            AppController.sharedInstance.showVehiclesView(animated: false)
             
             self.hideProgressHUD()
             

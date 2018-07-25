@@ -258,7 +258,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     self.showDialog(title: .Error, message: String(format: String.DuplicateRequestError, String.Pickup), buttonTitle: .Refresh, completion: {
                         BookingSyncManager.sharedInstance.syncBookings()
                         RequestedServiceManager.sharedInstance.reset()
-                        self.appDelegate?.showVehiclesView(animated: false)
+                        AppController.sharedInstance.showVehiclesView(animated: false)
                     }, dialog: .error, screen: self.screen)
                     return
                 } else {
@@ -336,7 +336,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             }
             
             RequestedServiceManager.sharedInstance.reset()
-            self.appDelegate?.showVehiclesView(animated: false)
+            AppController.sharedInstance.showVehiclesView(animated: false)
             
             self.hideProgressHUD()
 

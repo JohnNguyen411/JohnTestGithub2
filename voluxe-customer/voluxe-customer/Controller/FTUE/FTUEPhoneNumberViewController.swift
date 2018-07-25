@@ -215,7 +215,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             self.pushViewController(FTUEPhoneVerificationViewController(type: ftuePhoneType), animated: true)
         } else {
             if UserManager.sharedInstance.isLoggedIn() {
-                appDelegate?.startApp()
+                AppController.sharedInstance.startApp()
             } else {
                 self.navigationController?.popViewController(animated: true)
             }

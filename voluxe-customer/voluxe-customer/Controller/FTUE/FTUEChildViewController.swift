@@ -20,8 +20,6 @@ class FTUEChildViewController: BaseViewController {
         if !backEnabled {
             self.navigationItem.leftBarButtonItem = nil
         }
-        
-        
     }
     
     func canGoNext(nextEnabled: Bool) {
@@ -34,11 +32,11 @@ class FTUEChildViewController: BaseViewController {
     
     
     func loadMainScreen() {
-        appDelegate?.loadMainScreen()
+        AppController.sharedInstance.showLoadingView()
     }
     
     func loadLandingPage() {
-        appDelegate?.startApp()
+        AppController.sharedInstance.startApp()
     }
     
     func checkTextFieldsValidity() -> Bool {

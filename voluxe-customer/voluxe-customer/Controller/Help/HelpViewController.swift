@@ -8,7 +8,7 @@
 
 import Foundation
 
-class HelpViewController: ChildViewController {
+class HelpViewController: BaseViewController {
     
     static let helpSectionBooking: [HelpDetail] = [HelpDetail(title: .MyVehicleWasDamaged, description: .MyVehicleWasDamagedDetail), HelpDetail(title: .ILostAnItem, description: .ILostAnItemDetail), HelpDetail(title: .MyPickupDeliveryLocationWasWrong, description: .MyPickupDeliveryLocationWasWrongDetail), HelpDetail(title: .MyDriverWasLate, description: .MyDriverWasLateDetail), HelpDetail(title: .IMissedMyPickupDelivery, description: .IMissedMyPickupDeliveryDetail), HelpDetail(title: .MyDriverDidntMatchThePicture, description: .MyDriverDidntMatchThePictureDetail), HelpDetail(title: .ICouldntContactMyDriver, description: .ICouldntContactMyDriverDetail), HelpDetail(title: .MyDriverWasUnprofessional, description: .MyDriverWasUnprofessionalDetail), HelpDetail(title: .SomethingUnsafeHappened, description: .SomethingUnsafeHappenedDetail), HelpDetail(title: .ThereWasAnIssueWithMyLoanerVehicle, description: .ThereWasAnIssueWithMyLoanerVehicleDetail), HelpDetail(title: .ThereWasAnIssueWithMyPaperwork, description: .ThereWasAnIssueWithMyPaperworkDetail), HelpDetail(title: .Other, description: .OtherDetail)]
     

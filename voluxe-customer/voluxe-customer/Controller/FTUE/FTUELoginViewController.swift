@@ -179,11 +179,11 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
                         UserManager.sharedInstance.setCustomer(customer: customer)
                         if !customer.phoneNumberVerified {
                             self.showLoading(loading: false)
-                            self.appDelegate?.phoneVerificationScreen()
+                            AppController.sharedInstance.phoneVerificationScreen()
                             return
                         } else {
                             self.showLoading(loading: false)
-                            self.appDelegate?.startApp()
+                            AppController.sharedInstance.startApp()
                         }
                     }
                     }.onFailure { error in

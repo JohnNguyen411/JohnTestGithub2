@@ -152,22 +152,19 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         switch menu {
         case .settings:
             Analytics.trackClick(button: .leftPanelSettings)
-            weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
-            appDelegate?.settingsScreen()
+            AppController.sharedInstance.settingsScreen()
         case .help:
             Analytics.trackClick(button: .leftPanelSettings) //todo update that too
-            weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
-            appDelegate?.helpScreen()
+            AppController.sharedInstance.helpScreen()
         case .logout:
             Analytics.trackClick(button: .leftPanelLogout)
             UserManager.sharedInstance.logout()
-            weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
-            appDelegate?.startApp()
+            AppController.sharedInstance.startApp()
         }
     }
     
     func changeMainViewController(uiNavigationController: UINavigationController, title: String?, animated: Bool) {
-        if let slideMenuController = self.slideMenuController() as? VLSlideMenuController {
+        if let slideMenuController = AppController.sharedInstance.slideMenuController {
             slideMenuController.changeMainViewController(uiNavigationController, close: true, animated: animated)
         } else {
             self.slideMenuController()?.changeMainViewController(uiNavigationController, close: true)
@@ -238,7 +235,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     
     private func isShowingScreenForVehicle(vehicleId: Int) -> Bool {
         var showingScreen = false
-        if let viewController = self.slideMenuController()?.mainViewController {
+        if let viewController = AppController.sharedInstance.slideMenuController?.mainViewController {
             if let baseController = viewController as? BaseViewController {
                 if baseController is VehiclesViewController || baseController is MainViewController || baseController is SettingsViewController {
                     if let mainVc = baseController as? MainViewController, mainVc.vehicleId == vehicleId {
@@ -280,7 +277,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
                 isShowingNotif = true
             }
         }
-        if let viewController = self.slideMenuController()?.mainViewController {
+        if let viewController = AppController.sharedInstance.slideMenuController?.mainViewController {
             if let baseController = viewController as? BaseViewController {
                 if baseController is VehiclesViewController || baseController is MainViewController || baseController is SettingsViewController {
                     baseController.setNavigationBarItem()
@@ -300,7 +297,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     }
     
     @objc func onCloseClicked() {
-        self.slideMenuController()?.toggleLeft()
+        AppController.sharedInstance.slideMenuController?.toggleLeft()
     }
 }
 
@@ -326,11 +323,9 @@ extension LeftViewController : UITableViewDelegate {
 
             let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle)
             if let booking = booking, booking.isActive() {
-                if let appDelegate = UIApplication.shared.delegate as? AppDelegate {
-                    appDelegate.loadViewForVehicle(vehicle: vehicle, state: Booking.getStateForBooking(booking: booking))
-                    showRedDot(vehicleId: vehicle.id, show: false)
-                   Analytics.trackClick(button: .leftPanelBookings)
-                }
+                AppController.sharedInstance.loadViewForVehicle(vehicle: vehicle, state: Booking.getStateForBooking(booking: booking))
+                showRedDot(vehicleId: vehicle.id, show: false)
+                Analytics.trackClick(button: .leftPanelBookings)
             } else {
                 VehiclesViewController.selectedVehicleIndex = indexPath.row
                 self.changeMainViewController(uiNavigationController: self.mainNavigationViewController, title: nil, animated: true)

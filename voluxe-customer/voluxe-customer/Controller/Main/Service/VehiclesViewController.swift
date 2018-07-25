@@ -15,7 +15,7 @@ import BrightFutures
 import Alamofire
 
 
-class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
+class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
 
     public static var selectedVehicleIndex = 0
 
@@ -266,7 +266,7 @@ class VehiclesViewController: ChildViewController, ScheduledBookingDelegate {
         if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle) {
             // if booking is today, show upcoming request with map
             if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted) {
-                appDelegate?.loadViewForVehicle(vehicle: selectedVehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: selectedVehicle.id))
+                AppController.sharedInstance.loadViewForVehicle(vehicle: selectedVehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: selectedVehicle.id))
             } else {
                 let controller = ScheduledBookingViewController(booking: booking, delegate: self)
                 self.pushViewController(controller, animated: true)

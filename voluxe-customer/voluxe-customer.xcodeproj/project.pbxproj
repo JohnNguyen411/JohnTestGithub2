@@ -181,6 +181,7 @@
 		6C2B32481FB3C67100B943AC /* DateTimeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2B32471FB3C67100B943AC /* DateTimeViewController.swift */; };
 		6C2F1DD61FAD0A8F00C28C6E /* SchedulingPickupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2F1DD51FAD0A8F00C28C6E /* SchedulingPickupViewController.swift */; };
 		6C327C322101374400521CAE /* BaseVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C327C312101374400521CAE /* BaseVehicleViewController.swift */; };
+		6C327C3421068CCB00521CAE /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C327C3321068CCB00521CAE /* RootViewController.swift */; };
 		6C32C3071FBCC0E900B1218C /* Step.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C3061FBCC0E900B1218C /* Step.swift */; };
 		6C32C30B1FBCC1DD00B1218C /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30A1FBCC1DD00B1218C /* StepView.swift */; };
 		6C32C30F1FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */; };
@@ -295,6 +296,7 @@
 		6C9C906D209D163E00494068 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9C906B209D163E00494068 /* RemoteConfigDefaults.plist */; };
 		6C9C906E209D163E00494068 /* RemoteConfigDefaults.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6C9C906B209D163E00494068 /* RemoteConfigDefaults.plist */; };
 		6CA20EF020939C6D00E1B549 /* VLAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA20EEF20939C6D00E1B549 /* VLAlertViewController.swift */; };
+		6CA7681D2107F6690021E807 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA7681C2107F6690021E807 /* AppController.swift */; };
 		6CA7C944201A92A7009C00F6 /* ServiceCarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA7C943201A92A7009C00F6 /* ServiceCarViewController.swift */; };
 		6CA968B120229FAD00FBEEAB /* VehiclesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA968B020229FAD00FBEEAB /* VehiclesViewController.swift */; };
 		6CA968B52023933800FBEEAB /* VehicleLocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CA968B42023933800FBEEAB /* VehicleLocalization.swift */; };
@@ -561,6 +563,7 @@
 		6C2B324B1FB3C88D00B943AC /* Objc-Bridge-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Objc-Bridge-Header.h"; sourceTree = "<group>"; };
 		6C2F1DD51FAD0A8F00C28C6E /* SchedulingPickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SchedulingPickupViewController.swift; sourceTree = "<group>"; };
 		6C327C312101374400521CAE /* BaseVehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseVehicleViewController.swift; sourceTree = "<group>"; };
+		6C327C3321068CCB00521CAE /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		6C32C3061FBCC0E900B1218C /* Step.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Step.swift; sourceTree = "<group>"; };
 		6C32C30A1FBCC1DD00B1218C /* StepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepView.swift; sourceTree = "<group>"; };
 		6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedVerticalStepView.swift; sourceTree = "<group>"; };
@@ -664,6 +667,7 @@
 		6C9C9067209D127100494068 /* RemoteConfigManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigManager.swift; sourceTree = "<group>"; };
 		6C9C906B209D163E00494068 /* RemoteConfigDefaults.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = RemoteConfigDefaults.plist; sourceTree = "<group>"; };
 		6CA20EEF20939C6D00E1B549 /* VLAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLAlertViewController.swift; sourceTree = "<group>"; };
+		6CA7681C2107F6690021E807 /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
 		6CA7C943201A92A7009C00F6 /* ServiceCarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCarViewController.swift; sourceTree = "<group>"; };
 		6CA968B020229FAD00FBEEAB /* VehiclesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehiclesViewController.swift; sourceTree = "<group>"; };
 		6CA968B42023933800FBEEAB /* VehicleLocalization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleLocalization.swift; sourceTree = "<group>"; };
@@ -1045,6 +1049,7 @@
 				6C2208761FBCEF7A00874882 /* MapViewController.swift */,
 				6CC3543020B87E7C00FF98A6 /* LogoViewController.swift */,
 				6C27FBC020E4619F00EAA689 /* VLWebViewController.swift */,
+				6C327C3321068CCB00521CAE /* RootViewController.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -1502,6 +1507,7 @@
 			isa = PBXGroup;
 			children = (
 				6C7DDE1B1FE1B5D6000E2822 /* Analytic */,
+				6CA7681C2107F6690021E807 /* AppController.swift */,
 				6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */,
 				6CC83A791FA140A600FE0633 /* Config */,
 				6CC37E431FA7ADB000DA8F01 /* Controller */,
@@ -2422,6 +2428,7 @@
 				6C345A0F1FD897E4006CAC32 /* Config.swift in Sources */,
 				6C52245A208815580078D9B9 /* VLSlideMenuController.swift in Sources */,
 				6C9C9068209D127100494068 /* RemoteConfigManager.swift in Sources */,
+				6C327C3421068CCB00521CAE /* RootViewController.swift in Sources */,
 				6CBB4E8B1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				53D9A7BD209A5E2F008BE93E /* UserDefaults+Debug.swift in Sources */,
 				6C3FB2B91FA297A300B22EAB /* Date+DateTools.swift in Sources */,
@@ -2459,6 +2466,7 @@
 				6C88DC8F1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6CDCD7F7200EE5620099258C /* VLDateFormatter.swift in Sources */,
 				5340E91020D876ED00B17D53 /* DebugFontViewController.swift in Sources */,
+				6CA7681D2107F6690021E807 /* AppController.swift in Sources */,
 				6C88DC981FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C3FB2B21FA2824200B22EAB /* Constants.swift in Sources */,
 				6CDAEE8420E309DA0040CDFF /* HelpListViewController.swift in Sources */,

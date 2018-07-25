@@ -33,7 +33,7 @@ class MainViewController: BaseVehicleViewController, ChildViewDelegate {
         if serviceState == .enRouteForService || serviceState == .service || serviceState == .serviceCompleted || serviceState == .completed {
             
             if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), serviceState == .completed, booking.bookingFeedbackId > 0 {
-                appDelegate?.loadViewForVehicle(vehicle: vehicle, state: .completed)
+                AppController.sharedInstance.loadViewForVehicle(vehicle: vehicle, state: .completed)
                 return
             }
             if currentViewController != nil && (currentViewController?.isKind(of: ServiceCarViewController.self))! {
@@ -59,7 +59,7 @@ class MainViewController: BaseVehicleViewController, ChildViewDelegate {
                 currentViewController = scheduledDeliveryViewController
             }
         } else if serviceState == .idle {
-            self.appDelegate?.showVehiclesView(animated: true)
+            AppController.sharedInstance.showVehiclesView(animated: true)
         }
     
         if !changeView {

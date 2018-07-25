@@ -30,249 +30,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     var initialized = false
     let userDefaults = UserDefaults.standard
     
-    var navigationController: UINavigationController?
-    var slideMenuController: SlideMenuController?
-    
-    fileprivate func showLoadingView() {
-        //LoadingView Controller is the entry point of the app LoadingViewController
-        window!.rootViewController = LoadingViewController()
-        window!.makeKeyAndVisible()
-    }
-    
-    func showMainView(animated: Bool) {
-        createMenuView(animated: animated)
-    }
-    
-    // showVehiclesView: show VehiclesView if no active services, current service if any
-    func showVehiclesView(animated: Bool) {
-        showMainView(animated: animated)
-        // need to delay to make sure the leftpanel is created already
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
-            if UserManager.sharedInstance.getActiveBookings().count > 0 {
-                let booking = UserManager.sharedInstance.getActiveBookings()[0]
-                if let vehicle = booking.vehicle {
-                    let state = StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id)
-                    if state != .idle {
-                        self.loadViewForVehicle(vehicle: vehicle, state: state)
-                    }
-                }
-            }
-        })
-        
-        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
-            guard settings.authorizationStatus == .notDetermined else { return }
-
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-                if UserManager.sharedInstance.getBookings().count > 0 {
-                    var requestPermission = false
-                    for booking in UserManager.sharedInstance.getBookings() {
-                        if booking.isInvalidated || booking.getState() == .canceled || booking.getState() == .completed { continue }
-                        if UserDefaults.standard.shouldShowNotifPermissionForBooking(booking: booking) {
-                            UserDefaults.standard.showNotifPermissionForBooking(booking: booking, shouldShow: true)
-                            requestPermission = true
-                            break
-                        }
-                    }
-                    if requestPermission {
-                        SwiftEventBus.post("requestNotifPermission")
-                    }
-                }
-            })
-        }
-    }
-    
-    fileprivate func createMenuView(animated: Bool) {
-        
-        let mainViewController = VehiclesViewController(state: .idle)
-        let leftViewController = LeftViewController()
-        
-        mainViewController.view.accessibilityIdentifier = "mainViewController"
-        leftViewController.view.accessibilityIdentifier = "leftViewController"
-        
-        let uiNavigationController = VLNavigationController(rootViewController: mainViewController)
-        uiNavigationController.view.accessibilityIdentifier = "uiNavigationController"
-
-        styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-        
-        navigationController = uiNavigationController
-        navigationController?.setTitle(title: .PickupAndDelivery)
-
-        leftViewController.mainNavigationViewController = navigationController
-        
-        let menuController = VLSlideMenuController(mainViewController: uiNavigationController, leftMenuViewController: leftViewController)
-        menuController.automaticallyAdjustsScrollViewInsets = true
-        menuController.view.accessibilityIdentifier = "slideMenuController"
-        self.slideMenuController = menuController
-
-        // TODO this could be a UIView animation extension
-        if let snapShot = self.window?.snapshotView(afterScreenUpdates: true), animated {
-            slideMenuController?.view.addSubview(snapShot)
-            self.window?.rootViewController = self.slideMenuController
-            
-            UIView.animate(withDuration: 0.75, animations: {
-                snapShot.layer.opacity = 0
-                snapShot.layer.transform = CATransform3DMakeScale(1.5, 1.5, 1.5)
-            }, completion: { finished in
-                snapShot.removeFromSuperview()
-            })
-        } else {
-            self.window?.rootViewController = self.slideMenuController
-        }
-        
-    }
+    var rootViewController: RootViewController?
     
     private func loadRemoteConfig() {
         RemoteConfigManager.sharedInstance.fetch()
     }
     
-    func showForceUpgradeDialog() {
-        if let window = self.window, let rootViewController = window.rootViewController {
-            // check if already added
-            if let _ = rootViewController.presentedViewController as? VLAlertViewController {
-                return
-            }
-            let alert = VLAlertViewController(title: String.ForceUpgradeTitle, message: String.ForceUpgradeMessage, cancelButtonTitle: nil, okButtonTitle: String.Ok.uppercased())
-            alert.delegate = self
-            alert.dismissOnTap = false
-            
-            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
-        }
-    }
-    
-    func showSoftUpgradeDialog(version: String) {
-        if let window = self.window, let rootViewController = window.rootViewController {
-            // don't show on LoadingViewController as it autodismiss
-            if rootViewController is LoadingViewController {
-                return
-            }
-            // check if already added
-            if let _ = rootViewController.presentedViewController as? VLAlertViewController {
-                return
-            }
-            
-            let alert = VLAlertViewController(title: String.SoftUpgradeTitle, message: String.SoftUpgradeMessage, cancelButtonTitle: String.NotNow, okButtonTitle: String.Ok.uppercased())
-            alert.delegate = self
-            alert.dismissOnTap = true
-            
-            self.window?.rootViewController?.present(alert, animated: true, completion: {
-                UserDefaults.standard.latestCheckedVersion = version
-            })
-
-        }
-    }
-
-    // TODO Move view controller management from AppDelegate to AppController
-    // https://github.com/volvo-cars/ios/issues/225
-    func startApp() {
-        
-        if let slideMenuController = self.slideMenuController {
-            slideMenuController.mainViewController?.dismiss(animated: false, completion: nil)
-            slideMenuController.leftViewController?.dismiss(animated: false, completion: nil)
-        }
-        
-        if let window = window, let rootVC = window.rootViewController {
-            rootVC.dismiss(animated: false, completion: {})
-        }
-        
-        if window == nil {
-            window = UIWindow(frame: UIScreen.main.bounds)
-        }
-        
-        if !UserManager.sharedInstance.isLoggedIn() {
-            let uiNavigationController = VLNavigationController(rootViewController: FTUEStartViewController())
-            styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-            window!.rootViewController = uiNavigationController
-            window!.makeKeyAndVisible()
-        } else {
-            loadMainScreen()
-        }
-    }
-    
-    func loadViewForVehicle(vehicle: Vehicle, state: ServiceState) {
-        if let slideMenu = slideMenuController {
-            if let leftVC = slideMenu.leftViewController as? LeftViewController {
-                var vehicleViewController: BaseViewController?
-                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.needsRating(), state == .completed {
-                    vehicleViewController = BookingRatingViewController(booking: booking)
-                } else {
-                    vehicleViewController = MainViewController(vehicle: vehicle, state: state)
-                }
-                let uiNavigationController = VLNavigationController(rootViewController: vehicleViewController!)
-                styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: nil, animated: true)
-            }
-        }
-    }
-    
-    func loadBookingFeedback(bookingFeedback: BookingFeedback) {
-        showMainView(animated: true)
-        // need to delay to make sure the leftpanel is created already
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
-            
-            if let slideMenu = self.slideMenuController {
-                if let leftVC = slideMenu.leftViewController as? LeftViewController {
-                    let uiNavigationController = VLNavigationController(rootViewController: BookingRatingViewController(bookingFeedback: bookingFeedback))
-                    self.styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-                    leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: nil, animated: true)
-                }
-            }
-        })
-    }
-    
-    func settingsScreen() {
-        if let slideMenu = slideMenuController {
-            if let leftVC = slideMenu.leftViewController as? LeftViewController {
-                let uiNavigationController = VLNavigationController(rootViewController: SettingsViewController())
-                styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .Settings, animated: true)
-            }
-        }
-    }
-    
-    func helpScreen() {
-        if let slideMenu = slideMenuController {
-            if let leftVC = slideMenu.leftViewController as? LeftViewController {
-                let uiNavigationController = VLNavigationController(rootViewController: HelpViewController())
-                styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .Help, animated: true)
-            }
-        }
-    }
-    
-    func phoneVerificationScreen() {
-        if window == nil {
-            window = UIWindow(frame: UIScreen.main.bounds)
-        }
-        let uiNavigationController = VLNavigationController(rootViewController: FTUEPhoneVerificationViewController())
-        styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-        window!.rootViewController = uiNavigationController
-        window!.makeKeyAndVisible()
-    }
-    
-    func showAddVehicleScreen() {
-        if window == nil {
-            window = UIWindow(frame: UIScreen.main.bounds)
-        }
-        let uiNavigationController = VLNavigationController(rootViewController: FTUEAddVehicleViewController())
-        styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-        window!.rootViewController = uiNavigationController
-        window!.makeKeyAndVisible()
-    }
-    
-    
-    private func styleNavigationBar(navigationBar: UINavigationBar) {
-        navigationBar.isTranslucent = false
-        navigationBar.setBackgroundImage(UIImage(), for: .default)
-        navigationBar.shadowImage = UIImage()
-        navigationBar.tintColor = .luxeCobaltBlue()
-        
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
-    }
-
-    func loadMainScreen() {
-        showLoadingView()
-    }
-
     // MARK:- Register network layer notifications
 
     private func registerEventBusNotifications() {
@@ -280,17 +43,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         SwiftEventBus.onMainThread(self, name: "forceLogout") {
             notification in
             UserManager.sharedInstance.logout()
-            self.startApp()
+            AppController.sharedInstance.startApp()
         }
 
         SwiftEventBus.onMainThread(self, name: "forceUpgrade") {
             notification in
-            self.showForceUpgradeDialog()
+            AppController.sharedInstance.showForceUpgradeDialog()
         }
         
         SwiftEventBus.onMainThread(self, name: "updateAvailable") {
             notification in
-            self.showSoftUpgradeDialog(version: notification.object as! String)
+            AppController.sharedInstance.showSoftUpgradeDialog(version: notification.object as! String)
         }
         
         SwiftEventBus.onMainThread(self, name: "bookingAdded") {
@@ -299,7 +62,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if UserManager.sharedInstance.getBookings().count > 0 {
                 let booking = UserManager.sharedInstance.getBookings()[0]
                 if let vehicle = booking.vehicle {
-                    self.loadViewForVehicle(vehicle: vehicle, state: ServiceState.appStateForBookingState(bookingState: booking.getState()))
+                    AppController.sharedInstance.loadViewForVehicle(vehicle: vehicle, state: ServiceState.appStateForBookingState(bookingState: booking.getState()))
                 }
             }
         }
@@ -309,7 +72,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
             if UserManager.sharedInstance.getBookings().count > 0 {
                 let booking = UserManager.sharedInstance.getBookings()[0]
                 if let vehicle = booking.vehicle {
-                    self.loadViewForVehicle(vehicle: vehicle, state: ServiceState.appStateForBookingState(bookingState: booking.getState()))
+                    AppController.sharedInstance.loadViewForVehicle(vehicle: vehicle, state: ServiceState.appStateForBookingState(bookingState: booking.getState()))
                 }
             } else {
                 // might be in rating state.
@@ -322,7 +85,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        window!.rootViewController = LogoViewController(screen: .splash)
+        _ = AppController.sharedInstance // init
+        
+        rootViewController = RootViewController()
+        window!.rootViewController = rootViewController
         window!.makeKeyAndVisible()
         
         if UserDefaults.standard.enableAlamoFireLogging {
@@ -345,10 +111,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         self.registerEventBusNotifications()
 
-        weak var weakSelf = self
         // Run Realm Migration if needed, then open app
         RealmManager.realmMigration(callback: { realm, error in
-            weakSelf?.startApp()
+            AppController.sharedInstance.startApp()
         })
 
         // Fabric recommends initializing Crashlytics at the end
@@ -374,11 +139,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         if UserManager.sharedInstance.isLoggedIn() {
-            if UserManager.sharedInstance.getBookings().count == 0 {
-                BookingSyncManager.sharedInstance.syncBookings() // force sync now
-            } else {
-                BookingSyncManager.sharedInstance.syncBookings()
-            }
+            BookingSyncManager.sharedInstance.syncBookings() // force sync now
         }
         
     }
@@ -418,7 +179,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         SwiftEventBus.onMainThread(self, name: "channelDealershipSignup") {
             notification in
             UserManager.sharedInstance.logout()
-            self.startApp()
+            AppController.sharedInstance.startApp()
         }
         
         // listener for Branch Deep Link data
@@ -452,11 +213,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 withCompletionHandler completionHandler: @escaping () -> Void)
     {
         if UserManager.sharedInstance.isLoggedIn() {
-            if UserManager.sharedInstance.getBookings().count == 0 {
-                BookingSyncManager.sharedInstance.syncBookings() // force sync now
-            } else {
-                BookingSyncManager.sharedInstance.syncBookings()
-            }
+            BookingSyncManager.sharedInstance.syncBookings() // force sync now
             completionHandler()
         }
     }
@@ -468,11 +225,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void)
     {
         if UserManager.sharedInstance.isLoggedIn() {
-            if UserManager.sharedInstance.getBookings().count == 0 {
-                BookingSyncManager.sharedInstance.syncBookings() // force sync now
-            } else {
-                BookingSyncManager.sharedInstance.syncBookings()
-            }
+            BookingSyncManager.sharedInstance.syncBookings() // force sync now
             completionHandler([.alert, .badge, .sound]) // show foreground notifications
         }
     }

@@ -149,7 +149,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
         if (state != .schedulingDelivery && state != .schedulingService) {
             // state has change for this car, possibly sync from BE.
             RequestedServiceManager.sharedInstance.reset()
-            self.appDelegate?.showVehiclesView(animated: false)
+            AppController.sharedInstance.showVehiclesView(animated: false)
         }
     }
     

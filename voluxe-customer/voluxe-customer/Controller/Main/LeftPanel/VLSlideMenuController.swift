@@ -72,12 +72,6 @@ class VLSlideMenuController: SlideMenuController {
         else if trackAction == .leftTapOpen { Analytics.trackClick(navigation: .menu) }
     }
 
-    // TODO Move view controller management from AppDelegate to AppController
-    // https://github.com/volvo-cars/ios/issues/225
-    static var shared: VLSlideMenuController? {
-        let delegate = UIApplication.shared.delegate as? AppDelegate
-        return delegate?.window?.rootViewController as? VLSlideMenuController
-    }
 }
 
 // MARK:- Global blur support

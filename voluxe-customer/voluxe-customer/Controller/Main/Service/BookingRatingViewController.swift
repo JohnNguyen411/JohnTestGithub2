@@ -17,7 +17,7 @@ import Kingfisher
 import MBProgressHUD
 
 
-class BookingRatingViewController: ChildViewController, UITextViewDelegate {
+class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     
     var retryCount = 0
     var isShowingComment = false
@@ -340,9 +340,7 @@ class BookingRatingViewController: ChildViewController, UITextViewDelegate {
     
     func goToNext() {
         MBProgressHUD.hide(for: self.view, animated: true)
-        if let appDelegate = self.appDelegate {
-            appDelegate.loadMainScreen()
-        }
+        AppController.sharedInstance.showLoadingView()
     }
     
     func showRatingTextView(show: Bool) {

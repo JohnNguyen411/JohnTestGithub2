@@ -68,8 +68,7 @@ class LoadingViewController: LogoViewController {
     
     private func logout() {
         UserManager.sharedInstance.logout()
-        weak var appDelegate = UIApplication.shared.delegate as? AppDelegate
-        appDelegate?.startApp()
+        AppController.sharedInstance.startApp()
     }
     
     
@@ -87,7 +86,7 @@ class LoadingViewController: LogoViewController {
                 UserManager.sharedInstance.setCustomer(customer: customer)
                 if !customer.phoneNumberVerified {
                     FTUEStartViewController.flowType = .login
-                    self.appDelegate?.phoneVerificationScreen()
+                    AppController.sharedInstance.phoneVerificationScreen()
                 } else {
                     self.callVehicles(customerId: customer.id)
                     self.refreshRepairOrderTypes()
@@ -101,7 +100,7 @@ class LoadingViewController: LogoViewController {
                         // code not verified
                         UserManager.sharedInstance.tempCustomerId = customerId
                         FTUEStartViewController.flowType = .login
-                        self.appDelegate?.phoneVerificationScreen()
+                        AppController.sharedInstance.phoneVerificationScreen()
                         return
                     } else if apiError.getCode() == .E5001 || apiError.getCode() == .E5002 {
                         // 500 unknown
@@ -127,7 +126,7 @@ class LoadingViewController: LogoViewController {
                 // code not verified
                 UserManager.sharedInstance.tempCustomerId = customerId
                 FTUEStartViewController.flowType = .login
-                self.appDelegate?.phoneVerificationScreen()
+                AppController.sharedInstance.phoneVerificationScreen()
                 return
             } else {
                 //todo show error && logout?
@@ -140,7 +139,7 @@ class LoadingViewController: LogoViewController {
                     UserManager.sharedInstance.setCustomer(customer: customer)
                     if !customer.phoneNumberVerified {
                         FTUEStartViewController.flowType = .login
-                        self.appDelegate?.phoneVerificationScreen()
+                        AppController.sharedInstance.phoneVerificationScreen()
                     } else {
                         self.callVehicles(customerId: customer.id)
                     }
@@ -167,7 +166,7 @@ class LoadingViewController: LogoViewController {
                 }
                 if cars.count == 0 {
                     FTUEStartViewController.flowType = .login
-                    self.appDelegate?.showAddVehicleScreen()
+                    AppController.sharedInstance.showAddVehicleScreen()
                 } else {
                     UserManager.sharedInstance.setVehicles(vehicles: cars)
                     self.getBookings(customerId: customerId)
@@ -245,17 +244,17 @@ class LoadingViewController: LogoViewController {
                 if let data = results?.data, let feedbacks = data.result, feedbacks.count > 0 {
                     // just get the last one
                     let bookingFeedback = feedbacks[feedbacks.count-1]
-                    self.appDelegate?.loadBookingFeedback(bookingFeedback: bookingFeedback)
+                    AppController.sharedInstance.loadBookingFeedback(bookingFeedback: bookingFeedback)
                 } else {
-                    self.appDelegate?.showVehiclesView(animated: true)
+                    AppController.sharedInstance.showVehiclesView(animated: true)
                     self.appDelegate?.registerForPushNotificationsIfGranted()
                 }
                 }.onFailure { error in
-                    self.appDelegate?.showVehiclesView(animated: true)
+                    AppController.sharedInstance.showVehiclesView(animated: true)
                     self.appDelegate?.registerForPushNotificationsIfGranted()
             }
         } else {
-            self.appDelegate?.showVehiclesView(animated: true)
+            AppController.sharedInstance.showVehiclesView(animated: true)
             self.appDelegate?.registerForPushNotificationsIfGranted()
         }
     }

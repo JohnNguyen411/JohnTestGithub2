@@ -8,7 +8,7 @@
 
 import Foundation
 
-class SettingsViewController: ChildViewController, SettingsCellProtocol {
+class SettingsViewController: BaseViewController, SettingsCellProtocol {
     
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
     let user: Customer?

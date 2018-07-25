@@ -385,7 +385,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
     func showDescriptionClick() {
         if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
             if let childViewDelegate = self.childViewDelegate {
-            childViewDelegate.pushViewController(controller: ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true, backLabel: .Back, title: repairOrder.name)
+                childViewDelegate.pushViewController(controller: ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true, backLabel: .Back, title: repairOrder.name)
             } else {
                 self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true)
             }
@@ -439,7 +439,7 @@ class ServiceCarViewController: ChildViewController, LocationManagerDelegate {
         if StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id) == .completed {
             // start over
             RequestedServiceManager.sharedInstance.reset()
-            appDelegate?.loadMainScreen()
+            AppController.sharedInstance.showLoadingView()
         }
     }
     

@@ -124,7 +124,7 @@ class SettingsCarViewController: BaseViewController {
                 }
                 if cars.count == 0 {
                     FTUEStartViewController.flowType = .login
-                    weakSelf?.appDelegate?.showAddVehicleScreen()
+                    AppController.sharedInstance.showAddVehicleScreen()
                 } else {
                     UserManager.sharedInstance.setVehicles(vehicles: cars)
                     weakSelf?.navigationController?.popViewController(animated: true)
@@ -137,6 +137,6 @@ class SettingsCarViewController: BaseViewController {
     
     private func retrieveVehiclesFailed() {
         MBProgressHUD.hide(for: self.view, animated: true)
-        appDelegate?.startApp()
+        AppController.sharedInstance.startApp()
     }
 }
