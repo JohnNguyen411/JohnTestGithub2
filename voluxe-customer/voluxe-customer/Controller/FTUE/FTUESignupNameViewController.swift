@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
+import RealmSwift
 
 class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate {
     
@@ -27,9 +29,11 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     let lastNameTextField = VLVerticalTextField(title: .LastName, placeholder: .LastNamePlaceholder)
     
     var deeplinkEventConsumed = false
-    
+    var editMode = false
+
     init() {
-        super.init(screen: .signupName)
+        editMode = UserManager.sharedInstance.isLoggedIn()
+        super.init(screen: editMode ? .nameUpdate : .signupName)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -37,6 +41,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     }
     
     override func viewDidLoad() {
+
         super.viewDidLoad()
         
         welcomeLabel.accessibilityIdentifier = "welcomeLabel"
@@ -54,15 +59,20 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         firstNameTextField.textField.delegate = self
         lastNameTextField.textField.delegate = self
         
-        
         firstNameTextField.textField.becomeFirstResponder()
-        canGoNext(nextEnabled: false)
         
+        canGoNext(nextEnabled: editMode ? true : false)
+        
+        if let customer = UserManager.sharedInstance.getCustomer(), editMode {
+            self.firstNameTextField.textField.text = customer.firstName
+            self.lastNameTextField.textField.text = customer.lastName
+            self.navigationItem.rightBarButtonItem?.title = .Done
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+        if editMode { return }
         if DeeplinkManager.sharedInstance.isPrefillSignup() && !deeplinkEventConsumed {
             if let firstName = DeeplinkManager.sharedInstance.getDeeplinkObject()?.firstName {
                 firstNameTextField.textField.text = firstName
@@ -87,16 +97,27 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         self.view.addSubview(firstNameTextField)
         self.view.addSubview(lastNameTextField)
         
-        welcomeLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
-            make.right.equalToSuperview().offset(-20)
-        }
-        
-        firstNameTextField.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(welcomeLabel)
-            make.top.equalTo(welcomeLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
-            make.height.equalTo(VLVerticalTextField.verticalHeight)
+        if editMode {
+            welcomeLabel.isHidden = true
+            
+            firstNameTextField.snp.makeConstraints { (make) -> Void in
+                make.left.equalToSuperview().offset(20)
+                make.right.equalToSuperview().offset(-20)
+                make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
+                make.height.equalTo(VLVerticalTextField.verticalHeight)
+            }
+        } else {
+            welcomeLabel.snp.makeConstraints { (make) -> Void in
+                make.left.equalToSuperview().offset(20)
+                make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
+                make.right.equalToSuperview().offset(-20)
+            }
+            
+            firstNameTextField.snp.makeConstraints { (make) -> Void in
+                make.left.right.equalTo(welcomeLabel)
+                make.top.equalTo(welcomeLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
+                make.height.equalTo(VLVerticalTextField.verticalHeight)
+            }
         }
         
         lastNameTextField.snp.makeConstraints { (make) -> Void in
@@ -155,12 +176,47 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
 
     override func onRightClicked() {
         super.onRightClicked()
-        UserManager.sharedInstance.signupCustomer.lastName = lastNameTextField.textField.text
-        UserManager.sharedInstance.signupCustomer.firstName = firstNameTextField.textField.text
-        goToNext()
+        if editMode {
+            self.updateCustomerName()
+        } else {
+            UserManager.sharedInstance.signupCustomer.lastName = lastNameTextField.textField.text
+            UserManager.sharedInstance.signupCustomer.firstName = firstNameTextField.textField.text
+            goToNext()
+        }
     }
     
     override func goToNext() {
         self.pushViewController(FTUESignupEmailPhoneViewController(), animated: true)
+    }
+    
+    func updateCustomerName() {
+        guard let customerId = UserManager.sharedInstance.customerId(), let lastName = lastNameTextField.textField.text, let firstName = firstNameTextField.textField.text else { return }
+        
+        if let customer = UserManager.sharedInstance.getCustomer(), lastName == customer.lastName, firstName == customer.firstName {
+            // same, don't update
+            self.navigationController?.popViewController(animated: true)
+            return
+        }
+
+        
+        MBProgressHUD.showAdded(to: self.view, animated: true)
+        
+        CustomerAPI().updateName(customerId: customerId, firstName: firstName, lastName: lastName).onSuccess { result in
+            if let customer = UserManager.sharedInstance.getCustomer() {
+                if let realm = try? Realm() {
+                    try? realm.write {
+                        customer.lastName = lastName
+                        customer.firstName = firstName
+                        UserManager.sharedInstance.setCustomer(customer: customer)
+                        realm.add(customer, update: true)
+                    }
+                }
+            }
+            self.navigationController?.popViewController(animated: true)
+            MBProgressHUD.hide(for: self.view, animated: true)
+            }.onFailure { error in
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.showOkDialog(title: .Error, message: .GenericError)
+        }
     }
 }

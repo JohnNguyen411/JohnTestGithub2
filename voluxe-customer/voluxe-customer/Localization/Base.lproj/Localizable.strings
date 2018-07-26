@@ -107,6 +107,8 @@
 "AgreeToTosAndPrivacyFormat" = "You agree to our %@ and %@.";
 "TermsAndConditions" = "Terms of Service";
 "PrivacyPolicy" = "Privacy Policy";
+"AccountAlreadyExistUpdate" = "An account already exist with that email.";
+"PhoneNumberAlreadyExistUpdate" = "An account already exist with that phone number.";
 
 /***************** SchedulePickup ***************/
 "ScheduleService" = "Schedule Service";

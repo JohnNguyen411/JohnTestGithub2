@@ -19,6 +19,7 @@ class CustomerAddress: Object, Mappable {
     @objc dynamic var label: String? // Work / Home / Gym etc
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
+    @objc dynamic var luxeCustomerId: Int = -1
     
     required convenience init?(map: Map) {
         self.init()
@@ -38,6 +39,7 @@ class CustomerAddress: Object, Mappable {
         label <- map["label"]
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
+        luxeCustomerId <- map["customer_id"]
     }
     
     override static func primaryKey() -> String? {

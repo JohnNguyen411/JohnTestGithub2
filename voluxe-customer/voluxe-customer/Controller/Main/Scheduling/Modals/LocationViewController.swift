@@ -100,7 +100,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         var recentlySelectedAddress: CustomerAddress? = nil
         var recentlySelectedAddressIndex: Int = -1
         if let realm = self.realm, let user = user {
-            addresses = realm.objects(CustomerAddress.self).filter("volvoCustomerId = %@", user.email ?? "")
+            addresses = realm.objects(CustomerAddress.self).filter("luxeCustomerId = %@", user.id)
             if let addresses = addresses {
                 addressesCount = addresses.count
                 for (index, address) in addresses.enumerated() {
@@ -324,10 +324,11 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                 customerAddress.createdAt = Date()
                 customerAddress.updatedAt = Date()
                 customerAddress.volvoCustomerId = user!.email
+                customerAddress.luxeCustomerId = user!.id
                 
                 if let realm = self.realm {
                     // "email = %@", user.email ?? ""
-                    let existingAddress = realm.objects(CustomerAddress.self).filter("location.address = %@ AND volvoCustomerId = %@", addressString, user!.email ?? "").first
+                    let existingAddress = realm.objects(CustomerAddress.self).filter("location.address = %@ AND luxeCustomerId = %@", addressString, user!.email ?? "").first
                     if existingAddress == nil {
                         try? realm.write {
                             realm.add(customerAddress, update: true)
@@ -434,6 +435,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                 customerAddress.createdAt = Date()
                 customerAddress.updatedAt = Date()
                 customerAddress.volvoCustomerId = self.user!.email
+                customerAddress.luxeCustomerId = self.user!.id
                 
                 if let realm = self.realm {
                     try? realm.write {

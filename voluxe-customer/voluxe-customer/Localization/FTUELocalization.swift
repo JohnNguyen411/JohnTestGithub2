@@ -69,4 +69,7 @@ extension String {
     static let AgreeToTosAndPrivacyFormat = NSLocalizedString("AgreeToTosAndPrivacyFormat")
     static let TermsAndConditions = NSLocalizedString("TermsAndConditions")
     static let PrivacyPolicy = NSLocalizedString("PrivacyPolicy")
+    static let AccountAlreadyExistUpdate = NSLocalizedString("AccountAlreadyExistUpdate")
+    static let PhoneNumberAlreadyExistUpdate = NSLocalizedString("PhoneNumberAlreadyExistUpdate")
+
 }

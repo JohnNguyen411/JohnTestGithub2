@@ -96,6 +96,8 @@ struct AnalyticsEnums {
             case settingsAddVehicle
             case settingsAccount
             case settingsDeleteAddress
+            case settingsEditEmail
+            case settingsEditName
             case settingsEditPassword
             case settingsEditPhone
             case showService
@@ -134,6 +136,7 @@ struct AnalyticsEnums {
             case dropoffNew
             case dropoffDateTime
             case dropoffLocation
+            case emailUpdate
             case error
             case help
             case helpList
@@ -142,6 +145,7 @@ struct AnalyticsEnums {
             case loading
             case location
             case login
+            case nameUpdate
             case needService
             case pickupActive
             case pickupDateTime

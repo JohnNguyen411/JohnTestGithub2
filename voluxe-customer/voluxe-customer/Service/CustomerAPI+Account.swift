@@ -39,6 +39,62 @@ extension CustomerAPI {
         }
         return promise.future
     }
+    
+    /**
+     Endpoint to update Customer's name
+     - parameter customerId: Customer's ID
+     - parameter firstName: The customer FirstName
+     - parameter lastName: The customer LastName
+     
+     - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
+     */
+    func updateName(customerId: Int, firstName: String, lastName: String) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
+        
+        let params: Parameters = [
+            "first_name": firstName,
+            "last_name": lastName
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)", method: .patch, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+            
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
+            
+            if response.error == nil && responseObject.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
+            }
+        }
+        return promise.future
+    }
+    
+    /**
+     Endpoint to update Customer's email
+     - parameter customerId: Customer's ID
+     - parameter email: The customer's email
+     
+     - Returns: A Future ResponseObject containing a Customer Object, or an AFError if an error occured
+     */
+    func updateEmail(customerId: Int, email: String) -> Future<ResponseObject<EmptyMappableObject>?, Errors> {
+        let promise = Promise<ResponseObject<EmptyMappableObject>?, Errors>()
+        
+        let params: Parameters = [
+            "email": email
+        ]
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)", method: .patch, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSON { response in
+            
+            let responseObject = ResponseObject<EmptyMappableObject>(json: response.result.value)
+            
+            if response.error == nil && responseObject.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
+            }
+        }
+        return promise.future
+    }
 
     /**
      Endpoint to initiate Customer's reset password

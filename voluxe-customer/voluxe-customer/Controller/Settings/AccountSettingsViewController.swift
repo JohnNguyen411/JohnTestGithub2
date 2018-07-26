@@ -23,7 +23,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         user = UserManager.sharedInstance.getCustomer()
         realm = try? Realm()
         if let realm = self.realm, let user = user {
-            addresses = realm.objects(CustomerAddress.self).filter("volvoCustomerId = %@", user.email ?? "")
+            addresses = realm.objects(CustomerAddress.self).filter("luxeCustomerId = %@", user.id)
             if let addresses = addresses {
                 addressesCount = addresses.count
             }
@@ -47,6 +47,11 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdToogle)
 
         self.navigationItem.rightBarButtonItem?.title = .Edit
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.tableView.reloadData()
     }
     
     override func setupViews() {
@@ -77,6 +82,8 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
             return .AddNewLocation
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
+                return "\(user?.firstName ?? "") \(user?.lastName ?? "")"
+            } else if indexPath.row == 1 {
                 return (user?.email)!
             } else {
                 return (user?.phoneNumber)!
@@ -121,6 +128,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         customerAddress.createdAt = Date()
         customerAddress.updatedAt = Date()
         customerAddress.volvoCustomerId = user!.email
+        customerAddress.luxeCustomerId = user!.id
         
         if let realm = self.realm {
             try? realm.write {
@@ -170,7 +178,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
             }
             return 1
         } else if section == 1 {
-            return 2
+            return 3
         } else {
             return 1
         }
@@ -196,7 +204,8 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
             } else if indexPath.section == 1 {
                 editImage = "edit"
                 if indexPath.row == 0 {
-                    editImage = nil
+                    leftImage = "user_shape"
+                } else if indexPath.row == 1 {
                     leftImage = "message"
                 } else {
                     leftImage = "phone"
@@ -276,9 +285,20 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
             self.resetPassword()
         }
 
-        else if indexPath.section == 1 || indexPath.row == 1 {
-            Analytics.trackClick(button: .settingsEditPhone, screen: self.screen)
-            self.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
+        else if indexPath.section == 1 {
+            if indexPath.row == 0 {
+                // edit name
+                Analytics.trackClick(button: .settingsEditName, screen: self.screen)
+                self.pushViewController(FTUESignupNameViewController(), animated: true)
+            } else if indexPath.row == 1 {
+                // edit email
+                Analytics.trackClick(button: .settingsEditEmail, screen: self.screen)
+                self.pushViewController(EditEmailViewController(), animated: true)
+            } else if indexPath.row == 2 {
+                // edit phone
+                Analytics.trackClick(button: .settingsEditPhone, screen: self.screen)
+                self.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
+            }
         }
     }
     
