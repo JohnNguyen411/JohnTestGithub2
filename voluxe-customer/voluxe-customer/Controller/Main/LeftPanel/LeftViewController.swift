@@ -158,8 +158,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
             AppController.sharedInstance.helpScreen()
         case .logout:
             Analytics.trackClick(button: .leftPanelLogout)
-            UserManager.sharedInstance.logout()
-            AppController.sharedInstance.startApp()
+            self.signoutDialog()
         }
     }
     
@@ -298,6 +297,13 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     
     @objc func onCloseClicked() {
         AppController.sharedInstance.slideMenuController?.toggleLeft()
+    }
+    
+    func signoutDialog() {
+        self.showDestructiveDialog(title: .Signout, message: .SignoutConfirmation, cancelButtonTitle: .Cancel, destructiveButtonTitle: .Signout, destructiveCompletion: {
+            UserManager.sharedInstance.logout()
+            AppController.sharedInstance.startApp()
+        })
     }
 }
 
