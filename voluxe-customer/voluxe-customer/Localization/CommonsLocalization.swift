@@ -48,5 +48,7 @@ extension String {
     static let DuplicateRequestError = NSLocalizedString("DuplicateRequestError")
     static let Pickup = NSLocalizedString("Pickup")
     static let Delivery = NSLocalizedString("Delivery")
+    static let SignoutConfirmation = NSLocalizedString("SignoutConfirmation")
+
 
 }

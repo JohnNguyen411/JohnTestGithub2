@@ -47,6 +47,8 @@
 "DuplicateRequestError" = "A %@ is already scheduled for your car. Please refresh.";
 "Pickup" = "Pickup";
 "Delivery" = "Delivery";
+"SignoutConfirmation" = "Are you sure you want to sign out?";
+
 
 /***************** FTUE ***************/
 "FTUEStartOne" = "Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.";
