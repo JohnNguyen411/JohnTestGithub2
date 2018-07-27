@@ -31,6 +31,8 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     var addressesCount = 0
     var realm : Realm?
     
+    var wasLocationEnabled = true
+    
     weak var pickupLocationDelegate: PickupLocationDelegate?
     var locationManager = LocationManager.sharedInstance
     
@@ -80,7 +82,10 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         locationManager.autoUpdate = true
         locationManager.delegate = self
         if locationManager.isAuthorizationGranted() {
+            wasLocationEnabled = true
             locationManager.startUpdatingLocation()
+        } else {
+            wasLocationEnabled = false
         }
         bottomButton.isEnabled = false
         
@@ -297,10 +302,16 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                 Logger.print(weakSelf.currentLocationAddress?.thoroughfare ?? "")
                 weakSelf.onLocationAdded()
                 weakSelf.bottomButton.isEnabled = true
+                
+                if !weakSelf.wasLocationEnabled {
+                    self.wasLocationEnabled = true
+                    weakSelf.selectOrAddCurrentAddress(addressString: address.fullAddress())
+                    return
+                }
+                
                 if weakSelf.preselectedIndex >= 0 {
                     weakSelf.selectIndex(selectedIndex: weakSelf.preselectedIndex)
                 } else {
-                    
                     weakSelf.selectIndex(selectedIndex: weakSelf.numberOfRows() - 1)
                     DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                         weakSelf.tableView.scrollToRow(at: IndexPath(row: weakSelf.numberOfRows() - 1, section: 0), at: .bottom, animated: true)
@@ -314,34 +325,13 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         if let pickupLocationDelegate = pickupLocationDelegate {
             if self.currentLocationAddress != nil && selectedIndex == self.numberOfRows() - 1 {
                 
-                guard let currentLocationInfo = currentLocationAddress else { return }
+                guard let currentLocationInfo = self.currentLocationAddress else { return }
                 
                 // add location to realm
                 let addressString: String = currentLocationInfo.fullAddress()
-                var customerAddress = CustomerAddress(id: addressString)
-
-                customerAddress.location = Location(name: addressString, latitude: nil, longitude: nil, location: currentLocationInfo.coordinate)
-                customerAddress.createdAt = Date()
-                customerAddress.updatedAt = Date()
-                customerAddress.volvoCustomerId = user!.email
-                customerAddress.luxeCustomerId = user!.id
-                
-                if let realm = self.realm {
-                    // "email = %@", user.email ?? ""
-                    let existingAddress = realm.objects(CustomerAddress.self).filter("location.address = %@ AND luxeCustomerId = %@", addressString, user!.email ?? "").first
-                    if existingAddress == nil {
-                        try? realm.write {
-                            realm.add(customerAddress, update: true)
-                            if let addresses = addresses {
-                                addressesCount = addresses.count
-                            }
-                        }
-                    } else {
-                        customerAddress = existingAddress!
-                    }
+                if let customerAddress = insertCustomerAddress(addressString: addressString) {
+                    pickupLocationDelegate.onLocationSelected(customerAddress: customerAddress)
                 }
-                
-                pickupLocationDelegate.onLocationSelected(customerAddress: customerAddress)
             } else {
                 if let addresses = addresses, addresses.count > selectedIndex {
                     if let realm = self.realm {
@@ -499,6 +489,63 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         newLocationTextField.closeAutocomplete()
     }
     
+    private func indexOfCurrentAddress() -> Int {
+        guard let addresses = self.addresses else { return -1 }
+        guard let currentLocationInfo = self.currentLocationAddress else { return -1 }
+        let currentLocationString = currentLocationInfo.fullAddress()
+        
+        for (index, address) in addresses.enumerated() {
+            guard let location = address.location else { continue }
+            if location.address == currentLocationString {
+                return index
+            }
+        }
+        
+        return -1
+    }
+    
+    private func selectOrAddCurrentAddress(addressString: String) {
+        let index = indexOfCurrentAddress()
+        if index > -1 {
+            // select
+            selectIndex(selectedIndex: index)
+            tableView.reloadData()
+        } else {
+            let customerAddress = insertCustomerAddress(addressString: addressString)
+            if customerAddress != nil {
+                selectOrAddCurrentAddress(addressString: addressString)
+            }
+        }
+    }
+    
+    private func insertCustomerAddress(addressString: String) -> CustomerAddress? {
+        guard let currentLocationInfo = self.currentLocationAddress else { return nil}
+
+        var customerAddress = CustomerAddress(id: addressString)
+        
+        customerAddress.location = Location(name: addressString, latitude: nil, longitude: nil, location: currentLocationInfo.coordinate)
+        customerAddress.createdAt = Date()
+        customerAddress.updatedAt = Date()
+        customerAddress.volvoCustomerId = user!.email
+        customerAddress.luxeCustomerId = user!.id
+        
+        if let realm = self.realm {
+            // "email = %@", user.email ?? ""
+            let existingAddress = realm.objects(CustomerAddress.self).filter("location.address = %@ AND luxeCustomerId = %@", addressString, user!.id).first
+            if existingAddress == nil {
+                try? realm.write {
+                    realm.add(customerAddress, update: true)
+                    if let addresses = addresses {
+                        addressesCount = addresses.count
+                    }
+                }
+            } else {
+                customerAddress = existingAddress!
+            }
+        }
+        return customerAddress
+    }
+    
 }
 
 extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
@@ -536,6 +583,12 @@ extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
             locationManager.delegate = self
             locationManager.requestWhenInUseAuthorization()
             Analytics.trackView(screen: .requestLocation)
+            return
+        } else if indexPath.row == numberOfRows() - 1 && locationManager.isAuthorizationGranted() {
+            // user clicked on Current Location and location is granted
+            guard let currentLocationInfo = self.currentLocationAddress else { return }
+            Analytics.trackClick(button: .selectLocation, screen: self.screen)
+            self.selectOrAddCurrentAddress(addressString: currentLocationInfo.fullAddress())
             return
         }
         Analytics.trackClick(button: .selectLocation, screen: self.screen)
