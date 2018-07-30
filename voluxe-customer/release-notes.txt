@@ -1,3 +1,8 @@
+v1.0.2(92):
+Misc bugfixes and improvments
+Display current address in location modal
+Sort model vehicles
+
 v1.0.2(87):
 Misc bugfixes and improvments
 Allow Edit on Customer Email and Name
