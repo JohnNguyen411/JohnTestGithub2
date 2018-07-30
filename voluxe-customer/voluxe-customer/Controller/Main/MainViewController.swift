@@ -10,9 +10,9 @@ import Foundation
 import UIKit
 import SlideMenuControllerSwift
 
-class MainViewController: BaseVehicleViewController, ChildViewDelegate {
+class MainViewController: BaseVehicleViewController {
     
-    var currentViewController: ChildViewController?
+    var currentViewController: BaseViewController?
     var previousView: UIView?
    
     override func viewDidLoad() {
@@ -21,10 +21,9 @@ class MainViewController: BaseVehicleViewController, ChildViewDelegate {
         setNavigationBarItem()
     }
 
-    
-    
     override func stateDidChange(state: ServiceState) {
         
+        var newViewController: BaseViewController?
         setTitle(title: getTitleForState(state: state))
         
         var changeView = true
@@ -40,7 +39,7 @@ class MainViewController: BaseVehicleViewController, ChildViewDelegate {
                 changeView = false
             } else {
                 let serviceCarViewController = ServiceCarViewController(vehicle: vehicle, state: serviceState)
-                currentViewController = serviceCarViewController
+                newViewController = serviceCarViewController
             }
             
         } else if serviceState.rawValue >= ServiceState.pickupScheduled.rawValue && serviceState.rawValue <= ServiceState.arrivedForPickup.rawValue {
@@ -48,7 +47,7 @@ class MainViewController: BaseVehicleViewController, ChildViewDelegate {
                 changeView = false
             } else {
                 let scheduledPickupViewController = ScheduledPickupViewController(vehicle: vehicle, state: serviceState)
-                currentViewController = scheduledPickupViewController
+                newViewController = scheduledPickupViewController
             }
             
         } else if serviceState.rawValue >= ServiceState.dropoffScheduled.rawValue && serviceState.rawValue <= ServiceState.arrivedForDropoff.rawValue {
@@ -56,7 +55,7 @@ class MainViewController: BaseVehicleViewController, ChildViewDelegate {
                 changeView = false
             } else {
                 let scheduledDeliveryViewController = ScheduledDropoffViewController(vehicle: vehicle, state: serviceState)
-                currentViewController = scheduledDeliveryViewController
+                newViewController = scheduledDeliveryViewController
             }
         } else if serviceState == .idle {
             AppController.sharedInstance.showVehiclesView(animated: true)
@@ -66,26 +65,25 @@ class MainViewController: BaseVehicleViewController, ChildViewDelegate {
             currentViewController?.stateDidChange(state: serviceState)
         }
 
-        if let currentViewController = currentViewController, changeView {
-            currentViewController.view.accessibilityIdentifier = "currentViewController"
-            currentViewController.childViewDelegate = self
-            if let view = previousView {
-                view.removeFromSuperview()
-            }
-            
-            if let view = currentViewController.view {
-                previousView = view
-                self.view.addSubview(view)
-                
-                view.snp.makeConstraints { make in
-                    make.edgesEqualsToView(view: self.view)
-                }
-            }
-            // TODO this has a bug where the current view controller never fires
-            // viewDidAppear() so the analytics fail, find the correct way to do this
-            // using the child view controller stuff
-            currentViewController.viewDidAppear(false)
+        if let newViewController = newViewController, changeView {
+           self.updateChildViewController(uiViewController: newViewController)
         }
+    }
+    
+    private func updateChildViewController(uiViewController: BaseViewController) {
+        uiViewController.view.accessibilityIdentifier = "currentViewController"
+        addChildViewController(uiViewController)
+        uiViewController.view.frame = view.bounds
+        view.addSubview(uiViewController.view)
+        uiViewController.didMove(toParentViewController: self)
+        
+        if let currentViewController = self.currentViewController {
+            currentViewController.willMove(toParentViewController: nil)
+            currentViewController.view.removeFromSuperview()
+            currentViewController.removeFromParentViewController()
+        }
+        
+        currentViewController = uiViewController
     }
     
     func getTitleForState(state: ServiceState) -> String? {
@@ -102,21 +100,6 @@ class MainViewController: BaseVehicleViewController, ChildViewDelegate {
             return .ScheduledDelivery
         }
         return nil
-    }
-    
-    func setTitleFromChild(title: String) {
-        setTitle(title: title)
-    }
-
-    // TODO https://github.com/volvo-cars/ios/issues/314
-    // clarify the intent of this, it's deprecated but doesn't seem to be called
-    @available(*, deprecated)
-    func pushViewController(controller: UIViewController, animated: Bool, backLabel: String?, title: String?) {
-        self.navigationController?.pushViewController(controller, animated: animated)
-        if let backLabel = backLabel {
-            let backItem = UIBarButtonItem(title: backLabel, style: .plain, target: self, action: #selector(onBackClicked))
-            navigationItem.backBarButtonItem = backItem
-        }
     }
 
     override func keyboardWillAppear(_ notification: Notification) {

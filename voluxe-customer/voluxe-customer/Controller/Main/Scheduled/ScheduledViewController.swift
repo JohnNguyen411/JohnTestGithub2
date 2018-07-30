@@ -16,7 +16,7 @@ import Result
 import SwiftEventBus
 import MBProgressHUD
 
-class ScheduledViewController: ChildViewController {
+class ScheduledViewController: BaseViewController {
     
     private static let ETARefreshThrottle: Double = 30
     
