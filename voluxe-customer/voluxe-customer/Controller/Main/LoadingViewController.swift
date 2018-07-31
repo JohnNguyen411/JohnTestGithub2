@@ -94,7 +94,12 @@ class LoadingViewController: LogoViewController {
                 
             }
             }.onFailure { error in
-
+                
+                if error.statusCode == 404 || error.statusCode == 403 {
+                    self.logout()
+                    return
+                }
+                
                 if let apiError = error.apiError {
                     if apiError.getCode() == .E3004 {
                         // code not verified
@@ -111,10 +116,6 @@ class LoadingViewController: LogoViewController {
                     }
                 }
                 
-                if error.statusCode == 404 || error.statusCode == 403 {
-                    self.logout()
-                    return
-                }
                 self.errorRetrievingCustomer(customerId: customerId, error: nil)
         }
     }
