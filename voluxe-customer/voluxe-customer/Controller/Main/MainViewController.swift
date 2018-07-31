@@ -18,7 +18,11 @@ class MainViewController: BaseVehicleViewController {
     override func viewDidLoad() {
         stateDidChange(state: self.serviceState)
         super.viewDidLoad()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
         setNavigationBarItem()
+        super.viewDidAppear(animated)
     }
 
     override func stateDidChange(state: ServiceState) {

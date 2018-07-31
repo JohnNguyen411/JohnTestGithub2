@@ -99,7 +99,7 @@
 "UpdatePassword" = "Update your password.";
 "ForgotPassword" = "Forgot password?";
 "PasswordResetLogin" = "Password successfully reset, please proceed to login.";
-"PasswordUnauthorizedChars" = "Your password contains unauthorized characters. Authorized characters: @$!%*?&.";
+"PasswordUnauthorizedChars" = "Your password contains unauthorized characters. Authorized characters: @$!%*?&";
 "AreYouSureDeleteAddress" = "Are you sure you want to delete that address %@?";
 "RequiresANumber" = "Requires a letter";
 "RequiresANumber" = "Requires a number";

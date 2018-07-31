@@ -37,8 +37,6 @@ class HelpViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setNavigationBarItem()
-        
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
@@ -58,6 +56,11 @@ class HelpViewController: BaseViewController {
             }.onFailure { error in
                 
         }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        setNavigationBarItem()
     }
     
     override func setupViews() {

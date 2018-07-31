@@ -30,9 +30,7 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setNavigationBarItem()
-        
+                
         tableView.backgroundColor = .clear
         tableView.dataSource = self
         tableView.delegate = self
@@ -49,6 +47,12 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
             vehicleCount = vehicles.count
         }
         tableView.reloadData()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        setNavigationBarItem()
     }
     
     

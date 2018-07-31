@@ -61,9 +61,6 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        setNavigationBarItem()
-        self.navigationItem.title = .NewService
 
         // init tap events
         scheduledServiceView.isUserInteractionEnabled = true
@@ -87,16 +84,21 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        setNavigationBarItem()
         super.viewDidAppear(animated)
         
         showVehicles(vehicles: UserManager.sharedInstance.getVehicles()!)
         stateDidChange(state: serviceState)
+        
+        // animate alpha at the first load
+        self.contentView.animateAlpha(show: true)
     }
     
     
     override func setupViews() {
         super.setupViews()
         
+        self.contentView.alpha = 0
         self.view.addSubview(contentView)
         
         confirmButton.accessibilityLabel = "confirmButton"

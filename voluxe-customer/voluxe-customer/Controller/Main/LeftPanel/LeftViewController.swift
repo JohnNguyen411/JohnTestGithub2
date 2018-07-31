@@ -169,7 +169,10 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
             self.slideMenuController()?.changeMainViewController(uiNavigationController, close: true)
         }
         
-        self.updateNotificationBadge()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: { [weak self] in
+            self?.updateNotificationBadge()
+        })
+        
         uiNavigationController.setTitle(title: title)
     }
     

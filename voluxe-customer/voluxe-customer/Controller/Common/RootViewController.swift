@@ -127,6 +127,7 @@ class RootViewController: UIViewController {
         if let leftVC = self.slideMenuController?.leftViewController as? LeftViewController {
             leftVC.mainNavigationViewController = uiNavigationController
             self.slideMenuController?.leftViewController = leftVC
+            leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: uiNavigationController.title, animated: true)
         } else {
             let leftViewController = LeftViewController()
             leftViewController.view.accessibilityIdentifier = "leftViewController"
@@ -170,18 +171,8 @@ class RootViewController: UIViewController {
     // showVehiclesView: show VehiclesView if no active services, current service if any
     func showVehiclesView(animated: Bool) {
         switchToMainScreen()
-        // need to delay to make sure the leftpanel is created already
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
-            if UserManager.sharedInstance.getActiveBookings().count > 0 {
-                let booking = UserManager.sharedInstance.getActiveBookings()[0]
-                if let vehicle = booking.vehicle {
-                    let state = StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id)
-                    if state != .idle {
-                        self.loadViewForVehicle(vehicle: vehicle, state: state)
-                    }
-                }
-            }
-        })
+        
+        self.displayActiveBooking()
         
         UNUserNotificationCenter.current().getNotificationSettings { (settings) in
             guard settings.authorizationStatus == .notDetermined else { return }
@@ -205,7 +196,20 @@ class RootViewController: UIViewController {
         }
     }
     
+    private func displayActiveBooking() {
+        if UserManager.sharedInstance.getActiveBookings().count > 0 {
+            let booking = UserManager.sharedInstance.getActiveBookings()[0]
+            if let vehicle = booking.vehicle {
+                let state = StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id)
+                if state != .idle {
+                    self.loadViewForVehicle(vehicle: vehicle, state: state)
+                }
+            }
+        }
+    }
+    
     func loadViewForVehicle(vehicle: Vehicle, state: ServiceState) {
+
         if let slideMenu = slideMenuController {
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
                 var vehicleViewController: BaseViewController?
@@ -223,17 +227,13 @@ class RootViewController: UIViewController {
     
     func loadBookingFeedback(bookingFeedback: BookingFeedback) {
         createMenuView()
-        // need to delay to make sure the leftpanel is created already
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.01, execute: {
-            
-            if let slideMenu = self.slideMenuController {
-                if let leftVC = slideMenu.leftViewController as? LeftViewController {
-                    let uiNavigationController = VLNavigationController(rootViewController: BookingRatingViewController(bookingFeedback: bookingFeedback))
-                    self.styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-                    leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: nil, animated: true)
-                }
+        if let slideMenu = self.slideMenuController {
+            if let leftVC = slideMenu.leftViewController as? LeftViewController {
+                let uiNavigationController = VLNavigationController(rootViewController: BookingRatingViewController(bookingFeedback: bookingFeedback))
+                self.styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
+                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: nil, animated: true)
             }
-        })
+        }
     }
     
     func settingsScreen() {
