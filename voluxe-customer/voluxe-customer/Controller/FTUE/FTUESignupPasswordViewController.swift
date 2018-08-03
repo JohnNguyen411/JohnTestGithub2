@@ -82,10 +82,12 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     override func setupViews() {
         
-        self.view.addSubview(passwordLabel)
-        self.view.addSubview(passwordConditionLabel)
-        self.view.addSubview(volvoPwdTextField)
-        self.view.addSubview(volvoPwdConfirmTextField)
+        super.setupViews()
+        
+        scrollView.addSubview(passwordLabel)
+        scrollView.addSubview(passwordConditionLabel)
+        scrollView.addSubview(volvoPwdTextField)
+        scrollView.addSubview(volvoPwdConfirmTextField)
         
         passwordLabel.snp.makeConstraints { (make) -> Void in
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)

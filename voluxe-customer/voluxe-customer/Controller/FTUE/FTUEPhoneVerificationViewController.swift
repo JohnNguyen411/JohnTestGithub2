@@ -81,10 +81,11 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     }
 
     override func setupViews() {
+        super.setupViews()
         
-        self.view.addSubview(codeTextField)
-        self.view.addSubview(phoneNumberLabel)
-        self.view.addSubview(updatePhoneNumberButton)
+        scrollView.addSubview(codeTextField)
+        scrollView.addSubview(phoneNumberLabel)
+        scrollView.addSubview(updatePhoneNumberButton)
         
         updatePhoneNumberButton.contentHorizontalAlignment = .left
         

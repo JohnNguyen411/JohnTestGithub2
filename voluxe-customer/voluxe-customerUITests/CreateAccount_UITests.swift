@@ -157,13 +157,15 @@ class CreateAccount_UITests: XCTestCase {
         phoneTextfield.typeText("415😶🍩💨555abc9999")
         XCTAssertTrue(next.isEnabled)
 
-        // uncheck the tosCheckbox to make sure next button is not showing when unchecked
+        // uncheck the tosCheckbox
         tosCheckbox.tap()
-        XCTAssertFalse(next.isEnabled)
+        // tap the next button
+        next.tap()
+        // make sure we didn't progress as the checkbox isn't checked
+        self.wait()
         
-        // check the tosCheckbox to make sure next button is showing when checked and data valid
+        // check the tosCheckbox
         tosCheckbox.tap()
-        XCTAssertTrue(next.isEnabled)
     }
 
     func test21_validEmailAndPhone() {

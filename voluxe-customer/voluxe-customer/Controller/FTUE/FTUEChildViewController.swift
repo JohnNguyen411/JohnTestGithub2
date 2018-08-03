@@ -11,9 +11,26 @@ import UIKit
 
 class FTUEChildViewController: BaseViewController {
     
+    // all the screen from FTUE need to have a scrollView at the root to be able to dismiss keyboard at any time
+    let scrollView = VLScrollView()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem?.title = .Next
+    }
+    
+    override func setupViews() {
+        super.setupViews()
+        self.view.addSubview(scrollView)
+        
+        scrollView.snp.makeConstraints { make in
+            make.edgesEqualsToView(view: self.view)
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollView.viewDidLayoutSubviews()
     }
     
     func canGoBack(backEnabled: Bool) {

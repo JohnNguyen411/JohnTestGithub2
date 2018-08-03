@@ -146,20 +146,21 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 }
             }
         }
-        
     }
     
     override func setupViews() {
         
-        self.view.addSubview(phoneNumberLabel)
-        self.view.addSubview(phoneNumberConfirmLabel)
-        self.view.addSubview(emailTextField)
-        self.view.addSubview(phoneNumberTextField)
-        self.view.addSubview(tosCheckbox)
-        self.view.addSubview(tosLabel)
+        super.setupViews()
+        
+        scrollView.addSubview(phoneNumberLabel)
+        scrollView.addSubview(phoneNumberConfirmLabel)
+        scrollView.addSubview(emailTextField)
+        scrollView.addSubview(phoneNumberTextField)
+        scrollView.addSubview(tosCheckbox)
+        scrollView.addSubview(tosLabel)
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
-            make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
+            make.equalsToTop(view: scrollView.contentView, offset: BaseViewController.defaultTopYOffset)
             make.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
         }
@@ -181,7 +182,6 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         phoneNumberConfirmLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(phoneNumberLabel)
             make.top.equalTo(phoneNumberTextField.snp.bottom).offset(-34)
-            make.height.equalTo(20)
         }
         
         tosCheckbox.snp.makeConstraints { (make) -> Void in
@@ -197,6 +197,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
             make.right.equalToSuperview().offset(-10)
         }
     }
+  
     
     //MARK: Validation methods
     
@@ -244,6 +245,10 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
+            } else if apiError.getCode() == .E4046 {
+                self.showOkDialog(title: .Error, message: .PhoneNumberInvalid, dialog: .error, screen: self.screen)
+            } else  {
+                self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
             }
         } else {
             self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
@@ -263,10 +268,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     }
     
     override func checkTextFieldsValidity() -> Bool {
-        var enabled = isEmailValid(email: emailTextField.textField.text) && isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text)
-        if enabled {
-            enabled = tosCheckbox.checked
-        }
+        let enabled = isEmailValid(email: emailTextField.textField.text) && isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text)
         canGoNext(nextEnabled: enabled)
         return enabled
     }
@@ -294,6 +296,21 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     
     override func onRightClicked() {
         super.onRightClicked()
+        
+        if !tosCheckbox.checked {
+            
+            phoneNumberTextField.textField.resignFirstResponder()
+            emailTextField.textField.resignFirstResponder()
+            
+            tosCheckbox.shake()
+            tosLabel.shake()
+            
+            tosLabel.textColor = .luxeRed()
+            return
+        } else {
+            tosLabel.textColor = .luxeDarkGray()
+        }
+        
         guard let validPhoneNumber = validPhoneNumber else {
             return
         }

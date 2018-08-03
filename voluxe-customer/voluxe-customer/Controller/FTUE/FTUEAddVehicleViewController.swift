@@ -89,10 +89,12 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     }
     
     override func setupViews() {
-        self.view.addSubview(label)
-        self.view.addSubview(yearLabel)
-        self.view.addSubview(modelLabel)
-        self.view.addSubview(colorLabel)
+        super.setupViews()
+        
+        scrollView.addSubview(label)
+        scrollView.addSubview(yearLabel)
+        scrollView.addSubview(modelLabel)
+        scrollView.addSubview(colorLabel)
         
         
         label.snp.makeConstraints { (make) -> Void in

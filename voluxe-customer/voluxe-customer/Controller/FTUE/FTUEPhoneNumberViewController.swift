@@ -71,10 +71,11 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     }
     
     override func setupViews() {
+        super.setupViews()
         
-        self.view.addSubview(phoneNumberTextField)
-        self.view.addSubview(phoneNumberLabel)
-        self.view.addSubview(phoneNumberConfirmLabel)
+        scrollView.addSubview(phoneNumberTextField)
+        scrollView.addSubview(phoneNumberLabel)
+        scrollView.addSubview(phoneNumberConfirmLabel)
         
         let sizeThatFits = phoneNumberLabel.sizeThatFits(CGSize(width: view.frame.width-40, height: CGFloat(MAXFLOAT)))
         

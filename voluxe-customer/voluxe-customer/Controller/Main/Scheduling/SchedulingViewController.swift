@@ -620,7 +620,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
         scheduledPickupView.setTitle(title: getScheduledPickupTitle(), leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")", rightDescription: "")
     }
     
-    func onSizeChanged() {
+    override func onSizeChanged() {
         // increase size of presenter
         let newHeight = CGFloat(currentPresentrVC!.height())
         let presentationType = getPresenterPresentationType(heightInPixels: newHeight, customYOrigin: BaseViewController.fakeYOrigin)
@@ -686,7 +686,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
         })
     }
     
-    func closePresenter() {
+    override func closePresenter() {
         currentPresentrVC?.dismiss(animated: true, completion: nil)
     }
     

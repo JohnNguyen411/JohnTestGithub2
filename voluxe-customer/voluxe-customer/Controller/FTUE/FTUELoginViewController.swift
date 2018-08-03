@@ -63,10 +63,11 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     }
     
     override func setupViews() {
+        super.setupViews()
         
-        self.view.addSubview(emailTextField)
-        self.view.addSubview(passwordTextField)
-        self.view.addSubview(forgotPassword)
+        scrollView.addSubview(emailTextField)
+        scrollView.addSubview(passwordTextField)
+        scrollView.addSubview(forgotPassword)
         
         emailTextField.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(20)

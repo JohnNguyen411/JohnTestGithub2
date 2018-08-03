@@ -12,7 +12,9 @@ import MBProgressHUD
 import Firebase
 import SwiftEventBus
 
-class BaseViewController: UIViewController, PresentrDelegate {
+class BaseViewController: UIViewController, PresentrDelegate, VLPresentrViewDelegate {
+    
+    
     
     static let defaultTopYOffset: CGFloat = 36.0
     static let fakeYOrigin: CGFloat = -555.0
@@ -42,6 +44,7 @@ class BaseViewController: UIViewController, PresentrDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        ViewUtils.screenSize = self.view.frame.size
         styleViews()
         setupViews()
         styleNavigationBar(navigationBar: self.navigationController?.navigationBar)
@@ -175,11 +178,22 @@ class BaseViewController: UIViewController, PresentrDelegate {
                                                                     screen: .requestNotifications,
                                                                     delegate: appDelegate)
             permissionVC.view.accessibilityIdentifier = "permissionVC"
+            permissionVC.sizeDelegate = self
             currentPresentrVC = permissionVC
             currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: dismissOnTap)
             customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: nil)
             NotificationPermissionViewController.isShowing = true
         }
+    }
+    
+    func closePresenter() {}
+    
+    func onSizeChanged() {
+        guard let currentPresentrVC = self.currentPresentrVC else { return }
+        // increase size of presenter
+        let newHeight = CGFloat(currentPresentrVC.height())
+        let presentationType = getPresenterPresentationType(heightInPixels: newHeight, customYOrigin: BaseViewController.fakeYOrigin)
+        currentPresentr?.currentPresentationController?.updateToNewFrame(presentationType: presentationType)
     }
 
     func logViewScreen() {
@@ -338,5 +352,4 @@ extension UIViewController {
     func hideProgressHUD() {
         MBProgressHUD.hide(for: getViewForHUD(), animated: true)
     }
-    
 }

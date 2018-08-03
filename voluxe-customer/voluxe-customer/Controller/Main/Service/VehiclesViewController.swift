@@ -30,6 +30,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     var selectedVehicle: Vehicle?
     var vehicleCount = 0
 
+    let scrollView = VLScrollView()
     let vehicleCollectionView: UICollectionView
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
     let vehicleImageView = UIImageView(frame: .zero)
@@ -105,25 +106,31 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         
         vehicleCollectionView.clipsToBounds = false
         contentView.addSubview(vehicleCollectionView)
-        contentView.addSubview(vehicleTypeView)
-        contentView.addSubview(vehicleImageView)
-        contentView.addSubview(preferedDealershipView)
-        contentView.addSubview(scheduledServiceView)
-        contentView.addSubview(confirmButton)
+        contentView.addSubview(scrollView)
+        
+        scrollView.addSubview(vehicleTypeView)
+        scrollView.addSubview(vehicleImageView)
+        scrollView.addSubview(preferedDealershipView)
+        scrollView.addSubview(scheduledServiceView)
+        scrollView.addSubview(confirmButton)
         
         contentView.snp.makeConstraints { make in
             make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(10, 20, 20, 20))
         }
         
         vehicleCollectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.left.right.equalTo(self.view)
+            make.left.right.top.equalToSuperview()
             make.height.equalTo(VehicleCell.VehicleCellHeight)
+        }
+        
+        scrollView.snp.makeConstraints { make in
+            make.left.right.bottom.equalToSuperview()
+            make.top.equalTo(vehicleCollectionView.snp.bottom).offset(20)
         }
         
         vehicleTypeView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(vehicleCollectionView.snp.bottom).offset(20)
+            make.top.equalToSuperview()
             make.height.equalTo(VLTitledLabel.height)
         }
         
@@ -150,6 +157,27 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
             make.height.equalTo(VLButton.primaryHeight)
         }
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        scrollView.viewDidLayoutSubviews()
+        
+        preferedDealershipView.layoutIfNeeded()
+        confirmButton.layoutIfNeeded()
+        scrollView.contentView.setNeedsLayout()
+        scrollView.contentView.layoutIfNeeded()
+
+        var contentHeight: CGFloat = 0.0
+        if !preferedDealershipView.isHidden {
+            contentHeight = preferedDealershipView.frame.origin.y + preferedDealershipView.frame.size.height
+        } else if let scrollViewSize = scrollView.scrollViewSize, !confirmButton.isHidden {
+            contentHeight = scrollViewSize.height
+        }
+        
+        scrollView.contentView.frame = CGRect(x: scrollView.contentView.frame.origin.x, y: scrollView.contentView.frame.origin.y, width: scrollView.contentView.frame.size.width, height: contentHeight)
+        scrollView.contentSize = CGSize(width: scrollView.contentView.frame.width, height: scrollView.contentView.frame.height)
+    }
+    
     
     func showVehicles(vehicles: [Vehicle]) {
         self.vehicles = vehicles

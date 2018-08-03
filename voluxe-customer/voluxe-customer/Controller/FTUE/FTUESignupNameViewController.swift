@@ -24,7 +24,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         textView.numberOfLines = 0
         return textView
     }()
-    
+        
     let firstNameTextField = VLVerticalTextField(title: .FirstName, placeholder: .FirstNamePlaceholder)
     let lastNameTextField = VLVerticalTextField(title: .LastName, placeholder: .LastNamePlaceholder)
     
@@ -93,9 +93,11 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     
     override func setupViews() {
         
-        self.view.addSubview(welcomeLabel)
-        self.view.addSubview(firstNameTextField)
-        self.view.addSubview(lastNameTextField)
+        super.setupViews()
+        
+        scrollView.addSubview(welcomeLabel)
+        scrollView.addSubview(firstNameTextField)
+        scrollView.addSubview(lastNameTextField)
         
         if editMode {
             welcomeLabel.isHidden = true

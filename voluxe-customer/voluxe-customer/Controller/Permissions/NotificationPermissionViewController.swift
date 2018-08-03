@@ -17,6 +17,7 @@ class NotificationPermissionViewController: VLPresentrViewController, PresentrDe
     let notNowButton = VLButton(type: .whitePrimary, title: String.NotNow.uppercased())
     let allowButton = VLButton(type: .bluePrimary, title: String.Allow.uppercased())
     let notifDelegate: UNUserNotificationCenterDelegate
+    var sizeDelegate: VLPresentrViewDelegate?
     
     let permissionText: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -29,6 +30,7 @@ class NotificationPermissionViewController: VLPresentrViewController, PresentrDe
         return textView
     }()
     
+    var sizePermissionText = 0
     let appIcon = UIImageView(image: UIImage(named: "appIconNotif"))
 
     init(title: String, screen: AnalyticsEnums.Name.Screen, delegate: UNUserNotificationCenterDelegate) {
@@ -60,6 +62,8 @@ class NotificationPermissionViewController: VLPresentrViewController, PresentrDe
         containerView.addSubview(permissionText)
         containerView.addSubview(appIcon)
         
+        sizePermissionText = Int(permissionText.sizeThatFits(CGSize(width: self.view.frame.width - 60, height: CGFloat(MAXFLOAT))).height)
+
         notNowButton.snp.makeConstraints { make in
             make.bottom.left.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2).offset(-10)
@@ -82,10 +86,14 @@ class NotificationPermissionViewController: VLPresentrViewController, PresentrDe
             make.bottom.equalTo(permissionText.snp.top).offset(-20)
             make.height.width.equalTo(70)
         }
+        
+        if let sizeDelegate = sizeDelegate {
+            sizeDelegate.onSizeChanged()
+        }
     }
     
     override func height() -> Int {
-        return baseHeight + 190
+        return baseHeight + sizePermissionText + 145
     }
 
     func requestPushNotifications() {

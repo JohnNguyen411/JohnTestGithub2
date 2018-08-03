@@ -86,9 +86,10 @@ class ScheduledViewController: BaseViewController {
         }
         
         driverViewContainer.isHidden = true
+        let mapHeight = ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(ScheduledViewController.mapViewHeight + ScheduledViewController.driverViewHeight))
         
         mapVC.view.snp.updateConstraints { (make) -> Void in
-            make.height.equalTo(ScheduledViewController.mapViewHeight + ScheduledViewController.driverViewHeight)
+            make.height.equalTo(mapHeight)
         }
         
         addShadow(toView: mapViewContainer)
@@ -121,47 +122,47 @@ class ScheduledViewController: BaseViewController {
             driverViewContainer.addSubview(driverContact)
             
             verticalStepView.snp.makeConstraints { make in
-                make.left.equalToSuperview().offset(30)
-                make.top.equalToSuperview().offset(BaseViewController.defaultTopYOffset)
-                make.right.equalToSuperview().offset(-30)
-                make.height.equalTo(verticalStepView.height)
+                make.left.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 30))
+                make.top.equalToSuperview().offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: BaseViewController.defaultTopYOffset))
+                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -30))
+                make.height.equalTo(verticalStepView.height) // already adapter inside
             }
             
             mapViewContainer.snp.makeConstraints { make in
-                make.left.equalToSuperview().offset(25)
-                make.right.equalToSuperview().offset(-25)
+                make.left.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 25))
+                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -25))
                 make.top.equalTo(verticalStepView.snp.bottom)
-                make.height.equalTo(ScheduledViewController.mapViewHeight + ScheduledViewController.driverViewHeight)
+                make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(ScheduledViewController.mapViewHeight + ScheduledViewController.driverViewHeight)))
             }
             
             mapViewContainer.addSubview(mapVC.view)
             mapVC.view.snp.makeConstraints { (make) -> Void in
                 make.left.right.top.equalToSuperview()
-                make.height.equalTo(ScheduledViewController.mapViewHeight)
+                make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(ScheduledViewController.mapViewHeight)))
             }
             
             driverViewContainer.snp.makeConstraints { make in
                 make.left.right.equalToSuperview()
                 make.top.equalTo(mapVC.view.snp.bottom)
-                make.height.equalTo(ScheduledViewController.driverViewHeight)
+                make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(ScheduledViewController.driverViewHeight)))
             }
             
             driverIcon.snp.makeConstraints { make in
-                make.left.equalToSuperview().offset(10)
+                make.left.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 10))
                 make.centerY.equalToSuperview()
-                make.width.height.equalTo(35)
+                make.width.height.equalTo(ViewUtils.getAdaptedWidthSize(sizeInPoints: 35))
             }
             
             driverName.snp.makeConstraints { make in
-                make.left.equalTo(driverIcon.snp.right).offset(10)
+                make.left.equalTo(driverIcon.snp.right).offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 10))
                 make.centerY.right.equalToSuperview()
-                make.height.equalTo(35)
+                make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 35))
             }
             
             driverContact.snp.makeConstraints { make in
                 make.centerY.right.equalToSuperview()
-                make.height.equalTo(35)
-                make.width.equalTo(100)
+                make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 35))
+                make.width.equalTo(ViewUtils.getAdaptedWidthSize(sizeInPoints: 100))
             }
             
             timeWindowView.snp.makeConstraints { make in
@@ -182,7 +183,7 @@ class ScheduledViewController: BaseViewController {
                 make in
                 make.left.right.equalToSuperview()
                 make.top.equalTo(timeWindowView.snp.bottom)
-                make.height.equalTo(100)
+                make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 100))
             }
         }
     }
