@@ -11,6 +11,8 @@
 		52078A4D132E9D871CDD555D /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
 		52D5C9B12113AE270020F43F /* VLScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B02113AE270020F43F /* VLScrollView.swift */; };
 		52D5C9B32113DA9D0020F43F /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B22113DA9D0020F43F /* ViewUtils.swift */; };
+		52D5C9B52114FF080020F43F /* DriverInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B42114FF080020F43F /* DriverInfoViewController.swift */; };
+		52D5C9B7211514EF0020F43F /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B6211514EF0020F43F /* RoundImageView.swift */; };
 		5303E2F320E45C1600B1F4BE /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */; };
 		5303E2F620E4622600B1F4BE /* UserDefaults_UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F520E4622600B1F4BE /* UserDefaults_UnitTests.swift */; };
 		5303E2F820E4631D00B1F4BE /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
@@ -456,6 +458,8 @@
 		51EA00834FA121CCED3736C9 /* Pods-voluxe-customerUnitTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.beta.xcconfig"; sourceTree = "<group>"; };
 		52D5C9B02113AE270020F43F /* VLScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLScrollView.swift; sourceTree = "<group>"; };
 		52D5C9B22113DA9D0020F43F /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
+		52D5C9B42114FF080020F43F /* DriverInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverInfoViewController.swift; sourceTree = "<group>"; };
+		52D5C9B6211514EF0020F43F /* RoundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
 		5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsCore.swift; sourceTree = "<group>"; };
 		5303E2F520E4622600B1F4BE /* UserDefaults_UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults_UnitTests.swift; sourceTree = "<group>"; };
 		5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Voluxe.swift"; sourceTree = "<group>"; };
@@ -986,6 +990,7 @@
 				6C20E1A51FBE28C000E5D9A0 /* TimeWindowView.swift */,
 				6C522455208568E90078D9B9 /* PasswordToggleVisibilityView.swift */,
 				52D5C9B02113AE270020F43F /* VLScrollView.swift */,
+				52D5C9B6211514EF0020F43F /* RoundImageView.swift */,
 			);
 			path = Custom;
 			sourceTree = "<group>";
@@ -1007,6 +1012,7 @@
 				6C20E1BE1FBE635B00E5D9A0 /* ScheduledViewController.swift */,
 				6C20E1B91FBE632800E5D9A0 /* Dropoff */,
 				6C32C3041FBCBF0E00B1218C /* Pickup */,
+				52D5C9B42114FF080020F43F /* DriverInfoViewController.swift */,
 			);
 			path = Scheduled;
 			sourceTree = "<group>";
@@ -2395,6 +2401,7 @@
 				6CF3F44F20F4113700A89214 /* UITextView+Voluxe.swift in Sources */,
 				6C7342031FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6CDCC60A2058442800DFA831 /* CheckableTableViewCell.swift in Sources */,
+				52D5C9B52114FF080020F43F /* DriverInfoViewController.swift in Sources */,
 				5340E91220D876F400B17D53 /* DebugFontCellView.swift in Sources */,
 				6C5DDECC20096CF8000847C9 /* CustomerAPI.swift in Sources */,
 				6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
@@ -2493,6 +2500,7 @@
 				6C1CE1ED20CB1A8F00A2E054 /* RatingLocalization.swift in Sources */,
 				6C1CE1F320CB3D6000A2E054 /* VLMarkedSlider.swift in Sources */,
 				6C937065204F64360084443C /* SettingsCarViewController.swift in Sources */,
+				52D5C9B7211514EF0020F43F /* RoundImageView.swift in Sources */,
 				6CBAA6CB2023FEE800F35ECF /* CheckmarkCell.swift in Sources */,
 				6C7DDE131FDB664D000E2822 /* String+Utils.swift in Sources */,
 				6C91BBF11FA8F2A30033C2B1 /* String+Localized.swift in Sources */,

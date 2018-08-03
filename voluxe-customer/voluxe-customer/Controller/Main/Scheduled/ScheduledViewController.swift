@@ -15,8 +15,9 @@ import BrightFutures
 import Result
 import SwiftEventBus
 import MBProgressHUD
+import SDWebImage
 
-class ScheduledViewController: BaseViewController {
+class ScheduledViewController: BaseViewController, DriverInfoViewControllerProtocol {
     
     private static let ETARefreshThrottle: Double = 30
     
@@ -70,6 +71,15 @@ class ScheduledViewController: BaseViewController {
         mapVC.view.accessibilityIdentifier = "mapVC.view"
         timeWindowView.accessibilityIdentifier = "timeWindowView"
         testView.accessibilityIdentifier = "testView"
+        
+        driverIcon.isUserInteractionEnabled = true
+        driverName.isUserInteractionEnabled = true
+        
+        let driverIconTap = UITapGestureRecognizer(target: self, action: #selector(self.driverTap(_:)))
+        driverIcon.addGestureRecognizer(driverIconTap)
+        let driverTap = UITapGestureRecognizer(target: self, action: #selector(self.driverTap(_:)))
+        driverName.addGestureRecognizer(driverTap)
+
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -211,7 +221,7 @@ class ScheduledViewController: BaseViewController {
         driverViewContainer.animateAlpha(show: false)
         UIView.animate(withDuration: 0.25, animations: {
             self.mapVC.view.snp.updateConstraints { (make) -> Void in
-                make.height.equalTo(ScheduledViewController.mapViewHeight + ScheduledViewController.driverViewHeight)
+                make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(ScheduledViewController.mapViewHeight + ScheduledViewController.driverViewHeight)))
             }
         })
         self.driver = nil
@@ -224,7 +234,7 @@ class ScheduledViewController: BaseViewController {
             driverViewContainer.animateAlpha(show: true)
             UIView.animate(withDuration: 0.25, animations: {
                 self.mapVC.view.snp.updateConstraints { (make) -> Void in
-                    make.height.equalTo(ScheduledViewController.mapViewHeight)
+                    make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(ScheduledViewController.mapViewHeight)))
                 }
             })
         } else {
@@ -333,6 +343,27 @@ class ScheduledViewController: BaseViewController {
             MBProgressHUD.hide(for: self.view, animated: true)
             self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
         }
+    }
+    
+    @objc func driverTap(_ tapGesture: UITapGestureRecognizer) {
+        if let driver = self.driver {
+            self.navigationController?.view.blurByLuxe()
+
+            let driverViewController = DriverInfoViewController(driver: driver, delegate: self)
+            
+            SDWebImageManager.shared().loadImage(with: URL(string: driver.iconUrl ?? ""), options: SDWebImageOptions.allowInvalidSSLCertificates, progress: nil, completed: { (image, data, error, cacheType, finished, url) in
+                if image != nil {
+                    driverViewController.roundImageView.image = image
+                    driverViewController.modalPresentationStyle = .overCurrentContext
+                    driverViewController.modalTransitionStyle = .crossDissolve
+                    self.navigationController?.present(driverViewController, animated: true, completion: nil)
+                }
+            })
+        }
+    }
+    
+    func onDismiss() {
+        self.navigationController?.view.unblurByLuxe()
     }
     
 }

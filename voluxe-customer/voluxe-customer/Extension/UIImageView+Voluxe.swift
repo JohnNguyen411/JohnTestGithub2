@@ -11,7 +11,7 @@ import SDWebImage
 
 extension UIImageView {
     
-    static func makeRoundImageView(frame: CGRect, photoUrl: URL?, defaultImage: UIImage!) -> UIImageView {
+    static func makeRoundImageView(frame: CGRect, photoUrl: URL?, defaultImage: UIImage!, shadow: Bool = false) -> UIImageView {
         let imageView = UIImageView(frame: frame)
         
         if let photoUrl = photoUrl {
@@ -22,9 +22,14 @@ extension UIImageView {
         
         imageView.layer.cornerRadius = frame.size.width / 2
         imageView.clipsToBounds = true
-        imageView.layer.borderWidth = 0.0
-        imageView.layer.borderColor = UIColor.white.cgColor
         
+        if shadow {
+            imageView.layer.masksToBounds = true
+            imageView.layer.shadowColor = UIColor.black.cgColor
+            imageView.layer.shadowOpacity = 0.5
+            imageView.layer.shadowOffset = CGSize(width: -2, height: 2)
+            imageView.layer.shadowRadius = 2
+        }
         return imageView
     }
     
