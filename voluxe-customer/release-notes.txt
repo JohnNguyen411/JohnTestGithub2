@@ -1,3 +1,10 @@
+v1.0.2(96):
+Adaptive display for smaller resolution
+Fix navigation bug on customer feedback
+Enlarge driver picture on tap
+Update request map pin icon
+Misc bugfixes and improvments
+
 v1.0.2(92):
 Misc bugfixes and improvments
 Display current address in location modal
