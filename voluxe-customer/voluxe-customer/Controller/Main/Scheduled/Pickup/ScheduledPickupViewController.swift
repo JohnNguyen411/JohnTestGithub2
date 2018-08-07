@@ -30,8 +30,10 @@ class ScheduledPickupViewController: ScheduledViewController {
         steps.append(step4)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    
+    override func updateBookingIfNeeded() {
+        super.updateBookingIfNeeded()
+        
         guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else { return }
         
         if let pickupRequest = booking.pickupRequest, let location = pickupRequest.location, let coordinates = location.getLocation() {

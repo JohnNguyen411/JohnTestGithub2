@@ -112,6 +112,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     }
     
     @objc func updatePhoneNumber() {
+        self.codeTextField.textField.resignFirstResponder()
         self.pushViewController(FTUEPhoneNumberViewController(type: .update), animated: true)
     }
     
@@ -238,6 +239,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
 
     override func goToNext() {
         if FTUEStartViewController.flowType == .signup || ftuePhoneType == .resetPassword {
+            self.codeTextField.textField.resignFirstResponder()
             self.pushViewController(FTUESignupPasswordViewController(), animated: true)
         } else {
             
@@ -259,7 +261,8 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
 
             // verify phone number
             CustomerAPI().verifyPhoneNumber(customerId: customerId, verificationCode: verificationCode).onSuccess { result in
-                
+                self.codeTextField.textField.resignFirstResponder()
+
                 self.hideProgressHUD()
                 self.loadMainScreen()
                 self.isLoading = false

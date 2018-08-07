@@ -100,9 +100,11 @@ struct AnalyticsEnums {
             case settingsEditName
             case settingsEditPassword
             case settingsEditPhone
+            case showDriver
             case showService
             case signIn
             case termsOfService
+            case termsOfServiceCheckbox
             case timeslot
             case updatePhone
             case vehicleEngine

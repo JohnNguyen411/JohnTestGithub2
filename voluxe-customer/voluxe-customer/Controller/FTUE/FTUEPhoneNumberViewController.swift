@@ -96,7 +96,6 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         phoneNumberConfirmLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(phoneNumberLabel)
             make.top.equalTo(phoneNumberTextField.snp.bottom)
-            make.height.equalTo(20)
         }
     }
     

@@ -14,6 +14,8 @@ import UserNotifications
 /// Class used in AppDelegate and should always be use as the appDelegate.rootViewController
 class RootViewController: UIViewController {
 
+    var inTransition = false
+    
     // Currently displayed UIViewController
     var current: UIViewController
     
@@ -57,6 +59,13 @@ class RootViewController: UIViewController {
     func switchTo(uiViewController: UIViewController) {
         if current == uiViewController { return }
         
+        if inTransition {
+            // retry soon
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.3, execute: {
+                self.switchTo(uiViewController: uiViewController)
+            })
+        }
+        
         addChildViewController(uiViewController)
         uiViewController.view.frame = view.bounds
         view.addSubview(uiViewController.view)
@@ -71,7 +80,7 @@ class RootViewController: UIViewController {
     
     private func animateFadeTransition(to new: UIViewController, completion: (() -> Void)? = nil) {
         if current == new { return }
-        
+        inTransition = true
         current.willMove(toParentViewController: nil)
         addChildViewController(new)
         transition(from: current, to: new, duration: 0.3, options: [.transitionCrossDissolve, .curveEaseOut], animations: {
@@ -80,6 +89,7 @@ class RootViewController: UIViewController {
             self.current.removeFromParentViewController()
             new.didMove(toParentViewController: self)
             self.current = new
+            self.inTransition = false
             completion?()
         }
     }
@@ -87,6 +97,7 @@ class RootViewController: UIViewController {
     private func animateDismissTransition(to new: UIViewController, completion: (() -> Void)? = nil) {
         if current == new { return }
         
+        inTransition = true
         let initialFrame = CGRect(x: -view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
         current.willMove(toParentViewController: nil)
         addChildViewController(new)
@@ -98,6 +109,7 @@ class RootViewController: UIViewController {
             self.current.removeFromParentViewController()
             new.didMove(toParentViewController: self)
             self.current = new
+            self.inTransition = false
             completion?()
         }
     }
@@ -226,7 +238,7 @@ class RootViewController: UIViewController {
     }
     
     func loadBookingFeedback(bookingFeedback: BookingFeedback) {
-        createMenuView()
+        switchToMainScreen()
         if let slideMenu = self.slideMenuController {
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
                 let uiNavigationController = VLNavigationController(rootViewController: BookingRatingViewController(bookingFeedback: bookingFeedback))

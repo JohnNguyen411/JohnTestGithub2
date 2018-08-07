@@ -105,6 +105,19 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
         addShadow(toView: mapViewContainer)
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        SwiftEventBus.onMainThread(self, name: "updateBookingIfNeeded") { result in
+            // UI thread
+            self.updateBookingIfNeeded()
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        SwiftEventBus.unregister(self, name: "updateBookingIfNeeded")
+    }
+    
     private func addShadow(toView: UIView) {
         
         toView.layer.masksToBounds = false
@@ -207,13 +220,14 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
         self.state = state
         super.stateDidChange(state: state)
         self.updateState(id: state, stepState: .done)
+        
         if state == .enRouteForDropoff || state == .enRouteForPickup || state == .nearbyForPickup || state == .nearbyForDropoff {
             SwiftEventBus.onMainThread(self, name: "driverLocationUpdate") { result in
                 // UI thread
                 self.driverLocationUpdate()
             }
         } else {
-            SwiftEventBus.unregister(self)
+            SwiftEventBus.unregister(self, name: "driverLocationUpdate")
         }
     }
     
@@ -269,6 +283,10 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
     }
     
     func driverLocationUpdate() {
+        
+    }
+    
+    func updateBookingIfNeeded() {
         
     }
     
@@ -347,6 +365,8 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
     
     @objc func driverTap(_ tapGesture: UITapGestureRecognizer) {
         if let driver = self.driver {
+            
+            Analytics.trackClick(button: .showDriver, screen: screen)
             self.navigationController?.view.blurByLuxe()
 
             let driverViewController = DriverInfoViewController(driver: driver, delegate: self)

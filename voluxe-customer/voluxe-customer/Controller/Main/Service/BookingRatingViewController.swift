@@ -21,7 +21,6 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     
     var retryCount = 0
     var isShowingComment = false
-    var serviceCompleteHeight: CGFloat = 0
     var booking: Booking?
 
     var bookingFeedback: BookingFeedback?
@@ -31,6 +30,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), kern: UILabel.uppercasedKern())
     let scrollView = UIScrollView(frame: .zero)
     let contentView = UIView(frame: .zero)
+    let ghostView = UIView(frame: .zero) // use to center the slider
     let ratingSlider = VLMarkedSlider(step: 1, min: 1, max: 10, defaultValue: 8)
     var screenTitle: String?
     var scrollViewSize: CGSize? = nil
@@ -194,9 +194,6 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     override func setupViews() {
         super.setupViews()
         
-        serviceCompleteHeight = serviceCompleteLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
-        let rateLabelHeight = rateLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
-        
         scrollView.contentMode = .scaleAspectFit
         
         self.view.addSubview(scrollView)
@@ -209,11 +206,14 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         contentView.addSubview(rateLabel)
         contentView.addSubview(separator)
         contentView.addSubview(textViewTitle)
+        contentView.addSubview(ghostView)
         contentView.addSubview(ratingSlider)
         contentView.addSubview(ratingTextView)
         
+        let adaptedMarging = ViewUtils.getAdaptedHeightSize(sizeInPoints: 20)
+        
         scrollView.snp.makeConstraints { make in
-            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(0, 20, 20, 20))
+            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(0, adaptedMarging, adaptedMarging, adaptedMarging))
         }
         
         contentView.snp.makeConstraints { make in
@@ -222,38 +222,42 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         
         vehicleTypeView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview().offset(BaseViewController.defaultTopYOffset)
+            make.top.equalToSuperview().offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: BaseViewController.defaultTopYOffset - 5))
             make.height.equalTo(VLTitledLabel.height)
         }
         
         vehicleImageView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(vehicleTypeView.snp.bottom)
-            make.height.equalTo(Vehicle.vehicleImageHeight)
+            make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: Vehicle.vehicleImageHeight))
         }
         
         serviceCompleteLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom)
-            make.height.equalTo(serviceCompleteHeight)
         }
         
         rateLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(serviceCompleteLabel.snp.bottom).offset(13)
-            make.height.equalTo(rateLabelHeight)
+        }
+        
+        ghostView.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(rateLabel.snp.bottom)
+            make.bottom.equalTo(confirmButton.snp.top)
         }
         
         ratingSlider.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(rateLabel.snp.bottom).offset(30)
-            make.height.equalTo(60)
+            make.centerY.equalTo(ghostView)
+            make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 60))
         }
         
         ratingTextView.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(-5)
             make.right.equalToSuperview().offset(5)
-            make.top.equalTo(serviceCompleteLabel.snp.bottom).offset(40)
+            make.top.equalTo(serviceCompleteLabel.snp.bottom).offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: 30))
             make.height.equalTo(35)
         }
         
@@ -271,8 +275,8 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         
         confirmButton.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.equalsToBottom(view: self.contentView, offset: -20)
-            make.height.equalTo(VLButton.primaryHeight)
+            make.bottom.equalToSuperview()
+            make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
         }
         
         ratingTextView.sizeToFit()

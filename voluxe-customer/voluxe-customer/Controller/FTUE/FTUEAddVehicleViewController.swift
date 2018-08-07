@@ -48,7 +48,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     let colorLabel = VLVerticalTextField(title: .Color, placeholder: .ColorPlaceholder)
     
     var pickerView: UIPickerView!
-
+    
     init() {
         super.init(screen: .vehicleAdd)
         self.navigationItem.rightBarButtonItem?.title = .Done
@@ -96,10 +96,9 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         scrollView.addSubview(modelLabel)
         scrollView.addSubview(colorLabel)
         
-        
         label.snp.makeConstraints { (make) -> Void in
             make.left.equalToSuperview().offset(20)
-            make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
+            make.equalsToTop(view: scrollView.contentView, offset: BaseViewController.defaultTopYOffset)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(60)
         }
@@ -149,6 +148,32 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         } else {
             cancelPicker()
         }
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        if textField == colorLabel.textField || textField == modelLabel.textField {
+            var offset = CGPoint(x: 0, y: pickerView.frame.height - scrollView.scrollViewSize!.height)
+            if textField == colorLabel.textField {
+                offset.y = offset.y + colorLabel.frame.origin.y + colorLabel.frame.size.height + 44 //toolbar
+            } else {
+                offset.y = offset.y + modelLabel.frame.origin.y + modelLabel.frame.size.height + 44 //toolbar
+            }
+            if offset.y <= 0 {
+                return
+            }
+            scrollView.setContentOffset(offset, animated: true)
+            if let scrollViewSize = scrollView.scrollViewSize {
+                scrollView.contentSize = CGSize(width: scrollViewSize.width, height: scrollViewSize.height + offset.y)
+            }
+        }
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        let offset = CGPoint(x: 0, y: 0)
+        if let scrollViewSize = scrollView.scrollViewSize {
+            scrollView.contentSize = CGSize(width: scrollViewSize.width, height: scrollViewSize.height + 4)// make it scrollable
+        }
+        scrollView.setContentOffset(offset, animated: true)
     }
     
     @objc func cancelPicker() {

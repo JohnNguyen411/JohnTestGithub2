@@ -67,6 +67,12 @@ class ServiceDetailViewController: BaseViewController {
         if !canSchedule || RequestedServiceManager.sharedInstance.getRepairOrder() != nil{
             confirmButton.isEnabled = false
             confirmButton.alpha = 0
+            
+            label.snp.remakeConstraints { make in
+                make.right.left.equalTo(serviceTitle)
+                make.top.equalTo(serviceTitle.snp.bottom).offset(20)
+                make.equalsToBottom(view: self.view, offset: 0)
+            }
         }
         
         confirmButton.setActionBlock { [weak self] in

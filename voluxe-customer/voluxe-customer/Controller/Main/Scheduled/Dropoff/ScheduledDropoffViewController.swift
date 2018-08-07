@@ -31,8 +31,8 @@ class ScheduledDropoffViewController: ScheduledViewController {
         steps.append(step4)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func updateBookingIfNeeded() {
+        super.updateBookingIfNeeded()
         guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) else { return }
         
         if let dropoffRequest = booking.dropoffRequest, let location = dropoffRequest.location, let coordinates = location.getLocation() {

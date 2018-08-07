@@ -380,6 +380,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
 extension FTUESignupEmailPhoneViewController : VLCheckboxDelegate {
     
     func onCheckChanged(checked: Bool) {
+        Analytics.trackClick(button: .termsOfServiceCheckbox, screen: screen, selected: checked)
         _ = checkTextFieldsValidity()
+        
     }
 }

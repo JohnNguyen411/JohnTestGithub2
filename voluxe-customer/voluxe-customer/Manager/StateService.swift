@@ -32,9 +32,14 @@ final class StateServiceManager {
                 Analytics.trackChangeBooking(state: booking.state, id: booking.id)
             }
             BookingSyncManager.sharedInstance.syncBookings()
-        } else if state == .enRouteForDropoff || state == .enRouteForPickup || state == .nearbyForPickup || state == .nearbyForDropoff {
-            // update driver's location
-            SwiftEventBus.post("driverLocationUpdate")
+        }  else {
+            // update if needed, like request location change or timewindow
+            SwiftEventBus.post("updateBookingIfNeeded")
+            
+            if state == .enRouteForDropoff || state == .enRouteForPickup || state == .nearbyForPickup || state == .nearbyForDropoff {
+                // update driver's location
+                SwiftEventBus.post("driverLocationUpdate")
+            }
         }
         
         if let booking = booking {
