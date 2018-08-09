@@ -75,6 +75,7 @@ struct AnalyticsEnums {
             case next
             case newService
             case ok
+            case okDialog
             case outboundCancel
             case outboundSelf
             case outboundSelfConfirm
@@ -146,6 +147,7 @@ struct AnalyticsEnums {
             case landing
             case loading
             case location
+            case locationPermissionDenied
             case login
             case nameUpdate
             case needService

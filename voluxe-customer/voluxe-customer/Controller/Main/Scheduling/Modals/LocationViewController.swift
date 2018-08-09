@@ -17,13 +17,14 @@ import SwiftEventBus
 
 class LocationViewController: VLPresentrViewController, LocationManagerDelegate, UITextFieldDelegate, VLVerticalSearchTextFieldDelegate {
     
+    private static let defaultTableViewGroupedTopInset: Int = 36
     private static let maxCount = 4
-    
+    private static let topInset: Int = 24
+
     private static let newLocationButtonHeight = 0
     private static let newLocationTextFieldHeight = VLVerticalTextField.height - 5
 
     var newLocationHeight = newLocationButtonHeight
-    var permissionHeight = 0 // permission note + margins. Used to get the modalview height
 
     var user: Customer?
     
@@ -46,25 +47,15 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     var autocompletePredictions: [GMSAutocompletePrediction]?
     var autoCompleteCharacterCount = 0
     
-    var shouldShowPermissionNote = false
+    var currentLocationCell: CurrentLocationCellView?
     
-    var selectedIndex = 0
-    var preselectedIndex = -1
-    
-    let notePermissionLabel: UILabel = {
-        let titleLabel = UILabel()
-        titleLabel.textColor = .luxeGray()
-        titleLabel.text = (.NotePermissionLocation as String)
-        titleLabel.font = .volvoSansProMedium(size: 12)
-        titleLabel.textAlignment = .left
-        titleLabel.numberOfLines = 0
-        return titleLabel
-    }()
+    var selectedIndex = -2         // CurrentLocation == -1
+    var preselectedIndex = -2     // Nothing selected == -2
     
     let newLocationButton: VLButton
     
     let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
-    let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
+    let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
     
     override init(title: String, buttonTitle: String, screen: AnalyticsEnums.Name.Screen) {
         newLocationButton = VLButton(type: .blueSecondary, title: (.AddNewLocation as String).uppercased(), kern: UILabel.uppercasedKern(), event: .addNewLocation, screen: screen)
@@ -95,6 +86,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         tableView.register(CheckmarkCell.self, forCellReuseIdentifier: CheckmarkCell.reuseId)
         tableView.isScrollEnabled = true
         tableView.separatorStyle = .none
+        tableView.contentInset = UIEdgeInsetsMake(CGFloat(-LocationViewController.topInset), 0, 0, 0);
         
         user = UserManager.sharedInstance.getCustomer()
         var selectedLocation = RequestedServiceManager.sharedInstance.getPickupLocation()
@@ -103,9 +95,9 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         }
         realm = try? Realm()
         var recentlySelectedAddress: CustomerAddress? = nil
-        var recentlySelectedAddressIndex: Int = -1
+        var recentlySelectedAddressIndex: Int = -2
         if let realm = self.realm, let user = user {
-            addresses = realm.objects(CustomerAddress.self).filter("luxeCustomerId = %@", user.id)
+            addresses = realm.objects(CustomerAddress.self).filter("luxeCustomerId = %@", user.id).sorted(byKeyPath: "createdAt", ascending: false)
             if let addresses = addresses {
                 addressesCount = addresses.count
                 for (index, address) in addresses.enumerated() {
@@ -122,21 +114,21 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                         }
                     }
                 }
-                if addressesCount > 0 && preselectedIndex < 0 {
+                if addressesCount > 0 && preselectedIndex < -1 {
                     // select the last added location
-                    if recentlySelectedAddressIndex > -1 {
+                    if recentlySelectedAddressIndex > -2 {
                         preselectedIndex = recentlySelectedAddressIndex
                     } else {
-                        preselectedIndex = addressesCount - 1
+                        preselectedIndex = -1
                     }
                 }
             }
-            if preselectedIndex >= 0 {
-                selectIndex(selectedIndex: preselectedIndex)
-                DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-                    self.tableView.scrollToRow(at: IndexPath(row: self.preselectedIndex, section: 0), at: .bottom, animated: true)
-                })
-            }
+            // scroll to selected row
+            tableView.reloadData()
+            DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                self.scrollToSelectedRow()
+            })
+
         }
         
         newLocationButton.setActionBlock { [weak self] in
@@ -144,9 +136,8 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         }
         
         if locationManager.authorizationStatus() == .notDetermined {
-            shouldShowPermissionNote = true
-            if preselectedIndex < 0 {
-                selectedIndex = -1
+            if preselectedIndex < -1 {
+                selectedIndex = -2
             }
             // Fake Adding location to make space for "Current Location" and ask for permission
             onLocationAdded()
@@ -158,24 +149,45 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         }
         
         showNewLocationTextField(show: false)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: UIApplication.shared)
+
+    }
+    
+    private func scrollToSelectedRow() {
+        if preselectedIndex >= -1 {
+            selectIndex(selectedIndex: preselectedIndex)
+            if preselectedIndex > -1 && self.tableView.isScrollEnabled{
+                DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
+                    self.tableView.setContentOffset(CGPoint(x: 0, y: (CGFloat(self.preselectedIndex) * CheckmarkCell.height)), animated: true)
+                })
+            }
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
+    
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         locationManager.delegate = nil
         locationManager.stopUpdatingLocation()
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    @objc func willEnterForeground() {
+        if !wasLocationEnabled && locationManager.isAuthorizationGranted() {
+            onLocationPermissionStatusChanged()
+        }
     }
     
     func onLocationPermissionStatusChanged() {
         if locationManager.isAuthorizationGranted() {
             locationManager.startUpdatingLocation()
-            selectIndex(selectedIndex: numberOfRows() - 1)
+            selectIndex(selectedIndex: -1)
         }
-        shouldShowPermissionNote = false
         showNewLocationTextField(show: false)
         onLocationAdded()
     }
@@ -204,9 +216,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         containerView.addSubview(tableView)
         containerView.addSubview(newLocationTextField)
         containerView.addSubview(newLocationButton)
-        containerView.addSubview(notePermissionLabel)
         
-        notePermissionLabel.isHidden = true
         newLocationTextField.isHidden = true
         
         newLocationTextField.snp.makeConstraints { make in
@@ -220,6 +230,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
             make.bottom.equalTo(bottomButton.snp.top).offset(-20)
         }
         
+        
         let tableViewSeparator = UIView(frame: CGRect(x: 0, y: 0, width: self.view.frame.width-20, height: 1))
         tableViewSeparator.backgroundColor = .luxeLightestGray()
         
@@ -232,30 +243,27 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
             make.height.equalTo(self.tableViewHeight())
         }
         
-        notePermissionLabel.snp.makeConstraints { make in
-            make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
-            make.left.right.equalToSuperview()
-        }
-        
     }
     
     func tableViewHeight() -> Int {
         var viewHeight = 0
-        if numberOfRows() > LocationViewController.maxCount {
-            viewHeight = LocationViewController.maxCount * Int(CheckmarkCell.height) + 1
+        if numberOfRows() + 1 > LocationViewController.maxCount {
+            viewHeight = (LocationViewController.maxCount - 1) * Int(CheckmarkCell.height) + LocationViewController.topInset + CurrentLocationCellView.height + 1
+            self.tableView.isScrollEnabled = true
         } else {
-            viewHeight = numberOfRows() * Int(CheckmarkCell.height) + 1
+            viewHeight = numberOfRows() * Int(CheckmarkCell.height) + LocationViewController.topInset + CurrentLocationCellView.height + 1
+            self.tableView.isScrollEnabled = false
         }
         
-        if viewHeight < Int(CheckmarkCell.height) {
-            viewHeight = Int(CheckmarkCell.height)
+        if viewHeight <= Int(CheckmarkCell.height) {
+            viewHeight = Int(CurrentLocationCellView.height) + LocationViewController.topInset + 1
         }
         
         return viewHeight
     }
     
     override func height() -> Int {
-        return (tableViewHeight()) + baseHeight + newLocationHeight + permissionHeight + 73
+        return (tableViewHeight()) + baseHeight + newLocationHeight + 73
     }
     
     func autocompleteWithText(userText: String){
@@ -300,22 +308,24 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                 
                 Logger.print("Address found")
                 Logger.print(weakSelf.currentLocationAddress?.thoroughfare ?? "")
+                if let cell = self.currentLocationCell {
+                    cell.setAddress(address: address)
+                } else {
+                    weakSelf.tableView.reloadData()
+                }
                 weakSelf.onLocationAdded()
                 weakSelf.bottomButton.isEnabled = true
                 
                 if !weakSelf.wasLocationEnabled {
+                    weakSelf.preselectedIndex = -1
                     self.wasLocationEnabled = true
-                    weakSelf.selectOrAddCurrentAddress(addressString: address.fullAddress())
                     return
                 }
                 
-                if weakSelf.preselectedIndex >= 0 {
+                if weakSelf.preselectedIndex >= -1 {
                     weakSelf.selectIndex(selectedIndex: weakSelf.preselectedIndex)
                 } else {
-                    weakSelf.selectIndex(selectedIndex: weakSelf.numberOfRows() - 1)
-                    DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
-                        weakSelf.tableView.scrollToRow(at: IndexPath(row: weakSelf.numberOfRows() - 1, section: 0), at: .bottom, animated: true)
-                    })
+                    weakSelf.selectIndex(selectedIndex: -1)
                 }
             }
         }
@@ -323,7 +333,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     
     override func onButtonClick() {
         if let pickupLocationDelegate = pickupLocationDelegate {
-            if self.currentLocationAddress != nil && selectedIndex == self.numberOfRows() - 1 {
+            if self.currentLocationAddress != nil && selectedIndex == -1 {
                 
                 guard let currentLocationInfo = self.currentLocationAddress else { return }
                 
@@ -359,7 +369,6 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         newLocationButton.animateAlpha(show: !show)
         
         if show {
-            showPermissionNote(show: false)
             tableView.snp.remakeConstraints { make in
                 make.bottom.equalTo(newLocationTextField.snp.top).offset(-20)
                 make.left.equalToSuperview()
@@ -368,32 +377,15 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
             }
             
         } else {
-            // tie to note if needed
-            showPermissionNote(show: shouldShowPermissionNote)
-            
-            if shouldShowPermissionNote {
-                tableView.snp.remakeConstraints { make in
-                    make.bottom.equalTo(notePermissionLabel.snp.top).offset(-10)
-                    make.left.equalToSuperview()
-                    make.right.equalToSuperview().offset(15)
-                    make.height.equalTo(self.tableViewHeight())
-                }
-            } else {
-                tableView.snp.remakeConstraints { make in
-                    make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
-                    make.left.equalToSuperview()
-                    make.right.equalToSuperview().offset(15)
-                    make.height.equalTo(self.tableViewHeight())
-                }
+            tableView.snp.remakeConstraints { make in
+                make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
+                make.left.equalToSuperview()
+                make.right.equalToSuperview().offset(15)
+                make.height.equalTo(self.tableViewHeight())
             }
         }
         
         newLocationHeight = show ? LocationViewController.newLocationTextFieldHeight : LocationViewController.newLocationButtonHeight
-    }
-    
-    private func showPermissionNote(show: Bool) {
-        notePermissionLabel.animateAlpha(show: show)
-        permissionHeight = show ? 34 : 0
     }
     
     
@@ -438,7 +430,11 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                         self.newLocationTextField.clearResults()
                         self.resetValues()
                         self.newLocationTextField.textField.resignFirstResponder()
-                        self.selectIndex(selectedIndex: self.addressesCount - 1)
+                        self.preselectedIndex = 0
+                        self.selectIndex(selectedIndex: 0)
+                        if self.tableView.isScrollEnabled {
+                            self.tableView.scrollToRow(at: IndexPath(item: 0, section: 0), at: .top, animated: true)
+                        }
                     }
                 }
                 
@@ -472,15 +468,13 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     
     func selectIndex(selectedIndex: Int) {
         self.selectedIndex = selectedIndex
-        if self.selectedIndex > -1 {
+        if self.selectedIndex >= -1 {
             self.bottomButton.isEnabled = true
+            self.tableView.reloadData()
         }
     }
     
     func numberOfRows() -> Int {
-        if self.currentLocationAddress != nil || locationManager.authorizationStatus() == .notDetermined {
-            return addressesCount + 1
-        }
         return addressesCount
     }
     
@@ -563,46 +557,69 @@ extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
         if let addresses = self.addresses, addressesCount > indexPath.row, let location = addresses[indexPath.row].location {
             cell.setTitle(title: location.getShortAddress() ?? "")
             cell.setChecked(checked: indexPath.row == selectedIndex)
-        } else if self.currentLocationAddress != nil || locationManager.authorizationStatus() == .notDetermined {
-            cell.setTitle(title: .CurrentLocation)
-            // Can't select Current Location if permission isn't granted
-            if locationManager.isAuthorizationGranted() {
-                cell.setChecked(checked: indexPath.row == selectedIndex)
-            } else {
-                cell.setChecked(checked: false)
-            }
         }
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
-        if locationManager.authorizationStatus() == .notDetermined && indexPath.row == numberOfRows() - 1 {
-            let locationManager = LocationManager.sharedInstance.locationManager
-            locationManager.delegate = self
-            locationManager.requestWhenInUseAuthorization()
-            Analytics.trackView(screen: .requestLocation)
-            return
-        } else if indexPath.row == numberOfRows() - 1 && locationManager.isAuthorizationGranted() {
-            // user clicked on Current Location and location is granted
-            guard let currentLocationInfo = self.currentLocationAddress else { return }
-            Analytics.trackClick(button: .selectLocation, screen: self.screen)
-            self.selectOrAddCurrentAddress(addressString: currentLocationInfo.fullAddress())
-            return
-        }
         Analytics.trackClick(button: .selectLocation, screen: self.screen)
         selectIndex(selectedIndex: indexPath.row)
         tableView.reloadData()
     }
     
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        // show current location view
+        currentLocationCell = CurrentLocationCellView(delegate: self)
+        currentLocationCell!.setAddress(address: currentLocationAddress)
+        currentLocationCell!.isLocationEnabled = (locationManager.authorizationStatus() == .authorizedAlways || locationManager.authorizationStatus() == .authorizedWhenInUse)
+        currentLocationCell!.isChecked = selectedIndex == -1
+        return currentLocationCell
+        
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return CGFloat(CurrentLocationCellView.height)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 1
+    }
+}
+
+extension LocationViewController: CurrentLocationCellDelegate {
+    
+    func currentLocationClick() {
+        Analytics.trackClick(button: .selectLocation, screen: self.screen)
+        self.selectIndex(selectedIndex: -1)
+        self.tableView.reloadData()
+        return
+    }
+    
+    func requestPermissionLocationClick() {
+        let locationManager = LocationManager.sharedInstance.locationManager
+        locationManager.delegate = self
+        locationManager.requestWhenInUseAuthorization()
+        Analytics.trackView(screen: .requestLocation)
+    }
+    
+    func deniedPermissionClick() {
+        self.showDialog(title: .LocationPermission, message: .PermissionLocationDenied, cancelButtonTitle: .Close, okButtonTitle: .OpenSettings, okCompletion: {
+            let urlObj = NSURL.init(string:UIApplicationOpenSettingsURLString)
+            if #available(iOS 10.0, *) {
+                UIApplication.shared.open(urlObj! as URL, options: [ : ], completionHandler: nil)
+            } else {
+                UIApplication.shared.openURL(urlObj! as URL)
+            }
+        }, dialog: .locationPermissionDenied, screen: screen)
+    }
 }
 
 extension LocationViewController: CLLocationManagerDelegate {
     
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         let granted = status == .authorizedWhenInUse || status == .authorizedAlways
-       Analytics.trackChangePermission(permission: .location, granted: granted, screen: self.screen)
+        Analytics.trackChangePermission(permission: .location, granted: granted, screen: self.screen)
         SwiftEventBus.post("onLocationPermissionStatusChanged")
     }
 }

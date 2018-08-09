@@ -300,6 +300,40 @@ extension UIViewController {
         alert.addAction(button)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func showDialog(title: String,
+                    message: String,
+                    cancelButtonTitle: String,
+                    okButtonTitle: String,
+                    okCompletion: @escaping (() -> ()),
+                    dialog: AnalyticsEnums.Name.Screen? = nil,
+                    screen: AnalyticsEnums.Name.Screen? = nil)
+    {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        
+        if let screen = screen { Analytics.trackView(screen: screen) }
+        
+        // cancel button
+        let backAction = UIAlertAction(title: cancelButtonTitle, style: .default) {
+            _ in
+            Analytics.trackClick(button: .dismissDialog, screen: screen)
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        // OK button
+        let submitAction = UIAlertAction(title: okButtonTitle, style: .default) {
+            _ in
+            Analytics.trackClick(button: .okDialog, screen: screen)
+            alert.dismiss(animated: true, completion: nil)
+            okCompletion()
+        }
+        
+        alert.addAction(backAction)
+        alert.addAction(submitAction)
+        self.present(alert, animated: true, completion: nil)
+    }
 
     func showDestructiveDialog(title: String,
                                message: String,

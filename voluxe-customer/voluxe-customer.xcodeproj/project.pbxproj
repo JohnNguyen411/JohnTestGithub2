@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		26E9A651470608F0E500FC21 /* Pods_voluxe_customerUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E181BDDE7AA2B89565331F15 /* Pods_voluxe_customerUnitTests.framework */; };
 		52078A4D132E9D871CDD555D /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
+		524BF64C211A57E900404ED5 /* CurrentLocationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */; };
 		52D5C9B12113AE270020F43F /* VLScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B02113AE270020F43F /* VLScrollView.swift */; };
 		52D5C9B32113DA9D0020F43F /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B22113DA9D0020F43F /* ViewUtils.swift */; };
 		52D5C9B52114FF080020F43F /* DriverInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B42114FF080020F43F /* DriverInfoViewController.swift */; };
@@ -456,6 +457,7 @@
 		4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
 		4C64F631C2578E5AD1F6A474 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
 		51EA00834FA121CCED3736C9 /* Pods-voluxe-customerUnitTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.beta.xcconfig"; sourceTree = "<group>"; };
+		524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCellView.swift; sourceTree = "<group>"; };
 		52D5C9B02113AE270020F43F /* VLScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLScrollView.swift; sourceTree = "<group>"; };
 		52D5C9B22113DA9D0020F43F /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		52D5C9B42114FF080020F43F /* DriverInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverInfoViewController.swift; sourceTree = "<group>"; };
@@ -1392,6 +1394,7 @@
 				6C7342071FB127A300E90F7E /* DealershipViewController.swift */,
 				6C7342131FB25F8C00E90F7E /* LocationViewController.swift */,
 				6C69267D1FB3B3E3009495E9 /* LoanerViewController.swift */,
+				524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */,
 			);
 			path = Modals;
 			sourceTree = "<group>";
@@ -2517,6 +2520,7 @@
 				6CCCF23320488C5C004BF1A6 /* FTUEAddVehicleViewController.swift in Sources */,
 				6CCC821B20116B3A003BB3F0 /* DealershipTimeSlot.swift in Sources */,
 				6CA968B52023933800FBEEAB /* VehicleLocalization.swift in Sources */,
+				524BF64C211A57E900404ED5 /* CurrentLocationCellView.swift in Sources */,
 				6CBB4E8E1FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
 				6C5833181FB3AF5600F6BFE0 /* PresentrAnimation.swift in Sources */,
 				53C7300D20CEE5F400BCE926 /* Shiny.swift in Sources */,

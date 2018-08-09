@@ -131,6 +131,7 @@
 "AddressForPickup" = "Address for Pickup";
 "PickupLocationTitle" = "Where should we meet you?";
 "CurrentLocation" = "Current Location";
+"UpdatingLocation" = "Updating Location...";
 "DoYouNeedLoanerVehicle" = "Do you need a loaner vehicle?";
 "SelectPickupDate" = "Select pickup date and time";
 "NineToTwelve" = "9:00-12:00";
@@ -156,6 +157,9 @@
 "NoDatesForDealership" = "Unfortunately no dates are available for this dealership. Please try again later or call the dealership.";
 "CallDealership" = "Call Dealership";
 "NotePermissionLocation" = "Note: to access your current location, we’ll need to ask you for permission next.";
+"PermissionLocationDenied" = "To access your current location, you need to enable the location permission in the Settings.";
+"OpenSettings" = "Open Settings";
+"LocationPermission" = "Location Permission";
 "AllowNotifications" = "Allow Notifications?";
 "NotificationPermissionBody" = "We only send you updates on the status of your vehicle during pickups and deliveries.";
 "NotNow" = "Not now";
