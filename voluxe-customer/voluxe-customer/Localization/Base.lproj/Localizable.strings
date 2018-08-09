@@ -145,7 +145,7 @@
 "SchedulePickupDealership" = "Schedule delivery at any location served by a participating dealership.";
 "SchedulePickupDealershipSelfEnabled" = "You can pick up your car from the dealership or arrange for Volvo to deliver your vehicle to the location of your choosing.";
 "OutOfPickupArea" = "Out of pickup area";
-"ServiceNotOfferedInArea" = "Service not offered in your area";
+"ServiceNotOfferedInArea" = "Service unavailable";
 "DatesLoanersOnly" = "Dates with available loaners only";
 "PickupTimes" = "Pickup Times";
 "DealershipCloseToLocation" = "Dealerships close to:";
