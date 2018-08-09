@@ -1,3 +1,9 @@
+v1.0.2(101):
+Fix missing Adaptive display for smaller resolution (Customer Feedback, Service Detail)
+Revamp Location Modal
+Add missing analytic events
+Misc bugfixes and improvments
+
 v1.0.2(96):
 Adaptive display for smaller resolution
 Fix navigation bug on customer feedback
