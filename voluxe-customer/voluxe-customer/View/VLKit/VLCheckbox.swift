@@ -26,7 +26,8 @@ class VLCheckbox : UIView {
         self.addSubview(titleLabel)
         
         checkButton.snp.makeConstraints { (make) -> Void in
-            make.left.centerY.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.left.equalToSuperview().offset(10)
             make.width.height.equalTo(20)
         }
         
@@ -42,11 +43,11 @@ class VLCheckbox : UIView {
         
         checkButton.setImage(UIImage(named: "checked_circle"), for: UIControlState.selected)
         checkButton.setImage(UIImage(named: "empty_checkbox"), for: UIControlState.normal)
+        checkButton.isUserInteractionEnabled = false
         
-        checkButton.addTarget(self, action: #selector(VLCheckbox.checkboxDidCheck), for: UIControlEvents.touchUpInside)
-        
-        let titleTap = UITapGestureRecognizer(target: self, action: #selector(VLCheckbox.checkboxDidCheck))
-        titleLabel.addGestureRecognizer(titleTap)
+        self.isUserInteractionEnabled = true
+        let tap = UITapGestureRecognizer(target: self, action: #selector(VLCheckbox.checkboxDidCheck))
+        self.addGestureRecognizer(tap)
     }
     
     required init?(coder aDecoder: NSCoder) {

@@ -185,10 +185,10 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         }
         
         tosCheckbox.snp.makeConstraints { (make) -> Void in
-            make.top.equalTo(phoneNumberConfirmLabel.snp.bottom).offset(30)
-            make.left.equalTo(phoneNumberConfirmLabel)
-            make.height.equalTo(20)
-            make.width.equalTo(30)
+            make.top.equalTo(phoneNumberConfirmLabel.snp.bottom).offset(20)
+            make.left.equalTo(phoneNumberConfirmLabel).offset(-10)
+            make.height.equalTo(40)
+            make.width.equalTo(40)
         }
         
         tosLabel.snp.makeConstraints { (make) -> Void in

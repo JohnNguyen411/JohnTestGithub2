@@ -81,7 +81,7 @@ class CurrentLocationCellView: UIView {
     private func setupViews() {
         
         checkmarkView.contentMode = .scaleAspectFit
-
+        
         self.myLocationImageView.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.top.equalToSuperview().offset(2)
@@ -90,8 +90,8 @@ class CurrentLocationCellView: UIView {
         
         self.titleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(myLocationImageView)
-            make.left.equalTo(myLocationImageView.snp.right).offset(8)
-            make.right.equalToSuperview().offset(-20)
+            make.width.equalToSuperview()
+            make.left.equalTo(myLocationImageView.snp.right).offset(10)
         }
         
         let ghostCenterView = UIView(frame: .zero)
@@ -104,12 +104,12 @@ class CurrentLocationCellView: UIView {
         
         self.subtitleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(ghostCenterView)
-            make.right.left.equalTo(titleLabel)
+            make.left.right.equalToSuperview()
         }
         self.checkmarkView.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-15)
-            make.centerY.equalToSuperview()
-            make.width.height.equalTo(12)
+            make.centerY.equalToSuperview().offset(-4)
+            make.width.equalTo(12)
         }
         
     }
@@ -117,11 +117,7 @@ class CurrentLocationCellView: UIView {
     private func fillSubtitleLabel() {
         if let address = self.address {
             subtitleLabel.text = address.shortAddress()
-            subtitleLabel.textColor = .luxeDarkGray()
-            subtitleLabel.font = .volvoSansProMedium(size: 14)
         } else {
-            subtitleLabel.font = .volvoSansProMedium(size: 13)
-            subtitleLabel.textColor = .luxeGray()
             if isLocationEnabled {
                 subtitleLabel.text = .UpdatingLocation
             } else {

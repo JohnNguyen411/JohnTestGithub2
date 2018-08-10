@@ -44,6 +44,13 @@ class ScheduledPickupViewController: ScheduledViewController {
             DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
                 weakSelf?.mapVC.updateRequestLocation(location: coordinates)
             })
+            
+            let state = StateServiceManager.sharedInstance.getState(vehicleId: vehicle.id)
+            
+            if let timeSlot = pickupRequest.timeSlot, state == .pickupScheduled {
+                timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
+                self.timeWindowView.setSubtitle(text: .PickupWindow)
+            }
         }
     }
     

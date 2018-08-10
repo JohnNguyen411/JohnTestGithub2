@@ -56,6 +56,7 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
     private var lastRefresh: Date? = nil
 
     private let driverContact: VLButton
+    private var driverInfoViewController: DriverInfoViewController?
     
     init(vehicle: Vehicle, screen: AnalyticsEnums.Name.Screen) {
         self.vehicle = vehicle
@@ -103,6 +104,7 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
         }
         
         addShadow(toView: mapViewContainer)
+        updateBookingIfNeeded()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -115,6 +117,9 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        if let driverInfoViewController = self.driverInfoViewController {
+            driverInfoViewController.dismiss(animated: true, completion: nil)
+        }
         SwiftEventBus.unregister(self, name: "updateBookingIfNeeded")
     }
     
@@ -369,10 +374,10 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
             Analytics.trackClick(button: .showDriver, screen: screen)
             self.navigationController?.view.blurByLuxe()
 
-            let driverViewController = DriverInfoViewController(driver: driver, delegate: self)
+            driverInfoViewController = DriverInfoViewController(driver: driver, delegate: self)
             
             SDWebImageManager.shared().loadImage(with: URL(string: driver.iconUrl ?? ""), options: SDWebImageOptions.allowInvalidSSLCertificates, progress: nil, completed: { (image, data, error, cacheType, finished, url) in
-                if image != nil {
+                if let driverViewController = self.driverInfoViewController, image != nil {
                     driverViewController.roundImageView.image = image
                     driverViewController.modalPresentationStyle = .overCurrentContext
                     driverViewController.modalTransitionStyle = .crossDissolve
@@ -385,5 +390,7 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
     func onDismiss() {
         self.navigationController?.view.unblurByLuxe()
     }
+    
+    
     
 }

@@ -322,7 +322,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                     return
                 }
                 
-                if weakSelf.preselectedIndex >= -1 {
+                if weakSelf.preselectedIndex > -1 {
                     weakSelf.selectIndex(selectedIndex: weakSelf.preselectedIndex)
                 } else {
                     weakSelf.selectIndex(selectedIndex: -1)
@@ -564,6 +564,7 @@ extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         Analytics.trackClick(button: .selectLocation, screen: self.screen)
+        self.preselectedIndex = indexPath.row
         selectIndex(selectedIndex: indexPath.row)
         tableView.reloadData()
     }
@@ -590,10 +591,12 @@ extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
 extension LocationViewController: CurrentLocationCellDelegate {
     
     func currentLocationClick() {
-        Analytics.trackClick(button: .selectLocation, screen: self.screen)
-        self.selectIndex(selectedIndex: -1)
-        self.tableView.reloadData()
-        return
+        if currentLocationAddress != nil {
+            Analytics.trackClick(button: .selectLocation, screen: self.screen)
+            self.preselectedIndex = -1
+            self.selectIndex(selectedIndex: -1)
+            self.tableView.reloadData()
+        }
     }
     
     func requestPermissionLocationClick() {

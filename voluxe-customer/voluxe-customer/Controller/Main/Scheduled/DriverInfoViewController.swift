@@ -71,11 +71,15 @@ class DriverInfoViewController: UIViewController {
     }
     
     @objc private func onCloseClicked() {
-        delegate.onDismiss()
         self.dismiss(animated: true)
     }
     
     @objc private func onImageTap() {
+    }
+    
+    override func dismiss(animated flag: Bool, completion: (() -> Void)? = nil) {
+        super.dismiss(animated: flag, completion: completion)
+        delegate.onDismiss()
     }
     
 }
