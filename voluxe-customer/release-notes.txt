@@ -1,3 +1,9 @@
+v1.0.2(102):
+Fix wrong map focus on Scheduled P/D
+Revamp Location Modal
+ToS Checkbox easier to tap
+Misc bugfixes and improvments
+
 v1.0.2(101):
 Fix missing Adaptive display for smaller resolution (Customer Feedback, Service Detail)
 Revamp Location Modal
