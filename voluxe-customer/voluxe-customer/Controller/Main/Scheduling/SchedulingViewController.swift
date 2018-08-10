@@ -395,8 +395,22 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             self.dealerships = dealerships
             if dealerships.count > 0 {
                 
-                if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) && RequestedServiceManager.sharedInstance.getDealership() == nil {
-                    RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
+                if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
+                    var updateDealership = true
+                    if let selectedDealership = RequestedServiceManager.sharedInstance.getDealership() {
+                        for dealer in dealerships {
+                            if dealer.id == selectedDealership.id {
+                                updateDealership = false
+                                break
+                            }
+                        }
+                    }
+                    if updateDealership {
+                        RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
+                        // we updated the dealership we need to show/reset the timeslots
+                        RequestedServiceManager.sharedInstance.setPickupTimeSlot(timeSlot: nil)
+                        pickupScheduleState = .dealership
+                    }
                 }
                 if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
                     if let dealershipName = dealership.name {

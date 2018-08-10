@@ -157,7 +157,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     private func scrollToSelectedRow() {
         if preselectedIndex >= -1 {
             selectIndex(selectedIndex: preselectedIndex)
-            if preselectedIndex > -1 && self.tableView.isScrollEnabled{
+            if preselectedIndex > 0 && self.tableView.isScrollEnabled{
                 DispatchQueue.main.asyncAfter(deadline: .now(), execute: {
                     self.tableView.setContentOffset(CGPoint(x: 0, y: (CGFloat(self.preselectedIndex) * CheckmarkCell.height)), animated: true)
                 })
@@ -186,7 +186,6 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     func onLocationPermissionStatusChanged() {
         if locationManager.isAuthorizationGranted() {
             locationManager.startUpdatingLocation()
-            selectIndex(selectedIndex: -1)
         }
         showNewLocationTextField(show: false)
         onLocationAdded()
@@ -343,7 +342,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                     pickupLocationDelegate.onLocationSelected(customerAddress: customerAddress)
                 }
             } else {
-                if let addresses = addresses, addresses.count > selectedIndex {
+                if let addresses = addresses, selectedIndex > -1 && addresses.count > selectedIndex {
                     if let realm = self.realm {
                         let address = addresses[selectedIndex]
                         try? realm.write {

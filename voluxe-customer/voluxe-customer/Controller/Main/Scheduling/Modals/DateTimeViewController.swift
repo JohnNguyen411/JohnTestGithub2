@@ -322,27 +322,28 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     
     private func initWeekDayView() {
         
-        let cell = self.calendar.cell(for: todaysDate, at: .current)
-        let frame = cell!.frame
-        
-        var prevView: UIView? = nil
-        
-        for weekday in Calendar.current.veryShortWeekdaySymbols {
-            let label = UILabel(frame: .zero)
-            label.text = weekday
-            label.textAlignment = .center
-            label.textColor = .luxeGray()
-            label.font = .volvoSansProMedium(size: 12)
+        if let cell = self.calendar.cell(for: todaysDate, at: .current) {
+            let frame = cell.frame
             
-            weekdayViews.addSubview(label)
+            var prevView: UIView? = nil
             
-            label.snp.makeConstraints { make in
-                make.top.bottom.equalToSuperview()
-                make.left.equalTo(prevView == nil ? weekdayViews.snp.left : prevView!.snp.right)
-                make.width.equalTo(frame.width)
+            for weekday in Calendar.current.veryShortWeekdaySymbols {
+                let label = UILabel(frame: .zero)
+                label.text = weekday
+                label.textAlignment = .center
+                label.textColor = .luxeGray()
+                label.font = .volvoSansProMedium(size: 12)
+                
+                weekdayViews.addSubview(label)
+                
+                label.snp.makeConstraints { make in
+                    make.top.bottom.equalToSuperview()
+                    make.left.equalTo(prevView == nil ? weekdayViews.snp.left : prevView!.snp.right)
+                    make.width.equalTo(frame.width)
+                }
+                
+                prevView = label
             }
-            
-            prevView = label
         }
     }
     
