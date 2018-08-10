@@ -409,7 +409,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
                         RequestedServiceManager.sharedInstance.setDealership(dealership: dealerships[0])
                         // we updated the dealership we need to show/reset the timeslots
                         RequestedServiceManager.sharedInstance.setPickupTimeSlot(timeSlot: nil)
-                        pickupScheduleState = .dealership
+                        pickupScheduleState = .location
                     }
                 }
                 if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
