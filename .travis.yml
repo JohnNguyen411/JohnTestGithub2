@@ -1,21 +1,13 @@
-osx_image: xcode9.1
+osx_image: xcode9.4
 language: objective-c
-cache: cocoapods
+#cache: cocoapods
 
-before_install:
-  - gem install cocoapods -v 1.3.1
-  #- gem which cocoapods
-  - cd voluxe-customer # customer app
-  # If not doing pod update, need pod repo update AND pod install, however these all take a very long time
-  # Let's look into reducing the build time later by avoiding pod repo update/pod update
-  - pod repo update
-  - pod install
-  - pod update
-  - cd ..
-  #- cd valet # valet app
-  #- pod install
-  #- cd ..
-  - xcrun instruments -w "iPhone 6s (11.1)" || echo "(Pre)Launched the simulator."
+#before_install:
+# - cd voluxe-customer # customer app
+
 script:
-  #- xcodebuild test -workspace Valet/Valet.xcworkspace -scheme "Development (Debug)" -destination 'platform=iOS Simulator,name=iPhone 5,OS=10.0' -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
-  - xcodebuild test -workspace voluxe-customer/voluxe-customer.xcworkspace -scheme Mock -destination 'platform=iOS Simulator,name=iPhone 6s,OS=11.1' -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
+#  - xcodebuild test -workspace voluxe-customer/voluxe-customer.xcworkspace -scheme Mock -destination 'platform=iOS Simulator,name=iPhone 6s,OS=11.1' -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
+- xcodebuild build-for-testing -workspace voluxe-customer/voluxe-customer.xcworkspace -scheme Dev -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
+- xcodebuild build-for-testing -workspace voluxe-customer/voluxe-customer.xcworkspace -scheme APITests -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
+- xcodebuild build-for-testing -workspace voluxe-customer/voluxe-customer.xcworkspace -scheme UnitTests -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
+- xcodebuild build-for-testing -workspace voluxe-customer/voluxe-customer.xcworkspace -scheme UITests -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
