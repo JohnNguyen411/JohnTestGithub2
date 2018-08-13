@@ -13,10 +13,10 @@ PODS:
   - CocoaLumberjack/Default (3.3.0)
   - CocoaLumberjack/Swift (3.3.0):
     - CocoaLumberjack/Default
-  - Crashlytics (3.10.1):
-    - Fabric (~> 1.7.5)
+  - Crashlytics (3.10.5):
+    - Fabric (~> 1.7.9)
   - DateToolsSwift (4.0.0)
-  - Fabric (1.7.6)
+  - Fabric (1.7.9)
   - Firebase/Core (4.7.0):
     - FirebaseAnalytics (= 4.0.5)
     - FirebaseCore (= 4.0.12)
@@ -100,9 +100,9 @@ DEPENDENCIES:
   - Branch (= 0.25.0)
   - BrightFutures (= 6.0.1)
   - CocoaLumberjack/Swift (= 3.3.0)
-  - Crashlytics (= 3.10.1)
+  - Crashlytics (= 3.10.5)
   - DateToolsSwift (= 4.0.0)
-  - Fabric (= 1.7.6)
+  - Fabric (= 1.7.9)
   - Firebase/Core (= 4.7.0)
   - Firebase/Messaging (= 4.7.0)
   - Firebase/RemoteConfig (= 4.7.0)
@@ -127,9 +127,9 @@ SPEC CHECKSUMS:
   Branch: 127d29ab0a8866025eece1cf9e950ddb6f7d4070
   BrightFutures: 9c03dab79e73ffe504b7bafc15c5bfdaeee54890
   CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
-  Crashlytics: aee1a064cbbf99b32efa3f056a5f458d846bc8ff
+  Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
   DateToolsSwift: 875d97ff9e3a5d54abdd67a269b3f51c757b71ab
-  Fabric: f8d42c893bb187326a7968b62abe55c36a987a46
+  Fabric: a2917d3895e4c1569b9c3170de7320ea1b1e6661
   Firebase: dbfb98ccec2dcfcd21ab9cc1b4981a3f3c8c5e26
   FirebaseABTesting: d07d0ee833b842d5153549e4c7e2e2cb1c23a3f9
   FirebaseAnalytics: 5b02a63ead2c3f0259cfc7f15e053e440587ecf8
@@ -157,6 +157,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: dc88934f85fb50b263b1632b9cbad3402505783e
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: d555d6f695adbe397273195090e1796cd93c2dda
+PODFILE CHECKSUM: bbbccdac7b585eba032c4ef1e7f988de175a6e16
 
 COCOAPODS: 1.4.0
