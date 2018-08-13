@@ -53,7 +53,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
         SwiftEventBus.onMainThread(self, name: "updateAvailable") {
             notification in
-            AppController.sharedInstance.showSoftUpgradeDialog(version: notification.object as! String)
+            guard let version = notification?.object as? String else { return }
+            AppController.sharedInstance.showSoftUpgradeDialog(version: version)
         }
         
         SwiftEventBus.onMainThread(self, name: "bookingAdded") {

@@ -2,9 +2,9 @@ PODS:
   - Alamofire (4.5.1)
   - AlamofireNetworkActivityLogger (2.2.0):
     - Alamofire (~> 4.0)
-  - AlamofireObjectMapper (5.0.0):
+  - AlamofireObjectMapper (5.1.0):
     - Alamofire (~> 4.1)
-    - ObjectMapper (~> 3.0)
+    - ObjectMapper (~> 3.3)
   - Branch (0.25.0):
     - Branch/Core (= 0.25.0)
   - Branch/Core (0.25.0)
@@ -70,7 +70,7 @@ PODS:
     - nanopb/encode (= 0.3.8)
   - nanopb/decode (0.3.8)
   - nanopb/encode (0.3.8)
-  - ObjectMapper (3.1.0)
+  - ObjectMapper (3.3.0)
   - PhoneNumberKit (2.0.0):
     - PhoneNumberKit/PhoneNumberKitCore (= 2.0.0)
     - PhoneNumberKit/UIKit (= 2.0.0)
@@ -78,11 +78,11 @@ PODS:
   - PhoneNumberKit/UIKit (2.0.0):
     - PhoneNumberKit/PhoneNumberKitCore
   - Protobuf (3.5.0)
-  - Realm (3.0.2):
-    - Realm/Headers (= 3.0.2)
-  - Realm/Headers (3.0.2)
-  - RealmSwift (3.0.2):
-    - Realm (= 3.0.2)
+  - Realm (3.7.6):
+    - Realm/Headers (= 3.7.6)
+  - Realm/Headers (3.7.6)
+  - RealmSwift (3.7.6):
+    - Realm (= 3.7.6)
   - Result (3.2.4)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
@@ -96,7 +96,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire (= 4.5.1)
   - AlamofireNetworkActivityLogger (= 2.2)
-  - AlamofireObjectMapper (= 5.0.0)
+  - AlamofireObjectMapper (= 5.1.0)
   - Branch (= 0.25.0)
   - BrightFutures (= 6.0.1)
   - CocoaLumberjack/Swift (= 3.3.0)
@@ -112,7 +112,7 @@ DEPENDENCIES:
   - Kingfisher (= 4.2.0)
   - MBProgressHUD (= 1.1.0)
   - PhoneNumberKit (= 2.0)
-  - RealmSwift (= 3.0.2)
+  - RealmSwift (= 3.7.6)
   - SDWebImage (= 4.0.0)
   - SlideMenuControllerSwift (= 4.0.0)
   - SnapKit (= 4.0.0)
@@ -123,7 +123,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   AlamofireNetworkActivityLogger: a7ae1842988b3f6248a49213268375bd27b515f0
-  AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
+  AlamofireObjectMapper: 3395e698901d8b0e6f48b7d0c43bd47875325102
   Branch: 127d29ab0a8866025eece1cf9e950ddb6f7d4070
   BrightFutures: 9c03dab79e73ffe504b7bafc15c5bfdaeee54890
   CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
@@ -144,11 +144,11 @@ SPEC CHECKSUMS:
   Kingfisher: 9ee7e788d8ba07c3f21ce0d43f33cec310a4f781
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   nanopb: 5601e6bca2dbf1ed831b519092ec110f66982ca3
-  ObjectMapper: 20505058f54e5c3ca69e1d6de9897d152a5369a6
+  ObjectMapper: b612bf8c8e99c4dc0bb6013a51f7c27966ed5da9
   PhoneNumberKit: 073b3cef30c2a64ddcd623ea5953bc84bb5b3fc4
   Protobuf: 8a9838fba8dae3389230e1b7f8c104aa32389c03
-  Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
-  RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
+  Realm: 9eaecad54712d6246d08ba34c10f354e4715d7d3
+  RealmSwift: 1fe08b4ebaeeaacf17f9ba0343f7b25c9fc31fa6
   Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
@@ -157,6 +157,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: dc88934f85fb50b263b1632b9cbad3402505783e
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: b56e4021185788bc94ce35b8a2fedf4c5c42af83
+PODFILE CHECKSUM: d555d6f695adbe397273195090e1796cd93c2dda
 
 COCOAPODS: 1.4.0

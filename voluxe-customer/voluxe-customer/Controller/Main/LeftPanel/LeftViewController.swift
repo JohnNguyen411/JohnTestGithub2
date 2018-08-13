@@ -93,8 +93,9 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         }
         
         
-        SwiftEventBus.onMainThread(self, name:"stateDidChange") { result in
-            let stateChange: StateChangeObject = result.object as! StateChangeObject
+        SwiftEventBus.onMainThread(self, name:"stateDidChange") {
+            result in
+            guard let stateChange: StateChangeObject = result?.object as? StateChangeObject else { return }
             self.stateDidChange(vehicleId: stateChange.vehicleId)
         }
         
