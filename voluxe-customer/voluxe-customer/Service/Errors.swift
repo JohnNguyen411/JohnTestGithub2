@@ -24,6 +24,7 @@ class Errors: Error {
         case E3004 = "E3004"
         case E3005 = "E3005"
         case E3006 = "E3006"
+        case E3011 = "E3011"
         case E4001 = "E4001"
         case E4002 = "E4002"
         case E4003 = "E4003"

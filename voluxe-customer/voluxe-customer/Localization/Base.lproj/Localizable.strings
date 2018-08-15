@@ -45,6 +45,7 @@
 "NotificationPermissionText" = "We need you to grant us the permission to send you notifications to give you updates regarding the status of your car";
 "PickupAndDelivery" = "Pickup & Delivery";
 "DuplicateRequestError" = "A %@ is already scheduled for your car. Please refresh.";
+"DeleteVehicleError" = "You cannot delete a vehicle that has an active booking.";
 "Pickup" = "Pickup";
 "Delivery" = "Delivery";
 "SignoutConfirmation" = "Are you sure you want to sign out?";

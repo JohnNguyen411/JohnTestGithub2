@@ -46,6 +46,7 @@ extension String {
     static let DatabaseError = NSLocalizedString("DatabaseError")
     static let PickupAndDelivery = NSLocalizedString("PickupAndDelivery")
     static let DuplicateRequestError = NSLocalizedString("DuplicateRequestError")
+    static let DeleteVehicleError = NSLocalizedString("DeleteVehicleError")
     static let Pickup = NSLocalizedString("Pickup")
     static let Delivery = NSLocalizedString("Delivery")
     static let SignoutConfirmation = NSLocalizedString("SignoutConfirmation")

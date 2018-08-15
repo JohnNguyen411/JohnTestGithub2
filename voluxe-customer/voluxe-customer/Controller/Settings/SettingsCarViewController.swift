@@ -99,13 +99,17 @@ class SettingsCarViewController: BaseViewController {
                 weakSelf?.callVehicles(customerId: customerId)
             }
             }.onFailure { error in
-                weakSelf?.deleteVehicleFailed()
+                weakSelf?.deleteVehicleFailed(error: error)
         }
     }
     
-    private func deleteVehicleFailed() {
+    private func deleteVehicleFailed(error: Errors) {
         MBProgressHUD.hide(for: self.view, animated: true)
-        showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+        if error.apiError?.getCode() == .E3011 {
+            showOkDialog(title: .Error, message: .DeleteVehicleError, dialog: .error, screen: self.screen)
+        } else {
+            showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+        }
     }
     
     
