@@ -30,8 +30,9 @@ class VLTitledLabel: UIView {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
         titleLabel.font = .volvoSansProMedium(size: 15)
-        titleLabel.volvoProLineSpacing()
         titleLabel.textAlignment = .left
+        titleLabel.numberOfLines = 1
+        titleLabel.lineBreakMode = .byTruncatingTail
         return titleLabel
     }()
     
@@ -92,8 +93,8 @@ class VLTitledLabel: UIView {
             descRightLabel.text = rightDescription
             descRightLabel.volvoProLineSpacing()
         }
-        descLeftLabel.volvoProLineSpacing()
         titleLabel.volvoProLineSpacing()
+        descLeftLabel.sizeToFit()
     }
     
     func setTitle(title: String) {
@@ -103,7 +104,7 @@ class VLTitledLabel: UIView {
     
     func setLeftDescription(leftDescription: String) {
         descLeftLabel.text = leftDescription
-        descLeftLabel.volvoProLineSpacing()
+        descLeftLabel.sizeToFit()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -131,7 +132,7 @@ class VLTitledLabel: UIView {
         }
         
         descLeftLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview()
+            make.left.right.width.equalToSuperview()
             make.top.equalTo(separator.snp.bottom).offset(10)
         }
         

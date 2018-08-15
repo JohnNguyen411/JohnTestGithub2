@@ -53,7 +53,7 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
 
     let scheduledServiceView = VLTitledLabel()
-    let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern())
+    let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDetails as String).uppercased(), kern: UILabel.uppercasedKern())
     
     let vehicleImageView = UIImageView(frame: .zero)
     
@@ -237,7 +237,7 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
             } else {
                 showUpdateLabel(show: true, title: String.New.uppercased(), width: 40, right: true)
             }
-            scheduledServiceView.setTitle(title: title, leftDescription: service.name!, rightDescription: "")
+            scheduledServiceView.setTitle(title: title, leftDescription: service.title!, rightDescription: "")
         }
     }
 

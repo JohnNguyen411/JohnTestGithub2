@@ -27,7 +27,7 @@ extension String {
     static let NewServiceDescription = NSLocalizedString("NewServiceDescription")
     static let TypeDescriptionHere = NSLocalizedString("TypeDescriptionHere")
     static let AddDescription = NSLocalizedString("AddDescription")
-    static let DiagnosticAndService = NSLocalizedString("DiagnosticAndService")
+    static let DiagnosticInspection = NSLocalizedString("DiagnosticInspection")
     static let FactoryScheduledMaintenance = NSLocalizedString("FactoryScheduledMaintenance")
     static let VehicleExt = NSLocalizedString("VehicleExt")
     static let VehicleInt = NSLocalizedString("VehicleInt")

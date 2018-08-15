@@ -118,7 +118,7 @@
 "SelectService" = "Select Service";
 "ConfirmService" = "Confirm Service";
 "ServiceSummary" = "Service Summary";
-"ShowDescription" = "Show Description";
+"ShowDetails" = "Show Details";
 "RecommendedService" = "Recommended Service";
 "SelectedService" = "Selected Service";
 "CompletedService" = "Completed Service";
@@ -223,7 +223,7 @@
 "NewServiceDescription" = "Is there anything else you can tell us about your Volvo?";
 "TypeDescriptionHere" = "Type description here";
 "AddDescription" = "Add Description";
-"DiagnosticAndService" = "Diagnostic and service";
+"DiagnosticInspection" = "Diagnostic Inspection";
 "VehicleExt" = "Vehicle exterior";
 "VehicleInt" = "Vehicle interior";
 "UnderTheHood" = "Under the hood";

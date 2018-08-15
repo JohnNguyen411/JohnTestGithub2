@@ -12,6 +12,14 @@ import RealmSwift
 class ServiceDetailViewController: BaseViewController {
     
     let serviceTitle: VLTitledLabel
+    
+    let isDrivableLabel: UILabel = {
+        let label = UILabel(frame: .zero)
+        label.font = .volvoSansProRegular(size: 14)
+        label.backgroundColor = .clear
+        return label
+    }()
+    
     let label: UITextView = {
         let textView = UITextView(frame: .zero)
         textView.font = .volvoSansProRegular(size: 14)
@@ -37,6 +45,9 @@ class ServiceDetailViewController: BaseViewController {
         self.canSchedule = canSchedule
         self.service = service
         serviceTitle = VLTitledLabel(title: .FactoryScheduledMaintenance, leftDescription: service.name!, rightDescription: "")
+        serviceTitle.descLeftLabel.numberOfLines = 2
+        serviceTitle.descLeftLabel.volvoProLineSpacing()
+        
         var analyticName: AnalyticsEnums.Name.Screen = canSchedule ? .serviceMilestoneDateTime : .serviceMilestoneDetail
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
             analyticName = AnalyticsEnums.Name.Screen.serviceCustomDetail
@@ -52,11 +63,22 @@ class ServiceDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
             label.text = repairOrder.notes
-            serviceTitle.setTitle(title: .OtherMaintenanceRepairs, leftDescription: repairOrder.name!)
+            serviceTitle.setTitle(title: .OtherMaintenanceRepairs, leftDescription: repairOrder.title!)
+            isDrivableLabel.text = String.IsVolvoDrivable + " " + RepairOrder.getDrivabilityTitle(isDrivable: repairOrder.vehicleDrivable.value)
         } else {
             label.text = service.desc
+            if let repairOrder = repairOrder {
+                serviceTitle.setTitle(title: .FactoryScheduledMaintenance, leftDescription: repairOrder.title!)
+            }
+            label.snp.makeConstraints { make in
+                make.right.left.equalTo(serviceTitle)
+                make.bottom.equalTo(confirmButton.snp.top).offset(-20)
+                make.top.equalTo(serviceTitle.snp.bottom).offset(20)
+            }
+            isDrivableLabel.isHidden = true
         }
         
         self.navigationItem.title = .NewService
@@ -68,10 +90,18 @@ class ServiceDetailViewController: BaseViewController {
             confirmButton.isEnabled = false
             confirmButton.alpha = 0
             
-            label.snp.remakeConstraints { make in
-                make.right.left.equalTo(serviceTitle)
-                make.top.equalTo(serviceTitle.snp.bottom).offset(20)
-                make.equalsToBottom(view: self.view, offset: 0)
+            if isDrivableLabel.isHidden {
+                label.snp.remakeConstraints { make in
+                    make.right.left.equalTo(serviceTitle)
+                    make.top.equalTo(serviceTitle.snp.bottom).offset(20)
+                    make.equalsToBottom(view: self.view, offset: 0)
+                }
+            } else {
+                label.snp.remakeConstraints { make in
+                    make.right.left.equalTo(serviceTitle)
+                    make.top.equalTo(isDrivableLabel.snp.bottom).offset(20)
+                    make.equalsToBottom(view: self.view, offset: 0)
+                }
             }
         }
         
@@ -83,6 +113,8 @@ class ServiceDetailViewController: BaseViewController {
             
             weakself.pushViewController(ServiceCarViewController(title: .ServiceSummary, vehicle: weakself.vehicle, state: .needService), animated: true)
         }
+        
+        serviceTitle.descLeftLabel.volvoProLineSpacing()
     }
     
     
@@ -90,6 +122,7 @@ class ServiceDetailViewController: BaseViewController {
         super.setupViews()
         
         self.view.addSubview(serviceTitle)
+        self.view.addSubview(isDrivableLabel)
         self.view.addSubview(label)
         self.view.addSubview(confirmButton)
         
@@ -97,6 +130,11 @@ class ServiceDetailViewController: BaseViewController {
             make.top.left.equalToSuperview().offset(20)
             make.right.equalToSuperview().offset(-20)
             make.height.equalTo(VLTitledLabel.height)
+        }
+        
+        isDrivableLabel.snp.makeConstraints { make in
+            make.right.left.equalTo(serviceTitle)
+            make.top.equalTo(serviceTitle.snp.bottom).offset(20)
         }
         
         confirmButton.snp.makeConstraints { make in
@@ -108,7 +146,7 @@ class ServiceDetailViewController: BaseViewController {
         label.snp.makeConstraints { make in
             make.right.left.equalTo(serviceTitle)
             make.bottom.equalTo(confirmButton.snp.top).offset(-20)
-            make.top.equalTo(serviceTitle.snp.bottom).offset(20)
+            make.top.equalTo(isDrivableLabel.snp.bottom).offset(20)
         }
     }
     

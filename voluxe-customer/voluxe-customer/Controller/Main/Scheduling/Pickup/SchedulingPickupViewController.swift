@@ -238,7 +238,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         confirmButton.isLoading = true
         
-        BookingAPI().createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner, dealershipRepairId: dealershipRepairOrder.id, repairNotes: repairOrder.notes).onSuccess { result in
+        BookingAPI().createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner, dealershipRepairId: dealershipRepairOrder.id, repairNotes: repairOrder.notes, repairTitle: repairOrder.title, vehicleDrivable: repairOrder.vehicleDrivable.value).onSuccess { result in
             if let booking = result?.data?.result {
                 if let realm = self.realm {
                     try? realm.write {

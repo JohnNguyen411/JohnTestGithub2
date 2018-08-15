@@ -15,7 +15,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         textView.text = .WhatPartRequiresService
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
-        textView.textColor = .luxeLipstick()
+        textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -80,11 +80,17 @@ class ServiceMultiselectListViewController: BaseViewController {
             guard let services = weakSelf.services else { return }
             
             var selectedService: [String] = []
-            for dictElement in weakSelf.selected.enumerated() {
-                if dictElement.element.value {
-                    selectedService.append(services[dictElement.element.key])
+            
+            for (index, serviceElement) in services.enumerated() {
+                if let selected = weakSelf.selected[index], selected {
+                    var title = serviceElement
+                    if title == .IDontKnow {
+                        title = .DiagnosticInspection
+                    }
+                    selectedService.append(title)
                 }
             }
+            
             weakSelf.pushViewController(OtherServiceViewController(vehicle: weakSelf.vehicle, repairOrderType: weakSelf.repairOrderType, services: selectedService), animated: true)
         }
         
@@ -150,7 +156,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     }
     
     func enableConfirmButton() {
-        confirmButton.isEnabled = getSelectedIndex().count > 0
+        confirmButton.isEnabled = hasSelectedIndex()
     }
 }
 
@@ -200,16 +206,12 @@ extension ServiceMultiselectListViewController: UITableViewDataSource, UITableVi
         return 0
     }
     
-    func getSelectedIndex() -> String {
-        var selectedIndex = ""
+    func hasSelectedIndex() -> Bool {
         for dictElement in selected {
             if dictElement.value {
-                selectedIndex += "\(dictElement.key),"
+                return true
             }
         }
-        if selectedIndex.count > 0 {
-            selectedIndex.removeLast()
-        }
-        return selectedIndex
+        return false
     }
 }

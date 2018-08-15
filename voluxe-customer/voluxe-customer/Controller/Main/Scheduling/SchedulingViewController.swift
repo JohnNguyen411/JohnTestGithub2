@@ -85,7 +85,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     
     
     override init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen? = nil) {
-        descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDescription as String).uppercased(), kern: UILabel.uppercasedKern(), event: .showService, screen: screen)
+        descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDetails as String).uppercased(), kern: UILabel.uppercasedKern(), event: .showService, screen: screen)
         confirmButton = VLButton(type: .bluePrimary, title: SchedulingViewController.getConfirmButtonTitle(vehicleId: vehicle.id), kern: UILabel.uppercasedKern())
         
         super.init(vehicle: vehicle, state: state, screen: screen)
@@ -290,7 +290,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             if RequestedServiceManager.sharedInstance.isSelfInitiated() {
                 title = .SelectedService
             }
-            scheduledServiceView.setTitle(title: title, leftDescription: repairOrder.name!, rightDescription: "")
+            scheduledServiceView.setTitle(title: title, leftDescription: repairOrder.title!, rightDescription: "")
         }
         
         fillDealership()

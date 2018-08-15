@@ -12,7 +12,7 @@ import RealmSwift
 /// RealmManager is use to run Realm Migrations
 class RealmManager {
     
-    private static let dbVersion: UInt64 = 7
+    private static let dbVersion: UInt64 = 8
     
     public static func realmMigration(callback: @escaping (Realm?, Swift.Error?) -> Void) {
         
@@ -61,6 +61,15 @@ class RealmManager {
             if oldSchemaVersion < 7 {
                 migration.enumerateObjects(ofType: CustomerAddress.className()) { oldObject, newObject in
                     newObject!["luxeCustomerId"] = UserManager.sharedInstance.customerId() ?? -1
+                }
+            }
+            
+            if oldSchemaVersion < 8 {
+                migration.enumerateObjects(ofType: RepairOrder.className()) { oldObject, newObject in
+                    if let oldObject = oldObject {
+                        newObject!["title"] = oldObject["name"]
+                        newObject!["vehicleDrivable"] = RealmOptional<Bool>()
+                    }
                 }
             }
             

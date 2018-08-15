@@ -15,7 +15,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         textView.text = .IsVolvoDrivable
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
-        textView.textColor = .luxeLipstick()
+        textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -26,7 +26,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         textView.text = .NewServiceDescription
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
-        textView.textColor = .luxeLipstick()
+        textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -63,7 +63,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
     let confirmButton: VLButton
     
-    let drivability = [DrivableType.yes, DrivableType.no, DrivableType.notSure]
+    let drivability: [Bool?] = [true, false, nil]
     var checkedCellIndex = 0
     let service: RepairOrder
     let vehicle: Vehicle
@@ -71,12 +71,8 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     
     init(vehicle: Vehicle, repairOrderType: RepairOrderType, services: [String]) {
         self.vehicle = vehicle
-        var serviceTitle = String.Service + ": "
-        for service in services {
-            serviceTitle += "\n• \(service). "
-        }
-        self.serviceTitle = serviceTitle
-        self.service = RepairOrder(repairOrderType: repairOrderType, customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
+        self.serviceTitle = services.joined(separator: ", ")
+        self.service = RepairOrder(title: serviceTitle, repairOrderType: repairOrderType, customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
         
         confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), event: .next, screen: .serviceCustomNotes)
         
@@ -106,12 +102,10 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         confirmButton.setActionBlock { [weak self] in
             guard let weakSelf = self else { return }
             
-            var notes = weakSelf.serviceTitle // reset notes
+            var notes = "" // reset notes
             if weakSelf.descriptionTextView.text != .TypeDescriptionHere {
-                notes.append("\n\n\(weakSelf.descriptionTextView.text ?? "")")
+                notes = weakSelf.descriptionTextView.text ?? ""
             }
-            notes.append("\n\n\(String.IsVolvoDrivable) \(weakSelf.drivability[weakSelf.checkedCellIndex].rawValue)")
-
             weakSelf.service.notes = notes
             
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: weakSelf.service)
@@ -208,16 +202,6 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         
     }
     
-    func getDrivabilityTitle(type: DrivableType) -> String {
-        if type == .yes {
-            return .Yes
-        } else if type == .no {
-            return .No
-        } else {
-            return .ImNotSure
-        }
-    }
-    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if scrollViewSize == nil {
@@ -305,7 +289,7 @@ extension OtherServiceViewController: UITableViewDataSource, UITableViewDelegate
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CheckmarkCell.reuseId, for: indexPath) as! CheckmarkCell
-        cell.setTitle(title: getDrivabilityTitle(type: drivability[indexPath.row]))
+        cell.setTitle(title: RepairOrder.getDrivabilityTitle(isDrivable: drivability[indexPath.row]))
         cell.setChecked(checked: indexPath.row == checkedCellIndex)
         return cell
     }

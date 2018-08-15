@@ -19,23 +19,30 @@ class RepairOrder: Object, Mappable {
     @objc dynamic var state: String?
     @objc dynamic var createdAt: Date?
     @objc dynamic var updatedAt: Date?
-    var drivable: DrivableType?
+    let vehicleDrivable = RealmOptional<Bool>()
     @objc dynamic var repairOrderType: RepairOrderType?
     @objc dynamic var name: String?
-
-    convenience init(repairOrderType: RepairOrderType, customerDescription: String, drivable: DrivableType?) {
+    @objc dynamic var title: String?
+    
+    convenience init(title: String, repairOrderType: RepairOrderType, customerDescription: String, drivable: Bool?) {
         self.init()
-        self.name = .DiagnosticAndService
+        self.name = title
+        self.title = title
         self.repairOrderType = repairOrderType
         self.notes = customerDescription
-        self.drivable = drivable
+        if let drivable = drivable {
+            self.vehicleDrivable.value = drivable
+        } else {
+            self.vehicleDrivable.value = nil
+        }
     }
     
     convenience init(repairOrderType: RepairOrderType) {
         self.init()
+        self.title = repairOrderType.name
         self.name = repairOrderType.name
         if repairOrderType.getCategory() == .custom {
-            self.name = String.DiagnosticAndService
+            self.name = String.DiagnosticInspection
         }
         self.repairOrderType = repairOrderType
     }
@@ -58,19 +65,22 @@ class RepairOrder: Object, Mappable {
         name <- map["dealership_repair_order.repair_order_type.name"]
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
+        title <- map["title"]
         if let repairOrderType = repairOrderType, repairOrderType.getCategory() == .custom {
-            self.name = String.DiagnosticAndService
+            self.name = String.DiagnosticInspection
+        }
+        vehicleDrivable.value <- map["vehicle_drivable"]
+    }
+    
+    static func getDrivabilityTitle(isDrivable: Bool?) -> String {
+        if let drivable = isDrivable {
+            if drivable {
+                return .Yes
+            } else {
+                return .No
+            }
+        } else {
+            return .ImNotSure
         }
     }
-    
-    override static func ignoredProperties() -> [String] {
-        return ["drivable"]
-    }
-    
-}
-
-public enum DrivableType: String {
-    case yes = "yes"
-    case no = "no"
-    case notSure = "notSure"
 }

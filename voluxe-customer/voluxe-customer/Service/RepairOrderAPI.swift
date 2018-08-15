@@ -88,13 +88,18 @@ class RepairOrderAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a RepairOrder, or an AFError if an error occured
      */
-    func createRepairOrder(customerId: Int, bookingId: Int, dealershipRepairOrderId: Int, notes: String) -> Future<ResponseObject<MappableDataObject<RepairOrder>>?, Errors> {
+    func createRepairOrder(customerId: Int, bookingId: Int, dealershipRepairOrderId: Int, title: String, notes: String, vehicleDrivable: Bool?) -> Future<ResponseObject<MappableDataObject<RepairOrder>>?, Errors> {
         let promise = Promise<ResponseObject<MappableDataObject<RepairOrder>>?, Errors>()
 
-        let params: Parameters = [
+        var params: Parameters = [
             "notes": notes,
+            "title": title,
             "dealership_repair_order_id": dealershipRepairOrderId
             ]
+        
+        if let vehicleDrivable = vehicleDrivable {
+            params["vehicle_drivable"] = vehicleDrivable
+        }
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/repair-order-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             

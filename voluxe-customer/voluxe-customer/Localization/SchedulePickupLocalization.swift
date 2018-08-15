@@ -13,7 +13,7 @@ extension String {
     static let SelectService = NSLocalizedString("SelectService")
     static let ConfirmService = NSLocalizedString("ConfirmService")
     static let ServiceSummary = NSLocalizedString("ServiceSummary")
-    static let ShowDescription = NSLocalizedString("ShowDescription")
+    static let ShowDetails = NSLocalizedString("ShowDetails")
     static let RecommendedService = NSLocalizedString("RecommendedService")
     static let SelectedService = NSLocalizedString("SelectedService")
     static let CompletedService = NSLocalizedString("CompletedService")

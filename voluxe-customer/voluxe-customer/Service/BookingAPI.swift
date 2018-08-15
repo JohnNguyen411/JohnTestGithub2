@@ -23,10 +23,12 @@ class BookingAPI: NSObject {
      - parameter loaner: If the customer requested a Loaner
      - parameter dealershipRepairId: The dealership repairOrderId, or nil if repair_order created separately
      - parameter repairNotes: The repair_order notes, or nil if repair_order created separately
+     - parameter repairTitle: The repair_order title, or nil if repair_order created separately
+     - parameter vehicleDrivable: The repair_order vehicle_drivable, or nil if repair_order created separately
      
      - Returns: A Future ResponseObject containing a Booking, or an AFError if an error occured
      */
-    func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool, dealershipRepairId: Int?, repairNotes: String?) -> Future<ResponseObject<MappableDataObject<Booking>>?, Errors> {
+    func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool, dealershipRepairId: Int?, repairNotes: String?, repairTitle: String?, vehicleDrivable: Bool?) -> Future<ResponseObject<MappableDataObject<Booking>>?, Errors> {
         let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, Errors>()
         var params: Parameters = [
             "vehicle_id": vehicleId,
@@ -40,6 +42,12 @@ class BookingAPI: NSObject {
             ]
             if let notes = repairNotes {
                 repairOrder["notes"] = notes
+            }
+            if let vehicleDrivable = vehicleDrivable {
+                repairOrder["vehicle_drivable"] = vehicleDrivable
+            }
+            if let repairTitle = repairTitle {
+                repairOrder["title"] = repairTitle
             }
             params["repair_order_requests"] = [repairOrder]
         }
