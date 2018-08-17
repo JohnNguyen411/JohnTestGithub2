@@ -1,3 +1,8 @@
+v1.0.2(109):
+Handle error when vehicle deletion on an active booking
+Custom Repair Order migration
+Misc bugfixes and improvments
+
 v1.0.2(102):
 Fix wrong map focus on Scheduled P/D
 Revamp Location Modal
