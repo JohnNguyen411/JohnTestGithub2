@@ -103,7 +103,7 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
             make.height.equalTo(mapHeight)
         }
         
-        addShadow(toView: mapViewContainer)
+        ViewUtils.addShadow(toView: mapViewContainer)
         updateBookingIfNeeded()
     }
     
@@ -123,15 +123,7 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
         SwiftEventBus.unregister(self, name: "updateBookingIfNeeded")
     }
     
-    private func addShadow(toView: UIView) {
-        
-        toView.layer.masksToBounds = false
-        
-        toView.layer.shadowColor = UIColor.black.cgColor
-        toView.layer.shadowOpacity = 0.5
-        toView.layer.shadowRadius = 2
-        toView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-    }
+    
     
     override func setupViews() {
         super.setupViews()

@@ -72,6 +72,7 @@ struct AnalyticsEnums {
             case inboundSelfConfirm
             case inboundVolvo
             case inboundVolvoConfirm
+            case mapIt
             case next
             case newService
             case ok
@@ -85,6 +86,7 @@ struct AnalyticsEnums {
             case removeVehicle
             case requestLocation
             case requestNotifications
+            case scheduleDelivery
             case scheduleService
             case selectDealership
             case selectLoaner
@@ -139,6 +141,7 @@ struct AnalyticsEnums {
             case dropoffNew
             case dropoffDateTime
             case dropoffLocation
+            case dropoffSelfActive
             case emailUpdate
             case error
             case help

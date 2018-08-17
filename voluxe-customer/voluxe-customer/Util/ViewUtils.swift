@@ -42,4 +42,12 @@ class ViewUtils {
         }
         return sizeInPoints
     }
+    
+    public static func addShadow(toView: UIView) {
+        toView.layer.masksToBounds = false
+        toView.layer.shadowColor = UIColor.black.cgColor
+        toView.layer.shadowOpacity = 0.5
+        toView.layer.shadowRadius = 2
+        toView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
+    }
 }

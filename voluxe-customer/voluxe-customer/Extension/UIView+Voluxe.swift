@@ -84,6 +84,8 @@ extension UIView {
         layer.add(animation, forKey: "shake")
     }
     
+    
+    
     var hasSafeAreaCapability: Bool {
         #if swift(>=3.2)
             if #available(iOS 11.0, *) {

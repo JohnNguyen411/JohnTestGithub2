@@ -55,10 +55,14 @@ class MainViewController: BaseVehicleViewController {
             }
             
         } else if serviceState.rawValue >= ServiceState.dropoffScheduled.rawValue && serviceState.rawValue <= ServiceState.arrivedForDropoff.rawValue {
+            
+            
+            //TODO: CHANGE FOR ONLY SELF-PICKUP
+            
             if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
                 changeView = false
             } else {
-                let scheduledDeliveryViewController = ScheduledDropoffViewController(vehicle: vehicle, state: serviceState)
+                let scheduledDeliveryViewController = ScheduledSelfDropoff(vehicle: vehicle, screen: .dropoffSelfActive)
                 newViewController = scheduledDeliveryViewController
             }
         } else if serviceState == .idle {
