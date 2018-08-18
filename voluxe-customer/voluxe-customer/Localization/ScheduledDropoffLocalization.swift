@@ -13,4 +13,5 @@ extension String {
     static let DeliveryWindow = NSLocalizedString("DeliveryWindow")
     static let EstimatedDeliveryTime = NSLocalizedString("EstimatedDeliveryTime")
     static let DeliveryComplete = NSLocalizedString("DeliveryComplete")
+    static let MapIt = NSLocalizedString("MapIt")
 }

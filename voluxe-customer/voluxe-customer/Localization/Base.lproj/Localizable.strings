@@ -200,6 +200,7 @@
 "DeliveryWindow" = "Delivery window";
 "EstimatedDeliveryTime" = "Estimated delivery time";
 "DeliveryComplete" = "Your delivery from %@ is complete.";
+"MapIt" = "Map It";
 
 /***************** Vehicle ***************/
 "VolvoYearModel" = "Volvo Year/Model";

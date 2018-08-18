@@ -10,6 +10,14 @@ import Foundation
 
 class ScheduledSelfDropoff: BaseViewController {
     
+    let dealershipNameLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.textColor = .luxeDarkGray()
+        titleLabel.font = .volvoSansProMedium(size: 16)
+        titleLabel.textAlignment = .left
+        return titleLabel
+    }()
+    
     let dealershipNoteLabel: UITextView = {
         let textView = UITextView(frame: .zero)
         textView.font = .volvoSansProRegular(size: 14)
@@ -23,6 +31,7 @@ class ScheduledSelfDropoff: BaseViewController {
         titleLabel.textColor = .luxeDarkGray()
         titleLabel.font = .volvoSansProRegular(size: 14)
         titleLabel.textAlignment = .left
+        titleLabel.numberOfLines = 2
         return titleLabel
     }()
     
@@ -45,7 +54,7 @@ class ScheduledSelfDropoff: BaseViewController {
     
     init(vehicle: Vehicle, screen: AnalyticsEnums.Name.Screen) {
         self.vehicle = vehicle
-        mapItButton = VLButton(type: .blueSecondary, title: (.ShowDetails as String).uppercased(), kern: UILabel.uppercasedKern(), event: .mapIt, screen: screen)
+        mapItButton = VLButton(type: .blueSecondary, title: (.MapIt as String).uppercased(), kern: UILabel.uppercasedKern(), event: .mapIt, screen: screen)
         scheduleDeliveryButton = VLButton(type: .bluePrimary, title: (.ScheduleDelivery as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
         super.init(screen: screen)
         self.mapVC.screen = screen
@@ -62,6 +71,8 @@ class ScheduledSelfDropoff: BaseViewController {
         if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: self.vehicle) {
             self.fillViews(booking: booking)
         }
+        
+        setTitle(title: .SelfPickup)
     }
     
     override func setupViews() {
@@ -70,12 +81,13 @@ class ScheduledSelfDropoff: BaseViewController {
         self.view.addSubview(scrollView)
         scrollView.addSubview(contentView)
         
+        contentView.addSubview(dealershipNameLabel)
         contentView.addSubview(dealershipNoteLabel)
         contentView.addSubview(self.mapVC.view)
         contentView.addSubview(dealershipAddressLabel)
         contentView.addSubview(mapItButton)
-        contentView.addSubview(deliveryLabel)
-        contentView.addSubview(scheduleDeliveryButton)
+        self.view.addSubview(deliveryLabel)
+        self.view.addSubview(scheduleDeliveryButton)
         
         let adaptedMarging = ViewUtils.getAdaptedHeightSize(sizeInPoints: 20)
         
@@ -87,9 +99,14 @@ class ScheduledSelfDropoff: BaseViewController {
             make.edgesEqualsToView(view: self.scrollView)
         }
         
-        dealershipNoteLabel.snp.makeConstraints { make in
+        dealershipNameLabel.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-            make.height.lessThanOrEqualTo(200)
+        }
+        
+        dealershipNoteLabel.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(dealershipNameLabel.snp.bottom).offset(20)
+            make.height.lessThanOrEqualTo(160)
         }
         
         mapItButton.snp.makeConstraints { make in
@@ -100,22 +117,25 @@ class ScheduledSelfDropoff: BaseViewController {
         dealershipAddressLabel.snp.makeConstraints { make in
             make.left.equalToSuperview()
             make.top.equalTo(dealershipNoteLabel.snp.bottom).offset(20)
-            make.right.equalTo(mapItButton.snp.left)
+            make.right.equalTo(mapItButton.snp.left).offset(-10)
         }
         
         mapVC.view.snp.makeConstraints { make in
+            make.top.equalTo(dealershipAddressLabel.snp.bottom).offset(10)
             make.left.right.equalToSuperview()
             make.height.equalTo(200)
         }
         
         deliveryLabel.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
-            make.top.equalTo(mapVC.view.snp.bottom).offset(20)
+            make.top.equalTo(scheduleDeliveryButton.snp.top).offset(-20)
         }
         
         scheduleDeliveryButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(deliveryLabel.snp.bottom).offset(20)
+            make.right.equalToSuperview().offset(-adaptedMarging)
+            make.left.equalToSuperview().offset(adaptedMarging)
+            make.bottom.equalToSuperview().offset(-20)
+            make.height.equalTo(VLButton.primaryHeight)
         }
         
     }
@@ -123,6 +143,7 @@ class ScheduledSelfDropoff: BaseViewController {
     private func fillViews(booking: Booking) {
         if let dealership = booking.dealership, let location = dealership.location {
             dealershipAddressLabel.text = location.address
+            dealershipNameLabel.text = dealership.name
             
             if let coordinates = location.getLocation() {
                 mapVC.updateRequestLocation(location: coordinates)
