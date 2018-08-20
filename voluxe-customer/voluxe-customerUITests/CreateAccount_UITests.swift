@@ -23,8 +23,7 @@ class CreateAccount_UITests: XCTestCase {
         // this was an account manually created but never verified
         // eventually the token will expire but for the moment this
         // is a handy way to test the admin verification API
-        let customerEmail = "bot-1234567890@luxe.com"
-        AdminAPI.loginAndRequestVerificationCode(for: customerEmail) {
+        AdminAPI.loginAndRequestVerificationCode(for: BotUserData.email) {
             code in
             XCTAssertNotNil(code)
         }

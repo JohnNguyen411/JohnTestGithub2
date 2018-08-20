@@ -13,8 +13,10 @@ extension AdminAPI {
     static func loginAndRequestVerificationCode(for customerEmail: String,
                                                 completion: @escaping ((VerificationCode?) -> ()))
     {
-        AdminAPI.login(email: "bot@luxe.com",
-                       password: "botbotbot",
+        // note that the email and password are for the admin user
+        // to get access to the admin API and is not the customer user
+        AdminAPI.login(email: "bots@luxe.com",
+                       password: "1234qwer",
                        requestVerificationCodeFor: customerEmail,
                        completion: completion)
     }
