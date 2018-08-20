@@ -111,5 +111,10 @@
 	<string>$(OPENID_REDIRECT_URI)</string>
 	<key>com.volvocars.hse.openIdTokenEndpoint</key>
 	<string>$(OPENID_TOKEN_ENDPOINT)</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>googlechromes</string>
+        <string>comgooglemaps</string>
+    </array>
 </dict>
 </plist>

@@ -58,7 +58,8 @@ class ScheduledSelfDropoff: BaseViewController {
         scheduleDeliveryButton = VLButton(type: .bluePrimary, title: (.ScheduleDelivery as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
         super.init(screen: screen)
         self.mapVC.screen = screen
-
+        
+        scrollView.contentMode = .scaleAspectFit
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,6 +74,8 @@ class ScheduledSelfDropoff: BaseViewController {
         }
         
         setTitle(title: .SelfPickup)
+        
+        mapItButton.contentHorizontalAlignment = .right
     }
     
     override func setupViews() {
@@ -96,7 +99,7 @@ class ScheduledSelfDropoff: BaseViewController {
         }
         
         contentView.snp.makeConstraints { make in
-            make.edgesEqualsToView(view: self.scrollView)
+            make.left.top.width.height.equalTo(scrollView)
         }
         
         dealershipNameLabel.snp.makeConstraints { make in
@@ -158,7 +161,15 @@ class ScheduledSelfDropoff: BaseViewController {
         }
     }
     
-    @objc private func mapIt(coordinates: CLLocationCoordinate2D) {
+    @objc private func mapIt() {
+        
+        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: self.vehicle) else { return }
+        guard let dealership = booking.dealership else { return }
+        guard let location = dealership.location else { return }
+        
+        if let coordinates = location.getLocation() {
+            LocationUtils.launchNavigationToLocation(location: coordinates, usingWaze: false)
+        }
         
     }
     

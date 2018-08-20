@@ -30,7 +30,7 @@ class LocationUtils {
     
     //MARK: - Navigating to Coordinates
     
-    static func launchNavigationToLocation(location: CLLocation, usingWaze: Bool) {
+    static func launchNavigationToLocation(location: CLLocationCoordinate2D, usingWaze: Bool) {
         if usingWaze {
             // Try to use Waze if it's installed
             if openLocationWithWazeNativeApp(location: location) {
@@ -55,7 +55,7 @@ class LocationUtils {
     }
         
    
-    static func openLocationWithWazeNativeApp(location: CLLocation) -> Bool {
+    static func openLocationWithWazeNativeApp(location: CLLocationCoordinate2D) -> Bool {
         if let url = self.urlWithPrefix(prefix: wazeAppURL, format: wazeCoordinateQueryFormat, location: location) {
             UIApplication.shared.open(url)
             return true
@@ -63,15 +63,15 @@ class LocationUtils {
         return false
     }
     
-    static func openLocationWithGoogleMapsNativeApp(location: CLLocation) -> Bool {
-        if let url = self.urlWithPrefix(prefix: googleMapsAppURL, format: googleMapsCoordinateQueryFormat, location: location) {
+    static func openLocationWithGoogleMapsNativeApp(location: CLLocationCoordinate2D) -> Bool {
+        if let url = self.urlWithPrefix(prefix: googleMapsAppURL, format: googleMapsCoordinateQueryFormat, location: location), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
             return true
         }
         return false
     }
     
-    static func openLocationWithGoogleMapsWebApp(location: CLLocation) -> Bool {
+    static func openLocationWithGoogleMapsWebApp(location: CLLocationCoordinate2D) -> Bool {
         if let url = self.urlWithPrefix(prefix: googleMapsWebURL, format: googleMapsCoordinateQueryFormat, location: location) {
             UIApplication.shared.open(url)
             return true
@@ -79,7 +79,7 @@ class LocationUtils {
         return false
     }
     
-    static func openLocationWithAppleMapsNativeApp(location: CLLocation) -> Bool {
+    static func openLocationWithAppleMapsNativeApp(location: CLLocationCoordinate2D) -> Bool {
         if let url = self.urlWithPrefix(prefix: appleMapsWebURL, format: appleMapsCoordinateQueryFormat, location: location) {
             UIApplication.shared.open(url)
             return true
@@ -165,15 +165,15 @@ class LocationUtils {
     
     //MARK: - String Helpers
     
-    private static func urlWithPrefix(prefix: String, format: String, location: CLLocation) -> URL? {
+    private static func urlWithPrefix(prefix: String, format: String, location: CLLocationCoordinate2D) -> URL? {
         return URL(string: "\(prefix)\(queryStringWithFormat(format: format, location: location))")
     }
     
-    private static func queryStringWithFormat(format: String, location: CLLocation) -> String {
+    private static func queryStringWithFormat(format: String, location: CLLocationCoordinate2D) -> String {
         if format == googleMapsCoordinateQueryFormat {
-            return String(format: format, location.coordinate.latitude, location.coordinate.longitude, location.coordinate.latitude, location.coordinate.longitude)
+            return String(format: format, location.latitude, location.longitude, location.latitude, location.longitude)
         } else {
-            return String(format: format, location.coordinate.latitude, location.coordinate.longitude)
+            return String(format: format, location.latitude, location.longitude)
         }
     }
     
