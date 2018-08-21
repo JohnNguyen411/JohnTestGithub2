@@ -1,3 +1,6 @@
+v1.0.3(111):
+Fix sync error on serviceCompleted (induced by Self Pickup from BE)
+
 v1.0.2(109):
 Handle error when vehicle deletion on an active booking
 Custom Repair Order migration
