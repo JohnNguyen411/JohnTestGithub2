@@ -1,4 +1,4 @@
-v1.0.3(111):
+v1.0.3(112):
 Fix sync error on serviceCompleted (induced by Self Pickup from BE)
 
 v1.0.2(109):
