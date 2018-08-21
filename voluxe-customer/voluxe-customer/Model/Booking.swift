@@ -113,7 +113,7 @@ class Booking: Object, Mappable {
         let snappedPointsFeature = RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.snappedPointsKey)
         var refreshTime = 0
         if pickupRequest != nil || dropoffRequest != nil {
-            if getState() != .serviceCompleted && getState() != .completed && getState() != .canceled {
+            if getState() != .completed && getState() != .canceled {
                 if let pickupRequest = pickupRequest, let dealership = dealership, (getState() == .enRouteForPickup || getState() == .nearbyForPickup) {
                     let distanceFromDestination = self.distanceFromDestination(request: pickupRequest)
                     let distanceFromOrigin = self.distanceFromOrigin(request: pickupRequest, dealership: dealership)
