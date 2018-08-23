@@ -56,16 +56,23 @@ class MainViewController: BaseVehicleViewController {
             
         } else if serviceState.rawValue >= ServiceState.dropoffScheduled.rawValue && serviceState.rawValue <= ServiceState.arrivedForDropoff.rawValue {
             
-            
-            //TODO: CHANGE FOR ONLY SELF-PICKUP
-            
-            if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
-                changeView = false
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.isSelfOB() {
+                if currentViewController != nil && (currentViewController?.isKind(of: ScheduledSelfDropoff.self))! {
+                    changeView = false
+                } else {
+                    let scheduledDeliveryViewController = ScheduledSelfDropoff(vehicle: vehicle, screen: .dropoffSelfActive)
+                    newViewController = scheduledDeliveryViewController
+                }
+                setTitle(title: .SelfPickupAtDealership)
             } else {
-                let scheduledDeliveryViewController = ScheduledSelfDropoff(vehicle: vehicle, screen: .dropoffSelfActive)
-                newViewController = scheduledDeliveryViewController
+                if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
+                    changeView = false
+                } else {
+                    let scheduledDeliveryViewController = ScheduledDropoffViewController(vehicle: vehicle, state: serviceState)
+                    newViewController = scheduledDeliveryViewController
+                }
             }
-            setTitle(title: .SelfPickupAtDealership)
+            
         } else if serviceState == .idle {
             AppController.sharedInstance.showVehiclesView(animated: true)
         }
