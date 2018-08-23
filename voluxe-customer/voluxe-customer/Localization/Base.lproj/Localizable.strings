@@ -195,14 +195,15 @@
 "ScheduleDelivery" = "Schedule Delivery";
 "DeliveryLocation" = "Delivery Location";
 "ConfirmSelfPickup" = "Confirm Self-Pickup";
-"SelfPickupAtDealership" = "Self-Pickup at dealership";
+"SelfPickupAtDealership" = "Self-Pickup at Dealership";
 
 /***************** Scheduled Dropoff ***************/
 "VehicleIsReady" = "Vehicle is ready";
 "DeliveryWindow" = "Delivery window";
 "EstimatedDeliveryTime" = "Estimated delivery time";
 "DeliveryComplete" = "Your delivery from %@ is complete.";
-"MapIt" = "Map It";
+"GetDirections" = "Get Directions";
+"ScheduleDriver" = "You can also schedule a driver to deliver your vehicle";
 
 /***************** Vehicle ***************/
 "VolvoYearModel" = "Volvo Year/Model";

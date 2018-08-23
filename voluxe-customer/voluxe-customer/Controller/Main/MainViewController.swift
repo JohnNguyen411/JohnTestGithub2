@@ -65,6 +65,7 @@ class MainViewController: BaseVehicleViewController {
                 let scheduledDeliveryViewController = ScheduledSelfDropoff(vehicle: vehicle, screen: .dropoffSelfActive)
                 newViewController = scheduledDeliveryViewController
             }
+            setTitle(title: .SelfPickupAtDealership)
         } else if serviceState == .idle {
             AppController.sharedInstance.showVehiclesView(animated: true)
         }

@@ -63,6 +63,7 @@ struct AnalyticsEnums {
             case dismissDialog
             case done
             case forgotPassword
+            case getDirections
             case leftPanelBookings
             case leftPanelSettings
             case leftPanelHelp
@@ -72,7 +73,6 @@ struct AnalyticsEnums {
             case inboundSelfConfirm
             case inboundVolvo
             case inboundVolvoConfirm
-            case mapIt
             case next
             case newService
             case ok

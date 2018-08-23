@@ -13,7 +13,7 @@ class ScheduledSelfDropoff: BaseViewController {
     let dealershipNameLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.font = .volvoSansProMedium(size: 16)
+        titleLabel.font = .volvoSansProBold(size: 14)
         titleLabel.textAlignment = .left
         return titleLabel
     }()
@@ -37,9 +37,11 @@ class ScheduledSelfDropoff: BaseViewController {
     
     let deliveryLabel: UILabel = {
         let titleLabel = UILabel()
+        titleLabel.text = .ScheduleDriver
         titleLabel.textColor = .luxeDarkGray()
         titleLabel.font = .volvoSansProRegular(size: 14)
         titleLabel.textAlignment = .left
+        titleLabel.numberOfLines = 0
         return titleLabel
     }()
     
@@ -54,8 +56,8 @@ class ScheduledSelfDropoff: BaseViewController {
     
     init(vehicle: Vehicle, screen: AnalyticsEnums.Name.Screen) {
         self.vehicle = vehicle
-        mapItButton = VLButton(type: .blueSecondary, title: (.MapIt as String).uppercased(), kern: UILabel.uppercasedKern(), event: .mapIt, screen: screen)
-        scheduleDeliveryButton = VLButton(type: .bluePrimary, title: (.ScheduleDelivery as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
+        mapItButton = VLButton(type: .blueSecondary, title: (.GetDirections as String).uppercased(), kern: UILabel.uppercasedKern(), event: .getDirections, screen: screen)
+        scheduleDeliveryButton = VLButton(type: .grayPrimary, title: (.ScheduleDelivery as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
         super.init(screen: screen)
         self.mapVC.screen = screen
         
@@ -95,49 +97,49 @@ class ScheduledSelfDropoff: BaseViewController {
         let adaptedMarging = ViewUtils.getAdaptedHeightSize(sizeInPoints: 20)
         
         scrollView.snp.makeConstraints { make in
-            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(adaptedMarging, adaptedMarging, adaptedMarging, adaptedMarging))
+            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(ViewUtils.getAdaptedHeightSize(sizeInPoints: BaseViewController.defaultTopYOffset), adaptedMarging, adaptedMarging, adaptedMarging))
         }
         
         contentView.snp.makeConstraints { make in
             make.left.top.width.height.equalTo(scrollView)
         }
         
-        dealershipNameLabel.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
-        }
-        
         dealershipNoteLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(dealershipNameLabel.snp.bottom).offset(20)
+            make.top.left.right.equalToSuperview()
             make.height.lessThanOrEqualTo(160)
         }
         
-        mapItButton.snp.makeConstraints { make in
-            make.right.equalToSuperview()
-            make.centerY.equalTo(dealershipAddressLabel)
+        dealershipNameLabel.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(dealershipNoteLabel.snp.bottom).offset(adaptedMarging)
         }
         
         dealershipAddressLabel.snp.makeConstraints { make in
+            make.left.right.equalToSuperview()
+            make.top.equalTo(dealershipNameLabel.snp.bottom).offset(5)
+        }
+        
+        mapItButton.snp.makeConstraints { make in
             make.left.equalToSuperview()
-            make.top.equalTo(dealershipNoteLabel.snp.bottom).offset(20)
-            make.right.equalTo(mapItButton.snp.left).offset(-10)
+            make.top.equalTo(dealershipAddressLabel.snp.bottom).offset(adaptedMarging)
         }
         
         mapVC.view.snp.makeConstraints { make in
-            make.top.equalTo(dealershipAddressLabel.snp.bottom).offset(10)
+            make.top.equalTo(mapItButton.snp.bottom).offset(adaptedMarging)
             make.left.right.equalToSuperview()
             make.height.equalTo(200)
         }
         
         deliveryLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(scheduleDeliveryButton.snp.top).offset(-20)
+            make.left.equalToSuperview().offset(adaptedMarging)
+            make.right.equalToSuperview().offset(-adaptedMarging)
+            make.bottom.equalTo(scheduleDeliveryButton.snp.top).offset(-adaptedMarging)
         }
         
         scheduleDeliveryButton.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-adaptedMarging)
             make.left.equalToSuperview().offset(adaptedMarging)
-            make.bottom.equalToSuperview().offset(-20)
+            make.equalsToBottom(view: self.view, offset: -adaptedMarging)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
