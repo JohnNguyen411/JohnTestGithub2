@@ -181,6 +181,7 @@
 "CallDriver" = "Call Driver";
 "TextDriver" = "Text Driver";
 "ScheduledSelfDrop" = "Scheduled Self-Drop";
+"NoteDelivery" = "Note: Volvo delivery is only offered near the dealership.";
 
 /***************** Scheduling Dropoff ***************/
 "CurrentService" = "Current Service";
