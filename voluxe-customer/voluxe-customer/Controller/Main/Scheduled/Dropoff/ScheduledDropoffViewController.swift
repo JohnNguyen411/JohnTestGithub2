@@ -51,6 +51,8 @@ class ScheduledDropoffViewController: ScheduledViewController {
                 self.timeWindowView.setSubtitle(text: .DeliveryWindow)
             }
         }
+        
+        questionMarkIcon.isHidden = booking.isSelfOB()
     }
     
     override func stateDidChange(state: ServiceState) {

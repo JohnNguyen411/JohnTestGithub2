@@ -40,9 +40,12 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
     var verticalStepView: GroupedVerticalStepView? = nil
     let mapVC = MapViewController()
     let vehicle: Vehicle
+    
     private let mapViewContainer = UIView(frame: .zero)
     private let driverViewContainer = UIView(frame: .zero)
     private let driverIcon: UIImageView
+    let questionMarkIcon = UIImageView(image: UIImage(named: "ic_questionmark"))
+
     let timeWindowView = TimeWindowView()
     
     let driverName: UILabel = {
@@ -204,6 +207,17 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
                 make.left.right.equalToSuperview()
                 make.top.equalTo(timeWindowView.snp.bottom)
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 100))
+            }
+        }
+        
+        if let stepView = verticalStepView?.stepViewforIndex(0) {
+            
+            self.view.addSubview(questionMarkIcon)
+            
+            questionMarkIcon.snp.makeConstraints { make in
+                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -25))
+                make.top.equalTo(stepView).offset(2)
+                make.width.height.equalTo(25)
             }
         }
     }

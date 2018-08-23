@@ -77,4 +77,13 @@ class GroupedVerticalStepView: UIView {
         }
     }
     
+    func stepViewforIndex(_ index: Int) -> StepView? {
+        for (i, stepView) in stepViews.enumerated() {
+            if index == i {
+                return stepView
+            }
+        }
+        return nil
+    }
+    
 }
