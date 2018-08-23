@@ -53,6 +53,9 @@ extension XCTestCase {
         app.otherElements["leftViewController"].staticTexts["Sign Out"].tap()
         self.wait()
 
+        app.alerts["Sign Out"].buttons["Sign Out"].tap()
+        self.wait()
+
         XCTAssertTrue(app.buttons["SIGN-IN"].exists)
         XCTAssertTrue(app.buttons["CREATE ACCOUNT"].exists)
     }

@@ -14,6 +14,7 @@ class SignIn_UITests: XCTestCase {
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
+        UIView.setAnimationsEnabled(false)
     }
 
     func test00_loginAndLogout() {
@@ -21,7 +22,7 @@ class SignIn_UITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["logoutOnLaunch", "testMode"]
         app.launch()
-        self.wait(for: 5, label: "waiting for app to log in")
+        self.wait(for: 10, label: "waiting for app to log in")
 
         self.loginToVehicleScreen(app)
         self.logout(app)
@@ -32,7 +33,7 @@ class SignIn_UITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["testMode"]
         app.launch()
-        self.wait(for: 5, label: "waiting for app to log in")
+        self.wait(for: 10, label: "waiting for app to log in")
 
         self.loginToVehicleScreen(app)
     }
@@ -42,7 +43,7 @@ class SignIn_UITests: XCTestCase {
         let app = XCUIApplication()
         app.launchArguments = ["testMode"]
         app.launch()
-        self.wait(for: 5, label: "waiting for app to log in")
+        self.wait(for: 10, label: "waiting for app to log in")
 
         XCTAssertTrue(app.otherElements["Pickup & Delivery"].exists)
     }
