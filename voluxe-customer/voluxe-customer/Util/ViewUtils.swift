@@ -12,12 +12,11 @@ import Foundation
  Design specs are made based on iPhone 6 screen, on most of the screen it doesn't matter.
  But on this particular screen, it doesn't fit and we can't put that in an other ScrollView
  We can use this method to convert height value from iPhone 6 to the users screen height
- 
- private let iphone6HeightPoints: CGFloat = 667
- private let iphone6WidthPoints: CGFloat = 375
- 
  ***/
 class ViewUtils {
+    
+    private static let iphone6HeightPoints: CGFloat = 667
+    private static let iphone6WidthPoints: CGFloat = 667
     
     static var screenSize: CGSize?
     
@@ -28,17 +27,24 @@ class ViewUtils {
     }
     
     // return the height in point for the sizeInPoints dimension based on iPhone 6
-    public static func getAdaptedHeightSize(sizeInPoints: CGFloat) -> CGFloat {
+    public static func getAdaptedHeightSize(sizeInPoints: CGFloat, smallerOnly: Bool = true) -> CGFloat {
         if let screenSize = ViewUtils.screenSize {
-            return ((sizeInPoints/667) * screenSize.height)
+            let adapted = ((sizeInPoints/iphone6HeightPoints) * screenSize.height)
+            if smallerOnly && adapted > sizeInPoints {
+                return sizeInPoints
+            }
+            return adapted
         }
         return sizeInPoints
     }
     
     // return the width in point for the sizeInPoints dimension based on iPhone 6
-    public static func getAdaptedWidthSize(sizeInPoints: CGFloat) -> CGFloat {
+    public static func getAdaptedWidthSize(sizeInPoints: CGFloat, smallerOnly: Bool = true) -> CGFloat {
         if let screenSize = ViewUtils.screenSize {
-            return ((sizeInPoints/375) * screenSize.width)
+            let adapted = ((sizeInPoints/iphone6WidthPoints) * screenSize.width)
+            if smallerOnly && adapted > sizeInPoints {
+                return sizeInPoints
+            }
         }
         return sizeInPoints
     }
