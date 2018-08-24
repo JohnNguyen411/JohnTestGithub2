@@ -182,6 +182,8 @@
 "TextDriver" = "Text Driver";
 "ScheduledSelfDrop" = "Scheduled Self-Drop";
 "NoteDelivery" = "Note: Volvo delivery is only offered near the dealership.";
+"RescheduleDelivery" = "Reschedule Delivery";
+
 
 /***************** Scheduling Dropoff ***************/
 "CurrentService" = "Current Service";
@@ -204,6 +206,9 @@
 "DeliveryComplete" = "Your delivery from %@ is complete.";
 "GetDirections" = "Get Directions";
 "ScheduleDriver" = "You can also schedule a driver to deliver your vehicle";
+"UnableToMeetDriver" = "If you’re unable to meet your driver at the scheduled time, you can reschedule your delivery.";
+"PreferPickup" = "If you prefer to pick-up your vehicle at the dealership, you can choose to do that below. Note: This will cancel your scheduled delivery.";
+"YoureScheduledForDelivery" = "You're scheduled for delivery";
 
 /***************** Vehicle ***************/
 "VolvoYearModel" = "Volvo Year/Model";

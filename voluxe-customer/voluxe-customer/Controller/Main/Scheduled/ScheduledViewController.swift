@@ -214,10 +214,12 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
             
             self.view.addSubview(questionMarkIcon)
             
+            questionMarkIcon.contentMode = .center
+            
             questionMarkIcon.snp.makeConstraints { make in
-                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -25))
-                make.top.equalTo(stepView).offset(2)
-                make.width.height.equalTo(25)
+                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -20))
+                make.top.equalTo(stepView).offset(-10)
+                make.width.height.equalTo(50)
             }
         }
     }

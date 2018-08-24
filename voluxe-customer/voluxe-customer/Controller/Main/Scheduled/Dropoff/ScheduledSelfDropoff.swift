@@ -18,11 +18,10 @@ class ScheduledSelfDropoff: BaseViewController {
         return titleLabel
     }()
     
-    let dealershipNoteLabel: UITextView = {
-        let textView = UITextView(frame: .zero)
+    let dealershipNoteLabel: UILabel = {
+        let textView = UILabel(frame: .zero)
         textView.font = .volvoSansProRegular(size: 14)
         textView.backgroundColor = .clear
-        textView.isEditable = false
         return textView
     }()
     

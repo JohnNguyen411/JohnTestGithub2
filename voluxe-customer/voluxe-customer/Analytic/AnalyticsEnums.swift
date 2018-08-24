@@ -166,6 +166,7 @@ struct AnalyticsEnums {
             case privacyPolicy
             case requestLocation
             case requestNotifications
+            case selfOBModal
             case serviceCompleted
             case serviceCustom
             case serviceCustomDetail

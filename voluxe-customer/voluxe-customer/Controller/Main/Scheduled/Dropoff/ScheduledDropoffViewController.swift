@@ -12,11 +12,19 @@ import SlideMenuControllerSwift
 import CoreLocation
 import GoogleMaps
 
-class ScheduledDropoffViewController: ScheduledViewController {
+class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropModalDelegate {
     
     convenience init(vehicle: Vehicle, state: ServiceState) {
         self.init(vehicle: vehicle, screen: .dropoffActive)
         stateDidChange(state: state)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        questionMarkIcon.isUserInteractionEnabled = true
+        let tapSelfOB = UITapGestureRecognizer(target: self, action: #selector(selfOBClick))
+        questionMarkIcon.addGestureRecognizer(tapSelfOB)
     }
     
     override func generateSteps() {
@@ -53,6 +61,7 @@ class ScheduledDropoffViewController: ScheduledViewController {
         }
         
         questionMarkIcon.isHidden = booking.isSelfOB()
+        self.view.bringSubview(toFront: questionMarkIcon)
     }
     
     override func stateDidChange(state: ServiceState) {
@@ -86,4 +95,19 @@ class ScheduledDropoffViewController: ScheduledViewController {
         }
     }
     
+    
+    @objc func selfOBClick() {
+        let selfModalVC = ScheduleSelfDropModal(title: .YoureScheduledForDelivery, screen: .selfOBModal)
+        selfModalVC.delegate = self
+        selfModalVC.view.accessibilityIdentifier = "selfModalVC"
+        currentPresentrVC = selfModalVC
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: true)
+        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
+    }
+    
+    func onRescheduleSelected(loanerNeeded: Bool) {
+    }
+    
+    func onSelfPickupSelected(loanerNeeded: Bool) {
+    }
 }
