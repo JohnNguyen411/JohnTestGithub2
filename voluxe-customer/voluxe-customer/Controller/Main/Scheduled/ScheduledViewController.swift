@@ -44,7 +44,7 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
     private let mapViewContainer = UIView(frame: .zero)
     private let driverViewContainer = UIView(frame: .zero)
     private let driverIcon: UIImageView
-    let questionMarkIcon = UIImageView(image: UIImage(named: "ic_questionmark"))
+    let changeButton: VLButton
 
     let timeWindowView = TimeWindowView()
     
@@ -63,6 +63,7 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
     
     init(vehicle: Vehicle, screen: AnalyticsEnums.Name.Screen) {
         self.vehicle = vehicle
+        changeButton = VLButton(type: .blueSecondary, title: (.Change as String).uppercased(), kern: UILabel.uppercasedKern(), event: .changeDropoff, screen: screen)
         driverContact = VLButton(type: .blueSecondary, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), event: .contactDriver, screen: screen)
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
         super.init(screen: screen)
@@ -212,14 +213,11 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
         
         if let stepView = verticalStepView?.stepViewforIndex(0) {
             
-            self.view.addSubview(questionMarkIcon)
+            self.view.addSubview(changeButton)
             
-            questionMarkIcon.contentMode = .center
-            
-            questionMarkIcon.snp.makeConstraints { make in
-                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -20))
-                make.top.equalTo(stepView).offset(-10)
-                make.width.height.equalTo(50)
+            changeButton.snp.makeConstraints { make in
+                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -22))
+                make.top.equalTo(stepView).offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: 7))
             }
         }
     }

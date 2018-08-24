@@ -209,6 +209,7 @@
 "UnableToMeetDriver" = "If you’re unable to meet your driver at the scheduled time, you can reschedule your delivery.";
 "PreferPickup" = "If you prefer to pick-up your vehicle at the dealership, you can choose to do that below. Note: This will cancel your scheduled delivery.";
 "YoureScheduledForDelivery" = "You're scheduled for delivery";
+"Change" = "Change";
 
 /***************** Vehicle ***************/
 "VolvoYearModel" = "Volvo Year/Model";

@@ -82,7 +82,7 @@ class ScheduleSelfDropModal: VLPresentrViewController {
     }
     
     override func height() -> Int {
-        return baseHeight + 260
+        return baseHeight + 250
     }
     
     override func onButtonClick() {

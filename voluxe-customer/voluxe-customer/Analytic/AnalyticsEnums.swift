@@ -57,6 +57,7 @@ struct AnalyticsEnums {
             case callHelp
             case emailHelp
             case cancel
+            case changeDropoff
             case contactDriver
             case createAccount
             case destructiveDialog

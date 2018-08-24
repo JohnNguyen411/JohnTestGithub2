@@ -22,9 +22,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        questionMarkIcon.isUserInteractionEnabled = true
-        let tapSelfOB = UITapGestureRecognizer(target: self, action: #selector(selfOBClick))
-        questionMarkIcon.addGestureRecognizer(tapSelfOB)
+        changeButton.addTarget(self, action: #selector(selfOBClick), for: .touchUpInside)
     }
     
     override func generateSteps() {
@@ -60,8 +58,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
             }
         }
         
-        questionMarkIcon.isHidden = booking.isSelfOB()
-        self.view.bringSubview(toFront: questionMarkIcon)
+        changeButton.isHidden = booking.isSelfOB()
     }
     
     override func stateDidChange(state: ServiceState) {

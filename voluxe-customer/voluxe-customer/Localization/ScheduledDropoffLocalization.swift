@@ -18,5 +18,6 @@ extension String {
     static let UnableToMeetDriver = NSLocalizedString("UnableToMeetDriver")
     static let PreferPickup = NSLocalizedString("PreferPickup")
     static let YoureScheduledForDelivery = NSLocalizedString("YoureScheduledForDelivery")
-
+    static let Change = NSLocalizedString("Change")
+    
 }
