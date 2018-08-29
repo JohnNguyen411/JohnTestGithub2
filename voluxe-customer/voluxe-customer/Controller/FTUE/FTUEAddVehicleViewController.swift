@@ -78,7 +78,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
                         realm.add(vehicles, update: true)
                     }
                     
-                    let resultsVehicleModels = realm.objects(VehicleModel.self).sorted(byKeyPath: "name", ascending: true)
+                    let resultsVehicleModels = realm.objects(VehicleModel.self).sorted(byKeyPath: "name", ascending: false)
                     self.models = Array(resultsVehicleModels)
                 }
             }
