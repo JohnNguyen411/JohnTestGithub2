@@ -214,6 +214,7 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
         if let stepView = verticalStepView?.stepViewforIndex(0) {
             
             self.view.addSubview(changeButton)
+            changeButton.isHidden = true
             
             changeButton.snp.makeConstraints { make in
                 make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -22))
