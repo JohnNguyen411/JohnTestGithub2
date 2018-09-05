@@ -23,5 +23,6 @@ extension String {
     static let SelfPickupAtDealership = NSLocalizedString("SelfPickupAtDealership")
     static let NoteDelivery = NSLocalizedString("NoteDelivery")
     static let RescheduleDelivery = NSLocalizedString("RescheduleDelivery")
-    
+    static let AreYouSureSelfPickup = NSLocalizedString("AreYouSureSelfPickup")
+
 }

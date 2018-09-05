@@ -15,6 +15,7 @@ import RealmSwift
 import BrightFutures
 import Alamofire
 import Kingfisher
+import MBProgressHUD
 
 class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
     
@@ -465,16 +466,33 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
     }
     
     func selfDropButtonClick() {
-        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
-            RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorPickup)
-            self.pushViewController(SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true)
-        } else {
-            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
-                RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .advisorDropoff)
-                self.pushViewController(SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true)
+        
+        // show confirmation dialog
+        
+        self.showDialog(title: .SelfPickupAtDealership, message: .AreYouSureSelfPickup, cancelButtonTitle: .No, okButtonTitle: .Yes, okCompletion: {
+            if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
+                RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorPickup)
+                self.pushViewController(SchedulingPickupViewController(vehicle: self.vehicle, state: .schedulingService), animated: true)
+            } else {
+                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: self.vehicle) {
+                    RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .advisorDropoff)
+                    
+                    self.showProgressHUD()
+                    
+                    BookingAPI().createAdvisorDropoffRequest(customerId: booking.customerId, bookingId: booking.id).onSuccess { result in
+                        if let dropOffRequest = result?.data?.result {
+                            self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
+                            self.refreshFinalBooking(customerId: booking.customerId, bookingId: booking.id)
+                        }
+                        }.onFailure { error in
+                            self.hideProgressHUD()
+                            self.showOkDialog(title: .Error, message: .GenericError)
+                    }
+                }
             }
-        }
+        })
     }
+    
     
     func deliveryButtonClick() {
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
@@ -532,6 +550,56 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
         }
         
     }
+    
+    private func manageNewDropoffRequest(dropOffRequest: Request, booking: Booking) {
+        
+        if let realm = try? Realm() {
+            try? realm.write {
+                realm.add(dropOffRequest, update: true)
+            }
+            let realmDropOffRequest = realm.objects(Request.self).filter("id = \(dropOffRequest.id)").first
+            
+            if let booking = realm.objects(Booking.self).filter("id = \(booking.id)").first {
+                
+                try? realm.write {
+                    // update state to scheduled dropoff
+                    booking.state = State.dropoffScheduled.rawValue
+                    booking.dropoffRequest = realmDropOffRequest
+                    realm.add(booking, update: true)
+                }
+            }
+        }
+    }
+    
+    private func refreshFinalBooking(customerId: Int, bookingId: Int) {
+        BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
+            if let booking = result?.data?.result {
+                if let realm = try? Realm() {
+                    try? realm.write {
+                        realm.add(booking, update: true)
+                    }
+                }
+            }
+            
+            if let realm = try? Realm() {
+                let bookings = realm.objects(Booking.self).filter("customerId = \(customerId)")
+                UserManager.sharedInstance.setBookings(bookings: Array(bookings))
+            }
+            
+            RequestedServiceManager.sharedInstance.reset()
+            AppController.sharedInstance.showVehiclesView(animated: false)
+            
+            self.hideProgressHUD()
+            
+            }.onFailure { error in
+                // retry
+                self.hideProgressHUD()
+                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                    self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
+                }, dialog: .error, screen: self.screen)
+        }
+    }
+    
     
     //MARK: LocationDelegate methods
     

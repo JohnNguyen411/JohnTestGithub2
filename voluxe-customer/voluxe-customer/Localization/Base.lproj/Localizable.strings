@@ -198,6 +198,7 @@
 "DeliveryLocation" = "Delivery Location";
 "ConfirmSelfPickup" = "Confirm Self-Pickup";
 "SelfPickupAtDealership" = "Self-Pickup at Dealership";
+"AreYouSureSelfPickup" = "Are you sure you want to pick-up your vehicle at the dealership?";
 
 /***************** Scheduled Dropoff ***************/
 "VehicleIsReady" = "Vehicle is ready";

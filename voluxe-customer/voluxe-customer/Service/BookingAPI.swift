@@ -160,15 +160,14 @@ class BookingAPI: NSObject {
     }
     
     /**
-     Create a DropOff Request
+     Create a Driver DropOff Request
      - parameter bookingId: The booking ID related to the pickup
      - parameter timeSlotId: The TimeSlot ID Choosed by the customer for the pickup
      - parameter location: The location choosed by the customer for the pickup
-     - parameter isDriver: true if the request type if driver, false if advisor
      
      - Returns: A Future ResponseObject containing the Pickup, or an AFError if an error occured
      */
-    func createDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location, isDriver: Bool) -> Future<ResponseObject<MappableDataObject<Request>>?, Errors> {
+    func createDriverDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int, location: Location) -> Future<ResponseObject<MappableDataObject<Request>>?, Errors> {
         let promise = Promise<ResponseObject<MappableDataObject<Request>>?, Errors>()
         
         let params: Parameters = [
@@ -176,12 +175,31 @@ class BookingAPI: NSObject {
             "location": location.toJSON()
         ]
         
-        var endpoint = "driver-dropoff-requests"
-        if !isDriver {
-            endpoint = "advisor-dropoff-requests"
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/driver-dropoff-requests", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
+            
+            let responseObject = ResponseObject<MappableDataObject<Request>>(json: response.result.value, allowEmptyData: false)
+            
+            if response.error == nil && responseObject.error == nil {
+                promise.success(responseObject)
+            } else {
+                promise.failure(Errors(dataResponse: response, apiError: responseObject.error))
+            }
+            
         }
+        return promise.future
+    }
+    
+    /**
+     Create an Advisor DropOff Request
+     - parameter bookingId: The booking ID related to the pickup
+     - Returns: A Future ResponseObject containing the Pickup, or an AFError if an error occured
+     */
+    func createAdvisorDropoffRequest(customerId: Int, bookingId: Int) -> Future<ResponseObject<MappableDataObject<Request>>?, Errors> {
+        let promise = Promise<ResponseObject<MappableDataObject<Request>>?, Errors>()
         
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
+        let params: Parameters = ["type": "advisor_dropoff"]
+        
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/dropoff-request", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             
             let responseObject = ResponseObject<MappableDataObject<Request>>(json: response.result.value, allowEmptyData: false)
             
