@@ -21,7 +21,7 @@ class VehicleAPI: NSObject {
     func vehicleMakes() -> Future<ResponseObject<MappableDataArray<VehicleMake>>?, Errors> {
         let promise = Promise<ResponseObject<MappableDataArray<VehicleMake>>?, Errors>()
         
-        let params: Parameters = ["managed":true, "limit":99, "sort":"-name"]
+        let params: Parameters = ["managed":true, "limit":99, "sort[0]":"-name"]
         
         NetworkRequest.request(url: "/v1/vehicle-makes", queryParameters: params, withBearer: true).responseJSONErrorCheck { response in
             
@@ -49,7 +49,7 @@ class VehicleAPI: NSObject {
         var queryParams = [
             "managed": "true",
             "limit": 99,
-            "sort": "-name"
+            "sort[0]": "-name"
             ] as [String : Any]
         
         if let makeId = makeId {

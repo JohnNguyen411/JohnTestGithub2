@@ -17,21 +17,8 @@ class CreateAccount_UITests: XCTestCase {
     }
 
     // MARK:- Launch
-
-    func test00_loginAsAdminAndGetVerificationCode() {
-
-        // this was an account manually created but never verified
-        // eventually the token will expire but for the moment this
-        // is a handy way to test the admin verification API
-        let customerEmail = "bot-1234567890@luxe.com"
-        AdminAPI.loginAndRequestVerificationCode(for: customerEmail) {
-            code in
-            XCTAssertNotNil(code)
-        }
-        self.wait(for: 10, label: "getting verification code")
-    }
-
-    func test09_launchAndTapCreateAccount() {
+ 
+    func test00_launchAndTapCreateAccount() {
 
         let app = XCUIApplication()
         app.launchArguments = ["logoutOnLaunch", "testMode"]
