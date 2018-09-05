@@ -187,6 +187,10 @@ class Booking: Object, Mappable {
             || state == .nearbyForDropoff || state == .nearbyForPickup
             || state == .arrivedForDropoff || state == .arrivedForPickup) {
             return true
+        } else if state == .dropoffScheduled {
+            if let dropoffRequest = self.dropoffRequest, let type = dropoffRequest.getType(), type == .advisorDropoff {
+                return true
+            }
         }
         return false
     }

@@ -22,6 +22,7 @@ class ScheduledSelfDropoff: BaseViewController {
         let textView = UILabel(frame: .zero)
         textView.font = .volvoSansProRegular(size: 14)
         textView.backgroundColor = .clear
+        textView.numberOfLines = 0
         return textView
     }()
     
@@ -158,7 +159,10 @@ class ScheduledSelfDropoff: BaseViewController {
                 mapItButton.isHidden = true
             }
             
-            
+            if let hours = dealership.hoursOfOperation {
+                dealershipNoteLabel.text = hours
+                dealershipNoteLabel.sizeToFit()
+            }
         }
     }
     
