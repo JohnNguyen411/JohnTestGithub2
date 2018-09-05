@@ -7,9 +7,12 @@
 //
 
 import Foundation
+import PhoneNumberKit
 
 class ScheduledSelfDropoff: BaseViewController {
     
+    let phoneNumberKit = PhoneNumberKit()
+
     let dealershipNameLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
@@ -50,12 +53,14 @@ class ScheduledSelfDropoff: BaseViewController {
 
     let scheduleDeliveryButton: VLButton
     let mapItButton: VLButton
-    
+    let dealershipPhoneButton: VLButton
+
     let mapVC = MapViewController()
     let vehicle: Vehicle
     
     init(vehicle: Vehicle, screen: AnalyticsEnums.Name.Screen) {
         self.vehicle = vehicle
+        dealershipPhoneButton = VLButton(type: .blueSecondary, title: "", kern: UILabel.uppercasedKern(), event: .callDealership, screen: screen)
         mapItButton = VLButton(type: .blueSecondary, title: (.GetDirections as String).uppercased(), kern: UILabel.uppercasedKern(), event: .getDirections, screen: screen)
         scheduleDeliveryButton = VLButton(type: .grayPrimary, title: (.ScheduleDelivery as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
         super.init(screen: screen)
@@ -90,6 +95,7 @@ class ScheduledSelfDropoff: BaseViewController {
         contentView.addSubview(dealershipNoteLabel)
         contentView.addSubview(self.mapVC.view)
         contentView.addSubview(dealershipAddressLabel)
+        contentView.addSubview(dealershipPhoneButton)
         contentView.addSubview(mapItButton)
         self.view.addSubview(deliveryLabel)
         self.view.addSubview(scheduleDeliveryButton)
@@ -97,16 +103,19 @@ class ScheduledSelfDropoff: BaseViewController {
         let adaptedMarging = ViewUtils.getAdaptedHeightSize(sizeInPoints: 20)
         
         scrollView.snp.makeConstraints { make in
-            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(ViewUtils.getAdaptedHeightSize(sizeInPoints: BaseViewController.defaultTopYOffset), adaptedMarging, adaptedMarging, adaptedMarging))
+            make.equalsToTop(view: self.view, offset: ViewUtils.getAdaptedHeightSize(sizeInPoints: BaseViewController.defaultTopYOffset))
+            make.bottom.equalTo(deliveryLabel.snp.top).offset(-adaptedMarging)
+            make.left.equalToSuperview().offset(adaptedMarging)
+            make.right.equalToSuperview().offset(-adaptedMarging)
         }
         
         contentView.snp.makeConstraints { make in
-            make.left.top.width.height.equalTo(scrollView)
+            make.left.top.width.bottom.equalTo(scrollView)
         }
         
         dealershipNoteLabel.snp.makeConstraints { make in
             make.top.left.right.equalToSuperview()
-            make.height.lessThanOrEqualTo(160)
+            make.height.lessThanOrEqualTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 160))
         }
         
         dealershipNameLabel.snp.makeConstraints { make in
@@ -119,15 +128,20 @@ class ScheduledSelfDropoff: BaseViewController {
             make.top.equalTo(dealershipNameLabel.snp.bottom).offset(5)
         }
         
+        dealershipPhoneButton.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.top.equalTo(dealershipAddressLabel.snp.bottom).offset(5)
+        }
+        
         mapItButton.snp.makeConstraints { make in
             make.left.equalToSuperview()
-            make.top.equalTo(dealershipAddressLabel.snp.bottom).offset(adaptedMarging)
+            make.top.equalTo(dealershipPhoneButton.snp.bottom).offset(adaptedMarging)
         }
         
         mapVC.view.snp.makeConstraints { make in
             make.top.equalTo(mapItButton.snp.bottom).offset(adaptedMarging)
             make.left.right.equalToSuperview()
-            make.height.equalTo(200)
+            make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 200))
         }
         
         deliveryLabel.snp.makeConstraints { make in
@@ -140,7 +154,7 @@ class ScheduledSelfDropoff: BaseViewController {
             make.right.equalToSuperview().offset(-adaptedMarging)
             make.left.equalToSuperview().offset(adaptedMarging)
             make.equalsToBottom(view: self.view, offset: -adaptedMarging)
-            make.height.equalTo(VLButton.primaryHeight)
+            make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
         }
         
     }
@@ -163,8 +177,31 @@ class ScheduledSelfDropoff: BaseViewController {
                 dealershipNoteLabel.text = hours
                 dealershipNoteLabel.sizeToFit()
             }
+            
+            if let phone = dealership.phoneNumber {
+                dealershipPhoneButton.addTarget(self, action: #selector(callDealership), for: .touchUpInside)
+
+                do {
+                    let validPhoneNumber = try phoneNumberKit.parse(phone)
+                    dealershipPhoneButton.setTitle(title: phoneNumberKit.format(validPhoneNumber, toType: .national, withPrefix: false))
+                } catch {
+                }
+            }
         }
     }
+    
+    @objc private func callDealership() {
+        guard let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: self.vehicle) else { return }
+        guard let dealership = booking.dealership else { return }
+        guard let phone = dealership.phoneNumber else { return }
+
+        let number = "telprompt:\(phone)"
+        guard let numberURL = URL(string: number) else { return }
+        
+        UIApplication.shared.open(numberURL)
+        
+    }
+
     
     @objc private func mapIt() {
         
@@ -178,4 +215,16 @@ class ScheduledSelfDropoff: BaseViewController {
         
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let height = self.mapVC.view.frame.origin.y + self.mapVC.view.frame.size.height
+        
+        contentView.snp.makeConstraints { make in
+            make.height.equalTo(height)
+        }
+        
+        self.contentView.setNeedsLayout()
+        self.contentView.layoutIfNeeded()
+    }
 }
