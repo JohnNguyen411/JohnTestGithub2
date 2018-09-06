@@ -1,3 +1,6 @@
+v1.0.4(126):
+First version of SelfOB
+
 v1.0.3(112):
 Fix sync error on serviceCompleted (induced by Self Pickup from BE)
 
