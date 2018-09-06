@@ -359,6 +359,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         self.navigationItem.title = .Feedback
         
         confirmButton.setTitle(title: show ? String.Done.uppercased() : String.Ok.uppercased())
+        self.navigationItem.rightBarButtonItem?.title = show ? .Done : .Skip
     }
     
     override func viewDidLayoutSubviews() {
