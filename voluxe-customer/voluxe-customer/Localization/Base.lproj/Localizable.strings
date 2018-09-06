@@ -199,6 +199,7 @@
 "ConfirmSelfPickup" = "Confirm Self-Pickup";
 "SelfPickupAtDealership" = "Self-Pickup at Dealership";
 "AreYouSureSelfPickup" = "Are you sure you want to pick-up your vehicle at the dealership?";
+"SelfDropoffAtDealership" = "Self-Dropoff at Dealership";
 
 /***************** Scheduled Dropoff ***************/
 "VehicleIsReady" = "Vehicle is ready";

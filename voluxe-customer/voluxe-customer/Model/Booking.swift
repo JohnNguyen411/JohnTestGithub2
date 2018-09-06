@@ -199,6 +199,13 @@ class Booking: Object, Mappable {
         return self.bookingFeedbackId > 0 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
     }
     
+    public func isSelfIB() -> Bool {
+        if let pickupRequest = self.pickupRequest, let type = pickupRequest.getType() {
+            return type == .advisorPickup
+        }
+        return false
+    }
+    
     public func isSelfOB() -> Bool {
         if let dropoffRequest = self.dropoffRequest, let type = dropoffRequest.getType() {
             return type == .advisorDropoff

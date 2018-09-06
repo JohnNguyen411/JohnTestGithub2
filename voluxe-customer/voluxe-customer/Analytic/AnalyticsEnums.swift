@@ -161,6 +161,7 @@ struct AnalyticsEnums {
             case pickupLoaner
             case pickupLocation
             case pickupNew
+            case pickupSelfActive
             case passwordReset
             case phoneUpdate
             case phoneVerification
