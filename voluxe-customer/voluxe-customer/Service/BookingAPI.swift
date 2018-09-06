@@ -28,12 +28,21 @@ class BookingAPI: NSObject {
      
      - Returns: A Future ResponseObject containing a Booking, or an AFError if an error occured
      */
-    func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool, dealershipRepairId: Int?, repairNotes: String?, repairTitle: String?, vehicleDrivable: Bool?) -> Future<ResponseObject<MappableDataObject<Booking>>?, Errors> {
+    func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool, dealershipRepairId: Int?, repairNotes: String?, repairTitle: String?, vehicleDrivable: Bool?, timeSlotId: Int?, location: Location?, isDriver: Bool) -> Future<ResponseObject<MappableDataObject<Booking>>?, Errors> {
         let promise = Promise<ResponseObject<MappableDataObject<Booking>>?, Errors>()
+        
+        var pickupParams: Parameters = ["type": isDriver ? "driver_pickup" : "advisor_pickup"]
+        
+        if let timeslotId = timeSlotId, let location = location {
+            pickupParams["dealership_time_slot_id"] = timeslotId
+            pickupParams["location"] = location.toJSON()
+        }
+        
         var params: Parameters = [
             "vehicle_id": vehicleId,
             "dealership_id": dealershipId,
             "loaner_vehicle_requested": loaner,
+            "pickup_request": pickupParams
         ]
         
         if let dealershipRepairId = dealershipRepairId {
@@ -138,7 +147,7 @@ class BookingAPI: NSObject {
         let params: Parameters = [
             "dealership_time_slot_id": timeSlotId,
             "location": location.toJSON(),
-            "type": isDriver ? "driver_dropoff" : "advisor_dropoff"
+            "type": isDriver ? "driver_pickup" : "advisor_pickup"
             ]
         
         NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/pickup-request", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
