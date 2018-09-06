@@ -83,6 +83,7 @@ class ScheduledSelfDropoff: BaseViewController {
         setTitle(title: .SelfPickup)
         
         mapItButton.contentHorizontalAlignment = .right
+        scheduleDeliveryButton.addTarget(self, action: #selector(scheduleDelivery), for: .touchUpInside)
     }
     
     override func setupViews() {
@@ -227,4 +228,12 @@ class ScheduledSelfDropoff: BaseViewController {
         self.contentView.setNeedsLayout()
         self.contentView.layoutIfNeeded()
     }
+    
+    @objc private func scheduleDelivery() {
+        if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
+            RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .driverDropoff)
+            self.pushViewController(SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true)
+        }
+    }
+    
 }

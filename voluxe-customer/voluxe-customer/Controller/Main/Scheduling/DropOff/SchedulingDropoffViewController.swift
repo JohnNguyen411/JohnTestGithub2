@@ -228,7 +228,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
             
             confirmButton.isLoading = true
             
-            BookingAPI().createDriverDropoffRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location).onSuccess { result in
+            BookingAPI().createDropoffRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: true).onSuccess { result in
                 if let dropOffRequest = result?.data?.result {
                     self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
                     self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)

@@ -479,7 +479,7 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
                     
                     self.showProgressHUD()
                     
-                    BookingAPI().createAdvisorDropoffRequest(customerId: booking.customerId, bookingId: booking.id).onSuccess { result in
+                    BookingAPI().createDropoffRequest(customerId: booking.customerId, bookingId: booking.id, timeSlotId: nil, location: nil, isDriver: false).onSuccess { result in
                         if let dropOffRequest = result?.data?.result {
                             self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
                             self.refreshFinalBooking(customerId: booking.customerId, bookingId: booking.id)
