@@ -137,15 +137,11 @@ class BookingAPI: NSObject {
 
         let params: Parameters = [
             "dealership_time_slot_id": timeSlotId,
-            "location": location.toJSON()
+            "location": location.toJSON(),
+            "type": isDriver ? "driver_dropoff" : "advisor_dropoff"
             ]
         
-        var endpoint = "driver-pickup-requests"
-        if !isDriver {
-            endpoint = "advisor-pickup-requests"
-        }
-        
-        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)", queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
+        NetworkRequest.request(url: "/v1/customers/\(customerId)/bookings/\(bookingId)/pickup-request", method: .put, queryParameters: nil, bodyParameters: params, withBearer: true).responseJSONErrorCheck { response in
             
             let responseObject = ResponseObject<MappableDataObject<Request>>(json: response.result.value, allowEmptyData: false)
             
