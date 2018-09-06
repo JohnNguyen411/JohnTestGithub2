@@ -310,6 +310,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 }
                 UserManager.sharedInstance.setCustomer(customer: customer)
                 weakSelf?.loginUser(email: email, password: password)
+                Analytics.trackView(screen: .signupComplete)
             }
             }.onFailure { error in
                 weakSelf?.onSignupError(error: error)
@@ -353,6 +354,4 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     override func goToNext() {
         loadMainScreen()
     }
-    
-    
 }
