@@ -98,10 +98,10 @@ class Booking: Object, Mappable {
     func getRepairOrderName() -> String {
         if repairOrderRequests.count > 0 {
             var name = ""
-            name.append(repairOrderRequests[0].title ?? "")
+            name.append(repairOrderRequests[0].getTitle())
             if repairOrderRequests.count > 1 {
                 for i in 0...repairOrderRequests.count {
-                    name.append("| \(repairOrderRequests[i].title ?? "")")
+                    name.append("| \(repairOrderRequests[i].getTitle())")
                 }
             }
             return name

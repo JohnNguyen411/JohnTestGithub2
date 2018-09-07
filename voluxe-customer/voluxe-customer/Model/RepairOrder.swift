@@ -83,4 +83,15 @@ class RepairOrder: Object, Mappable {
             return .ImNotSure
         }
     }
+    
+    func getTitle() -> String {
+        if let title = title {
+            return title
+        } else {
+            if let repairOrderType = repairOrderType, let typeName = repairOrderType.name {
+                return typeName
+            }
+        }
+        return ""
+    }
 }
