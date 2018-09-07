@@ -217,6 +217,7 @@
 "VolvoYearModel" = "Volvo Year/Model";
 "Mileage" = "Mileage";
 "PreferredDealership" = "Preferred Dealership";
+"ViewDealershipLocation" = "View Dealership Location";
 
 /***************** Service ***************/
 "Service" = "Service";

@@ -115,6 +115,7 @@ struct AnalyticsEnums {
             case vehicleExterior
             case vehicleInterior
             case vehicleUnknown
+            case viewDealershipLocation
         }
 
         enum Navigation: String, CaseIterable {
