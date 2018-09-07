@@ -326,7 +326,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     
     @objc func scheduledServiceClick() {
         if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle) {
-            if booking.isSelfOB() || booking.isSelfIB() {
+            if booking.isSelfOB() {
                 return
             }
             // if booking is today, show upcoming request with map
@@ -340,7 +340,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     }
     
     @objc func dealershipLocationClick() {
-        if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle) {
+        if let selectedVehicle = selectedVehicle {
             AppController.sharedInstance.loadViewForVehicle(vehicle: selectedVehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: selectedVehicle.id))
         }
     }

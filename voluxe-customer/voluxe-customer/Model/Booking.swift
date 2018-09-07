@@ -100,8 +100,8 @@ class Booking: Object, Mappable {
             var name = ""
             name.append(repairOrderRequests[0].getTitle())
             if repairOrderRequests.count > 1 {
-                for i in 0...repairOrderRequests.count {
-                    name.append("| \(repairOrderRequests[i].getTitle())")
+                for i in 1...repairOrderRequests.count - 1 {
+                    name.append(" | \(repairOrderRequests[i].getTitle())")
                 }
             }
             return name
