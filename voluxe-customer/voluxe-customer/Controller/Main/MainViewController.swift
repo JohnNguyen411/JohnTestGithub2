@@ -51,7 +51,7 @@ class MainViewController: BaseVehicleViewController {
                 if currentViewController != nil && (currentViewController?.isKind(of: ScheduledSelfPickup.self))! {
                     changeView = false
                 } else {
-                    let scheduledPickupViewController = ScheduledSelfPickup(vehicle: vehicle, screen: .dropoffSelfActive)
+                    let scheduledPickupViewController = ScheduledSelfPickup(vehicle: vehicle, state: state, screen: .dropoffSelfActive)
                     newViewController = scheduledPickupViewController
                 }
                 setTitle(title: .SelfDropoffAtDealership)
@@ -70,7 +70,7 @@ class MainViewController: BaseVehicleViewController {
                 if currentViewController != nil && (currentViewController?.isKind(of: ScheduledSelfDropoff.self))! {
                     changeView = false
                 } else {
-                    let scheduledDeliveryViewController = ScheduledSelfDropoff(vehicle: vehicle, screen: .dropoffSelfActive)
+                    let scheduledDeliveryViewController = ScheduledSelfDropoff(vehicle: vehicle, state: state, screen: .dropoffSelfActive)
                     newViewController = scheduledDeliveryViewController
                 }
                 setTitle(title: .SelfPickupAtDealership)

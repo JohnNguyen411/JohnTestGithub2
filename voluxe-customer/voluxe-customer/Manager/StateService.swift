@@ -12,7 +12,8 @@ import SwiftEventBus
 final class StateServiceManager {
     
     private var states = [Int: ServiceState]() // states dict (Vehicle Id : State)
-    
+    private var types = [Int: RequestType]() // typpe dict (Vehicle Id : RequestType)
+
     static let sharedInstance = StateServiceManager()
     
     init() {
@@ -20,9 +21,15 @@ final class StateServiceManager {
     
     func updateState(state: ServiceState, vehicleId: Int, booking: Booking?) {
         var oldState = states[vehicleId]
-        if oldState == nil || oldState != state {
-            // state did change
+        let oldType = types[vehicleId]
+
+        if ((oldState == nil || oldState != state) || (booking != nil && booking!.getCurrentRequestType() != oldType)) {
+            // state or type did change
             states[vehicleId] = state
+            if let booking = booking {
+                types[vehicleId] = booking.getCurrentRequestType()
+            }
+
             if oldState == nil {
                 oldState = .noninit
             }
@@ -55,6 +62,13 @@ final class StateServiceManager {
             return serviceState
         }
         return .noninit
+    }
+    
+    func getType(vehicleId: Int) -> RequestType? {
+        if let type = types[vehicleId] {
+            return type
+        }
+        return nil
     }
     
     func isPickup(vehicleId: Int) -> Bool {

@@ -42,6 +42,14 @@ class ScheduleSelfDropModal: VLPresentrViewController {
         rescheduleButton = VLButton(type: .grayPrimary, title: (.RescheduleDelivery as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
         selfPickupButton = VLButton(type: .grayPrimary, title: (.SelfPickupAtDealership as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
         super.init(title: title, buttonTitle: "", screen: screen)
+        
+        rescheduleButton.setActionBlock { [weak self] in
+            self?.onRescheduleDeliveryClick()
+        }
+        
+        selfPickupButton.setActionBlock { [weak self] in
+            self?.onSelfPickupClick()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -88,11 +96,25 @@ class ScheduleSelfDropModal: VLPresentrViewController {
     override func onButtonClick() {
     }
     
+    @objc func onRescheduleDeliveryClick() {
+        if let delegate = self.delegate {
+            delegate.onRescheduleClick()
+        }
+        self.dismiss(animated: true)
+    }
+    
+    @objc func onSelfPickupClick() {
+        if let delegate = self.delegate {
+            delegate.onSelfPickupClick()
+        }
+        self.dismiss(animated: true)
+    }
+    
    
 }
 
 // MARK: protocol ScheduleSelfDropModalDelegate
 protocol ScheduleSelfDropModalDelegate: VLPresentrViewDelegate {
-    func onRescheduleSelected(loanerNeeded: Bool)
-    func onSelfPickupSelected(loanerNeeded: Bool)
+    func onRescheduleClick()
+    func onSelfPickupClick()
 }

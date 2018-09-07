@@ -213,6 +213,16 @@ class Booking: Object, Mappable {
         return false
     }
     
+    public func getCurrentRequestType() -> RequestType? {
+        if let dropoffRequest = self.dropoffRequest, let type = dropoffRequest.getType() {
+            return type
+        } else if let pickupRequest = self.pickupRequest, let type = pickupRequest.getType() {
+            return type
+        } else {
+            return nil
+        }
+    }
+    
     public func getLastCompletedRequest() -> Request? {
         if let dropoffRequest = self.dropoffRequest, dropoffRequest.getState() == .completed {
             return dropoffRequest

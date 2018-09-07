@@ -9,7 +9,7 @@
 import Foundation
 import PhoneNumberKit
 
-class ScheduledSelfViewController: BaseViewController {
+class ScheduledSelfViewController: BaseVehicleViewController {
     
     let phoneNumberKit = PhoneNumberKit()
     
@@ -56,14 +56,13 @@ class ScheduledSelfViewController: BaseViewController {
     let dealershipPhoneButton: VLButton
     
     let mapVC = MapViewController()
-    let vehicle: Vehicle
     
-    init(vehicle: Vehicle, screen: AnalyticsEnums.Name.Screen) {
-        self.vehicle = vehicle
+    init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen) {
         dealershipPhoneButton = VLButton(type: .blueSecondary, title: "", kern: UILabel.uppercasedKern(), event: .callDealership, screen: screen)
         mapItButton = VLButton(type: .blueSecondary, title: (.GetDirections as String).uppercased(), kern: UILabel.uppercasedKern(), event: .getDirections, screen: screen)
         scheduleDeliveryButton = VLButton(type: .grayPrimary, title: (.ScheduleDelivery as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
-        super.init(screen: screen)
+        super.init(vehicle: vehicle, state: state, screen: screen)
+        
         self.mapVC.screen = screen
         
         scrollView.contentMode = .scaleAspectFit

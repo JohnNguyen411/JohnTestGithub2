@@ -45,9 +45,6 @@ class BaseVehicleViewController: BaseViewController {
         if vehicleId != vehicle.id {
             return
         }
-        if serviceState == newState {
-            return
-        }
         stateDidChange(state: newState)
     }
     
