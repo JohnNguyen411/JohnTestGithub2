@@ -1,3 +1,7 @@
+v1.0.4(128):
+Self IB support
+Complete version of Self OB
+
 v1.0.4(126):
 First version of SelfOB
 
