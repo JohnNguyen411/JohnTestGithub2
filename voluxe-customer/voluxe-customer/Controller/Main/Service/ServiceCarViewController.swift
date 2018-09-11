@@ -47,18 +47,6 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
         return textView
     }()
     
-    let noteLabel: UILabel = {
-        let textView = UILabel(frame: .zero)
-        textView.text = .NoteDelivery
-        textView.font = .volvoSansProMedium(size: 12)
-        textView.volvoProLineSpacing()
-        textView.textColor = .luxeGray()
-        textView.backgroundColor = .clear
-        textView.numberOfLines = 0
-        textView.contentMode = .bottom
-        return textView
-    }()
-    
     var locationManager = LocationManager.sharedInstance
     
     let scrollView = UIScrollView(frame: .zero)
@@ -165,14 +153,12 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
         contentView.addSubview(descriptionButton)
         contentView.addSubview(checkupLabel)
         contentView.addSubview(updateLabel)
-        contentView.addSubview(noteLabel)
 
         self.view.addSubview(selfDropButton)
         self.view.addSubview(deliveryButton)
         self.view.addSubview(confirmButton)
         
         updateLabel.isHidden = true
-        noteLabel.isHidden = true
         
         let margin = ViewUtils.getAdaptedHeightSize(sizeInPoints: 20)
 
@@ -307,9 +293,7 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
                 Analytics.trackView(screen: .needService)
                 dealershipPrefetching()
                 self.updateLabelText(text: .ScheduleDropDealership)
-                self.noteLabel.isHidden = true
             } else {
-                self.noteLabel.isHidden = false
                 self.updateLabelText(text: .SchedulePickupDealershipSelfEnabled)
                
 //                showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: true)
@@ -320,7 +304,6 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
             }
             
             let checkupLabelHeight = checkupLabel.sizeThatFits(CGSize(width: contentView.bounds.width, height: CGFloat(MAXFLOAT))).height
-            let noteLabelHeight = noteLabel.sizeThatFits(CGSize(width: contentView.bounds.width, height: CGFloat(MAXFLOAT))).height
 
             let descriptionBottom = descriptionButton.frame.origin.y + descriptionButton.frame.size.height
             if descriptionButton.frame.origin.y > 0 && descriptionBottom + checkupLabelHeight + 20 >= scrollView.frame.size.height {
@@ -330,17 +313,7 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
                     make.top.equalTo(descriptionButton.snp.bottom).offset(20)
                 }
                 
-                var contentViewHeight = descriptionBottom + 20 + checkupLabelHeight
-                if !self.noteLabel.isHidden {
-                    
-                    noteLabel.snp.remakeConstraints { make in
-                        make.left.right.equalToSuperview()
-                        make.top.equalTo(checkupLabel.snp.bottom).offset(20)
-                    }
-                    
-                    contentViewHeight += 20 + noteLabelHeight
-
-                }
+                let contentViewHeight = descriptionBottom + 20 + checkupLabelHeight
                 
                 contentView.snp.remakeConstraints { make in
                     make.edges.equalTo(scrollView)
@@ -353,25 +326,10 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
                 contentView.snp.makeConstraints { make in
                     make.bottom.equalToSuperview()
                 }
-            
-                if !self.noteLabel.isHidden {
-                    
-                    noteLabel.snp.remakeConstraints { make in
-                        make.left.right.bottom.equalToSuperview()
-                    }
-                    
-                    checkupLabel.snp.remakeConstraints { make in
-                        make.left.right.equalToSuperview()
-                        make.bottom.equalTo(noteLabel.snp.top).offset(-20)
-                    }
-                    
-                } else {
-                    checkupLabel.snp.remakeConstraints { make in
-                        make.left.bottom.right.equalToSuperview()
-                    }
+                
+                checkupLabel.snp.remakeConstraints { make in
+                    make.left.bottom.right.equalToSuperview()
                 }
-                
-                
             }
             
             selfDropButton.animateAlpha(show: true)
