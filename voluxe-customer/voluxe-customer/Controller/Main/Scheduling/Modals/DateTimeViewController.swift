@@ -353,7 +353,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     
     private func initCalendar() {
         
-        maxDate = Calendar.current.date(byAdding: .day, value: 3*7, to: todaysDate)!
+        maxDate = Calendar.current.date(byAdding: .day, value: 9*7, to: todaysDate)!
         let weekday = Calendar.current.component(.weekday, from: maxDate) // 1 is sunday for Gregorian
         let weekMonth = Calendar.current.component(.weekOfMonth, from: maxDate)
 
