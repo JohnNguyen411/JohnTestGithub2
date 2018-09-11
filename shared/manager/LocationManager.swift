@@ -305,7 +305,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                 for prediction in autocompletePredictions {
                     var shouldAdd = false
                     for type in prediction.types {
-                        if type == "street_number" || type == "street_address" || type == "establishment" || type == "route" {
+                        if type == "premise" || type == "street_number" || type == "street_address" || type == "establishment" || type == "route" {
                             shouldAdd = true
                             break
                         }

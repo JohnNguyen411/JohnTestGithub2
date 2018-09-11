@@ -318,7 +318,6 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                 if !weakSelf.wasLocationEnabled {
                     weakSelf.preselectedIndex = -1
                     self.wasLocationEnabled = true
-                    return
                 }
                 
                 if weakSelf.preselectedIndex > -1 {
