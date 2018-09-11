@@ -16,7 +16,6 @@ class Booking: Object, Mappable {
     
     private static let distanceTrigger = 500.0 // refresh more ofter when within 500m from origin or destination
     
-    private static let defaultRefresh = 60
     private static let refreshEnRouteClose = 10
     private static let refreshEnRoute = 20
     
@@ -146,7 +145,7 @@ class Booking: Object, Mappable {
                     }
                     
                 } else {
-                    refreshTime = Booking.defaultRefresh
+                    refreshTime = Config.sharedInstance.bookingRefresh()
                 }
             }
         }
