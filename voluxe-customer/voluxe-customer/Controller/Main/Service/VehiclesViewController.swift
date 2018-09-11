@@ -13,6 +13,7 @@ import CoreLocation
 import RealmSwift
 import BrightFutures
 import Alamofire
+import SwiftEventBus
 
 
 class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
@@ -89,6 +90,30 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         vehicleCollectionView.showsVerticalScrollIndicator = false
         vehicleCollectionView.showsHorizontalScrollIndicator = false
         
+        SwiftEventBus.onMainThread(self, name:"stateDidChange") {
+            result in
+            guard let stateChange: StateChangeObject = result?.object as? StateChangeObject else { return }
+            self.stateDidChange(vehicleId: stateChange.vehicleId, oldState: stateChange.oldState, newState: stateChange.newState)
+        }
+    }
+    
+    deinit {
+        SwiftEventBus.unregister(self)
+    }
+    
+    func stateDidChange(vehicleId: Int, oldState: ServiceState?, newState: ServiceState) {
+        guard let vehicle = selectedVehicle else { return }
+        if vehicleId != vehicle.id {
+            return
+        }
+        
+        if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.isActive() {
+            AppController.sharedInstance.loadViewForVehicle(vehicle: vehicle, state: newState)
+            return
+        }
+        
+        stateDidChange(state: newState)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
