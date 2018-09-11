@@ -1,6 +1,7 @@
 v1.0.4(132):
 SelfIB/OB Bugfixes
 Increase refresh speed for non release build
+Increase date/time picker max date to accomodate cutoff
 
 v1.0.4(128):
 Self IB support
