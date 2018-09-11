@@ -275,7 +275,7 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
             } else {
                 showUpdateLabel(show: true, title: String.New.uppercased(), width: 40, right: true)
             }
-            scheduledServiceView.setTitle(title: title, leftDescription: service.title!, rightDescription: "")
+            scheduledServiceView.setTitle(title: title, leftDescription: service.getTitle(), rightDescription: "")
         }
     }
 
