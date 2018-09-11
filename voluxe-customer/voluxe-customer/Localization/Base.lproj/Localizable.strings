@@ -142,9 +142,9 @@
 "NeedALoaner" = "Need a Loaner?";
 "ConfirmPickup" = "Confirm Pickup";
 "ScheduleDropDealership" = "Schedule pickup at any location served by a participating dealership.";
-"ScheduleDropDealershipSelfEnabled" = "You can drop your car or schedule pickup at any location served by a participating dealership";
+"ScheduleDropDealershipSelfEnabled" = "You can schedule pickup at any address served by a participating dealership, or you can drop-off your car in person.";
 "SchedulePickupDealership" = "Schedule delivery at any location served by a participating dealership.";
-"SchedulePickupDealershipSelfEnabled" = "You can pickup your car or schedule delivery at any location served by a participating dealership.";
+"SchedulePickupDealershipSelfEnabled" = "You can schedule delivery to any address served by the dealership, or you can pick-up your car in person.";
 "OutOfPickupArea" = "Out of pickup area";
 "ServiceNotOfferedInArea" = "Service unavailable";
 "DatesLoanersOnly" = "Dates with available loaners only";
