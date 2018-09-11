@@ -11,8 +11,7 @@ import Foundation
 /// Convenience protocol to allow iterating through an Enum.
 /// Swift 4.2 defines CaseIterable so this extension is temporary.
 /// https://stackoverflow.com/questions/24007461/how-to-enumerate-an-enum-with-string-type
-#if swift(>=4.2)
-#else
+#if !swift(>=4.2)
 public protocol CaseIterable {
     associatedtype AllCases: Collection where AllCases.Element == Self
     static var allCases: AllCases { get }

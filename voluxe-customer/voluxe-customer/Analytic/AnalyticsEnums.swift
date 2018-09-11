@@ -181,7 +181,7 @@ struct AnalyticsEnums {
             case serviceMilestoneDateTime
             case serviceNew
             case settings
-            case signupEmail
+            case signupComplete
             case signupName
             case signupPassword
             case signupPhone
