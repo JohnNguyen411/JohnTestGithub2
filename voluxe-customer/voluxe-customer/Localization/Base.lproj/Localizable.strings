@@ -224,7 +224,7 @@
 "NewService" = "New Service";
 "ScheduledService" = "Scheduled Service";
 "AreYouSureCancelPickup" = "Are you sure you want to cancel your pickup?";
-"AreYouSureCancelDropOff" = "Are you sure you want to cancel your dropoff?";
+"AreYouSureCancelDropOff" = "Are you sure you want to cancel your delivery?";
 "NewServiceIntro" = "You can schedule pickup (with participating dealerships) through Luxe by Volvo.\n\nTo schedule pickup, first select service type.";
 "MilestoneServices" = "Milestone services";
 "RecallServices" = "Recall services";
