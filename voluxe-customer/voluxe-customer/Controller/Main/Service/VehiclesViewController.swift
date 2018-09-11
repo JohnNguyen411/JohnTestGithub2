@@ -286,7 +286,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
             }
             
             
-            if booking.isSelfOB() || booking.isSelfIB() {
+            if booking.isSelfOB() || (ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) && booking.isSelfIB()) {
                 preferedDealershipView.isHidden = true
             } else {
                 if let location = location {
