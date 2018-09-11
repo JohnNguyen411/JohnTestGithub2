@@ -133,9 +133,14 @@ class VLPresentrViewController: UIViewController {
             make.width.height.equalTo(100)
         }
         
+        var containerViewBottomOffset = 20
+        if VLPresentrViewController.safeAreaBottomHeight() > 0 {
+            containerViewBottomOffset += VLPresentrViewController.safeAreaBottomHeight()
+        }
+        
         containerView.snp.makeConstraints { make in
             make.left.right.equalToSuperview().inset(UIEdgeInsetsMake(20, 15, 20, 15))
-            make.equalsToBottom(view: self.view, offset: -20)
+            make.bottom.equalToSuperview().offset(-containerViewBottomOffset)
             make.height.equalTo(height())
         }
         
