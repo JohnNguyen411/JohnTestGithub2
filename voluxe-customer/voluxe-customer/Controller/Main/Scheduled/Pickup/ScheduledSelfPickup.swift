@@ -13,7 +13,7 @@ class ScheduledSelfPickup: ScheduledSelfViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTitle(title: .SelfDropoffAtDealership)
+        setTitle(title: .DropoffAtDealership)
         scheduleDeliveryButton.isHidden = true
         deliveryLabel.isHidden = true
         

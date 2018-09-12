@@ -79,7 +79,7 @@ class ScheduledSelfViewController: BaseVehicleViewController {
             self.fillViews(booking: booking)
         }
         
-        setTitle(title: .SelfPickupAtDealership)
+        setTitle(title: .PickupAtDealership)
         
         mapItButton.contentHorizontalAlignment = .right
         scheduleDeliveryButton.addTarget(self, action: #selector(scheduleDelivery), for: .touchUpInside)

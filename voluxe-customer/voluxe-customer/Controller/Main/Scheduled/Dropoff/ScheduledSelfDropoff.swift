@@ -13,6 +13,6 @@ class ScheduledSelfDropoff: ScheduledSelfViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTitle(title: .SelfPickupAtDealership)
+        setTitle(title: .PickupAtDealership)
     }
 }

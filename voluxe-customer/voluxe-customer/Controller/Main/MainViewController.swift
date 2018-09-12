@@ -56,7 +56,7 @@ class MainViewController: BaseVehicleViewController {
                         let scheduledPickupViewController = ScheduledSelfPickup(vehicle: vehicle, state: state, screen: .dropoffSelfActive)
                         newViewController = scheduledPickupViewController
                     }
-                    setTitle(title: .SelfDropoffAtDealership)
+                    setTitle(title: .DropoffAtDealership)
                 } else {
                     if booking.isActive() {
                         if currentViewController != nil && (currentViewController?.isKind(of: ScheduledPickupViewController.self))! {
@@ -81,7 +81,7 @@ class MainViewController: BaseVehicleViewController {
                         let scheduledDeliveryViewController = ScheduledSelfDropoff(vehicle: vehicle, state: state, screen: .dropoffSelfActive)
                         newViewController = scheduledDeliveryViewController
                     }
-                    setTitle(title: .SelfPickupAtDealership)
+                    setTitle(title: .PickupAtDealership)
                 } else {
                     if booking.isActive() {
                         if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
