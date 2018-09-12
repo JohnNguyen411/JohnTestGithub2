@@ -290,6 +290,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
+        self.serviceState = state
         
         stateTestView.accessibilityIdentifier = "schedulingTestView\(state)"
         stateTestView.text = "schedulingTestView\(state)"

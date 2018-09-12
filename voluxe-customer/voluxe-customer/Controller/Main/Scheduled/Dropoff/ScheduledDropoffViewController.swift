@@ -60,7 +60,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
             }
         }
         
-        changeButton.isHidden = serviceState != .dropoffScheduled
+        changeButton.isHidden = booking.getState() != .dropoffScheduled
     }
     
     override func stateDidChange(state: ServiceState) {
