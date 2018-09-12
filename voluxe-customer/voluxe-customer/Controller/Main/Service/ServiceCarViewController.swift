@@ -208,19 +208,32 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
         }
         
         if !ServiceState.isPickup(state: serviceState) {
-            selfDropButton.snp.makeConstraints { make in
-                make.left.equalToSuperview().inset(margin)
-                make.right.equalToSuperview().inset(margin)
-                make.equalsToBottom(view: self.view, offset: -margin)
-                make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
+            
+            if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfOBEnabledKey) {
+                selfDropButton.snp.makeConstraints { make in
+                    make.left.equalToSuperview().inset(margin)
+                    make.right.equalToSuperview().inset(margin)
+                    make.equalsToBottom(view: self.view, offset: -margin)
+                    make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
+                }
+                
+                deliveryButton.snp.makeConstraints { make in
+                    make.left.equalToSuperview().inset(margin)
+                    make.right.equalToSuperview().inset(margin)
+                    make.bottom.equalTo(selfDropButton.snp.top).offset(-margin)
+                    make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
+                }
+            } else {
+                deliveryButton.snp.makeConstraints { make in
+                    make.left.equalToSuperview().inset(margin)
+                    make.right.equalToSuperview().inset(margin)
+                    make.equalsToBottom(view: self.view, offset: -margin)
+                    make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
+                }
+                selfDropButton.isHidden = true
             }
             
-            deliveryButton.snp.makeConstraints { make in
-                make.left.equalToSuperview().inset(margin)
-                make.right.equalToSuperview().inset(margin)
-                make.bottom.equalTo(selfDropButton.snp.top).offset(-margin)
-                make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
-            }
+            
         } else {
             deliveryButton.snp.makeConstraints { make in
                 make.left.equalToSuperview().inset(margin)

@@ -60,7 +60,9 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
             }
         }
         
-        changeButton.isHidden = booking.getState() != .dropoffScheduled
+        if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfOBEnabledKey) {
+            changeButton.isHidden = booking.getState() != .dropoffScheduled
+        }
     }
     
     override func stateDidChange(state: ServiceState) {
