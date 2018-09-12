@@ -60,6 +60,11 @@ class MapViewController: UIViewController {
         }
     }
     
+    func enableZoom(zoomEnabled: Bool) {
+        mapView.isUserInteractionEnabled = zoomEnabled
+        mapView.settings.zoomGestures = zoomEnabled
+    }
+    
     func updateRequestLocation(location: CLLocationCoordinate2D, withZoom: Float? = nil) {
         flagMarker.tracksViewChanges = true
         flagMarker.map = mapView

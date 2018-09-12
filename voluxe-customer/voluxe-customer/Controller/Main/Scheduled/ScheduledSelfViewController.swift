@@ -171,6 +171,7 @@ class ScheduledSelfViewController: BaseVehicleViewController {
             
             if let coordinates = location.getLocation() {
                 mapVC.updateRequestLocation(location: coordinates)
+                self.mapVC.enableZoom(zoomEnabled: true)
                 mapItButton.addTarget(self, action: #selector(mapIt), for: .touchUpInside)
                 
             } else {
