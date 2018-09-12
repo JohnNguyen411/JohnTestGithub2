@@ -140,9 +140,14 @@ class ScheduledSelfViewController: BaseVehicleViewController {
         
         mapVC.view.snp.makeConstraints { make in
             make.top.equalTo(mapItButton.snp.bottom).offset(adaptedMarging)
-            make.left.right.equalToSuperview()
+            make.left.equalToSuperview().offset(2)
+            make.right.equalToSuperview().offset(-2)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 200))
         }
+        
+        mapVC.view.clipsToBounds = false
+        
+        ViewUtils.addShadow(toView: mapVC.view)
         
         deliveryLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(adaptedMarging)
