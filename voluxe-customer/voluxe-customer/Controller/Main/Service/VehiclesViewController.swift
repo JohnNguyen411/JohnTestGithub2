@@ -277,14 +277,14 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                     let dateTime = formatter.string(from: date)
                     scheduledServiceView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                     dealershipLocationButton.isHidden = true
-                    scheduledServiceView.isEditable = false
+                    scheduledServiceView.isEditable = true
                 } else {
                     scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: booking.getRepairOrderName())
                     dealershipLocationButton.isHidden = false
                     scheduledServiceView.isEditable = false
                 }
                 if let request = booking.pickupRequest, let requestLocation = request.location {
-                    location = requestLocation.address
+                    location = requestLocation.getShortAddress()
                 }
             } else {
                 if booking.isSelfOB() {
@@ -305,7 +305,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                         }
                     }
                     if let request = booking.dropoffRequest, let requestLocation = request.location {
-                        location = requestLocation.address
+                        location = requestLocation.getShortAddress()
                     }
                 }
             }

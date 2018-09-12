@@ -17,9 +17,7 @@ import Alamofire
 import Kingfisher
 import MBProgressHUD
 
-class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
-    
-    var serviceState: ServiceState
+class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelegate {
     
     let updateLabel: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -53,7 +51,6 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
     let contentView = UIView(frame: .zero)
 
     let stateTestView = UILabel(frame: .zero)
-    let vehicle: Vehicle
 
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
 
@@ -70,11 +67,11 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
     
     //MARK: Lifecycle methods
     init(title: String? = nil, vehicle: Vehicle, state: ServiceState) {
-        self.vehicle = vehicle
-        self.serviceState = state
         self.screenTitle = title
-        super.init()
+        super.init(vehicle: vehicle, state: state, screen: nil)
     }
+    
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -267,14 +264,29 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
 
     override func logViewScreen() {
         super.logViewScreen()
-        self.descriptionButton.setEvent(name: .showService, screen: self.screen)
-        self.confirmButton.setEvent(name: .ok, screen: self.screen)
+        self.descriptionButton.setEvent(name: .showService, screen: screenAnalyticsEnum(state: serviceState))
+        self.confirmButton.setEvent(name: .ok, screen: screenAnalyticsEnum(state: serviceState))
     }
     
     func showVehicleImage(show: Bool, alpha: Bool, animated: Bool) {
         self.vehicleImageView.changeVisibility(show: show, alpha: alpha, animated: animated, height: Vehicle.vehicleImageHeight)
     }
     
+    
+    private func screenAnalyticsEnum(state: ServiceState) -> AnalyticsEnums.Name.Screen {
+        if state == .needService {
+            return .needService
+        } else if state == .serviceCompleted {
+            return .serviceCompleted
+        } else if state == .service {
+            return .serviceInProgress
+        } else if state == .enRouteForService {
+            return .serviceEnRoute
+        } else if state == .completed {
+            return .bookingCompleted
+        }
+        return .needService
+    }
     
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
@@ -284,13 +296,14 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
         
         confirmButton.isHidden = true
         
+        Analytics.trackView(screen: screenAnalyticsEnum(state: state))
+
         if state == .needService || state == .serviceCompleted {
             
             scheduledServiceView.isHidden = false
             descriptionButton.isHidden = false
             
             if state == .needService {
-                Analytics.trackView(screen: .needService)
                 dealershipPrefetching()
                 self.updateLabelText(text: .ScheduleDropDealership)
             } else {
@@ -300,7 +313,6 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
                 if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                     scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
                 }
-                Analytics.trackView(screen: .serviceCompleted)
             }
             
             let checkupLabelHeight = checkupLabel.sizeThatFits(CGSize(width: contentView.bounds.width, height: CGFloat(MAXFLOAT))).height
@@ -355,7 +367,6 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
                 self.updateLabelText(text: String(format: NSLocalizedString(.VolvoCurrentlyServicing), (dealership?.name)!))
                 selfDropButton.isHidden = true
                 deliveryButton.isHidden = true
-                Analytics.trackView(screen: .serviceInProgress)
 
             } else if state == .enRouteForService {
                 confirmButton.isHidden = true
@@ -363,7 +374,6 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
                 deliveryButton.isHidden = true
                 
                 self.updateLabelText(text: String(format: NSLocalizedString(.DriverDrivingToDealership), (dealership?.name)!))
-                Analytics.trackView(screen: .serviceEnRoute)
                 
             } else if state == .completed {
                 confirmButton.isHidden = false
@@ -371,15 +381,14 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
                 deliveryButton.isHidden = true
                 
                 self.updateLabelText(text: String(format: NSLocalizedString(.DeliveryComplete), (dealership?.name)!))
-                Analytics.trackView(screen: .bookingCompleted)
             }
         }
         
         
         if ServiceState.isPickup(state: state) {
 
-            self.selfDropButton.setEvent(name: .inboundSelf, screen: self.screen)
-            self.deliveryButton.setEvent(name: .inboundVolvo, screen: self.screen)
+            self.selfDropButton.setEvent(name: .inboundSelf, screen: screenAnalyticsEnum(state: state))
+            self.deliveryButton.setEvent(name: .inboundVolvo, screen: screenAnalyticsEnum(state: state))
             
             selfDropButton.setTitle(title: (.SelfDrop as String).uppercased())
             deliveryButton.setTitle(title: (.VolvoPickup as String).uppercased())
@@ -387,8 +396,8 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
         } else {
             selfDropButton.setTitle(title: (.SelfPickupAtDealership as String).uppercased())
             deliveryButton.setTitle(title: (.ScheduleDelivery as String).uppercased())
-            self.selfDropButton.setEvent(name: .outboundSelf, screen: self.screen)
-            self.deliveryButton.setEvent(name: .outboundVolvo, screen: self.screen)
+            self.selfDropButton.setEvent(name: .outboundSelf, screen: screenAnalyticsEnum(state: state))
+            self.deliveryButton.setEvent(name: .outboundVolvo, screen: screenAnalyticsEnum(state: state))
         }
     }
     
@@ -554,7 +563,7 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
                 self.hideProgressHUD()
                 self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
-                }, dialog: .error, screen: self.screen)
+                }, dialog: .error, screen: self.screenAnalyticsEnum(state: self.serviceState))
         }
     }
     
