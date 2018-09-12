@@ -26,7 +26,7 @@
 "Cancel" = "Cancel";
 "Close" = "Close";
 "CancelPickup" = "Cancel Pickup";
-"CancelDropOff" = "Cancel DropOff";
+"CancelDropOff" = "Cancel Delivery";
 "Error" = "Error";
 "GenericError" = "An unknown error has occurred. Please try again later.";
 "Map" = "Map";
@@ -142,9 +142,9 @@
 "NeedALoaner" = "Need a Loaner?";
 "ConfirmPickup" = "Confirm Pickup";
 "ScheduleDropDealership" = "Schedule pickup at any location served by a participating dealership.";
-"ScheduleDropDealershipSelfEnabled" = "You can drop your car at the dealership or arrange for Volvo to pickup your vehicle at the location of your choosing.";
+"ScheduleDropDealershipSelfEnabled" = "You can schedule pickup at any address served by a participating dealership, or you can drop-off your car in person.";
 "SchedulePickupDealership" = "Schedule delivery at any location served by a participating dealership.";
-"SchedulePickupDealershipSelfEnabled" = "You can pick up your car from the dealership or arrange for Volvo to deliver your vehicle to the location of your choosing.";
+"SchedulePickupDealershipSelfEnabled" = "You can schedule delivery to any address served by the dealership, or you can pick-up your car in person.";
 "OutOfPickupArea" = "Out of pickup area";
 "ServiceNotOfferedInArea" = "Service unavailable";
 "DatesLoanersOnly" = "Dates with available loaners only";
@@ -181,6 +181,9 @@
 "CallDriver" = "Call Driver";
 "TextDriver" = "Text Driver";
 "ScheduledSelfDrop" = "Scheduled Self-Drop";
+"NoteDelivery" = "Note: Volvo delivery is only offered near the dealership.";
+"RescheduleDelivery" = "Reschedule Delivery";
+
 
 /***************** Scheduling Dropoff ***************/
 "CurrentService" = "Current Service";
@@ -194,24 +197,36 @@
 "ScheduleDelivery" = "Schedule Delivery";
 "DeliveryLocation" = "Delivery Location";
 "ConfirmSelfPickup" = "Confirm Self-Pickup";
+"SelfPickupAtDealership" = "Self-Pickup at Dealership";
+"AreYouSureSelfPickup" = "Are you sure you want to pick-up your vehicle at the dealership?";
+"SelfDropoffAtDealership" = "Self-Dropoff at Dealership";
+"PickupAtDealership" = "Pick-up at Dealership";
+"DropoffAtDealership" = "Drop-off at Dealership";
 
 /***************** Scheduled Dropoff ***************/
 "VehicleIsReady" = "Vehicle is ready";
 "DeliveryWindow" = "Delivery window";
 "EstimatedDeliveryTime" = "Estimated delivery time";
 "DeliveryComplete" = "Your delivery from %@ is complete.";
+"GetDirections" = "Get Directions";
+"ScheduleDriver" = "You can also schedule a driver to deliver your vehicle";
+"UnableToMeetDriver" = "If you’re unable to meet your driver at the scheduled time, you can reschedule your delivery.";
+"PreferPickup" = "If you prefer to pick-up your vehicle at the dealership, you can choose to do that below. Note: This will cancel your scheduled delivery.";
+"YoureScheduledForDelivery" = "You're scheduled for delivery";
+"Change" = "Change";
 
 /***************** Vehicle ***************/
 "VolvoYearModel" = "Volvo Year/Model";
 "Mileage" = "Mileage";
 "PreferredDealership" = "Preferred Dealership";
+"ViewDealershipLocation" = "View Dealership Location";
 
 /***************** Service ***************/
 "Service" = "Service";
 "NewService" = "New Service";
 "ScheduledService" = "Scheduled Service";
 "AreYouSureCancelPickup" = "Are you sure you want to cancel your pickup?";
-"AreYouSureCancelDropOff" = "Are you sure you want to cancel your dropoff?";
+"AreYouSureCancelDropOff" = "Are you sure you want to cancel your delivery?";
 "NewServiceIntro" = "You can schedule pickup (with participating dealerships) through Luxe by Volvo.\n\nTo schedule pickup, first select service type.";
 "MilestoneServices" = "Milestone services";
 "RecallServices" = "Recall services";

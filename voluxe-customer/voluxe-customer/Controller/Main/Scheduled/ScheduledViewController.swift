@@ -17,7 +17,7 @@ import SwiftEventBus
 import MBProgressHUD
 import SDWebImage
 
-class ScheduledViewController: BaseViewController, DriverInfoViewControllerProtocol {
+class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControllerProtocol {
     
     private static let ETARefreshThrottle: Double = 30
     
@@ -39,10 +39,12 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
     
     var verticalStepView: GroupedVerticalStepView? = nil
     let mapVC = MapViewController()
-    let vehicle: Vehicle
+    
     private let mapViewContainer = UIView(frame: .zero)
     private let driverViewContainer = UIView(frame: .zero)
     private let driverIcon: UIImageView
+    let changeButton: VLButton
+
     let timeWindowView = TimeWindowView()
     
     let driverName: UILabel = {
@@ -58,11 +60,11 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
     private let driverContact: VLButton
     private var driverInfoViewController: DriverInfoViewController?
     
-    init(vehicle: Vehicle, screen: AnalyticsEnums.Name.Screen) {
-        self.vehicle = vehicle
+    init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen) {
+        changeButton = VLButton(type: .blueSecondary, title: (.Change as String).uppercased(), kern: UILabel.uppercasedKern(), event: .changeDropoff, screen: screen)
         driverContact = VLButton(type: .blueSecondary, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), event: .contactDriver, screen: screen)
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
-        super.init(screen: screen)
+        super.init(vehicle: vehicle, state: state, screen: screen)
         generateSteps()
 
         self.mapVC.screen = screen
@@ -103,7 +105,7 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
             make.height.equalTo(mapHeight)
         }
         
-        addShadow(toView: mapViewContainer)
+        ViewUtils.addShadow(toView: mapViewContainer)
         updateBookingIfNeeded()
     }
     
@@ -123,15 +125,7 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
         SwiftEventBus.unregister(self, name: "updateBookingIfNeeded")
     }
     
-    private func addShadow(toView: UIView) {
-        
-        toView.layer.masksToBounds = false
-        
-        toView.layer.shadowColor = UIColor.black.cgColor
-        toView.layer.shadowOpacity = 0.5
-        toView.layer.shadowRadius = 2
-        toView.layer.shadowOffset = CGSize(width: 0.0, height: 1.0)
-    }
+    
     
     override func setupViews() {
         super.setupViews()
@@ -214,6 +208,17 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 100))
             }
         }
+        
+        if let stepView = verticalStepView?.stepViewforIndex(0) {
+            
+            self.view.addSubview(changeButton)
+            changeButton.isHidden = true
+            
+            changeButton.snp.makeConstraints { make in
+                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -22))
+                make.top.equalTo(stepView).offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: 7))
+            }
+        }
     }
     
     override func stateDidChange(state: ServiceState) {
@@ -221,6 +226,12 @@ class ScheduledViewController: BaseViewController, DriverInfoViewControllerProto
             // reset if needed
             hideDriver()
             resetState(state: state)
+        }
+        // check type
+        if let type = StateServiceManager.sharedInstance.getType(vehicleId: vehicle.id), type == .advisorDropoff || type == .advisorPickup {
+            // nothing to do here
+            AppController.sharedInstance.loadViewForVehicle(vehicle: vehicle, state: state)
+            return
         }
         self.state = state
         super.stateDidChange(state: state)

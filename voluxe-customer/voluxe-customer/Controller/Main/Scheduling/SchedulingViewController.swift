@@ -290,7 +290,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             if RequestedServiceManager.sharedInstance.isSelfInitiated() {
                 title = .SelectedService
             }
-            scheduledServiceView.setTitle(title: title, leftDescription: repairOrder.title!, rightDescription: "")
+            scheduledServiceView.setTitle(title: title, leftDescription: repairOrder.getTitle(), rightDescription: "")
         }
         
         fillDealership()

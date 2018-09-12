@@ -13,6 +13,7 @@ import CoreLocation
 import RealmSwift
 import BrightFutures
 import Alamofire
+import SwiftEventBus
 
 
 class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
@@ -38,6 +39,8 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     let scheduledServiceView = VLTitledLabel()
     let contentView = UIView(frame: .zero)
     let confirmButton: VLButton
+    let dealershipLocationButton: VLButton
+
 
     //MARK: Lifecycle methods
     init(state: ServiceState) {
@@ -50,6 +53,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         vehicleCollectionView.backgroundColor = UIColor.clear
         vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
         
+        dealershipLocationButton = VLButton(type: .blueSecondary, title: String.ViewDealershipLocation.uppercased(), kern: UILabel.uppercasedKern(), event: .viewDealershipLocation, screen: .vehicles)
         confirmButton = VLButton(type: .bluePrimary, title: (.NewService as String).uppercased(), kern: UILabel.uppercasedKern(), event: .newService, screen: .vehicles)
         
         super.init(screen: .vehicles)
@@ -71,6 +75,10 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         
         vehicleImageView.contentMode = .scaleAspectFit
         
+        dealershipLocationButton.setActionBlock { [weak self] in
+            self?.dealershipLocationClick()
+        }
+        
         confirmButton.setActionBlock { [weak self] in
             self?.confirmButtonClick()
         }
@@ -82,6 +90,30 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         vehicleCollectionView.showsVerticalScrollIndicator = false
         vehicleCollectionView.showsHorizontalScrollIndicator = false
         
+        SwiftEventBus.onMainThread(self, name:"stateDidChange") {
+            result in
+            guard let stateChange: StateChangeObject = result?.object as? StateChangeObject else { return }
+            self.stateDidChange(vehicleId: stateChange.vehicleId, oldState: stateChange.oldState, newState: stateChange.newState)
+        }
+    }
+    
+    deinit {
+        SwiftEventBus.unregister(self)
+    }
+    
+    func stateDidChange(vehicleId: Int, oldState: ServiceState?, newState: ServiceState) {
+        guard let vehicle = selectedVehicle else { return }
+        if vehicleId != vehicle.id {
+            return
+        }
+        
+        if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.isActive() {
+            AppController.sharedInstance.loadViewForVehicle(vehicle: vehicle, state: newState)
+            return
+        }
+        
+        stateDidChange(state: newState)
+
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -99,6 +131,8 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     override func setupViews() {
         super.setupViews()
         
+        dealershipLocationButton.isHidden = true
+        
         self.contentView.alpha = 0
         self.view.addSubview(contentView)
         
@@ -112,6 +146,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         scrollView.addSubview(vehicleImageView)
         scrollView.addSubview(preferedDealershipView)
         scrollView.addSubview(scheduledServiceView)
+        scrollView.addSubview(dealershipLocationButton)
         scrollView.addSubview(confirmButton)
         
         contentView.snp.makeConstraints { make in
@@ -144,6 +179,11 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
             make.left.right.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom)
             make.height.equalTo(VLTitledLabel.height)
+        }
+        
+        dealershipLocationButton.snp.makeConstraints { make in
+            make.left.equalToSuperview()
+            make.top.equalTo(scheduledServiceView.snp.bottom).offset(20)
         }
         
         preferedDealershipView.snp.makeConstraints { make in
@@ -233,43 +273,59 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
             var location: String? = nil
             
             if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                if booking.getState() == .pickupScheduled, let request = booking.pickupRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
+                if !booking.isSelfIB() && booking.getState() == .pickupScheduled, let request = booking.pickupRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
                     let dateTime = formatter.string(from: date)
                     scheduledServiceView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+                    dealershipLocationButton.isHidden = true
+                    scheduledServiceView.isEditable = true
                 } else {
                     scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: booking.getRepairOrderName())
+                    dealershipLocationButton.isHidden = false
+                    scheduledServiceView.isEditable = false
                 }
                 if let request = booking.pickupRequest, let requestLocation = request.location {
-                    location = requestLocation.address
+                    location = requestLocation.getMediumAddress()
                 }
             } else {
-                if let request = booking.dropoffRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
-                    let dateTime = formatter.string(from: date)
-                    scheduledServiceView.setTitle(title: .ScheduledDelivery, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+                if booking.isSelfOB() {
+                    scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName())
+                    scheduledServiceView.isEditable = false
+                    dealershipLocationButton.isHidden = false
                 } else {
-                    if booking.getState() == .service {
-                        scheduledServiceView.setTitle(title: .CurrentService, leftDescription: booking.getRepairOrderName())
+                    scheduledServiceView.isEditable = true
+                    dealershipLocationButton.isHidden = true
+                    if let request = booking.dropoffRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
+                        let dateTime = formatter.string(from: date)
+                        scheduledServiceView.setTitle(title: .ScheduledDelivery, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                     } else {
-                        scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName())
+                        if booking.getState() == .service {
+                            scheduledServiceView.setTitle(title: .CurrentService, leftDescription: booking.getRepairOrderName())
+                        } else {
+                            scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName())
+                        }
                     }
-                }
-                if let request = booking.dropoffRequest, let requestLocation = request.location {
-                    location = requestLocation.address
+                    if let request = booking.dropoffRequest, let requestLocation = request.location {
+                        location = requestLocation.getMediumAddress()
+                    }
                 }
             }
             
             
-            if let location = location {
-                preferedDealershipView.isHidden = false
-                if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                    preferedDealershipView.setTitle(title: .PickupLocation, leftDescription: location)
-                } else {
-                    preferedDealershipView.setTitle(title: .DeliveryLocation, leftDescription: location)
-                }
+            if booking.isSelfOB() || (ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) && booking.isSelfIB()) {
+                preferedDealershipView.isHidden = true
             } else {
-                if let dealership = booking.dealership {
+                if let location = location {
                     preferedDealershipView.isHidden = false
-                    preferedDealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!)
+                    if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
+                        preferedDealershipView.setTitle(title: .PickupLocation, leftDescription: location)
+                    } else {
+                        preferedDealershipView.setTitle(title: .DeliveryLocation, leftDescription: location)
+                    }
+                } else {
+                    if let dealership = booking.dealership {
+                        preferedDealershipView.isHidden = false
+                        preferedDealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!)
+                    }
                 }
             }
         } else {
@@ -278,6 +334,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
             }
             scheduledServiceView.isHidden = true
             preferedDealershipView.isHidden = true
+            dealershipLocationButton.isHidden = true
             confirmButton.animateAlpha(show: true)
         }
         
@@ -294,6 +351,9 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     
     @objc func scheduledServiceClick() {
         if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle) {
+            if booking.isSelfOB() {
+                return
+            }
             // if booking is today, show upcoming request with map
             if booking.hasUpcomingRequestToday() || (booking.getState() == .service || booking.getState() == .serviceCompleted) {
                 AppController.sharedInstance.loadViewForVehicle(vehicle: selectedVehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: selectedVehicle.id))
@@ -301,6 +361,12 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                 let controller = ScheduledBookingViewController(booking: booking, delegate: self)
                 self.pushViewController(controller, animated: true)
             }
+        }
+    }
+    
+    @objc func dealershipLocationClick() {
+        if let selectedVehicle = selectedVehicle {
+            AppController.sharedInstance.loadViewForVehicle(vehicle: selectedVehicle, state: StateServiceManager.sharedInstance.getState(vehicleId: selectedVehicle.id))
         }
     }
     

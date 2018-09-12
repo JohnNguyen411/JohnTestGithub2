@@ -12,6 +12,7 @@ import FirebaseRemoteConfig
 final class RemoteConfigManager {
     
     public static let selfPickupEnabledKey = "self_pickup_enabled"
+    public static let selfOBEnabledKey = "customer_self_OB_enabled"
     public static let snappedPointsKey = "customer_ios_snapped_points_enabled"
     public static let loanerFeatureEnabledKey = "loaner_feature_enabled"
 

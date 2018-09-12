@@ -20,4 +20,12 @@ extension String {
     static let ScheduleDelivery = NSLocalizedString("ScheduleDelivery")
     static let DeliveryLocation = NSLocalizedString("DeliveryLocation")
     static let ConfirmSelfPickup = NSLocalizedString("ConfirmSelfPickup")
+    static let SelfPickupAtDealership = NSLocalizedString("SelfPickupAtDealership")
+    static let SelfDropoffAtDealership = NSLocalizedString("SelfDropoffAtDealership")
+    static let PickupAtDealership = NSLocalizedString("PickupAtDealership")
+    static let DropoffAtDealership = NSLocalizedString("DropoffAtDealership")
+    static let NoteDelivery = NSLocalizedString("NoteDelivery")
+    static let RescheduleDelivery = NSLocalizedString("RescheduleDelivery")
+    static let AreYouSureSelfPickup = NSLocalizedString("AreYouSureSelfPickup")
+
 }

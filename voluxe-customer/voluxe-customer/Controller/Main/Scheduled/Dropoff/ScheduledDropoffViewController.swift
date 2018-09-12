@@ -11,12 +11,20 @@ import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
 import GoogleMaps
+import MBProgressHUD
+import RealmSwift
 
-class ScheduledDropoffViewController: ScheduledViewController {
+class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropModalDelegate {
     
     convenience init(vehicle: Vehicle, state: ServiceState) {
-        self.init(vehicle: vehicle, screen: .dropoffActive)
+        self.init(vehicle: vehicle, state: state, screen: .dropoffActive)
         stateDidChange(state: state)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        changeButton.addTarget(self, action: #selector(selfOBClick), for: .touchUpInside)
     }
     
     override func generateSteps() {
@@ -51,6 +59,10 @@ class ScheduledDropoffViewController: ScheduledViewController {
                 self.timeWindowView.setSubtitle(text: .DeliveryWindow)
             }
         }
+        
+        if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfOBEnabledKey) {
+            changeButton.isHidden = booking.getState() != .dropoffScheduled
+        }
     }
     
     override func stateDidChange(state: ServiceState) {
@@ -84,4 +96,87 @@ class ScheduledDropoffViewController: ScheduledViewController {
         }
     }
     
+    
+    @objc func selfOBClick() {
+        let selfModalVC = ScheduleSelfDropModal(title: .YoureScheduledForDelivery, screen: .selfOBModal)
+        selfModalVC.delegate = self
+        selfModalVC.view.accessibilityIdentifier = "selfModalVC"
+        currentPresentrVC = selfModalVC
+        currentPresentr = buildPresenter(heightInPixels: CGFloat(currentPresentrVC!.height()), dismissOnTap: true)
+        customPresentViewController(currentPresentr!, viewController: currentPresentrVC!, animated: true, completion: {})
+    }
+    
+    func onRescheduleClick() {
+        if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
+            RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .driverDropoff)
+            self.pushViewController(SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true)
+        }
+    }
+    
+    func onSelfPickupClick() {
+        if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: self.vehicle) {
+            RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .advisorDropoff)
+            
+            self.showProgressHUD()
+            BookingAPI().createDropoffRequest(customerId: booking.customerId, bookingId: booking.id, timeSlotId: nil, location: nil, isDriver: false).onSuccess { result in
+                if let dropOffRequest = result?.data?.result {
+                    self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
+                    self.refreshFinalBooking(customerId: booking.customerId, bookingId: booking.id)
+                }
+                }.onFailure { error in
+                    self.hideProgressHUD()
+                    self.showOkDialog(title: .Error, message: .GenericError)
+            }
+            
+        }
+    }
+    
+    private func manageNewDropoffRequest(dropOffRequest: Request, booking: Booking) {
+        
+        if let realm = try? Realm() {
+            try? realm.write {
+                realm.add(dropOffRequest, update: true)
+            }
+            let realmDropOffRequest = realm.objects(Request.self).filter("id = \(dropOffRequest.id)").first
+            
+            if let booking = realm.objects(Booking.self).filter("id = \(booking.id)").first {
+                
+                try? realm.write {
+                    // update state to scheduled dropoff
+                    booking.state = State.dropoffScheduled.rawValue
+                    booking.dropoffRequest = realmDropOffRequest
+                    realm.add(booking, update: true)
+                }
+            }
+        }
+    }
+    
+    private func refreshFinalBooking(customerId: Int, bookingId: Int) {
+        BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
+            if let booking = result?.data?.result {
+                if let realm = try? Realm() {
+                    try? realm.write {
+                        realm.add(booking, update: true)
+                    }
+                }
+            }
+            
+            if let realm = try? Realm() {
+                let bookings = realm.objects(Booking.self).filter("customerId = \(customerId)")
+                UserManager.sharedInstance.setBookings(bookings: Array(bookings))
+            }
+            
+            RequestedServiceManager.sharedInstance.reset()
+            AppController.sharedInstance.showVehiclesView(animated: false)
+            
+            self.hideProgressHUD()
+            
+            }.onFailure { error in
+                // retry
+                self.hideProgressHUD()
+                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                    self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
+                }, dialog: .error, screen: self.screen)
+        }
+    }
 }

@@ -318,7 +318,6 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                 if !weakSelf.wasLocationEnabled {
                     weakSelf.preselectedIndex = -1
                     self.wasLocationEnabled = true
-                    return
                 }
                 
                 if weakSelf.preselectedIndex > -1 {
@@ -554,7 +553,7 @@ extension LocationViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CheckmarkCell.reuseId, for: indexPath) as! CheckmarkCell
         if let addresses = self.addresses, addressesCount > indexPath.row, let location = addresses[indexPath.row].location {
-            cell.setTitle(title: location.getShortAddress() ?? "")
+            cell.setTitle(title: location.getMediumAddress() ?? "")
             cell.setChecked(checked: indexPath.row == selectedIndex)
         }
         return cell

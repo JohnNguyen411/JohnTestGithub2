@@ -90,6 +90,30 @@ class Location: Object, Mappable {
         return address
     }
     
+    func getMediumAddress() -> String? {
+        if let address = address {
+            let tok = address.components(separatedBy:",")
+            var shortAddress = ""
+            if tok.count > 0 {
+                for (index, string) in tok.enumerated() {
+                    if index > 2 {
+                        break
+                    }
+                    shortAddress += string + ","
+                }
+                shortAddress.removeLast()
+                
+                let split = shortAddress.split(separator: " ")
+                if split.count > 4 {
+                    shortAddress = String(split.prefix(upTo: split.count - 1).joined(separator: [" "]))
+                }
+                
+                return shortAddress
+            }
+        }
+        return address
+    }
+    
     func toJSON() -> [String : Any] {
         return [
             "address": address ?? "",

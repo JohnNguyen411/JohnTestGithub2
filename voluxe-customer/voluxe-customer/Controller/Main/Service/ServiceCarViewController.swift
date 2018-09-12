@@ -15,10 +15,9 @@ import RealmSwift
 import BrightFutures
 import Alamofire
 import Kingfisher
+import MBProgressHUD
 
-class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
-    
-    var serviceState: ServiceState
+class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelegate {
     
     let updateLabel: UILabel = {
         let textView = UILabel(frame: .zero)
@@ -42,13 +41,16 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
+        textView.contentMode = .bottom
         return textView
     }()
     
     var locationManager = LocationManager.sharedInstance
     
+    let scrollView = UIScrollView(frame: .zero)
+    let contentView = UIView(frame: .zero)
+
     let stateTestView = UILabel(frame: .zero)
-    let vehicle: Vehicle
 
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
 
@@ -57,19 +59,19 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
     
     let vehicleImageView = UIImageView(frame: .zero)
     
-    let leftButton = VLButton(type: .bluePrimary, title: (.SelfDrop as String).uppercased(), kern: UILabel.uppercasedKern())
-    let rightButton = VLButton(type: .bluePrimary, title: (.VolvoPickup as String).uppercased(), kern: UILabel.uppercasedKern())
+    let selfDropButton = VLButton(type: .grayPrimary, title: (.SelfDrop as String).uppercased(), kern: UILabel.uppercasedKern())
+    let deliveryButton = VLButton(type: .bluePrimary, title: (.VolvoPickup as String).uppercased(), kern: UILabel.uppercasedKern())
     let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), kern: UILabel.uppercasedKern())
 
     var screenTitle: String?
     
     //MARK: Lifecycle methods
     init(title: String? = nil, vehicle: Vehicle, state: ServiceState) {
-        self.vehicle = vehicle
-        self.serviceState = state
         self.screenTitle = title
-        super.init()
+        super.init(vehicle: vehicle, state: state, screen: nil)
     }
+    
+
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -86,11 +88,11 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
 
         vehicleImageView.contentMode = .scaleAspectFit
         
-        leftButton.setActionBlock { [weak self] in
-            self?.leftButtonClick()
+        selfDropButton.setActionBlock { [weak self] in
+            self?.selfDropButtonClick()
         }
-        rightButton.setActionBlock { [weak self] in
-            self?.rightButtonClick()
+        deliveryButton.setActionBlock { [weak self] in
+            self?.deliveryButtonClick()
         }
         confirmButton.setActionBlock { [weak self] in
             self?.confirmButtonClick()
@@ -131,12 +133,13 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
     //MARK: Views methods
     override func setupViews() {
         super.setupViews()
-        rightButton.accessibilityIdentifier = "rightButton"
+        deliveryButton.accessibilityIdentifier = "deliveryButton"
         confirmButton.accessibilityIdentifier = "confirmButton"
         
-        let contentView = UIView(frame: .zero)
+        scrollView.contentMode = .scaleToFill
         
-        self.view.addSubview(contentView)
+        scrollView.addSubview(contentView)
+        self.view.addSubview(scrollView)
         
         contentView.addSubview(stateTestView)
         stateTestView.textColor = .clear
@@ -146,26 +149,38 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
         contentView.addSubview(scheduledServiceView)
         contentView.addSubview(descriptionButton)
         contentView.addSubview(checkupLabel)
-        contentView.addSubview(leftButton)
-        contentView.addSubview(rightButton)
-        contentView.addSubview(confirmButton)
         contentView.addSubview(updateLabel)
+
+        self.view.addSubview(selfDropButton)
+        self.view.addSubview(deliveryButton)
+        self.view.addSubview(confirmButton)
         
         updateLabel.isHidden = true
         
+        let margin = ViewUtils.getAdaptedHeightSize(sizeInPoints: 20)
+
+        scrollView.snp.makeConstraints { make in
+            make.equalsToTop(view: self.view, offset: ViewUtils.getAdaptedHeightSize(sizeInPoints: BaseViewController.defaultTopYOffset))
+            make.left.equalToSuperview().inset(margin)
+            make.right.equalToSuperview().inset(margin)
+            make.bottom.equalTo(deliveryButton.snp.top).offset(-margin)
+        }
+        
         contentView.snp.makeConstraints { make in
-            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(BaseViewController.defaultTopYOffset, 20, 20, 20))
+            make.edges.equalTo(scrollView)
+            make.width.equalTo(scrollView)
+            make.bottom.equalTo(deliveryButton.snp.top).offset(-margin)
         }
         
         vehicleTypeView.snp.makeConstraints { make in
             make.left.top.right.equalToSuperview()
-            make.height.equalTo(VLTitledLabel.height)
+            make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLTitledLabel.height)))
         }
         
         vehicleImageView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(vehicleTypeView.snp.bottom)
-            make.height.equalTo(Vehicle.vehicleImageHeight)
+            make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: Vehicle.vehicleImageHeight))
         }
         
         checkupLabel.snp.makeConstraints { make in
@@ -176,7 +191,7 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
         scheduledServiceView.snp.makeConstraints { make in
             make.left.right.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom)
-            make.height.equalTo(VLTitledLabel.height)
+            make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLTitledLabel.height)))
         }
         
         updateLabel.snp.makeConstraints { make in
@@ -192,29 +207,48 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
             make.height.equalTo(VLButton.secondaryHeight)
         }
         
-        if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
-            leftButton.snp.makeConstraints { make in
-                make.left.bottom.equalToSuperview()
-                make.width.equalToSuperview().dividedBy(2).offset(-10)
-                make.height.equalTo(VLButton.primaryHeight)
+        if !ServiceState.isPickup(state: serviceState) {
+            
+            if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfOBEnabledKey) {
+                selfDropButton.snp.makeConstraints { make in
+                    make.left.equalToSuperview().inset(margin)
+                    make.right.equalToSuperview().inset(margin)
+                    make.equalsToBottom(view: self.view, offset: -margin)
+                    make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
+                }
+                
+                deliveryButton.snp.makeConstraints { make in
+                    make.left.equalToSuperview().inset(margin)
+                    make.right.equalToSuperview().inset(margin)
+                    make.bottom.equalTo(selfDropButton.snp.top).offset(-margin)
+                    make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
+                }
+            } else {
+                deliveryButton.snp.makeConstraints { make in
+                    make.left.equalToSuperview().inset(margin)
+                    make.right.equalToSuperview().inset(margin)
+                    make.equalsToBottom(view: self.view, offset: -margin)
+                    make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
+                }
+                selfDropButton.isHidden = true
             }
             
-            rightButton.snp.makeConstraints { make in
-                make.right.bottom.equalToSuperview()
-                make.width.equalToSuperview().dividedBy(2).offset(-10)
-                make.height.equalTo(VLButton.primaryHeight)
-            }
+            
         } else {
-            rightButton.snp.makeConstraints { make in
-                make.right.left.bottom.equalToSuperview()
-                make.height.equalTo(VLButton.primaryHeight)
+            deliveryButton.snp.makeConstraints { make in
+                make.left.equalToSuperview().inset(margin)
+                make.right.equalToSuperview().inset(margin)
+                make.equalsToBottom(view: self.view, offset: -margin)
+                make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
             }
         }
         
         
         confirmButton.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
-            make.height.equalTo(VLButton.primaryHeight)
+            make.left.equalToSuperview().inset(margin)
+            make.right.equalToSuperview().inset(margin)
+            make.equalsToBottom(view: self.view, offset: -margin)
+            make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
         }
         
         stateTestView.snp.makeConstraints { make in
@@ -237,14 +271,14 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
             } else {
                 showUpdateLabel(show: true, title: String.New.uppercased(), width: 40, right: true)
             }
-            scheduledServiceView.setTitle(title: title, leftDescription: service.title!, rightDescription: "")
+            scheduledServiceView.setTitle(title: title, leftDescription: service.getTitle(), rightDescription: "")
         }
     }
 
     override func logViewScreen() {
         super.logViewScreen()
-        self.descriptionButton.setEvent(name: .showService, screen: self.screen)
-        self.confirmButton.setEvent(name: .ok, screen: self.screen)
+        self.descriptionButton.setEvent(name: .showService, screen: screenAnalyticsEnum(state: serviceState))
+        self.confirmButton.setEvent(name: .ok, screen: screenAnalyticsEnum(state: serviceState))
     }
     
     func showVehicleImage(show: Bool, alpha: Bool, animated: Bool) {
@@ -252,47 +286,80 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
     }
     
     
+    private func screenAnalyticsEnum(state: ServiceState) -> AnalyticsEnums.Name.Screen {
+        if state == .needService {
+            return .needService
+        } else if state == .serviceCompleted {
+            return .serviceCompleted
+        } else if state == .service {
+            return .serviceInProgress
+        } else if state == .enRouteForService {
+            return .serviceEnRoute
+        } else if state == .completed {
+            return .bookingCompleted
+        }
+        return .needService
+    }
+    
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
+        self.serviceState = state
         
         stateTestView.accessibilityIdentifier = "schedulingTestView\(state)"
         stateTestView.text = "schedulingTestView\(state)"
         
         confirmButton.isHidden = true
         
+        Analytics.trackView(screen: screenAnalyticsEnum(state: state))
+
         if state == .needService || state == .serviceCompleted {
             
             scheduledServiceView.isHidden = false
             descriptionButton.isHidden = false
             
             if state == .needService {
-                Analytics.trackView(screen: .needService)
                 dealershipPrefetching()
-                if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
-                    self.updateLabelText(text: .ScheduleDropDealershipSelfEnabled)
-                } else {
-                    self.updateLabelText(text: .ScheduleDropDealership)
-                }
+                self.updateLabelText(text: .ScheduleDropDealership)
             } else {
-                if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
-                    self.updateLabelText(text: .SchedulePickupDealershipSelfEnabled)
-                } else {
-                    self.updateLabelText(text: .SchedulePickupDealership)
-                }
+                self.updateLabelText(text: .SchedulePickupDealershipSelfEnabled)
+               
 //                showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: true)
                 if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
                     scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
                 }
-                Analytics.trackView(screen: .serviceCompleted)
             }
             
-            checkupLabel.snp.remakeConstraints { make in
-                make.left.right.equalToSuperview()
-                make.bottom.equalTo(confirmButton.snp.top).offset(-20)
+            let checkupLabelHeight = checkupLabel.sizeThatFits(CGSize(width: contentView.bounds.width, height: CGFloat(MAXFLOAT))).height
+
+            let descriptionBottom = descriptionButton.frame.origin.y + descriptionButton.frame.size.height
+            if descriptionButton.frame.origin.y > 0 && descriptionBottom + checkupLabelHeight + 20 >= scrollView.frame.size.height {
+                
+                checkupLabel.snp.remakeConstraints { make in
+                    make.left.right.equalToSuperview()
+                    make.top.equalTo(descriptionButton.snp.bottom).offset(20)
+                }
+                
+                let contentViewHeight = descriptionBottom + 20 + checkupLabelHeight
+                
+                contentView.snp.remakeConstraints { make in
+                    make.edges.equalTo(scrollView)
+                    make.width.equalTo(scrollView)
+                    make.height.equalTo(contentViewHeight)
+                }
+                
+                
+            } else {
+                contentView.snp.makeConstraints { make in
+                    make.bottom.equalToSuperview()
+                }
+                
+                checkupLabel.snp.remakeConstraints { make in
+                    make.left.bottom.right.equalToSuperview()
+                }
             }
-           
-            leftButton.animateAlpha(show: true)
-            rightButton.animateAlpha(show: true)
+            
+            selfDropButton.animateAlpha(show: true)
+            deliveryButton.animateAlpha(show: true)
             confirmButton.animateAlpha(show: false)
         } else {
             
@@ -312,50 +379,39 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
 
             if state == .service {
                 self.updateLabelText(text: String(format: NSLocalizedString(.VolvoCurrentlyServicing), (dealership?.name)!))
-                leftButton.isHidden = true
-                rightButton.isHidden = true
-                Analytics.trackView(screen: .serviceInProgress)
+                selfDropButton.isHidden = true
+                deliveryButton.isHidden = true
 
             } else if state == .enRouteForService {
                 confirmButton.isHidden = true
-                leftButton.isHidden = true
-                rightButton.isHidden = true
+                selfDropButton.isHidden = true
+                deliveryButton.isHidden = true
                 
                 self.updateLabelText(text: String(format: NSLocalizedString(.DriverDrivingToDealership), (dealership?.name)!))
-                Analytics.trackView(screen: .serviceEnRoute)
                 
             } else if state == .completed {
                 confirmButton.isHidden = false
-                leftButton.isHidden = true
-                rightButton.isHidden = true
+                selfDropButton.isHidden = true
+                deliveryButton.isHidden = true
                 
                 self.updateLabelText(text: String(format: NSLocalizedString(.DeliveryComplete), (dealership?.name)!))
-                Analytics.trackView(screen: .bookingCompleted)
             }
         }
         
         
         if ServiceState.isPickup(state: state) {
 
-            self.leftButton.setEvent(name: .inboundSelf, screen: self.screen)
-            self.rightButton.setEvent(name: .inboundVolvo, screen: self.screen)
+            self.selfDropButton.setEvent(name: .inboundSelf, screen: screenAnalyticsEnum(state: state))
+            self.deliveryButton.setEvent(name: .inboundVolvo, screen: screenAnalyticsEnum(state: state))
             
-            leftButton.setTitle(title: (.SelfDrop as String).uppercased())
-            if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
-                rightButton.setTitle(title: (.VolvoPickup as String).uppercased())
-            } else {
-                rightButton.setTitle(title: (.SchedulePickup as String).uppercased())
-            }
-        } else {
-            leftButton.setTitle(title: (.SelfPickup as String).uppercased())
-            if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfPickupEnabledKey) {
-                rightButton.setTitle(title: (.VolvoDelivery as String).uppercased())
-            } else {
-                rightButton.setTitle(title: (.ScheduleDelivery as String).uppercased())
-            }
+            selfDropButton.setTitle(title: (.SelfDrop as String).uppercased())
+            deliveryButton.setTitle(title: (.VolvoPickup as String).uppercased())
 
-            self.leftButton.setEvent(name: .outboundSelf, screen: self.screen)
-            self.rightButton.setEvent(name: .outboundVolvo, screen: self.screen)
+        } else {
+            selfDropButton.setTitle(title: (.SelfPickupAtDealership as String).uppercased())
+            deliveryButton.setTitle(title: (.ScheduleDelivery as String).uppercased())
+            self.selfDropButton.setEvent(name: .outboundSelf, screen: screenAnalyticsEnum(state: state))
+            self.deliveryButton.setEvent(name: .outboundVolvo, screen: screenAnalyticsEnum(state: state))
         }
     }
     
@@ -390,19 +446,36 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
         }
     }
     
-    func leftButtonClick() {
-        if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
-            RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorPickup)
-            self.pushViewController(SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true)
-        } else {
-            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
-                RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .advisorDropoff)
-                self.pushViewController(SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true)
+    func selfDropButtonClick() {
+        
+        // show confirmation dialog
+        
+        self.showDialog(title: .SelfPickupAtDealership, message: .AreYouSureSelfPickup, cancelButtonTitle: .No, okButtonTitle: .Yes, okCompletion: {
+            if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
+                RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorPickup)
+                self.pushViewController(SchedulingPickupViewController(vehicle: self.vehicle, state: .schedulingService), animated: true)
+            } else {
+                if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: self.vehicle) {
+                    RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .advisorDropoff)
+                    
+                    self.showProgressHUD()
+                    
+                    BookingAPI().createDropoffRequest(customerId: booking.customerId, bookingId: booking.id, timeSlotId: nil, location: nil, isDriver: false).onSuccess { result in
+                        if let dropOffRequest = result?.data?.result {
+                            self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
+                            self.refreshFinalBooking(customerId: booking.customerId, bookingId: booking.id)
+                        }
+                        }.onFailure { error in
+                            self.hideProgressHUD()
+                            self.showOkDialog(title: .Error, message: .GenericError)
+                    }
+                }
             }
-        }
+        })
     }
     
-    func rightButtonClick() {
+    
+    func deliveryButtonClick() {
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .driverPickup)
             self.pushViewController(SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true)
@@ -459,9 +532,66 @@ class ServiceCarViewController: BaseViewController, LocationManagerDelegate {
         
     }
     
+    private func manageNewDropoffRequest(dropOffRequest: Request, booking: Booking) {
+        
+        if let realm = try? Realm() {
+            try? realm.write {
+                realm.add(dropOffRequest, update: true)
+            }
+            let realmDropOffRequest = realm.objects(Request.self).filter("id = \(dropOffRequest.id)").first
+            
+            if let booking = realm.objects(Booking.self).filter("id = \(booking.id)").first {
+                
+                try? realm.write {
+                    // update state to scheduled dropoff
+                    booking.state = State.dropoffScheduled.rawValue
+                    booking.dropoffRequest = realmDropOffRequest
+                    realm.add(booking, update: true)
+                }
+            }
+        }
+    }
+    
+    private func refreshFinalBooking(customerId: Int, bookingId: Int) {
+        BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
+            if let booking = result?.data?.result {
+                if let realm = try? Realm() {
+                    try? realm.write {
+                        realm.add(booking, update: true)
+                    }
+                }
+            }
+            
+            if let realm = try? Realm() {
+                let bookings = realm.objects(Booking.self).filter("customerId = \(customerId)")
+                UserManager.sharedInstance.setBookings(bookings: Array(bookings))
+            }
+            
+            RequestedServiceManager.sharedInstance.reset()
+            AppController.sharedInstance.showVehiclesView(animated: false)
+            
+            self.hideProgressHUD()
+            
+            }.onFailure { error in
+                // retry
+                self.hideProgressHUD()
+                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                    self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
+                }, dialog: .error, screen: self.screenAnalyticsEnum(state: self.serviceState))
+        }
+    }
+    
+    
     //MARK: LocationDelegate methods
     
     func locationFound(_ latitude: Double, longitude: Double) {
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        self.contentView.setNeedsLayout()
+        self.contentView.layoutIfNeeded()
+        stateDidChange(state: serviceState)
+    }
 }

@@ -57,12 +57,14 @@ struct AnalyticsEnums {
             case callHelp
             case emailHelp
             case cancel
+            case changeDropoff
             case contactDriver
             case createAccount
             case destructiveDialog
             case dismissDialog
             case done
             case forgotPassword
+            case getDirections
             case leftPanelBookings
             case leftPanelSettings
             case leftPanelHelp
@@ -85,6 +87,7 @@ struct AnalyticsEnums {
             case removeVehicle
             case requestLocation
             case requestNotifications
+            case scheduleDelivery
             case scheduleService
             case selectDealership
             case selectLoaner
@@ -112,6 +115,7 @@ struct AnalyticsEnums {
             case vehicleExterior
             case vehicleInterior
             case vehicleUnknown
+            case viewDealershipLocation
         }
 
         enum Navigation: String, CaseIterable {
@@ -139,6 +143,7 @@ struct AnalyticsEnums {
             case dropoffNew
             case dropoffDateTime
             case dropoffLocation
+            case dropoffSelfActive
             case emailUpdate
             case error
             case help
@@ -157,12 +162,14 @@ struct AnalyticsEnums {
             case pickupLoaner
             case pickupLocation
             case pickupNew
+            case pickupSelfActive
             case passwordReset
             case phoneUpdate
             case phoneVerification
             case privacyPolicy
             case requestLocation
             case requestNotifications
+            case selfOBModal
             case serviceCompleted
             case serviceCustom
             case serviceCustomDetail

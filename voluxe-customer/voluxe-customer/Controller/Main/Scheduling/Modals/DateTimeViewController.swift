@@ -71,6 +71,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     fileprivate weak var calendar: FSCalendar!
     private let todaysDate = Date()
     private var maxDate = Date()
+    private var minDate = Date()
     
     private var isPickup = true
     private var showLoaner = false
@@ -164,6 +165,9 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                             let objects = realm.objects(DealershipTimeSlot.self).filter("dealershipId == \(dealership.id)")
                             realm.delete(objects)
                             realm.add(slots, update: true)
+                        }
+                        if slots.count > 0 && slots[0].from != nil {
+                            self.minDate = slots[0].from!
                         }
                     }
                     self.showCalendar()
@@ -349,7 +353,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     
     private func initCalendar() {
         
-        maxDate = Calendar.current.date(byAdding: .day, value: 3*7, to: todaysDate)!
+        maxDate = Calendar.current.date(byAdding: .day, value: 9*7, to: todaysDate)!
         let weekday = Calendar.current.component(.weekday, from: maxDate) // 1 is sunday for Gregorian
         let weekMonth = Calendar.current.component(.weekOfMonth, from: maxDate)
 
@@ -424,17 +428,8 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         })
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5, execute: {
-            var header: FSCalendarStickyHeader? = nil
-            if (self.calendar.visibleStickyHeaders.count > 0) {
-                header = self.calendar.visibleStickyHeaders[0] as? FSCalendarStickyHeader
-            }
-            let firstMonth = self.monthFormatter.string(from: self.minimumDate(for: self.calendar)).uppercased()
-            self.firstMonthHeader.text = self.monthFormatter.string(from: self.minimumDate(for: self.calendar)).uppercased()
-            if let header = header, header.titleLabel.text == firstMonth {
-                self.firstMonthHeader.isHidden = true
-            }
-            self.firstMonthHeader.addUppercasedCharacterSpacing()
             
+            self.updateMonthHeader()
             var selectedDate: Date?
             // select preselected date, otherwise fallback to next day
             var selectedTimeSlot: DealershipTimeSlot? = nil
@@ -481,6 +476,18 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         })
     }
     
+    private func updateMonthHeader() {
+        var header: FSCalendarStickyHeader? = nil
+        if (self.calendar.visibleStickyHeaders.count > 0) {
+            header = self.calendar.visibleStickyHeaders[0] as? FSCalendarStickyHeader
+        }
+        let firstMonth = self.monthFormatter.string(from: self.minimumDate(for: self.calendar)).uppercased()
+        self.firstMonthHeader.text = self.monthFormatter.string(from: self.minimumDate(for: self.calendar)).uppercased()
+        if let header = header, header.titleLabel.text == firstMonth {
+            self.firstMonthHeader.isHidden = true
+        }
+        self.firstMonthHeader.addUppercasedCharacterSpacing()
+    }
     
     // MARK: Private Methods
     
@@ -724,7 +731,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     }
     
     func minimumDate(for calendar: FSCalendar) -> Date {
-        return todaysDate
+        return minDate
     }
     
     

@@ -17,7 +17,7 @@ class ActiveBookingsSyncTimer: SyncTimer {
     }
     
     public func sync() {
-        syncBookings(every: 60)
+        syncBookings(every: Config.sharedInstance.bookingRefresh())
     }
     
     private func syncBookings(every: Int) {

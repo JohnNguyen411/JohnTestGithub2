@@ -8,5 +8,7 @@
 	<false/>
 	<key>customer_ios_snapped_points_enabled</key>
 	<false/>
+	<key>customer_self_OB_enabled</key>
+	<false/>
 </dict>
 </plist>

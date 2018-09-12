@@ -27,6 +27,7 @@ class Config: NSObject {
     private let baseUrl: String
     private let clientId: String
     private let googleMapsAPIKey: String
+    private let defaultBookingRefresh: Int
 
     // Singleton instance
     static let sharedInstance = Config()
@@ -37,8 +38,10 @@ class Config: NSObject {
         baseUrl = Config.baseUrlForScheme(scheme: scheme)
         clientId = Config.clientIdForScheme(scheme: scheme)
         if scheme == Config.releaseBundleId {
+            defaultBookingRefresh = 60
             googleMapsAPIKey = "AIzaSyA65M4H5PG82NbkDRcTmvq9ouqAZJKCil8"
         } else {
+            defaultBookingRefresh = 10
             googleMapsAPIKey = "AIzaSyCf1Ub4aMgqWeISdHPEcFawx-N-OrmxBTM"
         }
         super.init()
@@ -76,6 +79,10 @@ extension Config {
     
     func mapAPIKey() -> String {
         return googleMapsAPIKey
+    }
+    
+    func bookingRefresh() -> Int {
+        return defaultBookingRefresh
     }
     
 }

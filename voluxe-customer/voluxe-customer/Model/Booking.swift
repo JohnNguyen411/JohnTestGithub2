@@ -16,7 +16,6 @@ class Booking: Object, Mappable {
     
     private static let distanceTrigger = 500.0 // refresh more ofter when within 500m from origin or destination
     
-    private static let defaultRefresh = 60
     private static let refreshEnRouteClose = 10
     private static let refreshEnRoute = 20
     
@@ -98,10 +97,10 @@ class Booking: Object, Mappable {
     func getRepairOrderName() -> String {
         if repairOrderRequests.count > 0 {
             var name = ""
-            name.append(repairOrderRequests[0].title ?? "")
+            name.append(repairOrderRequests[0].getTitle())
             if repairOrderRequests.count > 1 {
-                for i in 0...repairOrderRequests.count {
-                    name.append("| \(repairOrderRequests[i].title ?? "")")
+                for i in 1...repairOrderRequests.count - 1 {
+                    name.append(" | \(repairOrderRequests[i].getTitle())")
                 }
             }
             return name
@@ -146,7 +145,7 @@ class Booking: Object, Mappable {
                     }
                     
                 } else {
-                    refreshTime = Booking.defaultRefresh
+                    refreshTime = Config.sharedInstance.bookingRefresh()
                 }
             }
         }
@@ -187,12 +186,44 @@ class Booking: Object, Mappable {
             || state == .nearbyForDropoff || state == .nearbyForPickup
             || state == .arrivedForDropoff || state == .arrivedForPickup) {
             return true
+        } else if state == .pickupScheduled {
+            if let pickupRequest = self.pickupRequest, let type = pickupRequest.getType(), type == .advisorPickup {
+                return true
+            }
+        } else if state == .dropoffScheduled {
+            if let dropoffRequest = self.dropoffRequest, let type = dropoffRequest.getType(), type == .advisorDropoff {
+                return true
+            }
         }
         return false
     }
     
     public func needsRating() -> Bool {
         return self.bookingFeedbackId > 0 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
+    }
+    
+    public func isSelfIB() -> Bool {
+        if let pickupRequest = self.pickupRequest, let type = pickupRequest.getType() {
+            return type == .advisorPickup
+        }
+        return false
+    }
+    
+    public func isSelfOB() -> Bool {
+        if let dropoffRequest = self.dropoffRequest, let type = dropoffRequest.getType() {
+            return type == .advisorDropoff
+        }
+        return false
+    }
+    
+    public func getCurrentRequestType() -> RequestType? {
+        if let dropoffRequest = self.dropoffRequest, let type = dropoffRequest.getType() {
+            return type
+        } else if let pickupRequest = self.pickupRequest, let type = pickupRequest.getType() {
+            return type
+        } else {
+            return nil
+        }
     }
     
     public func getLastCompletedRequest() -> Request? {

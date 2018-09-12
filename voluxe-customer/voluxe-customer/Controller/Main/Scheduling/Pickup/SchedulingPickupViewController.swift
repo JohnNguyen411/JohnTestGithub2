@@ -233,12 +233,19 @@ class SchedulingPickupViewController: SchedulingViewController {
         guard let dealership = RequestedServiceManager.sharedInstance.getDealership() else { return }
         guard let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() else { return }
         guard let repairOrderType = repairOrder.repairOrderType else { return }
-        
+        guard let timeSlot = RequestedServiceManager.sharedInstance.getPickupTimeSlot() else { return }
+        guard let location = RequestedServiceManager.sharedInstance.getPickupLocation() else { return }
+
+        var isDriver = true
+        if let type = RequestedServiceManager.sharedInstance.getPickupRequestType(), type == .advisorPickup {
+            isDriver = false
+        }
+       
         guard let dealershipRepairOrder = realm.objects(DealershipRepairOrder.self).filter("repairOrderTypeId = \(repairOrderType.id) AND dealershipId = \(dealership.id) AND enabled = true").first else { return }
         
         confirmButton.isLoading = true
         
-        BookingAPI().createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner, dealershipRepairId: dealershipRepairOrder.id, repairNotes: repairOrder.notes, repairTitle: repairOrder.title, vehicleDrivable: repairOrder.vehicleDrivable.value).onSuccess { result in
+        BookingAPI().createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner, dealershipRepairId: dealershipRepairOrder.id, repairNotes: repairOrder.notes, repairTitle: repairOrder.title, vehicleDrivable: repairOrder.vehicleDrivable.value, timeSlotId: timeSlot.id, location: location, isDriver: isDriver).onSuccess { result in
             if let booking = result?.data?.result {
                 if let realm = self.realm {
                     try? realm.write {
@@ -248,8 +255,9 @@ class SchedulingPickupViewController: SchedulingViewController {
                         realm.add(booking, update: true)
                     }
                 }
-                self.createPickupRequest(customerId: customerId, booking: booking)
+                self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
             }
+            self.confirmButton.isLoading = false
             
             }.onFailure { error in
                 // 2 bookings for the same car, not currently handled

@@ -33,7 +33,9 @@ class BaseVehicleViewController: BaseViewController {
         SwiftEventBus.onMainThread(self, name:"stateDidChange") {
             result in
             guard let stateChange: StateChangeObject = result?.object as? StateChangeObject else { return }
-            self.stateDidChange(vehicleId: stateChange.vehicleId, oldState: stateChange.oldState, newState: stateChange.newState)
+            if !self.vehicle.isInvalidated {
+                self.stateDidChange(vehicleId: stateChange.vehicleId, oldState: stateChange.oldState, newState: stateChange.newState)
+            }
         }
     }
     
@@ -43,9 +45,6 @@ class BaseVehicleViewController: BaseViewController {
     
     func stateDidChange(vehicleId: Int, oldState: ServiceState?, newState: ServiceState) {
         if vehicleId != vehicle.id {
-            return
-        }
-        if serviceState == newState {
             return
         }
         stateDidChange(state: newState)

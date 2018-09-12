@@ -83,9 +83,8 @@ class RootViewController: UIViewController {
         inTransition = true
         current.willMove(toParentViewController: nil)
         addChildViewController(new)
-        transition(from: current, to: new, duration: 0.3, options: [.transitionCrossDissolve, .curveEaseOut], animations: {
-            
-        }) { completed in
+        
+        transition(from: current, to: new, duration: 0.3, options: [.transitionCrossDissolve, .curveEaseOut], animations: { }) { completed in
             self.current.removeFromParentViewController()
             new.didMove(toParentViewController: self)
             self.current = new
@@ -102,6 +101,15 @@ class RootViewController: UIViewController {
         current.willMove(toParentViewController: nil)
         addChildViewController(new)
         new.view.frame = initialFrame
+        
+        if current.parent != new.parent {
+            self.current.removeFromParentViewController()
+            new.didMove(toParentViewController: self)
+            self.current = new
+            self.inTransition = false
+            completion?()
+            return
+        }
         
         transition(from: current, to: new, duration: 0.3, options: [], animations: {
             new.view.frame = self.view.bounds

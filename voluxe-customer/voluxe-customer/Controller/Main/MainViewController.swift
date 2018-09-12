@@ -47,24 +47,58 @@ class MainViewController: BaseVehicleViewController {
             }
             
         } else if serviceState.rawValue >= ServiceState.pickupScheduled.rawValue && serviceState.rawValue <= ServiceState.arrivedForPickup.rawValue {
-            if currentViewController != nil && (currentViewController?.isKind(of: ScheduledPickupViewController.self))! {
-                changeView = false
-            } else {
-                let scheduledPickupViewController = ScheduledPickupViewController(vehicle: vehicle, state: serviceState)
-                newViewController = scheduledPickupViewController
+            
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
+                if booking.isSelfIB() {
+                    if currentViewController != nil && (currentViewController?.isKind(of: ScheduledSelfPickup.self))! {
+                        changeView = false
+                    } else {
+                        let scheduledPickupViewController = ScheduledSelfPickup(vehicle: vehicle, state: state, screen: .dropoffSelfActive)
+                        newViewController = scheduledPickupViewController
+                    }
+                    setTitle(title: .DropoffAtDealership)
+                } else {
+                    if booking.isActive() {
+                        if currentViewController != nil && (currentViewController?.isKind(of: ScheduledPickupViewController.self))! {
+                            changeView = false
+                        } else {
+                            let scheduledPickupViewController = ScheduledPickupViewController(vehicle: vehicle, state: serviceState)
+                            newViewController = scheduledPickupViewController
+                        }
+                    } else {
+                        AppController.sharedInstance.showVehiclesView(animated: true)
+                    }
+                }
             }
             
         } else if serviceState.rawValue >= ServiceState.dropoffScheduled.rawValue && serviceState.rawValue <= ServiceState.arrivedForDropoff.rawValue {
-            if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
-                changeView = false
-            } else {
-                let scheduledDeliveryViewController = ScheduledDropoffViewController(vehicle: vehicle, state: serviceState)
-                newViewController = scheduledDeliveryViewController
+            
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
+                if booking.isSelfOB() {
+                    if currentViewController != nil && (currentViewController?.isKind(of: ScheduledSelfDropoff.self))! {
+                        changeView = false
+                    } else {
+                        let scheduledDeliveryViewController = ScheduledSelfDropoff(vehicle: vehicle, state: state, screen: .dropoffSelfActive)
+                        newViewController = scheduledDeliveryViewController
+                    }
+                    setTitle(title: .PickupAtDealership)
+                } else {
+                    if booking.isActive() {
+                        if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
+                            changeView = false
+                        } else {
+                            let scheduledDeliveryViewController = ScheduledDropoffViewController(vehicle: vehicle, state: serviceState)
+                            newViewController = scheduledDeliveryViewController
+                        }
+                    } else {
+                        AppController.sharedInstance.showVehiclesView(animated: true)
+                    }
+                }
             }
         } else if serviceState == .idle {
             AppController.sharedInstance.showVehiclesView(animated: true)
         }
-    
+        
         if !changeView {
             currentViewController?.stateDidChange(state: serviceState)
         }

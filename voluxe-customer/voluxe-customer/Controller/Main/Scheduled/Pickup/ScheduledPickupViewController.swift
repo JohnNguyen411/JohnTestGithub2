@@ -14,7 +14,7 @@ import GoogleMaps
 class ScheduledPickupViewController: ScheduledViewController {
     
     convenience init(vehicle: Vehicle, state: ServiceState) {
-        self.init(vehicle: vehicle, screen: .pickupActive)
+        self.init(vehicle: vehicle, state: state, screen: .pickupActive)
         stateDidChange(state: state)
     }
     

@@ -43,4 +43,20 @@ extension GMSAddress {
         return shortAddress
     }
     
+    func mediumAddress() -> String {
+        
+        var mediumAddress = ""
+        if let thoroughfare = self.thoroughfare {
+            mediumAddress += thoroughfare
+        }
+        if let locality = self.locality {
+            mediumAddress += ", \(locality)"
+        }
+        if let state = self.administrativeArea {
+            mediumAddress += ", \(state)"
+        }
+        
+        return mediumAddress
+    }
+    
 }
