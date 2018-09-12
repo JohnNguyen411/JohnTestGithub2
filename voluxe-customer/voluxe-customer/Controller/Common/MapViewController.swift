@@ -192,7 +192,7 @@ class MapViewController: UIViewController {
             if let withZoom = withZoom {
                 mapView.animate(toZoom: withZoom)
             } else {
-                mapView.animate(toZoom: 13)
+                mapView.animate(toZoom: 14)
             }
         }
     }
