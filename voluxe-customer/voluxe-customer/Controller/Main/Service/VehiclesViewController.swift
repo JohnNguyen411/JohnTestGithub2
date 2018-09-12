@@ -284,7 +284,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                     scheduledServiceView.isEditable = false
                 }
                 if let request = booking.pickupRequest, let requestLocation = request.location {
-                    location = requestLocation.getShortAddress()
+                    location = requestLocation.getMediumAddress()
                 }
             } else {
                 if booking.isSelfOB() {
@@ -305,7 +305,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                         }
                     }
                     if let request = booking.dropoffRequest, let requestLocation = request.location {
-                        location = requestLocation.getShortAddress()
+                        location = requestLocation.getMediumAddress()
                     }
                 }
             }
