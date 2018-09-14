@@ -92,7 +92,7 @@ class HelpBookingView: UIView {
     private func setupViews() {
         self.titleLabel.snp.makeConstraints { make in
             make.top.right.equalToSuperview()
-            make.left.equalToSuperview().offset(35)
+            make.left.equalToSuperview().offset(30)
         }
         self.mapViewVC.view.snp.makeConstraints { make in
             make.top.equalTo(self.titleLabel.snp.bottom).offset(10)
@@ -102,7 +102,7 @@ class HelpBookingView: UIView {
         self.dateLabel.snp.makeConstraints { make in
             make.right.equalToSuperview()
             make.top.equalTo(self.mapViewVC.view.snp.bottom).offset(15)
-            make.left.equalToSuperview().offset(35)
+            make.left.equalToSuperview().offset(30)
         }
         self.disclosureIndicatorImageView.snp.makeConstraints { make in
             make.right.equalToSuperview().offset(-15)
@@ -113,22 +113,29 @@ class HelpBookingView: UIView {
         self.dealershipLabel.snp.makeConstraints { make in
             make.right.equalToSuperview()
             make.top.equalTo(self.dateLabel.snp.bottom).offset(5)
-            make.left.equalToSuperview().offset(35)
+            make.left.equalToSuperview().offset(30)
         }
     }
     
     private func fillRequest(request: Request, dealership: Dealership?) {
         if let location = request.location {
-            mapViewVC.updateRequestLocation(location: location.getLocation()!, withZoom: 15)
+            mapViewVC.updateRequestLocation(location: location.getLocation()!, withZoom: 14)
+        } else if let location = dealership?.location {
+            mapViewVC.updateRequestLocation(location: location.getLocation()!, withZoom: 14)
         }
         
         if let timeSlot = request.timeSlot, let date = timeSlot.from {
             let dateTime = formatter.string(from: date)
             dateLabel.text = "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")"
+        } else if let date = request.createdAt {
+            let dateTime = formatter.string(from: date)
+            dateLabel.text = "\(dateTime)"
         }
         
         if let driver = request.driver, let dealership = dealership {
             dealershipLabel.text = "\(driver.name ?? ""), \(dealership.name ?? "")"
+        } else if let dealership = dealership {
+            dealershipLabel.text = "\(dealership.name ?? "")"
         }
         
         

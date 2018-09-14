@@ -166,7 +166,7 @@ class ScheduledSelfViewController: BaseVehicleViewController {
     
     private func fillViews(booking: Booking) {
         if let dealership = booking.dealership, let location = dealership.location {
-            dealershipAddressLabel.text = location.address
+            dealershipAddressLabel.text = location.getMediumAddress()
             dealershipNameLabel.text = dealership.name
             
             if let coordinates = location.getLocation() {

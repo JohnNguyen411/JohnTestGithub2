@@ -36,7 +36,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     let checkupLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .ScheduleDropDealership
-        textView.font = .volvoSansProRegular(size: 16)
+        textView.font = .volvoSansProRegular(size: 14)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
