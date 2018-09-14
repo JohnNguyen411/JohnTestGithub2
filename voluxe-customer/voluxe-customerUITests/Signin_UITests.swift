@@ -14,7 +14,6 @@ class SignIn_UITests: XCTestCase {
     override func setUp() {
         super.setUp()
         continueAfterFailure = false
-        UIView.setAnimationsEnabled(false)
     }
 
     func test00_loginAndLogout() {

@@ -64,6 +64,20 @@ class DebugSettingsViewController: DebugTableViewController {
             }
         )]
 
+        settings += [DebugTableViewCellModel(title: "Style Guide",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                [unowned self] _ in
+                self.navigationController?.pushViewController(StyleGuideViewController(), animated: true)
+            }
+        )]
+
         return ("Application", settings)
     }
 

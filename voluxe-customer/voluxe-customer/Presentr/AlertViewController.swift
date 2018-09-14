@@ -68,7 +68,8 @@ public enum AlertActionStyle {
 
 }
 
-private enum Font: String {
+// renamed to prevent collision with Font
+private enum AlertFont: String {
 
     case Montserrat = "Montserrat-Regular"
     case SourceSansPro = "SourceSansPro-Regular"
@@ -169,11 +170,12 @@ public class AlertViewController: UIViewController {
 
     // MARK: Setup
 
+    // TODO change to use Font
     fileprivate func setupFonts() {
-        titleLabel.font = Font.Montserrat.font()
-        bodyLabel.font = Font.SourceSansPro.font()
-        firstButton.titleLabel?.font = Font.Montserrat.font(11.0)
-        secondButton.titleLabel?.font = Font.Montserrat.font(11.0)
+        titleLabel.font = AlertFont.Montserrat.font()
+        bodyLabel.font = AlertFont.SourceSansPro.font()
+        firstButton.titleLabel?.font = AlertFont.Montserrat.font(11.0)
+        secondButton.titleLabel?.font = AlertFont.Montserrat.font(11.0)
     }
 
     fileprivate func setupLabels() {
@@ -229,8 +231,8 @@ public class AlertViewController: UIViewController {
 // MARK: - Font Loading
 
 let loadFonts: () = {
-    let loadedFontMontserrat = AlertViewController.loadFont(Font.Montserrat.rawValue)
-    let loadedFontSourceSansPro = AlertViewController.loadFont(Font.SourceSansPro.rawValue)
+    let loadedFontMontserrat = AlertViewController.loadFont(AlertFont.Montserrat.rawValue)
+    let loadedFontSourceSansPro = AlertViewController.loadFont(AlertFont.SourceSansPro.rawValue)
     if loadedFontMontserrat && loadedFontSourceSansPro {
         Logger.print("LOADED FONTS")
     }

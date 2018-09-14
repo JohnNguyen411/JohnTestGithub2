@@ -55,6 +55,10 @@
 		537CEAD720F7B792003C97F1 /* BaseViewController+BarButtonItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CEAD620F7B792003C97F1 /* BaseViewController+BarButtonItems.swift */; };
 		538CFBE82150783500BF5D25 /* UITextField+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE72150783400BF5D25 /* UITextField+Voluxe.swift */; };
 		538CFBEA215078AB00BF5D25 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE9215078AA00BF5D25 /* String+Validation.swift */; };
+		538CFBDD214B1ABE00BF5D25 /* StyleGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBDC214B1ABE00BF5D25 /* StyleGuideViewController.swift */; };
+		538CFBDF214C1FDB00BF5D25 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBDE214C1FDB00BF5D25 /* Font.swift */; };
+		538CFBE2214C224200BF5D25 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE1214C224200BF5D25 /* Layout.swift */; };
+		538CFBE4214C225300BF5D25 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE3214C225300BF5D25 /* Label.swift */; };
 		538FE74820BF46F900C3CE17 /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */; };
 		538FE74920BF472A00C3CE17 /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */; };
 		538FE74A20BF473100C3CE17 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
@@ -480,6 +484,10 @@
 		537CEAD620F7B792003C97F1 /* BaseViewController+BarButtonItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseViewController+BarButtonItems.swift"; sourceTree = "<group>"; };
 		538CFBE72150783400BF5D25 /* UITextField+Voluxe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Voluxe.swift"; sourceTree = "<group>"; };
 		538CFBE9215078AA00BF5D25 /* String+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
+		538CFBDC214B1ABE00BF5D25 /* StyleGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuideViewController.swift; sourceTree = "<group>"; };
+		538CFBDE214C1FDB00BF5D25 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		538CFBE1214C224200BF5D25 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		538CFBE3214C225300BF5D25 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		538FBDE020AB45EA0096480C /* release-notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "release-notes.txt"; sourceTree = "<group>"; };
 		538FBDE120AB61BC0096480C /* export-options-development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "export-options-development.plist"; sourceTree = "<group>"; };
 		538FBDE220AB62180096480C /* xcarchive-to-ipa.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "xcarchive-to-ipa.sh"; sourceTree = "<group>"; };
@@ -857,6 +865,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		538CFBE0214C221300BF5D25 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				538CFBDE214C1FDB00BF5D25 /* Font.swift */,
+				538CFBE3214C225300BF5D25 /* Label.swift */,
+				538CFBE1214C224200BF5D25 /* Layout.swift */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
 		538FBDE720ABB73F0096480C /* export */ = {
 			isa = PBXGroup;
 			children = (
@@ -1390,6 +1408,7 @@
 				6CBFD82420D1BE040097D4AB /* DebugFontViewController.swift */,
 				6CBFD82620D1C2550097D4AB /* DebugFontTestViewController.swift */,
 				6CBFD82920D1C9F40097D4AB /* DebugFontCellView.swift */,
+				538CFBDC214B1ABE00BF5D25 /* StyleGuideViewController.swift */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -2406,6 +2425,7 @@
 				6C88DC981FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C3FB2B21FA2824200B22EAB /* Constants.swift in Sources */,
 				6CDAEE8420E309DA0040CDFF /* HelpListViewController.swift in Sources */,
+				538CFBDF214C1FDB00BF5D25 /* Font.swift in Sources */,
 				6CBB4E971FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */,
 				6C88DC9D1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
 				53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */,
@@ -2465,6 +2485,7 @@
 				6C95439E1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C1CE1F020CB3A7B00A2E054 /* VLSlider.swift in Sources */,
 				6C20E1C71FBE6D2400E5D9A0 /* StateService.swift in Sources */,
+				538CFBE2214C224200BF5D25 /* Layout.swift in Sources */,
 				6CBF9FEE1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */,
 				6C9C9058209CD8D400494068 /* GMRows.swift in Sources */,
 				6C32C3071FBCC0E900B1218C /* Step.swift in Sources */,
@@ -2479,6 +2500,7 @@
 				6C58330E1FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */,
 				6C5C6A101FD8AACD00D70BF6 /* UserManager.swift in Sources */,
 				53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */,
+				538CFBDD214B1ABE00BF5D25 /* StyleGuideViewController.swift in Sources */,
 				6C91BBDB1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C79C43A20A280AC00443463 /* GMSnappedPoints.swift in Sources */,
 				6C3FB2B01FA2823800B22EAB /* Fonts.swift in Sources */,
@@ -2493,6 +2515,7 @@
 				6C20E1B21FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift in Sources */,
 				53D9A7C1209A7D01008BE93E /* NSObject+Voluxe.swift in Sources */,
 				6CDCC602205743DB00DFA831 /* NewServiceViewController.swift in Sources */,
+				538CFBE4214C225300BF5D25 /* Label.swift in Sources */,
 				6C7342081FB127A300E90F7E /* DealershipViewController.swift in Sources */,
 				6C27FBC920E6CFDA00EAA689 /* ActiveBookingsSyncTimer.swift in Sources */,
 				6C1CE1E720C5F0CF00A2E054 /* DeeplinkManager.swift in Sources */,

@@ -29,10 +29,13 @@ extension UIFont {
     static let volvoNovumMediumItalic = "VolvoNovum-MediumItalic"
     static let volvoNovumBoldItalic = "VolvoNovum-BoldItalic"
 
+    public class func volvoSansProLight(size: CGFloat) -> UIFont   { return UIFont.customFont(fontName: UIFont.volvoSansProLight, size: size) }
+    public class func volvoSansProRegular(size: CGFloat) -> UIFont   { return UIFont.customFont(fontName: UIFont.volvoSansProRegular, size: size) }
     public class func volvoSansProMedium(size: CGFloat) -> UIFont   { return UIFont.customFont(fontName: UIFont.volvoSansProMedium, size: size) }
     public class func volvoSansProBold(size: CGFloat) -> UIFont   { return UIFont.customFont(fontName: UIFont.volvoSansProBold, size: size) }
-    public class func volvoSansProRegular(size: CGFloat) -> UIFont   { return UIFont.customFont(fontName: UIFont.volvoSansProRegular, size: size) }
-    public class func volvoSansProLight(size: CGFloat) -> UIFont   { return UIFont.customFont(fontName: UIFont.volvoSansProLight, size: size) }
+
+    // TODO not used
+    @available(*, deprecated)
     public class func volvoSansProSuper(size: CGFloat) -> UIFont   { return UIFont.customFont(fontName: UIFont.volvoSansProSuper, size: size) }
 
     public class func volvoNovumLight(size: CGFloat) -> UIFont   { return UIFont.customFont(fontName: UIFont.volvoNovumLight, size: size) }
@@ -50,7 +53,5 @@ extension UIFont {
     
     public class func customFont(fontName: String, size: CGFloat) -> UIFont {
         return UIFont(name: fontName, size: size) ?? UIFont.systemFont(ofSize:size)
-        
     }
-
 }
