@@ -147,9 +147,9 @@ public class AlertViewController: UIViewController {
             }
             let views: [String: UIView] = ["button" : firstButton]
             let constraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|-0-[button]-0-|",
-                                                                             options: NSLayoutFormatOptions(rawValue: 0),
-                                                                             metrics: nil,
-                                                                             views: views)
+                                                             options: NSLayoutConstraint.FormatOptions(rawValue: 0),
+                                                             metrics: nil,
+                                                             views: views)
             view.addConstraints(constraints)
         }
         super.updateViewConstraints()
@@ -195,8 +195,8 @@ public class AlertViewController: UIViewController {
     fileprivate func apply(_ action: AlertAction, toButton: UIButton) {
         let title = action.title.uppercased()
         let style = action.style
-        toButton.setTitle(title, for: UIControlState())
-        toButton.setTitleColor(style.color(), for: UIControlState())
+        toButton.setTitle(title, for: UIControl.State())
+        toButton.setTitleColor(style.color(), for: UIControl.State())
     }
 
     // MARK: IBAction's

@@ -126,7 +126,7 @@ class VLAlertViewController: UIViewController {
         
         messageLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(UIEdgeInsetsMake(0, 10, 0, 10))
+            make.left.right.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10))
         }
         
         if okButtonVisible && cancelButtonVisible {

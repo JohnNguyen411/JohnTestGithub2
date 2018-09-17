@@ -16,7 +16,7 @@ class VLSlider: UISlider {
     
     init() {
         super.init(frame: .zero)
-        self.addTarget(self, action: #selector(sliderValueChanged(sender:)), for: UIControlEvents.valueChanged)
+        self.addTarget(self, action: #selector(sliderValueChanged(sender:)), for: UIControl.Event.valueChanged)
         self.minimumTrackTintColor = UIColor.luxeCobaltBlue()
     }
     
@@ -27,7 +27,7 @@ class VLSlider: UISlider {
     @objc func sliderValueChanged(sender: UISlider) {
         let roundedValue = roundedValueForFloat(floatValue: sender.value)
         sender.value = roundedValue
-        self.setThumbImage(thumbImage(forValue: String(Int(roundedValue))), for: UIControlState.normal)
+        self.setThumbImage(thumbImage(forValue: String(Int(roundedValue))), for: UIControl.State.normal)
     }
     
     override func trackRect(forBounds bounds: CGRect) -> CGRect {

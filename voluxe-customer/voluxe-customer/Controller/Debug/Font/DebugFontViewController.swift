@@ -69,7 +69,7 @@ class DebugFontViewController: UIViewController {
     // MARK: - Switching Tabs Functions
     @objc func switchTabs(_ sender: UISegmentedControl) {
         self.currentViewController!.view.removeFromSuperview()
-        self.currentViewController!.removeFromParentViewController()
+        self.currentViewController!.removeFromParent()
         
         displayCurrentTab(sender.selectedSegmentIndex)
     }
@@ -77,8 +77,8 @@ class DebugFontViewController: UIViewController {
     func displayCurrentTab(_ tabIndex: Int){
         let vc = DebugFontTestViewController(fontType: testedFonts[tabIndex])
         
-        self.addChildViewController(vc)
-        vc.didMove(toParentViewController: self)
+        self.addChild(vc)
+        vc.didMove(toParent: self)
         
         vc.view.frame = self.contentView.bounds
         self.contentView.addSubview(vc.view)

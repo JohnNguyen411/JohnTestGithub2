@@ -110,15 +110,15 @@ class MainViewController: BaseVehicleViewController {
     
     private func updateChildViewController(uiViewController: BaseViewController) {
         uiViewController.view.accessibilityIdentifier = "currentViewController"
-        addChildViewController(uiViewController)
+        addChild(uiViewController)
         uiViewController.view.frame = view.bounds
         view.addSubview(uiViewController.view)
-        uiViewController.didMove(toParentViewController: self)
+        uiViewController.didMove(toParent: self)
         
         if let currentViewController = self.currentViewController {
-            currentViewController.willMove(toParentViewController: nil)
+            currentViewController.willMove(toParent: nil)
             currentViewController.view.removeFromSuperview()
-            currentViewController.removeFromParentViewController()
+            currentViewController.removeFromParent()
         }
         
         currentViewController = uiViewController

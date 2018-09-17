@@ -18,7 +18,7 @@ class HelpViewController: BaseViewController {
     
     let helpSections = [HelpSection(title: .HowLuxebyVolvoWorks, type: .product, sections: HelpViewController.helpSectionProduct), HelpSection(title: .TroubleWithTheLuxebyVolvoApp, type: .app, sections: HelpViewController.helpSectionApp)]
     
-    let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
+    let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
     var headerView: HelpBookingView?
     
     let user: Customer?

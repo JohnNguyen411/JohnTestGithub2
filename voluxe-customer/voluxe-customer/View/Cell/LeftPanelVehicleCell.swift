@@ -27,7 +27,7 @@ class LeftPanelVehicleCell: UITableViewCell, UITextFieldDelegate {
     
     var switchView: UISwitch?
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         notificationImage = UIImageView(image: UIImage(named: "notificationDot"))
         notificationImage.contentMode = .scaleAspectFit
         super.init(style: style, reuseIdentifier: reuseIdentifier)

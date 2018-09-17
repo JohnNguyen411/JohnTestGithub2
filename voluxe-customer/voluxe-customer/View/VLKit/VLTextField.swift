@@ -66,7 +66,7 @@ class VLTextField : UIView {
         
         if let kern = kern {
             textField.defaultTextAttributes
-                .updateValue(kern, forKey: NSAttributedStringKey.kern.rawValue)
+                .updateValue(kern, forKey: NSAttributedString.Key.kern)
         }
         self.title = title
         

@@ -32,7 +32,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     private let menuTableView = UITableView(frame: .zero)
     private let menus = [String.Settings, String.Help, String.Signout]
     
-    private let closeButton = UIButton(type: UIButtonType.custom)
+    private let closeButton = UIButton(type: UIButton.ButtonType.custom)
 
     private var activeBookings: [Booking] = []
     private var vehicles: [Vehicle] = []
@@ -248,8 +248,8 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
                         showingScreen = false
                     }
                 }
-            } else if let navController = viewController as? UINavigationController, navController.childViewControllers.count > 0 {
-                for controller in navController.childViewControllers {
+            } else if let navController = viewController as? UINavigationController, navController.children.count > 0 {
+                for controller in navController.children {
                     if controller is VehiclesViewController || controller is MainViewController || controller is SettingsViewController {
                         // screen showing car info, don't show notif
                         if let mainVc = controller as? MainViewController, mainVc.vehicleId == vehicleId {
@@ -286,8 +286,8 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
                     baseController.setNavigationBarItem()
                     baseController.showNotifBadge(isShowingNotif)
                 }
-            } else if let navController = viewController as? UINavigationController, navController.childViewControllers.count > 0 {
-                for controller in navController.childViewControllers {
+            } else if let navController = viewController as? UINavigationController, navController.children.count > 0 {
+                for controller in navController.children {
                     if controller is VehiclesViewController || controller is MainViewController || controller is SettingsViewController {
                         controller.setNavigationBarItem()
                         if let baseController = controller as? BaseViewController {
@@ -382,7 +382,7 @@ extension LeftViewController : UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if tableView == menuTableView {
-            let cell = LeftPanelTableViewCell(style: UITableViewCellStyle.subtitle, reuseIdentifier: LeftPanelTableViewCell.identifier)
+            let cell = LeftPanelTableViewCell(style: UITableViewCell.CellStyle.subtitle, reuseIdentifier: LeftPanelTableViewCell.identifier)
             if indexPath.row == menus.count - 1 {
                 cell.setData(menus[indexPath.row], isButton: true)
             } else {
@@ -391,7 +391,7 @@ extension LeftViewController : UITableViewDataSource {
             
             return cell
         } else {
-            let cell = LeftPanelVehicleCell(style: UITableViewCellStyle.value1, reuseIdentifier: LeftPanelVehicleCell.identifier)
+            let cell = LeftPanelVehicleCell(style: UITableViewCell.CellStyle.value1, reuseIdentifier: LeftPanelVehicleCell.identifier)
             let vehicle = vehicles[indexPath.row]
             cell.setText(text: vehicle.vehicleDescription())
             if let showNotif = notificationDict[vehicle.id], showNotif {

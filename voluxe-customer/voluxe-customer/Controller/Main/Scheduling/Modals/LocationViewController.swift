@@ -55,7 +55,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     let newLocationButton: VLButton
     
     let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
-    let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
+    let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
     
     override init(title: String, buttonTitle: String, screen: AnalyticsEnums.Name.Screen) {
         newLocationButton = VLButton(type: .blueSecondary, title: (.AddNewLocation as String).uppercased(), kern: UILabel.uppercasedKern(), event: .addNewLocation, screen: screen)
@@ -86,7 +86,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         tableView.register(CheckmarkCell.self, forCellReuseIdentifier: CheckmarkCell.reuseId)
         tableView.isScrollEnabled = true
         tableView.separatorStyle = .none
-        tableView.contentInset = UIEdgeInsetsMake(CGFloat(-LocationViewController.topInset), 0, 0, 0);
+        tableView.contentInset = UIEdgeInsets(top: CGFloat(-LocationViewController.topInset), left: 0, bottom: 0, right: 0);
         
         user = UserManager.sharedInstance.getCustomer()
         var selectedLocation = RequestedServiceManager.sharedInstance.getPickupLocation()
@@ -150,7 +150,7 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         
         showNewLocationTextField(show: false)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: NSNotification.Name.UIApplicationWillEnterForeground, object: UIApplication.shared)
+        NotificationCenter.default.addObserver(self, selector: #selector(willEnterForeground), name: UIApplication.willEnterForegroundNotification, object: UIApplication.shared)
 
     }
     
@@ -606,7 +606,7 @@ extension LocationViewController: CurrentLocationCellDelegate {
     
     func deniedPermissionClick() {
         self.showDialog(title: .LocationPermission, message: .PermissionLocationDenied, cancelButtonTitle: .Close, okButtonTitle: .OpenSettings, okCompletion: {
-            let urlObj = NSURL.init(string:UIApplicationOpenSettingsURLString)
+            let urlObj = NSURL.init(string:UIApplication.openSettingsURLString)
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(urlObj! as URL, options: [ : ], completionHandler: nil)
             } else {

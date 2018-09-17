@@ -50,21 +50,21 @@ class VLSlideMenuController: SlideMenuController {
 
         // swap controllers
         self.removeViewController(controller: self.mainViewController)
-        self.addChildViewController(controller)
+        self.addChild(controller)
         self.mainViewController = controller
 
         // swap controller views
         controller.view.frame = self.mainContainerView.bounds
         self.mainContainerView.addSubviewBelowBlurredView(subview: controller.view)
-        controller.didMove(toParentViewController: self)
+        controller.didMove(toParent: self)
     }
 
     private func removeViewController(controller: UIViewController?) {
         guard let controller = controller else { return }
         controller.view.layer.removeAllAnimations()
-        controller.willMove(toParentViewController: nil)
+        controller.willMove(toParent: nil)
         controller.view.removeFromSuperview()
-        controller.removeFromParentViewController()
+        controller.removeFromParent()
     }
 
     override func track(_ trackAction: SlideMenuController.TrackAction) {

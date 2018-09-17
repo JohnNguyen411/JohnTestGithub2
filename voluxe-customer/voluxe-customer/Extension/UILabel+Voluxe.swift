@@ -23,7 +23,7 @@ extension UILabel {
     func addCharacterSpacing(kernValue: Float) {
         if let labelText = text, labelText.count > 0 {
             let attributedString = NSMutableAttributedString(string: labelText)
-            attributedString.addAttribute(NSAttributedStringKey.kern, value: kernValue, range: NSRange(location: 0, length: attributedString.length - 1))
+            attributedString.addAttribute(NSAttributedString.Key.kern, value: kernValue, range: NSRange(location: 0, length: attributedString.length - 1))
             attributedText = attributedString
         }
     }
@@ -43,11 +43,11 @@ extension UILabel {
             
             if let attributedText = self.attributedText {
                 let attributedString = NSMutableAttributedString(attributedString: attributedText)
-                attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+                attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
                 self.attributedText = attributedString
             } else {
                 let attributedString = NSMutableAttributedString(string: labelText)
-                attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
+                attributedString.addAttribute(NSAttributedString.Key.paragraphStyle, value:paragraphStyle, range:NSMakeRange(0, attributedString.length))
                 self.attributedText = attributedString
             }
         }

@@ -10,7 +10,7 @@ import Foundation
 
 class SettingsViewController: BaseViewController, SettingsCellProtocol {
     
-    let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
+    let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
     let user: Customer?
     var vehicles: [Vehicle]?
     var vehicleCount = 0

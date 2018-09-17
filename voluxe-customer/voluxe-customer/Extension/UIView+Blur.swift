@@ -44,7 +44,7 @@ extension UIView {
     /// Blurs the current view stack, but is not a stacking effect.
     /// Subsequent calls will not do anything until unblur() is called.
     /// To immediately blur, use a duration = 0.
-    func blur(style: UIBlurEffectStyle, tint: UIColor, duration: TimeInterval) {
+    func blur(style: UIBlurEffect.Style, tint: UIColor, duration: TimeInterval) {
         guard self.blurEffect == nil else { return }
         let effect = BlurEffect(style: .light, tint: UIColor.luxeBlurTint)
         effect.blur(superview: self, duration: duration)

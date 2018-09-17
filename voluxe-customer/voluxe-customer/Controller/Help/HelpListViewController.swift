@@ -15,7 +15,7 @@ class HelpListViewController: BaseViewController {
     
     let helpSection: HelpSection
     
-    let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
+    let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
     let user: Customer?
     var booking: Booking?
     

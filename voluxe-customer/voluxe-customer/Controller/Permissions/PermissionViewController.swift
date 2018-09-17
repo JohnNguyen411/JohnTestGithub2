@@ -20,7 +20,7 @@ class PermissionViewController: BaseViewController {
 
     private let permissionType: PermissionType
     private let grantPermissionButton: VLButton
-    private let closeButton = UIButton(type: UIButtonType.custom)
+    private let closeButton = UIButton(type: UIButton.ButtonType.custom)
     
     let imageView = UIImageView()
     

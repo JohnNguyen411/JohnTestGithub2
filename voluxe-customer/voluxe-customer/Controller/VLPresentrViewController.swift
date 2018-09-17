@@ -104,7 +104,7 @@ class VLPresentrViewController: UIViewController {
             self?.onButtonClick()
         }
         
-        activityIndicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+        activityIndicator.style = UIActivityIndicatorView.Style.whiteLarge
         activityIndicator.color = .luxeCobaltBlue()
         
         bottomButton.accessibilityIdentifier = "bottomButton"
@@ -139,7 +139,7 @@ class VLPresentrViewController: UIViewController {
         }
         
         containerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(UIEdgeInsetsMake(20, 15, 20, 15))
+            make.left.right.equalToSuperview().inset(UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 15))
             make.bottom.equalToSuperview().offset(-containerViewBottomOffset)
             make.height.equalTo(height())
         }

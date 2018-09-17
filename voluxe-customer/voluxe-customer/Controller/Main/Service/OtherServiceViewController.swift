@@ -60,7 +60,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     let scrollView = UIScrollView(frame: .zero)
     let contentView = UIView(frame: .zero)
 
-    let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
+    let tableView = UITableView(frame: .zero, style: UITableView.Style.plain)
     let confirmButton: VLButton
     
     let drivability: [Bool?] = [true, false, nil]

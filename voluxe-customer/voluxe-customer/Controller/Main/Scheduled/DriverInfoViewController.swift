@@ -14,7 +14,7 @@ class DriverInfoViewController: UIViewController {
     let driver: Driver
     let roundImageView: RoundImageView
     let delegate: DriverInfoViewControllerProtocol
-    private let closeButton = UIButton(type: UIButtonType.custom)
+    private let closeButton = UIButton(type: UIButton.ButtonType.custom)
 
     init(driver: Driver, delegate: DriverInfoViewControllerProtocol) {
         

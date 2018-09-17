@@ -150,7 +150,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         scrollView.addSubview(confirmButton)
         
         contentView.snp.makeConstraints { make in
-            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(10, 20, 20, 20))
+            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20))
         }
         
         vehicleCollectionView.snp.makeConstraints { make in

@@ -61,12 +61,12 @@ class VLVerticalTextField : VLTextField {
         textField.font = .volvoSansProRegular(size: 14)
         titleLabel.font = .volvoSansProMedium(size: 12)
         
-        var placeholderAttributes: [NSAttributedStringKey : Any] = [NSAttributedStringKey.font: UIFont.volvoSansProRegular(size: 14), NSAttributedStringKey.foregroundColor: UIColor.luxeLightGray()]
+        var placeholderAttributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.volvoSansProRegular(size: 14), NSAttributedString.Key.foregroundColor: UIColor.luxeLightGray()]
         
         if let kern = kern {
-            placeholderAttributes[NSAttributedStringKey.kern] = kern
+            placeholderAttributes[NSAttributedString.Key.kern] = kern
             textField.defaultTextAttributes
-                .updateValue(kern, forKey: NSAttributedStringKey.kern.rawValue)
+                .updateValue(kern, forKey: NSAttributedString.Key.kern)
         }
         
         textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: placeholderAttributes)

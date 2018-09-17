@@ -22,7 +22,7 @@ struct DebugTableViewCellModel {
 
 class DebugValueTableViewCell: UITableViewCell {
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .value1, reuseIdentifier: reuseIdentifier)
     }
 
@@ -33,7 +33,7 @@ class DebugValueTableViewCell: UITableViewCell {
 
 class DebugSubtitleTableViewCell: UITableViewCell {
 
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: .subtitle, reuseIdentifier: reuseIdentifier)
     }
 

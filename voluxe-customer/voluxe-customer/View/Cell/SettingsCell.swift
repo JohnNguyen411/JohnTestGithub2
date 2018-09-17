@@ -38,7 +38,7 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
     
     var switchView: UISwitch?
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         leftImage = UIImageView(frame: .zero)
         editImage = UIImageView(frame: .zero)
         

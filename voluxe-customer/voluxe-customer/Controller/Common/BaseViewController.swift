@@ -98,14 +98,14 @@ class BaseViewController: UIViewController, PresentrDelegate, VLPresentrViewDele
     //MARK: Keyboard management
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: Notification.Name.UIKeyboardWillHide, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: Notification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillDisappear), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     @objc func keyboardWillAppear(_ notification: Notification) {
         //override if needed
         keyboardShowing = true
-        if let keyboardFrame: NSValue = notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue {
+        if let keyboardFrame: NSValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue {
             let keyboardRectangle = keyboardFrame.cgRectValue
             keyboardHeight = keyboardRectangle.height
         }
@@ -233,25 +233,25 @@ extension UIViewController {
             navigationBar.setBackgroundImage(UIImage(), for: .default)
             navigationBar.shadowImage = UIImage()
             navigationBar.tintColor = .luxeCobaltBlue()
-            navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
+            navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         }
     }
     
     static func styleBarButtonItem(barButton: UIBarButtonItem) {
         barButton.setTitleTextAttributes([
-            NSAttributedStringKey.font : UIFont.volvoSansProMedium(size: 16),
-            NSAttributedStringKey.foregroundColor : UIColor.luxeCobaltBlue()],
-                                          for: UIControlState.normal)
+            NSAttributedString.Key.font : UIFont.volvoSansProMedium(size: 16),
+            NSAttributedString.Key.foregroundColor : UIColor.luxeCobaltBlue()],
+                                          for: UIControl.State.normal)
         
         barButton.setTitleTextAttributes([
-            NSAttributedStringKey.font : UIFont.volvoSansProMedium(size: 16),
-            NSAttributedStringKey.foregroundColor : UIColor.luxeLightGray()],
-                                         for: UIControlState.selected)
+            NSAttributedString.Key.font : UIFont.volvoSansProMedium(size: 16),
+            NSAttributedString.Key.foregroundColor : UIColor.luxeLightGray()],
+                                         for: UIControl.State.selected)
         
         barButton.setTitleTextAttributes([
-            NSAttributedStringKey.font : UIFont.volvoSansProMedium(size: 16),
-            NSAttributedStringKey.foregroundColor : UIColor.luxeLightGray()],
-                                         for: UIControlState.disabled)
+            NSAttributedString.Key.font : UIFont.volvoSansProMedium(size: 16),
+            NSAttributedString.Key.foregroundColor : UIColor.luxeLightGray()],
+                                         for: UIControl.State.disabled)
     }
     
     

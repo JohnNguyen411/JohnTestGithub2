@@ -114,7 +114,7 @@ class VLTitledLabel: UIView {
     func applyConstraints() {
         
         containerView.snp.makeConstraints { make in
-            make.edgesEqualsToView(view: self, edges: UIEdgeInsetsMake(padding/2, padding, padding/2, padding))
+            make.edgesEqualsToView(view: self, edges: UIEdgeInsets(top: padding/2, left: padding, bottom: padding/2, right: padding))
         }
         
         titleLabel.snp.makeConstraints { (make) -> Void in

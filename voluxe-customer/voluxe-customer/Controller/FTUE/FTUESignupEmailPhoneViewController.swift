@@ -110,7 +110,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         tosNSRange = NSRange(tosRange!, in: tosString)
         privacyNSRange = NSRange(privacyRange!, in: tosString)
 
-        let linkAttributes: [NSAttributedStringKey : Any] = [NSAttributedStringKey.foregroundColor: UIColor.luxeCobaltBlue(), NSAttributedStringKey.underlineStyle: NSUnderlineStyle.styleSingle.rawValue]
+        let linkAttributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.foregroundColor: UIColor.luxeCobaltBlue(), NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue]
         
         attributedString.addAttributes(linkAttributes, range: tosNSRange!)
         attributedString.addAttributes(linkAttributes, range: privacyNSRange!)

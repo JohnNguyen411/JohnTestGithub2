@@ -24,7 +24,7 @@ class NewServiceViewController: BaseViewController {
     }()
     
     let vehicle: Vehicle
-    let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
+    let tableView = UITableView(frame: .zero, style: UITableView.Style.plain)
     var services: [String]?
     
     init(vehicle: Vehicle) {

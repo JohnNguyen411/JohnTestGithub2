@@ -219,7 +219,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             make.edgesEqualsToView(view: self.view)
         }
         
-        let leftRightPadding = UIEdgeInsetsMake(0, 20, 0, 20)
+        let leftRightPadding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         contentView.snp.makeConstraints { make in
             make.left.top.width.height.equalTo(scrollView)
@@ -494,7 +494,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     
     func showDealershipAddress(dealership: Dealership) {
         dealershipAddressView.snp.makeConstraints { make in
-            make.left.right.equalTo(scheduledServiceView).inset(UIEdgeInsetsMake(0, 20, 0, 20))
+            make.left.right.equalTo(scheduledServiceView).inset(UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20))
             make.top.equalTo(dealershipView.snp.bottom).offset(-5)
             make.height.equalTo(25)
         }

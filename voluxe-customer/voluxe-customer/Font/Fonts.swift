@@ -184,7 +184,7 @@ class Fonts {
     
     static func fontForAttributedString(attStr: NSMutableAttributedString) -> UIFont {
         var range = NSRange()
-        if let font = attStr.attribute(NSAttributedStringKey.font, at: 0, effectiveRange: &range) as? UIFont {
+        if let font = attStr.attribute(NSAttributedString.Key.font, at: 0, effectiveRange: &range) as? UIFont {
             return font
         } else {
             return UIFont.systemFont(ofSize: 16)
@@ -194,7 +194,7 @@ class Fonts {
     static func updateLetterSpacing(attStr: NSMutableAttributedString, spacing: CGFloat) -> NSMutableAttributedString{
         let range = NSRange(location: 0, length: attStr.length)
         let font = fontForAttributedString(attStr: attStr)
-        attStr.addAttribute(NSAttributedStringKey.kern, value: letterSpacing(font: font, spacing: spacing), range: range)
+        attStr.addAttribute(NSAttributedString.Key.kern, value: letterSpacing(font: font, spacing: spacing), range: range)
         return attStr
     }
  
@@ -203,11 +203,11 @@ class Fonts {
         let range = NSRange(location: 0, length: text.count)
         let attStr = NSMutableAttributedString(string: text)
         if let spacing = spacing {
-            attStr.addAttribute(NSAttributedStringKey.kern, value: letterSpacing(font: font, spacing: spacing), range: range)
+            attStr.addAttribute(NSAttributedString.Key.kern, value: letterSpacing(font: font, spacing: spacing), range: range)
         }
-        attStr.addAttribute(NSAttributedStringKey.font, value: font, range: range)
+        attStr.addAttribute(NSAttributedString.Key.font, value: font, range: range)
         if let color = color {
-            attStr.addAttribute(NSAttributedStringKey.foregroundColor, value: color, range: range)
+            attStr.addAttribute(NSAttributedString.Key.foregroundColor, value: color, range: range)
         }
         return attStr
     }

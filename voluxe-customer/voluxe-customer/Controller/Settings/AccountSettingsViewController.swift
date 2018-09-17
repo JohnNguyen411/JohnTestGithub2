@@ -12,7 +12,7 @@ import MBProgressHUD
 
 class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     
-    let tableView = UITableView(frame: .zero, style: UITableViewStyle.grouped)
+    let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
     let user: Customer?
     var addresses: Results<CustomerAddress>?
     var addressesCount = 0
@@ -228,7 +228,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         return true
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
         return .none
     }
     

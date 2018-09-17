@@ -40,7 +40,7 @@ class BlurEffect {
 
     // MARK:- Init
 
-    init(style: UIBlurEffectStyle, tint: UIColor?) {
+    init(style: UIBlurEffect.Style, tint: UIColor?) {
         self.blurView = VLBlurEffectView(style: style)
         self.tintView.backgroundColor = tint
         self.layoutSubviews()
@@ -127,14 +127,14 @@ class VLBlurEffectView: UIVisualEffectView {
     // iPad Pro.
     private static let fps = CGFloat(60)
 
-    private var style: UIBlurEffectStyle
+    private var style: UIBlurEffect.Style
     private var animator: UIViewPropertyAnimator!
     private var displayLink: CADisplayLink!
     private var delta: CGFloat = 0
     private var target: CGFloat = 0
     private(set) var isBlurred = false
 
-    init(style: UIBlurEffectStyle) {
+    init(style: UIBlurEffect.Style) {
         self.style = style
         super.init(effect: nil)
         self.setup()
@@ -162,7 +162,7 @@ class VLBlurEffectView: UIVisualEffectView {
         // Using a display link to animate animator.fractionComplete
         self.displayLink = CADisplayLink(target: self, selector: #selector(tick))
         self.displayLink.isPaused = true
-        self.displayLink.add(to: .main, forMode: .commonModes)
+        self.displayLink.add(to: .main, forMode: .common)
     }
 
     func blurTo(amount: CGFloat, duration: TimeInterval) {

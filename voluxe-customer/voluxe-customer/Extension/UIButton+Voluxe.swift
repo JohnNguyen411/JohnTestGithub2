@@ -26,12 +26,12 @@ extension UIButton {
     
     func addCharacterSpacing(kernValue: Float, text: String) {
         if let titleLabel = self.titleLabel {
-            let attributedText =  NSAttributedString(string: text, attributes: [NSAttributedStringKey.kern:kernValue, NSAttributedStringKey.font:titleLabel.font, NSAttributedStringKey.foregroundColor: titleLabel.textColor])
-            self.setAttributedTitle(attributedText, for: UIControlState.normal)
+            let attributedText =  NSAttributedString(string: text, attributes: [NSAttributedString.Key.kern:kernValue, NSAttributedString.Key.font:titleLabel.font, NSAttributedString.Key.foregroundColor: titleLabel.textColor])
+            self.setAttributedTitle(attributedText, for: UIControl.State.normal)
             
             if let highlightedTextColor = self.titleColor(for: .highlighted) {
-                let highlightedAttributedText =  NSAttributedString(string: text, attributes: [NSAttributedStringKey.kern:kernValue, NSAttributedStringKey.font:titleLabel.font, NSAttributedStringKey.foregroundColor: highlightedTextColor])
-                self.setAttributedTitle(highlightedAttributedText, for: UIControlState.highlighted)
+                let highlightedAttributedText =  NSAttributedString(string: text, attributes: [NSAttributedString.Key.kern:kernValue, NSAttributedString.Key.font:titleLabel.font, NSAttributedString.Key.foregroundColor: highlightedTextColor])
+                self.setAttributedTitle(highlightedAttributedText, for: UIControl.State.highlighted)
             }
         }
     }

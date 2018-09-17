@@ -28,7 +28,7 @@ class CheckableTableViewCell: UITableViewCell {
         return separator
     }()
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         checkView = UIImageView(image: UIImage(named: "empty_checkbox"))
         checkView.contentMode = .scaleAspectFit
         super.init(style: style, reuseIdentifier: reuseIdentifier)

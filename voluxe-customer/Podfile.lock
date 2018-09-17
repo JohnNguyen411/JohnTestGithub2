@@ -32,10 +32,10 @@ PODS:
   - FirebaseAnalytics (4.0.5):
     - FirebaseCore (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - nanopb (~> 0.3)
   - FirebaseCore (4.0.12):
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
   - FirebaseInstanceID (2.0.10):
     - FirebaseCore (~> 4.0)
   - FirebaseMessaging (2.0.7):
@@ -48,7 +48,7 @@ PODS:
     - FirebaseABTesting (~> 1.0)
     - FirebaseAnalytics (~> 4.0)
     - FirebaseInstanceID (~> 2.0)
-    - GoogleToolboxForMac/NSData+zlib (~> 2.1)
+    - "GoogleToolboxForMac/NSData+zlib (~> 2.1)"
     - Protobuf (~> 3.1)
   - GoogleMaps (2.5.0):
     - GoogleMaps/Maps (= 2.5.0)
@@ -60,7 +60,7 @@ PODS:
   - GoogleToolboxForMac/Defines (2.1.4)
   - GoogleToolboxForMac/Logger (2.1.4):
     - GoogleToolboxForMac/Defines (= 2.1.4)
-  - GoogleToolboxForMac/NSData+zlib (2.1.4):
+  - "GoogleToolboxForMac/NSData+zlib (2.1.4)":
     - GoogleToolboxForMac/Defines (= 2.1.4)
   - KeychainAccess (3.1.0)
   - Kingfisher (4.2.0)
@@ -90,7 +90,7 @@ PODS:
   - SlideMenuControllerSwift (4.0.0)
   - SnapKit (4.0.0)
   - SwiftEventBus (2.1.2)
-  - SwiftyJSON (4.0.0-alpha.1)
+  - SwiftyJSON (4.1.0)
   - UIColor_Hex_Swift (3.0.2)
 
 DEPENDENCIES:
@@ -117,8 +117,46 @@ DEPENDENCIES:
   - SlideMenuControllerSwift (= 4.0.0)
   - SnapKit (= 4.0.0)
   - SwiftEventBus (= 2.1.2)
-  - SwiftyJSON (= 4.0.0-alpha.1)
+  - SwiftyJSON (= 4.1.0)
   - UIColor_Hex_Swift (= 3.0.2)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - AlamofireNetworkActivityLogger
+    - AlamofireObjectMapper
+    - Branch
+    - BrightFutures
+    - CocoaLumberjack
+    - Crashlytics
+    - DateToolsSwift
+    - Fabric
+    - Firebase
+    - FirebaseABTesting
+    - FirebaseAnalytics
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - FirebaseRemoteConfig
+    - GoogleMaps
+    - GooglePlaces
+    - GoogleToolboxForMac
+    - KeychainAccess
+    - Kingfisher
+    - MBProgressHUD
+    - nanopb
+    - ObjectMapper
+    - PhoneNumberKit
+    - Protobuf
+    - Realm
+    - RealmSwift
+    - Result
+    - SDWebImage
+    - SlideMenuControllerSwift
+    - SnapKit
+    - SwiftEventBus
+    - SwiftyJSON
+    - UIColor_Hex_Swift
 
 SPEC CHECKSUMS:
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
@@ -154,9 +192,9 @@ SPEC CHECKSUMS:
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
   SwiftEventBus: 9e8f6d8cff2826d66536ec367d17a47299478aa0
-  SwiftyJSON: dc88934f85fb50b263b1632b9cbad3402505783e
+  SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: bbbccdac7b585eba032c4ef1e7f988de175a6e16
+PODFILE CHECKSUM: 663b1ad2b4f5429a4e4b7c6f541efe65e0c230a8
 
-COCOAPODS: 1.4.0
+COCOAPODS: 1.5.3

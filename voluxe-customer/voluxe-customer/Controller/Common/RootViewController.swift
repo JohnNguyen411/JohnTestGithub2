@@ -33,10 +33,10 @@ class RootViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        addChildViewController(current)
+        addChild(current)
         current.view.frame = view.bounds
         view.addSubview(current.view)
-        current.didMove(toParentViewController: self)
+        current.didMove(toParent: self)
     }
     
     func showLandingScreen() {
@@ -66,14 +66,14 @@ class RootViewController: UIViewController {
             })
         }
         
-        addChildViewController(uiViewController)
+        self.addChild(uiViewController)
         uiViewController.view.frame = view.bounds
         view.addSubview(uiViewController.view)
-        uiViewController.didMove(toParentViewController: self)
+        uiViewController.didMove(toParent: self)
         
-        current.willMove(toParentViewController: nil)
+        current.willMove(toParent: nil)
         current.view.removeFromSuperview()
-        current.removeFromParentViewController()
+        current.removeFromParent()
         
         current = uiViewController
     }
@@ -81,12 +81,12 @@ class RootViewController: UIViewController {
     private func animateFadeTransition(to new: UIViewController, completion: (() -> Void)? = nil) {
         if current == new { return }
         inTransition = true
-        current.willMove(toParentViewController: nil)
-        addChildViewController(new)
+        current.willMove(toParent: nil)
+        addChild(new)
         
         transition(from: current, to: new, duration: 0.3, options: [.transitionCrossDissolve, .curveEaseOut], animations: { }) { completed in
-            self.current.removeFromParentViewController()
-            new.didMove(toParentViewController: self)
+            self.current.removeFromParent()
+            new.didMove(toParent: self)
             self.current = new
             self.inTransition = false
             completion?()
@@ -98,13 +98,13 @@ class RootViewController: UIViewController {
         
         inTransition = true
         let initialFrame = CGRect(x: -view.bounds.width, y: 0, width: view.bounds.width, height: view.bounds.height)
-        current.willMove(toParentViewController: nil)
-        addChildViewController(new)
+        current.willMove(toParent: nil)
+        addChild(new)
         new.view.frame = initialFrame
         
         if current.parent != new.parent {
-            self.current.removeFromParentViewController()
-            new.didMove(toParentViewController: self)
+            self.current.removeFromParent()
+            new.didMove(toParent: self)
             self.current = new
             self.inTransition = false
             completion?()
@@ -114,8 +114,8 @@ class RootViewController: UIViewController {
         transition(from: current, to: new, duration: 0.3, options: [], animations: {
             new.view.frame = self.view.bounds
         }) { completed in
-            self.current.removeFromParentViewController()
-            new.didMove(toParentViewController: self)
+            self.current.removeFromParent()
+            new.didMove(toParent: self)
             self.current = new
             self.inTransition = false
             completion?()
@@ -182,7 +182,7 @@ class RootViewController: UIViewController {
         navigationBar.shadowImage = UIImage()
         navigationBar.tintColor = .luxeCobaltBlue()
         
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.black]
+        navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
     }
     
     

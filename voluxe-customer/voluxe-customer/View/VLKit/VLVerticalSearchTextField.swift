@@ -115,10 +115,10 @@ class VLVerticalSearchTextField : VLVerticalTextField {
             
             checkTableViewSize()
             
-            superview?.bringSubview(toFront: tableView)
+            superview?.bringSubviewToFront(tableView)
             
             if self.isFirstResponder {
-                superview?.bringSubview(toFront: self)
+                superview?.bringSubviewToFront(self)
             }
             
             tableView.layer.borderColor = theme.borderColor.cgColor

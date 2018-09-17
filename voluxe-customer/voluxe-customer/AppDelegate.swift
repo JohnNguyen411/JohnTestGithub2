@@ -83,7 +83,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     // MARK:- Application support
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         _ = AppController.sharedInstance // init
@@ -169,7 +169,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     
     // MARK:- Branch
     
-    private func setupBranch(_ application: UIApplication, launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+    private func setupBranch(_ application: UIApplication, launchOptions: [UIApplication.LaunchOptionsKey: Any]?) {
         
         #if DEBUG
             Branch.setUseTestBranchKey(true)
@@ -194,17 +194,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
     }
     
-    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+    func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
         Branch.getInstance().application(app, open: url, options: options)
         return true
     }
     
-    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+    func application(_ application: UIApplication, continue userActivity: NSUserActivity, restorationHandler: @escaping ([UIUserActivityRestoring]?) -> Void) -> Bool {
         // handler for Universal Links
         Branch.getInstance().continue(userActivity)
         return true
     }
-    
 
     // MARK:- UNUserNotificationCenterDelegate
 

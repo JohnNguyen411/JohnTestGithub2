@@ -13,7 +13,7 @@ import RealmSwift
 class ServiceListViewController: BaseViewController {
     
     var services: [RepairOrderType]?
-    let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
+    let tableView = UITableView(frame: .zero, style: UITableView.Style.plain)
     
     let vehicle: Vehicle
     

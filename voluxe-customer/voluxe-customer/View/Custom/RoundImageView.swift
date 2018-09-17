@@ -64,7 +64,7 @@ class RoundImageView: UIView {
             imageLayer.mask = maskLayer
             imageLayer.frame = CGRect(x: 0, y: 0, width: imageSize.width, height: imageSize.height)
             //imageLayer.backgroundColor = UIColor.red.cgColor
-            imageLayer.contentsGravity = kCAGravityResizeAspectFill
+            imageLayer.contentsGravity = .resizeAspectFill
             layer.addSublayer(imageLayer)
         }
         

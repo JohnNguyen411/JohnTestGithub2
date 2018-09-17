@@ -31,7 +31,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         return textView
     }()
     
-    let tableView = UITableView(frame: .zero, style: UITableViewStyle.plain)
+    let tableView = UITableView(frame: .zero, style: UITableView.Style.plain)
     let confirmButton: VLButton
 
     let vehicle: Vehicle
@@ -112,7 +112,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         containerView.addSubview(confirmButton)
                 
         containerView.snp.makeConstraints { make in
-            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(0, 0, 20, 0))
+            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsets(top: 0, left: 0, bottom: 20, right: 0))
         }
         
         introLabel.snp.makeConstraints { make in
@@ -194,7 +194,7 @@ extension ServiceMultiselectListViewController: UITableViewDataSource, UITableVi
             Analytics.trackClick(button: self.serviceAnalyticsEnums[indexPath.row], screen: self.screen, selected: true)
         }
         tableView.deselectRow(at: indexPath, animated: true)
-        tableView.reloadRows(at: [indexPath], with: UITableViewRowAnimation.none)
+        tableView.reloadRows(at: [indexPath], with: UITableView.RowAnimation.none)
         self.enableConfirmButton()
     }
     

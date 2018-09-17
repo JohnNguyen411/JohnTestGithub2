@@ -213,7 +213,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         let adaptedMarging = ViewUtils.getAdaptedHeightSize(sizeInPoints: 20)
         
         scrollView.snp.makeConstraints { make in
-            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsetsMake(0, adaptedMarging, adaptedMarging, adaptedMarging))
+            make.edgesEqualsToView(view: self.view, edges: UIEdgeInsets(top: 0, left: adaptedMarging, bottom: adaptedMarging, right: adaptedMarging))
         }
         
         contentView.snp.makeConstraints { make in

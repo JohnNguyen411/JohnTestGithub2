@@ -41,8 +41,8 @@ class VLCheckbox : UIView {
         
         titleText = title
         
-        checkButton.setImage(UIImage(named: "checked_circle"), for: UIControlState.selected)
-        checkButton.setImage(UIImage(named: "empty_checkbox"), for: UIControlState.normal)
+        checkButton.setImage(UIImage(named: "checked_circle"), for: UIControl.State.selected)
+        checkButton.setImage(UIImage(named: "empty_checkbox"), for: UIControl.State.normal)
         checkButton.isUserInteractionEnabled = false
         
         self.isUserInteractionEnabled = true

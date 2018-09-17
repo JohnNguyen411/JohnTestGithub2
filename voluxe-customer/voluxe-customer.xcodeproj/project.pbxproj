@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		26E9A651470608F0E500FC21 /* Pods_voluxe_customerUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E181BDDE7AA2B89565331F15 /* Pods_voluxe_customerUnitTests.framework */; };
+		41199E0B1F6CC7FD895FD38F /* Pods_voluxe_customerUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E181BDDE7AA2B89565331F15 /* Pods_voluxe_customerUnitTests.framework */; };
 		52078A4D132E9D871CDD555D /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
 		524BF64C211A57E900404ED5 /* CurrentLocationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */; };
 		529AB0DB212F7AA300AD8D09 /* ScheduleSelfDropModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AB0DA212F7AA200AD8D09 /* ScheduleSelfDropModal.swift */; };
@@ -417,13 +417,6 @@
 			remoteGlobalIDString = 6CCD42891FA013E3000AC6C9;
 			remoteInfo = "voluxe-customer";
 		};
-		6CCD429F1FA013E3000AC6C9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6CCD42821FA013E3000AC6C9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6CCD42891FA013E3000AC6C9;
-			remoteInfo = "voluxe-customer";
-		};
 		6CCD42AA1FA013E3000AC6C9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 6CCD42821FA013E3000AC6C9 /* Project object */;
@@ -446,7 +439,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00DA4A276413EFF3C93330DB /* Pods-voluxe-customerUnitTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.dev.xcconfig"; sourceTree = "<group>"; };
 		04CDB8F585B8F0CBBB728770 /* Pods-voluxe-customerAPITests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerAPITests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests.appstore.xcconfig"; sourceTree = "<group>"; };
 		0E5AAE50AA8497BB1E6BE260 /* Pods-voluxe-customerUITests.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.mock.xcconfig"; sourceTree = "<group>"; };
 		0EA8211FDAE1534EB5CFACC1 /* Pods-voluxe-customer.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.appstore.xcconfig"; sourceTree = "<group>"; };
@@ -460,7 +452,6 @@
 		446B7D7AA76D7E178415AA45 /* Pods-voluxe-customer.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.dev.xcconfig"; sourceTree = "<group>"; };
 		4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
 		4C64F631C2578E5AD1F6A474 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
-		51EA00834FA121CCED3736C9 /* Pods-voluxe-customerUnitTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.beta.xcconfig"; sourceTree = "<group>"; };
 		524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCellView.swift; sourceTree = "<group>"; };
 		529AB0DA212F7AA200AD8D09 /* ScheduleSelfDropModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSelfDropModal.swift; sourceTree = "<group>"; };
 		52CDAC3B21262C35008B3E53 /* ScheduledSelfDropoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledSelfDropoff.swift; sourceTree = "<group>"; };
@@ -530,7 +521,7 @@
 		584D4FE40136C325D769CD2E /* Pods-voluxe-customerUITests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.beta.xcconfig"; sourceTree = "<group>"; };
 		5A61815F1308AE46D7A23ADC /* Pods-voluxe-customerAPITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerAPITests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests.production.xcconfig"; sourceTree = "<group>"; };
 		5B073D73742601FC967B4DD1 /* Pods-voluxe-customer.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.production.xcconfig"; sourceTree = "<group>"; };
-		5E5E736A2348D559F80B07FF /* Pods-voluxe-customerUnitTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.appstore.xcconfig"; sourceTree = "<group>"; };
+		69A891170E2D7C3917724A77 /* Pods-voluxe-customerUnitTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.appstore.xcconfig"; sourceTree = "<group>"; };
 		69AE2DE1F0F874762B0DBABE /* Pods_voluxe_customer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6C11208D2016B2C70048A56D /* BookingSyncManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingSyncManager.swift; sourceTree = "<group>"; };
 		6C1CE1E320C5E9E600A2E054 /* BranchDeeplink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BranchDeeplink.swift; sourceTree = "<group>"; };
@@ -811,25 +802,27 @@
 		6CF3F44E20F4113700A89214 /* UITextView+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextView+Voluxe.swift"; sourceTree = "<group>"; };
 		6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Light.ttf"; sourceTree = "<group>"; };
 		6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "VolvoSansPro-Medium.ttf"; sourceTree = "<group>"; };
-		7BE2945415E5965B4B341B12 /* Pods-voluxe-customerUnitTests.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.mock.xcconfig"; sourceTree = "<group>"; };
+		78E3B449029AE13BE244F3D6 /* Pods-voluxe-customerUnitTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.production.xcconfig"; sourceTree = "<group>"; };
 		7FCDEDCAD410198A43AB504F /* Pods-voluxe-customer.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.staging.xcconfig"; sourceTree = "<group>"; };
 		830E0EB28610D29BD9577A43 /* Pods-voluxe-customerTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.debug.xcconfig"; sourceTree = "<group>"; };
 		87CC82F62182FCB97FB5E935 /* Pods-voluxe-customerUITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.production.xcconfig"; sourceTree = "<group>"; };
 		933568A04AC5651273071D0D /* Pods-voluxe-customer.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.mock.xcconfig"; sourceTree = "<group>"; };
 		9804196EB97BABAE723A2671 /* Pods-voluxe-customerAPITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerAPITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests.dev.xcconfig"; sourceTree = "<group>"; };
+		985817A8E4198DD81919713E /* Pods-voluxe-customerUnitTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.staging.xcconfig"; sourceTree = "<group>"; };
 		9E0FC5812BB12B6301D7275B /* Pods-voluxe-customerAPITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerAPITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests.staging.xcconfig"; sourceTree = "<group>"; };
 		A4754A5C4909D3DF093D3ACF /* Pods-voluxe-customer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.release.xcconfig"; sourceTree = "<group>"; };
 		AA96592C3EA6EA36370D05FB /* Pods-voluxe-customerTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.production.xcconfig"; sourceTree = "<group>"; };
 		B14C89A33603EA2EDE01A8EF /* Pods-voluxe-customerUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.release.xcconfig"; sourceTree = "<group>"; };
 		B453226A4ECDB078AE79C466 /* Pods-voluxe-customer.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.beta.xcconfig"; sourceTree = "<group>"; };
 		B6E3B388CB760BA2DCBFB310 /* Pods-voluxe-customerTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.dev.xcconfig"; sourceTree = "<group>"; };
-		BF0501C30994A5140B144477 /* Pods-voluxe-customerUnitTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.production.xcconfig"; sourceTree = "<group>"; };
-		C20F851001CC9203BA0DF009 /* Pods-voluxe-customerUnitTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.staging.xcconfig"; sourceTree = "<group>"; };
+		C75605C65D6F245B4D69AEEE /* Pods-voluxe-customerUnitTests.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.mock.xcconfig"; sourceTree = "<group>"; };
 		CAEBFA03988BA1140FA9E112 /* Pods-voluxe-customerAPITests.mock.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerAPITests.mock.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests.mock.xcconfig"; sourceTree = "<group>"; };
 		CB5930D7EB214B9171D1E545 /* Pods-voluxe-customerTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.beta.xcconfig"; sourceTree = "<group>"; };
 		D30969AB2ED2FFA25749FB68 /* Pods-voluxe-customerTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerTests/Pods-voluxe-customerTests.staging.xcconfig"; sourceTree = "<group>"; };
 		D84E7C82BDB9F161073CF3E3 /* Pods-voluxe-customerUITests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.appstore.xcconfig"; sourceTree = "<group>"; };
 		E181BDDE7AA2B89565331F15 /* Pods_voluxe_customerUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_customerUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E4BB4FA0B50BB7AE1209F61B /* Pods-voluxe-customerUnitTests.beta.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.beta.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.beta.xcconfig"; sourceTree = "<group>"; };
+		E4E2F6AC2E2840BBDD75057F /* Pods-voluxe-customerUnitTests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUnitTests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.dev.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -853,7 +846,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				26E9A651470608F0E500FC21 /* Pods_voluxe_customerUnitTests.framework in Frameworks */,
+				41199E0B1F6CC7FD895FD38F /* Pods_voluxe_customerUnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1681,12 +1674,12 @@
 				5A61815F1308AE46D7A23ADC /* Pods-voluxe-customerAPITests.production.xcconfig */,
 				04CDB8F585B8F0CBBB728770 /* Pods-voluxe-customerAPITests.appstore.xcconfig */,
 				33E2BC1E6053A93E806D2C4F /* Pods-voluxe-customerAPITests.beta.xcconfig */,
-				00DA4A276413EFF3C93330DB /* Pods-voluxe-customerUnitTests.dev.xcconfig */,
-				7BE2945415E5965B4B341B12 /* Pods-voluxe-customerUnitTests.mock.xcconfig */,
-				C20F851001CC9203BA0DF009 /* Pods-voluxe-customerUnitTests.staging.xcconfig */,
-				BF0501C30994A5140B144477 /* Pods-voluxe-customerUnitTests.production.xcconfig */,
-				5E5E736A2348D559F80B07FF /* Pods-voluxe-customerUnitTests.appstore.xcconfig */,
-				51EA00834FA121CCED3736C9 /* Pods-voluxe-customerUnitTests.beta.xcconfig */,
+				E4E2F6AC2E2840BBDD75057F /* Pods-voluxe-customerUnitTests.dev.xcconfig */,
+				C75605C65D6F245B4D69AEEE /* Pods-voluxe-customerUnitTests.mock.xcconfig */,
+				985817A8E4198DD81919713E /* Pods-voluxe-customerUnitTests.staging.xcconfig */,
+				78E3B449029AE13BE244F3D6 /* Pods-voluxe-customerUnitTests.production.xcconfig */,
+				69A891170E2D7C3917724A77 /* Pods-voluxe-customerUnitTests.appstore.xcconfig */,
+				E4BB4FA0B50BB7AE1209F61B /* Pods-voluxe-customerUnitTests.beta.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -1703,7 +1696,6 @@
 				53FDF20520B761D10004B8A1 /* Frameworks */,
 				53FDF20620B761D10004B8A1 /* Resources */,
 				32B20CEA990AA1891FDFE778 /* [CP] Embed Pods Frameworks */,
-				DC6728CE6F504FDB567C2D8F /* [CP] Copy Pods Resources */,
 				534D994420BF57960050819C /* CopyFiles */,
 			);
 			buildRules = (
@@ -1743,17 +1735,15 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 6CCD42B51FA013E3000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-customerUnitTests" */;
 			buildPhases = (
-				200B4D533C6353AB32B707A0 /* [CP] Check Pods Manifest.lock */,
+				3014D1F189DD62B8F96172A6 /* [CP] Check Pods Manifest.lock */,
 				6CCD429A1FA013E3000AC6C9 /* Sources */,
 				6CCD429B1FA013E3000AC6C9 /* Frameworks */,
 				6CCD429C1FA013E3000AC6C9 /* Resources */,
-				356A2D862C1FFF741C588B39 /* [CP] Embed Pods Frameworks */,
-				4BEE99853E0F3B20689E5BB2 /* [CP] Copy Pods Resources */,
+				80F4001077935275E13C4BFD /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6CCD42A01FA013E3000AC6C9 /* PBXTargetDependency */,
 			);
 			name = "voluxe-customerUnitTests";
 			productName = "voluxe-customerTests";
@@ -1769,7 +1759,6 @@
 				6CCD42A61FA013E3000AC6C9 /* Frameworks */,
 				6CCD42A71FA013E3000AC6C9 /* Resources */,
 				3C4849AA36DAD32C46B63825 /* [CP] Embed Pods Frameworks */,
-				3B2B55B7FF8742265B5DFEA4 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -1952,7 +1941,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		200B4D533C6353AB32B707A0 /* [CP] Check Pods Manifest.lock */ = {
+		3014D1F189DD62B8F96172A6 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1985,6 +1974,7 @@
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -1996,89 +1986,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEventBus.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		356A2D862C1FFF741C588B39 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
-				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
-				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
-				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
-				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
-				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
-				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
-				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
-				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
-				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework",
-				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
-				"${BUILT_PRODUCTS_DIR}/UIColor_Hex_Swift/UIColor_Hex_Swift.framework",
-				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEventBus.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/UIColor_Hex_Swift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3B2B55B7FF8742265B5DFEA4 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		3C4849AA36DAD32C46B63825 /* [CP] Embed Pods Frameworks */ = {
@@ -2094,6 +2006,7 @@
 				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -2103,30 +2016,11 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEventBus.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4BEE99853E0F3B20689E5BB2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests-resources.sh",
-				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
-				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		539F626F2092ABD90023DF59 /* ShellScript */ = {
@@ -2140,7 +2034,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = "/bin/bash -l";
-			shellScript = "echo \"CHECKING TEAM ID\"\n\nSCRIPT=$PROJECT_DIR/../shared/scripts/confirm_team_id.rb\nif [ ! -f \"$SCRIPT\" ];\nthen\n    echo \"CANNOT FIND SCRIPT FILE\"\n    echo $SCRIPT\n    exit 1\nfi\n\nRESULT=$(ruby $SCRIPT)\nif [ -z \"$RESULT\" ];\nthen\n    echo \"TEAM ID IS CORRECT\"\nelse\n    echo $RESULT\n    exit 1\nfi";
+			shellScript = "echo \"CHECKING TEAM ID\"\n\nSCRIPT=$PROJECT_DIR/../shared/scripts/confirm_team_id.rb\nif [ ! -f \"$SCRIPT\" ];\nthen\n    echo \"CANNOT FIND SCRIPT FILE\"\n    echo $SCRIPT\n    exit 1\nfi\n\nRESULT=$(ruby $SCRIPT)\nif [ -z \"$RESULT\" ];\nthen\n    echo \"TEAM ID IS CORRECT\"\nelse\n    echo $RESULT\n    exit 1\nfi\n";
 		};
 		53D9A7C2209AA14C008BE93E /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2166,7 +2060,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 09254e520e351430e89eaaeb71ebd9fb51390026 3dda874af75effff80ba0d5ab56693101af04a461d75192e27c578ef99a33681";
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 09254e520e351430e89eaaeb71ebd9fb51390026 3dda874af75effff80ba0d5ab56693101af04a461d75192e27c578ef99a33681\n";
+		};
+		80F4001077935275E13C4BFD /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-NSData+zlib/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		AE0541E111E1DB1394BACA05 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -2200,7 +2120,7 @@
 				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-Logger-NSData+zlib/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
@@ -2286,21 +2206,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DC6728CE6F504FDB567C2D8F /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FDE141B9FC44858AC6BC125F /* [CP] Check Pods Manifest.lock */ = {
@@ -2681,11 +2586,6 @@
 			target = 6CCD42891FA013E3000AC6C9 /* voluxe-customer */;
 			targetProxy = 539E502A20BF444800FDF3F1 /* PBXContainerItemProxy */;
 		};
-		6CCD42A01FA013E3000AC6C9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6CCD42891FA013E3000AC6C9 /* voluxe-customer */;
-			targetProxy = 6CCD429F1FA013E3000AC6C9 /* PBXContainerItemProxy */;
-		};
 		6CCD42AB1FA013E3000AC6C9 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6CCD42891FA013E3000AC6C9 /* voluxe-customer */;
@@ -2779,7 +2679,6 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 			};
 			name = Dev;
 		};
@@ -2841,7 +2740,6 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Mock;
@@ -2904,7 +2802,6 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Staging;
@@ -2967,7 +2864,6 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Production;
@@ -3030,7 +2926,6 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = AppStore;
@@ -3093,7 +2988,6 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Beta;
@@ -3141,31 +3035,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT = dev;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3187,7 +3056,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = "";
+				SWIFT_VERSION = 4.2;
 				Scheme = Dev;
 			};
 			name = Mock;
@@ -3211,7 +3080,6 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 				Scheme = Mock;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -3219,7 +3087,7 @@
 		};
 		6C112093201A66290048A56D /* Mock */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BE2945415E5965B4B341B12 /* Pods-voluxe-customerUnitTests.mock.xcconfig */;
+			baseConfigurationReference = C75605C65D6F245B4D69AEEE /* Pods-voluxe-customerUnitTests.mock.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -3229,9 +3097,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Mock;
@@ -3268,7 +3135,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "voluxe-customer";
 			};
@@ -3317,31 +3183,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT = dev;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3363,7 +3204,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = "";
+				SWIFT_VERSION = 4.2;
 				Scheme = Dev;
 			};
 			name = Dev;
@@ -3386,14 +3227,13 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Dev;
 		};
 		6C3FB2A31FA1645800B22EAB /* Dev */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 00DA4A276413EFF3C93330DB /* Pods-voluxe-customerUnitTests.dev.xcconfig */;
+			baseConfigurationReference = E4E2F6AC2E2840BBDD75057F /* Pods-voluxe-customerUnitTests.dev.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -3403,9 +3243,8 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Dev;
@@ -3442,7 +3281,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "voluxe-customer";
 			};
@@ -3491,31 +3329,6 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				ENVIRONMENT = dev;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -3537,7 +3350,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = "";
+				SWIFT_VERSION = 4.2;
 				Scheme = Staging;
 			};
 			name = Staging;
@@ -3560,14 +3373,13 @@
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Staging;
 		};
 		6C7401A41FD89BBC001F94AF /* Staging */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C20F851001CC9203BA0DF009 /* Pods-voluxe-customerUnitTests.staging.xcconfig */;
+			baseConfigurationReference = 985817A8E4198DD81919713E /* Pods-voluxe-customerUnitTests.staging.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -3577,9 +3389,8 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Staging;
@@ -3616,7 +3427,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "voluxe-customer";
 			};
@@ -3665,31 +3475,6 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENVIRONMENT = prod;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -3704,7 +3489,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = APP_STORE;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = "";
+				SWIFT_VERSION = 4.2;
 				Scheme = AppStore;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3727,14 +3512,13 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = AppStore;
 		};
 		6C7401A81FD89BC4001F94AF /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5E5E736A2348D559F80B07FF /* Pods-voluxe-customerUnitTests.appstore.xcconfig */;
+			baseConfigurationReference = 69A891170E2D7C3917724A77 /* Pods-voluxe-customerUnitTests.appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -3744,8 +3528,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = AppStore;
@@ -3781,7 +3564,6 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "voluxe-customer";
 			};
@@ -3830,31 +3612,6 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENVIRONMENT = prod;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -3868,7 +3625,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = "";
+				SWIFT_VERSION = 4.2;
 				Scheme = Production;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -3891,14 +3648,13 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Production;
 		};
 		6CCD42B71FA013E3000AC6C9 /* Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF0501C30994A5140B144477 /* Pods-voluxe-customerUnitTests.production.xcconfig */;
+			baseConfigurationReference = 78E3B449029AE13BE244F3D6 /* Pods-voluxe-customerUnitTests.production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -3908,8 +3664,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Production;
@@ -3945,7 +3700,6 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "voluxe-customer";
 			};
@@ -3994,31 +3748,6 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENVIRONMENT = prod;
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Alamofire\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/AlamofireObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/BrightFutures\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/CocoaLumberjack\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/DateToolsSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/GoogleToolboxForMac\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Kingfisher\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/ObjectMapper\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/PhoneNumberKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Protobuf\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/Result\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SlideMenuControllerSwift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SnapKit\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftEventBus\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/SwiftyJSON\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/UIColor_Hex_Swift\"",
-					"\"$PODS_CONFIGURATION_BUILD_DIR/nanopb\"",
-					"\"${PODS_ROOT}/FirebaseAnalytics/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseCore/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseInstanceID/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseMessaging/Frameworks\"",
-					"\"${PODS_ROOT}/FirebaseRemoteConfig/Frameworks\"",
-				);
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -4032,7 +3761,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = "";
+				SWIFT_VERSION = 4.2;
 				Scheme = AppStore;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4055,7 +3784,6 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SCAN_ALL_SOURCE_FILES_FOR_INCLUDES = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
-				SWIFT_VERSION = 4.0;
 				Scheme = Beta;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -4063,7 +3791,7 @@
 		};
 		6CE6878C203DF4ED00D915FC /* Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 51EA00834FA121CCED3736C9 /* Pods-voluxe-customerUnitTests.beta.xcconfig */;
+			baseConfigurationReference = E4BB4FA0B50BB7AE1209F61B /* Pods-voluxe-customerUnitTests.beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
@@ -4073,8 +3801,7 @@
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-customerTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "voluxe-customer/Objc-Bridge-Header.h";
-				SWIFT_VERSION = 4.0;
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Beta;
@@ -4110,7 +3837,6 @@
 				PROVISIONING_PROFILE = "";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "voluxe-customer";
 			};

@@ -265,7 +265,7 @@ class VLButton : UIButton {
         self.layer.shadowOpacity = 0.33
         self.layer.shadowRadius = 2
         self.layer.shadowOffset = CGSize(width: 1.0, height: 1.0)
-        self.contentEdgeInsets = UIEdgeInsetsMake(4, 0, 0, 0)
+        self.contentEdgeInsets = UIEdgeInsets(top: 4, left: 0, bottom: 0, right: 0)
     }
     
     override func layoutSubviews() {

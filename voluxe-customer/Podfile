@@ -5,7 +5,7 @@ use_frameworks!
 # ignore all warnings from all pods
 inhibit_all_warnings!
 
-def import_pods
+target 'voluxe-customer' do
     pod 'Alamofire', '4.5.1'
     pod 'AlamofireObjectMapper', '5.1.0'
     pod 'AlamofireNetworkActivityLogger', '2.2'
@@ -28,17 +28,15 @@ def import_pods
     pod 'SDWebImage', '4.0.0'
     pod 'SlideMenuControllerSwift', '4.0.0'
     pod 'SnapKit', '4.0.0'
-    pod 'SwiftyJSON', '4.0.0-alpha.1'
+    pod 'SwiftyJSON', '4.1.0'
     pod 'SwiftEventBus', '2.1.2'
     pod 'UIColor_Hex_Swift', '3.0.2'
 end
 
-target 'voluxe-customer' do
-    import_pods
-end
-
 target 'voluxe-customerUnitTests' do
-    import_pods
+    pod 'Alamofire', '4.5.1'
+    pod 'AlamofireObjectMapper', '5.1.0'
+    pod 'Firebase/Core', '4.7.0'
 end
 
 target 'voluxe-customerAPITests' do
@@ -47,6 +45,7 @@ target 'voluxe-customerAPITests' do
     pod 'AlamofireNetworkActivityLogger', '2.2'
     pod 'BrightFutures', '6.0.1'
     pod 'RealmSwift', '3.7.6'
+    pod 'SwiftEventBus', '2.1.2'
 end
 
 target 'voluxe-customerUITests' do
@@ -54,9 +53,18 @@ target 'voluxe-customerUITests' do
     pod 'AlamofireObjectMapper', '5.1.0'
     pod 'AlamofireNetworkActivityLogger', '2.2'
     pod 'BrightFutures', '6.0.1'
+    pod 'SwiftEventBus', '2.1.2'
 end
 
 post_install do | installer |
+    # set all Pods to Swift 4.0 until they update to 4.2
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '4.0'
+        end
+    end
+
+    # copy Acknowledgements into Settings bundle
     require 'fileutils'
     FileUtils.cp_r('Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-acknowledgements.plist', 'voluxe-customer/Resources/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
 end
