@@ -21,7 +21,17 @@ extension UIFont {
     }
 }
 
-// MARK:- Font basics
+// MARK:- Font names for weights
+
+struct FontName {
+    static let light = "VolvoNovum-Light"
+    static let regular = "VolvoNovum-SemiLight"
+    static let medium = "VolvoNovum-Regular"
+    static let bold = "VolvoNovum-Medium"
+    static let heavy = "VolvoNovum-Bold"
+}
+
+// MARK:- Font weight
 
 // FontBase can be used for multiple font families.
 // Fileprivate to prevent random font creation.
@@ -29,23 +39,23 @@ extension UIFont {
 struct FontWeight {
 
     fileprivate static func light(size: Int) -> UIFont {
-        return UIFont.customFont(fontName: "VolvoNovum-Light", size: CGFloat(size)).scaled()
+        return UIFont.customFont(fontName: FontName.light, size: CGFloat(size)).scaled()
     }
 
     fileprivate static func regular(size: Int) -> UIFont {
-        return UIFont.customFont(fontName: "VolvoNovum-SemiLight", size: CGFloat(size)).scaled()
+        return UIFont.customFont(fontName: FontName.regular, size: CGFloat(size)).scaled()
     }
 
     fileprivate static func medium(size: Int) -> UIFont {
-        return UIFont.customFont(fontName: "VolvoNovum-Regular", size: CGFloat(size)).scaled()
+        return UIFont.customFont(fontName: FontName.medium, size: CGFloat(size)).scaled()
     }
 
     fileprivate static func bold(size: Int) -> UIFont {
-        return UIFont.customFont(fontName: "VolvoNovum-Medium", size: CGFloat(size)).scaled()
+        return UIFont.customFont(fontName: FontName.bold, size: CGFloat(size)).scaled()
     }
 
     fileprivate static func heavy(size: Int) -> UIFont {
-        return UIFont.customFont(fontName: "VolvoNovum-Bold", size: CGFloat(size)).scaled()
+        return UIFont.customFont(fontName: FontName.heavy, size: CGFloat(size)).scaled()
     }
 }
 
@@ -64,8 +74,6 @@ struct FontSize {
 
 // MARK:- Fonts by size and weight
 
-// TODO once a constant is used it is stored and will not react to DynamicType changes
-// TODO figure out how to detect type changes OR change the constants into funcs
 struct Font {
 
     struct ExtraSmall {
@@ -127,23 +135,26 @@ extension Font {
         static let caption2 = Font.Medium.light
     }
 
-    // TODO how to support .largeTitle?
     static func with(style: UIFont.TextStyle) -> UIFont {
-        switch style {
-            //            if #available(iOS 11.0, *) {
-            //                case .largeTitle: return FontMetrics.largeTitle
-        //            }
-        case .title1: return TextStyle.title1
-        case .title2: return TextStyle.title2
-        case .title3: return TextStyle.title3
-        case .headline: return TextStyle.headline
-        case .subheadline: return TextStyle.subheadline
-        case .body: return TextStyle.body
-        case .callout: return TextStyle.callout
-        case .caption1: return TextStyle.caption1
-        case .caption2: return TextStyle.caption2
-        default: return TextStyle.body
+
+        // newer styles
+        if #available(iOS 11.0, *) {
+            if style == .largeTitle { return TextStyle.largeTitle }
         }
+
+        // UIFontMetrics from iOS 10
+        if style == .title1             { return TextStyle.title1 }
+        else if style == .title2        { return TextStyle.title2 }
+        else if style == .title3        { return TextStyle.title3 }
+        else if style == .headline      { return TextStyle.headline }
+        else if style == .subheadline   { return TextStyle.subheadline }
+        else if style == .body          { return TextStyle.body }
+        else if style == .callout       { return TextStyle.callout }
+        else if style == .caption1      { return TextStyle.caption1 }
+        else if style == .caption2      { return TextStyle.caption2 }
+
+        // default for unknown types
+        else { return TextStyle.body }
     }
 }
 

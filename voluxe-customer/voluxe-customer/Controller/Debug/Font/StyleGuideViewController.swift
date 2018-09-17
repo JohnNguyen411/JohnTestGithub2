@@ -60,7 +60,7 @@ class StyleGuideViewController: UIViewController {
         label9.font = Font.TextStyle.caption2
         Layout.add(view: label9, below: label8)
 
-//        Layout.addSpacerView(below: label9, pinToSuperviewBottom: true)
+        // white space at the bottom of the content view
         Layout.addSpacerView(toBottomOf: contentView)
     }
 }

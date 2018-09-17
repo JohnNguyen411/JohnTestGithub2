@@ -17,10 +17,14 @@ struct Layout {
     // might as well just use Autolayout directly then
     static func fill(view: UIView, in superview: UIView) {
         superview.addSubview(view)
-        view.snp.makeConstraints {
-            make in
-            make.edgesEqualsToView(view: superview)
-        }
+//        view.snp.makeConstraints {
+//            make in
+//            make.edgesEqualsToView(view: superview)
+//        }
+        view.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
     }
 
     // TODO use autolayout calls instead of SnapKit
@@ -72,6 +76,7 @@ struct Layout {
     // TODO find a better name
     // TODO use autolayout calls instead of SnapKit
     // TODO what to return if guard fails?
+    @discardableResult
     static func addSpacerView(toBottomOf contentView: UIView) -> UIView {
         let view = UIView(frame: .zero)
         guard let peerview = contentView.subviews.last else { return view }
