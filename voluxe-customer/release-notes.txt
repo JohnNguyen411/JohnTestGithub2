@@ -1,3 +1,8 @@
+v1.2.0(144):
+Support for Autofill of user information on iOS 10+ devices
+Support for generating strong passwords on iOS 12+ devices
+Support for emoji and special character passwords
+
 v1.1.0(137):
 Prod 1.1.0 Release (Self IB/OB)
 
