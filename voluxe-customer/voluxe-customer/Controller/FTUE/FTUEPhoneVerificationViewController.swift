@@ -52,7 +52,14 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     private var isLoading = false
     
     override func viewDidLoad() {
-        
+
+        // support autofill
+        // note that autofill for an OTC requires the code to be
+        // either first or last in the message text
+        if #available(iOS 12.0, *) {
+            self.codeTextField.textField.textContentType = .oneTimeCode
+        }
+
         codeTextField.accessibilityIdentifier = "codeTextField"
         codeTextField.textField.delegate = self
         super.viewDidLoad()

@@ -87,6 +87,14 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
             return partialFormatter.currentRegion
         }
     }
+    
+    public var nationalNumber: String {
+        get {
+            let rawNumber = self.text ?? String()
+            return partialFormatter.nationalNumber(from: rawNumber)
+        }
+    }
+    
     public var isValidNumber: Bool {
         get {
             let rawNumber = self.text ?? String()
@@ -194,10 +202,16 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
     }
     
     open func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        // This allows for the case when a user autocompletes a phone number:
+        if range == NSRange(location: 0, length: 0) && string == " " {
+            return true
+        }
+
         guard let text = text else {
             return false
         }
-        
+
         // allow delegate to intervene
         guard _delegate?.textField?(textField, shouldChangeCharactersIn: range, replacementString: string) ?? true else {
             return false
@@ -210,7 +224,7 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
         let changedRange = textAsNSString.substring(with: range) as NSString
         let modifiedTextField = textAsNSString.replacingCharacters(in: range, with: string)
         
-        let filteredCharacters = modifiedTextField.characters.filter {
+        let filteredCharacters = modifiedTextField.filter {
             return  String($0).rangeOfCharacter(from: (textField as! PhoneNumberTextField).nonNumericSet as CharacterSet) == nil
         }
         let rawNumberString = String(filteredCharacters)

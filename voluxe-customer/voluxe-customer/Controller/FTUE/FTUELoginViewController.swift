@@ -40,7 +40,13 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
             [weak self] in
             self?.pushViewController(FTUEPhoneNumberViewController(type: .resetPassword), animated: true)
         }
-        
+
+        // support autofill
+        if #available(iOS 11.0, *) {
+            self.emailTextField.textField.textContentType = .username
+            self.passwordTextField.textField.textContentType = .password
+        }
+
         emailTextField.textField.autocorrectionType = .no
         passwordTextField.textField.autocorrectionType = .no
         passwordTextField.textField.isSecureTextEntry = true
@@ -89,28 +95,11 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         }
     }
     
-    //MARK: Validation methods
-    
-    func isEmailValid(email: String?) -> Bool {
-        guard let email = email else { return false }
-        
-        if email.isEmpty { return false }
-        
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: email)
-    }
-    
-    func isPasswordValid(password: String?) -> Bool {
-        guard let password = password else { return false }
-        if password.isEmpty || password.count < 5 { return false }
-        
-        return true
-    }
-    
+    // MARK: Validation methods
+
     override func checkTextFieldsValidity() -> Bool {
-        let enabled = isEmailValid(email: emailTextField.textField.text) && isPasswordValid(password: passwordTextField.textField.text)
+        let enabled = String.isValid(email: emailTextField.textField.text) &&
+            String.isValid(password: passwordTextField.textField.text)
         canGoNext(nextEnabled: enabled)
         return enabled
     }

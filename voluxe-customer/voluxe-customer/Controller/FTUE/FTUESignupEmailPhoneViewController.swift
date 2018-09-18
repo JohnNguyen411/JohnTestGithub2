@@ -77,7 +77,11 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         let phoneNumberTF: PhoneNumberTextField = phoneNumberTextField.textField as! PhoneNumberTextField
         phoneNumberTF.maxDigits = 10
-        
+
+        // support autofill
+        self.phoneNumberTextField.textField.textContentType = .telephoneNumber
+        self.emailTextField.textField.textContentType = .emailAddress
+
         phoneNumberTextField.accessibilityIdentifier = "phoneNumberTextField"
         emailTextField.accessibilityIdentifier = "emailTextField"
         tosCheckbox.accessibilityIdentifier = "tosCheckbox"
@@ -97,10 +101,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         phoneNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        
-        
+
         emailTextField.textField.becomeFirstResponder()
-        
         
         let tosString = String(format: NSLocalizedString(.AgreeToTosAndPrivacyFormat), String.TermsAndConditions, String.PrivacyPolicy)
         let attributedString = NSMutableAttributedString(string: tosString)
@@ -266,19 +268,22 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
             self.hideProgressHUD()
         }
     }
+
+    // MARK:- Validation
     
     override func checkTextFieldsValidity() -> Bool {
         let enabled = isEmailValid(email: emailTextField.textField.text) && isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text)
         canGoNext(nextEnabled: enabled)
         return enabled
     }
-    
+
     @objc func textFieldDidChange(_ textField: UITextField) {
+        textField.trimText()
         _ = checkTextFieldsValidity()
     }
-    
+
     // MARK: UITextFieldDelegate
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField.returnKeyType == .next {
             phoneNumberTextField.textField.becomeFirstResponder()

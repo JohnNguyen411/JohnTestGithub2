@@ -32,7 +32,7 @@ struct TestConstants {
     struct Emails {
 
         static let invalid = ["",
-                              "thisemailistoolongandhastoomanycharacters@email.com",
+                              "thisemailistoolongandhastoomanycharacters12345678901234567890@email.com",
                               "bademailnoatsymbol.com",
                               "@nouser.com"]
 
@@ -68,8 +68,10 @@ struct TestConstants {
     struct Passwords {
 
         static let invalid = ["",
-                              "1234567",
-                              "abcdefgh"]
+                              "123abc",
+                              "12345678",
+                              "abcdefgh",
+                              "abcdefghijABCDEFGHIJ01234567890123456789012345678901234567890123456789"]
 
         static let valid = ["abcd1234",
                             "abcd1234!@#$",

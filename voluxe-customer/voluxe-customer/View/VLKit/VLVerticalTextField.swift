@@ -38,20 +38,42 @@ class VLVerticalTextField : VLTextField {
     
     let separator = UIView()
     
-    var showHidePassword = false
-    
-    let passwordToggleIcon = PasswordToggleVisibilityView()
-    
+    var showPasswordToggleIcon = false {
+        didSet {
+            self.textField.rightView = showPasswordToggleIcon ? self.passwordToggleIcon : nil
+        }
+    }
+
+    // Autolayout cannot determine the intrinsic size of the
+    // toggle view so for the UITextField to properly manage
+    // it as a .rightView, a size has to be given to it.
+    private let passwordToggleIcon: PasswordToggleVisibilityView = {
+        let view = PasswordToggleVisibilityView()
+        view.bounds = CGRect(x: 0, y: 0, width: 30, height: 20)
+        view.tintColor = .luxeCobaltBlue()
+        return view
+    }()
+
+    // MARK: Initializers
+
     convenience init(title: String, placeholder: String, kern: Float? = nil) {
         self.init(title: title, placeholder: placeholder, isPhoneNumber: false, kern: kern)
     }
-    
-    // MARK: Initializers
+
     override init(title:String, placeholder:String, isPhoneNumber: Bool, kern: Float? = nil) {
         super.init(title: title, placeholder: placeholder, isPhoneNumber: isPhoneNumber, kern: kern)
         
         backgroundColor = .clear
         textField.placeholder = nil
+
+        // configure for Password AutoFill
+        // note that this means the "show password" button
+        // is not visible until the field has been tapped,
+        // and then only if the suggested password is not used
+        textField.keyboardType = .asciiCapable
+        textField.clearButtonMode = .never
+        textField.rightViewMode = .whileEditing
+        passwordToggleIcon.delegate = self
         
         textField.textAlignment = .left
         titleLabel.textAlignment = .left
@@ -131,27 +153,6 @@ class VLVerticalTextField : VLTextField {
         }
     }
     
-    
-    func setShowHidePassword(showHidePassword: Bool) {
-        self.textField.keyboardType = .asciiCapable
-        self.showHidePassword = showHidePassword
-        if showHidePassword && passwordToggleIcon.superview == nil {
-            
-            self.addSubview(passwordToggleIcon)
-            passwordToggleIcon.snp.makeConstraints { (make) -> Void in
-                make.right.equalToSuperview()
-                make.bottom.equalTo(textField.snp.bottom)
-                make.height.equalTo(20)
-                make.width.equalTo(30)
-            }
-            passwordToggleIcon.delegate = self
-            passwordToggleIcon.tintColor = .luxeCobaltBlue()
-            
-        } else if !showHidePassword && passwordToggleIcon.superview == nil {
-            passwordToggleIcon.removeFromSuperview()
-        }
-    }
-    
     override func applyConstraints() {
         textField.snp.makeConstraints { (make) -> Void in
             make.left.right.equalToSuperview()
@@ -224,7 +225,9 @@ class VLVerticalTextField : VLTextField {
 }
 
 // MARK: PasswordToggleVisibilityDelegate
+
 extension VLVerticalTextField: PasswordToggleVisibilityDelegate {
+
     func viewWasToggled(passwordToggleVisibilityView: PasswordToggleVisibilityView, isSelected selected: Bool) {
         
         // hack to fix a bug with padding when switching between secureTextEntry state

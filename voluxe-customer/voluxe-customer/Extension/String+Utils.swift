@@ -9,6 +9,7 @@
 import Foundation
 
 extension String {
+
     var boolValue: Bool {
         return NSString(string: self).boolValue
     }
@@ -28,7 +29,6 @@ extension String {
         self = self.capitalizingFirstLetter()
     }
 
-    
     static func intToStringDecimal(largeNumber: Int) -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = NumberFormatter.Style.decimal
@@ -76,5 +76,7 @@ extension String {
         return stringOne == stringTwo
     }
     
-    
+    public func trim() -> String {
+        return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+    }
 }

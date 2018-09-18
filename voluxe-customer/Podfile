@@ -23,7 +23,7 @@ target 'voluxe-customer' do
     pod 'KeychainAccess', '3.1.0'
     pod 'Kingfisher', '4.2.0'
     pod 'MBProgressHUD', '1.1.0'
-    pod 'PhoneNumberKit', '2.0'
+    pod 'PhoneNumberKit', :git => 'https://github.com/marmelroy/PhoneNumberKit.git', :commit => 'e281ef6'  # required to fix Password AutoFill
     pod 'RealmSwift', '3.7.6'
     pod 'SDWebImage', '4.0.0'
     pod 'SlideMenuControllerSwift', '4.0.0'

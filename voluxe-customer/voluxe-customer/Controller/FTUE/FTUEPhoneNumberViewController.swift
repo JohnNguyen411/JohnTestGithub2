@@ -56,6 +56,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         
         phoneNumberTextField.accessibilityIdentifier = "phoneNumberTextField"
         phoneNumberTextField.textField.keyboardType = .phonePad
+        phoneNumberTextField.textField.textContentType = .telephoneNumber
         phoneNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         let phoneNumberTF: PhoneNumberTextField = phoneNumberTextField.textField as! PhoneNumberTextField
@@ -119,6 +120,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
+        textField.trimText()
         _ = checkTextFieldsValidity()
     }
     

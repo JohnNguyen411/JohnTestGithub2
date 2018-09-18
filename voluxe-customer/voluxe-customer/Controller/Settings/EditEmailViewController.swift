@@ -35,6 +35,7 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
         emailTextField.textField.autocapitalizationType = .none
         emailTextField.textField.returnKeyType = .next
         emailTextField.textField.delegate = self
+        emailTextField.textField.textContentType = .emailAddress
         emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         if let customer = UserManager.sharedInstance.getCustomer() {
@@ -60,18 +61,6 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
     
     //MARK: Validation methods
     
-    
-    func isEmailValid(email: String?) -> Bool {
-        guard let email = email else { return false }
-        if email.isEmpty { return false }
-        
-        let emailRegEx = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        
-        let emailTest = NSPredicate(format:"SELF MATCHES %@", emailRegEx)
-        return emailTest.evaluate(with: email)
-    }
-    
-    
     private func onError(error: Errors? = nil) {
         MBProgressHUD.hide(for: self.view, animated: true)
         
@@ -85,12 +74,13 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
     }
    
     override func checkTextFieldsValidity() -> Bool {
-        let enabled = isEmailValid(email: emailTextField.textField.text)
+        let enabled = String.isValid(email: self.emailTextField.textField.text)
         canGoNext(nextEnabled: enabled)
         return enabled
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
+        textField.trimText()
         _ = checkTextFieldsValidity()
     }
     

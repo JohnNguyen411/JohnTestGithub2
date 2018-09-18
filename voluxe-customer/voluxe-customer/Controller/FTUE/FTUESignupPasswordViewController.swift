@@ -33,7 +33,24 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         textView.numberOfLines = 0
         return textView
     }()
-    
+
+    // This textfield is required to allow AutoFill password generation
+    // to work.  There must be a visible (not hidden) .username tagged
+    // field for a password to be generated, but that does not fit with
+    // the visual style and API order that we use.  Instead, the workaround
+    // is to make the field not editable, but then move it offscreen.
+    let usernameTextField: UITextField = {
+        let textfield = UITextField()
+        textfield.borderStyle = .none
+        textfield.isEnabled = false
+        textfield.text = UserManager.sharedInstance.signupCustomer.email
+        textfield.textColor = UIColor.luxeWhite()
+        if #available(iOS 11.0, *) {
+            textfield.textContentType = .username
+        }
+        return textfield
+    }()
+
     let volvoPwdTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••", kern: 2.0)
     let volvoPwdConfirmTextField = VLVerticalTextField(title: .RepeatPassword, placeholder: "••••••••", kern: 2.0)
     
@@ -50,12 +67,18 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        // support autofill
+        if #available(iOS 12.0, *) {
+            self.volvoPwdTextField.textField.textContentType = .newPassword
+            self.volvoPwdConfirmTextField.textField.textContentType = .newPassword
+        }
+
         volvoPwdTextField.accessibilityIdentifier = "volvoPwdTextField"
         volvoPwdConfirmTextField.accessibilityIdentifier = "volvoPwdConfirmTextField"
                 
-        volvoPwdTextField.setShowHidePassword(showHidePassword: true)
-        volvoPwdConfirmTextField.setShowHidePassword(showHidePassword: true)
+        volvoPwdTextField.showPasswordToggleIcon = true
+        volvoPwdConfirmTextField.showPasswordToggleIcon = true
         
         volvoPwdTextField.textField.autocorrectionType = .no
         volvoPwdConfirmTextField.textField.autocorrectionType = .no
@@ -71,8 +94,9 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         volvoPwdTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         volvoPwdConfirmTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        
-        volvoPwdTextField.textField.becomeFirstResponder()
+
+        // note that the user has to tap into the field for Password
+        // AutoFill to work, forcing it to first responder won't work.
         canGoNext(nextEnabled: false)
         
         if UserManager.sharedInstance.isLoggedIn() {
@@ -83,7 +107,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     override func setupViews() {
         
         super.setupViews()
-        
+
         scrollView.addSubview(passwordLabel)
         scrollView.addSubview(passwordConditionLabel)
         scrollView.addSubview(volvoPwdTextField)
@@ -112,39 +136,21 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             make.top.equalTo(volvoPwdTextField.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
+
+        // moving the username field offscreen seems to satisfy Password AutoFill's
+        // requirement of a visible username field for the Generate Strong Password modal
+        self.view.insertSubview(self.usernameTextField, belowSubview: self.volvoPwdTextField)
+        self.usernameTextField.snp.makeConstraints {
+            make in
+            make.trailing.equalTo(self.scrollView.snp.leading)
+        }
     }
     
     //MARK: Validation methods
     
-    func isPasswordValid(password: String?) -> Bool {
-        guard let password = password else { return false }
-        
-        if checkPasswordLength(password: password) {
-            return password.containsNumber() && password.containsLetter()
-        }
-        return false
-    }
-    
-    func checkPasswordLength(password: String?) -> Bool {
-        guard let password = password else { return false }
-        
-        if password.isEmpty || password.count < 8 {
-            return false
-        }
-        return true
-        
-    }
-    
-    private func containsUnauthorizedChars(password: String) -> Bool {
-        let regex = try! NSRegularExpression(pattern: "^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9@$!%*?&]{8,60}")
-        let range = NSMakeRange(0, password.utf16.count)
-        let matchRange = regex.rangeOfFirstMatch(in: password, options: .reportProgress, range: range)
-        let valid = matchRange == range
-        return !valid
-    }
-    
     override func checkTextFieldsValidity() -> Bool {
-        let enabled = checkPasswordLength(password: volvoPwdTextField.textField.text) && checkPasswordLength(password: volvoPwdConfirmTextField.textField.text)
+        let enabled = String.isValid(password: volvoPwdTextField.textField.text) &&
+            String.isValid(password: volvoPwdConfirmTextField.textField.text)
         canGoNext(nextEnabled: enabled)
         return enabled
     }
@@ -228,7 +234,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         } else if let password = volvoPwdConfirmTextField.textField.text, !password.containsNumber() {
             inlineError(error: .RequiresANumber)
             return
-        } else if let password = volvoPwdConfirmTextField.textField.text, containsUnauthorizedChars(password: password) {
+        } else if let password = volvoPwdConfirmTextField.textField.text, password.hasIllegalPasswordCharacters() {
             inlineError(error: .InvalidCharacter)
             volvoPwdConfirmTextField.setBottomRightActionBlock { [weak self] in
                 self?.showOkDialog(title: .Error, message: .PasswordUnauthorizedChars, dialog: .error, screen: self?.screen)

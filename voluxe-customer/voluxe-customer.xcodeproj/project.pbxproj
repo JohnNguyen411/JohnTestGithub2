@@ -52,6 +52,8 @@
 		536D6D6420CF3B5C00A269D4 /* SignUp_APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FDF20A20B761D20004B8A1 /* SignUp_APITests.swift */; };
 		536D6D6720CF50FF00A269D4 /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */; };
 		537CEAD720F7B792003C97F1 /* BaseViewController+BarButtonItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CEAD620F7B792003C97F1 /* BaseViewController+BarButtonItems.swift */; };
+		538CFBE82150783500BF5D25 /* UITextField+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE72150783400BF5D25 /* UITextField+Voluxe.swift */; };
+		538CFBEA215078AB00BF5D25 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE9215078AA00BF5D25 /* String+Validation.swift */; };
 		538FE74820BF46F900C3CE17 /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */; };
 		538FE74920BF472A00C3CE17 /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */; };
 		538FE74A20BF473100C3CE17 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
@@ -479,6 +481,8 @@
 		5365315520AA33F300116AC8 /* increment_build.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = increment_build.sh; sourceTree = "<group>"; };
 		536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEnums.swift; sourceTree = "<group>"; };
 		537CEAD620F7B792003C97F1 /* BaseViewController+BarButtonItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseViewController+BarButtonItems.swift"; sourceTree = "<group>"; };
+		538CFBE72150783400BF5D25 /* UITextField+Voluxe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Voluxe.swift"; sourceTree = "<group>"; };
+		538CFBE9215078AA00BF5D25 /* String+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
 		538FBDE020AB45EA0096480C /* release-notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "release-notes.txt"; sourceTree = "<group>"; };
 		538FBDE120AB61BC0096480C /* export-options-development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "export-options-development.plist"; sourceTree = "<group>"; };
 		538FBDE220AB62180096480C /* xcarchive-to-ipa.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "xcarchive-to-ipa.sh"; sourceTree = "<group>"; };
@@ -1158,6 +1162,7 @@
 				53D9A7C0209A7D01008BE93E /* NSObject+Voluxe.swift */,
 				6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */,
 				6C7DDE121FDB664D000E2822 /* String+Utils.swift */,
+				538CFBE9215078AA00BF5D25 /* String+Validation.swift */,
 				6C2AA2E620AB900F0089350B /* UIBarButtonItem+Voluxe.swift */,
 				6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */,
 				6C95439D1FABEBBC0099AC84 /* UIColors+Voluxe.swift */,
@@ -1166,6 +1171,7 @@
 				6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */,
 				6CB11818207D36D1008FB2FE /* UINavigationController+Voluxe.swift */,
 				6C27FBBE20E4599300EAA689 /* UITapGestureRecognizer+Links.swift */,
+				538CFBE72150783400BF5D25 /* UITextField+Voluxe.swift */,
 				6CF3F44E20F4113700A89214 /* UITextView+Voluxe.swift */,
 				5321B1B620C9A980006C1E14 /* UIView+Blur.swift */,
 				6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */,
@@ -2331,6 +2337,7 @@
 				53C7300F20CEE5F400BCE926 /* Gradient.swift in Sources */,
 				5340E91120D876F100B17D53 /* DebugFontTestViewController.swift in Sources */,
 				6C90CC1220113323002594F5 /* LoadingViewController.swift in Sources */,
+				538CFBEA215078AB00BF5D25 /* String+Validation.swift in Sources */,
 				6CD3BCAE200E85FE001DD79B /* RepairOrder.swift in Sources */,
 				6C88DC941FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				6CCCF23B2048BA33004BF1A6 /* VehicleModel.swift in Sources */,
@@ -2421,6 +2428,7 @@
 				6C9B320F202E0CED006380B9 /* CustomerAddress.swift in Sources */,
 				53D9A7BB209A50D2008BE93E /* DebugSettingsViewController.swift in Sources */,
 				6C1CE1ED20CB1A8F00A2E054 /* RatingLocalization.swift in Sources */,
+				538CFBE82150783500BF5D25 /* UITextField+Voluxe.swift in Sources */,
 				6C1CE1F320CB3D6000A2E054 /* VLMarkedSlider.swift in Sources */,
 				6C937065204F64360084443C /* SettingsCarViewController.swift in Sources */,
 				52D5C9B7211514EF0020F43F /* RoundImageView.swift in Sources */,

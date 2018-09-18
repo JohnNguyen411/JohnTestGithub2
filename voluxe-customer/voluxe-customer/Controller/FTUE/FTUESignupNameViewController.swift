@@ -43,6 +43,10 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     override func viewDidLoad() {
 
         super.viewDidLoad()
+
+        // support autofill
+        self.firstNameTextField.textField.textContentType = .givenName
+        self.lastNameTextField.textField.textContentType = .familyName
         
         welcomeLabel.accessibilityIdentifier = "welcomeLabel"
         firstNameTextField.accessibilityIdentifier = "firstNameTextField"
@@ -156,6 +160,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     }
     
     @objc func textFieldDidChange(_ textField: UITextField) {
+        textField.trimText()
         _ = checkTextFieldsValidity()
     }
     

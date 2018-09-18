@@ -10,6 +10,7 @@
 		<string>applinks:luxebyvolvo-alternate.test-app.link</string>
 		<string>applinks:luxebyvolvo.app.link</string>
 		<string>applinks:luxebyvolvo-alternate.app.link</string>
+		<string>webcredentials:luxebyvolvo.luxe.com</string>
 	</array>
 </dict>
 </plist>
