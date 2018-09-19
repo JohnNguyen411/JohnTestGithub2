@@ -18,10 +18,12 @@ struct Layout {
     static func fill(view: UIView, in superview: UIView) {
         superview.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
-        view.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
-        view.rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
-        view.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            view.leftAnchor.constraint(equalTo: superview.leftAnchor),
+            view.topAnchor.constraint(equalTo: superview.topAnchor),
+            view.rightAnchor.constraint(equalTo: superview.rightAnchor),
+            view.bottomAnchor.constraint(equalTo: superview.bottomAnchor)
+        ])
     }
 
     // TODO use autolayout calls instead of SnapKit
@@ -29,9 +31,11 @@ struct Layout {
     static func add(view: UIView, toTopOf superview: UIView) {
         superview.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
-        view.topAnchor.constraint(equalTo: superview.compatibleSafeAreaLayoutGuide.topAnchor).isActive = true
-        view.rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            view.leftAnchor.constraint(equalTo: superview.leftAnchor),
+            view.topAnchor.constraint(equalTo: superview.compatibleSafeAreaLayoutGuide.topAnchor),
+            view.rightAnchor.constraint(equalTo: superview.rightAnchor)
+        ])
     }
 
     // TODO use autolayout calls instead of SnapKit
@@ -41,9 +45,11 @@ struct Layout {
         guard let superview = peerView.superview else { return }
         superview.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
-        view.topAnchor.constraint(equalTo: peerView.bottomAnchor, constant: 20).isActive = true
-        view.rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            view.leftAnchor.constraint(equalTo: superview.leftAnchor),
+            view.topAnchor.constraint(equalTo: peerView.bottomAnchor, constant: 20),
+            view.rightAnchor.constraint(equalTo: superview.rightAnchor)
+        ])
     }
 
     // TODO use autolayout calls instead of SnapKit
@@ -53,12 +59,16 @@ struct Layout {
         let view = UIView(frame: .zero)
         superview.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
-        view.topAnchor.constraint(equalTo: peerView.bottomAnchor).isActive = true
-        view.rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            view.leftAnchor.constraint(equalTo: superview.leftAnchor),
+            view.topAnchor.constraint(equalTo: peerView.bottomAnchor),
+            view.rightAnchor.constraint(equalTo: superview.rightAnchor)
+        ])
+        // TODO how to get this into activate()
         if pinToSuperviewBottom {
             view.bottomAnchor.constraint(equalTo: superview.compatibleSafeAreaLayoutGuide.bottomAnchor).isActive = true
         }
+
     }
 
     /// Pins an empty, stretchable spacer view to the bottom
@@ -74,10 +84,12 @@ struct Layout {
         guard let peerview = contentView.subviews.last else { return view }
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        view.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
-        view.topAnchor.constraint(equalTo: peerview.compatibleSafeAreaLayoutGuide.bottomAnchor).isActive = true
-        view.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
-        view.bottomAnchor.constraint(equalTo: contentView.compatibleSafeAreaLayoutGuide.bottomAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            view.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            view.topAnchor.constraint(equalTo: peerview.compatibleSafeAreaLayoutGuide.bottomAnchor),
+            view.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            view.bottomAnchor.constraint(equalTo: contentView.compatibleSafeAreaLayoutGuide.bottomAnchor)
+        ])
         return view
     }
 
@@ -93,8 +105,10 @@ struct Layout {
         let view = UIView(frame: .zero)
         guard let superview = scrollView.superview else { assertionFailure(); return view }
         Layout.fill(view: view, in: scrollView)
-        view.widthAnchor.constraint(equalTo: superview.widthAnchor).isActive = true
-        view.heightAnchor.constraint(greaterThanOrEqualTo: superview.heightAnchor).isActive = true
+        NSLayoutConstraint.activate([
+            view.widthAnchor.constraint(equalTo: superview.widthAnchor),
+            view.heightAnchor.constraint(greaterThanOrEqualTo: superview.heightAnchor)
+        ])
         return view
     }
 }
