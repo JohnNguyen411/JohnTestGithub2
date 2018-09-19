@@ -18,6 +18,7 @@ class DebugSettingsViewController: DebugTableViewController {
         self.navigationItem.title = "Debug"
         self.settings = [self.applicationSettings(),
                          self.featureSettings(),
+                         self.styleGuideSettings(),
                          self.userSettings(),
                          self.bookingsSettings(),
                          self.networkSettings(),
@@ -50,7 +51,14 @@ class DebugSettingsViewController: DebugTableViewController {
         },
                                              actionClosure: nil)]
 
-        settings += [DebugTableViewCellModel(title: "Fonts",
+        return ("Application", settings)
+    }
+
+    private func styleGuideSettings() -> (String, [DebugTableViewCellModel]) {
+
+        var settings: [DebugTableViewCellModel] = []
+
+        settings += [DebugTableViewCellModel(title: "Novum vs Sans Pro",
                                              cellReuseIdentifier: DebugValueTableViewCell.className,
                                              valueClosure:
             {
@@ -64,7 +72,7 @@ class DebugSettingsViewController: DebugTableViewController {
             }
         )]
 
-        settings += [DebugTableViewCellModel(title: "Style Guide",
+        settings += [DebugTableViewCellModel(title: "UIFont.TextStyle",
                                              cellReuseIdentifier: DebugValueTableViewCell.className,
                                              valueClosure:
             {
@@ -74,11 +82,25 @@ class DebugSettingsViewController: DebugTableViewController {
                                              actionClosure:
             {
                 [unowned self] _ in
-                self.navigationController?.pushViewController(StyleGuideViewController(), animated: true)
+                self.navigationController?.pushViewController(UIFontTextStyleViewController(), animated: true)
             }
         )]
 
-        return ("Application", settings)
+        settings += [DebugTableViewCellModel(title: "Volvo Text Styles",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                [unowned self] _ in
+                self.navigationController?.pushViewController(VolvoTextStyleViewController(), animated: true)
+            }
+        )]
+
+        return ("Style Guide", settings)
     }
 
     private func featureSettings() -> (String, [DebugTableViewCellModel]) {

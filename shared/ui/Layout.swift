@@ -8,22 +8,19 @@
 
 import Foundation
 
-// TODO move and formalize this
+// grid discussion with Brian
+//
+
 struct Layout {
 
-    // TODO use autolayout calls instead of SnapKit
     // TODO can this be separated down to a protocol and implementation?
-    // to avoid being tied a single layout framework?
-    // might as well just use Autolayout directly then
+    // TODO fill(superview, with view)
     static func fill(view: UIView, in superview: UIView) {
         superview.addSubview(view)
-//        view.snp.makeConstraints {
-//            make in
-//            make.edgesEqualsToView(view: superview)
-//        }
-        view.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
         view.topAnchor.constraint(equalTo: superview.topAnchor).isActive = true
-        view.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
+        view.rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
         view.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
     }
 
@@ -31,12 +28,10 @@ struct Layout {
     // TODO is margin flexible?
     static func add(view: UIView, toTopOf superview: UIView) {
         superview.addSubview(view)
-        view.snp.makeConstraints {
-            make in
-            make.left.equalToSuperview()
-            make.top.equalTo(superview.safeArea.top).offset(20)
-            make.right.equalToSuperview()
-        }
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: superview.compatibleSafeAreaLayoutGuide.topAnchor).isActive = true
+        view.rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
     }
 
     // TODO use autolayout calls instead of SnapKit
@@ -45,12 +40,10 @@ struct Layout {
     static func add(view: UIView, below peerView: UIView) {
         guard let superview = peerView.superview else { return }
         superview.addSubview(view)
-        view.snp.makeConstraints {
-            make in
-            make.left.equalToSuperview()
-            make.top.equalTo(peerView.snp.bottom).offset(20)
-            make.right.equalToSuperview()
-        }
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: peerView.bottomAnchor, constant: 20).isActive = true
+        view.rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
     }
 
     // TODO use autolayout calls instead of SnapKit
@@ -59,12 +52,12 @@ struct Layout {
         guard let superview = peerView.superview else { return }
         let view = UIView(frame: .zero)
         superview.addSubview(view)
-        view.snp.makeConstraints {
-            make in
-            make.left.equalToSuperview()
-            make.top.equalToSuperview()
-            make.right.equalToSuperview()
-            if pinToSuperviewBottom { make.bottom.equalTo(superview.safeArea.bottom) }
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.leftAnchor.constraint(equalTo: superview.leftAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: peerView.bottomAnchor).isActive = true
+        view.rightAnchor.constraint(equalTo: superview.rightAnchor).isActive = true
+        if pinToSuperviewBottom {
+            view.bottomAnchor.constraint(equalTo: superview.compatibleSafeAreaLayoutGuide.bottomAnchor).isActive = true
         }
     }
 
@@ -74,20 +67,17 @@ struct Layout {
     /// Autolayout to calculate the scroll view's content size
     /// correctly.
     // TODO find a better name
-    // TODO use autolayout calls instead of SnapKit
     // TODO what to return if guard fails?
     @discardableResult
     static func addSpacerView(toBottomOf contentView: UIView) -> UIView {
         let view = UIView(frame: .zero)
         guard let peerview = contentView.subviews.last else { return view }
         contentView.addSubview(view)
-        view.snp.makeConstraints {
-            make in
-            make.left.equalToSuperview()
-            make.top.equalTo(peerview.safeArea.bottom)
-            make.right.equalToSuperview()
-            make.bottom.equalTo(contentView.safeArea.bottom)
-        }
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.leftAnchor.constraint(equalTo: contentView.leftAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: peerview.compatibleSafeAreaLayoutGuide.bottomAnchor).isActive = true
+        view.rightAnchor.constraint(equalTo: contentView.rightAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: contentView.compatibleSafeAreaLayoutGuide.bottomAnchor).isActive = true
         return view
     }
 
@@ -100,15 +90,11 @@ struct Layout {
 
     // TODO use autolayout calls instead of SnapKit
     static func verticalContentView(in scrollView: UIScrollView) -> UIView {
-        guard let superview = scrollView.superview else { assertionFailure(); return UIView() }
         let view = UIView(frame: .zero)
-        scrollView.addSubview(view)
-        view.snp.makeConstraints {
-            make in
-            make.edges.equalToSuperview()
-            make.width.equalTo(superview.snp.width)
-            make.height.greaterThanOrEqualToSuperview()
-        }
+        guard let superview = scrollView.superview else { assertionFailure(); return view }
+        Layout.fill(view: view, in: scrollView)
+        view.widthAnchor.constraint(equalTo: superview.widthAnchor).isActive = true
+        view.heightAnchor.constraint(greaterThanOrEqualTo: superview.heightAnchor).isActive = true
         return view
     }
 }

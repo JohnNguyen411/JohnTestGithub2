@@ -53,12 +53,13 @@
 		536D6D6420CF3B5C00A269D4 /* SignUp_APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53FDF20A20B761D20004B8A1 /* SignUp_APITests.swift */; };
 		536D6D6720CF50FF00A269D4 /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */; };
 		537CEAD720F7B792003C97F1 /* BaseViewController+BarButtonItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CEAD620F7B792003C97F1 /* BaseViewController+BarButtonItems.swift */; };
-		538CFBE82150783500BF5D25 /* UITextField+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE72150783400BF5D25 /* UITextField+Voluxe.swift */; };
-		538CFBEA215078AB00BF5D25 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE9215078AA00BF5D25 /* String+Validation.swift */; };
-		538CFBDD214B1ABE00BF5D25 /* StyleGuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBDC214B1ABE00BF5D25 /* StyleGuideViewController.swift */; };
+		538CFBDD214B1ABE00BF5D25 /* UIFontTextStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBDC214B1ABE00BF5D25 /* UIFontTextStyleViewController.swift */; };
 		538CFBDF214C1FDB00BF5D25 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBDE214C1FDB00BF5D25 /* Font.swift */; };
 		538CFBE2214C224200BF5D25 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE1214C224200BF5D25 /* Layout.swift */; };
 		538CFBE4214C225300BF5D25 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE3214C225300BF5D25 /* Label.swift */; };
+		538CFBE82150783500BF5D25 /* UITextField+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE72150783400BF5D25 /* UITextField+Voluxe.swift */; };
+		538CFBEA215078AB00BF5D25 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE9215078AA00BF5D25 /* String+Validation.swift */; };
+		538CFBEC2151B73200BF5D25 /* VolvoTextStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBEB2151B73200BF5D25 /* VolvoTextStyleViewController.swift */; };
 		538FE74820BF46F900C3CE17 /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5DDECB20096CF8000847C9 /* CustomerAPI.swift */; };
 		538FE74920BF472A00C3CE17 /* ResponseObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C8159B31FDA07F400B8DF31 /* ResponseObject.swift */; };
 		538FE74A20BF473100C3CE17 /* NetworkRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */; };
@@ -482,12 +483,13 @@
 		5366416721594D8900564A5B /* AutoFillViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoFillViewController.swift; sourceTree = "<group>"; };
 		536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsEnums.swift; sourceTree = "<group>"; };
 		537CEAD620F7B792003C97F1 /* BaseViewController+BarButtonItems.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "BaseViewController+BarButtonItems.swift"; sourceTree = "<group>"; };
-		538CFBE72150783400BF5D25 /* UITextField+Voluxe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Voluxe.swift"; sourceTree = "<group>"; };
-		538CFBE9215078AA00BF5D25 /* String+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
-		538CFBDC214B1ABE00BF5D25 /* StyleGuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StyleGuideViewController.swift; sourceTree = "<group>"; };
+		538CFBDC214B1ABE00BF5D25 /* UIFontTextStyleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIFontTextStyleViewController.swift; sourceTree = "<group>"; };
 		538CFBDE214C1FDB00BF5D25 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		538CFBE1214C224200BF5D25 /* Layout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		538CFBE3214C225300BF5D25 /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		538CFBE72150783400BF5D25 /* UITextField+Voluxe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Voluxe.swift"; sourceTree = "<group>"; };
+		538CFBE9215078AA00BF5D25 /* String+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
+		538CFBEB2151B73200BF5D25 /* VolvoTextStyleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VolvoTextStyleViewController.swift; sourceTree = "<group>"; };
 		538FBDE020AB45EA0096480C /* release-notes.txt */ = {isa = PBXFileReference; lastKnownFileType = text; path = "release-notes.txt"; sourceTree = "<group>"; };
 		538FBDE120AB61BC0096480C /* export-options-development.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "export-options-development.plist"; sourceTree = "<group>"; };
 		538FBDE220AB62180096480C /* xcarchive-to-ipa.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; path = "xcarchive-to-ipa.sh"; sourceTree = "<group>"; };
@@ -1408,7 +1410,8 @@
 				6CBFD82420D1BE040097D4AB /* DebugFontViewController.swift */,
 				6CBFD82620D1C2550097D4AB /* DebugFontTestViewController.swift */,
 				6CBFD82920D1C9F40097D4AB /* DebugFontCellView.swift */,
-				538CFBDC214B1ABE00BF5D25 /* StyleGuideViewController.swift */,
+				538CFBDC214B1ABE00BF5D25 /* UIFontTextStyleViewController.swift */,
+				538CFBEB2151B73200BF5D25 /* VolvoTextStyleViewController.swift */,
 			);
 			path = Font;
 			sourceTree = "<group>";
@@ -2327,6 +2330,7 @@
 				5366416821594D8900564A5B /* AutoFillViewController.swift in Sources */,
 				6CBB4E9D1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
 				6CCCF241204DFA9C004BF1A6 /* EmptyMappableObject.swift in Sources */,
+				538CFBEC2151B73200BF5D25 /* VolvoTextStyleViewController.swift in Sources */,
 				6C20E1BB1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
 				6C9C9060209CD96A00494068 /* GMDistanceMatrix.swift in Sources */,
 				6CD474AC2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */,
@@ -2500,7 +2504,7 @@
 				6C58330E1FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */,
 				6C5C6A101FD8AACD00D70BF6 /* UserManager.swift in Sources */,
 				53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */,
-				538CFBDD214B1ABE00BF5D25 /* StyleGuideViewController.swift in Sources */,
+				538CFBDD214B1ABE00BF5D25 /* UIFontTextStyleViewController.swift in Sources */,
 				6C91BBDB1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C79C43A20A280AC00443463 /* GMSnappedPoints.swift in Sources */,
 				6C3FB2B01FA2823800B22EAB /* Fonts.swift in Sources */,
