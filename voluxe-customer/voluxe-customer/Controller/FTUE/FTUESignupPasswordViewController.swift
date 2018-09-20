@@ -149,8 +149,8 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     //MARK: Validation methods
     
     override func checkTextFieldsValidity() -> Bool {
-        let enabled = String.isValid(password: volvoPwdTextField.textField.text) &&
-            String.isValid(password: volvoPwdConfirmTextField.textField.text)
+        let enabled = (volvoPwdTextField.textField.text?.isMinimumPasswordLength() ?? false) &&
+                      (volvoPwdConfirmTextField.textField.text?.isMinimumPasswordLength() ?? false)
         canGoNext(nextEnabled: enabled)
         return enabled
     }
