@@ -233,7 +233,6 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
                 selfDropButton.isHidden = true
             }
             
-            
         } else {
             deliveryButton.snp.makeConstraints { make in
                 make.left.equalToSuperview().inset(margin)
@@ -257,6 +256,44 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             make.height.width.equalTo(1)
         }
         
+    }
+    
+    private func updateButtonsConstraints() {
+        let margin = ViewUtils.getAdaptedHeightSize(sizeInPoints: 20)
+
+        if !ServiceState.isPickup(state: serviceState) {
+            if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfOBEnabledKey) {
+                
+                selfDropButton.snp.remakeConstraints { make in
+                    make.left.equalToSuperview().inset(margin)
+                    make.right.equalToSuperview().inset(margin)
+                    make.equalsToBottom(view: self.view, offset: -margin)
+                    make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
+                }
+                
+                deliveryButton.snp.remakeConstraints { make in
+                    make.left.equalToSuperview().inset(margin)
+                    make.right.equalToSuperview().inset(margin)
+                    make.bottom.equalTo(selfDropButton.snp.top).offset(-margin)
+                    make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
+                }
+            } else {
+                deliveryButton.snp.remakeConstraints { make in
+                    make.left.equalToSuperview().inset(margin)
+                    make.right.equalToSuperview().inset(margin)
+                    make.equalsToBottom(view: self.view, offset: -margin)
+                    make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
+                }
+            }
+            
+        } else {
+            deliveryButton.snp.remakeConstraints { make in
+                make.left.equalToSuperview().inset(margin)
+                make.right.equalToSuperview().inset(margin)
+                make.equalsToBottom(view: self.view, offset: -margin)
+                make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
+            }
+        }
     }
     
     func fillViews() {
@@ -304,6 +341,8 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     override func stateDidChange(state: ServiceState) {
         super.stateDidChange(state: state)
         self.serviceState = state
+        
+        updateButtonsConstraints()
         
         stateTestView.accessibilityIdentifier = "schedulingTestView\(state)"
         stateTestView.text = "schedulingTestView\(state)"
