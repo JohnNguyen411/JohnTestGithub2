@@ -1,3 +1,6 @@
+v1.2.0(146):
+Misc bugfixes and improvements
+
 v1.2.0(145):
 Remind user to have License and Insurance ready
 Misc bugfixes and improvements
