@@ -1,3 +1,7 @@
+v1.2.0(145):
+Remind user to have License and Insurance ready
+Misc bugfixes and improvements
+
 v1.2.0(144):
 Support for Autofill of user information on iOS 10+ devices
 Support for generating strong passwords on iOS 12+ devices

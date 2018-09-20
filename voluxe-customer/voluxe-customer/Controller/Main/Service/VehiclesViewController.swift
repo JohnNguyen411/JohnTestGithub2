@@ -221,6 +221,10 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     
     func showVehicles(vehicles: [Vehicle]) {
         self.vehicles = vehicles
+        if scrollView.scrollViewSize != nil && vehicles.count != self.vehicleCount && (vehicles.count <= 1 || self.vehicleCount <= 1){
+            // scrollview size did change
+            scrollView.scrollViewSize = nil
+        }
         if vehicles.count > 1 {
             vehicleCollectionView.snp.updateConstraints { make in
                 make.height.equalTo(VehicleCell.VehicleCellHeight)
@@ -231,12 +235,11 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
             }
         }
         
-        if vehicles.count != vehicleCount {
-            vehicleCollectionView.setNeedsLayout()
-        }
-        
         DispatchQueue.main.async {
             self.vehicleCollectionView.reloadData()
+            if vehicles.count != self.vehicleCount {
+                self.vehicleCollectionView.setNeedsLayout()
+            }
             self.selectVehicle(index: VehiclesViewController.selectedVehicleIndex)
         }
         
