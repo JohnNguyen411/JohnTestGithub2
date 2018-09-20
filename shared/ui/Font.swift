@@ -117,42 +117,28 @@ struct Font {
 
 // MARK:- Fonts by UIFontMetrics
 
-extension Font {
+extension UIFont.TextStyle {
 
-    // conforms to UIFont.TextStyle
-    struct TextStyle {
-        static let largeTitle = Font.ExtraLarge.bold
-        static let title1 = Font.Large.bold
-        static let title2 = Font.Medium.bold
-        static let title3 = Font.Medium.regular
-        static let headline = Font.Medium.bold
-        static let subheadline = Font.Small.light
-        static let body = Font.Medium.regular
-        static let callout = Font.Small.light
-        static let caption1 = Font.Medium.regular
-        static let caption2 = Font.Medium.light
-    }
-
-    static func with(style: UIFont.TextStyle) -> UIFont {
+    var font: UIFont {
 
         // newer styles
         if #available(iOS 11.0, *) {
-            if style == .largeTitle { return TextStyle.largeTitle }
+            if self == .largeTitle { return Font.ExtraLarge.bold }
         }
 
         // UIFontMetrics from iOS 10
-        if style == .title1             { return TextStyle.title1 }
-        else if style == .title2        { return TextStyle.title2 }
-        else if style == .title3        { return TextStyle.title3 }
-        else if style == .headline      { return TextStyle.headline }
-        else if style == .subheadline   { return TextStyle.subheadline }
-        else if style == .body          { return TextStyle.body }
-        else if style == .callout       { return TextStyle.callout }
-        else if style == .caption1      { return TextStyle.caption1 }
-        else if style == .caption2      { return TextStyle.caption2 }
-
-        // default for unknown types
-        else { return TextStyle.body }
+        switch self {
+            case .title1:       return Font.Large.bold
+            case .title2:       return Font.Medium.bold
+            case .title3:       return Font.Medium.regular
+            case .headline:     return Font.Medium.bold
+            case .subheadline:  return Font.Small.light
+            case .body:         return Font.Medium.regular
+            case .callout:      return Font.Small.light
+            case .caption1:     return Font.Medium.regular
+            case .caption2:     return Font.Medium.semiLight
+            default:            return Font.Medium.regular
+        }
     }
 }
 
