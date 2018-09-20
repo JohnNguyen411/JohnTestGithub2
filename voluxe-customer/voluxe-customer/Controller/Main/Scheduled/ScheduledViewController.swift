@@ -55,6 +55,15 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
         return titleLabel
     }()
     
+    let driversLicenseInsuranceLabel: UILabel = {
+        let titleLabel = UILabel()
+        titleLabel.textColor = .luxeDarkGray()
+        titleLabel.text = .LicenseInsuranceCardReady
+        titleLabel.font = .volvoSansProRegular(size: 14)
+        titleLabel.textAlignment = .left
+        return titleLabel
+    }()
+    
     private var lastRefresh: Date? = nil
 
     private let driverContact: VLButton
@@ -136,6 +145,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
             
             self.view.addSubview(verticalStepView)
             self.view.addSubview(mapViewContainer)
+            self.view.addSubview(driversLicenseInsuranceLabel)
             self.view.addSubview(timeWindowView)
             
             mapViewContainer.addSubview(driverViewContainer)
@@ -190,6 +200,12 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
             timeWindowView.snp.makeConstraints { make in
                 make.left.bottom.right.equalToSuperview()
                 make.height.equalTo(TimeWindowView.height)
+            }
+            
+            driversLicenseInsuranceLabel.snp.makeConstraints { make in
+                make.left.equalTo(mapViewContainer)
+                make.right.equalToSuperview()
+                make.top.equalTo(mapViewContainer.snp.bottom).offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: 6, smallerOnly: false))
             }
 
             // Adds a filler view below the time window filling in

@@ -77,7 +77,6 @@
 "PasswordCondition" = "(At least 8 characters with at least one letter and one number)";
 "Password" = "Password";
 "RepeatPassword" = "Repeat Password";
-"Login" = "Login";
 "Signup" = "Signup";
 "SignIn" = "Sign-In";
 "CreateAccount" = "Create Account";
@@ -103,7 +102,7 @@
 "PasswordResetLogin" = "Password successfully reset, please proceed to login.";
 "PasswordUnauthorizedChars" = "Your password contains unauthorized characters. Authorized characters: @$!%*?&";
 "AreYouSureDeleteAddress" = "Are you sure you want to delete that address %@?";
-"RequiresANumber" = "Requires a letter";
+"RequiresALetter" = "Requires a letter";
 "RequiresANumber" = "Requires a number";
 "InvalidCharacter" = "Invalid character";
 "DoesNotMatch" = "Does not match";
@@ -183,7 +182,7 @@
 "ScheduledSelfDrop" = "Scheduled Self-Drop";
 "NoteDelivery" = "Note: Volvo delivery is only offered near the dealership.";
 "RescheduleDelivery" = "Reschedule Delivery";
-
+"LicenseInsuranceCardReady" = "Have your license and insurance card ready";
 
 /***************** Scheduling Dropoff ***************/
 "CurrentService" = "Current Service";

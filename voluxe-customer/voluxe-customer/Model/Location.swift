@@ -104,7 +104,7 @@ class Location: Object, Mappable {
                 shortAddress.removeLast()
                 
                 let split = shortAddress.split(separator: " ")
-                if split.count > 4 {
+                if let lastChar = shortAddress.last, let unicode = Unicode.Scalar(String(lastChar)), split.count > 4 && CharacterSet.decimalDigits.contains(unicode) {
                     shortAddress = String(split.prefix(upTo: split.count - 1).joined(separator: [" "]))
                 }
                 

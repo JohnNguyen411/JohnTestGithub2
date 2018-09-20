@@ -60,7 +60,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     let vehicleImageView = UIImageView(frame: .zero)
     
     let selfDropButton = VLButton(type: .grayPrimary, title: (.SelfDrop as String).uppercased(), kern: UILabel.uppercasedKern())
-    let deliveryButton = VLButton(type: .bluePrimary, title: (.VolvoPickup as String).uppercased(), kern: UILabel.uppercasedKern())
+    let deliveryButton = VLButton(type: .bluePrimary, title: (.SchedulePickup as String).uppercased(), kern: UILabel.uppercasedKern())
     let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), kern: UILabel.uppercasedKern())
 
     var screenTitle: String?
@@ -405,7 +405,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             self.deliveryButton.setEvent(name: .inboundVolvo, screen: screenAnalyticsEnum(state: state))
             
             selfDropButton.setTitle(title: (.SelfDrop as String).uppercased())
-            deliveryButton.setTitle(title: (.VolvoPickup as String).uppercased())
+            deliveryButton.setTitle(title: (.SchedulePickup as String).uppercased())
 
         } else {
             selfDropButton.setTitle(title: (.SelfPickupAtDealership as String).uppercased())

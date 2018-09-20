@@ -23,7 +23,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        driversLicenseInsuranceLabel.isHidden = true
         changeButton.addTarget(self, action: #selector(selfOBClick), for: .touchUpInside)
     }
     

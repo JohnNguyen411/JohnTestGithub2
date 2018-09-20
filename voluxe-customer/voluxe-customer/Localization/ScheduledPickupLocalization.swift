@@ -22,4 +22,6 @@ extension String {
     static let CallDriver = NSLocalizedString("CallDriver")
     static let TextDriver = NSLocalizedString("TextDriver")
     static let ScheduledSelfDrop = NSLocalizedString("ScheduledSelfDrop")
+    static let LicenseInsuranceCardReady = NSLocalizedString("LicenseInsuranceCardReady")
+    
 }
