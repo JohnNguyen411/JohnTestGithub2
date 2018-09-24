@@ -182,7 +182,7 @@
 "ScheduledSelfDrop" = "Scheduled Self-Drop";
 "NoteDelivery" = "Note: Volvo delivery is only offered near the dealership.";
 "RescheduleDelivery" = "Reschedule Delivery";
-"LicenseInsuranceCardReady" = "Have your license and insurance card ready";
+"LicenseInsuranceCardReady" = "Bring your license and insurance card";
 
 /***************** Scheduling Dropoff ***************/
 "CurrentService" = "Current Service";
