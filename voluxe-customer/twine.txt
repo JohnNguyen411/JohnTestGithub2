@@ -1,0 +1,629 @@
+[[Uncategorized]]
+	[Next]
+		en = Next
+	[Add]
+		en = Add
+	[Yes]
+		en = Yes
+	[No]
+		en = No
+	[Ok]
+		en = Ok
+	[Contact]
+		en = Contact
+	[smallMinute]
+		en = Min
+	[Edit]
+		en = Edit
+	[Done]
+		en = Done
+	[Back]
+		en = Back
+	[Update]
+		en = Update
+	[New]
+		en = New
+	[Login]
+		en = Login
+	[Logout]
+		en = Logout
+	[Cancel]
+		en = Cancel
+	[CancelPickup]
+		en = Cancel Pickup
+	[CancelDropOff]
+		en = Cancel Delivery
+	[FTUEStartOne]
+		en = Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.
+	[FTUEStartTwo]
+		en = You can schedule maintenance and repairs with Luxe, and Volvo will take care of everything else.
+	[VolvoUserId]
+		en = Volvo User ID
+	[VolvoUserId_Placeholder]
+		en = lucasjohansson
+	[VolvoPassword]
+		en = Volvo Password
+	[VehicleIdentificationNumber]
+		en = Vehicle Identification Number (VIN)
+	[VehicleIdentificationNumber_Placeholder]
+		en = 0AVAV00AVA00000
+	[MobilePhoneNumber]
+		en = Mobile Phone Number
+	[MobilePhoneNumber_Placeholder]
+		en = (555) 555-5555
+	[MobilePhoneNumberExplain]
+		en = We require your phone number to coordinate during pickup and delivery
+	[MobilePhoneNumberConfirm]
+		en = We’ll send you a text message to confirm the number.
+	[PhoneNumberVerifLabel]
+		en = Type the confirmation code you received via SMS
+	[ResendCode]
+		en = Resend Code
+	[PhoneNumberVerif_Placeholder]
+		en = 0000
+	[WelcomeToAppLabel]
+		en = Welcome to Luxe, %@. Your Volvo account is now active with Luxe.
+	[ScheduleService]
+		en = Schedule Service
+	[ShowDescription]
+		en = Show Description
+	[RecommendedService]
+		en = Recommended Service
+	[SelectedService]
+		en = Selected Service
+	[CompletedService]
+		en = Completed Service
+	[Dealership]
+		en = Dealership
+	[SelfDrop]
+		en = Self Drop
+	[VolvoPickup]
+		en = Volvo Pickup
+	[ChooseDealership]
+		en = Choose where to perform service
+	[AddNewLocation]
+		en = Add a new location
+	[AddressForPickupPlaceholder]
+		en = 123 Main Street, San Francisco
+	[AddressForPickup]
+		en = Address for Pickup
+	[PickupLocationTitle]
+		en = Where should we meet you?
+	[YourLocation]
+		en = Your Location
+	[DoYouNeedLoanerVehicle]
+		en = Do you need a loaner vehicle?
+	[SelectYourPreferredPickupTime]
+		en = Select your preferred pickup time
+	[NineToTwelve]
+		en = 9:00-12:00
+	[TwelveToThree]
+		en = 12:00-3:00
+	[ThreeToSix]
+		en = 3:00-6:00
+	[PickupLocation]
+		en = Pickup Location
+	[ComplimentaryLoaner]
+		en = Complimentary Loaner?
+	[ConfirmPickup]
+		en = Confirm Pickup
+	[NotePickup]
+		en = Note: Volvo pickup is only offered near the dealership.
+	[ScheduleDropDealership]
+		en = Schedule pickup at any location served by a participating dealership.
+	[OutOfPickupArea]
+		en = Out of pickup area
+	[SchedulePickup]
+		en = Schedule Pickup
+	[ScheduledPickup]
+		en = Scheduled Pickup
+	[ServiceScheduled]
+		en = Pickup is scheduled
+	[DriverEnRoute]
+		en = Driver is en route
+	[DriverNearby]
+		en = Driver is nearby
+	[DriverArrived]
+		en = Driver has arrived
+	[PickupWindow]
+		en = Pickup window
+	[EstimatedPickupTime]
+		en = Estimated Pickup Time
+	[DriverDrivingToDealership]
+		en = Our driver is driving your vehicle to %@.
+	[YourVehicleHasArrived]
+		en = Your vehicle has arrived safely at %@. We’ll alert you next when it’s ready.
+	[CurrentService]
+		en = Current Service
+	[VolvoCurrentlyServicing]
+		en = Your Volvo is currently being serviced at %@. We will notify you when the service is complete.
+	[ReturnVehicle]
+		en = Return Vehicle
+	[VolvoServiceComplete]
+		en = Your Volvo service is completed. You can pick it up from the dealership or schedule delivery.
+	[SelfPickup]
+		en = Self Pickup
+	[VolvoDelivery]
+		en = Volvo Delivery
+	[SelectYourPreferredDeliveryTime]
+		en = Select your preferred delivery time
+	[ConfirmDelivery]
+		en = Confirm Delivery
+	[ScheduledDelivery]
+		en = Scheduled Delivery
+	[ScheduleDelivery]
+		en = Schedule Delivery
+	[DeliveryLocation]
+		en = Delivery Location
+	[VehicleIsReady]
+		en = Vehicle is ready
+	[DeliveryWindow]
+		en = Delivery window
+	[DeliveryComplete]
+		en = Your delivery from %@ is complete.
+	[VolvoYearModel]
+		en = Volvo Year/Model
+	[Mileage]
+		en = Mileage
+	[PreferredDealership]
+		en = Preferred Dealership
+	[NewService]
+		en = New Service
+	[ScheduledService]
+		en = Scheduled Service
+	[AreYouSureCancelPickup]
+		en = Are you sure you want to cancel your pickup?
+	[AreYouSureCancelDropOff]
+		en = Are you sure you want to cancel your delivery?
+	[Settings]
+		en = Settings
+	[YourVolvos]
+		en = Your Volvos
+	[AddANewVolvo]
+		en = Add a New Volvo
+	[YourAccount]
+		en = Your Account
+	[UnitOfDistance]
+		en = Unit Of Distance
+	[ShowDistanceAsMiles]
+		en = Show Distance As Miles
+	[PickupDeliveryLocations]
+		en = Pickup/Delivery Locations
+	[ContactInformation]
+		en = Contact Information
+	[AccountPassword]
+		en = Account Password
+	[AppName]
+		en = Luxe by Volvo
+	[Skip]
+		en = Skip
+	[Signout]
+		en = Sign Out
+	[Close]
+		en = Close
+	[Error]
+		en = Error
+	[GenericError]
+		en = An unknown error has occurred. Please try again later.
+	[Map]
+		en = Map
+	[Retry]
+		en = Retry
+	[Refresh]
+		en = Refresh
+	[Success]
+		en = Success
+	[Confirm]
+		en = Confirm
+	[Delete]
+		en = Delete
+	[Remove]
+		en = Remove
+	[ForceUpgradeTitle]
+		en = Software Update
+	[ForceUpgradeMessage]
+		en = There is a new version of Luxe by Volvo available for download.\n\nThis is a required update. Please update now.
+	[SoftUpgradeTitle]
+		en = Update Available
+	[SoftUpgradeMessage]
+		en = There is a new version of Luxe by Volvo available for download.\n\nFor the best possible experience, please update now.
+	[GrantPermission]
+		en = Grant Permission
+	[DatabaseError]
+		en = An unexpected error as occured. Please try restarting the app.
+	[NotificationPermissionText]
+		en = We need you to grant us the permission to send you notifications to give you updates regarding the status of your car
+	[PickupAndDelivery]
+		en = Pickup & Delivery
+	[DuplicateRequestError]
+		en = A %@ is already scheduled for your car. Please refresh.
+	[DeleteVehicleError]
+		en = You cannot delete a vehicle that has an active booking.
+	[Pickup]
+		en = Pickup
+	[Delivery]
+		en = Delivery
+	[SignoutConfirmation]
+		en = Are you sure you want to sign out?
+	[MobilePhoneNumberResetPassword]
+		en = We require your phone number to reset your password
+	[FirstName]
+		en = First Name
+	[LastName]
+		en = Last Name
+	[WelcomeSignup]
+		en = Welcome to Luxe by Volvo. Let’s create your account.
+	[FirstNamePlaceholder]
+		en = John
+	[LastNamePlaceholder]
+		en = Smith
+	[CreatePassword]
+		en = Create a password
+	[PasswordCondition]
+		en = (At least 8 characters with at least one letter and one number)
+	[Password]
+		en = Password
+	[RepeatPassword]
+		en = Repeat Password
+	[Signup]
+		en = Signup
+	[SignIn]
+		en = Sign-In
+	[CreateAccount]
+		en = Create Account
+	[EmailAddress]
+		en = Email Address
+	[EmailPlaceholder]
+		en = name@domain.com
+	[SelectYourVehicle]
+		en = Select your vehicle’s year, model and color
+	[Year]
+		en = Year
+	[Model]
+		en = Model
+	[Color]
+		en = Color
+	[YearPlaceholder]
+		en = 2019
+	[ModelPlaceholder]
+		en = S90
+	[ColorPlaceholder]
+		en = Black
+	[AccountAlreadyExist]
+		en = An account already exist with that email, please try Login instead.
+	[PhoneNumberInvalid]
+		en = The provided phone number is correctly formatted but does not appear to be a valid phone number.
+	[InvalidVerificationCode]
+		en = Invalid Code.
+	[InvalidCredentials]
+		en = The email or password provided is invalid.
+	[ChangePhoneNumber]
+		en = Change phone number
+	[PhoneNumberAlreadyExist]
+		en = An account already exist with that phone number, please try Login instead.
+	[PhoneNumberNotInFile]
+		en = We couldn't find any account for that phone number. Please verify the phone number and try again.
+	[UpdatePhoneNumberAlreadyExist]
+		en = An account already exist with that phone number, please verify the phone number and try again.
+	[UpdatePassword]
+		en = Update your password.
+	[ForgotPassword]
+		en = Forgot password?
+	[PasswordResetLogin]
+		en = Password successfully reset, please proceed to login.
+	[PasswordUnauthorizedChars]
+		en = Your password contains unauthorized characters. Authorized characters: @$!%*?&
+	[AreYouSureDeleteAddress]
+		en = Are you sure you want to delete that address %@?
+	[RequiresALetter]
+		en = Requires a letter
+	[RequiresANumber]
+		en = Requires a number
+	[InvalidCharacter]
+		en = Invalid character
+	[DoesNotMatch]
+		en = Does not match
+	[WrongVerificationCode]
+		en = The verification code you entered is incorrect. Please try again or tap Resend Code to receive a new code.
+	[AgreeToTosAndPrivacyFormat]
+		en = You agree to our %@ and %@.
+	[TermsAndConditions]
+		en = Terms of Service
+	[PrivacyPolicy]
+		en = Privacy Policy
+	[AccountAlreadyExistUpdate]
+		en = An account already exist with that email.
+	[PhoneNumberAlreadyExistUpdate]
+		en = An account already exist with that phone number.
+	[SelectService]
+		en = Select Service
+	[ConfirmService]
+		en = Confirm Service
+	[ServiceSummary]
+		en = Service Summary
+	[ShowDetails]
+		en = Show Details
+	[CurrentLocation]
+		en = Current Location
+	[UpdatingLocation]
+		en = Updating Location...
+	[SelectPickupDate]
+		en = Select pickup date and time
+	[NeedALoaner]
+		en = Need a Loaner?
+	[ScheduleDropDealershipSelfEnabled]
+		en = You can schedule pickup at any address served by a participating dealership, or you can drop-off your car in person.
+	[SchedulePickupDealership]
+		en = Schedule delivery at any location served by a participating dealership.
+	[SchedulePickupDealershipSelfEnabled]
+		en = You can schedule delivery to any address served by the dealership, or you can pick-up your car in person.
+	[ServiceNotOfferedInArea]
+		en = Service unavailable
+	[DatesLoanersOnly]
+		en = Dates with available loaners only
+	[PickupTimes]
+		en = Pickup Times
+	[DealershipCloseToLocation]
+		en = Dealerships close to:
+	[ConfirmSelfDrop]
+		en = Confirm Self-Drop
+	[SelectDeliveryDate]
+		en = Select delivery date and time
+	[SelectDropoffDate]
+		en = Select dropoff date and time
+	[DeliveryTimes]
+		en = Delivery Times
+	[DropOffTimes]
+		en = Dropoff Times
+	[NoDatesForDealership]
+		en = Unfortunately no dates are available for this dealership. Please try again later or call the dealership.
+	[CallDealership]
+		en = Call Dealership
+	[NotePermissionLocation]
+		en = Note: to access your current location, we’ll need to ask you for permission next.
+	[PermissionLocationDenied]
+		en = To access your current location, you need to enable the location permission in the Settings.
+	[OpenSettings]
+		en = Open Settings
+	[LocationPermission]
+		en = Location Permission
+	[AllowNotifications]
+		en = Allow Notifications?
+	[NotificationPermissionBody]
+		en = We only send you updates on the status of your vehicle during pickups and deliveries.
+	[NotNow]
+		en = Not now
+	[Allow]
+		en = Allow
+	[ContactDriver]
+		en = Contact Driver
+	[CallDriver]
+		en = Call Driver
+	[TextDriver]
+		en = Text Driver
+	[ScheduledSelfDrop]
+		en = Scheduled Self-Drop
+	[NoteDelivery]
+		en = Note: Volvo delivery is only offered near the dealership.
+	[RescheduleDelivery]
+		en = Reschedule Delivery
+	[LicenseInsuranceCardReady]
+		en = Have your license and insurance card ready
+	[ConfirmSelfPickup]
+		en = Confirm Self-Pickup
+	[SelfPickupAtDealership]
+		en = Self-Pickup at Dealership
+	[AreYouSureSelfPickup]
+		en = Are you sure you want to pick-up your vehicle at the dealership?
+	[SelfDropoffAtDealership]
+		en = Self-Dropoff at Dealership
+	[PickupAtDealership]
+		en = Pick-up at Dealership
+	[DropoffAtDealership]
+		en = Drop-off at Dealership
+	[EstimatedDeliveryTime]
+		en = Estimated delivery time
+	[GetDirections]
+		en = Get Directions
+	[ScheduleDriver]
+		en = You can also schedule a driver to deliver your vehicle
+	[UnableToMeetDriver]
+		en = If you’re unable to meet your driver at the scheduled time, you can reschedule your delivery.
+	[PreferPickup]
+		en = If you prefer to pick-up your vehicle at the dealership, you can choose to do that below. Note: This will cancel your scheduled delivery.
+	[YoureScheduledForDelivery]
+		en = You're scheduled for delivery
+	[Change]
+		en = Change
+	[ViewDealershipLocation]
+		en = View Dealership Location
+	[Service]
+		en = Service
+	[NewServiceIntro]
+		en = You can schedule pickup (with participating dealerships) through Luxe by Volvo.\n\nTo schedule pickup, first select service type.
+	[MilestoneServices]
+		en = Milestone services
+	[RecallServices]
+		en = Recall services
+	[OtherMaintenanceRepairs]
+		en = Other maintenance and repairs
+	[OtherMaintenance]
+		en = Other Maintenance
+	[WhatPartRequiresService]
+		en = What part of your Volvo requires service?
+	[SelectAllThatApply]
+		en = Select all that apply
+	[IsVolvoDrivable]
+		en = Is your Volvo drivable?
+	[ImNotSure]
+		en = I’m not sure
+	[NewServiceDescription]
+		en = Is there anything else you can tell us about your Volvo?
+	[TypeDescriptionHere]
+		en = Type description here
+	[AddDescription]
+		en = Add Description
+	[DiagnosticInspection]
+		en = Diagnostic Inspection
+	[VehicleExt]
+		en = Vehicle exterior
+	[VehicleInt]
+		en = Vehicle interior
+	[UnderTheHood]
+		en = Under the hood
+	[IDontKnow]
+		en = I don't know
+	[FactoryScheduledMaintenance]
+		en = Factory Scheduled Maintenance
+	[Repair]
+		en = repair
+	[Interior]
+		en = interior
+	[Exterior]
+		en = exterior
+	[Mechanical]
+		en = mechanical
+	[Rating]
+		en = On a scale from 1 to 10, how likely are you to recommend pickup and delivery to other Volvo owners?
+	[YourFeedback]
+		en = Your Feedback
+	[Feedback]
+		en = Feedback
+	[RatingReason]
+		en = What was the main reason for your rating?
+	[RatingReasonHint]
+		en = Reason for your rating?
+	[ServiceComplete]
+		en = Service Complete
+	[YourVolvo]
+		en = Your Volvo
+	[ActiveBookings]
+		en = Active Bookings
+	[RemoveVehicle]
+		en = Remove Vehicle
+	[RemoveVehicleConfirmation]
+		en = Are you sure you want to remove that car from your account?
+	[Help]
+		en = Help
+	[YourLastDelivery]
+		en = Your Last Delivery
+	[YourLastPickup]
+		en = Your Last Pickup
+	[EmailDealer]
+		en = Email Dealer
+	[CallDealer]
+		en = Call Dealer
+	[EmailVolvo]
+		en = Email Volvo
+	[CallVolvo]
+		en = Call Volvo
+	[MyVehicleWasDamaged]
+		en = My vehicle was damaged
+	[ILostAnItem]
+		en = I lost an item
+	[MyPickupDeliveryLocationWasWrong]
+		en = My pickup/delivery location was wrong
+	[MyDriverWasLate]
+		en = My driver was late or never showed up
+	[IMissedMyPickupDelivery]
+		en = I missed my pickup/delivery
+	[MyDriverDidntMatchThePicture]
+		en = My driver didn’t match the picture in my app
+	[ICouldntContactMyDriver]
+		en = I couldn’t contact my driver
+	[MyDriverWasUnprofessional]
+		en = My driver was unprofessional
+	[SomethingUnsafeHappened]
+		en = Something unsafe happened
+	[ThereWasAnIssueWithMyLoanerVehicle]
+		en = There was an issue with my loaner vehicle
+	[ThereWasAnIssueWithMyPaperwork]
+		en = There was an issue with my paperwork
+	[Other]
+		en = Other…
+	[MyVehicleWasDamagedDetail]
+		en = We inspect customers' vehicles before and after every trip to ensure safety and quality of service. In order to keep complete records of vehicles throughout service, our drivers photograph both customer and loaner vehicles at multiple points through pickup and delivery. If your vehicle was damaged as part of pickup or delivery, please let us know here.
+	[ILostAnItemDetail]
+		en = If a driver finds an item left behind in a loaner, we make every attempt to contact customers, and return the item. Sometimes, the item might not be found immediately though. If you believe you lost something in your vehicle or your loaner, please get in touch with the dealership as soon as you notice its missing.\n\nGenerally lost items are kept for 45 days. If they go unclaimed, the items are donated to a charity or disposed of.
+	[MyPickupDeliveryLocationWasWrongDetail]
+		en = If the driver met you somewhere other than the address you specified, its useful to know why. Sometimes choosing an address based on your current location can be inaccurate, especially in high-density neighborhoods, areas with challenging geography or sporadic GPS signal. Other times drivers can find themselves at the wrong location if the address has ambiguous signage, restricted parking, or unsafe conditions for exchanging vehicles. We do our best to meet you at the exact location that you choose. If you believe the driver was in error and met you in the wrong location, please let us know here.
+	[MyDriverWasLateDetail]
+		en = Occassionally due to circumstances outside of our control, our pickup and delivery services can get a little behind schedule. We make every attempt to contact our customers to know if we are running late. If a driver didn't show up, usually they tried but failed to find the customer. In that case we try to connect the driver to the customer via phone. If the driver is still unable to find the customer, our policy is to bring the customer's car back to the dealership, and reschedule delivery for a later time. If our driver was unable to find you, or if you believe they never showed up, please let us know here.
+	[IMissedMyPickupDeliveryDetail]
+		en = `If you missed your pickup/delivery window, don't worry. If it was a pickup, the driver returned to the dealership with the loaner vehicle. If it was a delivery, the driver brought your vehicle back to the dealership. You can call or email the dealership to reschedule. `
+	[MyDriverDidntMatchThePictureDetail]
+		en = For every pickup and delivery, the Luxe by Volvo app helps you recognize the driver who will be performing service for you. If you believe the driver was not who you were expecting, please let us know here.
+	[ICouldntContactMyDriverDetail]
+		en = While rare, sometimes customers aren't able to contact their drivers. This is generally due to two reasons. Either the driver is temporarily passing through an area with no mobile connectivity, or it is an unsafe moment for the driver to respond to a message or receive a call. In that case, the driver will pull-over once it is safe and try to contact the customer.\n\nIf you're having trouble reaching your driver, you can wait a minute or two, and try contacting the driver again. If the problem persists, please let us know here.
+	[MyDriverWasUnprofessionalDetail]
+		en = We hold high standards for our drivers' professionalism, communication skills, and responsibility. If you believe your driver has been unprofessional, impolite, or failed to live up to your expectations, please let us know.
+	[SomethingUnsafeHappenedDetail]
+		en = At Volvo, safety is our number one priority. If you experienced an unsafe or distracted driver at any time during this service, please let us know here.
+	[ThereWasAnIssueWithMyLoanerVehicleDetail]
+		en = We hope every loaner vehicle is delivered safe, comfortable, and in top working-order. While we can't guarantee the type of vehicle you'll receive, we keep all of our loaner interiors neat, clean, and free of strong or unpleasant odors. If the loaner for this service did not meet your expectations, please let us know here.
+	[ThereWasAnIssueWithMyPaperworkDetail]
+		en = Apologies if there was an issue with your paperwork. We aim to have transparent and informative paperwork accompanying any maintenance. If you have questions about the paperwork you were provided, please let us know here.
+	[OtherDetail]
+		en = Didn't see what you were looking for? Please let us know how we can help you with your Luxe by Volvo service.
+	[HowLuxebyVolvoWorks]
+		en = How Luxe by Volvo works
+	[ICantArrangeService]
+		en = I can’t arrange service with my dealership
+	[NoParticipatingDealershipsInArea]
+		en = No participating dealerships in my area
+	[ICantCancelMyPickupOrDelivery]
+		en = I can’t cancel my pickup or delivery
+	[TooFewLoanersAvailable]
+		en = Too few loaners available
+	[NoneOfTheAvailableTimesWorkForMe]
+		en = None of the available times work for me
+	[ICantArrangeServiceDetail]
+		en = Not every dealership currently offers Luxe by Volvo pickup and delivery. While the program is expanding globally across all dealerships, it may not be available at your preferred dealership at this time. Check back next time you need maintainence, and it'll hopefully be available at that time.
+	[NoParticipatingDealershipsInAreaDetail]
+		en = Luxe by Volvo is only available at participating Volvo dealerships. If your preferred dealership is not offering Luxe by Volvo now, they may be offering it in the future. Starting in 2019, Luxe by Volvo will begin becoming avaialable in dealerships in the United States, and begin appearing in Europe and Asia.
+	[ICantCancelMyPickupOrDeliveryDetail]
+		en = Cancellation is available up until the day of your pickup or delivery. If today is the day of your pickup or delivery, you'll need to contact the dealership directly to reschedule.
+	[TooFewLoanersAvailableDetail]
+		en = At certain times, loaner vehicle inventory can become constrained. As a result, customers may need to scheedule service a little further ahead than usual. If you need service sooner than a loaner is available, consider foregoing a loaner to make an earlier appointment.
+	[NoneOfTheAvailableTimesWorkForMeDetail]
+		en = If you're having difficulty finding a time-slot that works for your schedule, please contact your dealership directly. They may be able to make arrangements for you that accommodate your specific needs.
+	[TroubleWithTheLuxebyVolvoApp]
+		en = Trouble with the Luxe by Volvo app
+	[TheAppIsntWorkingCorrectly]
+		en = The app isn’t working correctly
+	[IForgotMyPassword]
+		en = I forgot my password
+	[ICantUpdateMyPhone]
+		en = I can’t update my phone or email
+	[MyCurrentLocationIsntWorking]
+		en = My current location isn’t working
+	[PushNotificationsArentWorking]
+		en = Push notifications aren’t working for me
+	[TermsOfService]
+		en = Terms of service
+	[PrivacyPolicyInformation]
+		en = Privacy policy information
+	[RequestingDataFromLuxebyVolvo]
+		en = Requesting data from Luxe by Volvo
+	[DeleteMyLuxebyVolvoAccount]
+		en = Delete my Luxe by Volvo account
+	[TheAppIsntWorkingCorrectlyDetail]
+		en = Is something in the Luxe by Volvo app working incorrectly or not as you expected? Please let us know here what issue you're experiencing, and we'll work with you to troubleshoot the issue.
+	[IForgotMyPasswordDetail]
+		en = `If you forgot your password, you can create a new password at sign-in. Your password must be at least 8 characters long, and include at least one numeral and one letter. If you're having trouble resetting your password, please let us know here. `
+	[ICantUpdateMyPhoneDetail]
+		en = `Because of how we create your account, we base your Luxe by Volvo account on your email address. Currently, that is not editable. You can update your mobile phone number in 'Your Account,' which you can access by tapping the menu icon in the top-left of the app. `
+	[MyCurrentLocationIsntWorkingDetail]
+		en = Check to make sure that you’ve enabled location services for Luxe by Volvo on your phone. For iOS users, go to Settings › Privacy › Location Services. For Android users, go to Settings › Apps › Application List › Luxe by Volvo › Permissions./n/nMake sure that cellular data or Wi-Fi is on and that you have an active connection. If both of those are working correctly and you’re still having trouble, please let us know here.
+	[PushNotificationsArentWorkingDetail]
+		en = `Check to make sure that you've enabled push notifications for Luxe by Volvo on your phone. For iOS users, go to Settings › Notifications › Luxe by Volvo. For Android users, go to Settings › Apps › Application List › Luxe by Volvo › Permissions./n/nMake sure that cellular data or Wi-Fi is on and that you have an active connection. If both of those are working correctly and you're still having trouble, please let us know here. `
+	[TermsOfServiceDetail]
+		en = Our terms of service apply to all aspects of the Luxe by Volvo service. As a user of the platform, you've confirmed that you've read and agreed to the terms.
+	[PrivacyPolicyInformationDetail]
+		en = `Our privacy policy describes the information we collect and how its used. The policy applies to any users of Luxe by Volvo. `
+	[RequestingDataFromLuxebyVolvoDetail]
+		en = Do you want data from your Luxe by Volvo usage in the past? You can request that data here, and we will provide it to you within 30 days.
+	[DeleteMyLuxebyVolvoAccountDetail]
+		en = If you no longer wish to have your account in our system, you can request that we delete your account. We will remove your information, and notifiy you of its removal within 30 days.
+	[AppOtherDetail]
+		en = Didn't see what you were looking for? Please let us know how we can help you with your Luxe by Volvo app.
