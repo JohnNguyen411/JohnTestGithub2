@@ -9,7 +9,8 @@
 import Foundation
 
 // grid discussion with Brian
-//
+// margin, gutter, number of columns
+// what happens if the column count is changed, do add() calls need to be updated?
 
 struct Layout {
 

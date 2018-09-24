@@ -9,9 +9,17 @@
 import Foundation
 import UIKit
 
+// MARK:- Convenience funcs
+
+extension UIColor {
+
+    // TODO is there a good way to do this?
+//    convenience init(hex: String) {}
+}
+
 // MARK:- Base colors
 
-// TODO decouple from
+// TODO decouple from UIColor_Hex_Swift pod
 struct Colors {
 
     struct Gray {
@@ -45,8 +53,15 @@ struct Colors {
 
 extension Colors {
 
-    struct Background {}
-    struct Button {}
+    struct Background {
+        // dark
+        static let light = Colors.White.off
+    }
+
+    struct Button {
+        // primary
+        // secondary
+    }
 
 }
 

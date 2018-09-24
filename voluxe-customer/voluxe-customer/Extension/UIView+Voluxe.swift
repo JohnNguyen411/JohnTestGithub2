@@ -96,6 +96,7 @@ extension UIView {
     }
 
     // TODO rename to SnapKitSafeArea to be explicit
+    // as this returns SnapKit types
     var safeArea: ConstraintBasicAttributesDSL {
         
         #if swift(>=3.2)
@@ -120,6 +121,7 @@ extension UIView {
     }
 
     // TODO pre iOS 11 guide should be stored
+    // TODO find a better name
     var compatibleSafeAreaLayoutGuide: UILayoutGuide {
         if #available(iOS 11.0, *) {
             return self.safeAreaLayoutGuide
