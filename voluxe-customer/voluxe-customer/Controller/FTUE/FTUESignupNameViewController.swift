@@ -62,9 +62,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         
         firstNameTextField.textField.delegate = self
         lastNameTextField.textField.delegate = self
-        
-        firstNameTextField.textField.becomeFirstResponder()
-        
+
         canGoNext(nextEnabled: editMode ? true : false)
         
         if let customer = UserManager.sharedInstance.getCustomer(), editMode {
@@ -76,6 +74,9 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+
+        self.firstNameTextField.textField.becomeFirstResponder()
+        
         if editMode { return }
         if DeeplinkManager.sharedInstance.isPrefillSignup() && !deeplinkEventConsumed {
             if let firstName = DeeplinkManager.sharedInstance.getDeeplinkObject()?.firstName {

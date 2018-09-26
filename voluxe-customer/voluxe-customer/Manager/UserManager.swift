@@ -225,3 +225,15 @@ final class UserManager {
         return .YourVolvo
     }
 }
+
+// MARK:- Useful utilities
+
+extension UserManager {
+
+    // UserManager will be either signing up a customer or has a logged in customer
+    // this is provided as a convenience to get the current customer email
+    var currentCustomerEmail: String? {
+        let email = self.signupCustomer.email ?? self.customer?.email
+        return email
+    }
+}
