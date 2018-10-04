@@ -15,7 +15,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     let passwordLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .CreatePassword
+        textView.text = .createPassword
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -28,7 +28,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         let textView = UILabel(frame: .zero)
         textView.font = .volvoSansProMedium(size: 11)
         textView.textColor = .luxeGray()
-        textView.text = .PasswordCondition
+        textView.text = .viewSigninPasswordDescription
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -51,8 +51,8 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         return textfield
     }()
 
-    let volvoPwdTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••", kern: 2.0)
-    let volvoPwdConfirmTextField = VLVerticalTextField(title: .RepeatPassword, placeholder: "••••••••", kern: 2.0)
+    let volvoPwdTextField = VLVerticalTextField(title: .viewEditTextTitlePasswordNew, placeholder: "••••••••", kern: 2.0)
+    let volvoPwdConfirmTextField = VLVerticalTextField(title: .viewEditTextTitlePasswordConfirm, placeholder: "••••••••", kern: 2.0)
     
     var signupInProgress = false
     var realm : Realm?
@@ -100,7 +100,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         canGoNext(nextEnabled: false)
         
         if UserManager.sharedInstance.isLoggedIn() {
-            passwordLabel.text = .UpdatePassword
+            passwordLabel.text = .updatePassword
         }
     }
 
@@ -165,11 +165,11 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         if let apiError = error?.apiError {
             if apiError.getCode() == .E5001 {
-                self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
+                self.showOkDialog(title: .Error, message: .errorAccountAlreadyExists, completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
             } else if apiError.getCode() == .E4012 {
-                self.showOkDialog(title: .Error, message: .InvalidVerificationCode, completion: {
+                self.showOkDialog(title: .Error, message: .errorInvalidVerificationCode, completion: {
                     self.navigationController?.popViewController(animated: true)
                 }, dialog: .error, screen: self.screen)
             }
@@ -231,18 +231,18 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         if !String.areSimilar(stringOne: volvoPwdTextField.textField.text, stringTwo: volvoPwdConfirmTextField.textField.text) {
             //DOES NOT MATCH
-            inlineError(error: .DoesNotMatch)
+            inlineError(error: .errorPasswordNotMatch)
             return
         } else if let password = volvoPwdConfirmTextField.textField.text, !password.containsLetter() {
-            inlineError(error: .RequiresALetter)
+            inlineError(error: .viewSignupPasswordRequireLetter)
             return
         } else if let password = volvoPwdConfirmTextField.textField.text, !password.containsNumber() {
-            inlineError(error: .RequiresANumber)
+            inlineError(error: .viewSignupPasswordRequireNumber)
             return
         } else if let password = volvoPwdConfirmTextField.textField.text, password.hasIllegalPasswordCharacters() {
-            inlineError(error: .InvalidCharacter)
+            inlineError(error: .errorInvalidCharacter)
             volvoPwdConfirmTextField.setBottomRightActionBlock { [weak self] in
-                self?.showOkDialog(title: .Error, message: .PasswordUnauthorizedChars, dialog: .error, screen: self?.screen)
+                self?.showOkDialog(title: .Error, message: .errorInvalidPasswordUnauthorizedCharacters, dialog: .error, screen: self?.screen)
             }
             return
         }

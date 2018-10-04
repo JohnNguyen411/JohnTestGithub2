@@ -12,7 +12,7 @@ import MBProgressHUD
 
 class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
     
-    let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
+    let emailTextField = VLVerticalTextField(title: .emailAddress, placeholder: .viewEditTextInfoHintEmail)
 
     var realm : Realm?
     
@@ -66,7 +66,7 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
         
         if let apiError = error?.apiError {
             if apiError.getCode() == .E5001 || apiError.getCode() == .E4011 {
-                self.showOkDialog(title: .Error, message: .AccountAlreadyExistUpdate, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .Error, message: .errorEmailAlreadyExist, dialog: .error, screen: self.screen)
             }
         } else {
             self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)

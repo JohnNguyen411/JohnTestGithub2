@@ -21,7 +21,6 @@
 "Skip" = "Skip";
 "Update" = "Update";
 "New" = "New";
-"Login" = "Login";
 "Signout" = "Sign Out";
 "Cancel" = "Cancel";
 "Close" = "Close";
@@ -77,8 +76,6 @@
 "PasswordCondition" = "(At least 8 characters with at least one letter and one number)";
 "Password" = "Password";
 "RepeatPassword" = "Repeat Password";
-"Signup" = "Signup";
-"SignIn" = "Sign-In";
 "CreateAccount" = "Create Account";
 "EmailAddress" = "Email Address";
 "EmailPlaceholder" = "name@domain.com";
@@ -94,9 +91,9 @@
 "InvalidVerificationCode" = "Invalid Code.";
 "InvalidCredentials" = "The email or password provided is invalid.";
 "ChangePhoneNumber" = "Change phone number";
-"PhoneNumberAlreadyExist" = "An account already exist with that phone number, please try Login instead.";
+"PhoneNumberAlreadyExist" = "An account already exists with that phone number, please try Login instead.";
 "PhoneNumberNotInFile" = "We couldn't find any account for that phone number. Please verify the phone number and try again.";
-"UpdatePhoneNumberAlreadyExist" = "An account already exist with that phone number, please verify the phone number and try again.";
+"UpdatePhoneNumberAlreadyExist" = "An account already exists with that phone number, please verify the phone number and try again.";
 "UpdatePassword" = "Update your password.";
 "ForgotPassword" = "Forgot password?";
 "PasswordResetLogin" = "Password successfully reset, please proceed to login.";
@@ -110,7 +107,7 @@
 "AgreeToTosAndPrivacyFormat" = "You agree to our %@ and %@.";
 "TermsAndConditions" = "Terms of Service";
 "PrivacyPolicy" = "Privacy Policy";
-"AccountAlreadyExistUpdate" = "An account already exist with that email.";
+"AccountAlreadyExistUpdate" = "An account already exists with that email.";
 "PhoneNumberAlreadyExistUpdate" = "An account already exist with that phone number.";
 
 /***************** SchedulePickup ***************/

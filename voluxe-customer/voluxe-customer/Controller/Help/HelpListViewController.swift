@@ -96,11 +96,11 @@ extension HelpListViewController: UITableViewDelegate {
                 }
             }
         } else if helpSection.type == .app {
-            if helpDetail.title == .TermsOfService {
-                let actionWebview = HelpAction(title: .TermsOfService, type: .webview, value: FTUESignupEmailPhoneViewController.tosURL)
+            if helpDetail.title == .viewTosContentTermsOfServiceTitle {
+                let actionWebview = HelpAction(title: .viewTosContentTermsOfServiceTitle, type: .webview, value: .viewTosContentTermsOfServiceUrl)
                 actions.append(actionWebview)
-            } else if helpDetail.title == .PrivacyPolicyInformation {
-                let actionWebview = HelpAction(title: .PrivacyPolicyInformation, type: .webview, value: FTUESignupEmailPhoneViewController.privacyURL)
+            } else if helpDetail.title == .viewTosContentPrivacyPolicyTitle {
+                let actionWebview = HelpAction(title: .viewTosContentPrivacyPolicyTitle, type: .webview, value: .viewTosContentPrivacyPolicyUrl)
                 actions.append(actionWebview)
             } else {
                 let actionCall = HelpAction(title: .CallVolvo, type: .call, value: HelpListViewController.volvoPhoneNumber)

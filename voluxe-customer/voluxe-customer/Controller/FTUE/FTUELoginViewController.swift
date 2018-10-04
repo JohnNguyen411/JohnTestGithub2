@@ -13,9 +13,9 @@ import RealmSwift
 
 class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
-    let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
-    let passwordTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••")
-    let forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), event: .forgotPassword, screen: .login)
+    let emailTextField = VLVerticalTextField(title: .emailAddress, placeholder: .viewEditTextInfoHintEmail)
+    let passwordTextField = VLVerticalTextField(title: .viewEditTextTitlePasswordNew, placeholder: "••••••••")
+    let forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.viewSigninForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), event: .forgotPassword, screen: .login)
     
     var loginInProgress = false
     var realm : Realm?
@@ -193,7 +193,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         self.showLoading(loading: false)
         
         if let apiError = error?.apiError, apiError.getCode() == .E2005 {
-            self.showOkDialog(title: .Error, message: .InvalidCredentials, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .Error, message: .errorInvalidCredentials, dialog: .error, screen: self.screen)
         } else {
             self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
         }

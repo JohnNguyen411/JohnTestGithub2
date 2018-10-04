@@ -13,19 +13,16 @@ import RealmSwift
 import MBProgressHUD
 
 class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDelegate {
+
+    let emailTextField = VLVerticalTextField(title: .emailAddress, placeholder: .viewEditTextInfoHintEmail)
     
-    public static let tosURL = "https://terms-luxebyvolvo.luxe.com/"
-    public static let privacyURL = "https://privacy-luxebyvolvo.luxe.com/"
-    
-    let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
-    
-    let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
+    let phoneNumberTextField = VLVerticalTextField(title: .viewEditTextTitlePhoneNumber, placeholder: .viewEditTextInfoHintPhoneNumber, isPhoneNumber: true)
     let phoneNumberKit = PhoneNumberKit()
     var validPhoneNumber: PhoneNumber?
     
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .MobilePhoneNumberExplain
+        textView.text = .viewSignupContactLabel
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -38,7 +35,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         let textView = UILabel(frame: .zero)
         textView.font = .volvoSansProRegular(size: 12)
         textView.textColor = .luxeDarkGray()
-        textView.text = .MobilePhoneNumberConfirm
+        textView.text = .viewEditTextPhoneDescription
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -102,10 +99,10 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         phoneNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
-        let tosString = String(format: NSLocalizedString(.AgreeToTosAndPrivacyFormat), String.TermsAndConditions, String.PrivacyPolicy)
+        let tosString = String(format: NSLocalizedString(.viewTosContent), String.viewTosContentTermsOfServiceTitle, String.viewTosContentPrivacyPolicyTitle)
         let attributedString = NSMutableAttributedString(string: tosString)
-        let tosRange = attributedString.string.range(of: String.TermsAndConditions)
-        let privacyRange = attributedString.string.range(of: String.PrivacyPolicy)
+        let tosRange = attributedString.string.range(of: String.viewTosContentTermsOfServiceTitle)
+        let privacyRange = attributedString.string.range(of: String.viewTosContentPrivacyPolicyTitle)
         
         tosNSRange = NSRange(tosRange!, in: tosString)
         privacyNSRange = NSRange(privacyRange!, in: tosString)
@@ -206,10 +203,10 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     @objc func tosTap(_ tapGesture: UITapGestureRecognizer) {
         if tapGesture.didTapAttributedTextInLabel(tosLabel, inRange: tosNSRange!) {
             Analytics.trackClick(button: .termsOfService)
-            self.pushViewController(VLWebViewController(urlAddress: FTUESignupEmailPhoneViewController.tosURL, title: .TermsAndConditions, showReloadButton: true), animated: true)
+            self.pushViewController(VLWebViewController(urlAddress: .viewTosContentTermsOfServiceUrl, title: .viewTosContentTermsOfServiceTitle, showReloadButton: true), animated: true)
         } else if tapGesture.didTapAttributedTextInLabel(tosLabel, inRange: privacyNSRange!) {
             Analytics.trackClick(button: .privacyPolicy)
-            self.pushViewController(VLWebViewController(urlAddress: FTUESignupEmailPhoneViewController.privacyURL, title: .PrivacyPolicy, showReloadButton: true), animated: true)
+            self.pushViewController(VLWebViewController(urlAddress: .viewTosContentPrivacyPolicyUrl, title: .viewTosContentTermsOfServiceTitle, showReloadButton: true), animated: true)
         }
     }
     
@@ -242,13 +239,13 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         if let apiError = error?.apiError {
             
             if apiError.getCode() == .E5001 {
-                self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .Error, message: .errorPhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
             } else if apiError.getCode() == .E4011 {
-                self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
+                self.showOkDialog(title: .Error, message: .errorAccountAlreadyExists, completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
             } else if apiError.getCode() == .E4046 {
-                self.showOkDialog(title: .Error, message: .PhoneNumberInvalid, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .Error, message: .errorInvalidPhoneNumberFormatted, dialog: .error, screen: self.screen)
             } else  {
                 self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
             }
@@ -340,7 +337,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 return
             } else {
                 if createdCustomer.phoneNumberVerified {
-                    self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
+                    self.showOkDialog(title: .Error, message: .errorAccountAlreadyExists, completion: {
                         self.loadLandingPage()
                     }, dialog: .error, screen: self.screen)
                     return

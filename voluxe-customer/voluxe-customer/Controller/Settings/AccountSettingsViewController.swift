@@ -272,7 +272,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         if indexPath.section == 0 {
             Analytics.trackClick(button: .settingsDeleteAddress, screen: self.screen)
             self.showDestructiveDialog(title: .Confirm,
-                                       message: String(format: .AreYouSureDeleteAddress, self.getTextForIndexPath(indexPath: indexPath)),
+                                       message: String(format: .popupRemoveAddressMessage, self.getTextForIndexPath(indexPath: indexPath)),
                                        cancelButtonTitle: .Cancel,
                                        destructiveButtonTitle: .Delete,
                                        destructiveCompletion: { self.deleteAddressAtIndexPath(indexPath) },

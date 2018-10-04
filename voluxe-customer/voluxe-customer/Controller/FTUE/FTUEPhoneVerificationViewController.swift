@@ -13,7 +13,7 @@ import MBProgressHUD
 class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let codeLength = 4
-    let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder, kern: 4.0)
+    let codeTextField = VLVerticalTextField(title: "", placeholder: .viewPhoneVerificationCodeHint, kern: 4.0)
     
     let updatePhoneNumberButton: VLButton
     
@@ -21,7 +21,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .PhoneNumberVerifLabel
+        textView.text = .viewPhoneVerificationLabel
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -32,7 +32,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     init() {
         let screen = FTUEStartViewController.flowType == .signup ? AnalyticsEnums.Name.Screen.signupPhoneVerification : AnalyticsEnums.Name.Screen.phoneVerification
-        updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.ChangePhoneNumber.uppercased(), kern: UILabel.uppercasedKern(), event: .updatePhone, screen: screen)
+        updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.changePhoneNumber.uppercased(), kern: UILabel.uppercasedKern(), event: .updatePhone, screen: screen)
         
         super.init(screen: screen)
     }
@@ -64,7 +64,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         codeTextField.textField.delegate = self
         super.viewDidLoad()
         codeTextField.textField.keyboardType = .numberPad
-        codeTextField.setRightButtonText(rightButtonText: (.ResendCode as String).uppercased(), actionBlock: {  [weak self] in
+        codeTextField.setRightButtonText(rightButtonText: (.resendCode as String).uppercased(), actionBlock: {  [weak self] in
             self?.resendCode()
         })
         codeTextField.rightLabel.addUppercasedCharacterSpacing()
@@ -281,7 +281,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 }.onFailure { error in
                     self.hideProgressHUD()
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4012.rawValue {
-                        self.showOkDialog(title: .Error, message: .WrongVerificationCode, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .Error, message: .errorInvalidVerificationCode, dialog: .error, screen: self.screen)
                     } else {
                         self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     }

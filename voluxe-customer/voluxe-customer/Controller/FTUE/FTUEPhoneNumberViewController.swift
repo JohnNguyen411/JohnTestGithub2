@@ -13,13 +13,13 @@ import MBProgressHUD
 
 class FTUEPhoneNumberViewController: FTUEChildViewController {
     
-    let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
+    let phoneNumberTextField = VLVerticalTextField(title: .viewEditTextTitlePhoneNumber, placeholder: .viewEditTextInfoHintPhoneNumber, isPhoneNumber: true)
     let phoneNumberKit = PhoneNumberKit()
     var validPhoneNumber: PhoneNumber?
     
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .MobilePhoneNumberExplain
+        textView.text = .viewSignupContactLabel
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -32,7 +32,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         let textView = UILabel(frame: .zero)
         textView.font = .volvoSansProRegular(size: 12)
         textView.textColor = .luxeDarkGray()
-        textView.text = .MobilePhoneNumberConfirm
+        textView.text = .viewEditTextPhoneDescription
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -63,7 +63,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         phoneNumberTF.maxDigits = 10
         
         if ftuePhoneType == .resetPassword {
-            self.phoneNumberLabel.text = .MobilePhoneNumberResetPassword
+            self.phoneNumberLabel.text = .viewSigninPhoneLabel
         }
 
         _ = checkTextFieldsValidity()
@@ -158,7 +158,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 }.onFailure { error in
                     self.hideProgressHUD()
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4001.rawValue {
-                        self.showOkDialog(title: .Error, message: .PhoneNumberNotInFile, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .Error, message: .errorPhoneNumberNotInFile, dialog: .error, screen: self.screen)
                     } else {
                         self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     }
@@ -188,7 +188,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 }.onFailure { error in
                     self.hideProgressHUD()
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4011.rawValue {
-                        self.showOkDialog(title: .Error, message: .UpdatePhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .Error, message: .errorUpdatePhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
                     } else {
                         self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     }

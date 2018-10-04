@@ -86,7 +86,7 @@ class CreateAccount_UITests: XCTestCase {
 
         let tosCheckbox = app.otherElements["tosCheckbox"]
         let emailTextfield = app.textFields[String.EmailPlaceholder]
-        let phoneTextfield = app.textFields[String.MobilePhoneNumber_Placeholder]
+        let phoneTextfield = app.textFields[String.viewEditTextInfoHintPhoneNumber]
         let next = app.navigationBars.firstMatch.buttons["Next"]
 
         // next button is disabled by default
@@ -163,7 +163,7 @@ class CreateAccount_UITests: XCTestCase {
         textField.tapAndClearText()
         textField.typeText(BotUserData.email)
 
-        textField = app.textFields[String.MobilePhoneNumber_Placeholder]
+        textField = app.textFields[String.viewEditTextInfoHintPhoneNumber]
         textField.tapAndClearText()
         textField.typeText(BotUserData.phone)
         
@@ -395,7 +395,7 @@ class CreateAccount_UITests: XCTestCase {
         textField.tap()
         textField.typeText(BotUserData.email)
 
-        textField = app.textFields[String.MobilePhoneNumber_Placeholder]
+        textField = app.textFields[String.viewEditTextInfoHintPhoneNumber]
         textField.tap()
         textField.typeText(BotUserData.phone)
 

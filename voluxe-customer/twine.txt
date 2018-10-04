@@ -1,629 +1,1469 @@
-[[Uncategorized]]
-	[Next]
-		en = Next
-	[Add]
-		en = Add
-	[Yes]
-		en = Yes
-	[No]
-		en = No
-	[Ok]
-		en = Ok
-	[Contact]
-		en = Contact
-	[smallMinute]
-		en = Min
-	[Edit]
-		en = Edit
-	[Done]
-		en = Done
-	[Back]
-		en = Back
-	[Update]
-		en = Update
-	[New]
-		en = New
-	[Login]
-		en = Login
-	[Logout]
-		en = Logout
-	[Cancel]
-		en = Cancel
-	[CancelPickup]
-		en = Cancel Pickup
-	[CancelDropOff]
-		en = Cancel Delivery
-	[FTUEStartOne]
-		en = Luxe is a Volvo service that makes owning and maintaining your vehicle simple and convenient.
-	[FTUEStartTwo]
-		en = You can schedule maintenance and repairs with Luxe, and Volvo will take care of everything else.
-	[VolvoUserId]
-		en = Volvo User ID
-	[VolvoUserId_Placeholder]
-		en = lucasjohansson
-	[VolvoPassword]
-		en = Volvo Password
-	[VehicleIdentificationNumber]
-		en = Vehicle Identification Number (VIN)
-	[VehicleIdentificationNumber_Placeholder]
-		en = 0AVAV00AVA00000
-	[MobilePhoneNumber]
-		en = Mobile Phone Number
-	[MobilePhoneNumber_Placeholder]
-		en = (555) 555-5555
-	[MobilePhoneNumberExplain]
-		en = We require your phone number to coordinate during pickup and delivery
-	[MobilePhoneNumberConfirm]
-		en = We’ll send you a text message to confirm the number.
-	[PhoneNumberVerifLabel]
-		en = Type the confirmation code you received via SMS
-	[ResendCode]
-		en = Resend Code
-	[PhoneNumberVerif_Placeholder]
-		en = 0000
-	[WelcomeToAppLabel]
-		en = Welcome to Luxe, %@. Your Volvo account is now active with Luxe.
-	[ScheduleService]
-		en = Schedule Service
-	[ShowDescription]
-		en = Show Description
-	[RecommendedService]
-		en = Recommended Service
-	[SelectedService]
-		en = Selected Service
-	[CompletedService]
-		en = Completed Service
-	[Dealership]
-		en = Dealership
-	[SelfDrop]
-		en = Self Drop
-	[VolvoPickup]
-		en = Volvo Pickup
-	[ChooseDealership]
-		en = Choose where to perform service
-	[AddNewLocation]
-		en = Add a new location
-	[AddressForPickupPlaceholder]
-		en = 123 Main Street, San Francisco
-	[AddressForPickup]
-		en = Address for Pickup
-	[PickupLocationTitle]
-		en = Where should we meet you?
-	[YourLocation]
-		en = Your Location
-	[DoYouNeedLoanerVehicle]
-		en = Do you need a loaner vehicle?
-	[SelectYourPreferredPickupTime]
-		en = Select your preferred pickup time
-	[NineToTwelve]
-		en = 9:00-12:00
-	[TwelveToThree]
-		en = 12:00-3:00
-	[ThreeToSix]
-		en = 3:00-6:00
-	[PickupLocation]
-		en = Pickup Location
-	[ComplimentaryLoaner]
-		en = Complimentary Loaner?
-	[ConfirmPickup]
-		en = Confirm Pickup
-	[NotePickup]
-		en = Note: Volvo pickup is only offered near the dealership.
-	[ScheduleDropDealership]
-		en = Schedule pickup at any location served by a participating dealership.
-	[OutOfPickupArea]
-		en = Out of pickup area
-	[SchedulePickup]
-		en = Schedule Pickup
-	[ScheduledPickup]
-		en = Scheduled Pickup
-	[ServiceScheduled]
-		en = Pickup is scheduled
-	[DriverEnRoute]
-		en = Driver is en route
-	[DriverNearby]
-		en = Driver is nearby
-	[DriverArrived]
-		en = Driver has arrived
-	[PickupWindow]
-		en = Pickup window
-	[EstimatedPickupTime]
-		en = Estimated Pickup Time
-	[DriverDrivingToDealership]
-		en = Our driver is driving your vehicle to %@.
-	[YourVehicleHasArrived]
-		en = Your vehicle has arrived safely at %@. We’ll alert you next when it’s ready.
-	[CurrentService]
-		en = Current Service
-	[VolvoCurrentlyServicing]
-		en = Your Volvo is currently being serviced at %@. We will notify you when the service is complete.
-	[ReturnVehicle]
-		en = Return Vehicle
-	[VolvoServiceComplete]
-		en = Your Volvo service is completed. You can pick it up from the dealership or schedule delivery.
-	[SelfPickup]
-		en = Self Pickup
-	[VolvoDelivery]
-		en = Volvo Delivery
-	[SelectYourPreferredDeliveryTime]
-		en = Select your preferred delivery time
-	[ConfirmDelivery]
-		en = Confirm Delivery
-	[ScheduledDelivery]
-		en = Scheduled Delivery
-	[ScheduleDelivery]
-		en = Schedule Delivery
-	[DeliveryLocation]
-		en = Delivery Location
-	[VehicleIsReady]
-		en = Vehicle is ready
-	[DeliveryWindow]
-		en = Delivery window
-	[DeliveryComplete]
-		en = Your delivery from %@ is complete.
-	[VolvoYearModel]
-		en = Volvo Year/Model
-	[Mileage]
-		en = Mileage
-	[PreferredDealership]
-		en = Preferred Dealership
-	[NewService]
-		en = New Service
-	[ScheduledService]
-		en = Scheduled Service
-	[AreYouSureCancelPickup]
-		en = Are you sure you want to cancel your pickup?
-	[AreYouSureCancelDropOff]
-		en = Are you sure you want to cancel your delivery?
-	[Settings]
-		en = Settings
-	[YourVolvos]
-		en = Your Volvos
-	[AddANewVolvo]
-		en = Add a New Volvo
-	[YourAccount]
-		en = Your Account
-	[UnitOfDistance]
-		en = Unit Of Distance
-	[ShowDistanceAsMiles]
-		en = Show Distance As Miles
-	[PickupDeliveryLocations]
-		en = Pickup/Delivery Locations
-	[ContactInformation]
-		en = Contact Information
-	[AccountPassword]
-		en = Account Password
-	[AppName]
+[[Generic]]
+	[appName]
 		en = Luxe by Volvo
-	[Skip]
-		en = Skip
-	[Signout]
-		en = Sign Out
-	[Close]
-		en = Close
-	[Error]
-		en = Error
-	[GenericError]
-		en = An unknown error has occurred. Please try again later.
-	[Map]
-		en = Map
-	[Retry]
-		en = Retry
-	[Refresh]
-		en = Refresh
-	[Success]
-		en = Success
-	[Confirm]
-		en = Confirm
-	[Delete]
-		en = Delete
-	[Remove]
-		en = Remove
-	[ForceUpgradeTitle]
-		en = Software Update
-	[ForceUpgradeMessage]
-		en = There is a new version of Luxe by Volvo available for download.\n\nThis is a required update. Please update now.
-	[SoftUpgradeTitle]
-		en = Update Available
-	[SoftUpgradeMessage]
-		en = There is a new version of Luxe by Volvo available for download.\n\nFor the best possible experience, please update now.
-	[GrantPermission]
-		en = Grant Permission
-	[DatabaseError]
-		en = An unexpected error as occured. Please try restarting the app.
-	[NotificationPermissionText]
-		en = We need you to grant us the permission to send you notifications to give you updates regarding the status of your car
-	[PickupAndDelivery]
-		en = Pickup & Delivery
-	[DuplicateRequestError]
-		en = A %@ is already scheduled for your car. Please refresh.
-	[DeleteVehicleError]
-		en = You cannot delete a vehicle that has an active booking.
-	[Pickup]
-		en = Pickup
-	[Delivery]
-		en = Delivery
-	[SignoutConfirmation]
-		en = Are you sure you want to sign out?
-	[MobilePhoneNumberResetPassword]
-		en = We require your phone number to reset your password
-	[FirstName]
-		en = First Name
-	[LastName]
-		en = Last Name
-	[WelcomeSignup]
-		en = Welcome to Luxe by Volvo. Let’s create your account.
-	[FirstNamePlaceholder]
-		en = John
-	[LastNamePlaceholder]
-		en = Smith
-	[CreatePassword]
-		en = Create a password
-	[PasswordCondition]
-		en = (At least 8 characters with at least one letter and one number)
-	[Password]
-		en = Password
-	[RepeatPassword]
-		en = Repeat Password
-	[Signup]
-		en = Signup
-	[SignIn]
-		en = Sign-In
-	[CreateAccount]
-		en = Create Account
-	[EmailAddress]
-		en = Email Address
-	[EmailPlaceholder]
-		en = name@domain.com
-	[SelectYourVehicle]
-		en = Select your vehicle’s year, model and color
-	[Year]
-		en = Year
-	[Model]
-		en = Model
-	[Color]
-		en = Color
-	[YearPlaceholder]
-		en = 2019
-	[ModelPlaceholder]
-		en = S90
-	[ColorPlaceholder]
-		en = Black
-	[AccountAlreadyExist]
-		en = An account already exist with that email, please try Login instead.
-	[PhoneNumberInvalid]
-		en = The provided phone number is correctly formatted but does not appear to be a valid phone number.
-	[InvalidVerificationCode]
-		en = Invalid Code.
-	[InvalidCredentials]
-		en = The email or password provided is invalid.
-	[ChangePhoneNumber]
+		tags = customer
+	[appName]
+		en = Luxe Driver
+		tags = driver
+	[notAvailable]
+		en = NA
+		comment = Generic
+		tags = customer,driver
+	[phoneNumber]
+		en = Phone Number
+		tags = driver,customer
+	[phoneNumberAlreadyTaken]
+		en = Phone number already taken
+		tags = driver,customer
+	[phoneNumberCannotBeEmpty]
+		en = Phone number cannot be empty
+		tags = driver,customer
+	[confirmPhoneNumber]
+		en = Confirm Phone Number
+		tags = driver,customer
+	[changePhoneNumber]
 		en = Change phone number
-	[PhoneNumberAlreadyExist]
-		en = An account already exist with that phone number, please try Login instead.
-	[PhoneNumberNotInFile]
-		en = We couldn't find any account for that phone number. Please verify the phone number and try again.
-	[UpdatePhoneNumberAlreadyExist]
-		en = An account already exist with that phone number, please verify the phone number and try again.
-	[UpdatePassword]
-		en = Update your password.
-	[ForgotPassword]
-		en = Forgot password?
-	[PasswordResetLogin]
-		en = Password successfully reset, please proceed to login.
-	[PasswordUnauthorizedChars]
-		en = Your password contains unauthorized characters. Authorized characters: @$!%*?&
-	[AreYouSureDeleteAddress]
-		en = Are you sure you want to delete that address %@?
-	[RequiresALetter]
-		en = Requires a letter
-	[RequiresANumber]
-		en = Requires a number
-	[InvalidCharacter]
-		en = Invalid character
-	[DoesNotMatch]
-		en = Does not match
-	[WrongVerificationCode]
-		en = The verification code you entered is incorrect. Please try again or tap Resend Code to receive a new code.
-	[AgreeToTosAndPrivacyFormat]
-		en = You agree to our %@ and %@.
-	[TermsAndConditions]
-		en = Terms of Service
-	[PrivacyPolicy]
-		en = Privacy Policy
-	[AccountAlreadyExistUpdate]
-		en = An account already exist with that email.
-	[PhoneNumberAlreadyExistUpdate]
-		en = An account already exist with that phone number.
-	[SelectService]
-		en = Select Service
-	[ConfirmService]
-		en = Confirm Service
-	[ServiceSummary]
-		en = Service Summary
-	[ShowDetails]
-		en = Show Details
-	[CurrentLocation]
-		en = Current Location
-	[UpdatingLocation]
-		en = Updating Location...
-	[SelectPickupDate]
-		en = Select pickup date and time
-	[NeedALoaner]
-		en = Need a Loaner?
-	[ScheduleDropDealershipSelfEnabled]
-		en = You can schedule pickup at any address served by a participating dealership, or you can drop-off your car in person.
-	[SchedulePickupDealership]
-		en = Schedule delivery at any location served by a participating dealership.
-	[SchedulePickupDealershipSelfEnabled]
-		en = You can schedule delivery to any address served by the dealership, or you can pick-up your car in person.
-	[ServiceNotOfferedInArea]
-		en = Service unavailable
-	[DatesLoanersOnly]
-		en = Dates with available loaners only
-	[PickupTimes]
-		en = Pickup Times
-	[DealershipCloseToLocation]
-		en = Dealerships close to:
-	[ConfirmSelfDrop]
-		en = Confirm Self-Drop
-	[SelectDeliveryDate]
-		en = Select delivery date and time
-	[SelectDropoffDate]
-		en = Select dropoff date and time
-	[DeliveryTimes]
-		en = Delivery Times
-	[DropOffTimes]
-		en = Dropoff Times
-	[NoDatesForDealership]
-		en = Unfortunately no dates are available for this dealership. Please try again later or call the dealership.
-	[CallDealership]
-		en = Call Dealership
-	[NotePermissionLocation]
-		en = Note: to access your current location, we’ll need to ask you for permission next.
-	[PermissionLocationDenied]
-		en = To access your current location, you need to enable the location permission in the Settings.
-	[OpenSettings]
-		en = Open Settings
-	[LocationPermission]
-		en = Location Permission
-	[AllowNotifications]
-		en = Allow Notifications?
-	[NotificationPermissionBody]
-		en = We only send you updates on the status of your vehicle during pickups and deliveries.
-	[NotNow]
-		en = Not now
-	[Allow]
-		en = Allow
-	[ContactDriver]
-		en = Contact Driver
-	[CallDriver]
-		en = Call Driver
-	[TextDriver]
-		en = Text Driver
-	[ScheduledSelfDrop]
-		en = Scheduled Self-Drop
-	[NoteDelivery]
-		en = Note: Volvo delivery is only offered near the dealership.
-	[RescheduleDelivery]
-		en = Reschedule Delivery
-	[LicenseInsuranceCardReady]
-		en = Have your license and insurance card ready
-	[ConfirmSelfPickup]
-		en = Confirm Self-Pickup
-	[SelfPickupAtDealership]
-		en = Self-Pickup at Dealership
-	[AreYouSureSelfPickup]
-		en = Are you sure you want to pick-up your vehicle at the dealership?
-	[SelfDropoffAtDealership]
-		en = Self-Dropoff at Dealership
-	[PickupAtDealership]
-		en = Pick-up at Dealership
-	[DropoffAtDealership]
-		en = Drop-off at Dealership
-	[EstimatedDeliveryTime]
-		en = Estimated delivery time
-	[GetDirections]
-		en = Get Directions
-	[ScheduleDriver]
-		en = You can also schedule a driver to deliver your vehicle
-	[UnableToMeetDriver]
-		en = If you’re unable to meet your driver at the scheduled time, you can reschedule your delivery.
-	[PreferPickup]
-		en = If you prefer to pick-up your vehicle at the dealership, you can choose to do that below. Note: This will cancel your scheduled delivery.
-	[YoureScheduledForDelivery]
-		en = You're scheduled for delivery
-	[Change]
-		en = Change
-	[ViewDealershipLocation]
-		en = View Dealership Location
-	[Service]
-		en = Service
-	[NewServiceIntro]
-		en = You can schedule pickup (with participating dealerships) through Luxe by Volvo.\n\nTo schedule pickup, first select service type.
-	[MilestoneServices]
-		en = Milestone services
-	[RecallServices]
-		en = Recall services
-	[OtherMaintenanceRepairs]
-		en = Other maintenance and repairs
-	[OtherMaintenance]
-		en = Other Maintenance
-	[WhatPartRequiresService]
-		en = What part of your Volvo requires service?
-	[SelectAllThatApply]
-		en = Select all that apply
-	[IsVolvoDrivable]
-		en = Is your Volvo drivable?
-	[ImNotSure]
-		en = I’m not sure
-	[NewServiceDescription]
-		en = Is there anything else you can tell us about your Volvo?
-	[TypeDescriptionHere]
-		en = Type description here
-	[AddDescription]
-		en = Add Description
-	[DiagnosticInspection]
-		en = Diagnostic Inspection
-	[VehicleExt]
-		en = Vehicle exterior
-	[VehicleInt]
-		en = Vehicle interior
-	[UnderTheHood]
-		en = Under the hood
-	[IDontKnow]
-		en = I don't know
-	[FactoryScheduledMaintenance]
-		en = Factory Scheduled Maintenance
-	[Repair]
-		en = repair
-	[Interior]
-		en = interior
-	[Exterior]
-		en = exterior
-	[Mechanical]
-		en = mechanical
-	[Rating]
-		en = On a scale from 1 to 10, how likely are you to recommend pickup and delivery to other Volvo owners?
-	[YourFeedback]
-		en = Your Feedback
-	[Feedback]
-		en = Feedback
-	[RatingReason]
-		en = What was the main reason for your rating?
-	[RatingReasonHint]
-		en = Reason for your rating?
-	[ServiceComplete]
-		en = Service Complete
-	[YourVolvo]
-		en = Your Volvo
-	[ActiveBookings]
-		en = Active Bookings
-	[RemoveVehicle]
+		tags = customer
+	[confirmationCode]
+		en = Confirmation Code
+		tags = driver,customer
+	[createPassword]
+		en = Create a password
+		tags = driver,customer
+	[currentPassword]
+		en = Current Password
+		tags = driver,customer
+	[password]
+		en = Password
+		tags = driver,customer
+	[emailAddress]
+		en = Email Address
+		tags = driver,customer
+	[yes]
+		en = Yes
+		comment = Generic
+		tags = customer,driver
+	[no]
+		en = No
+		tags = customer,driver
+	[loading]
+		en = Loading…
+		tags = customer,driver
+	[next]
+		en = Next
+		tags = customer,driver
+	[skip]
+		en = Skip
+		tags = customer,driver
+	[edit]
+		en = Edit
+		tags = customer,driver
+	[done]
+		en = Done
+		tags = customer,driver
+	[add]
+		en = Add
+		tags = customer,driver
+	[remove]
+		en = Remove
+		tags = customer,driver
+	[close]
+		en = Close
+		tags = customer,driver
+	[retry]
+		en = Retry
+		tags = customer,driver
+	[removeVehicle]
 		en = Remove Vehicle
-	[RemoveVehicleConfirmation]
-		en = Are you sure you want to remove that car from your account?
-	[Help]
+		tags = customer
+	[cancelPickup]
+		en = Cancel Pickup
+		tags = customer
+	[cancelDelivery]
+		en = Cancel Delivery
+		tags = customer
+	[cancelDropoff]
+		en = Cancel Dropoff
+		tags = customer
+	[pickupLocation]
+		en = Pickup Location
+		tags = customer
+	[deliveryLocation]
+		en = Delivery Location
+		tags = customer
+	[scheduledPickup]
+		en = Scheduled Pickup
+		tags = customer
+	[scheduledDelivery]
+		en = Scheduled Delivery
+		tags = customer
+	[currentService]
+		en = Current Service
+		tags = customer
+	[completedService]
+		en = Completed Service
+		tags = customer
+	[dealership]
+		en = Dealership
+		tags = customer,driver
+	[newService]
+		en = New Service
+		tags = customer
+	[selectedService]
+		en = Selected Service
+		tags = customer
+	[schedulePickup]
+		en = Schedule Pickup
+		tags = customer
+	[showDetails]
+		en = Show Details
+		tags = customer
+	[scheduleDelivery]
+		en = Schedule Delivery
+		tags = customer
+	[yourLastPickup]
+		en = Your last pickup
+		tags = customer
+	[yourLastDelivery]
+		en = Your last delivery
+		tags = customer
+	[pickup]
+		en = Pickup
+		tags = customer,driver
+	[delivery]
+		en = Delivery
+		tags = customer,driver
+	[change]
+		en = Change
+		tags = customer,driver
+	[contact]
+		en = Contact
+		tags = customer,driver
+	[update]
+		en = Update
+		tags = customer,driver
+	[volvoYearModel]
+		en = Volvo Year/Model
+		tags = customer,driver
+	[year]
+		en = Year
+		tags = customer,driver
+	[model]
+		en = Model
+		tags = customer,driver
+	[color]
+		en = Color
+		tags = customer,driver
+	[help]
 		en = Help
-	[YourLastDelivery]
-		en = Your Last Delivery
-	[YourLastPickup]
-		en = Your Last Pickup
-	[EmailDealer]
-		en = Email Dealer
-	[CallDealer]
-		en = Call Dealer
-	[EmailVolvo]
-		en = Email Volvo
-	[CallVolvo]
-		en = Call Volvo
-	[MyVehicleWasDamaged]
-		en = My vehicle was damaged
-	[ILostAnItem]
-		en = I lost an item
-	[MyPickupDeliveryLocationWasWrong]
-		en = My pickup/delivery location was wrong
-	[MyDriverWasLate]
-		en = My driver was late or never showed up
-	[IMissedMyPickupDelivery]
-		en = I missed my pickup/delivery
-	[MyDriverDidntMatchThePicture]
-		en = My driver didn’t match the picture in my app
-	[ICouldntContactMyDriver]
-		en = I couldn’t contact my driver
-	[MyDriverWasUnprofessional]
-		en = My driver was unprofessional
-	[SomethingUnsafeHappened]
-		en = Something unsafe happened
-	[ThereWasAnIssueWithMyLoanerVehicle]
-		en = There was an issue with my loaner vehicle
-	[ThereWasAnIssueWithMyPaperwork]
-		en = There was an issue with my paperwork
-	[Other]
-		en = Other…
-	[MyVehicleWasDamagedDetail]
-		en = We inspect customers' vehicles before and after every trip to ensure safety and quality of service. In order to keep complete records of vehicles throughout service, our drivers photograph both customer and loaner vehicles at multiple points through pickup and delivery. If your vehicle was damaged as part of pickup or delivery, please let us know here.
-	[ILostAnItemDetail]
-		en = If a driver finds an item left behind in a loaner, we make every attempt to contact customers, and return the item. Sometimes, the item might not be found immediately though. If you believe you lost something in your vehicle or your loaner, please get in touch with the dealership as soon as you notice its missing.\n\nGenerally lost items are kept for 45 days. If they go unclaimed, the items are donated to a charity or disposed of.
-	[MyPickupDeliveryLocationWasWrongDetail]
-		en = If the driver met you somewhere other than the address you specified, its useful to know why. Sometimes choosing an address based on your current location can be inaccurate, especially in high-density neighborhoods, areas with challenging geography or sporadic GPS signal. Other times drivers can find themselves at the wrong location if the address has ambiguous signage, restricted parking, or unsafe conditions for exchanging vehicles. We do our best to meet you at the exact location that you choose. If you believe the driver was in error and met you in the wrong location, please let us know here.
-	[MyDriverWasLateDetail]
-		en = Occassionally due to circumstances outside of our control, our pickup and delivery services can get a little behind schedule. We make every attempt to contact our customers to know if we are running late. If a driver didn't show up, usually they tried but failed to find the customer. In that case we try to connect the driver to the customer via phone. If the driver is still unable to find the customer, our policy is to bring the customer's car back to the dealership, and reschedule delivery for a later time. If our driver was unable to find you, or if you believe they never showed up, please let us know here.
-	[IMissedMyPickupDeliveryDetail]
-		en = `If you missed your pickup/delivery window, don't worry. If it was a pickup, the driver returned to the dealership with the loaner vehicle. If it was a delivery, the driver brought your vehicle back to the dealership. You can call or email the dealership to reschedule. `
-	[MyDriverDidntMatchThePictureDetail]
-		en = For every pickup and delivery, the Luxe by Volvo app helps you recognize the driver who will be performing service for you. If you believe the driver was not who you were expecting, please let us know here.
-	[ICouldntContactMyDriverDetail]
-		en = While rare, sometimes customers aren't able to contact their drivers. This is generally due to two reasons. Either the driver is temporarily passing through an area with no mobile connectivity, or it is an unsafe moment for the driver to respond to a message or receive a call. In that case, the driver will pull-over once it is safe and try to contact the customer.\n\nIf you're having trouble reaching your driver, you can wait a minute or two, and try contacting the driver again. If the problem persists, please let us know here.
-	[MyDriverWasUnprofessionalDetail]
-		en = We hold high standards for our drivers' professionalism, communication skills, and responsibility. If you believe your driver has been unprofessional, impolite, or failed to live up to your expectations, please let us know.
-	[SomethingUnsafeHappenedDetail]
-		en = At Volvo, safety is our number one priority. If you experienced an unsafe or distracted driver at any time during this service, please let us know here.
-	[ThereWasAnIssueWithMyLoanerVehicleDetail]
-		en = We hope every loaner vehicle is delivered safe, comfortable, and in top working-order. While we can't guarantee the type of vehicle you'll receive, we keep all of our loaner interiors neat, clean, and free of strong or unpleasant odors. If the loaner for this service did not meet your expectations, please let us know here.
-	[ThereWasAnIssueWithMyPaperworkDetail]
-		en = Apologies if there was an issue with your paperwork. We aim to have transparent and informative paperwork accompanying any maintenance. If you have questions about the paperwork you were provided, please let us know here.
-	[OtherDetail]
-		en = Didn't see what you were looking for? Please let us know how we can help you with your Luxe by Volvo service.
-	[HowLuxebyVolvoWorks]
+		tags = customer,driver
+	[updateNow]
+		en = Update Now
+		tags = customer,driver
+	[settings]
+		en = Settings
+		tags = customer,driver
+	[yourAccount]
+		en = Your Account
+		tags = customer,driver
+	[addNewLocation]
+		en = Add a new location
+		tags = customer
+	[resendCode]
+		en = Resend code
+		tags = customer,driver
+	[toastSettingsLocationDisabled]
+		en = Luxe by Volvo does not function properly with location services disabled
+		tags = customer
+	[toastSettingsLocationDisabled]
+		en = Luxe Driver does not function properly with location services disabled.
+		tags = driver
+	[requestReset]
+		en = Request was reset.
+		tags = customer,driver
+	[requestCanceled]
+		en = Request was canceled. Please check the next one in the schedule.
+		tags = driver
+	[requestCompleted]
+		en = Request was completed. Please check the next one in the schedule.
+		tags = driver
+	[requestTaskChangedFromBackend]
+		en = Request was updated. Please check the schedule.
+		tags = driver
+	[support]
+		en = Support
+		tags = driver
+	[newPassword]
+		en = New Password
+		tags = driver
+	[updateYourPassword]
+		en = Update your Password
+		tags = customer
+	[confirmNewPassword]
+		en = Confirm New Password
+		tags = driver
+	[passwordRequirements]
+		en = Password must have at least one letter and one digit, at least 8 chars, less than 60
+		tags = customer,driver
+	[openSettings]
+		en = Open Settings
+		tags = customer,driver
+	[back]
+		en = Back
+		tags = customer,driver
+	[inspectVehicles]
+		en = Inspect Vehicles
+		tags = driver
+	[inspectVehicle]
+		en = Inspect Vehicle
+		tags = driver
+	[exchangeKeys]
+		en = Exchange Keys
+		tags = driver
+	[exchangeKey]
+		en = Exchange Key
+		tags = driver
+	[returnToDealership]
+		en = Return to Dealership
+		tags = driver
+	[pickupColon]
+		en = Pickup:\u00A0
+		tags = driver
+	[loanerColon]
+		en = Loaner:\u00A0
+		tags = driver
+	[customerColon]
+		en = Customer:\u00A0
+		tags = driver
+	[addressColon]
+		en = Address:\u00A0
+		tags = driver
+	[deliveryColon]
+		en = Delivery:\u00A0
+		tags = driver
+	[modelColon]
+		en = Model:\u00A0
+		tags = driver
+	[licensePlateColon]
+		en = License Plate:\u00A0
+		tags = driver
+	[keyCodeColon]
+		en = Key Code:\u00A0
+		tags = driver
+	[repairOrderColon]
+		en = Repair Order:\u00A0
+		tags = driver
+	[serviceColon]
+		en = Service:\u00A0
+		tags = driver
+	[vehicleMake]
+		en = Volvo
+		comment = Vehicle
+		tags = customer,driver
+	[yourVolvo]
+		en = Your Volvo
+		comment = Drawer
+		tags = customer
+	[yourVolvos]
+		en = Your Volvos
+		tags = customer
+	[signout]
+		en = Sign Out
+		tags = customer,driver
+[[Errors]]
+	[errorOops]
+		en = Oops
+		comment = Errors
+		tags = customer,driver
+	[errorUnknown]
+		en = Something went wrong. Please try again.
+		tags = customer,driver
+	[errorInvalidCredentials]
+		en = The email or password provided is invalid.
+		tags = customer,driver
+	[errorInvalidUserDisabled]
+		en = This account has been disabled
+		tags = customer,driver
+	[errorAccountAlreadyExists]
+		en = Account already exists. Please signin.
+		tags = customer,driver
+	[errorNoMatchingCustomer]
+		en = No matching customer is found
+		tags = customer
+	[errorInvalidVerificationCode]
+		en = The verification code you entered is incorrect. Please try again or tap Resend Code to receive a new code.
+		tags = customer,driver
+	[errorUserDisabled]
+		en = Your account has been disabled. Please contact your adviser.
+		tags = customer,driver
+	[errorInvalidFirstName]
+		en = Invalid first name
+		tags = customer,driver
+	[errorInvalidLastName]
+		en = Invalid last name
+		tags = customer,driver
+	[errorInvalidEmail]
+		en = Invalid email address
+		tags = customer,driver
+	[errorInvalidPhoneNumber]
+		en = Invalid phone number
+		tags = customer,driver
+	[errorInvalidPhoneNumberFormatted]
+		en = The provided phone number is correctly formatted but does not appear to be a valid phone number.
+		tags = customer
+	[errorVerifyPhoneNumber]
+		en = Please verify your phone number
+		tags = customer,driver
+	[errorInvalidPhoneVerificationCode]
+		en = Invalid verification code
+		tags = customer,driver
+	[errorPhoneNumberAlreadyExist]
+		en = An account already exists with that phone number, please try Login instead.
+		tags = customer
+	[errorEmailAlreadyExist]
+		en = An account already exists with that email.
+		tags = customer[errorPhoneNumberNotInFile]
+		en = We couldn't find any account for that phone number. Please verify the phone number and try again.
+		tags = customer
+	[errorUpdatePhoneNumberAlreadyExist]
+		en = An account already exists with that phone number, please verify the phone number and try again.
+		tags = customer
+	[errorInvalidPassword]
+		en = Invalid password
+		tags = customer,driver
+	[errorInvalidPasswordConfirm]
+		en = Passwords are not matching
+		tags = customer,driver
+	[errorPasswordNotMatch]
+		en = Does not match
+		tags = customer
+	[errorLocationOutOfPickupArea]
+		en = Out of pickup area
+		tags = customer,driver
+	[errorLocationServiceNotOfferedInYourArea]
+		en = Service unavailable
+		tags = customer,driver
+	[errorLocationOutOfDropoffArea]
+		en = Out of delivery area
+		tags = customer,driver
+	[errorForcedUpgradeTitle]
+		en = Software Update
+		tags = customer,driver
+	[errorForcedUpgradeMessage]
+		en = There is a new version of Luxe by Volvo available for download.\n\nThis is a required update. Please update now.
+		tags = customer,driver
+	[errorSoftUpgradeTitle]
+		en = Update Available
+		tags = customer,driver
+	[errorSoftUpgradeMessage]
+		en = There is a new version of Luxe by Volvo available for download.\n\nFor the best possible experience, please update now.
+		tags = customer,driver
+	[errorRemoveVehicleError]
+		en = You cannot remove a vehicle that has an active booking
+		tags = customer,driver
+[[Permissions]]
+	[permissionsLocationDeniedTitle]
+		en = Why we need Location?
+		comment = Permissions
+		tags = customer,driver
+	[permissionsLocationDeniedMessage]
+		en = Luxe by Volvo needs location access to pickup or deliver your vehicle at your current location.\nPlease go to your settings and enable Location permissions for Luxe by Volvo.
+		tags = customer
+	[permissionNotificationMessage]
+		en = We need you to grant us the permission to send you notifications to give you updates regarding the status of your car
+		tags = customer
+[[Popups]]
+	[popupPhoneVerificationResendCodeTitle]
+		en = New confirmation code sent
+		comment = Popups
+		tags = customer,driver
+	[popupPhoneVerificationResendCodeMessage]
+		en = We sent a 4 digit confirmation code to %@
+		tags = customer,driver
+	[popupAddNewLocationEditHint]
+		en = 123 Main Street, San Francisco
+		tags = customer
+	[popupAddNewLocationLabel]
+		en = Address for Pickup
+		tags = customer,driver
+	[popupRemoveAddressMessage]
+		en = Are you sure you want to delete that address %@?
+		tags = customer
+	[popupRemoveVehicleMessage]
+		en = Are you sure you want to remove that car from your account?
+		tags = customer
+	[popupSelectLocationLabel]
+		en = Where should we meet you?
+		tags = customer
+	[popupSelectLocationPermissionNote]
+		en = Note: to access your current location, we’ll need to ask you for permission next.
+		tags = customer
+	[popupSelectLocationCurrentLocation]
+		en = Current Location
+		tags = customer
+	[popupSelectDealershipLabel]
+		en = Choose where to perform service
+		tags = customer
+	[popupSelectTimeSlotLabelPickup]
+		en = Select pickup date and time
+		tags = customer
+	[popupSelectTimeSlotLabelDropoff]
+		en = Select delivery date and time
+		tags = customer
+	[popupSelectTimeSlotTimesLabelPickup]
+		en = Pickup times
+		tags = customer
+	[popupSelectTimeSlotTimesLabelDropoff]
+		en = Delivery times
+		tags = customer
+	[popupSelectTimeSlotUnavailableLabel]
+		en = Unfortunately no dates are available for this dealership. Please try again later or call the dealership.
+		tags = customer
+	[popupSelectTimeSlotUnavailableCallDealership]
+		en = Call Dealership
+		tags = customer,driver
+	[popupSelectTimeSlotUnavailableCallDealershipNotAvailable]
+		en = Dealership not available
+		tags = customer
+	[popupDefaultCancelPickupMessage]
+		en = Are you sure you want to cancel your pickup?
+		tags = customer
+	[popupDefaultCancelDropoffMessage]
+		en = Are you sure you want to cancel your delivery?
+		tags = customer
+	[popupContactTitle]
+		en = Contact Driver
+		tags = customer
+	[popupContactText]
+		en = Text Driver
+		tags = customer
+	[popupContactCall]
+		en = Call Driver
+		tags = customer
+	[popupSoftUpgradeNegative]
+		en = Later
+		tags = customer,driver
+	[popupSignoutConfirmationMessage]
+		en = Are you sure you want to signout?
+		tags = customer,driver
+	[popupAdvisorDropoffMessage]
+		en = Are you sure you want to pick-up your vehicle at the dealership?
+		tags = customer
+	[popupAdvisorPickupMessage]
+		en = Are you sure you want to drop-off your vehicle at the dealership?
+		tags = customer
+	[popupAdvisorDropoffLabel]
+		en = You’re scheduled for delivery
+		tags = customer
+	[popupAdvisorDropoffRescheduleDescription]
+		en = If you’re unable to meet your driver at the scheduled time, you can reschedule your delivery.
+		tags = customer
+	[popupAdvisorDropoffReschedule]
+		en = Reschedule Delivery
+		tags = customer
+	[popupAdvisorDropoffSelfPickupDescription]
+		en = If you prefer to pick-up your vehicle at the dealership, you can choose to do that below. Note: This will cancel your scheduled delivery.
+		tags = customer
+	[popupAdvisorDropoffSelfPickup]
+		en = Confirm Self-Pickup
+		tags = customer
+	[popupDeviceChangeTitle]
+		en = Update Phone Number
+		comment = Popups
+		tags = driver
+	[popupDeviceChangeMessage]
+		en = Looks like you changed the phone. Please update and verify the phone number.
+		tags = driver
+	[popupChooseDealershipTitle]
+		en = Select Dealership
+		tags = driver
+	[popupGetToCustomerTitle]
+		en = Customer Address
+		tags = driver
+	[popupGetToCustomerCopyToClipboard]
+		en = COPY
+		tags = driver
+	[popupGetToDealershipTitle]
+		en = Dealership Address
+		tags = driver
+	[popupGetToDealershipCopyToClipboard]
+		en = COPY
+		tags = driver
+	[popupForgotPasswordTitle]
+		en = Forgot Your Password?
+		tags = driver
+	[popupForgotPasswordMessage]
+		en = Please contact your adviser to reset your password.
+		tags = driver
+	[popupHardRefreshTitle]
+		en = Hard Refresh Warning!
+		tags = driver
+	[popupHardRefreshMessage]
+		en = This will erase your app data and you’ll need to restart the app again. Please only click yes when you’re stuck.\n\nDo you want to proceed with hard refresh?
+		tags = driver
+	[popupTooFarFromCustomerTitle]
+		en = Are you sure you’ve arrived at the customer?
+		tags = driver
+	[popupTooFarFromCustomerMessage]
+		en = Your GPS location doesn’t match the customer location
+		tags = driver
+	[popupTooFarFromCustomerPositive]
+		en = Yes, I’m sure
+		tags = driver
+	[popupTooFarFromDealershipTitle]
+		en = Are you sure you’ve arrived at the dealership?
+		tags = driver
+	[popupTooFarFromDealershipMessage]
+		en = Your GPS location doesn’t match the dealership location
+		tags = driver
+	[popupTooFarFromDealershipPositive]
+		en = Yes, I’m sure
+		tags = driver
+	[popupAlreadyStartedDrivingTitle]
+		en = Have you started driving to %@?
+		tags = driver
+	[popupAlreadyStartedDrivingMessage]
+		en = Based on your GPS location, it looks like you’ve begun driving
+		tags = driver
+	[popupAlreadyStartedDrivingPositive]
+		en = Yes, I’ve started
+		tags = driver
+[[Service Array Values]]
+	[underTheHood]
+		en = Under the hood
+		comment = Array Values
+		tags = customer
+	[vehicleInterior]
+		en = Vehicle interior
+		tags = customer
+	[vehicleExterior]
+		en = Vehicle exterior
+		tags = customer
+	[iDontKnow]
+		en = I don’t know
+		tags = customer
+	[imNotSure]
+		en = I’m not sure
+		tags = customer
+[[Help Array Values]]
+	[helpHowLuxebyVolvoWorks]
 		en = How Luxe by Volvo works
-	[ICantArrangeService]
-		en = I can’t arrange service with my dealership
-	[NoParticipatingDealershipsInArea]
-		en = No participating dealerships in my area
-	[ICantCancelMyPickupOrDelivery]
-		en = I can’t cancel my pickup or delivery
-	[TooFewLoanersAvailable]
-		en = Too few loaners available
-	[NoneOfTheAvailableTimesWorkForMe]
-		en = None of the available times work for me
-	[ICantArrangeServiceDetail]
-		en = Not every dealership currently offers Luxe by Volvo pickup and delivery. While the program is expanding globally across all dealerships, it may not be available at your preferred dealership at this time. Check back next time you need maintainence, and it'll hopefully be available at that time.
-	[NoParticipatingDealershipsInAreaDetail]
-		en = Luxe by Volvo is only available at participating Volvo dealerships. If your preferred dealership is not offering Luxe by Volvo now, they may be offering it in the future. Starting in 2019, Luxe by Volvo will begin becoming avaialable in dealerships in the United States, and begin appearing in Europe and Asia.
-	[ICantCancelMyPickupOrDeliveryDetail]
-		en = Cancellation is available up until the day of your pickup or delivery. If today is the day of your pickup or delivery, you'll need to contact the dealership directly to reschedule.
-	[TooFewLoanersAvailableDetail]
-		en = At certain times, loaner vehicle inventory can become constrained. As a result, customers may need to scheedule service a little further ahead than usual. If you need service sooner than a loaner is available, consider foregoing a loaner to make an earlier appointment.
-	[NoneOfTheAvailableTimesWorkForMeDetail]
-		en = If you're having difficulty finding a time-slot that works for your schedule, please contact your dealership directly. They may be able to make arrangements for you that accommodate your specific needs.
-	[TroubleWithTheLuxebyVolvoApp]
+		tags = customer
+	[helpTroubleWithTheLuxebyVolvoApp]
 		en = Trouble with the Luxe by Volvo app
-	[TheAppIsntWorkingCorrectly]
+		tags = customer
+	[helpMyVehicleWasDamaged]
+		en = My vehicle was damaged
+		tags = customer
+	[helpILostAnItem]
+		en = I lost an item
+		tags = customer
+	[helpMyPickupDeliveryLocationWasWrong]
+		en = My pickup/delivery location was wrong
+		tags = customer
+	[helpMyDriverWasLate]
+		en = My driver was late/never showed up
+		tags = customer
+	[helpIMissedMyPickupDelivery]
+		en = I missed my pickup/delivery
+		tags = customer
+	[helpMyDriverDidntMatchThePicture]
+		en = My driver didn’t match the picture in my app
+		tags = customer
+	[helpICouldntContactMyDriver]
+		en = I couldn’t contact my driver
+		tags = customer
+	[helpMyDriverWasUnprofessional]
+		en = My driver was unprofessional
+		tags = customer
+	[helpSomethingUnsafeHappened]
+		en = Something unsafe happened
+		tags = customer
+	[helpThereWasAnIssueWithMyLoanerVehicle]
+		en = There was an issue with my loaner
+		tags = customer
+	[helpThereWasAnIssueWithMyPaperwork]
+		en = There was an issue with the paperwork
+		tags = customer
+	[helpOther]
+		en = Other…
+		tags = customer
+	[helpMyVehicleWasDamagedDetail]
+		en = We inspect customers’ vehicles before and after every trip to ensure safety and quality of service. In order to keep complete records of vehicles throughout service, our drivers photograph both customer and loaner vehicles at multiple points through pickup and delivery. If your vehicle was damaged as part of pickup or delivery, please let us know here.
+		tags = customer
+	[helpILostAnItemDetail]
+		en = If a driver finds an item left behind in a loaner, we make every attempt to contact customers, and return the item. Sometimes, the item might not be found immediately though. If you believe you lost something in your vehicle or your loaner, please get in touch with the dealership as soon as you notice its missing.\n\nGenerally lost items are kept for 45 days. If they go unclaimed, the items are donated to a charity or disposed of.
+		tags = customer
+	[helpMyPickupDeliveryLocationWasWrongDetail]
+		en = If the driver met you somewhere other than the address you specified, its useful to know why. Sometimes choosing an address based on your current location can be inaccurate, especially in high-density neighborhoods, areas with challenging geography or sporadic GPS signal. Other times drivers can find themselves at the wrong location if the address has ambiguous signage, restricted parking, or unsafe conditions for exchanging vehicles. We do our best to meet you at the exact location that you choose. If you believe the driver was in error and met you in the wrong location, please let us know here.
+		tags = customer
+	[helpMyDriverWasLateDetail]
+		en = Occasionally due to circumstances outside of our control, our pickup and delivery services can get a little behind schedule. We make every attempt to contact our customers to know if we are running late. If a driver didn’t show up, usually they tried but failed to find the customer. In that case we try to connect the driver to the customer via phone. If the driver is still unable to find the customer, our policy is to bring the customer’s car back to the dealership, and reschedule delivery for a later time. If our driver was unable to find you, or if you believe they never showed up, please let us know here.
+		tags = customer
+	[helpIMissedMyPickupDeliveryDetail]
+		en = If you missed your pickup/delivery window, don’t worry. If it was a pickup, the driver returned to the dealership with the loaner vehicle. If it was a delivery, the driver brought your vehicle back to the dealership. You can call or email the dealership to reschedule.
+		tags = customer
+	[helpMyDriverDidntMatchThePictureDetail]
+		en = For every pickup and delivery, the Luxe by Volvo app helps you recognize the driver who will be performing service for you. If you believe the driver was not who you were expecting, please let us know here.
+		tags = customer
+	[helpICouldntContactMyDriverDetail]
+		en = While rare, sometimes customers aren’t able to contact their drivers. This is generally due to two reasons. Either the driver is temporarily passing through an area with no mobile connectivity, or it is an unsafe moment for the driver to respond to a message or receive a call. In that case, the driver will pull-over once it is safe and try to contact the customer.\n\nIf you’re having trouble reaching your driver, you can wait a minute or two, and try contacting the driver again. If the problem persists, please let us know here.
+		tags = customer
+	[helpMyDriverWasUnprofessionalDetail]
+		en = We hold high standards for our drivers’ professionalism, communication skills, and responsibility. If you believe your driver has been unprofessional, impolite, or failed to live up to your expectations, please let us know.
+		tags = customer
+	[helpSomethingUnsafeHappenedDetail]
+		en = At Volvo, safety is our number one priority. If you experienced an unsafe or distracted driver at any time during this service, please let us know here.
+		tags = customer
+	[helpThereWasAnIssueWithMyLoanerVehicleDetail]
+		en = We hope every loaner vehicle is delivered safe, comfortable, and in top working-order. While we can’t guarantee the type of vehicle you’ll receive, we keep all of our loaner interiors neat, clean, and free of strong or unpleasant odors. If the loaner for this service did not meet your expectations, please let us know here.
+		tags = customer
+	[helpThereWasAnIssueWithMyPaperworkDetail]
+		en = Apologies if there was an issue with your paperwork. We aim to have transparent and informative paperwork accompanying any maintenance. If you have questions about the paperwork you were provided, please let us know here.
+		tags = customer
+	[helpOtherDetail]
+		en = Didn’t see what you were looking for? Please let us know how we can help you with your Luxe by Volvo service.
+		tags = customer
+	[helpICantArrangeService]
+		en = I can’t arrange service with my dealership
+		tags = customer
+	[helpNoParticipatingDealershipsInArea]
+		en = No participating dealerships in my area
+		tags = customer
+	[helpICantCancelMyPickupOrDelivery]
+		en = I can’t cancel my pickup or delivery
+		tags = customer
+	[helpTooFewLoanersAvailable]
+		en = Too few loaners available
+		tags = customer
+	[helpNoneOfTheAvailableTimesWorkForMe]
+		en = None of the available times work for me
+		tags = customer
+	[helpICantArrangeServiceDetail]
+		en = Not every dealership currently offers Luxe by Volvo pickup and delivery. While the program is expanding globally across all dealerships, it may not be available at your preferred dealership at this time. Check back next time you need maintenance, and it’ll hopefully be available at that time.
+		tags = customer
+	[helpNoParticipatingDealershipsInAreaDetail]
+		en = Luxe by Volvo is only available at participating Volvo dealerships. If your preferred dealership is not offering Luxe by Volvo now, they may be offering it in the future. Starting in 2019, Luxe by Volvo will begin becoming available in dealerships in the United States, and begin appearing in Europe and Asia.
+		tags = customer
+	[helpICantCancelMyPickupOrDeliveryDetail]
+		en = Cancellation is available up until the day of your pickup or delivery. If today is the day of your pickup or delivery, you’ll need to contact the dealership directly to reschedule.
+		tags = customer
+	[helpTooFewLoanersAvailableDetail]
+		en = At certain times, loaner vehicle inventory can become constrained. As a result, customers may need to schedule service a little further ahead than usual. If you need service sooner than a loaner is available, consider foregoing a loaner to make an earlier appointment.
+		tags = customer
+	[helpNoneOfTheAvailableTimesWorkForMeDetail]
+		en = If you’re having difficulty finding a time-slot that works for your schedule, please contact your dealership directly. They may be able to make arrangements for you that accommodate your specific needs.
+		tags = customer
+	[helpTheAppIsntWorkingCorrectly]
 		en = The app isn’t working correctly
-	[IForgotMyPassword]
+		tags = customer
+	[helpIForgotMyPassword]
 		en = I forgot my password
-	[ICantUpdateMyPhone]
+		tags = customer,driver
+	[helpICantUpdateMyPhone]
 		en = I can’t update my phone or email
-	[MyCurrentLocationIsntWorking]
+		tags = customer,driver
+	[helpMyCurrentLocationIsntWorking]
 		en = My current location isn’t working
-	[PushNotificationsArentWorking]
+		tags = customer
+	[helpPushNotificationsArentWorking]
 		en = Push notifications aren’t working for me
-	[TermsOfService]
+		tags = customer
+	[helpTermsOfService]
 		en = Terms of service
-	[PrivacyPolicyInformation]
+		tags = customer
+	[helpPrivacyPolicyInformation]
 		en = Privacy policy information
-	[RequestingDataFromLuxebyVolvo]
+		tags = customer
+	[helpRequestingDataFromLuxebyVolvo]
 		en = Requesting data from Luxe by Volvo
-	[DeleteMyLuxebyVolvoAccount]
+		tags = customer
+	[helpDeleteMyLuxebyVolvoAccount]
 		en = Delete my Luxe by Volvo account
-	[TheAppIsntWorkingCorrectlyDetail]
-		en = Is something in the Luxe by Volvo app working incorrectly or not as you expected? Please let us know here what issue you're experiencing, and we'll work with you to troubleshoot the issue.
-	[IForgotMyPasswordDetail]
-		en = `If you forgot your password, you can create a new password at sign-in. Your password must be at least 8 characters long, and include at least one numeral and one letter. If you're having trouble resetting your password, please let us know here. `
-	[ICantUpdateMyPhoneDetail]
-		en = `Because of how we create your account, we base your Luxe by Volvo account on your email address. Currently, that is not editable. You can update your mobile phone number in 'Your Account,' which you can access by tapping the menu icon in the top-left of the app. `
-	[MyCurrentLocationIsntWorkingDetail]
-		en = Check to make sure that you’ve enabled location services for Luxe by Volvo on your phone. For iOS users, go to Settings › Privacy › Location Services. For Android users, go to Settings › Apps › Application List › Luxe by Volvo › Permissions./n/nMake sure that cellular data or Wi-Fi is on and that you have an active connection. If both of those are working correctly and you’re still having trouble, please let us know here.
-	[PushNotificationsArentWorkingDetail]
-		en = `Check to make sure that you've enabled push notifications for Luxe by Volvo on your phone. For iOS users, go to Settings › Notifications › Luxe by Volvo. For Android users, go to Settings › Apps › Application List › Luxe by Volvo › Permissions./n/nMake sure that cellular data or Wi-Fi is on and that you have an active connection. If both of those are working correctly and you're still having trouble, please let us know here. `
-	[TermsOfServiceDetail]
-		en = Our terms of service apply to all aspects of the Luxe by Volvo service. As a user of the platform, you've confirmed that you've read and agreed to the terms.
-	[PrivacyPolicyInformationDetail]
-		en = `Our privacy policy describes the information we collect and how its used. The policy applies to any users of Luxe by Volvo. `
-	[RequestingDataFromLuxebyVolvoDetail]
+		tags = customer
+	[helpTheAppIsntWorkingCorrectlyDetail]
+		en = Is something in the Luxe by Volvo app working incorrectly or not as you expected? Please let us know here what issue you’re experiencing, and we’ll work with you to troubleshoot the issue.
+		tags = customer
+	[helpIForgotMyPasswordDetail]
+		en = If you forgot your password, you can create a new password at sign-in. Your password must be at least 8 characters long, and include at least one numeral and one letter. If you’re having trouble resetting your password, please let us know here.
+		tags = customer
+	[helpICantUpdateMyPhoneDetail]
+		en = Because of how we create your account, we base your Luxe by Volvo account on your email address. Currently, that is not editable. You can update your mobile phone number in 'Your Account', which you can access by tapping the menu icon in the top-left of the app.
+		tags = customer
+	[helpMyCurrentLocationIsntWorkingDetail]
+		en = Check to make sure that you’ve enabled location services for Luxe by Volvo on your phone. For iOS users, go to Settings › Privacy › Location Services. For Android users, go to Settings › Apps › Application List › Luxe by Volvo › Permissions.\n\nMake sure that cellular data or Wi-Fi is on and that you have an active connection. If both of those are working correctly and you’re still having trouble, please let us know here.
+		tags = customer
+	[helpPushNotificationsArentWorkingDetail]
+		en = Check to make sure that you’ve enabled push notifications for Luxe by Volvo on your phone. For iOS users, go to Settings › Notifications › Luxe by Volvo. For Android users, go to Settings › Apps › Application List › Luxe by Volvo › Permissions.\n\nMake sure that cellular data or Wi-Fi is on and that you have an active connection. If both of those are working correctly and you’re still having trouble, please let us know here.
+		tags = customer
+	[helpTermsOfServiceDetail]
+		en = Our terms of service apply to all aspects of the Luxe by Volvo service. As a user of the platform, you’ve confirmed that you’ve read and agreed to the terms.
+		tags = customer
+	[helpPrivacyPolicyInformationDetail]
+		en = Our privacy policy describes the information we collect and how its used. The policy applies to any users of Luxe by Volvo.
+		tags = customer
+	[helpRequestingDataFromLuxebyVolvoDetail]
 		en = Do you want data from your Luxe by Volvo usage in the past? You can request that data here, and we will provide it to you within 30 days.
-	[DeleteMyLuxebyVolvoAccountDetail]
-		en = If you no longer wish to have your account in our system, you can request that we delete your account. We will remove your information, and notifiy you of its removal within 30 days.
-	[AppOtherDetail]
-		en = Didn't see what you were looking for? Please let us know how we can help you with your Luxe by Volvo app.
+		tags = customer
+	[helpDeleteMyLuxebyVolvoAccountDetail]
+		en = If you no longer wish to have your account in our system, you can request that we delete your account. We will remove your information, and notify you of its removal within 30 days.
+		tags = customer
+	[helpAppOtherDetail]
+		en = Didn’t see what you were looking for? Please let us know how we can help you with your Luxe by Volvo app.
+		tags = customer
+[[Driver Notification]]
+	[notificationUpgradeForcedTitle]
+		en = Luxe Driver System Notification
+		comment = Notifications
+		tags = driver
+	[notificationUpgradeForcedText]
+		en = We’ve made critical improvements!
+		tags = driver
+	[notificationUpgradeForcedTextBig]
+		en = The updated Luxe Driver is at a minimum:\n\n - Harder!\n - Better!\n - Faster!\n - Stronger!\n\nIn fact it is so much better, the update is required! =)
+		tags = driver
+	[notificationBatteryWarningTitle]
+		en = Low Battery
+		tags = driver
+	[notificationBatteryWarningText]
+		en = You’re running low on power!
+		tags = driver
+	[notificationBatteryWarningTextBig]
+		en = We noticed that you’re running low on battery. Please connect your phone to charger.
+		tags = driver
+	[notificationActionOpen]
+		en = Open
+		tags = driver
+	[notificationForegroundServiceTitle]
+		en = Current Task
+		tags = driver
+	[notificationForegroundServiceTextRetrieveLoaner]
+		en = Retrieving Loaner
+		tags = driver
+	[notificationForegroundServiceTextRetrieveForms]
+		en = Retrieving Forms
+		tags = driver
+	[notificationForegroundServiceTextRetrieveVehicle]
+		en = Retrieving Customer Vehicle
+		tags = driver
+	[notificationForegroundServiceTextDriverLoanerToCustomer]
+		en = Driving Loaner to Customer
+		tags = driver
+	[notificationForegroundServiceTextDriverVehicleToCustomer]
+		en = Driving Vehicle to Customer
+		tags = driver
+	[notificationForegroundServiceTextDriverGetToCustomer]
+		en = Get to Customer
+		tags = driver
+	[notificationForegroundServiceTextDriverMeetWithCustomer]
+		en = Meet with Customer
+		tags = driver
+	[notificationForegroundServiceTextDriverInspectDocuments]
+		en = Inspecting Documents
+		tags = driver
+	[notificationForegroundServiceTextDriverInspectLoaner]
+		en = Inspecting Loaner
+		tags = driver
+	[notificationForegroundServiceTextDriverInspectCustomer]
+		en = Inspecting Customer Vehicle
+		tags = driver
+	[notificationForegroundServiceTextInspectNotes]
+		en = Taking Notes
+		tags = driver
+	[notificationForegroundServiceTextDriverExchangeKeys]
+		en = Exchanging Keys
+		tags = driver
+	[notificationForegroundServiceTextReceiveLoaner]
+		en = Receiving Loaner
+		tags = driver
+	[notificationForegroundServiceTextDriveLoanerToDealership]
+		en = Drive Loaner to Dealership
+		tags = driver
+	[notificationForegroundServiceTextDriveCustomerToDealership]
+		en = Drive Customer Vehicle to Dealership
+		tags = driver
+	[notificationForegroundServiceTextGetToDealership]
+		en = Get to Dealership
+		tags = driver
+[[Driver Permission]]
+	[permissionsLocationDeniedMessage]
+		en = Location access is a necessary part of how Luxe Driver works.\nPlease go to your settings and enable Location permissions for Luxe Driver.
+		tags = driver
+	[permissionsPhoneStateDeniedTitle]
+		en = Why we need Phone Number?
+		tags = driver
+	[permissionsPhoneStateDeniedMessage]
+		en = Phone number is important to track shared devices.\nPlease go to your settings and enable Phone permissions for Luxe Driver.
+		tags = driver
+	[permissionsCameraDeniedTitle]
+		en = Why we need camera?
+		tags = driver
+	[permissionsCameraDeniedMessage]
+		en = Luxe Driver needs camera permissions to be able to capture the inspection photos successfully.
+		tags = driver
+	[permissionsSmsDeniedTitle]
+		en = Why we need to read sms?
+		tags = driver
+	[permissionsSmsDeniedMessage]
+		en = Luxe Driver regularly verifies driver’s identity by sending confirmation code.\n\nSMS permissions help the app to read confirmation code directly from the SMS without having the driver to type it manually.
+		tags = driver
+	[permissionsSmsDeniedPositive]
+		en = Request Permissions
+		tags = driver
+[[Views]]
+	[viewLogoTitle]
+		en = Luxe by Volvo
+		comment = Views
+		tags = customer
+	[viewIntro]
+		en = Intro
+		tags = customer,driver
+	[viewIntroFooterSignin]
+		en = Sign-in
+		tags = customer,driver
+	[viewIntroFooterSignup]
+		en = Create Account
+		tags = customer,driver
+	[viewSignupNameLabel]
+		en = Welcome to Luxe by Volvo. Let’s create your account.
+		tags = customer
+	[viewEditTextInfoHintFirstName]
+		en = John
+		tags = customer
+	[viewEditTextInfoHintLastName]
+		en = Smith
+		tags = customer
+	[viewEditTextTitleFirstName]
+		en = First Name
+		tags = customer
+	[viewEditTextTitleLastName]
+		en = Last Name
+		tags = customer
+	[viewSignupContactLabel]
+		en = We require your phone number to coordinate during pickup and delivery
+		tags = customer
+	[viewEditTextInfoHintEmail]
+		en = name@domain.com
+		tags = customer
+	[viewEditTextInfoHintPhoneNumber]
+		en = (555) 555–5555
+		tags = customer
+	[viewEditTextTitleEmail]
+		en = Email Address
+		tags = customer
+	[viewEditTextTitlePhoneNumber]
+		en = Mobile Phone Number
+		tags = customer
+	[viewEditTextTitlePassword]
+		en = Password
+		tags = customer
+	[viewEditTextPhoneDescription]
+		en = We’ll send you a text message to confirm the number
+		tags = customer
+	[viewSignupPasswordLabel]
+		en = Create a password
+		tags = customer
+	[viewSignupPasswordDescription]
+		en = (At least 8 characters with at least one letter and one numeral)
+		tags = customer
+	[viewSignupPasswordRequireLetter]
+		en = Requires a letter
+		tags = customer
+	[viewSignupPasswordRequireNumber]
+		en = Requires a number
+		tags = customer
+	[errorInvalidPasswordUnauthorizedCharacters]
+		en = Your password contains unauthorized characters. Authorized characters: @$!%*?&
+		tags = customer,driver
+	[errorInvalidCharacter]
+		en = Invalid character
+		tags = customer
+	[viewEditTextInfoHintPasswordConfirm]
+		en = Repeat Password
+		tags = customer
+	[viewEditTextTitlePasswordNew]
+		en = Password
+		tags = customer
+	[viewEditTextTitlePasswordConfirm]
+		en = Repeat Password
+		tags = customer
+	[viewSigninForgotPassword]
+		en = Forgot Password?
+		tags = customer
+	[viewSigninPhoneLabel]
+		en = We require your phone number to reset your password
+		tags = customer
+	[viewSigninPhoneContactChangeLabel]
+		en = We require your phone number to coordinate during pickup and delivery
+		tags = customer
+	[viewSigninPasswordLabel]
+		en = Create a password
+		tags = customer
+	[viewSigninPasswordDescription]
+		en = (At least 8 characters with at least one letter and one numeral)
+		tags = customer
+	[viewSigninEmailLabel]
+		en = We require your email address to coordinate pickup and delivery
+		tags = customer
+	[viewSigninNameLabel]
+		en = We require your first and last name to coordinate pickup and delivery
+		tags = customer
+	[viewVehicleAddLabel]
+		en = Select your vehicle’s year, model, and color
+		tags = customer
+	[viewVehicleAddYearHint]
+		en = 2019
+		tags = customer
+	[viewVehicleAddModelHint]
+		en = S90
+		tags = customer
+	[viewVehicleAddColorHint]
+		en = Black
+		tags = customer
+	[viewSettingsVolvoAddNewLabel]
+		en = Add a new Volvo
+		tags = customer
+	[viewSettingsSoftwareLicencesHeader]
+		en = LEGAL
+		tags = customer
+	[viewSettingsSoftwareLicencesTitle]
+		en = Software Licences
+		tags = customer
+	[viewSettingsDistanceUnitHeader]
+		en = Units of distance
+		tags = customer
+	[viewSettingsDistanceUnitTitle]
+		en = Show Distances as Miles
+		tags = customer
+	[viewProfileLocationHeader]
+		en = Pickup/Delivery Locations
+		tags = customer
+	[viewProfileContactHeader]
+		en = Contact Information
+		tags = customer
+	[viewProfileAccountPasswordHeader]
+		en = Account Password
+		tags = customer
+	[viewPhoneVerificationLabel]
+		en = Type the confirmation code you received via SMS
+		tags = customer,driver
+	[viewPhoneVerificationCodeHint]
+		en = 0000
+		tags = customer
+	[viewScheduleService]
+		en = Pickup & Delivery
+		tags = customer
+	[viewScheduleServiceVehicleServiceScheduled]
+		en = Scheduled Service
+		tags = customer
+	[viewScheduleServiceScheduledLabel]
+		en = View Dealership Location
+		tags = customer
+	[viewScheduleServiceTypeDescription]
+		en = You can schedule pickup (with participating dealerships) through Luxe by Volvo.\n\nTo schedule pickup, first select service type.
+		tags = customer
+	[viewScheduleServiceTypeMilestone]
+		en = Milestone Services
+		tags = customer
+	[viewScheduleServiceTypeOther]
+		en = Other Maintenance
+		tags = customer
+	[viewScheduleServiceTypeOtherLabel]
+		en = What part of your Volvo requires service?
+		tags = customer
+	[viewScheduleServiceTypeOtherSubLabel]
+		en = Select all that apply
+		tags = customer
+	[viewScheduleServiceTypeMilestoneDetailNameLabel]
+		en = Factory Scheduled Maintenance
+		tags = customer
+	[viewScheduleServiceTypeMilestoneDetailConfirmService]
+		en = Confirm Service
+		tags = customer
+	[viewScheduleServiceTypeOtherDetail]
+		en = Other Maintenance
+		tags = customer
+	[viewScheduleServiceTypeOtherDetailLabel]
+		en = Is your Volvo drivable?
+		tags = customer
+	[viewScheduleServiceTypeOtherDetailExtraLabel]
+		en = Is there anything else you can tell us about your Volvo?
+		tags = customer
+	[viewScheduleServiceTypeOtherDetailExtraHint]
+		en = Type description here
+		tags = customer
+	[viewScheduleServiceTypeOtherDetailExtraTitle]
+		en = Add Description
+		tags = customer
+	[viewScheduleServiceTypeDetailNameLabelMilestone]
+		en = Factory Scheduled Maintenance
+		tags = customer
+	[viewScheduleServiceTypeDetailNameLabelOther]
+		en = Other maintenance and repairs
+		tags = customer
+	[viewScheduleServiceOptionPickup]
+		en = Service Summary
+		tags = customer
+	[viewScheduleServiceOptionDropoff]
+		en = Return Vehicle
+		tags = customer
+	[viewScheduleServiceOptionInfoPickup]
+		en = You can schedule pickup at any address served by a participating dealership, or you can drop-off your car in person.
+		tags = customer
+	[viewScheduleServiceOptionNotePickup]
+		en = Note: Luxe by Volvo is only offered at participating dealers
+		tags = customer
+	[viewScheduleServiceOptionPickupSelfDropPickup]
+		en = Self-Dropoff at Dealership
+		tags = customer
+	[viewScheduleServiceOptionInfoDropoff]
+		en = You can schedule delivery to any address served by the dealership, or you can pick-up your car in person.
+		tags = customer
+	[viewScheduleServiceOptionNoteDropoff]
+		en = Note: Luxe by Volvo is only offered at participating dealers
+		tags = customer
+	[viewScheduleServiceOptionPickupSelfDeliveryDropoff]
+		en = Self-Pickup at Dealership
+		tags = customer
+	[viewScheduleServiceOptionConfirmButtonPositivePickup]
+		en = Confirm Pickup
+		tags = customer
+	[viewScheduleServiceOptionConfirmButtonPositiveDropoff]
+		en = Confirm Delivery
+		tags = customer
+	[viewScheduleServiceStatusInfoScheduledPickup]
+		en = Pickup is scheduled
+		tags = customer
+	[viewScheduleServiceStatusInfoEnRoutePickup]
+		en = Driver is en route
+		tags = customer
+	[viewScheduleServiceStatusInfoNearByPickup]
+		en = Driver is nearby
+		tags = customer
+	[viewScheduleServiceStatusInfoArrivedPickup]
+		en = Driver has arrived
+		tags = customer
+	[viewScheduleServiceStatusReminderPickup]
+		en = Have your license and insurance card ready
+		tags = customer
+	[viewScheduleServiceStatusTimeWindowPickup]
+		en = Pickup Window
+		tags = customer
+	[viewScheduleServiceStatusTimeWindowEstimatedPickup]
+		en = Estimated Pickup Time
+		tags = customer
+	[viewScheduleServiceStatusInfoScheduledDropoff]
+		en = Vehicle is ready
+		tags = customer
+	[viewScheduleServiceStatusInfoEnRouteDropoff]
+		en = Driver is en route
+		tags = customer
+	[viewScheduleServiceStatusInfoNearByDropoff]
+		en = Driver is nearby
+		tags = customer
+	[viewScheduleServiceStatusInfoArrivedDropoff]
+		en = Driver has arrived
+		tags = customer
+	[viewScheduleServiceStatusTimeWindowDropoff]
+		en = Delivery Window
+		tags = customer
+	[viewScheduleServiceStatusTimeWindowEstimatedDropoff]
+		en = Estimated Delivery Time
+		tags = customer
+	[viewScheduleServiceStatusAtDealershipInfo]
+		en = Our driver is driving your vehicle to %@
+		tags = customer
+	[viewScheduleServiceStatusInServiceInfo]
+		en = Your Volvo is currently being serviced at %@. We will notify you when the service is complete.
+		tags = customer
+	[viewScheduleServiceStatusComplete]
+		en = Service Complete
+		tags = customer
+	[viewScheduleServiceStatusCompleteInfo]
+		en = Your delivery from %@ is complete.\n\nOn a scale from 1 to 10, how likely are you to recommend pickup and delivery to other Volvo owners?
+		tags = customer
+	[viewScheduleServiceStatusFeedback]
+		en = Feedback
+		tags = customer
+	[viewScheduleServiceStatusFeedbackCommentLabel]
+		en = What was the main reason for your rating?
+		tags = customer
+	[viewScheduleServiceStatusFeedbackCommentHint]
+		en = Reason for your rating
+		tags = customer
+	[viewScheduleServiceStatusFeedbackCommentTitle]
+		en = Your Feedback
+		tags = customer
+	[viewHelpOptionTitle]
+		en = Your %1$@ %2$@
+		tags = customer
+	[viewHelpOptionTos]
+		en = Terms of service
+		tags = customer
+	[viewHelpOptionPp]
+		en = Privacy policy information
+		tags = customer
+	[viewHelpOptionDetailEmailDealer]
+		en = Email Dealer
+		tags = customer,driver
+	[viewHelpOptionDetailCallDealer]
+		en = Call Dealer
+		tags = customer,driver
+	[viewHelpOptionDetailEmailVolvo]
+		en = Email Volvo
+		tags = customer,driver
+	[viewHelpOptionDetailCallVolvo]
+		en = Call Volvo
+		tags = customer,driver
+	[viewSoftwareLicences]
+		en = Software Licenses
+		tags = customer,driver
+	[viewScheduleServiceStatusSelfAdvisorDropoff]
+		en = Pick-up at Dealership
+		tags = customer,driver
+	[viewScheduleServiceStatusSelfAdvisorPickup]
+		en = Drop-off at Dealership
+		tags = customer,driver
+	[viewScheduleServiceStatusSelfDealershipNavigate]
+		en = Get Directions
+		tags = customer,driver
+	[viewScheduleServiceStatusSelfFooterTitleDropoff]
+		en = You can also schedule a driver to deliver your vehicle
+		tags = customer,driver
+	[viewScheduleServiceTypeOtherUnknown]
+		en = Diagnostic Inspection
+		comment = Service Types
+		tags = customer,driver
+	[viewHelpCategoryLastLeg]
+		en = Last Leg
+		comment = Help Categories
+		tags = customer,driver
+	[viewHelpCategoryHowLuxeByVolvoWorks]
+		en = How Luxe by Volvo works
+		tags = customer,driver
+	[viewHelpCategoryTroubleWithLuxeByVolvoApp]
+		en = Trouble with Luxe by Volvo app
+		tags = customer,driver
+	[viewTosContentTermsOfServiceTitle]
+		en = Terms of Service
+		comment = TOS
+		tags = customer,driver
+	[viewTosContentPrivacyPolicyTitle]
+		en = Privacy Policy
+		tags = customer,driver
+	[viewTosContent]
+		en = I have read and agree to the %1$@ and \t%2$@
+		tags = customer,driver
+	[viewTosContentTermsOfService]
+		en = <a href="https://terms-luxebyvolvo.luxe.com">Terms of Service</a>"
+		tags = customer,driver
+	[viewTosContentPrivacyPolicy]
+		en = <a href="https://privacy-luxebyvolvo.luxe.com">Privacy Policy</a>"
+		tags = customer,driver
+	[viewTosContentTermsOfServiceUrl]
+		en = https://terms-luxebyvolvo.luxe.com
+		tags = customer,driver
+	[viewTosContentPrivacyPolicyUrl]
+		en = https://privacy-luxebyvolvo.luxe.com
+		tags = customer,driver
+	[viewEmailIntentChooserTitle]
+		en = Choose E-Mail Client
+		comment = Email
+		tags = customer,driver
+	[viewEmailSubject]
+		en = This is Subject
+		tags = customer,driver
+	[viewEmailBody]
+		en = Hey Luxe by Volvo,\n\nThis is email body\n\n -\n\nThanks,\n%@
+		tags = customer,driver
+[[Views Driver]]
+	[viewArrivedat]
+		en = Arrived at
+		comment = Views
+		tags = driver
+	[viewArrivedatCustomer]
+		en = Greet Customer
+		tags = driver
+	[viewArrivedatPickupSwipeButtonTitle]
+		en = SLIDE TO BEGIN INSPECTION
+		tags = driver
+	[viewArrivedatDeliveryInspectVehicles]
+		en = Inspect Customer Vehicle
+		tags = driver
+	[viewArrivedatDeliverySwipeButtonTitle]
+		en = SLIDE TO INSPECT VEHICLE
+		tags = driver
+	[viewContactText]
+		en = TEXT CUSTOMER
+		tags = driver
+	[viewContactCall]
+		en = CALL CUSTOMER
+		tags = driver
+	[viewChecklistLoanerAgreementLabel]
+		en = Loaner Agreement
+		tags = driver
+	[viewDrawerProfileOptionsChangeContact]
+		en = Change Contact Info
+		tags = driver
+	[viewDrawerProfileOptionsChangePassword]
+		en = Change Password
+		tags = driver
+	[viewDrawerProfileOptionsSignout]
+		en = Sign-Out
+		tags = driver
+	[viewDrawerProfileOptionsAttributions]
+		en = Software Licenses
+		tags = driver
+	[viewDrawerContactDealershipText]
+		en = TEXT DEALERSHIP
+		tags = driver
+	[viewDrawerContactDealershipCall]
+		en = CALL DEALERSHIP
+		tags = driver
+	[viewDrawerNavigationPreferenceTitle]
+		en = Navigation App Preference
+		tags = driver
+	[viewDrawerNavigationPreferenceWaze]
+		en = Waze
+		tags = driver
+	[viewDrawerNavigationPreferenceGoogle]
+		en = Google Maps
+		tags = driver
+	[viewDriveto]
+		en = Drive To
+		tags = driver
+	[viewDrivetoCustomer]
+		en = Drive to Customer
+		tags = driver
+	[viewDrivetoArriveatCustomer]
+		en = Arrive at Customer
+		tags = driver
+	[viewDrivetoSwipeButtonTitle]
+		en = SLIDE WHEN YOU’VE ARRIVED
+		tags = driver
+	[viewExchangeKeysSwipeButtonTitle]
+		en = SWIPE TO EXCHANGE KEYS
+		tags = driver
+	[viewExchangeKeysInfoReminder]
+		en = Remind %@ to remove belongings from the vehicle and sign paperwork.
+		tags = driver
+	[viewExchangeKeysPickupSwipeTitle]
+		en = SLIDE TO RETURN TO DEALERSHIP
+		tags = driver
+	[viewExchangeKeysDeliverySwipeTitle]
+		en = SLIDE TO RETURN TO DEALERSHIP
+		tags = driver
+	[viewGettoCustomer]
+		en = Ride to Customer
+		tags = driver
+	[viewGettoCustomerArriveatCustomer]
+		en = Arrive at Customer
+		tags = driver
+	[viewGettoCustomerSwipeButtonTitle]
+		en = SLIDE WHEN YOU’VE ARRIVED
+		tags = driver
+	[viewGettoDealershipSwipeButtonTitle]
+		en = SLIDE WHEN YOU’VE ARRIVED
+		tags = driver
+	[viewInspectDocuments]
+		en = Photo License, Insurance
+		tags = driver
+	[viewInspectDocumentsOverlayInfo]
+		en = Do NOT photograph the customer’s credit card
+		tags = driver
+	[viewInspectDocumentsMinPhotoWarning]
+		en = You need to take 1 photo of the customer’s driver’s license and proof of insurance
+		tags = driver
+	[viewInspectDocumentsMinPhotosWarning]
+		en = You need to take %d photos of the customer’s driver’s license and proof of insurance
+		tags = driver
+	[viewInspectLoaner]
+		en = Photo Loaner
+		tags = driver
+	[viewInspectLoanerOverlayInfo]
+		en = Capture both sides and all 4 corners of the vehicle
+		tags = driver
+	[viewInspectLoanerMinPhotoWarning]
+		en = You need to take 1 photo of the %@
+		tags = driver
+	[viewInspectLoanerMinPhotosWarning]
+		en = You need to take %1$d photos of the %2$@
+		tags = driver
+	[viewInspectCustomer]
+		en = Photo Customer Vehicle
+		tags = driver
+	[viewInspectCustomerOverlayInfo]
+		en = Capture both sides and all 4 corners of the vehicle
+		tags = driver
+	[viewInspectCustomerMinPhotoWarning]
+		en = You need to take 1 photo of the %@
+		tags = driver
+	[viewInspectCustomerMinPhotosWarning]
+		en = You need to take %1$d photos of the %2$@
+		tags = driver
+	[viewInspectNotes]
+		en = Pickup Notes
+		tags = driver
+	[viewInspectNotesDescriptionHint]
+		en = Pickup Notes (Optional)
+		tags = driver
+	[viewInspectNotesSwipeButtonTitle]
+		en = SLIDE TO EXCHANGE KEYS
+		tags = driver
+	[viewLogoTitle]
+		en = DRIVER
+		tags = driver
+	[viewNavigateText]
+		en = GET DIRECTIONS (GOOGLE MAPS)
+		tags = driver
+	[viewNavigateWazeText]
+		en = GET DIRECTIONS (WAZE)
+		tags = driver
+	[viewNavigateAddressCopiedToClipboard]
+		en = Address copied to clipboard
+		tags = driver
+	[viewGetToText]
+		en = GET RIDE (UBER)
+		tags = driver
+	[viewPhoneAdd]
+		en = Add Phone Number
+		tags = driver
+	[viewPhoneAddLabel]
+		en = Let’s verify your phone number.
+		tags = driver
+	[viewProfileChangeContact]
+		en = Contact Information
+		tags = driver
+	[viewProfileChangePasswordTemp]
+		en = name@domain.com
+		tags = driver
+	[viewReceiveVehicle]
+		en = Receive Vehicle
+		tags = driver
+	[viewReceiveVehicleLoaner]
+		en = Receive Loaner
+		tags = driver
+	[viewReceiveVehicleInfoReminder]
+		en = Remind %@ to remove belongings from the loaner and sign paperwork.
+		tags = driver
+	[viewReceiveVehicleLoanerNext]
+		en = Inspect Loaner
+		tags = driver
+	[viewReceiveVehicleLoanerSwipeButtonTitle]
+		en = SLIDE TO INSPECT LOANER
+		tags = driver
+	[viewReceiveVehicleCustomer]
+		en = Receive Customer Vehicle
+		tags = driver
+	[viewReceiveVehicleCustomerSwipeButtonTitle]
+		en = SLIDE TO EXCHANGE KEYS
+		tags = driver
+	[viewRetrieveForms]
+		en = Get Paperwork
+		tags = driver
+	[viewRetrieveFormsInfoNext]
+		en = Ride to Customer
+		tags = driver
+	[viewRetrieveFormsSwipeTitle]
+		en = SLIDE TO BEGIN RIDE
+		tags = driver
+	[viewRetrieveVehicle]
+		en = Retrieve Vehicle
+		tags = driver
+	[viewRetrieveVehicleLoaner]
+		en = Get Loaner and Paperwork
+		tags = driver
+	[viewRetrieveVehicleLoanerInfoNext]
+		en = Drive to Customer
+		tags = driver
+	[viewRetrieveVehicleLoanerSwipeTitle]
+		en = SLIDE TO BEGIN DRIVE
+		tags = driver
+	[viewRetrieveVehicleCustomer]
+		en = Get Vehicle and Paperwork
+		tags = driver
+	[viewRetrieveVehicleCustomerInfoNext]
+		en = Drive to Customer
+		tags = driver
+	[viewRetrieveVehicleCustomerSwipeTitle]
+		en = SLIDE TO BEGIN DRIVE
+		tags = driver
+	[viewReturntoSwipeButtonTitle]
+		en = SLIDE WHEN YOU’VE ARRIVED
+		tags = driver
+	[viewSchedule]
+		en = Today’s Schedule
+		tags = driver
+	[viewScheduleCurrent]
+		en = Please complete the current booking…
+		tags = driver
+	[viewScheduleEmpty]
+		en = You have no pickups or deliveries today.
+		tags = driver
+	[viewScheduleListHeaderNameCurrent]
+		en = Current
+		tags = driver
+	[viewScheduleListHeaderNameUpcoming]
+		en = Upcoming
+		tags = driver
+	[viewScheduleListHeaderNameComplete]
+		en = Complete
+		tags = driver
+	[viewScheduleListItemTypePickup]
+		en = Pickup
+		tags = driver
+	[viewScheduleListItemTypeDeliver]
+		en = Delivery
+		tags = driver
+	[viewScheduleState]
+		en = Schedule State
+		tags = driver
+	[viewSignin]
+		en = Sign-In
+		tags = driver
+	[viewSigninEmailInvalid]
+		en = Email address is not valid
+		tags = driver
+	[viewSigninPasswordShort]
+		en = Password must have at least one letter and one digit, at least 8 chars, less than 60
+		tags = driver
+	[viewSigninActionSignin]
+		en = SIGN-IN
+		tags = driver
+	[viewSigninForgotPassword]
+		en = FORGOT YOUR PASSWORD?
+		tags = driver
+	[viewSigninPopupProgressSignin]
+		en = Signing in…
+		tags = driver
+	[viewSigninPhoto]
+		en = Photograph Yourself
+		tags = driver
+	[viewStartRequestPickup]
+		en = Review Pickup
+		tags = driver
+	[viewStartRequestDropoff]
+		en = Review Delivery
+		tags = driver
+	[viewStartRequestRetrieveLoaner]
+		en = Retrieve Loaner and Forms
+		tags = driver
+	[viewStartRequestRetrieveForms]
+		en = Get Paperwork
+		tags = driver
+	[viewStartRequestRetrieveCustomerVehicle]
+		en = Retrieve Vehicle and Forms
+		tags = driver
+	[viewStartRequestSwipeButtonTitle]
+		en = SLIDE TO START SERVICE
+		tags = driver
+	[viewSwipeButtonInnerText]
+		en = Proceed
+		tags = driver
+	[viewScheduleStateRefreshInfo]
+		en = Something went wrong. Please refresh!
+		tags = driver
+	[viewScheduleStateRefreshButton]
+		en = REFRESH
+		tags = driver
+
