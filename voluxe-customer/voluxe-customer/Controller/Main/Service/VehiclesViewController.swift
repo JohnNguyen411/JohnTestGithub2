@@ -396,13 +396,7 @@ extension VehiclesViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VehicleCell.reuseId, for: indexPath) as! VehicleCell
-<<<<<<< HEAD
         cell.setVehicle(vehicle: self.vehicles[indexPath.row])
-=======
-        // TODO this will crash if vehicles is nil
-        cell.setVehicle(vehicle: vehicles![indexPath.row])
-        
->>>>>>> Updated all view constraints to automatically flow to short and tall screens.
         return cell
     }
     
