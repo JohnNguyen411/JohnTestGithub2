@@ -65,10 +65,13 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         if ftuePhoneType == .resetPassword {
             self.phoneNumberLabel.text = .MobilePhoneNumberResetPassword
         }
-        
-        phoneNumberTextField.textField.becomeFirstResponder()
+
         _ = checkTextFieldsValidity()
-        
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.phoneNumberTextField.textField.becomeFirstResponder()
     }
     
     override func setupViews() {

@@ -1,3 +1,9 @@
+v1.2.1(158)
+Crash fix on Calendar view
+
+v1.2.0(153)
+Increased reliability of Autofill during sign-up
+
 v1.2.0(146):
 Misc bugfixes and improvements
 

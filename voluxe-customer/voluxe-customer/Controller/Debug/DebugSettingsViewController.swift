@@ -17,6 +17,7 @@ class DebugSettingsViewController: DebugTableViewController {
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(close))
         self.navigationItem.title = "Debug"
         self.settings = [self.applicationSettings(),
+                         self.featureSettings(),
                          self.userSettings(),
                          self.bookingsSettings(),
                          self.networkSettings(),
@@ -64,6 +65,43 @@ class DebugSettingsViewController: DebugTableViewController {
         )]
 
         return ("Application", settings)
+    }
+
+    private func featureSettings() -> (String, [DebugTableViewCellModel]) {
+
+        var settings: [DebugTableViewCellModel] = []
+
+        settings += [DebugTableViewCellModel(title: "UITextField vs VLTextField AutoFill",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                [unowned self] _ in
+                let controller = AutoFillViewController()
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Login AutoFill",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                [unowned self] _ in
+                let controller = FTUELoginViewController()
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        )]
+
+        return ("Feature Debug", settings)
     }
 
     private func userSettings() -> (String, [DebugTableViewCellModel]) {

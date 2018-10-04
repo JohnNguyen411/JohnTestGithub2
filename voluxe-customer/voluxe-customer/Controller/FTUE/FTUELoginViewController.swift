@@ -62,10 +62,13 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         passwordTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-        
-        emailTextField.textField.becomeFirstResponder()
-        canGoNext(nextEnabled: false)
-        
+
+        canGoNext(nextEnabled: false)        
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.emailTextField.textField.becomeFirstResponder()
     }
     
     override func setupViews() {
@@ -76,9 +79,9 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         scrollView.addSubview(forgotPassword)
         
         emailTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
-            make.right.equalToSuperview().offset(-20)
+            make.left.equalToSuperview().inset(20)
+            make.top.equalToSuperview().offset(BaseViewController.defaultTopYOffset)
+            make.right.equalToSuperview().inset(20)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         

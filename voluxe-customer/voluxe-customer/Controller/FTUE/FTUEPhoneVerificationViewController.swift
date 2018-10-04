@@ -75,7 +75,6 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         codeTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
-        codeTextField.textField.becomeFirstResponder()
         _ = checkTextFieldsValidity()
         
         if FTUEStartViewController.flowType == .signup {
@@ -85,6 +84,11 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         if ftuePhoneType == .resetPassword {
             updatePhoneNumberButton.isHidden = true
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.codeTextField.textField.becomeFirstResponder()
     }
 
     override func setupViews() {

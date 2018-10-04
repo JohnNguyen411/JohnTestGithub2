@@ -24,7 +24,7 @@ class FTUEChildViewController: BaseViewController {
         self.view.addSubview(scrollView)
         
         scrollView.snp.makeConstraints { make in
-            make.edgesEqualsToView(view: self.view)
+            make.edges.equalToSuperview()
         }
     }
     

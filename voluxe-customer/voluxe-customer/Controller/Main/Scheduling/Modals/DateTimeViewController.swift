@@ -313,15 +313,18 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     }
     
     override func onButtonClick() {
-        if let delegate = delegate {
-            if let currentSlots = currentSlots {
-                let timeSlot = currentSlots[getButtonSelectedIndex()]
-                delegate.onDateTimeSelected(timeSlot: timeSlot)
-            } else {
-                // just close
-                delegate.closePresenter()
-            }
+        guard let delegate = delegate else {
+            return
         }
+        
+        if let currentSlots = currentSlots, getButtonSelectedIndex() > -1 && currentSlots.count > getButtonSelectedIndex() {
+            let timeSlot = currentSlots[getButtonSelectedIndex()]
+            delegate.onDateTimeSelected(timeSlot: timeSlot)
+        } else {
+            // just close
+            delegate.closePresenter()
+        }
+        
     }
     
     private func initWeekDayView() {
@@ -451,14 +454,16 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                 selectedDate = nextDay
             }
             
-            if selectedDate != nil && selectedDate! > self.maxDate {
+            if let date = selectedDate, (date > self.maxDate || date < self.minDate) {
                 selectedDate = nil
             }
             
             if let selectedDate = selectedDate {
-                _ = self.calendar(self.calendar, shouldSelect: selectedDate, at: .current)
-                self.calendar.select(selectedDate)
-                self.showError(error: false)
+                let canSelect = self.calendar(self.calendar, shouldSelect: selectedDate, at: .current)
+                if canSelect {
+                    self.calendar.select(selectedDate, scrollToDate: false)
+                    self.showError(error: false)
+                }
             } else {
                 DispatchQueue.main.asyncAfter(deadline: .now() + 1.25, execute: {
                     self.calendar.scroll(to: self.maxDate, animated: false)
@@ -741,7 +746,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         self.calendar.frame.size.height = bounds.height
     }
     
-    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition)   -> Bool {
+    func calendar(_ calendar: FSCalendar, shouldSelect date: Date, at monthPosition: FSCalendarMonthPosition) -> Bool {
         let selectable = dateIsSelectable(date: date)
         if selectable {
             updateSlots(slots: getSlotsForDate(date: date, withLoaner: loanerRequired))

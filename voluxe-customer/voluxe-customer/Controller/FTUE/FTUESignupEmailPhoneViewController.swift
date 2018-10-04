@@ -102,8 +102,6 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         phoneNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
-        emailTextField.textField.becomeFirstResponder()
-        
         let tosString = String(format: NSLocalizedString(.AgreeToTosAndPrivacyFormat), String.TermsAndConditions, String.PrivacyPolicy)
         let attributedString = NSMutableAttributedString(string: tosString)
         let tosRange = attributedString.string.range(of: String.TermsAndConditions)
@@ -130,7 +128,9 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
+        self.emailTextField.textField.becomeFirstResponder()
+
         if DeeplinkManager.sharedInstance.isPrefillSignup() && !deeplinkEventConsumed {
             if let email = DeeplinkManager.sharedInstance.getDeeplinkObject()?.email {
                 emailTextField.textField.text = email

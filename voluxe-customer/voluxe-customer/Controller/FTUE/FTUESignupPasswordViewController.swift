@@ -43,7 +43,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         let textfield = UITextField()
         textfield.borderStyle = .none
         textfield.isEnabled = false
-        textfield.text = UserManager.sharedInstance.signupCustomer.email
+        textfield.text = UserManager.sharedInstance.currentCustomerEmail
         textfield.textColor = UIColor.luxeWhite()
         if #available(iOS 11.0, *) {
             textfield.textContentType = .username
@@ -102,6 +102,11 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         if UserManager.sharedInstance.isLoggedIn() {
             passwordLabel.text = .UpdatePassword
         }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.volvoPwdTextField.textField.becomeFirstResponder()
     }
     
     override func setupViews() {
