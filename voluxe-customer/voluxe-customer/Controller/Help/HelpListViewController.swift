@@ -34,7 +34,7 @@ class HelpListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = .Help
+        self.navigationItem.title = .help
         
         tableView.backgroundColor = .clear
         tableView.dataSource = self
@@ -87,11 +87,11 @@ extension HelpListViewController: UITableViewDelegate {
         if helpSection.type == .booking {
             if let booking = self.booking, let dealership = booking.dealership {
                 if let phoneNumber = dealership.phoneNumber {
-                    let actionCall = HelpAction(title: .CallDealer, type: .call, value: phoneNumber)
+                    let actionCall = HelpAction(title: .viewHelpOptionDetailCallDealer, type: .call, value: phoneNumber)
                     actions.append(actionCall)
                 }
                 if let email = dealership.email {
-                    let actionEmail = HelpAction(title: .EmailDealer, type: .email, value: email)
+                    let actionEmail = HelpAction(title: .viewHelpOptionDetailEmailDealer, type: .email, value: email)
                     actions.append(actionEmail)
                 }
             }
@@ -103,8 +103,8 @@ extension HelpListViewController: UITableViewDelegate {
                 let actionWebview = HelpAction(title: .viewTosContentPrivacyPolicyTitle, type: .webview, value: .viewTosContentPrivacyPolicyUrl)
                 actions.append(actionWebview)
             } else {
-                let actionCall = HelpAction(title: .CallVolvo, type: .call, value: HelpListViewController.volvoPhoneNumber)
-                let actionEmail = HelpAction(title: .EmailVolvo, type: .email, value: HelpListViewController.volvoEmail)
+                let actionCall = HelpAction(title: .viewHelpOptionDetailCallVolvo, type: .call, value: HelpListViewController.volvoPhoneNumber)
+                let actionEmail = HelpAction(title: .viewHelpOptionDetailEmailVolvo, type: .email, value: HelpListViewController.volvoEmail)
                 actions.append(actionCall)
                 actions.append(actionEmail)
             }

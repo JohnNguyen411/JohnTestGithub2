@@ -59,7 +59,7 @@ class HelpDetailViewController: BaseViewController {
         helpTitle.text = helpDetail.title
         label.text = helpDetail.description
         
-        self.navigationItem.title = .Help
+        self.navigationItem.title = .help
         
         label.volvoProLineSpacing()
         label.sizeToFit()

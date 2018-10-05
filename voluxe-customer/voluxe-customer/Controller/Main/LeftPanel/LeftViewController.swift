@@ -30,7 +30,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
 
     private let vehicleTableView = UITableView(frame: .zero)
     private let menuTableView = UITableView(frame: .zero)
-    private let menus = [String.Settings, String.Help, String.signout]
+    private let menus = [String.Settings, String.help, String.signout]
     
     private let closeButton = UIButton(type: UIButton.ButtonType.custom)
 
