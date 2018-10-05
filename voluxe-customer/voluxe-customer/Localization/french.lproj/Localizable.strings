@@ -36,6 +36,8 @@
 
 "no" = "No";
 
+"notNow" = "Not Now";
+
 "loading" = "Loading…";
 
 "next" = "Next";
@@ -65,6 +67,8 @@
 "pickupLocation" = "Pickup Location";
 
 "deliveryLocation" = "Delivery Location";
+
+"needALoaner" = "Need a Loaner?";
 
 "scheduledPickup" = "Scheduled Pickup";
 
@@ -236,6 +240,14 @@
 
 "permissionGrantTitle" = "Grant Permission";
 
+"permissionLocationTitle" = "Location Permission";
+
+"permissionAllowNotificationTitle" = "Allow Notification?";
+
+"permissionAllowNotificationMessage" = "We only send you updates on the status of your vehicle during pickups and deliveries.";
+
+"permissionAllowButtonTitle" = "Allow";
+
 
 /********** Popups **********/
 
@@ -256,17 +268,23 @@
 
 "popupSelectLocationPermissionNote" = "Note: to access your current location, we’ll need to ask you for permission next.";
 
+"popupSelectLocationPermissionDenied" = "To access your current location, you need to enable the location permission in the Settings.";
+
 "popupSelectLocationCurrentLocation" = "Current Location";
 
 "popupSelectDealershipLabel" = "Choose where to perform service";
 
 "popupSelectTimeSlotLabelPickup" = "Select pickup date and time";
 
-"popupSelectTimeSlotLabelDropoff" = "Select delivery date and time";
+"popupSelectTimeSlotLabelDropoff" = "Select dropoff date and time";
+
+"popupSelectTimeSlotLabelDelivery" = "Select delivery date and time";
 
 "popupSelectTimeSlotTimesLabelPickup" = "Pickup times";
 
-"popupSelectTimeSlotTimesLabelDropoff" = "Delivery times";
+"popupSelectTimeSlotTimesLabelDelivery" = "Delivery times";
+
+"popupSelectTimeSlotTimesLabelDropoff" = "Dropoff times";
 
 "popupSelectTimeSlotUnavailableLabel" = "Unfortunately no dates are available for this dealership. Please try again later or call the dealership.";
 
@@ -301,6 +319,8 @@
 "popupAdvisorDropoffSelfPickupDescription" = "If you prefer to pick-up your vehicle at the dealership, you can choose to do that below. Note: This will cancel your scheduled delivery.";
 
 "popupAdvisorDropoffSelfPickup" = "Confirm Self-Pickup";
+
+"popupAdvisorDropoffSelfDrop" = "Confirm Self-Drop";
 
 
 /********** Service Array Values **********/
@@ -453,6 +473,10 @@
 
 "viewSignupContactLabel" = "We require your phone number to coordinate during pickup and delivery";
 
+"viewDatesLoanersOnly" = "Dates with available loaners only";
+
+"viewDealershipCloseToLocation" = "Dealerships close to:";
+
 "viewEditTextInfoHintEmail" = "name@domain.com";
 
 "viewEditTextInfoHintPhoneNumber" = "(555) 555–5555";
@@ -563,13 +587,17 @@
 
 "viewScheduleServiceOptionDropoff" = "Return Vehicle";
 
-"viewScheduleServiceOptionInfoPickup" = "You can schedule pickup at any address served by a participating dealership, or you can drop-off your car in person.";
+"viewScheduleServiceOptionInfoPickup" = "Schedule pickup at any location served by a participating dealership.";
+
+"viewScheduleServiceOptionInfoSelfPickup" = "You can schedule pickup at any address served by a participating dealership, or you can drop-off your car in person.";
 
 "viewScheduleServiceOptionNotePickup" = "Note: Luxe by Volvo is only offered at participating dealers";
 
 "viewScheduleServiceOptionPickupSelfDropPickup" = "Self-Dropoff at Dealership";
 
-"viewScheduleServiceOptionInfoDropoff" = "You can schedule delivery to any address served by the dealership, or you can pick-up your car in person.";
+"viewScheduleServiceOptionInfoSelfDropoff" = "You can schedule delivery to any address served by the dealership, or you can pick-up your car in person.";
+
+"viewScheduleServiceOptionInfoDropoff" = "Schedule delivery at any location served by a participating dealership.";
 
 "viewScheduleServiceOptionNoteDropoff" = "Note: Luxe by Volvo is only offered at participating dealers";
 

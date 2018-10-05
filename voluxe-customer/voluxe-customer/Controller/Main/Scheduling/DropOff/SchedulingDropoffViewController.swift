@@ -192,7 +192,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 if let error = error {
                     self.pickupLocationView.showError(error: error)
                 } else {
-                    self.pickupLocationView.showError(error: .OutOfPickupArea)
+                    self.pickupLocationView.showError(error: .errorLocationOutOfPickupArea)
                 }
                 self.showConfirmButtonIfNeeded()
             })

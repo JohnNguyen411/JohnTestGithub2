@@ -46,7 +46,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         }
         
         if let requestLocation = RequestedServiceManager.sharedInstance.getPickupLocation() {
-            pickupLocationView.setTitle(title: .PickupLocation, leftDescription: requestLocation.address!, rightDescription: "")
+            pickupLocationView.setTitle(title: .pickupLocation, leftDescription: requestLocation.address!, rightDescription: "")
         }
         super.fillViews()
     }
@@ -172,7 +172,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     if let error = error {
                         self.pickupLocationView.showError(error: error)
                     } else {
-                        self.pickupLocationView.showError(error: .OutOfPickupArea)
+                        self.pickupLocationView.showError(error: .errorLocationOutOfPickupArea)
                     }
                 }
                 self.showConfirmButtonIfNeeded()

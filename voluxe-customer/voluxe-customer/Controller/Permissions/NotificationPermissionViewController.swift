@@ -14,14 +14,14 @@ class NotificationPermissionViewController: VLPresentrViewController, PresentrDe
 
     static var isShowing = false
     
-    let notNowButton = VLButton(type: .whitePrimary, title: String.NotNow.uppercased())
-    let allowButton = VLButton(type: .bluePrimary, title: String.Allow.uppercased())
+    let notNowButton = VLButton(type: .whitePrimary, title: String.notNow.uppercased())
+    let allowButton = VLButton(type: .bluePrimary, title: String.permissionAllowButtonTitle.uppercased())
     let notifDelegate: UNUserNotificationCenterDelegate
     var sizeDelegate: VLPresentrViewDelegate?
     
     let permissionText: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .NotificationPermissionBody
+        textView.text = .permissionNotificationMessage
         textView.font = .volvoSansProRegular(size: 16)
         textView.textColor = .luxeDarkGray()
         textView.volvoProLineSpacing()

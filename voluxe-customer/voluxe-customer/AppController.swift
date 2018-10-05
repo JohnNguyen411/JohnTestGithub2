@@ -95,7 +95,7 @@ class AppController {
                 return
             }
             
-            let alert = VLAlertViewController(title: String.errorSoftUpgradeTitle, message: String.errorSoftUpgradeMessage, cancelButtonTitle: String.NotNow, okButtonTitle: String.ok.uppercased())
+            let alert = VLAlertViewController(title: String.errorSoftUpgradeTitle, message: String.errorSoftUpgradeMessage, cancelButtonTitle: String.notNow, okButtonTitle: String.ok.uppercased())
             alert.delegate = appDelegate
             alert.dismissOnTap = true
             

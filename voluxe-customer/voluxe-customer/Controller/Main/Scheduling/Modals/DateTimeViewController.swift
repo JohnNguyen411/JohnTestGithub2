@@ -38,7 +38,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         timeSlotsHeader.textColor = .luxeGray()
         timeSlotsHeader.font = .volvoSansProMedium(size: 12)
         timeSlotsHeader.textAlignment = .center
-        timeSlotsHeader.text = (.PickupTimes as String).uppercased()
+        timeSlotsHeader.text = (.popupSelectTimeSlotTimesLabelPickup as String).uppercased()
         timeSlotsHeader.addUppercasedCharacterSpacing()
         return timeSlotsHeader
     }()
@@ -48,12 +48,12 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         noDateLabel.textColor = .black
         noDateLabel.font = .volvoSansProMedium(size: 12)
         noDateLabel.textAlignment = .center
-        noDateLabel.text = String.NoDatesForDealership
+        noDateLabel.text = String.popupSelectTimeSlotUnavailableLabel
         noDateLabel.numberOfLines = 0
         return noDateLabel
     }()
     
-    let callDealershipButton = VLButton(type: .blueSecondary, title: String.CallDealership.uppercased(), kern: UILabel.uppercasedKern(), event: .callDealership)
+    let callDealershipButton = VLButton(type: .blueSecondary, title: String.popupSelectTimeSlotUnavailableCallDealership.uppercased(), kern: UILabel.uppercasedKern(), event: .callDealership)
     
     fileprivate let gregorian = Calendar(identifier: .gregorian)
     fileprivate let formatter: DateFormatter = {
@@ -82,7 +82,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     private let loanerLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.volvoSansProMedium(size: 16)
-        label.text = .DatesLoanersOnly
+        label.text = .viewDatesLoanersOnly
         return label
     }()
     
@@ -185,15 +185,15 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         
         if isPickup {
             if let type = RequestedServiceManager.sharedInstance.getPickupRequestType(), type == .advisorPickup {
-                timeSlotsHeader.text = (.DropOffTimes as String).uppercased()
+                timeSlotsHeader.text = (.popupSelectTimeSlotTimesLabelDelivery as String).uppercased()
             } else {
-                timeSlotsHeader.text = (.PickupTimes as String).uppercased()
+                timeSlotsHeader.text = (.popupSelectTimeSlotTimesLabelPickup as String).uppercased()
             }
         } else {
             if let type = RequestedServiceManager.sharedInstance.getDropoffRequestType(), type == .advisorDropoff {
-                timeSlotsHeader.text = (.PickupTimes as String).uppercased()
+                timeSlotsHeader.text = (.popupSelectTimeSlotTimesLabelPickup as String).uppercased()
             } else {
-                timeSlotsHeader.text = (.DeliveryTimes as String).uppercased()
+                timeSlotsHeader.text = (.popupSelectTimeSlotTimesLabelDelivery as String).uppercased()
             }
         }
         

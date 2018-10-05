@@ -15,6 +15,7 @@ extension String {
     static let add = NSLocalizedString("add")
     static let yes = NSLocalizedString("yes")
     static let no = NSLocalizedString("no")
+    static let notNow = NSLocalizedString("notNow")
     static let ok = NSLocalizedString("ok")
     static let contact = NSLocalizedString("contact")
     static let shortMinute = NSLocalizedString("shortMinute")

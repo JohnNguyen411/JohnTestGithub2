@@ -46,6 +46,9 @@
 	[no]
 		en = No
 		tags = customer,driver
+	[notNow]
+		en = Not Now
+		tags = customer,driver
 	[loading]
 		en = Loading…
 		tags = customer,driver
@@ -90,6 +93,9 @@
 		tags = customer
 	[deliveryLocation]
 		en = Delivery Location
+		tags = customer
+	[needALoaner]
+		en = Need a Loaner?
 		tags = customer
 	[scheduledPickup]
 		en = Scheduled Pickup
@@ -405,6 +411,18 @@
 	[permissionGrantTitle]
 		en = Grant Permission
 		tags = customer
+	[permissionLocationTitle]
+		en = Location Permission
+		tags = customer
+	[permissionAllowNotificationTitle]
+		en = Allow Notification?
+		tags = customer
+	[permissionAllowNotificationMessage]
+		en = We only send you updates on the status of your vehicle during pickups and deliveries.
+		tags = customer
+	[permissionAllowButtonTitle]
+		en = Allow
+		tags = customer
 [[Popups]]
 	[popupPhoneVerificationResendCodeTitle]
 		en = New confirmation code sent
@@ -431,6 +449,9 @@
 	[popupSelectLocationPermissionNote]
 		en = Note: to access your current location, we’ll need to ask you for permission next.
 		tags = customer
+	[popupSelectLocationPermissionDenied]
+		en = To access your current location, you need to enable the location permission in the Settings.
+		tags = customer
 	[popupSelectLocationCurrentLocation]
 		en = Current Location
 		tags = customer
@@ -441,13 +462,19 @@
 		en = Select pickup date and time
 		tags = customer
 	[popupSelectTimeSlotLabelDropoff]
+		en = Select dropoff date and time
+		tags = customer
+	[popupSelectTimeSlotLabelDelivery]
 		en = Select delivery date and time
 		tags = customer
 	[popupSelectTimeSlotTimesLabelPickup]
 		en = Pickup times
 		tags = customer
-	[popupSelectTimeSlotTimesLabelDropoff]
+	[popupSelectTimeSlotTimesLabelDelivery]
 		en = Delivery times
+		tags = customer
+	[popupSelectTimeSlotTimesLabelDropoff]
+		en = Dropoff times
 		tags = customer
 	[popupSelectTimeSlotUnavailableLabel]
 		en = Unfortunately no dates are available for this dealership. Please try again later or call the dealership.
@@ -499,6 +526,9 @@
 		tags = customer
 	[popupAdvisorDropoffSelfPickup]
 		en = Confirm Self-Pickup
+		tags = customer
+	[popupAdvisorDropoffSelfDrop]
+		en = Confirm Self-Drop
 		tags = customer
 	[popupDeviceChangeTitle]
 		en = Update Phone Number
@@ -875,6 +905,12 @@
 	[viewSignupContactLabel]
 		en = We require your phone number to coordinate during pickup and delivery
 		tags = customer
+	[viewDatesLoanersOnly]
+		en = Dates with available loaners only
+		tags = customer
+	[viewDealershipCloseToLocation]
+		en = Dealerships close to:
+		tags = customer
 	[viewEditTextInfoHintEmail]
 		en = name@domain.com
 		tags = customer
@@ -1041,6 +1077,9 @@
 		en = Return Vehicle
 		tags = customer
 	[viewScheduleServiceOptionInfoPickup]
+		en = Schedule pickup at any location served by a participating dealership.
+		tags = customer
+	[viewScheduleServiceOptionInfoSelfPickup]
 		en = You can schedule pickup at any address served by a participating dealership, or you can drop-off your car in person.
 		tags = customer
 	[viewScheduleServiceOptionNotePickup]
@@ -1049,8 +1088,11 @@
 	[viewScheduleServiceOptionPickupSelfDropPickup]
 		en = Self-Dropoff at Dealership
 		tags = customer
-	[viewScheduleServiceOptionInfoDropoff]
+	[viewScheduleServiceOptionInfoSelfDropoff]
 		en = You can schedule delivery to any address served by the dealership, or you can pick-up your car in person.
+		tags = customer
+	[viewScheduleServiceOptionInfoDropoff]
+		en = Schedule delivery at any location served by a participating dealership.
 		tags = customer
 	[viewScheduleServiceOptionNoteDropoff]
 		en = Note: Luxe by Volvo is only offered at participating dealers

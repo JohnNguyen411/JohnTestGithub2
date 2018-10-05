@@ -59,8 +59,8 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     let descriptionButton: VLButton
     let dealershipView = VLTitledLabel(padding: insetPadding)
     let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "", padding: insetPadding)
-    let pickupLocationView = VLTitledLabel(title: .PickupLocation, leftDescription: "", rightDescription: "", padding: insetPadding)
-    let loanerView = VLTitledLabel(title: .NeedALoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
+    let pickupLocationView = VLTitledLabel(title: .pickupLocation, leftDescription: "", rightDescription: "", padding: insetPadding)
+    let loanerView = VLTitledLabel(title: .needALoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
     let confirmButton: VLButton
     
     let dealershipAddressLabel: UILabel = {
@@ -372,10 +372,10 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
                     
                     self.handleDealershipsResponse(dealerships: filteredDealership)
                 } else {
-                    error = String.ServiceNotOfferedInArea
+                    error = String.errorLocationServiceNotOfferedInYourArea
                 }
             } else {
-                error = String.ServiceNotOfferedInArea
+                error = String.errorLocationServiceNotOfferedInYourArea
             }
             
             if let completion = completion {
@@ -384,7 +384,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             
             }.onFailure { error in
                 if let completion = completion {
-                    completion(String.ServiceNotOfferedInArea)
+                    completion(String.errorLocationServiceNotOfferedInYourArea)
                 }
         }
     }
@@ -442,11 +442,11 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     
     func showPickupLocationModal(dismissOnTap: Bool) {
         
-        var title: String = .PickupLocationTitle
+        var title: String = .popupSelectLocationLabel
         var screen = AnalyticsEnums.Name.Screen.dropoffLocation
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-                title = .DealershipCloseToLocation
+                title = .viewDealershipCloseToLocation
             }
             screen = AnalyticsEnums.Name.Screen.pickupLocation
         }
@@ -461,7 +461,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     }
     
     func showPickupLoanerModal(dismissOnTap: Bool) {
-        let loanerVC = LoanerViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .next, screen: .pickupLoaner)
+        let loanerVC = LoanerViewController(title: .popupDoYouNeedLoanerVehicle, buttonTitle: .next, screen: .pickupLoaner)
         loanerVC.delegate = self
         loanerVC.view.accessibilityIdentifier = "loanerVC"
         currentPresentrVC = loanerVC
@@ -471,16 +471,16 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     
     func showPickupDateTimeModal(dismissOnTap: Bool) {
         
-        var title: String = .SelectPickupDate
+        var title: String = .popupSelectTimeSlotLabelPickup
         if !StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let type = RequestedServiceManager.sharedInstance.getDropoffRequestType() , type == RequestType.advisorDropoff {
-                title = .SelectPickupDate
+                title = .popupSelectTimeSlotLabelPickup
             } else {
-                title = .SelectDeliveryDate
+                title = .popupSelectTimeSlotLabelDelivery
             }
         } else {
             if let type = RequestedServiceManager.sharedInstance.getPickupRequestType() , type == RequestType.advisorPickup {
-                title = .SelectDropoffDate
+                title = .popupSelectTimeSlotLabelDropoff
             }
         }
         
@@ -521,10 +521,10 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     
     
     func getPickupLocationTitle() -> String {
-        var title: String = .PickupLocationTitle
+        var title: String = .popupSelectLocationLabel
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-                title = .DealershipCloseToLocation
+                title = .viewDealershipCloseToLocation
             }
         }
         return title
@@ -543,10 +543,10 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     }
     
     private static func getConfirmButtonTitle(vehicleId: Int) -> String {
-        var title = String.ConfirmPickup
+        var title = String.viewScheduleServiceOptionConfirmButtonPositivePickup
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicleId) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-                title = .ConfirmSelfDrop
+                title = .popupAdvisorDropoffSelfDrop
             }
         } else {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
@@ -651,10 +651,10 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
         } else {
             RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: locationRequest!)
         }
-        var title: String = .PickupLocation
+        var title: String = .pickupLocation
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-                title = .DealershipCloseToLocation
+                title = .viewDealershipCloseToLocation
             }
         } else {
             title = .DeliveryLocation

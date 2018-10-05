@@ -320,7 +320,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                 if let location = location {
                     preferedDealershipView.isHidden = false
                     if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                        preferedDealershipView.setTitle(title: .PickupLocation, leftDescription: location)
+                        preferedDealershipView.setTitle(title: .pickupLocation, leftDescription: location)
                     } else {
                         preferedDealershipView.setTitle(title: .DeliveryLocation, leftDescription: location)
                     }

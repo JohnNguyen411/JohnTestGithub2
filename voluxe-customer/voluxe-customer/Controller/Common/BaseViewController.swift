@@ -174,7 +174,7 @@ class BaseViewController: UIViewController, PresentrDelegate, VLPresentrViewDele
     
     func showNotificationPermissionModal(dismissOnTap: Bool) {
         if let appDelegate = self.appDelegate, !NotificationPermissionViewController.isShowing {
-            let permissionVC = NotificationPermissionViewController(title: .AllowNotifications,
+            let permissionVC = NotificationPermissionViewController(title: .permissionAllowNotificationTitle,
                                                                     screen: .requestNotifications,
                                                                     delegate: appDelegate)
             permissionVC.view.accessibilityIdentifier = "permissionVC"

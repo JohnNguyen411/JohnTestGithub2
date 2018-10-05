@@ -134,7 +134,7 @@ class ScheduledBookingViewController: SchedulingViewController {
         }
         
         if let requestLocation = request.location {
-            var title = String.PickupLocation
+            var title = String.pickupLocation
             if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
                 title = .DeliveryLocation
             }

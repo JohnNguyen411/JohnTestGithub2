@@ -35,7 +35,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     
     let checkupLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .ScheduleDropDealership
+        textView.text = .viewScheduleServiceOptionInfoPickup
         textView.font = .volvoSansProRegular(size: 14)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -358,9 +358,9 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             
             if state == .needService {
                 dealershipPrefetching()
-                self.updateLabelText(text: .ScheduleDropDealership)
+                self.updateLabelText(text: .viewScheduleServiceOptionInfoPickup)
             } else {
-                self.updateLabelText(text: .SchedulePickupDealershipSelfEnabled)
+                self.updateLabelText(text: .viewScheduleServiceOptionInfoSelfDropoff)
                
 //                showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: true)
                 if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
@@ -426,7 +426,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
                 selfDropButton.isHidden = true
                 deliveryButton.isHidden = true
                 
-                self.updateLabelText(text: String(format: NSLocalizedString(.DriverDrivingToDealership), (dealership?.name)!))
+                self.updateLabelText(text: String(format: NSLocalizedString(.viewScheduleServiceStatusAtDealershipInfo), (dealership?.name)!))
                 
             } else if state == .completed {
                 confirmButton.isHidden = false
