@@ -19,7 +19,7 @@ class SchedulingPickupViewController: SchedulingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-            setTitle(title: .SelfDrop)
+            setTitle(title: .viewScheduleServiceOptionPickupSelfDropPickup)
         } else {
             setTitle(title: .SchedulePickup)
         }

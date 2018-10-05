@@ -55,11 +55,11 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
 
     let scheduledServiceView = VLTitledLabel()
-    let descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDetails as String).uppercased(), kern: UILabel.uppercasedKern())
+    let descriptionButton = VLButton(type: .blueSecondary, title: (.showDetails as String).uppercased(), kern: UILabel.uppercasedKern())
     
     let vehicleImageView = UIImageView(frame: .zero)
     
-    let selfDropButton = VLButton(type: .grayPrimary, title: (.SelfDrop as String).uppercased(), kern: UILabel.uppercasedKern())
+    let selfDropButton = VLButton(type: .grayPrimary, title: (.viewScheduleServiceOptionPickupSelfDropPickup as String).uppercased(), kern: UILabel.uppercasedKern())
     let deliveryButton = VLButton(type: .bluePrimary, title: (.SchedulePickup as String).uppercased(), kern: UILabel.uppercasedKern())
     let confirmButton = VLButton(type: .bluePrimary, title: (.ok as String).uppercased(), kern: UILabel.uppercasedKern())
 
@@ -301,9 +301,9 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
         vehicle.setVehicleImage(imageView: vehicleImageView)
         
         if let service = RequestedServiceManager.sharedInstance.getRepairOrder() {
-            var title = String.RecommendedService
+            var title = String.recommendedService
             if RequestedServiceManager.sharedInstance.isSelfInitiated() {
-                title = .SelectedService
+                title = .selectedService
                 showUpdateLabel(show: false, title: String.new.uppercased(), width: 40, right: true)
             } else {
                 showUpdateLabel(show: true, title: String.new.uppercased(), width: 40, right: true)
@@ -364,7 +364,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
                
 //                showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: true)
                 if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
-                    scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+                    scheduledServiceView.setTitle(title: String.completedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
                 }
             }
             
@@ -443,7 +443,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             self.selfDropButton.setEvent(name: .inboundSelf, screen: screenAnalyticsEnum(state: state))
             self.deliveryButton.setEvent(name: .inboundVolvo, screen: screenAnalyticsEnum(state: state))
             
-            selfDropButton.setTitle(title: (.SelfDrop as String).uppercased())
+            selfDropButton.setTitle(title: (.viewScheduleServiceOptionPickupSelfDropPickup as String).uppercased())
             deliveryButton.setTitle(title: (.SchedulePickup as String).uppercased())
 
         } else {

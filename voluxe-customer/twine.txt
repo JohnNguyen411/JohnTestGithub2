@@ -106,8 +106,14 @@
 	[dealership]
 		en = Dealership
 		tags = customer,driver
+	[recommendedService]
+		en = Recommended Service
+		tags = customer
 	[newService]
 		en = New Service
+		tags = customer
+	[scheduleService]
+		en = Schedule Service
 		tags = customer
 	[selectedService]
 		en = Selected Service
@@ -1004,7 +1010,7 @@
 	[viewScheduleServiceTypeMilestoneDetailNameLabel]
 		en = Factory Scheduled Maintenance
 		tags = customer
-	[viewScheduleServiceTypeMilestoneDetailConfirmService]
+	[viewScheduleServiceDetailConfirmService]
 		en = Confirm Service
 		tags = customer
 	[viewScheduleServiceTypeOtherDetail]

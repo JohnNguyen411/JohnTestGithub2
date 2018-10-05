@@ -127,7 +127,7 @@ class MainViewController: BaseVehicleViewController {
     func getTitleForState(state: ServiceState) -> String? {
         
         if state.rawValue == ServiceState.idle.rawValue || state.rawValue == ServiceState.needService.rawValue {
-            return .ScheduleService
+            return .scheduleService
         } else if state.rawValue >= ServiceState.pickupScheduled.rawValue && state.rawValue < ServiceState.enRouteForService.rawValue {
             return .ScheduledPickup
         } else if state.rawValue >= ServiceState.enRouteForService.rawValue && state.rawValue < ServiceState.serviceCompleted.rawValue {

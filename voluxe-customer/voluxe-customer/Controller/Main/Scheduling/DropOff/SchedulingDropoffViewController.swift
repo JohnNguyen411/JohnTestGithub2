@@ -46,7 +46,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     override func fillViews() {
         super.fillViews()
         
-        scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+        scheduledServiceView.setTitle(title: String.completedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
         
         scheduledPickupView.titleLabel.text = .ScheduledDelivery
         pickupLocationView.titleLabel.text = .DeliveryLocation
@@ -81,7 +81,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
             }
         }
         if let dealership = bookingDealership {
-            self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+            self.dealershipView.setTitle(title: .dealership, leftDescription: dealership.name!, rightDescription: "")
         }
     }
     

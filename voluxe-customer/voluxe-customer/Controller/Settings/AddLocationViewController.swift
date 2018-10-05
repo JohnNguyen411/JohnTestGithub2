@@ -23,10 +23,10 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     var autocompletePredictions: [GMSAutocompletePrediction]?
     var autoCompleteCharacterCount = 0
     
-    let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
+    let newLocationTextField = VLVerticalSearchTextField(title: .popupAddNewLocationLabel, placeholder: .popupAddNewLocationEditHint)
 
     init() {
-        super.init(title: .AddNewLocation, buttonTitle: .add, screen: .location)
+        super.init(title: .addNewLocation, buttonTitle: .add, screen: .location)
         newLocationTextField.textField.autocorrectionType = .no
         newLocationTextField.tableYOffset = -20
         newLocationTextField.tableBottomMargin = 0

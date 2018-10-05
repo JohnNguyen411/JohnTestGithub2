@@ -76,7 +76,11 @@
 
 "dealership" = "Dealership";
 
+"recommendedService" = "Recommended Service";
+
 "newService" = "New Service";
+
+"scheduleService" = "Schedule Service";
 
 "selectedService" = "Selected Service";
 
@@ -539,7 +543,7 @@
 
 "viewScheduleServiceTypeMilestoneDetailNameLabel" = "Factory Scheduled Maintenance";
 
-"viewScheduleServiceTypeMilestoneDetailConfirmService" = "Confirm Service";
+"viewScheduleServiceDetailConfirmService" = "Confirm Service";
 
 "viewScheduleServiceTypeOtherDetail" = "Other Maintenance";
 

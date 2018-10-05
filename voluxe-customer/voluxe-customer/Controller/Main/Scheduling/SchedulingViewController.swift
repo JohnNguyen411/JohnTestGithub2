@@ -85,7 +85,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     
     
     override init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen? = nil) {
-        descriptionButton = VLButton(type: .blueSecondary, title: (.ShowDetails as String).uppercased(), kern: UILabel.uppercasedKern(), event: .showService, screen: screen)
+        descriptionButton = VLButton(type: .blueSecondary, title: (.showDetails as String).uppercased(), kern: UILabel.uppercasedKern(), event: .showService, screen: screen)
         confirmButton = VLButton(type: .bluePrimary, title: SchedulingViewController.getConfirmButtonTitle(vehicleId: vehicle.id), kern: UILabel.uppercasedKern())
         
         super.init(vehicle: vehicle, state: state, screen: screen)
@@ -286,9 +286,9 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     func fillViews() {
         
         if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
-            var title = String.RecommendedService
+            var title = String.recommendedService
             if RequestedServiceManager.sharedInstance.isSelfInitiated() {
-                title = .SelectedService
+                title = .selectedService
             }
             scheduledServiceView.setTitle(title: title, leftDescription: repairOrder.getTitle(), rightDescription: "")
         }
@@ -308,7 +308,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     
     func fillDealership() {
         if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-            self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+            self.dealershipView.setTitle(title: .dealership, leftDescription: dealership.name!, rightDescription: "")
         }
     }
     
@@ -414,7 +414,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
                 }
                 if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
                     if let dealershipName = dealership.name {
-                        self.dealershipView.setTitle(title: .Dealership, leftDescription: dealershipName, rightDescription: "")
+                        self.dealershipView.setTitle(title: .dealership, leftDescription: dealershipName, rightDescription: "")
                     }
                 }
                 
@@ -432,7 +432,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     func showDealershipModal(dismissOnTap: Bool) {
         guard let dealerships = dealerships else { return }
         
-        let dealershipVC = DealershipViewController(title: .ChooseDealership, buttonTitle: .next, dealerships: dealerships)
+        let dealershipVC = DealershipViewController(title: .popupSelectDealershipLabel, buttonTitle: .next, dealerships: dealerships)
         dealershipVC.delegate = self
         dealershipVC.view.accessibilityIdentifier = "dealershipVC"
         currentPresentrVC = dealershipVC

@@ -35,7 +35,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     let vehicleCollectionView: UICollectionView
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
     let vehicleImageView = UIImageView(frame: .zero)
-    let preferedDealershipView = VLTitledLabel(title: .Dealership, leftDescription: "", rightDescription: "")
+    let preferedDealershipView = VLTitledLabel(title: .dealership, leftDescription: "", rightDescription: "")
     let scheduledServiceView = VLTitledLabel()
     let contentView = UIView(frame: .zero)
     let confirmButton: VLButton
@@ -291,7 +291,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                 }
             } else {
                 if booking.isSelfOB() {
-                    scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName())
+                    scheduledServiceView.setTitle(title: .completedService, leftDescription: booking.getRepairOrderName())
                     scheduledServiceView.isEditable = false
                     dealershipLocationButton.isHidden = false
                 } else {
@@ -304,7 +304,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                         if booking.getState() == .service {
                             scheduledServiceView.setTitle(title: .CurrentService, leftDescription: booking.getRepairOrderName())
                         } else {
-                            scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName())
+                            scheduledServiceView.setTitle(title: .completedService, leftDescription: booking.getRepairOrderName())
                         }
                     }
                     if let request = booking.dropoffRequest, let requestLocation = request.location {
@@ -327,7 +327,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                 } else {
                     if let dealership = booking.dealership {
                         preferedDealershipView.isHidden = false
-                        preferedDealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!)
+                        preferedDealershipView.setTitle(title: .dealership, leftDescription: dealership.name!)
                     }
                 }
             }

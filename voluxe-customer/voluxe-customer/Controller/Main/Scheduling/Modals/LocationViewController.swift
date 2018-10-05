@@ -54,11 +54,11 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     
     let newLocationButton: VLButton
     
-    let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
+    let newLocationTextField = VLVerticalSearchTextField(title: .popupAddNewLocationLabel, placeholder: .popupAddNewLocationEditHint)
     let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
     
     override init(title: String, buttonTitle: String, screen: AnalyticsEnums.Name.Screen) {
-        newLocationButton = VLButton(type: .blueSecondary, title: (.AddNewLocation as String).uppercased(), kern: UILabel.uppercasedKern(), event: .addNewLocation, screen: screen)
+        newLocationButton = VLButton(type: .blueSecondary, title: (.addNewLocation as String).uppercased(), kern: UILabel.uppercasedKern(), event: .addNewLocation, screen: screen)
         super.init(title: title, buttonTitle: buttonTitle, screen: screen)
         newLocationTextField.textField.autocorrectionType = .no
         newLocationTextField.tableYOffset = -20

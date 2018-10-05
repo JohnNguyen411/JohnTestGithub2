@@ -143,14 +143,14 @@ class ScheduledBookingViewController: SchedulingViewController {
         
         if booking.repairOrderRequests.count > 0 {
             if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                scheduledServiceView.setTitle(title: .SelectedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+                scheduledServiceView.setTitle(title: .selectedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
             } else {
-                scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+                scheduledServiceView.setTitle(title: .completedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
             }
         }
         
         if let dealership = booking.dealership {
-            self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+            self.dealershipView.setTitle(title: .dealership, leftDescription: dealership.name!, rightDescription: "")
         }
         
         loanerView.descLeftLabel.text = booking.loanerVehicleRequested ? .yes : .no

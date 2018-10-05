@@ -79,7 +79,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
             if let addresses = addresses, addressesCount > indexPath.row {
                 return (addresses[indexPath.row].location?.getShortAddress())!
             }
-            return .AddNewLocation
+            return .addNewLocation
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 return "\(user?.firstName ?? "") \(user?.lastName ?? "")"
