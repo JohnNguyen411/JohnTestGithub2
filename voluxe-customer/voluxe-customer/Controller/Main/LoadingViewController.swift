@@ -109,7 +109,7 @@ class LoadingViewController: LogoViewController {
                         return
                     } else if apiError.getCode() == .E5001 || apiError.getCode() == .E5002 {
                         // 500 unknown
-                        self.showOkDialog(title: .Error, message: .GenericError, completion: {
+                        self.showOkDialog(title: .error, message: .errorUnknown, completion: {
                             self.callCustomer(customerId: customerId)
                         }, dialog: .error, screen: self.screen)
                         return
@@ -149,7 +149,7 @@ class LoadingViewController: LogoViewController {
             }
             
             
-            self.showOkDialog(title: .Error, message: .GenericError, completion: {
+            self.showOkDialog(title: .error, message: .errorUnknown, completion: {
                 self.callCustomer(customerId: customerId)
             }, dialog: .error, screen: self.screen)
         }
@@ -187,7 +187,7 @@ class LoadingViewController: LogoViewController {
                 return
             }
         }
-        self.showOkDialog(title: .Error, message: .GenericError, completion: {
+        self.showOkDialog(title: .error, message: .errorUnknown, completion: {
             self.callVehicles(customerId: customerId)
         }, dialog: .error, screen: self.screen)
     }

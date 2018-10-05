@@ -238,12 +238,12 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 }.onFailure { error in
                     self.confirmButton.isLoading = false
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4049.rawValue || code == Errors.ErrorCode.E4050.rawValue {
-                        self.showDialog(title: .Error, message: String(format: String.DuplicateRequestError, String.Delivery), buttonTitle: .Refresh, completion: {
+                        self.showDialog(title: .error, message: String(format: String.errorDuplicateRequest, String.delivery), buttonTitle: .refresh, completion: {
                             self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
                         }, dialog: .error, screen: self.screen)
                         return
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
                     }
             }
             
@@ -299,7 +299,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
             }.onFailure { error in
                 // retry
                 self.hideProgressHUD()
-                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                self.showDialog(title: .error, message: .errorUnknown, buttonTitle: .retry, completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 }, dialog: .error, screen: self.screen)
         }

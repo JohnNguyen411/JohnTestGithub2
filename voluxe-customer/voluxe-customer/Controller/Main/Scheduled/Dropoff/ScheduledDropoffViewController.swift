@@ -125,7 +125,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
                 }
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .error, message: .errorUnknown)
             }
             
         }
@@ -174,7 +174,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
             }.onFailure { error in
                 // retry
                 self.hideProgressHUD()
-                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                self.showDialog(title: .error, message: .errorUnknown, buttonTitle: .retry, completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 }, dialog: .error, screen: self.screen)
         }

@@ -51,7 +51,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     
     init() {
         super.init(screen: .vehicleAdd)
-        self.navigationItem.rightBarButtonItem?.title = .Done
+        self.navigationItem.rightBarButtonItem?.title = .done
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -204,11 +204,11 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         toolBar.sizeToFit()
         
         // Adding Button ToolBar
-        let doneButton = UIBarButtonItem(title: .Done, style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.donePicker))
+        let doneButton = UIBarButtonItem(title: .done, style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.donePicker))
         UIViewController.styleBarButtonItem(barButton: doneButton)
 
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: .Cancel, style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.cancelPicker))
+        let cancelButton = UIBarButtonItem(title: .cancel, style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.cancelPicker))
         UIViewController.styleBarButtonItem(barButton: cancelButton)
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true

@@ -75,9 +75,9 @@ class RepairOrder: Object, Mappable {
     static func getDrivabilityTitle(isDrivable: Bool?) -> String {
         if let drivable = isDrivable {
             if drivable {
-                return .Yes
+                return .yes
             } else {
-                return .No
+                return .no
             }
         } else {
             return .ImNotSure

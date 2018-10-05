@@ -27,7 +27,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
 
     let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
     let vehicleImageView = UIImageView(frame: .zero)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), kern: UILabel.uppercasedKern())
+    let confirmButton = VLButton(type: .bluePrimary, title: (.ok as String).uppercased(), kern: UILabel.uppercasedKern())
     let scrollView = UIScrollView(frame: .zero)
     let contentView = UIView(frame: .zero)
     let ghostView = UIView(frame: .zero) // use to center the slider
@@ -95,7 +95,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     
     init() {
         super.init(screen: .bookingFeedback)
-        self.navigationItem.rightBarButtonItem?.title = .Skip
+        self.navigationItem.rightBarButtonItem?.title = .skip
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -334,7 +334,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
                     return
                 }
                 MBProgressHUD.hide(for: self.view, animated: true)
-                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                self.showDialog(title: .error, message: .errorUnknown, buttonTitle: .retry, completion: {
                     self.sendFeedback(rating: rating, comment: comment)
                 }, dialog: .error, screen: self.screen)
                 self.retryCount += 1
@@ -357,8 +357,8 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         serviceCompleteLabel.text = show ? .RatingReason : .DeliveryComplete
         self.navigationItem.title = .Feedback
         
-        confirmButton.setTitle(title: show ? String.Done.uppercased() : String.Ok.uppercased())
-        self.navigationItem.rightBarButtonItem?.title = show ? .Done : .Skip
+        confirmButton.setTitle(title: show ? String.done.uppercased() : String.ok.uppercased())
+        self.navigationItem.rightBarButtonItem?.title = show ? .done : .skip
     }
     
     override func viewDidLayoutSubviews() {

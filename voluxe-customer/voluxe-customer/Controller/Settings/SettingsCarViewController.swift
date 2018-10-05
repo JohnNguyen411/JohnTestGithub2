@@ -80,8 +80,8 @@ class SettingsCarViewController: BaseViewController {
     private func removeVehicleAlert() {
         self.showDestructiveDialog(title: .RemoveVehicle,
                                    message: .RemoveVehicleConfirmation,
-                                   cancelButtonTitle: .Cancel,
-                                   destructiveButtonTitle: .Remove,
+                                   cancelButtonTitle: .cancel,
+                                   destructiveButtonTitle: .remove,
                                    destructiveCompletion: { [weak self] in self?.removeVehicle() },
                                    dialog: .vehicleDelete,
                                    screen: self.screen)
@@ -106,9 +106,9 @@ class SettingsCarViewController: BaseViewController {
     private func deleteVehicleFailed(error: Errors) {
         MBProgressHUD.hide(for: self.view, animated: true)
         if error.apiError?.getCode() == .E3011 {
-            showOkDialog(title: .Error, message: .DeleteVehicleError, dialog: .error, screen: self.screen)
+            showOkDialog(title: .error, message: .errorDeleteVehicleBooking, dialog: .error, screen: self.screen)
         } else {
-            showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+            showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
         }
     }
     

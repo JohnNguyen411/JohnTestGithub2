@@ -126,11 +126,19 @@
 
 "updateYourPassword" = "Update your Password";
 
+"confirm" = "Confirm";
+
+"delete" = "Delete";
+
 "passwordRequirements" = "Password must have at least one letter and one digit, at least 8 chars, less than 60";
 
 "openSettings" = "Open Settings";
 
 "back" = "Back";
+
+"map" = "Map";
+
+"refresh" = "Refresh";
 
 /* Vehicle */
 "vehicleMake" = "Volvo";
@@ -145,7 +153,15 @@
 
 /********** Errors **********/
 
-/* Errors */
+/* Error */
+"error" = "Error";
+
+"errorDuplicateRequest" = "A %@ is already scheduled for your car. Please refresh.";
+
+"errorDeleteVehicleBooking" = "You cannot delete a vehicle that has an active booking.";
+
+"errorDatabase" = "An unexpected error as occured. Please try restarting the app.";
+
 "errorOops" = "Oops";
 
 "errorUnknown" = "Something went wrong. Please try again.";
@@ -213,6 +229,8 @@
 "permissionsLocationDeniedMessage" = "Luxe by Volvo needs location access to pickup or deliver your vehicle at your current location.\nPlease go to your settings and enable Location permissions for Luxe by Volvo.";
 
 "permissionNotificationMessage" = "We need you to grant us the permission to send you notifications to give you updates regarding the status of your car";
+
+"permissionGrantTitle" = "Grant Permission";
 
 
 /********** Popups **********/

@@ -74,7 +74,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         self.serviceTitle = services.joined(separator: ", ")
         self.service = RepairOrder(title: serviceTitle, repairOrderType: repairOrderType, customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
         
-        confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), event: .next, screen: .serviceCustomNotes)
+        confirmButton = VLButton(type: .bluePrimary, title: (.next as String).uppercased(), kern: UILabel.uppercasedKern(), event: .next, screen: .serviceCustomNotes)
         
         super.init(screen: .serviceCustomNotes)
     }

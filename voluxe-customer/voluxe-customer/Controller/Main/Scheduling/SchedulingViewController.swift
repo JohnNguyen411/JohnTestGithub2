@@ -77,7 +77,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
         let dealershipMapLabel = UILabel()
         dealershipMapLabel.textColor = .luxeCobaltBlue()
         dealershipMapLabel.font = .volvoSansProMedium(size: 12)
-        dealershipMapLabel.text = String.Map.uppercased()
+        dealershipMapLabel.text = String.map.uppercased()
         dealershipMapLabel.textAlignment = .left
         dealershipMapLabel.addUppercasedCharacterSpacing()
         return dealershipMapLabel
@@ -123,7 +123,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             if let selectedLoaner = RequestedServiceManager.sharedInstance.getLoaner() {
                 loaner = selectedLoaner
             }
-            self.loanerView.descLeftLabel.text = loaner ? .Yes : .No
+            self.loanerView.descLeftLabel.text = loaner ? .yes : .no
         }
     }
     
@@ -300,7 +300,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             loaner = selectedLoaner
         }
         
-        loanerView.descLeftLabel.text = loaner ? .Yes : .No
+        loanerView.descLeftLabel.text = loaner ? .yes : .no
         
         self.confirmButton.setTitle(title: SchedulingViewController.getConfirmButtonTitle(vehicleId: vehicle.id))
         self.confirmButton.setEvent(name: self.getConfirmButtonEvent(), screen: self.screen)
@@ -432,7 +432,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     func showDealershipModal(dismissOnTap: Bool) {
         guard let dealerships = dealerships else { return }
         
-        let dealershipVC = DealershipViewController(title: .ChooseDealership, buttonTitle: .Next, dealerships: dealerships)
+        let dealershipVC = DealershipViewController(title: .ChooseDealership, buttonTitle: .next, dealerships: dealerships)
         dealershipVC.delegate = self
         dealershipVC.view.accessibilityIdentifier = "dealershipVC"
         currentPresentrVC = dealershipVC
@@ -451,7 +451,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             screen = AnalyticsEnums.Name.Screen.pickupLocation
         }
         
-        let locationVC = LocationViewController(title: title, buttonTitle: .Next, screen: screen)
+        let locationVC = LocationViewController(title: title, buttonTitle: .next, screen: screen)
         locationVC.isModalInPopover = true
         locationVC.pickupLocationDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
@@ -461,7 +461,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     }
     
     func showPickupLoanerModal(dismissOnTap: Bool) {
-        let loanerVC = LoanerViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .Next, screen: .pickupLoaner)
+        let loanerVC = LoanerViewController(title: .DoYouNeedLoanerVehicle, buttonTitle: .next, screen: .pickupLoaner)
         loanerVC.delegate = self
         loanerVC.view.accessibilityIdentifier = "loanerVC"
         currentPresentrVC = loanerVC
@@ -484,7 +484,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             }
         }
         
-        let dateModal = DateTimeViewController(vehicle: vehicle, title: title, buttonTitle: .Next)
+        let dateModal = DateTimeViewController(vehicle: vehicle, title: title, buttonTitle: .next)
         dateModal.delegate = self
         dateModal.view.accessibilityIdentifier = "dateModal"
         currentPresentrVC = dateModal
@@ -692,7 +692,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             }
         }
         
-        loanerView.descLeftLabel.text = loanerNeeded ? .Yes : .No
+        loanerView.descLeftLabel.text = loanerNeeded ? .yes : .no
         currentPresentrVC?.dismiss(animated: true, completion: {
             if openNext {
                 self.scheduledPickupClick()

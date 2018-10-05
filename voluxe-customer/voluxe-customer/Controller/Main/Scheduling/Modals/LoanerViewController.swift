@@ -13,7 +13,7 @@ class LoanerViewController: VLPresentrViewController, VLGroupedLabelsDelegate {
     
     weak var delegate: PickupLoanerDelegate?
     
-    let groupedLabels = VLGroupedLabels(items: [.Yes, .No], singleChoice: true, selectDefault: false, topBottomSeparator: true)
+    let groupedLabels = VLGroupedLabels(items: [.yes, .no], singleChoice: true, selectDefault: false, topBottomSeparator: true)
     
     override func setupViews() {
         super.setupViews()

@@ -239,18 +239,18 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         if let apiError = error?.apiError {
             
             if apiError.getCode() == .E5001 {
-                self.showOkDialog(title: .Error, message: .errorPhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .error, message: .errorPhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
             } else if apiError.getCode() == .E4011 {
-                self.showOkDialog(title: .Error, message: .errorAccountAlreadyExists, completion: {
+                self.showOkDialog(title: .error, message: .errorAccountAlreadyExists, completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
             } else if apiError.getCode() == .E4046 {
-                self.showOkDialog(title: .Error, message: .errorInvalidPhoneNumberFormatted, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .error, message: .errorInvalidPhoneNumberFormatted, dialog: .error, screen: self.screen)
             } else  {
-                self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
             }
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
         }
     }
     
@@ -337,7 +337,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 return
             } else {
                 if createdCustomer.phoneNumberVerified {
-                    self.showOkDialog(title: .Error, message: .errorAccountAlreadyExists, completion: {
+                    self.showOkDialog(title: .error, message: .errorAccountAlreadyExists, completion: {
                         self.loadLandingPage()
                     }, dialog: .error, screen: self.screen)
                     return

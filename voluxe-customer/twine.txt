@@ -202,6 +202,12 @@
 	[confirmNewPassword]
 		en = Confirm New Password
 		tags = driver
+	[confirm]
+		en = Confirm
+		tags = customer
+	[delete]
+		en = Delete
+		tags = customer
 	[passwordRequirements]
 		en = Password must have at least one letter and one digit, at least 8 chars, less than 60
 		tags = customer,driver
@@ -211,6 +217,12 @@
 	[back]
 		en = Back
 		tags = customer,driver
+	[map]
+		en = Map
+		tags = customer
+	[refresh]
+		en = Refresh
+		tags = customer
 	[inspectVehicles]
 		en = Inspect Vehicles
 		tags = driver
@@ -271,9 +283,21 @@
 		en = Sign Out
 		tags = customer,driver
 [[Errors]]
+	[error]
+		en = Error
+		comment = Error
+		tags = customer,driver
+	[errorDuplicateRequest]
+		en = A %@ is already scheduled for your car. Please refresh.
+		tags = customer
+	[errorDeleteVehicleBooking]
+		en = You cannot delete a vehicle that has an active booking.
+		tags = customer		
+	[errorDatabase]
+		en = An unexpected error as occured. Please try restarting the app.
+		tags = customer
 	[errorOops]
 		en = Oops
-		comment = Errors
 		tags = customer,driver
 	[errorUnknown]
 		en = Something went wrong. Please try again.
@@ -371,6 +395,9 @@
 		tags = customer
 	[permissionNotificationMessage]
 		en = We need you to grant us the permission to send you notifications to give you updates regarding the status of your car
+		tags = customer
+	[permissionGrantTitle]
+		en = Grant Permission
 		tags = customer
 [[Popups]]
 	[popupPhoneVerificationResendCodeTitle]

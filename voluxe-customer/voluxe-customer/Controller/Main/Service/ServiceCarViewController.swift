@@ -21,7 +21,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     
     let updateLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = (.New as String).uppercased()
+        textView.text = (.new as String).uppercased()
         textView.font = .volvoSansProMedium(size: 12)
         textView.textColor = .white
         textView.backgroundColor = .luxeLipstick()
@@ -61,7 +61,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     
     let selfDropButton = VLButton(type: .grayPrimary, title: (.SelfDrop as String).uppercased(), kern: UILabel.uppercasedKern())
     let deliveryButton = VLButton(type: .bluePrimary, title: (.SchedulePickup as String).uppercased(), kern: UILabel.uppercasedKern())
-    let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), kern: UILabel.uppercasedKern())
+    let confirmButton = VLButton(type: .bluePrimary, title: (.ok as String).uppercased(), kern: UILabel.uppercasedKern())
 
     var screenTitle: String?
     
@@ -304,9 +304,9 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             var title = String.RecommendedService
             if RequestedServiceManager.sharedInstance.isSelfInitiated() {
                 title = .SelectedService
-                showUpdateLabel(show: false, title: String.New.uppercased(), width: 40, right: true)
+                showUpdateLabel(show: false, title: String.new.uppercased(), width: 40, right: true)
             } else {
-                showUpdateLabel(show: true, title: String.New.uppercased(), width: 40, right: true)
+                showUpdateLabel(show: true, title: String.new.uppercased(), width: 40, right: true)
             }
             scheduledServiceView.setTitle(title: title, leftDescription: service.getTitle(), rightDescription: "")
         }
@@ -481,7 +481,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
         if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
             self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true)
         } else if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.repairOrderRequests.count > 0 {
-            self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: booking.repairOrderRequests[0]), animated: true, backBarButtonTitle: .Back)
+            self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: booking.repairOrderRequests[0]), animated: true, backBarButtonTitle: .back)
         }
     }
     
@@ -489,7 +489,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
         
         // show confirmation dialog
         
-        self.showDialog(title: .SelfPickupAtDealership, message: .AreYouSureSelfPickup, cancelButtonTitle: .No, okButtonTitle: .Yes, okCompletion: {
+        self.showDialog(title: .SelfPickupAtDealership, message: .AreYouSureSelfPickup, cancelButtonTitle: .no, okButtonTitle: .yes, okCompletion: {
             if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
                 RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorPickup)
                 self.pushViewController(SchedulingPickupViewController(vehicle: self.vehicle, state: .schedulingService), animated: true)
@@ -506,7 +506,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
                         }
                         }.onFailure { error in
                             self.hideProgressHUD()
-                            self.showOkDialog(title: .Error, message: .GenericError)
+                            self.showOkDialog(title: .error, message: .errorUnknown)
                     }
                 }
             }
@@ -614,7 +614,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             }.onFailure { error in
                 // retry
                 self.hideProgressHUD()
-                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                self.showDialog(title: .error, message: .errorUnknown, buttonTitle: .retry, completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 }, dialog: .error, screen: self.screenAnalyticsEnum(state: self.serviceState))
         }

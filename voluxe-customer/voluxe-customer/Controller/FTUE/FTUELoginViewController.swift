@@ -193,9 +193,9 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         self.showLoading(loading: false)
         
         if let apiError = error?.apiError, apiError.getCode() == .E2005 {
-            self.showOkDialog(title: .Error, message: .errorInvalidCredentials, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .error, message: .errorInvalidCredentials, dialog: .error, screen: self.screen)
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
         }
     }
 }

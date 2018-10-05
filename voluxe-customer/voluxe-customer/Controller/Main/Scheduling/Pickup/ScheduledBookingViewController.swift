@@ -27,8 +27,8 @@ class ScheduledBookingViewController: SchedulingViewController {
             event = .outboundCancel
         }
 
-        leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), event: event, screen: .bookingDetail)
-        rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), event: .done, screen: .bookingDetail)
+        leftButton = VLButton(type: .orangePrimary, title: (.cancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), event: event, screen: .bookingDetail)
+        rightButton = VLButton(type: .bluePrimary, title: (.done as String).uppercased(), kern: UILabel.uppercasedKern(), event: .done, screen: .bookingDetail)
         
         super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screen: .bookingDetail)
     }
@@ -40,10 +40,10 @@ class ScheduledBookingViewController: SchedulingViewController {
     override func setupViews() {
         super.setupViews()
         
-        var title = String.CancelPickup
+        var title = String.cancelPickup
         
         if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-            title = .CancelDropOff
+            title = .cancelDropoff
             leftButton.setTitle(title: title.uppercased())
         }
         
@@ -153,15 +153,15 @@ class ScheduledBookingViewController: SchedulingViewController {
             self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
         }
         
-        loanerView.descLeftLabel.text = booking.loanerVehicleRequested ? .Yes : .No
+        loanerView.descLeftLabel.text = booking.loanerVehicleRequested ? .yes : .no
     }
     
     func leftButtonClick() {
-        var title = String.CancelPickup
+        var title = String.cancelPickup
         var message = String.AreYouSureCancelPickup
         
         if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-            title = .CancelDropOff
+            title = .cancelDropoff
             message = .AreYouSureCancelDropOff
         }
         
@@ -170,7 +170,7 @@ class ScheduledBookingViewController: SchedulingViewController {
                                       preferredStyle: .alert)
         
         // Submit button
-        let backAction = UIAlertAction(title: .Back, style: .default, handler: { (action) -> Void in
+        let backAction = UIAlertAction(title: .back, style: .default, handler: { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
         })
         
@@ -195,7 +195,7 @@ class ScheduledBookingViewController: SchedulingViewController {
                 self.hideProgressHUD()
                 
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
             }
             
@@ -209,7 +209,7 @@ class ScheduledBookingViewController: SchedulingViewController {
                 self.hideProgressHUD()
 
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
 
             }

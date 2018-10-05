@@ -158,9 +158,9 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 }.onFailure { error in
                     self.hideProgressHUD()
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4001.rawValue {
-                        self.showOkDialog(title: .Error, message: .errorPhoneNumberNotInFile, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .error, message: .errorPhoneNumberNotInFile, dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
             }
@@ -188,9 +188,9 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 }.onFailure { error in
                     self.hideProgressHUD()
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4011.rawValue {
-                        self.showOkDialog(title: .Error, message: .errorUpdatePhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .error, message: .errorUpdatePhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
             }
@@ -208,7 +208,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 }
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
             }
         }
     }

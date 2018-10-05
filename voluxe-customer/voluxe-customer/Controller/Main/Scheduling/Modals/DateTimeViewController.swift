@@ -173,7 +173,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                     self.showCalendar()
                 }
                 }.onFailure { error in
-                    self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                    self.showDialog(title: .error, message: .errorUnknown, buttonTitle: .retry, completion: {
                         self.getTimeSlots()
                     }, dialog: .error, screen: self.screen)
             }
@@ -506,9 +506,9 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         self.timeSlotsHeader.isHidden = error
         
         if error {
-            self.bottomButton.setTitle(title: String.Close.uppercased())
+            self.bottomButton.setTitle(title: String.close.uppercased())
         } else {
-            self.bottomButton.setTitle(title: String.Next.uppercased())
+            self.bottomButton.setTitle(title: String.next.uppercased())
         }
     }
     

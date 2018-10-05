@@ -270,7 +270,7 @@ extension UIViewController {
     {
         showDialog(title: title,
                    message: message,
-                   buttonTitle: String.Ok.uppercased(),
+                   buttonTitle: String.ok.uppercased(),
                    completion: completion,
                    dialog: dialog,
                    screen: screen)

@@ -41,7 +41,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         self.init()
         self.ftuePhoneType = type
         if FTUEStartViewController.flowType == .login {
-            self.navigationItem.rightBarButtonItem?.title = .Done
+            self.navigationItem.rightBarButtonItem?.title = .done
         }
     }
     
@@ -146,7 +146,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
 
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
                     self.isLoading = false
             }
             return
@@ -171,7 +171,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 self.isLoading = false
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
                     self.isLoading = false
             }
             return
@@ -190,7 +190,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 self.isLoading = false
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
                     self.isLoading = false
             }
         } else if let email = signupCustomer.email, let phoneNumber = signupCustomer.phoneNumber, let firstName = signupCustomer.firstName , let lastName = signupCustomer.lastName {
@@ -206,7 +206,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 self.hideProgressHUD()
                 }.onFailure { error in
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
             }
         }
     }
@@ -281,9 +281,9 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 }.onFailure { error in
                     self.hideProgressHUD()
                     if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4012.rawValue {
-                        self.showOkDialog(title: .Error, message: .errorInvalidVerificationCode, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .error, message: .errorInvalidVerificationCode, dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
             }

@@ -71,7 +71,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
     
     init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen) {
         changeButton = VLButton(type: .blueSecondary, title: (.Change as String).uppercased(), kern: UILabel.uppercasedKern(), event: .changeDropoff, screen: screen)
-        driverContact = VLButton(type: .blueSecondary, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), event: .contactDriver, screen: screen)
+        driverContact = VLButton(type: .blueSecondary, title: (.contact as String).uppercased(), kern: UILabel.uppercasedKern(), event: .contactDriver, screen: screen)
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
         super.init(vehicle: vehicle, state: state, screen: screen)
         generateSteps()
@@ -357,7 +357,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
             self.contactDriver(mode: "voice_only")
         })
         
-        let cancelButton = UIAlertAction(title: .Cancel, style: .cancel, handler: { (action) -> Void in
+        let cancelButton = UIAlertAction(title: .cancel, style: .cancel, handler: { (action) -> Void in
             alertController.dismiss(animated: true, completion: nil)
         })
         
@@ -391,7 +391,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
             }
         }.onFailure { error in
             MBProgressHUD.hide(for: self.view, animated: true)
-            self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
         }
     }
     

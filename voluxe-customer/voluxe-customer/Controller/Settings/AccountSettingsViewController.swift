@@ -46,7 +46,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdIndicator)
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdToogle)
 
-        self.navigationItem.rightBarButtonItem?.title = .Edit
+        self.navigationItem.rightBarButtonItem?.title = .edit
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -100,13 +100,13 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     
     private func edit() {
         Analytics.trackClick(navigation: .edit, screen: self.screen)
-        self.navigationItem.rightBarButtonItem?.title = .Done
+        self.navigationItem.rightBarButtonItem?.title = .done
         tableView.setEditing(true, animated: true)
     }
     
     private func done() {
         Analytics.trackClick(navigation: .done, screen: self.screen)
-        self.navigationItem.rightBarButtonItem?.title = .Edit
+        self.navigationItem.rightBarButtonItem?.title = .edit
         tableView.setEditing(false, animated: true)
     }
     
@@ -153,7 +153,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
                 self.hideProgressHUD()
                 
                 }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
             }
         }
@@ -271,10 +271,10 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         if indexPath.section == 0 {
             Analytics.trackClick(button: .settingsDeleteAddress, screen: self.screen)
-            self.showDestructiveDialog(title: .Confirm,
+            self.showDestructiveDialog(title: .confirm,
                                        message: String(format: .popupRemoveAddressMessage, self.getTextForIndexPath(indexPath: indexPath)),
-                                       cancelButtonTitle: .Cancel,
-                                       destructiveButtonTitle: .Delete,
+                                       cancelButtonTitle: .cancel,
+                                       destructiveButtonTitle: .delete,
                                        destructiveCompletion: { self.deleteAddressAtIndexPath(indexPath) },
                                        dialog: .confirm,
                                        screen: self.screen)

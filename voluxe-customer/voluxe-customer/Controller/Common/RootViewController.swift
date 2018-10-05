@@ -142,7 +142,7 @@ class RootViewController: UIViewController {
         
         styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         
-        uiNavigationController.setTitle(title: .PickupAndDelivery)
+        uiNavigationController.setTitle(title: .viewScheduleService)
         
         if let leftVC = self.slideMenuController?.leftViewController as? LeftViewController {
             leftVC.mainNavigationViewController = uiNavigationController

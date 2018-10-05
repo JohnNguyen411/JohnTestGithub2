@@ -43,7 +43,7 @@ class PermissionViewController: BaseViewController {
     
     init(permissionType: PermissionType, completion: @escaping (()->())) {
         self.permissionType = permissionType
-        self.grantPermissionButton = VLButton(type: .bluePrimary, title: String.GrantPermission.uppercased(), kern: UILabel.uppercasedKern())
+        self.grantPermissionButton = VLButton(type: .bluePrimary, title: String.permissionGrantTitle.uppercased(), kern: UILabel.uppercasedKern())
         self.completionBlock = completion
         
         super.init(screen: PermissionViewController.screenNameForPermission(type: permissionType))
