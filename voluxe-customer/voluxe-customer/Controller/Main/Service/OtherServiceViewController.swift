@@ -114,7 +114,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
 
         }
         //descriptionTextView.placeholder
-        self.navigationItem.title = .OtherMaintenance
+        self.navigationItem.title = .viewScheduleServiceTypeOther
 
     }
     

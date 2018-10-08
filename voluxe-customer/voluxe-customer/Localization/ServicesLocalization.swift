@@ -11,15 +11,13 @@ import Foundation
 
 extension String {
     
-    static let Service = NSLocalizedString("Service")
-    static let NewService = NSLocalizedString("NewService")
-    static let AreYouSureCancelDropOff = NSLocalizedString("AreYouSureCancelDropOff")
-    static let AreYouSureCancelPickup = NSLocalizedString("AreYouSureCancelPickup")
-    static let NewServiceIntro = NSLocalizedString("NewServiceIntro")
-    static let MilestoneServices = NSLocalizedString("MilestoneServices")
-    static let RecallServices = NSLocalizedString("RecallServices")
-    static let OtherMaintenanceRepairs = NSLocalizedString("OtherMaintenanceRepairs")
-    static let OtherMaintenance = NSLocalizedString("OtherMaintenance")
+    static let newService = NSLocalizedString("newService")
+    static let popupDefaultCancelDropoffMessage = NSLocalizedString("popupDefaultCancelDropoffMessage")
+    static let popupDefaultCancelPickupMessage = NSLocalizedString("popupDefaultCancelPickupMessage")
+    static let viewScheduleServiceTypeDescription = NSLocalizedString("viewScheduleServiceTypeDescription")
+    static let viewScheduleServiceTypeMilestone = NSLocalizedString("viewScheduleServiceTypeMilestone")
+    static let viewScheduleServiceTypeDetailNameLabelOther = NSLocalizedString("viewScheduleServiceTypeDetailNameLabelOther")
+    static let viewScheduleServiceTypeOther = NSLocalizedString("viewScheduleServiceTypeOther")
     static let WhatPartRequiresService = NSLocalizedString("WhatPartRequiresService")
     static let SelectAllThatApply = NSLocalizedString("SelectAllThatApply")
     static let IsVolvoDrivable = NSLocalizedString("IsVolvoDrivable")

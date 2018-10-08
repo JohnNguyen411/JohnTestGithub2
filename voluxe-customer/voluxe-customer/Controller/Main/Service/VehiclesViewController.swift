@@ -54,7 +54,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
         
         dealershipLocationButton = VLButton(type: .blueSecondary, title: String.viewScheduleServiceScheduledLabel.uppercased(), kern: UILabel.uppercasedKern(), event: .viewDealershipLocation, screen: .vehicles)
-        confirmButton = VLButton(type: .bluePrimary, title: (.NewService as String).uppercased(), kern: UILabel.uppercasedKern(), event: .newService, screen: .vehicles)
+        confirmButton = VLButton(type: .bluePrimary, title: (.newService as String).uppercased(), kern: UILabel.uppercasedKern(), event: .newService, screen: .vehicles)
         
         super.init(screen: .vehicles)
     }

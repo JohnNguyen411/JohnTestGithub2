@@ -94,7 +94,7 @@ class ServiceMultiselectListViewController: BaseViewController {
             weakSelf.pushViewController(OtherServiceViewController(vehicle: weakSelf.vehicle, repairOrderType: weakSelf.repairOrderType, services: selectedService), animated: true)
         }
         
-        self.navigationItem.title = .OtherMaintenance
+        self.navigationItem.title = .viewScheduleServiceTypeOther
 
         enableConfirmButton()
 

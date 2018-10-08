@@ -46,9 +46,9 @@ class RepairOrderType: Object, Mappable {
  
     static func categoryName(category: RepairOrderCategory) -> String {
         if category == .routineMaintenanceByDistance {
-            return .MilestoneServices
+            return .viewScheduleServiceTypeMilestone
         }
-        return .OtherMaintenanceRepairs
+        return .viewScheduleServiceTypeDetailNameLabelOther
     }
     
 }

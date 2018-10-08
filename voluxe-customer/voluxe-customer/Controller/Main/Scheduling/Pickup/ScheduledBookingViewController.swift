@@ -158,11 +158,11 @@ class ScheduledBookingViewController: SchedulingViewController {
     
     func leftButtonClick() {
         var title = String.cancelPickup
-        var message = String.AreYouSureCancelPickup
+        var message = String.popupDefaultCancelPickupMessage
         
         if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
             title = .cancelDropoff
-            message = .AreYouSureCancelDropOff
+            message = .popupDefaultCancelDropoffMessage
         }
         
         let alert = UIAlertController(title: title,

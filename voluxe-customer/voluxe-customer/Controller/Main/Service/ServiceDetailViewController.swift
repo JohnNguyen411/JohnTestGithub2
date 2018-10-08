@@ -66,7 +66,7 @@ class ServiceDetailViewController: BaseViewController {
         
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
             label.text = repairOrder.notes
-            serviceTitle.setTitle(title: .OtherMaintenanceRepairs, leftDescription: repairOrder.getTitle())
+            serviceTitle.setTitle(title: .viewScheduleServiceTypeDetailNameLabelOther, leftDescription: repairOrder.getTitle())
             isDrivableLabel.text = String.IsVolvoDrivable + " " + RepairOrder.getDrivabilityTitle(isDrivable: repairOrder.vehicleDrivable.value)
         } else {
             label.text = service.desc
@@ -81,7 +81,7 @@ class ServiceDetailViewController: BaseViewController {
             isDrivableLabel.isHidden = true
         }
         
-        self.navigationItem.title = .NewService
+        self.navigationItem.title = .newService
 
         label.volvoProLineSpacing()
         label.sizeToFit()
