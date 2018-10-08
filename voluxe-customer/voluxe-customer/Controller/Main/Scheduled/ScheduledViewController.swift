@@ -70,7 +70,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
     private var driverInfoViewController: DriverInfoViewController?
     
     init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen) {
-        changeButton = VLButton(type: .blueSecondary, title: (.Change as String).uppercased(), kern: UILabel.uppercasedKern(), event: .changeDropoff, screen: screen)
+        changeButton = VLButton(type: .blueSecondary, title: (.change as String).uppercased(), kern: UILabel.uppercasedKern(), event: .changeDropoff, screen: screen)
         driverContact = VLButton(type: .blueSecondary, title: (.contact as String).uppercased(), kern: UILabel.uppercasedKern(), event: .contactDriver, screen: screen)
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
         super.init(vehicle: vehicle, state: state, screen: screen)

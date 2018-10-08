@@ -16,7 +16,7 @@ class ScheduleSelfDropModal: VLPresentrViewController {
     
     let rescheduleLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .UnableToMeetDriver
+        textView.text = .popupAdvisorDropoffRescheduleDescription
         textView.font = .volvoSansProRegular(size: 14)
         textView.numberOfLines = 0
         textView.backgroundColor = .clear
@@ -28,7 +28,7 @@ class ScheduleSelfDropModal: VLPresentrViewController {
     
     let selfPickupLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .PreferPickup
+        textView.text = .popupAdvisorDropoffSelfPickupDescription
         textView.font = .volvoSansProRegular(size: 14)
         textView.numberOfLines = 0
         textView.textColor = .luxeDarkGray()

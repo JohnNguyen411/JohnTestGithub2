@@ -433,7 +433,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
                 selfDropButton.isHidden = true
                 deliveryButton.isHidden = true
                 
-                self.updateLabelText(text: String(format: NSLocalizedString(.DeliveryComplete), (dealership?.name)!))
+                self.updateLabelText(text: String(format: NSLocalizedString(.viewScheduleServiceStatusComplete), (dealership?.name)!))
             }
         }
         

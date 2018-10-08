@@ -28,7 +28,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
     }
     
     override func generateSteps() {
-        let step1 = Step(id: ServiceState.serviceCompleted, text: .VehicleIsReady, state: .done)
+        let step1 = Step(id: ServiceState.serviceCompleted, text: .viewScheduleServiceStatusInfoScheduledDropoff, state: .done)
         let step2 = Step(id: ServiceState.enRouteForDropoff, text: .viewScheduleServiceStatusInfoEnRoutePickup)
         let step3 = Step(id: ServiceState.nearbyForDropoff, text: .viewScheduleServiceStatusInfoNearByPickup)
         let step4 = Step(id: ServiceState.arrivedForDropoff, text: .viewScheduleServiceStatusInfoArrivedPickup)
@@ -56,7 +56,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
 
             if let timeSlot = dropoffRequest.timeSlot, state == .dropoffScheduled {
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
-                self.timeWindowView.setSubtitle(text: .DeliveryWindow)
+                self.timeWindowView.setSubtitle(text: .viewScheduleServiceStatusTimeDeliveryWindow)
             }
         }
         
@@ -85,20 +85,20 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
                 if let dropoffRequestLocation = dropoffRequest.location, let dropoffRequestCoordinates = dropoffRequestLocation.getLocation() {
                     refreshTimeSlot = false
                     self.getEta(fromLocation: coordinates, toLocation: dropoffRequestCoordinates)
-                    self.timeWindowView.setSubtitle(text: .EstimatedDeliveryTime)
+                    self.timeWindowView.setSubtitle(text: .viewScheduleServiceStatusTimeWindowEstimatedDelivery)
                 }
                 newDriver(driver: driver)
             }
             if let timeSlot = dropoffRequest.timeSlot, refreshTimeSlot {
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
-                self.timeWindowView.setSubtitle(text: .DeliveryWindow)
+                self.timeWindowView.setSubtitle(text: .viewScheduleServiceStatusTimeDeliveryWindow)
             }
         }
     }
     
     
     @objc func selfOBClick() {
-        let selfModalVC = ScheduleSelfDropModal(title: .YoureScheduledForDelivery, screen: .selfOBModal)
+        let selfModalVC = ScheduleSelfDropModal(title: .popupAdvisorDropoffLabel, screen: .selfOBModal)
         selfModalVC.delegate = self
         selfModalVC.view.accessibilityIdentifier = "selfModalVC"
         currentPresentrVC = selfModalVC

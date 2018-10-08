@@ -619,9 +619,13 @@
 
 "viewScheduleServiceStatusReminderPickup" = "Have your license and insurance card ready";
 
-"viewScheduleServiceStatusTimeWindow" = "Pickup Window";
+"viewScheduleServiceStatusTimePickupWindow" = "Pickup Window";
 
-"viewScheduleServiceStatusTimeWindowEstimated" = "Estimated Pickup Time";
+"viewScheduleServiceStatusTimeDeliveryWindow" = "Delivery Window";
+
+"viewScheduleServiceStatusTimeWindowEstimatedPickup" = "Estimated Pickup Time";
+
+"viewScheduleServiceStatusTimeWindowEstimatedDelivery" = "Estimated Delivery Time";
 
 "viewScheduleServiceStatusInfoScheduledDropoff" = "Vehicle is ready";
 
@@ -632,6 +636,10 @@
 "viewScheduleServiceStatusComplete" = "Service Complete";
 
 "viewScheduleServiceStatusCompleteInfo" = "Your delivery from %@ is complete.\n\nOn a scale from 1 to 10, how likely are you to recommend pickup and delivery to other Volvo owners?";
+
+"viewScheduleServiceStatusComplete" = "Your delivery from %@ is complete.";
+
+"viewScheduleServiceStatusCompleteRate" = "On a scale from 1 to 10, how likely are you to recommend pickup and delivery to other Volvo owners?";
 
 "viewScheduleServiceStatusFeedback" = "Feedback";
 

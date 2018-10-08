@@ -37,7 +37,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     
     let serviceCompleteLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .DeliveryComplete
+        textView.text = .viewScheduleServiceStatusComplete
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -187,7 +187,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     
     private func updateDealership(dealership: Dealership?) {
         if let dealership = dealership {
-            serviceCompleteLabel.text = String(format: NSLocalizedString(.DeliveryComplete), (dealership.name)!)
+            serviceCompleteLabel.text = String(format: NSLocalizedString(.viewScheduleServiceStatusComplete), (dealership.name)!)
         }
     }
     
@@ -354,7 +354,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         rateLabel.animateAlpha(show: !show)
         ratingSlider.animateAlpha(show: !show)
         
-        serviceCompleteLabel.text = show ? .RatingReason : .DeliveryComplete
+        serviceCompleteLabel.text = show ? .RatingReason : .viewScheduleServiceStatusComplete
         self.navigationItem.title = .Feedback
         
         confirmButton.setTitle(title: show ? String.done.uppercased() : String.ok.uppercased())

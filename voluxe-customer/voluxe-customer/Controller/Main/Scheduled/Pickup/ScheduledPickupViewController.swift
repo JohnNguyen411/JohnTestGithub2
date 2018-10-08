@@ -49,7 +49,7 @@ class ScheduledPickupViewController: ScheduledViewController {
             
             if let timeSlot = pickupRequest.timeSlot, state == .pickupScheduled {
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
-                self.timeWindowView.setSubtitle(text: .viewScheduleServiceStatusTimeWindow)
+                self.timeWindowView.setSubtitle(text: .viewScheduleServiceStatusTimePickupWindow)
             }
         }
     }
@@ -72,7 +72,7 @@ class ScheduledPickupViewController: ScheduledViewController {
                 self.mapVC.updateDriverLocation(location: coordinates, refreshTime: booking.getRefreshTime())
                 if let pickupRequestLocation = pickupRequest.location, let pickupRequestCoordinates = pickupRequestLocation.getLocation() {
                     self.getEta(fromLocation: coordinates, toLocation: pickupRequestCoordinates)
-                    self.timeWindowView.setSubtitle(text: .viewScheduleServiceStatusTimeWindowEstimated)
+                    self.timeWindowView.setSubtitle(text: .viewScheduleServiceStatusTimeWindowEstimatedPickup)
                     refreshTimeSlot = false
                 }
                 newDriver(driver: driver)
@@ -80,7 +80,7 @@ class ScheduledPickupViewController: ScheduledViewController {
             
             if let timeSlot = pickupRequest.timeSlot, refreshTimeSlot {
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
-                self.timeWindowView.setSubtitle(text: .viewScheduleServiceStatusTimeWindow)
+                self.timeWindowView.setSubtitle(text: .viewScheduleServiceStatusTimePickupWindow)
             }
         }
     }

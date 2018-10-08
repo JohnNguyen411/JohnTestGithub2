@@ -9,15 +9,15 @@
 import Foundation
 
 extension String {
-    static let VehicleIsReady = NSLocalizedString("VehicleIsReady")
-    static let DeliveryWindow = NSLocalizedString("DeliveryWindow")
-    static let EstimatedDeliveryTime = NSLocalizedString("EstimatedDeliveryTime")
-    static let DeliveryComplete = NSLocalizedString("DeliveryComplete")
-    static let GetDirections = NSLocalizedString("GetDirections")
-    static let ScheduleDriver = NSLocalizedString("ScheduleDriver")
-    static let UnableToMeetDriver = NSLocalizedString("UnableToMeetDriver")
-    static let PreferPickup = NSLocalizedString("PreferPickup")
-    static let YoureScheduledForDelivery = NSLocalizedString("YoureScheduledForDelivery")
-    static let Change = NSLocalizedString("Change")
+    static let viewScheduleServiceStatusInfoScheduledDropoff = NSLocalizedString("viewScheduleServiceStatusInfoScheduledDropoff")
+    static let viewScheduleServiceStatusTimeDeliveryWindow = NSLocalizedString("viewScheduleServiceStatusTimeDeliveryWindow")
+    static let viewScheduleServiceStatusTimeWindowEstimatedDelivery = NSLocalizedString("viewScheduleServiceStatusTimeWindowEstimatedDelivery")
+    static let viewScheduleServiceStatusComplete = NSLocalizedString("viewScheduleServiceStatusComplete")
+    static let viewScheduleServiceStatusSelfDealershipNavigate = NSLocalizedString("viewScheduleServiceStatusSelfDealershipNavigate")
+    static let viewScheduleServiceStatusSelfFooterTitleDropoff = NSLocalizedString("viewScheduleServiceStatusSelfFooterTitleDropoff")
+    static let popupAdvisorDropoffRescheduleDescription = NSLocalizedString("popupAdvisorDropoffRescheduleDescription")
+    static let popupAdvisorDropoffSelfPickupDescription = NSLocalizedString("popupAdvisorDropoffSelfPickupDescription")
+    static let popupAdvisorDropoffLabel = NSLocalizedString("popupAdvisorDropoffLabel")
+    static let change = NSLocalizedString("change")
     
 }

@@ -1124,11 +1124,17 @@
 	[viewScheduleServiceStatusReminderPickup]
 		en = Have your license and insurance card ready
 		tags = customer
-	[viewScheduleServiceStatusTimeWindow]
+	[viewScheduleServiceStatusTimePickupWindow]
 		en = Pickup Window
 		tags = customer
-	[viewScheduleServiceStatusTimeWindowEstimated]
+	[viewScheduleServiceStatusTimeDeliveryWindow]
+		en = Delivery Window
+		tags = customer
+	[viewScheduleServiceStatusTimeWindowEstimatedPickup]
 		en = Estimated Pickup Time
+		tags = customer
+	[viewScheduleServiceStatusTimeWindowEstimatedDelivery]
+		en = Estimated Delivery Time
 		tags = customer
 	[viewScheduleServiceStatusInfoScheduledDropoff]
 		en = Vehicle is ready
@@ -1144,6 +1150,12 @@
 		tags = customer
 	[viewScheduleServiceStatusCompleteInfo]
 		en = Your delivery from %@ is complete.\n\nOn a scale from 1 to 10, how likely are you to recommend pickup and delivery to other Volvo owners?
+		tags = customer
+	[viewScheduleServiceStatusComplete]
+		en = Your delivery from %@ is complete.
+		tags = customer
+	[viewScheduleServiceStatusCompleteRate]
+		en = On a scale from 1 to 10, how likely are you to recommend pickup and delivery to other Volvo owners?
 		tags = customer
 	[viewScheduleServiceStatusFeedback]
 		en = Feedback
