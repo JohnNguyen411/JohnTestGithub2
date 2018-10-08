@@ -16,7 +16,7 @@ struct Layout {
 
     // TODO can this be separated down to a protocol and implementation?
     // TODO fill(superview, with view)
-    static func fill(view: UIView, in superview: UIView) {
+    static func fill(superview: UIView, with view: UIView) {
         superview.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
@@ -27,8 +27,7 @@ struct Layout {
         ])
     }
 
-    // TODO use autolayout calls instead of SnapKit
-    // TODO is margin flexible?
+    // TODO need to include compatibleSafeAreaLayoutGuide
     static func add(view: UIView, toTopOf superview: UIView) {
         superview.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -39,9 +38,9 @@ struct Layout {
         ])
     }
 
-    // TODO use autolayout calls instead of SnapKit
     // TODO need to assert if no superview
     // TODO is margin optional or changeable?
+    // TODO improve name to mention pinTopToBottomOf
     static func add(view: UIView, below peerView: UIView) {
         guard let superview = peerView.superview else { return }
         superview.addSubview(view)
@@ -53,7 +52,7 @@ struct Layout {
         ])
     }
 
-    // TODO use autolayout calls instead of SnapKit
+    // TODO need to include compatibleSafeAreaLayoutGuide
     // TODO need to assert if no superview
     static func addSpacerView(below peerView: UIView, pinToSuperviewBottom: Bool = true) {
         guard let superview = peerView.superview else { return }
@@ -77,6 +76,7 @@ struct Layout {
     /// This effectively "closes" the subview array and allows
     /// Autolayout to calculate the scroll view's content size
     /// correctly.
+    // TODO need to include compatibleSafeAreaLayoutGuide
     // TODO find a better name
     // TODO what to return if guard fails?
     @discardableResult
@@ -96,19 +96,23 @@ struct Layout {
 
     static func scrollView(in viewController: UIViewController) -> UIScrollView {
         viewController.automaticallyAdjustsScrollViewInsets = true
-        let view = UIScrollView(frame: .zero)
-        self.fill(view: view, in: viewController.view)
+        let view = UIScrollView.forAutoLayout()
+        self.fill(superview: view, with: viewController.view)
         return view
     }
 
-    // TODO use autolayout calls instead of SnapKit
+    static func scrollViewWithContentView() -> (UIScrollView, UIView) {
+        let scrollView = UIScrollView.forAutoLayout()
+        let contentView = Layout.verticalContentView(in: scrollView)
+        return (scrollView, contentView)
+    }
+
     static func verticalContentView(in scrollView: UIScrollView) -> UIView {
         let view = UIView(frame: .zero)
-        guard let superview = scrollView.superview else { assertionFailure(); return view }
-        Layout.fill(view: view, in: scrollView)
+        Layout.fill(superview: view, with: scrollView)
         NSLayoutConstraint.activate([
-            view.widthAnchor.constraint(equalTo: superview.widthAnchor),
-            view.heightAnchor.constraint(greaterThanOrEqualTo: superview.heightAnchor)
+            view.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            view.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor)
         ])
         return view
     }

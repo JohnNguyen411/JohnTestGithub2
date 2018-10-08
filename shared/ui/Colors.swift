@@ -62,7 +62,6 @@ extension Colors {
         // primary
         // secondary
     }
-
 }
 
 // MARK:- Random colors

@@ -33,7 +33,6 @@
 		5328C8AA20FD40060006B448 /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		5328C8AB20FD40F90006B448 /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
 		5328C8AC20FD40FF0006B448 /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
-		532C9DA42152FA150055C139 /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532C9DA32152FA150055C139 /* Colors.swift */; };
 		532E235B20CB4B5F00ADA87F /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E235A20CB4B5E00ADA87F /* BlurEffect.swift */; };
 		5340E90720D8514D00B17D53 /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E90620D8514D00B17D53 /* FBAnalytics.swift */; };
 		5340E90A20D861A800B17D53 /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E90620D8514D00B17D53 /* FBAnalytics.swift */; };
@@ -55,9 +54,6 @@
 		536D6D6720CF50FF00A269D4 /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */; };
 		537CEAD720F7B792003C97F1 /* BaseViewController+BarButtonItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CEAD620F7B792003C97F1 /* BaseViewController+BarButtonItems.swift */; };
 		538CFBDD214B1ABE00BF5D25 /* UIFontTextStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBDC214B1ABE00BF5D25 /* UIFontTextStyleViewController.swift */; };
-		538CFBDF214C1FDB00BF5D25 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBDE214C1FDB00BF5D25 /* Font.swift */; };
-		538CFBE2214C224200BF5D25 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE1214C224200BF5D25 /* Layout.swift */; };
-		538CFBE4214C225300BF5D25 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE3214C225300BF5D25 /* Label.swift */; };
 		538CFBE82150783500BF5D25 /* UITextField+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE72150783400BF5D25 /* UITextField+Voluxe.swift */; };
 		538CFBEA215078AB00BF5D25 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE9215078AA00BF5D25 /* String+Validation.swift */; };
 		538CFBEC2151B73200BF5D25 /* VolvoTextStyleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBEB2151B73200BF5D25 /* VolvoTextStyleViewController.swift */; };
@@ -505,6 +501,10 @@
 		538FE76220BF4BC000C3CE17 /* Int+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Test.swift"; sourceTree = "<group>"; };
 		539F626E2092AB6A0023DF59 /* confirm_team_id.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = confirm_team_id.rb; sourceTree = "<group>"; };
 		53A4D72C216BB6FF001906AA /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		53A4D732216BC3D3001906AA /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		53A4D733216BC3D3001906AA /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		53A4D734216BC3D3001906AA /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		53A4D735216BC3D3001906AA /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		53AA2754209D10CC00781995 /* AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppStore.entitlements; sourceTree = "<group>"; };
 		53AA2755209D10CC00781995 /* Development.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Development.entitlements; sourceTree = "<group>"; };
 		53C8AD5320E59D4F008E07FF /* NullAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullAnalytics.swift; sourceTree = "<group>"; };
@@ -869,17 +869,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		538CFBE0214C221300BF5D25 /* ui */ = {
-			isa = PBXGroup;
-			children = (
-				532C9DA32152FA150055C139 /* Colors.swift */,
-				538CFBDE214C1FDB00BF5D25 /* Font.swift */,
-				538CFBE3214C225300BF5D25 /* Label.swift */,
-				538CFBE1214C224200BF5D25 /* Layout.swift */,
-			);
-			path = ui;
-			sourceTree = "<group>";
-		};
 		538FBDE720ABB73F0096480C /* export */ = {
 			isa = PBXGroup;
 			children = (
@@ -925,6 +914,10 @@
 		53D9A1F8216426D400414648 /* ui */ = {
 			isa = PBXGroup;
 			children = (
+				53A4D735216BC3D3001906AA /* Colors.swift */,
+				53A4D733216BC3D3001906AA /* Font.swift */,
+				53A4D734216BC3D3001906AA /* Label.swift */,
+				53A4D732216BC3D3001906AA /* Layout.swift */,
 				53A4D72C216BB6FF001906AA /* UIView+AutoLayout.swift */,
 			);
 			path = ui;
@@ -1536,6 +1529,7 @@
 				53FDF20920B761D20004B8A1 /* voluxe-customerAPITests */,
 				6CCD42A11FA013E3000AC6C9 /* voluxe-customerUnitTests */,
 				6CCD42AC1FA013E3000AC6C9 /* voluxe-customerUITests */,
+				53A4D731216BC397001906AA /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -2327,6 +2321,7 @@
 				6C2208771FBCEF7A00874882 /* MapViewController.swift in Sources */,
 				6CBB4E821FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
 				6C8988F820B8BF320060C15C /* LeftPanelVehicleCell.swift in Sources */,
+				53A4D738216BC3D3001906AA /* Label.swift in Sources */,
 				6C2208801FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */,
 				6C58330D1FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
 				6C9B31FF202A51B3006380B9 /* SettingsViewController.swift in Sources */,
@@ -2348,6 +2343,7 @@
 				6C7342031FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6CDCC60A2058442800DFA831 /* CheckableTableViewCell.swift in Sources */,
 				52D5C9B52114FF080020F43F /* DriverInfoViewController.swift in Sources */,
+				53A4D736216BC3D3001906AA /* Layout.swift in Sources */,
 				5340E91220D876F400B17D53 /* DebugFontCellView.swift in Sources */,
 				6C5DDECC20096CF8000847C9 /* CustomerAPI.swift in Sources */,
 				6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
@@ -2384,6 +2380,7 @@
 				6C58330F1FB3AF5600F6BFE0 /* CrossDissolveAnimation.swift in Sources */,
 				6CBB4E911FB4DF7D00C31183 /* FSCalendarCollectionViewLayout.m in Sources */,
 				6C522452208509A10078D9B9 /* UIButton+Voluxe.swift in Sources */,
+				53A4D737216BC3D3001906AA /* Font.swift in Sources */,
 				6C345A0F1FD897E4006CAC32 /* Config.swift in Sources */,
 				6C52245A208815580078D9B9 /* VLSlideMenuController.swift in Sources */,
 				6C9C9068209D127100494068 /* RemoteConfigManager.swift in Sources */,
@@ -2411,6 +2408,7 @@
 				6CDCC5FE2053592700DFA831 /* RequestType.swift in Sources */,
 				6C5833151FB3AF5600F6BFE0 /* PresentationType.swift in Sources */,
 				6C79C42E20A27FD800443463 /* GMSnappedPoint.swift in Sources */,
+				53A4D739216BC3D3001906AA /* Colors.swift in Sources */,
 				5340E92D20E2A45600B17D53 /* FBAnalytics+UserManager.swift in Sources */,
 				6CC37E461FA7AE2F00DA8F01 /* BaseViewController.swift in Sources */,
 				6C27FBBF20E4599300EAA689 /* UITapGestureRecognizer+Links.swift in Sources */,
@@ -2432,7 +2430,6 @@
 				6C88DC981FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C3FB2B21FA2824200B22EAB /* Constants.swift in Sources */,
 				6CDAEE8420E309DA0040CDFF /* HelpListViewController.swift in Sources */,
-				538CFBDF214C1FDB00BF5D25 /* Font.swift in Sources */,
 				6CBB4E971FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */,
 				6C88DC9D1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
 				53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */,
@@ -2483,7 +2480,6 @@
 				5321B1B720C9A980006C1E14 /* UIView+Blur.swift in Sources */,
 				53EF28D520AE067C006CC5FA /* CustomerAPI+Vehicle.swift in Sources */,
 				6C6F4BCE1FA9273400087FE7 /* FTUEPhoneNumberViewController.swift in Sources */,
-				532C9DA42152FA150055C139 /* Colors.swift in Sources */,
 				6CC37E501FA7C41700DA8F01 /* VLTextField.swift in Sources */,
 				6CD0C8871FD9FBDA008E4A72 /* NetworkRequest.swift in Sources */,
 				6C27FBBD20E44C2000EAA689 /* VLCheckbox.swift in Sources */,
@@ -2493,7 +2489,6 @@
 				6C95439E1FABEBBC0099AC84 /* UIColors+Voluxe.swift in Sources */,
 				6C1CE1F020CB3A7B00A2E054 /* VLSlider.swift in Sources */,
 				6C20E1C71FBE6D2400E5D9A0 /* StateService.swift in Sources */,
-				538CFBE2214C224200BF5D25 /* Layout.swift in Sources */,
 				6CBF9FEE1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */,
 				6C9C9058209CD8D400494068 /* GMRows.swift in Sources */,
 				6C32C3071FBCC0E900B1218C /* Step.swift in Sources */,
@@ -2523,7 +2518,6 @@
 				6C20E1B21FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift in Sources */,
 				53D9A7C1209A7D01008BE93E /* NSObject+Voluxe.swift in Sources */,
 				6CDCC602205743DB00DFA831 /* NewServiceViewController.swift in Sources */,
-				538CFBE4214C225300BF5D25 /* Label.swift in Sources */,
 				6C7342081FB127A300E90F7E /* DealershipViewController.swift in Sources */,
 				6C27FBC920E6CFDA00EAA689 /* ActiveBookingsSyncTimer.swift in Sources */,
 				6C1CE1E720C5F0CF00A2E054 /* DeeplinkManager.swift in Sources */,
