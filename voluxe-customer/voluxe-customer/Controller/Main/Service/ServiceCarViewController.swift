@@ -52,7 +52,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
 
     let stateTestView = UILabel(frame: .zero)
 
-    let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
+    let vehicleTypeView = VLTitledLabel(title: .volvoYearModel, leftDescription: "", rightDescription: "")
 
     let scheduledServiceView = VLTitledLabel()
     let descriptionButton = VLButton(type: .blueSecondary, title: (.showDetails as String).uppercased(), kern: UILabel.uppercasedKern())

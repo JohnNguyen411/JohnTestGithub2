@@ -9,9 +9,7 @@
 import Foundation
 
 extension String {
-    static let VolvoYearModel = NSLocalizedString("VolvoYearModel")
-    static let Mileage = NSLocalizedString("Mileage")
-    static let PreferredDealership = NSLocalizedString("PreferredDealership")
-    static let ViewDealershipLocation = NSLocalizedString("ViewDealershipLocation")
+    static let volvoYearModel = NSLocalizedString("volvoYearModel")
+    static let viewScheduleServiceScheduledLabel = NSLocalizedString("viewScheduleServiceScheduledLabel")
 
 }

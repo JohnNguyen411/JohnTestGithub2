@@ -33,7 +33,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
 
     let scrollView = VLScrollView()
     let vehicleCollectionView: UICollectionView
-    let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
+    let vehicleTypeView = VLTitledLabel(title: .volvoYearModel, leftDescription: "", rightDescription: "")
     let vehicleImageView = UIImageView(frame: .zero)
     let preferedDealershipView = VLTitledLabel(title: .dealership, leftDescription: "", rightDescription: "")
     let scheduledServiceView = VLTitledLabel()
@@ -53,7 +53,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         vehicleCollectionView.backgroundColor = UIColor.clear
         vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
         
-        dealershipLocationButton = VLButton(type: .blueSecondary, title: String.ViewDealershipLocation.uppercased(), kern: UILabel.uppercasedKern(), event: .viewDealershipLocation, screen: .vehicles)
+        dealershipLocationButton = VLButton(type: .blueSecondary, title: String.viewScheduleServiceScheduledLabel.uppercased(), kern: UILabel.uppercasedKern(), event: .viewDealershipLocation, screen: .vehicles)
         confirmButton = VLButton(type: .bluePrimary, title: (.NewService as String).uppercased(), kern: UILabel.uppercasedKern(), event: .newService, screen: .vehicles)
         
         super.init(screen: .vehicles)
