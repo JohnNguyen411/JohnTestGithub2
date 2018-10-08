@@ -79,12 +79,7 @@
 		538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE76220BF4BC000C3CE17 /* Int+Test.swift */; };
 		538FE76420BF4BC000C3CE17 /* Int+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE76220BF4BC000C3CE17 /* Int+Test.swift */; };
 		539E502920BF440100FDF3F1 /* CustomerAPI+Signup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EF28CE20AE065F006CC5FA /* CustomerAPI+Signup.swift */; };
-		53C7300B20CEE5F400BCE926 /* Scene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7300620CEE5F300BCE926 /* Scene.swift */; };
-		53C7300C20CEE5F400BCE926 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7300720CEE5F300BCE926 /* Extensions.swift */; };
-		53C7300D20CEE5F400BCE926 /* Shiny.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7300820CEE5F400BCE926 /* Shiny.swift */; };
-		53C7300E20CEE5F400BCE926 /* Gyro.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7300920CEE5F400BCE926 /* Gyro.swift */; };
-		53C7300F20CEE5F400BCE926 /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7300A20CEE5F400BCE926 /* Gradient.swift */; };
-		53C7301120CEE71C00BCE926 /* VLShinyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C7301020CEE71C00BCE926 /* VLShinyView.swift */; };
+		53A4D72D216BB6FF001906AA /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A4D72C216BB6FF001906AA /* UIView+AutoLayout.swift */; };
 		53C7301220CF2FF000BCE926 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
 		53C8AD3B20E596C3008E07FF /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */; };
 		53C8AD3C20E596C4008E07FF /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */; };
@@ -497,14 +492,9 @@
 		538FE75F20BF4B9E00C3CE17 /* String+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Test.swift"; sourceTree = "<group>"; };
 		538FE76220BF4BC000C3CE17 /* Int+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Test.swift"; sourceTree = "<group>"; };
 		539F626E2092AB6A0023DF59 /* confirm_team_id.rb */ = {isa = PBXFileReference; lastKnownFileType = text.script.ruby; path = confirm_team_id.rb; sourceTree = "<group>"; };
+		53A4D72C216BB6FF001906AA /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		53AA2754209D10CC00781995 /* AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppStore.entitlements; sourceTree = "<group>"; };
 		53AA2755209D10CC00781995 /* Development.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Development.entitlements; sourceTree = "<group>"; };
-		53C7300620CEE5F300BCE926 /* Scene.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Scene.swift; path = "voluxe-customer/Shiny/Sources/Scene.swift"; sourceTree = SOURCE_ROOT; };
-		53C7300720CEE5F300BCE926 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Extensions.swift; path = "voluxe-customer/Shiny/Sources/Extensions.swift"; sourceTree = SOURCE_ROOT; };
-		53C7300820CEE5F400BCE926 /* Shiny.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Shiny.swift; path = "voluxe-customer/Shiny/Sources/Shiny.swift"; sourceTree = SOURCE_ROOT; };
-		53C7300920CEE5F400BCE926 /* Gyro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gyro.swift; path = "voluxe-customer/Shiny/Sources/Gyro.swift"; sourceTree = SOURCE_ROOT; };
-		53C7300A20CEE5F400BCE926 /* Gradient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Gradient.swift; path = "voluxe-customer/Shiny/Sources/Gradient.swift"; sourceTree = SOURCE_ROOT; };
-		53C7301020CEE71C00BCE926 /* VLShinyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = VLShinyView.swift; path = "voluxe-customer/Shiny/VLShinyView.swift"; sourceTree = SOURCE_ROOT; };
 		53C8AD5320E59D4F008E07FF /* NullAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullAnalytics.swift; sourceTree = "<group>"; };
 		53D9A7AA2098E678008BE93E /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
 		53D9A7AB2098E679008BE93E /* GoogleService-Info-AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-AppStore.plist"; sourceTree = "<group>"; };
@@ -901,18 +891,12 @@
 			path = scripts;
 			sourceTree = "<group>";
 		};
-		53C7300520CEE5CC00BCE926 /* Shiny */ = {
+		53D9A1F8216426D400414648 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				53C7300720CEE5F300BCE926 /* Extensions.swift */,
-				53C7300A20CEE5F400BCE926 /* Gradient.swift */,
-				53C7300920CEE5F400BCE926 /* Gyro.swift */,
-				53C7300620CEE5F300BCE926 /* Scene.swift */,
-				53C7300820CEE5F400BCE926 /* Shiny.swift */,
-				53C7301020CEE71C00BCE926 /* VLShinyView.swift */,
+				53A4D72C216BB6FF001906AA /* UIView+AutoLayout.swift */,
 			);
-			name = Shiny;
-			path = "New Group";
+			path = ui;
 			sourceTree = "<group>";
 		};
 		53D9A7A92098E638008BE93E /* Resources */ = {
@@ -1189,6 +1173,7 @@
 				6C5832C31FB3899700F6BFE0 /* manager */,
 				539F626D2092AB4E0023DF59 /* scripts */,
 				538FE75420BF4AB800C3CE17 /* tests */,
+				53D9A1F8216426D400414648 /* ui */,
 			);
 			name = shared;
 			path = ../shared;
@@ -1550,7 +1535,6 @@
 				6C5832F31FB3AF5600F6BFE0 /* Presentr */,
 				53D9A7A92098E638008BE93E /* Resources */,
 				6CC83A861FA1478100FE0633 /* Service */,
-				53C7300520CEE5CC00BCE926 /* Shiny */,
 				6CFBF9AC1FA1119A00D3AA78 /* Supporting Files */,
 				6CC83A891FA147E100FE0633 /* Util */,
 				6CC37E4D1FA7AFC300DA8F01 /* View */,
@@ -2311,7 +2295,6 @@
 				6CBB4E821FB4DF7D00C31183 /* FSCalendarDelegationProxy.m in Sources */,
 				6C8988F820B8BF320060C15C /* LeftPanelVehicleCell.swift in Sources */,
 				6C2208801FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */,
-				53C7300C20CEE5F400BCE926 /* Extensions.swift in Sources */,
 				6C58330D1FB3AF5600F6BFE0 /* CoverVerticalAnimation.swift in Sources */,
 				6C9B31FF202A51B3006380B9 /* SettingsViewController.swift in Sources */,
 				5366416821594D8900564A5B /* AutoFillViewController.swift in Sources */,
@@ -2327,7 +2310,6 @@
 				6C32C30B1FBCC1DD00B1218C /* StepView.swift in Sources */,
 				6CC37E531FA7C41700DA8F01 /* VLVerticalTextField.swift in Sources */,
 				6CDAEE8620E407570040CDFF /* HelpSection.swift in Sources */,
-				53C7300E20CEE5F400BCE926 /* Gyro.swift in Sources */,
 				6CF3F44F20F4113700A89214 /* UITextView+Voluxe.swift in Sources */,
 				6C7342031FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6CDCC60A2058442800DFA831 /* CheckableTableViewCell.swift in Sources */,
@@ -2338,7 +2320,6 @@
 				6CDCC612205C40B400DFA831 /* RepairOrderAPI.swift in Sources */,
 				6CC3543120B87E7C00FF98A6 /* LogoViewController.swift in Sources */,
 				6C3FB2AC1FA2574C00B22EAB /* Customer.swift in Sources */,
-				53C7300F20CEE5F400BCE926 /* Gradient.swift in Sources */,
 				5340E91120D876F100B17D53 /* DebugFontTestViewController.swift in Sources */,
 				6C90CC1220113323002594F5 /* LoadingViewController.swift in Sources */,
 				538CFBEA215078AB00BF5D25 /* String+Validation.swift in Sources */,
@@ -2394,7 +2375,6 @@
 				6C5832C51FB3899800F6BFE0 /* LocationManager.swift in Sources */,
 				6C5833171FB3AF5600F6BFE0 /* Presentr.swift in Sources */,
 				6CDCC5FE2053592700DFA831 /* RequestType.swift in Sources */,
-				53C7301120CEE71C00BCE926 /* VLShinyView.swift in Sources */,
 				6C5833151FB3AF5600F6BFE0 /* PresentationType.swift in Sources */,
 				6C79C42E20A27FD800443463 /* GMSnappedPoint.swift in Sources */,
 				5340E92D20E2A45600B17D53 /* FBAnalytics+UserManager.swift in Sources */,
@@ -2455,7 +2435,6 @@
 				524BF64C211A57E900404ED5 /* CurrentLocationCellView.swift in Sources */,
 				6CBB4E8E1FB4DF7D00C31183 /* FSCalendarScopeHandle.m in Sources */,
 				6C5833181FB3AF5600F6BFE0 /* PresentrAnimation.swift in Sources */,
-				53C7300D20CEE5F400BCE926 /* Shiny.swift in Sources */,
 				6CE1479A20AE4F8D001F4BC7 /* PermissionViewController.swift in Sources */,
 				6C27FBC720E6CF4900EAA689 /* BookingSyncTimer.swift in Sources */,
 				6CBB4EB31FB4E11800C31183 /* VLCalendarCell.swift in Sources */,
@@ -2483,9 +2462,9 @@
 				6C32C3071FBCC0E900B1218C /* Step.swift in Sources */,
 				6C7342101FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
 				6CD474B420460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */,
+				53A4D72D216BB6FF001906AA /* UIView+AutoLayout.swift in Sources */,
 				6CBB4E941FB4DF7D00C31183 /* FSCalendarStickyHeader.m in Sources */,
 				6C8159B41FDA07F400B8DF31 /* ResponseObject.swift in Sources */,
-				53C7300B20CEE5F400BCE926 /* Scene.swift in Sources */,
 				6C7495DF1FDA1E870036FC08 /* MappableDataArray.swift in Sources */,
 				6C1CE1EA20CAF78000A2E054 /* BookingRatingViewController.swift in Sources */,
 				6C2F1DD61FAD0A8F00C28C6E /* SchedulingPickupViewController.swift in Sources */,

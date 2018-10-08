@@ -11,16 +11,11 @@ import Foundation
 class SettingsViewController: BaseViewController, SettingsCellProtocol {
     
     let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
-    let user: Customer?
-    var vehicles: [Vehicle]?
+    let user = UserManager.sharedInstance.getCustomer()
+    var vehicles = UserManager.sharedInstance.getVehicles() ?? []
     var vehicleCount = 0
     
     init() {
-        user = UserManager.sharedInstance.getCustomer()
-        vehicles = UserManager.sharedInstance.getVehicles()
-        if let vehicles = vehicles {
-            vehicleCount = vehicles.count
-        }
         super.init(screen: .settings)
     }
     
@@ -41,21 +36,16 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // update data
-        vehicles = UserManager.sharedInstance.getVehicles()
-        if let vehicles = vehicles {
-            vehicleCount = vehicles.count
-        }
+        vehicles = UserManager.sharedInstance.getVehicles() ?? []
+        vehicleCount = vehicles.count
         tableView.reloadData()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
         setNavigationBarItem()
     }
-    
-    
+
     override func setupViews() {
         super.setupViews()
         self.view.addSubview(tableView)
@@ -78,7 +68,7 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
     
     func getTextForIndexPath(indexPath: IndexPath) -> String {
         if indexPath.section == 0 {
-            if let vehicles = vehicles, vehicleCount > indexPath.row{
+            if vehicleCount > indexPath.row{
                 return vehicles[indexPath.row].vehicleDescription()
             }
             return .AddANewVolvo
@@ -95,11 +85,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == 0 {
-            // need at least one for "Add a New Volvo"
-            if let vehicles = vehicles {
-                return vehicles.count + 1
-            }
-            return 1
+            return vehicles.count + 1
         } else if section == 1 {
             return 1
         } else {
@@ -154,7 +140,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.section == 0 {
             var vehicle: Vehicle?
-            if let vehicles = vehicles, vehicles.count > indexPath.row {
+            if vehicles.count > indexPath.row {
                 vehicle = vehicles[indexPath.row]
             }
             if let vehicle = vehicle {
