@@ -12,7 +12,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     
     let volvoDrivableLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .IsVolvoDrivable
+        textView.text = .viewScheduleServiceTypeOtherDetailLabel
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -23,7 +23,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     
     let descriptionLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .NewServiceDescription
+        textView.text = .viewScheduleServiceTypeOtherDetailExtraLabel
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -36,7 +36,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         let descriptionTextView = UITextView(frame: .zero)
         descriptionTextView.font = .volvoSansProRegular(size: 16)
         descriptionTextView.isScrollEnabled = false
-        descriptionTextView.text = .TypeDescriptionHere
+        descriptionTextView.text = .viewScheduleServiceTypeOtherDetailExtraHint
         descriptionTextView.textColor = .luxeLightGray()
         return descriptionTextView
     }()
@@ -51,7 +51,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.textColor = UIColor.luxeCobaltBlue()
         titleLabel.font = .volvoSansProMedium(size: 12)
-        titleLabel.text = .AddDescription
+        titleLabel.text = .viewScheduleServiceTypeOtherDetailExtraTitle
         return titleLabel
     }()
     
@@ -103,7 +103,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             guard let weakSelf = self else { return }
             
             var notes = "" // reset notes
-            if weakSelf.descriptionTextView.text != .TypeDescriptionHere {
+            if weakSelf.descriptionTextView.text != .viewScheduleServiceTypeOtherDetailExtraHint {
                 notes = weakSelf.descriptionTextView.text ?? ""
             }
             weakSelf.service.notes = notes
@@ -247,7 +247,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         scrollView.setContentOffset(offset, animated: true)
         
         if textView.text.isEmpty {
-            textView.text = .TypeDescriptionHere
+            textView.text = .viewScheduleServiceTypeOtherDetailExtraHint
             textView.textColor = .luxeLightGray()
         }
     }

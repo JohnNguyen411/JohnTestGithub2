@@ -42,7 +42,7 @@ class RepairOrder: Object, Mappable {
         self.title = repairOrderType.name
         self.name = repairOrderType.name
         if repairOrderType.getCategory() == .custom {
-            self.name = String.DiagnosticInspection
+            self.name = String.viewScheduleServiceTypeOtherUnknown
         }
         self.repairOrderType = repairOrderType
     }
@@ -67,7 +67,7 @@ class RepairOrder: Object, Mappable {
         updatedAt <- (map["updated_at"], VLISODateTransform())
         title <- map["title"]
         if let repairOrderType = repairOrderType, repairOrderType.getCategory() == .custom {
-            self.name = String.DiagnosticInspection
+            self.name = String.viewScheduleServiceTypeOtherUnknown
         }
         vehicleDrivable.value <- map["vehicle_drivable"]
     }
@@ -80,7 +80,7 @@ class RepairOrder: Object, Mappable {
                 return .no
             }
         } else {
-            return .ImNotSure
+            return .imNotSure
         }
     }
     

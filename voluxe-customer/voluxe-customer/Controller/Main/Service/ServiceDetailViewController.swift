@@ -44,7 +44,7 @@ class ServiceDetailViewController: BaseViewController {
         self.vehicle = vehicle
         self.canSchedule = canSchedule
         self.service = service
-        serviceTitle = VLTitledLabel(title: .FactoryScheduledMaintenance, leftDescription: service.name!, rightDescription: "")
+        serviceTitle = VLTitledLabel(title: .viewScheduleServiceTypeMilestoneDetailNameLabel, leftDescription: service.name!, rightDescription: "")
         serviceTitle.descLeftLabel.numberOfLines = 2
         serviceTitle.descLeftLabel.volvoProLineSpacing()
         
@@ -67,11 +67,11 @@ class ServiceDetailViewController: BaseViewController {
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
             label.text = repairOrder.notes
             serviceTitle.setTitle(title: .viewScheduleServiceTypeDetailNameLabelOther, leftDescription: repairOrder.getTitle())
-            isDrivableLabel.text = String.IsVolvoDrivable + " " + RepairOrder.getDrivabilityTitle(isDrivable: repairOrder.vehicleDrivable.value)
+            isDrivableLabel.text = String.viewScheduleServiceTypeOtherDetailLabel + " " + RepairOrder.getDrivabilityTitle(isDrivable: repairOrder.vehicleDrivable.value)
         } else {
             label.text = service.desc
             if let repairOrder = repairOrder {
-                serviceTitle.setTitle(title: .FactoryScheduledMaintenance, leftDescription: repairOrder.getTitle())
+                serviceTitle.setTitle(title: .viewScheduleServiceTypeMilestoneDetailNameLabel, leftDescription: repairOrder.getTitle())
             }
             label.snp.makeConstraints { make in
                 make.right.left.equalTo(serviceTitle)
