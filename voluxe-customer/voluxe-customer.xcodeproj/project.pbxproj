@@ -505,6 +505,8 @@
 		53A4D733216BC3D3001906AA /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
 		53A4D734216BC3D3001906AA /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		53A4D735216BC3D3001906AA /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		53A4D73A216BD009001906AA /* UIView+SafeArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+SafeArea.swift"; sourceTree = "<group>"; };
+		53A4D73C216BD342001906AA /* Layout+Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Layout+Grid.swift"; sourceTree = "<group>"; };
 		53AA2754209D10CC00781995 /* AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppStore.entitlements; sourceTree = "<group>"; };
 		53AA2755209D10CC00781995 /* Development.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Development.entitlements; sourceTree = "<group>"; };
 		53C8AD5320E59D4F008E07FF /* NullAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullAnalytics.swift; sourceTree = "<group>"; };
@@ -918,7 +920,9 @@
 				53A4D733216BC3D3001906AA /* Font.swift */,
 				53A4D734216BC3D3001906AA /* Label.swift */,
 				53A4D732216BC3D3001906AA /* Layout.swift */,
+				53A4D73C216BD342001906AA /* Layout+Grid.swift */,
 				53A4D72C216BB6FF001906AA /* UIView+AutoLayout.swift */,
+				53A4D73A216BD009001906AA /* UIView+SafeArea.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -2423,6 +2427,7 @@
 				6C7495D71FDA0CEB0036FC08 /* Meta.swift in Sources */,
 				6CE147A220AF4FFD001F4BC7 /* PermissionViewController+Locations.swift in Sources */,
 				6C90CC16201156AF002594F5 /* ResponseError.swift in Sources */,
+				53A4D73B216BD009001906AA /* UIView+SafeArea.swift in Sources */,
 				6C88DC8F1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6CDCD7F7200EE5620099258C /* VLDateFormatter.swift in Sources */,
 				5340E91020D876ED00B17D53 /* DebugFontViewController.swift in Sources */,
@@ -2510,6 +2515,7 @@
 				6C79C43E20A283DB00443463 /* GoogleSnappedPointsAPI.swift in Sources */,
 				6CD3BCA220098EF2001DD79B /* BookingAPI.swift in Sources */,
 				6C91BBE01FA8EB470033C2B1 /* FTUELocalization.swift in Sources */,
+				53A4D73D216BD342001906AA /* Layout+Grid.swift in Sources */,
 				6CDCC61A20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */,
 				6CBB4E881FB4DF7D00C31183 /* FSCalendarConstants.m in Sources */,
 				6CE6879E2044CEAE00D915FC /* ContactDriver.swift in Sources */,

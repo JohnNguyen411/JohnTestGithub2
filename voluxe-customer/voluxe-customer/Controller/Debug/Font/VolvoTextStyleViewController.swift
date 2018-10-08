@@ -40,8 +40,8 @@ class VolvoTextStyleViewController: UIViewController {
         for fontAndText in fontsAndTexts {
             let label = Label.dark(with: fontAndText.1)
             label.font = fontAndText.0
-            if previousLabel == nil { Layout.add(view: label, toTopOf: contentView) }
-            else { Layout.add(view: label, below: previousLabel!) }
+            if previousLabel == nil { Layout.add(subview: label, pinnedToTopOf: contentView) }
+            else { Layout.add(view: label, pinTopToBottomOf: previousLabel!) }
             previousLabel = label
         }
 

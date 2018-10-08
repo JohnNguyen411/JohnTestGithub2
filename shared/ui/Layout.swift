@@ -8,67 +8,67 @@
 
 import Foundation
 
-// grid discussion with Brian
-// margin, gutter, number of columns
-// what happens if the column count is changed, do add() calls need to be updated?
+// MARK:- Subview layout utilities
 
 struct Layout {
 
-    // TODO can this be separated down to a protocol and implementation?
-    // TODO fill(superview, with view)
-    static func fill(superview: UIView, with view: UIView) {
-        superview.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
+    static func fill(view: UIView, with subview: UIView) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(subview)
         NSLayoutConstraint.activate([
-            view.leftAnchor.constraint(equalTo: superview.leftAnchor),
-            view.topAnchor.constraint(equalTo: superview.topAnchor),
-            view.rightAnchor.constraint(equalTo: superview.rightAnchor),
-            view.bottomAnchor.constraint(equalTo: superview.bottomAnchor)
+            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            subview.topAnchor.constraint(equalTo: view.topAnchor),
+            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
-    // TODO need to include compatibleSafeAreaLayoutGuide
-    static func add(view: UIView, toTopOf superview: UIView) {
-        superview.addSubview(view)
-        view.translatesAutoresizingMaskIntoConstraints = false
+    static func add(subview: UIView, pinnedToTopOf view: UIView) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(subview)
         NSLayoutConstraint.activate([
-            view.leftAnchor.constraint(equalTo: superview.leftAnchor),
-            view.topAnchor.constraint(equalTo: superview.compatibleSafeAreaLayoutGuide.topAnchor),
-            view.rightAnchor.constraint(equalTo: superview.rightAnchor)
+            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            subview.topAnchor.constraint(equalTo: view.compatibleSafeAreaLayoutGuide.topAnchor),
+            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 
     // TODO need to assert if no superview
     // TODO is margin optional or changeable?
-    // TODO improve name to mention pinTopToBottomOf
-    static func add(view: UIView, below peerView: UIView) {
+    static func add(view: UIView, pinTopToBottomOf peerView: UIView) {
         guard let superview = peerView.superview else { return }
         superview.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            view.leftAnchor.constraint(equalTo: superview.leftAnchor),
+            view.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
             view.topAnchor.constraint(equalTo: peerView.bottomAnchor, constant: 20),
-            view.rightAnchor.constraint(equalTo: superview.rightAnchor)
+            view.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
         ])
     }
 
-    // TODO need to include compatibleSafeAreaLayoutGuide
+    // TODO extension to modify height constraints using constraint.identifier
+}
+
+// MARK:- Spacer view factories
+
+extension Layout {
+
     // TODO need to assert if no superview
-    static func addSpacerView(below peerView: UIView, pinToSuperviewBottom: Bool = true) {
+    static func addSpacerView(pinToBottomOf peerView: UIView, pinToSuperviewBottom: Bool = true) {
         guard let superview = peerView.superview else { return }
-        let view = UIView(frame: .zero)
+        let view = UIView.forAutoLayout()
         superview.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            view.leftAnchor.constraint(equalTo: superview.leftAnchor),
+            view.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
             view.topAnchor.constraint(equalTo: peerView.bottomAnchor),
-            view.rightAnchor.constraint(equalTo: superview.rightAnchor)
+            view.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
         ])
+        
         // TODO how to get this into activate()
         if pinToSuperviewBottom {
             view.bottomAnchor.constraint(equalTo: superview.compatibleSafeAreaLayoutGuide.bottomAnchor).isActive = true
         }
-
     }
 
     /// Pins an empty, stretchable spacer view to the bottom
@@ -76,28 +76,41 @@ struct Layout {
     /// This effectively "closes" the subview array and allows
     /// Autolayout to calculate the scroll view's content size
     /// correctly.
-    // TODO need to include compatibleSafeAreaLayoutGuide
-    // TODO find a better name
     // TODO what to return if guard fails?
     @discardableResult
     static func addSpacerView(toBottomOf contentView: UIView) -> UIView {
-        let view = UIView(frame: .zero)
+        let view = UIView.forAutoLayout()
         guard let peerview = contentView.subviews.last else { return view }
         contentView.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            view.leftAnchor.constraint(equalTo: contentView.leftAnchor),
+            view.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             view.topAnchor.constraint(equalTo: peerview.compatibleSafeAreaLayoutGuide.bottomAnchor),
-            view.rightAnchor.constraint(equalTo: contentView.rightAnchor),
+            view.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             view.bottomAnchor.constraint(equalTo: contentView.compatibleSafeAreaLayoutGuide.bottomAnchor)
         ])
         return view
     }
+}
+
+// MARK:- Scroll and content view factories
+
+extension Layout {
 
     static func scrollView(in viewController: UIViewController) -> UIScrollView {
         viewController.automaticallyAdjustsScrollViewInsets = true
         let view = UIScrollView.forAutoLayout()
-        self.fill(superview: view, with: viewController.view)
+        self.fill(view: viewController.view, with: view)
+        return view
+    }
+
+    static func verticalContentView(in scrollView: UIScrollView) -> UIView {
+        let view = UIView.forAutoLayout()
+        Layout.fill(view: scrollView, with: view)
+        NSLayoutConstraint.activate([
+            view.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+            view.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor)
+        ])
         return view
     }
 
@@ -105,15 +118,5 @@ struct Layout {
         let scrollView = UIScrollView.forAutoLayout()
         let contentView = Layout.verticalContentView(in: scrollView)
         return (scrollView, contentView)
-    }
-
-    static func verticalContentView(in scrollView: UIScrollView) -> UIView {
-        let view = UIView(frame: .zero)
-        Layout.fill(superview: view, with: scrollView)
-        NSLayoutConstraint.activate([
-            view.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            view.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor)
-        ])
-        return view
     }
 }

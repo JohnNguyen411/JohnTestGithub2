@@ -40,12 +40,16 @@ class UIFontTextStyleViewController: UIViewController {
         for styleAndText in stylesAndTexts {
             let label = Label.dark(with: styleAndText.1)
             label.font = styleAndText.0.font
-            if previousLabel == nil { Layout.add(view: label, toTopOf: contentView) }
-            else { Layout.add(view: label, below: previousLabel!) }
+            if previousLabel == nil { Layout.add(subview: label, pinnedToTopOf: contentView) }
+            else { Layout.add(view: label, pinTopToBottomOf: previousLabel!) }
             previousLabel = label
         }
 
         // white space at the bottom of the content view
         Layout.addSpacerView(toBottomOf: contentView)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 }

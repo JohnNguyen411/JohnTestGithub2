@@ -119,19 +119,4 @@ extension UIView {
             return 0
         #endif
     }
-
-    // TODO pre iOS 11 guide should be stored
-    // TODO find a better name
-    var compatibleSafeAreaLayoutGuide: UILayoutGuide {
-        if #available(iOS 11.0, *) {
-            return self.safeAreaLayoutGuide
-        } else {
-            let guide = UILayoutGuide()
-            guide.topAnchor.constraint(equalTo: topAnchor).isActive = true
-            guide.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-            guide.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-            guide.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
-            return guide
-        }
-    }
 }
