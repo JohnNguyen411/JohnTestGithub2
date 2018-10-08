@@ -47,6 +47,7 @@ struct Layout {
     }
 
     // TODO extension to modify height constraints using constraint.identifier
+    //https://stackoverflow.com/questions/42669554/how-to-update-the-constant-height-constraint-of-a-uiview-programatically
 }
 
 // MARK:- Spacer view factories
@@ -64,7 +65,7 @@ extension Layout {
             view.topAnchor.constraint(equalTo: peerView.bottomAnchor),
             view.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
         ])
-        
+
         // TODO how to get this into activate()
         if pinToSuperviewBottom {
             view.bottomAnchor.constraint(equalTo: superview.compatibleSafeAreaLayoutGuide.bottomAnchor).isActive = true
