@@ -496,7 +496,6 @@
 		53AA2754209D10CC00781995 /* AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppStore.entitlements; sourceTree = "<group>"; };
 		53AA2755209D10CC00781995 /* Development.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Development.entitlements; sourceTree = "<group>"; };
 		53C8AD5320E59D4F008E07FF /* NullAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullAnalytics.swift; sourceTree = "<group>"; };
-		53D9A1F9216426D400414648 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
 		53D9A7AA2098E678008BE93E /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
 		53D9A7AB2098E679008BE93E /* GoogleService-Info-AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-AppStore.plist"; sourceTree = "<group>"; };
 		53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Voluxe.swift"; sourceTree = "<group>"; };
@@ -903,7 +902,7 @@
 		53D9A1F8216426D400414648 /* ui */ = {
 			isa = PBXGroup;
 			children = (
-				53D9A1F9216426D400414648 /* Layout.swift */,
+				53A4D72C216BB6FF001906AA /* UIView+AutoLayout.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
