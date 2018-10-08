@@ -126,9 +126,9 @@ class ScheduledBookingViewController: SchedulingViewController {
     private func fillViewsForRequest(request: Request) {
         if let timeSlot = request.timeSlot, let date = timeSlot.from {
             let dateTime = formatter.string(from: date)
-            var title = String.ScheduledPickup
+            var title = String.scheduledPickup
             if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                title = .ScheduledDelivery
+                title = .scheduledDelivery
             }
             scheduledPickupView.setTitle(title: title, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
         }
@@ -136,7 +136,7 @@ class ScheduledBookingViewController: SchedulingViewController {
         if let requestLocation = request.location {
             var title = String.pickupLocation
             if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                title = .DeliveryLocation
+                title = .deliveryLocation
             }
             pickupLocationView.setTitle(title: title, leftDescription: requestLocation.address!, rightDescription: "")
         }

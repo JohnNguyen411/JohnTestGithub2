@@ -60,7 +60,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     let vehicleImageView = UIImageView(frame: .zero)
     
     let selfDropButton = VLButton(type: .grayPrimary, title: (.viewScheduleServiceOptionPickupSelfDropPickup as String).uppercased(), kern: UILabel.uppercasedKern())
-    let deliveryButton = VLButton(type: .bluePrimary, title: (.SchedulePickup as String).uppercased(), kern: UILabel.uppercasedKern())
+    let deliveryButton = VLButton(type: .bluePrimary, title: (.schedulePickup as String).uppercased(), kern: UILabel.uppercasedKern())
     let confirmButton = VLButton(type: .bluePrimary, title: (.ok as String).uppercased(), kern: UILabel.uppercasedKern())
 
     var screenTitle: String?
@@ -417,7 +417,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
 //            showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: false)
 
             if state == .service {
-                self.updateLabelText(text: String(format: NSLocalizedString(.VolvoCurrentlyServicing), (dealership?.name)!))
+                self.updateLabelText(text: String(format: NSLocalizedString(.viewScheduleServiceStatusInServiceInfo), (dealership?.name)!))
                 selfDropButton.isHidden = true
                 deliveryButton.isHidden = true
 
@@ -444,11 +444,11 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             self.deliveryButton.setEvent(name: .inboundVolvo, screen: screenAnalyticsEnum(state: state))
             
             selfDropButton.setTitle(title: (.viewScheduleServiceOptionPickupSelfDropPickup as String).uppercased())
-            deliveryButton.setTitle(title: (.SchedulePickup as String).uppercased())
+            deliveryButton.setTitle(title: (.schedulePickup as String).uppercased())
 
         } else {
-            selfDropButton.setTitle(title: (.SelfPickupAtDealership as String).uppercased())
-            deliveryButton.setTitle(title: (.ScheduleDelivery as String).uppercased())
+            selfDropButton.setTitle(title: (.viewScheduleServiceOptionPickupSelfDeliveryDropoff as String).uppercased())
+            deliveryButton.setTitle(title: (.scheduleDelivery as String).uppercased())
             self.selfDropButton.setEvent(name: .outboundSelf, screen: screenAnalyticsEnum(state: state))
             self.deliveryButton.setEvent(name: .outboundVolvo, screen: screenAnalyticsEnum(state: state))
         }
@@ -489,7 +489,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
         
         // show confirmation dialog
         
-        self.showDialog(title: .SelfPickupAtDealership, message: .AreYouSureSelfPickup, cancelButtonTitle: .no, okButtonTitle: .yes, okCompletion: {
+        self.showDialog(title: .viewScheduleServiceOptionPickupSelfDeliveryDropoff, message: .popupAdvisorDropoffMessage, cancelButtonTitle: .no, okButtonTitle: .yes, okCompletion: {
             if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
                 RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorPickup)
                 self.pushViewController(SchedulingPickupViewController(vehicle: self.vehicle, state: .schedulingService), animated: true)

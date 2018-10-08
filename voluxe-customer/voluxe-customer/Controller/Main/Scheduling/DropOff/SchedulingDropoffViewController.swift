@@ -24,9 +24,9 @@ class SchedulingDropoffViewController: SchedulingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let requestType = RequestedServiceManager.sharedInstance.getDropoffRequestType(), requestType == .advisorDropoff {
-            setTitle(title: .SelfPickup)
+            setTitle(title: .viewScheduleServiceOptionPickupSelfDeliveryDropoff)
         } else {
-            setTitle(title: .ScheduleDelivery)
+            setTitle(title: .scheduleDelivery)
         }
     }
     
@@ -48,8 +48,8 @@ class SchedulingDropoffViewController: SchedulingViewController {
         
         scheduledServiceView.setTitle(title: String.completedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
         
-        scheduledPickupView.titleLabel.text = .ScheduledDelivery
-        pickupLocationView.titleLabel.text = .DeliveryLocation
+        scheduledPickupView.titleLabel.text = .scheduledDelivery
+        pickupLocationView.titleLabel.text = .deliveryLocation
     }
     
     func hideDealership() {

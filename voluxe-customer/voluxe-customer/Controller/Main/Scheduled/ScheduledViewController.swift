@@ -58,7 +58,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
     let driversLicenseInsuranceLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.text = .LicenseInsuranceCardReady
+        titleLabel.text = .viewScheduleServiceStatusReminderPickup
         titleLabel.font = .volvoSansProRegular(size: 14)
         titleLabel.textAlignment = .left
         return titleLabel
@@ -347,13 +347,13 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
     }
     
     func contactDriverActionSheet() {
-        let alertController = UIAlertController(title: .ContactDriver, message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: .popupContactTitle, message: nil, preferredStyle: .actionSheet)
         
-        let textButton = UIAlertAction(title: .TextDriver, style: .default, handler: { (action) -> Void in
+        let textButton = UIAlertAction(title: .popupContactText, style: .default, handler: { (action) -> Void in
             self.contactDriver(mode: "text_only")
         })
         
-        let callButton = UIAlertAction(title: .CallDriver, style: .default, handler: { (action) -> Void in
+        let callButton = UIAlertAction(title: .popupContactCall, style: .default, handler: { (action) -> Void in
             self.contactDriver(mode: "voice_only")
         })
         

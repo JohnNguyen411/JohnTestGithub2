@@ -21,7 +21,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
             setTitle(title: .viewScheduleServiceOptionPickupSelfDropPickup)
         } else {
-            setTitle(title: .SchedulePickup)
+            setTitle(title: .schedulePickup)
         }
     }
     

@@ -9,19 +9,19 @@
 import Foundation
 
 extension String {
-    static let SchedulePickup = NSLocalizedString("SchedulePickup")
-    static let ScheduledPickup = NSLocalizedString("ScheduledPickup")
-    static let ServiceScheduled = NSLocalizedString("ServiceScheduled")
-    static let DriverEnRoute = NSLocalizedString("DriverEnRoute")
-    static let DriverNearby = NSLocalizedString("DriverNearby")
-    static let DriverArrived = NSLocalizedString("DriverArrived")
-    static let PickupWindow = NSLocalizedString("PickupWindow")
-    static let EstimatedPickupTime = NSLocalizedString("EstimatedPickupTime")
-    static let ScheduledService = NSLocalizedString("ScheduledService")
-    static let ContactDriver = NSLocalizedString("ContactDriver")
-    static let CallDriver = NSLocalizedString("CallDriver")
-    static let TextDriver = NSLocalizedString("TextDriver")
-    static let ScheduledSelfDrop = NSLocalizedString("ScheduledSelfDrop")
-    static let LicenseInsuranceCardReady = NSLocalizedString("LicenseInsuranceCardReady")
+    static let schedulePickup = NSLocalizedString("schedulePickup")
+    static let scheduledPickup = NSLocalizedString("scheduledPickup")
+    static let viewScheduleServiceStatusInfoScheduledPickup = NSLocalizedString("viewScheduleServiceStatusInfoScheduledPickup")
+    static let viewScheduleServiceStatusInfoEnRoutePickup = NSLocalizedString("viewScheduleServiceStatusInfoEnRoutePickup")
+    static let viewScheduleServiceStatusInfoNearByPickup = NSLocalizedString("viewScheduleServiceStatusInfoNearByPickup")
+    static let viewScheduleServiceStatusInfoArrivedPickup = NSLocalizedString("viewScheduleServiceStatusInfoArrivedPickup")
+    static let viewScheduleServiceStatusTimeWindow = NSLocalizedString("viewScheduleServiceStatusTimeWindow")
+    static let viewScheduleServiceStatusTimeWindowEstimated = NSLocalizedString("viewScheduleServiceStatusTimeWindowEstimated")
+    static let viewScheduleServiceVehicleServiceScheduled = NSLocalizedString("viewScheduleServiceVehicleServiceScheduled")
+    static let popupContactTitle = NSLocalizedString("popupContactTitle")
+    static let popupContactCall = NSLocalizedString("popupContactCall")
+    static let popupContactText = NSLocalizedString("popupContactText")
+    static let viewScheduledSelfDrop = NSLocalizedString("viewScheduledSelfDrop")
+    static let viewScheduleServiceStatusReminderPickup = NSLocalizedString("viewScheduleServiceStatusReminderPickup")
     
 }

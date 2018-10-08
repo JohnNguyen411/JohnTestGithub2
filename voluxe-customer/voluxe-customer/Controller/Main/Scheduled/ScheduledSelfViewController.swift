@@ -60,7 +60,7 @@ class ScheduledSelfViewController: BaseVehicleViewController {
     init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen) {
         dealershipPhoneButton = VLButton(type: .blueSecondary, title: "", kern: UILabel.uppercasedKern(), event: .callDealership, screen: screen)
         mapItButton = VLButton(type: .blueSecondary, title: (.GetDirections as String).uppercased(), kern: UILabel.uppercasedKern(), event: .getDirections, screen: screen)
-        scheduleDeliveryButton = VLButton(type: .grayPrimary, title: (.ScheduleDelivery as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
+        scheduleDeliveryButton = VLButton(type: .grayPrimary, title: (.scheduleDelivery as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
         super.init(vehicle: vehicle, state: state, screen: screen)
         
         self.mapVC.screen = screen
@@ -79,7 +79,7 @@ class ScheduledSelfViewController: BaseVehicleViewController {
             self.fillViews(booking: booking)
         }
         
-        setTitle(title: .PickupAtDealership)
+        setTitle(title: .viewScheduleServiceStatusSelfAdvisorDropoff)
         
         mapItButton.contentHorizontalAlignment = .right
         scheduleDeliveryButton.addTarget(self, action: #selector(scheduleDelivery), for: .touchUpInside)

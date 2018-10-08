@@ -56,7 +56,7 @@ class MainViewController: BaseVehicleViewController {
                         let scheduledPickupViewController = ScheduledSelfPickup(vehicle: vehicle, state: state, screen: .dropoffSelfActive)
                         newViewController = scheduledPickupViewController
                     }
-                    setTitle(title: .DropoffAtDealership)
+                    setTitle(title: .viewScheduleServiceStatusSelfAdvisorPickup)
                 } else {
                     if booking.isActive() {
                         if currentViewController != nil && (currentViewController?.isKind(of: ScheduledPickupViewController.self))! {
@@ -81,7 +81,7 @@ class MainViewController: BaseVehicleViewController {
                         let scheduledDeliveryViewController = ScheduledSelfDropoff(vehicle: vehicle, state: state, screen: .dropoffSelfActive)
                         newViewController = scheduledDeliveryViewController
                     }
-                    setTitle(title: .PickupAtDealership)
+                    setTitle(title: .viewScheduleServiceStatusSelfAdvisorDropoff)
                 } else {
                     if booking.isActive() {
                         if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
@@ -129,13 +129,13 @@ class MainViewController: BaseVehicleViewController {
         if state.rawValue == ServiceState.idle.rawValue || state.rawValue == ServiceState.needService.rawValue {
             return .scheduleService
         } else if state.rawValue >= ServiceState.pickupScheduled.rawValue && state.rawValue < ServiceState.enRouteForService.rawValue {
-            return .ScheduledPickup
+            return .scheduledPickup
         } else if state.rawValue >= ServiceState.enRouteForService.rawValue && state.rawValue < ServiceState.serviceCompleted.rawValue {
-            return .CurrentService
+            return .currentService
         } else if state.rawValue == ServiceState.serviceCompleted.rawValue {
-            return .ReturnVehicle
+            return .viewScheduleServiceOptionDropoff
         } else if state.rawValue >= ServiceState.dropoffScheduled.rawValue {
-            return .ScheduledDelivery
+            return .scheduledDelivery
         }
         return nil
     }

@@ -278,11 +278,11 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
             if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
                 if !booking.isSelfIB() && booking.getState() == .pickupScheduled, let request = booking.pickupRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
                     let dateTime = formatter.string(from: date)
-                    scheduledServiceView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+                    scheduledServiceView.setTitle(title: .scheduledPickup, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                     dealershipLocationButton.isHidden = true
                     scheduledServiceView.isEditable = true
                 } else {
-                    scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: booking.getRepairOrderName())
+                    scheduledServiceView.setTitle(title: .viewScheduleServiceVehicleServiceScheduled, leftDescription: booking.getRepairOrderName())
                     dealershipLocationButton.isHidden = false
                     scheduledServiceView.isEditable = false
                 }
@@ -299,10 +299,10 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                     dealershipLocationButton.isHidden = true
                     if let request = booking.dropoffRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
                         let dateTime = formatter.string(from: date)
-                        scheduledServiceView.setTitle(title: .ScheduledDelivery, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+                        scheduledServiceView.setTitle(title: .scheduledDelivery, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                     } else {
                         if booking.getState() == .service {
-                            scheduledServiceView.setTitle(title: .CurrentService, leftDescription: booking.getRepairOrderName())
+                            scheduledServiceView.setTitle(title: .currentService, leftDescription: booking.getRepairOrderName())
                         } else {
                             scheduledServiceView.setTitle(title: .completedService, leftDescription: booking.getRepairOrderName())
                         }
@@ -322,7 +322,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                     if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
                         preferedDealershipView.setTitle(title: .pickupLocation, leftDescription: location)
                     } else {
-                        preferedDealershipView.setTitle(title: .DeliveryLocation, leftDescription: location)
+                        preferedDealershipView.setTitle(title: .deliveryLocation, leftDescription: location)
                     }
                 } else {
                     if let dealership = booking.dealership {

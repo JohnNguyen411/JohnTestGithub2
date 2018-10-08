@@ -58,7 +58,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     let scheduledServiceView = VLTitledLabel(padding: insetPadding)
     let descriptionButton: VLButton
     let dealershipView = VLTitledLabel(padding: insetPadding)
-    let scheduledPickupView = VLTitledLabel(title: .ScheduledPickup, leftDescription: "", rightDescription: "", padding: insetPadding)
+    let scheduledPickupView = VLTitledLabel(title: .scheduledPickup, leftDescription: "", rightDescription: "", padding: insetPadding)
     let pickupLocationView = VLTitledLabel(title: .pickupLocation, leftDescription: "", rightDescription: "", padding: insetPadding)
     let loanerView = VLTitledLabel(title: .needALoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
     let confirmButton: VLButton
@@ -531,13 +531,13 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     }
     
     func getScheduledPickupTitle() -> String {
-        var title: String = .ScheduledPickup
+        var title: String = .scheduledPickup
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-                title = .ScheduledSelfDrop
+                title = .viewScheduledSelfDrop
             }
         } else {
-            title = .ScheduledDelivery
+            title = .scheduledDelivery
         }
         return title
     }
@@ -550,9 +550,9 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             }
         } else {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-                title = .ConfirmSelfPickup
+                title = .popupAdvisorDropoffSelfPickup
             } else {
-                title = .ConfirmDelivery
+                title = .viewScheduleServiceOptionConfirmButtonPositiveDropoff
             }
         }
         return title.uppercased()
@@ -657,7 +657,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
                 title = .viewDealershipCloseToLocation
             }
         } else {
-            title = .DeliveryLocation
+            title = .deliveryLocation
         }
         
         pickupLocationView.setTitle(title: title, leftDescription: locationRequest!.address!, rightDescription: "")

@@ -19,10 +19,10 @@ class ScheduledPickupViewController: ScheduledViewController {
     }
     
     override func generateSteps() {
-        let step1 = Step(id: ServiceState.pickupScheduled, text: .ServiceScheduled, state: .done)
-        let step2 = Step(id: ServiceState.enRouteForPickup, text: .DriverEnRoute)
-        let step3 = Step(id: ServiceState.nearbyForPickup, text: .DriverNearby)
-        let step4 = Step(id: ServiceState.arrivedForPickup, text: .DriverArrived)
+        let step1 = Step(id: ServiceState.pickupScheduled, text: .viewScheduleServiceStatusInfoScheduledPickup, state: .done)
+        let step2 = Step(id: ServiceState.enRouteForPickup, text: .viewScheduleServiceStatusInfoEnRoutePickup)
+        let step3 = Step(id: ServiceState.nearbyForPickup, text: .viewScheduleServiceStatusInfoNearByPickup)
+        let step4 = Step(id: ServiceState.arrivedForPickup, text: .viewScheduleServiceStatusInfoArrivedPickup)
         
         steps.append(step1)
         steps.append(step2)
@@ -49,7 +49,7 @@ class ScheduledPickupViewController: ScheduledViewController {
             
             if let timeSlot = pickupRequest.timeSlot, state == .pickupScheduled {
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
-                self.timeWindowView.setSubtitle(text: .PickupWindow)
+                self.timeWindowView.setSubtitle(text: .viewScheduleServiceStatusTimeWindow)
             }
         }
     }
@@ -72,7 +72,7 @@ class ScheduledPickupViewController: ScheduledViewController {
                 self.mapVC.updateDriverLocation(location: coordinates, refreshTime: booking.getRefreshTime())
                 if let pickupRequestLocation = pickupRequest.location, let pickupRequestCoordinates = pickupRequestLocation.getLocation() {
                     self.getEta(fromLocation: coordinates, toLocation: pickupRequestCoordinates)
-                    self.timeWindowView.setSubtitle(text: .EstimatedPickupTime)
+                    self.timeWindowView.setSubtitle(text: .viewScheduleServiceStatusTimeWindowEstimated)
                     refreshTimeSlot = false
                 }
                 newDriver(driver: driver)
@@ -80,7 +80,7 @@ class ScheduledPickupViewController: ScheduledViewController {
             
             if let timeSlot = pickupRequest.timeSlot, refreshTimeSlot {
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
-                self.timeWindowView.setSubtitle(text: .PickupWindow)
+                self.timeWindowView.setSubtitle(text: .viewScheduleServiceStatusTimeWindow)
             }
         }
     }

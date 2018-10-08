@@ -29,9 +29,9 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
     
     override func generateSteps() {
         let step1 = Step(id: ServiceState.serviceCompleted, text: .VehicleIsReady, state: .done)
-        let step2 = Step(id: ServiceState.enRouteForDropoff, text: .DriverEnRoute)
-        let step3 = Step(id: ServiceState.nearbyForDropoff, text: .DriverNearby)
-        let step4 = Step(id: ServiceState.arrivedForDropoff, text: .DriverArrived)
+        let step2 = Step(id: ServiceState.enRouteForDropoff, text: .viewScheduleServiceStatusInfoEnRoutePickup)
+        let step3 = Step(id: ServiceState.nearbyForDropoff, text: .viewScheduleServiceStatusInfoNearByPickup)
+        let step4 = Step(id: ServiceState.arrivedForDropoff, text: .viewScheduleServiceStatusInfoArrivedPickup)
         
         steps.append(step1)
         steps.append(step2)

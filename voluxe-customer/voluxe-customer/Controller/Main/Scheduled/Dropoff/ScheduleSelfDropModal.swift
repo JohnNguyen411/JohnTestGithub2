@@ -39,8 +39,8 @@ class ScheduleSelfDropModal: VLPresentrViewController {
     let selfPickupButton: VLButton
     
     init(title: String, screen: AnalyticsEnums.Name.Screen) {
-        rescheduleButton = VLButton(type: .grayPrimary, title: (.RescheduleDelivery as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
-        selfPickupButton = VLButton(type: .grayPrimary, title: (.SelfPickupAtDealership as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
+        rescheduleButton = VLButton(type: .grayPrimary, title: (.popupAdvisorDropoffReschedule as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
+        selfPickupButton = VLButton(type: .grayPrimary, title: (.viewScheduleServiceOptionPickupSelfDeliveryDropoff as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
         super.init(title: title, buttonTitle: "", screen: screen)
         
         rescheduleButton.setActionBlock { [weak self] in

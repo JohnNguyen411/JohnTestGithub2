@@ -553,6 +553,8 @@
 
 "viewScheduleServiceVehicleServiceScheduled" = "Scheduled Service";
 
+"viewScheduledSelfDrop" = "Scheduled Self-Drop";
+
 "viewScheduleServiceScheduledLabel" = "View Dealership Location";
 
 "viewScheduleServiceTypeDescription" = "You can schedule pickup (with participating dealerships) through Luxe by Volvo.\n\nTo schedule pickup, first select service type.";
@@ -609,29 +611,19 @@
 
 "viewScheduleServiceStatusInfoScheduledPickup" = "Pickup is scheduled";
 
-"viewScheduleServiceStatusInfoEnRoutePickup" = "Driver is en route";
+"viewScheduleServiceStatusInfoEnRoute" = "Driver is en route";
 
-"viewScheduleServiceStatusInfoNearByPickup" = "Driver is nearby";
+"viewScheduleServiceStatusInfoNearBy" = "Driver is nearby";
 
-"viewScheduleServiceStatusInfoArrivedPickup" = "Driver has arrived";
+"viewScheduleServiceStatusInfoArrived" = "Driver has arrived";
 
 "viewScheduleServiceStatusReminderPickup" = "Have your license and insurance card ready";
 
-"viewScheduleServiceStatusTimeWindowPickup" = "Pickup Window";
+"viewScheduleServiceStatusTimeWindow" = "Pickup Window";
 
-"viewScheduleServiceStatusTimeWindowEstimatedPickup" = "Estimated Pickup Time";
+"viewScheduleServiceStatusTimeWindowEstimated" = "Estimated Pickup Time";
 
 "viewScheduleServiceStatusInfoScheduledDropoff" = "Vehicle is ready";
-
-"viewScheduleServiceStatusInfoEnRouteDropoff" = "Driver is en route";
-
-"viewScheduleServiceStatusInfoNearByDropoff" = "Driver is nearby";
-
-"viewScheduleServiceStatusInfoArrivedDropoff" = "Driver has arrived";
-
-"viewScheduleServiceStatusTimeWindowDropoff" = "Delivery Window";
-
-"viewScheduleServiceStatusTimeWindowEstimatedDropoff" = "Estimated Delivery Time";
 
 "viewScheduleServiceStatusAtDealershipInfo" = "Our driver is driving your vehicle to %@";
 

@@ -1025,6 +1025,9 @@
 	[viewScheduleServiceVehicleServiceScheduled]
 		en = Scheduled Service
 		tags = customer
+	[viewScheduledSelfDrop]
+		en = Scheduled Self-Drop
+		tags = customer
 	[viewScheduleServiceScheduledLabel]
 		en = View Dealership Location
 		tags = customer
@@ -1109,41 +1112,26 @@
 	[viewScheduleServiceStatusInfoScheduledPickup]
 		en = Pickup is scheduled
 		tags = customer
-	[viewScheduleServiceStatusInfoEnRoutePickup]
+	[viewScheduleServiceStatusInfoEnRoute]
 		en = Driver is en route
 		tags = customer
-	[viewScheduleServiceStatusInfoNearByPickup]
+	[viewScheduleServiceStatusInfoNearBy]
 		en = Driver is nearby
 		tags = customer
-	[viewScheduleServiceStatusInfoArrivedPickup]
+	[viewScheduleServiceStatusInfoArrived]
 		en = Driver has arrived
 		tags = customer
 	[viewScheduleServiceStatusReminderPickup]
 		en = Have your license and insurance card ready
 		tags = customer
-	[viewScheduleServiceStatusTimeWindowPickup]
+	[viewScheduleServiceStatusTimeWindow]
 		en = Pickup Window
 		tags = customer
-	[viewScheduleServiceStatusTimeWindowEstimatedPickup]
+	[viewScheduleServiceStatusTimeWindowEstimated]
 		en = Estimated Pickup Time
 		tags = customer
 	[viewScheduleServiceStatusInfoScheduledDropoff]
 		en = Vehicle is ready
-		tags = customer
-	[viewScheduleServiceStatusInfoEnRouteDropoff]
-		en = Driver is en route
-		tags = customer
-	[viewScheduleServiceStatusInfoNearByDropoff]
-		en = Driver is nearby
-		tags = customer
-	[viewScheduleServiceStatusInfoArrivedDropoff]
-		en = Driver has arrived
-		tags = customer
-	[viewScheduleServiceStatusTimeWindowDropoff]
-		en = Delivery Window
-		tags = customer
-	[viewScheduleServiceStatusTimeWindowEstimatedDropoff]
-		en = Estimated Delivery Time
 		tags = customer
 	[viewScheduleServiceStatusAtDealershipInfo]
 		en = Our driver is driving your vehicle to %@
