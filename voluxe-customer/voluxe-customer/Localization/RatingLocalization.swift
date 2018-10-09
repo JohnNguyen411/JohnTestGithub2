@@ -9,10 +9,9 @@
 import Foundation
 
 extension String {
-    static let Rating = NSLocalizedString("Rating")
-    static let YourFeedback = NSLocalizedString("YourFeedback")
-    static let Feedback = NSLocalizedString("Feedback")
-    static let RatingReason = NSLocalizedString("RatingReason")
-    static let RatingReasonHint = NSLocalizedString("RatingReasonHint")
-    static let ServiceComplete = NSLocalizedString("ServiceComplete")
+    static let viewScheduleServiceStatusCompleteRate = NSLocalizedString("viewScheduleServiceStatusCompleteRate")
+    static let viewScheduleServiceStatusFeedbackCommentTitle = NSLocalizedString("viewScheduleServiceStatusFeedbackCommentTitle")
+    static let viewScheduleServiceStatusFeedback = NSLocalizedString("viewScheduleServiceStatusFeedback")
+    static let viewScheduleServiceStatusFeedbackCommentLabel = NSLocalizedString("viewScheduleServiceStatusFeedbackCommentLabel")
+    static let viewScheduleServiceStatusFeedbackCommentHint = NSLocalizedString("viewScheduleServiceStatusFeedbackCommentHint")
 }

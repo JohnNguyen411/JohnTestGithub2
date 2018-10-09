@@ -48,7 +48,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     
     let rateLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .Rating
+        textView.text = .viewScheduleServiceStatusCompleteRate
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -61,7 +61,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         let ratingTextView = UITextView(frame: .zero)
         ratingTextView.font = .volvoSansProRegular(size: 16)
         ratingTextView.isScrollEnabled = false
-        ratingTextView.text = .RatingReasonHint
+        ratingTextView.text = .viewScheduleServiceStatusFeedbackCommentHint
         ratingTextView.textColor = .luxeLightGray()
         return ratingTextView
     }()
@@ -76,7 +76,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.textColor = UIColor.luxeCobaltBlue()
         titleLabel.font = .volvoSansProMedium(size: 12)
-        titleLabel.text = .YourFeedback
+        titleLabel.text = .viewScheduleServiceStatusFeedbackCommentTitle
         return titleLabel
     }()
     
@@ -90,7 +90,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     convenience init(booking: Booking) {
         self.init()
         self.booking = Booking(value: booking)
-        self.screenTitle = .ServiceComplete
+        self.screenTitle = .viewScheduleServiceStatusComplete
     }
     
     init() {
@@ -132,7 +132,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
                 weakSelf.showRatingTextView(show: true)
             } else {
                 var commentText = weakSelf.ratingTextView.text ?? ""
-                if commentText == .RatingReasonHint {
+                if commentText == .viewScheduleServiceStatusFeedbackCommentHint {
                     commentText = ""
                 }
                 
@@ -354,8 +354,8 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         rateLabel.animateAlpha(show: !show)
         ratingSlider.animateAlpha(show: !show)
         
-        serviceCompleteLabel.text = show ? .RatingReason : .viewScheduleServiceStatusComplete
-        self.navigationItem.title = .Feedback
+        serviceCompleteLabel.text = show ? .viewScheduleServiceStatusFeedbackCommentLabel : .viewScheduleServiceStatusComplete
+        self.navigationItem.title = .viewScheduleServiceStatusFeedback
         
         confirmButton.setTitle(title: show ? String.done.uppercased() : String.ok.uppercased())
         self.navigationItem.rightBarButtonItem?.title = show ? .done : .skip
@@ -407,7 +407,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         scrollView.setContentOffset(offset, animated: true)
         
         if textView.text.isEmpty {
-            textView.text = .RatingReasonHint
+            textView.text = .viewScheduleServiceStatusFeedbackCommentHint
             textView.textColor = .luxeLightGray()
         }
     }
