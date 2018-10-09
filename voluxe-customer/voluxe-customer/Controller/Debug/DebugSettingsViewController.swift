@@ -100,6 +100,20 @@ class DebugSettingsViewController: DebugTableViewController {
             }
         )]
 
+        settings += [DebugTableViewCellModel(title: "Grid Layout",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                [unowned self] _ in
+                self.navigationController?.pushViewController(GridLayoutViewController(), animated: true)
+            }
+        )]
+
         return ("Style Guide", settings)
     }
 
