@@ -261,7 +261,7 @@ class RootViewController: UIViewController {
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
                 let uiNavigationController = VLNavigationController(rootViewController: SettingsViewController())
                 styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .Settings, animated: true)
+                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .settings, animated: true)
             }
         }
     }

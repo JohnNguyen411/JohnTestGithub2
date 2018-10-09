@@ -9,18 +9,17 @@
 import Foundation
 
 extension String {
-    static let Settings = NSLocalizedString("Settings")
-    static let YourVolvos = NSLocalizedString("YourVolvos")
-    static let YourVolvo = NSLocalizedString("YourVolvo")
-    static let ActiveBookings = NSLocalizedString("ActiveBookings")
-    static let AddANewVolvo = NSLocalizedString("AddANewVolvo")
-    static let YourAccount = NSLocalizedString("YourAccount")
-    static let UnitOfDistance = NSLocalizedString("UnitOfDistance")
-    static let ShowDistanceAsMiles = NSLocalizedString("ShowDistanceAsMiles")
-    static let PickupDeliveryLocations = NSLocalizedString("PickupDeliveryLocations")
-    static let ContactInformation = NSLocalizedString("ContactInformation")
-    static let AccountPassword = NSLocalizedString("AccountPassword")
-    static let RemoveVehicle = NSLocalizedString("RemoveVehicle")
-    static let RemoveVehicleConfirmation = NSLocalizedString("RemoveVehicleConfirmation")
+    static let settings = NSLocalizedString("settings")
+    static let yourVolvos = NSLocalizedString("yourVolvos")
+    static let yourVolvo = NSLocalizedString("yourVolvo")
+    static let viewSettingsVolvoAddNewLabel = NSLocalizedString("viewSettingsVolvoAddNewLabel")
+    static let yourAccount = NSLocalizedString("yourAccount")
+    static let viewSettingsDistanceUnitHeader = NSLocalizedString("viewSettingsDistanceUnitHeader")
+    static let viewSettingsDistanceUnitTitle = NSLocalizedString("viewSettingsDistanceUnitTitle")
+    static let viewProfileLocationHeader = NSLocalizedString("viewProfileLocationHeader")
+    static let viewProfileContactHeader = NSLocalizedString("viewProfileContactHeader")
+    static let viewProfileAccountPasswordHeader = NSLocalizedString("viewProfileAccountPasswordHeader")
+    static let removeVehicle = NSLocalizedString("removeVehicle")
+    static let popupRemoveVehicleMessage = NSLocalizedString("popupRemoveVehicleMessage")
 
 }

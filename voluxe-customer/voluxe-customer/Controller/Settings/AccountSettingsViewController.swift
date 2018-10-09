@@ -38,7 +38,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = .YourAccount
+        self.navigationItem.title = .yourAccount
         
         tableView.backgroundColor = .clear
         tableView.dataSource = self
@@ -66,11 +66,11 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     
     func getTitleForSection(section: Int) -> String {
         if section == 0 {
-            return .PickupDeliveryLocations
+            return .viewProfileLocationHeader
         } else if section == 1 {
-            return .ContactInformation
+            return .viewProfileContactHeader
         } else {
-            return .AccountPassword
+            return .viewProfileAccountPasswordHeader
         }
     }
     

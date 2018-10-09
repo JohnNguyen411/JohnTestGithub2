@@ -220,9 +220,9 @@ final class UserManager {
     
     public func yourVolvoStringTitle() -> String {
         if let vehicles = vehicles, vehicles.count > 1 {
-            return .YourVolvos
+            return .yourVolvos
         }
-        return .YourVolvo
+        return .yourVolvo
     }
 }
 

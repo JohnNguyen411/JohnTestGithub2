@@ -999,7 +999,7 @@
 		en = Software Licences
 		tags = customer
 	[viewSettingsDistanceUnitHeader]
-		en = Units of distance
+		en = Unit of distance
 		tags = customer
 	[viewSettingsDistanceUnitTitle]
 		en = Show Distances as Miles

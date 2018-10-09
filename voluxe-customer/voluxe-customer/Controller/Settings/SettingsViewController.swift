@@ -70,9 +70,9 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
         if section == 0 {
             return UserManager.sharedInstance.yourVolvoStringTitle()
         } else if section == 1 {
-            return .YourAccount
+            return .yourAccount
         } else {
-            return .UnitOfDistance
+            return .viewSettingsDistanceUnitHeader
         }
     }
     
@@ -81,11 +81,11 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
             if let vehicles = vehicles, vehicleCount > indexPath.row{
                 return vehicles[indexPath.row].vehicleDescription()
             }
-            return .AddANewVolvo
+            return .viewSettingsVolvoAddNewLabel
         } else if indexPath.section == 1 {
             return (user?.email)!
         } else {
-            return .ShowDistanceAsMiles
+            return .viewSettingsDistanceUnitTitle
         }
     }
     
