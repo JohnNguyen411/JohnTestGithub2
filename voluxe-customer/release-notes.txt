@@ -1,4 +1,7 @@
-v1.2.1(158)
+v1.2.2
+Fixed AutoLayout warnings on Vehicles screen
+
+v1.2.1
 Crash fix on Calendar view
 
 v1.2.0(153)

@@ -31,17 +31,19 @@ class VehicleCell: UICollectionViewCell {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
+    // Note that the priorities for the image view edges are purposefully
+    // lowered to account for the parent cell resizing to zero, typically
+    // when the parent collection view is hidden.  This prevents an
+    // AutoLayout warning.
     private func setupViews() {
-        vehicleImageView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(7)
-            make.right.equalToSuperview().offset(-7)
-            make.centerY.equalToSuperview()
-            make.height.equalTo(90)
+        vehicleImageView.snp.makeConstraints {
+            make in
+            let insets = UIEdgeInsets(top: 10, left: 7, bottom: 10, right: 7)
+            make.edges.equalToSuperview().inset(insets).priority(.high)
         }
     }
-    
-    
+
     public func setVehicle(vehicle: Vehicle) {
         vehicle.setVehicleImage(imageView: vehicleImageView)
     }
