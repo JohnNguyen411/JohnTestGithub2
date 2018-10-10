@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		41199E0B1F6CC7FD895FD38F /* Pods_voluxe_customerUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E181BDDE7AA2B89565331F15 /* Pods_voluxe_customerUnitTests.framework */; };
 		52078A4D132E9D871CDD555D /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
-		520FBE50216694E0009A55E9 /* twine.txt in Resources */ = {isa = PBXBuildFile; fileRef = 520FBE4F216694E0009A55E9 /* twine.txt */; };
 		524BF64C211A57E900404ED5 /* CurrentLocationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */; };
 		529AB0DB212F7AA300AD8D09 /* ScheduleSelfDropModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AB0DA212F7AA200AD8D09 /* ScheduleSelfDropModal.swift */; };
 		52CDAC3C21262C35008B3E53 /* ScheduledSelfDropoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CDAC3B21262C35008B3E53 /* ScheduledSelfDropoff.swift */; };
@@ -455,7 +454,6 @@
 		446B7D7AA76D7E178415AA45 /* Pods-voluxe-customer.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.dev.xcconfig"; sourceTree = "<group>"; };
 		4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
 		4C64F631C2578E5AD1F6A474 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
-		520FBE4F216694E0009A55E9 /* twine.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = twine.txt; sourceTree = "<group>"; };
 		524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCellView.swift; sourceTree = "<group>"; };
 		528A8E01216C2CAE00B4B315 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		529AB0DA212F7AA200AD8D09 /* ScheduleSelfDropModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSelfDropModal.swift; sourceTree = "<group>"; };
@@ -1512,7 +1510,6 @@
 				C12FDB27F024C9663651767B /* Frameworks */,
 				DD0FFFE5E0D1BE41F3C9FA3D /* Pods */,
 				6CCD428B1FA013E3000AC6C9 /* Products */,
-				520FBE4F216694E0009A55E9 /* twine.txt */,
 				538FBDE020AB45EA0096480C /* release-notes.txt */,
 				6C5832C21FB3899700F6BFE0 /* shared */,
 				6CCD428C1FA013E3000AC6C9 /* voluxe-customer */,
@@ -1867,7 +1864,6 @@
 				6CFBF9B41FA1131700D3AA78 /* VolvoSansPro-Medium.ttf in Resources */,
 				6C6F4BC31FA8FBCF00087FE7 /* Localizable.strings in Resources */,
 				6CC83A801FA140D300FE0633 /* ngrok.json in Resources */,
-				520FBE50216694E0009A55E9 /* twine.txt in Resources */,
 				6CC3542F20B7961100FF98A6 /* LaunchScreen.storyboard in Resources */,
 				6CE68792203F7D5A00D915FC /* InfoPlist.strings in Resources */,
 				6C1CE23C20D04A2B00A2E054 /* Volvo Novum-SemiLight.otf in Resources */,

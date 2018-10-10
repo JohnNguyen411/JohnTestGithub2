@@ -535,7 +535,7 @@
 
 "viewSettingsSoftwareLicencesTitle" = "Software Licences";
 
-"viewSettingsDistanceUnitHeader" = "Unit of distance";
+"viewSettingsDistanceUnitHeader" = "Units of distance";
 
 "viewSettingsDistanceUnitTitle" = "Show Distances as Miles";
 
@@ -704,3 +704,8 @@
 "viewEmailSubject" = "This is Subject";
 
 "viewEmailBody" = "Hey Luxe by Volvo,\n\nThis is email body\n\n -\n\nThanks,\n%@";
+
+
+/********** Customer Test **********/
+
+"thisIsATest" = "thisIsATest";
