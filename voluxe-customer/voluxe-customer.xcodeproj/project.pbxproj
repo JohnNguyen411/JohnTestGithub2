@@ -2051,7 +2051,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ntwine generate-localization-file shared/lbv-mobile-strings/twine.txt voluxe-customer/Localization/Base.lproj/Localizable.strings --tags customer --lang en --format apple\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ntwine generate-localization-file ../shared/lbv-mobile-strings/twine.txt voluxe-customer/Localization/Base.lproj/Localizable.strings --tags customer --lang en --format apple\n";
 		};
 		539F626F2092ABD90023DF59 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;

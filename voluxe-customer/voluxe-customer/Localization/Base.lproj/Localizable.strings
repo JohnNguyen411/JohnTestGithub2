@@ -633,7 +633,7 @@
 
 "viewScheduleServiceStatusInServiceInfo" = "Your Volvo is currently being serviced at %@. We will notify you when the service is complete.";
 
-"viewScheduleServiceStatusComplete" = "Service Complete";
+"viewScheduleServiceStatusCompleteTitle" = "Service Complete";
 
 "viewScheduleServiceStatusCompleteInfo" = "Your delivery from %@ is complete.\n\nOn a scale from 1 to 10, how likely are you to recommend pickup and delivery to other Volvo owners?";
 
@@ -704,8 +704,3 @@
 "viewEmailSubject" = "This is Subject";
 
 "viewEmailBody" = "Hey Luxe by Volvo,\n\nThis is email body\n\n -\n\nThanks,\n%@";
-
-
-/********** Customer Test **********/
-
-"thisIsATest" = "thisIsATest";
