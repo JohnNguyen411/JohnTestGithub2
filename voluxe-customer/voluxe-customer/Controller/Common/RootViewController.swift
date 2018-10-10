@@ -32,7 +32,7 @@ class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = .white
         addChild(current)
         current.view.frame = view.bounds
         view.addSubview(current.view)
@@ -83,7 +83,7 @@ class RootViewController: UIViewController {
         inTransition = true
         current.willMove(toParent: nil)
         addChild(new)
-        
+
         transition(from: current, to: new, duration: 0.3, options: [.transitionCrossDissolve, .curveEaseOut], animations: { }) { completed in
             self.current.removeFromParent()
             new.didMove(toParent: self)
