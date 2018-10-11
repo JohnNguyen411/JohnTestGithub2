@@ -220,12 +220,12 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         
         newLocationTextField.snp.makeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-30)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(VLVerticalTextField.height)
         }
         
         newLocationButton.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.bottom.equalTo(bottomButton.snp.top).offset(-20)
         }
         
@@ -237,8 +237,8 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         
         tableView.snp.makeConstraints { make in
             make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview().offset(15)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview().offset(15)
             make.height.equalTo(self.tableViewHeight())
         }
         
@@ -369,16 +369,16 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         if show {
             tableView.snp.remakeConstraints { make in
                 make.bottom.equalTo(newLocationTextField.snp.top).offset(-20)
-                make.left.equalToSuperview()
-                make.right.equalToSuperview().offset(15)
+                make.leading.equalToSuperview()
+                make.trailing.equalToSuperview().offset(15)
                 make.height.equalTo(self.tableViewHeight())
             }
             
         } else {
             tableView.snp.remakeConstraints { make in
                 make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
-                make.left.equalToSuperview()
-                make.right.equalToSuperview().offset(15)
+                make.leading.equalToSuperview()
+                make.trailing.equalToSuperview().offset(15)
                 make.height.equalTo(self.tableViewHeight())
             }
         }

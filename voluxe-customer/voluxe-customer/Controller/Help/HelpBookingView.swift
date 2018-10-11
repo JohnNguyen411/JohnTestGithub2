@@ -91,29 +91,29 @@ class HelpBookingView: UIView {
     
     private func setupViews() {
         self.titleLabel.snp.makeConstraints { make in
-            make.top.right.equalToSuperview()
-            make.left.equalToSuperview().offset(30)
+            make.top.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(30)
         }
         self.mapViewVC.view.snp.makeConstraints { make in
             make.top.equalTo(self.titleLabel.snp.bottom).offset(10)
-            make.right.left.equalToSuperview()
+            make.trailing.leading.equalToSuperview()
             make.height.equalTo(155)
         }
         self.dateLabel.snp.makeConstraints { make in
-            make.right.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.top.equalTo(self.mapViewVC.view.snp.bottom).offset(15)
-            make.left.equalToSuperview().offset(30)
+            make.leading.equalToSuperview().offset(30)
         }
         self.disclosureIndicatorImageView.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-15)
+            make.trailing.equalToSuperview().offset(-15)
             make.centerY.equalTo(dateLabel)
             make.width.equalTo(8)
             make.height.equalTo(13)
         }
         self.dealershipLabel.snp.makeConstraints { make in
-            make.right.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.top.equalTo(self.dateLabel.snp.bottom).offset(5)
-            make.left.equalToSuperview().offset(30)
+            make.leading.equalToSuperview().offset(30)
         }
     }
     

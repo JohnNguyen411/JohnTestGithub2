@@ -117,23 +117,23 @@ class ServiceMultiselectListViewController: BaseViewController {
         
         introLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(BaseViewController.defaultTopYOffset)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
         
         introLabelBold.snp.makeConstraints { make in
-            make.left.right.equalTo(introLabel)
+            make.leading.trailing.equalTo(introLabel)
             make.top.equalTo(introLabel.snp.bottom).offset(5)
         }
         
         confirmButton.snp.makeConstraints { make in
-            make.left.right.equalTo(introLabel)
+            make.leading.trailing.equalTo(introLabel)
             make.bottom.equalToSuperview()
             make.height.equalTo(VLButton.primaryHeight)
         }
         
         tableView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(introLabelBold.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.bottom.equalTo(confirmButton.snp.top).offset(-20)
         }

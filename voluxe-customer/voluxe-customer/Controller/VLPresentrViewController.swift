@@ -72,7 +72,7 @@ class VLPresentrViewController: UIViewController {
         headerView.roundCorners([.topLeft, .topRight], radius: 5.0)
         
         titleLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.centerY.equalTo(headerView).offset(2)
             make.height.equalTo(25)
         }
@@ -119,12 +119,12 @@ class VLPresentrViewController: UIViewController {
         containerView.addSubview(bottomButton)
         
         headerView.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(36)
         }
         
         loadingView.snp.makeConstraints { make in
-            make.bottom.left.right.equalToSuperview()
+            make.bottom.leading.trailing.equalToSuperview()
             make.height.equalTo(height())
         }
         
@@ -139,14 +139,14 @@ class VLPresentrViewController: UIViewController {
         }
         
         containerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 15))
+            make.leading.trailing.equalToSuperview().inset(UIEdgeInsets(top: 20, left: 15, bottom: 20, right: 15))
             make.bottom.equalToSuperview().offset(-containerViewBottomOffset)
             make.height.equalTo(height())
         }
         
         bottomButton.snp.makeConstraints { make in
-            make.left.equalToSuperview()
-            make.bottom.right.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.bottom.trailing.equalToSuperview()
             make.height.equalTo(VLButton.primaryHeight)
         }
     }

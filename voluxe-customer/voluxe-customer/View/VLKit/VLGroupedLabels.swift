@@ -105,7 +105,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
     private func addFirstLabel(luxeLabel: VLSelectableLabel) {
         // first label
         luxeLabel.snp.makeConstraints { (make) -> Void in
-            make.top.left.right.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
             make.height.equalTo(VLSelectableLabel.height)
         }
         
@@ -117,7 +117,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
             
             separator.snp.makeConstraints { (make) -> Void in
                 make.top.equalTo(luxeLabel.snp.top)
-                make.left.right.equalToSuperview()
+                make.leading.trailing.equalToSuperview()
                 make.height.equalTo(1)
             }
             
@@ -129,7 +129,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
         // put this label under the previous one
         luxeLabel.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(previousLabel.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(VLSelectableLabel.height)
         }
         
@@ -143,7 +143,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
             
             separator.snp.makeConstraints { (make) -> Void in
                 make.top.equalTo(luxeLabel.snp.top)
-                make.left.right.equalToSuperview()
+                make.leading.trailing.equalToSuperview()
                 make.height.equalTo(1)
             }
         }
@@ -157,7 +157,7 @@ class VLGroupedLabels : UIView, SelectableLabelDelegate {
         
         separator.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(previousLabel.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(1)
         }
     }

@@ -68,7 +68,7 @@ class HelpViewController: BaseViewController {
         self.view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
             make.equalsToTop(view: self.view, offset: 30)
         }
     }

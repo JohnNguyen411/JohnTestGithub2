@@ -102,20 +102,20 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
         
         codeTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(phoneNumberLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(40)
         }
         
         updatePhoneNumberButton.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(codeTextField.snp.bottom).offset(15)
             make.height.equalTo(20)
         }

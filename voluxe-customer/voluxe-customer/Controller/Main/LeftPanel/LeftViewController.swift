@@ -115,8 +115,8 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
             vehiclesH = 0
         }
         vehicleTableView.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview()
-            make.left.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(10)
             make.equalsToTop(view: self.view, offset: 80)
             make.height.equalTo(vehiclesH)
         }
@@ -128,22 +128,22 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         self.view.addSubview(separator)
         
         menuTableView.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview()
-            make.left.equalToSuperview().offset(10)
+            make.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(10)
             make.top.equalTo(vehicleTableView.snp.bottom).offset(100)
             make.height.equalTo(tableH)
         }
         
         separator.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(25)
+            make.leading.equalToSuperview().offset(25)
             make.bottom.equalTo(menuTableView.snp.top)
-            make.right.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.height.equalTo(0.5)
         }
         
         closeButton.snp.makeConstraints { make in
             make.equalsToTop(view: self.view, offset: !self.view.hasSafeAreaCapability ? 15 : 0)
-            make.left.equalToSuperview().offset(3)
+            make.leading.equalToSuperview().offset(3)
             make.width.height.equalTo(50)
         }
     }

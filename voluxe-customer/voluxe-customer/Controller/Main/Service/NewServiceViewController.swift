@@ -89,15 +89,15 @@ class NewServiceViewController: BaseViewController {
         let labelHeight = introLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
 
         introLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(20)
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
-            make.right.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(labelHeight)
         }
         
         tableView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview()
             make.top.equalTo(introLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(CheckmarkCell.height*2+1)
         }

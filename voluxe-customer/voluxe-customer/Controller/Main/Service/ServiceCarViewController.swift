@@ -161,8 +161,8 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
 
         scrollView.snp.makeConstraints { make in
             make.equalsToTop(view: self.view, offset: ViewUtils.getAdaptedHeightSize(sizeInPoints: BaseViewController.defaultTopYOffset))
-            make.left.equalToSuperview().inset(margin)
-            make.right.equalToSuperview().inset(margin)
+            make.leading.equalToSuperview().inset(margin)
+            make.trailing.equalToSuperview().inset(margin)
             make.bottom.equalTo(deliveryButton.snp.top).offset(-margin)
         }
         
@@ -173,36 +173,36 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
         }
         
         vehicleTypeView.snp.makeConstraints { make in
-            make.left.top.right.equalToSuperview()
+            make.leading.top.trailing.equalToSuperview()
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLTitledLabel.height)))
         }
         
         vehicleImageView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleTypeView.snp.bottom)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: Vehicle.vehicleImageHeight))
         }
         
         checkupLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom)
         }
         
         scheduledServiceView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLTitledLabel.height)))
         }
         
         updateLabel.snp.makeConstraints { make in
-            make.right.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.top.equalTo(scheduledServiceView).offset(-3)
             make.width.greaterThanOrEqualTo(45)
             make.height.equalTo(20)
         }
         
         descriptionButton.snp.makeConstraints { make in
-            make.left.right.equalTo(scheduledServiceView)
+            make.leading.trailing.equalTo(scheduledServiceView)
             make.top.equalTo(scheduledServiceView.snp.bottom)
             make.height.equalTo(VLButton.secondaryHeight)
         }
@@ -211,22 +211,22 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             
             if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfOBEnabledKey) {
                 selfDropButton.snp.makeConstraints { make in
-                    make.left.equalToSuperview().inset(margin)
-                    make.right.equalToSuperview().inset(margin)
+                    make.leading.equalToSuperview().inset(margin)
+                    make.trailing.equalToSuperview().inset(margin)
                     make.equalsToBottom(view: self.view, offset: -margin)
                     make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
                 }
                 
                 deliveryButton.snp.makeConstraints { make in
-                    make.left.equalToSuperview().inset(margin)
-                    make.right.equalToSuperview().inset(margin)
+                    make.leading.equalToSuperview().inset(margin)
+                    make.trailing.equalToSuperview().inset(margin)
                     make.bottom.equalTo(selfDropButton.snp.top).offset(-margin)
                     make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
                 }
             } else {
                 deliveryButton.snp.makeConstraints { make in
-                    make.left.equalToSuperview().inset(margin)
-                    make.right.equalToSuperview().inset(margin)
+                    make.leading.equalToSuperview().inset(margin)
+                    make.trailing.equalToSuperview().inset(margin)
                     make.equalsToBottom(view: self.view, offset: -margin)
                     make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
                 }
@@ -235,8 +235,8 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             
         } else {
             deliveryButton.snp.makeConstraints { make in
-                make.left.equalToSuperview().inset(margin)
-                make.right.equalToSuperview().inset(margin)
+                make.leading.equalToSuperview().inset(margin)
+                make.trailing.equalToSuperview().inset(margin)
                 make.equalsToBottom(view: self.view, offset: -margin)
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
             }
@@ -244,14 +244,14 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
         
         
         confirmButton.snp.makeConstraints { make in
-            make.left.equalToSuperview().inset(margin)
-            make.right.equalToSuperview().inset(margin)
+            make.leading.equalToSuperview().inset(margin)
+            make.trailing.equalToSuperview().inset(margin)
             make.equalsToBottom(view: self.view, offset: -margin)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
         }
         
         stateTestView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.bottom.equalTo(confirmButton.snp.top)
             make.height.width.equalTo(1)
         }
@@ -265,22 +265,22 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.selfOBEnabledKey) {
                 
                 selfDropButton.snp.remakeConstraints { make in
-                    make.left.equalToSuperview().inset(margin)
-                    make.right.equalToSuperview().inset(margin)
+                    make.leading.equalToSuperview().inset(margin)
+                    make.trailing.equalToSuperview().inset(margin)
                     make.equalsToBottom(view: self.view, offset: -margin)
                     make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
                 }
                 
                 deliveryButton.snp.remakeConstraints { make in
-                    make.left.equalToSuperview().inset(margin)
-                    make.right.equalToSuperview().inset(margin)
+                    make.leading.equalToSuperview().inset(margin)
+                    make.trailing.equalToSuperview().inset(margin)
                     make.bottom.equalTo(selfDropButton.snp.top).offset(-margin)
                     make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
                 }
             } else {
                 deliveryButton.snp.remakeConstraints { make in
-                    make.left.equalToSuperview().inset(margin)
-                    make.right.equalToSuperview().inset(margin)
+                    make.leading.equalToSuperview().inset(margin)
+                    make.trailing.equalToSuperview().inset(margin)
                     make.equalsToBottom(view: self.view, offset: -margin)
                     make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
                 }
@@ -288,8 +288,8 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             
         } else {
             deliveryButton.snp.remakeConstraints { make in
-                make.left.equalToSuperview().inset(margin)
-                make.right.equalToSuperview().inset(margin)
+                make.leading.equalToSuperview().inset(margin)
+                make.trailing.equalToSuperview().inset(margin)
                 make.equalsToBottom(view: self.view, offset: -margin)
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
             }
@@ -374,7 +374,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             if descriptionButton.frame.origin.y > 0 && descriptionBottom + checkupLabelHeight + 20 >= scrollView.frame.size.height {
                 
                 checkupLabel.snp.remakeConstraints { make in
-                    make.left.right.equalToSuperview()
+                    make.leading.trailing.equalToSuperview()
                     make.top.equalTo(descriptionButton.snp.bottom).offset(20)
                 }
                 
@@ -393,7 +393,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
                 }
                 
                 checkupLabel.snp.remakeConstraints { make in
-                    make.left.bottom.right.equalToSuperview()
+                    make.leading.bottom.trailing.equalToSuperview()
                 }
             }
             
@@ -410,7 +410,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             descriptionButton.isHidden = true
             
             checkupLabel.snp.remakeConstraints { make in
-                make.left.right.equalToSuperview()
+                make.leading.trailing.equalToSuperview()
                 make.top.equalTo(vehicleImageView.snp.bottom).offset(50)
             }
             
@@ -461,14 +461,14 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
         
         if right {
             updateLabel.snp.remakeConstraints { make in
-                make.right.equalToSuperview()
+                make.trailing.equalToSuperview()
                 make.top.equalTo(scheduledServiceView).offset(-3)
                 make.width.greaterThanOrEqualTo(width)
                 make.height.equalTo(20)
             }
         } else {
             updateLabel.snp.remakeConstraints { make in
-                make.left.equalToSuperview()
+                make.leading.equalToSuperview()
                 make.bottom.equalTo(checkupLabel.snp.top).offset(-10)
                 make.width.greaterThanOrEqualTo(width)
                 make.height.equalTo(20)

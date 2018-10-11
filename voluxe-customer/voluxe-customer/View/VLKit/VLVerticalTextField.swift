@@ -109,11 +109,11 @@ class VLVerticalTextField : VLTextField {
         let sizeThatFits = rightLabel.sizeThatFits(CGSize(width: 150, height: 20))
 
         textField.snp.updateConstraints { (make) -> Void in
-            make.right.equalToSuperview().offset(-sizeThatFits.width)
+            make.trailing.equalToSuperview().offset(-sizeThatFits.width)
         }
         
         rightLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.bottom.equalTo(textField.snp.bottom)
             make.height.equalTo(20)
             make.width.equalTo(sizeThatFits.width+20)
@@ -136,11 +136,11 @@ class VLVerticalTextField : VLTextField {
         let sizeThatFits = bottomRightLabel.sizeThatFits(CGSize(width: 150, height: 20))
         
         titleLabel.snp.updateConstraints { (make) -> Void in
-            make.right.equalToSuperview().offset(-sizeThatFits.width)
+            make.trailing.equalToSuperview().offset(-sizeThatFits.width)
         }
         
         bottomRightLabel.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.top.equalTo(titleLabel.snp.top)
             make.height.equalTo(sizeThatFits.height)
             make.width.equalTo(sizeThatFits.width+20)
@@ -155,7 +155,7 @@ class VLVerticalTextField : VLTextField {
     
     override func applyConstraints() {
         textField.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(self)
             make.height.equalTo(25)
         }
@@ -164,13 +164,13 @@ class VLVerticalTextField : VLTextField {
         addSubview(separator)
         
         separator.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(textField.snp.bottom).offset(1)
             make.height.equalTo(1)
         }
         
         titleLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(separator.snp.bottom).offset(5)
         }
     }

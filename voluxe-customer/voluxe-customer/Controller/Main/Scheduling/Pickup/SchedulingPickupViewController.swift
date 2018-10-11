@@ -32,7 +32,7 @@ class SchedulingPickupViewController: SchedulingViewController {
     override func setupViews() {
         super.setupViews()
         loanerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(dealershipView.snp.bottom)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }

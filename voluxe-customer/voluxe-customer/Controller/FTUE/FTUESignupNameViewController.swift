@@ -108,27 +108,27 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
             welcomeLabel.isHidden = true
             
             firstNameTextField.snp.makeConstraints { (make) -> Void in
-                make.left.equalToSuperview().offset(20)
-                make.right.equalToSuperview().offset(-20)
+                make.leading.equalToSuperview().offset(20)
+                make.trailing.equalToSuperview().offset(-20)
                 make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
                 make.height.equalTo(VLVerticalTextField.verticalHeight)
             }
         } else {
             welcomeLabel.snp.makeConstraints { (make) -> Void in
-                make.left.equalToSuperview().offset(20)
+                make.leading.equalToSuperview().offset(20)
                 make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
-                make.right.equalToSuperview().offset(-20)
+                make.trailing.equalToSuperview().offset(-20)
             }
             
             firstNameTextField.snp.makeConstraints { (make) -> Void in
-                make.left.right.equalTo(welcomeLabel)
+                make.leading.trailing.equalTo(welcomeLabel)
                 make.top.equalTo(welcomeLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
                 make.height.equalTo(VLVerticalTextField.verticalHeight)
             }
         }
         
         lastNameTextField.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(firstNameTextField)
+            make.leading.trailing.equalTo(firstNameTextField)
             make.top.equalTo(firstNameTextField.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }

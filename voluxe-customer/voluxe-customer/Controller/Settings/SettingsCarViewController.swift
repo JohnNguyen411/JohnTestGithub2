@@ -56,19 +56,19 @@ class SettingsCarViewController: BaseViewController {
         contentView.addSubview(removeVehicleButton)
         
         vehicleTypeView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
             make.height.equalTo(VLTitledLabel.height)
         }
         
         vehicleImageView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleTypeView.snp.bottom)
             make.height.equalTo(Vehicle.vehicleImageHeight)
         }
         
         removeVehicleButton.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(VLButton.primaryHeight)
         }
         

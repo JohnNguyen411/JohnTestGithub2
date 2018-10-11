@@ -217,64 +217,64 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         }
         
         contentView.snp.makeConstraints { make in
-            make.left.top.width.height.equalTo(scrollView)
+            make.leading.top.width.height.equalTo(scrollView)
         }
         
         vehicleTypeView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalToSuperview().offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: BaseViewController.defaultTopYOffset - 5))
             make.height.equalTo(VLTitledLabel.height)
         }
         
         vehicleImageView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleTypeView.snp.bottom)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: Vehicle.vehicleImageHeight))
         }
         
         serviceCompleteLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom)
         }
         
         rateLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(serviceCompleteLabel.snp.bottom).offset(13)
         }
         
         ghostView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(rateLabel.snp.bottom)
             make.bottom.equalTo(confirmButton.snp.top)
         }
         
         ratingSlider.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.centerY.equalTo(ghostView)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 60))
         }
         
         ratingTextView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(-5)
-            make.right.equalToSuperview().offset(5)
+            make.leading.equalToSuperview().offset(-5)
+            make.trailing.equalToSuperview().offset(5)
             make.top.equalTo(serviceCompleteLabel.snp.bottom).offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: 30))
             make.height.equalTo(35)
         }
         
         separator.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(ratingTextView.snp.bottom)
             make.height.equalTo(1)
         }
         
         textViewTitle.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(separator.snp.bottom).offset(5)
             make.height.equalTo(25)
         }
         
         confirmButton.snp.makeConstraints { make in
-            make.left.bottom.right.equalToSuperview()
+            make.leading.bottom.trailing.equalToSuperview()
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
         }
         

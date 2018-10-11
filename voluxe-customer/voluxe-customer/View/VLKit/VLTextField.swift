@@ -94,16 +94,16 @@ class VLTextField : UIView {
     
     func applyConstraints() {
         titleLabel.snp.makeConstraints { (make) -> Void in
-            make.left.equalTo(self).offset(15)
+            make.leading.equalTo(self).offset(15)
             make.top.equalTo(self).offset(18)
             make.bottom.equalTo(self).offset(-18)
         }
         
         textField.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(self).offset(-15)
+            make.trailing.equalTo(self).offset(-15)
             make.top.equalTo(titleLabel)
             make.bottom.equalTo(titleLabel)
-            leftPlaceholderConstraint = make.leftMargin.equalTo(titleLabel.snp.right).offset(5).constraint
+            leftPlaceholderConstraint = make.leftMargin.equalTo(titleLabel.snp.trailing).offset(5).constraint
         }
     }
     
@@ -133,22 +133,22 @@ class VLTextField : UIView {
 //        leftPlaceholderConstraint?.uninstall()
         
         titleLabel.snp.updateConstraints { (make) in
-            make.left.equalTo(self).offset(-30)
+            make.leading.equalTo(self).offset(-30)
         }
         
         textField.snp.updateConstraints { (make) in
-            make.right.equalTo(self).offset(-60) //this number doesn't really make sense...the textField is oddly coupled with titleLabel via it's left edge constraint. probably snapkit bug
+            make.trailing.equalTo(self).offset(-60) //this number doesn't really make sense...the textField is oddly coupled with titleLabel via it's left edge constraint. probably snapkit bug
         }
 
     }
     
     func showLabels() {
         titleLabel.snp.updateConstraints { (make) in
-            make.left.equalTo(self).offset(15)
+            make.leading.equalTo(self).offset(15)
         }
         
         textField.snp.updateConstraints { (make) in
-            make.right.equalTo(self).offset(-15)
+            make.trailing.equalTo(self).offset(-15)
         }
     }
 }

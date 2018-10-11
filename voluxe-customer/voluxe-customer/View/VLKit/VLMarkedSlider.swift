@@ -70,22 +70,22 @@ class VLMarkedSlider: UIView {
         self.addSubview(markersContainer)
 
         slider.snp.makeConstraints { make in
-            make.top.left.right.width.equalToSuperview()
+            make.top.leading.trailing.width.equalToSuperview()
         }
         
         minLabel.snp.makeConstraints { make in
-            make.left.equalTo(slider).offset((slider.thumbImageWidth()/2)-minLabelWidth/2)
+            make.leading.equalTo(slider).offset((slider.thumbImageWidth()/2)-minLabelWidth/2)
             make.top.equalTo(slider.snp.bottom).offset(5)
         }
         
         maxLabel.snp.makeConstraints { make in
-            make.right.equalTo(slider).offset(-(slider.thumbImageWidth()/2)+maxLabelWidth/2)
+            make.trailing.equalTo(slider).offset(-(slider.thumbImageWidth()/2)+maxLabelWidth/2)
             make.top.equalTo(slider.snp.bottom).offset(5)
         }
         
         markersContainer.snp.makeConstraints { make in
-            make.left.equalTo(slider)
-            make.right.equalTo(slider)
+            make.leading.equalTo(slider)
+            make.trailing.equalTo(slider)
             make.top.equalTo(slider.snp.bottom).offset(5)
             make.height.equalTo(10)
         }

@@ -154,57 +154,57 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
             driverViewContainer.addSubview(driverContact)
             
             verticalStepView.snp.makeConstraints { make in
-                make.left.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 30))
+                make.leading.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 30))
                 make.top.equalToSuperview().offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: BaseViewController.defaultTopYOffset))
-                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -30))
+                make.trailing.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -30))
                 make.height.equalTo(verticalStepView.height) // already adapter inside
             }
             
             mapViewContainer.snp.makeConstraints { make in
-                make.left.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 25))
-                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -25))
+                make.leading.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 25))
+                make.trailing.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -25))
                 make.top.equalTo(verticalStepView.snp.bottom)
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(ScheduledViewController.mapViewHeight + ScheduledViewController.driverViewHeight)))
             }
             
             mapViewContainer.addSubview(mapVC.view)
             mapVC.view.snp.makeConstraints { (make) -> Void in
-                make.left.right.top.equalToSuperview()
+                make.leading.trailing.top.equalToSuperview()
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(ScheduledViewController.mapViewHeight)))
             }
             
             driverViewContainer.snp.makeConstraints { make in
-                make.left.right.equalToSuperview()
+                make.leading.trailing.equalToSuperview()
                 make.top.equalTo(mapVC.view.snp.bottom)
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(ScheduledViewController.driverViewHeight)))
             }
             
             driverIcon.snp.makeConstraints { make in
-                make.left.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 10))
+                make.leading.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 10))
                 make.centerY.equalToSuperview()
                 make.width.height.equalTo(ViewUtils.getAdaptedWidthSize(sizeInPoints: 35))
             }
             
             driverName.snp.makeConstraints { make in
-                make.left.equalTo(driverIcon.snp.right).offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 10))
-                make.centerY.right.equalToSuperview()
+                make.leading.equalTo(driverIcon.snp.trailing).offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 10))
+                make.centerY.trailing.equalToSuperview()
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 35))
             }
             
             driverContact.snp.makeConstraints { make in
-                make.centerY.right.equalToSuperview()
+                make.centerY.trailing.equalToSuperview()
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 35))
                 make.width.equalTo(ViewUtils.getAdaptedWidthSize(sizeInPoints: 100))
             }
             
             timeWindowView.snp.makeConstraints { make in
-                make.left.bottom.right.equalToSuperview()
+                make.leading.bottom.trailing.equalToSuperview()
                 make.height.equalTo(TimeWindowView.height)
             }
             
             driversLicenseInsuranceLabel.snp.makeConstraints { make in
-                make.left.equalTo(mapViewContainer)
-                make.right.equalToSuperview()
+                make.leading.equalTo(mapViewContainer)
+                make.trailing.equalToSuperview()
                 make.top.equalTo(mapViewContainer.snp.bottom).offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: 6, smallerOnly: false))
             }
 
@@ -219,7 +219,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 make in
-                make.left.right.equalToSuperview()
+                make.leading.trailing.equalToSuperview()
                 make.top.equalTo(timeWindowView.snp.bottom)
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 100))
             }
@@ -231,7 +231,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
             changeButton.isHidden = true
             
             changeButton.snp.makeConstraints { make in
-                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -22))
+                make.trailing.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -22))
                 make.top.equalTo(stepView).offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: 7))
             }
         }

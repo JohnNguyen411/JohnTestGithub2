@@ -160,40 +160,40 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
             make.equalsToTop(view: scrollView.contentView, offset: BaseViewController.defaultTopYOffset)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
         
         emailTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(phoneNumberLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         phoneNumberTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(emailTextField.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         phoneNumberConfirmLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(phoneNumberLabel)
+            make.leading.trailing.equalTo(phoneNumberLabel)
             make.top.equalTo(phoneNumberTextField.snp.bottom).offset(-34)
         }
         
         tosCheckbox.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(phoneNumberConfirmLabel.snp.bottom).offset(20)
-            make.left.equalTo(phoneNumberConfirmLabel).offset(-10)
+            make.leading.equalTo(phoneNumberConfirmLabel).offset(-10)
             make.height.equalTo(40)
             make.width.equalTo(40)
         }
         
         tosLabel.snp.makeConstraints { (make) -> Void in
             make.centerY.equalTo(tosCheckbox)
-            make.left.equalTo(tosCheckbox.snp.right)
-            make.right.equalToSuperview().offset(-10)
+            make.leading.equalTo(tosCheckbox.snp.trailing)
+            make.trailing.equalToSuperview().offset(-10)
         }
     }
   

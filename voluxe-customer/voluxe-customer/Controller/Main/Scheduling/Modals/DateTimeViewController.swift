@@ -227,7 +227,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         
         hoursScrollView.snp.makeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-28)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(VLButton.secondaryHeight)
         }
         
@@ -238,15 +238,15 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         }
         
         timeSlotsHeader.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(hoursScrollView.snp.top).offset(-5)
             make.height.equalTo(20)
         }
         
         calendar.snp.makeConstraints { make in
             make.bottom.equalTo(timeSlotsHeader.snp.top).offset(-28)
-            make.left.equalToSuperview().offset(-5)
-            make.right.equalToSuperview().offset(5)
+            make.leading.equalToSuperview().offset(-5)
+            make.trailing.equalToSuperview().offset(5)
             make.height.equalTo(calendarViewHeight)
         }
         
@@ -263,41 +263,41 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         }
         
         firstMonthHeader.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(calendar.snp.top).offset(-5)
             make.height.equalTo(20)
         }
         
         weekdayViews.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(firstMonthHeader.snp.top).offset(-5)
             make.height.equalTo(20)
         }
         
         loanerContainerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(loanerViewHeight)
             make.bottom.equalTo(weekdayViews.snp.top).offset(-20)
         }
         
         separatorOne.snp.makeConstraints { make in
-            make.right.equalTo(self.view)
-            make.left.bottom.equalToSuperview()
+            make.trailing.equalTo(self.view)
+            make.leading.bottom.equalToSuperview()
             make.height.equalTo(1)
         }
         
         loanerSwitch.snp.makeConstraints { make in
-            make.right.centerY.equalToSuperview()
+            make.trailing.centerY.equalToSuperview()
         }
         
         loanerLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.centerY.height.equalTo(loanerSwitch)
         }
         
         separatorTwo.snp.makeConstraints { make in
-            make.right.equalTo(self.view)
-            make.left.equalToSuperview()
+            make.trailing.equalTo(self.view)
+            make.leading.equalToSuperview()
             make.height.equalTo(1)
             make.top.equalToSuperview()
         }
@@ -345,7 +345,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                 
                 label.snp.makeConstraints { make in
                     make.top.bottom.equalToSuperview()
-                    make.left.equalTo(prevView == nil ? weekdayViews.snp.left : prevView!.snp.right)
+                    make.leading.equalTo(prevView == nil ? weekdayViews.snp.leading : prevView!.snp.trailing)
                     make.width.equalTo(frame.width)
                 }
                 
@@ -605,14 +605,14 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                 
                 view.snp.makeConstraints { make in
                     make.top.equalTo(top)
-                    make.left.equalTo(prevView == nil ? hoursView.snp.left : prevView!.snp.right).offset(prevView == nil ? 0 : 10)
+                    make.leading.equalTo(prevView == nil ? hoursView.snp.leading : prevView!.snp.trailing).offset(prevView == nil ? 0 : 10)
                     make.height.equalTo(VLButton.secondaryHeight)
                     make.width.equalToSuperview().dividedBy(3).offset(-22/3)
                 }
             } else {
                 view.snp.makeConstraints { make in
                     make.top.equalTo(prevView == nil ? hoursView.snp.top : prevView!.snp.top)
-                    make.left.equalTo(prevView == nil ? hoursView.snp.left : prevView!.snp.right).offset(prevView == nil ? 0 : 10)
+                    make.leading.equalTo(prevView == nil ? hoursView.snp.leading : prevView!.snp.trailing).offset(prevView == nil ? 0 : 10)
                     make.height.equalTo(VLButton.secondaryHeight)
                     make.width.equalToSuperview().dividedBy(3).offset(-22/3)
                 }

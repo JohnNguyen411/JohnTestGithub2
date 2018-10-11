@@ -116,19 +116,19 @@ class FTUEStartViewController: LogoViewController {
         }
 
         loginButton.snp.makeConstraints { (make) -> Void in
-            make.left.centerY.equalToSuperview()
+            make.leading.centerY.equalToSuperview()
             make.height.equalTo(VLButton.primaryHeight)
         }
 
         pipeSeparator.snp.makeConstraints { (make) -> Void in
             make.centerY.equalToSuperview()
-            make.left.equalTo(loginButton.snp.right).offset(10)
+            make.leading.equalTo(loginButton.snp.right).offset(10)
             make.height.equalTo(VLButton.primaryHeight)
         }
 
         signupButton.snp.makeConstraints { (make) -> Void in
             make.centerY.equalToSuperview()
-            make.left.equalTo(pipeSeparator.snp.right).offset(10)
+            make.leading.equalTo(pipeSeparator.snp.right).offset(10)
             make.height.equalTo(VLButton.primaryHeight)
         }
     }

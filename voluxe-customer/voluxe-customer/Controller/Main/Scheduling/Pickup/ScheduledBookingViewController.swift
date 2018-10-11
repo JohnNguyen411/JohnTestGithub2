@@ -48,20 +48,20 @@ class ScheduledBookingViewController: SchedulingViewController {
         }
         
         loanerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(dealershipView.snp.bottom)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.loanerFeatureEnabledKey) {
             scheduledPickupView.snp.makeConstraints { make in
-                make.left.right.equalTo(scheduledServiceView)
+                make.leading.trailing.equalTo(scheduledServiceView)
                 make.top.equalTo(loanerView.snp.bottom)
                 make.height.equalTo(SchedulingViewController.vlLabelHeight)
             }
         } else {
             scheduledPickupView.snp.makeConstraints { make in
-                make.left.right.equalTo(scheduledServiceView)
+                make.leading.trailing.equalTo(scheduledServiceView)
                 make.top.equalTo(dealershipView.snp.bottom)
                 make.height.equalTo(SchedulingViewController.vlLabelHeight)
             }
@@ -73,13 +73,13 @@ class ScheduledBookingViewController: SchedulingViewController {
         
         leftButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-10)
-            make.left.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(10)
             make.width.equalToSuperview().dividedBy(2).offset(-20)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
         rightButton.snp.makeConstraints { make in
-            make.bottom.right.equalToSuperview().offset(-10)
+            make.bottom.trailing.equalToSuperview().offset(-10)
             make.width.equalToSuperview().dividedBy(2).offset(-20)
             make.height.equalTo(VLButton.primaryHeight)
         }

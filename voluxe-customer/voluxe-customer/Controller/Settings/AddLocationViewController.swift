@@ -61,7 +61,7 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
         
         newLocationTextField.snp.makeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-30)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(VLVerticalTextField.height)
         }
         

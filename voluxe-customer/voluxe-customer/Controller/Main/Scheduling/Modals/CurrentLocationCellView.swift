@@ -83,7 +83,7 @@ class CurrentLocationCellView: UIView {
         checkmarkView.contentMode = .scaleAspectFit
         
         self.myLocationImageView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.top.equalToSuperview().offset(2)
             make.width.height.equalTo(20)
         }
@@ -91,7 +91,7 @@ class CurrentLocationCellView: UIView {
         self.titleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(myLocationImageView)
             make.width.equalToSuperview()
-            make.left.equalTo(myLocationImageView.snp.right).offset(10)
+            make.leading.equalTo(myLocationImageView.snp.trailing).offset(10)
         }
         
         let ghostCenterView = UIView(frame: .zero)
@@ -99,15 +99,15 @@ class CurrentLocationCellView: UIView {
         
         ghostCenterView.snp.makeConstraints { make in
             make.top.equalTo(self.titleLabel.snp.bottom)
-            make.bottom.right.left.equalToSuperview()
+            make.bottom.trailing.leading.equalToSuperview()
         }
         
         self.subtitleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(ghostCenterView)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
         self.checkmarkView.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-15)
+            make.trailing.equalToSuperview().offset(-15)
             make.centerY.equalToSuperview().offset(-4)
             make.width.equalTo(12)
         }

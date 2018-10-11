@@ -74,7 +74,7 @@ class ServiceDetailViewController: BaseViewController {
                 serviceTitle.setTitle(title: .viewScheduleServiceTypeMilestoneDetailNameLabel, leftDescription: repairOrder.getTitle())
             }
             label.snp.makeConstraints { make in
-                make.right.left.equalTo(serviceTitle)
+                make.trailing.leading.equalTo(serviceTitle)
                 make.bottom.equalTo(confirmButton.snp.top).offset(-20)
                 make.top.equalTo(serviceTitle.snp.bottom).offset(20)
             }
@@ -92,13 +92,13 @@ class ServiceDetailViewController: BaseViewController {
             
             if isDrivableLabel.isHidden {
                 label.snp.remakeConstraints { make in
-                    make.right.left.equalTo(serviceTitle)
+                    make.trailing.leading.equalTo(serviceTitle)
                     make.top.equalTo(serviceTitle.snp.bottom).offset(20)
                     make.equalsToBottom(view: self.view, offset: 0)
                 }
             } else {
                 label.snp.remakeConstraints { make in
-                    make.right.left.equalTo(serviceTitle)
+                    make.trailing.leading.equalTo(serviceTitle)
                     make.top.equalTo(isDrivableLabel.snp.bottom).offset(20)
                     make.equalsToBottom(view: self.view, offset: 0)
                 }
@@ -127,24 +127,24 @@ class ServiceDetailViewController: BaseViewController {
         self.view.addSubview(confirmButton)
         
         serviceTitle.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.top.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(VLTitledLabel.height)
         }
         
         isDrivableLabel.snp.makeConstraints { make in
-            make.right.left.equalTo(serviceTitle)
+            make.trailing.leading.equalTo(serviceTitle)
             make.top.equalTo(serviceTitle.snp.bottom).offset(20)
         }
         
         confirmButton.snp.makeConstraints { make in
-            make.right.left.equalTo(serviceTitle)
+            make.trailing.leading.equalTo(serviceTitle)
             make.equalsToBottom(view: self.view, offset: -20)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
         label.snp.makeConstraints { make in
-            make.right.left.equalTo(serviceTitle)
+            make.trailing.leading.equalTo(serviceTitle)
             make.bottom.equalTo(confirmButton.snp.top).offset(-20)
             make.top.equalTo(isDrivableLabel.snp.bottom).offset(20)
         }

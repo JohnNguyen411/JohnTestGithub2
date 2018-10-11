@@ -77,14 +77,14 @@ class PermissionViewController: BaseViewController {
 
         grantPermissionButton.snp.makeConstraints { make in
             make.equalsToBottom(view: self.view, offset: -20)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
         closeButton.snp.makeConstraints { make in
             make.equalsToTop(view: self.view, offset: 20)
-            make.left.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(10)
             make.width.height.equalTo(50)
         }
         

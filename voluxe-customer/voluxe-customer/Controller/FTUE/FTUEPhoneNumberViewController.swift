@@ -85,20 +85,20 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(sizeThatFits)
         }
         
         phoneNumberTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(phoneNumberLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         phoneNumberConfirmLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(phoneNumberLabel)
+            make.leading.trailing.equalTo(phoneNumberLabel)
             make.top.equalTo(phoneNumberTextField.snp.bottom)
         }
     }

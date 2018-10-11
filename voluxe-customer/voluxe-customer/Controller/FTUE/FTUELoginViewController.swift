@@ -79,20 +79,20 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         scrollView.addSubview(forgotPassword)
         
         emailTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(20)
             make.top.equalToSuperview().offset(BaseViewController.defaultTopYOffset)
-            make.right.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         passwordTextField.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(emailTextField)
+            make.leading.trailing.equalTo(emailTextField)
             make.top.equalTo(emailTextField.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         forgotPassword.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(passwordTextField)
+            make.trailing.equalTo(passwordTextField)
             make.centerY.equalTo(passwordTextField.snp.centerY)
             make.height.equalTo(20)
         }

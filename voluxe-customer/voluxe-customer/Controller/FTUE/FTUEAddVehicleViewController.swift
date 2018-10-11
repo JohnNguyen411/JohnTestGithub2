@@ -97,26 +97,26 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         scrollView.addSubview(colorLabel)
         
         label.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(20)
             make.equalsToTop(view: scrollView.contentView, offset: BaseViewController.defaultTopYOffset)
-            make.right.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(60)
         }
         
         yearLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(label)
+            make.leading.trailing.equalTo(label)
             make.top.equalTo(label.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         modelLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(label)
+            make.leading.trailing.equalTo(label)
             make.top.equalTo(yearLabel.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         colorLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(label)
+            make.leading.trailing.equalTo(label)
             make.top.equalTo(modelLabel.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }

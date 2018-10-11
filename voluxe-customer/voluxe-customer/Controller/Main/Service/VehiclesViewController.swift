@@ -142,7 +142,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         contentView.addSubview(vehicleCollectionView)
         vehicleCollectionView.snp.makeConstraints {
             make in
-            make.left.right.top.equalToSuperview()
+            make.leading.trailing.top.equalToSuperview()
             make.height.equalTo(VehicleCell.VehicleCellHeight)
         }
 
@@ -152,7 +152,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         let scrollView = UIScrollView.forAutoLayout()
         contentView.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(vehicleCollectionView.snp.bottom).offset(20)
         }
 
@@ -170,34 +170,34 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
 
         contentViewInScrollView.addSubview(vehicleTypeView)
         vehicleTypeView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalToSuperview()
             make.height.equalTo(VLTitledLabel.height)
         }
 
         contentViewInScrollView.addSubview(vehicleImageView)
         vehicleImageView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleTypeView.snp.bottom)
             make.height.equalTo(Vehicle.vehicleImageHeight)
         }
 
         contentViewInScrollView.addSubview(scheduledServiceView)
         scheduledServiceView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom)
             make.height.equalTo(VLTitledLabel.height)
         }
 
         contentViewInScrollView.addSubview(dealershipLocationButton)
         dealershipLocationButton.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.top.equalTo(scheduledServiceView.snp.bottom).offset(20)
         }
 
         contentViewInScrollView.addSubview(preferredDealershipView)
         preferredDealershipView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(scheduledServiceView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
@@ -214,13 +214,13 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         contentViewInScrollView.addSubview(spacerView)
         spacerView.snp.makeConstraints {
             make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(preferredDealershipView.snp.bottom)
         }
 
         contentViewInScrollView.addSubview(confirmButton)
         confirmButton.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(spacerView.snp.bottom)
             make.height.equalTo(VLButton.primaryHeight)
         }

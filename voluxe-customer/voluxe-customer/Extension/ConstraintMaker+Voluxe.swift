@@ -16,8 +16,8 @@ extension ConstraintMaker {
     }
     
     func edgesEqualsToView(view: UIView, edges: UIEdgeInsets) {
-        self.left.equalTo(view.safeArea.left).inset(edges.left)
-        self.right.equalTo(view.safeArea.right).inset(edges.right)
+        self.leading.equalTo(view.safeArea.leading).inset(edges.left)
+        self.trailing.equalTo(view.safeArea.trailing).inset(edges.right)
         self.top.equalTo(view.safeArea.top).inset(edges.top)
         self.bottom.equalTo(view.safeArea.bottom).inset(edges.bottom)
     }

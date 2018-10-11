@@ -105,43 +105,43 @@ class ScheduledSelfViewController: BaseVehicleViewController {
         scrollView.snp.makeConstraints { make in
             make.equalsToTop(view: self.view, offset: ViewUtils.getAdaptedHeightSize(sizeInPoints: BaseViewController.defaultTopYOffset))
             make.bottom.equalTo(deliveryLabel.snp.top).offset(-adaptedMarging)
-            make.left.equalToSuperview().offset(adaptedMarging)
-            make.right.equalToSuperview().offset(-adaptedMarging)
+            make.leading.equalToSuperview().offset(adaptedMarging)
+            make.trailing.equalToSuperview().offset(-adaptedMarging)
         }
         
         contentView.snp.makeConstraints { make in
-            make.left.top.width.bottom.equalTo(scrollView)
+            make.leading.top.width.bottom.equalTo(scrollView)
         }
         
         dealershipNoteLabel.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
             make.height.lessThanOrEqualTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 160))
         }
         
         dealershipNameLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(dealershipNoteLabel.snp.bottom).offset(adaptedMarging)
         }
         
         dealershipAddressLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(dealershipNameLabel.snp.bottom).offset(5)
         }
         
         dealershipPhoneButton.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.top.equalTo(dealershipAddressLabel.snp.bottom).offset(5)
         }
         
         mapItButton.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.top.equalTo(dealershipPhoneButton.snp.bottom).offset(adaptedMarging)
         }
         
         mapVC.view.snp.makeConstraints { make in
             make.top.equalTo(mapItButton.snp.bottom).offset(adaptedMarging)
-            make.left.equalToSuperview().offset(2)
-            make.right.equalToSuperview().offset(-2)
+            make.leading.equalToSuperview().offset(2)
+            make.trailing.equalToSuperview().offset(-2)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 200))
         }
         
@@ -150,14 +150,14 @@ class ScheduledSelfViewController: BaseVehicleViewController {
         ViewUtils.addShadow(toView: mapVC.view)
         
         deliveryLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(adaptedMarging)
-            make.right.equalToSuperview().offset(-adaptedMarging)
+            make.leading.equalToSuperview().offset(adaptedMarging)
+            make.trailing.equalToSuperview().offset(-adaptedMarging)
             make.bottom.equalTo(scheduleDeliveryButton.snp.top).offset(-adaptedMarging)
         }
         
         scheduleDeliveryButton.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-adaptedMarging)
-            make.left.equalToSuperview().offset(adaptedMarging)
+            make.trailing.equalToSuperview().offset(-adaptedMarging)
+            make.leading.equalToSuperview().offset(adaptedMarging)
             make.equalsToBottom(view: self.view, offset: -adaptedMarging)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
         }

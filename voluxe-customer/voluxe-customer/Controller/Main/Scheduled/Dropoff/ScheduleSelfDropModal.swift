@@ -67,23 +67,23 @@ class ScheduleSelfDropModal: VLPresentrViewController {
         containerView.addSubview(selfPickupButton)
 
         selfPickupButton.snp.makeConstraints { make in
-            make.bottom.left.right.top.height.equalTo(bottomButton)
+            make.bottom.leading.trailing.top.height.equalTo(bottomButton)
         }
         
         selfPickupLabel.snp.makeConstraints { make in
             make.bottom.equalTo(selfPickupButton.snp.top).offset(-20)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
         
         rescheduleButton.snp.makeConstraints { make in
             make.bottom.equalTo(selfPickupLabel.snp.top).offset(-40)
             make.height.equalTo(VLButton.primaryHeight)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
         
         rescheduleLabel.snp.makeConstraints { make in
             make.bottom.equalTo(rescheduleButton.snp.top).offset(-20)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
         
         

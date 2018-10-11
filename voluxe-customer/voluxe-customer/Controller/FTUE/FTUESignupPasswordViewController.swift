@@ -120,24 +120,24 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         passwordLabel.snp.makeConstraints { (make) -> Void in
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
         
         passwordConditionLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(passwordLabel)
+            make.leading.trailing.equalTo(passwordLabel)
             make.top.equalTo(passwordLabel.snp.bottom).offset(-2)
             make.height.equalTo(30)
         }
         
         volvoPwdTextField.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(passwordConditionLabel)
+            make.leading.trailing.equalTo(passwordConditionLabel)
             make.top.equalTo(passwordConditionLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         volvoPwdConfirmTextField.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(volvoPwdTextField)
+            make.leading.trailing.equalTo(volvoPwdTextField)
             make.top.equalTo(volvoPwdTextField.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }

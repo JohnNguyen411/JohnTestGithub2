@@ -222,61 +222,61 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
         let leftRightPadding = UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20)
         
         contentView.snp.makeConstraints { make in
-            make.left.top.width.height.equalTo(scrollView)
+            make.leading.top.width.height.equalTo(scrollView)
         }
         
         scheduledServiceView.snp.makeConstraints { make in
-            make.right.left.equalToSuperview()
+            make.trailing.leading.equalToSuperview()
             make.top.equalToSuperview().offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         descriptionButton.snp.makeConstraints { make in
-            make.left.right.equalTo(scheduledServiceView).inset(leftRightPadding)
+            make.leading.trailing.equalTo(scheduledServiceView).inset(leftRightPadding)
             make.top.equalTo(scheduledServiceView.snp.bottom).offset(-10)
             make.height.equalTo(VLButton.secondaryHeight)
         }
         
         pickupLocationView.snp.makeConstraints { make in
-            make.left.right.equalTo(scheduledServiceView)
+            make.leading.trailing.equalTo(scheduledServiceView)
             make.top.equalTo(descriptionButton.snp.bottom).offset(10)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         dealershipView.snp.makeConstraints { make in
-            make.left.right.equalTo(scheduledServiceView)
+            make.leading.trailing.equalTo(scheduledServiceView)
             make.top.equalTo(pickupLocationView.snp.bottom)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) && RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.loanerFeatureEnabledKey) {
             scheduledPickupView.snp.makeConstraints { make in
-                make.left.right.equalTo(scheduledServiceView)
+                make.leading.trailing.equalTo(scheduledServiceView)
                 make.top.equalTo(loanerView.snp.bottom)
                 make.height.equalTo(SchedulingViewController.vlLabelHeight)
             }
         } else {
             scheduledPickupView.snp.makeConstraints { make in
-                make.left.right.equalTo(scheduledServiceView)
+                make.leading.trailing.equalTo(scheduledServiceView)
                 make.top.equalTo(dealershipView.snp.bottom)
                 make.height.equalTo(SchedulingViewController.vlLabelHeight)
             }
         }
         
         confirmButton.snp.makeConstraints { make in
-            make.left.right.equalToSuperview().inset(leftRightPadding)
+            make.leading.trailing.equalToSuperview().inset(leftRightPadding)
             make.bottom.equalTo(contentView.snp.bottom).offset(-SchedulingViewController.insetPadding)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
         stateTestView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.bottom.equalTo(confirmButton.snp.top)
             make.height.width.equalTo(1)
         }
         
         dealershipTestView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.bottom.equalTo(dealershipView.snp.bottom).offset(1)
             make.height.width.equalTo(1)
         }
@@ -494,23 +494,23 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     
     func showDealershipAddress(dealership: Dealership) {
         dealershipAddressView.snp.makeConstraints { make in
-            make.left.right.equalTo(scheduledServiceView).inset(UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20))
+            make.leading.trailing.equalTo(scheduledServiceView).inset(UIEdgeInsets(top: 0, left: 20, bottom: 0, right: 20))
             make.top.equalTo(dealershipView.snp.bottom).offset(-5)
             make.height.equalTo(25)
         }
         
         dealershipMapLabel.snp.makeConstraints { make in
-            make.right.centerY.height.equalToSuperview()
+            make.trailing.centerY.height.equalToSuperview()
             make.width.equalTo(60)
         }
         
         dealershipAddressLabel.snp.makeConstraints { make in
-            make.left.height.centerY.equalToSuperview()
-            make.right.equalTo(dealershipMapLabel.snp.left)
+            make.leading.height.centerY.equalToSuperview()
+            make.trailing.equalTo(dealershipMapLabel.snp.leading)
         }
         
         scheduledPickupView.snp.remakeConstraints { make in
-            make.left.right.equalTo(scheduledServiceView)
+            make.leading.trailing.equalTo(scheduledServiceView)
             make.top.equalTo(dealershipAddressView.snp.bottom).offset(10)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
