@@ -22,6 +22,8 @@ extension UIColor {
 // TODO decouple from UIColor_Hex_Swift pod
 struct Colors {
 
+    static let debug = UIColor("#FFDDDD")
+
     struct Gray {
         static let light = UIColor("#BBBBBB")
         static let dark = UIColor("#222222")

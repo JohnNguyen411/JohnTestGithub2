@@ -8,42 +8,63 @@
 
 import Foundation
 
-// MARK:- Subview layout utilities
+// MARK:- Subview pin utilities
 
 struct Layout {
 
+    // requires both views to have same superview
+    static func pin(topOf view: UIView, toBottomOf peerView: UIView) {
+        guard let superview = view.superview, superview == peerView.superview else { return }
+        view.topAnchor.constraint(equalTo: peerView.bottomAnchor).isActive = true
+    }
+
+    static func pinToSuperviewTop(view: UIView, useSafeArea: Bool = true) {
+        guard let superview = view.superview else { return }
+        let anchor = useSafeArea ? superview.compatibleSafeAreaLayoutGuide.topAnchor : superview.topAnchor
+        view.topAnchor.constraint(equalTo: anchor).isActive = true
+    }
+
+    static func pinToSuperviewBottom(view: UIView, useSafeArea: Bool = true) {
+        guard let superview = view.superview else { return }
+        let anchor = useSafeArea ? superview.compatibleSafeAreaLayoutGuide.bottomAnchor : superview.bottomAnchor
+        view.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
+    }
+}
+
+// MARK:- Add subview and pin utilities
+
+extension Layout {
+
+    // TODO top safe are implied?
     static func fill(view: UIView, with subview: UIView) {
         subview.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(subview)
         NSLayoutConstraint.activate([
             subview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            subview.topAnchor.constraint(equalTo: view.topAnchor),
+            subview.topAnchor.constraint(equalTo: view.compatibleSafeAreaLayoutGuide.topAnchor),
             subview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             subview.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 
-    static func add(subview: UIView, pinnedToTopOf view: UIView) {
+    // top safe area is implied
+    static func add(subview: UIView, pinnedToTopOf view: UIView, useSafeArea: Bool = true) {
         subview.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(subview)
-        NSLayoutConstraint.activate([
-            subview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            subview.topAnchor.constraint(equalTo: view.compatibleSafeAreaLayoutGuide.topAnchor),
-            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor)
-        ])
+        Layout.pinToSuperviewTop(view: subview)
+        subview.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        subview.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
 
     // TODO need to assert if no superview
-    // TODO is margin optional or changeable?
+    // TODO is vertical margin optional or changeable?
     static func add(view: UIView, pinTopToBottomOf peerView: UIView) {
         guard let superview = peerView.superview else { return }
         superview.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            view.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
-            view.topAnchor.constraint(equalTo: peerView.bottomAnchor, constant: 20),
-            view.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
-        ])
+        Layout.pin(topOf: view, toBottomOf: peerView)
+        view.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+        view.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
     }
 
     // TODO extension to modify height constraints using constraint.identifier
@@ -101,6 +122,9 @@ extension Layout {
     static func scrollView(in viewController: UIViewController) -> UIScrollView {
         viewController.automaticallyAdjustsScrollViewInsets = true
         let view = UIScrollView.forAutoLayout()
+        if #available(iOS 11.0, *) {
+            view.contentInsetAdjustmentBehavior = .scrollableAxes
+        }
         self.fill(view: viewController.view, with: view)
         return view
     }

@@ -13,16 +13,31 @@ class GridLayoutViewController: UIViewController {
 
     override func viewDidLoad() {
 
+        super.viewDidLoad()
+        self.navigationItem.title = "Grid Layout"
+        self.view.backgroundColor = .white
+
         let scrollView = Layout.scrollView(in: self)
         let contentView = Layout.verticalContentView(in: scrollView)
 
-        let gridView = GridLayoutView(layout: .common())
+        let gridView = GridLayoutView(layout: .chunky())
         Layout.fill(view: contentView, with: gridView)
 
-        var label = Label.dark(with: "First column")
-        gridView.add(subview: label, to: 1)
+        var previousView: UIView
+        var view: UIView
+            
+        view = Label.dark(with: "1.1")
+        view.backgroundColor = .blue
+        gridView.add(subview: view, to: 1)
+        view.topAnchor.constraint(equalTo: gridView.topAnchor).isActive = true
+        previousView = view
 
-        var label = Label.dark(with: "Second column")
-        gridView.add(subview: label, to: 2)
+        view = Label.dark(with: "2.2")
+        view.backgroundColor = .blue
+        gridView.add(subview: view, to: 2)
+        view.topAnchor.constraint(equalTo: previousView.bottomAnchor).isActive = true
+        previousView = view
+
+        Layout.addSpacerView(pinToBottomOf: previousView, pinToSuperviewBottom: true)
     }
 }
