@@ -151,7 +151,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             let from = formatter.string(from: todaysDate.beginningOfDay())
             let to = formatter.string(from: maxDate.endOfDay())
             
-            let timeSlotType = "driver"
+            let timeSlotType = isPickup ? "driver_pickup" : "driver_dropoff"
             
             var loaner = false
             if let selectedLoaner = RequestedServiceManager.sharedInstance.getLoaner() {
