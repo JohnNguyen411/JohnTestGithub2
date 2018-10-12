@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // MARK:- Subview pin utilities
 
@@ -63,7 +64,7 @@ extension Layout {
         superview.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         Layout.pin(topOf: view, toBottomOf: peerView)
-        view.leadingAnchor.constraint(equalTo: superview.leadingAnchor),
+        view.leadingAnchor.constraint(equalTo: superview.leadingAnchor)
         view.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
     }
 

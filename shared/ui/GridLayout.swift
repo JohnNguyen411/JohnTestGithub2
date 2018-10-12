@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 // grid discussion with Brian
 // margin, gutter, number of columns
@@ -32,16 +33,35 @@ struct GridLayout {
     // number of columns
     let columnCount: UInt
 
+    // number of gutters
+    var gutterCount: UInt {
+        return self.columnCount == 0 ? 0 : self.columnCount - 1
+    }
+
     // how to ensure all columns + gutters + margins equal width?
     // column width (depends on the view installed on)
-    func columnWidth(for view: UIView) -> UInt { return 0 }
-    func columnWidth(for column: UInt, in view: UIView) -> UInt { return 0 }
+    func columnWidth(for view: UIView) -> CGFloat {
+        var width = view.frame.size.width
+        if width == 0 { return 0.0 }
+        width -= CGFloat(2 * self.margin)
+        width -= CGFloat(self.gutterCount * self.gutter)
+        width /= CGFloat(self.columnCount)
+        return width
+    }
+
+    // TODO check for out of bounds
+    func leadingOffset(for column: UInt, in view: UIView) -> CGFloat {
+        var offset = CGFloat(self.margin)
+        offset += CGFloat(column - 1) * self.columnWidth(for: view)
+        offset += CGFloat(column - 1) * CGFloat(self.gutter)
+        return offset
+    }
 }
 
 extension GridLayout {
 
     static func common() -> GridLayout {
-        return GridLayout(margin: 10, gutter: 10, columnCount: 4)
+        return GridLayout(margin: 20, gutter: 10, columnCount: 4)
     }
 
     static func chunky() -> GridLayout {
@@ -63,6 +83,7 @@ class GridLayoutView: UIView {
     // guides represent the margins and inter-column gutters
     // the first and last guide are the margins
     // any guides in between are for the gutters
+    // TODO rename to gridGuides or maybe split into gridMarginGuides and gridGutterGuides
     var guides: [UILayoutGuide] = []
 
     private func guides(from layout: GridLayout) -> [UILayoutGuide] {
@@ -70,50 +91,25 @@ class GridLayoutView: UIView {
 
         // leading margin guide
         var guide = UILayoutGuide()
-        guide.identifier = "leadingGuide"
+        guide.identifier = "grid.leading"
         self.addLayoutGuide(guide)
-        guide.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 0).isActive = true
-        guide.widthAnchor.constraint(equalToConstant: CGFloat(layout.margin)).isActive = true
         guides += [guide]
 
-        // TODO this only works because there is a single centered gutter in between two columns
-        // there is no to know the offsets for other columns without knowing the view width
-        // force a gutter to simulate two columns, need to use actual column width
-        guide = UILayoutGuide()
-        guide.identifier = "gutterGuide"
-        self.addLayoutGuide(guide)
-        guide.centerXAnchor.constraint(equalTo: self.centerXAnchor).isActive = true
-        guide.widthAnchor.constraint(equalToConstant: CGFloat(layout.gutter)).isActive = true
-        guides += [guide]
+        // gutter guides
+        for i in 0 ..< self.gridLayout.gutterCount {
+            guide = UILayoutGuide()
+            guide.identifier = "grid.gutter.\(i)"
+            self.addLayoutGuide(guide)
+            guides += [guide]
+        }
 
         // trailing margin guide
         guide = UILayoutGuide()
-        guide.identifier = "trailingGuide"
+        guide.identifier = "grid.trailing"
         self.addLayoutGuide(guide)
-        guide.widthAnchor.constraint(equalToConstant: CGFloat(layout.margin)).isActive = true
-        guide.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: 0).isActive = true
         guides += [guide]
 
         return guides
-    }
-
-    // TODO
-    // private func guideFor(leading, trailing)
-
-    private func addDebugSubviewsForGuides() {
-
-        let debugView = UIView.forAutoLayout()
-        Layout.fill(view: self, with: debugView)
-
-        for guide in self.guides {
-            let view = UIView.forAutoLayout()
-            view.backgroundColor = Colors.debug
-            debugView.addSubview(view)
-            view.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-            view.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
-            view.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-            view.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-        }
     }
 
     // TODO assert if column count == 0?
@@ -121,12 +117,41 @@ class GridLayoutView: UIView {
         self.gridLayout = layout
         super.init(frame: .zero)
         self.guides = self.guides(from: layout)
-        self.addDebugSubviewsForGuides()
         self.translatesAutoresizingMaskIntoConstraints = false
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    override func layoutSubviews() {
+        self.updateGuides()
+        super.layoutSubviews()
+    }
+
+    // Required to calculate guide leading constants based on view width.
+    private func updateGuides() {
+
+        let grid = self.gridLayout
+        let columnWidth = grid.columnWidth(for: self)
+        let columnStride = CGFloat(grid.gutter) + columnWidth
+        var gutterLeadingConstant = CGFloat(grid.margin) + columnWidth
+
+        for guide in self.guides {
+            if guide == self.guides.first {
+                guide.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
+                guide.widthAnchor.constraint(equalToConstant: CGFloat(grid.margin)).isActive = true
+            }
+            else if guide == self.guides.last {
+                guide.widthAnchor.constraint(equalToConstant: CGFloat(grid.margin)).isActive = true
+                guide.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+            }
+            else {
+                guide.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: gutterLeadingConstant).isActive = true
+                guide.widthAnchor.constraint(equalToConstant: CGFloat(grid.gutter)).isActive = true
+                gutterLeadingConstant += columnStride
+            }
+        }
     }
 }
 
@@ -161,7 +186,7 @@ extension UIView {
         subview.leadingAnchor.constraint(equalTo: leadingGuide.trailingAnchor).isActive = true
         subview.trailingAnchor.constraint(equalTo: trailingGuide.leadingAnchor).isActive = true
 
-        subview.setContentHuggingPriority(.required, for: .horizontal)
+        subview.setContentHuggingPriority(.defaultLow, for: .horizontal)
 //        subview.setContentCompressionResistancePriority(.required, for: .horizontal)
     }
 

@@ -20,8 +20,12 @@ class GridLayoutViewController: UIViewController {
         let scrollView = Layout.scrollView(in: self)
         let contentView = Layout.verticalContentView(in: scrollView)
 
-        let gridView = GridLayoutView(layout: .chunky())
+        let gridView = GridLayoutView(layout: .common())
         Layout.fill(view: contentView, with: gridView)
+        gridView.addDebugSubviewsForMarginsAndGutters()
+        gridView.addDebugSubviewsForColumns()
+
+        return;
 
         var previousView: UIView
         var view: UIView
