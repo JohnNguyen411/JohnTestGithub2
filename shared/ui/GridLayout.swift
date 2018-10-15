@@ -60,8 +60,8 @@ struct GridLayout {
 
 extension GridLayout {
 
-    static func common() -> GridLayout {
-        return GridLayout(margin: 20, gutter: 10, columnCount: 4)
+    static func sixColumns() -> GridLayout {
+        return GridLayout(margin: 20, gutter: 10, columnCount: 6)
     }
 
     static func chunky() -> GridLayout {
@@ -152,6 +152,9 @@ class GridLayoutView: UIView {
                 gutterLeadingConstant += columnStride
             }
         }
+
+//        self.layoutIfNeeded()
+//        self.setNeedsUpdateConstraints()
     }
 }
 
@@ -172,25 +175,30 @@ extension UIView {
     // TODO need a pinTopToPeerBottom?
     // TODO should this throw if no parent grid layout?
     // TODO throw if column > layout.columnCount?
-    func add(subview: UIView, to column: UInt) {
-        guard let parent = self.findParentGridLayoutView() else { return }
-        guard column > 0, column <= parent.gridLayout.columnCount else { return }
+    @discardableResult
+    func add(subview: UIView, to column: UInt) -> UIView {
+        return self.add(subview: subview, from: column, to: column)
+    }
+
+    @discardableResult
+    func add(subview: UIView, from leadingColumn: UInt, to trailingColumn: UInt) -> UIView {
+
+        guard let parent = self.findParentGridLayoutView() else { return subview }
+        guard leadingColumn >= 0,trailingColumn <= parent.gridLayout.columnCount else { return subview }
+        guard leadingColumn <= trailingColumn else { return subview }
 
         subview.translatesAutoresizingMaskIntoConstraints = false
-//        subview.backgroundColor = Colors.debug
         self.addSubview(subview)
 
-        let leadingGuide = parent.guides[Int(column - 1)]
-        let trailingGuide = parent.guides[Int(column)]
+        let leadingGuide = parent.guides[Int(leadingColumn - 1)]
+        let trailingGuide = parent.guides[Int(trailingColumn)]
 
+        subview.setContentHuggingPriority(.defaultLow, for: .horizontal)
         subview.leadingAnchor.constraint(equalTo: leadingGuide.trailingAnchor).isActive = true
         subview.trailingAnchor.constraint(equalTo: trailingGuide.leadingAnchor).isActive = true
 
-        subview.setContentHuggingPriority(.defaultLow, for: .horizontal)
-//        subview.setContentCompressionResistancePriority(.required, for: .horizontal)
+        return subview
     }
-
-    func add(subview: UIView, from leadingColumn: UInt, to trailingColumn: UInt) {}
 }
 
 // TODO this may not be necessary

@@ -14,9 +14,9 @@ import UIKit
 struct Layout {
 
     // requires both views to have same superview
-    static func pin(topOf view: UIView, toBottomOf peerView: UIView) {
+    static func pin(topOf view: UIView, toBottomOf peerView: UIView, spacing: CGFloat = 0) {
         guard let superview = view.superview, superview == peerView.superview else { return }
-        view.topAnchor.constraint(equalTo: peerView.bottomAnchor).isActive = true
+        view.topAnchor.constraint(equalTo: peerView.bottomAnchor, constant: spacing).isActive = true
     }
 
     static func pinToSuperviewTop(view: UIView, useSafeArea: Bool = true) {
@@ -28,7 +28,7 @@ struct Layout {
     static func pinToSuperviewBottom(view: UIView, useSafeArea: Bool = true) {
         guard let superview = view.superview else { return }
         let anchor = useSafeArea ? superview.compatibleSafeAreaLayoutGuide.bottomAnchor : superview.bottomAnchor
-        view.bottomAnchor.constraint(equalTo: superview.bottomAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: anchor).isActive = true
     }
 }
 
@@ -36,15 +36,17 @@ struct Layout {
 
 extension Layout {
 
-    // TODO top safe are implied?
-    static func fill(view: UIView, with subview: UIView) {
+    // TODO are safe areas really implied?
+    static func fill(view: UIView, with subview: UIView, useSafeArea: Bool = true) {
         subview.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(subview)
+        let topAnchor = useSafeArea ? view.compatibleSafeAreaLayoutGuide.topAnchor : view.topAnchor
+        let bottomAnchor = useSafeArea ? view.compatibleSafeAreaLayoutGuide.bottomAnchor : view.bottomAnchor
         NSLayoutConstraint.activate([
+            subview.topAnchor.constraint(equalTo: topAnchor),
             subview.leadingAnchor.constraint(equalTo: view.leadingAnchor),
-            subview.topAnchor.constraint(equalTo: view.compatibleSafeAreaLayoutGuide.topAnchor),
-            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor),
-            subview.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+            subview.bottomAnchor.constraint(equalTo: bottomAnchor),
+            subview.trailingAnchor.constraint(equalTo: view.trailingAnchor)
         ])
     }
 
@@ -64,8 +66,8 @@ extension Layout {
         superview.addSubview(view)
         view.translatesAutoresizingMaskIntoConstraints = false
         Layout.pin(topOf: view, toBottomOf: peerView)
-        view.leadingAnchor.constraint(equalTo: superview.leadingAnchor)
-        view.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
+        view.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
     }
 
     // TODO extension to modify height constraints using constraint.identifier
@@ -97,8 +99,8 @@ extension Layout {
     /// Pins an empty, stretchable spacer view to the bottom
     /// of the last added view and the bottom of the content view.
     /// This effectively "closes" the subview array and allows
-    /// Autolayout to calculate the scroll view's content size
-    /// correctly.
+    /// Autolayout to calculate the superview's content size
+    /// correctly (including scroll views).
     // TODO what to return if guard fails?
     @discardableResult
     static func addSpacerView(toBottomOf contentView: UIView) -> UIView {
@@ -114,6 +116,8 @@ extension Layout {
         ])
         return view
     }
+
+    static func addSpacerViewToBottomOfPreviousSubview(pinToSuperviewBottom: Bool = false) {}
 }
 
 // MARK:- Scroll and content view factories
@@ -122,27 +126,24 @@ extension Layout {
 
     static func scrollView(in viewController: UIViewController) -> UIScrollView {
         viewController.automaticallyAdjustsScrollViewInsets = true
-        let view = UIScrollView.forAutoLayout()
+        let scrollView = UIScrollView.forAutoLayout()
+        scrollView.clipsToBounds = false
         if #available(iOS 11.0, *) {
-            view.contentInsetAdjustmentBehavior = .scrollableAxes
+            scrollView.contentInsetAdjustmentBehavior = .scrollableAxes
         }
-        self.fill(view: viewController.view, with: view)
-        return view
+        self.fill(view: viewController.view, with: scrollView)
+        return scrollView
     }
 
     static func verticalContentView(in scrollView: UIScrollView) -> UIView {
-        let view = UIView.forAutoLayout()
-        Layout.fill(view: scrollView, with: view)
-        NSLayoutConstraint.activate([
-            view.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-            view.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor)
-        ])
-        return view
+        let contentView = UIView.forAutoLayout()
+        Layout.fill(scrollView: scrollView, with: contentView)
+        return contentView
     }
 
-    static func scrollViewWithContentView() -> (UIScrollView, UIView) {
-        let scrollView = UIScrollView.forAutoLayout()
-        let contentView = Layout.verticalContentView(in: scrollView)
-        return (scrollView, contentView)
+    static func fill(scrollView: UIScrollView, with contentView: UIView) {
+        Layout.fill(view: scrollView, with: contentView, useSafeArea: false)
+        contentView.widthAnchor.constraint(equalTo: scrollView.widthAnchor).isActive = true
+        contentView.heightAnchor.constraint(greaterThanOrEqualTo: scrollView.heightAnchor).isActive = true
     }
 }

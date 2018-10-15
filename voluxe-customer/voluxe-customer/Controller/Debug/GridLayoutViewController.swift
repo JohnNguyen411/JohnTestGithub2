@@ -18,30 +18,87 @@ class GridLayoutViewController: UIViewController {
         self.view.backgroundColor = .white
 
         let scrollView = Layout.scrollView(in: self)
-        let contentView = Layout.verticalContentView(in: scrollView)
-
-        let gridView = GridLayoutView(layout: .common())
-        Layout.fill(view: contentView, with: gridView)
-        gridView.addDebugSubviewsForMarginsAndGutters()
-        gridView.addDebugSubviewsForColumns()
-
-        return;
+        let gridView = GridLayoutView(layout: .sixColumns())
+        Layout.fill(scrollView: scrollView, with: gridView)
 
         var previousView: UIView
         var view: UIView
             
-        view = Label.dark(with: "1.1")
-        view.backgroundColor = .blue
-        gridView.add(subview: view, to: 1)
-        view.topAnchor.constraint(equalTo: gridView.topAnchor).isActive = true
+        view = self.label(with: "1 column wide")
+        gridView.add(subview: view, to: 1).pinToSuperviewTop()
         previousView = view
 
-        view = Label.dark(with: "2.2")
-        view.backgroundColor = .blue
-        gridView.add(subview: view, to: 2)
-        view.topAnchor.constraint(equalTo: previousView.bottomAnchor).isActive = true
+        view = self.label(with: "1 column wide")
+        gridView.add(subview: view, to: 2).pinTopToBottomOf(view: previousView, spacing: 10)
         previousView = view
 
+        view = self.label(with: "6 columns wide")
+        gridView.add(subview: view, from: 1, to: 6).pinTopToBottomOf(view: previousView, spacing: 10)
+        previousView = view
+
+        view = self.label(with: "3 columns wide")
+        gridView.add(subview: view, from: 1, to: 3).pinTopToBottomOf(view: previousView, spacing: 10)
+        previousView = view
+
+        view = self.label(with: "3 columns wide")
+        gridView.add(subview: view, from: 3, to: 5).pinTopToBottomOf(view: previousView, spacing: 10)
+        previousView = view
+
+        view = self.label(with: "2 columns wide")
+        gridView.add(subview: view, from: 5, to: 6).pinTopToBottomOf(view: previousView, spacing: 10)
+        previousView = view
+
+        view = self.label(with: "3 columns wide")
+        gridView.add(subview: view, from: 1, to: 3).pinTopToBottomOf(view: previousView, spacing: 10)
+        view = self.label(with: "3 columns wide")
+        gridView.add(subview: view, from: 4, to: 6).pinTopToBottomOf(view: previousView, spacing: 10)
+        previousView = view
+
+        view = self.imageView()
+        gridView.add(subview: view, from: 1, to: 2).pinTopToBottomOf(view: previousView)
+        view = self.imageView()
+        gridView.add(subview: view, from: 3, to: 4).pinTopToBottomOf(view: previousView)
+        view = self.imageView()
+        gridView.add(subview: view, from: 5, to: 6).pinTopToBottomOf(view: previousView)
+        previousView = view
+
+        view = self.label(with: "Long caption text that can be used for images")
+        gridView.add(subview: view, from: 1, to: 6).pinTopToBottomOf(view: previousView, spacing: 20)
+        previousView = view
+
+        view = self.imageView()
+        gridView.add(subview: view, from: 1, to: 2).pinTopToBottomOf(view: previousView, spacing: 20)
+        view = self.label(with: "Lots of text goes here to demonstrate how text can be positioned next to an image...")
+        gridView.add(subview: view, from: 3, to: 6).pinTopToBottomOf(view: previousView, spacing: 20)
+        previousView = view
+
+        view = self.label(with: "Really tall label to test scrolling")
+        view.heightAnchor.constraint(equalToConstant: 300).isActive = true
+        gridView.add(subview: view, from: 1, to: 6).pinTopToBottomOf(view: previousView, spacing: 10)
+        previousView = view
+
+        // close the subview list with a flexible spacer view
         Layout.addSpacerView(pinToBottomOf: previousView, pinToSuperviewBottom: true)
+
+        // DEBUG
+        gridView.addDebugSubviewsForMarginsAndGutters()
+        gridView.addDebugSubviewsForColumns()
+    }
+
+    private func label(with text: String) -> UIView {
+        let view = Label.dark(with: text)
+        view.numberOfLines = 5
+        view.backgroundColor = UIColor(red: 0, green: 0, blue: 1.0, alpha: 0.1)
+        return view
+    }
+
+    private func imageView() -> UIImageView {
+        let image = UIImage(named: "image_xc40")
+        let view = UIImageView(image: image)
+        view.backgroundColor = UIColor(red: 0, green: 0, blue: 1.0, alpha: 0.1)
+        view.clipsToBounds = true
+        view.contentMode = .scaleAspectFit
+        view.constrain(height: 50)
+        return view
     }
 }

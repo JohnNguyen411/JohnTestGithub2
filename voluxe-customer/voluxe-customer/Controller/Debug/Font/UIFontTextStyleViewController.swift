@@ -48,8 +48,4 @@ class UIFontTextStyleViewController: UIViewController {
         // white space at the bottom of the content view
         Layout.addSpacerView(toBottomOf: contentView)
     }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-    }
 }
