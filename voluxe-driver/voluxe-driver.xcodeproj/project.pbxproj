@@ -3,169 +3,265 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 48;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		219C8AAC1E992352D6E5BBEF /* Pods_voluxe_driverTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 319A68D61977502B82AE3388 /* Pods_voluxe_driverTests.framework */; };
-		6CCD42541FA012FD000AC6C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD42531FA012FD000AC6C9 /* AppDelegate.swift */; };
-		6CCD42561FA012FD000AC6C9 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD42551FA012FD000AC6C9 /* ViewController.swift */; };
-		6CCD42591FA012FD000AC6C9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42571FA012FD000AC6C9 /* Main.storyboard */; };
-		6CCD425B1FA012FD000AC6C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD425A1FA012FD000AC6C9 /* Assets.xcassets */; };
-		6CCD425E1FA012FD000AC6C9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD425C1FA012FD000AC6C9 /* LaunchScreen.storyboard */; };
-		6CCD42691FA012FD000AC6C9 /* voluxe_driverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD42681FA012FD000AC6C9 /* voluxe_driverTests.swift */; };
-		6CCD42741FA012FD000AC6C9 /* voluxe_driverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD42731FA012FD000AC6C9 /* voluxe_driverUITests.swift */; };
-		6CCD42C01FA01B1B000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BF1FA01B1B000AC6C9 /* shared */; };
-		6CCD42C11FA01B21000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BF1FA01B1B000AC6C9 /* shared */; };
-		6CCD42C21FA01B22000AC6C9 /* shared in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42BF1FA01B1B000AC6C9 /* shared */; };
-		7D0FEB4F09880485F2C8E223 /* Pods_voluxe_driverUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3889F04B4282D6EEAC070B0C /* Pods_voluxe_driverUITests.framework */; };
-		E466A7CEFED69B80B6A6607A /* Pods_voluxe_driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 32001D448CBCE1582DB46FF2 /* Pods_voluxe_driver.framework */; };
+		23B23DB9CB567E68A9D8A7FD /* Pods_voluxe_driverUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496CC8BDA5EAFFAB068238CC /* Pods_voluxe_driverUITests.framework */; };
+		536FFD932177901D00C83F89 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536FFD842177901D00C83F89 /* UIView+AutoLayout.swift */; };
+		536FFD9C2177901D00C83F89 /* xcarchive-to-ipa.sh in Resources */ = {isa = PBXBuildFile; fileRef = 536FFD902177901D00C83F89 /* xcarchive-to-ipa.sh */; };
+		536FFD9D2177901D00C83F89 /* increment_build.sh in Resources */ = {isa = PBXBuildFile; fileRef = 536FFD912177901D00C83F89 /* increment_build.sh */; };
+		536FFD9E2177901D00C83F89 /* ipa-to-fabric.sh in Resources */ = {isa = PBXBuildFile; fileRef = 536FFD922177901D00C83F89 /* ipa-to-fabric.sh */; };
+		536FFDA12177921B00C83F89 /* release-notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 536FFDA02177921B00C83F89 /* release-notes.txt */; };
+		53B25DD92176960C002B846B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B25DD82176960C002B846B /* AppDelegate.swift */; };
+		53B25DDB2176960C002B846B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B25DDA2176960C002B846B /* ViewController.swift */; };
+		53B25DE02176960D002B846B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53B25DDF2176960D002B846B /* Assets.xcassets */; };
+		53B25DE32176960D002B846B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53B25DE12176960D002B846B /* LaunchScreen.storyboard */; };
+		53B25DF92176960D002B846B /* voluxe_driverUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B25DF82176960D002B846B /* voluxe_driverUITests.swift */; };
+		53B25E15217698B1002B846B /* voluxe_driverAPITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B25E14217698B1002B846B /* voluxe_driverAPITests.swift */; };
+		53B25E23217698C2002B846B /* voluxe_driverUnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B25E22217698C2002B846B /* voluxe_driverUnitTests.swift */; };
+		53B25E2B21769B8F002B846B /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B25E2A21769B8F002B846B /* AppController.swift */; };
+		53B25E2E2176A414002B846B /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 53B25E2D2176A414002B846B /* Settings.bundle */; };
+		CA88B574BCE548756ACE2209 /* Pods_voluxe_driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826625F7F567DBAA71221A14 /* Pods_voluxe_driver.framework */; };
+		F51411018D2C32BCED143614 /* Pods_voluxe_driverAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84BB7F4452F4139EEE1DDC06 /* Pods_voluxe_driverAPITests.framework */; };
+		FC29CCC2DFE7AC9B41E99E99 /* Pods_voluxe_driverUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5305017B5E03E3CC79F2E4 /* Pods_voluxe_driverUnitTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		6CCD42651FA012FD000AC6C9 /* PBXContainerItemProxy */ = {
+		53B25DF52176960D002B846B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = 6CCD42481FA012FD000AC6C9 /* Project object */;
+			containerPortal = 53B25DCD2176960C002B846B /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 6CCD424F1FA012FD000AC6C9;
-			remoteInfo = "voluxe-driver";
-		};
-		6CCD42701FA012FD000AC6C9 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 6CCD42481FA012FD000AC6C9 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6CCD424F1FA012FD000AC6C9;
+			remoteGlobalIDString = 53B25DD42176960C002B846B;
 			remoteInfo = "voluxe-driver";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0D4A71BC4E1EEC9F5F700584 /* Pods-voluxe-driver.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.release.xcconfig"; sourceTree = "<group>"; };
-		1463CF0E6164B152F92D50E0 /* Pods-voluxe-driverUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		319A68D61977502B82AE3388 /* Pods_voluxe_driverTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		32001D448CBCE1582DB46FF2 /* Pods_voluxe_driver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		3889F04B4282D6EEAC070B0C /* Pods_voluxe_driverUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6CCD42501FA012FD000AC6C9 /* voluxe-driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "voluxe-driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6CCD42531FA012FD000AC6C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6CCD42551FA012FD000AC6C9 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6CCD42581FA012FD000AC6C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		6CCD425A1FA012FD000AC6C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		6CCD425D1FA012FD000AC6C9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		6CCD425F1FA012FD000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6CCD42641FA012FD000AC6C9 /* voluxe-driverTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "voluxe-driverTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6CCD42681FA012FD000AC6C9 /* voluxe_driverTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voluxe_driverTests.swift; sourceTree = "<group>"; };
-		6CCD426A1FA012FD000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6CCD426F1FA012FD000AC6C9 /* voluxe-driverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "voluxe-driverUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		6CCD42731FA012FD000AC6C9 /* voluxe_driverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voluxe_driverUITests.swift; sourceTree = "<group>"; };
-		6CCD42751FA012FD000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6CCD42BF1FA01B1B000AC6C9 /* shared */ = {isa = PBXFileReference; lastKnownFileType = folder; name = shared; path = ../shared; sourceTree = "<group>"; };
-		73BBE239EE136587D691AACF /* Pods-voluxe-driverTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverTests/Pods-voluxe-driverTests.release.xcconfig"; sourceTree = "<group>"; };
-		76681EE206A650404E081CB9 /* Pods-voluxe-driver.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.debug.xcconfig"; sourceTree = "<group>"; };
-		CA973DC815C29A6DA692FA0B /* Pods-voluxe-driverTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverTests/Pods-voluxe-driverTests.debug.xcconfig"; sourceTree = "<group>"; };
-		DB400D33AEC6D36819686679 /* Pods-voluxe-driverUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.release.xcconfig"; sourceTree = "<group>"; };
+		094F2A302573828463BE665F /* Pods-voluxe-driver.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.app store.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.app store.xcconfig"; sourceTree = "<group>"; };
+		24B0A83106D70B3A14E0A5B7 /* Pods-voluxe-driverAPITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverAPITests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverAPITests/Pods-voluxe-driverAPITests.production.xcconfig"; sourceTree = "<group>"; };
+		468ECDE7DF2AC14C8B95BC04 /* Pods-voluxe-driverUITests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.development.xcconfig"; sourceTree = "<group>"; };
+		496CC8BDA5EAFFAB068238CC /* Pods_voluxe_driverUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		536FFD842177901D00C83F89 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
+		536FFD902177901D00C83F89 /* xcarchive-to-ipa.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "xcarchive-to-ipa.sh"; sourceTree = "<group>"; };
+		536FFD912177901D00C83F89 /* increment_build.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = increment_build.sh; sourceTree = "<group>"; };
+		536FFD922177901D00C83F89 /* ipa-to-fabric.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "ipa-to-fabric.sh"; sourceTree = "<group>"; };
+		536FFDA02177921B00C83F89 /* release-notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "release-notes.txt"; sourceTree = "<group>"; };
+		536FFDA52177977000C83F89 /* export-options-development.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "export-options-development.plist"; path = "export/export-options-development.plist"; sourceTree = SOURCE_ROOT; };
+		53B25DD52176960C002B846B /* voluxe-driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "voluxe-driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53B25DD82176960C002B846B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		53B25DDA2176960C002B846B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		53B25DDF2176960D002B846B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		53B25DE22176960D002B846B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		53B25DE42176960D002B846B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53B25DF42176960D002B846B /* voluxe-driverUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "voluxe-driverUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53B25DF82176960D002B846B /* voluxe_driverUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voluxe_driverUITests.swift; sourceTree = "<group>"; };
+		53B25DFA2176960D002B846B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53B25E12217698B1002B846B /* voluxe-driverAPITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "voluxe-driverAPITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53B25E14217698B1002B846B /* voluxe_driverAPITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voluxe_driverAPITests.swift; sourceTree = "<group>"; };
+		53B25E16217698B1002B846B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53B25E20217698C2002B846B /* voluxe-driverUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "voluxe-driverUnitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		53B25E22217698C2002B846B /* voluxe_driverUnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = voluxe_driverUnitTests.swift; sourceTree = "<group>"; };
+		53B25E24217698C2002B846B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		53B25E2A21769B8F002B846B /* AppController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
+		53B25E2D2176A414002B846B /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		68BDE64C3234A652C358A12B /* Pods-voluxe-driverUnitTests.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.app store.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.app store.xcconfig"; sourceTree = "<group>"; };
+		6C25190B6650EA5FEA9E0C55 /* Pods-voluxe-driverUnitTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.development.xcconfig"; sourceTree = "<group>"; };
+		6E5305017B5E03E3CC79F2E4 /* Pods_voluxe_driverUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		826625F7F567DBAA71221A14 /* Pods_voluxe_driver.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driver.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		84BB7F4452F4139EEE1DDC06 /* Pods_voluxe_driverAPITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverAPITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A09D259AE8F94479F143422F /* Pods-voluxe-driver.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.development.xcconfig"; sourceTree = "<group>"; };
+		A8AF1EAF19A494AFFD6262BF /* Pods-voluxe-driverUnitTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.production.xcconfig"; sourceTree = "<group>"; };
+		BF639FC061D03DB07A4AAE2A /* Pods-voluxe-driverUITests.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.app store.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.app store.xcconfig"; sourceTree = "<group>"; };
+		CD92095CAC79E51E76DD825D /* Pods-voluxe-driver.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.staging.xcconfig"; sourceTree = "<group>"; };
+		CEB8A3640E39C77C88978907 /* Pods-voluxe-driverAPITests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverAPITests.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverAPITests/Pods-voluxe-driverAPITests.development.xcconfig"; sourceTree = "<group>"; };
+		D02EF59993E675366B9CC290 /* Pods-voluxe-driverAPITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverAPITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverAPITests/Pods-voluxe-driverAPITests.staging.xcconfig"; sourceTree = "<group>"; };
+		DED4A4C7F26E979DDA200B48 /* Pods-voluxe-driverUnitTests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.staging.xcconfig"; sourceTree = "<group>"; };
+		DFD2F595E740F8B8BDDE6384 /* Pods-voluxe-driverUITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.production.xcconfig"; sourceTree = "<group>"; };
+		E22871F92D8DD286A048181C /* Pods-voluxe-driver.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.production.xcconfig"; sourceTree = "<group>"; };
+		EA67A93346F7B11D1397523F /* Pods-voluxe-driverUITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.staging.xcconfig"; sourceTree = "<group>"; };
+		F886450FCC2C6BFB17E53673 /* Pods-voluxe-driverAPITests.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverAPITests.app store.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverAPITests/Pods-voluxe-driverAPITests.app store.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		6CCD424D1FA012FD000AC6C9 /* Frameworks */ = {
+		53B25DD22176960C002B846B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E466A7CEFED69B80B6A6607A /* Pods_voluxe_driver.framework in Frameworks */,
+				CA88B574BCE548756ACE2209 /* Pods_voluxe_driver.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6CCD42611FA012FD000AC6C9 /* Frameworks */ = {
+		53B25DF12176960D002B846B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				219C8AAC1E992352D6E5BBEF /* Pods_voluxe_driverTests.framework in Frameworks */,
+				23B23DB9CB567E68A9D8A7FD /* Pods_voluxe_driverUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6CCD426C1FA012FD000AC6C9 /* Frameworks */ = {
+		53B25E0F217698B1002B846B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D0FEB4F09880485F2C8E223 /* Pods_voluxe_driverUITests.framework in Frameworks */,
+				F51411018D2C32BCED143614 /* Pods_voluxe_driverAPITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53B25E1D217698C2002B846B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FC29CCC2DFE7AC9B41E99E99 /* Pods_voluxe_driverUnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1921F4F434554BD2329D06E5 /* Pods */ = {
+		51C01EF6719DFE95AD7F4411 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				76681EE206A650404E081CB9 /* Pods-voluxe-driver.debug.xcconfig */,
-				0D4A71BC4E1EEC9F5F700584 /* Pods-voluxe-driver.release.xcconfig */,
-				CA973DC815C29A6DA692FA0B /* Pods-voluxe-driverTests.debug.xcconfig */,
-				73BBE239EE136587D691AACF /* Pods-voluxe-driverTests.release.xcconfig */,
-				1463CF0E6164B152F92D50E0 /* Pods-voluxe-driverUITests.debug.xcconfig */,
-				DB400D33AEC6D36819686679 /* Pods-voluxe-driverUITests.release.xcconfig */,
+				A09D259AE8F94479F143422F /* Pods-voluxe-driver.development.xcconfig */,
+				CD92095CAC79E51E76DD825D /* Pods-voluxe-driver.staging.xcconfig */,
+				E22871F92D8DD286A048181C /* Pods-voluxe-driver.production.xcconfig */,
+				094F2A302573828463BE665F /* Pods-voluxe-driver.app store.xcconfig */,
+				CEB8A3640E39C77C88978907 /* Pods-voluxe-driverAPITests.development.xcconfig */,
+				D02EF59993E675366B9CC290 /* Pods-voluxe-driverAPITests.staging.xcconfig */,
+				24B0A83106D70B3A14E0A5B7 /* Pods-voluxe-driverAPITests.production.xcconfig */,
+				F886450FCC2C6BFB17E53673 /* Pods-voluxe-driverAPITests.app store.xcconfig */,
+				468ECDE7DF2AC14C8B95BC04 /* Pods-voluxe-driverUITests.development.xcconfig */,
+				EA67A93346F7B11D1397523F /* Pods-voluxe-driverUITests.staging.xcconfig */,
+				DFD2F595E740F8B8BDDE6384 /* Pods-voluxe-driverUITests.production.xcconfig */,
+				BF639FC061D03DB07A4AAE2A /* Pods-voluxe-driverUITests.app store.xcconfig */,
+				6C25190B6650EA5FEA9E0C55 /* Pods-voluxe-driverUnitTests.development.xcconfig */,
+				DED4A4C7F26E979DDA200B48 /* Pods-voluxe-driverUnitTests.staging.xcconfig */,
+				A8AF1EAF19A494AFFD6262BF /* Pods-voluxe-driverUnitTests.production.xcconfig */,
+				68BDE64C3234A652C358A12B /* Pods-voluxe-driverUnitTests.app store.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		6CCD42471FA012FD000AC6C9 = {
+		536FFD822177901D00C83F89 /* shared */ = {
 			isa = PBXGroup;
 			children = (
-				6CCD42BF1FA01B1B000AC6C9 /* shared */,
-				6CCD42521FA012FD000AC6C9 /* voluxe-driver */,
-				6CCD42671FA012FD000AC6C9 /* voluxe-driverTests */,
-				6CCD42721FA012FD000AC6C9 /* voluxe-driverUITests */,
-				6CCD42511FA012FD000AC6C9 /* Products */,
-				1921F4F434554BD2329D06E5 /* Pods */,
-				A0DA838EA1E3A154C6C185A9 /* Frameworks */,
+				536FFD8E2177901D00C83F89 /* scripts */,
+				536FFD832177901D00C83F89 /* ui */,
+			);
+			name = shared;
+			path = ../shared;
+			sourceTree = "<group>";
+		};
+		536FFD832177901D00C83F89 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				536FFD842177901D00C83F89 /* UIView+AutoLayout.swift */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		536FFD8E2177901D00C83F89 /* scripts */ = {
+			isa = PBXGroup;
+			children = (
+				536FFD902177901D00C83F89 /* xcarchive-to-ipa.sh */,
+				536FFD912177901D00C83F89 /* increment_build.sh */,
+				536FFD922177901D00C83F89 /* ipa-to-fabric.sh */,
+			);
+			path = scripts;
+			sourceTree = "<group>";
+		};
+		536FFDA42177975E00C83F89 /* export */ = {
+			isa = PBXGroup;
+			children = (
+				536FFDA52177977000C83F89 /* export-options-development.plist */,
+			);
+			name = export;
+			path = "New Group";
+			sourceTree = "<group>";
+		};
+		53B25DCC2176960C002B846B = {
+			isa = PBXGroup;
+			children = (
+				536FFDA42177975E00C83F89 /* export */,
+				FEAD62F53F4593197B093570 /* Frameworks */,
+				51C01EF6719DFE95AD7F4411 /* Pods */,
+				53B25DD62176960C002B846B /* Products */,
+				536FFDA02177921B00C83F89 /* release-notes.txt */,
+				536FFD822177901D00C83F89 /* shared */,
+				53B25DD72176960C002B846B /* voluxe-driver */,
+				53B25E13217698B1002B846B /* voluxe-driverAPITests */,
+				53B25DF72176960D002B846B /* voluxe-driverUITests */,
+				53B25E21217698C2002B846B /* voluxe-driverUnitTests */,
 			);
 			sourceTree = "<group>";
 		};
-		6CCD42511FA012FD000AC6C9 /* Products */ = {
+		53B25DD62176960C002B846B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				6CCD42501FA012FD000AC6C9 /* voluxe-driver.app */,
-				6CCD42641FA012FD000AC6C9 /* voluxe-driverTests.xctest */,
-				6CCD426F1FA012FD000AC6C9 /* voluxe-driverUITests.xctest */,
+				53B25DD52176960C002B846B /* voluxe-driver.app */,
+				53B25DF42176960D002B846B /* voluxe-driverUITests.xctest */,
+				53B25E12217698B1002B846B /* voluxe-driverAPITests.xctest */,
+				53B25E20217698C2002B846B /* voluxe-driverUnitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		6CCD42521FA012FD000AC6C9 /* voluxe-driver */ = {
+		53B25DD72176960C002B846B /* voluxe-driver */ = {
 			isa = PBXGroup;
 			children = (
-				6CCD42531FA012FD000AC6C9 /* AppDelegate.swift */,
-				6CCD42551FA012FD000AC6C9 /* ViewController.swift */,
-				6CCD42571FA012FD000AC6C9 /* Main.storyboard */,
-				6CCD425A1FA012FD000AC6C9 /* Assets.xcassets */,
-				6CCD425C1FA012FD000AC6C9 /* LaunchScreen.storyboard */,
-				6CCD425F1FA012FD000AC6C9 /* Info.plist */,
+				53B25E2A21769B8F002B846B /* AppController.swift */,
+				53B25DD82176960C002B846B /* AppDelegate.swift */,
+				53B25E2C21769F5B002B846B /* Resources */,
+				53B25DDA2176960C002B846B /* ViewController.swift */,
 			);
 			path = "voluxe-driver";
 			sourceTree = "<group>";
 		};
-		6CCD42671FA012FD000AC6C9 /* voluxe-driverTests */ = {
+		53B25DF72176960D002B846B /* voluxe-driverUITests */ = {
 			isa = PBXGroup;
 			children = (
-				6CCD42681FA012FD000AC6C9 /* voluxe_driverTests.swift */,
-				6CCD426A1FA012FD000AC6C9 /* Info.plist */,
-			);
-			path = "voluxe-driverTests";
-			sourceTree = "<group>";
-		};
-		6CCD42721FA012FD000AC6C9 /* voluxe-driverUITests */ = {
-			isa = PBXGroup;
-			children = (
-				6CCD42731FA012FD000AC6C9 /* voluxe_driverUITests.swift */,
-				6CCD42751FA012FD000AC6C9 /* Info.plist */,
+				53B25DF82176960D002B846B /* voluxe_driverUITests.swift */,
+				53B25DFA2176960D002B846B /* Info.plist */,
 			);
 			path = "voluxe-driverUITests";
 			sourceTree = "<group>";
 		};
-		A0DA838EA1E3A154C6C185A9 /* Frameworks */ = {
+		53B25E13217698B1002B846B /* voluxe-driverAPITests */ = {
 			isa = PBXGroup;
 			children = (
-				32001D448CBCE1582DB46FF2 /* Pods_voluxe_driver.framework */,
-				319A68D61977502B82AE3388 /* Pods_voluxe_driverTests.framework */,
-				3889F04B4282D6EEAC070B0C /* Pods_voluxe_driverUITests.framework */,
+				53B25E14217698B1002B846B /* voluxe_driverAPITests.swift */,
+				53B25E16217698B1002B846B /* Info.plist */,
+			);
+			path = "voluxe-driverAPITests";
+			sourceTree = "<group>";
+		};
+		53B25E21217698C2002B846B /* voluxe-driverUnitTests */ = {
+			isa = PBXGroup;
+			children = (
+				53B25E22217698C2002B846B /* voluxe_driverUnitTests.swift */,
+				53B25E24217698C2002B846B /* Info.plist */,
+			);
+			path = "voluxe-driverUnitTests";
+			sourceTree = "<group>";
+		};
+		53B25E2C21769F5B002B846B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				53B25DDF2176960D002B846B /* Assets.xcassets */,
+				53B25DE42176960D002B846B /* Info.plist */,
+				53B25DE12176960D002B846B /* LaunchScreen.storyboard */,
+				53B25E2D2176A414002B846B /* Settings.bundle */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		FEAD62F53F4593197B093570 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				826625F7F567DBAA71221A14 /* Pods_voluxe_driver.framework */,
+				84BB7F4452F4139EEE1DDC06 /* Pods_voluxe_driverAPITests.framework */,
+				496CC8BDA5EAFFAB068238CC /* Pods_voluxe_driverUITests.framework */,
+				6E5305017B5E03E3CC79F2E4 /* Pods_voluxe_driverUnitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -173,16 +269,16 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		6CCD424F1FA012FD000AC6C9 /* voluxe-driver */ = {
+		53B25DD42176960C002B846B /* voluxe-driver */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6CCD42781FA012FD000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-driver" */;
+			buildConfigurationList = 53B25DFD2176960D002B846B /* Build configuration list for PBXNativeTarget "voluxe-driver" */;
 			buildPhases = (
-				1856762F2D57DEF33678311F /* [CP] Check Pods Manifest.lock */,
-				6CCD424C1FA012FD000AC6C9 /* Sources */,
-				6CCD424D1FA012FD000AC6C9 /* Frameworks */,
-				6CCD424E1FA012FD000AC6C9 /* Resources */,
-				F68F65B4FDB48BA2626F5594 /* [CP] Embed Pods Frameworks */,
-				FF6E29EF0FB0805BCE070DAE /* [CP] Copy Pods Resources */,
+				77687941A5260CEC7A1F77D1 /* [CP] Check Pods Manifest.lock */,
+				53B25DD12176960C002B846B /* Sources */,
+				53B25DD22176960C002B846B /* Frameworks */,
+				53B25DD32176960C002B846B /* Resources */,
+				0C0BE171E47DB1500ADAD1C7 /* [CP] Embed Pods Frameworks */,
+				536FFD7F2177869400C83F89 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -190,138 +286,202 @@
 			);
 			name = "voluxe-driver";
 			productName = "voluxe-driver";
-			productReference = 6CCD42501FA012FD000AC6C9 /* voluxe-driver.app */;
+			productReference = 53B25DD52176960C002B846B /* voluxe-driver.app */;
 			productType = "com.apple.product-type.application";
 		};
-		6CCD42631FA012FD000AC6C9 /* voluxe-driverTests */ = {
+		53B25DF32176960D002B846B /* voluxe-driverUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6CCD427B1FA012FD000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-driverTests" */;
+			buildConfigurationList = 53B25E032176960D002B846B /* Build configuration list for PBXNativeTarget "voluxe-driverUITests" */;
 			buildPhases = (
-				B0E19FFCC628890E83F61FC5 /* [CP] Check Pods Manifest.lock */,
-				6CCD42601FA012FD000AC6C9 /* Sources */,
-				6CCD42611FA012FD000AC6C9 /* Frameworks */,
-				6CCD42621FA012FD000AC6C9 /* Resources */,
-				71253FC37DBE1DCCF7D734D2 /* [CP] Embed Pods Frameworks */,
-				36F9D6D23FDA2F57B5AFB350 /* [CP] Copy Pods Resources */,
+				E874C1614E2F346A8DECA438 /* [CP] Check Pods Manifest.lock */,
+				53B25DF02176960D002B846B /* Sources */,
+				53B25DF12176960D002B846B /* Frameworks */,
+				53B25DF22176960D002B846B /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				6CCD42661FA012FD000AC6C9 /* PBXTargetDependency */,
-			);
-			name = "voluxe-driverTests";
-			productName = "voluxe-driverTests";
-			productReference = 6CCD42641FA012FD000AC6C9 /* voluxe-driverTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
-		6CCD426E1FA012FD000AC6C9 /* voluxe-driverUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 6CCD427E1FA012FD000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-driverUITests" */;
-			buildPhases = (
-				68ACBBB6A334FA68232BEF38 /* [CP] Check Pods Manifest.lock */,
-				6CCD426B1FA012FD000AC6C9 /* Sources */,
-				6CCD426C1FA012FD000AC6C9 /* Frameworks */,
-				6CCD426D1FA012FD000AC6C9 /* Resources */,
-				548E5032C134087152D303A9 /* [CP] Embed Pods Frameworks */,
-				85712AEAD13208FB0E4BE306 /* [CP] Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				6CCD42711FA012FD000AC6C9 /* PBXTargetDependency */,
+				53B25DF62176960D002B846B /* PBXTargetDependency */,
 			);
 			name = "voluxe-driverUITests";
 			productName = "voluxe-driverUITests";
-			productReference = 6CCD426F1FA012FD000AC6C9 /* voluxe-driverUITests.xctest */;
+			productReference = 53B25DF42176960D002B846B /* voluxe-driverUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		53B25E11217698B1002B846B /* voluxe-driverAPITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53B25E17217698B1002B846B /* Build configuration list for PBXNativeTarget "voluxe-driverAPITests" */;
+			buildPhases = (
+				9C14CB7F5E7BEC65CF4322C5 /* [CP] Check Pods Manifest.lock */,
+				53B25E0E217698B1002B846B /* Sources */,
+				53B25E0F217698B1002B846B /* Frameworks */,
+				53B25E10217698B1002B846B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "voluxe-driverAPITests";
+			productName = "voluxe-driverAPITests";
+			productReference = 53B25E12217698B1002B846B /* voluxe-driverAPITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		53B25E1F217698C2002B846B /* voluxe-driverUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 53B25E25217698C2002B846B /* Build configuration list for PBXNativeTarget "voluxe-driverUnitTests" */;
+			buildPhases = (
+				FFBEFD8B04957EF7C2E3AFD7 /* [CP] Check Pods Manifest.lock */,
+				53B25E1C217698C2002B846B /* Sources */,
+				53B25E1D217698C2002B846B /* Frameworks */,
+				53B25E1E217698C2002B846B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "voluxe-driverUnitTests";
+			productName = "voluxe-driverUnitTests";
+			productReference = 53B25E20217698C2002B846B /* voluxe-driverUnitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		6CCD42481FA012FD000AC6C9 /* Project object */ = {
+		53B25DCD2176960C002B846B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
-				ORGANIZATIONNAME = "Luxe - Volvo Cars";
+				LastSwiftUpdateCheck = 1000;
+				LastUpgradeCheck = 1000;
+				ORGANIZATIONNAME = "Luxe By Volvo";
 				TargetAttributes = {
-					6CCD424F1FA012FD000AC6C9 = {
-						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
+					53B25DD42176960C002B846B = {
+						CreatedOnToolsVersion = 10.0;
 					};
-					6CCD42631FA012FD000AC6C9 = {
-						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 6CCD424F1FA012FD000AC6C9;
+					53B25DF32176960D002B846B = {
+						CreatedOnToolsVersion = 10.0;
+						TestTargetID = 53B25DD42176960C002B846B;
 					};
-					6CCD426E1FA012FD000AC6C9 = {
-						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
-						TestTargetID = 6CCD424F1FA012FD000AC6C9;
+					53B25E11217698B1002B846B = {
+						CreatedOnToolsVersion = 10.0;
+					};
+					53B25E1F217698C2002B846B = {
+						CreatedOnToolsVersion = 10.0;
 					};
 				};
 			};
-			buildConfigurationList = 6CCD424B1FA012FD000AC6C9 /* Build configuration list for PBXProject "voluxe-driver" */;
-			compatibilityVersion = "Xcode 8.0";
+			buildConfigurationList = 53B25DD02176960C002B846B /* Build configuration list for PBXProject "voluxe-driver" */;
+			compatibilityVersion = "Xcode 10.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 				Base,
 			);
-			mainGroup = 6CCD42471FA012FD000AC6C9;
-			productRefGroup = 6CCD42511FA012FD000AC6C9 /* Products */;
+			mainGroup = 53B25DCC2176960C002B846B;
+			productRefGroup = 53B25DD62176960C002B846B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				6CCD424F1FA012FD000AC6C9 /* voluxe-driver */,
-				6CCD42631FA012FD000AC6C9 /* voluxe-driverTests */,
-				6CCD426E1FA012FD000AC6C9 /* voluxe-driverUITests */,
+				53B25DD42176960C002B846B /* voluxe-driver */,
+				53B25E11217698B1002B846B /* voluxe-driverAPITests */,
+				53B25DF32176960D002B846B /* voluxe-driverUITests */,
+				53B25E1F217698C2002B846B /* voluxe-driverUnitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		6CCD424E1FA012FD000AC6C9 /* Resources */ = {
+		53B25DD32176960C002B846B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CCD425E1FA012FD000AC6C9 /* LaunchScreen.storyboard in Resources */,
-				6CCD42C01FA01B1B000AC6C9 /* shared in Resources */,
-				6CCD425B1FA012FD000AC6C9 /* Assets.xcassets in Resources */,
-				6CCD42591FA012FD000AC6C9 /* Main.storyboard in Resources */,
+				536FFD9C2177901D00C83F89 /* xcarchive-to-ipa.sh in Resources */,
+				53B25DE32176960D002B846B /* LaunchScreen.storyboard in Resources */,
+				536FFD9E2177901D00C83F89 /* ipa-to-fabric.sh in Resources */,
+				53B25E2E2176A414002B846B /* Settings.bundle in Resources */,
+				53B25DE02176960D002B846B /* Assets.xcassets in Resources */,
+				536FFD9D2177901D00C83F89 /* increment_build.sh in Resources */,
+				536FFDA12177921B00C83F89 /* release-notes.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6CCD42621FA012FD000AC6C9 /* Resources */ = {
+		53B25DF22176960D002B846B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CCD42C11FA01B21000AC6C9 /* shared in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6CCD426D1FA012FD000AC6C9 /* Resources */ = {
+		53B25E10217698B1002B846B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CCD42C21FA01B22000AC6C9 /* shared in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53B25E1E217698C2002B846B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		1856762F2D57DEF33678311F /* [CP] Check Pods Manifest.lock */ = {
+		0C0BE171E47DB1500ADAD1C7 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		536FFD7F2177869400C83F89 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 09254e520e351430e89eaaeb71ebd9fb51390026 3dda874af75effff80ba0d5ab56693101af04a461d75192e27c578ef99a33681\n";
+		};
+		77687941A5260CEC7A1F77D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-voluxe-driver-checkManifestLockResult.txt",
 			);
@@ -330,46 +490,42 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		36F9D6D23FDA2F57B5AFB350 /* [CP] Copy Pods Resources */ = {
+		9C14CB7F5E7BEC65CF4322C5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driverTests/Pods-voluxe-driverTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		548E5032C134087152D303A9 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		68ACBBB6A334FA68232BEF38 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-voluxe-driverAPITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E874C1614E2F346A8DECA438 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-voluxe-driverUITests-checkManifestLockResult.txt",
 			);
@@ -378,147 +534,81 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		71253FC37DBE1DCCF7D734D2 /* [CP] Embed Pods Frameworks */ = {
+		FFBEFD8B04957EF7C2E3AFD7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driverTests/Pods-voluxe-driverTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		85712AEAD13208FB0E4BE306 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		B0E19FFCC628890E83F61FC5 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-voluxe-driverTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-voluxe-driverUnitTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		F68F65B4FDB48BA2626F5594 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		FF6E29EF0FB0805BCE070DAE /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		6CCD424C1FA012FD000AC6C9 /* Sources */ = {
+		53B25DD12176960C002B846B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CCD42561FA012FD000AC6C9 /* ViewController.swift in Sources */,
-				6CCD42541FA012FD000AC6C9 /* AppDelegate.swift in Sources */,
+				53B25DDB2176960C002B846B /* ViewController.swift in Sources */,
+				536FFD932177901D00C83F89 /* UIView+AutoLayout.swift in Sources */,
+				53B25DD92176960C002B846B /* AppDelegate.swift in Sources */,
+				53B25E2B21769B8F002B846B /* AppController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6CCD42601FA012FD000AC6C9 /* Sources */ = {
+		53B25DF02176960D002B846B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CCD42691FA012FD000AC6C9 /* voluxe_driverTests.swift in Sources */,
+				53B25DF92176960D002B846B /* voluxe_driverUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6CCD426B1FA012FD000AC6C9 /* Sources */ = {
+		53B25E0E217698B1002B846B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6CCD42741FA012FD000AC6C9 /* voluxe_driverUITests.swift in Sources */,
+				53B25E15217698B1002B846B /* voluxe_driverAPITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		53B25E1C217698C2002B846B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				53B25E23217698C2002B846B /* voluxe_driverUnitTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		6CCD42661FA012FD000AC6C9 /* PBXTargetDependency */ = {
+		53B25DF62176960D002B846B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 6CCD424F1FA012FD000AC6C9 /* voluxe-driver */;
-			targetProxy = 6CCD42651FA012FD000AC6C9 /* PBXContainerItemProxy */;
-		};
-		6CCD42711FA012FD000AC6C9 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6CCD424F1FA012FD000AC6C9 /* voluxe-driver */;
-			targetProxy = 6CCD42701FA012FD000AC6C9 /* PBXContainerItemProxy */;
+			target = 53B25DD42176960C002B846B /* voluxe-driver */;
+			targetProxy = 53B25DF52176960D002B846B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6CCD42571FA012FD000AC6C9 /* Main.storyboard */ = {
+		53B25DE12176960D002B846B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				6CCD42581FA012FD000AC6C9 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		6CCD425C1FA012FD000AC6C9 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6CCD425D1FA012FD000AC6C9 /* Base */,
+				53B25DE22176960D002B846B /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -526,7 +616,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		6CCD42761FA012FD000AC6C9 /* Debug */ = {
+		53B25DFB2176960D002B846B /* Development */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -536,10 +626,12 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -547,6 +639,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -557,7 +650,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -574,16 +667,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
-				MTL_ENABLE_DEBUG_INFO = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
-			name = Debug;
+			name = Development;
 		};
-		6CCD42771FA012FD000AC6C9 /* Release */ = {
+		53B25DFC2176960D002B846B /* Production */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -593,10 +687,12 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
 				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -604,6 +700,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -625,150 +722,907 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = Release;
+			name = Production;
 		};
-		6CCD42791FA012FD000AC6C9 /* Debug */ = {
+		53B25DFE2176960D002B846B /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 76681EE206A650404E081CB9 /* Pods-voluxe-driver.debug.xcconfig */;
+			baseConfigurationReference = A09D259AE8F94479F143422F /* Pods-voluxe-driver.development.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "voluxe-driver/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-driver";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.driver.development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Debug;
+			name = Development;
 		};
-		6CCD427A1FA012FD000AC6C9 /* Release */ = {
+		53B25DFF2176960D002B846B /* Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D4A71BC4E1EEC9F5F700584 /* Pods-voluxe-driver.release.xcconfig */;
+			baseConfigurationReference = E22871F92D8DD286A048181C /* Pods-voluxe-driver.production.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "voluxe-driver/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-driver";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.driver.production;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = Release;
+			name = Production;
 		};
-		6CCD427C1FA012FD000AC6C9 /* Debug */ = {
+		53B25E042176960D002B846B /* Development */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CA973DC815C29A6DA692FA0B /* Pods-voluxe-driverTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "voluxe-driverTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-driverTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/voluxe-driver.app/voluxe-driver";
-			};
-			name = Debug;
-		};
-		6CCD427D1FA012FD000AC6C9 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73BBE239EE136587D691AACF /* Pods-voluxe-driverTests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				INFOPLIST_FILE = "voluxe-driverTests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-driverTests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/voluxe-driver.app/voluxe-driver";
-			};
-			name = Release;
-		};
-		6CCD427F1FA012FD000AC6C9 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1463CF0E6164B152F92D50E0 /* Pods-voluxe-driverUITests.debug.xcconfig */;
+			baseConfigurationReference = 468ECDE7DF2AC14C8B95BC04 /* Pods-voluxe-driverUITests.development.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-driverUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-driverUITests";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luxe.luxebyvolvo.voluxe-driverUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "voluxe-driver";
 			};
-			name = Debug;
+			name = Development;
 		};
-		6CCD42801FA012FD000AC6C9 /* Release */ = {
+		53B25E052176960D002B846B /* Production */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = DB400D33AEC6D36819686679 /* Pods-voluxe-driverUITests.release.xcconfig */;
+			baseConfigurationReference = DFD2F595E740F8B8BDDE6384 /* Pods-voluxe-driverUITests.production.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-driverUITests/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.volvocars.voluxe-driverUITests";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luxe.luxebyvolvo.voluxe-driverUITests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "voluxe-driver";
 			};
-			name = Release;
+			name = Production;
+		};
+		53B25E0621769658002B846B /* Staging */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Staging;
+		};
+		53B25E0721769658002B846B /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CD92095CAC79E51E76DD825D /* Pods-voluxe-driver.staging.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.driver.staging;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Staging;
+		};
+		53B25E0921769658002B846B /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = EA67A93346F7B11D1397523F /* Pods-voluxe-driverUITests.staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				INFOPLIST_FILE = "voluxe-driverUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luxe.luxebyvolvo.voluxe-driverUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "voluxe-driver";
+			};
+			name = Staging;
+		};
+		53B25E0A21769663002B846B /* App Store */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "App Store";
+		};
+		53B25E0B21769663002B846B /* App Store */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 094F2A302573828463BE665F /* Pods-voluxe-driver.app store.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.driver;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = "App Store";
+		};
+		53B25E0D21769663002B846B /* App Store */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BF639FC061D03DB07A4AAE2A /* Pods-voluxe-driverUITests.app store.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				INFOPLIST_FILE = "voluxe-driverUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luxe.luxebyvolvo.voluxe-driverUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = "voluxe-driver";
+			};
+			name = "App Store";
+		};
+		53B25E18217698B1002B846B /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEB8A3640E39C77C88978907 /* Pods-voluxe-driverAPITests.development.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-driverAPITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luxe.luxebyvolvo.voluxe-driverAPITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Development;
+		};
+		53B25E19217698B1002B846B /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D02EF59993E675366B9CC290 /* Pods-voluxe-driverAPITests.staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-driverAPITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luxe.luxebyvolvo.voluxe-driverAPITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Staging;
+		};
+		53B25E1A217698B1002B846B /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 24B0A83106D70B3A14E0A5B7 /* Pods-voluxe-driverAPITests.production.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-driverAPITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luxe.luxebyvolvo.voluxe-driverAPITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Production;
+		};
+		53B25E1B217698B1002B846B /* App Store */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F886450FCC2C6BFB17E53673 /* Pods-voluxe-driverAPITests.app store.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-driverAPITests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luxe.luxebyvolvo.voluxe-driverAPITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "App Store";
+		};
+		53B25E26217698C2002B846B /* Development */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6C25190B6650EA5FEA9E0C55 /* Pods-voluxe-driverUnitTests.development.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-driverUnitTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luxe.luxebyvolvo.voluxe-driverUnitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Development;
+		};
+		53B25E27217698C2002B846B /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DED4A4C7F26E979DDA200B48 /* Pods-voluxe-driverUnitTests.staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-driverUnitTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luxe.luxebyvolvo.voluxe-driverUnitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Staging;
+		};
+		53B25E28217698C2002B846B /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A8AF1EAF19A494AFFD6262BF /* Pods-voluxe-driverUnitTests.production.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-driverUnitTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luxe.luxebyvolvo.voluxe-driverUnitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Production;
+		};
+		53B25E29217698C2002B846B /* App Store */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 68BDE64C3234A652C358A12B /* Pods-voluxe-driverUnitTests.app store.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				INFOPLIST_FILE = "voluxe-driverUnitTests/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.luxe.luxebyvolvo.voluxe-driverUnitTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = "App Store";
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		6CCD424B1FA012FD000AC6C9 /* Build configuration list for PBXProject "voluxe-driver" */ = {
+		53B25DD02176960C002B846B /* Build configuration list for PBXProject "voluxe-driver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6CCD42761FA012FD000AC6C9 /* Debug */,
-				6CCD42771FA012FD000AC6C9 /* Release */,
+				53B25DFB2176960D002B846B /* Development */,
+				53B25E0621769658002B846B /* Staging */,
+				53B25DFC2176960D002B846B /* Production */,
+				53B25E0A21769663002B846B /* App Store */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Production;
 		};
-		6CCD42781FA012FD000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-driver" */ = {
+		53B25DFD2176960D002B846B /* Build configuration list for PBXNativeTarget "voluxe-driver" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6CCD42791FA012FD000AC6C9 /* Debug */,
-				6CCD427A1FA012FD000AC6C9 /* Release */,
+				53B25DFE2176960D002B846B /* Development */,
+				53B25E0721769658002B846B /* Staging */,
+				53B25DFF2176960D002B846B /* Production */,
+				53B25E0B21769663002B846B /* App Store */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Production;
 		};
-		6CCD427B1FA012FD000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-driverTests" */ = {
+		53B25E032176960D002B846B /* Build configuration list for PBXNativeTarget "voluxe-driverUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6CCD427C1FA012FD000AC6C9 /* Debug */,
-				6CCD427D1FA012FD000AC6C9 /* Release */,
+				53B25E042176960D002B846B /* Development */,
+				53B25E0921769658002B846B /* Staging */,
+				53B25E052176960D002B846B /* Production */,
+				53B25E0D21769663002B846B /* App Store */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Production;
 		};
-		6CCD427E1FA012FD000AC6C9 /* Build configuration list for PBXNativeTarget "voluxe-driverUITests" */ = {
+		53B25E17217698B1002B846B /* Build configuration list for PBXNativeTarget "voluxe-driverAPITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				6CCD427F1FA012FD000AC6C9 /* Debug */,
-				6CCD42801FA012FD000AC6C9 /* Release */,
+				53B25E18217698B1002B846B /* Development */,
+				53B25E19217698B1002B846B /* Staging */,
+				53B25E1A217698B1002B846B /* Production */,
+				53B25E1B217698B1002B846B /* App Store */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Production;
+		};
+		53B25E25217698C2002B846B /* Build configuration list for PBXNativeTarget "voluxe-driverUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				53B25E26217698C2002B846B /* Development */,
+				53B25E27217698C2002B846B /* Staging */,
+				53B25E28217698C2002B846B /* Production */,
+				53B25E29217698C2002B846B /* App Store */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Production;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = 6CCD42481FA012FD000AC6C9 /* Project object */;
+	rootObject = 53B25DCD2176960C002B846B /* Project object */;
 }

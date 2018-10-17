@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  voluxe-driver
 //
-//  Created by Giroux, Johan on 10/24/17.
-//  Copyright © 2017 Luxe - Volvo Cars. All rights reserved.
+//  Created by Christoph on 10/16/18.
+//  Copyright © 2018 Luxe By Volvo. All rights reserved.
 //
 
 import UIKit
@@ -13,9 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        let window = UIWindow(frame: UIScreen.main.bounds)
+        window.rootViewController = AppController()
+        window.makeKeyAndVisible()
+        self.window = window
         return true
     }
 

@@ -10,7 +10,8 @@
 # note that to test locally the script must be run
 # from the project root aka the directory the project file is in
 #PROJECT_DIR="/Users/hermiteer/LuxeByVolvo/git/ios/voluxe-customer"
-PLIST=${PROJECT_DIR}/voluxe-customer/Resources/Info.plist
+#PLIST=${PROJECT_DIR}/voluxe-customer/Resources/Info.plist
+PLIST=$1
 
 # ensure path is correct
 if [ -f "$PLIST" ]
