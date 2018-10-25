@@ -1,0 +1,35 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '11.4'
+use_frameworks!
+
+# ignore all warnings from all pods
+inhibit_all_warnings!
+
+target 'voluxe-driver' do
+    pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
+    pod 'Crashlytics', '3.10.9'
+    pod 'Fabric', '1.7.13'
+end
+
+target 'voluxe-driverAPITests' do
+    pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
+end
+
+target 'voluxe-driverUnitTests' do
+end
+
+target 'voluxe-driverUITests' do
+end
+
+post_install do | installer |
+    # set all Pods to Swift 4.0 until they update to 4.2
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '4.0'
+        end
+    end
+
+    # copy Acknowledgements into Settings bundle
+    require 'fileutils'
+    FileUtils.cp_r('Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver-acknowledgements.plist', 'voluxe-driver/Resources/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+end
