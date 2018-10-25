@@ -35,6 +35,7 @@ class LuxeAPI: RestAPI {
     }
 }
 
+// TODO move to new file
 struct LuxeAPIError: Codable {
 
     // TODO string enum for code?
@@ -46,27 +47,34 @@ struct LuxeAPIError: Codable {
     let message: String
 }
 
-// TODO LuxeAPIError or VolvoAPIError
+// MARK:- Codable extension
+
 extension RestAPIResponse {
-
-    func asError() -> LuxeAPIError? {
-        guard let data = self.data else { return nil }
-        return try? JSONDecoder().decode(LuxeAPIError.self, from: data)
-    }
-
-    func asErrorCode() -> LuxeAPIError.Code? {
-        return self.asError()?.code
-    }
-
+  
     func decode<T: Decodable>() -> T? {
         guard let data = self.data else { return nil }
         do {
             let object = try JSONDecoder().decode(T.self, from: data)
             return object
         } catch {
+            // TODO need to keep this somewhere
             NSLog("\n\nDECODE ERROR: \(error)\n\n")
             return nil
         }
+    }
+}
+
+// MARK:- Custom decodings
+
+extension RestAPIResponse {
+
+    func asError() -> LuxeAPIError? {
+        let response: LuxeAPIError? = self.decode()
+        return response
+    }
+
+    func asErrorCode() -> LuxeAPIError.Code? {
+        return self.asError()?.code
     }
 
     func asString() -> String? {

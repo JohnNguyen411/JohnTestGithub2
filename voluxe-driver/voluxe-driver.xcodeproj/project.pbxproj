@@ -221,8 +221,8 @@
 		530BCD4B2177AFB0005327E7 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */,
 				53B82AF1217E291D0041015B /* DriverAPI+Driver.swift */,
+				535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */,
 				53DA9CB62180C9FD00ABC414 /* DriverAPI+Request.swift */,
 				530BCD4E2177B153005327E7 /* RestAPI+AlamoFire.swift */,
 			);
@@ -319,8 +319,8 @@
 		53B25DF72176960D002B846B /* voluxe-driverUITests */ = {
 			isa = PBXGroup;
 			children = (
-				53B25DF82176960D002B846B /* voluxe_driverUITests.swift */,
 				53B25DFA2176960D002B846B /* Info.plist */,
+				53B25DF82176960D002B846B /* voluxe_driverUITests.swift */,
 			);
 			path = "voluxe-driverUITests";
 			sourceTree = "<group>";
@@ -328,10 +328,10 @@
 		53B25E13217698B1002B846B /* voluxe-driverAPITests */ = {
 			isa = PBXGroup;
 			children = (
-				53DA9CC52181063E00ABC414 /* Request_APITests.swift */,
 				535A4531217A3787006B5EE1 /* Driver_APITests.swift */,
-				53B25E14217698B1002B846B /* Login_APITests.swift */,
 				53B25E16217698B1002B846B /* Info.plist */,
+				53B25E14217698B1002B846B /* Login_APITests.swift */,
+				53DA9CC52181063E00ABC414 /* Request_APITests.swift */,
 			);
 			path = "voluxe-driverAPITests";
 			sourceTree = "<group>";
@@ -339,8 +339,8 @@
 		53B25E21217698C2002B846B /* voluxe-driverUnitTests */ = {
 			isa = PBXGroup;
 			children = (
-				53B25E22217698C2002B846B /* voluxe_driverUnitTests.swift */,
 				53B25E24217698C2002B846B /* Info.plist */,
+				53B25E22217698C2002B846B /* voluxe_driverUnitTests.swift */,
 			);
 			path = "voluxe-driverUnitTests";
 			sourceTree = "<group>";

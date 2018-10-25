@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO documentation
 enum RestAPIHost: String {
     case development
     case staging
@@ -42,6 +43,7 @@ protocol RestAPI {
                bodyParameters: RestAPIParameters?,
                completion: RestAPICompletion?)
 
+    // TODO change bodyJSON to Encodable
     func put(route: RestAPIRoute,
              bodyParameters: RestAPIParameters?,
              bodyJSON: Data?,
@@ -51,6 +53,8 @@ protocol RestAPI {
               queryParameters: RestAPIParameters?,
               bodyParameters: RestAPIParameters?,
               completion: RestAPICompletion?)
+
+    // TODO need to expose upload here
 }
 
 extension RestAPI {
