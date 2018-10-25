@@ -25,13 +25,15 @@ class DriverAPI: LuxeAPI {
         self.updateHeaders()
     }
 
-    static func login(email: String, password: String, completion: @escaping ((Driver?, DriverAPIError.Code?) -> ())) {
-
+    static func login(email: String,
+                      password: String,
+                      completion: @escaping ((Driver?, LuxeAPIError.Code?) -> ()))
+    {
         let parameters = ["email": email,
                           "password": password,
                           "as": "driver"]
 
-        self.api.post(route: DriverAPIRoutes.login.rawValue, queryParameters: [:], bodyParameters: parameters) {
+        self.api.post(route: "v1/users/login", bodyParameters: parameters) {
             response in
             let (driver, token) = response?.decodeDriverAndToken() ?? (nil, nil)
             self.api.updateHeaders(with: token)
@@ -39,8 +41,8 @@ class DriverAPI: LuxeAPI {
         }
     }
 
-    static func logout(completion: ((DriverAPIError.Code?) -> ())? = nil) {
-        self.api.post(route: DriverAPIRoutes.logout.rawValue) {
+    static func logout(completion: ((LuxeAPIError.Code?) -> ())? = nil) {
+        self.api.post(route: "v1/users/logout") {
             response in
             completion?(response?.asErrorCode())
         }

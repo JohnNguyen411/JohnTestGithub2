@@ -12,8 +12,8 @@ import UIKit
 
 extension DriverAPI {
 
-    static func me(completion: @escaping ((Driver?, DriverAPIError.Code?) -> Void)) {
-        self.api.get(route: DriverAPIRoutes.me.rawValue) {
+    static func me(completion: @escaping ((Driver?, LuxeAPIError.Code?) -> Void)) {
+        self.api.get(route: "v1/users/me") {
             response in
             let user = response?.decodeDriver()
             completion(user, response?.asErrorCode())
@@ -21,7 +21,7 @@ extension DriverAPI {
     }
 
     static func dealerships(for driver: Driver,
-                            completion: @escaping (([Dealership], DriverAPIError.Code?) -> Void))
+                            completion: @escaping (([Dealership], LuxeAPIError.Code?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/dealerships"
         self.api.get(route: route) {
@@ -33,7 +33,7 @@ extension DriverAPI {
 
     static func update(photo: UIImage,
                        for driver: Driver,
-                       completion: @escaping ((DriverAPIError.Code?) -> Void))
+                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/photo"
         self.api.upload(route: route, image: photo) {
@@ -43,7 +43,7 @@ extension DriverAPI {
     }
 
     static func update(location: CLLocationCoordinate2D,
-                       for driver: Driver, completion: @escaping ((DriverAPIError.Code?) -> Void))
+                       for driver: Driver, completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/location"
         let location = RestAPIResponse.APILocation(with: location)
@@ -57,7 +57,7 @@ extension DriverAPI {
     // TODO make sure the identifier is correct, or is this the PN identifier?
     static func register(device token: String,
                          for driver: Driver,
-                         completion: @escaping ((DriverAPIError.Code?) -> Void))
+                         completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/devices/current"
         let identifier = UIDevice.current.identifierForVendor?.uuidString ?? "UDID unavailable"
@@ -78,7 +78,7 @@ extension DriverAPI {
     // TODO should ignore request if both numbers are nil?
     static func update(phoneNumber: String,
                        for driver: Driver,
-                       completion: @escaping ((DriverAPIError.Code?) -> Void))
+                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)"
         let parameters: RestAPIParameters = ["work_phone_number": phoneNumber]
@@ -89,7 +89,7 @@ extension DriverAPI {
     }
 
     static func requestPhoneNumberVerification(for driver: Driver,
-                                               completion: @escaping ((DriverAPIError.Code?) -> Void))
+                                               completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/work-phone-number/request-verification"
         self.api.put(route: route) {
@@ -100,7 +100,7 @@ extension DriverAPI {
 
     static func verifyPhoneNumber(with code: String,
                                   for driver: Driver,
-                                  completion: @escaping ((DriverAPIError.Code?) -> Void))
+                                  completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/work-phone-number/verify"
         let parameters: RestAPIParameters = ["verification_code": code]
@@ -114,7 +114,7 @@ extension DriverAPI {
 
     static func update(password: String,
                        for driver: Driver,
-                       completion: @escaping ((DriverAPIError.Code?) -> Void))
+                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/password/change"
         let parameters: RestAPIParameters = ["new_password": password]

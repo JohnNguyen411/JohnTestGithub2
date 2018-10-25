@@ -8,14 +8,6 @@
 
 import Foundation
 
-// TODO this is overkill
-enum DriverAPIRoutes: RestAPIRoute {
-    case dealerships = "v1/drivers/driverID/dealerships"
-    case login = "v1/users/login"
-    case logout = "v1/users/logout"
-    case me = "v1/users/me"
-}
-
 extension RestAPIHost {
     var string: String {
         switch self {
@@ -26,14 +18,7 @@ extension RestAPIHost {
     }
 }
 
-// TODO this needs to become LuxeAPI and manage token/headers
 class LuxeAPI: RestAPI {
-
-    // TODO is there a way to keep this private but accessible to extensions?
-//    static let api = DriverAPI()
-//    init() {
-//        self.updateHeaders()
-//    }
 
     // TODO default values
     // TODO should be configurable at run time
@@ -41,18 +26,19 @@ class LuxeAPI: RestAPI {
     var headers: RestAPIHeaders = [:]
     var defaultHeaders: RestAPIHeaders = [:]
 
+    // TODO find a cleaner way to do this
+    // TODO documentation
     func updateHeaders(with token: String? = nil) {
         var headers = self.defaultHeaders
-        // TODO find a cleaner way to do this
         headers["Authorization"] = token != nil ? "Bearer \(token!)" : nil
         self.headers = headers
     }
 }
 
-// TODO LuxeAPIError or VolvoAPIError
-struct DriverAPIError: Codable {
+struct LuxeAPIError: Codable {
 
     // TODO string enum for code?
+    // https://development-docs.ingress.luxe.com/v1/docs/#/
     typealias Code = String
 
     let error: Bool
@@ -63,12 +49,12 @@ struct DriverAPIError: Codable {
 // TODO LuxeAPIError or VolvoAPIError
 extension RestAPIResponse {
 
-    func asError() -> DriverAPIError? {
+    func asError() -> LuxeAPIError? {
         guard let data = self.data else { return nil }
-        return try? JSONDecoder().decode(DriverAPIError.self, from: data)
+        return try? JSONDecoder().decode(LuxeAPIError.self, from: data)
     }
 
-    func asErrorCode() -> DriverAPIError.Code? {
+    func asErrorCode() -> LuxeAPIError.Code? {
         return self.asError()?.code
     }
 

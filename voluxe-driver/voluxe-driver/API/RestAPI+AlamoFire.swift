@@ -60,7 +60,6 @@ extension RestAPI {
                   completion: completion)
     }
 
-    // TODO should only accept bodyData with a Content-Type
     private func send(method: Alamofire.HTTPMethod,
                       route: RestAPIRoute,
                       headers: RestAPIHeaders,
@@ -98,6 +97,7 @@ extension RestAPI {
     }
 
     // TODO this might be too restrictive as an API
+    // TODO can this take a Codable instead and treat as JSON
     func upload(route: RestAPIRoute,
                 image: UIImage,
                 completion: @escaping RestAPICompletion)
@@ -112,6 +112,7 @@ extension RestAPI {
                     completion: completion)
     }
 
+    // TODO is dataName and fileName appropriate?
     func upload(route: RestAPIRoute,
                 data: Data,
                 dataName: String,

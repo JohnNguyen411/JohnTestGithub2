@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO replace voluxe-customer AdminAPI with this one
 class AdminAPI: LuxeAPI {
 
     // TODO how to allow subclass to set headers?
@@ -22,7 +23,7 @@ class AdminAPI: LuxeAPI {
 
     static func login(email: String,
                       password: String,
-                      completion: @escaping ((DriverAPIError.Code?) -> Void))
+                      completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
         let route = "v1/users/login"
         let parameters: RestAPIParameters = ["email": email,
@@ -36,7 +37,7 @@ class AdminAPI: LuxeAPI {
     }
 
     static func verificationCode(for driver: Driver,
-                                 completion: @escaping ((String?, DriverAPIError.Code?) -> Void))
+                                 completion: @escaping ((String?, LuxeAPIError.Code?) -> Void))
     {
         let route = "v1/phone-verification-codes"
         let parameters: RestAPIParameters = ["user_id": "\(driver.id)",

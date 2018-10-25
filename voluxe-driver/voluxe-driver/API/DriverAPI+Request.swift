@@ -11,7 +11,7 @@ import Foundation
 extension DriverAPI {
 
     static func today(for driver: Driver,
-                      completion: @escaping (([Request], DriverAPIError.Code?) -> Void)) {
+                      completion: @escaping (([Request], LuxeAPIError.Code?) -> Void)) {
         let route = "v1/drivers/\(driver.id)/requests/today"
         self.api.get(route: route) {
             response in
@@ -23,7 +23,7 @@ extension DriverAPI {
     // TODO throw error if no path?
     static func update(_ request: Request,
                        task: Task,
-                       completion: @escaping ((DriverAPIError.Code?) -> Void))
+                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
         guard let path = self.api.path(for: request) else { return }
         let route = "v1/\(path)/\(request.id)/task"
@@ -38,7 +38,7 @@ extension DriverAPI {
     // TODO are dropoff notes not applicable?
     static func update(_ request: Request,
                        notes: String,
-                       completion: @escaping ((DriverAPIError.Code?) -> Void))
+                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
         let route = "v1/driver-pickup-requests/\(request.id)/notes"
         let parameters: RestAPIParameters = ["notes": notes]
@@ -50,7 +50,7 @@ extension DriverAPI {
 
     // TODO return the numbers separately or in a struct?
     static func contactCustomer(_ request: Request,
-                                completion: @escaping ((String?, String?, DriverAPIError.Code?) -> Void))
+                                completion: @escaping ((String?, String?, LuxeAPIError.Code?) -> Void))
     {
         guard let path = self.api.path(for: request) else { return }
         let route = "v1/\(path)/\(request.id)/contact-customer"
