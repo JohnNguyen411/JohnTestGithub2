@@ -39,6 +39,7 @@
 		5330471E2188D9C3007CE01C /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047132188D821007CE01C /* Bundle+Voluxe.swift */; };
 		5330471F2188D9C4007CE01C /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047132188D821007CE01C /* Bundle+Voluxe.swift */; };
 		533047202188DA30007CE01C /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047132188D821007CE01C /* Bundle+Voluxe.swift */; };
+		5330472A21891AE5007CE01C /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047132188D821007CE01C /* Bundle+Voluxe.swift */; };
 		5340E90720D8514D00B17D53 /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E90620D8514D00B17D53 /* FBAnalytics.swift */; };
 		5340E90A20D861A800B17D53 /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E90620D8514D00B17D53 /* FBAnalytics.swift */; };
 		5340E90B20D861AD00B17D53 /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
@@ -2553,6 +2554,7 @@
 				53EF28E220AE0834006CC5FA /* VLDateFormatter.swift in Sources */,
 				538FE76420BF4BC000C3CE17 /* Int+Test.swift in Sources */,
 				53EF28D820AE077B006CC5FA /* ResponseObject.swift in Sources */,
+				5330472A21891AE5007CE01C /* Bundle+Voluxe.swift in Sources */,
 				53EF28C820AE0553006CC5FA /* UserDefaults+Debug.swift in Sources */,
 				5328C8AC20FD40FF0006B448 /* UserDefaults+Voluxe.swift in Sources */,
 				53C8AD5220E59D0E008E07FF /* Enum+CaseIterable.swift in Sources */,
