@@ -51,14 +51,14 @@ struct LuxeAPIError: Codable {
 
 extension RestAPIResponse {
   
-    func decode<T: Decodable>() -> T? {
+    func decode<T: Decodable>(reportErrors: Bool = true) -> T? {
         guard let data = self.data else { return nil }
         do {
             let object = try JSONDecoder().decode(T.self, from: data)
             return object
         } catch {
-            // TODO need to keep this somewhere
-            NSLog("\n\nDECODE ERROR: \(error)\n\n")
+            // TODO log to console?
+            if reportErrors { NSLog("\n\nDECODE ERROR: \(error)\n\n") }
             return nil
         }
     }
@@ -69,7 +69,7 @@ extension RestAPIResponse {
 extension RestAPIResponse {
 
     func asError() -> LuxeAPIError? {
-        let response: LuxeAPIError? = self.decode()
+        let response: LuxeAPIError? = self.decode(reportErrors: false)
         return response
     }
 

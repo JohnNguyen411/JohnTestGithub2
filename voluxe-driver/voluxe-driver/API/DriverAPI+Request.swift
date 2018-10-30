@@ -62,7 +62,18 @@ extension DriverAPI {
         }
     }
 
-    private func path(for request: Request) -> String? {
+    static func reset(_ request: Request,
+                      completion: @escaping (LuxeAPIError.Code?) -> Void)
+    {
+        guard let path = self.api.path(for: request) else { return }
+        let route = "v1/\(path)/\(request.id)/reset"
+        self.api.put(route: route) {
+            response in
+            completion(response?.asErrorCode())
+        }
+    }
+
+    func path(for request: Request) -> String? {
         switch request.type {
             case .dropoff: return "driver-dropoff-requests"
             case .pickup: return "driver-pickup-requests"
