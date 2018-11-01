@@ -6,6 +6,8 @@
 //  Copyright © 2018 Luxe By Volvo. All rights reserved.
 //
 
+import Crashlytics
+import Fabric
 import UIKit
 
 @UIApplicationMain
@@ -32,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func initServices() {
         self.initBackgroundFetch()
         self.initPushNotifications()
+        Fabric.with([Crashlytics.self])
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
