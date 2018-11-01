@@ -9,6 +9,8 @@ target 'voluxe-driver' do
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
     pod 'Crashlytics', '3.10.9'
     pod 'Fabric', '1.7.13'
+    pod 'Firebase/Core', '5.11.0'
+    pod 'Firebase/Messaging', '5.11.0'
 end
 
 target 'voluxe-driverAPITests' do
