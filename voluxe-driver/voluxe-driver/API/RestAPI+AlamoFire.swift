@@ -92,12 +92,12 @@ extension RestAPI {
         sentRequest.responseData {
             response in
             let apiResponse = RestAPIResponse(data: response.result.value, error: response.error)
+            self.inspect(urlResponse: response.response, apiResponse: apiResponse)
             completion?(apiResponse)
         }
     }
 
     // TODO this might be too restrictive as an API
-    // TODO can this take a Codable instead and treat as JSON
     func upload(route: RestAPIRoute,
                 image: UIImage,
                 completion: @escaping RestAPICompletion)
@@ -131,6 +131,7 @@ extension RestAPI {
         request.responseData {
             response in
             let apiResponse = RestAPIResponse(data: response.result.value, error: response.error)
+            self.inspect(urlResponse: response.response, apiResponse: apiResponse)
             completion(apiResponse)
         }
     }

@@ -14,10 +14,15 @@ class AppController: UIViewController {
     static let shared = AppController()
     private init() {
         super.init(nibName: nil, bundle: nil)
+        self.registerAPINotifications()
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        self.deregisterAPINotifications()
     }
 
     override func viewDidLoad() {

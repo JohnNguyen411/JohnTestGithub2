@@ -55,6 +55,10 @@ protocol RestAPI {
               completion: RestAPICompletion?)
 
     // TODO need to expose upload here
+
+    // TODO NSURLResponse may be too restrictive, maybe merge into RestAPIResponse
+    // TODO how to support consuming a response if necessary
+    func inspect(urlResponse: HTTPURLResponse?, apiResponse: RestAPIResponse?)
 }
 
 extension RestAPI {
