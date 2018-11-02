@@ -601,7 +601,7 @@ extension LocationViewController: CurrentLocationCellDelegate {
         let locationManager = LocationManager.sharedInstance.locationManager
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        Analytics.trackView(screen: .requestLocation)
+        Analytics.trackClick(button: .requestLocation)
     }
     
     func deniedPermissionClick() {
