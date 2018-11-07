@@ -9,29 +9,20 @@
 import Foundation
 import ObjectMapper
 
-class Token: Mappable {
+class Token: Codable {
     
-    var token: String!
+    var token: String
     var customerId: Int?
     var issuedAt: Date?
     var expiresAt: Date?
     var userType: String?
     
-    init() {}
-    
-    init(token: String) {
+    private enum CodingKeys: String, CodingKey {
+        case token
+        case customerId = "customer_id"
+        case issuedAt = "issued_at" //TODO: VLISODateTransform?
+        case expiresAt = "expires_at" //TODO: VLISODateTransform?
+        case userType = "user_type"
     }
     
-    required init?(map: Map) {
-    }
-    
-    
-    func mapping(map: Map) {
-        token <- map["token"]
-        issuedAt <- (map["issued_at"], VLISODateTransform())
-        expiresAt <- (map["expires_at"], VLISODateTransform())
-        //let data = map.JSON["data"] as! [String: Any]
-        customerId <- map["user.id"]
-        userType <- map["user.type"]
-    }
 }

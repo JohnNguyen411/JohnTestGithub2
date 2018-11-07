@@ -7,53 +7,47 @@
 //
 
 import Foundation
-import ObjectMapper
 import CoreLocation
 import RealmSwift
 
-class Customer: Object, Mappable {
+@objcMembers class Customer: Object, Codable {
 
-    @objc dynamic var id: Int = -1
-    @objc dynamic var volvoCustomerId: String?
-    @objc dynamic var email: String?
-    @objc dynamic var firstName: String?
-    @objc dynamic var lastName: String?
-    @objc dynamic var marketCode: String?
-    @objc dynamic var phoneNumber: String?
-    @objc dynamic var phoneNumberVerified: Bool = false
-    @objc dynamic var passwordResetRequired: Bool = false
-    @objc dynamic var credit: Int = 0
-    @objc dynamic var currencyId: Int = 0
-    @objc dynamic var photoUrl: String?
-    @objc dynamic var enabled: Bool = true
-    @objc dynamic var location: Location?
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
-
-    required convenience init?(map: Map) {
-        self.init()
-    }
+    var id: Int = -1
+    var volvoCustomerId: String?
+    var email: String?
+    var firstName: String?
+    var lastName: String?
+    var marketCode: String?
+    var phoneNumber: String?
+    var phoneNumberVerified: Bool = false
+    var passwordResetRequired: Bool = false
+    var credit: Int = 0
+    var currencyId: Int = 0
+    var photoUrl: String?
+    var enabled: Bool = true
+    var location: Location?
+    var createdAt: Date?
+    var updatedAt: Date?
     
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case volvoCustomerId = "volvo_customer_id"
+        case email
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case marketCode = "market_code"
+        case phoneNumber = "phone_number"
+        case phoneNumberVerified = "phone_number_verified"
+        case passwordResetRequired = "password_reset_required"
+        case credit
+        case currencyId = "currency_id"
+        case photoUrl = "photo_url"
+        case location
+        case enabled
+        case createdAt = "created_at" //TODO: VLISODateTransform?
+        case updatedAt = "updated_at" //TODO: VLISODateTransform?
+    }
    
-    func mapping(map: Map) {
-        id <- map["id"]
-        volvoCustomerId <- map["volvo_customer_id"]
-        email <- map["email"]
-        firstName <- map["first_name"]
-        lastName <- map["last_name"]
-        marketCode <- map["market_code"]
-        phoneNumber <- map["phone_number"]
-        phoneNumberVerified <- map["phone_number_verified"]
-        passwordResetRequired <- map["password_reset_required"]
-        credit <- map["credit"]
-        currencyId <- map["currency_id"]
-        photoUrl <- map["photo_url"]
-        location <- map["location"]
-        enabled <- map["enabled"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
-    }
-    
     override static func primaryKey() -> String? {
         return "id"
     }

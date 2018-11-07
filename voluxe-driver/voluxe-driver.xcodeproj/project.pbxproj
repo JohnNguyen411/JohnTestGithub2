@@ -257,6 +257,7 @@
 				53B43FA0218CA80700EF847E /* LuxeAPI+Notifications.swift */,
 				53B43F96218B758400EF847E /* LuxeAPI+Version.swift */,
 				530BCD492177AAB2005327E7 /* RestAPI.swift */,
+				530BCD4E2177B153005327E7 /* RestAPI+AlamoFire.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -268,7 +269,6 @@
 				533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */,
 				535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */,
 				53DA9CB62180C9FD00ABC414 /* DriverAPI+Request.swift */,
-				530BCD4E2177B153005327E7 /* RestAPI+AlamoFire.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
