@@ -7,7 +7,6 @@
 //
 
 import Alamofire
-import AlamofireObjectMapper
 import BrightFutures
 import Foundation
 import SwiftEventBus

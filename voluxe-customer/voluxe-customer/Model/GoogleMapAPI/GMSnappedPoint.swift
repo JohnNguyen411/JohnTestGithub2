@@ -7,20 +7,18 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class GMSnappedPoint: Mappable {
+class GMSnappedPoint: Codable {
     
     var location: GMLocation?
     var originalIndex: Int?
     var placeId: String?
-    
-    required init?(map: Map) {
-    }
-    
+   
+    /*
     func mapping(map: Map) {
         location <- map["location"]
         originalIndex <- map["originalIndex"]
         placeId <- map["placeId"]
     }
+ */
 }

@@ -76,8 +76,8 @@ class LoadingViewController: LogoViewController {
     private func callCustomer(customerId: Int) {
         
         // Get Customer object with ID
-        CustomerAPI().getMe().onSuccess { result in
-            if let customer = result?.data?.result {
+        CustomerAPI.me { customer, error in
+            if let customer = customer {
                 if let realm = self.realm {
                     try? realm.write {
                         realm.add(customer, update: true)
@@ -92,8 +92,12 @@ class LoadingViewController: LogoViewController {
                     self.refreshRepairOrderTypes()
                 }
                 
-            }
-            }.onFailure { error in
+            } else {
+                
+                guard let error = error else {
+                    self.errorRetrievingCustomer(customerId: customerId, error: nil)
+                    return
+                }
                 
                 if error.statusCode == 404 || error.statusCode == 403 {
                     self.logout()
@@ -101,13 +105,13 @@ class LoadingViewController: LogoViewController {
                 }
                 
                 if let apiError = error.apiError {
-                    if apiError.getCode() == .E3004 {
+                    if apiError.code == Errors.ErrorCode.E3004.rawValue {
                         // code not verified
                         UserManager.sharedInstance.tempCustomerId = customerId
                         FTUEStartViewController.flowType = .login
                         AppController.sharedInstance.phoneVerificationScreen()
                         return
-                    } else if apiError.getCode() == .E5001 || apiError.getCode() == .E5002 {
+                    } else if apiError.code == Errors.ErrorCode.E5001.rawValue || apiError.code == Errors.ErrorCode.E5002.rawValue {
                         // 500 unknown
                         self.showOkDialog(title: .Error, message: .GenericError, completion: {
                             self.callCustomer(customerId: customerId)
@@ -115,8 +119,7 @@ class LoadingViewController: LogoViewController {
                         return
                     }
                 }
-                
-                self.errorRetrievingCustomer(customerId: customerId, error: nil)
+            }
         }
     }
     
@@ -158,23 +161,24 @@ class LoadingViewController: LogoViewController {
     private func callVehicles(customerId: Int) {
         // Get Customer's Vehicles based on ID
         
-        CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
-            if let cars = result?.data?.result {
+        CustomerAPI.vehicles(customerId: customerId) { vehicles, error in
+            
+            if error != nil {
+                self.errorRetrievingVehicle(customerId: customerId)
+            } else {
                 if let realm = self.realm {
                     try? realm.write {
-                        realm.add(cars, update: true)
+                        realm.add(vehicles, update: true)
                     }
                 }
-                if cars.count == 0 {
+                if vehicles.count == 0 {
                     FTUEStartViewController.flowType = .login
                     AppController.sharedInstance.showAddVehicleScreen()
                 } else {
-                    UserManager.sharedInstance.setVehicles(vehicles: cars)
+                    UserManager.sharedInstance.setVehicles(vehicles: vehicles)
                     self.getBookings(customerId: customerId)
                 }
-            }            
-            }.onFailure { error in
-                self.errorRetrievingVehicle(customerId: customerId)
+            }
         }
     }
     

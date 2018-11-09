@@ -53,6 +53,10 @@ protocol RestAPI {
               queryParameters: RestAPIParameters?,
               bodyParameters: RestAPIParameters?,
               completion: RestAPICompletion?)
+    
+    func delete(route: RestAPIRoute,
+                bodyParameters: RestAPIParameters?,
+                completion: RestAPICompletion?)
 
     // TODO need to expose upload here
 

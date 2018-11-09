@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import AlamofireObjectMapper
 import BrightFutures
 
 class VehicleAPI: NSObject {

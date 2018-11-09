@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import ObjectMapper
 
 class ArrayTransform<T:RealmSwift.Object> : TransformType where T:Mappable {
     

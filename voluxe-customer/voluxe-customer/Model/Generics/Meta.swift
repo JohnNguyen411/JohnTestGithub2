@@ -7,17 +7,15 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class Meta: Mappable {
+class Meta: Codable {
     
     var limit: Int?
     var offset: Int?
     var count: Int?
     var requestId: String?
 
-    required init?(map: Map) {
-    }
+    /*
     
     func mapping(map: Map) {
         limit <- map["limit"]
@@ -25,6 +23,6 @@ class Meta: Mappable {
         count <- map["count"]
         requestId <- map["request_id"]
     }
-    
+    */
     
 }

@@ -7,25 +7,21 @@
 //
 
 import Foundation
-import ObjectMapper
 import CoreLocation
 import RealmSwift
 
-class Location: Object, Mappable {
+@objcMembers class Location: Object, Codable {
     
-    @objc dynamic var id = UUID().uuidString
-    @objc dynamic var address: String?
-    @objc dynamic var latitude: Double = 0.0
-    @objc dynamic var longitude: Double = 0.0
-    @objc dynamic var accuracy: Int = 0
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
+    var id = UUID().uuidString
+    var address: String?
+    var latitude: Double = 0.0
+    var longitude: Double = 0.0
+    var accuracy: Int = 0
+    var createdAt: Date?
+    var updatedAt: Date?
     var location: CLLocationCoordinate2D?
     
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
+    /*
     func mapping(map: Map) {
         address <- map["address"]
         latitude <- map["latitude"]
@@ -34,6 +30,7 @@ class Location: Object, Mappable {
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
     }
+    */
     
     override static func ignoredProperties() -> [String] {
         return ["location"]

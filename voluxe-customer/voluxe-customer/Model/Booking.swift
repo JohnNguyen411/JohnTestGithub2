@@ -7,43 +7,39 @@
 //
 
 import Foundation
-import ObjectMapper
 import CoreLocation
 import RealmSwift
 import Realm
 
-class Booking: Object, Mappable {
+@objcMembers class Booking: Object, Codable {
     
     private static let distanceTrigger = 500.0 // refresh more ofter when within 500m from origin or destination
     
     private static let refreshEnRouteClose = 10
     private static let refreshEnRoute = 20
     
-    @objc dynamic var id: Int = -1
-    @objc dynamic var customerId: Int = -1
-    @objc dynamic var customer: Customer?
-    @objc dynamic var state: String = "created"
-    @objc dynamic var vehicleId: Int = -1
-    @objc dynamic var vehicle: Vehicle?
-    @objc dynamic var dealershipId: Int = -1
-    @objc dynamic var dealership: Dealership?
-    @objc dynamic var loanerVehicleRequested: Bool = false
-    @objc dynamic var loanerVehicleId: Int = -1
-    @objc dynamic var loanerVehicle: Vehicle?
-    @objc dynamic var pickupRequest: Request?
-    @objc dynamic var pickupRequestId: Int = -1
-    @objc dynamic var dropoffRequest: Request?
-    @objc dynamic var dropoffRequestId: Int = -1
-    @objc dynamic var bookingFeedbackId: Int = -1
-    @objc dynamic var bookingFeedback: BookingFeedback?
+    var id: Int = -1
+    var customerId: Int = -1
+    var customer: Customer?
+    var state: String = "created"
+    var vehicleId: Int = -1
+    var vehicle: Vehicle?
+    var dealershipId: Int = -1
+    var dealership: Dealership?
+    var loanerVehicleRequested: Bool = false
+    var loanerVehicleId: Int = -1
+    var loanerVehicle: Vehicle?
+    var pickupRequest: Request?
+    var pickupRequestId: Int = -1
+    var dropoffRequest: Request?
+    var dropoffRequestId: Int = -1
+    var bookingFeedbackId: Int = -1
+    var bookingFeedback: BookingFeedback?
     var repairOrderRequests = List<RepairOrder>()
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
+    var createdAt: Date?
+    var updatedAt: Date?
 
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
+    /*
     func mapping(map: Map) {
         id <- map["id"]
         customerId <- map["customer_id"]
@@ -66,7 +62,7 @@ class Booking: Object, Mappable {
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
     }
-    
+    */
     override static func primaryKey() -> String? {
         return "id"
     }

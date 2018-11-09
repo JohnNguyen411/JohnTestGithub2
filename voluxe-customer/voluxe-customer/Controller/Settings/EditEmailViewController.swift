@@ -61,11 +61,11 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
     
     //MARK: Validation methods
     
-    private func onError(error: Errors? = nil) {
+    private func onError(error: APIResponseError? = nil) {
         MBProgressHUD.hide(for: self.view, animated: true)
         
         if let apiError = error?.apiError {
-            if apiError.getCode() == .E5001 || apiError.getCode() == .E4011 {
+            if apiError.code == Errors.ErrorCode.E5001.rawValue || apiError.code == Errors.ErrorCode.E4011.rawValue {
                 self.showOkDialog(title: .Error, message: .AccountAlreadyExistUpdate, dialog: .error, screen: self.screen)
             }
         } else {
@@ -110,21 +110,23 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
 
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        CustomerAPI().updateEmail(customerId: customerId, email: email).onSuccess { result in
-            // success
-            if let customer = UserManager.sharedInstance.getCustomer() {
-                if let realm = try? Realm() {
-                    try? realm.write {
-                        customer.email = email
-                        UserManager.sharedInstance.setCustomer(customer: customer)
-                        realm.add(customer, update: true)
+        CustomerAPI.updateEmail(customerId: customerId, email: email) { error in
+            // error
+            if let error = error {
+                self.onError(error: error)
+            } else {
+                if let customer = UserManager.sharedInstance.getCustomer() {
+                    if let realm = try? Realm() {
+                        try? realm.write {
+                            customer.email = email
+                            UserManager.sharedInstance.setCustomer(customer: customer)
+                            realm.add(customer, update: true)
+                        }
                     }
                 }
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.navigationController?.popViewController(animated: true)
             }
-            MBProgressHUD.hide(for: self.view, animated: true)
-            self.navigationController?.popViewController(animated: true)
-            }.onFailure { error in
-                self.onError(error: error)
         }
     }
     

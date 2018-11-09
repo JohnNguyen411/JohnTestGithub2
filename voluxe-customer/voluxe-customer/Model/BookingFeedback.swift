@@ -7,23 +7,19 @@
 //
 
 import Foundation
-import ObjectMapper
 import CoreLocation
 import RealmSwift
 import Realm
 
-class BookingFeedback: Object, Mappable {
+@objcMembers class BookingFeedback: Object, Codable {
     
-    @objc dynamic var id: Int = -1
-    @objc dynamic var bookingId: Int = -1
-    @objc dynamic var rating: Int = -1
-    @objc dynamic var comment: String?
-    @objc dynamic var state: String?
+    var id: Int = -1
+    var bookingId: Int = -1
+    var rating: Int = -1
+    var comment: String?
+    var state: String?
     
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
+    /*
     func mapping(map: Map) {
         id <- map["id"]
         bookingId <- map["booking_id"]
@@ -31,6 +27,7 @@ class BookingFeedback: Object, Mappable {
         comment <- map["comment"]
         state <- map["state"]
     }
+ */
 
     override static func primaryKey() -> String? {
         return "id"

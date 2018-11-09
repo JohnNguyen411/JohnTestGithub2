@@ -27,7 +27,7 @@ class CustomerAPI: LuxeAPI {
     
     static func login(email: String,
                       password: String,
-                      completion: @escaping ((Token?, LuxeAPIError.Code?) -> ()))
+                      completion: @escaping ((Token?, APIResponseError?) -> ()))
     {
         let parameters = ["email": email,
                           "password": password,
@@ -37,13 +37,13 @@ class CustomerAPI: LuxeAPI {
             response in
             let token = response?.decodeToken() ?? nil
             self.api.updateHeaders(with: token?.token)
-            completion(token, response?.asErrorCode())
+            completion(token, response?.asError())
         }
     }
     
     static func login(phoneNumber: String,
                       password: String,
-                      completion: @escaping ((Token?, LuxeAPIError.Code?) -> ()))
+                      completion: @escaping ((Token?, APIResponseError?) -> ()))
     {
         let parameters = ["phone_number": phoneNumber,
                           "password": password,
@@ -53,14 +53,14 @@ class CustomerAPI: LuxeAPI {
             response in
             let token = response?.decodeToken() ?? nil
             self.api.updateHeaders(with: token?.token)
-            completion(token, response?.asErrorCode())
+            completion(token, response?.asError())
         }
     }
     
-    static func logout(completion: ((LuxeAPIError.Code?) -> ())? = nil) {
+    static func logout(completion: ((APIResponseError?) -> ())? = nil) {
         self.api.post(route: "v1/users/logout") {
             response in
-            completion?(response?.asErrorCode())
+            completion?(response?.asError())
         }
         self.api.updateHeaders()
     }

@@ -7,16 +7,9 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class GMSnappedPoints: Mappable {
+class GMSnappedPoints: Codable {
     
-    var snappedPoints: [GMSnappedPoint]?
+    let snappedPoints: [GMSnappedPoint]?
     
-    required init?(map: Map) {
-    }
-    
-    func mapping(map: Map) {
-        snappedPoints <- map["snappedPoints"]
-    }
 }

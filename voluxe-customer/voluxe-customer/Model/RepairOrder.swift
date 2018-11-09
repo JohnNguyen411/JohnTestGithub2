@@ -7,22 +7,21 @@
 //
 
 import Foundation
-import ObjectMapper
 import RealmSwift
 
-class RepairOrder: Object, Mappable {
+@objcMembers class RepairOrder: Object, Codable {
     
-    @objc dynamic var id: Int = -1
-    @objc dynamic var bookingId: Int = -1
-    @objc dynamic var dealershipRepairOrderId: Int = -1
-    @objc dynamic var notes: String = ""
-    @objc dynamic var state: String?
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
+    var id: Int = -1
+    var bookingId: Int = -1
+    var dealershipRepairOrderId: Int = -1
+    var notes: String = ""
+    var state: String?
+    var createdAt: Date?
+    var updatedAt: Date?
     let vehicleDrivable = RealmOptional<Bool>()
-    @objc dynamic var repairOrderType: RepairOrderType?
-    @objc dynamic var name: String?
-    @objc dynamic var title: String?
+    var repairOrderType: RepairOrderType?
+    var name: String?
+    var title: String?
     
     convenience init(title: String, repairOrderType: RepairOrderType, customerDescription: String, drivable: Bool?) {
         self.init()
@@ -47,14 +46,11 @@ class RepairOrder: Object, Mappable {
         self.repairOrderType = repairOrderType
     }
     
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
     override static func primaryKey() -> String? {
         return "id"
     }
     
+    /*
     func mapping(map: Map) {
         id <- map["id"]
         bookingId <- map["booking_id"]
@@ -71,6 +67,7 @@ class RepairOrder: Object, Mappable {
         }
         vehicleDrivable.value <- map["vehicle_drivable"]
     }
+ */
     
     static func getDrivabilityTitle(isDrivable: Bool?) -> String {
         if let drivable = isDrivable {

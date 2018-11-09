@@ -204,7 +204,6 @@
 		6C345A0F1FD897E4006CAC32 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C345A0E1FD897E4006CAC32 /* Config.swift */; };
 		6C3FB2AA1FA2574C00B22EAB /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */; };
 		6C3FB2AC1FA2574C00B22EAB /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A81FA2574C00B22EAB /* Customer.swift */; };
-		6C3FB2AD1FA2574C00B22EAB /* FuelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A91FA2574C00B22EAB /* FuelData.swift */; };
 		6C3FB2B01FA2823800B22EAB /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2AF1FA2823800B22EAB /* Fonts.swift */; };
 		6C3FB2B21FA2824200B22EAB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B11FA2824200B22EAB /* Constants.swift */; };
 		6C3FB2B41FA289A700B22EAB /* TransmissionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B31FA289A700B22EAB /* TransmissionType.swift */; };
@@ -212,7 +211,6 @@
 		6C3FB2B91FA297A300B22EAB /* Date+DateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B81FA297A300B22EAB /* Date+DateTools.swift */; };
 		6C3FB2BC1FA29A1C00B22EAB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BA1FA29A1C00B22EAB /* Location.swift */; };
 		6C3FB2BD1FA29A1C00B22EAB /* VehicleLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BB1FA29A1C00B22EAB /* VehicleLocation.swift */; };
-		6C3FB2BF1FA2A4CE00B22EAB /* VehicleLockStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */; };
 		6C4970F72064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */; };
 		6C4970FB20754E2700FF33E9 /* SyncTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970FA20754E2700FF33E9 /* SyncTimer.swift */; };
 		6C497103207823E100FF33E9 /* VehicleAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C497102207823E100FF33E9 /* VehicleAPI.swift */; };
@@ -592,7 +590,6 @@
 		6C345A0E1FD897E4006CAC32 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		6C3FB2A81FA2574C00B22EAB /* Customer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Customer.swift; sourceTree = "<group>"; };
-		6C3FB2A91FA2574C00B22EAB /* FuelData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FuelData.swift; sourceTree = "<group>"; };
 		6C3FB2AF1FA2823800B22EAB /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		6C3FB2B11FA2824200B22EAB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6C3FB2B31FA289A700B22EAB /* TransmissionType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TransmissionType.swift; sourceTree = "<group>"; };
@@ -600,7 +597,6 @@
 		6C3FB2B81FA297A300B22EAB /* Date+DateTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DateTools.swift"; sourceTree = "<group>"; };
 		6C3FB2BA1FA29A1C00B22EAB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		6C3FB2BB1FA29A1C00B22EAB /* VehicleLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLocation.swift; sourceTree = "<group>"; };
-		6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VehicleLockStatus.swift; sourceTree = "<group>"; };
 		6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Voluxe.swift"; sourceTree = "<group>"; };
 		6C4970FA20754E2700FF33E9 /* SyncTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTimer.swift; sourceTree = "<group>"; };
 		6C497102207823E100FF33E9 /* VehicleAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleAPI.swift; sourceTree = "<group>"; };
@@ -1168,11 +1164,9 @@
 				6CDAEE7920E1B52C0040CDFF /* HelpAction.swift */,
 				6CDAEE7620E1B4F00040CDFF /* HelpDetail.swift */,
 				6CDAEE8520E407570040CDFF /* HelpSection.swift */,
-				6C3FB2BE1FA2A4CE00B22EAB /* VehicleLockStatus.swift */,
 				6C3FB2BA1FA29A1C00B22EAB /* Location.swift */,
 				6C3FB2BB1FA29A1C00B22EAB /* VehicleLocation.swift */,
 				6C3FB2B31FA289A700B22EAB /* TransmissionType.swift */,
-				6C3FB2A91FA2574C00B22EAB /* FuelData.swift */,
 				6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */,
 				6C4971062078272400FF33E9 /* VehicleMake.swift */,
 				6CCCF23A2048BA33004BF1A6 /* VehicleModel.swift */,
@@ -2016,10 +2010,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
@@ -2028,10 +2019,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
@@ -2050,20 +2038,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEventBus.framework",
 			);
@@ -2119,17 +2101,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-NSData+zlib/GoogleToolboxForMac.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2163,8 +2141,6 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework",
-				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
 				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
@@ -2173,7 +2149,6 @@
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
-				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
@@ -2190,8 +2165,6 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityLogger.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
@@ -2200,7 +2173,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PhoneNumberKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
@@ -2556,7 +2528,6 @@
 				6C1CE1E720C5F0CF00A2E054 /* DeeplinkManager.swift in Sources */,
 				6CDAEE7D20E1BFED0040CDFF /* HelpBookingView.swift in Sources */,
 				6C69267E1FB3B3E3009495E9 /* LoanerViewController.swift in Sources */,
-				6C3FB2AD1FA2574C00B22EAB /* FuelData.swift in Sources */,
 				5322409020B32CE600D4E86C /* RealmManager.swift in Sources */,
 				6C4D91BB1FDB15F90031E3CB /* Token.swift in Sources */,
 				6CDAEE7720E1B4F00040CDFF /* HelpDetail.swift in Sources */,
@@ -2565,7 +2536,6 @@
 				6C73420C1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,
 				6C7341FF1FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
 				6C20E1BF1FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */,
-				6C3FB2BF1FA2A4CE00B22EAB /* VehicleLockStatus.swift in Sources */,
 				6C20E1E01FBF770C00E5D9A0 /* Request.swift in Sources */,
 				52940966219220B50009F691 /* UserDefaults+LuxeAPI.swift in Sources */,
 				529AB0DB212F7AA300AD8D09 /* ScheduleSelfDropModal.swift in Sources */,

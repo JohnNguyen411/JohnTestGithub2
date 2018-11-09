@@ -7,23 +7,22 @@
 //
 
 import Foundation
-import ObjectMapper
 import CoreLocation
 import RealmSwift
 
-class Dealership: Object, Mappable {
+@objcMembers class Dealership: Object, Codable {
     
-    @objc dynamic var id: Int = -1
-    @objc dynamic var name: String?
-    @objc dynamic var phoneNumber: String?
-    @objc dynamic var email: String?
-    @objc dynamic var location: Location?
-    @objc dynamic var hoursOfOperation: String?
-    @objc dynamic var coverageRadius: Int = 1
-    @objc dynamic var currencyId: Int = 1
-    @objc dynamic var enabled: Bool = true
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
+    var id: Int = -1
+    var name: String?
+    var phoneNumber: String?
+    var email: String?
+    var location: Location?
+    var hoursOfOperation: String?
+    var coverageRadius: Int = 1
+    var currencyId: Int = 1
+    var enabled: Bool = true
+    var createdAt: Date?
+    var updatedAt: Date?
     
     convenience init(name: String?, location: CLLocationCoordinate2D?) {
         self.init()
@@ -35,10 +34,8 @@ class Dealership: Object, Mappable {
         self.init(name: name, location: nil)
     }
     
-    required convenience init?(map: Map) {
-        self.init()
-    }
     
+    /*
     func mapping(map: Map) {
         id <- map["id"]
         name <- map["name"]
@@ -52,7 +49,7 @@ class Dealership: Object, Mappable {
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
     }
-    
+    */
     override static func primaryKey() -> String? {
         return "id"
     }

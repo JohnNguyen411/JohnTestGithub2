@@ -6,9 +6,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'voluxe-customer' do
-    pod 'Alamofire', '4.5.1'
-    pod 'AlamofireObjectMapper', '5.1.0'
-    pod 'AlamofireNetworkActivityLogger', '2.2'
+    pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
     pod 'Branch', '0.25.0'
     pod 'BrightFutures', '6.0.1'
     pod 'CocoaLumberjack/Swift', '3.3.0'
@@ -34,24 +32,19 @@ target 'voluxe-customer' do
 end
 
 target 'voluxe-customerUnitTests' do
-    pod 'Alamofire', '4.5.1'
-    pod 'AlamofireObjectMapper', '5.1.0'
+    pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
     pod 'Firebase/Core', '4.7.0'
 end
 
 target 'voluxe-customerAPITests' do
-    pod 'Alamofire', '4.5.1'
-    pod 'AlamofireObjectMapper', '5.1.0'
-    pod 'AlamofireNetworkActivityLogger', '2.2'
+    pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
     pod 'BrightFutures', '6.0.1'
     pod 'RealmSwift', '3.7.6'
     pod 'SwiftEventBus', '2.1.2'
 end
 
 target 'voluxe-customerUITests' do
-    pod 'Alamofire', '4.5.1'
-    pod 'AlamofireObjectMapper', '5.1.0'
-    pod 'AlamofireNetworkActivityLogger', '2.2'
+    pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
     pod 'BrightFutures', '6.0.1'
     pod 'SwiftEventBus', '2.1.2'
 end

@@ -1,12 +1,7 @@
 //
-//  CustomDateFormatTransform.swift
-//  ObjectMapper
+//  OperationQueue+Alamofire.swift
 //
-//  Created by Dan McCracken on 3/8/15.
-//
-//  The MIT License (MIT)
-//
-//  Copyright (c) 2014-2016 Hearst
+//  Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,16 +20,21 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
 import Foundation
 
-open class CustomDateFormatTransform: DateFormatterTransform {
-	
-    public init(formatString: String) {
-		let formatter = DateFormatter()
-		formatter.locale = Locale(identifier: "en_US_POSIX")
-		formatter.dateFormat = formatString
-		
-		super.init(dateFormatter: formatter)
+extension OperationQueue {
+    convenience init(qualityOfService: QualityOfService = .default,
+                     maxConcurrentOperationCount: Int = OperationQueue.defaultMaxConcurrentOperationCount,
+                     underlyingQueue: DispatchQueue? = nil,
+                     name: String? = nil,
+                     startSuspended: Bool = false) {
+        self.init()
+        self.qualityOfService = qualityOfService
+        self.maxConcurrentOperationCount = maxConcurrentOperationCount
+        self.underlyingQueue = underlyingQueue
+        self.name = name
+        self.isSuspended = startSuspended
     }
 }

@@ -13,16 +13,16 @@ extension CustomerAPI {
     /**
      Get the Customer's Vehicles
      - parameter customerId: Customer's ID
-     - parameter completion: A closure which is called with an array of Vehicle or if an error occured
+     - parameter completion: A closure which is called with an array of Vehicle or APIResponseError if an error occured
      */
     static func vehicles(customerId: Int,
-                         completion: @escaping (([Vehicle], LuxeAPIError.Code?) -> Void)) {
+                         completion: @escaping (([Vehicle], APIResponseError?) -> Void)) {
         let route = "v1/customers/\(customerId)/vehicles"
         
         self.api.get(route: route) {
             response in
             let vehicles = response?.decodeCustomerVehicles() ?? []
-            completion(vehicles, response?.asErrorCode())
+            completion(vehicles, response?.asError())
         }
     }
     
@@ -32,22 +32,23 @@ extension CustomerAPI {
      - parameter make: Make of the new vehicle
      - parameter model: Model of the new vehicle
      - parameter year: Year of the new vehicle
-     - parameter completion: A closure which is called with an array of Vehicle or if an error occured
+     - parameter completion: A closure which is called with the added Vehicle or APIResponseError if an error occured
      */
     static func addVehicle(customerId: Int, make: String, model: String, baseColor: String, year: Int,
-                           completion: @escaping (([Vehicle], LuxeAPIError.Code?) -> Void)) {
+                           completion: @escaping ((Vehicle?, APIResponseError?) -> Void)) {
         
         let params = [
             "make": make,
             "model": model,
             "base_color": baseColor,
-            "year": year
+            "year": "\(year)"
         ]
         
-        self.api.post(route: "v1/customers/\(customerId)/vehicles", bodyParameters: parameters) {
+        
+        self.api.post(route: "v1/customers/\(customerId)/vehicles", bodyParameters: params) {
             response in
-            let vehicles = response?.decodeCustomerVehicles() ?? []
-            completion(vehicles, response?.asErrorCode())
+            let vehicle = response?.decodeCustomerVehicle() ?? nil
+            completion(vehicle, response?.asError())
         }
     }
     
@@ -55,15 +56,15 @@ extension CustomerAPI {
      Endpoint to remove a vehicle from Customer
      - parameter customerId: Customer's ID
      - parameter vehicleId: Vehicle ID
-     - parameter completion: A closure which is called with an array of Vehicle or if an error occured
+     - parameter completion: A closure which is called with an array of Vehicle or APIResponseError if an error occured
      */
     static func deleteVehicle(customerId: Int, vehicleId: Int,
-                           completion: @escaping (([Vehicle], LuxeAPIError.Code?) -> Void)) {
+                           completion: @escaping (([Vehicle], APIResponseError?) -> Void)) {
        
-        self.api.delete(route: "v1/customers/\(customerId)/vehicles/\(vehicleId)", bodyParameters: parameters) {
+        self.api.delete(route: "v1/customers/\(customerId)/vehicles/\(vehicleId)") {
             response in
             let vehicles = response?.decodeCustomerVehicles() ?? []
-            completion(vehicles, response?.asErrorCode())
+            completion(vehicles, response?.asError())
         }
     }
 }
@@ -77,5 +78,14 @@ fileprivate extension RestAPIResponse {
     func decodeCustomerVehicles() -> [Vehicle]? {
         let vehiclesResponse: VehiclesResponse? = self.decode()
         return vehiclesResponse?.data
+    }
+    
+    private struct VehicleResponse: Codable {
+        let data: Vehicle
+    }
+    
+    func decodeCustomerVehicle() -> Vehicle? {
+        let vehicleResponse: VehicleResponse? = self.decode()
+        return vehicleResponse?.data
     }
 }

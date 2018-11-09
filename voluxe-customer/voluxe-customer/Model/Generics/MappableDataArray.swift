@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ObjectMapper
 
 class MappableDataArray<T: Mappable>: Mappable {
     var result: [T]?

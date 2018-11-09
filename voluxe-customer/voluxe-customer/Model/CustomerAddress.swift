@@ -7,23 +7,19 @@
 //
 
 import Foundation
-import ObjectMapper
 import CoreLocation
 import RealmSwift
 
-class CustomerAddress: Object, Mappable {
+@objcMembers class CustomerAddress: Object, Codable {
     
-    @objc dynamic var id = UUID().uuidString
-    @objc dynamic var volvoCustomerId: String?
-    @objc dynamic var location: Location?
-    @objc dynamic var label: String? // Work / Home / Gym etc
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
-    @objc dynamic var luxeCustomerId: Int = -1
+    var id = UUID().uuidString
+    var volvoCustomerId: String?
+    var location: Location?
+    var label: String? // Work / Home / Gym etc
+    var createdAt: Date?
+    var updatedAt: Date?
+    var luxeCustomerId: Int = -1
     
-    required convenience init?(map: Map) {
-        self.init()
-    }
     
     convenience init(id: String?) {
         self.init()
@@ -31,7 +27,7 @@ class CustomerAddress: Object, Mappable {
             self.id = id
         }
     }
-    
+    /*
     func mapping(map: Map) {
         id <- map["id"]
         volvoCustomerId <- map["volvo_customer_id"]
@@ -41,7 +37,7 @@ class CustomerAddress: Object, Mappable {
         updatedAt <- (map["updated_at"], VLISODateTransform())
         luxeCustomerId <- map["customer_id"]
     }
-    
+    */
     override static func primaryKey() -> String? {
         return "id"
     }

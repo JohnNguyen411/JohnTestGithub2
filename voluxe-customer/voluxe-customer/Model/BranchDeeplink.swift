@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class BranchDeeplink: NSObject, Mappable {
+class BranchDeeplink: NSObject, Codable {
 
     var email: String?
     var phoneNumber: String?
@@ -27,7 +26,7 @@ class BranchDeeplink: NSObject, Mappable {
     
     required init?(map: Map) {
     }
-    
+    /*
     func mapping(map: Map) {
         email <- map["email"]
         phoneNumber <- map["phone_number"]
@@ -42,6 +41,6 @@ class BranchDeeplink: NSObject, Mappable {
         campain <- map["~campain"]
         feature <- map["~feature"]
     }
-    
+    */
 
 }

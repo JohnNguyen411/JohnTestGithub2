@@ -7,20 +7,18 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class GMDistanceMatrix: Mappable {
+class GMDistanceMatrix: Codable {
     
-    var rows: [GMRows]?
-    var status: String?
+    let rows: [GMRows]?
+    let status: String?
 
-    required init?(map: Map) {
-    }
-    
+    /*
     func mapping(map: Map) {
         rows <- map["rows"]
         status <- map["status"]
     }
+    */
     
     func getEta() -> GMTextValueObject? {
         guard let rows = rows else { return nil}

@@ -144,55 +144,37 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Dev" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result/Result.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework"
 fi
 if [[ "$CONFIGURATION" == "Mock" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result/Result.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework"
 fi
 if [[ "$CONFIGURATION" == "Staging" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result/Result.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework"
 fi
 if [[ "$CONFIGURATION" == "Production" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result/Result.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework"
 fi
 if [[ "$CONFIGURATION" == "AppStore" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result/Result.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework"
 fi
 if [[ "$CONFIGURATION" == "Beta" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Result/Result.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework"
 fi

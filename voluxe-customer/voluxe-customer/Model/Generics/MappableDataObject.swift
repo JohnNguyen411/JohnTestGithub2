@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ObjectMapper
  
 class MappableDataObject<T: Mappable>: Mappable {
     var result: T?

@@ -139,15 +139,17 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.showProgressHUD()
 
             // initiate password reset with phone number (request code)
-            CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
-                self.hideProgressHUD()
-                self.isLoading = false
-                self.codeTextField.textField.text = ""
-
-                }.onFailure { error in
+            CustomerAPI.passwordReset(phoneNumber: phoneNumber) { error in
+                
+                if error == nil {
                     self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.isLoading = false
+                } else {
+                    self.hideProgressHUD()
+                    self.isLoading = false
+                    self.codeTextField.textField.text = ""
+                }
             }
             return
         }
@@ -166,13 +168,15 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.showProgressHUD()
             
             // initiate password reset with phone number (request code)
-            CustomerAPI().requestPasswordChange(customerId: customer.id).onSuccess { result in
-                self.hideProgressHUD()
-                self.isLoading = false
-                }.onFailure { error in
+            CustomerAPI.requestPasswordChange(customerId: customer.id) { error in
+                if error == nil {
+                    self.hideProgressHUD()
+                    self.isLoading = false
+                } else {
                     self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.isLoading = false
+                }
             }
             return
         }
@@ -185,13 +189,16 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         if UserManager.sharedInstance.isLoggedIn() {
             
             // resend phone verification code
-            CustomerAPI().requestPhoneVerificationCode(customerId: customerId!).onSuccess { result in
-                self.hideProgressHUD()
-                self.isLoading = false
-                }.onFailure { error in
+            CustomerAPI.requestPhoneVerificationCode(customerId: customerId!) { error in
+                
+                if error == nil {
+                    self.hideProgressHUD()
+                    self.isLoading = false
+                } else {
                     self.hideProgressHUD()
                     self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.isLoading = false
+                }
             }
         } else if let email = signupCustomer.email, let phoneNumber = signupCustomer.phoneNumber, let firstName = signupCustomer.firstName , let lastName = signupCustomer.lastName {
             
@@ -200,13 +207,12 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 language = localeLang.uppercased()
             }
             
-            CustomerAPI().signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language).onSuccess { result in
-                if let _ = result?.data?.result {
-                }
+            CustomerAPI.signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language) { customer, error in
                 self.hideProgressHUD()
-                }.onFailure { error in
-                    self.hideProgressHUD()
+
+                if error != nil {
                     self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                }
             }
         }
     }
@@ -271,21 +277,24 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.showProgressHUD()
 
             // verify phone number
-            CustomerAPI().verifyPhoneNumber(customerId: customerId, verificationCode: verificationCode).onSuccess { result in
-                self.codeTextField.textField.resignFirstResponder()
-
-                self.hideProgressHUD()
-                self.loadMainScreen()
-                self.isLoading = false
+            CustomerAPI.verifyPhoneNumber(customerId: customerId, verificationCode: verificationCode) { error in
                 
-                }.onFailure { error in
+                if error == nil {
+                    self.codeTextField.textField.resignFirstResponder()
+                    
                     self.hideProgressHUD()
-                    if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4012.rawValue {
+                    self.loadMainScreen()
+                    self.isLoading = false
+                } else {
+                    
+                    self.hideProgressHUD()
+                    if let apiError = error?.apiError, apiError.code == Errors.ErrorCode.E4012.rawValue {
                         self.showOkDialog(title: .Error, message: .WrongVerificationCode, dialog: .error, screen: self.screen)
                     } else {
                         self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
+                }
             }
         }
     }

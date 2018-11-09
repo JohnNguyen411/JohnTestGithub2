@@ -7,22 +7,18 @@
 //
 
 import Foundation
-import ObjectMapper
 import RealmSwift
 
-class DealershipRepairOrder: Object, Mappable {
+@objcMembers class DealershipRepairOrder: Object, Codable {
     
-    @objc dynamic var id: Int = -1
-    @objc dynamic var dealershipId = -1
-    @objc dynamic var repairOrderTypeId = -1
-    @objc dynamic var enabled: Bool = true
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
+    var id: Int = -1
+    var dealershipId = -1
+    var repairOrderTypeId = -1
+    var enabled: Bool = true
+    var createdAt: Date?
+    var updatedAt: Date?
     
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
+    /*
     func mapping(map: Map) {
         id <- map["id"]
         dealershipId <- map["dealership_id"]
@@ -31,6 +27,7 @@ class DealershipRepairOrder: Object, Mappable {
         createdAt <- (map["created_at"], VLISODateTransform())
         updatedAt <- (map["updated_at"], VLISODateTransform())
     }
+    */
     
     override static func primaryKey() -> String? {
         return "id"

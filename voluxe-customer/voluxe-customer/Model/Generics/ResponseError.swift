@@ -7,26 +7,21 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class ResponseError: Mappable {
+class ResponseError: Codable {
     
     var error: Bool?
     var code: String?
     var message: String?
     
-    required init?(map: Map) {
-    }
-    
-    init() {
-    }
+   /*
     
     func mapping(map: Map) {
         error <- map["error"]
         code <- map["code"]
         message <- map["message"]
     }
-    
+    */
     func getCode() -> Errors.ErrorCode? {
         if let code = code {
             return Errors.ErrorCode(rawValue: code)

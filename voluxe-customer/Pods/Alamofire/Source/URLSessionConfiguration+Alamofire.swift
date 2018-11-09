@@ -1,12 +1,7 @@
 //
-//  DateTransform.swift
-//  ObjectMapper
+//  URLSessionConfiguration+Alamofire.swift
 //
-//  Created by Tristan Himmelman on 2014-10-13.
-//
-//  The MIT License (MIT)
-//
-//  Copyright (c) 2014-2016 Hearst
+//  Copyright (c) 2014-2018 Alamofire Software Foundation (http://alamofire.org/)
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to deal
@@ -25,31 +20,15 @@
 //  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 //  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 //  THE SOFTWARE.
+//
 
 import Foundation
 
-open class DateTransform: TransformType {
-	public typealias Object = Date
-	public typealias JSON = Double
+extension URLSessionConfiguration {
+    public static var alamofireDefault: URLSessionConfiguration {
+        let configuration = URLSessionConfiguration.default
+        configuration.httpAdditionalHeaders = HTTPHeaders.defaultHTTPHeaders
 
-	public init() {}
-
-	open func transformFromJSON(_ value: Any?) -> Date? {
-		if let timeInt = value as? Double {
-			return Date(timeIntervalSince1970: TimeInterval(timeInt))
-		}
-		
-		if let timeStr = value as? String {
-			return Date(timeIntervalSince1970: TimeInterval(atof(timeStr)))
-		}
-		
-		return nil
-	}
-
-	open func transformToJSON(_ value: Date?) -> Double? {
-		if let date = value {
-			return Double(date.timeIntervalSince1970)
-		}
-		return nil
-	}
+        return configuration
+    }
 }

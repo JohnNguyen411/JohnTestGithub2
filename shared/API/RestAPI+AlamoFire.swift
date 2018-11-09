@@ -32,6 +32,17 @@ extension RestAPI {
                   bodyParameters: bodyParameters,
                   completion: completion)
     }
+    
+    func delete(route: RestAPIRoute,
+               bodyParameters: RestAPIParameters? = nil,
+               completion: RestAPICompletion?)
+    {
+        self.send(method: .delete,
+                  route: route,
+                  headers: self.headers,
+                  bodyParameters: bodyParameters,
+                  completion: completion)
+    }
 
     func put(route: RestAPIRoute,
              bodyParameters: RestAPIParameters? = nil,
@@ -135,4 +146,19 @@ extension RestAPI {
             completion(apiResponse)
         }
     }
+}
+
+extension RestAPIResponse {
+    
+    func asAlamoFireError() -> AFError? {
+        if let afError = error as? AFError {
+            return afError
+        }
+        return nil
+    }
+    
+    func statusCode() -> Int? {
+        return asAlamoFireError()?._code
+    }
+    
 }

@@ -8,9 +8,8 @@
 
 import Foundation
 import RealmSwift
-import ObjectMapper
 
-class Color: Object, Mappable {
+class Color: Object, Codable {
     
     @objc dynamic var baseColor: String?
     @objc dynamic var color: String?
@@ -21,14 +20,12 @@ class Color: Object, Mappable {
         self.color = color
     }
     
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
+    /*
     func mapping(map: Map) {
         baseColor <- map["base_color"]
         color <- map["color"]
     }
+    */
     
     override static func primaryKey() -> String? {
         return "baseColor"

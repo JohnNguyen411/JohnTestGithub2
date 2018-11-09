@@ -144,8 +144,6 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Dev" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Branch/Branch.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
@@ -154,7 +152,6 @@ if [[ "$CONFIGURATION" == "Dev" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Realm/Realm.framework"
@@ -170,8 +167,6 @@ if [[ "$CONFIGURATION" == "Dev" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Mock" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Branch/Branch.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
@@ -180,7 +175,6 @@ if [[ "$CONFIGURATION" == "Mock" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Realm/Realm.framework"
@@ -196,8 +190,6 @@ if [[ "$CONFIGURATION" == "Mock" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Staging" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Branch/Branch.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
@@ -206,7 +198,6 @@ if [[ "$CONFIGURATION" == "Staging" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Realm/Realm.framework"
@@ -222,8 +213,6 @@ if [[ "$CONFIGURATION" == "Staging" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Production" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Branch/Branch.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
@@ -232,7 +221,6 @@ if [[ "$CONFIGURATION" == "Production" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Realm/Realm.framework"
@@ -248,8 +236,6 @@ if [[ "$CONFIGURATION" == "Production" ]]; then
 fi
 if [[ "$CONFIGURATION" == "AppStore" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Branch/Branch.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
@@ -258,7 +244,6 @@ if [[ "$CONFIGURATION" == "AppStore" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Realm/Realm.framework"
@@ -274,8 +259,6 @@ if [[ "$CONFIGURATION" == "AppStore" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Beta" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityLogger/AlamofireNetworkActivityLogger.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Branch/Branch.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework"
@@ -284,7 +267,6 @@ if [[ "$CONFIGURATION" == "Beta" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PhoneNumberKit/PhoneNumberKit.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Realm/Realm.framework"

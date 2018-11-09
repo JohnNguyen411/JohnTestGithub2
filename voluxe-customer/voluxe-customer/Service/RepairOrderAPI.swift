@@ -8,7 +8,6 @@
 
 import Foundation
 import Alamofire
-import AlamofireObjectMapper
 import BrightFutures
 
 /// Class regrouping all the methods related to Repair Orders

@@ -7,20 +7,11 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class GMLocation: Mappable {
+class GMLocation: Codable {
     
     var latitude: Double = 0.0
     var longitude: Double = 0.0
-    
-    required init?(map: Map) {
-    }
-    
-    func mapping(map: Map) {
-        latitude <- map["latitude"]
-        longitude <- map["longitude"]
-    }
     
     func getLocation() -> CLLocationCoordinate2D? {
         return CLLocationCoordinate2D(latitude: self.latitude, longitude: self.longitude)

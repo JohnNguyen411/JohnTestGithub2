@@ -150,19 +150,21 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             
             showProgressHUD()
             
-            CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
-                self.hideProgressHUD()
-                self.isLoading = false
-                self.goToNext()
+            CustomerAPI.passwordReset(phoneNumber: phoneNumber) { error in
                 
-                }.onFailure { error in
+                if let error = error {
                     self.hideProgressHUD()
-                    if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4001.rawValue {
+                    if let apiError = error.apiError, apiError.code == Errors.ErrorCode.E4001.rawValue {
                         self.showOkDialog(title: .Error, message: .PhoneNumberNotInFile, dialog: .error, screen: self.screen)
                     } else {
                         self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
+                } else {
+                    self.hideProgressHUD()
+                    self.isLoading = false
+                    self.goToNext()
+                }
             }
             return
         }
@@ -181,18 +183,23 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         
         if UserManager.sharedInstance.isLoggedIn() {
             
-            CustomerAPI().updatePhoneNumber(customerId: customerId, phoneNumber: phoneNumber).onSuccess { result in
-                self.hideProgressHUD()
-                self.isLoading = false
-                self.goToNext()
-                }.onFailure { error in
+            CustomerAPI.updatePhoneNumber(customerId: customerId, phoneNumber: phoneNumber) { error in
+                
+                if let error = error {
                     self.hideProgressHUD()
-                    if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4011.rawValue {
+                    if let apiError = error.apiError, apiError.code == Errors.ErrorCode.E4011.rawValue {
                         self.showOkDialog(title: .Error, message: .UpdatePhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
                     } else {
                         self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
+                } else {
+                    self.hideProgressHUD()
+                    self.isLoading = false
+                    self.goToNext()
+                }
+                
+                
             }
         } else if let email = signupCustomer.email, let phoneNumber = signupCustomer.phoneNumber, let firstName = signupCustomer.firstName , let lastName = signupCustomer.lastName {
             
@@ -201,14 +208,13 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 language = localeLang.uppercased()
             }
             
-            CustomerAPI().signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language).onSuccess { result in
+            CustomerAPI.signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language) { customer, error in
                 self.hideProgressHUD()
-                if let _ = result?.data?.result {
+                if customer != nil {
                     self.goToNext()
-                }
-                }.onFailure { error in
-                    self.hideProgressHUD()
+                } else {
                     self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                }
             }
         }
     }

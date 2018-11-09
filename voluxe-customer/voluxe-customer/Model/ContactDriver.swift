@@ -7,23 +7,20 @@
 //
 
 import Foundation
-import ObjectMapper
-
-class ContactDriver: NSObject, Mappable {
+class ContactDriver: Codable {
     
     var driver: Driver?
     var textPhoneNumber: String?
     var voicePhoneNumber: String?
     var bodyHeader: String?
-
-    required init?(map: Map) {
-    }
     
+    /*
     func mapping(map: Map) {
         driver <- map["recipient"]
         textPhoneNumber <- map["text_messages.phone_number"]
         voicePhoneNumber <- map["voice_calls.phone_number"]
         bodyHeader <- map["text_messages.bodyHeader"]
     }
+ */
     
 }

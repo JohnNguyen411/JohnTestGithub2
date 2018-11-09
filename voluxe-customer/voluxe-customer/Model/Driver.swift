@@ -7,27 +7,23 @@
 //
 
 import Foundation
-import ObjectMapper
 import RealmSwift
 
-class Driver: Object, Mappable {
+@objcMembers class Driver: Object, Codable {
     
-    @objc dynamic var id: Int = -1
-    @objc dynamic var name: String?
-    @objc dynamic var iconUrl: String?
-    @objc dynamic var location: Location?
-
-    required convenience init?(map: Map) {
-        self.init()
-    }
+    var id: Int = -1
+    var name: String?
+    var iconUrl: String?
+    var location: Location?
     
-
+/*
     func mapping(map: Map) {
         id <- map["id"]
         name <- map["first_name"]
         iconUrl <- map["photo_url"]
         location <- map["location"]
     }
+ */
     
     override static func primaryKey() -> String? {
         return "id"

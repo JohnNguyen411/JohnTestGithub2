@@ -15,22 +15,22 @@ import Kingfisher
 
     public static let vehicleImageHeight: CGFloat = 190
 
-    @objc dynamic var id: Int = -1
-    @objc dynamic var ownerId: Int = -1
-    @objc dynamic var vin: String?
-    @objc dynamic var licensePlate: String?
-    @objc dynamic var make: String?
-    @objc dynamic var model: String?
-    @objc dynamic var drive: String?
-    @objc dynamic var engine: String?
-    @objc dynamic var trim: String?
-    @objc dynamic var year: Int = 2018
-    @objc dynamic var baseColor: String?
-    @objc dynamic var color: String?
-    @objc dynamic var photoUrl: String?
-    @objc dynamic var transmission: String?
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
+    var id: Int = -1
+    var ownerId: Int = -1
+    var vin: String?
+    var licensePlate: String?
+    var make: String?
+    var model: String?
+    var drive: String?
+    var engine: String?
+    var trim: String?
+    var year: Int = 2018
+    var baseColor: String?
+    var color: String?
+    var photoUrl: String?
+    var transmission: String?
+    var createdAt: Date?
+    var updatedAt: Date?
 
     // Use Only for SwiftEventBus
     convenience init(id: Int) {

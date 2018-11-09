@@ -358,8 +358,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         guard let firstName = signupCustomer.firstName else { return }
         guard let lastName = signupCustomer.lastName else { return }
 
-        CustomerAPI().signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language).onSuccess { result in
-            if let customer = result?.data?.result {
+        CustomerAPI.signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language) { customer, error in
+            if let customer = customer {
 
                 if let realm = self.realm {
                     try? realm.write {
@@ -370,9 +370,9 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 UserManager.sharedInstance.setCustomer(customer: customer)
                 UserManager.sharedInstance.tempCustomerId = customer.id
                 self.goToNext()
-            }
-            }.onFailure { error in
+            } else {
                 self.onSignupError(error: error)
+            }
         }
     }
     

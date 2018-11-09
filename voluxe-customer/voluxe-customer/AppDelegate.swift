@@ -6,7 +6,6 @@
 //  Copyright © 2017 Luxe - Volvo Cars. All rights reserved.
 //
 
-import AlamofireNetworkActivityLogger
 import Crashlytics
 import Fabric
 import Firebase
@@ -17,7 +16,6 @@ import SwiftEventBus
 import UIKit
 import UserNotifications
 import Branch
-import ObjectMapper
 
 
 @UIApplicationMain
@@ -235,9 +233,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         KeychainManager.sharedInstance.pushDeviceToken = token
         // registerDevice for push notification if deviceToken Stored
         if let customerId = UserManager.sharedInstance.customerId() {
-            CustomerAPI().registerDevice(customerId: customerId, deviceToken: token).onSuccess { result in
-                }.onFailure { error in
-            }
+            CustomerAPI.registerDevice(customerId: customerId, deviceToken: token)
         }
     }
     

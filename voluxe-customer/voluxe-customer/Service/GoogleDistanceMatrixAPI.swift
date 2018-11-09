@@ -9,7 +9,6 @@
 import Foundation
 import CoreLocation
 import Alamofire
-import AlamofireObjectMapper
 import BrightFutures
 
 class GoogleDistanceMatrixAPI: NSObject {

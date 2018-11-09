@@ -6,7 +6,6 @@
 //  Copyright © 2018 Luxe - Volvo Cars. All rights reserved.
 //
 
-import AlamofireNetworkActivityLogger
 import Foundation
 import Firebase
 

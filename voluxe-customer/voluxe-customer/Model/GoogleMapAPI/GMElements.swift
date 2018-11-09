@@ -7,18 +7,10 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class GMElements: Mappable {
+class GMElements: Codable {
     
-    var distance: GMTextValueObject?
-    var duration: GMTextValueObject?
-    
-    required init?(map: Map) {
-    }
-    
-    func mapping(map: Map) {
-        distance <- map["distance"]
-        duration <- map["duration"]
-    }
+    let distance: GMTextValueObject?
+    let duration: GMTextValueObject?
+
 }
