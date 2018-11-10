@@ -10,6 +10,8 @@
 		41199E0B1F6CC7FD895FD38F /* Pods_voluxe_customerUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E181BDDE7AA2B89565331F15 /* Pods_voluxe_customerUnitTests.framework */; };
 		52078A4D132E9D871CDD555D /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
 		524BF64C211A57E900404ED5 /* CurrentLocationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */; };
+		526652D221963B8900CE99A3 /* CustomerAPI+Bookings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526652D121963B8900CE99A3 /* CustomerAPI+Bookings.swift */; };
+		526652D321963B8900CE99A3 /* CustomerAPI+Bookings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526652D121963B8900CE99A3 /* CustomerAPI+Bookings.swift */; };
 		52940965219220B50009F691 /* Thread+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940963219220B50009F691 /* Thread+Assert.swift */; };
 		52940966219220B50009F691 /* UserDefaults+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940964219220B50009F691 /* UserDefaults+LuxeAPI.swift */; };
 		5294096F219220E00009F691 /* LuxeAPI+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294096A219220E00009F691 /* LuxeAPI+Notifications.swift */; };
@@ -457,6 +459,7 @@
 		4855C4B5170AB508CA17C095 /* Pods-voluxe-customer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customer.debug.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer.debug.xcconfig"; sourceTree = "<group>"; };
 		4C64F631C2578E5AD1F6A474 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
 		524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCellView.swift; sourceTree = "<group>"; };
+		526652D121963B8900CE99A3 /* CustomerAPI+Bookings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Bookings.swift"; sourceTree = "<group>"; };
 		52940963219220B50009F691 /* Thread+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Thread+Assert.swift"; path = "../../shared/Extensions/Thread+Assert.swift"; sourceTree = "<group>"; };
 		52940964219220B50009F691 /* UserDefaults+LuxeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UserDefaults+LuxeAPI.swift"; path = "../../shared/Extensions/UserDefaults+LuxeAPI.swift"; sourceTree = "<group>"; };
 		5294096A219220E00009F691 /* LuxeAPI+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LuxeAPI+Notifications.swift"; sourceTree = "<group>"; };
@@ -885,6 +888,7 @@
 			isa = PBXGroup;
 			children = (
 				5294097E21937D750009F691 /* CustomerAPI+Account.swift */,
+				526652D121963B8900CE99A3 /* CustomerAPI+Bookings.swift */,
 				52940975219225720009F691 /* CustomerAPI+Login.swift */,
 				5294097B21925BC80009F691 /* CustomerAPI+Signup.swift */,
 				529409812193AC860009F691 /* CustomerAPI+Vehicle.swift */,
@@ -2266,6 +2270,7 @@
 				538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */,
 				538FE74D20BF475A00C3CE17 /* Errors.swift in Sources */,
 				53C8AD5720E59ED3008E07FF /* AnalyticsCore.swift in Sources */,
+				526652D321963B8900CE99A3 /* CustomerAPI+Bookings.swift in Sources */,
 				538FE75320BF482C00C3CE17 /* Location.swift in Sources */,
 				53E2521720C731D500D8C32D /* TestConstants.swift in Sources */,
 				5328C8AB20FD40F90006B448 /* UserDefaults+Voluxe.swift in Sources */,
@@ -2450,6 +2455,7 @@
 				6C9B320F202E0CED006380B9 /* CustomerAddress.swift in Sources */,
 				53D9A7BB209A50D2008BE93E /* DebugSettingsViewController.swift in Sources */,
 				6C1CE1ED20CB1A8F00A2E054 /* RatingLocalization.swift in Sources */,
+				526652D221963B8900CE99A3 /* CustomerAPI+Bookings.swift in Sources */,
 				538CFBE82150783500BF5D25 /* UITextField+Voluxe.swift in Sources */,
 				52940972219220E00009F691 /* LuxeAPI.swift in Sources */,
 				6C1CE1F320CB3D6000A2E054 /* VLMarkedSlider.swift in Sources */,
