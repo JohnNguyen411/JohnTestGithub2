@@ -35,12 +35,20 @@ class LuxeAPI: RestAPI {
     }
 }
 
-// TODO move to new file
 struct LuxeAPIError: Codable {
 
-    // TODO string enum for code?
     // https://development-docs.ingress.luxe.com/v1/docs/#/
-    typealias Code = String
+    enum Code: String, Codable {
+        case E2001
+        case E2002
+        case E2003
+        case E2004
+        case E2005
+        case E3001
+        case E3006
+        case E4012
+        case E4021
+    }
 
     let error: Bool
     let code: Code

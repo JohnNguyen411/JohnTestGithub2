@@ -10,34 +10,25 @@ import Foundation
 
 extension LuxeAPI {
 
-    @available(*, deprecated)
-    enum Notifications: String {
-
-        case updateAvailable = "LuxeAPI.Notifications.updateAvailable"
-        case updateRequired = "LuxeAPI.Notifications.updateRequired"
-
-        var name: Notification.Name {
-            return Notification.Name(rawValue: self.rawValue)
-        }
-
-        func notification() -> Notification {
-            let notification = Notification(name: self.name, object: nil)
-            return notification
-        }
-
-        func notification(with version: LuxeAPI.Version) -> Notification {
-            var notification = self.notification()
-            notification.userInfo = ["version": version]
-            return notification
-        }
-    }
-
     func inspect(urlResponse: HTTPURLResponse?, apiResponse: RestAPIResponse?) {
 
-        // TODO application update required
+        // login required, update required errors
+        // these take precidence over update available
+        if let code = apiResponse?.asErrorCode() {
+            switch code {
+                case .E2001, .E2002, .E2003, .E2004, .E3001:
+                    let notification = Notification.loginRequired()
+                    NotificationCenter.default.post(notification)
+                case .E3006:
+                    let notification = Notification.updateRequired()
+                    NotificationCenter.default.post(notification)
+                default:
+                    break
+            }
+        }
 
         // application update available
-        if let urlResponse = urlResponse, urlResponse.updateAvailable() {
+        else if let urlResponse = urlResponse, urlResponse.updateAvailable() {
             let version = urlResponse.applicationVersion()
             if UserDefaults.standard.shouldShowUpdate(for: version) {
                 let notification = Notification.updateAvailable(for: version)
@@ -58,6 +49,10 @@ extension Notification.Name {
         static var updateRequired: Notification.Name {
             return Notification.Name("Notification.LuxeAPI.\(#function)")
         }
+
+        static var loginRequired: Notification.Name {
+            return Notification.Name("Notification.LuxeAPI.\(#function)")
+        }
     }
 }
 
@@ -69,9 +64,14 @@ extension Notification {
         return notification
     }
 
-    static func updateRequired(for version: LuxeAPI.Version) -> Notification {
+    static func updateRequired(for version: LuxeAPI.Version? = nil) -> Notification {
         var notification = Notification(name: Notification.Name.LuxeAPI.updateRequired)
-        notification.userInfo = ["version": version]
+        if let version = version { notification.userInfo = ["version": version] }
+        return notification
+    }
+
+    static func loginRequired() -> Notification {
+        let notification = Notification(name: Notification.Name.LuxeAPI.loginRequired)
         return notification
     }
 

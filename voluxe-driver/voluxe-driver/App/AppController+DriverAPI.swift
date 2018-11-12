@@ -19,8 +19,7 @@ extension AppController {
                                                queue: nil)
         {
             [weak self] notification in
-            guard let version = notification.version else { return }
-            self?.showUpdateAlert(for: version)
+            self?.showUpdateAlert(for: notification.version)
         }
 
         NotificationCenter.default.addObserver(forName: Notification.Name.LuxeAPI.updateRequired,
@@ -28,8 +27,15 @@ extension AppController {
                                                queue: nil)
         {
             [weak self] notification in
-            guard let version = notification.version else { return }
-            self?.showUpdateAlert(for: version, required: true)
+            self?.showUpdateAlert(for: notification.version, required: true)
+        }
+
+        NotificationCenter.default.addObserver(forName: Notification.Name.LuxeAPI.loginRequired,
+                                               object: nil,
+                                               queue: nil)
+        {
+            [weak self] notification in
+            self?.showLoginRequiredAlert()
         }
     }
 
@@ -43,12 +49,13 @@ extension AppController {
     // It's possible the app is showing an OS alert (like notification permissions)
     // but unlikely given a new app install will be the latest version so this
     // alert should not be shown.
-    private func showUpdateAlert(for version: LuxeAPI.Version, required: Bool = false) {
+    private func showUpdateAlert(for version: LuxeAPI.Version?, required: Bool = false) {
 
-        guard version.isKnown else { return }
+        var versionString = " "
+        if let version = version { versionString = " \(version) " }
 
-        let availableMessage = "A new version \(version) is available from the App Store.  Please update as soon as possible."
-        let requiredMessage = "A new version \(version) is required from the App Store.  Please update immediately."
+        let availableMessage = "A new version\(versionString)is available from the App Store.  Please update as soon as possible."
+        let requiredMessage = "A new version\(versionString)is required from the App Store.  Please update immediately."
         let message = required ? requiredMessage : availableMessage
 
         let availableTitle = "Update Available"
@@ -61,8 +68,10 @@ extension AppController {
 
         let appStoreAction = UIAlertAction(title: "App Store", style: .default) {
             _ in
-            // TODO need app store URL
             // TODO https://app.asana.com/0/858610969087925/894650916838358/f
+            // TODO need app store URL
+            // TODO https://app.asana.com/0/858610969087925/907036762032123/f
+            // prevent resume if force update required
         }
         controller.addAction(appStoreAction)
 
@@ -75,5 +84,23 @@ extension AppController {
         }
 
         self.present(controller, animated: true)
+    }
+
+    // TODO https://app.asana.com/0/858610969087925/894650916838358/f
+    // TODO localize
+    private func showLoginRequiredAlert() {
+
+        let controller = UIAlertController(title: "Sign In Required",
+                                           message: "To continue using this app, you must sign in with your driver credentials.",
+                                           preferredStyle: .alert)
+
+        let action = UIAlertAction(title: "Sign In", style: .default) {
+            action in
+            // TODO https://app.asana.com/0/858610969087925/907036762032121/f
+            // TODO force UI back to login screen, reset API to prevent any more calls
+        }
+
+        controller.addAction(action)
+        self.present(controller, animated: true, completion: nil)
     }
 }
