@@ -1,13 +1,16 @@
 osx_image: xcode10
 language: objective-c
-#cache: cocoapods
-
-#before_install:
-# - cd voluxe-customer # customer app
 
 script:
-#  - xcodebuild test -workspace voluxe-customer/voluxe-customer.xcworkspace -scheme Mock -destination 'platform=iOS Simulator,name=iPhone 6s,OS=11.1' -enableCodeCoverage YES ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
+
+# Customer app
 - xcodebuild build-for-testing -workspace voluxe-customer/voluxe-customer.xcworkspace -scheme Dev -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
 - xcodebuild build-for-testing -workspace voluxe-customer/voluxe-customer.xcworkspace -scheme APITests -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
 - xcodebuild build-for-testing -workspace voluxe-customer/voluxe-customer.xcworkspace -scheme UnitTests -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
 - xcodebuild build-for-testing -workspace voluxe-customer/voluxe-customer.xcworkspace -scheme UITests -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
+
+# Driver app
+- xcodebuild build-for-testing -workspace voluxe-driver/voluxe-driver.xcworkspace -scheme APITests -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
+- xcodebuild build-for-testing -workspace voluxe-driver/voluxe-driver.xcworkspace -scheme Development -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
+- xcodebuild build-for-testing -workspace voluxe-driver/voluxe-driver.xcworkspace -scheme UITest -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}
+- xcodebuild build-for-testing -workspace voluxe-driver/voluxe-driver.xcworkspace -scheme UnitTests -destination 'platform=iOS Simulator,name=iPhone 6s,OS=latest' ONLY_ACTIVE_ARCH=YES | xcpretty && exit ${PIPESTATUS[0]}

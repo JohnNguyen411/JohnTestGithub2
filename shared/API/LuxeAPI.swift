@@ -62,7 +62,9 @@ extension RestAPIResponse {
     func decode<T: Decodable>(reportErrors: Bool = true) -> T? {
         guard let data = self.data else { return nil }
         do {
-            let object = try JSONDecoder().decode(T.self, from: data)
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.luxeISO8601)
+            let object = try decoder.decode(T.self, from: data)
             return object
         } catch {
             // TODO log to console?

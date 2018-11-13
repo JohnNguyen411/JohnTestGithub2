@@ -29,4 +29,22 @@ extension UserDefaults {
             self.synchronize()
         }
     }
+
+    var injectLoginRequired: Bool {
+        get {
+            return self.bool(forKey: #function)
+        }
+        set {
+            self.set(newValue, forKey: #function)
+        }
+    }
+
+    var injectUpdateRequired: Bool {
+        get {
+            return self.bool(forKey: #function)
+        }
+        set {
+            self.set(newValue, forKey: #function)
+        }
+    }
 }

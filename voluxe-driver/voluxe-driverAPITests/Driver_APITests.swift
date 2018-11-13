@@ -107,7 +107,7 @@ class Driver_APITests: XCTestCase {
         DriverAPI.verifyPhoneNumber(with: code, for: driver) {
             error in
             XCTAssertNotNil(error)
-            XCTAssertTrue(error == "E4012")
+            XCTAssertTrue(error == .E4012)
         }
         self.wait()
     }

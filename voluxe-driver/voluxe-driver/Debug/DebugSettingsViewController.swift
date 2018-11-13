@@ -15,7 +15,9 @@ class DebugSettingsViewController: DebugTableViewController {
         super.viewDidLoad()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(close))
         self.navigationItem.title = "Debug"
-        self.settings = [self.applicationSettings()]
+        self.settings = [self.applicationSettings(),
+                         self.networkSettings(),
+                         self.featureSettings()]
     }
 
     @objc private func close() {
@@ -45,5 +47,61 @@ class DebugSettingsViewController: DebugTableViewController {
                                              actionClosure: nil)]
 
         return ("Application", settings)
+    }
+
+    private func networkSettings() -> (String, [DebugTableViewCellModel]) {
+
+        var settings: [DebugTableViewCellModel] = []
+
+        settings += [DebugTableViewCellModel(title: "Inject Login Required",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = UserDefaults.standard.injectLoginRequired ? .checkmark : .none
+            },
+                                             actionClosure:
+            {
+                cell in
+                UserDefaults.standard.injectLoginRequired = !UserDefaults.standard.injectLoginRequired
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Inject Update Required",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = UserDefaults.standard.injectUpdateRequired ? .checkmark : .none
+            },
+                                             actionClosure:
+            {
+                cell in
+                UserDefaults.standard.injectUpdateRequired = !UserDefaults.standard.injectUpdateRequired
+            }
+        )]
+
+        return ("Network", settings)
+    }
+
+    private func featureSettings() -> (String, [DebugTableViewCellModel]) {
+
+        var settings: [DebugTableViewCellModel] = []
+
+        settings += [DebugTableViewCellModel(title: "GridLayout",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                self.navigationController?.pushViewController(GridLayoutViewController(), animated: true)
+            }
+        )]
+
+        return ("Feature Debug", settings)
     }
 }

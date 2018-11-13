@@ -43,7 +43,7 @@ class Request_APITests: XCTestCase {
         DriverAPI.update(request, task: .meetWithCustomer) {
             error in
             XCTAssertNotNil(error)
-            XCTAssertTrue(error == "E4021")
+            XCTAssertTrue(error == .E4021)
         }
         self.wait()
     }

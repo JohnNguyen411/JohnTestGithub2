@@ -55,7 +55,6 @@
 		53B43F9C218B7CC000EF847E /* XCTest+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530BCD5D2177D2D5005327E7 /* XCTest+Test.swift */; };
 		53B43F9D218B7CD900EF847E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047182188D833007CE01C /* Bundle+Voluxe.swift */; };
 		53B43F9F218BB86200EF847E /* AppController+DriverAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B43F9E218BB86200EF847E /* AppController+DriverAPI.swift */; };
-		53B43FA1218CA80700EF847E /* LuxeAPI+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B43FA0218CA80700EF847E /* LuxeAPI+Notifications.swift */; };
 		53B43FA3218CB6AC00EF847E /* AppController+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B43FA2218CB6AC00EF847E /* AppController+Test.swift */; };
 		53B82AF2217E291D0041015B /* DriverAPI+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B82AF1217E291D0041015B /* DriverAPI+Driver.swift */; };
 		53B82AF3217E2A5D0041015B /* DriverAPI+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B82AF1217E291D0041015B /* DriverAPI+Driver.swift */; };
@@ -63,6 +62,18 @@
 		53B82AF7217E39800041015B /* Dealership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B82AF5217E39800041015B /* Dealership.swift */; };
 		53B82AFA217E69F50041015B /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B82AF9217E69F50041015B /* Driver.swift */; };
 		53B82AFB217E69F50041015B /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B82AF9217E69F50041015B /* Driver.swift */; };
+		53C190E6219B2A9D00CBC410 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190DE219B2A9C00CBC410 /* Font.swift */; };
+		53C190E7219B2A9D00CBC410 /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190DF219B2A9C00CBC410 /* UIView+Layout.swift */; };
+		53C190E8219B2A9D00CBC410 /* GridLayout+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190E0219B2A9D00CBC410 /* GridLayout+Debug.swift */; };
+		53C190E9219B2A9D00CBC410 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190E1219B2A9D00CBC410 /* Color.swift */; };
+		53C190EA219B2A9D00CBC410 /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190E2219B2A9D00CBC410 /* Layout.swift */; };
+		53C190EB219B2A9D00CBC410 /* GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190E3219B2A9D00CBC410 /* GridLayout.swift */; };
+		53C190EC219B2A9D00CBC410 /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190E4219B2A9D00CBC410 /* UIView+SafeArea.swift */; };
+		53C190ED219B2A9D00CBC410 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190E5219B2A9D00CBC410 /* Label.swift */; };
+		53C190EF219B2ECD00CBC410 /* GridLayoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190EE219B2ECD00CBC410 /* GridLayoutViewController.swift */; };
+		53C190F0219B3D8E00CBC410 /* LuxeAPI+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E7F17D219A49A600390A5D /* LuxeAPI+Notifications.swift */; };
+		53C190F2219B459D00CBC410 /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190F1219B459D00CBC410 /* DateFormatter+LuxeAPI.swift */; };
+		53C190F3219B459D00CBC410 /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190F1219B459D00CBC410 /* DateFormatter+LuxeAPI.swift */; };
 		53DA9CA3217F66B900ABC414 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DA9CA2217F66B900ABC414 /* Location.swift */; };
 		53DA9CA4217F66B900ABC414 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DA9CA2217F66B900ABC414 /* Location.swift */; };
 		53DA9CA6217F9D5F00ABC414 /* AdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DA9CA5217F9D5E00ABC414 /* AdminAPI.swift */; };
@@ -87,6 +98,7 @@
 		53DA9CC32181020400ABC414 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DA9CC22181020400ABC414 /* Task.swift */; };
 		53DA9CC42181020400ABC414 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DA9CC22181020400ABC414 /* Task.swift */; };
 		53DA9CC62181063E00ABC414 /* Request_APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DA9CC52181063E00ABC414 /* Request_APITests.swift */; };
+		53E7F17E219A49A600390A5D /* LuxeAPI+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E7F17D219A49A600390A5D /* LuxeAPI+Notifications.swift */; };
 		CA88B574BCE548756ACE2209 /* Pods_voluxe_driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826625F7F567DBAA71221A14 /* Pods_voluxe_driver.framework */; };
 		F51411018D2C32BCED143614 /* Pods_voluxe_driverAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84BB7F4452F4139EEE1DDC06 /* Pods_voluxe_driverAPITests.framework */; };
 		FC29CCC2DFE7AC9B41E99E99 /* Pods_voluxe_driverUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5305017B5E03E3CC79F2E4 /* Pods_voluxe_driverUnitTests.framework */; };
@@ -154,11 +166,20 @@
 		53B43F96218B758400EF847E /* LuxeAPI+Version.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LuxeAPI+Version.swift"; sourceTree = "<group>"; };
 		53B43F99218B77DE00EF847E /* UserDefaults+LuxeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+LuxeAPI.swift"; sourceTree = "<group>"; };
 		53B43F9E218BB86200EF847E /* AppController+DriverAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppController+DriverAPI.swift"; sourceTree = "<group>"; };
-		53B43FA0218CA80700EF847E /* LuxeAPI+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LuxeAPI+Notifications.swift"; sourceTree = "<group>"; };
 		53B43FA2218CB6AC00EF847E /* AppController+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppController+Test.swift"; sourceTree = "<group>"; };
 		53B82AF1217E291D0041015B /* DriverAPI+Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverAPI+Driver.swift"; sourceTree = "<group>"; };
 		53B82AF5217E39800041015B /* Dealership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealership.swift; sourceTree = "<group>"; };
 		53B82AF9217E69F50041015B /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
+		53C190DE219B2A9C00CBC410 /* Font.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		53C190DF219B2A9C00CBC410 /* UIView+Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Layout.swift"; sourceTree = "<group>"; };
+		53C190E0219B2A9D00CBC410 /* GridLayout+Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "GridLayout+Debug.swift"; sourceTree = "<group>"; };
+		53C190E1219B2A9D00CBC410 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		53C190E2219B2A9D00CBC410 /* Layout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Layout.swift; sourceTree = "<group>"; };
+		53C190E3219B2A9D00CBC410 /* GridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayout.swift; sourceTree = "<group>"; };
+		53C190E4219B2A9D00CBC410 /* UIView+SafeArea.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+SafeArea.swift"; sourceTree = "<group>"; };
+		53C190E5219B2A9D00CBC410 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		53C190EE219B2ECD00CBC410 /* GridLayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayoutViewController.swift; sourceTree = "<group>"; };
+		53C190F1219B459D00CBC410 /* DateFormatter+LuxeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+LuxeAPI.swift"; sourceTree = "<group>"; };
 		53DA9CA2217F66B900ABC414 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		53DA9CA5217F9D5E00ABC414 /* AdminAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminAPI.swift; sourceTree = "<group>"; };
 		53DA9CA72180C4AB00ABC414 /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
@@ -172,6 +193,7 @@
 		53DA9CBF2180F87600ABC414 /* BookingFeedback.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookingFeedback.swift; sourceTree = "<group>"; };
 		53DA9CC22181020400ABC414 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		53DA9CC52181063E00ABC414 /* Request_APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request_APITests.swift; sourceTree = "<group>"; };
+		53E7F17D219A49A600390A5D /* LuxeAPI+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LuxeAPI+Notifications.swift"; sourceTree = "<group>"; };
 		68BDE64C3234A652C358A12B /* Pods-voluxe-driverUnitTests.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.app store.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.app store.xcconfig"; sourceTree = "<group>"; };
 		6C25190B6650EA5FEA9E0C55 /* Pods-voluxe-driverUnitTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.development.xcconfig"; sourceTree = "<group>"; };
 		6E5305017B5E03E3CC79F2E4 /* Pods_voluxe_driverUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -254,7 +276,7 @@
 			children = (
 				53DA9CA5217F9D5E00ABC414 /* AdminAPI.swift */,
 				530BCD4C2177AFBE005327E7 /* LuxeAPI.swift */,
-				53B43FA0218CA80700EF847E /* LuxeAPI+Notifications.swift */,
+				53E7F17D219A49A600390A5D /* LuxeAPI+Notifications.swift */,
 				53B43F96218B758400EF847E /* LuxeAPI+Version.swift */,
 				530BCD492177AAB2005327E7 /* RestAPI.swift */,
 			);
@@ -309,6 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				533047182188D833007CE01C /* Bundle+Voluxe.swift */,
+				53C190F1219B459D00CBC410 /* DateFormatter+LuxeAPI.swift */,
 				533047172188D833007CE01C /* NSObject+Voluxe.swift */,
 				538C4D9C218A45CA00922B16 /* Thread+Assert.swift */,
 				53B43F99218B77DE00EF847E /* UserDefaults+LuxeAPI.swift */,
@@ -320,6 +343,7 @@
 			isa = PBXGroup;
 			children = (
 				5330471C2188D895007CE01C /* DebugSettingsViewController.swift */,
+				53C190EE219B2ECD00CBC410 /* GridLayoutViewController.swift */,
 			);
 			path = Debug;
 			sourceTree = "<group>";
@@ -349,7 +373,15 @@
 		536FFD832177901D00C83F89 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				53C190E1219B2A9D00CBC410 /* Color.swift */,
+				53C190DE219B2A9C00CBC410 /* Font.swift */,
+				53C190E3219B2A9D00CBC410 /* GridLayout.swift */,
+				53C190E0219B2A9D00CBC410 /* GridLayout+Debug.swift */,
+				53C190E5219B2A9D00CBC410 /* Label.swift */,
+				53C190E2219B2A9D00CBC410 /* Layout.swift */,
 				536FFD842177901D00C83F89 /* UIView+AutoLayout.swift */,
+				53C190DF219B2A9C00CBC410 /* UIView+Layout.swift */,
+				53C190E4219B2A9D00CBC410 /* UIView+SafeArea.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -836,21 +868,29 @@
 				530BCD4D2177AFBE005327E7 /* LuxeAPI.swift in Sources */,
 				533047072188D706007CE01C /* AppDelegate.swift in Sources */,
 				53DA9CBA2180F44E00ABC414 /* Inspection.swift in Sources */,
+				53C190E7219B2A9D00CBC410 /* UIView+Layout.swift in Sources */,
 				538C4D9D218A45CA00922B16 /* Thread+Assert.swift in Sources */,
 				530BCD4A2177AAB2005327E7 /* RestAPI.swift in Sources */,
-				53B43FA1218CA80700EF847E /* LuxeAPI+Notifications.swift in Sources */,
+				53C190E6219B2A9D00CBC410 /* Font.swift in Sources */,
 				53DA9CA82180C4AB00ABC414 /* Booking.swift in Sources */,
+				53E7F17E219A49A600390A5D /* LuxeAPI+Notifications.swift in Sources */,
+				53C190EC219B2A9D00CBC410 /* UIView+SafeArea.swift in Sources */,
 				530BCD4F2177B153005327E7 /* RestAPI+AlamoFire.swift in Sources */,
+				53C190E8219B2A9D00CBC410 /* GridLayout+Debug.swift in Sources */,
 				53B43F97218B758400EF847E /* LuxeAPI+Version.swift in Sources */,
 				53B82AF6217E39800041015B /* Dealership.swift in Sources */,
 				533047242188F85B007CE01C /* AppDelegate+Fetch.swift in Sources */,
 				53DA9CB12180C7AC00ABC414 /* Request.swift in Sources */,
 				53DA9CAE2180C60D00ABC414 /* Vehicle.swift in Sources */,
+				53C190F2219B459D00CBC410 /* DateFormatter+LuxeAPI.swift in Sources */,
 				53DA9CB42180C7F500ABC414 /* DealershipTimeSlot.swift in Sources */,
 				53DA9CA3217F66B900ABC414 /* Location.swift in Sources */,
 				53B82AF2217E291D0041015B /* DriverAPI+Driver.swift in Sources */,
 				533047102188D7C6007CE01C /* DebugTableViewCell.swift in Sources */,
+				53C190E9219B2A9D00CBC410 /* Color.swift in Sources */,
+				53C190ED219B2A9D00CBC410 /* Label.swift in Sources */,
 				5330471D2188D896007CE01C /* DebugSettingsViewController.swift in Sources */,
+				53C190EA219B2A9D00CBC410 /* Layout.swift in Sources */,
 				533047192188D834007CE01C /* NSObject+Voluxe.swift in Sources */,
 				53DA9CBD2180F52900ABC414 /* DriverDealershipTimeSlotAssignment.swift in Sources */,
 				536FFD932177901D00C83F89 /* UIView+AutoLayout.swift in Sources */,
@@ -863,6 +903,8 @@
 				53B43FA3218CB6AC00EF847E /* AppController+Test.swift in Sources */,
 				538C4D9B218A3FA600922B16 /* PushRequiredViewController.swift in Sources */,
 				533047062188D706007CE01C /* AppController.swift in Sources */,
+				53C190EF219B2ECD00CBC410 /* GridLayoutViewController.swift in Sources */,
+				53C190EB219B2A9D00CBC410 /* GridLayout.swift in Sources */,
 				535A452F217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */,
 				53DA9CC02180F87600ABC414 /* BookingFeedback.swift in Sources */,
 			);
@@ -900,11 +942,13 @@
 				53DA9CBB2180F44E00ABC414 /* Inspection.swift in Sources */,
 				53B43F9B218B77DE00EF847E /* UserDefaults+LuxeAPI.swift in Sources */,
 				53B25E15217698B1002B846B /* Login_APITests.swift in Sources */,
+				53C190F0219B3D8E00CBC410 /* LuxeAPI+Notifications.swift in Sources */,
 				530BCD602177D345005327E7 /* RestAPI+AlamoFire.swift in Sources */,
 				535A4532217A3787006B5EE1 /* Driver_APITests.swift in Sources */,
 				53DA9CA6217F9D5F00ABC414 /* AdminAPI.swift in Sources */,
 				533046E6218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */,
 				53DA9CC12180F87600ABC414 /* BookingFeedback.swift in Sources */,
+				53C190F3219B459D00CBC410 /* DateFormatter+LuxeAPI.swift in Sources */,
 				53B82AF7217E39800041015B /* Dealership.swift in Sources */,
 				53B82AFB217E69F50041015B /* Driver.swift in Sources */,
 				533046E821877847007CE01C /* Inspection_APITests.swift in Sources */,

@@ -13,6 +13,4 @@ struct DriverDealershipTimeSlotAssignment: Codable {
     let driver_id: Int
     let dealership_time_slot_id: Int
     let state: String
-    let created_at: String  // TODO need date
-    let updated_at: String  // TODO need date
 }

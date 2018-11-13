@@ -23,6 +23,4 @@ struct Vehicle: Codable {
     let transmission: String?
     let photo_url: String
     let latest_odometer_reading: String?
-    let created_at: String
-    let updated_at: String
 }

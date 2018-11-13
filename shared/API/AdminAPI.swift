@@ -60,7 +60,7 @@ extension RestAPIResponse {
         let last_name: String
         let language_code: String
         let password_reset_required: Bool
-        let last_login_at: String?
+        let last_login_at: Date?
         let photo_url: String?
         let enabled: Bool
         let phone_number: String

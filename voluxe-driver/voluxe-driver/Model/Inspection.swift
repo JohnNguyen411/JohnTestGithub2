@@ -12,6 +12,4 @@ struct Inspection: Codable {
     let id: Int
     let vehicle_id: Int?
     let notes: String?
-    let created_at: String  // TODO need date
-    let updated_at: String  // TODO need date
 }

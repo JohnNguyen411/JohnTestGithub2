@@ -24,6 +24,4 @@ struct Booking: Codable {
     let loaner_vehicle_id: Int?
     let loaner_vehicle: Vehicle?
 //    let repair_order_requests: [String]  // TODO type?
-    let created_at: String  // TODO need date
-    let updated_at: String  // TODO need date
 }

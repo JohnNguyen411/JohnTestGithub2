@@ -12,10 +12,8 @@ struct DealershipTimeSlot: Codable {
     let id: Int
     let dealership_id: Int
     let type: String
-    let from: String    // TODO need date
-    let to: String      // TODO need date
+    let from: Date
+    let to: Date
     let available_loaner_vehicle_count: Int?
     let available_assignment_count: Int?
-    let created_at: String  // TODO need date
-    let updated_at: String  // TODO need date
 }

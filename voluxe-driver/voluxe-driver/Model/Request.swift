@@ -31,6 +31,4 @@ struct Request: Codable {
     let vehicle_inspection_id: Int?
     let vehicle_inspection: Inspection?
     let documents: [String]?
-    let created_at: String  // TODO need date
-    let updated_at: String  // TODO need date
 }
