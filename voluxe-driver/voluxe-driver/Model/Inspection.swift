@@ -9,7 +9,14 @@
 import Foundation
 
 struct Inspection: Codable {
+
     let id: Int
-    let vehicle_id: Int?
+    let vehicleId: Int?
     let notes: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case vehicleId = "vehicle_id"
+        case notes
+    }
 }

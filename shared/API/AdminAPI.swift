@@ -41,7 +41,7 @@ class AdminAPI: LuxeAPI {
     {
         let route = "v1/phone-verification-codes"
         let parameters: RestAPIParameters = ["user_id": "\(driver.id)",
-                                             "phone_number": driver.work_phone_number]
+            "phone_number": driver.workPhoneNumber]
         self.api.get(route: route, queryParameters: parameters) {
             response in
             completion(response?.asVerificationCodeString(), response?.asErrorCode())

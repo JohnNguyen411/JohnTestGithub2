@@ -20,15 +20,32 @@ struct Request: Codable {
     let id: Int
     let type: Type
     let booking: Booking
-    let dealership_time_slot_id: Int
-    let dealership_time_slot: DealershipTimeSlot
+    let dealershipTimeSlotId: Int
+    let dealershipTimeSlot: DealershipTimeSlot
     let notes: String?
     let location: Location?
     let state: String
     let task: String?
-    let driver_dealership_time_slot_assignment_id: Int
-    let driver_dealership_time_slot_assignment: DriverDealershipTimeSlotAssignment?
-    let vehicle_inspection_id: Int?
-    let vehicle_inspection: Inspection?
+    let driverDealershipTimeSlotAssignmentId: Int
+    let driverDealershipTimeSlotAssignment: DriverDealershipTimeSlotAssignment?
+    let vehicleInspectionId: Int?
+    let vehicleInspection: Inspection?
     let documents: [String]?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case type
+        case booking
+        case dealershipTimeSlotId = "dealership_time_slot_id"
+        case dealershipTimeSlot = "dealership_time_slot"
+        case notes
+        case location
+        case state
+        case task
+        case driverDealershipTimeSlotAssignmentId = "driver_dealership_time_slot_assignment_id"
+        case driverDealershipTimeSlotAssignment = "driver_dealership_time_slot_assignment"
+        case vehicleInspectionId = "vehicle_inspection_id"
+        case vehicleInspection = "vehicle_inspection"
+        case documents
+    }
 }

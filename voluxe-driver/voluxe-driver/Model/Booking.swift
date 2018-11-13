@@ -8,20 +8,25 @@
 
 import Foundation
 
-// TODO need coding keys
 struct Booking: Codable {
+
     let id: Int
     let state: String
-    let customer_id: Int
     let customer: Customer
-    let booking_feedback_id: Int?
-    let booking_feedback: BookingFeedback?
-    let vehicle_id: Int?
+    let bookingFeedback: BookingFeedback?
     let vehicle: Vehicle?
-    let dealership_id: Int
     let dealership: Dealership?
-    let loaner_vehicle_requested: Bool
-    let loaner_vehicle_id: Int?
-    let loaner_vehicle: Vehicle?
-//    let repair_order_requests: [String]  // TODO type?
+    let loanerVehicleRequested: Bool
+    let loanerVehicle: Vehicle?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case state
+        case customer
+        case bookingFeedback = "booking_feedback"
+        case vehicle
+        case dealership
+        case loanerVehicleRequested = "loaner_vehicle_requested"
+        case loanerVehicle = "loaner_vehicle"
+    }
 }

@@ -133,7 +133,7 @@ class Driver_APITests: XCTestCase {
             driver, error in
             XCTAssertNil(error)
             XCTAssertNotNil(driver)
-            XCTAssertTrue(driver!.work_phone_number_verified)
+            XCTAssertTrue(driver!.workPhoneNumberVerified)
         }
     }
 
