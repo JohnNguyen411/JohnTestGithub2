@@ -160,15 +160,15 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         return enabled
     }
     
-    private func onSignupError(error: APIResponseError? = nil) {
+    private func onSignupError(error: LuxeAPIError? = nil) {
         self.showLoading(loading: false)
         
-        if let apiError = error?.apiError {
-            if apiError.code == Errors.ErrorCode.E5001.rawValue {
+        if let code = error?.code {
+            if code == Errors.ErrorCode.E5001.rawValue {
                 self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
-            } else if apiError.code == Errors.ErrorCode.E4012.rawValue {
+            } else if code == Errors.ErrorCode.E4012.rawValue {
                 self.showOkDialog(title: .Error, message: .InvalidVerificationCode, completion: {
                     self.navigationController?.popViewController(animated: true)
                 }, dialog: .error, screen: self.screen)

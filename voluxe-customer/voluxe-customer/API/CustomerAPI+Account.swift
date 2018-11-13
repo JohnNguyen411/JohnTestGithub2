@@ -17,7 +17,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a APIResponseError if an error occured
      */
     static func updatePhoneNumber(customerId: Int, phoneNumber: String,
-                                  completion: @escaping ((APIResponseError?) -> Void)) {
+                                  completion: @escaping ((LuxeAPIError?) -> Void)) {
         let route = "v1/customers/\(customerId)"
         
         let params = [
@@ -39,7 +39,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a APIResponseError if an error occured
      */
     static func updateName(customerId: Int, firstName: String, lastName: String,
-                                  completion: @escaping ((APIResponseError?) -> Void)) {
+                                  completion: @escaping ((LuxeAPIError?) -> Void)) {
         let route = "v1/customers/\(customerId)"
         
         let params = [
@@ -60,7 +60,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a APIResponseError if an error occured
      */
     static func updateEmail(customerId: Int, email: String,
-                           completion: @escaping ((APIResponseError?) -> Void)) {
+                           completion: @escaping ((LuxeAPIError?) -> Void)) {
         let route = "v1/customers/\(customerId)"
         
         let params = [
@@ -79,7 +79,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a APIResponseError if an error occured
      */
     static func requestPasswordChange(customerId: Int,
-                            completion: @escaping ((APIResponseError?) -> Void)) {
+                            completion: @escaping ((LuxeAPIError?) -> Void)) {
         let route = "v1/customers/\(customerId)/password/request-change"
         
         self.api.put(route: route) {
@@ -96,7 +96,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a APIResponseError if an error occured
      */
     static func passwordChange(customerId: Int, code: String, password: String,
-                            completion: @escaping ((APIResponseError?) -> Void)) {
+                            completion: @escaping ((LuxeAPIError?) -> Void)) {
         let route = "v1/customers/\(customerId)/password/change"
         
         let params = [
@@ -116,7 +116,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a APIResponseError if an error occured
      */
     static func passwordReset(phoneNumber: String,
-                               completion: @escaping ((APIResponseError?) -> Void)) {
+                               completion: @escaping ((LuxeAPIError?) -> Void)) {
         let route = "v1/customers/password-reset/request"
         
         let params = [
@@ -137,7 +137,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a APIResponseError if an error occured
      */
     static func passwordResetConfirm(phoneNumber: String, code: String, password: String,
-                              completion: @escaping ((APIResponseError?) -> Void)) {
+                              completion: @escaping ((LuxeAPIError?) -> Void)) {
         let route = "v1/customers/password-reset/confirm"
         
         let params = [
@@ -157,7 +157,7 @@ extension CustomerAPI {
      Get the Customer object for the logged user
      - parameter completion: A closure which is called with a Customer object or APIResponseError if an error occured
      */
-    static func me(completion: @escaping ((Customer?, APIResponseError?) -> Void)) {
+    static func me(completion: @escaping ((Customer?, LuxeAPIError?) -> Void)) {
         let route = "v1/users/me"
         
         self.api.get(route: route) {
@@ -175,7 +175,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a APIResponseError if an error occured
      */
     static func registerDevice(customerId: Int, deviceToken: String,
-                                     completion: ((APIResponseError?) -> ())? = nil) {
+                                     completion: ((LuxeAPIError?) -> ())? = nil) {
         let route = "v1/customers/\(customerId)/devices/current"
         
         var uuid = ""

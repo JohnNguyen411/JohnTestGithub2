@@ -16,7 +16,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with an array of Vehicle or APIResponseError if an error occured
      */
     static func vehicles(customerId: Int,
-                         completion: @escaping (([Vehicle], APIResponseError?) -> Void)) {
+                         completion: @escaping (([Vehicle], LuxeAPIError?) -> Void)) {
         let route = "v1/customers/\(customerId)/vehicles"
         
         self.api.get(route: route) {
@@ -35,7 +35,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with the added Vehicle or APIResponseError if an error occured
      */
     static func addVehicle(customerId: Int, make: String, model: String, baseColor: String, year: Int,
-                           completion: @escaping ((Vehicle?, APIResponseError?) -> Void)) {
+                           completion: @escaping ((Vehicle?, LuxeAPIError?) -> Void)) {
         
         let params = [
             "make": make,
@@ -59,7 +59,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with an array of Vehicle or APIResponseError if an error occured
      */
     static func deleteVehicle(customerId: Int, vehicleId: Int,
-                           completion: @escaping (([Vehicle], APIResponseError?) -> Void)) {
+                           completion: @escaping (([Vehicle], LuxeAPIError?) -> Void)) {
        
         self.api.delete(route: "v1/customers/\(customerId)/vehicles/\(vehicleId)") {
             response in

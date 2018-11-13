@@ -24,7 +24,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a Booking Object or APIResponseError if an error occured
      */
     static func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool, dealershipRepairId: Int?, repairNotes: String?, repairTitle: String?, vehicleDrivable: Bool?, timeSlotId: Int?, location: Location?, isDriver: Bool,
-                       completion: @escaping ((Booking?, APIResponseError?) -> Void)) {
+                       completion: @escaping ((Booking?, LuxeAPIError?) -> Void)) {
 
         var pickupParams: [String: Any] = ["type": isDriver ? "driver_pickup" : "advisor_pickup"]
         
@@ -71,7 +71,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a Booking Object or APIResponseError if an error occured
      */
     static func booking(customerId: Int, bookingId: Int,
-                        completion: @escaping ((Booking?, APIResponseError?) -> Void)) {
+                        completion: @escaping ((Booking?, LuxeAPIError?) -> Void)) {
         
         self.api.get(route: "v1/customers/\(customerId)/bookings/\(bookingId)") {
             response in
@@ -88,7 +88,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a Booking array or APIResponseError if an error occured
      */
     static func bookings(customerId: Int, active: Bool?, sort: String? = nil,
-                        completion: @escaping (([Booking], APIResponseError?) -> Void)) {
+                        completion: @escaping (([Booking], LuxeAPIError?) -> Void)) {
         
         var params: [String: String] = [:]
         if let active = active {
@@ -114,7 +114,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a Request Object or APIResponseError if an error occured
      */
     static func createPickupRequest(customerId: Int, bookingId: Int, timeSlotId: Int?, location: Location, isDriver: Bool,
-                                     completion: @escaping ((Request?, APIResponseError?) -> Void)) {
+                                     completion: @escaping ((Request?, LuxeAPIError?) -> Void)) {
         
         let params: [String : Any] = [
             "dealership_time_slot_id": timeSlotId ?? "",
@@ -138,7 +138,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a Request Object or APIResponseError if an error occured
      */
     static func createDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int?, location: Location, isDriver: Bool,
-                              completion: @escaping ((Request?, APIResponseError?) -> Void)) {
+                              completion: @escaping ((Request?, LuxeAPIError?) -> Void)) {
         
         var params: [String: Any] = [:]
         
@@ -167,7 +167,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with an error if occured
      */
     static func cancelPickupRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool,
-                                     completion: @escaping ((APIResponseError?) -> Void)) {
+                                     completion: @escaping ((LuxeAPIError?) -> Void)) {
         
         var endpoint = "driver-pickup-requests"
         if !isDriver {
@@ -185,11 +185,10 @@ extension CustomerAPI {
      - parameter customerId: The customer ID
      - parameter bookingId: The booking ID to cancel
      - parameter requestId: The request ID to cancel
-     
-     - Returns: A Future EmptyMappableObject, or an AFError if an error occured
+     - parameter completion: A closure which is called with an error if occured
      */
     static func cancelDropoffRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool,
-                                    completion: @escaping ((APIResponseError?) -> Void)) {
+                                    completion: @escaping ((LuxeAPIError?) -> Void)) {
         
         var endpoint = "driver-dropoff-requests"
         if !isDriver {
@@ -199,6 +198,82 @@ extension CustomerAPI {
         self.api.put(route: "v1/customers/\(customerId)/bookings/\(bookingId)/\(endpoint)/\(requestId)/cancel") {
             response in
             completion(response?.asError())
+        }
+    }
+    
+    /**
+     Contact Driver
+     - parameter customerId: Customer's Id
+     - parameter bookingId: The booking ID related to the pickup
+     - parameter mode: The contact mode choosen: "text_only" or "voice_only"
+     - parameter completion: A closure which is called with a ContactDriver object or an error if occured
+     */
+    static func contactDriver(customerId: Int, bookingId: Int, mode: String,
+                                     completion: @escaping ((ContactDriver?, LuxeAPIError?) -> Void)) {
+        
+        let params = [
+            "mode": mode
+        ]
+        
+        self.api.put(route: "v1/customers/\(customerId)/bookings/\(bookingId)/contact-driver", bodyParameters: params) {
+            response in
+            let contact = response?.decodeContact()
+            completion(contact, response?.asError())
+        }
+    }
+    
+    /**
+     Skip the Booking Feedback
+     - parameter customerId: Customer's Id
+     - parameter bookingId: The booking ID related to the pickup
+     - parameter feedback_booking_id: The Feedback Booking ID comming from the Booking Object
+     - parameter completion: A closure which is called with an error if occured
+     */
+    static func skipBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int,
+                              completion: @escaping ((LuxeAPIError?) -> Void)) {
+        
+        self.api.put(route: "v1/customers/\(customerId)/bookings/\(bookingId)/feedbacks/\(feedbackBookingId)/skip") {
+            response in
+            completion(response?.asError())
+        }
+    }
+    
+    /**
+     Submit the Booking Feedback
+     - parameter customerId: Customer's Id
+     - parameter bookingId: The booking ID related to the pickup
+     - parameter feedbackBookingId: The Feedback Booking ID comming from the Booking Object
+     - parameter rating: The customer Rating from 1 to 10
+     - parameter comment: The customer comment, empty if nil
+     - parameter completion: A closure which is called with an error if occured
+     */
+    static func submitBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int, rating: Int, comment: String?,
+                                    completion: @escaping ((LuxeAPIError?) -> Void)) {
+        
+        let params: [String : Any] = [
+            "rating": rating,
+            "comment": comment ?? ""
+            ]
+        
+        self.api.put(route: "v1/customers/\(customerId)/bookings/\(bookingId)/feedbacks/\(feedbackBookingId)/submit", bodyParameters: params) {
+            response in
+            completion(response?.asError())
+        }
+    }
+    
+    /**
+     Get Booking Feedbacks
+     - parameter customerId: Customer's Id
+     - parameter state: The State of the feedback (pending|skipped|submitted)
+     - parameter completion: A closure which is called with an error if occured
+     */
+    static func getBookingFeedbacks(customerId: Int, state: String,
+                                      completion: @escaping ((BookingFeedback?, LuxeAPIError?) -> Void)) {
+        
+        self.api.get(route: "v1/customers/\(customerId)/booking-feedbacks?state=\(state)") {
+            response in
+            let bookingFeedback = response?.decodeBookingFeedback()
+            completion(bookingFeedback, response?.asError())
         }
     }
     
@@ -235,8 +310,26 @@ fileprivate extension RestAPIResponse {
         return bookingsResponse?.data
     }
     
-    private struct BookingsResponse: Codable {
-        let data: [Booking]
+    private struct ContactDriverResponse: Codable {
+        let data: ContactDriver
     }
+    
+    func decodeContact() -> ContactDriver? {
+        let contactResponse: ContactDriverResponse? = self.decode()
+        return contactResponse?.data
+    }
+    
+    private struct BookingFeedbackResponse: Codable {
+        let data: BookingFeedback
+    }
+    
+    func decodeBookingFeedback() -> BookingFeedback? {
+        let bookingFeedbackResponse: BookingFeedbackResponse? = self.decode()
+        return bookingFeedbackResponse?.data
+    }
+    
+    
+    
+    
     
 }

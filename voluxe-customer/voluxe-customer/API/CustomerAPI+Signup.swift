@@ -20,7 +20,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a Customer Object or APIResponseError if an error occured
      */
     static func signup(email: String, phoneNumber: String, firstName: String, lastName: String, languageCode: String,
-                      completion: @escaping ((Customer?, APIResponseError?) -> Void)) {
+                      completion: @escaping ((Customer?, LuxeAPIError?) -> Void)) {
         let route = "v1/customers/signup"
         
         let params = [
@@ -46,7 +46,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a Customer Object or APIResponseError if an error occured
      */
     static func confirmSignup(email: String, password: String, verificationCode: String,
-                       completion: @escaping ((Customer?, APIResponseError?) -> Void)) {
+                       completion: @escaping ((Customer?, LuxeAPIError?) -> Void)) {
         let route = "v1/customers/signup/confirm"
         
         let params = [
@@ -68,7 +68,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a Customer Object or APIResponseError if an error occured
      */
     static func requestPhoneVerificationCode(customerId: Int,
-                              completion: ((APIResponseError?) -> ())? = nil) {
+                              completion: ((LuxeAPIError?) -> ())? = nil) {
         let route = "v1/customers/\(customerId)/phone-number/request-verification"
         
         self.api.put(route: route) {
@@ -84,7 +84,7 @@ extension CustomerAPI {
      - parameter completion: A closure which is called with a APIResponseError if an error occured
      */
     static func verifyPhoneNumber(customerId: Int, verificationCode: String,
-                                             completion: ((APIResponseError?) -> ())? = nil) {
+                                             completion: ((LuxeAPIError?) -> ())? = nil) {
         let route = "v1/customers/\(customerId)/phone-number/verify"
         
         let params = [

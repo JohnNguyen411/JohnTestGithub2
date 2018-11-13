@@ -36,29 +36,27 @@ class LuxeAPI: RestAPI {
 }
 
 // TODO move to new file
-class APIResponseError {
-    
-    let apiError: LuxeAPIError?
-    let error: Bool
-    let statusCode: Int?
-    
-    init(apiError: LuxeAPIError?, error: Bool, statusCode: Int?) {
-        self.apiError = apiError
-        self.error = error
-        self.statusCode = statusCode
-    }
-}
-
-// TODO move to new file
 struct LuxeAPIError: Codable {
 
     // TODO string enum for code?
     // https://development-docs.ingress.luxe.com/v1/docs/#/
     typealias Code = String
 
-    let error: Bool
-    let code: Code
-    let message: String
+    let code: Code?
+    let message: String?
+    let statusCode: Int?
+    
+    init(statusCode: Int?) {
+        self.statusCode = statusCode
+        self.code = nil
+        self.message = nil
+    }
+    
+    init(code: Code?, message: String?, statusCode: Int?) {
+        self.statusCode = statusCode
+        self.code = code
+        self.message = message
+    }
 }
 
 // MARK:- Codable extension
@@ -81,10 +79,16 @@ extension RestAPIResponse {
 // MARK:- Custom decodings
 extension RestAPIResponse {
 
-    // Can return nil even if errored (502, etc)
     func asError() -> LuxeAPIError? {
-        let response: LuxeAPIError? = self.decode(reportErrors: false)
-        return response
+        
+        var luxeAPIError: LuxeAPIError? = self.decode(reportErrors: false)
+        if luxeAPIError == nil && hasErrored() {
+            luxeAPIError = LuxeAPIError(statusCode: self.statusCode())
+        } else {
+            luxeAPIError = LuxeAPIError(code: luxeAPIError?.code, message: luxeAPIError?.message, statusCode: self.statusCode())
+        }
+        
+        return luxeAPIError
     }
 
     // Can return nil even if errored (502, etc)
@@ -96,12 +100,6 @@ extension RestAPIResponse {
         return self.error != nil
     }
     
-    func asError() -> APIResponseError? {
-        if hasErrored() {
-            return APIResponseError(apiError: self.asError(), error: true, statusCode: self.statusCode())
-        }
-        return nil
-    }
 
     func asString() -> String? {
         guard let data = self.data else { return nil }

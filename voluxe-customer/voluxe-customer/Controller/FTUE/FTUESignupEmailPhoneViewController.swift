@@ -236,18 +236,18 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
     }
     
-    private func onSignupError(error: Errors? = nil) {
+    private func onSignupError(error: LuxeAPIError? = nil) {
         self.showLoading(loading: false)
         
-        if let apiError = error?.apiError {
+        if let code = error?.code {
             
-            if apiError.getCode() == .E5001 {
+            if code == Errors.ErrorCode.E5001.rawValue {
                 self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
-            } else if apiError.getCode() == .E4011 {
+            } else if code == Errors.ErrorCode.E4011.rawValue {
                 self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
-            } else if apiError.getCode() == .E4046 {
+            } else if code == Errors.ErrorCode.E4046.rawValue {
                 self.showOkDialog(title: .Error, message: .PhoneNumberInvalid, dialog: .error, screen: self.screen)
             } else  {
                 self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
