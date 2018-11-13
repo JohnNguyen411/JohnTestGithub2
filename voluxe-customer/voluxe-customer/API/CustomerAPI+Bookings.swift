@@ -137,12 +137,12 @@ extension CustomerAPI {
      - parameter isDriver: true if the request type if driver, false if advisor
      - parameter completion: A closure which is called with a Request Object or APIResponseError if an error occured
      */
-    static func createDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int?, location: Location, isDriver: Bool,
+    static func createDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int?, location: Location?, isDriver: Bool,
                               completion: @escaping ((Request?, LuxeAPIError?) -> Void)) {
         
         var params: [String: Any] = [:]
         
-        if let timeSlot = timeSlotId {
+        if let timeSlot = timeSlotId, let location = location {
             params = [
                 "dealership_time_slot_id": "\(timeSlot)",
                 "location": location.toJSON()
@@ -267,12 +267,12 @@ extension CustomerAPI {
      - parameter state: The State of the feedback (pending|skipped|submitted)
      - parameter completion: A closure which is called with an error if occured
      */
-    static func getBookingFeedbacks(customerId: Int, state: String,
-                                      completion: @escaping ((BookingFeedback?, LuxeAPIError?) -> Void)) {
+    static func bookingFeedbacks(customerId: Int, state: String,
+                                      completion: @escaping (([BookingFeedback], LuxeAPIError?) -> Void)) {
         
         self.api.get(route: "v1/customers/\(customerId)/booking-feedbacks?state=\(state)") {
             response in
-            let bookingFeedback = response?.decodeBookingFeedback()
+            let bookingFeedback = response?.decodeBookingFeedbacks() ?? []
             completion(bookingFeedback, response?.asError())
         }
     }
@@ -319,13 +319,13 @@ fileprivate extension RestAPIResponse {
         return contactResponse?.data
     }
     
-    private struct BookingFeedbackResponse: Codable {
-        let data: BookingFeedback
+    private struct BookingFeedbacksResponse: Codable {
+        let data: [BookingFeedback]
     }
     
-    func decodeBookingFeedback() -> BookingFeedback? {
-        let bookingFeedbackResponse: BookingFeedbackResponse? = self.decode()
-        return bookingFeedbackResponse?.data
+    func decodeBookingFeedbacks() -> [BookingFeedback]? {
+        let bookingFeedbacksResponse: BookingFeedbacksResponse? = self.decode()
+        return bookingFeedbacksResponse?.data
     }
     
     

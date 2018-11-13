@@ -61,11 +61,11 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
     
     //MARK: Validation methods
     
-    private func onError(error: APIResponseError? = nil) {
+    private func onError(error: LuxeAPIError? = nil) {
         MBProgressHUD.hide(for: self.view, animated: true)
         
-        if let apiError = error?.apiError {
-            if apiError.code == Errors.ErrorCode.E5001.rawValue || apiError.code == Errors.ErrorCode.E4011.rawValue {
+        if let code = error?.code {
+            if code == Errors.ErrorCode.E5001.rawValue || code == Errors.ErrorCode.E4011.rawValue {
                 self.showOkDialog(title: .Error, message: .AccountAlreadyExistUpdate, dialog: .error, screen: self.screen)
             }
         } else {

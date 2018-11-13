@@ -43,18 +43,14 @@ class HelpViewController: BaseViewController {
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdIndicator)
         tableView.isScrollEnabled = false
         
-        BookingAPI().getBookings(customerId: UserManager.sharedInstance.customerId()!, active: nil, sort: "-id").onSuccess { results in
-            if let bookings = results?.data?.result {
-                for booking in bookings {
-                    if booking.getLastCompletedRequest() != nil {
-                        self.booking = booking
-                        self.tableView.reloadData()
-                        break
-                    }
+        CustomerAPI.bookings(customerId: UserManager.sharedInstance.customerId()!, active: nil, sort: "-id") { bookings, error in
+            for booking in bookings {
+                if booking.getLastCompletedRequest() != nil {
+                    self.booking = booking
+                    self.tableView.reloadData()
+                    break
                 }
             }
-            }.onFailure { error in
-                
         }
     }
     

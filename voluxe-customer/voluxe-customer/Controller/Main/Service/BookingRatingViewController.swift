@@ -158,18 +158,18 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
             
             MBProgressHUD.showAdded(to: self.view, animated: true)
             
-            BookingAPI().getBooking(customerId: customerId, bookingId: bookingFeedback.bookingId).onSuccess { result in
+            CustomerAPI.booking(customerId: customerId, bookingId: bookingFeedback.bookingId) { booking, error in
                 MBProgressHUD.hide(for: self.view, animated: true)
-                if let booking = result?.data?.result {
+                if let booking = booking {
                     self.booking = booking
                     if let vehicle = booking.vehicle {
                         self.loadVehicle(vehicle: vehicle)
                     }
                     self.updateDealership(dealership: booking.dealership)
                 }
-                }.onFailure { error in
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                if error != nil {
                     self.skipBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id)
+                }
             }
         } else if let booking = self.booking {
             self.updateDealership(dealership: booking.dealership)
@@ -304,11 +304,8 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     
     private func skipBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        BookingAPI().skipBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId).onSuccess { result in
+        CustomerAPI.skipBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId) { error in
             self.goToNext()
-            }.onFailure { error in
-                // skip the skip?
-                self.goToNext()
         }
     }
     
@@ -325,9 +322,8 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     
     private func submitBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int, rating: Int, comment: String?) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        BookingAPI().submitBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId, rating: rating, comment: comment).onSuccess { result in
-            self.goToNext()
-            }.onFailure { error in
+        CustomerAPI.submitBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId, rating: rating, comment: comment) { error in
+            if error != nil {
                 if self.retryCount > 2 {
                     // stop
                     self.goToNext()
@@ -338,6 +334,9 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
                     self.sendFeedback(rating: rating, comment: comment)
                 }, dialog: .error, screen: self.screen)
                 self.retryCount += 1
+            } else {
+                self.goToNext()
+            }
         }
     }
     

@@ -375,8 +375,8 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        BookingAPI().contactDriver(customerId: customerId, bookingId: booking.id, mode: mode).onSuccess { result in
-            if let contactDriver = result?.data?.result {
+        CustomerAPI.contactDriver(customerId: customerId, bookingId: booking.id, mode: mode) { contact, error in
+            if let contactDriver = contact {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 if mode == "text_only" {
                     // sms
@@ -388,10 +388,10 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
                     guard let url = URL(string: number) else { return }
                     UIApplication.shared.open(url)
                 }
+            } else {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
             }
-        }.onFailure { error in
-            MBProgressHUD.hide(for: self.view, animated: true)
-            self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
         }
     }
     

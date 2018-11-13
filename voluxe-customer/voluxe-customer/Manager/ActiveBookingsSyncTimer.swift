@@ -53,8 +53,8 @@ class ActiveBookingsSyncTimer: SyncTimer {
         guard let customerId = UserManager.sharedInstance.customerId() else { return }
         
         // Get Customer's active Bookings based on ID
-        BookingAPI().getBookings(customerId: customerId, active: true).onSuccess { result in
-            if let bookings = result?.data?.result, bookings.count > 0 {
+        CustomerAPI.bookings(customerId: customerId, active: true) { bookings, error in
+            if bookings.count > 0 {
                 
                 for booking in bookings {
                     if booking.customerId == -1 {
@@ -76,8 +76,6 @@ class ActiveBookingsSyncTimer: SyncTimer {
                     }
                 }
             }
-            
-            }.onFailure { error in
         }
     }
 }

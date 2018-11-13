@@ -67,12 +67,10 @@ class BookingSyncTimer: SyncTimer {
     
     private func getBooking(customerId: Int, bookingId: Int) {
         // Get Customer's Vehicles based on ID
-        BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
-            if let booking = result?.data?.result {
+        CustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
+            if let booking = booking {
                 BookingSyncTimer.updateBooking(booking: booking, customerId: customerId)
             }
-            
-            }.onFailure { error in
         }
     }
     

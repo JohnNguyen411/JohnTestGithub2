@@ -104,14 +104,14 @@ class LoadingViewController: LogoViewController {
                     return
                 }
                 
-                if let apiError = error.apiError {
-                    if apiError.code == Errors.ErrorCode.E3004.rawValue {
+                if let code = error.code {
+                    if code == Errors.ErrorCode.E3004.rawValue {
                         // code not verified
                         UserManager.sharedInstance.tempCustomerId = customerId
                         FTUEStartViewController.flowType = .login
                         AppController.sharedInstance.phoneVerificationScreen()
                         return
-                    } else if apiError.code == Errors.ErrorCode.E5001.rawValue || apiError.code == Errors.ErrorCode.E5002.rawValue {
+                    } else if code == Errors.ErrorCode.E5001.rawValue || code == Errors.ErrorCode.E5002.rawValue {
                         // 500 unknown
                         self.showOkDialog(title: .Error, message: .GenericError, completion: {
                             self.callCustomer(customerId: customerId)
@@ -198,8 +198,8 @@ class LoadingViewController: LogoViewController {
     
     private func getBookings(customerId: Int) {
         // Get Customer's active Bookings based on ID
-        BookingAPI().getBookings(customerId: customerId, active: true).onSuccess { result in
-            if let bookings = result?.data?.result, bookings.count > 0 {
+        CustomerAPI.bookings(customerId: customerId, active: true) { bookings, error in
+            if bookings.count > 0 {
                 
                 for booking in bookings {
                     if booking.customerId == -1 {
@@ -220,10 +220,6 @@ class LoadingViewController: LogoViewController {
                 UserManager.sharedInstance.setBookings(bookings: nil)
                 self.loadVehiclesViewController(customerId: customerId)
             }
-            
-            }.onFailure { error in
-                UserManager.sharedInstance.setBookings(bookings: nil)
-                self.loadVehiclesViewController(customerId: customerId)
         }
     }
     
@@ -245,18 +241,15 @@ class LoadingViewController: LogoViewController {
     private func loadVehiclesViewController(customerId: Int) {
         // check BookingFeedbacks if no active reservation is here
         if UserManager.sharedInstance.getActiveBookings().count == 0 {
-            BookingAPI().getBookingFeedbacks(customerId: customerId, state: "pending").onSuccess { results in
-                if let data = results?.data, let feedbacks = data.result, feedbacks.count > 0 {
+            CustomerAPI.bookingFeedbacks(customerId: customerId, state: "pending") { bookingFeedbacks, error in
+                if bookingFeedbacks.count > 0 {
                     // just get the last one
-                    let bookingFeedback = feedbacks[feedbacks.count-1]
+                    let bookingFeedback = bookingFeedbacks[bookingFeedbacks.count-1]
                     AppController.sharedInstance.loadBookingFeedback(bookingFeedback: bookingFeedback)
                 } else {
                     AppController.sharedInstance.showVehiclesView(animated: true)
                     self.appDelegate?.registerForPushNotificationsIfGranted()
                 }
-                }.onFailure { error in
-                    AppController.sharedInstance.showVehiclesView(animated: true)
-                    self.appDelegate?.registerForPushNotificationsIfGranted()
             }
         } else {
             AppController.sharedInstance.showVehiclesView(animated: true)

@@ -105,9 +105,9 @@ class SettingsCarViewController: BaseViewController {
         }
     }
     
-    private func deleteVehicleFailed(error: APIResponseError) {
+    private func deleteVehicleFailed(error: LuxeAPIError) {
         MBProgressHUD.hide(for: self.view, animated: true)
-        if error.apiError?.code == Errors.ErrorCode.E3011.rawValue {
+        if error.code == Errors.ErrorCode.E3011.rawValue {
             showOkDialog(title: .Error, message: .DeleteVehicleError, dialog: .error, screen: self.screen)
         } else {
             showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)

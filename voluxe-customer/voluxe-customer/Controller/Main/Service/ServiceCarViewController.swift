@@ -499,14 +499,14 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
                     
                     self.showProgressHUD()
                     
-                    BookingAPI().createDropoffRequest(customerId: booking.customerId, bookingId: booking.id, timeSlotId: nil, location: nil, isDriver: false).onSuccess { result in
-                        if let dropOffRequest = result?.data?.result {
+                    CustomerAPI.createDropoffRequest(customerId: booking.customerId, bookingId: booking.id, timeSlotId: nil, location: nil, isDriver: false) { request, error in
+                        if let dropOffRequest = request {
                             self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
                             self.refreshFinalBooking(customerId: booking.customerId, bookingId: booking.id)
-                        }
-                        }.onFailure { error in
+                        } else if error != nil {
                             self.hideProgressHUD()
                             self.showOkDialog(title: .Error, message: .GenericError)
+                        }
                     }
                 }
             }
@@ -592,31 +592,32 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     }
     
     private func refreshFinalBooking(customerId: Int, bookingId: Int) {
-        BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
-            if let booking = result?.data?.result {
-                if let realm = try? Realm() {
-                    try? realm.write {
-                        realm.add(booking, update: true)
-                    }
-                }
-            }
-            
-            if let realm = try? Realm() {
-                let bookings = realm.objects(Booking.self).filter("customerId = \(customerId)")
-                UserManager.sharedInstance.setBookings(bookings: Array(bookings))
-            }
-            
-            RequestedServiceManager.sharedInstance.reset()
-            AppController.sharedInstance.showVehiclesView(animated: false)
-            
+        CustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
             self.hideProgressHUD()
             
-            }.onFailure { error in
-                // retry
-                self.hideProgressHUD()
+            if error != nil {
                 self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 }, dialog: .error, screen: self.screenAnalyticsEnum(state: self.serviceState))
+            } else {
+                
+                if let booking = booking {
+                    if let realm = try? Realm() {
+                        try? realm.write {
+                            realm.add(booking, update: true)
+                        }
+                    }
+                }
+                
+                if let realm = try? Realm() {
+                    let bookings = realm.objects(Booking.self).filter("customerId = \(customerId)")
+                    UserManager.sharedInstance.setBookings(bookings: Array(bookings))
+                }
+                
+                RequestedServiceManager.sharedInstance.reset()
+                AppController.sharedInstance.showVehiclesView(animated: false)
+                
+            }
         }
     }
     

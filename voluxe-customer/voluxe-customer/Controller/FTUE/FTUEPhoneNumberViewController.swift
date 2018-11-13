@@ -154,7 +154,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 
                 if let error = error {
                     self.hideProgressHUD()
-                    if let apiError = error.apiError, apiError.code == Errors.ErrorCode.E4001.rawValue {
+                    if let code = error.code, code == Errors.ErrorCode.E4001.rawValue {
                         self.showOkDialog(title: .Error, message: .PhoneNumberNotInFile, dialog: .error, screen: self.screen)
                     } else {
                         self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
@@ -187,7 +187,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 
                 if let error = error {
                     self.hideProgressHUD()
-                    if let apiError = error.apiError, apiError.code == Errors.ErrorCode.E4011.rawValue {
+                    if let code = error.code, code == Errors.ErrorCode.E4011.rawValue {
                         self.showOkDialog(title: .Error, message: .UpdatePhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
                     } else {
                         self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
