@@ -224,8 +224,11 @@ class LoadingViewController: LogoViewController {
     }
     
     private func refreshRepairOrderTypes() {
-        RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
-            if let services = services?.data?.result {
+        CustomerAPI.repairOrderTypes() { services, error in
+            
+            if error != nil {
+                Logger.print("\(error?.code ?? "") \(error?.message ?? "")")
+            } else {
                 if let realm = try? Realm() {
                     try? realm.write {
                         realm.delete(realm.objects(RepairOrderType.self))
@@ -233,8 +236,6 @@ class LoadingViewController: LogoViewController {
                     }
                 }
             }
-            }.onFailure { error in
-                Logger.print(error)
         }
     }
     

@@ -393,7 +393,6 @@
 		6CDCC6062058411200DFA831 /* ServiceMultiselectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC6052058411200DFA831 /* ServiceMultiselectListViewController.swift */; };
 		6CDCC60A2058442800DFA831 /* CheckableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC6092058442800DFA831 /* CheckableTableViewCell.swift */; };
 		6CDCC60E2059983000DFA831 /* OtherServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC60D2059983000DFA831 /* OtherServiceViewController.swift */; };
-		6CDCC612205C40B400DFA831 /* RepairOrderAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC611205C40B400DFA831 /* RepairOrderAPI.swift */; };
 		6CDCC616205C461100DFA831 /* RepairOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC615205C461100DFA831 /* RepairOrderType.swift */; };
 		6CDCC61A20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */; };
 		6CDCC61E20607EB400DFA831 /* DealershipRepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */; };
@@ -789,7 +788,6 @@
 		6CDCC6052058411200DFA831 /* ServiceMultiselectListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMultiselectListViewController.swift; sourceTree = "<group>"; };
 		6CDCC6092058442800DFA831 /* CheckableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckableTableViewCell.swift; sourceTree = "<group>"; };
 		6CDCC60D2059983000DFA831 /* OtherServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherServiceViewController.swift; sourceTree = "<group>"; };
-		6CDCC611205C40B400DFA831 /* RepairOrderAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrderAPI.swift; sourceTree = "<group>"; };
 		6CDCC615205C461100DFA831 /* RepairOrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrderType.swift; sourceTree = "<group>"; };
 		6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		6CDCC61D20607EB400DFA831 /* DealershipRepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealershipRepairOrder.swift; sourceTree = "<group>"; };
@@ -1526,7 +1524,6 @@
 				6C20E18A1FBE0E6200E5D9A0 /* GoogleDistanceMatrixAPI.swift */,
 				6C79C43D20A283DB00443463 /* GoogleSnappedPointsAPI.swift */,
 				6CD0C8861FD9FBDA008E4A72 /* NetworkRequest.swift */,
-				6CDCC611205C40B400DFA831 /* RepairOrderAPI.swift */,
 				6C497102207823E100FF33E9 /* VehicleAPI.swift */,
 			);
 			path = Service;
@@ -2358,7 +2355,6 @@
 				5340E91220D876F400B17D53 /* DebugFontCellView.swift in Sources */,
 				5330471E2188D9C3007CE01C /* Bundle+Voluxe.swift in Sources */,
 				6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
-				6CDCC612205C40B400DFA831 /* RepairOrderAPI.swift in Sources */,
 				6CC3543120B87E7C00FF98A6 /* LogoViewController.swift in Sources */,
 				6C3FB2AC1FA2574C00B22EAB /* Customer.swift in Sources */,
 				5340E91120D876F100B17D53 /* DebugFontTestViewController.swift in Sources */,
