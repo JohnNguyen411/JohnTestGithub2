@@ -324,9 +324,13 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
         
         guard let location = location else { return }
         
-        DealershipAPI().getDealerships(location: location).onSuccess { result in
-            if let dealerships = result?.data?.result {
-
+        CustomerAPI.dealerships(location: location) { dealerships, error in
+            
+            if error != nil {
+                completion?(nil)
+                self.dealerships = nil
+            } else {
+                
                 if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
                     if let repairOrderTypeId = RequestedServiceManager.sharedInstance.getRepairOrder()?.repairOrderType?.id, dealerships.count > 0 {
                         self.filterDealershipsForRepairOrder(repairOrderTypeId, dealerships: dealerships, completion: completion)
@@ -338,13 +342,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
                     self.handleDealershipsResponse(dealerships: dealerships)
                     completion?(nil)
                 }
-            } else {
-                completion?(nil)
-                self.dealerships = nil
             }
-            
-            }.onFailure { error in
-                completion?(nil)
         }
     }
     

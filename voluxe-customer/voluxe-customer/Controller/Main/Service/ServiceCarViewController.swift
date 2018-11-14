@@ -544,31 +544,24 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     
     func dealershipPrefetching() {
         if locationManager.canUpdateLocation() && locationManager.lastKnownLatitude != 0 && locationManager.lastKnownLongitude != 0 && locationManager.hasLastKnownLocation {
-            DealershipAPI().getDealerships(location: CLLocationCoordinate2DMake(locationManager.lastKnownLatitude, locationManager.lastKnownLongitude)).onSuccess { result in
-                
-                self.saveDealerships(result: result)
-                
-                }.onFailure { error in
+            CustomerAPI.dealerships(location: CLLocationCoordinate2DMake(locationManager.lastKnownLatitude, locationManager.lastKnownLongitude)) { dealerships, error in
+                self.saveDealerships(dealerships: dealerships)
             }
         } else {
-            DealershipAPI().getDealerships().onSuccess { result in
-                
-                self.saveDealerships(result: result)
-                
-                }.onFailure { error in
+            CustomerAPI.dealerships() { dealerships, error in
+                self.saveDealerships(dealerships: dealerships)
             }
         }
     }
     
-    func saveDealerships(result: ResponseObject<MappableDataArray<Dealership>>?) {
-        if let dealerships = result?.data?.result, dealerships.count > 0 {
+    func saveDealerships(dealerships: [Dealership]) {
+        if dealerships.count > 0 {
             if let realm = try? Realm() {
                 try? realm.write {
                     realm.add(dealerships, update: true)
                 }
             }
         }
-        
     }
     
     private func manageNewDropoffRequest(dropOffRequest: Request, booking: Booking) {

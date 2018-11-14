@@ -13,7 +13,7 @@ extension CustomerAPI {
     /**
      Get the Customer's Vehicles
      - parameter customerId: Customer's ID
-     - parameter completion: A closure which is called with an array of Vehicle or APIResponseError if an error occured
+     - parameter completion: A closure which is called with an array of Vehicle or LuxeAPIError if an error occured
      */
     static func vehicles(customerId: Int,
                          completion: @escaping (([Vehicle], LuxeAPIError?) -> Void)) {
@@ -32,7 +32,7 @@ extension CustomerAPI {
      - parameter make: Make of the new vehicle
      - parameter model: Model of the new vehicle
      - parameter year: Year of the new vehicle
-     - parameter completion: A closure which is called with the added Vehicle or APIResponseError if an error occured
+     - parameter completion: A closure which is called with the added Vehicle or LuxeAPIError if an error occured
      */
     static func addVehicle(customerId: Int, make: String, model: String, baseColor: String, year: Int,
                            completion: @escaping ((Vehicle?, LuxeAPIError?) -> Void)) {
@@ -56,7 +56,7 @@ extension CustomerAPI {
      Endpoint to remove a vehicle from Customer
      - parameter customerId: Customer's ID
      - parameter vehicleId: Vehicle ID
-     - parameter completion: A closure which is called with an array of Vehicle or APIResponseError if an error occured
+     - parameter completion: A closure which is called with an array of Vehicle or LuxeAPIError if an error occured
      */
     static func deleteVehicle(customerId: Int, vehicleId: Int,
                            completion: @escaping (([Vehicle], LuxeAPIError?) -> Void)) {

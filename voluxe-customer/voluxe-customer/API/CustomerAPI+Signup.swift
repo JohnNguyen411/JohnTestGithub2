@@ -17,7 +17,7 @@ extension CustomerAPI {
      - parameter firstName: Customer's firstname
      - parameter lastName: Customer's lastame
      - parameter languageCode: Customer's ISO_639-3 language code
-     - parameter completion: A closure which is called with a Customer Object or APIResponseError if an error occured
+     - parameter completion: A closure which is called with a Customer Object or LuxeAPIError if an error occured
      */
     static func signup(email: String, phoneNumber: String, firstName: String, lastName: String, languageCode: String,
                       completion: @escaping ((Customer?, LuxeAPIError?) -> Void)) {
@@ -43,7 +43,7 @@ extension CustomerAPI {
      - parameter email: Customer's email
      - parameter password: Customer's password
      - parameter verificationCode: Customer's SMS verification code
-     - parameter completion: A closure which is called with a Customer Object or APIResponseError if an error occured
+     - parameter completion: A closure which is called with a Customer Object or LuxeAPIError if an error occured
      */
     static func confirmSignup(email: String, password: String, verificationCode: String,
                        completion: @escaping ((Customer?, LuxeAPIError?) -> Void)) {
@@ -65,7 +65,7 @@ extension CustomerAPI {
     /**
      Endpoint to request Customer's phone number verification code
      - parameter customerId: Customer's ID
-     - parameter completion: A closure which is called with a Customer Object or APIResponseError if an error occured
+     - parameter completion: A closure which is called with a Customer Object or LuxeAPIError if an error occured
      */
     static func requestPhoneVerificationCode(customerId: Int,
                               completion: ((LuxeAPIError?) -> ())? = nil) {
@@ -81,7 +81,7 @@ extension CustomerAPI {
      Endpoint to verify Customer's phone number
      - parameter customerId: Customer's ID
      - parameter verificationCode: Verification Code sent by SMS
-     - parameter completion: A closure which is called with a APIResponseError if an error occured
+     - parameter completion: A closure which is called with a LuxeAPIError if an error occured
      */
     static func verifyPhoneNumber(customerId: Int, verificationCode: String,
                                              completion: ((LuxeAPIError?) -> ())? = nil) {

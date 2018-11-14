@@ -21,7 +21,7 @@ extension CustomerAPI {
      - parameter repairNotes: The repair_order notes, or nil if repair_order created separately
      - parameter repairTitle: The repair_order title, or nil if repair_order created separately
      - parameter vehicleDrivable: The repair_order vehicle_drivable, or nil if repair_order created separately
-     - parameter completion: A closure which is called with a Booking Object or APIResponseError if an error occured
+     - parameter completion: A closure which is called with a Booking Object or LuxeAPIError if an error occured
      */
     static func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool, dealershipRepairId: Int?, repairNotes: String?, repairTitle: String?, vehicleDrivable: Bool?, timeSlotId: Int?, location: Location?, isDriver: Bool,
                        completion: @escaping ((Booking?, LuxeAPIError?) -> Void)) {
@@ -68,7 +68,7 @@ extension CustomerAPI {
      Get Booking with CustomerID and BookingID
      - parameter customerId: Customer's Id
      - parameter bookingId: The Booking ID
-     - parameter completion: A closure which is called with a Booking Object or APIResponseError if an error occured
+     - parameter completion: A closure which is called with a Booking Object or LuxeAPIError if an error occured
      */
     static func booking(customerId: Int, bookingId: Int,
                         completion: @escaping ((Booking?, LuxeAPIError?) -> Void)) {
@@ -85,7 +85,7 @@ extension CustomerAPI {
      Get Booking with CustomerID and BookingID
      - parameter customerId: Customer's Id
      - parameter bookingId: The Booking ID
-     - parameter completion: A closure which is called with a Booking array or APIResponseError if an error occured
+     - parameter completion: A closure which is called with a Booking array or LuxeAPIError if an error occured
      */
     static func bookings(customerId: Int, active: Bool?, sort: String? = nil,
                         completion: @escaping (([Booking], LuxeAPIError?) -> Void)) {
@@ -111,7 +111,7 @@ extension CustomerAPI {
      - parameter timeSlotId: The TimeSlot ID Choosed by the customer for the pickup
      - parameter location: The location choosed by the customer for the pickup
      - parameter isDriver: true if the request type if driver, false if advisor
-     - parameter completion: A closure which is called with a Request Object or APIResponseError if an error occured
+     - parameter completion: A closure which is called with a Request Object or LuxeAPIError if an error occured
      */
     static func createPickupRequest(customerId: Int, bookingId: Int, timeSlotId: Int?, location: Location, isDriver: Bool,
                                      completion: @escaping ((Request?, LuxeAPIError?) -> Void)) {
@@ -135,7 +135,7 @@ extension CustomerAPI {
      - parameter timeSlotId: The TimeSlot ID Choosed by the customer for the pickup
      - parameter location: The location choosed by the customer for the pickup
      - parameter isDriver: true if the request type if driver, false if advisor
-     - parameter completion: A closure which is called with a Request Object or APIResponseError if an error occured
+     - parameter completion: A closure which is called with a Request Object or LuxeAPIError if an error occured
      */
     static func createDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int?, location: Location?, isDriver: Bool,
                               completion: @escaping ((Request?, LuxeAPIError?) -> Void)) {
@@ -276,9 +276,6 @@ extension CustomerAPI {
             completion(bookingFeedback, response?.asError())
         }
     }
-    
-    
-    
 }
 
 fileprivate extension RestAPIResponse {
@@ -327,9 +324,4 @@ fileprivate extension RestAPIResponse {
         let bookingFeedbacksResponse: BookingFeedbacksResponse? = self.decode()
         return bookingFeedbacksResponse?.data
     }
-    
-    
-    
-    
-    
 }
