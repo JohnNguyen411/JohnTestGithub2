@@ -8,6 +8,8 @@
 
 import Foundation
 
+// TODO https://app.asana.com/0/858610969087925/908722711775269/f
+// TODO documentation
 extension RestAPIHost {
     var string: String {
         switch self {
@@ -18,23 +20,32 @@ extension RestAPIHost {
     }
 }
 
+// TODO https://app.asana.com/0/858610969087925/908722711775269/f
+// TODO documentation
 class LuxeAPI: RestAPI {
 
-    // TODO default values
-    // TODO should be configurable at run time
-    var host = RestAPIHost.development
-    var headers: RestAPIHeaders = [:]
-    var defaultHeaders: RestAPIHeaders = [:]
+    var host = RestAPIHost.development {
+        didSet {
+            self.updateHeaders()
+        }
+    }
 
-    // TODO find a cleaner way to do this
-    // TODO documentation
-    func updateHeaders(with token: String? = nil) {
-        var headers = self.defaultHeaders
-        headers["Authorization"] = token != nil ? "Bearer \(token!)" : nil
-        self.headers = headers
+    var token: String? {
+        didSet {
+            self.updateHeaders()
+        }
+    }
+
+    var headers: RestAPIHeaders = [:]
+
+    func updateHeaders() {
+        let token = self.token
+        self.headers["Authorization"] = token != nil ? "Bearer \(token!)" : nil
     }
 }
 
+// TODO https://app.asana.com/0/858610969087925/908722711775269/f
+// TODO documentation
 struct LuxeAPIError: Codable {
 
     // https://development-docs.ingress.luxe.com/v1/docs/#/

@@ -56,6 +56,9 @@
 		53B43F9D218B7CD900EF847E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047182188D833007CE01C /* Bundle+Voluxe.swift */; };
 		53B43F9F218BB86200EF847E /* AppController+DriverAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B43F9E218BB86200EF847E /* AppController+DriverAPI.swift */; };
 		53B43FA3218CB6AC00EF847E /* AppController+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B43FA2218CB6AC00EF847E /* AppController+Test.swift */; };
+		53B577B5219CAB4A00AAEB8D /* DriverAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B577B4219CAB4A00AAEB8D /* DriverAPI.swift */; };
+		53B577B6219CAB4A00AAEB8D /* DriverAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B577B4219CAB4A00AAEB8D /* DriverAPI.swift */; };
+		53B577B8219CB18A00AAEB8D /* Token_APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B577B7219CB18A00AAEB8D /* Token_APITests.swift */; };
 		53B82AF2217E291D0041015B /* DriverAPI+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B82AF1217E291D0041015B /* DriverAPI+Driver.swift */; };
 		53B82AF3217E2A5D0041015B /* DriverAPI+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B82AF1217E291D0041015B /* DriverAPI+Driver.swift */; };
 		53B82AF6217E39800041015B /* Dealership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B82AF5217E39800041015B /* Dealership.swift */; };
@@ -167,6 +170,8 @@
 		53B43F99218B77DE00EF847E /* UserDefaults+LuxeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+LuxeAPI.swift"; sourceTree = "<group>"; };
 		53B43F9E218BB86200EF847E /* AppController+DriverAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppController+DriverAPI.swift"; sourceTree = "<group>"; };
 		53B43FA2218CB6AC00EF847E /* AppController+Test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppController+Test.swift"; sourceTree = "<group>"; };
+		53B577B4219CAB4A00AAEB8D /* DriverAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverAPI.swift; sourceTree = "<group>"; };
+		53B577B7219CB18A00AAEB8D /* Token_APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token_APITests.swift; sourceTree = "<group>"; };
 		53B82AF1217E291D0041015B /* DriverAPI+Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverAPI+Driver.swift"; sourceTree = "<group>"; };
 		53B82AF5217E39800041015B /* Dealership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dealership.swift; sourceTree = "<group>"; };
 		53B82AF9217E69F50041015B /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
@@ -286,6 +291,7 @@
 		530BCD4B2177AFB0005327E7 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				53B577B4219CAB4A00AAEB8D /* DriverAPI.swift */,
 				53B82AF1217E291D0041015B /* DriverAPI+Driver.swift */,
 				533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */,
 				535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */,
@@ -465,6 +471,7 @@
 		53B25E13217698B1002B846B /* voluxe-driverAPITests */ = {
 			isa = PBXGroup;
 			children = (
+				53B577B7219CB18A00AAEB8D /* Token_APITests.swift */,
 				533046E721877847007CE01C /* Inspection_APITests.swift */,
 				535A4531217A3787006B5EE1 /* Driver_APITests.swift */,
 				53B25E16217698B1002B846B /* Info.plist */,
@@ -880,6 +887,7 @@
 				53B43F97218B758400EF847E /* LuxeAPI+Version.swift in Sources */,
 				53B82AF6217E39800041015B /* Dealership.swift in Sources */,
 				533047242188F85B007CE01C /* AppDelegate+Fetch.swift in Sources */,
+				53B577B5219CAB4A00AAEB8D /* DriverAPI.swift in Sources */,
 				53DA9CB12180C7AC00ABC414 /* Request.swift in Sources */,
 				53DA9CAE2180C60D00ABC414 /* Vehicle.swift in Sources */,
 				53C190F2219B459D00CBC410 /* DateFormatter+LuxeAPI.swift in Sources */,
@@ -932,6 +940,7 @@
 				53DA9CC62181063E00ABC414 /* Request_APITests.swift in Sources */,
 				53DA9CC42181020400ABC414 /* Task.swift in Sources */,
 				53DA9CA4217F66B900ABC414 /* Location.swift in Sources */,
+				53B577B6219CAB4A00AAEB8D /* DriverAPI.swift in Sources */,
 				53DA9CAF2180C60D00ABC414 /* Vehicle.swift in Sources */,
 				530BCD612177D348005327E7 /* RestAPI.swift in Sources */,
 				530BCD5F2177D341005327E7 /* LuxeAPI.swift in Sources */,
@@ -951,6 +960,7 @@
 				53C190F3219B459D00CBC410 /* DateFormatter+LuxeAPI.swift in Sources */,
 				53B82AF7217E39800041015B /* Dealership.swift in Sources */,
 				53B82AFB217E69F50041015B /* Driver.swift in Sources */,
+				53B577B8219CB18A00AAEB8D /* Token_APITests.swift in Sources */,
 				533046E821877847007CE01C /* Inspection_APITests.swift in Sources */,
 				53B43F9D218B7CD900EF847E /* Bundle+Voluxe.swift in Sources */,
 				53DA9CB82180C9FD00ABC414 /* DriverAPI+Request.swift in Sources */,

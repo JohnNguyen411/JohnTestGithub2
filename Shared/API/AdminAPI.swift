@@ -11,14 +11,15 @@ import Foundation
 // TODO replace voluxe-customer AdminAPI with this one
 class AdminAPI: LuxeAPI {
 
-    // TODO how to allow subclass to set headers?
-    // TODO maybe allow default headers?
-    // TODO does this need an application version?
-    static private let api = AdminAPI()
+    static let api = AdminAPI()
     private override init() {
         super.init()
-        self.defaultHeaders["x-application-version"] = "luxe_by_volvo_customer_ios:100.0.0"
         self.updateHeaders()
+    }
+
+    override func updateHeaders() {
+        super.updateHeaders()
+        self.headers["x-application-version"] = "luxe_by_volvo_customer_ios:100.0.0"
     }
 
     static func login(email: String,
@@ -31,7 +32,7 @@ class AdminAPI: LuxeAPI {
                                              "as": "system_admin"]
         self.api.post(route: route, bodyParameters: parameters) {
             response in
-            self.api.updateHeaders(with: response?.asToken())
+            self.api.token = response?.asToken()
             completion(response?.asErrorCode())
         }
     }

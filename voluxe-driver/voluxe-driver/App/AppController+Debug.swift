@@ -24,4 +24,16 @@ extension AppController {
         self.present(navController, animated: true, completion: nil)
     }
     #endif
+
+    // TODO https://app.asana.com/0/858610969087925/911111684210127/f
+    // TODO tell any managers to stop operations
+    // TODO tell DriverManager.logout()
+    // TODO tear down current UI
+    func relaunch(_ host: RestAPIHost? = nil) {
+        if let host = host {
+            UserDefaults.standard.apiHost = host
+            DriverAPI.api.host = host
+        }
+        self.launch()
+    }
 }

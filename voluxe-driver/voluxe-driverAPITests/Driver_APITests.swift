@@ -18,6 +18,7 @@ class Driver_APITests: XCTestCase {
         AdminAPI.login(email: "bots@luxe.com", password: "1234qwer") {
             error in
             XCTAssertNil(error)
+            XCTAssertNotNil(AdminAPI.api.token)
         }
         self.wait()
     }

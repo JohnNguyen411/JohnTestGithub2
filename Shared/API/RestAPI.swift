@@ -8,28 +8,43 @@
 
 import Foundation
 
+// TODO https://app.asana.com/0/858610969087925/908722711775269/f
 // TODO documentation
-enum RestAPIHost: String {
+enum RestAPIHost: String, CaseIterable {
     case development
     case staging
     case production
 }
 
+// TODO https://app.asana.com/0/858610969087925/908722711775269/f
+// TODO documentation
 typealias RestAPIRoute = String
 
+// TODO https://app.asana.com/0/858610969087925/908722711775269/f
+// TODO documentation
 typealias RestAPIParameters = [String: Any]
 
+// TODO https://app.asana.com/0/858610969087925/908722711775269/f
+// TODO documentation
 typealias RestAPIToken = String
 
+// TODO https://app.asana.com/0/858610969087925/908722711775269/f
+// TODO documentation
 typealias RestAPIHeaders = [String: String]
 
+// TODO https://app.asana.com/0/858610969087925/908722711775269/f
+// TODO documentation
 struct RestAPIResponse {
     let data: Data?
     let error: Error?
 }
 
+// TODO https://app.asana.com/0/858610969087925/908722711775269/f
+// TODO documentation
 typealias RestAPICompletion = ((RestAPIResponse?) -> ())
 
+// TODO https://app.asana.com/0/858610969087925/908722711775269/f
+// TODO documentation
 protocol RestAPI {
 
     var host: RestAPIHost { get set }
@@ -61,6 +76,8 @@ protocol RestAPI {
     func inspect(urlResponse: HTTPURLResponse?, apiResponse: RestAPIResponse?)
 }
 
+// TODO https://app.asana.com/0/858610969087925/908722711775269/f
+// TODO documentation
 extension RestAPI {
 
     func urlFromHost(for route: RestAPIRoute) -> String {
