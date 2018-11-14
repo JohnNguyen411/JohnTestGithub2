@@ -32,6 +32,8 @@
 		529AB0DB212F7AA300AD8D09 /* ScheduleSelfDropModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AB0DA212F7AA200AD8D09 /* ScheduleSelfDropModal.swift */; };
 		529E366E219B9D8F00619807 /* CustomerAPI+Dealership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E366D219B9D8F00619807 /* CustomerAPI+Dealership.swift */; };
 		529E366F219B9D8F00619807 /* CustomerAPI+Dealership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E366D219B9D8F00619807 /* CustomerAPI+Dealership.swift */; };
+		529E3671219BAD7C00619807 /* CustomerAPI+RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E3670219BAD7C00619807 /* CustomerAPI+RepairOrder.swift */; };
+		529E3672219BAD7C00619807 /* CustomerAPI+RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E3670219BAD7C00619807 /* CustomerAPI+RepairOrder.swift */; };
 		52CDAC3C21262C35008B3E53 /* ScheduledSelfDropoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CDAC3B21262C35008B3E53 /* ScheduledSelfDropoff.swift */; };
 		52D5C9B12113AE270020F43F /* VLScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B02113AE270020F43F /* VLScrollView.swift */; };
 		52D5C9B32113DA9D0020F43F /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B22113DA9D0020F43F /* ViewUtils.swift */; };
@@ -474,6 +476,7 @@
 		529409812193AC860009F691 /* CustomerAPI+Vehicle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Vehicle.swift"; sourceTree = "<group>"; };
 		529AB0DA212F7AA200AD8D09 /* ScheduleSelfDropModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSelfDropModal.swift; sourceTree = "<group>"; };
 		529E366D219B9D8F00619807 /* CustomerAPI+Dealership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Dealership.swift"; sourceTree = "<group>"; };
+		529E3670219BAD7C00619807 /* CustomerAPI+RepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+RepairOrder.swift"; sourceTree = "<group>"; };
 		52CDAC3B21262C35008B3E53 /* ScheduledSelfDropoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledSelfDropoff.swift; sourceTree = "<group>"; };
 		52D5C9B02113AE270020F43F /* VLScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLScrollView.swift; sourceTree = "<group>"; };
 		52D5C9B22113DA9D0020F43F /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
@@ -890,6 +893,7 @@
 				526652D121963B8900CE99A3 /* CustomerAPI+Booking.swift */,
 				529E366D219B9D8F00619807 /* CustomerAPI+Dealership.swift */,
 				52940975219225720009F691 /* CustomerAPI+Login.swift */,
+				529E3670219BAD7C00619807 /* CustomerAPI+RepairOrder.swift */,
 				5294097B21925BC80009F691 /* CustomerAPI+Signup.swift */,
 				529409812193AC860009F691 /* CustomerAPI+Vehicle.swift */,
 			);
@@ -2281,6 +2285,7 @@
 				5294097D21925BC80009F691 /* CustomerAPI+Signup.swift in Sources */,
 				538FE75020BF47AD00C3CE17 /* Customer.swift in Sources */,
 				53C8AD5520E59D4F008E07FF /* NullAnalytics.swift in Sources */,
+				529E3672219BAD7C00619807 /* CustomerAPI+RepairOrder.swift in Sources */,
 				533047202188DA30007CE01C /* Bundle+Voluxe.swift in Sources */,
 				538FE74F20BF476800C3CE17 /* ResponseError.swift in Sources */,
 				538FE75720BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */,
@@ -2430,6 +2435,7 @@
 				6C7495D71FDA0CEB0036FC08 /* Meta.swift in Sources */,
 				6CE147A220AF4FFD001F4BC7 /* PermissionViewController+Locations.swift in Sources */,
 				6C90CC16201156AF002594F5 /* ResponseError.swift in Sources */,
+				529E3671219BAD7C00619807 /* CustomerAPI+RepairOrder.swift in Sources */,
 				6C88DC8F1FAA7BF8009F2FC3 /* FTUEAllSetViewController.swift in Sources */,
 				6CDCD7F7200EE5620099258C /* VLDateFormatter.swift in Sources */,
 				5340E91020D876ED00B17D53 /* DebugFontViewController.swift in Sources */,

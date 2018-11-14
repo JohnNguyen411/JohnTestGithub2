@@ -45,7 +45,7 @@ extension CustomerAPI {
      - parameter loaner: true if loaner is requested, false otherwise
      - parameter from: start date of the requested timeslot
      - parameter to: end date of the requested timeslot
-     - parameter completion: A closure which is called with an array of Dealership Object or LuxeAPIError if an error occured
+     - parameter completion: A closure which is called with an array of DealershipTimeSlot Object or LuxeAPIError if an error occured
      */
     static func dealershipTimeSlot(dealershipId: Int, type: String, loaner: Bool, from: String, to: String,
                             completion: @escaping (([DealershipTimeSlot], LuxeAPIError?) -> Void)) {

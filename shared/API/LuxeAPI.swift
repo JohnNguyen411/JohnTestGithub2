@@ -33,6 +33,16 @@ class LuxeAPI: RestAPI {
         headers["Authorization"] = token != nil ? "Bearer \(token!)" : nil
         self.headers = headers
     }
+    
+    static func encodeParamsArray(array: [Any], key: String) -> String {
+        let keyParam = "\(key)"
+        var params = ""
+        for (index, object) in array.enumerated() {
+            params += "\(keyParam)[\(index)]=\(object)&"
+        }
+        params.removeLast()
+        return params
+    }
 }
 
 // TODO move to new file
