@@ -24,8 +24,6 @@ class BranchDeeplink: NSObject, Codable {
     var feature: String?
     
     
-    required init?(map: Map) {
-    }
     /*
     func mapping(map: Map) {
         email <- map["email"]

@@ -252,7 +252,6 @@
 		530BCD482177AAA0005327E7 /* API */ = {
 			isa = PBXGroup;
 			children = (
-				53DA9CA5217F9D5E00ABC414 /* AdminAPI.swift */,
 				530BCD4C2177AFBE005327E7 /* LuxeAPI.swift */,
 				53B43FA0218CA80700EF847E /* LuxeAPI+Notifications.swift */,
 				53B43F96218B758400EF847E /* LuxeAPI+Version.swift */,
@@ -265,6 +264,7 @@
 		530BCD4B2177AFB0005327E7 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				53DA9CA5217F9D5E00ABC414 /* AdminAPI.swift */,
 				53B82AF1217E291D0041015B /* DriverAPI+Driver.swift */,
 				533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */,
 				535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */,

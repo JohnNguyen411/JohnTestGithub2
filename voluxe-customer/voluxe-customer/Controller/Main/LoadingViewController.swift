@@ -105,13 +105,13 @@ class LoadingViewController: LogoViewController {
                 }
                 
                 if let code = error.code {
-                    if code == Errors.ErrorCode.E3004.rawValue {
+                    if code == .E3004 {
                         // code not verified
                         UserManager.sharedInstance.tempCustomerId = customerId
                         FTUEStartViewController.flowType = .login
                         AppController.sharedInstance.phoneVerificationScreen()
                         return
-                    } else if code == Errors.ErrorCode.E5001.rawValue || code == Errors.ErrorCode.E5002.rawValue {
+                    } else if code == .E5001 || code == .E5002 {
                         // 500 unknown
                         self.showOkDialog(title: .Error, message: .GenericError, completion: {
                             self.callCustomer(customerId: customerId)
@@ -123,10 +123,10 @@ class LoadingViewController: LogoViewController {
         }
     }
     
-    private func errorRetrievingCustomer(customerId: Int, error: ResponseError?) {
+    private func errorRetrievingCustomer(customerId: Int, error: LuxeAPIError?) {
         
         if let error = error {
-            if error.getCode() == .E3004 {
+            if error.code == .E3004 {
                 // code not verified
                 UserManager.sharedInstance.tempCustomerId = customerId
                 FTUEStartViewController.flowType = .login
@@ -227,7 +227,7 @@ class LoadingViewController: LogoViewController {
         CustomerAPI.repairOrderTypes() { services, error in
             
             if error != nil {
-                Logger.print("\(error?.code ?? "") \(error?.message ?? "")")
+                Logger.print("\(error?.message ?? "")")
             } else {
                 if let realm = try? Realm() {
                     try? realm.write {

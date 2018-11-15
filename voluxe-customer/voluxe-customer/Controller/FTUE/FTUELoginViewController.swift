@@ -192,7 +192,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     private func onLoginError(error: LuxeAPIError? = nil) {
         self.showLoading(loading: false)
         
-        if let code = error?.code, code == Errors.ErrorCode.E2005.rawValue {
+        if let code = error?.code, code == .E2005 {
             self.showOkDialog(title: .Error, message: .InvalidCredentials, dialog: .error, screen: self.screen)
         } else {
             self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)

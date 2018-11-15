@@ -164,11 +164,11 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         self.showLoading(loading: false)
         
         if let code = error?.code {
-            if code == Errors.ErrorCode.E5001.rawValue {
+            if code == .E5001 {
                 self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
-            } else if code == Errors.ErrorCode.E4012.rawValue {
+            } else if code == .E4012 {
                 self.showOkDialog(title: .Error, message: .InvalidVerificationCode, completion: {
                     self.navigationController?.popViewController(animated: true)
                 }, dialog: .error, screen: self.screen)

@@ -71,11 +71,12 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         
         showProgressHUD()
 
-        VehicleAPI().vehicleModels(makeId: nil).onSuccess { result in
-            if let vehicles = result?.data?.result {
+        CustomerAPI.vehicleModels(makeId: nil) { models, error in
+            
+            if error == nil {
                 if let realm = self.realm {
                     try? realm.write {
-                        realm.add(vehicles, update: true)
+                        realm.add(models, update: true)
                     }
                     
                     let resultsVehicleModels = realm.objects(VehicleModel.self).sorted(byKeyPath: "name", ascending: false)
@@ -83,9 +84,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
                 }
             }
             self.hideProgressHUD()
-            }.onFailure { error in
-                self.hideProgressHUD()
-            }
+        }
     }
     
     override func setupViews() {

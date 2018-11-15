@@ -288,7 +288,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 } else {
                     
                     self.hideProgressHUD()
-                    if let code = error?.code, code == Errors.ErrorCode.E4012.rawValue {
+                    if let code = error?.code, code == .E4012 {
                         self.showOkDialog(title: .Error, message: .WrongVerificationCode, dialog: .error, screen: self.screen)
                     } else {
                         self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)

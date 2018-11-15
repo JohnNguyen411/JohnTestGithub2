@@ -20,8 +20,8 @@ class CustomerAPI: LuxeAPI {
     // TODO need Bundle.main.version extension
     private override init() {
         super.init()
-        self.defaultHeaders["X-CLIENT-ID"] = "2SRLMO648SEEK7X66AMTLYZGSE8RSL12"
-        self.defaultHeaders["x-application-version"] = "luxe_by_volvo_driver_ios:1.0.0"
+        self.defaultHeaders["X-CLIENT-ID"] = Config.sharedInstance.apiClientId()
+        self.defaultHeaders["x-application-version"] = "luxe_by_volvo_customer_ios:\(Bundle.main.version)"
         self.updateHeaders()
     }
     

@@ -249,7 +249,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             
             if let error = error {
                 // 2 bookings for the same car, not currently handled
-                if let code = error.code, code == Errors.ErrorCode.E4049.rawValue || code == Errors.ErrorCode.E4050.rawValue {
+                if let code = error.code, code == .E4049 || code == .E4050 {
                     self.confirmButton.isLoading = false
                     self.showDialog(title: .Error, message: String(format: String.DuplicateRequestError, String.Pickup), buttonTitle: .Refresh, completion: {
                         BookingSyncManager.sharedInstance.syncBookings()
@@ -292,7 +292,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             CustomerAPI.createPickupRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: isDriver) { request, error in
                 
                 if let error = error {
-                    if let code = error.code, code == Errors.ErrorCode.E4049.rawValue || code == Errors.ErrorCode.E4050.rawValue {
+                    if let code = error.code, code == .E4049 || code == .E4050 {
                         self.confirmButton.isLoading = false
                         self.showDialog(title: .Error, message: String(format: String.DuplicateRequestError, String.Pickup), buttonTitle: .Refresh, completion: {
                             self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)

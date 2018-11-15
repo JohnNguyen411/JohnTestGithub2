@@ -65,7 +65,7 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
         MBProgressHUD.hide(for: self.view, animated: true)
         
         if let code = error?.code {
-            if code == Errors.ErrorCode.E5001.rawValue || code == Errors.ErrorCode.E4011.rawValue {
+            if code == .E5001 || code == .E4011 {
                 self.showOkDialog(title: .Error, message: .AccountAlreadyExistUpdate, dialog: .error, screen: self.screen)
             }
         } else {

@@ -241,13 +241,13 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         if let code = error?.code {
             
-            if code == Errors.ErrorCode.E5001.rawValue {
+            if code == .E5001 {
                 self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
-            } else if code == Errors.ErrorCode.E4011.rawValue {
+            } else if code == .E4011 {
                 self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
-            } else if code == Errors.ErrorCode.E4046.rawValue {
+            } else if code == .E4046 {
                 self.showOkDialog(title: .Error, message: .PhoneNumberInvalid, dialog: .error, screen: self.screen)
             } else  {
                 self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)

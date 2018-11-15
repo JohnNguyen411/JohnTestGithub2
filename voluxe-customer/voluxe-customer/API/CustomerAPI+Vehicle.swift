@@ -67,9 +67,66 @@ extension CustomerAPI {
             completion(vehicles, response?.asError())
         }
     }
+    
+    /**
+     Retrieve list of Makes available for Vehicles
+     - parameter completion: A closure which is called with an array of VehicleMakes or LuxeAPIError if an error occured
+     */
+    static func vehicleMakes(completion: @escaping (([VehicleMake], LuxeAPIError?) -> Void)) {
+        let params: [String: Any] = ["managed":true, "limit":99, "sort[0]":"-name"]
+
+        self.api.get(route: "v1/vehicle-makes", queryParameters: params) {
+            response in
+            let vehicles = response?.decodeVehicleMakes() ?? []
+            completion(vehicles, response?.asError())
+        }
+    }
+    
+    /**
+     Retrieve list of Models available for Vehicles
+     - parameter makeId: Make Id for the desired models (Optional
+     - parameter completion: A closure which is called with an array of VehicleModel or LuxeAPIError if an error occured
+     */
+    static func vehicleModels(makeId: Int?, completion: @escaping (([VehicleModel], LuxeAPIError?) -> Void)) {
+
+        var queryParams = [
+            "managed": "true",
+            "limit": 99,
+            "sort[0]": "-name"
+            ] as [String : Any]
+        
+        if let makeId = makeId {
+            queryParams["make"] = makeId
+        }
+        
+        
+        self.api.get(route: "v1/vehicle-models", queryParameters: queryParams) {
+            response in
+            let vehicles = response?.decodeVehicleModels() ?? []
+            completion(vehicles, response?.asError())
+        }
+    }
 }
 
 fileprivate extension RestAPIResponse {
+    
+    private struct VehicleModelsResponse: Codable {
+        let data: [VehicleModel]
+    }
+    
+    func decodeVehicleModels() -> [VehicleModel]? {
+        let vehicleModelsResponse: VehicleModelsResponse? = self.decode()
+        return vehicleModelsResponse?.data
+    }
+    
+    private struct VehicleMakesResponse: Codable {
+        let data: [VehicleMake]
+    }
+    
+    func decodeVehicleMakes() -> [VehicleMake]? {
+        let vehicleMakesResponse: VehicleMakesResponse? = self.decode()
+        return vehicleMakesResponse?.data
+    }
     
     private struct VehiclesResponse: Codable {
         let data: [Vehicle]

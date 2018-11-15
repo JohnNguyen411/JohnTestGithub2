@@ -237,7 +237,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 self.confirmButton.isLoading = false
                 
                 if (error != nil) {
-                    if let code = error?.code, code == Errors.ErrorCode.E4049.rawValue || code == Errors.ErrorCode.E4050.rawValue {
+                    if let code = error?.code, code == .E4049 || code == .E4050 {
                         self.showDialog(title: .Error, message: String(format: String.DuplicateRequestError, String.Delivery), buttonTitle: .Refresh, completion: {
                             self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
                         }, dialog: .error, screen: self.screen)

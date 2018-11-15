@@ -43,7 +43,7 @@ class ServiceListViewController: BaseViewController {
             self.hideProgressHUD()
 
             if error != nil {
-                Logger.print("\(error?.code ?? "") \(error?.message ?? "")")
+                Logger.print("\(error?.code?.rawValue ?? "") \(error?.message ?? "")")
             } else {
                 if let realm = try? Realm() {
                     try? realm.write {
