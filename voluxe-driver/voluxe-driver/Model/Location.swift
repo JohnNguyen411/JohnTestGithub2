@@ -8,8 +8,6 @@
 
 import Foundation
 
-// TODO accuracy needed?
-// TODO updated_at needed?
 struct Location: Codable {
     let address: String
     let latitude: Double

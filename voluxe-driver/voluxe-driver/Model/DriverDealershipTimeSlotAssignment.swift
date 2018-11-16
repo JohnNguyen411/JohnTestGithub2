@@ -9,10 +9,16 @@
 import Foundation
 
 struct DriverDealershipTimeSlotAssignment: Codable {
+
     let id: Int
-    let driver_id: Int
-    let dealership_time_slot_id: Int
+    let driverId: Int
+    let dealershipTimeSlotId: Int
     let state: String
-    let created_at: String  // TODO need date
-    let updated_at: String  // TODO need date
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case driverId = "driver_id"
+        case dealershipTimeSlotId = "dealership_time_slot_id"
+        case state
+    }
 }

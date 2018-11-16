@@ -11,8 +11,6 @@ import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
 import GoogleMaps
-import BrightFutures
-import Result
 import SwiftEventBus
 import MBProgressHUD
 import SDWebImage

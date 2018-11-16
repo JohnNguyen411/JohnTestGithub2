@@ -12,6 +12,10 @@
 		524BF64C211A57E900404ED5 /* CurrentLocationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */; };
 		526652D221963B8900CE99A3 /* CustomerAPI+Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526652D121963B8900CE99A3 /* CustomerAPI+Booking.swift */; };
 		526652D321963B8900CE99A3 /* CustomerAPI+Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526652D121963B8900CE99A3 /* CustomerAPI+Booking.swift */; };
+		52758F19219E3849007E488A /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F18219E3849007E488A /* CustomerAPI.swift */; };
+		52758F1A219E3849007E488A /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F18219E3849007E488A /* CustomerAPI.swift */; };
+		52758F1C219E3AF3007E488A /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */; };
+		52758F1D219E3AF3007E488A /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */; };
 		52940965219220B50009F691 /* Thread+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940963219220B50009F691 /* Thread+Assert.swift */; };
 		52940966219220B50009F691 /* UserDefaults+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940964219220B50009F691 /* UserDefaults+LuxeAPI.swift */; };
 		5294096F219220E00009F691 /* LuxeAPI+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294096A219220E00009F691 /* LuxeAPI+Notifications.swift */; };
@@ -429,6 +433,8 @@
 		4C64F631C2578E5AD1F6A474 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
 		524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCellView.swift; sourceTree = "<group>"; };
 		526652D121963B8900CE99A3 /* CustomerAPI+Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Booking.swift"; sourceTree = "<group>"; };
+		52758F18219E3849007E488A /* CustomerAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomerAPI.swift; sourceTree = "<group>"; };
+		52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "DateFormatter+LuxeAPI.swift"; path = "../../shared/Extensions/DateFormatter+LuxeAPI.swift"; sourceTree = "<group>"; };
 		52940963219220B50009F691 /* Thread+Assert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Thread+Assert.swift"; path = "../../shared/Extensions/Thread+Assert.swift"; sourceTree = "<group>"; };
 		52940964219220B50009F691 /* UserDefaults+LuxeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UserDefaults+LuxeAPI.swift"; path = "../../shared/Extensions/UserDefaults+LuxeAPI.swift"; sourceTree = "<group>"; };
 		5294096A219220E00009F691 /* LuxeAPI+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LuxeAPI+Notifications.swift"; sourceTree = "<group>"; };
@@ -840,6 +846,7 @@
 		52940974219224570009F691 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				52758F18219E3849007E488A /* CustomerAPI.swift */,
 				5294097E21937D750009F691 /* CustomerAPI+Account.swift */,
 				526652D121963B8900CE99A3 /* CustomerAPI+Booking.swift */,
 				529E366D219B9D8F00619807 /* CustomerAPI+Dealership.swift */,
@@ -865,6 +872,7 @@
 		533047112188D821007CE01C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */,
 				52940963219220B50009F691 /* Thread+Assert.swift */,
 				52940964219220B50009F691 /* UserDefaults+LuxeAPI.swift */,
 				533047122188D821007CE01C /* NSObject+Voluxe.swift */,
@@ -1937,19 +1945,17 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEventBus.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1965,15 +1971,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEventBus.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2028,12 +2032,14 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-NSData+zlib/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -2068,8 +2074,8 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/AlamofireNetworkActivityIndicator/AlamofireNetworkActivityIndicator.framework",
 				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
-				"${BUILT_PRODUCTS_DIR}/BrightFutures/BrightFutures.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-Logger-NSData+zlib/GoogleToolboxForMac.framework",
@@ -2080,7 +2086,6 @@
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/Result/Result.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SlideMenuControllerSwift/SlideMenuControllerSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
@@ -2092,8 +2097,8 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireNetworkActivityIndicator.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BrightFutures.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
@@ -2104,7 +2109,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Result.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SlideMenuControllerSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
@@ -2203,10 +2207,12 @@
 				538FE75020BF47AD00C3CE17 /* Customer.swift in Sources */,
 				53C8AD5520E59D4F008E07FF /* NullAnalytics.swift in Sources */,
 				529E3672219BAD7C00619807 /* CustomerAPI+RepairOrder.swift in Sources */,
+				52758F1A219E3849007E488A /* CustomerAPI.swift in Sources */,
 				533047202188DA30007CE01C /* Bundle+Voluxe.swift in Sources */,
 				538FE75720BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */,
 				536D6D6420CF3B5C00A269D4 /* SignUp_APITests.swift in Sources */,
 				53C8AD3B20E596C3008E07FF /* AnalyticsEnums.swift in Sources */,
+				52758F1D219E3AF3007E488A /* DateFormatter+LuxeAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -2350,6 +2356,7 @@
 				6C88DC981FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C3FB2B21FA2824200B22EAB /* Constants.swift in Sources */,
 				6CDAEE8420E309DA0040CDFF /* HelpListViewController.swift in Sources */,
+				52758F19219E3849007E488A /* CustomerAPI.swift in Sources */,
 				6CBB4E971FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */,
 				6C88DC9D1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
 				53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */,
@@ -2443,6 +2450,7 @@
 				5322409020B32CE600D4E86C /* RealmManager.swift in Sources */,
 				6C4D91BB1FDB15F90031E3CB /* Token.swift in Sources */,
 				6CDAEE7720E1B4F00040CDFF /* HelpDetail.swift in Sources */,
+				52758F1C219E3AF3007E488A /* DateFormatter+LuxeAPI.swift in Sources */,
 				6CE1479E20AF3BDA001F4BC7 /* PermissionViewController+Notifications.swift in Sources */,
 				6C73420C1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,
 				6C7341FF1FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,

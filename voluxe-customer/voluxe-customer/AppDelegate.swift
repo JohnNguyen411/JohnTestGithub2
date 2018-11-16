@@ -90,10 +90,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window!.rootViewController = rootViewController
         window!.makeKeyAndVisible()
         
+        //TODO: figure out logging for AlamoFire5
+        /*
         if UserDefaults.standard.enableAlamoFireLogging {
             NetworkActivityLogger.shared.level = .debug
             NetworkActivityLogger.shared.startLogging()
         }
+         */
 
         setupFirebase(application)
         setupBranch(application, launchOptions: launchOptions)

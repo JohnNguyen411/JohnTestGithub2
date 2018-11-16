@@ -69,7 +69,11 @@ extension AppController {
         }
     }
 
-    func suspend() {}
+    func suspend() {
+        UserDefaults.standard.synchronize()
+    }
 
-    func exit() {}
+    func exit() {
+        UserDefaults.standard.synchronize()
+    }
 }

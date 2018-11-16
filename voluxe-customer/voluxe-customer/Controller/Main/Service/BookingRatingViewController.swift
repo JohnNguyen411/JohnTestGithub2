@@ -11,7 +11,6 @@ import UIKit
 import QuartzCore
 import SlideMenuControllerSwift
 import RealmSwift
-import BrightFutures
 import Alamofire
 import Kingfisher
 import MBProgressHUD

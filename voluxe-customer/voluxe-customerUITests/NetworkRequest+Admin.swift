@@ -7,8 +7,6 @@
 //
 
 import Alamofire
-import AlamofireObjectMapper
-import BrightFutures
 import Foundation
 
 extension NetworkRequest {

@@ -8,7 +8,6 @@ inhibit_all_warnings!
 target 'voluxe-customer' do
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
     pod 'Branch', '0.25.0'
-    pod 'BrightFutures', '6.0.1'
     pod 'CocoaLumberjack/Swift', '3.3.0'
     pod 'Crashlytics', '3.10.5'
     pod 'DateToolsSwift', '4.0.0'
@@ -38,25 +37,25 @@ end
 
 target 'voluxe-customerAPITests' do
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
-    pod 'BrightFutures', '6.0.1'
     pod 'RealmSwift', '3.7.6'
     pod 'SwiftEventBus', '2.1.2'
 end
 
 target 'voluxe-customerUITests' do
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
-    pod 'BrightFutures', '6.0.1'
     pod 'SwiftEventBus', '2.1.2'
 end
 
 post_install do | installer |
     # set all Pods to Swift 4.0 until they update to 4.2
     installer.pods_project.targets.each do |target|
-        target.build_configurations.each do |config|
-            config.build_settings['SWIFT_VERSION'] = '4.0'
+        if !['Alamofire'].include? target.name
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '4.0'
+            end
         end
     end
-
+    
     # copy Acknowledgements into Settings bundle
     require 'fileutils'
     FileUtils.cp_r('Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-acknowledgements.plist', 'voluxe-customer/Resources/Settings.bundle/Acknowledgements.plist', :remove_destination => true)

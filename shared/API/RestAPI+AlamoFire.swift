@@ -102,10 +102,36 @@ extension RestAPI {
         let sentRequest = Alamofire.AF.request(encodedRequest)
         sentRequest.responseData {
             response in
-            let apiResponse = RestAPIResponse(data: response.result.value, error: response.error)
+            let apiResponse = self.injectResponse() ?? RestAPIResponse(data: response.result.value, error: response.error)
             self.inspect(urlResponse: response.response, apiResponse: apiResponse)
             completion?(apiResponse)
         }
+    }
+
+    // This is wrapped in a DEBUG clause to reduce overhead in production builds.
+    // Since no debug menu is available, there is no way to inject responses so
+    // no need to continually check the UserDefaults (which is not performant).
+    private func injectResponse() -> RestAPIResponse? {
+        #if DEBUG
+            let defaults = UserDefaults.standard
+            if defaults.injectLoginRequired {
+                let error = LuxeAPIError(code: .E2001, message: "injected", statusCode: 401)
+                let data = try? JSONEncoder().encode(error)
+                let response = RestAPIResponse(data: data, error: nil)
+                return response
+            }
+            else if defaults.injectUpdateRequired {
+                let error = LuxeAPIError(code: .E3006, message: "injected", statusCode: 426)
+                let data = try? JSONEncoder().encode(error)
+                let response = RestAPIResponse(data: data, error: nil)
+                return response
+            }
+            else {
+                return nil
+            }
+        #else
+            return nil
+        #endif
     }
 
     // TODO this might be too restrictive as an API

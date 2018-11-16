@@ -12,7 +12,6 @@ import QuartzCore
 import SlideMenuControllerSwift
 import CoreLocation
 import RealmSwift
-import BrightFutures
 import Alamofire
 import Kingfisher
 import MBProgressHUD

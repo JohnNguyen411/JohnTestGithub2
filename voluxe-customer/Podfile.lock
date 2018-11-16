@@ -1,10 +1,10 @@
 PODS:
   - Alamofire (5.0.0.beta.1)
+  - AlamofireNetworkActivityIndicator (3.0.0.beta.1):
+    - Alamofire (~> 5.0.0.beta.1)
   - Branch (0.25.0):
     - Branch/Core (= 0.25.0)
   - Branch/Core (0.25.0)
-  - BrightFutures (6.0.1):
-    - Result (~> 3.2.4)
   - CocoaLumberjack/Default (3.3.0)
   - CocoaLumberjack/Swift (3.3.0):
     - CocoaLumberjack/Default
@@ -77,7 +77,6 @@ PODS:
   - Realm/Headers (3.7.6)
   - RealmSwift (3.7.6):
     - Realm (= 3.7.6)
-  - Result (3.2.4)
   - SDWebImage (4.0.0):
     - SDWebImage/Core (= 4.0.0)
   - SDWebImage/Core (4.0.0)
@@ -89,8 +88,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `alamofire5`)
+  - AlamofireNetworkActivityIndicator (from `https://github.com/Alamofire/AlamofireNetworkActivityIndicator`, branch `alamofire5-support`)
   - Branch (= 0.25.0)
-  - BrightFutures (= 6.0.1)
   - CocoaLumberjack/Swift (= 3.3.0)
   - Crashlytics (= 3.10.5)
   - DateToolsSwift (= 4.0.0)
@@ -115,7 +114,6 @@ DEPENDENCIES:
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - Branch
-    - BrightFutures
     - CocoaLumberjack
     - Crashlytics
     - DateToolsSwift
@@ -137,7 +135,6 @@ SPEC REPOS:
     - Protobuf
     - Realm
     - RealmSwift
-    - Result
     - SDWebImage
     - SlideMenuControllerSwift
     - SnapKit
@@ -149,6 +146,9 @@ EXTERNAL SOURCES:
   Alamofire:
     :branch: alamofire5
     :git: https://github.com/Alamofire/Alamofire.git
+  AlamofireNetworkActivityIndicator:
+    :branch: alamofire5-support
+    :git: https://github.com/Alamofire/AlamofireNetworkActivityIndicator
   PhoneNumberKit:
     :commit: e281ef6
     :git: https://github.com/marmelroy/PhoneNumberKit.git
@@ -157,14 +157,17 @@ CHECKOUT OPTIONS:
   Alamofire:
     :commit: a8a2827f5c14c9168a0373e948e963d36edfdbc5
     :git: https://github.com/Alamofire/Alamofire.git
+  AlamofireNetworkActivityIndicator:
+    :commit: 9970bd00283994b8b2f5648a5a9cade68b08427c
+    :git: https://github.com/Alamofire/AlamofireNetworkActivityIndicator
   PhoneNumberKit:
     :commit: e281ef6
     :git: https://github.com/marmelroy/PhoneNumberKit.git
 
 SPEC CHECKSUMS:
   Alamofire: eafeeb206da2148045e57a5dc3c6a4acc65b9eb2
+  AlamofireNetworkActivityIndicator: c0ed9a06d320b3d73728894057bad2d480e946bc
   Branch: 127d29ab0a8866025eece1cf9e950ddb6f7d4070
-  BrightFutures: 9c03dab79e73ffe504b7bafc15c5bfdaeee54890
   CocoaLumberjack: 3c8c74683302f9012bb168e1c4b7ae3c0b558431
   Crashlytics: 7f2e38d302d9da96475b3d64d86fb29e31a542b7
   DateToolsSwift: 875d97ff9e3a5d54abdd67a269b3f51c757b71ab
@@ -187,7 +190,6 @@ SPEC CHECKSUMS:
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   Realm: 9eaecad54712d6246d08ba34c10f354e4715d7d3
   RealmSwift: 1fe08b4ebaeeaacf17f9ba0343f7b25c9fc31fa6
-  Result: d2d07204ce72856f1fd9130bbe42c35a7b0fea10
   SDWebImage: 76a6348bdc74eb5a55dd08a091ef298e56b55e41
   SlideMenuControllerSwift: 021d6318201c53d4d4d3710517d43d6c556c7dd0
   SnapKit: a42d492c16e80209130a3379f73596c3454b7694
@@ -195,6 +197,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: 6c3ddc875a2101d188c2b202e8798c2186065fff
+PODFILE CHECKSUM: 310ed1acb87f5945aeb8b855b2c24e649f393f04
 
 COCOAPODS: 1.5.3

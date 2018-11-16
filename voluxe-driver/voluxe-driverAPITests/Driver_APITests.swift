@@ -18,6 +18,7 @@ class Driver_APITests: XCTestCase {
         AdminAPI.login(email: "bots@luxe.com", password: "1234qwer") {
             error in
             XCTAssertNil(error)
+            XCTAssertNotNil(AdminAPI.api.token)
         }
         self.wait()
     }
@@ -107,7 +108,7 @@ class Driver_APITests: XCTestCase {
         DriverAPI.verifyPhoneNumber(with: code, for: driver) {
             error in
             XCTAssertNotNil(error)
-            XCTAssertTrue(error == "E4012")
+            XCTAssertTrue(error == .E4012)
         }
         self.wait()
     }
@@ -133,7 +134,7 @@ class Driver_APITests: XCTestCase {
             driver, error in
             XCTAssertNil(error)
             XCTAssertNotNil(driver)
-            XCTAssertTrue(driver!.work_phone_number_verified)
+            XCTAssertTrue(driver!.workPhoneNumberVerified)
         }
     }
 

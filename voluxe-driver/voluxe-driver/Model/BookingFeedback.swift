@@ -9,9 +9,18 @@
 import Foundation
 
 struct BookingFeedback: Codable {
+
     let id: Int
-    let customer_id: Int
-    let booking_id: Int
+    let customerId: Int
+    let bookingId: Int
     let rating: String
     let comment: String
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case customerId = "customer_id"
+        case bookingId = "booking_id"
+        case rating
+        case comment
+    }
 }

@@ -9,20 +9,36 @@
 import Foundation
 
 struct Vehicle: Codable {
+
     let id: Int
     let vin: String?
-    let license_plate: String?
+    let licensePlate: String?
     let make: String
     let model: String
     let drive: String?
     let engine: String?
     let trim: String?
     let year: Int
-    let base_color: String
+    let baseColor: String
     let color: String?
     let transmission: String?
-    let photo_url: String
-    let latest_odometer_reading: String?
-    let created_at: String
-    let updated_at: String
+    let photoUrl: String
+    let latestOdometerReading: String?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case vin
+        case licensePlate = "license_plate"
+        case make
+        case model
+        case drive
+        case engine
+        case trim
+        case year
+        case baseColor = "base_color"
+        case color
+        case transmission
+        case photoUrl = "photo_url"
+        case latestOdometerReading = "latest_odometer_reading"
+    }
 }

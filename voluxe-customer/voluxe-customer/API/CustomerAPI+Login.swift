@@ -8,22 +8,7 @@
 
 import Foundation
 
-class CustomerAPI: LuxeAPI {
-    
-    // TODO can this be private?
-    static let api = CustomerAPI()
-    
-    // TODO this is getting too complicated// TODO how to get correct client ID for host?
-    // Prod: `TK4KKKO9X30YKOA3VPYWBTV55W1BIY2L`
-    // Staging: `A8Y93ZCB8859EFIXUCEYVG2UBVB3NMUI`
-    // Dev: `2SRLMO648SEEK7X66AMTLYZGSE8RSL12`
-    // TODO need Bundle.main.version extension
-    private override init() {
-        super.init()
-        self.defaultHeaders["X-CLIENT-ID"] = Config.sharedInstance.apiClientId()
-        self.defaultHeaders["x-application-version"] = "luxe_by_volvo_customer_ios:\(Bundle.main.version)"
-        self.updateHeaders()
-    }
+extension CustomerAPI {
     
     static func login(email: String,
                       password: String,
@@ -36,7 +21,7 @@ class CustomerAPI: LuxeAPI {
         self.api.post(route: "v1/users/login", bodyParameters: parameters) {
             response in
             let token = response?.decodeToken() ?? nil
-            self.api.updateHeaders(with: token?.token)
+            self.api.token = token?.token
             completion(token, response?.asError())
         }
     }
@@ -52,7 +37,7 @@ class CustomerAPI: LuxeAPI {
         self.api.post(route: "v1/users/login", bodyParameters: parameters) {
             response in
             let token = response?.decodeToken() ?? nil
-            self.api.updateHeaders(with: token?.token)
+            self.api.token = token?.token
             completion(token, response?.asError())
         }
     }
