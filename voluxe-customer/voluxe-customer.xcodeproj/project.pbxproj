@@ -40,6 +40,8 @@
 		529E3677219CF99200619807 /* CustomerAPI+GoogleMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E3676219CF99200619807 /* CustomerAPI+GoogleMaps.swift */; };
 		529E3678219CF99200619807 /* CustomerAPI+GoogleMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E3676219CF99200619807 /* CustomerAPI+GoogleMaps.swift */; };
 		52CDAC3C21262C35008B3E53 /* ScheduledSelfDropoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CDAC3B21262C35008B3E53 /* ScheduledSelfDropoff.swift */; };
+		52D2A769219E4B3A00C20577 /* AdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D2A768219E4B3A00C20577 /* AdminAPI.swift */; };
+		52D2A76A219E4B3A00C20577 /* AdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D2A768219E4B3A00C20577 /* AdminAPI.swift */; };
 		52D5C9B12113AE270020F43F /* VLScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B02113AE270020F43F /* VLScrollView.swift */; };
 		52D5C9B32113DA9D0020F43F /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B22113DA9D0020F43F /* ViewUtils.swift */; };
 		52D5C9B52114FF080020F43F /* DriverInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B42114FF080020F43F /* DriverInfoViewController.swift */; };
@@ -451,6 +453,7 @@
 		529E3670219BAD7C00619807 /* CustomerAPI+RepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+RepairOrder.swift"; sourceTree = "<group>"; };
 		529E3676219CF99200619807 /* CustomerAPI+GoogleMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+GoogleMaps.swift"; sourceTree = "<group>"; };
 		52CDAC3B21262C35008B3E53 /* ScheduledSelfDropoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledSelfDropoff.swift; sourceTree = "<group>"; };
+		52D2A768219E4B3A00C20577 /* AdminAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AdminAPI.swift; path = ../../Shared/API/AdminAPI.swift; sourceTree = "<group>"; };
 		52D5C9B02113AE270020F43F /* VLScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLScrollView.swift; sourceTree = "<group>"; };
 		52D5C9B22113DA9D0020F43F /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		52D5C9B42114FF080020F43F /* DriverInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverInfoViewController.swift; sourceTree = "<group>"; };
@@ -839,6 +842,7 @@
 				5294096E219220E00009F691 /* LuxeAPI+Version.swift */,
 				5294096B219220E00009F691 /* RestAPI.swift */,
 				529409782192598B0009F691 /* RestAPI+AlamoFire.swift */,
+				52D2A768219E4B3A00C20577 /* AdminAPI.swift */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -2204,6 +2208,7 @@
 				53C8AD5820E59EED008E07FF /* Enum+CaseIterable.swift in Sources */,
 				538FE75D20BF4B6900C3CE17 /* BotUser.swift in Sources */,
 				5294097D21925BC80009F691 /* CustomerAPI+Signup.swift in Sources */,
+				52D2A76A219E4B3A00C20577 /* AdminAPI.swift in Sources */,
 				538FE75020BF47AD00C3CE17 /* Customer.swift in Sources */,
 				53C8AD5520E59D4F008E07FF /* NullAnalytics.swift in Sources */,
 				529E3672219BAD7C00619807 /* CustomerAPI+RepairOrder.swift in Sources */,
@@ -2220,6 +2225,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52D2A769219E4B3A00C20577 /* AdminAPI.swift in Sources */,
 				6C20E1AB1FBE3FE800E5D9A0 /* ScheduledPickupViewController.swift in Sources */,
 				6C20E1B61FBE4ACF00E5D9A0 /* SchedulingDropoffLocalization.swift in Sources */,
 				6C20E1D81FBF725F00E5D9A0 /* LocationUtils.swift in Sources */,
