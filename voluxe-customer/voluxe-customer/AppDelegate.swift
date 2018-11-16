@@ -188,9 +188,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
             // do stuff with deep link data (nav to page, display content, etc)
             print(params as? [String: AnyObject] ?? {})
-            if let params = params as? [String: AnyObject] {
-                let deeplinkObject = Mapper<BranchDeeplink>().map(JSON: params)
-                DeeplinkManager.sharedInstance.handleDeeplink(deeplinkObject: deeplinkObject)
+            // TODO: check that Branch decoding is working fine
+            if let params = params as? [String: AnyObject], let jsonData = try? JSONSerialization.data(withJSONObject: params, options: []) {
+                if let deeplinkObject: BranchDeeplink = BranchDeeplink.decode(data: jsonData) {
+                    DeeplinkManager.sharedInstance.handleDeeplink(deeplinkObject: deeplinkObject)
+                }
             }
         }
     }

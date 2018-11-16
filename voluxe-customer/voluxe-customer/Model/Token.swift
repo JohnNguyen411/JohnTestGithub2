@@ -11,17 +11,25 @@ import Foundation
 class Token: Codable {
     
     var token: String
-    var customerId: Int?
+    var user: User?
     var issuedAt: Date?
     var expiresAt: Date?
-    var userType: String?
+    
     
     private enum CodingKeys: String, CodingKey {
         case token
-        case customerId = "customer_id"
+        case user
         case issuedAt = "issued_at" //TODO: VLISODateTransform?
         case expiresAt = "expires_at" //TODO: VLISODateTransform?
-        case userType = "user_type"
     }
     
+    private enum UserKeys: String, CodingKey {
+        case id
+        case type
+    }
+    
+    struct User : Codable {
+        let id: Int
+        let type: String
+    }
 }

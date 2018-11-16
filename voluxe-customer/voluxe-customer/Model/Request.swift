@@ -22,20 +22,19 @@ import RealmSwift
     var location: Location?
     var timeSlot: DealershipTimeSlot?
     
-  /*
-    func mapping(map: Map) {
-        id <- map["id"]
-        bookingId <- map["booking_id"]
-        timeslotId <- map["driver_dealership_time_slot_assignment_id"]
-        location <- map["location"]
-        timeSlot <- map["dealership_time_slot"]
-        state <- map["state"]
-        type <- map["type"]
-        driver <- map["driver_dealership_time_slot_assignment.driver"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case bookingId = "booking_id"
+        case timeslotId = "driver_dealership_time_slot_assignment_id"
+        case location
+        case timeSlot = "dealership_time_slot"
+        case state
+        case type
+        case driver = "driver_dealership_time_slot_assignment.driver"
+        case createdAt = "created_at" //TODO: VLISODateTransform?
+        case updatedAt = "updated_at" //TODO: VLISODateTransform?
     }
-    */
+    
     override static func primaryKey() -> String? {
         return "id"
     }

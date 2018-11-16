@@ -337,7 +337,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         weak var weakSelf = self
         
         CustomerAPI.login(email: email, password: password) { token, error in
-            if let tokenObject = token, let customerId = tokenObject.customerId {
+            if let tokenObject = token, let customerId = tokenObject.user?.id {
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
                 weakSelf?.showLoading(loading: false)
@@ -356,7 +356,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         weak var weakSelf = self
         
         CustomerAPI.login(phoneNumber: phoneNumber, password: password) { token, error in
-            if let tokenObject = token, let customerId = tokenObject.customerId {
+            if let tokenObject = token, let customerId = tokenObject.user?.id {
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
                 weakSelf?.showLoading(loading: false)

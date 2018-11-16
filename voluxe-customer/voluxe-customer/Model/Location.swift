@@ -21,16 +21,14 @@ import RealmSwift
     var updatedAt: Date?
     var location: CLLocationCoordinate2D?
     
-    /*
-    func mapping(map: Map) {
-        address <- map["address"]
-        latitude <- map["latitude"]
-        longitude <- map["longitude"]
-        accuracy <- map["accuracy"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
+    private enum CodingKeys: String, CodingKey {
+        case address
+        case latitude
+        case longitude
+        case accuracy
+        case createdAt = "created_at" //TODO: VLISODateTransform?
+        case updatedAt = "updated_at" //TODO: VLISODateTransform?
     }
-    */
     
     override static func ignoredProperties() -> [String] {
         return ["location"]

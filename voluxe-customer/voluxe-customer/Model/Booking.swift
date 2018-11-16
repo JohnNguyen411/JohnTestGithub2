@@ -39,30 +39,28 @@ import Realm
     var createdAt: Date?
     var updatedAt: Date?
 
-    /*
-    func mapping(map: Map) {
-        id <- map["id"]
-        customerId <- map["customer_id"]
-        customer <- map["customer"]
-        state <- map["state"]
-        vehicleId <- map["vehicle_id"]
-        vehicle <- map["vehicle"]
-        dealershipId <- map["dealership_id"]
-        dealership <- map["dealership"]
-        loanerVehicleRequested <- map["loaner_vehicle_requested"]
-        loanerVehicleId <- map["loaner_vehicle_id"]
-        loanerVehicle <- map["loaner_vehicle"]
-        pickupRequest <- map["pickup_request"]
-        pickupRequestId <- map["pickup_request_id"]
-        dropoffRequest <- map["dropoff_request"]
-        dropoffRequestId <- map["dropoff_request_id"]
-        bookingFeedbackId <- map["booking_feedback_id"]
-        bookingFeedback <- map["booking_feedback"]
-        repairOrderRequests <- (map["repair_order_requests"], ArrayTransform<RepairOrder>())
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case customerId = "customer_id"
+        case customer
+        case state
+        case vehicleId = "vehicle_id"
+        case vehicle
+        case dealershipId = "dealership_id"
+        case dealership
+        case loanerVehicleRequested = "loaner_vehicle_requested"
+        case loanerVehicleId = "loaner_vehicle_id"
+        case loanerVehicle
+        case pickupRequest = "pickup_request"
+        case pickupRequestId = "pickup_request_id"
+        case dropoffRequest = "dropoff_request"
+        case dropoffRequestId = "dropoff_request_id"
+        case bookingFeedbackId = "booking_feedback_id"
+        case repairOrderRequests = "repair_order_requests"
+        case createdAt = "created_at" //TODO: VLISODateTransform?
+        case updatedAt = "updated_at" //TODO: VLISODateTransform?
     }
-    */
+    
     override static func primaryKey() -> String? {
         return "id"
     }

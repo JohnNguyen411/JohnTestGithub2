@@ -16,12 +16,12 @@ import RealmSwift
     var dealershipRepairOrderId: Int = -1
     var notes: String = ""
     var state: String?
-    var createdAt: Date?
-    var updatedAt: Date?
     let vehicleDrivable = RealmOptional<Bool>()
     var repairOrderType: RepairOrderType?
     var name: String?
     var title: String?
+    var createdAt: Date?
+    var updatedAt: Date?
     
     convenience init(title: String, repairOrderType: RepairOrderType, customerDescription: String, drivable: Bool?) {
         self.init()
@@ -50,24 +50,19 @@ import RealmSwift
         return "id"
     }
     
-    /*
-    func mapping(map: Map) {
-        id <- map["id"]
-        bookingId <- map["booking_id"]
-        dealershipRepairOrderId <- map["dealership_repair_order_id"]
-        notes <- map["notes"]
-        state <- map["state"]
-        repairOrderType <- map["dealership_repair_order.repair_order_type"]
-        name <- map["dealership_repair_order.repair_order_type.name"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
-        title <- map["title"]
-        if let repairOrderType = repairOrderType, repairOrderType.getCategory() == .custom {
-            self.name = String.DiagnosticInspection
-        }
-        vehicleDrivable.value <- map["vehicle_drivable"]
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case bookingId = "booking_id"
+        case dealershipRepairOrderId = "dealership_repair_order_id"
+        case notes
+        case state
+        case vehicleDrivable = "vehicle_drivable" //TODO check nested object parsin
+        case repairOrderType = "dealership_repair_order.repair_order_type"
+        case name = "dealership_repair_order.repair_order_type.name"
+        case title
+        case createdAt = "created_at" //TODO: VLISODateTransform?
+        case updatedAt = "updated_at" //TODO: VLISODateTransform?
     }
- */
     
     static func getDrivabilityTitle(isDrivable: Bool?) -> String {
         if let drivable = isDrivable {

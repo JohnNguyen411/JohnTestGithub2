@@ -130,6 +130,9 @@ extension RestAPIResponse {
         do {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(DateFormatter.luxeISO8601)
+            // print data
+            let jsonString = String(data: data, encoding: .utf8)
+            print("data: \(jsonString ?? "")")
             let object = try decoder.decode(T.self, from: data)
             return object
         } catch {
