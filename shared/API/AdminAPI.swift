@@ -35,18 +35,6 @@ class AdminAPI: LuxeAPI {
             completion(response?.asErrorCode())
         }
     }
-    
-    static func verificationCode(for driver: Driver,
-                                 completion: @escaping ((String?, LuxeAPIError.Code?) -> Void))
-    {
-        let route = "v1/phone-verification-codes"
-        let parameters: RestAPIParameters = ["user_id": "\(driver.id)",
-            "phone_number": driver.workPhoneNumber]
-        self.api.get(route: route, queryParameters: parameters) {
-            response in
-            completion(response?.asVerificationCodeString(), response?.asErrorCode())
-        }
-    }
 }
 
 extension RestAPIResponse {
