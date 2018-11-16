@@ -21,8 +21,8 @@ import RealmSwift
     var phoneNumber: String?
     var phoneNumberVerified: Bool = false
     var passwordResetRequired: Bool = false
-    var credit: Int?
-    var currencyId: Int?
+    var credit: Int? = 0
+    var currencyId: Int? = 0
     var photoUrl: String?
     var enabled: Bool = true
     var location: Location?
