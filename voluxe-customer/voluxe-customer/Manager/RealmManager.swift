@@ -12,7 +12,7 @@ import RealmSwift
 /// RealmManager is use to run Realm Migrations
 class RealmManager {
     
-    private static let dbVersion: UInt64 = 11
+    private static let dbVersion: UInt64 = 13
     
     public static func realmMigration(callback: @escaping (Realm?, Swift.Error?) -> Void) {
         
@@ -81,11 +81,36 @@ class RealmManager {
             
             if oldSchemaVersion < 10 {
                 migration.enumerateObjects(ofType: Customer.className()) { oldObject, newObject in
-                    newObject!["credit"] = oldObject?["name"] ?? 0
-                    newObject!["currency_id"] = oldObject?["currency_id"] ?? 0
+                    newObject!["credit"] = oldObject?["credit"] ?? 0
+                    newObject!["currencyId"] = oldObject?["currencyId"] ?? 1
                 }
             }
-          
+            
+            if oldSchemaVersion < 11 {
+                migration.enumerateObjects(ofType: Location.className()) { oldObject, newObject in
+                    newObject!["accuracy"] = 0.0
+                }
+                migration.enumerateObjects(ofType: Dealership.className()) { oldObject, newObject in
+                    newObject!["currencyId"] = oldObject?["currencyId"] ?? 1
+                }
+            }
+            
+            if oldSchemaVersion < 12 {
+                migration.enumerateObjects(ofType: Booking.className()) { oldObject, newObject in
+                    newObject!["loanerVehicleId"] = oldObject?["loanerVehicleId"] ?? -1
+                    newObject!["dropoffRequestId"] = oldObject?["dropoffRequestId"] ?? -1
+                    newObject!["bookingFeedbackId"] = oldObject?["bookingFeedbackId"] ?? -1
+                }
+                
+                migration.enumerateObjects(ofType: Request.className()) { oldObject, newObject in
+                    newObject!["timeslotId"] = oldObject?["timeslotId"] ?? -1
+                }
+                
+                migration.enumerateObjects(ofType: DealershipTimeSlot.className()) { oldObject, newObject in
+                    newObject!["availableLoanerVehicleCount"] = oldObject?["availableLoanerVehicleCount"] ?? 0
+                    newObject!["availableAssignmentCount"] = oldObject?["availableAssignmentCount"] ?? 0
+                }
+            }
             
         })
         

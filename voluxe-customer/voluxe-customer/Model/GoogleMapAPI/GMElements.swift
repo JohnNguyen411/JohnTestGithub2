@@ -12,5 +12,10 @@ class GMElements: Codable {
     
     let distance: GMTextValueObject?
     let duration: GMTextValueObject?
+    
+    private enum CodingKeys: String, CodingKey {
+        case distance
+        case duration
+    }
 
 }

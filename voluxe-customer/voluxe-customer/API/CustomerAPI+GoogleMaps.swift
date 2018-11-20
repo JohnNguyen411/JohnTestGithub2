@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Alamofire
 
 extension CustomerAPI {
     
@@ -20,14 +21,13 @@ extension CustomerAPI {
                                   completion: @escaping ((GMDistanceMatrix?, LuxeAPIError?) -> Void)) {
         
         let key = Config.sharedInstance.mapAPIKey()
-        //let headers: HTTPHeaders = ["Accept": "application/json", "Content-Type": "application/json"]
         
         let route = "https://maps.googleapis.com/maps/api/distancematrix/json?key=\(key)&origins=\(origin)&destinations=\(destination)"
         if let encodedUrl = route.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
 
-            self.api.get(route: encodedUrl) {
+            self.sendGoogleMapsRequest(url: encodedUrl, method: .get) {
                 response in
-                let distanceMatrix: GMDistanceMatrix? = response?.decode()
+                let distanceMatrix: GMDistanceMatrix? = GMDistanceMatrix.decode(data: response?.data)
                 completion(distanceMatrix, response?.asError())
             }
         } else {
@@ -47,14 +47,13 @@ extension CustomerAPI {
                          completion: @escaping ((GMSnappedPoints?, LuxeAPIError?) -> Void)) {
         
         let key = Config.sharedInstance.mapAPIKey()
-        //let headers: HTTPHeaders = ["Accept": "application/json", "Content-Type": "application/json"]
         
         let route = "https://roads.googleapis.com/v1/snapToRoads?path=\(from)|\(to)&interpolate=true&key=\(key)"
         if let encodedUrl = route.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) {
             
-            self.api.get(route: encodedUrl) {
+            self.sendGoogleMapsRequest(url: encodedUrl, method: .get) {
                 response in
-                let snappedPoints: GMSnappedPoints? = response?.decode()
+                let snappedPoints: GMSnappedPoints? = GMSnappedPoints.decode(data: response?.data)
                 completion(snappedPoints, response?.asError())
             }
         } else {
@@ -66,5 +65,21 @@ extension CustomerAPI {
     static func coordinatesToString(coordinate: CLLocationCoordinate2D) -> String {
         return "\(coordinate.latitude),\(coordinate.longitude)"
     }
+    
+    
+    static func sendGoogleMapsRequest(url: String, method: Alamofire.HTTPMethod, completion: RestAPICompletion? = nil) {
+        
+        guard let request = try? URLRequest(url: url, method: method, headers: ["Accept": "application/json", "Content-Type": "application/json"]) else { return }
+        
+        let sentRequest = Alamofire.AF.request(request)
+        print("URL: \(request.url?.absoluteString ?? "")")
+        
+        sentRequest.responseData {
+            response in
+            let apiResponse = RestAPIResponse(data: response.result.value, error: response.error)
+            completion?(apiResponse)
+        }
+    }
+    
 }
 

@@ -295,8 +295,8 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
             if let bookingFeedback = self.bookingFeedback {
                 skipBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id)
             } else if let booking = self.booking,
-                booking.bookingFeedbackId  > 0 {
-                skipBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.bookingFeedbackId)
+                booking.getBookingFeedbackId()  > 0 {
+                skipBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.getBookingFeedbackId())
             }
         }
     }
@@ -313,8 +313,8 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
 
         if let bookingFeedback = self.bookingFeedback {
             submitBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id, rating: rating, comment: comment)
-        } else if let booking = self.booking, booking.bookingFeedbackId  > 0 {
-            submitBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.bookingFeedbackId, rating: rating, comment: comment)
+        } else if let booking = self.booking, booking.getBookingFeedbackId()  > 0 {
+            submitBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.getBookingFeedbackId(), rating: rating, comment: comment)
             
         }
     }

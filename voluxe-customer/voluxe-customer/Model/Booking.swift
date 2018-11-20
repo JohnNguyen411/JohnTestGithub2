@@ -27,13 +27,13 @@ import Realm
     dynamic var dealershipId: Int = -1
     dynamic var dealership: Dealership?
     dynamic var loanerVehicleRequested: Bool = false
-    dynamic var loanerVehicleId: Int = -1
+    dynamic var loanerVehicleId: Int? = -1
     dynamic var loanerVehicle: Vehicle?
     dynamic var pickupRequest: Request?
     dynamic var pickupRequestId: Int = -1
     dynamic var dropoffRequest: Request?
-    dynamic var dropoffRequestId: Int = -1
-    dynamic var bookingFeedbackId: Int = -1
+    dynamic var dropoffRequestId: Int? = -1
+    dynamic var bookingFeedbackId: Int? = -1
     dynamic var bookingFeedback: BookingFeedback?
     dynamic var repairOrderRequests = List<RepairOrder>()
     dynamic var createdAt: Date?
@@ -41,7 +41,6 @@ import Realm
 
     private enum CodingKeys: String, CodingKey {
         case id
-        case customerId = "customer_id"
         case customer
         case state
         case vehicleId = "vehicle_id"
@@ -65,6 +64,9 @@ import Realm
         return "id"
     }
     
+    func getBookingFeedbackId() -> Int {
+        return bookingFeedbackId ?? -1
+    }
     
     func getState() -> State {
         return State(rawValue: state)!
@@ -193,7 +195,7 @@ import Realm
     }
     
     public func needsRating() -> Bool {
-        return self.bookingFeedbackId > 0 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
+        return self.bookingFeedbackId ?? 0 > 0 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
     }
     
     public func isSelfIB() -> Bool {

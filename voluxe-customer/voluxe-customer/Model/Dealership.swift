@@ -19,7 +19,7 @@ import RealmSwift
     dynamic var location: Location?
     dynamic var hoursOfOperation: String?
     dynamic var coverageRadius: Int = 1
-    dynamic var currencyId: Int = 1
+    dynamic var currencyId: Int? = 1
     dynamic var enabled: Bool = true
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?

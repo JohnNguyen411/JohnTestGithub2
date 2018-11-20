@@ -16,7 +16,7 @@ import RealmSwift
     dynamic var address: String?
     dynamic var latitude: Double = 0.0
     dynamic var longitude: Double = 0.0
-    dynamic var accuracy: Int = 0
+    dynamic var accuracy: Double? = 0.0
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
     dynamic var location: CLLocationCoordinate2D?
@@ -114,7 +114,7 @@ import RealmSwift
             "address": address ?? "",
             "latitude": latitude,
             "longitude": longitude,
-            "accuracy": accuracy
+            "accuracy": accuracy ?? 0
         ]
     }
     

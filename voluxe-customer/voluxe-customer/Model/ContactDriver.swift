@@ -7,12 +7,14 @@
 //
 
 import Foundation
+
 class ContactDriver: Codable {
     
     var driver: Driver?
     var textPhoneNumber: String?
     var voicePhoneNumber: String?
     var bodyHeader: String?
+    
     
     /*
     func mapping(map: Map) {

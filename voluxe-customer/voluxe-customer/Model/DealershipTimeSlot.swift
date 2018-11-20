@@ -19,8 +19,8 @@ import RealmSwift
     dynamic var to: Date?
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
-    dynamic var availableLoanerVehicleCount: Int = 0
-    dynamic var availableAssignmentCount: Int = 0
+    dynamic var availableLoanerVehicleCount: Int? = 0
+    dynamic var availableAssignmentCount: Int? = 0
     
     private enum CodingKeys: String, CodingKey {
         case id

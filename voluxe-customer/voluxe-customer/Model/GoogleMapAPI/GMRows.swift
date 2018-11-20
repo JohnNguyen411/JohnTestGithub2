@@ -12,5 +12,8 @@ class GMRows: Codable {
     
     let elements: [GMElements]?
     
+    private enum CodingKeys: String, CodingKey {
+        case elements
+    }
     
 }

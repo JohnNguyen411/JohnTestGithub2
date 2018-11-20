@@ -37,7 +37,7 @@ extension CustomerAPI {
             "vehicle_id": "\(vehicleId)",
             "dealership_id": "\(dealershipId)",
             "loaner_vehicle_requested": "\(loaner)",
-            "pickup_request": "\(pickupParams)"
+            "pickup_request": pickupParams
         ]
         
         if let dealershipRepairId = dealershipRepairId {
