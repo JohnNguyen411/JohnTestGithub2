@@ -34,22 +34,20 @@ import RealmSwift
         self.init(name: name, location: nil)
     }
     
-    
-    /*
-    func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        phoneNumber <- map["phone_number"]
-        email <- map["email"]
-        location <- map["location"]
-        hoursOfOperation <- map["hours_of_operation"]
-        coverageRadius <- map["coverage_radius"]
-        currencyId <- map["currency_id"]
-        enabled <- map["enabled"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case phoneNumber = "phone_number"
+        case email
+        case location
+        case hoursOfOperation = "hours_of_operation"
+        case coverageRadius = "coverage_radius"
+        case currencyId = "currency_id"
+        case enabled
+        case createdAt = "created_at" //TODO: VLISODateTransform?
+        case updatedAt = "updated_at" //TODO: VLISODateTransform?
     }
-    */
+    
     override static func primaryKey() -> String? {
         return "id"
     }

@@ -18,21 +18,21 @@ import RealmSwift
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
     
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case make
+        case name
+        case managed
+        case createdAt = "created_at" //TODO: VLISODateTransform?
+        case updatedAt = "updated_at" //TODO: VLISODateTransform?
+    }
+    
     convenience init(make: String, model: String) {
         self.init()
         self.make = make
         self.name = model
     }
-    /*
-    func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        make <- map["make"]
-        managed <- map["managed"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
-    }
-    */
+    
     override static func primaryKey() -> String? {
         return "id"
     }

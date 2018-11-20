@@ -16,14 +16,12 @@ import RealmSwift
     dynamic var iconUrl: String?
     dynamic var location: Location?
     
-/*
-    func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["first_name"]
-        iconUrl <- map["photo_url"]
-        location <- map["location"]
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name = "first_name"
+        case iconUrl = "photo_url"
+        case location
     }
- */
     
     override static func primaryKey() -> String? {
         return "id"

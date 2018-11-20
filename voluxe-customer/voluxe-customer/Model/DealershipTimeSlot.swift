@@ -22,19 +22,17 @@ import RealmSwift
     dynamic var availableLoanerVehicleCount: Int = 0
     dynamic var availableAssignmentCount: Int = 0
     
-    /*
-    func mapping(map: Map) {
-        id <- map["id"]
-        dealershipId <- map["dealership_id"]
-        type <- map["type"]
-        from <- (map["from"], VLISODateTransform())
-        to <- (map["to"], VLISODateTransform())
-        availableLoanerVehicleCount <- map["available_loaner_vehicle_count"]
-        availableAssignmentCount <- map["available_assignment_count"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case dealershipId = "dealership_id"
+        case type
+        case from //TODO: VLISODateTransform?
+        case to //TODO: VLISODateTransform?
+        case availableLoanerVehicleCount = "available_loaner_vehicle_count"
+        case availableAssignmentCount = "available_assignment_count"
+        case createdAt = "created_at" //TODO: VLISODateTransform?
+        case updatedAt = "updated_at" //TODO: VLISODateTransform?
     }
-    */
     
     override static func primaryKey() -> String? {
         return "id"

@@ -19,15 +19,13 @@ import Realm
     dynamic var comment: String?
     dynamic var state: String?
     
-    /*
-    func mapping(map: Map) {
-        id <- map["id"]
-        bookingId <- map["booking_id"]
-        rating <- map["rating"]
-        comment <- map["comment"]
-        state <- map["state"]
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case bookingId = "booking_id"
+        case rating
+        case comment
+        case state
     }
- */
 
     override static func primaryKey() -> String? {
         return "id"
