@@ -12,14 +12,14 @@ import RealmSwift
 
 @objcMembers class Location: Object, Codable {
     
-    var id = UUID().uuidString
-    var address: String?
-    var latitude: Double = 0.0
-    var longitude: Double = 0.0
-    var accuracy: Int = 0
-    var createdAt: Date?
-    var updatedAt: Date?
-    var location: CLLocationCoordinate2D?
+    dynamic var id = UUID().uuidString
+    dynamic var address: String?
+    dynamic var latitude: Double = 0.0
+    dynamic var longitude: Double = 0.0
+    dynamic var accuracy: Int = 0
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
+    dynamic var location: CLLocationCoordinate2D?
     
     private enum CodingKeys: String, CodingKey {
         case address

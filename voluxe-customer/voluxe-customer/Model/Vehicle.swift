@@ -15,22 +15,21 @@ import Kingfisher
 
     public static let vehicleImageHeight: CGFloat = 190
 
-    var id: Int = -1
-    var ownerId: Int = -1
-    var vin: String?
-    var licensePlate: String?
-    var make: String?
-    var model: String?
-    var drive: String?
-    var engine: String?
-    var trim: String?
-    var year: Int = 2018
-    var baseColor: String?
-    var color: String?
-    var photoUrl: String?
-    var transmission: String?
-    var createdAt: Date?
-    var updatedAt: Date?
+    dynamic var id: Int = -1
+    dynamic var vin: String?
+    dynamic var licensePlate: String?
+    dynamic var make: String?
+    dynamic var model: String?
+    dynamic var drive: String?
+    dynamic var engine: String?
+    dynamic var trim: String?
+    dynamic var year: Int = 2018
+    dynamic var baseColor: String?
+    dynamic var color: String?
+    dynamic var photoUrl: String?
+    dynamic var transmission: String?
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
 
     // Use Only for SwiftEventBus
     convenience init(id: Int) {
@@ -40,7 +39,6 @@ import Kingfisher
     
     private enum CodingKeys: String, CodingKey {
         case id
-        case ownerId = "owner_id"
         case vin
         case licensePlate = "license_plate"
         case make
@@ -57,7 +55,7 @@ import Kingfisher
         case updatedAt = "updated_at" //TODO: VLISODateTransform?
     }
 
-
+    
     func colorCode() -> String {
         if let color = baseColor {
             switch (color.lowercased()) {

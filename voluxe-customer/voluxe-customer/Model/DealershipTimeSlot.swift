@@ -12,15 +12,15 @@ import RealmSwift
 
 @objcMembers class DealershipTimeSlot: Object, Codable {
     
-    var id: Int = -1
-    var dealershipId: Int = -1
-    var type: String?
-    var from: Date?
-    var to: Date?
-    var createdAt: Date?
-    var updatedAt: Date?
-    var availableLoanerVehicleCount: Int = 0
-    var availableAssignmentCount: Int = 0
+    dynamic var id: Int = -1
+    dynamic var dealershipId: Int = -1
+    dynamic var type: String?
+    dynamic var from: Date?
+    dynamic var to: Date?
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
+    dynamic var availableLoanerVehicleCount: Int = 0
+    dynamic var availableAssignmentCount: Int = 0
     
     /*
     func mapping(map: Map) {

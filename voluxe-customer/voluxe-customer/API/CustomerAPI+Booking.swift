@@ -87,7 +87,7 @@ extension CustomerAPI {
      - parameter bookingId: The Booking ID
      - parameter completion: A closure which is called with a Booking array or LuxeAPIError if an error occured
      */
-    static func bookings(customerId: Int, active: Bool?, sort: String? = nil,
+    static func bookings(customerId: Int, active: Bool?, sort: String? = nil, limit: Int? = nil,
                         completion: @escaping (([Booking], LuxeAPIError?) -> Void)) {
         
         var params: [String: String] = [:]
@@ -98,7 +98,11 @@ extension CustomerAPI {
             params["sort[0]"] = sort
         }
         
-        self.api.get(route: "v1/customers/\(customerId)/bookings/") {
+        if let limit = limit {
+            params["limit"] = "\(limit)"
+        }
+
+        self.api.get(route: "v1/customers/\(customerId)/bookings", queryParameters: params) {
             response in
             let bookings = response?.decodeBookings() ?? []
             completion(bookings, response?.asError())

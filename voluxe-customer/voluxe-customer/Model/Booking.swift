@@ -18,26 +18,26 @@ import Realm
     private static let refreshEnRouteClose = 10
     private static let refreshEnRoute = 20
     
-    var id: Int = -1
-    var customerId: Int = -1
-    var customer: Customer?
-    var state: String = "created"
-    var vehicleId: Int = -1
-    var vehicle: Vehicle?
-    var dealershipId: Int = -1
-    var dealership: Dealership?
-    var loanerVehicleRequested: Bool = false
-    var loanerVehicleId: Int = -1
-    var loanerVehicle: Vehicle?
-    var pickupRequest: Request?
-    var pickupRequestId: Int = -1
-    var dropoffRequest: Request?
-    var dropoffRequestId: Int = -1
-    var bookingFeedbackId: Int = -1
-    var bookingFeedback: BookingFeedback?
-    var repairOrderRequests = List<RepairOrder>()
-    var createdAt: Date?
-    var updatedAt: Date?
+    dynamic var id: Int = -1
+    dynamic var customerId: Int = -1
+    dynamic var customer: Customer?
+    dynamic var state: String = "created"
+    dynamic var vehicleId: Int = -1
+    dynamic var vehicle: Vehicle?
+    dynamic var dealershipId: Int = -1
+    dynamic var dealership: Dealership?
+    dynamic var loanerVehicleRequested: Bool = false
+    dynamic var loanerVehicleId: Int = -1
+    dynamic var loanerVehicle: Vehicle?
+    dynamic var pickupRequest: Request?
+    dynamic var pickupRequestId: Int = -1
+    dynamic var dropoffRequest: Request?
+    dynamic var dropoffRequestId: Int = -1
+    dynamic var bookingFeedbackId: Int = -1
+    dynamic var bookingFeedback: BookingFeedback?
+    dynamic var repairOrderRequests = List<RepairOrder>()
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
 
     private enum CodingKeys: String, CodingKey {
         case id

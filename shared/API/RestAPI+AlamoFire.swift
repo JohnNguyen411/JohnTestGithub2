@@ -100,6 +100,8 @@ extension RestAPI {
 
         // TODO need to tap into response.error for status codes?
         let sentRequest = Alamofire.AF.request(encodedRequest)
+        print("URL: \(encodedRequest.url?.absoluteString ?? "")")
+
         sentRequest.responseData {
             response in
             let apiResponse = self.injectResponse() ?? RestAPIResponse(data: response.result.value, error: response.error)

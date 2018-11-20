@@ -11,11 +11,11 @@ import RealmSwift
 
 @objcMembers class VehicleMake: Object, Codable {
     
-    var id: Int = -1
-    var name: String?
-    var managed: Bool = true
-    var createdAt: Date?
-    var updatedAt: Date?
+    dynamic var id: Int = -1
+    dynamic var name: String?
+    dynamic var managed: Bool = true
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
     
     /*
     func mapping(map: Map) {

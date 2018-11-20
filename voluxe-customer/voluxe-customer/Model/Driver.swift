@@ -11,10 +11,10 @@ import RealmSwift
 
 @objcMembers class Driver: Object, Codable {
     
-    var id: Int = -1
-    var name: String?
-    var iconUrl: String?
-    var location: Location?
+    dynamic var id: Int = -1
+    dynamic var name: String?
+    dynamic var iconUrl: String?
+    dynamic var location: Location?
     
 /*
     func mapping(map: Map) {

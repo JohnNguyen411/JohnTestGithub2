@@ -12,13 +12,13 @@ import RealmSwift
 
 @objcMembers class CustomerAddress: Object, Codable {
     
-    var id = UUID().uuidString
-    var volvoCustomerId: String?
-    var location: Location?
-    var label: String? // Work / Home / Gym etc
-    var createdAt: Date?
-    var updatedAt: Date?
-    var luxeCustomerId: Int = -1
+    dynamic var id = UUID().uuidString
+    dynamic var volvoCustomerId: String?
+    dynamic var location: Location?
+    dynamic var label: String? // Work / Home / Gym etc
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
+    dynamic var luxeCustomerId: Int = -1
     
     
     convenience init(id: String?) {
@@ -27,17 +27,16 @@ import RealmSwift
             self.id = id
         }
     }
-    /*
-    func mapping(map: Map) {
-        id <- map["id"]
-        volvoCustomerId <- map["volvo_customer_id"]
-        location <- map["location"]
-        label <- map["label"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
-        luxeCustomerId <- map["customer_id"]
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case location
+        case label
+        case luxeCustomerId = "customer_id"
+        case createdAt = "created_at" //TODO: VLISODateTransform?
+        case updatedAt = "updated_at" //TODO: VLISODateTransform?
     }
-    */
+    
     override static func primaryKey() -> String? {
         return "id"
     }

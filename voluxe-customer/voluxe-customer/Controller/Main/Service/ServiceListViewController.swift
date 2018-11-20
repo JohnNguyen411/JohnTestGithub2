@@ -51,7 +51,7 @@ class ServiceListViewController: BaseViewController {
                         realm.add(services, update: true)
                     }
                     
-                    let filteredResults = realm.objects(RepairOrderType.self).filter("name != 'Custom'")
+                    let filteredResults = realm.objects(RepairOrderType.self).filter("category == 'routine_maintenance_by_distance'")
                     self.showServices(services: Array(filteredResults))
                 }
             }

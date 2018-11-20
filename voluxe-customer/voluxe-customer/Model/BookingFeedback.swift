@@ -13,11 +13,11 @@ import Realm
 
 @objcMembers class BookingFeedback: Object, Codable {
     
-    var id: Int = -1
-    var bookingId: Int = -1
-    var rating: Int = -1
-    var comment: String?
-    var state: String?
+    dynamic var id: Int = -1
+    dynamic var bookingId: Int = -1
+    dynamic var rating: Int = -1
+    dynamic var comment: String?
+    dynamic var state: String?
     
     /*
     func mapping(map: Map) {

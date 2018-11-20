@@ -11,28 +11,26 @@ import RealmSwift
 
 @objcMembers class RepairOrderType: Object, Codable {
     
-    var id: Int = -1
-    var name: String?
-    var desc: String = ""
-    var category: String?
-    var createdAt: Date?
-    var updatedAt: Date?
+    dynamic var id: Int = -1
+    dynamic var name: String?
+    dynamic var desc: String = ""
+    dynamic var category: String?
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
     
-    /*
-    
-    func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        desc <- map["description"]
-        category <- map["category"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case desc = "description"
+        case category
+        case createdAt = "created_at" //TODO: VLISODateTransform?
+        case updatedAt = "updated_at" //TODO: VLISODateTransform?
     }
-    */
     
     override static func primaryKey() -> String? {
         return "id"
     }
+    
  
     func getCategory() -> RepairOrderCategory {
         if let category = category {

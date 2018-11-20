@@ -43,7 +43,7 @@ class HelpViewController: BaseViewController {
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdIndicator)
         tableView.isScrollEnabled = false
         
-        CustomerAPI.bookings(customerId: UserManager.sharedInstance.customerId()!, active: nil, sort: "-id") { bookings, error in
+        CustomerAPI.bookings(customerId: UserManager.sharedInstance.customerId()!, active: nil, sort: "-id", limit: 10) { bookings, error in
             for booking in bookings {
                 if booking.getLastCompletedRequest() != nil {
                     self.booking = booking

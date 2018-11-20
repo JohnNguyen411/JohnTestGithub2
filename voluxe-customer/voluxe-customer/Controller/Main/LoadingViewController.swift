@@ -117,6 +117,8 @@ class LoadingViewController: LogoViewController {
                             self.callCustomer(customerId: customerId)
                         }, dialog: .error, screen: self.screen)
                         return
+                    } else {
+                        self.errorRetrievingCustomer(customerId: customerId, error: error)
                     }
                 }
             }
@@ -184,7 +186,7 @@ class LoadingViewController: LogoViewController {
     
     private func errorRetrievingVehicle(customerId: Int) {
         if let realm = self.realm {
-            let vehicles = realm.objects(Vehicle.self).filter("ownerId = \(customerId)")
+            let vehicles = realm.objects(Vehicle.self)
             if vehicles.count > 0 {
                 UserManager.sharedInstance.setVehicles(vehicles: Array(vehicles))
                 self.getBookings(customerId: customerId)

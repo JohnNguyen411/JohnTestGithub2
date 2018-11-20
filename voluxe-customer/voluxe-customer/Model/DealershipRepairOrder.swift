@@ -11,12 +11,12 @@ import RealmSwift
 
 @objcMembers class DealershipRepairOrder: Object, Codable {
     
-    var id: Int = -1
-    var dealershipId = -1
-    var repairOrderTypeId = -1
-    var enabled: Bool = true
-    var createdAt: Date?
-    var updatedAt: Date?
+    dynamic var id: Int = -1
+    dynamic var dealershipId = -1
+    dynamic var repairOrderTypeId = -1
+    dynamic var enabled: Bool = true
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
     
     /*
     func mapping(map: Map) {

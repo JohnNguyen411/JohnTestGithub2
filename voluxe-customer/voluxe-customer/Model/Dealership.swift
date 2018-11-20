@@ -12,17 +12,17 @@ import RealmSwift
 
 @objcMembers class Dealership: Object, Codable {
     
-    var id: Int = -1
-    var name: String?
-    var phoneNumber: String?
-    var email: String?
-    var location: Location?
-    var hoursOfOperation: String?
-    var coverageRadius: Int = 1
-    var currencyId: Int = 1
-    var enabled: Bool = true
-    var createdAt: Date?
-    var updatedAt: Date?
+    dynamic var id: Int = -1
+    dynamic var name: String?
+    dynamic var phoneNumber: String?
+    dynamic var email: String?
+    dynamic var location: Location?
+    dynamic var hoursOfOperation: String?
+    dynamic var coverageRadius: Int = 1
+    dynamic var currencyId: Int = 1
+    dynamic var enabled: Bool = true
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
     
     convenience init(name: String?, location: CLLocationCoordinate2D?) {
         self.init()

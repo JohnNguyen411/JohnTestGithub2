@@ -149,7 +149,13 @@ extension RestAPIResponse {
     func asError() -> LuxeAPIError? {
         
         var luxeAPIError: LuxeAPIError? = self.decode(reportErrors: false)
-        if luxeAPIError == nil && hasErrored() {
+        
+        // if no error, return nil
+        if (luxeAPIError == nil || luxeAPIError?.code == nil) && !hasErrored() {
+            return nil
+        }
+        
+        if (luxeAPIError == nil || luxeAPIError?.code == nil) && hasErrored() {
             luxeAPIError = LuxeAPIError(statusCode: self.statusCode())
         } else {
             luxeAPIError = LuxeAPIError(code: luxeAPIError?.code, message: luxeAPIError?.message, statusCode: self.statusCode())

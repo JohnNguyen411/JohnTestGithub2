@@ -11,16 +11,16 @@ import RealmSwift
 
 @objcMembers class Request: Object, Codable {
     
-    var id: Int = -1
-    var bookingId: Int = -1
-    var timeslotId: Int = -1
-    var state: String = "requested"
-    var type: String?
-    var createdAt: Date?
-    var updatedAt: Date?
-    var driver: Driver?
-    var location: Location?
-    var timeSlot: DealershipTimeSlot?
+    dynamic var id: Int = -1
+    dynamic var bookingId: Int = -1
+    dynamic var timeslotId: Int = -1
+    dynamic var state: String = "requested"
+    dynamic var type: String?
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
+    dynamic var driver: Driver?
+    dynamic var location: Location?
+    dynamic var timeSlot: DealershipTimeSlot?
     
     private enum CodingKeys: String, CodingKey {
         case id

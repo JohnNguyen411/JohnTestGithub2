@@ -12,7 +12,7 @@ import RealmSwift
 /// RealmManager is use to run Realm Migrations
 class RealmManager {
     
-    private static let dbVersion: UInt64 = 10
+    private static let dbVersion: UInt64 = 11
     
     public static func realmMigration(callback: @escaping (Realm?, Swift.Error?) -> Void) {
         
@@ -85,6 +85,7 @@ class RealmManager {
                     newObject!["currency_id"] = oldObject?["currency_id"] ?? 0
                 }
             }
+          
             
         })
         

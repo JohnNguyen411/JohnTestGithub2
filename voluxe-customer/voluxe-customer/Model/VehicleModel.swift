@@ -11,12 +11,12 @@ import RealmSwift
 
 @objcMembers class VehicleModel: Object, Codable {
     
-    var id: Int = -1
-    var make: String?
-    var name: String?
-    var managed: Bool = true
-    var createdAt: Date?
-    var updatedAt: Date?
+    dynamic var id: Int = -1
+    dynamic var make: String?
+    dynamic var name: String?
+    dynamic var managed: Bool = true
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
     
     convenience init(make: String, model: String) {
         self.init()
