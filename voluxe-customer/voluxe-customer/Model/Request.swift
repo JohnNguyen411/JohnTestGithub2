@@ -41,16 +41,16 @@ import RealmSwift
     convenience required init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(Int.self, forKey: .id)
-        self.bookingId = try container.decode(Int.self, forKey: .bookingId)
-        self.timeslotId = try container.decode(Int.self, forKey: .timeslotId)
-        self.location = try container.decode(Location.self, forKey: .location)
-        self.timeSlot = try container.decode(DealershipTimeSlot.self, forKey: .timeSlot)
-        self.state = try container.decode(String.self, forKey: .state)
-        self.type = try container.decode(String.self, forKey: .type)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
+        self.bookingId = try container.decodeIfPresent(Int.self, forKey: .bookingId) ?? -1
+        self.timeslotId = try container.decodeIfPresent(Int.self, forKey: .timeslotId)
+        self.location = try container.decodeIfPresent(Location.self, forKey: .location)
+        self.timeSlot = try container.decodeIfPresent(DealershipTimeSlot.self, forKey: .timeSlot)
+        self.state = try container.decodeIfPresent(String.self, forKey: .state) ?? ""
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
         
         let driverAssignment = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .driverAssignment)
-        self.driver = try driverAssignment.decode(Driver.self, forKey: .driver)
+        self.driver = try driverAssignment.decodeIfPresent(Driver.self, forKey: .driver)
     }
     
     func encode(to encoder: Encoder) throws {
