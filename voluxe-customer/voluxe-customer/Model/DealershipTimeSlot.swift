@@ -19,8 +19,8 @@ import RealmSwift
     dynamic var to: Date?
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
-    dynamic var availableLoanerVehicleCount: Int? = 0
-    dynamic var availableAssignmentCount: Int? = 0
+    dynamic var availableLoanerVehicleCount = RealmOptional<Int>()
+    dynamic var availableAssignmentCount = RealmOptional<Int>()
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -33,6 +33,34 @@ import RealmSwift
         case createdAt = "created_at" //TODO: VLISODateTransform?
         case updatedAt = "updated_at" //TODO: VLISODateTransform?
     }
+    
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
+        self.dealershipId = try container.decodeIfPresent(Int.self, forKey: .dealershipId) ?? -1
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+        self.from = try container.decodeIfPresent(Date.self, forKey: .from)
+        self.to = try container.decodeIfPresent(Date.self, forKey: .to)
+        self.availableLoanerVehicleCount = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .availableLoanerVehicleCount) ?? RealmOptional<Int>()
+        self.availableAssignmentCount = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .availableAssignmentCount) ?? RealmOptional<Int>()
+        self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
+        self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encodeIfPresent(dealershipId, forKey: .dealershipId)
+        try container.encodeIfPresent(type, forKey: .type)
+        try container.encodeIfPresent(from, forKey: .from)
+        try container.encodeIfPresent(to, forKey: .to)
+        try container.encodeIfPresent(availableLoanerVehicleCount, forKey: .availableLoanerVehicleCount)
+        try container.encodeIfPresent(availableAssignmentCount, forKey: .availableAssignmentCount)
+        try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+    }
+    
     
     override static func primaryKey() -> String? {
         return "id"

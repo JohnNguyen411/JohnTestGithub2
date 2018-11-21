@@ -98,6 +98,7 @@ class RealmManager {
             if oldSchemaVersion < 12 {
                 migration.enumerateObjects(ofType: Booking.className()) { oldObject, newObject in
                     newObject!["loanerVehicleId"] = oldObject?["loanerVehicleId"] ?? -1
+                    newObject!["pickupRequestId"] = oldObject?["pickupRequestId"] ?? -1
                     newObject!["dropoffRequestId"] = oldObject?["dropoffRequestId"] ?? -1
                     newObject!["bookingFeedbackId"] = oldObject?["bookingFeedbackId"] ?? -1
                 }

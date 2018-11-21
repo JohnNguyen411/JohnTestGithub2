@@ -14,7 +14,7 @@ import RealmSwift
     
     dynamic var id: Int = -1
     dynamic var bookingId: Int = -1
-    dynamic var timeslotId: Int? = -1
+    dynamic var timeslotId = RealmOptional<Int>()
     dynamic var state: String = "requested"
     dynamic var type: String?
     dynamic var createdAt: Date?
@@ -43,14 +43,21 @@ import RealmSwift
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
         self.bookingId = try container.decodeIfPresent(Int.self, forKey: .bookingId) ?? -1
-        self.timeslotId = try container.decodeIfPresent(Int.self, forKey: .timeslotId)
+        self.timeslotId = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .timeslotId) ?? RealmOptional<Int>()
         self.location = try container.decodeIfPresent(Location.self, forKey: .location)
         self.timeSlot = try container.decodeIfPresent(DealershipTimeSlot.self, forKey: .timeSlot)
         self.state = try container.decodeIfPresent(String.self, forKey: .state) ?? ""
         self.type = try container.decodeIfPresent(String.self, forKey: .type)
         
-        let driverAssignment = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .driverAssignment)
-        self.driver = try driverAssignment.decodeIfPresent(Driver.self, forKey: .driver)
+        if container.contains(.driverAssignment) {
+            if let driverAssignment = try? container.nestedContainer(keyedBy: CodingKeys.self, forKey: .driverAssignment) {
+                self.driver = try driverAssignment.decodeIfPresent(Driver.self, forKey: .driver)
+            } else {
+                self.driver = nil
+            }
+        } else {
+            self.driver = nil
+        }
     }
     
     func encode(to encoder: Encoder) throws {

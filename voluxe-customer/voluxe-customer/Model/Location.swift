@@ -16,7 +16,7 @@ import RealmSwift
     dynamic var address: String?
     dynamic var latitude: Double = 0.0
     dynamic var longitude: Double = 0.0
-    dynamic var accuracy: Double? = 0.0
+    dynamic var accuracy = RealmOptional<Double>()
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
     dynamic var location: CLLocationCoordinate2D?
@@ -29,6 +29,28 @@ import RealmSwift
         case createdAt = "created_at" //TODO: VLISODateTransform?
         case updatedAt = "updated_at" //TODO: VLISODateTransform?
     }
+    
+    
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.address = try container.decodeIfPresent(String.self, forKey: .address)
+        self.latitude = try container.decodeIfPresent(Double.self, forKey: .latitude) ?? 0.0
+        self.longitude = try container.decodeIfPresent(Double.self, forKey: .longitude) ?? 0.0
+        self.accuracy = try container.decodeIfPresent(RealmOptional<Double>.self, forKey: .accuracy) ?? RealmOptional<Double>()
+        self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
+        self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(address, forKey: .address)
+        try container.encodeIfPresent(latitude, forKey: .latitude)
+        try container.encodeIfPresent(longitude, forKey: .longitude)
+        try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+    }
+    
     
     override static func ignoredProperties() -> [String] {
         return ["location"]
@@ -114,7 +136,7 @@ import RealmSwift
             "address": address ?? "",
             "latitude": latitude,
             "longitude": longitude,
-            "accuracy": accuracy ?? 0
+            "accuracy": accuracy.value ?? 0
         ]
     }
     

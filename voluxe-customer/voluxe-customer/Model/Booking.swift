@@ -27,13 +27,13 @@ import Realm
     dynamic var dealershipId: Int = -1
     dynamic var dealership: Dealership?
     dynamic var loanerVehicleRequested: Bool = false
-    dynamic var loanerVehicleId: Int? = -1
+    dynamic var loanerVehicleId = RealmOptional<Int>()
     dynamic var loanerVehicle: Vehicle?
     dynamic var pickupRequest: Request?
-    dynamic var pickupRequestId: Int = -1
+    dynamic var pickupRequestId = RealmOptional<Int>()
     dynamic var dropoffRequest: Request?
-    dynamic var dropoffRequestId: Int? = -1
-    dynamic var bookingFeedbackId: Int? = -1
+    dynamic var dropoffRequestId = RealmOptional<Int>()
+    dynamic var bookingFeedbackId = RealmOptional<Int>()
     dynamic var bookingFeedback: BookingFeedback?
     dynamic var repairOrderRequests = List<RepairOrder>()
     dynamic var createdAt: Date?
@@ -54,18 +54,67 @@ import Realm
         case pickupRequestId = "pickup_request_id"
         case dropoffRequest = "dropoff_request"
         case dropoffRequestId = "dropoff_request_id"
+        case bookingFeedback = "booking_feedback"
         case bookingFeedbackId = "booking_feedback_id"
         case repairOrderRequests = "repair_order_requests"
         case createdAt = "created_at" //TODO: VLISODateTransform?
         case updatedAt = "updated_at" //TODO: VLISODateTransform?
     }
     
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
+        self.customer = try container.decodeIfPresent(Customer.self, forKey: .customer)
+        self.state = try container.decode(String.self, forKey: .state)
+        self.vehicleId = try container.decode(Int.self, forKey: .vehicleId)
+        self.vehicle = try container.decodeIfPresent(Vehicle.self, forKey: .vehicle)
+        self.dealershipId = try container.decode(Int.self, forKey: .dealershipId)
+        self.dealership = try container.decode(Dealership.self, forKey: .dealership)
+        self.loanerVehicleRequested = try container.decodeIfPresent(Bool.self, forKey: .loanerVehicleRequested) ?? false
+        self.loanerVehicleId = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .loanerVehicleId) ?? RealmOptional<Int>()
+        self.loanerVehicle = try container.decodeIfPresent(Vehicle.self, forKey: .loanerVehicle)
+        self.pickupRequest = try container.decodeIfPresent(Request.self, forKey: .pickupRequest)
+        self.pickupRequestId = try container.decodeIfPresent(RealmOptional<Int>.self.self, forKey: .pickupRequestId) ?? RealmOptional<Int>()
+        self.dropoffRequest = try container.decodeIfPresent(Request.self, forKey: .dropoffRequest)
+        self.dropoffRequestId = try container.decodeIfPresent(RealmOptional<Int>.self.self, forKey: .dropoffRequestId) ?? RealmOptional<Int>()
+        self.bookingFeedbackId = try container.decodeIfPresent(RealmOptional<Int>.self.self, forKey: .bookingFeedbackId) ?? RealmOptional<Int>()
+        self.bookingFeedback = try container.decodeIfPresent(BookingFeedback.self, forKey: .bookingFeedback)
+        self.repairOrderRequests = try container.decodeIfPresent(List<RepairOrder>.self, forKey: .repairOrderRequests) ?? List<RepairOrder>()
+        self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
+        self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encodeIfPresent(customer, forKey: .customer)
+        try container.encode(state, forKey: .state)
+        try container.encode(vehicleId, forKey: .vehicleId)
+        try container.encodeIfPresent(vehicle, forKey: .vehicle)
+        try container.encode(dealershipId, forKey: .dealershipId)
+        try container.encode(dealership, forKey: .dealership)
+        try container.encodeIfPresent(loanerVehicleRequested, forKey: .loanerVehicleRequested)
+        try container.encodeIfPresent(loanerVehicleId, forKey: .loanerVehicleId)
+        try container.encodeIfPresent(loanerVehicle, forKey: .loanerVehicle)
+        try container.encodeIfPresent(pickupRequest, forKey: .pickupRequest)
+        try container.encodeIfPresent(pickupRequestId, forKey: .pickupRequestId)
+        try container.encodeIfPresent(dropoffRequest, forKey: .dropoffRequest)
+        try container.encodeIfPresent(dropoffRequestId, forKey: .dropoffRequestId)
+        try container.encodeIfPresent(bookingFeedbackId, forKey: .bookingFeedbackId)
+        try container.encodeIfPresent(bookingFeedback, forKey: .bookingFeedback)
+        try container.encodeIfPresent(repairOrderRequests, forKey: .repairOrderRequests)
+        try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+    }
+    
+    
     override static func primaryKey() -> String? {
         return "id"
     }
     
     func getBookingFeedbackId() -> Int {
-        return bookingFeedbackId ?? -1
+        return bookingFeedbackId.value ?? -1
     }
     
     func getState() -> State {
@@ -195,7 +244,7 @@ import Realm
     }
     
     public func needsRating() -> Bool {
-        return self.bookingFeedbackId ?? 0 > 0 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
+        return self.bookingFeedbackId.value ?? 0 > 0 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
     }
     
     public func isSelfIB() -> Bool {

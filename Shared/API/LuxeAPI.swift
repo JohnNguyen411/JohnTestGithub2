@@ -129,11 +129,14 @@ struct LuxeAPIError: Codable, Error {
 
 extension RestAPIResponse {
   
-    func decode<T: Decodable>(reportErrors: Bool = true) -> T? {
+    func decode<T: Decodable>(convertFromSnakeCase: Bool = false, reportErrors: Bool = true) -> T? {
         guard let data = self.data else { return nil }
         do {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(DateFormatter.luxeISO8601)
+            if convertFromSnakeCase {
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+            }
             // print data
             let jsonString = String(data: data, encoding: .utf8)
             print("data: \(jsonString ?? "")")
