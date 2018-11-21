@@ -37,6 +37,7 @@ typealias RestAPIHeaders = [String: String]
 struct RestAPIResponse {
     let data: Data?
     let error: Error?
+    let statusCode: Int?
 }
 
 // TODO https://app.asana.com/0/858610969087925/908722711775269/f

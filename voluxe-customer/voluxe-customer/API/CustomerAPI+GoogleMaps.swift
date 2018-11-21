@@ -76,7 +76,7 @@ extension CustomerAPI {
         
         sentRequest.responseData {
             response in
-            let apiResponse = RestAPIResponse(data: response.result.value, error: response.error)
+            let apiResponse = RestAPIResponse(data: response.result.value, error: response.error, statusCode: response.response?.statusCode)
             completion?(apiResponse)
         }
     }

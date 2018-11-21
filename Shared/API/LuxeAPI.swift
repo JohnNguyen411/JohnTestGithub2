@@ -163,9 +163,9 @@ extension RestAPIResponse {
         }
         
         if (luxeAPIError == nil || luxeAPIError?.code == nil) && hasErrored() {
-            luxeAPIError = LuxeAPIError(statusCode: self.statusCode())
+            luxeAPIError = LuxeAPIError(statusCode: self.statusCode)
         } else {
-            luxeAPIError = LuxeAPIError(code: luxeAPIError?.code, message: luxeAPIError?.message, statusCode: self.statusCode())
+            luxeAPIError = LuxeAPIError(code: luxeAPIError?.code, message: luxeAPIError?.message, statusCode: self.statusCode)
         }
         
         return luxeAPIError

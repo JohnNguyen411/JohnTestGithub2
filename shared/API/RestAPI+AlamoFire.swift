@@ -104,7 +104,7 @@ extension RestAPI {
 
         sentRequest.responseData {
             response in
-            let apiResponse = self.injectResponse() ?? RestAPIResponse(data: response.result.value, error: response.error)
+            let apiResponse = self.injectResponse() ?? RestAPIResponse(data: response.result.value, error: response.error, statusCode: response.response?.statusCode)
             self.inspect(urlResponse: response.response, apiResponse: apiResponse)
             completion?(apiResponse)
         }
@@ -119,13 +119,13 @@ extension RestAPI {
             if defaults.injectLoginRequired {
                 let error = LuxeAPIError(code: .E2001, message: "injected", statusCode: 401)
                 let data = try? JSONEncoder().encode(error)
-                let response = RestAPIResponse(data: data, error: nil)
+                let response = RestAPIResponse(data: data, error: nil, statusCode: 401)
                 return response
             }
             else if defaults.injectUpdateRequired {
                 let error = LuxeAPIError(code: .E3006, message: "injected", statusCode: 426)
                 let data = try? JSONEncoder().encode(error)
-                let response = RestAPIResponse(data: data, error: nil)
+                let response = RestAPIResponse(data: data, error: nil, statusCode: 426)
                 return response
             }
             else {
@@ -169,24 +169,9 @@ extension RestAPI {
                                           headers: self.headers)
         request.responseData {
             response in
-            let apiResponse = RestAPIResponse(data: response.result.value, error: response.error)
+            let apiResponse = RestAPIResponse(data: response.result.value, error: response.error, statusCode: response.response?.statusCode)
             self.inspect(urlResponse: response.response, apiResponse: apiResponse)
             completion(apiResponse)
         }
     }
-}
-
-extension RestAPIResponse {
-    
-    func asAlamoFireError() -> AFError? {
-        if let afError = error as? AFError {
-            return afError
-        }
-        return nil
-    }
-    
-    func statusCode() -> Int? {
-        return asAlamoFireError()?._code
-    }
-    
 }
