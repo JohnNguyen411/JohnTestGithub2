@@ -1,0 +1,70 @@
+# Uncomment the next line to define a global platform for your project
+platform :ios, '10.3'
+use_frameworks!
+
+# ignore all warnings from all pods
+inhibit_all_warnings!
+
+target 'voluxe-customer' do
+    pod 'Alamofire', '4.5.1'
+    pod 'AlamofireObjectMapper', '5.1.0'
+    pod 'AlamofireNetworkActivityLogger', '2.2'
+    pod 'Branch', '0.25.0'
+    pod 'BrightFutures', '6.0.1'
+    pod 'CocoaLumberjack/Swift', '3.3.0'
+    pod 'Crashlytics', '3.10.5'
+    pod 'DateToolsSwift', '4.0.0'
+    pod 'Fabric', '1.7.9'
+    pod 'Firebase/Core', '4.7.0'
+    pod 'Firebase/Messaging', '4.7.0'
+    pod 'Firebase/RemoteConfig', '4.7.0'
+    pod 'GoogleMaps', '2.5.0'
+    pod 'GooglePlaces', '2.5.0'
+    pod 'KeychainAccess', '3.1.0'
+    pod 'Kingfisher', '4.2.0'
+    pod 'MBProgressHUD', '1.1.0'
+    pod 'PhoneNumberKit', :git => 'https://github.com/marmelroy/PhoneNumberKit.git', :commit => 'e281ef6'  # required to fix Password AutoFill
+    pod 'RealmSwift', '3.7.6'
+    pod 'SDWebImage', '4.0.0'
+    pod 'SlideMenuControllerSwift', '4.0.0'
+    pod 'SnapKit', '4.0.0'
+    pod 'SwiftyJSON', '4.1.0'
+    pod 'SwiftEventBus', '2.1.2'
+    pod 'UIColor_Hex_Swift', '3.0.2'
+end
+
+target 'voluxe-customerUnitTests' do
+    pod 'Alamofire', '4.5.1'
+    pod 'AlamofireObjectMapper', '5.1.0'
+    pod 'Firebase/Core', '4.7.0'
+end
+
+target 'voluxe-customerAPITests' do
+    pod 'Alamofire', '4.5.1'
+    pod 'AlamofireObjectMapper', '5.1.0'
+    pod 'AlamofireNetworkActivityLogger', '2.2'
+    pod 'BrightFutures', '6.0.1'
+    pod 'RealmSwift', '3.7.6'
+    pod 'SwiftEventBus', '2.1.2'
+end
+
+target 'voluxe-customerUITests' do
+    pod 'Alamofire', '4.5.1'
+    pod 'AlamofireObjectMapper', '5.1.0'
+    pod 'AlamofireNetworkActivityLogger', '2.2'
+    pod 'BrightFutures', '6.0.1'
+    pod 'SwiftEventBus', '2.1.2'
+end
+
+post_install do | installer |
+    # set all Pods to Swift 4.0 until they update to 4.2
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['SWIFT_VERSION'] = '4.0'
+        end
+    end
+
+    # copy Acknowledgements into Settings bundle
+    require 'fileutils'
+    FileUtils.cp_r('Pods/Target Support Files/Pods-voluxe-customer/Pods-voluxe-customer-acknowledgements.plist', 'voluxe-customer/Resources/Settings.bundle/Acknowledgements.plist', :remove_destination => true)
+end
