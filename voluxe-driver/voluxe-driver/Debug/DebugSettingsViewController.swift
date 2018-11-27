@@ -117,6 +117,20 @@ class DebugSettingsViewController: DebugTableViewController {
             }
         )]
 
+        settings += [DebugTableViewCellModel(title: "UploadManager",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                self.navigationController?.pushViewController(UploadManagerViewController(), animated: true)
+            }
+        )]
+
         return ("Feature Debug", settings)
     }
 }
@@ -126,7 +140,7 @@ extension DebugSettingsViewController {
     func confirmHostChange() {
 
         let controller = UIAlertController(title: "Switch Host",
-                                           message: "Select the new host/environment for the app.  Note that switching hosts will relaunch the app and discard current operations.",
+                                           message: "Select the new host/environment for the app.  Note that switching hosts will relaunch the app and discard current operations like photo uploads.",
                                            preferredStyle: .actionSheet)
 
         for host in RestAPIHost.allCases {

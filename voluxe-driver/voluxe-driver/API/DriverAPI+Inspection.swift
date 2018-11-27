@@ -22,9 +22,12 @@ extension DriverAPI {
         }
     }
 
+    // NOTE this only supports requests where type = .pickup
+    // hence not using the self.api.path(for: request)
     static func createDocumentInspection(for request: Request,
                                          completion: @escaping ((Inspection?, LuxeAPIError.Code?) -> Void))
     {
+        // TODO does this need to confirm request.type == .pickup?
         let route = "v1/driver-pickup-requests/\(request.id)/documents"
         self.api.post(route: route) {
             response in
@@ -43,16 +46,36 @@ extension DriverAPI {
         }
     }
 
+    // TODO how does this relate to UploadManager?
     static func upload(photo: UIImage,
                        inspection: Inspection,
                        request: Request,
                        completion: @escaping ((String?, LuxeAPIError.Code?) -> Void))
     {
-        let route = "/v1/driver-pickup-requests/\(request.id)/documents/\(inspection.id)/photos"
+        guard let path = self.api.path(for: request) else { return }
+        let route = "/v1/\(path)/\(request.id)/documents/\(inspection.id)/photos"
         self.api.upload(route: route, image: photo) {
             response in
             completion(response?.asDocumentURL(), response?.asErrorCode())
         }
+    }
+
+    // TODO find a better place for this
+    static func routeToUploadPhoto(inspection: Inspection,
+                                   request: Request) -> String?
+    {
+        guard let path = self.api.path(for: request) else { return nil }
+        let route = "/v1/\(path)/\(request.id)/documents/\(inspection.id)/photos"
+        return route
+    }
+
+    // TODO find a better place for this
+    static func urlToUploadPhoto(inspection: Inspection,
+                                 request: Request) -> String?
+    {
+        guard let route = self.routeToUploadPhoto(inspection: inspection, request: request) else { return nil }
+        let url = self.api.urlFromHost(for: route)
+        return url
     }
 
     static func update(_ request: Request,

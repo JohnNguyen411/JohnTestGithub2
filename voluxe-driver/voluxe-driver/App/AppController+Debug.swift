@@ -18,6 +18,10 @@ extension AppController {
 
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         guard motion == .motionShake else { return }
+        self.presentDebugMenu()
+    }
+
+    func presentDebugMenu() {
         guard self.presentingViewController == nil else { return }
         let controller = DebugSettingsViewController()
         let navController = UINavigationController(rootViewController: controller)

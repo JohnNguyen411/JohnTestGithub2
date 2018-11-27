@@ -11,8 +11,8 @@ import UIKit
 
 extension UIView {
 
-    func pinToSuperviewTop(useSafeArea: Bool = true) {
-        Layout.pinToSuperviewTop(view: self, useSafeArea: useSafeArea)
+    func pinToSuperviewTop(spacing: CGFloat = 0, useSafeArea: Bool = true) {
+        Layout.pinToSuperviewTop(view: self, spacing: spacing, useSafeArea: useSafeArea)
     }
 
     func pinTopToBottomOf(view: UIView, spacing: CGFloat = 0) {

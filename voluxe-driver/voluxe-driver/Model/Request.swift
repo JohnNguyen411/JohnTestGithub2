@@ -28,9 +28,11 @@ struct Request: Codable {
     let task: String?
     let driverDealershipTimeSlotAssignmentId: Int
     let driverDealershipTimeSlotAssignment: DriverDealershipTimeSlotAssignment?
+    let loanerVehicleRequested: Bool?
+    let loanerInspection: Inspection?
     let vehicleInspectionId: Int?
     let vehicleInspection: Inspection?
-    let documents: [String]?
+    let documents: [Inspection]?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -44,8 +46,18 @@ struct Request: Codable {
         case task
         case driverDealershipTimeSlotAssignmentId = "driver_dealership_time_slot_assignment_id"
         case driverDealershipTimeSlotAssignment = "driver_dealership_time_slot_assignment"
+        case loanerVehicleRequested = "loaner_vehicle_requested"
+        case loanerInspection = "loaner_vehicle_inspection"
         case vehicleInspectionId = "vehicle_inspection_id"
         case vehicleInspection = "vehicle_inspection"
         case documents
+    }
+
+    var isDropOff: Bool {
+        return self.type == .advisorPickup || self.type == .dropoff
+    }
+
+    var isPickup: Bool {
+        return self.type == .advisorPickup || self.type == .pickup
     }
 }

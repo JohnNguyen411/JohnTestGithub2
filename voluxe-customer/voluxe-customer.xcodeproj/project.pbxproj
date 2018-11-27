@@ -913,7 +913,7 @@
 			path = export;
 			sourceTree = "<group>";
 		};
-		538FE75420BF4AB800C3CE17 /* tests */ = {
+		538FE75420BF4AB800C3CE17 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				538FE75C20BF4B6900C3CE17 /* BotUser.swift */,
@@ -923,10 +923,10 @@
 				538FE75620BF4AB800C3CE17 /* XCTest+Test.swift */,
 				538FE75520BF4AB800C3CE17 /* XCUIElement+Test.swift */,
 			);
-			path = tests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
-		539F626D2092AB4E0023DF59 /* scripts */ = {
+		539F626D2092AB4E0023DF59 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
 				539F626E2092AB6A0023DF59 /* confirm_team_id.rb */,
@@ -934,15 +934,15 @@
 				538FBDE420AB87280096480C /* ipa-to-fabric.sh */,
 				538FBDE220AB62180096480C /* xcarchive-to-ipa.sh */,
 			);
-			path = scripts;
+			path = Scripts;
 			sourceTree = "<group>";
 		};
-		53D9A1F8216426D400414648 /* ui */ = {
+		53D9A1F8216426D400414648 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				53A4D72C216BB6FF001906AA /* UIView+AutoLayout.swift */,
 			);
-			path = ui;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		53D9A7A92098E638008BE93E /* Resources */ = {
@@ -1202,27 +1202,27 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		6C5832C21FB3899700F6BFE0 /* shared */ = {
+		6C5832C21FB3899700F6BFE0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
 				52940969219220E00009F691 /* API */,
 				533046FE2188D61D007CE01C /* Debug */,
 				533047112188D821007CE01C /* Extensions */,
-				6C5832C31FB3899700F6BFE0 /* manager */,
-				539F626D2092AB4E0023DF59 /* scripts */,
-				538FE75420BF4AB800C3CE17 /* tests */,
-				53D9A1F8216426D400414648 /* ui */,
+				6C5832C31FB3899700F6BFE0 /* Manager */,
+				539F626D2092AB4E0023DF59 /* Scripts */,
+				538FE75420BF4AB800C3CE17 /* Tests */,
+				53D9A1F8216426D400414648 /* UI */,
 			);
-			name = shared;
-			path = ../shared;
+			name = Shared;
+			path = ../Shared;
 			sourceTree = "<group>";
 		};
-		6C5832C31FB3899700F6BFE0 /* manager */ = {
+		6C5832C31FB3899700F6BFE0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
 				6C5832C41FB3899700F6BFE0 /* LocationManager.swift */,
 			);
-			path = manager;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		6C5832F31FB3AF5600F6BFE0 /* Presentr */ = {
@@ -1502,7 +1502,7 @@
 				DD0FFFE5E0D1BE41F3C9FA3D /* Pods */,
 				6CCD428B1FA013E3000AC6C9 /* Products */,
 				538FBDE020AB45EA0096480C /* release-notes.txt */,
-				6C5832C21FB3899700F6BFE0 /* shared */,
+				6C5832C21FB3899700F6BFE0 /* Shared */,
 				6CCD428C1FA013E3000AC6C9 /* voluxe-customer */,
 				53FDF20920B761D20004B8A1 /* voluxe-customerAPITests */,
 				6CCD42A11FA013E3000AC6C9 /* voluxe-customerUnitTests */,
