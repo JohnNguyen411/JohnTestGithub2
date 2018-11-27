@@ -45,6 +45,7 @@
 		52758F1A219E3849007E488A /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F18219E3849007E488A /* CustomerAPI.swift */; };
 		52758F1C219E3AF3007E488A /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */; };
 		52758F1D219E3AF3007E488A /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */; };
+		5277F24621ADC9E8005C443D /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		52940965219220B50009F691 /* Thread+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940963219220B50009F691 /* Thread+Assert.swift */; };
 		52940966219220B50009F691 /* UserDefaults+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940964219220B50009F691 /* UserDefaults+LuxeAPI.swift */; };
 		5294096F219220E00009F691 /* LuxeAPI+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294096A219220E00009F691 /* LuxeAPI+Notifications.swift */; };
@@ -2208,6 +2209,7 @@
 				5294097A2192598C0009F691 /* RestAPI+AlamoFire.swift in Sources */,
 				538FE75920BF4AB800C3CE17 /* XCTest+Test.swift in Sources */,
 				538FE76020BF4B9F00C3CE17 /* String+Test.swift in Sources */,
+				5277F24621ADC9E8005C443D /* UserDefaults+Debug.swift in Sources */,
 				536D6D6220CF3AA400A269D4 /* FTUELocalization.swift in Sources */,
 				538FE75B20BF4B4E00C3CE17 /* Config.swift in Sources */,
 				538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */,

@@ -72,9 +72,13 @@ extension RestAPIResponse {
             if convertFromSnakeCase {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
             }
-            // print data
-            let jsonString = String(data: data, encoding: .utf8)
-            print("data: \(jsonString ?? "")")
+            
+            if UserDefaults.standard.enableAlamoFireLogging {
+                // print data
+                let jsonString = String(data: data, encoding: .utf8)
+                print("data: \(jsonString ?? "")")
+            }
+            
             let object = try decoder.decode(T.self, from: data)
             return object
         } catch {
