@@ -82,7 +82,7 @@ extension RestAPI {
         let url = self.urlFromHost(for: route)
 
         // TODO guard should return RestAPIResponse.error()
-        guard let request = try? URLRequest(url: url, method: method, headers: headers) else { return }
+        guard let request = try? URLRequest(url: url, method: method, headers: Self.convertToAlamoFireHeaders(headers: headers)) else { return }
         guard var encodedRequest = try? URLEncoding.default.encode(request, with: queryParameters) else { return }
 
         // TODO move to utility func?
@@ -170,12 +170,23 @@ extension RestAPI {
         },
                                           to: url,
                                           method: .put,
-                                          headers: self.headers)
+                                          headers: Self.convertToAlamoFireHeaders(headers: self.headers))
         request.responseData {
             response in
             let apiResponse = RestAPIResponse(data: response.result.value, error: response.error, statusCode: response.response?.statusCode)
             self.inspect(urlResponse: response.response, apiResponse: apiResponse)
             completion(apiResponse)
         }
+    }
+    
+    static func convertToAlamoFireHeaders(headers: RestAPIHeaders?) -> HTTPHeaders? {
+        guard let apiHeaders = headers else {
+            return nil
+        }
+        var alamoFireHeaders = HTTPHeaders()
+        for header in apiHeaders {
+            alamoFireHeaders.add(HTTPHeader(name: header.key, value: header.value))
+        }
+        return alamoFireHeaders
     }
 }

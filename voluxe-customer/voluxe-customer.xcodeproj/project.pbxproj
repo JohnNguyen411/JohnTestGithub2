@@ -45,7 +45,6 @@
 		52758F1A219E3849007E488A /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F18219E3849007E488A /* CustomerAPI.swift */; };
 		52758F1C219E3AF3007E488A /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */; };
 		52758F1D219E3AF3007E488A /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */; };
-		5277F24621ADC9E8005C443D /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		52940965219220B50009F691 /* Thread+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940963219220B50009F691 /* Thread+Assert.swift */; };
 		52940966219220B50009F691 /* UserDefaults+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940964219220B50009F691 /* UserDefaults+LuxeAPI.swift */; };
 		5294096F219220E00009F691 /* LuxeAPI+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294096A219220E00009F691 /* LuxeAPI+Notifications.swift */; };
@@ -88,7 +87,6 @@
 		5330472A21891AE5007CE01C /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047132188D821007CE01C /* Bundle+Voluxe.swift */; };
 		5340E90720D8514D00B17D53 /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E90620D8514D00B17D53 /* FBAnalytics.swift */; };
 		5340E90A20D861A800B17D53 /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E90620D8514D00B17D53 /* FBAnalytics.swift */; };
-		5340E90B20D861AD00B17D53 /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		5340E90D20D861C400B17D53 /* Analytics_UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD42A21FA013E3000AC6C9 /* Analytics_UnitTests.swift */; };
 		5340E90F20D86BD900B17D53 /* TaxonomyTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E90E20D86BD900B17D53 /* TaxonomyTableViewController.swift */; };
 		5340E91020D876ED00B17D53 /* DebugFontViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBFD82420D1BE040097D4AB /* DebugFontViewController.swift */; };
@@ -135,7 +133,6 @@
 		53D9A7BD209A5E2F008BE93E /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		53E2521720C731D500D8C32D /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E2521620C731D500D8C32D /* TestConstants.swift */; };
 		53EF28A920ACE38C006CC5FA /* SignIn_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FE01FC5F987002BC7FC /* SignIn_UITests.swift */; };
-		53EF28C820AE0553006CC5FA /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		53EF28DA20AE0798006CC5FA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C345A0E1FD897E4006CAC32 /* Config.swift */; };
 		53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
 		53FDF12120B5E0050004B8A1 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
@@ -883,6 +880,7 @@
 		533046FE2188D61D007CE01C /* Debug */ = {
 			isa = PBXGroup;
 			children = (
+				53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */,
 				533046FF2188D61D007CE01C /* DebugTableViewController.swift */,
 				533047002188D61D007CE01C /* DebugTableViewCell.swift */,
 			);
@@ -972,7 +970,6 @@
 				53D9A7BA209A50D2008BE93E /* DebugSettingsViewController.swift */,
 				6CBFD82820D1C9640097D4AB /* Font */,
 				5340E90E20D86BD900B17D53 /* TaxonomyTableViewController.swift */,
-				53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */,
 				53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */,
 			);
 			path = Debug;
@@ -2052,7 +2049,7 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-NSData+zlib/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -2060,7 +2057,7 @@
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
@@ -2099,7 +2096,7 @@
 				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
 				"${BUILT_PRODUCTS_DIR}/CocoaLumberjack/CocoaLumberjack.framework",
 				"${BUILT_PRODUCTS_DIR}/DateToolsSwift/DateToolsSwift.framework",
-				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac-Defines-Logger-NSData+zlib/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
@@ -2121,7 +2118,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/CocoaLumberjack.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DateToolsSwift.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
@@ -2209,7 +2206,6 @@
 				5294097A2192598C0009F691 /* RestAPI+AlamoFire.swift in Sources */,
 				538FE75920BF4AB800C3CE17 /* XCTest+Test.swift in Sources */,
 				538FE76020BF4B9F00C3CE17 /* String+Test.swift in Sources */,
-				5277F24621ADC9E8005C443D /* UserDefaults+Debug.swift in Sources */,
 				536D6D6220CF3AA400A269D4 /* FTUELocalization.swift in Sources */,
 				538FE75B20BF4B4E00C3CE17 /* Config.swift in Sources */,
 				538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */,
@@ -2504,7 +2500,6 @@
 				524C200921AC9F7A003AA733 /* LuxeAPIError.swift in Sources */,
 				53C8AD4F20E59C9B008E07FF /* UserDefaults+Voluxe.swift in Sources */,
 				53C8AD5020E59CAF008E07FF /* AnalyticsCore.swift in Sources */,
-				5340E90B20D861AD00B17D53 /* UserDefaults+Debug.swift in Sources */,
 				524C200221AC9C41003AA733 /* RestAPI.swift in Sources */,
 				5330471F2188D9C4007CE01C /* Bundle+Voluxe.swift in Sources */,
 				5340E90A20D861A800B17D53 /* FBAnalytics.swift in Sources */,
@@ -2523,7 +2518,6 @@
 				538FE76420BF4BC000C3CE17 /* Int+Test.swift in Sources */,
 				5330472A21891AE5007CE01C /* Bundle+Voluxe.swift in Sources */,
 				524C201821ACADA4003AA733 /* LuxeAPI+Notifications.swift in Sources */,
-				53EF28C820AE0553006CC5FA /* UserDefaults+Debug.swift in Sources */,
 				5328C8AC20FD40FF0006B448 /* UserDefaults+Voluxe.swift in Sources */,
 				53C8AD5220E59D0E008E07FF /* Enum+CaseIterable.swift in Sources */,
 				53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */,
