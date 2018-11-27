@@ -69,6 +69,9 @@
 		52D5C9B7211514EF0020F43F /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B6211514EF0020F43F /* RoundImageView.swift */; };
 		52E737712141E24900CB8D3B /* ScheduledSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E737702141E24900CB8D3B /* ScheduledSelfViewController.swift */; };
 		52E737732141E41900CB8D3B /* ScheduledSelfPickup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E737722141E41900CB8D3B /* ScheduledSelfPickup.swift */; };
+		52FFBBB021AE05C500FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
+		52FFBBB121AE05C700FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
+		52FFBBB221AE06BB00FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		5303E2F320E45C1600B1F4BE /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */; };
 		5303E2F620E4622600B1F4BE /* UserDefaults_UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F520E4622600B1F4BE /* UserDefaults_UnitTests.swift */; };
 		5303E2F820E4631D00B1F4BE /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
@@ -2206,6 +2209,7 @@
 				5294097A2192598C0009F691 /* RestAPI+AlamoFire.swift in Sources */,
 				538FE75920BF4AB800C3CE17 /* XCTest+Test.swift in Sources */,
 				538FE76020BF4B9F00C3CE17 /* String+Test.swift in Sources */,
+				52FFBBB121AE05C700FAD7BE /* UserDefaults+Debug.swift in Sources */,
 				536D6D6220CF3AA400A269D4 /* FTUELocalization.swift in Sources */,
 				538FE75B20BF4B4E00C3CE17 /* Config.swift in Sources */,
 				538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */,
@@ -2498,6 +2502,7 @@
 				5340E91620D95E7400B17D53 /* AnalyticsEnums.swift in Sources */,
 				5340E91520D8822D00B17D53 /* Enum+CaseIterable.swift in Sources */,
 				524C200921AC9F7A003AA733 /* LuxeAPIError.swift in Sources */,
+				52FFBBB021AE05C500FAD7BE /* UserDefaults+Debug.swift in Sources */,
 				53C8AD4F20E59C9B008E07FF /* UserDefaults+Voluxe.swift in Sources */,
 				53C8AD5020E59CAF008E07FF /* AnalyticsCore.swift in Sources */,
 				524C200221AC9C41003AA733 /* RestAPI.swift in Sources */,
@@ -2519,6 +2524,7 @@
 				5330472A21891AE5007CE01C /* Bundle+Voluxe.swift in Sources */,
 				524C201821ACADA4003AA733 /* LuxeAPI+Notifications.swift in Sources */,
 				5328C8AC20FD40FF0006B448 /* UserDefaults+Voluxe.swift in Sources */,
+				52FFBBB221AE06BB00FAD7BE /* UserDefaults+Debug.swift in Sources */,
 				53C8AD5220E59D0E008E07FF /* Enum+CaseIterable.swift in Sources */,
 				53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */,
 				524C201221ACAC62003AA733 /* UserDefaults+LuxeAPI.swift in Sources */,
