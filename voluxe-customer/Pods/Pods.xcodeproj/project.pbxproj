@@ -54,7 +54,6 @@
 		1238F44E201646D3B0821883F74E48B4 /* String+MD5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 29D8D187C7180A56559ED23832262324 /* String+MD5.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		1267167CCF7F30340359B7A2D33FB31D /* ANSCompatibility.h in Headers */ = {isa = PBXBuildFile; fileRef = DC0660C17A1084E8FDBD8B33BC9F8454 /* ANSCompatibility.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		1285541D18ADE6E38E13E8DCEB0C7541 /* RLMAccessor.mm in Sources */ = {isa = PBXBuildFile; fileRef = BD78DF06E8AFCC2B76FC5BF77014E7E9 /* RLMAccessor.mm */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"3.7.6\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC -w -Xanalyzer -analyzer-disable-all-checks"; }; };
-		12F3FDC89460F981669F4B57E3061A2A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57026786B987C71AE46DCF88C4EEAFAF /* Foundation.framework */; };
 		1338C52D561E5DB919EDE8500642580F /* sync_config.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C79BA578D9764C617539C389342BC3DB /* sync_config.cpp */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"3.7.6\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		13CB99F5ED3568D6F0DC0601E763CC30 /* RLMObjectSchema_Private.h in Copy . Private Headers */ = {isa = PBXBuildFile; fileRef = 8898A3C89B788B2BD45FD4244782FE10 /* RLMObjectSchema_Private.h */; };
 		14BE97F57B07E0A5B188CA0E1A4CD8C9 /* RLMObjectBase.mm in Sources */ = {isa = PBXBuildFile; fileRef = 4C3536220EA3CC9C5A926BFB3810A273 /* RLMObjectBase.mm */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"3.7.6\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC -w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -142,6 +141,7 @@
 		37F0B62D9DAB71F0DE6F0F25B28D5525 /* MBProgressHUD.h in Headers */ = {isa = PBXBuildFile; fileRef = 824318D33E1290B2583DCDC35970B1B1 /* MBProgressHUD.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		385DF1BEFFC5E6E07309D1B4FCD89B32 /* ConstraintMakerPriortizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F2676D3B099F56EE0D5178CB0E14328 /* ConstraintMakerPriortizable.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		3867E139FC9BC14318A960738EDB052D /* DDASLLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = 391BCF2621D840AEB9F0892B4E7A3596 /* DDASLLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		387B9E9CBDF974A9E36598C1110F2025 /* Pods-voluxe-customerUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ED73A8445423107CC475A91E4C7CF94 /* Pods-voluxe-customerUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38827B49E4CD28F2F054BBE319CBAB11 /* PhoneNumberKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D4AE99BF580B2894CCA72F35944F64F /* PhoneNumberKit.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		38C874F0A16B33BEB8B6D196B3EA739B /* RLMRealm.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = B914ABC46D573C7B26C01F1B065C9025 /* RLMRealm.h */; };
 		39FFED97B292CD4032AEF68FB1D39F6E /* SwiftVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD160994F3FCFEB505194C8D84FC89C4 /* SwiftVersion.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -174,7 +174,6 @@
 		444E27CF434352F568F676F688DB8E14 /* RLMRealm_Private.h in Copy . Private Headers */ = {isa = PBXBuildFile; fileRef = 6572E58ECD3AC3ADB37C1F4FDAA90109 /* RLMRealm_Private.h */; };
 		446D6387CC125CAC02C6EB3AA1BC3FD5 /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8C4937B34647616E14229A3A8A9498F /* Schema.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		448E3E8FDFFF190A5DC78CDA49368626 /* BranchRegisterViewRequest.h in Headers */ = {isa = PBXBuildFile; fileRef = 15C168DE8353272F070896742A89C883 /* BranchRegisterViewRequest.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		449CC56CF07A7DEBBC701276F6E6ABB3 /* Pods-voluxe-customerUnitTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F98F4CE4D425253AF607928CFBF8B /* Pods-voluxe-customerUnitTests-dummy.m */; };
 		44F34AEAB77DF1786303509AE4188068 /* RLMSyncUtil.mm in Sources */ = {isa = PBXBuildFile; fileRef = 799D9C509EA42CC1DBE5C27C0A1D06FA /* RLMSyncUtil.mm */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"3.7.6\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		4550C1FA6594F193488B81456D271B7C /* RLMSyncConfiguration_Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 28CB13A6027C504A6974D13D0DF49FD3 /* RLMSyncConfiguration_Private.h */; };
 		45D7AD0BCCDAEF2F8ED9591B4509241D /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFB6667D196EEB25CB15DB4B31BCD320 /* ConstraintDescription.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -285,10 +284,8 @@
 		6ECD79757532D1D64FBAE80B52ED3028 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57026786B987C71AE46DCF88C4EEAFAF /* Foundation.framework */; };
 		6F7B6BCCDD431A07D74FFDFEA92E6EC1 /* Date+Comparators.swift in Sources */ = {isa = PBXBuildFile; fileRef = 428EDBBF10F388FF37934DEC5840BDC4 /* Date+Comparators.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		6FBF863224237B10B9FB2C0DA0EF5AA5 /* RLMRealmConfiguration+Sync.h in Headers */ = {isa = PBXBuildFile; fileRef = 906F82818DB90737528068EC61648BE7 /* RLMRealmConfiguration+Sync.h */; };
-		6FC0E033D6A937EF3B3C91161D71292E /* Pods-voluxe-customerUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 702EBFF67D30F8E712166BCBEAB1E7CD /* Pods-voluxe-customerUITests-dummy.m */; };
 		6FF9E482E3F021B83B1129340054EB82 /* NSError+RLMSync.m in Sources */ = {isa = PBXBuildFile; fileRef = 8889ED46D64A6E08A1A6955BC2DD58AE /* NSError+RLMSync.m */; settings = {COMPILER_FLAGS = "-DREALM_HAVE_CONFIG -DREALM_COCOA_VERSION='@\"3.7.6\"' -D__ASSERTMACROS__ -DREALM_ENABLE_SYNC -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		702FF9C1DA2DD3CDC225FB9F281CA6A9 /* nanopb-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 36413737E6D8D293C5B907F6625F84BE /* nanopb-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		706F57309BE747BEA5639C52BBDDBD76 /* Pods-voluxe-customerUnitTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8ABE9F24461502FF69DB51FDE898E7F0 /* Pods-voluxe-customerUnitTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7074DC7B3C4A53A75D5F35FA3F13DA24 /* BNCContentDiscoveryManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DABFB700DD07D0CFE95F2E6FC99E827 /* BNCContentDiscoveryManager.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		709DDA6BFFE27B8D8F48EDE184F41A60 /* BNCFabricAnswers.h in Headers */ = {isa = PBXBuildFile; fileRef = 73420DF71F3F97A06215F9BA81F2CBC1 /* BNCFabricAnswers.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		70BEB379D3D293C012373C0E0C36CA06 /* GPBWireFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 8FE078AB52A16B69B51BD6C22F7D98EC /* GPBWireFormat.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -362,6 +359,7 @@
 		8A658F6D3398F97FFBC6A6DB1F665D1E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57026786B987C71AE46DCF88C4EEAFAF /* Foundation.framework */; };
 		8AB16D785C1A99B584ECD2FEED4FE2E6 /* NSString+Branch.h in Headers */ = {isa = PBXBuildFile; fileRef = AF0F2630C3FCEC24831A7F5E0D92F8FF /* NSString+Branch.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8B4BE759F5E3258CFAAE0F6E77EE3B08 /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B2BB6F00023A47C67674A74C64CD988 /* ConstraintAttributes.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		8B58E176D2B8EFC131772011E2EFF264 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57026786B987C71AE46DCF88C4EEAFAF /* Foundation.framework */; };
 		8B62A0BD47889418321B5D012FDCD916 /* RLMSyncSession.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 186B5ABC3ECFD7B719A36A0D21BC1450 /* RLMSyncSession.h */; };
 		8B8357FFC94BD5DF3674E246DA9AA3FA /* MetadataTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B7FDED94A9F27C21A2B76974E2B94DFE /* MetadataTypes.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		8B9449A73C9DD36116DA6F2ACDE69983 /* RLMSyncSession.h in Headers */ = {isa = PBXBuildFile; fileRef = 186B5ABC3ECFD7B719A36A0D21BC1450 /* RLMSyncSession.h */; };
@@ -381,7 +379,6 @@
 		9417399FC828FE78FDA7391FDC54DA57 /* RLMSyncUser.h in Headers */ = {isa = PBXBuildFile; fileRef = DC842BB386C70B3B20F0B8735A96AD1F /* RLMSyncUser.h */; };
 		94387636FEB73E3D0BDE115824C364A7 /* TimePeriodChain.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57085B53CB630B44D0D7229A2EF059E /* TimePeriodChain.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		95D0D04AA3BF4241FA143B27AD2DCDD6 /* GoogleToolboxForMac-Defines-NSData+zlib-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D2469BA65E90A4F78097FDE52149C6ED /* GoogleToolboxForMac-Defines-NSData+zlib-dummy.m */; };
-		963CFE787D710AFE21967A3E18DB8E02 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57026786B987C71AE46DCF88C4EEAFAF /* Foundation.framework */; };
 		96CE26862D553B4D339C16183E12BC06 /* NSString+Branch.m in Sources */ = {isa = PBXBuildFile; fileRef = BA795A6729838934D8062C585C0958F6 /* NSString+Branch.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		97AA7BFC4EFDC206AFBA76C8582E446A /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B049514E529BE2E4D42CBEAE5AA3241 /* Debugging.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		97B8D84ECCFC0E51930D133BC3205B9E /* GPBDescriptor_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = C327DF9143FF2CA6873273C548F47619 /* GPBDescriptor_PackagePrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -407,6 +404,7 @@
 		A000E8B516FD052CEC9E93F2B423B8A8 /* KeychainAccess-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D7D5A3CDC385D5B92BB77731006617D7 /* KeychainAccess-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A02AF7B81A15052ABFE1E00AAADA564C /* GPBCodedOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A5EFF9C762F5E2B12C0D8219D989651 /* GPBCodedOutputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A038F381C41807E353D07D248284E349 /* GPBMessage_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = 1EBF937A0C4A1E054EEE66513CF3D2A0 /* GPBMessage_PackagePrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A0600EB6EB9076E312E95E5C5E55DC0E /* Pods-voluxe-customerUnitTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 8ABE9F24461502FF69DB51FDE898E7F0 /* Pods-voluxe-customerUnitTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A0C4669168C36B165DD240D53CC896D3 /* TimePeriodCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95FDD6B1D6588D307B74B8FF3E12C914 /* TimePeriodCollection.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A13F623A0A6C828D8AB202E0BDBAB0A6 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B310B06A25383CACD788A3C70965174 /* Response.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		A143A1651DABBBB27FE3177D6AB28754 /* MetadataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E865CC3F4845F35496D1B27BB7F15404 /* MetadataManager.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -500,6 +498,7 @@
 		C2D8A6AEA3CF9940DA1ACDDD038A3B07 /* RLMResults_Private.h in Copy . Private Headers */ = {isa = PBXBuildFile; fileRef = DC0E99CBAAFBBEBC636019E16A4F4C8B /* RLMResults_Private.h */; };
 		C361178EFBB4C9F8ECA42705A6CE190E /* BranchRedeemRewardsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = E475069984124BCD708406111C257D60 /* BranchRedeemRewardsRequest.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		C39F58651327E52681CBD567417577A0 /* GPBUnknownFieldSet_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = A4E5CBF0BFC2F04936640909AB2B15B7 /* GPBUnknownFieldSet_PackagePrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		C4FADBE927AC97C56D25F81020FCBFE5 /* Pods-voluxe-customerUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 702EBFF67D30F8E712166BCBEAB1E7CD /* Pods-voluxe-customerUITests-dummy.m */; };
 		C4FB6B78354E58DD46D7FA81E070DBDB /* RLMListBase.h in Headers */ = {isa = PBXBuildFile; fileRef = 9567DD813CC41BCE73EE4156F108A33B /* RLMListBase.h */; };
 		C53C704D79E8BE44673F8139C83ABDA8 /* RLMConstants.h in Headers */ = {isa = PBXBuildFile; fileRef = 93610D8D227D1829EBC27B2626DA4497 /* RLMConstants.h */; };
 		C55326F5384DC09DDB894D19782812B0 /* RLMSyncManager.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 095649610ECF1933059D9F2DABC42CC6 /* RLMSyncManager.h */; };
@@ -553,7 +552,6 @@
 		D89234F21E146DC1C3AA9BD9C20496F4 /* GPBUnknownField_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = C04E367C8C77B60C8525A8327942865B /* GPBUnknownField_PackagePrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		D8FBA4F0E045BA3D6B5085E6D9B41B00 /* RLMRealm_Dynamic.h in Headers */ = {isa = PBXBuildFile; fileRef = 6A6C246C04B6D10E41C764158D0BA2CE /* RLMRealm_Dynamic.h */; };
 		D9CF0096E9DE1C2304D65C2C19198870 /* GTMNSData+zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 34D3E7546592070AC9C7BE24BD5D3BE5 /* GTMNSData+zlib.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D9D31E83DAA4B791302FC00F04872C9C /* Pods-voluxe-customerUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4ED73A8445423107CC475A91E4C7CF94 /* Pods-voluxe-customerUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		DA6296C4E32D1DBE11B3E2D4A4DA49E2 /* BNCPreferenceHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 48E436BE2B5E15929FAB86A0B7495982 /* BNCPreferenceHelper.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		DB6AF4000E116D8C3E7EF28C64EC2D8B /* RLMObjectBase_Dynamic.h in Copy . Public Headers */ = {isa = PBXBuildFile; fileRef = 2ED16112E8265020C74A6ACD877EB477 /* RLMObjectBase_Dynamic.h */; };
 		DBF7EB217B458C43CF3884B3D7FDC682 /* GPBCodedInputStream_PackagePrivate.h in Headers */ = {isa = PBXBuildFile; fileRef = D3B8D200184B7807EEEF4E892EB92419 /* GPBCodedInputStream_PackagePrivate.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -588,6 +586,7 @@
 		E893ED0D26A79C2B1558FEAAF5014645 /* Date+TimeAgo.swift in Sources */ = {isa = PBXBuildFile; fileRef = EFD828699E5A374CCF733F9A188D85AD /* Date+TimeAgo.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		E903D9E4C2DBEACF937E606E51BC711E /* RLMObjectBase_Private.h in Copy . Private Headers */ = {isa = PBXBuildFile; fileRef = 85F0F6659AE26FADE661C752BA2B6005 /* RLMObjectBase_Private.h */; };
 		EA34CC093D1841A0E1459902B09DEAAD /* UIImage+GIF.m in Sources */ = {isa = PBXBuildFile; fileRef = 048457210181D35FCA211100E06CEDF9 /* UIImage+GIF.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
+		EA4A176F812A15373F34399DC61FAA25 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57026786B987C71AE46DCF88C4EEAFAF /* Foundation.framework */; };
 		EA52995F1F6A6F102AB0CECA48CBBD60 /* DDASLLogCapture.h in Headers */ = {isa = PBXBuildFile; fileRef = A239F6F3218648C06F34FA3E33095789 /* DDASLLogCapture.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		EAD0AF381312F5686C934AE63EABC97B /* GPBArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 1050C29EC7973ACD37E480A2115B4E4F /* GPBArray.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc -w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		EAD4614DC7DF44984EEB61C0F67A47D0 /* BranchSetIdentityRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = FA753ECE8EC299D7214CF1BC743C1D57 /* BranchSetIdentityRequest.m */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
@@ -621,6 +620,7 @@
 		F4E7FA766718DEC7409DBFE62EE3D6F3 /* Any.pbobjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 215E0882BAC7F4F1B266B228484052AB /* Any.pbobjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F4F0B6CE04CC7351C471322E062020F6 /* Kingfisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF6B5CE9C5EC52A9E3C27034D6E9C1EA /* Kingfisher.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		F56D5F417FA885B5C4C11DD11F422CB6 /* SlideMenuControllerSwift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E9E36AB29644832574550E37DFA124F0 /* SlideMenuControllerSwift-dummy.m */; };
+		F58671368009A9EA09F639ABC3501074 /* Pods-voluxe-customerUnitTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4A6F98F4CE4D425253AF607928CFBF8B /* Pods-voluxe-customerUnitTests-dummy.m */; };
 		F588468F59FAB20032CC90646C475193 /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C5C5A27CA1EC3F1FB3CFE88DBEEF1B /* ConstraintMakerExtendable.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		F61552C2F3463B2D103D00DA1ABCAC90 /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B37C1750A7A6BF30B3CCB0A7BD47FA /* Constraint.swift */; settings = {COMPILER_FLAGS = "-w -Xanalyzer -analyzer-disable-all-checks"; }; };
 		F619AED0FF73B3732C474A0211CE283F /* GTMNSData+zlib.h in Headers */ = {isa = PBXBuildFile; fileRef = 34D3E7546592070AC9C7BE24BD5D3BE5 /* GTMNSData+zlib.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -696,6 +696,20 @@
 			remoteGlobalIDString = B983CBAA80C362E1F0A8A62E7C95104F;
 			remoteInfo = Alamofire;
 		};
+		3D834AF6EC15F14C7CBD5B9076AD90A0 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = B983CBAA80C362E1F0A8A62E7C95104F;
+			remoteInfo = Alamofire;
+		};
+		4A120EE0071A041A5000126F82A6978C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D95B9D9D33B755CA24DE564CA86DDF08;
+			remoteInfo = Realm;
+		};
 		4B3CB091DB5B872760AC1E193BB4E7D5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
@@ -717,19 +731,12 @@
 			remoteGlobalIDString = E664E0FE7C0B80F49500A17CCF39DFA0;
 			remoteInfo = SwiftEventBus;
 		};
-		5A43D9733C7C8D7E3CC336B7DF586772 /* PBXContainerItemProxy */ = {
+		63815E0DCD117454796AC545C6513255 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = B983CBAA80C362E1F0A8A62E7C95104F;
-			remoteInfo = Alamofire;
-		};
-		686DBDCE169DA1E8C73955AB1D3BE7AF /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B983CBAA80C362E1F0A8A62E7C95104F;
-			remoteInfo = Alamofire;
+			remoteGlobalIDString = E664E0FE7C0B80F49500A17CCF39DFA0;
+			remoteInfo = SwiftEventBus;
 		};
 		68DE5F1FA9DA465EDA8637397D0018C4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -758,6 +765,20 @@
 			proxyType = 1;
 			remoteGlobalIDString = E664E0FE7C0B80F49500A17CCF39DFA0;
 			remoteInfo = SwiftEventBus;
+		};
+		840C5B376C4C911E531DBBEB4490F835 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3704D1D70E72C7259BC5E3F44418F897;
+			remoteInfo = nanopb;
+		};
+		850E943CC31FD71D6A262F9B42661025 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDA8FCB7EA34837BA0F9AEE4DF8D06EA;
+			remoteInfo = RealmSwift;
 		};
 		9488BA19A357D8D37D2E18F8181108F0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -815,13 +836,6 @@
 			remoteGlobalIDString = 42F4AC67BAB0FA3DC96F84D2410F4A2E;
 			remoteInfo = SnapKit;
 		};
-		C2C70BE82EAF93F852CABD8A7A3DCEF5 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = E664E0FE7C0B80F49500A17CCF39DFA0;
-			remoteInfo = SwiftEventBus;
-		};
 		C3DCB56C7657D932A87E74E5885B7725 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
@@ -829,12 +843,26 @@
 			remoteGlobalIDString = BF7AF66744981A25CC6C0A1254D0C91C;
 			remoteInfo = Protobuf;
 		};
-		D37F82B8C9CA00136B0274DA3A14ED35 /* PBXContainerItemProxy */ = {
+		D5B88CB06674894CC529409A72A727CC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 41019AA274651739D19CB486111F2481;
-			remoteInfo = "GoogleToolboxForMac-Defines-NSData+zlib";
+			remoteGlobalIDString = B983CBAA80C362E1F0A8A62E7C95104F;
+			remoteInfo = Alamofire;
+		};
+		DD40650704ADF7E1D19BE4598AFF2128 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FDA8FCB7EA34837BA0F9AEE4DF8D06EA;
+			remoteInfo = RealmSwift;
+		};
+		DD58F772B51A4E69216266E71E982248 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D95B9D9D33B755CA24DE564CA86DDF08;
+			remoteInfo = Realm;
 		};
 		E248D81BF2B08455D6DFC411629F4B1D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -850,12 +878,12 @@
 			remoteGlobalIDString = 3704D1D70E72C7259BC5E3F44418F897;
 			remoteInfo = nanopb;
 		};
-		EB82AD8727FC1515B6BCC461F6B1583E /* PBXContainerItemProxy */ = {
+		EB78D4EDCC6E315CDDEE590C8A569BE7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = D41D8CD98F00B204E9800998ECF8427E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3704D1D70E72C7259BC5E3F44418F897;
-			remoteInfo = nanopb;
+			remoteGlobalIDString = 41019AA274651739D19CB486111F2481;
+			remoteInfo = "GoogleToolboxForMac-Defines-NSData+zlib";
 		};
 		EE0F9978EA6004CB3E4ECA2C023B7D2F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -1746,14 +1774,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		403C2B0A2E5FAA00A55163681B0DCEEE /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				963CFE787D710AFE21967A3E18DB8E02 /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		4C2F7195A86E09A5CB61265F4B65E710 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1848,6 +1868,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		921FAA7531D67CA772B6A88DE8D5F1A6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8B58E176D2B8EFC131772011E2EFF264 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		9436636034E8ACD6C5DA53D4037E6E74 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1883,14 +1911,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D9D3E0A4FF6E0D06B1225E3BC1678BBC /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				12F3FDC89460F981669F4B57E3061A2A /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		DECE6D2BB55EEE91C59E29DC4DCAB666 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1906,6 +1926,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				B84E47DDC18132CEBEC5DF60252C2289 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EEB2407D7A9FEF640C5C0AF9E1B8EF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EA4A176F812A15373F34399DC61FAA25 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3568,19 +3596,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6DCD3B8BD055C0598F58F2E00FA924BF /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D9D31E83DAA4B791302FC00F04872C9C /* Pods-voluxe-customerUITests-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		77DAED9829E282CCAC208D146C782573 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				8622FF32871238BF5B9C2E09171832B0 /* SwiftyJSON-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7EC268B7C09C4D94C9CA17BD547B34A8 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				387B9E9CBDF974A9E36598C1110F2025 /* Pods-voluxe-customerUITests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3783,6 +3811,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CEE1F856F4AE0D03CF0029B77CD963FF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A0600EB6EB9076E312E95E5C5E55DC0E /* Pods-voluxe-customerUnitTests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D48C6E8B332AE1E75421B5A09AB76F18 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -3824,14 +3860,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				872709CFCC31AB1DB94051A9F3999179 /* SnapKit-umbrella.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		FF9B4B50231B6661F286780C7145E97B /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				706F57309BE747BEA5639C52BBDDBD76 /* Pods-voluxe-customerUnitTests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -3923,6 +3951,28 @@
 			productReference = E58099DD10A726806A3D500AF6290850 /* GoogleToolboxForMac.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		3371796E9AD2D31FBA40FE20EE389FF7 /* Pods-voluxe-customerUnitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 25F55C31F678FC72FF45A1382BE953D9 /* Build configuration list for PBXNativeTarget "Pods-voluxe-customerUnitTests" */;
+			buildPhases = (
+				800DF24A8AA6F4709CCC3F1DB9A1081E /* Sources */,
+				921FAA7531D67CA772B6A88DE8D5F1A6 /* Frameworks */,
+				CEE1F856F4AE0D03CF0029B77CD963FF /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				363B18D10C07297E7EBD848328D8A0D9 /* PBXTargetDependency */,
+				201400D9EC544F977AC861EF8C35099B /* PBXTargetDependency */,
+				2DCD670B5091D2ED334D9EA553277AEA /* PBXTargetDependency */,
+				B018F386346524474AF3F347FE18574C /* PBXTargetDependency */,
+				16704EC6CE492A534B7F79AF52C62513 /* PBXTargetDependency */,
+			);
+			name = "Pods-voluxe-customerUnitTests";
+			productName = "Pods-voluxe-customerUnitTests";
+			productReference = 98C2DB81C3F8DAAA5237B8290E968F4B /* Pods_voluxe_customerUnitTests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		3704D1D70E72C7259BC5E3F44418F897 /* nanopb */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = F24838E83437CE83BFEAE87F2706447F /* Build configuration list for PBXNativeTarget "nanopb" */;
@@ -4007,6 +4057,27 @@
 			name = Kingfisher;
 			productName = Kingfisher;
 			productReference = 45A898979A9DA31C00F9A09CD74AF645 /* Kingfisher.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		7468855BA4E5693E7C98FBCBC9549B2D /* Pods-voluxe-customerUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = BF161F09CEF2FC3B328F7500513D7596 /* Build configuration list for PBXNativeTarget "Pods-voluxe-customerUITests" */;
+			buildPhases = (
+				2B590422ABB186CBBDA0907945D4B35E /* Sources */,
+				F3EEB2407D7A9FEF640C5C0AF9E1B8EF /* Frameworks */,
+				7EC268B7C09C4D94C9CA17BD547B34A8 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				81A48C8083EB7580381544350AE064F8 /* PBXTargetDependency */,
+				E5720743C5CF24BA52C763FE4C88518A /* PBXTargetDependency */,
+				386BFC245F50334E83B0DFD76D066A01 /* PBXTargetDependency */,
+				E8783831E1B466065B1ECC27833FCBBB /* PBXTargetDependency */,
+			);
+			name = "Pods-voluxe-customerUITests";
+			productName = "Pods-voluxe-customerUITests";
+			productReference = 050F4B452B2F0576DC8EE7B6C39FC37C /* Pods_voluxe_customerUITests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		77DFE96F25DA3566689954FC3C1133E6 /* SlideMenuControllerSwift */ = {
@@ -4148,25 +4219,6 @@
 			productReference = EA3D57D58CAE36396ACE36F4D61DB75E /* SwiftEventBus.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		EFF4C5A83B6D949AF6CF663B61203295 /* Pods-voluxe-customerUITests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 40C01A751821B0E75B58E333D6A19812 /* Build configuration list for PBXNativeTarget "Pods-voluxe-customerUITests" */;
-			buildPhases = (
-				B1CE8938B52A4FB7EA64A2C13FEC97D8 /* Sources */,
-				D9D3E0A4FF6E0D06B1225E3BC1678BBC /* Frameworks */,
-				6DCD3B8BD055C0598F58F2E00FA924BF /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				9C28F7F87F0CE48100F6A626281F27BB /* PBXTargetDependency */,
-				8E70FE08C9D3056596E39424883DD0DC /* PBXTargetDependency */,
-			);
-			name = "Pods-voluxe-customerUITests";
-			productName = "Pods-voluxe-customerUITests";
-			productReference = 050F4B452B2F0576DC8EE7B6C39FC37C /* Pods_voluxe_customerUITests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
 		F0CBDDCA3C167AFC9D0D62C489CFEAD0 /* CocoaLumberjack */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = C887FAECD92FC9DD499D84E6D61A7499 /* Build configuration list for PBXNativeTarget "CocoaLumberjack" */;
@@ -4203,26 +4255,6 @@
 			name = "Pods-voluxe-customerAPITests";
 			productName = "Pods-voluxe-customerAPITests";
 			productReference = 8F731A309DE098F65C150791AA46D031 /* Pods_voluxe_customerAPITests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		F91D536025435122F796F2C7CE6BB734 /* Pods-voluxe-customerUnitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 90EA6D23279F290D929F57DC7C4C074E /* Build configuration list for PBXNativeTarget "Pods-voluxe-customerUnitTests" */;
-			buildPhases = (
-				884D28D61187A0C88AFE1BAD0860785D /* Sources */,
-				403C2B0A2E5FAA00A55163681B0DCEEE /* Frameworks */,
-				FF9B4B50231B6661F286780C7145E97B /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				C5FBC3BE5587877C6ADB5ECF64A6A6BE /* PBXTargetDependency */,
-				E0ED1617E3F61DF264244CB420A18FB5 /* PBXTargetDependency */,
-				BB475EC54DF6217D41CE9B02AC56D003 /* PBXTargetDependency */,
-			);
-			name = "Pods-voluxe-customerUnitTests";
-			productName = "Pods-voluxe-customerUnitTests";
-			productReference = 98C2DB81C3F8DAAA5237B8290E968F4B /* Pods_voluxe_customerUnitTests.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		F9371A8837BCF55E9656E3CD0532A6BD /* Pods-voluxe-customer */ = {
@@ -4313,8 +4345,8 @@
 				C4E0209E293D36D1FF582EDB3BE4C4BA /* PhoneNumberKit */,
 				F9371A8837BCF55E9656E3CD0532A6BD /* Pods-voluxe-customer */,
 				F7437DF62BD2CB4F10940DC5874CDF06 /* Pods-voluxe-customerAPITests */,
-				EFF4C5A83B6D949AF6CF663B61203295 /* Pods-voluxe-customerUITests */,
-				F91D536025435122F796F2C7CE6BB734 /* Pods-voluxe-customerUnitTests */,
+				7468855BA4E5693E7C98FBCBC9549B2D /* Pods-voluxe-customerUITests */,
+				3371796E9AD2D31FBA40FE20EE389FF7 /* Pods-voluxe-customerUnitTests */,
 				BF7AF66744981A25CC6C0A1254D0C91C /* Protobuf */,
 				D95B9D9D33B755CA24DE564CA86DDF08 /* Realm */,
 				FDA8FCB7EA34837BA0F9AEE4DF8D06EA /* RealmSwift */,
@@ -4396,6 +4428,14 @@
 				E0E1185862B14CAF433571574B02B784 /* Timestamp.pbobjc.m in Sources */,
 				F0E943C8E0B4B37FB410949EAEB9A6D7 /* Type.pbobjc.m in Sources */,
 				9AE852920A98DE0C429FC42C5918EBA3 /* Wrappers.pbobjc.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2B590422ABB186CBBDA0907945D4B35E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C4FADBE927AC97C56D25F81020FCBFE5 /* Pods-voluxe-customerUITests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4541,11 +4581,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		884D28D61187A0C88AFE1BAD0860785D /* Sources */ = {
+		800DF24A8AA6F4709CCC3F1DB9A1081E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				449CC56CF07A7DEBBC701276F6E6ABB3 /* Pods-voluxe-customerUnitTests-dummy.m in Sources */,
+				F58671368009A9EA09F639ABC3501074 /* Pods-voluxe-customerUnitTests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4693,14 +4733,6 @@
 			files = (
 				AD241F7E9C4562809149761022F7A041 /* SwiftEventBus-dummy.m in Sources */,
 				6AEA16C4292D2709CF28EC786B6E3B7B /* SwiftEventBus.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B1CE8938B52A4FB7EA64A2C13FEC97D8 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6FC0E033D6A937EF3B3C91161D71292E /* Pods-voluxe-customerUITests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4873,6 +4905,36 @@
 			target = D95B9D9D33B755CA24DE564CA86DDF08 /* Realm */;
 			targetProxy = 4B3CB091DB5B872760AC1E193BB4E7D5 /* PBXContainerItemProxy */;
 		};
+		16704EC6CE492A534B7F79AF52C62513 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = nanopb;
+			target = 3704D1D70E72C7259BC5E3F44418F897 /* nanopb */;
+			targetProxy = 840C5B376C4C911E531DBBEB4490F835 /* PBXContainerItemProxy */;
+		};
+		201400D9EC544F977AC861EF8C35099B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "GoogleToolboxForMac-Defines-NSData+zlib";
+			target = 41019AA274651739D19CB486111F2481 /* GoogleToolboxForMac-Defines-NSData+zlib */;
+			targetProxy = EB78D4EDCC6E315CDDEE590C8A569BE7 /* PBXContainerItemProxy */;
+		};
+		2DCD670B5091D2ED334D9EA553277AEA /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Realm;
+			target = D95B9D9D33B755CA24DE564CA86DDF08 /* Realm */;
+			targetProxy = 4A120EE0071A041A5000126F82A6978C /* PBXContainerItemProxy */;
+		};
+		363B18D10C07297E7EBD848328D8A0D9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = B983CBAA80C362E1F0A8A62E7C95104F /* Alamofire */;
+			targetProxy = D5B88CB06674894CC529409A72A727CC /* PBXContainerItemProxy */;
+		};
+		386BFC245F50334E83B0DFD76D066A01 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RealmSwift;
+			target = FDA8FCB7EA34837BA0F9AEE4DF8D06EA /* RealmSwift */;
+			targetProxy = 850E943CC31FD71D6A262F9B42661025 /* PBXContainerItemProxy */;
+		};
 		3A6597A13677864A3C76214CDD83E80C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = DateToolsSwift;
@@ -4927,6 +4989,12 @@
 			target = 16040EF8ADC8D2DE7BF49D526B5F756E /* SDWebImage */;
 			targetProxy = 2CD6A454F98B7DBB09DD49E880A4AB08 /* PBXContainerItemProxy */;
 		};
+		81A48C8083EB7580381544350AE064F8 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Alamofire;
+			target = B983CBAA80C362E1F0A8A62E7C95104F /* Alamofire */;
+			targetProxy = 3D834AF6EC15F14C7CBD5B9076AD90A0 /* PBXContainerItemProxy */;
+		};
 		855BDCFE04690F1EF32C3D3AB2B2D431 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Alamofire;
@@ -4945,12 +5013,6 @@
 			target = E664E0FE7C0B80F49500A17CCF39DFA0 /* SwiftEventBus */;
 			targetProxy = 5644AE780D8B46CDE0B22DC599F6BD31 /* PBXContainerItemProxy */;
 		};
-		8E70FE08C9D3056596E39424883DD0DC /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SwiftEventBus;
-			target = E664E0FE7C0B80F49500A17CCF39DFA0 /* SwiftEventBus */;
-			targetProxy = C2C70BE82EAF93F852CABD8A7A3DCEF5 /* PBXContainerItemProxy */;
-		};
 		919D46EE229D37DCB95F53CD2C356585 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "GoogleToolboxForMac-Defines-Logger-NSData+zlib";
@@ -4962,12 +5024,6 @@
 			name = SnapKit;
 			target = 42F4AC67BAB0FA3DC96F84D2410F4A2E /* SnapKit */;
 			targetProxy = B8099D9E1FE5D0309375B2D1EB25DE95 /* PBXContainerItemProxy */;
-		};
-		9C28F7F87F0CE48100F6A626281F27BB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Alamofire;
-			target = B983CBAA80C362E1F0A8A62E7C95104F /* Alamofire */;
-			targetProxy = 686DBDCE169DA1E8C73955AB1D3BE7AF /* PBXContainerItemProxy */;
 		};
 		A093742F47EC41891F3647E5DD486283 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -4981,6 +5037,12 @@
 			target = D95B9D9D33B755CA24DE564CA86DDF08 /* Realm */;
 			targetProxy = AA7ADAA0514B8D43476B45B22A2A30F5 /* PBXContainerItemProxy */;
 		};
+		B018F386346524474AF3F347FE18574C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = RealmSwift;
+			target = FDA8FCB7EA34837BA0F9AEE4DF8D06EA /* RealmSwift */;
+			targetProxy = DD40650704ADF7E1D19BE4598AFF2128 /* PBXContainerItemProxy */;
+		};
 		B9BD828C8C497B10CD6C1290D6962706 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftEventBus;
@@ -4993,23 +5055,11 @@
 			target = 6C8D7AC85CF6339144DE15051C0ECD47 /* Kingfisher */;
 			targetProxy = EE0F9978EA6004CB3E4ECA2C023B7D2F /* PBXContainerItemProxy */;
 		};
-		BB475EC54DF6217D41CE9B02AC56D003 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = nanopb;
-			target = 3704D1D70E72C7259BC5E3F44418F897 /* nanopb */;
-			targetProxy = EB82AD8727FC1515B6BCC461F6B1583E /* PBXContainerItemProxy */;
-		};
 		C518D9981D3D9F522174C7A4A333ACEC /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Realm;
 			target = D95B9D9D33B755CA24DE564CA86DDF08 /* Realm */;
 			targetProxy = 7A96952CDF5CE45CF4753AD6A522C2B8 /* PBXContainerItemProxy */;
-		};
-		C5FBC3BE5587877C6ADB5ECF64A6A6BE /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Alamofire;
-			target = B983CBAA80C362E1F0A8A62E7C95104F /* Alamofire */;
-			targetProxy = 5A43D9733C7C8D7E3CC336B7DF586772 /* PBXContainerItemProxy */;
 		};
 		CF57C990DEAA3D5FCBFFEB1B311B9841 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -5017,17 +5067,17 @@
 			target = FDA8FCB7EA34837BA0F9AEE4DF8D06EA /* RealmSwift */;
 			targetProxy = AF9BE44E61F8D387A04C579907E3AA75 /* PBXContainerItemProxy */;
 		};
-		E0ED1617E3F61DF264244CB420A18FB5 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "GoogleToolboxForMac-Defines-NSData+zlib";
-			target = 41019AA274651739D19CB486111F2481 /* GoogleToolboxForMac-Defines-NSData+zlib */;
-			targetProxy = D37F82B8C9CA00136B0274DA3A14ED35 /* PBXContainerItemProxy */;
-		};
 		E21140EC90E4E78C2AC139B20D56AD52 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SwiftyJSON;
 			target = 17841371A935AF891D52496A844EBC76 /* SwiftyJSON */;
 			targetProxy = 9F84A1D3AB49F34137D773D8533DD98E /* PBXContainerItemProxy */;
+		};
+		E5720743C5CF24BA52C763FE4C88518A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Realm;
+			target = D95B9D9D33B755CA24DE564CA86DDF08 /* Realm */;
+			targetProxy = DD58F772B51A4E69216266E71E982248 /* PBXContainerItemProxy */;
 		};
 		E69F88220553935028C8C121BB603724 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -5040,6 +5090,12 @@
 			name = MBProgressHUD;
 			target = CBDF1B82752EEB35FA27BD14EC2417FB /* MBProgressHUD */;
 			targetProxy = B4DA997B63C367A1AF7AD765C4C75D39 /* PBXContainerItemProxy */;
+		};
+		E8783831E1B466065B1ECC27833FCBBB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SwiftEventBus;
+			target = E664E0FE7C0B80F49500A17CCF39DFA0 /* SwiftEventBus */;
+			targetProxy = 63815E0DCD117454796AC545C6513255 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -5176,6 +5232,43 @@
 			};
 			name = Release;
 		};
+		044119BBB1D32FE11DCDF3D66645DE3C /* Beta */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4136A4E68D74828047C53796089E40DB /* Pods-voluxe-customerUnitTests.beta.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Beta;
+		};
 		04CAF91718A1BE2198CE3C98364EBA4E /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 478333CB12BA8F6386000FB0840FA21A /* Kingfisher.xcconfig */;
@@ -5305,43 +5398,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Mock;
-		};
-		06ED964268AB2EE163A866B7EBC7064C /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = BBBB03B2206569C9B989872A5C23C4D1 /* Pods-voluxe-customerUITests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUITests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
 		};
 		06F0196B70E3418432E818A0C7B33C8A /* Dev */ = {
 			isa = XCBuildConfiguration;
@@ -5616,43 +5672,6 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Production;
-		};
-		127C3FE567ADE793B2DE7BC4B8F7C83B /* Production */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7A0E1F5DDD5BE8CF2ABBDE591C902CF4 /* Pods-voluxe-customerUnitTests.production.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -6235,6 +6254,43 @@
 			};
 			name = Dev;
 		};
+		27269395C92E8EB1CD58922B781D4B13 /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A0D2F40B978CBD11DA7962F9F9E735B9 /* Pods-voluxe-customerUITests.production.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Production;
+		};
 		277F8DFAFC2755A00E59F86AEB24B812 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F851E552C3B0CA3BC25808D3359A6F0D /* KeychainAccess.xcconfig */;
@@ -6481,43 +6537,6 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerAPITests/Pods-voluxe-customerAPITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		30A5DC7C49D3AF339A8A6485A1B2B9DE /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 87A88536D6F9E5E5F105C45A8FE5CBCB /* Pods-voluxe-customerUITests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUITests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -6956,43 +6975,6 @@
 			};
 			name = AppStore;
 		};
-		3B69463105B60E6E4F867668C2E1944E /* Mock */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = B8793B4A2A849A7E97C36CCC3005CDA0 /* Pods-voluxe-customerUnitTests.mock.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Mock;
-		};
 		3CDA24F0B9956F45D521D6E1EA06570C /* Production */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3A6DA4FA41C6EE95F395AA8BCF050F3C /* SwiftEventBus.xcconfig */;
@@ -7415,43 +7397,6 @@
 			};
 			name = Mock;
 		};
-		46E41D4FD14A5D5E5D3D76B747DD4952 /* Staging */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 154C1A48F488B871DE0E99C130F57D5B /* Pods-voluxe-customerUnitTests.staging.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Staging;
-		};
 		476FAE6158B3BB47939B002D24C65E79 /* Production */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -7600,43 +7545,6 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		4C4CDCF3CC32A9562C36F5CC2DF05EE2 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A8E8EE9D526E89FB1704BB16B5FAC52 /* Pods-voluxe-customerUnitTests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -8075,6 +7983,43 @@
 			};
 			name = Dev;
 		};
+		5C6B62FD305882E05FE13D2C3535E3CA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A8E8EE9D526E89FB1704BB16B5FAC52 /* Pods-voluxe-customerUnitTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		5C7F14110F6ABBBAA0B9467E74DF6536 /* Staging */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FA2A91C7ABCD7B15C062CD79E2839835 /* nanopb.xcconfig */;
@@ -8140,44 +8085,7 @@
 			};
 			name = AppStore;
 		};
-		5E0EE60BDF7E35DE63F712CFCE84104C /* Dev */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FEC1965E47526D22F0A975E85A8B1823 /* Pods-voluxe-customerUnitTests.dev.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Dev;
-		};
-		5EB4EAC72A314D7221A4D5A742CBE260 /* AppStore */ = {
+		606A285C4CF140121FFB858E48428200 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 399C0CDD3EED93DBB67CB073E20933CA /* Pods-voluxe-customerUnitTests.appstore.xcconfig */;
 			buildSettings = {
@@ -8214,9 +8122,9 @@
 			};
 			name = AppStore;
 		};
-		6160E96B0AFF9395739168435571A361 /* Release */ = {
+		60F7FD4143F64C042854F7732B5F5484 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6CCD42400052228ECE423850B8FDD189 /* Pods-voluxe-customerUnitTests.release.xcconfig */;
+			baseConfigurationReference = 87A88536D6F9E5E5F105C45A8FE5CBCB /* Pods-voluxe-customerUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -8229,12 +8137,12 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUITests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -8320,6 +8228,43 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Staging;
+		};
+		65D5E51200E9DDADE7A39AA611606A36 /* Mock */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2AC7B2D31446E216868CF4F12531CF91 /* Pods-voluxe-customerUITests.mock.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Mock;
 		};
 		678B11A1A4D12BEA2D432D8E6C687999 /* Beta */ = {
 			isa = XCBuildConfiguration;
@@ -8611,43 +8556,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
-		};
-		71433826C8234607C0D7E0889442828F /* Staging */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 26E5D55CDC386F7F3B00E40425B352C0 /* Pods-voluxe-customerUITests.staging.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUITests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Staging;
 		};
 		71DABE541E82950835E602F018A48752 /* Staging */ = {
 			isa = XCBuildConfiguration;
@@ -9045,6 +8953,43 @@
 			};
 			name = Debug;
 		};
+		8518788C61CDAC26EF2A33EF4657A982 /* Production */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7A0E1F5DDD5BE8CF2ABBDE591C902CF4 /* Pods-voluxe-customerUnitTests.production.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Production;
+		};
 		8A584ABC54EF8CFE21FC193685187CA1 /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 18CA4D70AECDB3A21511FE54F4A5BAE2 /* UIColor_Hex_Swift.xcconfig */;
@@ -9109,9 +9054,9 @@
 			};
 			name = Debug;
 		};
-		8BB33DD4D17EF9563BDC687DA1BC4276 /* Production */ = {
+		8BB8E77D0F21141ECEB6BCAFE13D539B /* Beta */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A0D2F40B978CBD11DA7962F9F9E735B9 /* Pods-voluxe-customerUITests.production.xcconfig */;
+			baseConfigurationReference = 772BF1EC8922E658BC525D7F3BC75F8C /* Pods-voluxe-customerUITests.beta.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -9144,7 +9089,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Production;
+			name = Beta;
 		};
 		8C15FA4A665B36499AF07B9F73C8CF04 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -9243,43 +9188,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Dev;
-		};
-		9012D401091361A62D2ED7D40439962E /* Mock */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2AC7B2D31446E216868CF4F12531CF91 /* Pods-voluxe-customerUITests.mock.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUITests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Mock;
 		};
 		9109F8FC48CBB332632BF77E84C3BBE5 /* Beta */ = {
 			isa = XCBuildConfiguration;
@@ -9410,6 +9318,43 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		9683F3B1D5EF6DD8EC59BF6864716245 /* Mock */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B8793B4A2A849A7E97C36CCC3005CDA0 /* Pods-voluxe-customerUnitTests.mock.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Mock;
 		};
 		9688A6D8EC5B1B62728D498322CCBB80 /* Mock */ = {
 			isa = XCBuildConfiguration;
@@ -9801,6 +9746,43 @@
 			};
 			name = Release;
 		};
+		AA9B80677D3F40B2D54480B3C6952B34 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BBBB03B2206569C9B989872A5C23C4D1 /* Pods-voluxe-customerUITests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 		ADD7314E67E0B553BBFE3369CD08D11A /* Dev */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E386AE82EBE9F2C15D550D0239F0207A /* SwiftyJSON.xcconfig */;
@@ -9825,6 +9807,80 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Dev;
+		};
+		B00AEB8C311DE20DA47CDA472AE7B39E /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 154C1A48F488B871DE0E99C130F57D5B /* Pods-voluxe-customerUnitTests.staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Staging;
+		};
+		B48EF547208A30DE9AD389391A4D6A41 /* Dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = A123D6009F497BDDF5D5FFADFB35EBF0 /* Pods-voluxe-customerUITests.dev.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -9924,6 +9980,43 @@
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Staging;
+		};
+		B6BB869AFD69121959A1080D93B2BC7F /* Dev */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FEC1965E47526D22F0A975E85A8B1823 /* Pods-voluxe-customerUnitTests.dev.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Dev;
 		};
 		B7855E0709C7E37D68CBD57089915EAD /* Dev */ = {
 			isa = XCBuildConfiguration;
@@ -10064,6 +10157,43 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Release;
+		};
+		BF76E0431CE8F5996DF33D40FFBC5FBE /* Staging */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26E5D55CDC386F7F3B00E40425B352C0 /* Pods-voluxe-customerUITests.staging.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUITests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Staging;
 		};
 		BFD32E7EE617DCB32D749CAED7B92C8D /* Mock */ = {
 			isa = XCBuildConfiguration;
@@ -10353,6 +10483,43 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		C7E47747BED7E9D72A4CFF6FDB3BC327 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6CCD42400052228ECE423850B8FDD189 /* Pods-voluxe-customerUnitTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -10734,43 +10901,6 @@
 				SYMROOT = "${SRCROOT}/../build";
 			};
 			name = Mock;
-		};
-		D04446B6BA736D9144E014ACA3698BAC /* Beta */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 772BF1EC8922E658BC525D7F3BC75F8C /* Pods-voluxe-customerUITests.beta.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUITests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Beta;
 		};
 		D4EAF4A73CB7AE6282022DB1E5B8087A /* Staging */ = {
 			isa = XCBuildConfiguration;
@@ -11232,9 +11362,9 @@
 			};
 			name = Production;
 		};
-		E5200F448AF31D699341B74BDDD241DF /* Dev */ = {
+		E5054A9925A6E9E5A879417598D12514 /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A123D6009F497BDDF5D5FFADFB35EBF0 /* Pods-voluxe-customerUITests.dev.xcconfig */;
+			baseConfigurationReference = 977B469BF0F74F9D27BF617D27198A06 /* Pods-voluxe-customerUITests.appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				CLANG_ENABLE_OBJC_WEAK = NO;
@@ -11267,7 +11397,7 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Dev;
+			name = AppStore;
 		};
 		E62ECDBF7844A07641021A8F08F4E66F /* Production */ = {
 			isa = XCBuildConfiguration;
@@ -11729,43 +11859,6 @@
 			};
 			name = AppStore;
 		};
-		F8D1B46845659B42EBE32666F2CF53B6 /* AppStore */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 977B469BF0F74F9D27BF617D27198A06 /* Pods-voluxe-customerUITests.appstore.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUITests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = AppStore;
-		};
 		FA36E5F27FF0EEE7FB50E33EF4DACDF8 /* Beta */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 96C9EA9B5483FCFE6D195CE3AA315E7E /* CocoaLumberjack.xcconfig */;
@@ -11864,43 +11957,6 @@
 			};
 			name = Beta;
 		};
-		FFDBA83FA822B1A77BDACFFD2C00FE0F /* Beta */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4136A4E68D74828047C53796089E40DB /* Pods-voluxe-customerUnitTests.beta.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-voluxe-customerUnitTests/Pods-voluxe-customerUnitTests.modulemap";
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
-				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Beta;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -11915,6 +11971,21 @@
 				2E0BB70AC9FCC153A9C2A140100E7EF9 /* Production */,
 				CDA2EC605F0D1E4056632FDC9FDC73A8 /* Release */,
 				6EA81A4D21D9286951F0C82163101C0C /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		25F55C31F678FC72FF45A1382BE953D9 /* Build configuration list for PBXNativeTarget "Pods-voluxe-customerUnitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				606A285C4CF140121FFB858E48428200 /* AppStore */,
+				044119BBB1D32FE11DCDF3D66645DE3C /* Beta */,
+				5C6B62FD305882E05FE13D2C3535E3CA /* Debug */,
+				B6BB869AFD69121959A1080D93B2BC7F /* Dev */,
+				9683F3B1D5EF6DD8EC59BF6864716245 /* Mock */,
+				8518788C61CDAC26EF2A33EF4657A982 /* Production */,
+				C7E47747BED7E9D72A4CFF6FDB3BC327 /* Release */,
+				B00AEB8C311DE20DA47CDA472AE7B39E /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -11960,21 +12031,6 @@
 				D5CA7F92B38E8EF831B357D6D412C263 /* Production */,
 				BD5B93DD26C55884140E3D1ACBFB2FAB /* Release */,
 				5226458E72E98B761DDA55D20D34AC50 /* Staging */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		40C01A751821B0E75B58E333D6A19812 /* Build configuration list for PBXNativeTarget "Pods-voluxe-customerUITests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				F8D1B46845659B42EBE32666F2CF53B6 /* AppStore */,
-				D04446B6BA736D9144E014ACA3698BAC /* Beta */,
-				06ED964268AB2EE163A866B7EBC7064C /* Debug */,
-				E5200F448AF31D699341B74BDDD241DF /* Dev */,
-				9012D401091361A62D2ED7D40439962E /* Mock */,
-				8BB33DD4D17EF9563BDC687DA1BC4276 /* Production */,
-				30A5DC7C49D3AF339A8A6485A1B2B9DE /* Release */,
-				71433826C8234607C0D7E0889442828F /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -12099,21 +12155,6 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		90EA6D23279F290D929F57DC7C4C074E /* Build configuration list for PBXNativeTarget "Pods-voluxe-customerUnitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				5EB4EAC72A314D7221A4D5A742CBE260 /* AppStore */,
-				FFDBA83FA822B1A77BDACFFD2C00FE0F /* Beta */,
-				4C4CDCF3CC32A9562C36F5CC2DF05EE2 /* Debug */,
-				5E0EE60BDF7E35DE63F712CFCE84104C /* Dev */,
-				3B69463105B60E6E4F867668C2E1944E /* Mock */,
-				127C3FE567ADE793B2DE7BC4B8F7C83B /* Production */,
-				6160E96B0AFF9395739168435571A361 /* Release */,
-				46E41D4FD14A5D5E5D3D76B747DD4952 /* Staging */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		9B081AD2C66A99771EF0FAC33A30A2C0 /* Build configuration list for PBXNativeTarget "Pods-voluxe-customerAPITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -12170,6 +12211,21 @@
 				6CD6F1CBDAD519A554DC8959BF6281D1 /* Production */,
 				023F926AEE6A093A5C4326D11DD84881 /* Release */,
 				71DABE541E82950835E602F018A48752 /* Staging */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BF161F09CEF2FC3B328F7500513D7596 /* Build configuration list for PBXNativeTarget "Pods-voluxe-customerUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5054A9925A6E9E5A879417598D12514 /* AppStore */,
+				8BB8E77D0F21141ECEB6BCAFE13D539B /* Beta */,
+				AA9B80677D3F40B2D54480B3C6952B34 /* Debug */,
+				B48EF547208A30DE9AD389391A4D6A41 /* Dev */,
+				65D5E51200E9DDADE7A39AA611606A36 /* Mock */,
+				27269395C92E8EB1CD58922B781D4B13 /* Production */,
+				60F7FD4143F64C042854F7732B5F5484 /* Release */,
+				BF76E0431CE8F5996DF33D40FFBC5FBE /* Staging */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

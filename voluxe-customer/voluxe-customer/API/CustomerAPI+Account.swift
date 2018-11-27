@@ -172,21 +172,17 @@ extension CustomerAPI {
      Register device for Customer
      - parameter customerId: Customer's Id
      - parameter deviceToken: Device token for push notifs
+     - parameter deviceId: Device Id for push notifs
      - parameter completion: A closure which is called with a LuxeAPIError if an error occured
      */
-    static func registerDevice(customerId: Int, deviceToken: String,
+    static func registerDevice(customerId: Int, deviceToken: String, deviceId: String,
                                      completion: ((LuxeAPIError?) -> ())? = nil) {
         let route = "v1/customers/\(customerId)/devices/current"
-        
-        var uuid = ""
-        if let deviceId = KeychainManager.sharedInstance.deviceId {
-            uuid = deviceId
-        }
         
         let params = [
             "os": "ios",
             "os_version": UIDevice.current.systemVersion,
-            "unique_identifier": uuid,
+            "unique_identifier": deviceId,
             "address": deviceToken
         ]
         

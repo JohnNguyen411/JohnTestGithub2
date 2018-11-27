@@ -223,9 +223,9 @@ class CreateAccount_UITests: XCTestCase {
         let field = app.textFields["0000"]
 
         AdminAPI.loginAndRequestVerificationCode(for: BotUserData.email) {
-            code in
+            code, error in
             XCTAssertNotNil(code, "expected verification code is nil")
-            XCTAssertNil(code?.usedAt, "verification code has already been used")
+            XCTAssertNil(code?.used_at, "verification code has already been used")
             field.tapAndClearText()
             field.typeText(code?.value ?? "")
         }

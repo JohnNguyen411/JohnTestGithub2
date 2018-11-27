@@ -26,10 +26,11 @@ class CustomerAPI: LuxeAPI {
     
     private override init() {
         super.init()
-        if let accessToken = KeychainManager.sharedInstance.accessToken, !accessToken.isEmpty {
-            self.token = accessToken
-        }
         self.host = UserDefaults.standard.apiHost
+    }
+    
+    static func initToken(token: String) {
+        self.api.initToken(token: token)
     }
     
     override func updateHeaders() {

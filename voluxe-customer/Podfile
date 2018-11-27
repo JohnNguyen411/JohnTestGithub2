@@ -32,6 +32,7 @@ end
 
 target 'voluxe-customerUnitTests' do
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
+    pod 'RealmSwift', '3.7.6'
     pod 'Firebase/Core', '4.7.0'
 end
 
@@ -43,6 +44,7 @@ end
 
 target 'voluxe-customerUITests' do
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
+    pod 'RealmSwift', '3.7.6'
     pod 'SwiftEventBus', '2.1.2'
 end
 

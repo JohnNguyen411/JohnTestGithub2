@@ -83,6 +83,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        // init API Token
+        if let accessToken = KeychainManager.sharedInstance.accessToken, !accessToken.isEmpty {
+            CustomerAPI.initToken(token: accessToken)
+        }
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         _ = AppController.sharedInstance // init
         
@@ -237,8 +242,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         KeychainManager.sharedInstance.pushDeviceToken = token
         // registerDevice for push notification if deviceToken Stored
+        var uuid = ""
+        if let deviceId = KeychainManager.sharedInstance.deviceId {
+            uuid = deviceId
+        }
+        
         if let customerId = UserManager.sharedInstance.customerId() {
-            CustomerAPI.registerDevice(customerId: customerId, deviceToken: token)
+            CustomerAPI.registerDevice(customerId: customerId, deviceToken: token, deviceId: uuid)
         }
     }
     

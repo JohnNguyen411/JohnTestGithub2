@@ -1,17 +1,17 @@
 //
-//  AdminAPI+Test.swift
+//  AdminAPI+Customer.swift
 //  voluxe-customerUITests
 //
-//  Created by Christoph on 5/17/18.
+//  Created by Johan Giroux on 11/26/18.
 //  Copyright © 2018 Luxe - Volvo Cars. All rights reserved.
 //
 
 import Foundation
 
 extension AdminAPI {
-
+    
     static func loginAndRequestVerificationCode(for customerEmail: String,
-                                                completion: @escaping ((VerificationCode?) -> ()))
+                                                completion: @escaping ((RestAPIResponse.VerificationCode?, LuxeAPIError.Code?) -> Void))
     {
         // note that the email and password are for the admin user
         // to get access to the admin API and is not the customer user
