@@ -34,6 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     private func initServices() {
         self.initBackgroundFetch()
         self.initPushNotifications()
+        self.initRealm()
         Fabric.with([Crashlytics.self])
     }
 

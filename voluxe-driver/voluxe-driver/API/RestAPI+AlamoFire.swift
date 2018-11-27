@@ -87,11 +87,17 @@ extension RestAPI {
             encodedRequest.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         }
 
+        // injected responses do not make an actual request
+        if let injectedResponse = self.injectResponse() {
+            DispatchQueue.main.async { completion?(injectedResponse) }
+            return
+        }
+
         // TODO need to tap into response.error for status codes?
         let sentRequest = Alamofire.AF.request(encodedRequest)
         sentRequest.responseData {
             response in
-            let apiResponse = self.injectResponse() ?? RestAPIResponse(data: response.result.value, error: response.error)
+            let apiResponse = RestAPIResponse(data: response.result.value, error: response.error)
             self.inspect(urlResponse: response.response, apiResponse: apiResponse)
             completion?(apiResponse)
         }

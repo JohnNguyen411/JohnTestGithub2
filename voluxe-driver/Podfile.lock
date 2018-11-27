@@ -64,6 +64,11 @@ PODS:
   - nanopb/decode (0.3.901)
   - nanopb/encode (0.3.901)
   - Protobuf (3.6.1)
+  - Realm (3.11.1):
+    - Realm/Headers (= 3.11.1)
+  - Realm/Headers (3.11.1)
+  - RealmSwift (3.11.1):
+    - Realm (= 3.11.1)
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `alamofire5`)
@@ -71,6 +76,7 @@ DEPENDENCIES:
   - Fabric (= 1.7.13)
   - Firebase/Core (= 5.11.0)
   - Firebase/Messaging (= 5.11.0)
+  - RealmSwift (= 3.11.1)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -86,6 +92,8 @@ SPEC REPOS:
     - GoogleUtilities
     - nanopb
     - Protobuf
+    - Realm
+    - RealmSwift
 
 EXTERNAL SOURCES:
   Alamofire:
@@ -111,7 +119,9 @@ SPEC CHECKSUMS:
   GoogleUtilities: abb092d2c12e817fa3e0e7b274987dd72fb86ec3
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
+  RealmSwift: c9580133e73ef40ed340401af2dbc9a5790dfea7
 
-PODFILE CHECKSUM: 454053ea23aa4c69f53d4f422e8d4ab141f43cde
+PODFILE CHECKSUM: 9d235a042d6e5b9d3f244451668ac88192759463
 
 COCOAPODS: 1.5.3

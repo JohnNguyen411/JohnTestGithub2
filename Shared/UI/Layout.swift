@@ -19,10 +19,10 @@ struct Layout {
         view.topAnchor.constraint(equalTo: peerView.bottomAnchor, constant: spacing).isActive = true
     }
 
-    static func pinToSuperviewTop(view: UIView, useSafeArea: Bool = true) {
+    static func pinToSuperviewTop(view: UIView, spacing: CGFloat = 0, useSafeArea: Bool = true) {
         guard let superview = view.superview else { return }
         let anchor = useSafeArea ? superview.compatibleSafeAreaLayoutGuide.topAnchor : superview.topAnchor
-        view.topAnchor.constraint(equalTo: anchor).isActive = true
+        view.topAnchor.constraint(equalTo: anchor, constant: spacing).isActive = true
     }
 
     static func pinToSuperviewBottom(view: UIView, useSafeArea: Bool = true) {

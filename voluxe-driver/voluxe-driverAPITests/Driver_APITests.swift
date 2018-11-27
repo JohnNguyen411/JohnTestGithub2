@@ -147,24 +147,6 @@ class Driver_APITests: XCTestCase {
     }
 }
 
-// TODO moved to extension file
-extension UIColor {
-
-    func image(size: CGSize = CGSize(width: 32, height: 32)) -> UIImage {
-        return UIGraphicsImageRenderer(size: size).image { rendererContext in
-            self.setFill()
-            rendererContext.fill(CGRect(x: 0, y: 0, width: size.width, height: size.height))
-        }
-    }
-
-    static func random() -> UIColor {
-        let r: CGFloat = CGFloat(arc4random() % 256) / 256
-        let g: CGFloat = CGFloat(arc4random() % 256) / 256
-        let b: CGFloat = CGFloat(arc4random() % 256) / 256
-        return UIColor(red: r, green: g, blue: b, alpha: 1.0)
-    }
-}
-
 extension CLLocationCoordinate2D {
 
     static func random() -> CLLocationCoordinate2D {
