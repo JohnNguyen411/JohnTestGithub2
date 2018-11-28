@@ -109,7 +109,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
         descriptionButton.setActionBlock { [weak self] in
             self?.showDescriptionClick()
         }
-        descriptionButton.contentHorizontalAlignment = .left
+        descriptionButton.contentHorizontalAlignment = .leftOrLeading()
         
         confirmButton.setActionBlock { [weak self] in
             self?.confirmButtonClick()

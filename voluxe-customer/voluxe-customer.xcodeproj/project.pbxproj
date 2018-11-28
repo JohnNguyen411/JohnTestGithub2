@@ -11,6 +11,7 @@
 		52078A4D132E9D871CDD555D /* Pods_voluxe_customerUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2AD9E0D44FBC0F0DE20CEC2D /* Pods_voluxe_customerUITests.framework */; };
 		524BF64C211A57E900404ED5 /* CurrentLocationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */; };
 		528A8E03216D878600B4B315 /* lbv-mobile-strings in Resources */ = {isa = PBXBuildFile; fileRef = 528A8E02216D878600B4B315 /* lbv-mobile-strings */; };
+		5294BFFA21AE19F800AA7060 /* ContentHorizontalAlignment+LTR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294BFF921AE19F800AA7060 /* ContentHorizontalAlignment+LTR.swift */; };
 		529AB0DB212F7AA300AD8D09 /* ScheduleSelfDropModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AB0DA212F7AA200AD8D09 /* ScheduleSelfDropModal.swift */; };
 		52CDAC3C21262C35008B3E53 /* ScheduledSelfDropoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CDAC3B21262C35008B3E53 /* ScheduledSelfDropoff.swift */; };
 		52D5C9B12113AE270020F43F /* VLScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B02113AE270020F43F /* VLScrollView.swift */; };
@@ -453,6 +454,7 @@
 		524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCellView.swift; sourceTree = "<group>"; };
 		528A8E01216C2CAE00B4B315 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		528A8E02216D878600B4B315 /* lbv-mobile-strings */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "lbv-mobile-strings"; sourceTree = "<group>"; };
+		5294BFF921AE19F800AA7060 /* ContentHorizontalAlignment+LTR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentHorizontalAlignment+LTR.swift"; sourceTree = "<group>"; };
 		529AB0DA212F7AA200AD8D09 /* ScheduleSelfDropModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSelfDropModal.swift; sourceTree = "<group>"; };
 		52CDAC3B21262C35008B3E53 /* ScheduledSelfDropoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledSelfDropoff.swift; sourceTree = "<group>"; };
 		52D5C9B02113AE270020F43F /* VLScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLScrollView.swift; sourceTree = "<group>"; };
@@ -896,6 +898,7 @@
 			isa = PBXGroup;
 			children = (
 				53A4D72C216BB6FF001906AA /* UIView+AutoLayout.swift */,
+				5294BFF921AE19F800AA7060 /* ContentHorizontalAlignment+LTR.swift */,
 			);
 			path = ui;
 			sourceTree = "<group>";
@@ -2323,6 +2326,7 @@
 				6CCCF241204DFA9C004BF1A6 /* EmptyMappableObject.swift in Sources */,
 				6C20E1BB1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
 				6C9C9060209CD96A00494068 /* GMDistanceMatrix.swift in Sources */,
+				5294BFFA21AE19F800AA7060 /* ContentHorizontalAlignment+LTR.swift in Sources */,
 				6CD474AC2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */,
 				6C27FBC120E4619F00EAA689 /* VLWebViewController.swift in Sources */,
 				6C9B320B202CFE28006380B9 /* AccountSettingsViewController.swift in Sources */,

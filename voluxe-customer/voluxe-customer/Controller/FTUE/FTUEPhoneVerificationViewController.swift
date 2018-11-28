@@ -98,7 +98,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         scrollView.addSubview(phoneNumberLabel)
         scrollView.addSubview(updatePhoneNumberButton)
         
-        updatePhoneNumberButton.contentHorizontalAlignment = .left
+        updatePhoneNumberButton.contentHorizontalAlignment = .leftOrLeading()
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)

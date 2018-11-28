@@ -99,9 +99,11 @@ class FTUEStartViewController: LogoViewController {
 
     override func setupViews() {
         super.setupViews()
-        loginButton.contentHorizontalAlignment = .right
-        signupButton.contentHorizontalAlignment = .left
-
+        // Fallback on earlier versions
+        loginButton.contentHorizontalAlignment = .rightOrTrailing()
+        signupButton.contentHorizontalAlignment = .leftOrLeading()
+        
+        
         let buttonContainer = UIView(frame: .zero)
         self.view.addSubview(buttonContainer)
         buttonContainer.addSubview(pipeSeparator)
@@ -122,13 +124,13 @@ class FTUEStartViewController: LogoViewController {
 
         pipeSeparator.snp.makeConstraints { (make) -> Void in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(loginButton.snp.right).offset(10)
+            make.leading.equalTo(loginButton.snp.trailing).offset(10)
             make.height.equalTo(VLButton.primaryHeight)
         }
 
         signupButton.snp.makeConstraints { (make) -> Void in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(pipeSeparator.snp.right).offset(10)
+            make.leading.equalTo(pipeSeparator.snp.trailing).offset(10)
             make.height.equalTo(VLButton.primaryHeight)
         }
     }

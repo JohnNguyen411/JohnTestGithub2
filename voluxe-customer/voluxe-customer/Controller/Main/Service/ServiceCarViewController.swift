@@ -101,7 +101,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
         descriptionButton.setActionBlock { [weak self] in
             self?.showDescriptionClick()
         }
-        descriptionButton.contentHorizontalAlignment = .left
+        descriptionButton.contentHorizontalAlignment = .leftOrLeading()
         
         fillViews()
         

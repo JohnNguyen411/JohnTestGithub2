@@ -81,7 +81,7 @@ class ScheduledSelfViewController: BaseVehicleViewController {
         
         setTitle(title: .viewScheduleServiceStatusSelfAdvisorDropoff)
         
-        mapItButton.contentHorizontalAlignment = .right
+        mapItButton.contentHorizontalAlignment = .rightOrTrailing()
         scheduleDeliveryButton.addTarget(self, action: #selector(scheduleDelivery), for: .touchUpInside)
     }
     
