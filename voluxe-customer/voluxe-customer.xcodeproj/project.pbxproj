@@ -32,10 +32,16 @@
 		5322409020B32CE600D4E86C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479420AE300B001F4BC7 /* RealmManager.swift */; };
 		5322409320B385C300D4E86C /* NetworkRequest+Admin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409220B385C300D4E86C /* NetworkRequest+Admin.swift */; };
 		5322409720B39FF700D4E86C /* CreateAccount_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */; };
-		5328C8AA20FD40060006B448 /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		5328C8AB20FD40F90006B448 /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
 		5328C8AC20FD40FF0006B448 /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
 		532E235B20CB4B5F00ADA87F /* BlurEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 532E235A20CB4B5E00ADA87F /* BlurEffect.swift */; };
+		533047012188D61E007CE01C /* DebugTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533046FF2188D61D007CE01C /* DebugTableViewController.swift */; };
+		533047022188D61E007CE01C /* DebugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047002188D61D007CE01C /* DebugTableViewCell.swift */; };
+		533047142188D822007CE01C /* NSObject+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047122188D821007CE01C /* NSObject+Voluxe.swift */; };
+		5330471E2188D9C3007CE01C /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047132188D821007CE01C /* Bundle+Voluxe.swift */; };
+		5330471F2188D9C4007CE01C /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047132188D821007CE01C /* Bundle+Voluxe.swift */; };
+		533047202188DA30007CE01C /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047132188D821007CE01C /* Bundle+Voluxe.swift */; };
+		5330472A21891AE5007CE01C /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047132188D821007CE01C /* Bundle+Voluxe.swift */; };
 		5340E90720D8514D00B17D53 /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E90620D8514D00B17D53 /* FBAnalytics.swift */; };
 		5340E90A20D861A800B17D53 /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E90620D8514D00B17D53 /* FBAnalytics.swift */; };
 		5340E90B20D861AD00B17D53 /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
@@ -66,7 +72,6 @@
 		538FE74E20BF476000C3CE17 /* Meta.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495D61FDA0CEB0036FC08 /* Meta.swift */; };
 		538FE74F20BF476800C3CE17 /* ResponseError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C90CC15201156AF002594F5 /* ResponseError.swift */; };
 		538FE75020BF47AD00C3CE17 /* Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A81FA2574C00B22EAB /* Customer.swift */; };
-		538FE75120BF47B400C3CE17 /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		538FE75220BF482400C3CE17 /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		538FE75320BF482C00C3CE17 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BA1FA29A1C00B22EAB /* Location.swift */; };
 		538FE75720BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE75520BF4AB800C3CE17 /* XCUIElement+Test.swift */; };
@@ -93,13 +98,9 @@
 		53C8AD5620E59D4F008E07FF /* NullAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C8AD5320E59D4F008E07FF /* NullAnalytics.swift */; };
 		53C8AD5720E59ED3008E07FF /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */; };
 		53C8AD5820E59EED008E07FF /* Enum+CaseIterable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5340E91320D881F100B17D53 /* Enum+CaseIterable.swift */; };
-		53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
-		53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */; };
 		53D9A7B9209A4292008BE93E /* VLSlideMenuController+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */; };
 		53D9A7BB209A50D2008BE93E /* DebugSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BA209A50D2008BE93E /* DebugSettingsViewController.swift */; };
 		53D9A7BD209A5E2F008BE93E /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
-		53D9A7BF209A79C8008BE93E /* DebugTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BE209A79C8008BE93E /* DebugTableViewCell.swift */; };
-		53D9A7C1209A7D01008BE93E /* NSObject+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7C0209A7D01008BE93E /* NSObject+Voluxe.swift */; };
 		53E2521720C731D500D8C32D /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E2521620C731D500D8C32D /* TestConstants.swift */; };
 		53EF28A920ACE38C006CC5FA /* SignIn_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FE01FC5F987002BC7FC /* SignIn_UITests.swift */; };
 		53EF28C820AE0553006CC5FA /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
@@ -117,7 +118,6 @@
 		53EF28DD20AE07B4006CC5FA /* MappableDataObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7495E21FDA1F790036FC08 /* MappableDataObject.swift */; };
 		53EF28DE20AE07BA006CC5FA /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687992040CD0900D915FC /* Errors.swift */; };
 		53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
-		53EF28E020AE07DC006CC5FA /* Bundle+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */; };
 		53EF28E120AE082E006CC5FA /* EmptyMappableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF240204DFA9C004BF1A6 /* EmptyMappableObject.swift */; };
 		53EF28E220AE0834006CC5FA /* VLDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCD7F6200EE5620099258C /* VLDateFormatter.swift */; };
 		53FDF12120B5E0050004B8A1 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
@@ -474,6 +474,10 @@
 		5322409220B385C300D4E86C /* NetworkRequest+Admin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRequest+Admin.swift"; sourceTree = "<group>"; };
 		5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount_UITests.swift; sourceTree = "<group>"; };
 		532E235A20CB4B5E00ADA87F /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
+		533046FF2188D61D007CE01C /* DebugTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugTableViewController.swift; sourceTree = "<group>"; };
+		533047002188D61D007CE01C /* DebugTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DebugTableViewCell.swift; sourceTree = "<group>"; };
+		533047122188D821007CE01C /* NSObject+Voluxe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Voluxe.swift"; sourceTree = "<group>"; };
+		533047132188D821007CE01C /* Bundle+Voluxe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Bundle+Voluxe.swift"; sourceTree = "<group>"; };
 		5340E90620D8514D00B17D53 /* FBAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBAnalytics.swift; sourceTree = "<group>"; };
 		5340E90E20D86BD900B17D53 /* TaxonomyTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaxonomyTableViewController.swift; sourceTree = "<group>"; };
 		5340E91320D881F100B17D53 /* Enum+CaseIterable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Enum+CaseIterable.swift"; sourceTree = "<group>"; };
@@ -502,13 +506,9 @@
 		53C8AD5320E59D4F008E07FF /* NullAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullAnalytics.swift; sourceTree = "<group>"; };
 		53D9A7AA2098E678008BE93E /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
 		53D9A7AB2098E679008BE93E /* GoogleService-Info-AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-AppStore.plist"; sourceTree = "<group>"; };
-		53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Voluxe.swift"; sourceTree = "<group>"; };
-		53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugTableViewController.swift; sourceTree = "<group>"; };
 		53D9A7B8209A4292008BE93E /* VLSlideMenuController+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "VLSlideMenuController+Debug.swift"; sourceTree = "<group>"; };
 		53D9A7BA209A50D2008BE93E /* DebugSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugSettingsViewController.swift; sourceTree = "<group>"; };
 		53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Debug.swift"; sourceTree = "<group>"; };
-		53D9A7BE209A79C8008BE93E /* DebugTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugTableViewCell.swift; sourceTree = "<group>"; };
-		53D9A7C0209A7D01008BE93E /* NSObject+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSObject+Voluxe.swift"; sourceTree = "<group>"; };
 		53E2521620C731D500D8C32D /* TestConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestConstants.swift; sourceTree = "<group>"; };
 		53EF28CB20AE064E006CC5FA /* CustomerAPI+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Login.swift"; sourceTree = "<group>"; };
 		53EF28CE20AE065F006CC5FA /* CustomerAPI+Signup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Signup.swift"; sourceTree = "<group>"; };
@@ -860,6 +860,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		533046FE2188D61D007CE01C /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				533046FF2188D61D007CE01C /* DebugTableViewController.swift */,
+				533047002188D61D007CE01C /* DebugTableViewCell.swift */,
+			);
+			name = Debug;
+			path = ../Shared/Debug;
+			sourceTree = "<group>";
+		};
+		533047112188D821007CE01C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				533047122188D821007CE01C /* NSObject+Voluxe.swift */,
+				533047132188D821007CE01C /* Bundle+Voluxe.swift */,
+			);
+			name = Extensions;
+			path = ../Shared/Extensions;
+			sourceTree = "<group>";
+		};
 		538FBDE720ABB73F0096480C /* export */ = {
 			isa = PBXGroup;
 			children = (
@@ -870,7 +890,7 @@
 			path = export;
 			sourceTree = "<group>";
 		};
-		538FE75420BF4AB800C3CE17 /* tests */ = {
+		538FE75420BF4AB800C3CE17 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				538FE75C20BF4B6900C3CE17 /* BotUser.swift */,
@@ -880,10 +900,10 @@
 				538FE75620BF4AB800C3CE17 /* XCTest+Test.swift */,
 				538FE75520BF4AB800C3CE17 /* XCUIElement+Test.swift */,
 			);
-			path = tests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
-		539F626D2092AB4E0023DF59 /* scripts */ = {
+		539F626D2092AB4E0023DF59 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
 				539F626E2092AB6A0023DF59 /* confirm_team_id.rb */,
@@ -891,16 +911,16 @@
 				538FBDE420AB87280096480C /* ipa-to-fabric.sh */,
 				538FBDE220AB62180096480C /* xcarchive-to-ipa.sh */,
 			);
-			path = scripts;
+			path = Scripts;
 			sourceTree = "<group>";
 		};
-		53D9A1F8216426D400414648 /* ui */ = {
+		53D9A1F8216426D400414648 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				53A4D72C216BB6FF001906AA /* UIView+AutoLayout.swift */,
 				5294BFF921AE19F800AA7060 /* ContentHorizontalAlignment+LTR.swift */,
 			);
-			path = ui;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		53D9A7A92098E638008BE93E /* Resources */ = {
@@ -927,8 +947,6 @@
 			children = (
 				5366416721594D8900564A5B /* AutoFillViewController.swift */,
 				53D9A7BA209A50D2008BE93E /* DebugSettingsViewController.swift */,
-				53D9A7BE209A79C8008BE93E /* DebugTableViewCell.swift */,
-				53D9A7B6209A3ECC008BE93E /* DebugTableViewController.swift */,
 				6CBFD82820D1C9640097D4AB /* Font */,
 				5340E90E20D86BD900B17D53 /* TaxonomyTableViewController.swift */,
 				53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */,
@@ -1145,12 +1163,10 @@
 			isa = PBXGroup;
 			children = (
 				532E235A20CB4B5E00ADA87F /* BlurEffect.swift */,
-				53D9A7AE2098E7D0008BE93E /* Bundle+Voluxe.swift */,
 				6C8A16E0209289EB00F888D6 /* ConstraintMaker+Voluxe.swift */,
 				6C3FB2B81FA297A300B22EAB /* Date+DateTools.swift */,
 				5340E91320D881F100B17D53 /* Enum+CaseIterable.swift */,
 				6C9C9053209BD4CB00494068 /* GMSAddress.swift */,
-				53D9A7C0209A7D01008BE93E /* NSObject+Voluxe.swift */,
 				6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */,
 				6C7DDE121FDB664D000E2822 /* String+Utils.swift */,
 				538CFBE9215078AA00BF5D25 /* String+Validation.swift */,
@@ -1171,25 +1187,27 @@
 			path = Extension;
 			sourceTree = "<group>";
 		};
-		6C5832C21FB3899700F6BFE0 /* shared */ = {
+		6C5832C21FB3899700F6BFE0 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				533046FE2188D61D007CE01C /* Debug */,
+				533047112188D821007CE01C /* Extensions */,
+				6C5832C31FB3899700F6BFE0 /* Manager */,
+				539F626D2092AB4E0023DF59 /* Scripts */,
+				538FE75420BF4AB800C3CE17 /* Tests */,
+				53D9A1F8216426D400414648 /* UI */,
 				528A8E02216D878600B4B315 /* lbv-mobile-strings */,
-				6C5832C31FB3899700F6BFE0 /* manager */,
-				539F626D2092AB4E0023DF59 /* scripts */,
-				538FE75420BF4AB800C3CE17 /* tests */,
-				53D9A1F8216426D400414648 /* ui */,
 			);
-			name = shared;
-			path = ../shared;
+			name = Shared;
+			path = ../Shared;
 			sourceTree = "<group>";
 		};
-		6C5832C31FB3899700F6BFE0 /* manager */ = {
+		6C5832C31FB3899700F6BFE0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
 				6C5832C41FB3899700F6BFE0 /* LocationManager.swift */,
 			);
-			path = manager;
+			path = Manager;
 			sourceTree = "<group>";
 		};
 		6C5832F31FB3AF5600F6BFE0 /* Presentr */ = {
@@ -1502,7 +1520,7 @@
 				DD0FFFE5E0D1BE41F3C9FA3D /* Pods */,
 				6CCD428B1FA013E3000AC6C9 /* Products */,
 				538FBDE020AB45EA0096480C /* release-notes.txt */,
-				6C5832C21FB3899700F6BFE0 /* shared */,
+				6C5832C21FB3899700F6BFE0 /* Shared */,
 				6CCD428C1FA013E3000AC6C9 /* voluxe-customer */,
 				53FDF20920B761D20004B8A1 /* voluxe-customerAPITests */,
 				6CCD42A11FA013E3000AC6C9 /* voluxe-customerUnitTests */,
@@ -2255,7 +2273,6 @@
 				538FE75920BF4AB800C3CE17 /* XCTest+Test.swift in Sources */,
 				538FE76020BF4B9F00C3CE17 /* String+Test.swift in Sources */,
 				536D6D6220CF3AA400A269D4 /* FTUELocalization.swift in Sources */,
-				538FE75120BF47B400C3CE17 /* Bundle+Voluxe.swift in Sources */,
 				538FE75B20BF4B4E00C3CE17 /* Config.swift in Sources */,
 				538FE74820BF46F900C3CE17 /* CustomerAPI.swift in Sources */,
 				538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */,
@@ -2271,6 +2288,7 @@
 				538FE75D20BF4B6900C3CE17 /* BotUser.swift in Sources */,
 				538FE75020BF47AD00C3CE17 /* Customer.swift in Sources */,
 				53C8AD5520E59D4F008E07FF /* NullAnalytics.swift in Sources */,
+				533047202188DA30007CE01C /* Bundle+Voluxe.swift in Sources */,
 				538FE74F20BF476800C3CE17 /* ResponseError.swift in Sources */,
 				538FE75720BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */,
 				536D6D6420CF3B5C00A269D4 /* SignUp_APITests.swift in Sources */,
@@ -2339,8 +2357,10 @@
 				6C7342031FB11DF200E90F7E /* VLSelectableLabel.swift in Sources */,
 				6CDCC60A2058442800DFA831 /* CheckableTableViewCell.swift in Sources */,
 				52D5C9B52114FF080020F43F /* DriverInfoViewController.swift in Sources */,
+				533047142188D822007CE01C /* NSObject+Voluxe.swift in Sources */,
 				5340E91220D876F400B17D53 /* DebugFontCellView.swift in Sources */,
 				6C5DDECC20096CF8000847C9 /* CustomerAPI.swift in Sources */,
+				5330471E2188D9C3007CE01C /* Bundle+Voluxe.swift in Sources */,
 				6C7E66E51FAD2D3900C0E3E4 /* SchedulePickupLocalization.swift in Sources */,
 				6CDCC612205C40B400DFA831 /* RepairOrderAPI.swift in Sources */,
 				6CC3543120B87E7C00FF98A6 /* LogoViewController.swift in Sources */,
@@ -2365,9 +2385,9 @@
 				6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
 				6C9B3213202E7C23006380B9 /* AddLocationViewController.swift in Sources */,
 				6CD0C8831FD9FB73008E4A72 /* DealershipAPI.swift in Sources */,
+				533047022188D61E007CE01C /* DebugTableViewCell.swift in Sources */,
 				6C20E1D01FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
 				6CDCC616205C461100DFA831 /* RepairOrderType.swift in Sources */,
-				53D9A7BF209A79C8008BE93E /* DebugTableViewCell.swift in Sources */,
 				6CBB4EAC1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */,
 				6C5833191FB3AF5600F6BFE0 /* PresentrController.swift in Sources */,
 				6C4970F72064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */,
@@ -2483,6 +2503,7 @@
 				6C20E1C71FBE6D2400E5D9A0 /* StateService.swift in Sources */,
 				6CBF9FEE1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */,
 				6C9C9058209CD8D400494068 /* GMRows.swift in Sources */,
+				533047012188D61E007CE01C /* DebugTableViewController.swift in Sources */,
 				6C32C3071FBCC0E900B1218C /* Step.swift in Sources */,
 				6C7342101FB136B000E90F7E /* CommonsLocalization.swift in Sources */,
 				6CD474B420460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */,
@@ -2494,7 +2515,6 @@
 				6C2F1DD61FAD0A8F00C28C6E /* SchedulingPickupViewController.swift in Sources */,
 				6C58330E1FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */,
 				6C5C6A101FD8AACD00D70BF6 /* UserManager.swift in Sources */,
-				53D9A7AF2098E7D0008BE93E /* Bundle+Voluxe.swift in Sources */,
 				6C91BBDB1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
 				6C79C43A20A280AC00443463 /* GMSnappedPoints.swift in Sources */,
 				6C3FB2B01FA2823800B22EAB /* Fonts.swift in Sources */,
@@ -2507,13 +2527,11 @@
 				6C20E18B1FBE0E6200E5D9A0 /* GoogleDistanceMatrixAPI.swift in Sources */,
 				6C20E1871FBE061A00E5D9A0 /* ETAMarker.swift in Sources */,
 				6C20E1B21FBE4A8400E5D9A0 /* SchedulingDropoffViewController.swift in Sources */,
-				53D9A7C1209A7D01008BE93E /* NSObject+Voluxe.swift in Sources */,
 				6CDCC602205743DB00DFA831 /* NewServiceViewController.swift in Sources */,
 				6C7342081FB127A300E90F7E /* DealershipViewController.swift in Sources */,
 				6C27FBC920E6CFDA00EAA689 /* ActiveBookingsSyncTimer.swift in Sources */,
 				6C1CE1E720C5F0CF00A2E054 /* DeeplinkManager.swift in Sources */,
 				6CDAEE7D20E1BFED0040CDFF /* HelpBookingView.swift in Sources */,
-				53D9A7B7209A3ECC008BE93E /* DebugTableViewController.swift in Sources */,
 				6C69267E1FB3B3E3009495E9 /* LoanerViewController.swift in Sources */,
 				6C3FB2AD1FA2574C00B22EAB /* FuelData.swift in Sources */,
 				5322409020B32CE600D4E86C /* RealmManager.swift in Sources */,
@@ -2546,7 +2564,7 @@
 				53C8AD5020E59CAF008E07FF /* AnalyticsCore.swift in Sources */,
 				5340E90B20D861AD00B17D53 /* UserDefaults+Debug.swift in Sources */,
 				5340E91720D9715100B17D53 /* Errors.swift in Sources */,
-				5328C8AA20FD40060006B448 /* Bundle+Voluxe.swift in Sources */,
+				5330471F2188D9C4007CE01C /* Bundle+Voluxe.swift in Sources */,
 				5340E90A20D861A800B17D53 /* FBAnalytics.swift in Sources */,
 				5340E91820D9716300B17D53 /* ResponseError.swift in Sources */,
 			);
@@ -2560,6 +2578,7 @@
 				53EF28E220AE0834006CC5FA /* VLDateFormatter.swift in Sources */,
 				538FE76420BF4BC000C3CE17 /* Int+Test.swift in Sources */,
 				53EF28D820AE077B006CC5FA /* ResponseObject.swift in Sources */,
+				5330472A21891AE5007CE01C /* Bundle+Voluxe.swift in Sources */,
 				53EF28C820AE0553006CC5FA /* UserDefaults+Debug.swift in Sources */,
 				5328C8AC20FD40FF0006B448 /* UserDefaults+Voluxe.swift in Sources */,
 				53C8AD5220E59D0E008E07FF /* Enum+CaseIterable.swift in Sources */,
@@ -2567,7 +2586,6 @@
 				53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */,
 				53EF28DA20AE0798006CC5FA /* Config.swift in Sources */,
 				538FE76120BF4B9F00C3CE17 /* String+Test.swift in Sources */,
-				53EF28E020AE07DC006CC5FA /* Bundle+Voluxe.swift in Sources */,
 				53EF28E120AE082E006CC5FA /* EmptyMappableObject.swift in Sources */,
 				53EF28A920ACE38C006CC5FA /* SignIn_UITests.swift in Sources */,
 				53EF28D920AE0783006CC5FA /* NetworkRequest.swift in Sources */,
@@ -2667,7 +2685,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2735,7 +2753,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2797,7 +2815,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2859,7 +2877,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2921,7 +2939,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -2983,7 +3001,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -3108,6 +3126,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-customerUnitTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
@@ -3127,7 +3146,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -3254,6 +3273,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-customerUnitTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
@@ -3273,7 +3293,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -3400,6 +3420,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-customerUnitTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
@@ -3419,7 +3440,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -3539,6 +3560,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-customerUnitTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
@@ -3557,7 +3579,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -3675,6 +3697,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-customerUnitTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
@@ -3693,7 +3716,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
@@ -3812,6 +3835,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-customerUnitTests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
@@ -3830,7 +3854,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 396JF7EZ43;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/Public\"",
