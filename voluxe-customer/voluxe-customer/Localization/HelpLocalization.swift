@@ -10,72 +10,72 @@ import Foundation
 
 extension String {
     
-    static let help = NSLocalizedString("help")
-    static let yourLastDelivery = NSLocalizedString("yourLastDelivery")
-    static let yourLastPickup = NSLocalizedString("yourLastPickup")
-    static let viewHelpOptionDetailEmailDealer = NSLocalizedString("viewHelpOptionDetailEmailDealer")
-    static let viewHelpOptionDetailCallDealer = NSLocalizedString("viewHelpOptionDetailCallDealer")
-    static let viewHelpOptionDetailEmailVolvo = NSLocalizedString("viewHelpOptionDetailEmailVolvo")
-    static let viewHelpOptionDetailCallVolvo = NSLocalizedString("viewHelpOptionDetailCallVolvo")
+    static var help: String { return NSLocalizedString(#function) }
+    static var yourLastDelivery: String { return NSLocalizedString(#function) }
+    static var yourLastPickup: String { return NSLocalizedString(#function) }
+    static var viewHelpOptionDetailEmailDealer: String { return NSLocalizedString(#function) }
+    static var viewHelpOptionDetailCallDealer: String { return NSLocalizedString(#function) }
+    static var viewHelpOptionDetailEmailVolvo: String { return NSLocalizedString(#function) }
+    static var viewHelpOptionDetailCallVolvo: String { return NSLocalizedString(#function) }
     
-    static let helpMyVehicleWasDamaged = NSLocalizedString("helpMyVehicleWasDamaged")
-    static let helpILostAnItem = NSLocalizedString("helpILostAnItem")
-    static let helpMyPickupDeliveryLocationWasWrong = NSLocalizedString("helpMyPickupDeliveryLocationWasWrong")
-    static let helpMyDriverWasLate = NSLocalizedString("helpMyDriverWasLate")
-    static let helpIMissedMyPickupDelivery = NSLocalizedString("helpIMissedMyPickupDelivery")
-    static let helpMyDriverDidntMatchThePicture = NSLocalizedString("MyDriverDidntMatchThePicture")
-    static let helpICouldntContactMyDriver = NSLocalizedString("helpICouldntContactMyDriver")
-    static let helpMyDriverWasUnprofessional = NSLocalizedString("helpMyDriverWasUnprofessional")
-    static let helpSomethingUnsafeHappened = NSLocalizedString("helpSomethingUnsafeHappened")
-    static let helpThereWasAnIssueWithMyLoanerVehicle = NSLocalizedString("helpThereWasAnIssueWithMyLoanerVehicle")
-    static let helpThereWasAnIssueWithMyPaperwork = NSLocalizedString("helpThereWasAnIssueWithMyPaperwork")
-    static let helpOther = NSLocalizedString("helpOther")
+    static var helpMyVehicleWasDamaged: String { return NSLocalizedString(#function) }
+    static var helpILostAnItem: String { return NSLocalizedString(#function) }
+    static var helpMyPickupDeliveryLocationWasWrong: String { return NSLocalizedString(#function) }
+    static var helpMyDriverWasLate: String { return NSLocalizedString(#function) }
+    static var helpIMissedMyPickupDelivery: String { return NSLocalizedString(#function) }
+    static var helpMyDriverDidntMatchThePicture: String { return NSLocalizedString(#function) }
+    static var helpICouldntContactMyDriver: String { return NSLocalizedString(#function) }
+    static var helpMyDriverWasUnprofessional: String { return NSLocalizedString(#function) }
+    static var helpSomethingUnsafeHappened: String { return NSLocalizedString(#function) }
+    static var helpThereWasAnIssueWithMyLoanerVehicle: String { return NSLocalizedString(#function) }
+    static var helpThereWasAnIssueWithMyPaperwork: String { return NSLocalizedString(#function) }
+    static var helpOther: String { return NSLocalizedString(#function) }
     
-    static let helpMyVehicleWasDamagedDetail = NSLocalizedString("helpMyVehicleWasDamagedDetail")
-    static let helpILostAnItemDetail = NSLocalizedString("helpILostAnItemDetail")
-    static let helpMyPickupDeliveryLocationWasWrongDetail = NSLocalizedString("helpMyPickupDeliveryLocationWasWrongDetail")
-    static let helpMyDriverWasLateDetail = NSLocalizedString("helpMyDriverWasLateDetail")
-    static let helpIMissedMyPickupDeliveryDetail = NSLocalizedString("helpIMissedMyPickupDeliveryDetail")
-    static let helpMyDriverDidntMatchThePictureDetail = NSLocalizedString("helpMyDriverDidntMatchThePictureDetail")
-    static let helpICouldntContactMyDriverDetail = NSLocalizedString("helpICouldntContactMyDriverDetail")
-    static let helpMyDriverWasUnprofessionalDetail = NSLocalizedString("helpMyDriverWasUnprofessionalDetail")
-    static let helpSomethingUnsafeHappenedDetail = NSLocalizedString("helpSomethingUnsafeHappenedDetail")
-    static let helpThereWasAnIssueWithMyLoanerVehicleDetail = NSLocalizedString("helpThereWasAnIssueWithMyLoanerVehicleDetail")
-    static let helpThereWasAnIssueWithMyPaperworkDetail = NSLocalizedString("helpThereWasAnIssueWithMyPaperworkDetail")
-    static let helpOtherDetail = NSLocalizedString("helpOtherDetail")
+    static var helpMyVehicleWasDamagedDetail: String { return NSLocalizedString(#function) }
+    static var helpILostAnItemDetail: String { return NSLocalizedString(#function) }
+    static var helpMyPickupDeliveryLocationWasWrongDetail: String { return NSLocalizedString(#function) }
+    static var helpMyDriverWasLateDetail: String { return NSLocalizedString(#function) }
+    static var helpIMissedMyPickupDeliveryDetail: String { return NSLocalizedString(#function) }
+    static var helpMyDriverDidntMatchThePictureDetail: String { return NSLocalizedString(#function) }
+    static var helpICouldntContactMyDriverDetail: String { return NSLocalizedString(#function) }
+    static var helpMyDriverWasUnprofessionalDetail: String { return NSLocalizedString(#function) }
+    static var helpSomethingUnsafeHappenedDetail: String { return NSLocalizedString(#function) }
+    static var helpThereWasAnIssueWithMyLoanerVehicleDetail: String { return NSLocalizedString(#function) }
+    static var helpThereWasAnIssueWithMyPaperworkDetail: String { return NSLocalizedString(#function) }
+    static var helpOtherDetail: String { return NSLocalizedString(#function) }
     
-    static let helpHowLuxeByVolvoWorks = NSLocalizedString("helpHowLuxeByVolvoWorks")
-    static let helpICantArrangeService = NSLocalizedString("helpICantArrangeService")
-    static let helpNoParticipatingDealershipsInArea = NSLocalizedString("helpNoParticipatingDealershipsInArea")
-    static let helpICantCancelMyPickupOrDelivery = NSLocalizedString("helpICantCancelMyPickupOrDelivery")
-    static let helpTooFewLoanersAvailable = NSLocalizedString("helpTooFewLoanersAvailable")
-    static let helpNoneOfTheAvailableTimesWorkForMe = NSLocalizedString("helpNoneOfTheAvailableTimesWorkForMe")
-    static let helpICantArrangeServiceDetail = NSLocalizedString("helpICantArrangeServiceDetail")
-    static let helpNoParticipatingDealershipsInAreaDetail = NSLocalizedString("helpNoParticipatingDealershipsInAreaDetail")
-    static let helpICantCancelMyPickupOrDeliveryDetail = NSLocalizedString("helpICantCancelMyPickupOrDeliveryDetail")
-    static let helpTooFewLoanersAvailableDetail = NSLocalizedString("helpTooFewLoanersAvailableDetail")
-    static let helpNoneOfTheAvailableTimesWorkForMeDetail = NSLocalizedString("helpNoneOfTheAvailableTimesWorkForMeDetail")
+    static var helpHowLuxeByVolvoWorks: String { return NSLocalizedString(#function) }
+    static var helpICantArrangeService: String { return NSLocalizedString(#function) }
+    static var helpNoParticipatingDealershipsInArea: String { return NSLocalizedString(#function) }
+    static var helpICantCancelMyPickupOrDelivery: String { return NSLocalizedString(#function) }
+    static var helpTooFewLoanersAvailable: String { return NSLocalizedString(#function) }
+    static var helpNoneOfTheAvailableTimesWorkForMe: String { return NSLocalizedString(#function) }
+    static var helpICantArrangeServiceDetail: String { return NSLocalizedString(#function) }
+    static var helpNoParticipatingDealershipsInAreaDetail: String { return NSLocalizedString(#function) }
+    static var helpICantCancelMyPickupOrDeliveryDetail: String { return NSLocalizedString(#function) }
+    static var helpTooFewLoanersAvailableDetail: String { return NSLocalizedString(#function) }
+    static var helpNoneOfTheAvailableTimesWorkForMeDetail: String { return NSLocalizedString(#function) }
     
-    static let helpTroubleWithTheLuxebyVolvoApp = NSLocalizedString("helpTroubleWithTheLuxebyVolvoApp")
-    static let helpTheAppIsntWorkingCorrectly = NSLocalizedString("helpTheAppIsntWorkingCorrectly")
-    static let helpIForgotMyPassword = NSLocalizedString("helpIForgotMyPassword")
-    static let helpICantUpdateMyPhone = NSLocalizedString("helpICantUpdateMyPhone")
-    static let helpMyCurrentLocationIsntWorking = NSLocalizedString("helpMyCurrentLocationIsntWorking")
-    static let helpPushNotificationsArentWorking = NSLocalizedString("helpPushNotificationsArentWorking")
-    static let helpTermsOfService = NSLocalizedString("helpTermsOfService")
-    static let helpPrivacyPolicyInformation = NSLocalizedString("helpPrivacyPolicyInformation")
-    static let helpRequestingDataFromLuxebyVolvo = NSLocalizedString("helpRequestingDataFromLuxebyVolvo")
-    static let helpDeleteMyLuxebyVolvoAccount = NSLocalizedString("helpDeleteMyLuxebyVolvoAccount")
+    static var helpTroubleWithTheLuxebyVolvoApp: String { return NSLocalizedString(#function) }
+    static var helpTheAppIsntWorkingCorrectly: String { return NSLocalizedString(#function) }
+    static var helpIForgotMyPassword: String { return NSLocalizedString(#function) }
+    static var helpICantUpdateMyPhone: String { return NSLocalizedString(#function) }
+    static var helpMyCurrentLocationIsntWorking: String { return NSLocalizedString(#function) }
+    static var helpPushNotificationsArentWorking: String { return NSLocalizedString(#function) }
+    static var helpTermsOfService: String { return NSLocalizedString(#function) }
+    static var helpPrivacyPolicyInformation: String { return NSLocalizedString(#function) }
+    static var helpRequestingDataFromLuxebyVolvo: String { return NSLocalizedString(#function) }
+    static var helpDeleteMyLuxebyVolvoAccount: String { return NSLocalizedString(#function) }
     
-    static let helpTheAppIsntWorkingCorrectlyDetail = NSLocalizedString("helpTheAppIsntWorkingCorrectlyDetail")
-    static let helpIForgotMyPasswordDetail = NSLocalizedString("helpIForgotMyPasswordDetail")
-    static let helpICantUpdateMyPhoneDetail = NSLocalizedString("helpICantUpdateMyPhoneDetail")
-    static let helpMyCurrentLocationIsntWorkingDetail = NSLocalizedString("helpMyCurrentLocationIsntWorkingDetail")
-    static let helpPushNotificationsArentWorkingDetail = NSLocalizedString("helpPushNotificationsArentWorkingDetail")
-    static let helpTermsOfServiceDetail = NSLocalizedString("helpTermsOfServiceDetail")
-    static let helpPrivacyPolicyInformationDetail = NSLocalizedString("helpPrivacyPolicyInformationDetail")
-    static let helpRequestingDataFromLuxebyVolvoDetail = NSLocalizedString("helpRequestingDataFromLuxebyVolvoDetail")
-    static let helpDeleteMyLuxebyVolvoAccountDetail = NSLocalizedString("helpDeleteMyLuxebyVolvoAccountDetail")
-    static let helpAppOtherDetail = NSLocalizedString("helpAppOtherDetail")
+    static var helpTheAppIsntWorkingCorrectlyDetail: String { return NSLocalizedString(#function) }
+    static var helpIForgotMyPasswordDetail: String { return NSLocalizedString(#function) }
+    static var helpICantUpdateMyPhoneDetail: String { return NSLocalizedString(#function) }
+    static var helpMyCurrentLocationIsntWorkingDetail: String { return NSLocalizedString(#function) }
+    static var helpPushNotificationsArentWorkingDetail: String { return NSLocalizedString(#function) }
+    static var helpTermsOfServiceDetail: String { return NSLocalizedString(#function) }
+    static var helpPrivacyPolicyInformationDetail: String { return NSLocalizedString(#function) }
+    static var helpRequestingDataFromLuxebyVolvoDetail: String { return NSLocalizedString(#function) }
+    static var helpDeleteMyLuxebyVolvoAccountDetail: String { return NSLocalizedString(#function) }
+    static var helpAppOtherDetail: String { return NSLocalizedString(#function) }
 
 }

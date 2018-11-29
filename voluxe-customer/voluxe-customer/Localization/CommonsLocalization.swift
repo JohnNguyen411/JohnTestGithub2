@@ -10,46 +10,46 @@ import Foundation
 
 extension String {
     
-    static let appName = NSLocalizedString("appName")
-    static let next = NSLocalizedString("next")
-    static let add = NSLocalizedString("add")
-    static let yes = NSLocalizedString("yes")
-    static let no = NSLocalizedString("no")
-    static let notNow = NSLocalizedString("notNow")
-    static let ok = NSLocalizedString("ok")
-    static let contact = NSLocalizedString("contact")
-    static let shortMinute = NSLocalizedString("shortMinute")
-    static let done = NSLocalizedString("done")
-    static let edit = NSLocalizedString("edit")
-    static let new = NSLocalizedString("new")
-    static let update = NSLocalizedString("update")
-    static let skip = NSLocalizedString("skip")
-    static let signout = NSLocalizedString("signout")
-    static let back = NSLocalizedString("back")
-    static let cancel = NSLocalizedString("cancel")
-    static let close = NSLocalizedString("close")
-    static let cancelPickup = NSLocalizedString("cancelPickup")
-    static let cancelDropoff = NSLocalizedString("cancelDropoff")
-    static let error = NSLocalizedString("error")
-    static let errorUnknown = NSLocalizedString("errorUnknown")
-    static let map = NSLocalizedString("map")
-    static let retry = NSLocalizedString("retry")
-    static let refresh = NSLocalizedString("refresh")
-    static let confirm = NSLocalizedString("confirm")
-    static let delete = NSLocalizedString("delete")
-    static let remove = NSLocalizedString("remove")
-    static let errorForcedUpgradeTitle = NSLocalizedString("errorForcedUpgradeTitle")
-    static let errorForcedUpgradeMessage = NSLocalizedString("errorForcedUpgradeMessage")
-    static let errorSoftUpgradeTitle = NSLocalizedString("errorSoftUpgradeTitle")
-    static let errorSoftUpgradeMessage = NSLocalizedString("errorSoftUpgradeMessage")
-    static let permissionGrantTitle = NSLocalizedString("permissionGrantTitle")
-    static let errorDatabase = NSLocalizedString("errorDatabase")
-    static let viewScheduleService = NSLocalizedString("viewScheduleService")
-    static let errorDuplicateRequest = NSLocalizedString("errorDuplicateRequest")
-    static let errorDeleteVehicleBooking = NSLocalizedString("errorDeleteVehicleBooking")
-    static let pickup = NSLocalizedString("pickup")
-    static let delivery = NSLocalizedString("delivery")
-    static let popupSignoutConfirmationMessage = NSLocalizedString("popupSignoutConfirmationMessage")
+    static var appName: String { return NSLocalizedString(#function) }
+    static var next: String { return NSLocalizedString(#function) }
+    static var add: String { return NSLocalizedString(#function) }
+    static var yes: String { return NSLocalizedString(#function) }
+    static var no: String { return NSLocalizedString(#function) }
+    static var notNow: String { return NSLocalizedString(#function) }
+    static var ok: String { return NSLocalizedString(#function) }
+    static var contact: String { return NSLocalizedString(#function) }
+    static var shortMinute: String { return NSLocalizedString(#function) }
+    static var done: String { return NSLocalizedString(#function) }
+    static var edit: String { return NSLocalizedString(#function) }
+    static var new: String { return NSLocalizedString(#function) }
+    static var update: String { return NSLocalizedString(#function) }
+    static var skip: String { return NSLocalizedString(#function) }
+    static var signout: String { return NSLocalizedString(#function) }
+    static var back: String { return NSLocalizedString(#function) }
+    static var cancel: String { return NSLocalizedString(#function) }
+    static var close: String { return NSLocalizedString(#function) }
+    static var cancelPickup: String { return NSLocalizedString(#function) }
+    static var cancelDropoff: String { return NSLocalizedString(#function) }
+    static var error: String { return NSLocalizedString(#function) }
+    static var errorUnknown: String { return NSLocalizedString(#function) }
+    static var map: String { return NSLocalizedString(#function) }
+    static var retry: String { return NSLocalizedString(#function) }
+    static var refresh: String { return NSLocalizedString(#function) }
+    static var confirm: String { return NSLocalizedString(#function) }
+    static var delete: String { return NSLocalizedString(#function) }
+    static var remove: String { return NSLocalizedString(#function) }
+    static var errorForcedUpgradeTitle: String { return NSLocalizedString(#function) }
+    static var errorForcedUpgradeMessage: String { return NSLocalizedString(#function) }
+    static var errorSoftUpgradeTitle: String { return NSLocalizedString(#function) }
+    static var errorSoftUpgradeMessage: String { return NSLocalizedString(#function) }
+    static var permissionGrantTitle: String { return NSLocalizedString(#function) }
+    static var errorDatabase: String { return NSLocalizedString(#function) }
+    static var viewScheduleService: String { return NSLocalizedString(#function) }
+    static var errorDuplicateRequest: String { return NSLocalizedString(#function) }
+    static var errorDeleteVehicleBooking: String { return NSLocalizedString(#function) }
+    static var pickup: String { return NSLocalizedString(#function) }
+    static var delivery: String { return NSLocalizedString(#function) }
+    static var popupSignoutConfirmationMessage: String { return NSLocalizedString(#function) }
 
 
 }

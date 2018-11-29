@@ -9,50 +9,51 @@
 import Foundation
 
 extension String {
-    static let scheduleService = NSLocalizedString("scheduleService")
-    static let viewScheduleServiceDetailConfirmService = NSLocalizedString("viewScheduleServiceDetailConfirmService")
-    static let viewScheduleServiceOptionPickup = NSLocalizedString("viewScheduleServiceOptionPickup")
-    static let showDetails = NSLocalizedString("showDetails")
-    static let recommendedService = NSLocalizedString("recommendedService")
-    static let selectedService = NSLocalizedString("selectedService")
-    static let completedService = NSLocalizedString("completedService")
-    static let dealership = NSLocalizedString("dealership")
-    static let viewScheduleServiceOptionPickupSelfDropPickup = NSLocalizedString("viewScheduleServiceOptionPickupSelfDropPickup")
-    static let popupSelectDealershipLabel = NSLocalizedString("popupSelectDealershipLabel")
-    static let addNewLocation = NSLocalizedString("addNewLocation")
-    static let popupAddNewLocationLabel = NSLocalizedString("popupAddNewLocationLabel")
-    static let popupAddNewLocationEditHint = NSLocalizedString("popupAddNewLocationEditHint")
-    static let popupSelectLocationLabel = NSLocalizedString("popupSelectLocationLabel")
-    static let popupSelectLocationCurrentLocation = NSLocalizedString("popupSelectLocationCurrentLocation")
-    static let popupUpdatingLocation = NSLocalizedString("popupUpdatingLocation")
-    static let popupDoYouNeedLoanerVehicle = NSLocalizedString("popupDoYouNeedLoanerVehicle")
-    static let popupSelectTimeSlotLabelPickup = NSLocalizedString("popupSelectTimeSlotLabelPickup")
-    static let popupSelectTimeSlotLabelDropoff = NSLocalizedString("popupSelectTimeSlotLabelDropoff")
-    static let popupSelectTimeSlotLabelDelivery = NSLocalizedString("popupSelectTimeSlotLabelDelivery")
-    static let pickupLocation = NSLocalizedString("pickupLocation")
-    static let needALoaner = NSLocalizedString("needALoaner")
-    static let viewScheduleServiceOptionConfirmButtonPositivePickup = NSLocalizedString("viewScheduleServiceOptionConfirmButtonPositivePickup")
-    static let viewScheduleServiceOptionInfoPickup = NSLocalizedString("viewScheduleServiceOptionInfoPickup")
-    static let viewScheduleServiceOptionInfoDropoff = NSLocalizedString("viewScheduleServiceOptionInfoDropoff")
-    static let viewScheduleServiceOptionInfoSelfPickup = NSLocalizedString("viewScheduleServiceOptionInfoSelfPickup")
-    static let viewScheduleServiceOptionInfoSelfDropoff = NSLocalizedString("viewScheduleServiceOptionInfoSelfDropoff")
-    static let viewScheduleServiceStatusAtDealershipInfo = NSLocalizedString("viewScheduleServiceStatusAtDealershipInfo")
-    static let errorLocationOutOfPickupArea = NSLocalizedString("errorLocationOutOfPickupArea")
-    static let errorLocationServiceNotOfferedInYourArea = NSLocalizedString("errorLocationServiceNotOfferedInYourArea")    
-    static let viewDatesLoanersOnly = NSLocalizedString("viewDatesLoanersOnly")
-    static let popupSelectTimeSlotTimesLabelPickup = NSLocalizedString("popupSelectTimeSlotTimesLabelPickup")
-    static let viewDealershipCloseToLocation = NSLocalizedString("viewDealershipCloseToLocation")
-    static let popupAdvisorDropoffSelfDrop = NSLocalizedString("popupAdvisorDropoffSelfDrop")
-    static let popupSelectTimeSlotTimesLabelDelivery = NSLocalizedString("popupSelectTimeSlotTimesLabelDelivery")
-    static let popupSelectTimeSlotTimesLabelDropoff = NSLocalizedString("popupSelectTimeSlotTimesLabelDropoff")
-    static let popupSelectTimeSlotUnavailableLabel = NSLocalizedString("popupSelectTimeSlotUnavailableLabel")
-    static let popupSelectTimeSlotUnavailableCallDealership = NSLocalizedString("popupSelectTimeSlotUnavailableCallDealership")
-    static let popupSelectLocationPermissionNote = NSLocalizedString("popupSelectLocationPermissionNote")
-    static let popupSelectLocationPermissionDenied = NSLocalizedString("popupSelectLocationPermissionDenied")
-    static let openSettings = NSLocalizedString("openSettings")
-    static let permissionLocationTitle = NSLocalizedString("permissionLocationTitle")
-    static let permissionAllowNotificationTitle = NSLocalizedString("permissionAllowNotificationTitle")
-    static let permissionAllowNotificationMessage = NSLocalizedString("permissionAllowNotificationMessage")
-    static let permissionAllowButtonTitle = NSLocalizedString("permissionAllowButtonTitle")
-
+    
+    static var scheduleService: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceDetailConfirmService: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceOptionPickup: String { return NSLocalizedString(#function) }
+    static var showDetails: String { return NSLocalizedString(#function) }
+    static var recommendedService: String { return NSLocalizedString(#function) }
+    static var selectedService: String { return NSLocalizedString(#function) }
+    static var completedService: String { return NSLocalizedString(#function) }
+    static var dealership: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceOptionPickupSelfDropPickup: String { return NSLocalizedString(#function) }
+    static var popupSelectDealershipLabel: String { return NSLocalizedString(#function) }
+    static var addNewLocation: String { return NSLocalizedString(#function) }
+    static var popupAddNewLocationLabel: String { return NSLocalizedString(#function) }
+    static var popupAddNewLocationEditHint: String { return NSLocalizedString(#function) }
+    static var popupSelectLocationLabel: String { return NSLocalizedString(#function) }
+    static var popupSelectLocationCurrentLocation: String { return NSLocalizedString(#function) }
+    static var popupUpdatingLocation: String { return NSLocalizedString(#function) }
+    static var popupDoYouNeedLoanerVehicle: String { return NSLocalizedString(#function) }
+    static var popupSelectTimeSlotLabelPickup: String { return NSLocalizedString(#function) }
+    static var popupSelectTimeSlotLabelDropoff: String { return NSLocalizedString(#function) }
+    static var popupSelectTimeSlotLabelDelivery: String { return NSLocalizedString(#function) }
+    static var pickupLocation: String { return NSLocalizedString(#function) }
+    static var needALoaner: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceOptionConfirmButtonPositivePickup: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceOptionInfoPickup: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceOptionInfoDropoff: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceOptionInfoSelfPickup: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceOptionInfoSelfDropoff: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusAtDealershipInfo: String { return NSLocalizedString(#function) }
+    static var errorLocationOutOfPickupArea: String { return NSLocalizedString(#function) }
+    static var errorLocationServiceNotOfferedInYourArea: String { return NSLocalizedString(#function) }
+    static var viewDatesLoanersOnly: String { return NSLocalizedString(#function) }
+    static var popupSelectTimeSlotTimesLabelPickup: String { return NSLocalizedString(#function) }
+    static var viewDealershipCloseToLocation: String { return NSLocalizedString(#function) }
+    static var popupAdvisorDropoffSelfDrop: String { return NSLocalizedString(#function) }
+    static var popupSelectTimeSlotTimesLabelDelivery: String { return NSLocalizedString(#function) }
+    static var popupSelectTimeSlotTimesLabelDropoff: String { return NSLocalizedString(#function) }
+    static var popupSelectTimeSlotUnavailableLabel: String { return NSLocalizedString(#function) }
+    static var popupSelectTimeSlotUnavailableCallDealership: String { return NSLocalizedString(#function) }
+    static var popupSelectLocationPermissionNote: String { return NSLocalizedString(#function) }
+    static var popupSelectLocationPermissionDenied: String { return NSLocalizedString(#function) }
+    static var openSettings: String { return NSLocalizedString(#function) }
+    static var permissionLocationTitle: String { return NSLocalizedString(#function) }
+    static var permissionAllowNotificationTitle: String { return NSLocalizedString(#function) }
+    static var permissionAllowNotificationMessage: String { return NSLocalizedString(#function) }
+    static var permissionAllowButtonTitle: String { return NSLocalizedString(#function) }
+    
 }
