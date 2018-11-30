@@ -23,8 +23,8 @@ import RealmSwift
         case make
         case name
         case managed
-        case createdAt = "created_at" //TODO: VLISODateTransform?
-        case updatedAt = "updated_at" //TODO: VLISODateTransform?
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
     }
     
     convenience init(make: String, model: String) {

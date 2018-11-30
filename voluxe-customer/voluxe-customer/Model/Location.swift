@@ -26,8 +26,8 @@ import RealmSwift
         case latitude
         case longitude
         case accuracy
-        case createdAt = "created_at" //TODO: VLISODateTransform?
-        case updatedAt = "updated_at" //TODO: VLISODateTransform?
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
     }
     
     

@@ -33,8 +33,8 @@ import RealmSwift
         case type
         case driverAssignment = "driver_dealership_time_slot_assignment"
         case driver
-        case createdAt = "created_at" //TODO: VLISODateTransform?
-        case updatedAt = "updated_at" //TODO: VLISODateTransform?
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
     }
     
     

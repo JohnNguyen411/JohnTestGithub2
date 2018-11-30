@@ -34,8 +34,8 @@ class BranchDeeplink: Codable {
         case clickedBranchLink = "+clicked_branch_link"
         case marketingTitle = "$marketing_title"
         case channel = "~channel"
-        case campain = "~campain" //TODO: VLISODateTransform?
-        case feature = "~feature" //TODO: VLISODateTransform?
+        case campain = "~campain" 
+        case feature = "~feature" 
     }
 
     static func decode<T: Decodable>(data: Data?, reportErrors: Bool = true) -> T? {

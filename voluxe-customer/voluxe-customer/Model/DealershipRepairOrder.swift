@@ -23,8 +23,8 @@ import RealmSwift
         case dealershipId = "dealership_id"
         case repairOrderTypeId = "repair_order_type_id"
         case enabled
-        case createdAt = "created_at" //TODO: VLISODateTransform?
-        case updatedAt = "updated_at" //TODO: VLISODateTransform?
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
     }
     
     

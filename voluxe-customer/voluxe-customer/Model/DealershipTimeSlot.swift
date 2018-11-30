@@ -26,12 +26,12 @@ import RealmSwift
         case id
         case dealershipId = "dealership_id"
         case type
-        case from //TODO: VLISODateTransform?
-        case to //TODO: VLISODateTransform?
+        case from 
+        case to 
         case availableLoanerVehicleCount = "available_loaner_vehicle_count"
         case availableAssignmentCount = "available_assignment_count"
-        case createdAt = "created_at" //TODO: VLISODateTransform?
-        case updatedAt = "updated_at" //TODO: VLISODateTransform?
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
     }
     
     convenience required init(from decoder: Decoder) throws {

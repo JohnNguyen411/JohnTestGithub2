@@ -19,8 +19,8 @@ class Token: Codable {
     private enum CodingKeys: String, CodingKey {
         case token
         case user
-        case issuedAt = "issued_at" //TODO: VLISODateTransform?
-        case expiresAt = "expires_at" //TODO: VLISODateTransform?
+        case issuedAt = "issued_at" 
+        case expiresAt = "expires_at" 
     }
     
     private enum UserKeys: String, CodingKey {

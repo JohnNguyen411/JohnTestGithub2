@@ -51,8 +51,8 @@ import Kingfisher
         case color
         case photoUrl = "photo_url"
         case transmission
-        case createdAt = "created_at" //TODO: VLISODateTransform?
-        case updatedAt = "updated_at" //TODO: VLISODateTransform?
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
     }
 
     

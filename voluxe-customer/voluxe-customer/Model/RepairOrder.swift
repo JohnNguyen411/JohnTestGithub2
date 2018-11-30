@@ -29,12 +29,12 @@ import RealmSwift
         case dealershipRepairOrderId = "dealership_repair_order_id"
         case notes
         case state
-        case vehicleDrivable = "vehicle_drivable" //TODO check nested object parsin
+        case vehicleDrivable = "vehicle_drivable"
         case repairOrderType = "dealership_repair_order.repair_order_type"
         case name = "dealership_repair_order.repair_order_type.name"
         case title
-        case createdAt = "created_at" //TODO: VLISODateTransform?
-        case updatedAt = "updated_at" //TODO: VLISODateTransform?
+        case createdAt = "created_at"
+        case updatedAt = "updated_at"
     }
     
     convenience required init(from decoder: Decoder) throws {

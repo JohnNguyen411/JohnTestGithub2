@@ -22,10 +22,6 @@ extension CustomerAPI {
             response in
             let token = response?.decodeToken() ?? nil
             self.api.token = token?.token
-            // todo: unify that token management
-            if let customerId = token?.user?.id {
-                KeychainManager.sharedInstance.saveAccessToken(token: token?.token, customerId: "\(customerId)")
-            }
             completion(token, response?.asError())
         }
     }
@@ -42,9 +38,6 @@ extension CustomerAPI {
             response in
             let token = response?.decodeToken() ?? nil
             self.api.token = token?.token
-            if let customerId = token?.user?.id {
-                KeychainManager.sharedInstance.saveAccessToken(token: token?.token, customerId: "\(customerId)")
-            }
             completion(token, response?.asError())
         }
     }

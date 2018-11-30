@@ -44,8 +44,8 @@ import RealmSwift
         case photoUrl = "photo_url"
         case location
         case enabled
-        case createdAt = "created_at" //TODO: VLISODateTransform?
-        case updatedAt = "updated_at" //TODO: VLISODateTransform?
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
     }
     
     convenience required init(from decoder: Decoder) throws {

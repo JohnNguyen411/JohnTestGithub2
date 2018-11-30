@@ -20,13 +20,6 @@ class Color: Object, Codable {
         self.color = color
     }
     
-    /*
-    func mapping(map: Map) {
-        baseColor <- map["base_color"]
-        color <- map["color"]
-    }
-    */
-    
     override static func primaryKey() -> String? {
         return "baseColor"
     }

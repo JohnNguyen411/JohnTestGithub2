@@ -34,8 +34,8 @@ import RealmSwift
         case coverageRadius = "coverage_radius"
         case currencyId = "currency_id"
         case enabled
-        case createdAt = "created_at" //TODO: VLISODateTransform?
-        case updatedAt = "updated_at" //TODO: VLISODateTransform?
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
     }
     
     convenience required init(from decoder: Decoder) throws {

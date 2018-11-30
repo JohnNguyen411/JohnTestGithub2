@@ -23,8 +23,8 @@ import RealmSwift
         case name
         case desc = "description"
         case category
-        case createdAt = "created_at" //TODO: VLISODateTransform?
-        case updatedAt = "updated_at" //TODO: VLISODateTransform?
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
     }
     
     override static func primaryKey() -> String? {
