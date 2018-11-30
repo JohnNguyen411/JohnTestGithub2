@@ -9,17 +9,18 @@
 import Foundation
 
 extension String {
-    static let settings = NSLocalizedString("settings")
-    static let yourVolvos = NSLocalizedString("yourVolvos")
-    static let yourVolvo = NSLocalizedString("yourVolvo")
-    static let viewSettingsVolvoAddNewLabel = NSLocalizedString("viewSettingsVolvoAddNewLabel")
-    static let yourAccount = NSLocalizedString("yourAccount")
-    static let viewSettingsDistanceUnitHeader = NSLocalizedString("viewSettingsDistanceUnitHeader")
-    static let viewSettingsDistanceUnitTitle = NSLocalizedString("viewSettingsDistanceUnitTitle")
-    static let viewProfileLocationHeader = NSLocalizedString("viewProfileLocationHeader")
-    static let viewProfileContactHeader = NSLocalizedString("viewProfileContactHeader")
-    static let viewProfileAccountPasswordHeader = NSLocalizedString("viewProfileAccountPasswordHeader")
-    static let removeVehicle = NSLocalizedString("removeVehicle")
-    static let popupRemoveVehicleMessage = NSLocalizedString("popupRemoveVehicleMessage")
+    
+    static var settings: String { return NSLocalizedString(#function) }
+    static var yourVolvos: String { return NSLocalizedString(#function) }
+    static var yourVolvo: String { return NSLocalizedString(#function) }
+    static var viewSettingsVolvoAddNewLabel: String { return NSLocalizedString(#function) }
+    static var yourAccount: String { return NSLocalizedString(#function) }
+    static var viewSettingsDistanceUnitHeader: String { return NSLocalizedString(#function) }
+    static var viewSettingsDistanceUnitTitle: String { return NSLocalizedString(#function) }
+    static var viewProfileLocationHeader: String { return NSLocalizedString(#function) }
+    static var viewProfileContactHeader: String { return NSLocalizedString(#function) }
+    static var viewProfileAccountPasswordHeader: String { return NSLocalizedString(#function) }
+    static var removeVehicle: String { return NSLocalizedString(#function) }
+    static var popupRemoveVehicleMessage: String { return NSLocalizedString(#function) }
 
 }

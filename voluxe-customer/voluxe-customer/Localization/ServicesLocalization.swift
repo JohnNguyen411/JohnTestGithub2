@@ -11,24 +11,25 @@ import Foundation
 
 extension String {
     
-    static let newService = NSLocalizedString("newService")
-    static let popupDefaultCancelDropoffMessage = NSLocalizedString("popupDefaultCancelDropoffMessage")
-    static let popupDefaultCancelPickupMessage = NSLocalizedString("popupDefaultCancelPickupMessage")
-    static let viewScheduleServiceTypeDescription = NSLocalizedString("viewScheduleServiceTypeDescription")
-    static let viewScheduleServiceTypeMilestone = NSLocalizedString("viewScheduleServiceTypeMilestone")
-    static let viewScheduleServiceTypeDetailNameLabelOther = NSLocalizedString("viewScheduleServiceTypeDetailNameLabelOther")
-    static let viewScheduleServiceTypeOther = NSLocalizedString("viewScheduleServiceTypeOther")
-    static let viewScheduleServiceTypeOtherLabel = NSLocalizedString("viewScheduleServiceTypeOtherLabel")
-    static let viewScheduleServiceTypeOtherSubLabel = NSLocalizedString("viewScheduleServiceTypeOtherSubLabel")
-    static let viewScheduleServiceTypeOtherDetailLabel = NSLocalizedString("viewScheduleServiceTypeOtherDetailLabel")
-    static let imNotSure = NSLocalizedString("imNotSure")
-    static let viewScheduleServiceTypeOtherDetailExtraLabel = NSLocalizedString("viewScheduleServiceTypeOtherDetailExtraLabel")
-    static let viewScheduleServiceTypeOtherDetailExtraHint = NSLocalizedString("viewScheduleServiceTypeOtherDetailExtraHint")
-    static let viewScheduleServiceTypeOtherDetailExtraTitle = NSLocalizedString("viewScheduleServiceTypeOtherDetailExtraTitle")
-    static let viewScheduleServiceTypeOtherUnknown = NSLocalizedString("viewScheduleServiceTypeOtherUnknown")
-    static let viewScheduleServiceTypeMilestoneDetailNameLabel = NSLocalizedString("viewScheduleServiceTypeMilestoneDetailNameLabel")
-    static let vehicleExterior = NSLocalizedString("vehicleExterior")
-    static let vehicleInterior = NSLocalizedString("vehicleInterior")
-    static let underTheHood = NSLocalizedString("underTheHood")
-    static let iDontKnow = NSLocalizedString("iDontKnow")
+    static var newService: String { return NSLocalizedString(#function) }
+    static var popupDefaultCancelDropoffMessage: String { return NSLocalizedString(#function) }
+    static var popupDefaultCancelPickupMessage: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceTypeDescription: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceTypeMilestone: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceTypeDetailNameLabelOther: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceTypeOther: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceTypeOtherLabel: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceTypeOtherSubLabel: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceTypeOtherDetailLabel: String { return NSLocalizedString(#function) }
+    static var imNotSure: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceTypeOtherDetailExtraLabel: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceTypeOtherDetailExtraHint: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceTypeOtherDetailExtraTitle: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceTypeOtherUnknown: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceTypeMilestoneDetailNameLabel: String { return NSLocalizedString(#function) }
+    static var vehicleExterior: String { return NSLocalizedString(#function) }
+    static var vehicleInterior: String { return NSLocalizedString(#function) }
+    static var underTheHood: String { return NSLocalizedString(#function) }
+    static var iDontKnow: String { return NSLocalizedString(#function) }
+    
 }

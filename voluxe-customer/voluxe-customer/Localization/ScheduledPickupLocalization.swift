@@ -9,19 +9,19 @@
 import Foundation
 
 extension String {
-    static let schedulePickup = NSLocalizedString("schedulePickup")
-    static let scheduledPickup = NSLocalizedString("scheduledPickup")
-    static let viewScheduleServiceStatusInfoScheduledPickup = NSLocalizedString("viewScheduleServiceStatusInfoScheduledPickup")
-    static let viewScheduleServiceStatusInfoEnRoutePickup = NSLocalizedString("viewScheduleServiceStatusInfoEnRoutePickup")
-    static let viewScheduleServiceStatusInfoNearByPickup = NSLocalizedString("viewScheduleServiceStatusInfoNearByPickup")
-    static let viewScheduleServiceStatusInfoArrivedPickup = NSLocalizedString("viewScheduleServiceStatusInfoArrivedPickup")
-    static let viewScheduleServiceStatusTimePickupWindow = NSLocalizedString("viewScheduleServiceStatusTimePickupWindow")
-    static let viewScheduleServiceStatusTimeWindowEstimatedPickup = NSLocalizedString("viewScheduleServiceStatusTimeWindowEstimatedPickup")
-    static let viewScheduleServiceVehicleServiceScheduled = NSLocalizedString("viewScheduleServiceVehicleServiceScheduled")
-    static let popupContactTitle = NSLocalizedString("popupContactTitle")
-    static let popupContactCall = NSLocalizedString("popupContactCall")
-    static let popupContactText = NSLocalizedString("popupContactText")
-    static let viewScheduledSelfDrop = NSLocalizedString("viewScheduledSelfDrop")
-    static let viewScheduleServiceStatusReminderPickup = NSLocalizedString("viewScheduleServiceStatusReminderPickup")
+    static var schedulePickup: String { return NSLocalizedString(#function) }
+    static var scheduledPickup: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusInfoScheduledPickup: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusInfoEnRoutePickup: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusInfoNearByPickup: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusInfoArrivedPickup: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusTimePickupWindow: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusTimeWindowEstimatedPickup: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceVehicleServiceScheduled: String { return NSLocalizedString(#function) }
+    static var popupContactTitle: String { return NSLocalizedString(#function) }
+    static var popupContactCall: String { return NSLocalizedString(#function) }
+    static var popupContactText: String { return NSLocalizedString(#function) }
+    static var viewScheduledSelfDrop: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusReminderPickup: String { return NSLocalizedString(#function) }
     
 }

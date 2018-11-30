@@ -9,19 +9,18 @@
 import Foundation
 
 extension String {
-    static let currentService = NSLocalizedString("currentService")
-    static let viewScheduleServiceOptionDropoff = NSLocalizedString("viewScheduleServiceOptionDropoff")
-    static let viewScheduleServiceStatusInServiceInfo = NSLocalizedString("viewScheduleServiceStatusInServiceInfo")
-    static let viewScheduleServiceOptionConfirmButtonPositiveDropoff = NSLocalizedString("viewScheduleServiceOptionConfirmButtonPositiveDropoff")
-    static let scheduledDelivery = NSLocalizedString("scheduledDelivery")
-    static let scheduleDelivery = NSLocalizedString("scheduleDelivery")
-    static let deliveryLocation = NSLocalizedString("DeliveryLocation")
-    static let popupAdvisorDropoffSelfPickup = NSLocalizedString("popupAdvisorDropoffSelfPickup")
-    static let viewScheduleServiceOptionPickupSelfDeliveryDropoff = NSLocalizedString("viewScheduleServiceOptionPickupSelfDeliveryDropoff")
-    //static let viewScheduleServiceOptionPickupSelfDropPickup = NSLocalizedString("viewScheduleServiceOptionPickupSelfDropPickup")
-    static let viewScheduleServiceStatusSelfAdvisorDropoff = NSLocalizedString("viewScheduleServiceStatusSelfAdvisorDropoff")
-    static let viewScheduleServiceStatusSelfAdvisorPickup = NSLocalizedString("viewScheduleServiceStatusSelfAdvisorPickup")
-    static let popupAdvisorDropoffReschedule = NSLocalizedString("popupAdvisorDropoffReschedule")
-    static let popupAdvisorDropoffMessage = NSLocalizedString("popupAdvisorDropoffMessage")
+    static var currentService: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceOptionDropoff: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusInServiceInfo: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceOptionConfirmButtonPositiveDropoff: String { return NSLocalizedString(#function) }
+    static var scheduledDelivery: String { return NSLocalizedString(#function) }
+    static var scheduleDelivery: String { return NSLocalizedString(#function) }
+    static var deliveryLocation: String { return NSLocalizedString(#function) }
+    static var popupAdvisorDropoffSelfPickup: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceOptionPickupSelfDeliveryDropoff: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusSelfAdvisorDropoff: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusSelfAdvisorPickup: String { return NSLocalizedString(#function) }
+    static var popupAdvisorDropoffReschedule: String { return NSLocalizedString(#function) }
+    static var popupAdvisorDropoffMessage: String { return NSLocalizedString(#function) }
 
 }

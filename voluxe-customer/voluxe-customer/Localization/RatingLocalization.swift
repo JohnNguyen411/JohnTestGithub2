@@ -9,9 +9,10 @@
 import Foundation
 
 extension String {
-    static let viewScheduleServiceStatusCompleteRate = NSLocalizedString("viewScheduleServiceStatusCompleteRate")
-    static let viewScheduleServiceStatusFeedbackCommentTitle = NSLocalizedString("viewScheduleServiceStatusFeedbackCommentTitle")
-    static let viewScheduleServiceStatusFeedback = NSLocalizedString("viewScheduleServiceStatusFeedback")
-    static let viewScheduleServiceStatusFeedbackCommentLabel = NSLocalizedString("viewScheduleServiceStatusFeedbackCommentLabel")
-    static let viewScheduleServiceStatusFeedbackCommentHint = NSLocalizedString("viewScheduleServiceStatusFeedbackCommentHint")
+    static var viewScheduleServiceStatusCompleteRate: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusFeedbackCommentTitle: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusFeedback: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusFeedbackCommentLabel: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusFeedbackCommentHint: String { return NSLocalizedString(#function) }
+    
 }

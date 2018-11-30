@@ -9,7 +9,6 @@
 import Foundation
 
 extension String {
-    static let volvoYearModel = NSLocalizedString("volvoYearModel")
-    static let viewScheduleServiceScheduledLabel = NSLocalizedString("viewScheduleServiceScheduledLabel")
-
+    static var volvoYearModel: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceScheduledLabel: String { return NSLocalizedString(#function) }
 }

@@ -9,15 +9,15 @@
 import Foundation
 
 extension String {
-    static let viewScheduleServiceStatusInfoScheduledDropoff = NSLocalizedString("viewScheduleServiceStatusInfoScheduledDropoff")
-    static let viewScheduleServiceStatusTimeDeliveryWindow = NSLocalizedString("viewScheduleServiceStatusTimeDeliveryWindow")
-    static let viewScheduleServiceStatusTimeWindowEstimatedDelivery = NSLocalizedString("viewScheduleServiceStatusTimeWindowEstimatedDelivery")
-    static let viewScheduleServiceStatusComplete = NSLocalizedString("viewScheduleServiceStatusComplete")
-    static let viewScheduleServiceStatusSelfDealershipNavigate = NSLocalizedString("viewScheduleServiceStatusSelfDealershipNavigate")
-    static let viewScheduleServiceStatusSelfFooterTitleDropoff = NSLocalizedString("viewScheduleServiceStatusSelfFooterTitleDropoff")
-    static let popupAdvisorDropoffRescheduleDescription = NSLocalizedString("popupAdvisorDropoffRescheduleDescription")
-    static let popupAdvisorDropoffSelfPickupDescription = NSLocalizedString("popupAdvisorDropoffSelfPickupDescription")
-    static let popupAdvisorDropoffLabel = NSLocalizedString("popupAdvisorDropoffLabel")
-    static let change = NSLocalizedString("change")
+    static var viewScheduleServiceStatusInfoScheduledDropoff: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusTimeDeliveryWindow: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusTimeWindowEstimatedDelivery: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusComplete: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusSelfDealershipNavigate: String { return NSLocalizedString(#function) }
+    static var viewScheduleServiceStatusSelfFooterTitleDropoff: String { return NSLocalizedString(#function) }
+    static var popupAdvisorDropoffRescheduleDescription: String { return NSLocalizedString(#function) }
+    static var popupAdvisorDropoffSelfPickupDescription: String { return NSLocalizedString(#function) }
+    static var popupAdvisorDropoffLabel: String { return NSLocalizedString(#function) }
+    static var change: String { return NSLocalizedString(#function) }
     
 }
