@@ -20,7 +20,17 @@ extension DriverAPI {
         }
     }
 
-    // TODO throw error if no path?
+    static func refresh(_ request: Request,
+                        completion: @escaping ((Request?, LuxeAPIError.Code?) -> Void))
+    {
+        guard let path = self.api.path(for: request) else { return }
+        let route = "v1/\(path)/\(request.id)"
+        self.api.get(route: route) {
+            response in
+            completion(response?.asRequest(), response?.asErrorCode())
+        }
+    }
+
     static func update(_ request: Request,
                        task: Task,
                        completion: @escaping ((LuxeAPIError.Code?) -> Void))
@@ -62,6 +72,7 @@ extension DriverAPI {
         }
     }
 
+    // TODO move to AdminAPI only
     static func reset(_ request: Request,
                       completion: @escaping (LuxeAPIError.Code?) -> Void)
     {
@@ -73,6 +84,9 @@ extension DriverAPI {
         }
     }
 
+    // TODO turn in Request extension
+    // TODO fix this to always return a path
+    // TODO include advisor paths
     func path(for request: Request) -> String? {
         switch request.type {
             case .dropoff: return "driver-dropoff-requests"
@@ -83,6 +97,15 @@ extension DriverAPI {
 }
 
 fileprivate extension RestAPIResponse {
+
+    private struct RefreshResponse: Codable {
+        let data: Request
+    }
+
+    func asRequest() -> Request? {
+        let response: RefreshResponse? = self.decode()
+        return response?.data
+    }
 
     private struct TodayResponse: Codable {
         let data: [Request]

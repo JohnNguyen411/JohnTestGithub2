@@ -162,21 +162,6 @@ class UploadManagerViewController: UIViewController {
 
     // MARK:- Data source
 
-    // TODO https://app.asana.com/0/857710273846914/894650916838382/f
-    // TODO replace with DriverManager
-    private func currentDriver(completion: @escaping (Driver?) -> ()) {
-
-        if let driver = self.driver {
-            DispatchQueue.main.async() { completion(driver) }
-            return
-        }
-
-        DriverAPI.login(email: "christoph@luxe.com", password: "shenoa7777") {
-            driver, error in
-            completion(driver)
-        }
-    }
-
     // TODO https://app.asana.com/0/857710273846914/865596318171593/f
     // TODO replace with RequestManager
     private func currentRequest(completion: @escaping (Request?) -> ()) {
@@ -186,7 +171,7 @@ class UploadManagerViewController: UIViewController {
             return
         }
 
-        self.currentDriver() {
+        DriverManager.shared.currentDriver() {
             driver in
             guard let driver = driver else { return }
             DriverAPI.today(for: driver) {
@@ -293,7 +278,7 @@ class UploadManagerViewController: UIViewController {
     }
 
     private func updateFields() {
-        self.requestTextField.text = self.request != nil ? "Request \(request!.id)" : "No active request"
+        self.requestTextField.text = self.request != nil ? "Request \(request!.id)" : nil
     }
 
     private func updateButtons(status: UploadManager.Status? = nil) {

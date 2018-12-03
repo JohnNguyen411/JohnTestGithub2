@@ -60,6 +60,10 @@ struct GridLayout {
 
 extension GridLayout {
 
+    static func fourColumns() -> GridLayout {
+        return GridLayout(margin: 20, gutter: 10, columnCount: 4)
+    }
+
     static func sixColumns() -> GridLayout {
         return GridLayout(margin: 20, gutter: 10, columnCount: 6)
     }

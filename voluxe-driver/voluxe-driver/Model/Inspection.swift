@@ -14,6 +14,8 @@ import Foundation
 // loander inspection probably has a loaner vehicle id
 struct Inspection: Codable {
 
+    // TODO does this need an inspection type?
+
     let id: Int
     let requestId: Int?
     let vehicleId: Int?

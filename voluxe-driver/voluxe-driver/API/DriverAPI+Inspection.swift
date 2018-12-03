@@ -47,6 +47,7 @@ extension DriverAPI {
     }
 
     // TODO how does this relate to UploadManager?
+    @available(*, deprecated)
     static func upload(photo: UIImage,
                        inspection: Inspection,
                        request: Request,
@@ -60,7 +61,9 @@ extension DriverAPI {
         }
     }
 
-    // TODO find a better place for this
+    // TODO find a better place for this, maybe extension to Request?
+    // TODO this is only returning route for document uploads, not vehicle and loaner
+//    @available(*, deprecated)
     static func routeToUploadPhoto(inspection: Inspection,
                                    request: Request) -> String?
     {
@@ -70,6 +73,7 @@ extension DriverAPI {
     }
 
     // TODO find a better place for this
+    @available(*, deprecated)
     static func urlToUploadPhoto(inspection: Inspection,
                                  request: Request) -> String?
     {

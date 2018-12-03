@@ -141,12 +141,13 @@ extension RestAPI {
     }
 
     // TODO this might be too restrictive as an API
+    @available(*, deprecated)
     func upload(route: RestAPIRoute,
                 image: UIImage,
                 completion: @escaping RestAPICompletion)
     {
         // TODO need to return error if failed data
-        guard let data = image.jpegData(compressionQuality: 0.5) else { return }
+        guard let data = image.jpegDataForPhotoUpload() else { return }
         self.upload(route: route,
                     data: data,
                     dataName: "photo",

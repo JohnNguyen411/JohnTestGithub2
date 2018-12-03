@@ -16,7 +16,9 @@ class UploadManager {
 
     private let realm: Realm?
     private var currentUpload: Upload?
-    var startOnUpload = true
+
+    // TODO change back before commit
+    var startOnUpload = false
 
     // MARK:- Singleton service support
 
@@ -48,9 +50,15 @@ class UploadManager {
 
     // MARK:- Upload interface
 
+    // TODO assert on nil data
     func upload(_ image: UIImage, to route: String) {
+        guard let data = image.jpegDataForPhotoUpload() else { return }
+        self.upload(data, to: route)
+    }
+
+    func upload(_ data: Data, to route: String) {
         guard let realm = self.realm else { return }
-        let upload = Upload(route: route, image: image)
+        let upload = Upload(route: route, data: data)
         try? realm.write { realm.add(upload) }
         if self.startOnUpload { self.start() }
     }
@@ -79,7 +87,8 @@ class UploadManager {
     func clear() {
         self.stop()
         guard let realm = self.realm else { return }
-        try? realm.write { realm.deleteAll() }
+        let objects = realm.objects(Upload.self)
+        try? realm.write { realm.delete(objects) }
     }
 
     func count() -> Int {
@@ -115,6 +124,8 @@ class UploadManager {
         }
     }
 
+    // TODO https://app.asana.com/0/0/923498218319323/f
+    // TODO this could be part of a polling mechanism for managers
     private func pause(for seconds: TimeInterval = 5) {
         guard self.status != .waiting else { return }
         self.set(status: .waiting, text: "Upload failed, retry in \(seconds) seconds")
@@ -146,6 +157,7 @@ class UploadManager {
 
 // MARK:- Upload class (realm compatible)
 
+// IMPORTANT do not use this class directly
 class Upload: Object {
 
     @objc dynamic var date = Date()
@@ -153,8 +165,12 @@ class Upload: Object {
     @objc dynamic var data: Data?
 
     convenience init(route: String, image: UIImage) {
+        self.init(route: route, data: image.jpegDataForPhotoUpload())
+    }
+
+    convenience init(route: String, data: Data?) {
         self.init()
         self.route = route
-        self.data = image.jpegData(compressionQuality: 0.5)
+        self.data = data
     }
 }
