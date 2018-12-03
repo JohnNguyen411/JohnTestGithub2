@@ -42,39 +42,43 @@ class LuxeAPI: RestAPI {
         let token = self.token
         self.headers["Authorization"] = token != nil ? "Bearer \(token!)" : nil
     }
-}
-
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
-struct LuxeAPIError: Codable {
-
-    // https://development-docs.ingress.luxe.com/v1/docs/#/
-    enum Code: String, Codable {
-        case E2001
-        case E2002
-        case E2003
-        case E2004
-        case E2005
-        case E3001
-        case E3006
-        case E4012
-        case E4021
+    
+    static func encodeParamsArray(array: [Any], key: String) -> String {
+        let keyParam = "\(key)"
+        var params = ""
+        for (index, object) in array.enumerated() {
+            params += "\(keyParam)[\(index)]=\(object)&"
+        }
+        params.removeLast()
+        return params
     }
-
-    let error: Bool
-    let code: Code
-    let message: String
+    
+    func initToken(token: String) {
+        self.token = token
+    }
 }
+
+
 
 // MARK:- Codable extension
 
 extension RestAPIResponse {
   
-    func decode<T: Decodable>(reportErrors: Bool = true) -> T? {
+    func decode<T: Decodable>(convertFromSnakeCase: Bool = false, reportErrors: Bool = true) -> T? {
         guard let data = self.data else { return nil }
         do {
             let decoder = JSONDecoder()
             decoder.dateDecodingStrategy = .formatted(DateFormatter.luxeISO8601)
+            if convertFromSnakeCase {
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+            }
+            
+            if UserDefaults.standard.enableAlamoFireLogging {
+                // print data
+                let jsonString = String(data: data, encoding: .utf8)
+                print("data: \(jsonString ?? "")")
+            }
+            
             let object = try decoder.decode(T.self, from: data)
             return object
         } catch {
@@ -86,17 +90,35 @@ extension RestAPIResponse {
 }
 
 // MARK:- Custom decodings
-
 extension RestAPIResponse {
 
     func asError() -> LuxeAPIError? {
-        let response: LuxeAPIError? = self.decode(reportErrors: false)
-        return response
+        
+        var luxeAPIError: LuxeAPIError? = self.decode(reportErrors: false)
+        
+        // if no error, return nil
+        if (luxeAPIError == nil || luxeAPIError?.code == nil) && !hasErrored() {
+            return nil
+        }
+        
+        if (luxeAPIError == nil || luxeAPIError?.code == nil) && hasErrored() {
+            luxeAPIError = LuxeAPIError(statusCode: self.statusCode)
+        } else {
+            luxeAPIError = LuxeAPIError(code: luxeAPIError?.code, message: luxeAPIError?.message, statusCode: self.statusCode)
+        }
+        
+        return luxeAPIError
     }
 
+    // Can return nil even if errored (502, etc)
     func asErrorCode() -> LuxeAPIError.Code? {
         return self.asError()?.code
     }
+    
+    func hasErrored() -> Bool {
+        return self.error != nil
+    }
+    
 
     func asString() -> String? {
         guard let data = self.data else { return nil }

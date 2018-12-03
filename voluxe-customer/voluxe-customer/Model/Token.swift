@@ -7,31 +7,29 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class Token: Mappable {
+class Token: Codable {
     
-    var token: String!
-    var customerId: Int?
+    var token: String
+    var user: User?
     var issuedAt: Date?
     var expiresAt: Date?
-    var userType: String?
     
-    init() {}
     
-    init(token: String) {
+    private enum CodingKeys: String, CodingKey {
+        case token
+        case user
+        case issuedAt = "issued_at" 
+        case expiresAt = "expires_at" 
     }
     
-    required init?(map: Map) {
+    private enum UserKeys: String, CodingKey {
+        case id
+        case type
     }
     
-    
-    func mapping(map: Map) {
-        token <- map["token"]
-        issuedAt <- (map["issued_at"], VLISODateTransform())
-        expiresAt <- (map["expires_at"], VLISODateTransform())
-        //let data = map.JSON["data"] as! [String: Any]
-        customerId <- map["user.id"]
-        userType <- map["user.type"]
+    struct User : Codable {
+        let id: Int
+        let type: String
     }
 }

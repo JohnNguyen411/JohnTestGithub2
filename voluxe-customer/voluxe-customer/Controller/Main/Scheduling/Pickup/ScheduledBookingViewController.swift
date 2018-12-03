@@ -189,29 +189,27 @@ class ScheduledBookingViewController: SchedulingViewController {
         if let dropoffRequest = booking.dropoffRequest, let type = dropoffRequest.getType() {
             showProgressHUD()
 
-            BookingAPI().cancelDropoffRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff).onSuccess { result in
-
-                self.onDelete()
-                self.hideProgressHUD()
-                
-                }.onFailure { error in
+            CustomerAPI.cancelDropoffRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff) { error in
+                if error != nil {
                     self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
+                } else {
+                    self.onDelete()
+                    self.hideProgressHUD()
+                }
             }
-            
             
         } else if let pickupRequest = booking.pickupRequest, let type = pickupRequest.getType() {
             showProgressHUD()
 
-            BookingAPI().cancelPickupRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup).onSuccess { result in
-               
-                self.onDelete()
-                self.hideProgressHUD()
-
-                }.onFailure { error in
+            CustomerAPI.cancelPickupRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup) { error in
+                if error != nil {
                     self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
-
+                } else {
+                    self.onDelete()
+                    self.hideProgressHUD()
+                }
             }
         }
         

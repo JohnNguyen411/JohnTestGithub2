@@ -7,35 +7,30 @@
 //
 
 import Foundation
-import ObjectMapper
 import RealmSwift
 
-class VehicleModel: Object, Mappable {
+@objcMembers class VehicleModel: Object, Codable {
     
-    @objc dynamic var id: Int = -1
-    @objc dynamic var make: String?
-    @objc dynamic var name: String?
-    @objc dynamic var managed: Bool = true
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
+    dynamic var id: Int = -1
+    dynamic var make: String?
+    dynamic var name: String?
+    dynamic var managed: Bool = true
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case make
+        case name
+        case managed
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
+    }
     
     convenience init(make: String, model: String) {
         self.init()
         self.make = make
         self.name = model
-    }
-    
-    required convenience init?(map: Map) {
-        self.init()
-    }
-    
-    func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        make <- map["make"]
-        managed <- map["managed"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
     }
     
     override static func primaryKey() -> String? {

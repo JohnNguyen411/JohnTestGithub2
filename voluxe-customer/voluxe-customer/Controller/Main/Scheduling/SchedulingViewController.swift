@@ -11,7 +11,6 @@ import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
 import RealmSwift
-import BrightFutures
 import Alamofire
 import SwiftEventBus
 import MBProgressHUD
@@ -324,9 +323,13 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
         
         guard let location = location else { return }
         
-        DealershipAPI().getDealerships(location: location).onSuccess { result in
-            if let dealerships = result?.data?.result {
-
+        CustomerAPI.dealerships(location: location) { dealerships, error in
+            
+            if error != nil {
+                completion?(nil)
+                self.dealerships = nil
+            } else {
+                
                 if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
                     if let repairOrderTypeId = RequestedServiceManager.sharedInstance.getRepairOrder()?.repairOrderType?.id, dealerships.count > 0 {
                         self.filterDealershipsForRepairOrder(repairOrderTypeId, dealerships: dealerships, completion: completion)
@@ -338,26 +341,25 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
                     self.handleDealershipsResponse(dealerships: dealerships)
                     completion?(nil)
                 }
-            } else {
-                completion?(nil)
-                self.dealerships = nil
             }
-            
-            }.onFailure { error in
-                completion?(nil)
         }
     }
     
     private func filterDealershipsForRepairOrder(_ repairOrderTypeId: Int, dealerships: [Dealership], completion: ((_ error: String?) -> ())? = nil) {
-        RepairOrderAPI().getDealershipRepairOrder(dealerships: dealerships, repairOrderTypeId: repairOrderTypeId).onSuccess { result in
-
-            var error: String? = nil
-            if let dealershipsRO = result?.data?.result {
+        CustomerAPI.dealershipRepairOrder(dealerships: dealerships, repairOrderTypeId: repairOrderTypeId) { dealershipsRO, error in
+            
+            if error != nil {
+                if let completion = completion {
+                    completion(String.ServiceNotOfferedInArea)
+                }
+            } else {
+                var error: String? = nil
                 if let realm = self.realm {
                     try? realm.write {
                         realm.add(dealershipsRO, update: true)
                     }
                 }
+                
                 if dealershipsRO.count > 0 {
                     var filteredDealership: [Dealership] = []
                     for dealershipRO in dealershipsRO {
@@ -374,18 +376,10 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
                 } else {
                     error = String.ServiceNotOfferedInArea
                 }
-            } else {
-                error = String.ServiceNotOfferedInArea
-            }
-            
-            if let completion = completion {
-                completion(error)
-            }
-            
-            }.onFailure { error in
                 if let completion = completion {
-                    completion(String.ServiceNotOfferedInArea)
+                    completion(error)
                 }
+            }
         }
     }
     

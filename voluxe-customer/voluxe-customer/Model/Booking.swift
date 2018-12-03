@@ -7,70 +7,115 @@
 //
 
 import Foundation
-import ObjectMapper
 import CoreLocation
 import RealmSwift
 import Realm
 
-class Booking: Object, Mappable {
+@objcMembers class Booking: Object, Codable {
     
     private static let distanceTrigger = 500.0 // refresh more ofter when within 500m from origin or destination
     
     private static let refreshEnRouteClose = 10
     private static let refreshEnRoute = 20
     
-    @objc dynamic var id: Int = -1
-    @objc dynamic var customerId: Int = -1
-    @objc dynamic var customer: Customer?
-    @objc dynamic var state: String = "created"
-    @objc dynamic var vehicleId: Int = -1
-    @objc dynamic var vehicle: Vehicle?
-    @objc dynamic var dealershipId: Int = -1
-    @objc dynamic var dealership: Dealership?
-    @objc dynamic var loanerVehicleRequested: Bool = false
-    @objc dynamic var loanerVehicleId: Int = -1
-    @objc dynamic var loanerVehicle: Vehicle?
-    @objc dynamic var pickupRequest: Request?
-    @objc dynamic var pickupRequestId: Int = -1
-    @objc dynamic var dropoffRequest: Request?
-    @objc dynamic var dropoffRequestId: Int = -1
-    @objc dynamic var bookingFeedbackId: Int = -1
-    @objc dynamic var bookingFeedback: BookingFeedback?
-    var repairOrderRequests = List<RepairOrder>()
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
+    dynamic var id: Int = -1
+    dynamic var customerId: Int = -1
+    dynamic var customer: Customer?
+    dynamic var state: String = "created"
+    dynamic var vehicleId: Int = -1
+    dynamic var vehicle: Vehicle?
+    dynamic var dealershipId: Int = -1
+    dynamic var dealership: Dealership?
+    dynamic var loanerVehicleRequested: Bool = false
+    dynamic var loanerVehicleId = RealmOptional<Int>()
+    dynamic var loanerVehicle: Vehicle?
+    dynamic var pickupRequest: Request?
+    dynamic var pickupRequestId = RealmOptional<Int>()
+    dynamic var dropoffRequest: Request?
+    dynamic var dropoffRequestId = RealmOptional<Int>()
+    dynamic var bookingFeedbackId = RealmOptional<Int>()
+    dynamic var bookingFeedback: BookingFeedback?
+    dynamic var repairOrderRequests = List<RepairOrder>()
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
 
-    required convenience init?(map: Map) {
-        self.init()
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case customer
+        case state
+        case vehicleId = "vehicle_id"
+        case vehicle
+        case dealershipId = "dealership_id"
+        case dealership
+        case loanerVehicleRequested = "loaner_vehicle_requested"
+        case loanerVehicleId = "loaner_vehicle_id"
+        case loanerVehicle
+        case pickupRequest = "pickup_request"
+        case pickupRequestId = "pickup_request_id"
+        case dropoffRequest = "dropoff_request"
+        case dropoffRequestId = "dropoff_request_id"
+        case bookingFeedback = "booking_feedback"
+        case bookingFeedbackId = "booking_feedback_id"
+        case repairOrderRequests = "repair_order_requests"
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
     }
     
-    func mapping(map: Map) {
-        id <- map["id"]
-        customerId <- map["customer_id"]
-        customer <- map["customer"]
-        state <- map["state"]
-        vehicleId <- map["vehicle_id"]
-        vehicle <- map["vehicle"]
-        dealershipId <- map["dealership_id"]
-        dealership <- map["dealership"]
-        loanerVehicleRequested <- map["loaner_vehicle_requested"]
-        loanerVehicleId <- map["loaner_vehicle_id"]
-        loanerVehicle <- map["loaner_vehicle"]
-        pickupRequest <- map["pickup_request"]
-        pickupRequestId <- map["pickup_request_id"]
-        dropoffRequest <- map["dropoff_request"]
-        dropoffRequestId <- map["dropoff_request_id"]
-        bookingFeedbackId <- map["booking_feedback_id"]
-        bookingFeedback <- map["booking_feedback"]
-        repairOrderRequests <- (map["repair_order_requests"], ArrayTransform<RepairOrder>())
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
+        self.customer = try container.decodeIfPresent(Customer.self, forKey: .customer)
+        self.state = try container.decode(String.self, forKey: .state)
+        self.vehicleId = try container.decode(Int.self, forKey: .vehicleId)
+        self.vehicle = try container.decodeIfPresent(Vehicle.self, forKey: .vehicle)
+        self.dealershipId = try container.decode(Int.self, forKey: .dealershipId)
+        self.dealership = try container.decode(Dealership.self, forKey: .dealership)
+        self.loanerVehicleRequested = try container.decodeIfPresent(Bool.self, forKey: .loanerVehicleRequested) ?? false
+        self.loanerVehicleId = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .loanerVehicleId) ?? RealmOptional<Int>()
+        self.loanerVehicle = try container.decodeIfPresent(Vehicle.self, forKey: .loanerVehicle)
+        self.pickupRequest = try container.decodeIfPresent(Request.self, forKey: .pickupRequest)
+        self.pickupRequestId = try container.decodeIfPresent(RealmOptional<Int>.self.self, forKey: .pickupRequestId) ?? RealmOptional<Int>()
+        self.dropoffRequest = try container.decodeIfPresent(Request.self, forKey: .dropoffRequest)
+        self.dropoffRequestId = try container.decodeIfPresent(RealmOptional<Int>.self.self, forKey: .dropoffRequestId) ?? RealmOptional<Int>()
+        self.bookingFeedbackId = try container.decodeIfPresent(RealmOptional<Int>.self.self, forKey: .bookingFeedbackId) ?? RealmOptional<Int>()
+        self.bookingFeedback = try container.decodeIfPresent(BookingFeedback.self, forKey: .bookingFeedback)
+        self.repairOrderRequests = try container.decodeIfPresent(List<RepairOrder>.self, forKey: .repairOrderRequests) ?? List<RepairOrder>()
+        self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
+        self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
     }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encodeIfPresent(customer, forKey: .customer)
+        try container.encode(state, forKey: .state)
+        try container.encode(vehicleId, forKey: .vehicleId)
+        try container.encodeIfPresent(vehicle, forKey: .vehicle)
+        try container.encode(dealershipId, forKey: .dealershipId)
+        try container.encode(dealership, forKey: .dealership)
+        try container.encodeIfPresent(loanerVehicleRequested, forKey: .loanerVehicleRequested)
+        try container.encodeIfPresent(loanerVehicleId, forKey: .loanerVehicleId)
+        try container.encodeIfPresent(loanerVehicle, forKey: .loanerVehicle)
+        try container.encodeIfPresent(pickupRequest, forKey: .pickupRequest)
+        try container.encodeIfPresent(pickupRequestId, forKey: .pickupRequestId)
+        try container.encodeIfPresent(dropoffRequest, forKey: .dropoffRequest)
+        try container.encodeIfPresent(dropoffRequestId, forKey: .dropoffRequestId)
+        try container.encodeIfPresent(bookingFeedbackId, forKey: .bookingFeedbackId)
+        try container.encodeIfPresent(bookingFeedback, forKey: .bookingFeedback)
+        try container.encodeIfPresent(repairOrderRequests, forKey: .repairOrderRequests)
+        try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+    }
+    
     
     override static func primaryKey() -> String? {
         return "id"
     }
     
+    func getBookingFeedbackId() -> Int {
+        return bookingFeedbackId.value ?? -1
+    }
     
     func getState() -> State {
         return State(rawValue: state)!
@@ -199,7 +244,7 @@ class Booking: Object, Mappable {
     }
     
     public func needsRating() -> Bool {
-        return self.bookingFeedbackId > 0 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
+        return self.bookingFeedbackId.value ?? 0 > 0 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
     }
     
     public func isSelfIB() -> Bool {

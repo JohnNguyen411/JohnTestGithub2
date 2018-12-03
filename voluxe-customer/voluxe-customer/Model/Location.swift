@@ -7,33 +7,50 @@
 //
 
 import Foundation
-import ObjectMapper
 import CoreLocation
 import RealmSwift
 
-class Location: Object, Mappable {
+@objcMembers class Location: Object, Codable {
     
-    @objc dynamic var id = UUID().uuidString
-    @objc dynamic var address: String?
-    @objc dynamic var latitude: Double = 0.0
-    @objc dynamic var longitude: Double = 0.0
-    @objc dynamic var accuracy: Int = 0
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
-    var location: CLLocationCoordinate2D?
+    dynamic var id = UUID().uuidString
+    dynamic var address: String?
+    dynamic var latitude: Double = 0.0
+    dynamic var longitude: Double = 0.0
+    dynamic var accuracy = RealmOptional<Double>()
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
+    dynamic var location: CLLocationCoordinate2D?
     
-    required convenience init?(map: Map) {
+    private enum CodingKeys: String, CodingKey {
+        case address
+        case latitude
+        case longitude
+        case accuracy
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
+    }
+    
+    
+    convenience required init(from decoder: Decoder) throws {
         self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.address = try container.decodeIfPresent(String.self, forKey: .address)
+        self.latitude = try container.decodeIfPresent(Double.self, forKey: .latitude) ?? 0.0
+        self.longitude = try container.decodeIfPresent(Double.self, forKey: .longitude) ?? 0.0
+        self.accuracy = try container.decodeIfPresent(RealmOptional<Double>.self, forKey: .accuracy) ?? RealmOptional<Double>()
+        self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
+        self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
     }
     
-    func mapping(map: Map) {
-        address <- map["address"]
-        latitude <- map["latitude"]
-        longitude <- map["longitude"]
-        accuracy <- map["accuracy"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encodeIfPresent(address, forKey: .address)
+        try container.encodeIfPresent(latitude, forKey: .latitude)
+        try container.encodeIfPresent(longitude, forKey: .longitude)
+        try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
+    
     
     override static func ignoredProperties() -> [String] {
         return ["location"]
@@ -119,7 +136,7 @@ class Location: Object, Mappable {
             "address": address ?? "",
             "latitude": latitude,
             "longitude": longitude,
-            "accuracy": accuracy
+            "accuracy": accuracy.value ?? 0
         ]
     }
     

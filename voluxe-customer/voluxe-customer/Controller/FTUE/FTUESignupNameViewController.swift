@@ -209,22 +209,24 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        CustomerAPI().updateName(customerId: customerId, firstName: firstName, lastName: lastName).onSuccess { result in
-            if let customer = UserManager.sharedInstance.getCustomer() {
-                if let realm = try? Realm() {
-                    try? realm.write {
-                        customer.lastName = lastName
-                        customer.firstName = firstName
-                        UserManager.sharedInstance.setCustomer(customer: customer)
-                        realm.add(customer, update: true)
-                    }
-                }
-            }
-            self.navigationController?.popViewController(animated: true)
-            MBProgressHUD.hide(for: self.view, animated: true)
-            }.onFailure { error in
+        CustomerAPI.updateName(customerId: customerId, firstName: firstName, lastName: lastName) { error in
+            if error != nil {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 self.showOkDialog(title: .Error, message: .GenericError)
+            } else {
+                if let customer = UserManager.sharedInstance.getCustomer() {
+                    if let realm = try? Realm() {
+                        try? realm.write {
+                            customer.lastName = lastName
+                            customer.firstName = firstName
+                            UserManager.sharedInstance.setCustomer(customer: customer)
+                            realm.add(customer, update: true)
+                        }
+                    }
+                }
+                self.navigationController?.popViewController(animated: true)
+                MBProgressHUD.hide(for: self.view, animated: true)
+            }
         }
     }
 }

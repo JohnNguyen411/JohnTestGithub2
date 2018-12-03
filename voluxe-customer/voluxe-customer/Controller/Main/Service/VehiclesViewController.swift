@@ -11,7 +11,6 @@ import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
 import RealmSwift
-import BrightFutures
 import Alamofire
 import SwiftEventBus
 

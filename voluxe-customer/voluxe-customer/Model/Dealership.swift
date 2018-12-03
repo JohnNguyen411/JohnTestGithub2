@@ -7,23 +7,67 @@
 //
 
 import Foundation
-import ObjectMapper
 import CoreLocation
 import RealmSwift
 
-class Dealership: Object, Mappable {
+@objcMembers class Dealership: Object, Codable {
     
-    @objc dynamic var id: Int = -1
-    @objc dynamic var name: String?
-    @objc dynamic var phoneNumber: String?
-    @objc dynamic var email: String?
-    @objc dynamic var location: Location?
-    @objc dynamic var hoursOfOperation: String?
-    @objc dynamic var coverageRadius: Int = 1
-    @objc dynamic var currencyId: Int = 1
-    @objc dynamic var enabled: Bool = true
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
+    dynamic var id: Int = -1
+    dynamic var name: String?
+    dynamic var phoneNumber: String?
+    dynamic var email: String?
+    dynamic var location: Location?
+    dynamic var hoursOfOperation: String?
+    dynamic var coverageRadius: Int = 1
+    dynamic var currencyId = RealmOptional<Int>()
+    dynamic var enabled: Bool = true
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
+    
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case phoneNumber = "phone_number"
+        case email
+        case location
+        case hoursOfOperation = "hours_of_operation"
+        case coverageRadius = "coverage_radius"
+        case currencyId = "currency_id"
+        case enabled
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
+    }
+    
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
+        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        self.phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber)
+        self.email = try container.decodeIfPresent(String.self, forKey: .email)
+        self.location = try container.decodeIfPresent(Location.self, forKey: .location)
+        self.hoursOfOperation = try container.decodeIfPresent(String.self, forKey: .hoursOfOperation)
+        self.coverageRadius = try container.decodeIfPresent(Int.self, forKey: .coverageRadius) ?? 1
+        self.currencyId = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .currencyId) ?? RealmOptional<Int>()
+        self.enabled = try container.decodeIfPresent(Bool.self, forKey: .enabled) ?? true
+        self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
+        self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encodeIfPresent(name, forKey: .name)
+        try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
+        try container.encodeIfPresent(email, forKey: .email)
+        try container.encodeIfPresent(location, forKey: .location)
+        try container.encodeIfPresent(hoursOfOperation, forKey: .hoursOfOperation)
+        try container.encodeIfPresent(coverageRadius, forKey: .coverageRadius)
+        try container.encodeIfPresent(currencyId, forKey: .currencyId)
+        try container.encode(enabled, forKey: .enabled)
+        try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+    }
     
     convenience init(name: String?, location: CLLocationCoordinate2D?) {
         self.init()
@@ -35,23 +79,9 @@ class Dealership: Object, Mappable {
         self.init(name: name, location: nil)
     }
     
-    required convenience init?(map: Map) {
-        self.init()
-    }
     
-    func mapping(map: Map) {
-        id <- map["id"]
-        name <- map["name"]
-        phoneNumber <- map["phone_number"]
-        email <- map["email"]
-        location <- map["location"]
-        hoursOfOperation <- map["hours_of_operation"]
-        coverageRadius <- map["coverage_radius"]
-        currencyId <- map["currency_id"]
-        enabled <- map["enabled"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
-    }
+    
+    
     
     override static func primaryKey() -> String? {
         return "id"

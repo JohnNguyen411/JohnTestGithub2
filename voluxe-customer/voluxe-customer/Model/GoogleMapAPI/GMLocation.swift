@@ -7,19 +7,15 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class GMLocation: Mappable {
+class GMLocation: Codable {
     
     var latitude: Double = 0.0
     var longitude: Double = 0.0
     
-    required init?(map: Map) {
-    }
-    
-    func mapping(map: Map) {
-        latitude <- map["latitude"]
-        longitude <- map["longitude"]
+    private enum CodingKeys: String, CodingKey {
+        case latitude
+        case longitude
     }
     
     func getLocation() -> CLLocationCoordinate2D? {

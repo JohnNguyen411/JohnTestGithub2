@@ -41,7 +41,7 @@ class Config: NSObject {
             defaultBookingRefresh = 60
             googleMapsAPIKey = "AIzaSyA65M4H5PG82NbkDRcTmvq9ouqAZJKCil8"
         } else {
-            defaultBookingRefresh = 10
+            defaultBookingRefresh = 30
             googleMapsAPIKey = "AIzaSyCf1Ub4aMgqWeISdHPEcFawx-N-OrmxBTM"
         }
         super.init()

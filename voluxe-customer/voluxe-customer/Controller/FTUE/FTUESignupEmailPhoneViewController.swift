@@ -236,18 +236,18 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
     }
     
-    private func onSignupError(error: Errors? = nil) {
+    private func onSignupError(error: LuxeAPIError? = nil) {
         self.showLoading(loading: false)
         
-        if let apiError = error?.apiError {
+        if let code = error?.code {
             
-            if apiError.getCode() == .E5001 {
+            if code == .E5001 {
                 self.showOkDialog(title: .Error, message: .PhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
-            } else if apiError.getCode() == .E4011 {
+            } else if code == .E4011 {
                 self.showOkDialog(title: .Error, message: .AccountAlreadyExist, completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
-            } else if apiError.getCode() == .E4046 {
+            } else if code == .E4046 {
                 self.showOkDialog(title: .Error, message: .PhoneNumberInvalid, dialog: .error, screen: self.screen)
             } else  {
                 self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
@@ -358,8 +358,8 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         guard let firstName = signupCustomer.firstName else { return }
         guard let lastName = signupCustomer.lastName else { return }
 
-        CustomerAPI().signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language).onSuccess { result in
-            if let customer = result?.data?.result {
+        CustomerAPI.signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language) { customer, error in
+            if let customer = customer {
 
                 if let realm = self.realm {
                     try? realm.write {
@@ -370,9 +370,9 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 UserManager.sharedInstance.setCustomer(customer: customer)
                 UserManager.sharedInstance.tempCustomerId = customer.id
                 self.goToNext()
-            }
-            }.onFailure { error in
+            } else {
                 self.onSignupError(error: error)
+            }
         }
     }
     

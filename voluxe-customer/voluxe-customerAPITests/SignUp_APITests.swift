@@ -7,14 +7,12 @@
 //
 
 import Foundation
-import AlamofireNetworkActivityLogger
 import XCTest
 
 class SignUp_APITests: XCTestCase {
 
     override func setUp() {
         self.continueAfterFailure = false
-        NetworkActivityLogger.shared.level = .debug
     }
 
     // MARK:- Invalid inputs for /v1/customers/signup
@@ -84,33 +82,30 @@ class SignUp_APITests: XCTestCase {
     /// with the endpoint's documentation.  Cue religious war on who
     /// does input validation: client or server.
     private func signUp(email: String, phone: String, firstName: String, lastName: String, language: String) {
-
+        
         let expectation = self.expectation(description: "waiting for sign up response")
-
+        
         let inputs = "\(email) \(phone) \(firstName) \(lastName) \(language)"
         print("TESTING: \(inputs)")
-
-        let request = CustomerAPI().signup(email: email,
-                                           phoneNumber: phone,
-                                           firstName: firstName,
-                                           lastName: lastName,
-                                           languageCode: language)
-
-        request.onSuccess {
-            customer in
-            expectation.fulfill()
-            XCTFail("Was allowed to create a customer with inputs:\n\(inputs)")
-        }
-
-        request.onFailure {
-            error in
-            expectation.fulfill()
-            XCTAssertNotNil(error.apiError, "Expected an error, got a nil error")
-            guard let code = error.apiError?.code else { return }
-            if code == Errors.ErrorCode.E4011.rawValue { print("FAILED: Previous test allowed an account to be created") }
-            XCTAssertTrue(code == Errors.ErrorCode.E4002.rawValue, "Expected code=E4002, got \(code) \(error.apiError?.message ?? "None")")
-        }
-
+        
+        CustomerAPI.signup(email: email,
+                           phoneNumber: phone,
+                           firstName: firstName,
+                           lastName: lastName,
+                           languageCode: language, completion: { customer, error in
+                            
+                            if let error = error {
+                                expectation.fulfill()
+                                XCTAssertNotNil(error, "Expected an error, got a nil error")
+                                guard let code = error.code else { return }
+                                if code == .E4011 { print("FAILED: Previous test allowed an account to be created") }
+                                XCTAssertTrue(code == .E4002, "Expected code=E4002, got \(code) \(error.message ?? "None")")
+                            } else {
+                                expectation.fulfill()
+                                XCTFail("Was allowed to create a customer with inputs:\n\(inputs)")
+                            }
+        })
+        
         self.wait(for: [expectation], timeout: 10)
     }
 //

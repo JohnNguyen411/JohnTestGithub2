@@ -228,16 +228,16 @@ class SchedulingDropoffViewController: SchedulingViewController {
             
             confirmButton.isLoading = true
             
-            BookingAPI().createDropoffRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: true).onSuccess { result in
-                if let dropOffRequest = result?.data?.result {
+            CustomerAPI.createDropoffRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: true) { request, error in
+                if let dropOffRequest = request {
                     self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
                     self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
                 }
                 
                 self.confirmButton.isLoading = false
-                }.onFailure { error in
-                    self.confirmButton.isLoading = false
-                    if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4049.rawValue || code == Errors.ErrorCode.E4050.rawValue {
+                
+                if (error != nil) {
+                    if let code = error?.code, code == .E4049 || code == .E4050 {
                         self.showDialog(title: .Error, message: String(format: String.DuplicateRequestError, String.Delivery), buttonTitle: .Refresh, completion: {
                             self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
                         }, dialog: .error, screen: self.screen)
@@ -245,6 +245,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
                     } else {
                         self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     }
+                }
             }
             
         }
@@ -277,31 +278,30 @@ class SchedulingDropoffViewController: SchedulingViewController {
     private func refreshFinalBooking(customerId: Int, bookingId: Int) {
         showProgressHUD()
         
-        BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
-            if let booking = result?.data?.result {
-                if let realm = self.realm {
-                    try? realm.write {
-                        realm.add(booking, update: true)
-                    }
-                }
-            }
-            
-            if let realm = self.realm {
-                let bookings = realm.objects(Booking.self).filter("customerId = \(self.booking.customerId)")
-                UserManager.sharedInstance.setBookings(bookings: Array(bookings))
-            }
-            
-            RequestedServiceManager.sharedInstance.reset()
-            AppController.sharedInstance.showVehiclesView(animated: false)
-            
+        CustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
             self.hideProgressHUD()
             
-            }.onFailure { error in
-                // retry
-                self.hideProgressHUD()
+            if error != nil {
                 self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 }, dialog: .error, screen: self.screen)
+            } else {
+                if let booking = booking {
+                    if let realm = self.realm {
+                        try? realm.write {
+                            realm.add(booking, update: true)
+                        }
+                    }
+                }
+                
+                if let realm = self.realm {
+                    let bookings = realm.objects(Booking.self).filter("customerId = \(self.booking.customerId)")
+                    UserManager.sharedInstance.setBookings(bookings: Array(bookings))
+                }
+                
+                RequestedServiceManager.sharedInstance.reset()
+                AppController.sharedInstance.showVehiclesView(animated: false)
+            }
         }
     }
     

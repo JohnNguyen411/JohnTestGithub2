@@ -7,31 +7,29 @@
 //
 
 import Foundation
-import ObjectMapper
 import CoreLocation
 import RealmSwift
 import Kingfisher
 
-class Vehicle: Object, Mappable {
-    
+@objcMembers class Vehicle: Object, Codable {
+
     public static let vehicleImageHeight: CGFloat = 190
 
-    @objc dynamic var id: Int = -1
-    @objc dynamic var ownerId: Int = -1
-    @objc dynamic var vin: String?
-    @objc dynamic var licensePlate: String?
-    @objc dynamic var make: String?
-    @objc dynamic var model: String?
-    @objc dynamic var drive: String?
-    @objc dynamic var engine: String?
-    @objc dynamic var trim: String?
-    @objc dynamic var year: Int = 2018
-    @objc dynamic var baseColor: String?
-    @objc dynamic var color: String?
-    @objc dynamic var photoUrl: String?
-    @objc dynamic var transmission: String?
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
+    dynamic var id: Int = -1
+    dynamic var vin: String?
+    dynamic var licensePlate: String?
+    dynamic var make: String?
+    dynamic var model: String?
+    dynamic var drive: String?
+    dynamic var engine: String?
+    dynamic var trim: String?
+    dynamic var year: Int = 2018
+    dynamic var baseColor: String?
+    dynamic var color: String?
+    dynamic var photoUrl: String?
+    dynamic var transmission: String?
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
 
     // Use Only for SwiftEventBus
     convenience init(id: Int) {
@@ -39,29 +37,25 @@ class Vehicle: Object, Mappable {
         self.id = id
     }
     
-    required convenience init?(map: Map) {
-        self.init()
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case vin
+        case licensePlate = "license_plate"
+        case make
+        case model
+        case drive
+        case engine
+        case trim
+        case year
+        case baseColor = "base_color"
+        case color
+        case photoUrl = "photo_url"
+        case transmission
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
     }
 
-    func mapping(map: Map) {
-        id <- map["id"]
-        ownerId <- map["owner_id"]
-        vin <- map["vin"]
-        licensePlate <- map["license_plate"]
-        make <- map["make"]
-        model <- map["model"]
-        drive <- map["drive"]
-        engine <- map["engine"]
-        trim <- map["trim"]
-        year <- map["year"]
-        baseColor <- map["base_color"]
-        color <- map["color"]
-        photoUrl <- map["photo_url"]
-        transmission <- map["transmission"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
-    }
-
+    
     func colorCode() -> String {
         if let color = baseColor {
             switch (color.lowercased()) {

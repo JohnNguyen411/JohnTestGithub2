@@ -43,16 +43,16 @@ extension AnalyticsCore {
 
     // MARK:- Calls
 
-    func trackCall(api: AnalyticsEnums.Name.API, endpoint: String? = nil, error: Errors? = nil) {
+    func trackCall(api: AnalyticsEnums.Name.API, endpoint: String? = nil, error: LuxeAPIError? = nil) {
         var params: AnalyticsEnums.Params = [:]
         if let endpoint = endpoint { params[.endpoint] = endpoint }
-        if let errorCode = error?.apiError?.code { params[.errorCode] = errorCode }
+        if let errorCode = error?.code { params[.errorCode] = errorCode }
         if let statusCode = error?.statusCode { params[.statusCode] = "\(statusCode)" }
         self.track(event: .call, element: .api, name: api.rawValue, params: params)
     }
 
     func trackCallLuxe(endpoint: String,
-                       errorCode: Errors.ErrorCode? = nil,
+                       errorCode: LuxeAPIError.Code? = nil,
                        statusCode: Int? = nil,
                        requestID: String? = nil)
     {

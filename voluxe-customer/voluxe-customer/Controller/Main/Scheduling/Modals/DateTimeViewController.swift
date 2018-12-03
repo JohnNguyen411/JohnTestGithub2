@@ -76,7 +76,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     private var isPickup = true
     private var showLoaner = false
     private var loanerRequired = false
-
+    
     private let loanerContainerView = UIView(frame: .zero)
     
     private let loanerLabel: UILabel = {
@@ -116,7 +116,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             }
         }
         dealership = currentDealership
-
+        
         super.init(title: title, buttonTitle: buttonTitle, screen: isPickup ? .pickupDateTime : .dropoffDateTime)
         
         realm = try? Realm()
@@ -158,24 +158,26 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                 loaner = selectedLoaner
             }
             
-            DealershipAPI().getDealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: loaner, from: from, to: to).onSuccess { result in
-                if let slots = result?.data?.result {
+            CustomerAPI.dealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: loaner, from: from, to: to) { timeslots, error in
+                
+                if error != nil {
+                    self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                        self.getTimeSlots()
+                    }, dialog: .error, screen: self.screen)
+                } else {
                     if let realm = self.realm {
                         try? realm.write {
                             let objects = realm.objects(DealershipTimeSlot.self).filter("dealershipId == \(dealership.id)")
                             realm.delete(objects)
-                            realm.add(slots, update: true)
+                            realm.add(timeslots, update: true)
                         }
-                        if slots.count > 0 && slots[0].from != nil {
-                            self.minDate = slots[0].from!
+                        if timeslots.count > 0 && timeslots[0].from != nil {
+                            self.minDate = timeslots[0].from!
                         }
                     }
                     self.showCalendar()
+                    
                 }
-                }.onFailure { error in
-                    self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
-                        self.getTimeSlots()
-                    }, dialog: .error, screen: self.screen)
             }
         }
     }
@@ -359,7 +361,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         maxDate = Calendar.current.date(byAdding: .day, value: 9*7, to: todaysDate)!
         let weekday = Calendar.current.component(.weekday, from: maxDate) // 1 is sunday for Gregorian
         let weekMonth = Calendar.current.component(.weekOfMonth, from: maxDate)
-
+        
         let day = Calendar.current.component(.day, from: maxDate)
         if day >= 1 && day <= 7 && weekMonth == 1 {
             maxDate = Calendar.current.date(byAdding: .day, value: -day, to: maxDate)!
@@ -408,7 +410,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         calendar.allowsSelection = true
         calendar.setCollectionViewScrollEnabled(false)
         calendar.placeholderType = .none
-                
+        
         calendar.calendarWeekdayView.isHidden = true
         calendar.weekdayHeight = 0
         //calendar.preferredWeekdayHeight = 0
@@ -574,7 +576,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             slotViews.append(slotButton)
             hoursView.addSubview(slotButton)
         }
-
+        
         let rows: Int = Int(CGFloat(CGFloat(slots.count)/CGFloat(3.0)).rounded(.up))
         
         let contentViewHeight = (VLButton.secondaryHeight * rows) + 10 * rows
@@ -592,7 +594,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         }
         
         hoursView.sizeToFit()
-
+        
         var prevView: UIView? = nil
         for (index, view) in slotViews.enumerated() {
             
@@ -695,7 +697,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     }
     
     // MARK:- Action Methods
-
+    
     @objc func slotClicked(viewIndex: Int, slot: DealershipTimeSlot) {
         for (index, view) in slotViews.enumerated() {
             setButtonEnabled(enable: view.isEnabled, selected: index == viewIndex, button: view)
@@ -710,7 +712,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             UIApplication.shared.open(numberURL)
         }
     }
-
+    
     
     // MARK:- FSCalendarDataSource
     

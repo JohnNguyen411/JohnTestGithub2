@@ -38,22 +38,23 @@ class ServiceListViewController: BaseViewController {
         tableView.separatorStyle = .none
         
         showProgressHUD()
-        RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
-            if let services = services?.data?.result {
+        
+        CustomerAPI.repairOrderTypes() { services, error in
+            self.hideProgressHUD()
+
+            if error != nil {
+                Logger.print("\(error?.code?.rawValue ?? "") \(error?.message ?? "")")
+            } else {
                 if let realm = try? Realm() {
                     try? realm.write {
                         realm.delete(realm.objects(RepairOrderType.self))
                         realm.add(services, update: true)
                     }
                     
-                    let filteredResults = realm.objects(RepairOrderType.self).filter("name != 'Custom'")
+                    let filteredResults = realm.objects(RepairOrderType.self).filter("category == 'routine_maintenance_by_distance'")
                     self.showServices(services: Array(filteredResults))
                 }
             }
-            self.hideProgressHUD()
-            }.onFailure { error in
-                Logger.print(error)
-                self.hideProgressHUD()
         }
         
         self.navigationItem.title = self.title
