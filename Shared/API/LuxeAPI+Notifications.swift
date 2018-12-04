@@ -3,7 +3,7 @@
 //  voluxe-driver
 //
 //  Created by Christoph on 11/2/18.
-//  Copyright © 2018 Luxe By Volvo. All rights reserved.
+//  Copyright © 2018 Volvo Valet. All rights reserved.
 //
 
 import Foundation
