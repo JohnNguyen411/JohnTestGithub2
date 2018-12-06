@@ -75,6 +75,7 @@
 		5303E2F320E45C1600B1F4BE /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */; };
 		5303E2F620E4622600B1F4BE /* UserDefaults_UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F520E4622600B1F4BE /* UserDefaults_UnitTests.swift */; };
 		5303E2F820E4631D00B1F4BE /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
+		531F9C2221B89A510027F43D /* UIImage+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531F9C2121B89A510027F43D /* UIImage+LuxeAPI.swift */; };
 		5321B1B720C9A980006C1E14 /* UIView+Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5321B1B620C9A980006C1E14 /* UIView+Blur.swift */; };
 		5322409020B32CE600D4E86C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479420AE300B001F4BC7 /* RealmManager.swift */; };
 		5322409720B39FF700D4E86C /* CreateAccount_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */; };
@@ -484,6 +485,7 @@
 		5303E2F220E45C1600B1F4BE /* AnalyticsCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnalyticsCore.swift; sourceTree = "<group>"; };
 		5303E2F520E4622600B1F4BE /* UserDefaults_UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults_UnitTests.swift; sourceTree = "<group>"; };
 		5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Voluxe.swift"; sourceTree = "<group>"; };
+		531F9C2121B89A510027F43D /* UIImage+LuxeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+LuxeAPI.swift"; sourceTree = "<group>"; };
 		5321B1B620C9A980006C1E14 /* UIView+Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Blur.swift"; sourceTree = "<group>"; };
 		5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount_UITests.swift; sourceTree = "<group>"; };
 		532E235A20CB4B5E00ADA87F /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
@@ -896,6 +898,7 @@
 			children = (
 				52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */,
 				52940963219220B50009F691 /* Thread+Assert.swift */,
+				531F9C2121B89A510027F43D /* UIImage+LuxeAPI.swift */,
 				52940964219220B50009F691 /* UserDefaults+LuxeAPI.swift */,
 				533047122188D821007CE01C /* NSObject+Voluxe.swift */,
 				533047132188D821007CE01C /* Bundle+Voluxe.swift */,
@@ -2322,6 +2325,7 @@
 				6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
 				6C9B3213202E7C23006380B9 /* AddLocationViewController.swift in Sources */,
 				533047022188D61E007CE01C /* DebugTableViewCell.swift in Sources */,
+				531F9C2221B89A510027F43D /* UIImage+LuxeAPI.swift in Sources */,
 				6C20E1D01FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
 				6CDCC616205C461100DFA831 /* RepairOrderType.swift in Sources */,
 				6CBB4EAC1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */,

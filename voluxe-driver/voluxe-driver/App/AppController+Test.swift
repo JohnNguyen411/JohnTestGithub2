@@ -14,18 +14,7 @@ import Foundation
 extension AppController {
 
     override func viewDidAppear(_ animated: Bool) {
-
         super.viewDidAppear(animated)
-
-//        DriverAPI.login(email: "christoph@luxe.com", password: "shenoa7777") {
-//            driver, error in
-//            guard let driver = driver else { return }
-//            DriverAPI.today(for: driver) {
-//                requests, error in
-//                NSLog("")
-//            }
-//        }
-
-        self.presentDebugMenu()
+//        self.presentDebugMenu()
     }
 }

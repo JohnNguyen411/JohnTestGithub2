@@ -15,19 +15,44 @@ class DriverManager {
 
     // MARK:- Current driver
 
-    private var driver: Driver?
+    private var _driver: Driver? {
+        didSet {
+            self.notifyDriverDidChange()
+        }
+    }
 
-    // TODO this is temporary
-    func currentDriver(completion: @escaping (Driver?) -> ()) {
+    var driver: Driver? {
+        return self._driver
+    }
 
-        if let driver = self.driver {
+    // MARK:- Log in/out
+
+    func login(email: String,
+               password: String,
+               completion: @escaping ((Driver?) -> ()))
+    {
+        if let driver = self._driver, driver.email == email {
             DispatchQueue.main.async() { completion(driver) }
             return
         }
 
-        DriverAPI.login(email: "christoph@luxe.com", password: "shenoa7777") {
+        DriverAPI.login(email: email, password: password) {
             driver, error in
+            if error == nil { self._driver = driver }
             completion(driver)
         }
+    }
+
+    func logout() {
+        self._driver = nil
+        DriverAPI.logout()
+    }
+
+    // MARK:- Notifications
+
+    var driverDidChangeClosure: ((Driver?) -> ())?
+
+    private func notifyDriverDidChange() {
+        self.driverDidChangeClosure?(self.driver)
     }
 }

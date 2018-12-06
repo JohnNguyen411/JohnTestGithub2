@@ -16,9 +16,11 @@ class UploadManager {
 
     private let realm: Realm?
     private var currentUpload: Upload?
-
-    // TODO change back before commit
-    var startOnUpload = false
+    var startOnUpload = true {
+        didSet {
+            if startOnUpload { self.start() }
+        }
+    }
 
     // MARK:- Singleton service support
 
@@ -33,34 +35,34 @@ class UploadManager {
         case idle
         case waiting
         case uploading
+        case newUpload
     }
 
     private var status: Status = .idle {
         didSet {
-            self.statusChangeClosure?(status, "")
+            self.notifyStatusChanged()
         }
-    }
-
-    private func set(status: Status, text: String) {
-        self.status = status
-        self.statusChangeClosure?(self.status, text)
     }
 
     var statusChangeClosure: ((Status, String) -> ())?
 
-    // MARK:- Upload interface
-
-    // TODO assert on nil data
-    func upload(_ image: UIImage, to route: String) {
-        guard let data = image.jpegDataForPhotoUpload() else { return }
-        self.upload(data, to: route)
+    private func notifyStatusChanged() {
+        self.statusChangeClosure?(self.status, "")
     }
 
-    func upload(_ data: Data, to route: String) {
+    // MARK:- Upload interface
+
+    var uploadsDidChangeClosure: (([Upload]) -> ())?
+
+    private func notifyUploadsDidChange() {
+        self.uploadsDidChangeClosure?(self.currentUploads())
+    }
+
+    func upload(_ upload: Upload) {
         guard let realm = self.realm else { return }
-        let upload = Upload(route: route, data: data)
         try? realm.write { realm.add(upload) }
         if self.startOnUpload { self.start() }
+        self.notifyUploadsDidChange()
     }
 
     func start() {
@@ -89,6 +91,7 @@ class UploadManager {
         guard let realm = self.realm else { return }
         let objects = realm.objects(Upload.self)
         try? realm.write { realm.delete(objects) }
+        self.notifyUploadsDidChange()
     }
 
     func count() -> Int {
@@ -107,13 +110,11 @@ class UploadManager {
     // the upload later.  This could cause the queue to stall
     // completely if an API logic change would reject an upload.
     private func _upload(_ upload: Upload) {
-        guard let data = upload.data else { return }
         DriverAPI.api.upload(route: upload.route,
-                             data: data,
-                             dataName: "data",
-                             fileName: "whatever",
-                             mimeType: "image/jpeg")
+                             datasAndMimeTypes: upload.datasAndMimeTypes())
         {
+            // TODO https://app.asana.com/0/858610969087925/935159618076285/f
+            // TODO consider mechanism to discard repeatedly failing uploads
             [weak self] response in
             if response?.error == nil && response?.asError() == nil {
                 self?.complete(upload)
@@ -128,7 +129,7 @@ class UploadManager {
     // TODO this could be part of a polling mechanism for managers
     private func pause(for seconds: TimeInterval = 5) {
         guard self.status != .waiting else { return }
-        self.set(status: .waiting, text: "Upload failed, retry in \(seconds) seconds")
+        self.status = .waiting
         Timer.scheduledTimer(withTimeInterval: seconds, repeats: false) {
             [weak self] timer in
             guard self?.status == .waiting else { return }
@@ -140,6 +141,7 @@ class UploadManager {
         guard let realm = self.realm else { return }
         try? realm.write { realm.delete(upload) }
         self.currentUpload = nil
+        self.notifyUploadsDidChange()
     }
 
     private func uploads() -> Results<Upload>? {
@@ -148,7 +150,11 @@ class UploadManager {
         return uploads
     }
 
-    // TODO queue or stack?
+    func currentUploads() -> [Upload] {
+        guard let uploads = self.uploads() else { return [] }
+        return Array(uploads)
+    }
+
     private func nextUpload() -> Upload? {
         let uploads = self.uploads()
         return uploads?.first
@@ -161,16 +167,37 @@ class UploadManager {
 class Upload: Object {
 
     @objc dynamic var date = Date()
-    @objc dynamic var route: String = ""
-    @objc dynamic var data: Data?
+    @objc dynamic var route = ""
+    let datas = List<Data>()
+    let mimeTypeStrings = List<String>()
 
-    convenience init(route: String, image: UIImage) {
-        self.init(route: route, data: image.jpegDataForPhotoUpload())
+    convenience init?(route: String, parameters: RestAPIParameters? = nil, image: UIImage) {
+        guard let data = image.jpegDataForPhotoUpload() else { return nil }
+        self.init(route: route, parameters: parameters, data: data, mimeType: RestAPIMimeType.jpeg)
     }
 
-    convenience init(route: String, data: Data?) {
+    convenience init(route: String, data: Data, mimeType: RestAPIMimeType) {
         self.init()
         self.route = route
-        self.data = data
+        self.datas.append(data)
+        self.mimeTypeStrings.append(mimeType.rawValue)
+    }
+
+    convenience init(route: String, parameters: RestAPIParameters? = nil, data: Data, mimeType: RestAPIMimeType) {
+        self.init(route: route, data: data, mimeType: mimeType)
+        guard let parameters = parameters else { return }
+        guard let pdata = try? JSONSerialization.data(withJSONObject: parameters, options:[]) else { return }
+        self.datas.append(pdata)
+        self.mimeTypeStrings.append(RestAPIMimeType.json.rawValue)
+    }
+
+    func datasAndMimeTypes() -> [(Data, RestAPIMimeType)] {
+        assert(self.datas.count == self.mimeTypeStrings.count, "Data and mime type arrays must be equal count")
+        var tuples: [(Data, RestAPIMimeType)] = []
+        for i in 0..<self.datas.count {
+            let type = RestAPIMimeType(rawValue: self.mimeTypeStrings[i]) ?? RestAPIMimeType.invalid
+            tuples += [(self.datas[i], type)]
+        }
+        return tuples
     }
 }

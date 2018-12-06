@@ -148,15 +148,8 @@ class RequestManagerViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-
         super.viewWillAppear(animated)
-        self.updateUI()
-
-        DriverManager.shared.currentDriver() {
-            driver in
-            guard let driver = driver else { return }
-            RequestManager.shared.set(driver: driver)
-        }
+        RequestManager.shared.set(driver: DriverManager.shared.driver)
     }
 
     // MARK:- Actions

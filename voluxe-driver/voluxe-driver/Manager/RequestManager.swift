@@ -28,7 +28,8 @@ class RequestManager {
     // TODO get upcoming
     // TODO start polling for requests
     // TODO what else needs to happen if driver == nil?
-    func set(driver: Driver) {
+    func set(driver: Driver?) {
+//        guard driver.id != self.driver?.id else { return }
         self.driver = driver
         self.refreshRequests()
     }
@@ -85,7 +86,7 @@ class RequestManager {
 
     // TODO assert if no request
     func addInspection(photo: UIImage,
-                       type: OfflineInspection.InspectionType)
+                       type: InspectionType)
     {
         guard let request = self.request else { return }
         request.inspection(for: type) {
@@ -100,7 +101,7 @@ class RequestManager {
     // TODO assert on fails?
     private func upload(request: Request,
                         inspection: Inspection?,
-                        type: OfflineInspection.InspectionType,
+                        type: InspectionType,
                         photo: UIImage)
     {
         guard let realm = try? Realm() else { return }
@@ -120,40 +121,16 @@ class RequestManager {
         guard let realm = try? Realm() else { return }
         let inspections = realm.objects(OfflineInspection.self).filter { $0.isUploaded == false }
         guard let inspection = inspections.first else { return }
-        self.route(for: inspection) {
-            route in
-            guard let route = route else { return }
-            guard inspection.data.isEmpty == false else { return }
-            UploadManager.shared.upload(inspection.data, to: route)
-            inspection.markAsUploaded()
-        }
-    }
-
-    // Offline inspections may not have a route because the
-    // inspection ID is missing, so ask the API to create an
-    // inspection, then generate the route.  Note that this
-    // will update the backing store for the offline inspection.
-    private func route(for OfflineInspection: OfflineInspection,
-                       completion: @escaping ((String?) -> ()))
-    {
-        guard let request = OfflineInspection.request else {
-            completion(nil)
-            return
-        }
-
-        // TODO need to create different inspections based on type
-        guard let inspection = OfflineInspection.inspection else {
-            DriverAPI.createVehicleInspection(for: request) {
-                inspection, error in
-                guard let inspection = inspection else { completion(nil); return }
-                let route = DriverAPI.routeToUploadPhoto(inspection: inspection, request: request)
-                completion(route)
-            }
-            return
-        }
-
-        let route = DriverAPI.routeToUploadPhoto(inspection: inspection, request: request)
-        completion(route)
+//        self.route(for: inspection) {
+//            route, parameters in
+//            guard let route = route else { return }
+//            guard inspection.data.isEmpty == false else { return }
+//            UploadManager.shared.upload(inspection.data, to: route)
+//            inspection.markAsUploaded()
+//        }
+        guard let upload = inspection.upload() else { return }
+        UploadManager.shared.upload(upload)
+        inspection.markAsUploaded()
     }
 
     func clear() {
@@ -214,9 +191,9 @@ class RequestManager {
             [weak self] in
             self?.refreshing = false
         }
+        self.cleanup()
     }
 
-    // TODO this may not be needed
     private func refreshRequest(completion: (() -> ())) {
         guard let request = self.request else { return }
         DriverAPI.refresh(request) {
@@ -226,10 +203,11 @@ class RequestManager {
         }
     }
 
-    // TODO use the correct endpoint to get driver requests
     private func refreshRequests(completion: (() -> ())? = nil) {
         guard let driver = self.driver else { return }
-        DriverAPI.today(for: driver) {
+        let today = Date.earliestToday()
+        let weekFromToday = Date.oneWeekFromToday()
+        DriverAPI.requests(for: driver, from: today, to: weekFromToday) {
             [weak self] requests, error in
             if error == nil {
                 self?.requests = requests
@@ -251,7 +229,7 @@ class RequestManager {
 
 fileprivate extension Request {
 
-    func inspection(for type: OfflineInspection.InspectionType,
+    func inspection(for type: InspectionType,
                     completion: @escaping ((Inspection?) -> ()))
     {
         if type == .document {
@@ -293,15 +271,6 @@ fileprivate extension Request {
 
 // IMPORTANT do not use this class directly
 class OfflineInspection: Object {
-
-    // TODO does this belong with inspection?
-    // TODO too bad this can't be Type
-    enum InspectionType: String {
-        case document
-        case loaner
-        case vehicle
-        case unknown
-    }
 
     @objc dynamic var typeString = InspectionType.unknown.rawValue
     var type: InspectionType {
@@ -362,5 +331,16 @@ class OfflineInspection: Object {
     func markAsUploaded() {
         guard let realm = try? Realm() else { return }
         try? realm.write { self.isUploaded = true }
+    }
+}
+
+extension OfflineInspection {
+
+    func upload() -> Upload? {
+        guard let request = self.request else { return nil }
+        guard let inspection = self.inspection else { return nil }
+        let (route, parameters) = request.uploadRoute(for: inspection, of: self.type)
+        let upload = Upload(route: route, parameters: parameters, data: self.data, mimeType: RestAPIMimeType.jpeg)
+        return upload
     }
 }

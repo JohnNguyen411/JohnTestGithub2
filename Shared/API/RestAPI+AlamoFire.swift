@@ -71,6 +71,7 @@ extension RestAPI {
                   completion: completion)
     }
 
+    // TODO explain what bodyData override bodyParameters
     private func send(method: Alamofire.HTTPMethod,
                       route: RestAPIRoute,
                       headers: RestAPIHeaders,
@@ -104,7 +105,6 @@ extension RestAPI {
             return
         }
 
-        // TODO need to tap into response.error for status codes?
         let sentRequest = Alamofire.AF.request(encodedRequest)
         sentRequest.responseData {
             response in
@@ -140,34 +140,31 @@ extension RestAPI {
         #endif
     }
 
-    // TODO this might be too restrictive as an API
-    @available(*, deprecated)
     func upload(route: RestAPIRoute,
                 image: UIImage,
                 completion: @escaping RestAPICompletion)
     {
-        // TODO need to return error if failed data
-        guard let data = image.jpegDataForPhotoUpload() else { return }
-        self.upload(route: route,
-                    data: data,
-                    dataName: "photo",
-                    fileName: "photo.jpg",
-                    mimeType: "image/jpeg",
-                    completion: completion)
+        // TODO need to call completion with fabricated error response
+        guard let data = image.jpegDataForPhotoUpload() else {
+            assertionFailure("Image needs to be JPEG compatible")
+            return
+        }
+        let tuple = [(data, RestAPIMimeType.jpeg)]
+        self.upload(route: route, datasAndMimeTypes: tuple, completion: completion)
     }
 
-    // TODO is dataName and fileName appropriate?
+    // TODO this needs to be defined in RestAPI too
+    // TODO need RestAPI.MimeType?
     func upload(route: RestAPIRoute,
-                data: Data,
-                dataName: String,
-                fileName: String,
-                mimeType: String,
+                datasAndMimeTypes: [(Data, RestAPIMimeType)],
                 completion: @escaping RestAPICompletion)
     {
         let url = self.urlFromHost(for: route)
         let request = Alamofire.AF.upload(multipartFormData: {
             multiPartFormData in
-            multiPartFormData.append(data, withName: dataName, fileName: fileName, mimeType: mimeType)
+            for (data, mimeType) in datasAndMimeTypes {
+                multiPartFormData.append(data, withName: "data", mimeType: mimeType.rawValue)
+            }
         },
                                           to: url,
                                           method: .put,
