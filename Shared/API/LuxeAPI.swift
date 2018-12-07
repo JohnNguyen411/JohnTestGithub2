@@ -68,7 +68,7 @@ extension RestAPIResponse {
         guard let data = self.data else { return nil }
         do {
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .formatted(DateFormatter.luxeISO8601)
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601)
             if convertFromSnakeCase {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
             }

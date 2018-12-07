@@ -12,6 +12,9 @@ import UIKit
 class AppController: UIViewController {
 
     static let shared = AppController()
+
+    // MARK:- Lifecycle
+
     private init() {
         super.init(nibName: nil, bundle: nil)
         self.registerAPINotifications()
@@ -29,6 +32,13 @@ class AppController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.registerManagers()
+    }
+
+    // MARK:- Push notification permissions
 
     private var pushController: PushRequiredViewController?
 
@@ -49,6 +59,22 @@ class AppController: UIViewController {
             let controller = PushRequiredViewController()
             self.present(controller, animated: true)
             self.pushController = controller
+        }
+    }
+
+    // MARK:- Manager support
+
+    private func registerManagers() {
+
+        // when driver changes other managers need to know
+        DriverManager.shared.driverDidChangeClosure = {
+            driver in
+            RequestManager.shared.set(driver: driver)
+        }
+
+        RequestManager.shared.requestsDidChangeClosure = {
+            requests in
+            NSLog("REQUESTS changed to \(requests)")
         }
     }
 }

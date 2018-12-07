@@ -10,7 +10,6 @@ import Foundation
 
 extension UserDefaults {
 
-    // TODO is this the right component, feels a little odd
     func shouldShowUpdate(for version: LuxeAPI.Version) -> Bool {
         guard version.isKnown else { return false }
         let checkedVersion = self.checkedVersion ?? LuxeAPI.Version(value: Bundle.main.version)

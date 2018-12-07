@@ -24,6 +24,7 @@
 		530BCD5F2177D341005327E7 /* LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530BCD4C2177AFBE005327E7 /* LuxeAPI.swift */; };
 		530BCD602177D345005327E7 /* RestAPI+AlamoFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530BCD4E2177B153005327E7 /* RestAPI+AlamoFire.swift */; };
 		530BCD612177D348005327E7 /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530BCD492177AAB2005327E7 /* RestAPI.swift */; };
+		531F9C2021B874110027F43D /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531F9C1F21B874110027F43D /* Date+Extensions.swift */; };
 		533046E5218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */; };
 		533046E6218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */; };
 		533046E821877847007CE01C /* Inspection_APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533046E721877847007CE01C /* Inspection_APITests.swift */; };
@@ -96,6 +97,7 @@
 		53C190F2219B459D00CBC410 /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190F1219B459D00CBC410 /* DateFormatter+LuxeAPI.swift */; };
 		53C190F3219B459D00CBC410 /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190F1219B459D00CBC410 /* DateFormatter+LuxeAPI.swift */; };
 		53C1962521B59F9E00DCAEBA /* UIView+Spin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C1962421B59F9E00DCAEBA /* UIView+Spin.swift */; };
+		53C1962721B5DE3600DCAEBA /* DriverManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C1962621B5DE3600DCAEBA /* DriverManagerViewController.swift */; };
 		53DA9CA3217F66B900ABC414 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DA9CA2217F66B900ABC414 /* Location.swift */; };
 		53DA9CA4217F66B900ABC414 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DA9CA2217F66B900ABC414 /* Location.swift */; };
 		53DA9CA6217F9D5F00ABC414 /* AdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DA9CA5217F9D5E00ABC414 /* AdminAPI.swift */; };
@@ -150,6 +152,7 @@
 		530BCD4E2177B153005327E7 /* RestAPI+AlamoFire.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RestAPI+AlamoFire.swift"; sourceTree = "<group>"; };
 		530BCD512177D25E005327E7 /* XCUIElement+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCUIElement+Test.swift"; sourceTree = "<group>"; };
 		530BCD5D2177D2D5005327E7 /* XCTest+Test.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "XCTest+Test.swift"; sourceTree = "<group>"; };
+		531F9C1F21B874110027F43D /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverAPI+Inspection.swift"; sourceTree = "<group>"; };
 		533046E721877847007CE01C /* Inspection_APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inspection_APITests.swift; sourceTree = "<group>"; };
 		533047042188D706007CE01C /* AppController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppController.swift; sourceTree = "<group>"; };
@@ -217,6 +220,7 @@
 		53C190EE219B2ECD00CBC410 /* GridLayoutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridLayoutViewController.swift; sourceTree = "<group>"; };
 		53C190F1219B459D00CBC410 /* DateFormatter+LuxeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+LuxeAPI.swift"; sourceTree = "<group>"; };
 		53C1962421B59F9E00DCAEBA /* UIView+Spin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Spin.swift"; sourceTree = "<group>"; };
+		53C1962621B5DE3600DCAEBA /* DriverManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverManagerViewController.swift; sourceTree = "<group>"; };
 		53DA9CA2217F66B900ABC414 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		53DA9CA5217F9D5E00ABC414 /* AdminAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminAPI.swift; sourceTree = "<group>"; };
 		53DA9CA72180C4AB00ABC414 /* Booking.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Booking.swift; sourceTree = "<group>"; };
@@ -381,6 +385,7 @@
 			isa = PBXGroup;
 			children = (
 				533047182188D833007CE01C /* Bundle+Voluxe.swift */,
+				531F9C1F21B874110027F43D /* Date+Extensions.swift */,
 				53C190F1219B459D00CBC410 /* DateFormatter+LuxeAPI.swift */,
 				533047172188D833007CE01C /* NSObject+Voluxe.swift */,
 				538C4D9C218A45CA00922B16 /* Thread+Assert.swift */,
@@ -394,6 +399,7 @@
 			isa = PBXGroup;
 			children = (
 				5330471C2188D895007CE01C /* DebugSettingsViewController.swift */,
+				53C1962621B5DE3600DCAEBA /* DriverManagerViewController.swift */,
 				53C190EE219B2ECD00CBC410 /* GridLayoutViewController.swift */,
 				53B654B821ADB25600FC3ACA /* RequestManagerViewController.swift */,
 				5380089B21A32CF800E47660 /* UploadManagerViewController.swift */,
@@ -931,6 +937,7 @@
 				530BCD4D2177AFBE005327E7 /* LuxeAPI.swift in Sources */,
 				533047072188D706007CE01C /* AppDelegate.swift in Sources */,
 				53DA9CBA2180F44E00ABC414 /* Inspection.swift in Sources */,
+				531F9C2021B874110027F43D /* Date+Extensions.swift in Sources */,
 				53BD5132219E202300E84995 /* AppDelegate+Realm.swift in Sources */,
 				53B654B721ADA83500FC3ACA /* RequestManager.swift in Sources */,
 				53C190E7219B2A9D00CBC410 /* UIView+Layout.swift in Sources */,
@@ -963,6 +970,7 @@
 				53C190E9219B2A9D00CBC410 /* Color.swift in Sources */,
 				52FFBBAE21ADF78D00FAD7BE /* UserDefaults+Debug.swift in Sources */,
 				53C190ED219B2A9D00CBC410 /* Label.swift in Sources */,
+				53C1962721B5DE3600DCAEBA /* DriverManagerViewController.swift in Sources */,
 				5380089C21A32CF800E47660 /* UploadManagerViewController.swift in Sources */,
 				5330471D2188D896007CE01C /* DebugSettingsViewController.swift in Sources */,
 				53C190EA219B2A9D00CBC410 /* Layout.swift in Sources */,

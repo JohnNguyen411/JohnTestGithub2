@@ -42,6 +42,16 @@ struct RestAPIResponse {
 
 // TODO https://app.asana.com/0/858610969087925/908722711775269/f
 // TODO documentation
+// TODO https://app.asana.com/0/858610969087925/935159618076289/f
+// TODO should this be nested in RestAPI?
+enum RestAPIMimeType: String {
+    case invalid
+    case jpeg = "image/jpeg"
+    case json = "application/json"
+}
+
+// TODO https://app.asana.com/0/858610969087925/908722711775269/f
+// TODO documentation
 typealias RestAPICompletion = ((RestAPIResponse?) -> ())
 
 // TODO https://app.asana.com/0/858610969087925/908722711775269/f

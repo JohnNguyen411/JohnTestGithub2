@@ -11,7 +11,8 @@ import UIKit
 
 extension UIImage {
 
-    // TODO resize photo to maximum size first
+    // TODO https://app.asana.com/0/858610969087925/935159618076288/f
+    // TODO does this need to be downscaled?
     func jpegDataForPhotoUpload() -> Data? {
         return self.jpegData(compressionQuality: 0.5)
     }
