@@ -3042,7 +3042,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BRANCH_APP_DOMAIN = "luxebyvolvo.test-app.link";
+				BRANCH_APP_DOMAIN = "volvo-valet.test-app.link";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/Development.entitlements";
 				DEVELOPMENT_TEAM = 396JF7EZ43;
@@ -3191,7 +3191,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Dev";
-				BRANCH_APP_DOMAIN = "luxebyvolvo.test-app.link";
+				BRANCH_APP_DOMAIN = "volvo-valet.test-app.link";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/Development.entitlements";
 				DEVELOPMENT_TEAM = 396JF7EZ43;
@@ -3338,7 +3338,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Staging";
-				BRANCH_APP_DOMAIN = "luxebyvolvo.test-app.link";
+				BRANCH_APP_DOMAIN = "volvo-valet.test-app.link";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/Development.entitlements";
 				DEVELOPMENT_TEAM = 396JF7EZ43;
@@ -3479,7 +3479,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BRANCH_APP_DOMAIN = luxebyvolvo.app.link;
+				BRANCH_APP_DOMAIN = "volvo-valet.app.link";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/AppStore.entitlements";
 				DEVELOPMENT_TEAM = H3N44P4Y7Y;
@@ -3616,7 +3616,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-Prod";
-				BRANCH_APP_DOMAIN = "luxebyvolvo.test-app.link";
+				BRANCH_APP_DOMAIN = "volvo-valet.test-app.link";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/Development.entitlements";
 				DEVELOPMENT_TEAM = 396JF7EZ43;
@@ -3753,7 +3753,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				BRANCH_APP_DOMAIN = luxebyvolvo.app.link;
+				BRANCH_APP_DOMAIN = "volvo-valet.app.link";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-customer/Resources/Development.entitlements";
 				DEVELOPMENT_TEAM = 396JF7EZ43;
