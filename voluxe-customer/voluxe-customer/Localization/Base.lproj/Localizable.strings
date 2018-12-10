@@ -60,7 +60,7 @@
 "VehicleIdentificationNumber" = "Vehicle Identification Number (VIN)";
 "VehicleIdentificationNumber_Placeholder" = "0AVAV00AVA00000";
 "MobilePhoneNumber" = "Mobile Phone Number";
-"MobilePhoneNumber_Placeholder" = "(555) 555-5555";
+"MobilePhoneNumber_Placeholder" = "201-555-0123";
 "MobilePhoneNumberExplain" = "We require your phone number to coordinate during pickup and delivery";
 "MobilePhoneNumberResetPassword" = "We require your phone number to reset your password";
 "MobilePhoneNumberConfirm" = "We’ll send you a text message to confirm the number.";
