@@ -79,19 +79,33 @@ class VLVerticalTextField : VLTextField {
         titleLabel.textAlignment = .left
         
         titleLabel.textColor = .luxeCobaltBlue()
-        
-        textField.font = .volvoSansProRegular(size: 14)
         titleLabel.font = .volvoSansProMedium(size: 12)
-        
-        var placeholderAttributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.volvoSansProRegular(size: 14), NSAttributedString.Key.foregroundColor: UIColor.luxeLightGray()]
-        
-        if let kern = kern {
-            placeholderAttributes[NSAttributedString.Key.kern] = kern
-            textField.defaultTextAttributes
-                .updateValue(kern, forKey: NSAttributedString.Key.kern)
+
+        if !isPhoneNumber {
+            textField.font = .volvoSansProRegular(size: 14)
+            
+            var placeholderAttributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.volvoSansProRegular(size: 14), NSAttributedString.Key.foregroundColor: UIColor.luxeLightGray()]
+            
+            if let kern = kern {
+                placeholderAttributes[NSAttributedString.Key.kern] = kern
+                textField.defaultTextAttributes
+                    .updateValue(kern, forKey: NSAttributedString.Key.kern)
+            }
+            
+            textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: placeholderAttributes)
+        } else {
+            textField.font = UIFont.systemFont(ofSize: 14)
+            
+            var placeholderAttributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.luxeLightGray()]
+            
+            if let kern = kern {
+                placeholderAttributes[NSAttributedString.Key.kern] = kern
+                textField.defaultTextAttributes
+                    .updateValue(kern, forKey: NSAttributedString.Key.kern)
+            }
+            
+            textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: placeholderAttributes)
         }
-        
-        textField.attributedPlaceholder = NSAttributedString(string: placeholder, attributes: placeholderAttributes)
 
     }
     
@@ -157,17 +171,25 @@ class VLVerticalTextField : VLTextField {
         textField.snp.makeConstraints { (make) -> Void in
             make.left.right.equalToSuperview()
             make.top.equalTo(self)
-            make.height.equalTo(25)
         }
        
         separator.backgroundColor = .luxeCobaltBlue()
         addSubview(separator)
         
-        separator.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview()
-            make.top.equalTo(textField.snp.bottom).offset(1)
-            make.height.equalTo(1)
+        if textFieldIsPhoneNumber {
+            separator.snp.makeConstraints { (make) -> Void in
+                make.left.right.equalToSuperview()
+                make.top.equalTo(textField.snp.bottom).offset(5)
+                make.height.equalTo(1)
+            }
+        } else {
+            separator.snp.makeConstraints { (make) -> Void in
+                make.left.right.equalToSuperview()
+                make.top.equalTo(textField.snp.bottom).offset(3)
+                make.height.equalTo(1)
+            }
         }
+        
         
         titleLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalToSuperview()

@@ -8,11 +8,12 @@
 
 import Foundation
 import UIKit
-import PhoneNumberKit
+import FlagPhoneNumber
 import RealmSwift
 import MBProgressHUD
+import libPhoneNumber_iOS
 
-class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDelegate {
+class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDelegate, FPNTextFieldDelegate {
     
     public static let tosURL = "https://terms-luxebyvolvo.luxe.com/"
     public static let privacyURL = "https://privacy-luxebyvolvo.luxe.com/"
@@ -20,9 +21,11 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
     
     let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
-    let phoneNumberKit = PhoneNumberKit()
-    var validPhoneNumber: PhoneNumber?
-    
+    var validPhoneNumber: NBPhoneNumber?
+    var countryCode: String?
+
+    let phoneUtil = NBPhoneNumberUtil.sharedInstance()
+
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
         textView.text = .MobilePhoneNumberExplain
@@ -64,6 +67,11 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     
     init() {
         super.init(screen: .signupPhone)
+        
+        if let textField = phoneNumberTextField.textField as? FPNTextField {
+            textField.flagPhoneNumberDelegate = self
+            countryCode = textField.getDefaultCountryCode()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -75,9 +83,6 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         realm = try? Realm()
         
-        let phoneNumberTF: PhoneNumberTextField = phoneNumberTextField.textField as! PhoneNumberTextField
-        phoneNumberTF.maxDigits = 10
-
         // support autofill
         self.phoneNumberTextField.textField.textContentType = .telephoneNumber
         self.emailTextField.textField.textContentType = .emailAddress
@@ -183,7 +188,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         
         phoneNumberConfirmLabel.snp.makeConstraints { (make) -> Void in
             make.left.right.equalTo(phoneNumberLabel)
-            make.top.equalTo(phoneNumberTextField.snp.bottom).offset(-34)
+            make.top.equalTo(phoneNumberTextField.snp.bottom).offset(-30)
         }
         
         tosCheckbox.snp.makeConstraints { (make) -> Void in
@@ -223,17 +228,11 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         return emailTest.evaluate(with: email)
     }
     
-    func isPhoneNumberValid(phoneNumber: String?) -> Bool {
-        guard let phoneNumber = phoneNumber else { return false }
-        guard let textField = phoneNumberTextField.textField as? PhoneNumberTextField else { return false }
-        
-        do {
-            validPhoneNumber = try phoneNumberKit.parse(phoneNumber, withRegion: textField.currentRegion, ignoreType: true)
+    func isPhoneNumberValid() -> Bool {
+        if validPhoneNumber != nil {
             return true
-        } catch {
-            return false
         }
-        
+        return false
     }
     
     private func onSignupError(error: LuxeAPIError? = nil) {
@@ -272,7 +271,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     // MARK:- Validation
     
     override func checkTextFieldsValidity() -> Bool {
-        let enabled = isEmailValid(email: emailTextField.textField.text) && isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text)
+        let enabled = isEmailValid(email: emailTextField.textField.text) && isPhoneNumberValid()
         canGoNext(nextEnabled: enabled)
         return enabled
     }
@@ -280,6 +279,31 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     @objc func textFieldDidChange(_ textField: UITextField) {
         textField.trimText()
         _ = checkTextFieldsValidity()
+    }
+    
+    // MARK: - FPNTextFieldDelegate
+
+    func fpnDidSelectCountry(name: String, dialCode: String, code: String) {
+        countryCode = code
+    }
+    
+    func fpnDidValidatePhoneNumber(textField: FPNTextField, isValid: Bool) {
+        if let countryCode = countryCode {
+            if isValid {
+                validPhoneNumber = textField.getValidNumber(phoneNumber: textField.getRawPhoneNumber() ?? "", countryCode: countryCode)
+                return
+            }
+           
+            let phoneNumber = textField.getInputPhoneNumber()
+            textField.setFlagForPhoneNumber(phoneNumber: phoneNumber)
+            
+            validPhoneNumber = textField.getValidNumber(phoneNumber: phoneNumber ?? "", countryCode: countryCode)
+            if let nbPhoneNumber = validPhoneNumber {
+                textField.set(phoneNumber: nbPhoneNumber.nationalNumber.stringValue)
+            }
+        } else {
+            validPhoneNumber = nil
+        }
     }
 
     // MARK: UITextFieldDelegate
@@ -321,9 +345,13 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         }
         
         UserManager.sharedInstance.signupCustomer.email = emailTextField.textField.text
-        UserManager.sharedInstance.signupCustomer.phoneNumber = phoneNumberKit.format(validPhoneNumber, toType: .e164)
-        // signup
+        do {
+            if let phoneUtil = self.phoneUtil {
+                UserManager.sharedInstance.signupCustomer.phoneNumber = try phoneUtil.format(validPhoneNumber, numberFormat: .E164)
+            }
+        } catch {}
         
+        // signup
         let signupCustomer = UserManager.sharedInstance.signupCustomer
         
         if signupInProgress {
