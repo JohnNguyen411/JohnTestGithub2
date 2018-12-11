@@ -48,12 +48,55 @@ class DriverManagerViewController: UIViewController {
         return button
     }()
 
+    private let locationLabel: UILabel = {
+        let label = UILabel()
+        label.font = UIFont.systemFont(ofSize: 12)
+        label.text = "Update location"
+        return label
+    }()
+
+    private let locationToggle: UISwitch = {
+        let toggle = UISwitch()
+        toggle.addTarget(self, action: #selector(locationToggleValueChanged), for: .valueChanged)
+        return toggle
+    }()
+
+    private let locationField: UITextField = {
+        let field = UITextField()
+        field.borderStyle = .roundedRect
+        field.font = UIFont.systemFont(ofSize: 10)
+        field.isUserInteractionEnabled = false
+        field.placeholder = "No location"
+        return field
+    }()
+
+    private let tokenField: UITextField = {
+        let field = UITextField()
+        field.borderStyle = .roundedRect
+        field.font = UIFont.systemFont(ofSize: 10)
+        field.isUserInteractionEnabled = false
+        field.placeholder = "No push token"
+        return field
+    }()
+
     // MARK:- Lifecycle
 
     convenience init() {
+
         self.init(nibName: nil, bundle: nil)
+
         DriverManager.shared.driverDidChangeClosure = {
             [weak self] driver in
+            self?.updateUI()
+        }
+
+        DriverManager.shared.locationDidChangeClosure = {
+            [weak self] location in
+            self?.updateUI()
+        }
+
+        DriverManager.shared.pushTokenDidChangeClosure = {
+            [weak self] token in
             self?.updateUI()
         }
     }
@@ -82,6 +125,19 @@ class DriverManagerViewController: UIViewController {
 
         gridView.add(subview: self.logoutButton, from: 4, to: 5)
         self.logoutButton.pinTopToBottomOf(view: self.passwordField, spacing: 20)
+
+        gridView.add(subview: self.locationToggle, to: 1)
+        self.locationToggle.pinTopToBottomOf(view: self.logoutButton, spacing: 20)
+
+        gridView.add(subview: self.locationLabel, from: 2, to: 6)
+        self.locationLabel.pinTopToBottomOf(view: self.logoutButton, spacing: 20)
+        self.locationLabel.heightAnchor.constraint(equalTo: self.locationToggle.heightAnchor).isActive = true
+
+        gridView.add(subview: self.locationField, from: 1, to: 6)
+        self.locationField.pinTopToBottomOf(view: self.locationLabel, spacing: 20)
+
+        gridView.add(subview: self.tokenField, from: 1, to: 6)
+        self.tokenField.pinTopToBottomOf(view: self.locationField, spacing: 20)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -94,9 +150,15 @@ class DriverManagerViewController: UIViewController {
     // MARK:- Update UI
 
     private func updateUI() {
-        let driver = DriverManager.shared.driver
+        let manager = DriverManager.shared
+        let driver = manager.driver
         self.loginButton.isEnabled = driver == nil
         self.logoutButton.isEnabled = driver != nil
+        self.locationToggle.isEnabled = manager.canUpdateLocation
+        self.locationToggle.isOn = manager.isUpdatingLocation
+        if let location = manager.location { self.locationField.text = "\(location)" }
+        else { self.locationField.text = nil }
+        self.tokenField.text = "\(manager.pushToken ?? "")"
     }
 
     // MARK:- Actions
@@ -116,6 +178,11 @@ class DriverManagerViewController: UIViewController {
     @objc func logoutButtonTouchUpInside() {
         DriverManager.shared.logout()
         self.updateUI()
+    }
+
+    @objc func locationToggleValueChanged() {
+        let manager = DriverManager.shared
+        self.locationToggle.isOn ? manager.startLocationUpdates() : manager.stopLocationUpdates()
     }
 }
 

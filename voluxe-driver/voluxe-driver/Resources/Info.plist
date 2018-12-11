@@ -62,7 +62,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>FirebaseScreenReportingEnabled</key>
-	<false/>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location updates are required</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location updates are required</string>
 </dict>
 </plist>

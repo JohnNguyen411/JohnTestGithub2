@@ -1,5 +1,5 @@
 //
-//  PushRequiredViewController.swift
+//  PermissionViewController.swift
 //  voluxe-driver
 //
 //  Created by Christoph on 10/31/18.
@@ -9,17 +9,39 @@
 import Foundation
 import UIKit
 
-class PushRequiredViewController: UIViewController {
+enum Permission: String {
+    case location = "Location Updates"
+    case push = "Push Notifications"
+}
+
+class PermissionViewController: UIViewController {
+
+    // the type of permission this controller is prompting for
+    let permission: Permission
+
+    // MARK:- Layout
 
     private let button: UIButton = {
         let button = UIButton(type: .custom)
         button.titleLabel?.numberOfLines = 0
         button.translatesAutoresizingMaskIntoConstraints = false
         button.addTarget(self, action: #selector(settingsButtonTouchUpInside), for: .touchUpInside)
-        button.setTitle("Push Notifications Disabled\nOpen Settings", for: .normal)
         button.setTitleColor(.white, for: .normal)
         return button
     }()
+
+    // MARK:- Lifecycle
+
+    init(permission: Permission) {
+        self.permission = permission
+        super.init(nibName: nil, bundle: nil)
+        let title = "\(permission.rawValue) Disabled\nOpen Settings"
+        self.button.setTitle(title, for: .normal)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +50,8 @@ class PushRequiredViewController: UIViewController {
         self.button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
         self.button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
     }
+
+    // MARK:- Actions
 
     @objc func settingsButtonTouchUpInside() {
         let string = UIApplication.openSettingsURLString

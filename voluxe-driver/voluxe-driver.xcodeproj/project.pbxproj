@@ -54,7 +54,7 @@
 		5380089E21A33C2F00E47660 /* UIColor+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5380089D21A33C2F00E47660 /* UIColor+Random.swift */; };
 		5380089F21A33C2F00E47660 /* UIColor+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5380089D21A33C2F00E47660 /* UIColor+Random.swift */; };
 		538008A121A33D9200E47660 /* UIView+GridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538008A021A33D9200E47660 /* UIView+GridLayout.swift */; };
-		538C4D9B218A3FA600922B16 /* PushRequiredViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538C4D9A218A3FA600922B16 /* PushRequiredViewController.swift */; };
+		538C4D9B218A3FA600922B16 /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538C4D9A218A3FA600922B16 /* PermissionViewController.swift */; };
 		538C4D9D218A45CA00922B16 /* Thread+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538C4D9C218A45CA00922B16 /* Thread+Assert.swift */; };
 		53B25DE02176960D002B846B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 53B25DDF2176960D002B846B /* Assets.xcassets */; };
 		53B25DE32176960D002B846B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 53B25DE12176960D002B846B /* LaunchScreen.storyboard */; };
@@ -123,6 +123,9 @@
 		53DA9CC42181020400ABC414 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DA9CC22181020400ABC414 /* Task.swift */; };
 		53DA9CC62181063E00ABC414 /* Request_APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53DA9CC52181063E00ABC414 /* Request_APITests.swift */; };
 		53E7F17E219A49A600390A5D /* LuxeAPI+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E7F17D219A49A600390A5D /* LuxeAPI+Notifications.swift */; };
+		53EEB19C21B9854D0051B8D5 /* AppDelegate+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB19B21B9854D0051B8D5 /* AppDelegate+Location.swift */; };
+		53EEB1A021B9AFA60051B8D5 /* AppController+Permission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB19F21B9AFA60051B8D5 /* AppController+Permission.swift */; };
+		53EEB1A321B9E3060051B8D5 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1A221B9E3060051B8D5 /* Log.swift */; };
 		CA88B574BCE548756ACE2209 /* Pods_voluxe_driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826625F7F567DBAA71221A14 /* Pods_voluxe_driver.framework */; };
 		F51411018D2C32BCED143614 /* Pods_voluxe_driverAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84BB7F4452F4139EEE1DDC06 /* Pods_voluxe_driverAPITests.framework */; };
 		FC29CCC2DFE7AC9B41E99E99 /* Pods_voluxe_driverUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5305017B5E03E3CC79F2E4 /* Pods_voluxe_driverUnitTests.framework */; };
@@ -179,7 +182,7 @@
 		5380089B21A32CF800E47660 /* UploadManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadManagerViewController.swift; sourceTree = "<group>"; };
 		5380089D21A33C2F00E47660 /* UIColor+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Random.swift"; sourceTree = "<group>"; };
 		538008A021A33D9200E47660 /* UIView+GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GridLayout.swift"; sourceTree = "<group>"; };
-		538C4D9A218A3FA600922B16 /* PushRequiredViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushRequiredViewController.swift; sourceTree = "<group>"; };
+		538C4D9A218A3FA600922B16 /* PermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
 		538C4D9C218A45CA00922B16 /* Thread+Assert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Thread+Assert.swift"; sourceTree = "<group>"; };
 		53B25DD52176960C002B846B /* voluxe-driver.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "voluxe-driver.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		53B25DDF2176960D002B846B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -235,6 +238,9 @@
 		53DA9CC22181020400ABC414 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		53DA9CC52181063E00ABC414 /* Request_APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request_APITests.swift; sourceTree = "<group>"; };
 		53E7F17D219A49A600390A5D /* LuxeAPI+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LuxeAPI+Notifications.swift"; sourceTree = "<group>"; };
+		53EEB19B21B9854D0051B8D5 /* AppDelegate+Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Location.swift"; sourceTree = "<group>"; };
+		53EEB19F21B9AFA60051B8D5 /* AppController+Permission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppController+Permission.swift"; sourceTree = "<group>"; };
+		53EEB1A221B9E3060051B8D5 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		68BDE64C3234A652C358A12B /* Pods-voluxe-driverUnitTests.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.app store.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.app store.xcconfig"; sourceTree = "<group>"; };
 		6C25190B6650EA5FEA9E0C55 /* Pods-voluxe-driverUnitTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.development.xcconfig"; sourceTree = "<group>"; };
 		6E5305017B5E03E3CC79F2E4 /* Pods_voluxe_driverUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -362,9 +368,11 @@
 				533047042188D706007CE01C /* AppController.swift */,
 				533047082188D760007CE01C /* AppController+Debug.swift */,
 				53B43F9E218BB86200EF847E /* AppController+DriverAPI.swift */,
+				53EEB19F21B9AFA60051B8D5 /* AppController+Permission.swift */,
 				53B43FA2218CB6AC00EF847E /* AppController+Test.swift */,
 				533047052188D706007CE01C /* AppDelegate.swift */,
 				533047232188F85B007CE01C /* AppDelegate+Fetch.swift */,
+				53EEB19B21B9854D0051B8D5 /* AppDelegate+Location.swift */,
 				5330472621890B1E007CE01C /* AppDelegate+Push.swift */,
 				53BD5131219E202300E84995 /* AppDelegate+Realm.swift */,
 			);
@@ -424,6 +432,7 @@
 				533047162188D833007CE01C /* Extensions */,
 				5330470C2188D7C5007CE01C /* Debug */,
 				536FFD8E2177901D00C83F89 /* Scripts */,
+				53EEB1A121B9E2ED0051B8D5 /* Service */,
 				530BCD502177D25E005327E7 /* Tests */,
 				536FFD832177901D00C83F89 /* UI */,
 			);
@@ -471,7 +480,7 @@
 		538C4D99218A3F6F00922B16 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				538C4D9A218A3FA600922B16 /* PushRequiredViewController.swift */,
+				538C4D9A218A3FA600922B16 /* PermissionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -579,6 +588,14 @@
 				53DA9CAD2180C60D00ABC414 /* Vehicle.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		53EEB1A121B9E2ED0051B8D5 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				53EEB1A221B9E3060051B8D5 /* Log.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		FEAD62F53F4593197B093570 /* Frameworks */ = {
@@ -941,6 +958,7 @@
 				53BD5132219E202300E84995 /* AppDelegate+Realm.swift in Sources */,
 				53B654B721ADA83500FC3ACA /* RequestManager.swift in Sources */,
 				53C190E7219B2A9D00CBC410 /* UIView+Layout.swift in Sources */,
+				53EEB19C21B9854D0051B8D5 /* AppDelegate+Location.swift in Sources */,
 				538C4D9D218A45CA00922B16 /* Thread+Assert.swift in Sources */,
 				538008A121A33D9200E47660 /* UIView+GridLayout.swift in Sources */,
 				530BCD4A2177AAB2005327E7 /* RestAPI.swift in Sources */,
@@ -957,6 +975,7 @@
 				5380089E21A33C2F00E47660 /* UIColor+Random.swift in Sources */,
 				533047242188F85B007CE01C /* AppDelegate+Fetch.swift in Sources */,
 				53B577B5219CAB4A00AAEB8D /* DriverAPI.swift in Sources */,
+				53EEB1A021B9AFA60051B8D5 /* AppController+Permission.swift in Sources */,
 				524C1FF9219E4E82003AA733 /* AdminAPI+Driver.swift in Sources */,
 				53DA9CB12180C7AC00ABC414 /* Request.swift in Sources */,
 				53DA9CAE2180C60D00ABC414 /* Vehicle.swift in Sources */,
@@ -984,7 +1003,8 @@
 				533046E5218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */,
 				53B43F9A218B77DE00EF847E /* UserDefaults+LuxeAPI.swift in Sources */,
 				53B43FA3218CB6AC00EF847E /* AppController+Test.swift in Sources */,
-				538C4D9B218A3FA600922B16 /* PushRequiredViewController.swift in Sources */,
+				538C4D9B218A3FA600922B16 /* PermissionViewController.swift in Sources */,
+				53EEB1A321B9E3060051B8D5 /* Log.swift in Sources */,
 				533047062188D706007CE01C /* AppController.swift in Sources */,
 				53C190EF219B2ECD00CBC410 /* GridLayoutViewController.swift in Sources */,
 				53C1962521B59F9E00DCAEBA /* UIView+Spin.swift in Sources */,
