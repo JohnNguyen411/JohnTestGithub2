@@ -26,8 +26,8 @@ extension DriverAPI {
                          completion: @escaping (([Request], LuxeAPIError?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/requests"
-        let fromString = DateFormatter.iso8601.string(from: fromDate)
-        let toString = DateFormatter.iso8601.string(from: toDate)
+        let fromString = DateFormatter.utcISO8601.string(from: fromDate)
+        let toString = DateFormatter.utcISO8601.string(from: toDate)
         let parameters: RestAPIParameters = ["start": fromString,
                                              "end": toString]
         self.api.get(route: route, queryParameters: parameters) {

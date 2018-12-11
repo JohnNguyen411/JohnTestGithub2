@@ -16,5 +16,7 @@ extension DateFormatter {
         dateFormat = format
     }
 
-    static let iso8601 = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", locale: "en_US_POSIX")
+    static let localISO8601 = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSSZ", locale: "en_US_POSIX")
+    static let utcISO8601 = DateFormatter(withFormat: "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'", locale: "en_US_POSIX")
+
 }
