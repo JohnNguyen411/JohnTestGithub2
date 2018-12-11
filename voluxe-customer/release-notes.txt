@@ -1,3 +1,6 @@
+v1.3.0 (206)
+Minor bugfixes on Country Picker
+
 v1.3.0 (205)
 App Rebranding
 Country picker on Signup/Edit phone number
