@@ -62,6 +62,7 @@ extension AppController {
     func launch() {
         // TODO resume() is called just for simplicity
         // launch behaviour will be different
+        self.showLanding(animated: false)
         self.resume()
     }
 
@@ -75,5 +76,18 @@ extension AppController {
 
     func exit() {
         UserDefaults.standard.synchronize()
+    }
+}
+
+// MARK:- Launch support
+
+extension AppController {
+
+    // TODO should remove any other child controllers
+    func showLanding(animated: Bool = true) {
+        let controller = LandingViewController()
+        self.addChild(controller)
+        Layout.fill(view: self.view, with: controller.view)
+        controller.didMove(toParent: self)
     }
 }

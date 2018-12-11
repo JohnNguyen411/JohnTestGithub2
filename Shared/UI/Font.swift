@@ -149,6 +149,8 @@ extension UIFont.TextStyle {
 
 // MARK:- Fonts by design
 
+// TODO this should be defined as a protocl
+// with specific implementations like Volvo, Polestar, etc
 extension Font {
 
     struct Volvo {
@@ -162,7 +164,7 @@ extension Font {
         static let subtitle2 = FontWeight.medium(size: 14)
         static let body1 = FontWeight.regular(size: 16)
         static let body2 = FontWeight.regular(size: 14)
-        static let button = FontWeight.medium(size: 14) // should be in functional fonts
+        static let button = UIFont.systemFont(ofSize: 14, weight: .medium)
         static let caption = FontWeight.regular(size: 12)
         static let overline = FontWeight.medium(size: 10)
     }
