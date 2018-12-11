@@ -222,9 +222,10 @@ class DebugSettingsViewController: DebugTableViewController {
                                              actionClosure:
             {
                 _ in
+                UserDefaults.standard.enableAlamoFireLogging = !UserDefaults.standard.enableAlamoFireLogging
                 //TODO: figure out logging for AlamoFire5
                 /*
-                UserDefaults.standard.enableAlamoFireLogging = !UserDefaults.standard.enableAlamoFireLogging
+                 UserDefaults.standard.enableAlamoFireLogging = !UserDefaults.standard.enableAlamoFireLogging
                 if UserDefaults.standard.enableAlamoFireLogging {
                     NetworkActivityLogger.shared.level = .debug
                     NetworkActivityLogger.shared.startLogging()

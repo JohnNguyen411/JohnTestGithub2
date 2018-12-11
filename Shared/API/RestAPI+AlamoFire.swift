@@ -108,7 +108,15 @@ extension RestAPI {
         let sentRequest = Alamofire.AF.request(encodedRequest)
         sentRequest.responseData {
             response in
-            let apiResponse = RestAPIResponse(data: response.result.value, error: response.error, statusCode: response.response?.statusCode)
+            // TODO: for some reason, with empty body even with 204 or 205, it returns an error, which it should not.
+            // So, manual workaround for now:
+            var error = response.error
+            let emptyResponseCodes = DataResponseSerializer.defaultEmptyResponseCodes
+        
+            if let statusCode = response.response?.statusCode, error != nil && emptyResponseCodes.contains(statusCode) {
+                error = nil
+            }
+            let apiResponse = RestAPIResponse(data: response.result.value, error: error, statusCode: response.response?.statusCode)
             self.inspect(urlResponse: response.response, apiResponse: apiResponse)
             completion?(apiResponse)
         }
