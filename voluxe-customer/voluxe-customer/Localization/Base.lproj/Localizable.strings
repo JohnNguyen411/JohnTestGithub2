@@ -91,7 +91,7 @@
 "ColorPlaceholder" = "Black";
 "AccountAlreadyExist" = "An account already exist with that email, please try Login instead.";
 "PhoneNumberInvalid" = "The provided phone number is correctly formatted but does not appear to be a valid phone number.";
-"InvalidVerificationCode" = "Invalid Code.";
+"InvalidVerificationCode" = "Invalid verification Code.";
 "InvalidCredentials" = "The email or password provided is invalid.";
 "ChangePhoneNumber" = "Change phone number";
 "PhoneNumberAlreadyExist" = "An account already exist with that phone number, please try Login instead.";

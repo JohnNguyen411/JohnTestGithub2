@@ -258,6 +258,11 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             CustomerAPI.passwordChange(customerId: customerId, code: code, password: password) { error in
                 
                 if error != nil {
+                    if let errorCode = error?.code, errorCode == .E4012 {
+                        self.showOkDialog(title: .Error, message: .InvalidVerificationCode, completion: {
+                            self.navigationController?.popViewController(animated: true)
+                        }, dialog: .error, screen: self.screen)
+                    }
                     weakSelf?.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: weakSelf?.screen)
                     weakSelf?.showLoading(loading: false)
                 } else {
