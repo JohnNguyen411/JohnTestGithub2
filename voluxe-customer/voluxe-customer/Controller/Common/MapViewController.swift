@@ -92,35 +92,37 @@ class MapViewController: UIViewController {
             return
         }
 
-        GoogleSnappedPointsAPI().getSnappedPoints(from: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: prevLocation), to: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: location)).onSuccess { results in
-
-            Analytics.trackCallGoogle(endpoint: .roads)
-
-            guard let weakSelf = weakSelf else { return }
+        CustomerAPI.snappedPoints(from: CustomerAPI.coordinatesToString(coordinate: prevLocation), to: CustomerAPI.coordinatesToString(coordinate: location)) { snappedPoints, error in
             
-            if let results = results, let snappedPoints = results.snappedPoints {
-                // animate points
-                let pointsAnimationDuration = animationDuration / Double(snappedPoints.count)
-                var delay = 0.0
-                for (index, point) in snappedPoints.enumerated() {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
-                        if let location = point.location, let coordinates = location.getLocation() {
-                            weakSelf.updateLocation(location: coordinates, prevLocation: prevLocation , animationDuration: pointsAnimationDuration, updateCamera: index % 2 == 0)
-                        }
-                    })
-                    delay = delay + pointsAnimationDuration
-                }
-                weak var weakSelf = self
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay + 0.5, execute: {
-                    weakSelf?.moveCamera()
-                })
-            } else {
-                weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
-            }
-            }.onFailure { error in
+            if error != nil {
                 Analytics.trackCallGoogle(endpoint: .roads, error: error)
                 guard let weakSelf = weakSelf else { return }
                 weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
+            } else {
+                Analytics.trackCallGoogle(endpoint: .roads)
+                
+                guard let weakSelf = weakSelf else { return }
+                
+                if let snappedPoints = snappedPoints, let points = snappedPoints.snappedPoints {
+                    // animate points
+                    let pointsAnimationDuration = animationDuration / Double(points.count)
+                    var delay = 0.0
+                    for (index, point) in points.enumerated() {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
+                            if let location = point.location, let coordinates = location.getLocation() {
+                                weakSelf.updateLocation(location: coordinates, prevLocation: prevLocation , animationDuration: pointsAnimationDuration, updateCamera: index % 2 == 0)
+                            }
+                        })
+                        delay = delay + pointsAnimationDuration
+                    }
+                    weak var weakSelf = self
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay + 0.5, execute: {
+                        weakSelf?.moveCamera()
+                    })
+                } else {
+                    weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
+                }
+            }
         }
     }
     

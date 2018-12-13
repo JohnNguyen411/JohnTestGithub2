@@ -32,10 +32,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// Do custom init work here like background fetch, push notifications
     /// and frameworks.
     private func initServices() {
+        Fabric.with([Crashlytics.self])
         self.initBackgroundFetch()
+        self.initLocationUpdates()
         self.initPushNotifications()
         self.initRealm()
-        Fabric.with([Crashlytics.self])
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
@@ -50,4 +51,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AppController.shared.exit()
     }
 }
-

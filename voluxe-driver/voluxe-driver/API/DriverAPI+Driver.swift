@@ -54,7 +54,6 @@ extension DriverAPI {
         }
     }
 
-    // TODO make sure the identifier is correct, or is this the PN identifier?
     static func register(device token: String,
                          for driver: Driver,
                          completion: @escaping ((LuxeAPIError.Code?) -> Void))

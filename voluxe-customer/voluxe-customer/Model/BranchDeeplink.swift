@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class BranchDeeplink: NSObject, Mappable {
+class BranchDeeplink: Codable {
 
     var email: String?
     var phoneNumber: String?
@@ -24,24 +23,33 @@ class BranchDeeplink: NSObject, Mappable {
     var campain: String?
     var feature: String?
     
-    
-    required init?(map: Map) {
+    private enum CodingKeys: String, CodingKey {
+        case id = "~id"
+        case email
+        case phoneNumber = "phone_number"
+        case firstName = "first_name"
+        case lastName = "last_name"
+        case referringLink = "~referring_link"
+        case isFirstSession = "+is_first_session" //TODO check nested object parsin
+        case clickedBranchLink = "+clicked_branch_link"
+        case marketingTitle = "$marketing_title"
+        case channel = "~channel"
+        case campain = "~campain" 
+        case feature = "~feature" 
     }
-    
-    func mapping(map: Map) {
-        email <- map["email"]
-        phoneNumber <- map["phone_number"]
-        firstName <- map["first_name"]
-        lastName <- map["last_name"]
-        referringLink <- map["~referring_link"]
-        isFirstSession <- map["+is_first_session"]
-        id <- map["~id"]
-        clickedBranchLink <- map["+clicked_branch_link"]
-        marketingTitle <- map["$marketing_title"]
-        channel <- map["~channel"]
-        campain <- map["~campain"]
-        feature <- map["~feature"]
+
+    static func decode<T: Decodable>(data: Data?, reportErrors: Bool = true) -> T? {
+        guard let data = data else { return nil }
+        do {
+            let decoder = JSONDecoder()
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601)
+            let object = try decoder.decode(T.self, from: data)
+            return object
+        } catch {
+            // TODO log to console?
+            if reportErrors { NSLog("\n\nDECODE ERROR: \(error)\n\n") }
+            return nil
+        }
     }
-    
 
 }

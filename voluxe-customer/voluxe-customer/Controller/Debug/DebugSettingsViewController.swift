@@ -6,7 +6,6 @@
 //  Copyright © 2018 Luxe - Volvo Cars. All rights reserved.
 //
 
-import AlamofireNetworkActivityLogger
 import Foundation
 import Firebase
 
@@ -223,6 +222,8 @@ class DebugSettingsViewController: DebugTableViewController {
                                              actionClosure:
             {
                 _ in
+                //TODO: figure out logging for AlamoFire5
+                /*
                 UserDefaults.standard.enableAlamoFireLogging = !UserDefaults.standard.enableAlamoFireLogging
                 if UserDefaults.standard.enableAlamoFireLogging {
                     NetworkActivityLogger.shared.level = .debug
@@ -231,6 +232,7 @@ class DebugSettingsViewController: DebugTableViewController {
                     NetworkActivityLogger.shared.level = .off
                     NetworkActivityLogger.shared.stopLogging()
                 }
+                 */
             }
         )]
 

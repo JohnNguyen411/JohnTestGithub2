@@ -20,13 +20,37 @@ extension DriverAPI {
         }
     }
 
-    // TODO throw error if no path?
+    static func requests(for driver: Driver,
+                         from fromDate: Date,
+                         to toDate: Date,
+                         completion: @escaping (([Request], LuxeAPIError?) -> Void))
+    {
+        let route = "v1/drivers/\(driver.id)/requests"
+        let fromString = DateFormatter.iso8601.string(from: fromDate)
+        let toString = DateFormatter.iso8601.string(from: toDate)
+        let parameters: RestAPIParameters = ["start": fromString,
+                                             "end": toString]
+        self.api.get(route: route, queryParameters: parameters) {
+            response in
+            let requests = response?.asRequests() ?? []
+            completion(requests, response?.asError())
+        }
+    }
+
+    static func refresh(_ request: Request,
+                        completion: @escaping ((Request?, LuxeAPIError.Code?) -> Void))
+    {
+        self.api.get(route: request.route) {
+            response in
+            completion(response?.asRequest(), response?.asErrorCode())
+        }
+    }
+
     static func update(_ request: Request,
                        task: Task,
                        completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
-        guard let path = self.api.path(for: request) else { return }
-        let route = "v1/\(path)/\(request.id)/task"
+        let route = "\(request.route)/task"
         let parameters: RestAPIParameters = ["task": task.rawValue]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
@@ -40,7 +64,10 @@ extension DriverAPI {
                        notes: String,
                        completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
-        let route = "v1/driver-pickup-requests/\(request.id)/notes"
+        // TODO https://app.asana.com/0/858610969087925/935159618076286/f
+        // TODO assert if not pickup
+        guard request.isPickup else { return }
+        let route = "\(request.route)/notes"
         let parameters: RestAPIParameters = ["notes": notes]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
@@ -52,8 +79,7 @@ extension DriverAPI {
     static func contactCustomer(_ request: Request,
                                 completion: @escaping ((String?, String?, LuxeAPIError.Code?) -> Void))
     {
-        guard let path = self.api.path(for: request) else { return }
-        let route = "v1/\(path)/\(request.id)/contact-customer"
+        let route = "\(request.route)/contact-customer"
         let parameters: RestAPIParameters = ["mode": "text_only"]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
@@ -62,27 +88,58 @@ extension DriverAPI {
         }
     }
 
+    // TODO move to AdminAPI only
     static func reset(_ request: Request,
                       completion: @escaping (LuxeAPIError.Code?) -> Void)
     {
-        guard let path = self.api.path(for: request) else { return }
-        let route = "v1/\(path)/\(request.id)/reset"
+        let route = "\(request.route)/reset"
         self.api.put(route: route) {
             response in
             completion(response?.asErrorCode())
         }
     }
 
-    func path(for request: Request) -> String? {
+    // TODO turn in Request extension
+    // TODO fix this to always return a path
+    // TODO include advisor paths
+    // this should include request id in path
+    @available(*, deprecated)
+    func path(for request: Request) -> String {
         switch request.type {
+            case .advisorPickup: return "advisor-pickup-requests"
+            case .advisorDropoff: return "advisor-dropoff-requests"
             case .dropoff: return "driver-dropoff-requests"
             case .pickup: return "driver-pickup-requests"
-            default: return nil
         }
     }
 }
 
+// MARK:- Extension for request path
+
+extension Request {
+
+    var route: String {
+        switch self.type {
+            case .advisorPickup: return "v1/advisor-pickup-requests/\(self.id)"
+            case .advisorDropoff: return "v1/advisor-dropoff-requests/\(self.id)"
+            case .dropoff: return "v1/driver-dropoff-requests/\(self.id)"
+            case .pickup: return "v1/driver-pickup-requests/\(self.id)"
+        }
+    }
+}
+
+// MARK:- Decoding extensions
+
 fileprivate extension RestAPIResponse {
+
+    private struct RefreshResponse: Codable {
+        let data: Request
+    }
+
+    func asRequest() -> Request? {
+        let response: RefreshResponse? = self.decode()
+        return response?.data
+    }
 
     private struct TodayResponse: Codable {
         let data: [Request]

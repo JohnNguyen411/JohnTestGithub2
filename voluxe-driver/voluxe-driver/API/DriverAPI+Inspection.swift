@@ -14,8 +14,7 @@ extension DriverAPI {
     static func createVehicleInspection(for request: Request,
                                         completion: @escaping ((Inspection?, LuxeAPIError.Code?) -> Void))
     {
-        guard let path = self.api.path(for: request) else { return }
-        let route = "v1/\(path)/\(request.id)/vehicle-inspection"
+        let route = "\(request.route)/vehicle-inspection"
         self.api.put(route: route) {
             response in
             completion(response?.asInspection(), response?.asErrorCode())
@@ -27,8 +26,10 @@ extension DriverAPI {
     static func createDocumentInspection(for request: Request,
                                          completion: @escaping ((Inspection?, LuxeAPIError.Code?) -> Void))
     {
-        // TODO does this need to confirm request.type == .pickup?
-        let route = "v1/driver-pickup-requests/\(request.id)/documents"
+        // TODO https://app.asana.com/0/858610969087925/935159618076286/f
+        // TODO assert if not pickup
+        guard request.isPickup else { return }
+        let route = "\(request.route)/documents"
         self.api.post(route: route) {
             response in
             completion(response?.asInspection(), response?.asErrorCode())
@@ -38,44 +39,11 @@ extension DriverAPI {
     static func createLoanerInspection(for request: Request,
                                        completion: @escaping ((Inspection?, LuxeAPIError.Code?) -> Void))
     {
-        guard let path = self.api.path(for: request) else { return }
-        let route = "v1/\(path)/\(request.id)/loaner-vehicle-inspection"
+        let route = "\(request.route)/loaner-vehicle-inspection"
         self.api.put(route: route) {
             response in
             completion(response?.asInspection(), response?.asErrorCode())
         }
-    }
-
-    // TODO how does this relate to UploadManager?
-    static func upload(photo: UIImage,
-                       inspection: Inspection,
-                       request: Request,
-                       completion: @escaping ((String?, LuxeAPIError.Code?) -> Void))
-    {
-        guard let path = self.api.path(for: request) else { return }
-        let route = "/v1/\(path)/\(request.id)/documents/\(inspection.id)/photos"
-        self.api.upload(route: route, image: photo) {
-            response in
-            completion(response?.asDocumentURL(), response?.asErrorCode())
-        }
-    }
-
-    // TODO find a better place for this
-    static func routeToUploadPhoto(inspection: Inspection,
-                                   request: Request) -> String?
-    {
-        guard let path = self.api.path(for: request) else { return nil }
-        let route = "/v1/\(path)/\(request.id)/documents/\(inspection.id)/photos"
-        return route
-    }
-
-    // TODO find a better place for this
-    static func urlToUploadPhoto(inspection: Inspection,
-                                 request: Request) -> String?
-    {
-        guard let route = self.routeToUploadPhoto(inspection: inspection, request: request) else { return nil }
-        let url = self.api.urlFromHost(for: route)
-        return url
     }
 
     static func update(_ request: Request,
@@ -83,8 +51,7 @@ extension DriverAPI {
                        units: String,   // TODO need enum
                        completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
-        guard let path = self.api.path(for: request) else { return }
-        let route = "/v1/\(path)/\(request.id)/loaner-vehicle-odometer-reading"
+        let route = "\(request.route)/loaner-vehicle-odometer-reading"
         let parameters: RestAPIParameters = ["value": loanerMileage,
                                              "unit": units]
         self.api.put(route: route, bodyParameters: parameters) {

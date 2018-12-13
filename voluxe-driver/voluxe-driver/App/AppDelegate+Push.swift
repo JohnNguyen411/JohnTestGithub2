@@ -59,8 +59,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                                 withCompletionHandler completionHandler: @escaping () -> Void)
     {
         guard response.actionIdentifier == UNNotificationDefaultActionIdentifier else { return }
-        let content = response.notification.request.content
-        NSLog("\n\nPUSH NOTIFICATION: \(content.title) - \(content.body)\n")
         completionHandler()
     }
 }
@@ -68,7 +66,6 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 extension AppDelegate: MessagingDelegate {
 
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken token: String) {
-        NSLog("\n\nFIREBASE TOKEN: \(token)\n")
-        // TODO update driver token
+        DriverManager.shared.set(push: token)
     }
 }

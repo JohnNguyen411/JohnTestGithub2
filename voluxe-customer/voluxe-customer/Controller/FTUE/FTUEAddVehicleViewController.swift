@@ -71,11 +71,12 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         
         showProgressHUD()
 
-        VehicleAPI().vehicleModels(makeId: nil).onSuccess { result in
-            if let vehicles = result?.data?.result {
+        CustomerAPI.vehicleModels(makeId: nil) { models, error in
+            
+            if error == nil {
                 if let realm = self.realm {
                     try? realm.write {
-                        realm.add(vehicles, update: true)
+                        realm.add(models, update: true)
                     }
                     
                     let resultsVehicleModels = realm.objects(VehicleModel.self).sorted(byKeyPath: "name", ascending: false)
@@ -83,9 +84,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
                 }
             }
             self.hideProgressHUD()
-            }.onFailure { error in
-                self.hideProgressHUD()
-            }
+        }
     }
     
     override func setupViews() {
@@ -227,15 +226,17 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     override func onRightClicked() {
         super.onRightClicked()
         if let customerId = UserManager.sharedInstance.customerId(), let baseColor = colors[selectedColor].baseColor {
-            CustomerAPI().addVehicle(customerId: customerId, make: models[selectedModel].make!, model: models[selectedModel].name!, baseColor: baseColor, year: years[selectedYear]).onSuccess { response in
-                if let vehicle = response?.data?.result, let photoUrl = vehicle.photoUrl, let photoURL = URL(string: photoUrl) {
-                    SDWebImagePrefetcher.shared().prefetchURLs([photoURL])
+            CustomerAPI.addVehicle(customerId: customerId, make: models[selectedModel].make!, model: models[selectedModel].name!, baseColor: baseColor, year: years[selectedYear]) { vehicle, error in
+                if error != nil {
+                    self.callVehicle(customerId: customerId)
+                } else {
+                    if let vehicle = vehicle, let photoUrl = vehicle.photoUrl, let photoURL = URL(string: photoUrl) {
+                        SDWebImagePrefetcher.shared().prefetchURLs([photoURL])
+                    }
+                    self.callVehicle(customerId: customerId)
                 }
-                self.callVehicle(customerId: customerId)
-            }.onFailure { error in
-                self.callVehicle(customerId: customerId)
             }
-            showProgressHUD()
+            self.showProgressHUD()
         }
     }
 
@@ -247,29 +248,26 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     
     private func callVehicle(customerId: Int) {
         // Get Customer's Vehicles based on ID
-        CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
-            if let cars = result?.data?.result {
+        CustomerAPI.vehicles(customerId: customerId) { vehicles, error in
+            if error != nil {
+                self.hideProgressHUD()
+            } else {
                 if let realm = self.realm {
                     try? realm.write {
-                        realm.add(cars, update: true)
+                        realm.add(vehicles, update: true)
                     }
                 }
-                UserManager.sharedInstance.setVehicles(vehicles: cars)
-                if cars.count > 1 {
+                UserManager.sharedInstance.setVehicles(vehicles: vehicles)
+                if vehicles.count > 1 {
                     // go back
                     self.navigationController?.popViewController(animated: true)
                 } else {
                     AppController.sharedInstance.showLoadingView()
                 }
-            }
-            self.hideProgressHUD()
-
-            }.onFailure { error in
                 self.hideProgressHUD()
+            }
         }
     }
-    
-    
 }
 
 extension FTUEAddVehicleViewController: UIPickerViewDelegate, UIPickerViewDataSource {

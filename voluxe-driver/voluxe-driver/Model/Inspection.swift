@@ -8,10 +8,6 @@
 
 import Foundation
 
-// TODO can this be simplified into a re-usable class
-// document inspection as a requestId
-// vehicle inspection has a vehicleId
-// loander inspection probably has a loaner vehicle id
 struct Inspection: Codable {
 
     let id: Int
@@ -24,5 +20,22 @@ struct Inspection: Codable {
         case requestId = "request_id"
         case vehicleId = "vehicle_id"
         case notes
+    }
+}
+
+enum InspectionType: Int, CaseIterable, CustomStringConvertible {
+
+    case document = 0
+    case vehicle
+    case loaner
+    case unknown
+
+    var description: String {
+        switch self {
+            case .document: return "Document"
+            case .loaner: return "Loaner"
+            case .vehicle: return "Vehicle"
+            case .unknown: return "Unspecified"
+        }
     }
 }

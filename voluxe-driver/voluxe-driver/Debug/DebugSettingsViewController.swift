@@ -117,6 +117,34 @@ class DebugSettingsViewController: DebugTableViewController {
             }
         )]
 
+        settings += [DebugTableViewCellModel(title: "DriverManager",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                self.navigationController?.pushViewController(DriverManagerViewController(), animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "RequestManager",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                self.navigationController?.pushViewController(RequestManagerViewController(), animated: true)
+            }
+        )]
+
         settings += [DebugTableViewCellModel(title: "UploadManager",
                                              cellReuseIdentifier: DebugValueTableViewCell.className,
                                              valueClosure:

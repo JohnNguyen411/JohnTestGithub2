@@ -154,14 +154,14 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         guard let email = emailTextField.textField.text else { return }
         guard let password = passwordTextField.textField.text else { return }
         
-        CustomerAPI().login(email: email, password: password).onSuccess { result in
-            if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
+        CustomerAPI.login(email: email, password: password) { token, error in
+            if let tokenObject = token, let customerId = tokenObject.user?.id {
 
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
                 UserManager.sharedInstance.tempCustomerId = customerId
-                CustomerAPI().getMe().onSuccess { result in
-                    if let customer = result?.data?.result {
+                CustomerAPI.me() { customer, error in
+                    if let customer = customer {
 
                         if let realm = self.realm {
                             try? realm.write {
@@ -178,21 +178,21 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
                             self.showLoading(loading: false)
                             AppController.sharedInstance.startApp()
                         }
-                    }
-                    }.onFailure { error in
+                    } else {
                         self.onLoginError()
+                    }
                 }
-            }
-            }.onFailure { error in
+            } else {
                 self.onLoginError(error: error)
+            }
         }
         
     }
     
-    private func onLoginError(error: Errors? = nil) {
+    private func onLoginError(error: LuxeAPIError? = nil) {
         self.showLoading(loading: false)
         
-        if let apiError = error?.apiError, apiError.getCode() == .E2005 {
+        if let code = error?.code, code == .E2005 {
             self.showOkDialog(title: .error, message: .errorInvalidCredentials, dialog: .error, screen: self.screen)
         } else {
             self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)

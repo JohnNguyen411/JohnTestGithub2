@@ -245,23 +245,11 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         confirmButton.isLoading = true
         
-        BookingAPI().createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner, dealershipRepairId: dealershipRepairOrder.id, repairNotes: repairOrder.notes, repairTitle: repairOrder.title, vehicleDrivable: repairOrder.vehicleDrivable.value, timeSlotId: timeSlot.id, location: location, isDriver: isDriver).onSuccess { result in
-            if let booking = result?.data?.result {
-                if let realm = self.realm {
-                    try? realm.write {
-                        if booking.customerId == -1 {
-                            booking.customerId = customerId
-                        }
-                        realm.add(booking, update: true)
-                    }
-                }
-                self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
-            }
-            self.confirmButton.isLoading = false
+        CustomerAPI.createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner, dealershipRepairId: dealershipRepairOrder.id, repairNotes: repairOrder.notes, repairTitle: repairOrder.title, vehicleDrivable: repairOrder.vehicleDrivable.value, timeSlotId: timeSlot.id, location: location, isDriver: isDriver) { booking, error in
             
-            }.onFailure { error in
+            if let error = error {
                 // 2 bookings for the same car, not currently handled
-                if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4049.rawValue || code == Errors.ErrorCode.E4050.rawValue {
+                if let code = error.code, code == .E4049 || code == .E4050 {
                     self.confirmButton.isLoading = false
                     self.showDialog(title: .error, message: String(format: String.errorDuplicateRequest, String.pickup), buttonTitle: .refresh, completion: {
                         BookingSyncManager.sharedInstance.syncBookings()
@@ -273,6 +261,21 @@ class SchedulingPickupViewController: SchedulingViewController {
                     self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
                     self.confirmButton.isLoading = false
                 }
+            } else {
+                
+                if let booking = booking {
+                    if let realm = self.realm {
+                        try? realm.write {
+                            if booking.customerId == -1 {
+                                booking.customerId = customerId
+                            }
+                            realm.add(booking, update: true)
+                        }
+                    }
+                    self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
+                }
+                self.confirmButton.isLoading = false
+            }
         }
     }
     
@@ -286,15 +289,10 @@ class SchedulingPickupViewController: SchedulingViewController {
                 isDriver = false
             }
             
-            BookingAPI().createPickupRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: isDriver).onSuccess { result in
-                if let pickupRequest = result?.data?.result {
-                    self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
-                    self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
-                }
-                self.confirmButton.isLoading = false
-                }.onFailure { error in
-                    
-                    if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4049.rawValue || code == Errors.ErrorCode.E4050.rawValue {
+            CustomerAPI.createPickupRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: isDriver) { request, error in
+                
+                if let error = error {
+                    if let code = error.code, code == .E4049 || code == .E4050 {
                         self.confirmButton.isLoading = false
                         self.showDialog(title: .error, message: String(format: String.errorDuplicateRequest, String.pickup), buttonTitle: .refresh, completion: {
                             self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
@@ -306,7 +304,13 @@ class SchedulingPickupViewController: SchedulingViewController {
                             self.createPickupRequest(customerId: customerId, booking: booking)
                         }, dialog: .error, screen: self.screen)
                     }
-                   
+                } else {
+                    if let pickupRequest = request {
+                        self.manageNewPickupRequest(pickupRequest: pickupRequest, booking: booking)
+                        self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
+                    }
+                    self.confirmButton.isLoading = false
+                }
             }
         }
     }
@@ -332,28 +336,29 @@ class SchedulingPickupViewController: SchedulingViewController {
     private func refreshFinalBooking(customerId: Int, bookingId: Int) {
         showProgressHUD()
         
-        BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
-            if let booking = result?.data?.result {
-                if let realm = self.realm {
-                    try? realm.write {
-                        realm.add(booking, update: true)
-                    }
-                }
-                _ = UserManager.sharedInstance.addBooking(booking: booking)
-                BookingSyncManager.sharedInstance.syncBookings()
-            }
-            
-            RequestedServiceManager.sharedInstance.reset()
-            AppController.sharedInstance.showVehiclesView(animated: false)
-            
-            self.hideProgressHUD()
-
-            }.onFailure { error in
+        CustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
+            if error != nil {
                 // retry
                 self.hideProgressHUD()
                 self.showDialog(title: .error, message: .errorUnknown, buttonTitle: .retry, completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 }, dialog: .error, screen: self.screen)
+            } else {
+                if let booking = booking {
+                    if let realm = self.realm {
+                        try? realm.write {
+                            realm.add(booking, update: true)
+                        }
+                    }
+                    _ = UserManager.sharedInstance.addBooking(booking: booking)
+                    BookingSyncManager.sharedInstance.syncBookings()
+                }
+                
+                RequestedServiceManager.sharedInstance.reset()
+                AppController.sharedInstance.showVehiclesView(animated: false)
+                
+                self.hideProgressHUD()
+            }
         }
     }
     

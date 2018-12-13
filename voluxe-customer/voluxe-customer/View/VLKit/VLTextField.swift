@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import SnapKit
-import PhoneNumberKit
+import FlagPhoneNumber
 
 /**
  Should be created with a height of 50 in constraints of the caller. VLTextField.height
@@ -46,6 +46,8 @@ class VLTextField : UIView {
     }
     
     var validated = false
+    var textFieldIsPhoneNumber = false
+
     
     var leftPlaceholderConstraint: Constraint?
     
@@ -56,11 +58,16 @@ class VLTextField : UIView {
     init(title:String, placeholder:String, isPhoneNumber: Bool, kern: Float? = nil) {
         
         if isPhoneNumber {
-            textField = PhoneNumberTextField()
+            self.textFieldIsPhoneNumber = true
+            let fpnTextField = FPNTextField()
+            fpnTextField.flagSize = CGSize(width: 28, height: 28)
+            fpnTextField.font = UIFont.systemFont(ofSize: 16)
+            self.textField = fpnTextField
         } else {
+            self.textFieldIsPhoneNumber = false
             textField = UITextField()
+            textField.font = .volvoSansProMedium(size: 16)
         }
-        textField.font = .volvoSansProMedium(size: 16)
         textField.textColor = .luxeDarkGray()
         textField.textAlignment = .right
         

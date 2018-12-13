@@ -11,11 +11,6 @@ import UIKit
 
 class UploadManagerViewController: UIViewController {
 
-    // MARK:- Active request context
-
-    var driver: Driver?
-    var request: Request?
-
     // MARK:- UI declarations
 
     private let requestTextField: UITextField = {
@@ -33,29 +28,8 @@ class UploadManagerViewController: UIViewController {
         return button
     }()
 
-    enum InspectionType: Int, CaseIterable, CustomStringConvertible {
-
-        case document = 0
-        case vehicle
-        case loaner
-
-        var description: String {
-            switch self {
-                case .document: return "Document"
-                case .loaner: return "Loaner"
-                case .vehicle: return "Vehicle"
-            }
-        }
-
-        static func strings() -> [String] {
-            var strings: [String] = []
-            for type in self.allCases { strings += [type.description] }
-            return strings
-        }
-    }
-
     private let inspectionControl: UISegmentedControl = {
-        let control = UISegmentedControl(items: InspectionType.strings())
+        let control = UISegmentedControl(items: InspectionType.descriptions())
         control.selectedSegmentIndex = 0
         return control
     }()
@@ -87,31 +61,47 @@ class UploadManagerViewController: UIViewController {
         return button
     }()
 
-    private let statusTextView: UITextView = {
-        let view = UITextView(frame: CGRect.zero)
-        view.isEditable = false
-        view.contentInset = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
-        view.layer.borderColor = UIColor.lightGray.cgColor
-        view.layer.borderWidth = 2
-        view.layer.cornerRadius = 20
-        return view
+    private let statusField: UITextField = {
+        let field = UITextField()
+        field.borderStyle = .roundedRect
+        field.isUserInteractionEnabled = false
+        field.placeholder = "inited"
+        field.textAlignment = .center
+        return field
+    }()
+
+    private let uploadsTable: UITableView = {
+        let table = UITableView()
+        table.allowsSelection = false
+        table.layer.borderColor = UIColor.lightGray.cgColor
+        table.layer.borderWidth = 2
+        table.layer.cornerRadius = 20
+        return table
     }()
 
     // MARK:- Lifecycle
 
     convenience init() {
+
         self.init(nibName: nil, bundle: nil)
+        self.uploadsTable.dataSource = self
+
         UploadManager.shared.statusChangeClosure = {
             [weak self] status, text in
             guard let me = self else { return }
             me.updateButtons(status: status)
-            me.statusTextView.selectedRange = NSRange(location: 0, length: 0)
-            me.statusTextView.insertText("\(status.rawValue)\n")
+            me.statusField.text = status.rawValue
+        }
+
+        UploadManager.shared.uploadsDidChangeClosure = {
+            [weak self] uploads in
+            self?.uploadsTable.reloadData()
         }
     }
 
     deinit {
         UploadManager.shared.statusChangeClosure = nil
+        UploadManager.shared.uploadsDidChangeClosure = nil
     }
 
     override func viewDidLoad() {
@@ -146,73 +136,47 @@ class UploadManagerViewController: UIViewController {
         gridView.add(subview: self.resetButton, from: 4, to: 6)
         self.resetButton.pinTopToBottomOf(view: self.startLabel, spacing: 20)
 
-        gridView.add(subview: self.statusTextView, from: 1, to: 6)
-        self.statusTextView.pinTopToBottomOf(view: self.uploadButton, spacing: 20)
-        Layout.pinToSuperviewBottom(view: self.statusTextView)
+        gridView.add(subview: self.statusField, from: 1, to: 6)
+        self.statusField.pinTopToBottomOf(view: self.resetButton, spacing: 20)
+
+        gridView.add(subview: self.uploadsTable, from: 1, to: 6)
+        self.uploadsTable.pinTopToBottomOf(view: self.statusField, spacing: 20)
+        Layout.pinToSuperviewBottom(view: self.uploadsTable)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateUI()
-        self.currentRequest() {
-            [weak self] request in
-            self?.updateUI()
-        }
     }
 
     // MARK:- Data source
 
-    // TODO https://app.asana.com/0/857710273846914/894650916838382/f
-    // TODO replace with DriverManager
-    private func currentDriver(completion: @escaping (Driver?) -> ()) {
+    private func currentInspection(completion: @escaping (Request?, Inspection?, InspectionType?) -> ()) {
 
-        if let driver = self.driver {
-            DispatchQueue.main.async() { completion(driver) }
-            return
-        }
-
-        DriverAPI.login(email: "christoph@luxe.com", password: "shenoa7777") {
-            driver, error in
-            completion(driver)
-        }
-    }
-
-    // TODO https://app.asana.com/0/857710273846914/865596318171593/f
-    // TODO replace with RequestManager
-    private func currentRequest(completion: @escaping (Request?) -> ()) {
-
-        if let request = self.request {
-            DispatchQueue.main.async() { completion(request) }
-            return
-        }
-
-        self.currentDriver() {
-            driver in
-            guard let driver = driver else { return }
-            DriverAPI.today(for: driver) {
-                [weak self] requests, error in
-                self?.request = requests.first
-                completion(requests.first)
-            }
-        }
-    }
-
-    private func currentInspection(completion: @escaping (Inspection?) -> ()) {
-
-        guard let request = self.request else {
-            DispatchQueue.main.async() { completion(nil) }
+        guard let request = RequestManager.shared.request else {
+            DispatchQueue.main.async() { completion(nil, nil, nil) }
             return
         }
 
         guard let type = InspectionType(rawValue: self.inspectionControl.selectedSegmentIndex) else {
-            DispatchQueue.main.async() { completion(nil) }
+            DispatchQueue.main.async() { completion(nil, nil, nil) }
             return
         }
 
         switch type {
-            case .document: self.documentInspection(request: request, completion: completion)
-            case .vehicle: self.vehicleInspection(request: request, completion: completion)
-            case .loaner: self.loanerInspection(request: request, completion: completion)
+            case .document: self.documentInspection(request: request) {
+                inspection in
+                completion(request, inspection, type)
+            }
+            case .vehicle: self.vehicleInspection(request: request) {
+                inspection in
+                completion(request, inspection, type)
+            }
+            case .loaner: self.loanerInspection(request: request) {
+                inspection in
+                completion(request, inspection, type)
+            }
+            case .unknown: assertionFailure("InspectionType must not be unknown")
         }
     }
 
@@ -253,21 +217,18 @@ class UploadManagerViewController: UIViewController {
     // MARK:- Actions
 
     @objc func createButtonTouchUpInside() {
-        self.currentRequest() {
-            [weak self] request in
-            self?.updateUI()
+        self.currentInspection() {
+            [weak self] request, inspection, type in
+            guard let me = self else { return }
+            me.updateUI()
             guard let request = request else { return }
-            self?.currentInspection() {
-                [weak self] inspection in
-                self?.updateUI()
-                guard let inspection = inspection else { return }
-                for _ in 1...10 {
-                    let photo = UIColor.random().image()
-                    guard let route = DriverAPI.routeToUploadPhoto(inspection: inspection, request: request) else { continue }
-                    UploadManager.shared.upload(photo, to: route)
-                }
-                self?.updateUI()
-            }
+            guard let inspection = inspection else { return }
+            guard let type = type else { return }
+            let image = UIColor.random().image(size: CGSize(width: 1024, height: 1024))
+            let (route, parameters) = request.uploadRoute(for: inspection, of: type)
+            guard let upload = Upload(route: route, parameters: parameters, image: image) else { return }
+            UploadManager.shared.upload(upload)
+            self?.updateUI()
         }
     }
 
@@ -293,7 +254,8 @@ class UploadManagerViewController: UIViewController {
     }
 
     private func updateFields() {
-        self.requestTextField.text = self.request != nil ? "Request \(request!.id)" : "No active request"
+        let request = RequestManager.shared.request
+        self.requestTextField.text = request != nil ? "Request \(request!.id)" : nil
     }
 
     private func updateButtons(status: UploadManager.Status? = nil) {
@@ -311,10 +273,89 @@ class UploadManagerViewController: UIViewController {
 
     private func updateControls() {
         let control = self.inspectionControl
-        control.isEnabled = (self.request != nil)
-        guard let request = self.request else { return }
+        control.isEnabled = (RequestManager.shared.request != nil)
+        guard let request = RequestManager.shared.request else { return }
         control.setEnabled(request.isPickup, forSegmentAt: InspectionType.document.rawValue)
         control.setEnabled(request.isPickup, forSegmentAt: InspectionType.vehicle.rawValue)
         control.setEnabled(request.loanerVehicleRequested ?? false, forSegmentAt: InspectionType.loaner.rawValue)
+        control.setEnabled(false, forSegmentAt: InspectionType.unknown.rawValue)
+    }
+}
+
+// MARK:- Extension for upload route
+
+extension Request {
+
+    func uploadRoute(for inspection: Inspection,
+                     of type: InspectionType) -> (String, RestAPIParameters?)
+    {
+        if type == .document {
+            let route = "\(self.route)/documents/\(inspection.id)/photos"
+            return (route, nil)
+        }
+        else if type == .loaner || type == .vehicle {
+            let route = "v1/vehicle-inspection-photos"
+            let parameters = ["vehicle_inspection_id": inspection.id]
+            return (route, parameters)
+        }
+        else {
+            // TODO https://app.asana.com/0/858610969087925/935159618076287/f
+            // TODO Log.assert()
+            assertionFailure("Unsupported InspectionType")
+            return ("Unsupported route", nil)
+        }
+    }
+}
+
+// MARK:- Uploads table data source
+
+extension UploadManagerViewController: UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return UploadManager.shared.count()
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let uploads = UploadManager.shared.currentUploads()
+        let upload = uploads[indexPath.row]
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cell") {
+            cell.update(with: upload)
+            return cell
+        } else {
+            return UITableViewCell(with: upload)
+        }
+    }
+}
+
+// MARK:- Table cell for uploads
+
+extension UITableViewCell {
+
+    convenience init(with upload: Upload) {
+        self.init(style: .subtitle, reuseIdentifier: "cell")
+        self.textLabel?.adjustsFontSizeToFitWidth = true
+        self.detailTextLabel?.numberOfLines = 0
+        self.detailTextLabel?.textColor = UIColor.gray
+        self.update(with: upload)
+    }
+
+    func update(with upload: Upload) {
+        self.textLabel?.text = upload.route
+        var text = "\(DateFormatter.localizedString(from: upload.date, dateStyle: .short, timeStyle: .medium))"
+        for (data, mimeType) in upload.datasAndMimeTypes() {
+            text = "\(text)\n\(data.count) bytes, \(mimeType)"
+        }
+        self.detailTextLabel?.text = text
+    }
+}
+
+// MARK:- Extension to get array of descriptions
+
+extension InspectionType {
+
+    static func descriptions() -> [String] {
+        var strings: [String] = []
+        for type in self.allCases { strings += [type.description] }
+        return strings
     }
 }

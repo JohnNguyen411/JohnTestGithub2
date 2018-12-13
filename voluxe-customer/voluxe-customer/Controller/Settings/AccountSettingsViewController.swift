@@ -146,15 +146,15 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     func resetPassword() {
         showProgressHUD()
         if let customerId = UserManager.sharedInstance.customerId() {
-            CustomerAPI().requestPasswordChange(customerId: customerId).onSuccess { response in
-                
-                FTUEStartViewController.flowType = .signup
-                self.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
-                self.hideProgressHUD()
-                
-                }.onFailure { error in
+            CustomerAPI.requestPasswordChange(customerId: customerId) { error in
+                if error != nil {
                     self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
+                } else {
+                    FTUEStartViewController.flowType = .signup
+                    self.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
+                    self.hideProgressHUD()
+                }
             }
         }
     }

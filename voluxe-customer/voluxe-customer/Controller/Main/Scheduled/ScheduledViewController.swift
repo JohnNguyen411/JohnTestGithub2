@@ -11,8 +11,6 @@ import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
 import GoogleMaps
-import BrightFutures
-import Result
 import SwiftEventBus
 import MBProgressHUD
 import SDWebImage
@@ -31,8 +29,6 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
     
     // UITest
     let testView = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-    
-    private let googleDistanceMatrixAPI = GoogleDistanceMatrixAPI()
     
     var steps: [Step] = []
     private var driver: Driver?
@@ -329,19 +325,21 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
             
             weak var weakSelf = self
 
-            googleDistanceMatrixAPI.getDirection(origin: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: fromLocation), destination: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: toLocation), mode: nil).onSuccess { distanceMatrix in
-
-                Analytics.trackCallGoogle(endpoint: .distance)
-
-                guard let weakSelf = weakSelf else { return }
-
-                if let distanceMatrix = distanceMatrix {
-                    weakSelf.mapVC.updateETA(eta: distanceMatrix.getEta())
-                    weakSelf.timeWindowView.setETA(eta: distanceMatrix.getEta())
-                }
-                }.onFailure { error in
-                    Logger.print(error)
+            CustomerAPI.distance(origin: CustomerAPI.coordinatesToString(coordinate: fromLocation), destination: CustomerAPI.coordinatesToString(coordinate: toLocation), mode: nil) { distanceMatrix, error in
+                
+                if error != nil {
+                    Logger.print("\(error?.code?.rawValue ?? "") \(error?.message ?? "")")
                     Analytics.trackCallGoogle(endpoint: .distance, error: error)
+                } else {
+                    Analytics.trackCallGoogle(endpoint: .distance)
+                    
+                    guard let weakSelf = weakSelf else { return }
+                    
+                    if let distanceMatrix = distanceMatrix {
+                        weakSelf.mapVC.updateETA(eta: distanceMatrix.getEta())
+                        weakSelf.timeWindowView.setETA(eta: distanceMatrix.getEta())
+                    }
+                }
             }
         }
     }
@@ -375,8 +373,8 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        BookingAPI().contactDriver(customerId: customerId, bookingId: booking.id, mode: mode).onSuccess { result in
-            if let contactDriver = result?.data?.result {
+        CustomerAPI.contactDriver(customerId: customerId, bookingId: booking.id, mode: mode) { contact, error in
+            if let contactDriver = contact {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 if mode == "text_only" {
                     // sms
@@ -388,10 +386,10 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
                     guard let url = URL(string: number) else { return }
                     UIApplication.shared.open(url)
                 }
+            } else {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
             }
-        }.onFailure { error in
-            MBProgressHUD.hide(for: self.view, animated: true)
-            self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
         }
     }
     

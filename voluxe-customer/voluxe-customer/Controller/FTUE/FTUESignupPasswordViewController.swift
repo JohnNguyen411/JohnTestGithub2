@@ -33,7 +33,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         textView.numberOfLines = 0
         return textView
     }()
-
+    
     // This textfield is required to allow AutoFill password generation
     // to work.  There must be a visible (not hidden) .username tagged
     // field for a password to be generated, but that does not fit with
@@ -50,7 +50,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         }
         return textfield
     }()
-
+    
     let volvoPwdTextField = VLVerticalTextField(title: .viewEditTextTitlePasswordNew, placeholder: "••••••••", kern: 2.0)
     let volvoPwdConfirmTextField = VLVerticalTextField(title: .viewEditTextTitlePasswordConfirm, placeholder: "••••••••", kern: 2.0)
     
@@ -67,16 +67,16 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // support autofill
         if #available(iOS 12.0, *) {
             self.volvoPwdTextField.textField.textContentType = .newPassword
             self.volvoPwdConfirmTextField.textField.textContentType = .newPassword
         }
-
+        
         volvoPwdTextField.accessibilityIdentifier = "volvoPwdTextField"
         volvoPwdConfirmTextField.accessibilityIdentifier = "volvoPwdConfirmTextField"
-                
+        
         volvoPwdTextField.showPasswordToggleIcon = true
         volvoPwdConfirmTextField.showPasswordToggleIcon = true
         
@@ -94,7 +94,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         volvoPwdTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         volvoPwdConfirmTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
-
+        
         // note that the user has to tap into the field for Password
         // AutoFill to work, forcing it to first responder won't work.
         canGoNext(nextEnabled: false)
@@ -103,7 +103,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             passwordLabel.text = .updatePassword
         }
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.volvoPwdTextField.textField.becomeFirstResponder()
@@ -112,7 +112,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     override func setupViews() {
         
         super.setupViews()
-
+        
         scrollView.addSubview(passwordLabel)
         scrollView.addSubview(passwordConditionLabel)
         scrollView.addSubview(volvoPwdTextField)
@@ -141,7 +141,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             make.top.equalTo(volvoPwdTextField.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
-
+        
         // moving the username field offscreen seems to satisfy Password AutoFill's
         // requirement of a visible username field for the Generate Strong Password modal
         self.view.insertSubview(self.usernameTextField, belowSubview: self.volvoPwdTextField)
@@ -155,20 +155,20 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     override func checkTextFieldsValidity() -> Bool {
         let enabled = (volvoPwdTextField.textField.text?.isMinimumPasswordLength() ?? false) &&
-                      (volvoPwdConfirmTextField.textField.text?.isMinimumPasswordLength() ?? false)
+            (volvoPwdConfirmTextField.textField.text?.isMinimumPasswordLength() ?? false)
         canGoNext(nextEnabled: enabled)
         return enabled
     }
     
-    private func onSignupError(error: Errors? = nil) {
+    private func onSignupError(error: LuxeAPIError? = nil) {
         self.showLoading(loading: false)
         
-        if let apiError = error?.apiError {
-            if apiError.getCode() == .E5001 {
+        if let code = error?.code {
+            if code == .E5001 {
                 self.showOkDialog(title: .error, message: .errorAccountAlreadyExists, completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
-            } else if apiError.getCode() == .E4012 {
+            } else if code == .E4012 {
                 self.showOkDialog(title: .error, message: .errorInvalidVerificationCode, completion: {
                     self.navigationController?.popViewController(animated: true)
                 }, dialog: .error, screen: self.screen)
@@ -255,15 +255,23 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         if let code = UserManager.sharedInstance.signupCustomer.verificationCode,
             let password = volvoPwdConfirmTextField.textField.text, let customerId = UserManager.sharedInstance.customerId(),
             signupCustomer.email == nil, UserManager.sharedInstance.isLoggedIn() {
-            CustomerAPI().passwordChange(customerId: customerId, code: code, password: password).onSuccess { result in
-                weakSelf?.showLoading(loading: false)
-                weakSelf?.navigationController?.popToRootViewController(animated: true)
-                }.onFailure { error in
+            CustomerAPI.passwordChange(customerId: customerId, code: code, password: password) { error in
+                
+                if error != nil {
+                    if let errorCode = error?.code, errorCode == .E4012 {
+                        self.showOkDialog(title: .error, message: .errorInvalidVerificationCode, completion: {
+                            self.navigationController?.popViewController(animated: true)
+                        }, dialog: .error, screen: self.screen)
+                    }
                     weakSelf?.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: weakSelf?.screen)
                     weakSelf?.showLoading(loading: false)
+                } else {
+                    weakSelf?.showLoading(loading: false)
+                    weakSelf?.navigationController?.popToRootViewController(animated: true)
                 }
-            
-            return
+                
+                return
+            }
         }
         
         // if no access token, no temp email, no cust id, and a phone number, it's a reset password
@@ -271,27 +279,30 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             let password = volvoPwdConfirmTextField.textField.text,
             let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber,
             UserManager.sharedInstance.customerId() == nil, signupCustomer.email == nil, !UserManager.sharedInstance.isLoggedIn() {
-            CustomerAPI().passwordResetConfirm(phoneNumber: phoneNumber, code: code, password: password).onSuccess { result in
-                weakSelf?.showLoading(loading: false)
-                // password successfully updated, login the user
-                weakSelf?.loginUser(phoneNumber: phoneNumber, password: password)
+            CustomerAPI.passwordResetConfirm(phoneNumber: phoneNumber, code: code, password: password) { error in
                 
-                }.onFailure { error in
+                if error != nil {
                     weakSelf?.showLoading(loading: false)
                     weakSelf?.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: weakSelf?.screen)
+                } else {
+                    weakSelf?.showLoading(loading: false)
+                    // password successfully updated, login the user
+                    weakSelf?.loginUser(phoneNumber: phoneNumber, password: password)
+                }
+                
             }
             return
         }
-            
+        
         signup(signupCustomer: signupCustomer)
         
     }
-
+    
     private func signup(signupCustomer: SignupCustomer) {
         
         guard let email = signupCustomer.email else { return }
         guard let password = volvoPwdConfirmTextField.textField.text else { return }
-
+        
         if let customer = UserManager.sharedInstance.getCustomer() {
             
             if UserManager.sharedInstance.isLoggedIn() {
@@ -304,12 +315,11 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             }
         }
         weak var weakSelf = self
-
-        guard let phoneNumber = signupCustomer.phoneNumber else { return }
+        
         guard let verificationCode = signupCustomer.verificationCode else { return }
         
-        CustomerAPI().confirmSignup(email: email, phoneNumber: phoneNumber, password: password, verificationCode: verificationCode).onSuccess { result in
-            if let customer = result?.data?.result {
+        CustomerAPI.confirmSignup(email: email, password: password, verificationCode: verificationCode) { customer, error in
+            if let customer = customer {
                 if DeeplinkManager.sharedInstance.isPrefillSignup() {
                     Analytics.trackView(app: .deeplinkSuccess, screen: weakSelf?.screen)
                 }
@@ -322,43 +332,47 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 UserManager.sharedInstance.setCustomer(customer: customer)
                 weakSelf?.loginUser(email: email, password: password)
                 Analytics.trackView(screen: .signupComplete)
-            }
-            }.onFailure { error in
+            } else if let error = error {
                 weakSelf?.onSignupError(error: error)
+            }
         }
     }
     
     func loginUser(email: String, password: String) {
         weak var weakSelf = self
-
-        CustomerAPI().login(email: email, password: password).onSuccess { result in
-            if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
+        
+        CustomerAPI.login(email: email, password: password) { token, error in
+            if let tokenObject = token, let customerId = tokenObject.user?.id {
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
                 weakSelf?.showLoading(loading: false)
                 weakSelf?.goToNext()
             } else {
-                weakSelf?.onSignupError()
+                if let error = error {
+                    weakSelf?.onSignupError(error: error)
+                } else {
+                    weakSelf?.onSignupError()
+                }
             }
-            }.onFailure { error in
-                weakSelf?.onSignupError(error: error)
         }
     }
     
     func loginUser(phoneNumber: String, password: String) {
         weak var weakSelf = self
-
-        CustomerAPI().login(phoneNumber: phoneNumber, password: password).onSuccess { result in
-            if let tokenObject = result?.data?.result, let customerId = tokenObject.customerId {
+        
+        CustomerAPI.login(phoneNumber: phoneNumber, password: password) { token, error in
+            if let tokenObject = token, let customerId = tokenObject.user?.id {
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
                 weakSelf?.showLoading(loading: false)
                 weakSelf?.goToNext()
             } else {
-                weakSelf?.onSignupError()
+                if let error = error {
+                    weakSelf?.onSignupError(error: error)
+                } else {
+                    weakSelf?.onSignupError()
+                }
             }
-            }.onFailure { error in
-                weakSelf?.onSignupError(error: error)
         }
     }
     

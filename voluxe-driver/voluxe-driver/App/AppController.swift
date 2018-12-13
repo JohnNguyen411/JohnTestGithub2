@@ -12,6 +12,9 @@ import UIKit
 class AppController: UIViewController {
 
     static let shared = AppController()
+
+    // MARK:- Lifecycle
+
     private init() {
         super.init(nibName: nil, bundle: nil)
         self.registerAPINotifications()
@@ -30,25 +33,24 @@ class AppController: UIViewController {
         self.view.backgroundColor = .white
     }
 
-    private var pushController: PushRequiredViewController?
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.registerManagers()
+    }
 
-    // TODO temporary until designed
-    // https://app.asana.com/0/858610969087925/891607760776260/f
-    func togglePushRequiredController(allowed: Bool) {
+    // MARK:- Manager support
 
-        // controller is presented but no longer necessary
-        if let controller = self.pushController, allowed == true {
-            controller.dismiss(animated: true) {
-                self.pushController?.removeFromParent()
-                self.pushController = nil
-            }
+    private func registerManagers() {
+
+        // when driver changes other managers need to know
+        DriverManager.shared.driverDidChangeClosure = {
+            driver in
+            RequestManager.shared.set(driver: driver)
         }
 
-        // controller is not presented but needs to be
-        if self.pushController == nil, allowed == false {
-            let controller = PushRequiredViewController()
-            self.present(controller, animated: true)
-            self.pushController = controller
+        RequestManager.shared.requestsDidChangeClosure = {
+            requests in
+            NSLog("REQUESTS changed to \(requests)")
         }
     }
 }
@@ -58,15 +60,14 @@ class AppController: UIViewController {
 extension AppController {
 
     func launch() {
+        // TODO resume() is called just for simplicity
+        // launch behaviour will be different
+        self.showLanding(animated: false)
         self.resume()
     }
 
     func resume() {
-        AppDelegate.shared.registerForPushNotifications() {
-            [weak self] allowed in
-            self?.togglePushRequiredController(allowed: allowed)
-            // TODO tell DriverManager that driver token has added or disconnected
-        }
+        self.requestPermissions()
     }
 
     func suspend() {
@@ -75,5 +76,18 @@ extension AppController {
 
     func exit() {
         UserDefaults.standard.synchronize()
+    }
+}
+
+// MARK:- Launch support
+
+extension AppController {
+
+    // TODO should remove any other child controllers
+    func showLanding(animated: Bool = true) {
+        let controller = LandingViewController()
+        self.addChild(controller)
+        Layout.fill(view: self.view, with: controller.view)
+        controller.didMove(toParent: self)
     }
 }

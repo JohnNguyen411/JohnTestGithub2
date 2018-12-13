@@ -60,7 +60,6 @@ final class KeychainManager {
     
     private func loadAccessToken() {
         accessToken = keychain[KeychainManager.accessTokenKey]
-        NetworkRequest.setAccessToken(accessToken)
         if let customerIdString = keychain[KeychainManager.customerIdKey] {
             self.customerId = Int(customerIdString)
         } else {
@@ -77,7 +76,6 @@ final class KeychainManager {
         } else {
             self.customerId = nil
         }
-        NetworkRequest.setAccessToken(token)
         Analytics.updateUserContext()
     }
     

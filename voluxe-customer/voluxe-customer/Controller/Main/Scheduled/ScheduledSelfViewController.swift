@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import PhoneNumberKit
+import FlagPhoneNumber
+import libPhoneNumber_iOS
 
 class ScheduledSelfViewController: BaseVehicleViewController {
-    
-    let phoneNumberKit = PhoneNumberKit()
-    
+        
     let dealershipNameLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
@@ -188,9 +187,11 @@ class ScheduledSelfViewController: BaseVehicleViewController {
                 dealershipPhoneButton.addTarget(self, action: #selector(callDealership), for: .touchUpInside)
                 
                 do {
-                    let validPhoneNumber = try phoneNumberKit.parse(phone)
-                    dealershipPhoneButton.setTitle(title: phoneNumberKit.format(validPhoneNumber, toType: .national, withPrefix: false))
-                } catch {
+                    let phoneUtil: NBPhoneNumberUtil = NBPhoneNumberUtil.sharedInstance()
+                    let parsedNumber = try phoneUtil.parse(phone, defaultRegion: "US")
+                    let formattedPhone = try phoneUtil.format(parsedNumber, numberFormat: .NATIONAL)
+                    dealershipPhoneButton.setTitle(title: formattedPhone)
+                } catch _ {
                 }
             }
         }

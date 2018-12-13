@@ -50,8 +50,12 @@ class NewServiceViewController: BaseViewController {
         tableView.isScrollEnabled = false
         tableView.separatorStyle = .none
         
-        RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
-            if let services = services?.data?.result {
+        CustomerAPI.repairOrderTypes() { services, error in
+            self.hideProgressHUD()
+            
+            if error != nil {
+                Logger.print("\(error?.code?.rawValue ?? "") \(error?.message ?? "")")
+            } else {
                 if let realm = try? Realm() {
                     try? realm.write {
                         realm.delete(realm.objects(RepairOrderType.self))
@@ -72,12 +76,7 @@ class NewServiceViewController: BaseViewController {
                     }
                 }
             }
-            self.hideProgressHUD()
-            }.onFailure { error in
-                Logger.print(error)
-                self.hideProgressHUD()
         }
-        
     }
     
     override func setupViews() {

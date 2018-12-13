@@ -27,7 +27,7 @@ final class RemoteConfigManager {
         
         remoteConfig = RemoteConfig.remoteConfig()
         let remoteConfigSettings = RemoteConfigSettings(developerModeEnabled: developerModeEnabled)
-        remoteConfig.configSettings = remoteConfigSettings!
+        remoteConfig.configSettings = remoteConfigSettings
         remoteConfig.setDefaults(fromPlist: "RemoteConfigDefaults")
     }
     

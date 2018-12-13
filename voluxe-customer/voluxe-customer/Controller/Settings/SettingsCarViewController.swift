@@ -94,18 +94,20 @@ class SettingsCarViewController: BaseViewController {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
         weak var weakSelf = self
-        CustomerAPI().deleteVehicle(customerId: customerId, vehicleId: vehicle.id).onSuccess { result in
-            if let customerId = UserManager.sharedInstance.customerId() {
-                weakSelf?.callVehicles(customerId: customerId)
-            }
-            }.onFailure { error in
+        CustomerAPI.deleteVehicle(customerId: customerId, vehicleId: vehicle.id) { vehicles, error in
+            if let error = error {
                 weakSelf?.deleteVehicleFailed(error: error)
+            } else {
+                if let customerId = UserManager.sharedInstance.customerId() {
+                    weakSelf?.callVehicles(customerId: customerId)
+                }
+            }
         }
     }
     
-    private func deleteVehicleFailed(error: Errors) {
+    private func deleteVehicleFailed(error: LuxeAPIError) {
         MBProgressHUD.hide(for: self.view, animated: true)
-        if error.apiError?.getCode() == .E3011 {
+        if error.code == .E3011 {
             showOkDialog(title: .error, message: .errorDeleteVehicleBooking, dialog: .error, screen: self.screen)
         } else {
             showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
@@ -116,26 +118,26 @@ class SettingsCarViewController: BaseViewController {
     private func callVehicles(customerId: Int) {
         
         weak var weakSelf = self
-        CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
-            if let cars = result?.data?.result {
+        CustomerAPI.vehicles(customerId: customerId) { vehicles, error in
+            if error == nil {
                 if let realm = weakSelf?.realm {
                     try? realm.write {
-                        realm.add(cars, update: true)
+                        realm.add(vehicles, update: true)
                     }
                 }
                 if let view = weakSelf?.view {
                     MBProgressHUD.hide(for: view, animated: true)
                 }
-                if cars.count == 0 {
+                if vehicles.count == 0 {
                     FTUEStartViewController.flowType = .login
                     AppController.sharedInstance.showAddVehicleScreen()
                 } else {
-                    UserManager.sharedInstance.setVehicles(vehicles: cars)
+                    UserManager.sharedInstance.setVehicles(vehicles: vehicles)
                     weakSelf?.navigationController?.popViewController(animated: true)
                 }
-            }
-            }.onFailure { error in
+            } else {
                 weakSelf?.retrieveVehiclesFailed()
+            }
         }
     }
     

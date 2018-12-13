@@ -11,7 +11,6 @@ import UIKit
 import QuartzCore
 import SlideMenuControllerSwift
 import RealmSwift
-import BrightFutures
 import Alamofire
 import Kingfisher
 import MBProgressHUD
@@ -158,18 +157,18 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
             
             MBProgressHUD.showAdded(to: self.view, animated: true)
             
-            BookingAPI().getBooking(customerId: customerId, bookingId: bookingFeedback.bookingId).onSuccess { result in
+            CustomerAPI.booking(customerId: customerId, bookingId: bookingFeedback.bookingId) { booking, error in
                 MBProgressHUD.hide(for: self.view, animated: true)
-                if let booking = result?.data?.result {
+                if let booking = booking {
                     self.booking = booking
                     if let vehicle = booking.vehicle {
                         self.loadVehicle(vehicle: vehicle)
                     }
                     self.updateDealership(dealership: booking.dealership)
                 }
-                }.onFailure { error in
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                if error != nil {
                     self.skipBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id)
+                }
             }
         } else if let booking = self.booking {
             self.updateDealership(dealership: booking.dealership)
@@ -296,19 +295,16 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
             if let bookingFeedback = self.bookingFeedback {
                 skipBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id)
             } else if let booking = self.booking,
-                booking.bookingFeedbackId  > 0 {
-                skipBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.bookingFeedbackId)
+                booking.getBookingFeedbackId()  > 0 {
+                skipBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.getBookingFeedbackId())
             }
         }
     }
     
     private func skipBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        BookingAPI().skipBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId).onSuccess { result in
+        CustomerAPI.skipBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId) { error in
             self.goToNext()
-            }.onFailure { error in
-                // skip the skip?
-                self.goToNext()
         }
     }
     
@@ -317,17 +313,16 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
 
         if let bookingFeedback = self.bookingFeedback {
             submitBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id, rating: rating, comment: comment)
-        } else if let booking = self.booking, booking.bookingFeedbackId  > 0 {
-            submitBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.bookingFeedbackId, rating: rating, comment: comment)
+        } else if let booking = self.booking, booking.getBookingFeedbackId()  > 0 {
+            submitBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.getBookingFeedbackId(), rating: rating, comment: comment)
             
         }
     }
     
     private func submitBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int, rating: Int, comment: String?) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        BookingAPI().submitBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId, rating: rating, comment: comment).onSuccess { result in
-            self.goToNext()
-            }.onFailure { error in
+        CustomerAPI.submitBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId, rating: rating, comment: comment) { error in
+            if error != nil {
                 if self.retryCount > 2 {
                     // stop
                     self.goToNext()
@@ -338,6 +333,9 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
                     self.sendFeedback(rating: rating, comment: comment)
                 }, dialog: .error, screen: self.screen)
                 self.retryCount += 1
+            } else {
+                self.goToNext()
+            }
         }
     }
     
