@@ -142,6 +142,9 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
             }
             if let phoneNumber = DeeplinkManager.sharedInstance.getDeeplinkObject()?.phoneNumber {
                 phoneNumberTextField.textField.text = phoneNumber
+                if let fpnTextField = phoneNumberTextField.textField as? FPNTextField {
+                    fpnDidValidatePhoneNumber(textField: fpnTextField, isValid: false)
+                }
             }
             
             deeplinkEventConsumed = true

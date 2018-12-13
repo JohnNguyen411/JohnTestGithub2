@@ -20,7 +20,7 @@ class GMSnappedPoints: Codable {
         guard let data = data else { return nil }
         do {
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601)
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.localISO8601)
             let object = try decoder.decode(T.self, from: data)
             return object
         } catch {

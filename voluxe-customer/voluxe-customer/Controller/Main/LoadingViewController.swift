@@ -58,7 +58,7 @@ class LoadingViewController: LogoViewController {
         
         activityIndicator.snp.makeConstraints { (make) -> Void in
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.centerY.equalToSuperview().offset(50)
             make.height.width.equalTo(100)
         }
         

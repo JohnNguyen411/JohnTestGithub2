@@ -30,11 +30,18 @@ import RealmSwift
         case notes
         case state
         case vehicleDrivable = "vehicle_drivable"
-        case repairOrderType = "dealership_repair_order.repair_order_type"
-        case name = "dealership_repair_order.repair_order_type.name"
+        case dealershipRepairOrder = "dealership_repair_order"
         case title
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+    }
+    
+    private enum DealershipRepairOrderKeys: String, CodingKey {
+        case repairOrderType = "repair_order_type"
+    }
+    
+    private enum RepairOrderTypeKeys: String, CodingKey {
+        case name = "name"
     }
     
     convenience required init(from decoder: Decoder) throws {
@@ -46,8 +53,12 @@ import RealmSwift
         self.notes = try container.decodeIfPresent(String.self, forKey: .notes) ?? ""
         self.state = try container.decodeIfPresent(String.self, forKey: .state)
         self.vehicleDrivable = try container.decodeIfPresent(RealmOptional<Bool>.self, forKey: .vehicleDrivable) ?? RealmOptional<Bool>()
-        self.repairOrderType = try container.decodeIfPresent(RepairOrderType.self, forKey: .repairOrderType)
-        self.name = try container.decodeIfPresent(String.self, forKey: .name)
+        
+        let dealershipRepairOrderContainer = try container.nestedContainer(keyedBy: DealershipRepairOrderKeys.self, forKey: .dealershipRepairOrder)
+        let repairOrderTypeContainer = try dealershipRepairOrderContainer.nestedContainer(keyedBy: RepairOrderTypeKeys.self, forKey: .repairOrderType)
+        self.repairOrderType = try dealershipRepairOrderContainer.decodeIfPresent(RepairOrderType.self, forKey: .repairOrderType)
+        self.name = try repairOrderTypeContainer.decodeIfPresent(String.self, forKey: .name)
+
         self.title = try container.decodeIfPresent(String.self, forKey: .title)
         self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
         self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
@@ -61,8 +72,10 @@ import RealmSwift
         try container.encode(notes, forKey: .notes)
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(vehicleDrivable, forKey: .vehicleDrivable)
-        try container.encodeIfPresent(repairOrderType, forKey: .repairOrderType)
-        try container.encodeIfPresent(name, forKey: .name)
+        var dealershipROContainer = encoder.container(keyedBy: DealershipRepairOrderKeys.self)
+        try dealershipROContainer.encodeIfPresent(repairOrderType, forKey: .repairOrderType)
+        var repairOrderTypeContainer = encoder.container(keyedBy: RepairOrderTypeKeys.self)
+        try repairOrderTypeContainer.encodeIfPresent(name, forKey: RepairOrderTypeKeys.name)
         try container.encodeIfPresent(title, forKey: .title)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
