@@ -12,61 +12,20 @@ import RealmSwift
 
 extension RepairOrderType: VolvoRealmProtocol {
     
-    typealias T = RepairOrderType
+    public typealias Origin = RepairOrderTypeRealm
+    public typealias Target = RepairOrderType
     
-    func add(_ realm: Realm, update: Bool = true) {
-        try? realm.write {
-            realm.add(RepairOrderTypeRealm(repairOrder: self), update: update)
-        }
+    func toRealmObject() -> RepairOrderTypeRealm {
+        return Origin.convertModelToRealm(element: self)
     }
     
-    static func add(_ realm: Realm, objects: [RepairOrderType], update: Bool = true) {
-        try? realm.write {
-            let elements = RepairOrderTypeRealm.convertModelToRealm(elements: objects)
-            realm.add(elements, update: update)
-        }
-    }
-    
-    
-    func delete(_ realm: Realm) {
-        try? realm.write {
-            if let object = realm.objects(RepairOrderTypeRealm.self).filter("id == \(self.id)").first {
-                realm.delete(object)
-            }
-        }
-    }
-    
-    static func delete(_ realm: Realm, objects: [RepairOrderType]) {
-        try? realm.write {
-            //TODO: Actually implement it ...
-        }
-    }
-    
-    static func deleteAll(_ realm: Realm) {
-        try? realm.write {
-            let allObjects = realm.objects(RepairOrderTypeRealm.self)
-            realm.delete(allObjects)
-        }
-    }
-    
-
-    static func objects(_ realm: Realm, predicate: String? = nil) -> [RepairOrderType] {
-        if let predicate = predicate {
-            let elements = realm.objects(RepairOrderTypeRealm.self).filter(predicate)
-            return RepairOrderTypeRealm.convertResultsToModel(results: elements)
-        } else {
-            let elements = realm.objects(RepairOrderTypeRealm.self)
-            return RepairOrderTypeRealm.convertResultsToModel(results: elements)
-        }
-    }
 }
 
 
 @objcMembers class RepairOrderTypeRealm: Object, RealmObjectConverter {
     
-    typealias T = RepairOrderType
-    typealias E = RepairOrderTypeRealm
-    
+    typealias Target = RepairOrderType
+    typealias Origin = RepairOrderTypeRealm
     
     dynamic var id: Int = -1
     dynamic var name: String?
@@ -110,7 +69,7 @@ extension RepairOrderType: VolvoRealmProtocol {
         return convertedElements
     }
     
-    static func convertModelToRealm(elements: [RepairOrderType]) -> [RepairOrderTypeRealm] {
+    static func convertModelsToRealm(elements: [RepairOrderType]) -> [RepairOrderTypeRealm] {
         var convertedElements: [RepairOrderTypeRealm] = []
         
         elements.forEach{element in
@@ -118,6 +77,11 @@ extension RepairOrderType: VolvoRealmProtocol {
         }
         return convertedElements
     }
+    
+    static func convertModelToRealm(element: RepairOrderType) -> RepairOrderTypeRealm {
+        return RepairOrderTypeRealm(repairOrder: element)
+    }
+    
     
     
 }

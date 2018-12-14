@@ -57,24 +57,27 @@ class NewServiceViewController: BaseViewController {
                 Logger.print("\(error?.code?.rawValue ?? "") \(error?.message ?? "")")
             } else {
                 if let realm = try? Realm() {
-                    
-                    RepairOrderType.deleteAll(realm)
-                    RepairOrderType.add(realm, objects: services)
-                    
-                    var containsCustom = false
-                    for service in services {
-                        if service.getCategory() == .custom {
-                            containsCustom = true
-                            break
-                        }
-                    }
-                    if containsCustom {
-                        self.showServices(repairOrderTypes: [String.MilestoneServices, String.OtherMaintenanceRepairs])
-                    } else {
-                        self.showServices(repairOrderTypes: [String.MilestoneServices])
+                    try? realm.write {
+                        realm.deleteAll(RepairOrderType.self)
+                        realm.add(services)
                     }
                 }
+                
+                var containsCustom = false
+                for service in services {
+                    if service.getCategory() == .custom {
+                        containsCustom = true
+                        break
+                    }
+                }
+                
+                if containsCustom {
+                    self.showServices(repairOrderTypes: [String.MilestoneServices, String.OtherMaintenanceRepairs])
+                } else {
+                    self.showServices(repairOrderTypes: [String.MilestoneServices])
+                }
             }
+            
         }
     }
     
@@ -141,7 +144,8 @@ extension NewServiceViewController: UITableViewDataSource, UITableViewDelegate {
             self.pushViewController(ServiceListViewController(vehicle: vehicle, title: groupService[indexPath.row]), animated: true)
         } else {
             if let realm = try? Realm() {
-                if let filteredResults = RepairOrderType.objects(realm, predicate: "category = '\(RepairOrderCategory.custom.rawValue)'").first {
+                
+                if let filteredResults = realm.objects(RepairOrderType.self, predicate: "category = '\(RepairOrderCategory.custom.rawValue)'").first {
                     Analytics.trackClick(button: .serviceCustom, screen: self.screen)
                     self.pushViewController(ServiceMultiselectListViewController(vehicle: vehicle, repairOrderType: filteredResults), animated: true)
                 }

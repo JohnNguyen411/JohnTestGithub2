@@ -10,29 +10,11 @@ import Foundation
 import RealmSwift
 import Realm
 
-protocol VolvoRealmProtocol {
+public protocol VolvoRealmProtocol {
     
-    associatedtype T
+    associatedtype Origin: RealmObjectConverter // the Realm Object
+    associatedtype Target // The model object
 
-    func add(_ realm: Realm, update: Bool)
-    static func add(_ realm: Realm, objects: [T], update: Bool)
+    func toRealmObject() -> Origin
 
-    func delete(_ realm: Realm)
-    static func delete(_ realm: Realm, objects: [T])
-    static func deleteAll(_ realm: Realm)
-
-    static func objects(_ realm: Realm, predicate: String?) -> [T]
-    
-}
-
-protocol RealmObjectConverter {
-    
-    associatedtype T
-    associatedtype E: Object
-
-    static func convertToModel(element: E) -> T
-    static func convertResultsToModel(results: Results<E>) -> [T]
-    static func convertModelToRealm(elements: [T]) -> [E]
-
-    
 }
