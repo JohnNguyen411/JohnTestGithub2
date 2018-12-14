@@ -7,16 +7,15 @@
 //
 
 import Foundation
-import RealmSwift
 
-@objcMembers class RepairOrderType: Object, Codable {
+class RepairOrderType: Codable {
     
-    dynamic var id: Int = -1
-    dynamic var name: String?
-    dynamic var desc: String = ""
-    dynamic var category: String?
-    dynamic var createdAt: Date?
-    dynamic var updatedAt: Date?
+    var id: Int = -1
+    var name: String?
+    var desc: String = ""
+    var category: String?
+    var createdAt: Date?
+    var updatedAt: Date?
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -27,11 +26,6 @@ import RealmSwift
         case updatedAt = "updated_at" 
     }
     
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-    
- 
     func getCategory() -> RepairOrderCategory {
         if let category = category {
             return RepairOrderCategory(rawValue: category)!
@@ -45,7 +39,6 @@ import RealmSwift
         }
         return .OtherMaintenanceRepairs
     }
-    
 }
 
 public enum RepairOrderCategory: String {

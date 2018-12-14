@@ -232,10 +232,8 @@ class LoadingViewController: LogoViewController {
                 Logger.print("\(error?.message ?? "")")
             } else {
                 if let realm = try? Realm() {
-                    try? realm.write {
-                        realm.delete(realm.objects(RepairOrderType.self))
-                        realm.add(services, update: true)
-                    }
+                    RepairOrderType.deleteAll(realm)
+                    RepairOrderType.add(realm, objects: services)
                 }
             }
         }

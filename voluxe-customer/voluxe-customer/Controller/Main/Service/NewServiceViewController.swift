@@ -57,10 +57,9 @@ class NewServiceViewController: BaseViewController {
                 Logger.print("\(error?.code?.rawValue ?? "") \(error?.message ?? "")")
             } else {
                 if let realm = try? Realm() {
-                    try? realm.write {
-                        realm.delete(realm.objects(RepairOrderType.self))
-                        realm.add(services, update: true)
-                    }
+                    
+                    RepairOrderType.deleteAll(realm)
+                    RepairOrderType.add(realm, objects: services)
                     
                     var containsCustom = false
                     for service in services {
@@ -142,7 +141,7 @@ extension NewServiceViewController: UITableViewDataSource, UITableViewDelegate {
             self.pushViewController(ServiceListViewController(vehicle: vehicle, title: groupService[indexPath.row]), animated: true)
         } else {
             if let realm = try? Realm() {
-                if let filteredResults = realm.objects(RepairOrderType.self).filter("category = '\(RepairOrderCategory.custom.rawValue)'").first {
+                if let filteredResults = RepairOrderType.objects(realm, predicate: "category = '\(RepairOrderCategory.custom.rawValue)'").first {
                     Analytics.trackClick(button: .serviceCustom, screen: self.screen)
                     self.pushViewController(ServiceMultiselectListViewController(vehicle: vehicle, repairOrderType: filteredResults), animated: true)
                 }

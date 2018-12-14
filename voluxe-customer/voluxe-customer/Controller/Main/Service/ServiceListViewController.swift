@@ -46,12 +46,11 @@ class ServiceListViewController: BaseViewController {
                 Logger.print("\(error?.code?.rawValue ?? "") \(error?.message ?? "")")
             } else {
                 if let realm = try? Realm() {
-                    try? realm.write {
-                        realm.delete(realm.objects(RepairOrderType.self))
-                        realm.add(services, update: true)
-                    }
                     
-                    let filteredResults = realm.objects(RepairOrderType.self).filter("category == 'routine_maintenance_by_distance'")
+                    RepairOrderType.deleteAll(realm)
+                    RepairOrderType.add(realm, objects: services)
+                    let filteredResults = RepairOrderType.objects(realm, predicate: "category == 'routine_maintenance_by_distance'")
+                    
                     self.showServices(services: Array(filteredResults))
                 }
             }
