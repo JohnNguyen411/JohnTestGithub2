@@ -9,19 +9,15 @@
 import Foundation
 import RealmSwift
 
-class Color: Object, Codable {
+class Color: Codable {
     
-    @objc dynamic var baseColor: String?
-    @objc dynamic var color: String?
+    var baseColor: String?
+    var color: String?
     
     convenience init(baseColor: String?, color: String?) {
         self.init()
         self.baseColor = baseColor
         self.color = color
-    }
-    
-    override static func primaryKey() -> String? {
-        return "baseColor"
     }
     
 }

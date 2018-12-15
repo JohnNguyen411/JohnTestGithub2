@@ -25,30 +25,30 @@ extension Realm {
         }
     }
     
-    public func objects<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: String?) -> [Element.Origin.T] {
-        var elements: Results<Element.Origin.E>
+    public func objects<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: String?) -> [Element.Origin.Model] {
+        var elements: Results<Element.Origin.Origin>
         if let predicate = predicate {
-            elements = self.objects(type.Origin.E.self).filter(predicate)
+            elements = self.objects(type.Origin.Origin.self).filter(predicate)
         } else {
-            elements = self.objects(type.Origin.E.self)
+            elements = self.objects(type.Origin.Origin.self)
         }
         
         return type.Origin.convertResultsToModel(results: elements)
     }
     
     public func deleteFirst<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: String) {
-        if let object = self.objects(type.Origin.E.self).filter(predicate).first {
+        if let object = self.objects(type.Origin.Origin.self).filter(predicate).first {
             self.delete(object)
         }
     }
     
     public func delete<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: String) {
-        let objects = self.objects(type.Origin.E.self).filter(predicate)
+        let objects = self.objects(type.Origin.Origin.self).filter(predicate)
         self.delete(objects)
     }
     
     public func deleteAll<Element: VolvoRealmProtocol>(_ type: Element.Type) {
-        let objects = self.objects(type.Origin.E.self)
+        let objects = self.objects(type.Origin.Origin.self)
         self.delete(objects)
     }
 

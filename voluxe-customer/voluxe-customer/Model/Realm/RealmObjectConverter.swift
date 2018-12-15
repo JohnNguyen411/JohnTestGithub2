@@ -11,12 +11,12 @@ import RealmSwift
 
 public protocol RealmObjectConverter {
     
-    associatedtype T // The model object
-    associatedtype E: Object // the Realm Object
+    associatedtype Model // The model object
+    associatedtype Origin: Object // the Realm Object
     
-    static func convertToModel(element: E) -> T
-    static func convertModelToRealm(element: T) -> E
-    static func convertResultsToModel(results: Results<E>) -> [T]
-    static func convertModelsToRealm(elements: [T]) -> [E]
+    static func convertToModel(element: Origin) -> Model
+    static func convertModelToRealm(element: Model) -> Origin
+    static func convertResultsToModel(results: Results<Origin>) -> [Model]
+    static func convertModelsToRealm(elements: [Model]) -> [Origin]
     
 }

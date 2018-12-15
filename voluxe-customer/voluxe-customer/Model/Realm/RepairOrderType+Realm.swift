@@ -13,7 +13,7 @@ import RealmSwift
 extension RepairOrderType: VolvoRealmProtocol {
     
     public typealias Origin = RepairOrderTypeRealm
-    public typealias Target = RepairOrderType
+    public typealias Model = RepairOrderType
     
     func toRealmObject() -> RepairOrderTypeRealm {
         return Origin.convertModelToRealm(element: self)
@@ -60,6 +60,11 @@ extension RepairOrderType: VolvoRealmProtocol {
         return repairOrderType
     }
     
+    
+    static func convertModelToRealm(element: RepairOrderType) -> RepairOrderTypeRealm {
+        return RepairOrderTypeRealm(repairOrder: element)
+    }
+    
     static func convertResultsToModel(results: Results<RepairOrderTypeRealm>) -> [RepairOrderType] {
         var convertedElements: [RepairOrderType] = []
         
@@ -76,10 +81,6 @@ extension RepairOrderType: VolvoRealmProtocol {
             convertedElements.append(RepairOrderTypeRealm(repairOrder: element))
         }
         return convertedElements
-    }
-    
-    static func convertModelToRealm(element: RepairOrderType) -> RepairOrderTypeRealm {
-        return RepairOrderTypeRealm(repairOrder: element)
     }
     
     
