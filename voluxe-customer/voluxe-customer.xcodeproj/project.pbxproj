@@ -125,6 +125,9 @@
 		538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE76220BF4BC000C3CE17 /* Int+Test.swift */; };
 		538FE76420BF4BC000C3CE17 /* Int+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE76220BF4BC000C3CE17 /* Int+Test.swift */; };
 		53A4D72D216BB6FF001906AA /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53A4D72C216BB6FF001906AA /* UIView+AutoLayout.swift */; };
+		53C2CCDD21C4150000A2ED42 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C2CCDC21C4150000A2ED42 /* Log.swift */; };
+		53C2CCDE21C4150000A2ED42 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C2CCDC21C4150000A2ED42 /* Log.swift */; };
+		53C2CCDF21C4150000A2ED42 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C2CCDC21C4150000A2ED42 /* Log.swift */; };
 		53C7301220CF2FF000BCE926 /* FTUELocalization.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C91BBDF1FA8EB470033C2B1 /* FTUELocalization.swift */; };
 		53C8AD3B20E596C3008E07FF /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */; };
 		53C8AD3C20E596C4008E07FF /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536D6D6620CF50FF00A269D4 /* AnalyticsEnums.swift */; };
@@ -523,6 +526,7 @@
 		53A4D72C216BB6FF001906AA /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		53AA2754209D10CC00781995 /* AppStore.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = AppStore.entitlements; sourceTree = "<group>"; };
 		53AA2755209D10CC00781995 /* Development.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Development.entitlements; sourceTree = "<group>"; };
+		53C2CCDC21C4150000A2ED42 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Log.swift; path = ../Service/Log.swift; sourceTree = "<group>"; };
 		53C8AD5320E59D4F008E07FF /* NullAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NullAnalytics.swift; sourceTree = "<group>"; };
 		53D9A7AA2098E678008BE93E /* GoogleService-Info-Dev.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Dev.plist"; sourceTree = "<group>"; };
 		53D9A7AB2098E679008BE93E /* GoogleService-Info-AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-AppStore.plist"; sourceTree = "<group>"; };
@@ -901,13 +905,14 @@
 		533047112188D821007CE01C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				522F2FBB21B757CB000236ED /* UIImage+LuxeAPI.swift */,
-				52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */,
-				52940963219220B50009F691 /* Thread+Assert.swift */,
-				52940964219220B50009F691 /* UserDefaults+LuxeAPI.swift */,
-				533047122188D821007CE01C /* NSObject+Voluxe.swift */,
 				533047132188D821007CE01C /* Bundle+Voluxe.swift */,
+				52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */,
+				533047122188D821007CE01C /* NSObject+Voluxe.swift */,
 				524C1FFC219F427A003AA733 /* RealmSwift+Codable.swift */,
+				6C7DDE121FDB664D000E2822 /* String+Utils.swift */,
+				52940963219220B50009F691 /* Thread+Assert.swift */,
+				522F2FBB21B757CB000236ED /* UIImage+LuxeAPI.swift */,
+				52940964219220B50009F691 /* UserDefaults+LuxeAPI.swift */,
 			);
 			name = Extensions;
 			path = ../Shared/Extensions;
@@ -945,6 +950,15 @@
 				538FBDE220AB62180096480C /* xcarchive-to-ipa.sh */,
 			);
 			path = Scripts;
+			sourceTree = "<group>";
+		};
+		53C2CCDB21C414E100A2ED42 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				53C2CCDC21C4150000A2ED42 /* Log.swift */,
+			);
+			name = Service;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		53D9A1F8216426D400414648 /* UI */ = {
@@ -1192,7 +1206,6 @@
 				5340E91320D881F100B17D53 /* Enum+CaseIterable.swift */,
 				6C9C9053209BD4CB00494068 /* GMSAddress.swift */,
 				6C91BBF01FA8F2A30033C2B1 /* String+Localized.swift */,
-				6C7DDE121FDB664D000E2822 /* String+Utils.swift */,
 				538CFBE9215078AA00BF5D25 /* String+Validation.swift */,
 				6C2AA2E620AB900F0089350B /* UIBarButtonItem+Voluxe.swift */,
 				6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */,
@@ -1220,6 +1233,7 @@
 				533047112188D821007CE01C /* Extensions */,
 				6C5832C31FB3899700F6BFE0 /* Manager */,
 				539F626D2092AB4E0023DF59 /* Scripts */,
+				53C2CCDB21C414E100A2ED42 /* Service */,
 				538FE75420BF4AB800C3CE17 /* Tests */,
 				53D9A1F8216426D400414648 /* UI */,
 			);
@@ -2222,6 +2236,7 @@
 				538FE76020BF4B9F00C3CE17 /* String+Test.swift in Sources */,
 				526F6E8021B9DD88007C7D84 /* UIImage+LuxeAPI.swift in Sources */,
 				52FFBBB121AE05C700FAD7BE /* UserDefaults+Debug.swift in Sources */,
+				53C2CCDF21C4150000A2ED42 /* Log.swift in Sources */,
 				536D6D6220CF3AA400A269D4 /* FTUELocalization.swift in Sources */,
 				538FE75B20BF4B4E00C3CE17 /* Config.swift in Sources */,
 				538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */,
@@ -2358,6 +2373,7 @@
 				5340E91420D881F100B17D53 /* Enum+CaseIterable.swift in Sources */,
 				6CE147AA20B49E35001F4BC7 /* KeychainManager.swift in Sources */,
 				6CBAA6C72023FD3300F35ECF /* ServiceListViewController.swift in Sources */,
+				53C2CCDD21C4150000A2ED42 /* Log.swift in Sources */,
 				6C9543A21FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6CBFD83620D87F770097D4AB /* NotificationPermissionViewController.swift in Sources */,
 				6C11208E2016B2C70048A56D /* BookingSyncManager.swift in Sources */,
@@ -2508,6 +2524,7 @@
 			files = (
 				524C201321ACAC68003AA733 /* LuxeAPI+Version.swift in Sources */,
 				524C201621ACADA3003AA733 /* LuxeAPI+Notifications.swift in Sources */,
+				53C2CCDE21C4150000A2ED42 /* Log.swift in Sources */,
 				524C200421AC9CF5003AA733 /* LuxeAPI.swift in Sources */,
 				5303E2F620E4622600B1F4BE /* UserDefaults_UnitTests.swift in Sources */,
 				526F6E8121B9DD88007C7D84 /* UIImage+LuxeAPI.swift in Sources */,

@@ -49,6 +49,14 @@ extension UIColor {
                   a: a
         )
     }
+
+    convenience init(rgb: Int, a: Int) {
+        self.init(red: (rgb >> 16) & 0xFF,
+                  green: (rgb >> 8) & 0xFF,
+                  blue: rgb & 0xFF,
+                  a: CGFloat(a) / 255.0
+        )
+    }
 }
 
 // MARK:- Base colors
@@ -64,6 +72,8 @@ struct Color {
 
     // TODO temporary until color palette is determined
     static let purple = UIColor(rgb: 0x223aa3)
+
+    static let black = UIColor(rgb: 0x000000)
 
     // TODO temporarily disabled while being discussed
 //    struct Gray {
@@ -98,14 +108,23 @@ struct Color {
 extension Color {
 
     struct Background {
-        // dark
-        static let light = UIColor.white
+        static let white = UIColor.white
+        static let light = UIColor(rgb: 0xfafafa)
+        static let disabled = UIColor(rgb: 0xf5f5f5)
+        static let dark = UIColor(rgb: 0xe0e0e0)
     }
 
     struct Button {
         // primary
         // secondary
     }
+
+    struct NavigationBar {
+        static let background = Color.Background.light
+        static let title = Color.black
+    }
+
+    static let separator = UIColor(rgb: 0x000000, a: 0x1e)
 }
 
 // MARK:- Random colors

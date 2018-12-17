@@ -154,7 +154,7 @@ extension RestAPI {
     {
         // TODO need to call completion with fabricated error response
         guard let data = image.jpegDataForPhotoUpload() else {
-            assertionFailure("Image needs to be JPEG compatible")
+            Log.fatal(.incorrectValue, "Image needs to be JPEG compatible")
             return
         }
         let tuple = [(data, RestAPIMimeType.jpeg)]

@@ -177,11 +177,13 @@ class RequestManager {
             [weak self] timer in
             self?.refresh()
         }
+        Log.info("RequestManager started")
     }
 
     func stop() {
         self.refreshTimer?.invalidate()
         self.refreshTimer = nil
+        Log.info("RequestManager stopped")
     }
 
     private func refresh() {

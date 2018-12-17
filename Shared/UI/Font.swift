@@ -159,13 +159,13 @@ extension Font {
         static let h3 = FontWeight.semiLight(size: 48)
         static let h4 = FontWeight.semiLight(size: 36)
         static let h5 = FontWeight.regular(size: 24)
-        static let h6 = FontWeight.medium(size: 20)
-        static let subtitle1 = FontWeight.regular(size: 16)
-        static let subtitle2 = FontWeight.medium(size: 14)
+        static let h6 = UIFont.systemFont(ofSize: 20, weight: .regular) // nav bar title
+        static let subtitle1 = UIFont.systemFont(ofSize: 16, weight: .regular) // request cell primary
+        static let subtitle2 = UIFont.systemFont(ofSize: 14, weight: .regular) // request cell secondary
         static let body1 = FontWeight.regular(size: 16)
         static let body2 = FontWeight.regular(size: 14)
-        static let button = UIFont.systemFont(ofSize: 14, weight: .medium)
-        static let caption = FontWeight.regular(size: 12)
+        static let button = UIFont.systemFont(ofSize: 14, weight: .medium)  // landing page buttons
+        static let caption = UIFont.systemFont(ofSize: 12, weight: .medium) // section header
         static let overline = FontWeight.medium(size: 10)
     }
 

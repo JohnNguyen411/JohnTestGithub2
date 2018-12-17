@@ -25,10 +25,10 @@ struct Layout {
         view.topAnchor.constraint(equalTo: anchor, constant: spacing).isActive = true
     }
 
-    static func pinToSuperviewBottom(view: UIView, useSafeArea: Bool = true) {
+    static func pinToSuperviewBottom(view: UIView, spacing: CGFloat = 0, useSafeArea: Bool = true) {
         guard let superview = view.superview else { return }
         let anchor = useSafeArea ? superview.compatibleSafeAreaLayoutGuide.bottomAnchor : superview.bottomAnchor
-        view.bottomAnchor.constraint(equalTo: anchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: anchor, constant: spacing).isActive = true
     }
 }
 

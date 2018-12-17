@@ -10,6 +10,12 @@ import Foundation
 
 struct Request: Codable {
 
+    enum State: String, Codable {
+        case completed
+        case requested
+        case started
+    }
+
     enum `Type`: String, Codable {
         case advisorPickup = "advisor_pickup"
         case advisorDropoff = "advisor_dropoff"
@@ -24,7 +30,7 @@ struct Request: Codable {
     let dealershipTimeSlot: DealershipTimeSlot
     let notes: String?
     let location: Location?
-    let state: String
+    let state: State
     let task: String?
     let driverDealershipTimeSlotAssignmentId: Int
     let driverDealershipTimeSlotAssignment: DriverDealershipTimeSlotAssignment?
@@ -59,5 +65,13 @@ struct Request: Codable {
 
     var isPickup: Bool {
         return self.type == .advisorPickup || self.type == .pickup
+    }
+
+    var isStarted: Bool {
+        return self.state == .started
+    }
+
+    var isCompleted: Bool {
+        return self.state == .completed
     }
 }

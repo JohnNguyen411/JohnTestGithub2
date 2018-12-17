@@ -20,23 +20,26 @@ class LandingViewController: UIViewController {
         return imageView
     }()
 
-    private let buttonsView: ButtonsView = {
-        let view = ButtonsView()
-        view.createButton.addTarget(self, action: #selector(createButtonTouchUpInside), for: .touchUpInside)
-        view.loginButton.addTarget(self, action: #selector(loginButtonTouchUpInside), for: .touchUpInside)
-        return view
+    // TODO localize
+    let loginButton: UIButton = {
+        let button = UIButton(type: .custom).usingAutoLayout()
+        button.setTitleColor(Color.purple, for: .normal)
+        button.setTitle("SIGN-IN", for: .normal)
+        button.titleLabel?.font = Font.Volvo.button
+        return button
     }()
 
     // MARK:- Lifecycle
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
+        self.loginButton.addTarget(self, action: #selector(loginButtonTouchUpInside), for: .touchUpInside)
     }
 
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = Color.Background.white
 
         let gridView = self.view.addGridLayoutView(with: GridLayout.volvoValet())
 
@@ -44,72 +47,28 @@ class LandingViewController: UIViewController {
         self.logoImageView.pinToSuperviewTop(spacing: 96)
         self.logoImageView.heightAnchor.constraint(equalToConstant: 180).isActive = true
 
-        gridView.add(subview: self.buttonsView, from:2, to: 5)
-        self.buttonsView.pinToSuperviewTop(spacing: 425)
+        gridView.add(subview: self.loginButton, from:3, to: 4)
+        self.loginButton.pinBottomToSuperviewBottom(spacing: -153)
     }
+
+    // TODO remove, this is temporary during development
+#if DEBUG
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let defaults = UserDefaults.standard
+        guard defaults.loginOnLaunch else { return }
+        guard let email = defaults.driverEmail else { return }
+        guard let password = defaults.driverPassword else { return }
+        DriverManager.shared.login(email: email, password: password) {
+            [weak self] driver in
+            if driver != nil { self?.loginButtonTouchUpInside() }
+        }
+    }
+#endif
 
     // MARK:- Actions
 
     @objc func loginButtonTouchUpInside() {
-
-    }
-
-    @objc func createButtonTouchUpInside() {
-
-    }
-}
-
-fileprivate class ButtonsView: UIView {
-
-    let loginButton: UIButton = {
-        let button = UIButton(type: .custom).usingAutoLayout()
-        button.setTitleColor(Color.purple, for: .normal)
-        button.setTitle("SIGN-IN", for: .normal)
-        button.contentHorizontalAlignment = .right
-        button.titleLabel?.font = Font.Volvo.button
-        return button
-    }()
-
-    let seperaterLabel: UILabel = {
-        let label = UILabel().usingAutoLayout()
-        label.text = "|"
-        label.textAlignment = .center
-        label.textColor = .lightGray
-        return label
-    }()
-
-    let createButton: UIButton = {
-        let button = UIButton(type: .custom).usingAutoLayout()
-        button.contentHorizontalAlignment = .left
-        button.setTitleColor(Color.purple, for: .normal)
-        button.setTitle("CREATE ACCOUNT", for: .normal)
-        button.titleLabel?.font = Font.Volvo.button
-        return button
-    }()
-
-    convenience init() {
-
-        self.init(frame: .zero)
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.heightAnchor.constraint(equalToConstant: 44).isActive = true
-
-        self.addSubview(self.loginButton)
-        self.addSubview(self.seperaterLabel)
-        self.addSubview(self.createButton)
-
-        self.loginButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        self.loginButton.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        self.loginButton.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        self.loginButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2.8/8.0).isActive = true
-
-        self.seperaterLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        self.seperaterLabel.leadingAnchor.constraint(equalTo: self.loginButton.trailingAnchor).isActive = true
-        self.seperaterLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        self.seperaterLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
-
-        self.createButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        self.createButton.leadingAnchor.constraint(equalTo: self.seperaterLabel.trailingAnchor).isActive = true
-        self.createButton.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        self.createButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        AppController.shared.showMain()
     }
 }
