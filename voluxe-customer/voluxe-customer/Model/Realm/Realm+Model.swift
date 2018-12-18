@@ -13,14 +13,14 @@ extension Realm {
     
     public func add<Element: VolvoRealmProtocol>(_ object: Element, update: Bool = false) {
         if let realmObject = object.toRealmObject() as? Object {
-            self.add(realmObject, update: true)
+            self.add(realmObject, update: update)
         }
     }
     
     public func add<Element: VolvoRealmProtocol>(_ objects: [Element], update: Bool = false) {
         for element in objects {
             if let realmObject = element.toRealmObject() as? Object {
-                self.add(realmObject, update: true)
+                self.add(realmObject, update: update)
             }
         }
     }

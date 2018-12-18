@@ -20,3 +20,26 @@ public protocol RealmObjectConverter {
     static func convertModelsToRealm(elements: [Model]) -> [Origin]
     
 }
+
+public class RealmObject {
+    
+    static func convertResultsToModel<T: RealmObjectConverter>(results: Results<T.Origin>, type: T.Type) -> [T.Model] {
+        var convertedElements: [T.Model] = []
+        results.forEach { element in
+            convertedElements.append(type.convertToModel(element: element))
+        }
+        
+        return convertedElements
+    }
+    
+    static func convertModelsToRealm<T: RealmObjectConverter>(elements: [T.Model], type: T.Type) -> [T.Origin] {
+        var convertedElements: [T.Origin] = []
+        elements.forEach { element in
+            convertedElements.append(type.convertModelToRealm(element: element))
+        }
+        
+        return convertedElements
+    }
+    
+ 
+}

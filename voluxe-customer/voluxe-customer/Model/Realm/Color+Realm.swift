@@ -48,21 +48,11 @@ extension Color: VolvoRealmProtocol {
     }
     
     static func convertResultsToModel(results: Results<ColorRealm>) -> [Color] {
-        var convertedElements: [Color] = []
-        
-        results.forEach{element in
-            convertedElements.append(convertToModel(element: element))
-        }
-        return convertedElements
+        return RealmObject.convertResultsToModel(results: results, type: self)
     }
     
     static func convertModelsToRealm(elements: [Color]) -> [ColorRealm] {
-        var convertedElements: [ColorRealm] = []
-        
-        elements.forEach{element in
-            convertedElements.append(convertModelToRealm(element: element))
-        }
-        return convertedElements
+        return RealmObject.convertModelsToRealm(elements: elements, type: self)
     }
     
     

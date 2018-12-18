@@ -18,7 +18,6 @@ extension RepairOrderType: VolvoRealmProtocol {
     func toRealmObject() -> RepairOrderTypeRealm {
         return Origin.convertModelToRealm(element: self)
     }
-    
 }
 
 
@@ -48,7 +47,6 @@ extension RepairOrderType: VolvoRealmProtocol {
         return "id"
     }
     
-    
     static func convertToModel(element: RepairOrderTypeRealm) -> RepairOrderType {
         let repairOrderType = RepairOrderType()
         repairOrderType.id = element.id
@@ -66,21 +64,29 @@ extension RepairOrderType: VolvoRealmProtocol {
     }
     
     static func convertResultsToModel(results: Results<RepairOrderTypeRealm>) -> [RepairOrderType] {
+        
+        return RealmObject.convertResultsToModel(results: results, type: self)
+        /*
         var convertedElements: [RepairOrderType] = []
         
         results.forEach{element in
             convertedElements.append(convertToModel(element: element))
         }
         return convertedElements
+         */
     }
     
     static func convertModelsToRealm(elements: [RepairOrderType]) -> [RepairOrderTypeRealm] {
+        return RealmObject.convertModelsToRealm(elements: elements, type: self)
+
+        /*
         var convertedElements: [RepairOrderTypeRealm] = []
         
         elements.forEach{element in
             convertedElements.append(RepairOrderTypeRealm(repairOrder: element))
         }
         return convertedElements
+         */
     }
     
     
