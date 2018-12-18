@@ -79,8 +79,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
                         realm.add(models, update: true)
                     }
                     
-                    let resultsVehicleModels = realm.objects(VehicleModel.self).sorted(byKeyPath: "name", ascending: false)
-                    self.models = Array(resultsVehicleModels)
+                    self.models = realm.objects(VehicleModel.self, sortedByKeyPath: "name")
                 }
             }
             self.hideProgressHUD()

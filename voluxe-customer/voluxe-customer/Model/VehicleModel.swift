@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-@objcMembers class VehicleModel: Object, Codable {
+@objcMembers class VehicleModel: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var make: String?
@@ -33,7 +33,5 @@ import RealmSwift
         self.name = model
     }
     
-    override static func primaryKey() -> String? {
-        return "id"
-    }
+   
 }

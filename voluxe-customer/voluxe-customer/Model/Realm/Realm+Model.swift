@@ -25,12 +25,16 @@ extension Realm {
         }
     }
     
-    public func objects<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: String?) -> [Element.Origin.Model] {
+    public func objects<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: String? = nil, sortedByKeyPath: String? = nil, sortAscending: Bool = false) -> [Element.Origin.Model] {
         var elements: Results<Element.Origin.Origin>
         if let predicate = predicate {
             elements = self.objects(type.Origin.Origin.self).filter(predicate)
         } else {
             elements = self.objects(type.Origin.Origin.self)
+        }
+        
+        if let sortedByKeyPath = sortedByKeyPath {
+            elements = elements.sorted(byKeyPath: sortedByKeyPath, ascending: sortAscending)
         }
         
         return type.Origin.convertResultsToModel(results: elements)

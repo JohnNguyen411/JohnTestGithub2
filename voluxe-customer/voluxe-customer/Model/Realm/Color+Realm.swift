@@ -55,6 +55,4 @@ extension Color: VolvoRealmProtocol {
         return RealmObject.convertModelsToRealm(elements: elements, type: self)
     }
     
-    
-
 }

@@ -23,7 +23,6 @@ public protocol RealmObjectConverter {
 
 public class RealmObject {
     
-    
     static func convertToModel<T: RealmObjectConverter>(element: T.Origin, type: T.Type) -> T.Model {
         let mirror = Mirror(reflecting: element)
         let target = T.Model()
@@ -39,7 +38,6 @@ public class RealmObject {
         let mirror = Mirror(reflecting: element)
         let target = T.Origin()
         
-        // for some reason the mirror of a RealmObject doesn't work fine, need to use "value" of object instead
         for case let (label?, value) in mirror.children {
             target.setValue(value, forKey: label)
         }

@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-@objcMembers class VehicleMake: Object, Codable {
+@objcMembers class VehicleMake: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var name: String?
@@ -23,9 +23,5 @@ import RealmSwift
         case managed
         case createdAt = "created_at" 
         case updatedAt = "updated_at" 
-    }
-    
-    override static func primaryKey() -> String? {
-        return "id"
     }
 }
