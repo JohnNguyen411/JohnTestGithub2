@@ -8,14 +8,14 @@
 
 import Foundation
 
-class RepairOrderType: Codable {
+@objcMembers class RepairOrderType: NSObject, Codable {
     
-    var id: Int = -1
-    var name: String?
-    var desc: String = ""
-    var category: String?
-    var createdAt: Date?
-    var updatedAt: Date?
+    dynamic var id: Int = -1
+    dynamic var name: String?
+    dynamic var desc: String = ""
+    dynamic var category: String?
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
     
     private enum CodingKeys: String, CodingKey {
         case id

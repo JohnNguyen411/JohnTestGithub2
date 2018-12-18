@@ -9,10 +9,10 @@
 import Foundation
 import RealmSwift
 
-class Color: Codable {
+@objcMembers class Color: NSObject, Codable {
     
-    var baseColor: String?
-    var color: String?
+    dynamic var baseColor: String?
+    dynamic var color: String?
     
     convenience init(baseColor: String?, color: String?) {
         self.init()

@@ -33,60 +33,24 @@ extension RepairOrderType: VolvoRealmProtocol {
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
     
-    convenience init(repairOrder: RepairOrderType) {
-        self.init()
-        self.id = repairOrder.id
-        self.name = repairOrder.name
-        self.desc = repairOrder.desc
-        self.category = repairOrder.category
-        self.createdAt = repairOrder.createdAt
-        self.updatedAt = repairOrder.updatedAt
-    }
-  
     override static func primaryKey() -> String? {
         return "id"
     }
     
     static func convertToModel(element: RepairOrderTypeRealm) -> RepairOrderType {
-        let repairOrderType = RepairOrderType()
-        repairOrderType.id = element.id
-        repairOrderType.name = element.name
-        repairOrderType.desc = element.desc
-        repairOrderType.category = element.category
-        repairOrderType.createdAt = element.createdAt
-        repairOrderType.updatedAt = element.updatedAt
-        return repairOrderType
+        return RealmObject.convertToModel(element: element, type: self)
     }
     
-    
     static func convertModelToRealm(element: RepairOrderType) -> RepairOrderTypeRealm {
-        return RepairOrderTypeRealm(repairOrder: element)
+        return RealmObject.convertModelToRealm(element: element, type: self)
     }
     
     static func convertResultsToModel(results: Results<RepairOrderTypeRealm>) -> [RepairOrderType] {
-        
         return RealmObject.convertResultsToModel(results: results, type: self)
-        /*
-        var convertedElements: [RepairOrderType] = []
-        
-        results.forEach{element in
-            convertedElements.append(convertToModel(element: element))
-        }
-        return convertedElements
-         */
     }
     
     static func convertModelsToRealm(elements: [RepairOrderType]) -> [RepairOrderTypeRealm] {
         return RealmObject.convertModelsToRealm(elements: elements, type: self)
-
-        /*
-        var convertedElements: [RepairOrderTypeRealm] = []
-        
-        elements.forEach{element in
-            convertedElements.append(RepairOrderTypeRealm(repairOrder: element))
-        }
-        return convertedElements
-         */
     }
     
     

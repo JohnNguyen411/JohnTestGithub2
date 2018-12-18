@@ -36,6 +36,10 @@ import RealmSwift
         case updatedAt = "updated_at"
     }
     
+    override static func ignoredProperties() -> [String] {
+        return ["repairOrderType"]
+    }
+    
     private enum DealershipRepairOrderKeys: String, CodingKey {
         case repairOrderType = "repair_order_type"
     }
