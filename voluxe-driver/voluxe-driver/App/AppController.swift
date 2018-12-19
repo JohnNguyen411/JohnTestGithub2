@@ -130,7 +130,7 @@ extension AppController {
 
     func showToday(animated: Bool = true) {
         let controller = UIViewController(nibName: nil, bundle: nil)
-        controller.view.backgroundColor = Color.Debug.red
+        controller.view.backgroundColor = UIColor.Debug.red
         let button = UIButton(type: .custom).usingAutoLayout()
         button.setTitle("Close", for: .normal)
         controller.view.addSubview(button)

@@ -21,13 +21,20 @@ class MyScheduleViewController: UIViewController {
     // MARK:- Layout
 
     private let tableView: UITableView = {
-        let tableView = UITableView(frame: CGRect.zero, style: .plain)
+        let tableView = UITableView(frame: CGRect.zero, style: .grouped)
         tableView.backgroundColor = .white
         tableView.contentInsetAdjustmentBehavior = .automatic
         tableView.rowHeight = 64
         tableView.separatorStyle = .none
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "RequestTableViewCell")
+        tableView.addTopOverScrollView(with: UIColor.Volvo.background.light)
         return tableView
+    }()
+
+    private let topOverScrollView: UIView = {
+        let view = UIView.forAutoLayout()
+        view.backgroundColor = UIColor.Volvo.background.light
+        return view
     }()
 
     // TODO localize
@@ -56,7 +63,7 @@ class MyScheduleViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = Color.Background.light
+        self.view.backgroundColor = UIColor.Volvo.background.light
         Layout.fill(view: self.view, with: self.tableView, useSafeArea: false)
         Layout.fill(view: self.view, with: self.noRequestsView)
     }
@@ -119,6 +126,9 @@ class MyScheduleViewController: UIViewController {
 
         // this adds sections for each of the 7 days from the current date
         // each section is appropriately titled by a request during that date
+        // these sections are optional i.e. may not have any results whereas
+        // Current and Upcoming sections are always there, but possibly with
+        // no results
         for i in 1...6 {
             let requests = requests
                 .filter { $0.state == .requested && $0.dealershipTimeSlot.from.isDuring(daysFromNow: i) }
@@ -134,17 +144,17 @@ class MyScheduleViewController: UIViewController {
         // these are used elsewhere to save additional calculations
         self.hasCurrentRequests = current.count > 0 || today.count > 0
         self.hasFutureRequests = self.titlesAndRequests.count > 2
-        self.noRequests = !hasCurrentRequests && !hasFutureRequests
+        self.noRequests = !self.hasCurrentRequests && !self.hasFutureRequests
 
         // the table background color needs to change depending on requests
         // if there are future requests, the entire table may not fill the
         // bottom of the screen
-        let disabled = hasFutureRequests || noRequests
-        let color = disabled ? Color.Background.disabled : .white
+        let disabled = self.hasFutureRequests || self.noRequests
+        let color = disabled ? UIColor.Volvo.background.dark : UIColor.Volvo.background.light
         self.tableView.backgroundColor = color
 
         // additionally hide/show the "No requests" view
-        self.noRequestsView.isHidden = hasCurrentRequests || hasFutureRequests
+        self.noRequestsView.isHidden = self.hasCurrentRequests || self.hasFutureRequests
 
         // TODO https://app.asana.com/0/858610969087925/941718004229101/f
         // TODO how to prevent jumping when scrolling?
@@ -193,18 +203,18 @@ extension MyScheduleViewController: UITableViewDataSource {
 
 extension MyScheduleViewController: UITableViewDelegate {
 
-    // The section header is stylized based on which
+    // The section header is stylized based on when a request is scheduled.
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let (title, _) = self.titlesAndRequests[section]
         switch section {
             case 0: return UITableViewHeaderFooterView.requestSectionHeader(text: title)
             case 1: return UITableViewHeaderFooterView.requestSectionHeader(text: title,
-                                                                            separator: true,
+                                                                            separator: !self.hasCurrentRequests,
                                                                             separatorIsFullWidth: false)
-            case 2: return UITableViewHeaderFooterView.requestSectionHeader(backgroundColor: Color.Background.disabled,
+            case 2: return UITableViewHeaderFooterView.requestSectionHeader(backgroundColor: UIColor.Volvo.background.dark,
                                                                             text: title,
                                                                             separator: true)
-            default: return UITableViewHeaderFooterView.requestSectionHeader(backgroundColor: Color.Background.disabled,
+            default: return UITableViewHeaderFooterView.requestSectionHeader(backgroundColor: UIColor.Volvo.background.dark,
                                                                             text: title,
                                                                             separator: true,
                                                                             separatorIsFullWidth: false)
@@ -266,7 +276,7 @@ fileprivate extension UITableViewHeaderFooterView {
 
         if separator {
             let separatorView = UIView.forAutoLayout()
-            separatorView.backgroundColor = Color.separator
+            separatorView.backgroundColor = UIColor.Volvo.table.separator
             gridView.addSubview(separatorView)
             let leadingAnchor = separatorIsFullWidth ? gridView.leadingAnchor : gridView.leadingAnchor(for: 1)
             separatorView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -326,14 +336,14 @@ fileprivate class RequestCellContentView: GridLayoutView {
     private let primaryLabel: UILabel = {
         let label = UILabel.forAutoLayout()
         label.font = Font.Volvo.subtitle1
-        label.textColor = UIColor(rgb: 0x000, a: 0xde)
+        label.textColor = UIColor.Volvo.black
         return label
     }()
 
     private let secondaryLabel: UILabel = {
         let label = UILabel.forAutoLayout()
         label.font = Font.Volvo.subtitle2
-        label.textColor = UIColor(rgb: 0x000, a: 0x8a)
+        label.textColor = UIColor.Volvo.slate
         return label
     }()
 
@@ -360,12 +370,12 @@ fileprivate class RequestCellContentView: GridLayoutView {
     }
 
     func update(with request: Request) {
-        let color = request.isUpcoming ? Color.Background.disabled : .white
+        let color = request.isUpcoming ? UIColor.Volvo.background.dark : UIColor.Volvo.background.light
         self.backgroundColor = color
         self.primaryLabel.text = "\(request.timeRangeString) \(request.typeString)"
         self.secondaryLabel.text = request.locationString
         self.typeImageView.image = request.imageForType()
-        self.loanerImageView.isHidden = request.loanerVehicleRequested ?? false
+        self.loanerImageView.isHidden = (request.loanerVehicleRequested ?? false) == false
     }
 }
 

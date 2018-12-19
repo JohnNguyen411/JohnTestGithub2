@@ -309,7 +309,7 @@ fileprivate extension UITableViewCell {
         self.detailTextLabel?.text = text
         let selected = RequestManager.shared.isSelected(request: request)
         self.accessoryType = selected ? .checkmark : .none
-        self.backgroundColor = selected ? Color.Debug.blue : nil
+        self.backgroundColor = selected ? UIColor.Debug.blue : nil
     }
 
     convenience init(with inspection: OfflineInspection) {

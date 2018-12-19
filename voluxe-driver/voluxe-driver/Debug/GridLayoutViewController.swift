@@ -78,7 +78,7 @@ class GridLayoutViewController: UIViewController {
         previousView = view
 
         view = UIView.forAutoLayout()
-        view.backgroundColor = Color.Debug.blue
+        view.backgroundColor = UIColor.Debug.blue
         view.constrain(height: 200)
         gridView.add(subview: view, from: 1, to: 6).pinTopToBottomOf(view: previousView, spacing: 10)
         let label = self.label(with: "Label inside another view but still on grid")
@@ -96,14 +96,14 @@ class GridLayoutViewController: UIViewController {
     private func label(with text: String) -> UIView {
         let view = Label.dark(with: text)
         view.numberOfLines = 5
-        view.backgroundColor = Color.Debug.blue
+        view.backgroundColor = UIColor.Debug.blue
         return view
     }
 
     private func imageView() -> UIImageView {
         let image = UIImage(named: "image_xc40")
         let view = UIImageView(image: image)
-        view.backgroundColor = Color.Debug.blue
+        view.backgroundColor = UIColor.Debug.blue
         view.clipsToBounds = true
         view.contentMode = .scaleAspectFit
         view.constrain(height: 50)

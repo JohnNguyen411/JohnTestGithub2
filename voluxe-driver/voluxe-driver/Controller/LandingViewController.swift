@@ -23,7 +23,7 @@ class LandingViewController: UIViewController {
     // TODO localize
     let loginButton: UIButton = {
         let button = UIButton(type: .custom).usingAutoLayout()
-        button.setTitleColor(Color.purple, for: .normal)
+        button.setTitleColor(UIColor.Volvo.heather, for: .normal)
         button.setTitle("SIGN-IN", for: .normal)
         button.titleLabel?.font = Font.Volvo.button
         return button
@@ -39,7 +39,7 @@ class LandingViewController: UIViewController {
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        self.view.backgroundColor = Color.Background.white
+        self.view.backgroundColor = UIColor.Volvo.background.light
 
         let gridView = self.view.addGridLayoutView(with: GridLayout.volvoValet())
 

@@ -30,16 +30,16 @@ class MainViewController: UINavigationController {
 
     private func configureNavigationBar() {
         let appearance = UINavigationBar.appearance()
-        appearance.backgroundColor = Color.NavigationBar.background
+        appearance.backgroundColor = UIColor.Volvo.navigationBar.background
         appearance.titleTextAttributes = [NSAttributedString.Key.font: Font.Volvo.h6,
-                                          NSAttributedString.Key.foregroundColor: Color.NavigationBar.title]
+                                          NSAttributedString.Key.foregroundColor: UIColor.Volvo.navigationBar.title]
         self.navigationBar.isTranslucent = false
     }
 
     override func viewDidLoad() {
 
         super.viewDidLoad()
-        self.view.backgroundColor = Color.Background.light
+        self.view.backgroundColor = UIColor.Volvo.background.light
 
         // this puts the button ABOVE the navigation, not as the right item
         // this is necessary to avoid every controller pushed onto it
