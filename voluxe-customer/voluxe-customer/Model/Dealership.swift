@@ -38,6 +38,10 @@ import RealmSwift
         case updatedAt = "updated_at" 
     }
     
+    override static func ignoredProperties() -> [String] {
+        return ["location"]
+    }
+    
     convenience required init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -78,10 +82,6 @@ import RealmSwift
     convenience init(name: String?) {
         self.init(name: name, location: nil)
     }
-    
-    
-    
-    
     
     override static func primaryKey() -> String? {
         return "id"

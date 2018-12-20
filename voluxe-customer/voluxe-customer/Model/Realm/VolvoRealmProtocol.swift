@@ -10,11 +10,15 @@ import Foundation
 import RealmSwift
 import Realm
 
-public protocol VolvoRealmProtocol {
+public protocol VolvoRealmProtocol: ToRealmProtocol {
     
     associatedtype Origin: RealmObjectConverter // the Realm Object
     associatedtype Model // The model object
 
     func toRealmObject() -> Origin
 
+}
+
+public protocol ToRealmProtocol {
+    func toRealm() -> Object
 }

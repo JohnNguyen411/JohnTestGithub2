@@ -59,7 +59,7 @@ class RealmManager {
             }
             
             if oldSchemaVersion < 7 {
-                migration.enumerateObjects(ofType: CustomerAddress.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: CustomerAddressRealm.className()) { oldObject, newObject in
                     newObject!["luxeCustomerId"] = UserManager.sharedInstance.customerId() ?? -1
                 }
             }
@@ -87,7 +87,7 @@ class RealmManager {
             }
             
             if oldSchemaVersion < 11 {
-                migration.enumerateObjects(ofType: Location.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: LocationRealm.className()) { oldObject, newObject in
                     newObject!["accuracy"] = 0.0
                 }
                 migration.enumerateObjects(ofType: Dealership.className()) { oldObject, newObject in

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import RealmSwift
 
 @objcMembers class VehicleModel: NSObject, Codable {
     

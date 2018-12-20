@@ -26,4 +26,8 @@ import RealmSwift
     override static func primaryKey() -> String? {
         return "id"
     }
+    
+    override static func ignoredProperties() -> [String] {
+        return ["location"]
+    }
 }

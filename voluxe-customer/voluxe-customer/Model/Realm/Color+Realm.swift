@@ -18,6 +18,10 @@ extension Color: VolvoRealmProtocol {
         return Origin.convertModelToRealm(element: self)
     }
     
+    func toRealm() -> Object {
+        return toRealmObject()
+    }
+    
 }
 
 
@@ -39,12 +43,24 @@ extension Color: VolvoRealmProtocol {
         return "baseColor"
     }
     
+    static func modelToRealmProperties() -> [String : NSObject.Type]? {
+        return nil
+    }
+    
+    static func realmToModelProperties() -> [String : NSObject.Type]? {
+        return nil
+    }
+    
+    func toModel() -> NSObject {
+        return ColorRealm.convertToModel(element: self)
+    }
+    
     static func convertToModel(element: ColorRealm) -> Color {
-        return RealmObject.convertToModel(element: element, type: self)
+        return RealmObject.convertToModel(element: element, type: self, realmType: self)
     }
     
     static func convertModelToRealm(element: Color) -> ColorRealm {
-        return RealmObject.convertModelToRealm(element: element, type: self)
+        return RealmObject.convertModelToRealm(element: element, type: self, realmType: self)
     }
     
     static func convertResultsToModel(results: Results<ColorRealm>) -> [Color] {

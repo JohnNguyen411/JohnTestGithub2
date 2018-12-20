@@ -10,7 +10,7 @@ import Foundation
 import CoreLocation
 import RealmSwift
 
-@objcMembers class CustomerAddress: Object, Codable {
+@objcMembers class CustomerAddress: NSObject {
     
     dynamic var id = UUID().uuidString
     dynamic var volvoCustomerId: String?
@@ -27,7 +27,7 @@ import RealmSwift
             self.id = id
         }
     }
-    
+    /*
     private enum CodingKeys: String, CodingKey {
         case id
         case location
@@ -35,11 +35,8 @@ import RealmSwift
         case luxeCustomerId = "customer_id"
         case createdAt = "created_at" 
         case updatedAt = "updated_at" 
-    }
+    }*/
     
-    override static func primaryKey() -> String? {
-        return "id"
-    }
     
 }
 

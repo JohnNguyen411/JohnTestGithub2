@@ -10,13 +10,13 @@ import Foundation
 import CoreLocation
 import RealmSwift
 
-@objcMembers class Location: Object, Codable {
+@objcMembers class Location: NSObject, Codable {
     
     dynamic var id = UUID().uuidString
     dynamic var address: String?
     dynamic var latitude: Double = 0.0
     dynamic var longitude: Double = 0.0
-    dynamic var accuracy = RealmOptional<Double>()
+    dynamic var accuracy: Double = 0.0
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
     dynamic var location: CLLocationCoordinate2D?
@@ -29,15 +29,23 @@ import RealmSwift
         case createdAt = "created_at" 
         case updatedAt = "updated_at" 
     }
+    /*
+    override static func ignoredProperties() -> [String] {
+        return ["location"]
+    }
     
+    override static func primaryKey() -> String? {
+        return "id"
+    }
     
+    */
     convenience required init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.address = try container.decodeIfPresent(String.self, forKey: .address)
         self.latitude = try container.decodeIfPresent(Double.self, forKey: .latitude) ?? 0.0
         self.longitude = try container.decodeIfPresent(Double.self, forKey: .longitude) ?? 0.0
-        self.accuracy = try container.decodeIfPresent(RealmOptional<Double>.self, forKey: .accuracy) ?? RealmOptional<Double>()
+        self.accuracy = try container.decodeIfPresent(Double.self, forKey: .accuracy) ?? 0.0
         self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
         self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
     }
@@ -51,15 +59,7 @@ import RealmSwift
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
     
-    
-    override static func ignoredProperties() -> [String] {
-        return ["location"]
-    }
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-    
+ 
     convenience init(name: String?, latitude: Double?, longitude: Double?, location: CLLocationCoordinate2D?) {
         self.init()
         self.address = name
@@ -136,7 +136,7 @@ import RealmSwift
             "address": address ?? "",
             "latitude": latitude,
             "longitude": longitude,
-            "accuracy": accuracy.value ?? 0
+            "accuracy": accuracy
         ]
     }
     

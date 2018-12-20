@@ -37,6 +37,9 @@ import RealmSwift
         case updatedAt = "updated_at" 
     }
     
+    override static func ignoredProperties() -> [String] {
+        return ["location"]
+    }
     
     convenience required init(from decoder: Decoder) throws {
         self.init()

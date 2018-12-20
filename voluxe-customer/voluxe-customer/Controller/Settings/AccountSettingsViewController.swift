@@ -16,7 +16,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     
     let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
     let user: Customer?
-    var addresses: Results<CustomerAddress>?
+    var addresses: [CustomerAddress]?
     var addressesCount = 0
     var realm : Realm?
     var uiBarButton: UIBarButtonItem?
@@ -25,7 +25,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         user = UserManager.sharedInstance.getCustomer()
         realm = try? Realm()
         if let realm = self.realm, let user = user {
-            addresses = realm.objects(CustomerAddress.self).filter("luxeCustomerId = %@", user.id)
+            addresses = realm.objects(CustomerAddress.self, predicate: "luxeCustomerId = \(user.id)")
             if let addresses = addresses {
                 addressesCount = addresses.count
             }
@@ -320,7 +320,8 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         Analytics.trackClick(button: .settingsDeleteAddress, screen: self.screen)
         if let realm = self.realm, let addresses = self.addresses {
             try? realm.write {
-                realm.delete(addresses[indexPath.row])
+                realm.deleteFirst(CustomerAddress.self, predicate: "id = \(addresses[indexPath.row].id)")
+                //realm.delete(addresses[indexPath.row])
                 self.addressesCount = addresses.count
             }
             tableView.deleteRows(at: [indexPath], with: .automatic)

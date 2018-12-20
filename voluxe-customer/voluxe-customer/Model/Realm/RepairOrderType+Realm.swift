@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Realm
 import RealmSwift
 
 extension RepairOrderType: VolvoRealmProtocol {
@@ -17,6 +16,10 @@ extension RepairOrderType: VolvoRealmProtocol {
     
     func toRealmObject() -> RepairOrderTypeRealm {
         return Origin.convertModelToRealm(element: self)
+    }
+    
+    func toRealm() -> Object {
+        return toRealmObject()
     }
 }
 
@@ -37,12 +40,24 @@ extension RepairOrderType: VolvoRealmProtocol {
         return "id"
     }
     
+    static func modelToRealmProperties() -> [String : NSObject.Type]? {
+        return nil
+    }
+    
+    static func realmToModelProperties() -> [String : NSObject.Type]? {
+        return nil
+    }
+    
+    func toModel() -> NSObject {
+        return RepairOrderTypeRealm.convertToModel(element: self)
+    }
+    
     static func convertToModel(element: RepairOrderTypeRealm) -> RepairOrderType {
-        return RealmObject.convertToModel(element: element, type: self)
+        return RealmObject.convertToModel(element: element, type: self, realmType: self)
     }
     
     static func convertModelToRealm(element: RepairOrderType) -> RepairOrderTypeRealm {
-        return RealmObject.convertModelToRealm(element: element, type: self)
+        return RealmObject.convertModelToRealm(element: element, type: self, realmType: self)
     }
     
     static func convertResultsToModel(results: Results<RepairOrderTypeRealm>) -> [RepairOrderType] {
@@ -52,7 +67,4 @@ extension RepairOrderType: VolvoRealmProtocol {
     static func convertModelsToRealm(elements: [RepairOrderType]) -> [RepairOrderTypeRealm] {
         return RealmObject.convertModelsToRealm(elements: elements, type: self)
     }
-    
-    
-    
 }

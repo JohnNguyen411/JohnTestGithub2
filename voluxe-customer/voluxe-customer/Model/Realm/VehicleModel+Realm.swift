@@ -17,6 +17,10 @@ extension VehicleModel: VolvoRealmProtocol {
     func toRealmObject() -> VehicleModelRealm {
         return Origin.convertModelToRealm(element: self)
     }
+    
+    func toRealm() -> Object {
+        return toRealmObject()
+    }
 }
 
 
@@ -36,12 +40,24 @@ extension VehicleModel: VolvoRealmProtocol {
         return "id"
     }
     
+    static func modelToRealmProperties() -> [String : NSObject.Type]? {
+        return nil
+    }
+    
+    static func realmToModelProperties() -> [String : NSObject.Type]? {
+        return nil
+    }
+    
+    func toModel() -> NSObject {
+        return VehicleModelRealm.convertToModel(element: self)
+    }
+    
     static func convertToModel(element: VehicleModelRealm) -> VehicleModel {
-        return RealmObject.convertToModel(element: element, type: self)
+        return RealmObject.convertToModel(element: element, type: self, realmType: self)
     }
     
     static func convertModelToRealm(element: VehicleModel) -> VehicleModelRealm {
-        return RealmObject.convertModelToRealm(element: element, type: self)
+        return RealmObject.convertModelToRealm(element: element, type: self, realmType: self)
     }
     
     static func convertResultsToModel(results: Results<VehicleModelRealm>) -> [VehicleModel] {
