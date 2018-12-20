@@ -21,6 +21,10 @@ extension RepairOrderType: VolvoRealmProtocol {
     func toRealm() -> Object {
         return toRealmObject()
     }
+    
+    static func fromRealm(realmObject: RepairOrderTypeRealm) -> RepairOrderType {
+        return Origin.convertToModel(element: realmObject)
+    }
 }
 
 

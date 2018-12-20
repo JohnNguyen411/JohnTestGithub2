@@ -12,10 +12,11 @@ import Realm
 
 public protocol VolvoRealmProtocol: ToRealmProtocol {
     
-    associatedtype Origin: RealmObjectConverter // the Realm Object
+    associatedtype Realm: RealmObjectConverter // the Realm Object
     associatedtype Model // The model object
 
-    func toRealmObject() -> Origin
+    func toRealmObject() -> Realm
+    static func fromRealm(realmObject: Realm) -> Model
 
 }
 

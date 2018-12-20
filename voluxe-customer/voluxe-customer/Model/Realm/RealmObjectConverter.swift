@@ -9,19 +9,19 @@
 import Foundation
 import RealmSwift
 
-public protocol RealmObjectConverter: TestConverter {
+public protocol RealmObjectConverter: ConverterHelper {
     
     associatedtype Model: NSObject // The model object, need
-    associatedtype Origin: Object // the Realm Object
+    associatedtype Realm: Object // the Realm Object
     
-    static func convertToModel(element: Origin) -> Model
-    static func convertModelToRealm(element: Model) -> Origin
-    static func convertResultsToModel(results: Results<Origin>) -> [Model]
-    static func convertModelsToRealm(elements: [Model]) -> [Origin]
+    static func convertToModel(element: Realm) -> Model
+    static func convertModelToRealm(element: Model) -> Realm
+    static func convertResultsToModel(results: Results<Realm>) -> [Model]
+    static func convertModelsToRealm(elements: [Model]) -> [Realm]
 
 }
 
-public protocol TestConverter {
+public protocol ConverterHelper {
     static func modelToRealmProperties() -> [String: NSObject.Type]?
     static func realmToModelProperties() -> [String: NSObject.Type]?
     func toModel() -> NSObject
@@ -30,7 +30,7 @@ public protocol TestConverter {
 
 public class RealmObject {
     
-    static func convertToModel<T: RealmObjectConverter, O: Object>(element: T.Origin, type: T.Type, realmType: O.Type) -> T.Model {
+    static func convertToModel<T: RealmObjectConverter, O: Object>(element: T.Realm, type: T.Type, realmType: O.Type) -> T.Model {
         let mirror = Mirror(reflecting: element)
         let target = T.Model()
         
@@ -49,7 +49,7 @@ public class RealmObject {
             if case Optional<Any>.some(_) = elementValue {
                 
                 if let dict = type.realmToModelProperties(), let _ = dict[label] {
-                    if let object = elementValue as? NSObject,  let model = object as? TestConverter {
+                    if let object = elementValue as? NSObject,  let model = object as? ConverterHelper {
                         target.setValue(model.toModel(), forKey: label)
                     }
                 } else {
@@ -64,9 +64,9 @@ public class RealmObject {
         return target
     }
     
-    static func convertModelToRealm<T: RealmObjectConverter, O: Object>(element: T.Model, type: T.Type, realmType: O.Type) -> T.Origin {
+    static func convertModelToRealm<T: RealmObjectConverter, O: Object>(element: T.Model, type: T.Type, realmType: O.Type) -> T.Realm {
         let mirror = Mirror(reflecting: element)
-        let target = T.Origin()
+        let target = T.Realm()
         
         let ignoredProperties = realmType.ignoredProperties()
                 
@@ -91,7 +91,7 @@ public class RealmObject {
         return target
     }
     
-    static func convertResultsToModel<T: RealmObjectConverter>(results: Results<T.Origin>, type: T.Type) -> [T.Model] {
+    static func convertResultsToModel<T: RealmObjectConverter>(results: Results<T.Realm>, type: T.Type) -> [T.Model] {
         var convertedElements: [T.Model] = []
         results.forEach { element in
             convertedElements.append(type.convertToModel(element: element))
@@ -100,8 +100,8 @@ public class RealmObject {
         return convertedElements
     }
     
-    static func convertModelsToRealm<T: RealmObjectConverter>(elements: [T.Model], type: T.Type) -> [T.Origin] {
-        var convertedElements: [T.Origin] = []
+    static func convertModelsToRealm<T: RealmObjectConverter>(elements: [T.Model], type: T.Type) -> [T.Realm] {
+        var convertedElements: [T.Realm] = []
         elements.forEach { element in
             convertedElements.append(type.convertModelToRealm(element: element))
         }

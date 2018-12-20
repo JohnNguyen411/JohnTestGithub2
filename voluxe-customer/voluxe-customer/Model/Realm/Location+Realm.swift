@@ -21,6 +21,10 @@ extension Location: VolvoRealmProtocol {
     func toRealm() -> Object {
         return toRealmObject()
     }
+    
+    static func fromRealm(realmObject: LocationRealm) -> Location {
+        return Origin.convertToModel(element: realmObject)
+    }
 }
 
 

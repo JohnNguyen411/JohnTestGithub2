@@ -16,7 +16,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     
     let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
     let user: Customer?
-    var addresses: [CustomerAddress]?
+    var addresses: Results<CustomerAddress.Realm>?
     var addressesCount = 0
     var realm : Realm?
     var uiBarButton: UIBarButtonItem?
@@ -25,7 +25,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         user = UserManager.sharedInstance.getCustomer()
         realm = try? Realm()
         if let realm = self.realm, let user = user {
-            addresses = realm.objects(CustomerAddress.self, predicate: "luxeCustomerId = \(user.id)")
+            addresses = realm.objects(CustomerAddress.Origin.self).filter("luxeCustomerId = \(user.id)")
             if let addresses = addresses {
                 addressesCount = addresses.count
             }
@@ -79,7 +79,8 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     func getTextForIndexPath(indexPath: IndexPath) -> String {
         if indexPath.section == 0 {
             if let addresses = addresses, addressesCount > indexPath.row {
-                return (addresses[indexPath.row].location?.getShortAddress())!
+                guard let location = addresses[indexPath.row].location else { return .AddNewLocation }
+                return Location.fromRealm(realmObject: location).getShortAddress() ?? ""
             }
             return .AddNewLocation
         } else if indexPath.section == 1 {

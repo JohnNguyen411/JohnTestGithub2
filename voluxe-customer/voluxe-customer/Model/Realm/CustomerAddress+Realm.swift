@@ -22,6 +22,9 @@ extension CustomerAddress: VolvoRealmProtocol {
         return toRealmObject()
     }
     
+    static func fromRealm(realmObject: CustomerAddressRealm) -> CustomerAddress {
+        return Origin.convertToModel(element: realmObject)
+    }
 }
 
 

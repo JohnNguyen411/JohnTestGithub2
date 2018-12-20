@@ -25,34 +25,34 @@ extension Realm {
         }
     }
     
-    public func objects<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: String? = nil, sortedByKeyPath: String? = nil, sortAscending: Bool = false) -> [Element.Origin.Model] {
-        var elements: Results<Element.Origin.Origin>
+    public func objects<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: String? = nil, sortedByKeyPath: String? = nil, sortAscending: Bool = false) -> [Element.Realm.Model] {
+        var elements: Results<Element.Realm.Realm>
         if let predicate = predicate {
-            elements = self.objects(type.Origin.Origin.self).filter(predicate)
+            elements = self.objects(type.Realm.Realm.self).filter(predicate)
         } else {
-            elements = self.objects(type.Origin.Origin.self)
+            elements = self.objects(type.Realm.Realm.self)
         }
         
         if let sortedByKeyPath = sortedByKeyPath {
             elements = elements.sorted(byKeyPath: sortedByKeyPath, ascending: sortAscending)
         }
         
-        return type.Origin.convertResultsToModel(results: elements)
+        return type.Realm.convertResultsToModel(results: elements)
     }
     
     public func deleteFirst<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: String) {
-        if let object = self.objects(type.Origin.Origin.self).filter(predicate).first {
+        if let object = self.objects(type.Realm.Realm.self).filter(predicate).first {
             self.delete(object)
         }
     }
     
     public func delete<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: String) {
-        let objects = self.objects(type.Origin.Origin.self).filter(predicate)
+        let objects = self.objects(type.Realm.Realm.self).filter(predicate)
         self.delete(objects)
     }
     
     public func deleteAll<Element: VolvoRealmProtocol>(_ type: Element.Type) {
-        let objects = self.objects(type.Origin.Origin.self)
+        let objects = self.objects(type.Realm.Realm.self)
         self.delete(objects)
     }
 

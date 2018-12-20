@@ -22,6 +22,10 @@ extension Color: VolvoRealmProtocol {
         return toRealmObject()
     }
     
+    static func fromRealm(realmObject: ColorRealm) -> Color {
+        return Origin.convertToModel(element: realmObject)
+    }
+    
 }
 
 

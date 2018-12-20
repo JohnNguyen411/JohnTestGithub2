@@ -21,6 +21,10 @@ extension VehicleModel: VolvoRealmProtocol {
     func toRealm() -> Object {
         return toRealmObject()
     }
+    
+    static func fromRealm(realmObject: VehicleModelRealm) -> VehicleModel {
+        return Origin.convertToModel(element: realmObject)
+    }
 }
 
 
