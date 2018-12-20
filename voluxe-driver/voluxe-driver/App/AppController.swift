@@ -47,6 +47,7 @@ class AppController: UIViewController {
         DriverManager.shared.driverDidChangeClosure = {
             driver in
             RequestManager.shared.set(driver: driver)
+            if driver == nil { self.showLanding() }
         }
     }
 }
@@ -90,6 +91,9 @@ extension AppController {
     /// need to be placed with safe areas.
     private func replaceChildController(with controller: UIViewController, animated: Bool = true) {
 
+        // TODO prevent showing the same type twice
+        // this will become necessary to solve soon
+
         assert(self.children.count <= 1, "AppController should never have more than one child controller")
         let oldController = self.children.first
         oldController?.removeFromParent()
@@ -112,6 +116,9 @@ extension AppController {
                 oldController?.didMove(toParent: nil)
             })
     }
+
+    // TODO need canShowController(type) to prevent double show
+    // TODO is showing controller of type
 }
 
 // MARK:- Specific controller support
@@ -143,5 +150,40 @@ extension AppController {
     // TODO remove, this is temporary to test replacing controllers
     @objc func closeButtonTouchUpInside() {
         AppController.shared.showLanding()
+    }
+
+    // MARK: Profile controller
+
+    // The profile controller is different than other child controllers
+    // because it acts as an overlay first, then will replace the child
+    // controller if interacted with.  So, it is modally presented without
+    // animation so that it's own animation can run as a transition.
+    func showProfile(animated: Bool = true) {
+        guard self.presentedViewController == nil else { return }
+        let controller = ProfileViewController()
+        controller.preparePresentAnimation()
+        self.present(controller, animated: false) {
+            controller.playPresentAnimation()
+        }
+    }
+
+    // Dismisses the profile controller (if presented).  Note that the
+    // controller will perform it's own animation before the dismiss.
+    func hideProfile(animated: Bool = true) {
+        guard let controller = self.presentedViewController as? ProfileViewController else { return }
+        controller.playDismissAnimation() {
+            controller.dismiss(animated: false, completion: nil)
+        }
+    }
+
+    // MARK: Push to the main view controller
+
+    func mainController(push controller: UIViewController,
+                        animated: Bool = true,
+                        hideProfileButton: Bool = false)
+    {
+        guard let main = self.children.first as? MainViewController else { return }
+        main.pushViewController(controller, animated: animated)
+        if hideProfileButton { main.hideProfileButton(animated: animated) }
     }
 }

@@ -98,6 +98,7 @@ class BackgroundColorsImplementation: BackgroundColors {
 
 class NavigationBarColorsImplementation: NavigationBarColors {
     var background: UIColor { assertionFailure("Color not implemented"); return .clear }
+    var button: UIColor     { assertionFailure("Color not implemented"); return .clear }
     var title: UIColor      { assertionFailure("Color not implemented"); return .clear }
 }
 

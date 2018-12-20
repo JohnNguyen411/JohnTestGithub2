@@ -85,6 +85,7 @@ protocol BackgroundColors {
 
 protocol NavigationBarColors {
     var background: UIColor { get }
+    var button: UIColor { get }
     var title: UIColor { get }
 }
 

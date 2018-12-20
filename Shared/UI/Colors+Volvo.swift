@@ -102,8 +102,9 @@ class VolvoBackgroundColors: BackgroundColorsImplementation {
 }
 
 class VolvoNavigationBarColors: NavigationBarColorsImplementation {
-    override var background: UIColor { return UIColor.Volvo.white }
-    override var title: UIColor      { return UIColor.Volvo.black }
+    override var background: UIColor    { return UIColor.Volvo.white }
+    override var button: UIColor        { return UIColor.Volvo.granite }
+    override var title: UIColor         { return UIColor.Volvo.black }
 }
 
 class VolvoTableColors: TableColorsImplementation {

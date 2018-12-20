@@ -11,7 +11,7 @@ import UIKit
 
 class MainViewController: UINavigationController {
 
-    // MARK:- Layout
+    // MARK: Layout
 
     private let profileButton: UIButton = {
         let button = ProfileButton().usingAutoLayout()
@@ -19,12 +19,13 @@ class MainViewController: UINavigationController {
         return button
     }()
 
-    // MARK:- Lifecycle
+    // MARK: Lifecycle
 
     // TODO need flavor to support launching with another view controller
     // TODO button will not be visible for all root controllers
     convenience init() {
         self.init(rootViewController: MyScheduleViewController())
+        self.profileButton.addTarget(self, action: #selector(buttonTouchUpInside), for: .touchUpInside)
         self.configureNavigationBar()
     }
 
@@ -34,6 +35,7 @@ class MainViewController: UINavigationController {
         appearance.titleTextAttributes = [NSAttributedString.Key.font: Font.Volvo.h6,
                                           NSAttributedString.Key.foregroundColor: UIColor.Volvo.navigationBar.title]
         self.navigationBar.isTranslucent = false
+        self.addCustomBackButton()
     }
 
     override func viewDidLoad() {
@@ -59,5 +61,36 @@ class MainViewController: UINavigationController {
             [weak self] image in
             self?.profileButton.setImage(image, for: .normal)
         }
+    }
+
+    // MARK: Actions
+
+    @objc func buttonTouchUpInside() {
+        AppController.shared.showProfile()
+    }
+
+    // MARK: Animations
+
+    func showProfileButton(animated: Bool = true) {
+        UIView.animate(withDuration: animated ? 0.2 : 0) {
+            self.profileButton.alpha = 1
+        }
+    }
+
+    func hideProfileButton(animated: Bool = true) {
+        UIView.animate(withDuration: animated ? 0.2 : 0) {
+            self.profileButton.alpha = 0
+        }
+    }
+
+    override func pushViewController(_ viewController: UIViewController,animated: Bool) {
+        super.pushViewController(viewController, animated: animated)
+        guard self.children.count > 1 else { return }
+        self.hideProfileButton(animated: animated)
+    }
+
+    override func popViewController(animated: Bool) -> UIViewController? {
+        if self.children.count <= 2 { self.showProfileButton(animated: animated) }
+        return super.popViewController(animated: animated)
     }
 }

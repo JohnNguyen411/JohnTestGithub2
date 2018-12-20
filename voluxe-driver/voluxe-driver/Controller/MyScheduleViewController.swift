@@ -44,7 +44,7 @@ class MyScheduleViewController: UIViewController {
         label.numberOfLines = 0
         label.text = "You have no scheduled pick-ups or deliveries."
         label.textColor = UIColor(rgb: 0x0, a: 0x61)
-        let view = GridLayoutView(layout: .volvoValet())
+        let view = GridLayoutView(layout: .volvoAgent())
         view.isHidden = true
         view.add(subview: label, from: 2, to: 5)
         label.pinToSuperviewTop(spacing: 70)
@@ -194,6 +194,7 @@ extension MyScheduleViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RequestTableViewCell",
                                                  for: indexPath)
+        cell.selectionStyle = .none
         if let request = self.request(for: indexPath) { cell.update(with: request) }
         return cell
     }
@@ -247,6 +248,13 @@ extension MyScheduleViewController: UITableViewDelegate {
             default: return 0
         }
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let (_, requests) = self.titlesAndRequests[indexPath.section]
+        let request = requests[indexPath.row]
+        let controller = RequestViewController(with: request)
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 // MARK:- Extension for request section header view
@@ -265,7 +273,7 @@ fileprivate extension UITableViewHeaderFooterView {
                                      separator: Bool = false,
                                      separatorIsFullWidth: Bool = true) -> UITableViewHeaderFooterView
     {
-        let gridView = GridLayoutView(layout: .volvoValet())
+        let gridView = GridLayoutView(layout: .volvoAgent())
 
         let label = UILabel()
         label.font = Font.Volvo.caption
@@ -348,7 +356,7 @@ fileprivate class RequestCellContentView: GridLayoutView {
     }()
 
     convenience init() {
-        self.init(layout: GridLayout.volvoValet())
+        self.init(layout: GridLayout.volvoAgent())
         self.viewDidLoad()
     }
 

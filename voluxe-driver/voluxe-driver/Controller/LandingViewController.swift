@@ -41,7 +41,7 @@ class LandingViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Volvo.background.light
 
-        let gridView = self.view.addGridLayoutView(with: GridLayout.volvoValet())
+        let gridView = self.view.addGridLayoutView(with: GridLayout.volvoAgent())
 
         gridView.add(subview: self.logoImageView, from: 2, to: 5)
         self.logoImageView.pinToSuperviewTop(spacing: 96)
