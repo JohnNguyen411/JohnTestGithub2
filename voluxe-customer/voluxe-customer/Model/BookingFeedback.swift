@@ -7,15 +7,12 @@
 //
 
 import Foundation
-import CoreLocation
-import RealmSwift
-import Realm
 
-@objcMembers class BookingFeedback: Object, Codable {
+@objcMembers class BookingFeedback: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var bookingId: Int = -1
-    dynamic var rating: RealmOptional<Int> = RealmOptional<Int>()
+    dynamic var rating: Int = -1
     dynamic var comment: String?
     dynamic var state: String?
     
@@ -26,7 +23,6 @@ import Realm
         case comment
         case state
     }
-
     
     convenience required init(from decoder: Decoder) throws {
         self.init()
@@ -35,7 +31,7 @@ import Realm
         self.bookingId = try container.decodeIfPresent(Int.self, forKey: .bookingId) ?? -1
         self.state = try container.decodeIfPresent(String.self, forKey: .state) ?? ""
         self.comment = try container.decodeIfPresent(String.self, forKey: .comment) ?? ""
-        self.rating = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .rating) ?? RealmOptional<Int>()
+        self.rating = try container.decodeIfPresent(Int.self, forKey: .rating) ?? -1
     }
     
     func encode(to encoder: Encoder) throws {
@@ -45,10 +41,6 @@ import Realm
         try container.encodeIfPresent(state, forKey: .state)
         try container.encodeIfPresent(comment, forKey: .comment)
         try container.encodeIfPresent(rating, forKey: .rating)
-    }
-    
-    override static func primaryKey() -> String? {
-        return "id"
     }
     
     public func needsRating() -> Bool {

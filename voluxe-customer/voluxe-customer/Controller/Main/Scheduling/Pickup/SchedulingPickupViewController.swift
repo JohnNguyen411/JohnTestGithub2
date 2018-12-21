@@ -245,7 +245,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         confirmButton.isLoading = true
         
-        CustomerAPI.createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner, dealershipRepairId: dealershipRepairOrder.id, repairNotes: repairOrder.notes, repairTitle: repairOrder.title, vehicleDrivable: repairOrder.vehicleDrivable.value, timeSlotId: timeSlot.id, location: location, isDriver: isDriver) { booking, error in
+        CustomerAPI.createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner, dealershipRepairId: dealershipRepairOrder.id, repairNotes: repairOrder.notes, repairTitle: repairOrder.title, vehicleDrivable: repairOrder.vehicleDrivable, timeSlotId: timeSlot.id, location: location, isDriver: isDriver) { booking, error in
             
             if let error = error {
                 // 2 bookings for the same car, not currently handled

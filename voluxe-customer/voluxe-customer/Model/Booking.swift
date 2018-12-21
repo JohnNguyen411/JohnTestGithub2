@@ -35,7 +35,7 @@ import Realm
     dynamic var dropoffRequestId = RealmOptional<Int>()
     dynamic var bookingFeedbackId = RealmOptional<Int>()
     dynamic var bookingFeedback: BookingFeedback?
-    dynamic var repairOrderRequests = List<RepairOrder>()
+    dynamic var repairOrderRequests = List<RepairOrderRealm>()
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
 

@@ -7,16 +7,15 @@
 //
 
 import Foundation
-import RealmSwift
 
-@objcMembers class RepairOrder: Object, Codable {
+@objcMembers class RepairOrder: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var bookingId: Int = -1
     dynamic var dealershipRepairOrderId: Int = -1
     dynamic var notes: String = ""
     dynamic var state: String?
-    dynamic var vehicleDrivable = RealmOptional<Bool>()
+    dynamic var vehicleDrivable = true
     dynamic var repairOrderType: RepairOrderType?
     dynamic var name: String?
     dynamic var title: String?
@@ -36,9 +35,6 @@ import RealmSwift
         case updatedAt = "updated_at"
     }
     
-    override static func ignoredProperties() -> [String] {
-        return ["repairOrderType"]
-    }
     
     private enum DealershipRepairOrderKeys: String, CodingKey {
         case repairOrderType = "repair_order_type"
@@ -56,7 +52,7 @@ import RealmSwift
         self.dealershipRepairOrderId = try container.decodeIfPresent(Int.self, forKey: .dealershipRepairOrderId) ?? -1
         self.notes = try container.decodeIfPresent(String.self, forKey: .notes) ?? ""
         self.state = try container.decodeIfPresent(String.self, forKey: .state)
-        self.vehicleDrivable = try container.decodeIfPresent(RealmOptional<Bool>.self, forKey: .vehicleDrivable) ?? RealmOptional<Bool>()
+        self.vehicleDrivable = try container.decodeIfPresent(Bool.self, forKey: .vehicleDrivable) ?? true
         
         let dealershipRepairOrderContainer = try container.nestedContainer(keyedBy: DealershipRepairOrderKeys.self, forKey: .dealershipRepairOrder)
         let repairOrderTypeContainer = try dealershipRepairOrderContainer.nestedContainer(keyedBy: RepairOrderTypeKeys.self, forKey: .repairOrderType)
@@ -91,11 +87,7 @@ import RealmSwift
         self.title = title
         self.repairOrderType = repairOrderType
         self.notes = customerDescription
-        if let drivable = drivable {
-            self.vehicleDrivable.value = drivable
-        } else {
-            self.vehicleDrivable.value = nil
-        }
+        self.vehicleDrivable = drivable ?? true
     }
     
     convenience init(repairOrderType: RepairOrderType) {
@@ -108,11 +100,7 @@ import RealmSwift
         self.repairOrderType = repairOrderType
     }
     
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-    
-    
+   
     static func getDrivabilityTitle(isDrivable: Bool?) -> String {
         if let drivable = isDrivable {
             if drivable {
