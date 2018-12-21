@@ -35,7 +35,7 @@ class MainViewController: BaseVehicleViewController {
         
         if serviceState == .enRouteForService || serviceState == .service || serviceState == .serviceCompleted || serviceState == .completed {
             
-            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), serviceState == .completed, booking.getBookingFeedbackId() > 0 {
+            if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), serviceState == .completed, booking.bookingFeedbackId > 0 {
                 AppController.sharedInstance.loadViewForVehicle(vehicle: vehicle, state: .completed)
                 return
             }

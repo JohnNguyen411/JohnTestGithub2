@@ -233,8 +233,8 @@ class ScheduledBookingViewController: SchedulingViewController {
             
             // reload bookings from DB
             if let customerId = UserManager.sharedInstance.customerId() {
-                let bookings = realm.objects(Booking.self).filter("customerId = %@", customerId)
-                UserManager.sharedInstance.setBookings(bookings: Array(bookings))
+                let bookings = realm.objects(Booking.self, "customerId == %@", customerId)
+                UserManager.sharedInstance.setBookings(bookings: bookings)
             }
         }
         

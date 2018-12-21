@@ -7,11 +7,8 @@
 //
 
 import Foundation
-import CoreLocation
-import RealmSwift
-import Realm
 
-@objcMembers class Booking: Object, Codable {
+@objcMembers class Booking: NSObject, Codable {
     
     private static let distanceTrigger = 500.0 // refresh more ofter when within 500m from origin or destination
     
@@ -27,15 +24,15 @@ import Realm
     dynamic var dealershipId: Int = -1
     dynamic var dealership: Dealership?
     dynamic var loanerVehicleRequested: Bool = false
-    dynamic var loanerVehicleId = RealmOptional<Int>()
+    dynamic var loanerVehicleId: Int = -1
     dynamic var loanerVehicle: Vehicle?
     dynamic var pickupRequest: Request?
-    dynamic var pickupRequestId = RealmOptional<Int>()
+    dynamic var pickupRequestId: Int = -1
     dynamic var dropoffRequest: Request?
-    dynamic var dropoffRequestId = RealmOptional<Int>()
-    dynamic var bookingFeedbackId = RealmOptional<Int>()
+    dynamic var dropoffRequestId: Int = -1
+    dynamic var bookingFeedbackId: Int = -1
     dynamic var bookingFeedback: BookingFeedback?
-    dynamic var repairOrderRequests = List<RepairOrderRealm>()
+    dynamic var repairOrderRequests: [RepairOrder] = []
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
 
@@ -72,15 +69,15 @@ import Realm
         self.dealershipId = try container.decode(Int.self, forKey: .dealershipId)
         self.dealership = try container.decode(Dealership.self, forKey: .dealership)
         self.loanerVehicleRequested = try container.decodeIfPresent(Bool.self, forKey: .loanerVehicleRequested) ?? false
-        self.loanerVehicleId = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .loanerVehicleId) ?? RealmOptional<Int>()
+        self.loanerVehicleId = try container.decodeIfPresent(Int.self, forKey: .loanerVehicleId) ?? -1
         self.loanerVehicle = try container.decodeIfPresent(Vehicle.self, forKey: .loanerVehicle)
         self.pickupRequest = try container.decodeIfPresent(Request.self, forKey: .pickupRequest)
-        self.pickupRequestId = try container.decodeIfPresent(RealmOptional<Int>.self.self, forKey: .pickupRequestId) ?? RealmOptional<Int>()
+        self.pickupRequestId = try container.decodeIfPresent(Int.self, forKey: .pickupRequestId) ?? -1
         self.dropoffRequest = try container.decodeIfPresent(Request.self, forKey: .dropoffRequest)
-        self.dropoffRequestId = try container.decodeIfPresent(RealmOptional<Int>.self.self, forKey: .dropoffRequestId) ?? RealmOptional<Int>()
-        self.bookingFeedbackId = try container.decodeIfPresent(RealmOptional<Int>.self.self, forKey: .bookingFeedbackId) ?? RealmOptional<Int>()
+        self.dropoffRequestId = try container.decodeIfPresent(Int.self, forKey: .dropoffRequestId) ?? -1
+        self.bookingFeedbackId = try container.decodeIfPresent(Int.self, forKey: .bookingFeedbackId) ?? -1
         self.bookingFeedback = try container.decodeIfPresent(BookingFeedback.self, forKey: .bookingFeedback)
-        self.repairOrderRequests = try container.decodeIfPresent(List<RepairOrder>.self, forKey: .repairOrderRequests) ?? List<RepairOrder>()
+        self.repairOrderRequests = try container.decodeIfPresent([RepairOrder].self, forKey: .repairOrderRequests) ?? []
         self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
         self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
     }
@@ -106,19 +103,6 @@ import Realm
         try container.encodeIfPresent(repairOrderRequests, forKey: .repairOrderRequests)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-    }
-    
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-    
-    override static func ignoredProperties() -> [String] {
-        return ["vehicle", "loanerVehicle", "customer", "dealership", "pickupRequest", "dropoffRequest"]
-    }
-    
-    func getBookingFeedbackId() -> Int {
-        return bookingFeedbackId.value ?? -1
     }
     
     func getState() -> State {
@@ -248,7 +232,7 @@ import Realm
     }
     
     public func needsRating() -> Bool {
-        return self.bookingFeedbackId.value ?? 0 > 0 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
+        return self.bookingFeedbackId > 0 && (self.bookingFeedback == nil || self.bookingFeedback!.needsRating())
     }
     
     public func isSelfIB() -> Bool {

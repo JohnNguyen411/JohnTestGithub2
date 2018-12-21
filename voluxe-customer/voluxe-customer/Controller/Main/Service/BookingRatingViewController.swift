@@ -88,7 +88,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     //MARK: Lifecycle methods
     convenience init(booking: Booking) {
         self.init()
-        self.booking = Booking(value: booking)
+        self.booking = booking
         self.screenTitle = .ServiceComplete
     }
     
@@ -144,7 +144,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         if let bookingFeedback = self.bookingFeedback {
             // load booking if needed
             if let realm = try? Realm() {
-                if let booking = realm.objects(Booking.self).filter("id = \(bookingFeedback.bookingId)").first {
+                if let booking = realm.objects(Booking.self, "id == %@", bookingFeedback.bookingId).first {
                     self.booking = booking
                     self.updateDealership(dealership: booking.dealership)
                     if let vehicle = booking.vehicle {
@@ -295,8 +295,8 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
             if let bookingFeedback = self.bookingFeedback {
                 skipBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id)
             } else if let booking = self.booking,
-                booking.getBookingFeedbackId()  > 0 {
-                skipBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.getBookingFeedbackId())
+                booking.bookingFeedbackId  > 0 {
+                skipBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.bookingFeedbackId)
             }
         }
     }
@@ -313,8 +313,8 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
 
         if let bookingFeedback = self.bookingFeedback {
             submitBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id, rating: rating, comment: comment)
-        } else if let booking = self.booking, booking.getBookingFeedbackId()  > 0 {
-            submitBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.getBookingFeedbackId(), rating: rating, comment: comment)
+        } else if let booking = self.booking, booking.bookingFeedbackId  > 0 {
+            submitBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.bookingFeedbackId, rating: rating, comment: comment)
             
         }
     }

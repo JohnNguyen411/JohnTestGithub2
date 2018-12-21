@@ -32,10 +32,6 @@ final class BookingSyncManager {
         }
         
         for booking in UserManager.sharedInstance.getBookings() {
-            if booking.isInvalidated {
-                continue
-            }
-            
             let newTimer = BookingSyncTimer(booking: booking)
             timers[booking.id] = newTimer
         }

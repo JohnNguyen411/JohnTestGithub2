@@ -30,13 +30,13 @@ class RealmManager {
             }
             
             if oldSchemaVersion < 3 {
-                migration.enumerateObjects(ofType: Booking.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: BookingRealm.className()) { oldObject, newObject in
                     newObject!["bookingFeedbackId"] = -1
                 }
             }
             
             if oldSchemaVersion < 4 {
-                migration.enumerateObjects(ofType: Booking.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: BookingRealm.className()) { oldObject, newObject in
                     let bookingFeedback = BookingFeedback()
                     newObject!["bookingFeedback"] = bookingFeedback
                 }
@@ -44,7 +44,7 @@ class RealmManager {
             
             if oldSchemaVersion < 5 {
                 var id = 1
-                migration.enumerateObjects(ofType: BookingFeedback.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: BookingFeedbackRealm.className()) { oldObject, newObject in
                     if newObject!["id"] as! Int == -1 {
                         newObject!["id"] = id
                         id = id + 1
@@ -65,7 +65,7 @@ class RealmManager {
             }
             
             if oldSchemaVersion < 8 {
-                migration.enumerateObjects(ofType: RepairOrder.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: RepairOrderRealm.className()) { oldObject, newObject in
                     if let oldObject = oldObject {
                         newObject!["title"] = oldObject["name"]
                         newObject!["vehicleDrivable"] = RealmOptional<Bool>()
@@ -96,7 +96,7 @@ class RealmManager {
             }
             
             if oldSchemaVersion < 12 {
-                migration.enumerateObjects(ofType: Booking.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: BookingRealm.className()) { oldObject, newObject in
                     newObject!["loanerVehicleId"] = oldObject?["loanerVehicleId"] ?? -1
                     newObject!["pickupRequestId"] = oldObject?["pickupRequestId"] ?? -1
                     newObject!["dropoffRequestId"] = oldObject?["dropoffRequestId"] ?? -1
@@ -114,7 +114,7 @@ class RealmManager {
             }
             
             if oldSchemaVersion < 13 {
-                migration.enumerateObjects(ofType: BookingFeedback.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: BookingFeedbackRealm.className()) { oldObject, newObject in
                     newObject!["rating"] = oldObject?["rating"] ?? RealmOptional<Int>()
                 }
             }

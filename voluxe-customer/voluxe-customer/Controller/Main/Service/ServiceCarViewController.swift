@@ -571,7 +571,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             }
             let realmDropOffRequest = realm.objects(Request.self, "id == %@", dropOffRequest.id).first
             
-            if let booking = realm.objects(Booking.self).filter("id = \(booking.id)").first {
+            if let booking = realm.objects(Booking.self, "id == %@", booking.id).first {
                 
                 try? realm.write {
                     // update state to scheduled dropoff
@@ -602,7 +602,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
                 }
                 
                 if let realm = try? Realm() {
-                    let bookings = realm.objects(Booking.self).filter("customerId = \(customerId)")
+                    let bookings = realm.objects(Booking.self, "customerId == %@", customerId)
                     UserManager.sharedInstance.setBookings(bookings: Array(bookings))
                 }
                 

@@ -23,7 +23,7 @@ class BookingSyncTimer: SyncTimer {
     }
     
     public func sync() {
-        if booking.isInvalidated || booking.getState() == .canceled || booking.getState() == .completed {
+        if booking.getState() == .canceled || booking.getState() == .completed {
             BookingSyncManager.sharedInstance.stopTimerForBooking(bookingId: bookingId)
             return
         }
@@ -43,16 +43,12 @@ class BookingSyncTimer: SyncTimer {
             timer.cancel()
         }
         
-        if booking.isInvalidated {
-            return
-        }
-        
         timer = DispatchSource.makeTimerSource(queue: queue)
         if let timer = timer {
             timer.schedule(deadline: .now(), repeating: .seconds(every), leeway: .seconds(1))
             timer.setEventHandler(handler: { [weak self] in
                 guard let weakSelf = self else { return }
-                if !UserManager.sharedInstance.isLoggedIn() || weakSelf.booking.isInvalidated {
+                if !UserManager.sharedInstance.isLoggedIn() {
                     weakSelf.suspend()
                     return
                 }

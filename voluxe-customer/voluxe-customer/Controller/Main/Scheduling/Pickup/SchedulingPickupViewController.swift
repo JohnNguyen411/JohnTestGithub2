@@ -323,7 +323,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             }
             let realmPickupRequest = realm.objects(Request.self, "id == %@", pickupRequest.id).first
             
-            if let booking = realm.objects(Booking.self).filter("id = \(booking.id)").first {
+            if let booking = realm.objects(Booking.self, "id == %@", booking.id).first {
                 
                 try? realm.write {
                     booking.pickupRequest = realmPickupRequest

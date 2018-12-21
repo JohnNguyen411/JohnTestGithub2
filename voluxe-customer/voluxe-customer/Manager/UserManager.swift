@@ -207,10 +207,6 @@ final class UserManager {
     public func getActiveBookings() -> [Booking] {
         var todaysBookings: [Booking] = []
         for booking in bookings {
-            if booking.isInvalidated {
-                continue
-            }
-            
             if booking.isActive() {
                 todaysBookings.append(booking)
             }

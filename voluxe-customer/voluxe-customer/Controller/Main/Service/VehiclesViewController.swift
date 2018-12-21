@@ -262,7 +262,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         super.stateDidChange(state: state)
         // check if service scheduled
         self.serviceState = state
-        if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle), !booking.isInvalidated, booking.getState() != .canceled {
+        if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle), booking.getState() != .canceled {
 
             scheduledServiceView.isHidden = false
             confirmButton.isHidden = true

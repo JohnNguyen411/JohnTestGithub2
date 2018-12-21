@@ -225,7 +225,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
         // show red dot if vehicleId is in active reservation and if vehicle not already current screen
         var isVehicleActive = false
         for booking in activeBookings {
-            if !booking.isInvalidated && booking.vehicleId == vehicleId {
+            if booking.vehicleId == vehicleId {
                 isVehicleActive = true
                 break
             }

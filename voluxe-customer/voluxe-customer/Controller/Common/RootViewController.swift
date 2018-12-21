@@ -201,7 +201,7 @@ class RootViewController: UIViewController {
                 if UserManager.sharedInstance.getBookings().count > 0 {
                     var requestPermission = false
                     for booking in UserManager.sharedInstance.getBookings() {
-                        if booking.isInvalidated || booking.getState() == .canceled || booking.getState() == .completed { continue }
+                        if booking.getState() == .canceled || booking.getState() == .completed { continue }
                         if UserDefaults.standard.shouldShowNotifPermissionForBooking(booking: booking) {
                             UserDefaults.standard.showNotifPermissionForBooking(booking: booking, shouldShow: true)
                             requestPermission = true
