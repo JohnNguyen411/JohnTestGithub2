@@ -33,13 +33,12 @@ extension DealershipRepairOrder: VolvoRealmProtocol {
     typealias Model = DealershipRepairOrder
     typealias Origin = DealershipRepairOrderRealm
     
-    dynamic var id = UUID().uuidString
-    dynamic var volvoCustomerId: String?
-    dynamic var location: LocationRealm?
-    dynamic var label: String? // Work / Home / Gym etc
+    dynamic var id: Int = -1
+    dynamic var dealershipId = -1
+    dynamic var repairOrderTypeId = -1
+    dynamic var enabled: Bool = true
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
-    dynamic var luxeCustomerId: Int = -1
     
     override static func primaryKey() -> String? {
         return "id"

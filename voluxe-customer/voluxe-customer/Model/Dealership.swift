@@ -8,9 +8,8 @@
 
 import Foundation
 import CoreLocation
-import RealmSwift
 
-@objcMembers class Dealership: Object, Codable {
+@objcMembers class Dealership: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var name: String?
@@ -19,7 +18,7 @@ import RealmSwift
     dynamic var location: Location?
     dynamic var hoursOfOperation: String?
     dynamic var coverageRadius: Int = 1
-    dynamic var currencyId = RealmOptional<Int>()
+    dynamic var currencyId: Int = -1
     dynamic var enabled: Bool = true
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
@@ -38,9 +37,6 @@ import RealmSwift
         case updatedAt = "updated_at" 
     }
     
-    override static func ignoredProperties() -> [String] {
-        return ["location"]
-    }
     
     convenience required init(from decoder: Decoder) throws {
         self.init()
@@ -52,7 +48,7 @@ import RealmSwift
         self.location = try container.decodeIfPresent(Location.self, forKey: .location)
         self.hoursOfOperation = try container.decodeIfPresent(String.self, forKey: .hoursOfOperation)
         self.coverageRadius = try container.decodeIfPresent(Int.self, forKey: .coverageRadius) ?? 1
-        self.currencyId = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .currencyId) ?? RealmOptional<Int>()
+        self.currencyId = try container.decodeIfPresent(Int.self, forKey: .currencyId) ?? -1
         self.enabled = try container.decodeIfPresent(Bool.self, forKey: .enabled) ?? true
         self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
         self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
@@ -81,9 +77,5 @@ import RealmSwift
     
     convenience init(name: String?) {
         self.init(name: name, location: nil)
-    }
-    
-    override static func primaryKey() -> String? {
-        return "id"
     }
 }

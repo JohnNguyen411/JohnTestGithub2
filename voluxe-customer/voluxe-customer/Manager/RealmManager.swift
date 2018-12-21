@@ -53,7 +53,7 @@ class RealmManager {
             }
             
             if oldSchemaVersion < 6 {
-                migration.enumerateObjects(ofType: Dealership.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: DealershipRealm.className()) { oldObject, newObject in
                     newObject!["email"] = ""
                 }
             }
@@ -74,7 +74,7 @@ class RealmManager {
             }
             
             if oldSchemaVersion < 9 {
-                migration.enumerateObjects(ofType: Dealership.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: DealershipRealm.className()) { oldObject, newObject in
                     newObject!["hoursOfOperation"] = ""
                 }
             }
@@ -90,7 +90,7 @@ class RealmManager {
                 migration.enumerateObjects(ofType: LocationRealm.className()) { oldObject, newObject in
                     newObject!["accuracy"] = 0.0
                 }
-                migration.enumerateObjects(ofType: Dealership.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: DealershipRealm.className()) { oldObject, newObject in
                     newObject!["currencyId"] = oldObject?["currencyId"] ?? 1
                 }
             }
