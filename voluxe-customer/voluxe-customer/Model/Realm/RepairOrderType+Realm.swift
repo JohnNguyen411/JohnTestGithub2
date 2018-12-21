@@ -11,11 +11,11 @@ import RealmSwift
 
 extension RepairOrderType: VolvoRealmProtocol {
     
-    public typealias Origin = RepairOrderTypeRealm
+    public typealias Realm = RepairOrderTypeRealm
     public typealias Model = RepairOrderType
     
     func toRealmObject() -> RepairOrderTypeRealm {
-        return Origin.convertModelToRealm(element: self)
+        return Realm.convertModelToRealm(element: self)
     }
     
     func toRealm() -> Object {
@@ -23,15 +23,15 @@ extension RepairOrderType: VolvoRealmProtocol {
     }
     
     static func fromRealm(realmObject: RepairOrderTypeRealm) -> RepairOrderType {
-        return Origin.convertToModel(element: realmObject)
+        return Realm.convertToModel(element: realmObject)
     }
 }
 
 
 @objcMembers class RepairOrderTypeRealm: Object, RealmObjectConverter {
     
-    typealias Target = RepairOrderType
-    typealias Origin = RepairOrderTypeRealm
+    typealias Model = RepairOrderType
+    typealias Realm = RepairOrderTypeRealm
     
     dynamic var id: Int = -1
     dynamic var name: String?

@@ -11,11 +11,11 @@ import RealmSwift
 
 extension Color: VolvoRealmProtocol {
     
-    public typealias Origin = ColorRealm
+    public typealias Realm = ColorRealm
     public typealias Model = Color
     
     func toRealmObject() -> ColorRealm {
-        return Origin.convertModelToRealm(element: self)
+        return Realm.convertModelToRealm(element: self)
     }
     
     func toRealm() -> Object {
@@ -23,7 +23,7 @@ extension Color: VolvoRealmProtocol {
     }
     
     static func fromRealm(realmObject: ColorRealm) -> Color {
-        return Origin.convertToModel(element: realmObject)
+        return Realm.convertToModel(element: realmObject)
     }
     
 }

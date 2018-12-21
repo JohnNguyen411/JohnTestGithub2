@@ -25,7 +25,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         user = UserManager.sharedInstance.getCustomer()
         realm = try? Realm()
         if let realm = self.realm, let user = user {
-            addresses = realm.objects(CustomerAddress.Origin.self).filter("luxeCustomerId = %@", user.id)
+            addresses = realm.objects(CustomerAddress.Realm.self).filter("luxeCustomerId = %@", user.id)
             if let addresses = addresses {
                 addressesCount = addresses.count
             }

@@ -11,11 +11,11 @@ import RealmSwift
 
 extension CustomerAddress: VolvoRealmProtocol {
     
-    public typealias Origin = CustomerAddressRealm
+    public typealias Realm = CustomerAddressRealm
     public typealias Model = CustomerAddress
     
     func toRealmObject() -> CustomerAddressRealm {
-        return Origin.convertModelToRealm(element: self)
+        return Realm.convertModelToRealm(element: self)
     }
     
     func toRealm() -> Object {
@@ -23,7 +23,7 @@ extension CustomerAddress: VolvoRealmProtocol {
     }
     
     static func fromRealm(realmObject: CustomerAddressRealm) -> CustomerAddress {
-        return Origin.convertToModel(element: realmObject)
+        return Realm.convertToModel(element: realmObject)
     }
 }
 
@@ -31,7 +31,7 @@ extension CustomerAddress: VolvoRealmProtocol {
 @objcMembers class CustomerAddressRealm: Object, RealmObjectConverter {
     
     typealias Model = CustomerAddress
-    typealias Origin = CustomerAddressRealm
+    typealias Realm = CustomerAddressRealm
     
     dynamic var id = UUID().uuidString
     dynamic var volvoCustomerId: String?

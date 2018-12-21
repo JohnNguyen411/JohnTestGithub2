@@ -71,6 +71,17 @@ extension Realm {
         self.delete(objects)
     }
     
+    
+    public func delete<Element: VolvoRealmProtocol>(_ object: Element) {
+        if let primaryKey = Element.Realm.Realm.primaryKey() {
+            guard let keyValueObject = object as? NSObject else { return }
+            guard let primaryKeyValue = keyValueObject.value(forKey: primaryKey) else { return }
+            if let object = self.object(ofType: Element.Realm.Realm.self, forPrimaryKey: primaryKeyValue) {
+                self.delete(object)
+            }
+        }
+    }
+    
     public func deleteAll<Element: VolvoRealmProtocol>(_ type: Element.Type) {
         let objects = self.objects(type.Realm.Realm.self)
         self.delete(objects)

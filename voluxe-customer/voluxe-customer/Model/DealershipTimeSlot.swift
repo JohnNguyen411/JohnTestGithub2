@@ -7,10 +7,8 @@
 //
 
 import Foundation
-import CoreLocation
-import RealmSwift
 
-@objcMembers class DealershipTimeSlot: Object, Codable {
+@objcMembers class DealershipTimeSlot: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var dealershipId: Int = -1
@@ -19,8 +17,8 @@ import RealmSwift
     dynamic var to: Date?
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
-    dynamic var availableLoanerVehicleCount = RealmOptional<Int>()
-    dynamic var availableAssignmentCount = RealmOptional<Int>()
+    dynamic var availableLoanerVehicleCount = -1
+    dynamic var availableAssignmentCount = -1
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -42,8 +40,8 @@ import RealmSwift
         self.type = try container.decodeIfPresent(String.self, forKey: .type)
         self.from = try container.decodeIfPresent(Date.self, forKey: .from)
         self.to = try container.decodeIfPresent(Date.self, forKey: .to)
-        self.availableLoanerVehicleCount = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .availableLoanerVehicleCount) ?? RealmOptional<Int>()
-        self.availableAssignmentCount = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .availableAssignmentCount) ?? RealmOptional<Int>()
+        self.availableLoanerVehicleCount = try container.decodeIfPresent(Int.self, forKey: .availableLoanerVehicleCount) ?? -1
+        self.availableAssignmentCount = try container.decodeIfPresent(Int.self, forKey: .availableAssignmentCount) ?? -1
         self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
         self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
     }
@@ -61,10 +59,6 @@ import RealmSwift
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
     
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
     
     func getTimeSlot(calendar: Calendar, showAMPM: Bool, shortSymbol: Bool? = nil) -> String? {
         guard let from = from, let to = to else { return nil }

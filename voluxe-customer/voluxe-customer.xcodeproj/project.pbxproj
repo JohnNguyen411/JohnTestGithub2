@@ -79,6 +79,9 @@
 		52A33B2E21CC78A10041CB67 /* Customer+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2D21CC78A10041CB67 /* Customer+Realm.swift */; };
 		52A33B3021CD4D750041CB67 /* DealershipRepairOrder+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2F21CD4D750041CB67 /* DealershipRepairOrder+Realm.swift */; };
 		52A33B3221CD50840041CB67 /* Dealership+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B3121CD50840041CB67 /* Dealership+Realm.swift */; };
+		52A33B3421CD662B0041CB67 /* Driver+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B3321CD662B0041CB67 /* Driver+Realm.swift */; };
+		52A33B3621CD73870041CB67 /* Request+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B3521CD73870041CB67 /* Request+Realm.swift */; };
+		52A33B3821CD76C80041CB67 /* DealershipTimeSlot+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B3721CD76C80041CB67 /* DealershipTimeSlot+Realm.swift */; };
 		52CDAC3C21262C35008B3E53 /* ScheduledSelfDropoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CDAC3B21262C35008B3E53 /* ScheduledSelfDropoff.swift */; };
 		52D5C9B12113AE270020F43F /* VLScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B02113AE270020F43F /* VLScrollView.swift */; };
 		52D5C9B32113DA9D0020F43F /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B22113DA9D0020F43F /* ViewUtils.swift */; };
@@ -504,6 +507,9 @@
 		52A33B2D21CC78A10041CB67 /* Customer+Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+Realm.swift"; sourceTree = "<group>"; };
 		52A33B2F21CD4D750041CB67 /* DealershipRepairOrder+Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DealershipRepairOrder+Realm.swift"; sourceTree = "<group>"; };
 		52A33B3121CD50840041CB67 /* Dealership+Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Dealership+Realm.swift"; sourceTree = "<group>"; };
+		52A33B3321CD662B0041CB67 /* Driver+Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Driver+Realm.swift"; sourceTree = "<group>"; };
+		52A33B3521CD73870041CB67 /* Request+Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Request+Realm.swift"; sourceTree = "<group>"; };
+		52A33B3721CD76C80041CB67 /* DealershipTimeSlot+Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DealershipTimeSlot+Realm.swift"; sourceTree = "<group>"; };
 		52CDAC3B21262C35008B3E53 /* ScheduledSelfDropoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledSelfDropoff.swift; sourceTree = "<group>"; };
 		52D5C9B02113AE270020F43F /* VLScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLScrollView.swift; sourceTree = "<group>"; };
 		52D5C9B22113DA9D0020F43F /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
@@ -920,8 +926,11 @@
 				52A33B2921CAC7940041CB67 /* CustomerAddress+Realm.swift */,
 				52A33B3121CD50840041CB67 /* Dealership+Realm.swift */,
 				52A33B2F21CD4D750041CB67 /* DealershipRepairOrder+Realm.swift */,
+				52A33B3721CD76C80041CB67 /* DealershipTimeSlot+Realm.swift */,
+				52A33B3321CD662B0041CB67 /* Driver+Realm.swift */,
 				52A33B2521C9C2FE0041CB67 /* Location+Realm.swift */,
 				52A33B0E21C3144D0041CB67 /* RepairOrderType+Realm.swift */,
+				52A33B3521CD73870041CB67 /* Request+Realm.swift */,
 				52A33B2B21CC740C0041CB67 /* Vehicle+Realm.swift */,
 				52A33B1B21C97AB70041CB67 /* VehicleMake+Realm.swift */,
 				52A33B1D21C9A4EF0041CB67 /* VehicleModel+Realm.swift */,
@@ -2302,6 +2311,7 @@
 				6C5833111FB3AF5600F6BFE0 /* KeyboardTranslation.swift in Sources */,
 				5340E90F20D86BD900B17D53 /* TaxonomyTableViewController.swift in Sources */,
 				6CE687832036634A00D915FC /* State.swift in Sources */,
+				52A33B3821CD76C80041CB67 /* DealershipTimeSlot+Realm.swift in Sources */,
 				6C7342141FB25F8C00E90F7E /* LocationViewController.swift in Sources */,
 				6C1CE1E420C5E9E600A2E054 /* BranchDeeplink.swift in Sources */,
 				6C20E1CB1FBF698E00E5D9A0 /* Dealership.swift in Sources */,
@@ -2394,6 +2404,7 @@
 				6C327C3421068CCB00521CAE /* RootViewController.swift in Sources */,
 				52940973219220E00009F691 /* LuxeAPI+Version.swift in Sources */,
 				52E737732141E41900CB8D3B /* ScheduledSelfPickup.swift in Sources */,
+				52A33B3621CD73870041CB67 /* Request+Realm.swift in Sources */,
 				52A33B1821C43C570041CB67 /* RealmObjectConverter.swift in Sources */,
 				6CBB4E8B1FB4DF7D00C31183 /* FSCalendarCalculator.m in Sources */,
 				53D9A7BD209A5E2F008BE93E /* UserDefaults+Debug.swift in Sources */,
@@ -2463,6 +2474,7 @@
 				52940972219220E00009F691 /* LuxeAPI.swift in Sources */,
 				6C1CE1F320CB3D6000A2E054 /* VLMarkedSlider.swift in Sources */,
 				6C937065204F64360084443C /* SettingsCarViewController.swift in Sources */,
+				52A33B3421CD662B0041CB67 /* Driver+Realm.swift in Sources */,
 				52A33B0F21C3144D0041CB67 /* RepairOrderType+Realm.swift in Sources */,
 				52D5C9B7211514EF0020F43F /* RoundImageView.swift in Sources */,
 				6CBAA6CB2023FEE800F35ECF /* CheckmarkCell.swift in Sources */,

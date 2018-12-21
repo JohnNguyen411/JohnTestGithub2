@@ -137,7 +137,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
             try? realm.write {
                 realm.add(dropOffRequest, update: true)
             }
-            let realmDropOffRequest = realm.objects(Request.self).filter("id = \(dropOffRequest.id)").first
+            let realmDropOffRequest = realm.objects(Request.self, "id = %@", dropOffRequest.id).first
             
             if let booking = realm.objects(Booking.self).filter("id = \(booking.id)").first {
                 

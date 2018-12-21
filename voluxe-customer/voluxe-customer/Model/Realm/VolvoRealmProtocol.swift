@@ -16,7 +16,9 @@ public protocol VolvoRealmProtocol: ToRealmProtocol {
     associatedtype Model // The model object
 
     func toRealmObject() -> Realm
+    //func primaryKeyValue() -> Any?
     static func fromRealm(realmObject: Realm) -> Model
+    
 
 }
 

@@ -7,9 +7,8 @@
 //
 
 import Foundation
-import RealmSwift
 
-@objcMembers class Driver: Object, Codable {
+@objcMembers class Driver: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var name: String?
@@ -22,12 +21,5 @@ import RealmSwift
         case iconUrl = "photo_url"
         case location
     }
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
-    
-    override static func ignoredProperties() -> [String] {
-        return ["location"]
-    }
+   
 }

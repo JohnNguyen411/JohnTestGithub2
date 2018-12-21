@@ -11,11 +11,11 @@ import RealmSwift
 
 extension Vehicle: VolvoRealmProtocol {
     
-    public typealias Origin = VehicleRealm
+    public typealias Realm = VehicleRealm
     public typealias Model = Vehicle
     
     func toRealmObject() -> VehicleRealm {
-        return Origin.convertModelToRealm(element: self)
+        return Realm.convertModelToRealm(element: self)
     }
     
     func toRealm() -> Object {
@@ -23,7 +23,7 @@ extension Vehicle: VolvoRealmProtocol {
     }
     
     static func fromRealm(realmObject: VehicleRealm) -> Vehicle {
-        return Origin.convertToModel(element: realmObject)
+        return Realm.convertToModel(element: realmObject)
     }
 }
 
@@ -31,7 +31,7 @@ extension Vehicle: VolvoRealmProtocol {
 @objcMembers class VehicleRealm: Object, RealmObjectConverter {
     
     typealias Model = Vehicle
-    typealias Origin = VehicleRealm
+    typealias Realm = VehicleRealm
     
     dynamic var id: Int = -1
     dynamic var vin: String?

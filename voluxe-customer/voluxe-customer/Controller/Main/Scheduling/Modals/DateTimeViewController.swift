@@ -97,7 +97,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     private var slotViews: [VLButton] = []
     private var weekdayViews = UIView(frame: .zero)
     
-    private var currentSlots: Results<DealershipTimeSlot>?
+    private var currentSlots: [DealershipTimeSlot]?
     
     init(vehicle: Vehicle, title: String, buttonTitle: String) {
         self.vehicle = vehicle
@@ -167,8 +167,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                 } else {
                     if let realm = self.realm {
                         try? realm.write {
-                            let objects = realm.objects(DealershipTimeSlot.self).filter("dealershipId == \(dealership.id)")
-                            realm.delete(objects)
+                            realm.delete(DealershipTimeSlot.self, "dealershipId == %@", dealership.id)
                             realm.add(timeslots, update: true)
                         }
                         if timeslots.count > 0 && timeslots[0].from != nil {
@@ -535,7 +534,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         return false
     }
     
-    private func getSlotsForDate(date: Date, withLoaner: Bool) -> Results<DealershipTimeSlot>? {
+    private func getSlotsForDate(date: Date, withLoaner: Bool) -> [DealershipTimeSlot]? {
         if let realm = realm, let dealership = self.dealership {
             var from: NSDate = date.beginningOfDay() as NSDate
             var to: NSDate = date.endOfDay() as NSDate
@@ -549,13 +548,13 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                 predicate = NSPredicate(format: "to >= %@ AND to <= %@ AND dealershipId = %d AND availableLoanerVehicleCount >= %d AND availableAssignmentCount > 0", from, to, dealership.id, withLoaner ? 1 : 0)
             }
             
-            let slots = realm.objects(DealershipTimeSlot.self).filter(predicate)
+            let slots = realm.objects(DealershipTimeSlot.self, predicate: predicate)
             return slots
         }
         return nil
     }
     
-    func updateSlots(slots: Results<DealershipTimeSlot>?) {
+    func updateSlots(slots: [DealershipTimeSlot]?) {
         // remove time slots view
         for view in hoursView.subviews {
             view.removeFromSuperview()

@@ -11,11 +11,11 @@ import RealmSwift
 
 extension Location: VolvoRealmProtocol {
     
-    public typealias Origin = LocationRealm
+    public typealias Realm = LocationRealm
     public typealias Model = Location
     
     func toRealmObject() -> LocationRealm {
-        return Origin.convertModelToRealm(element: self)
+        return Realm.convertModelToRealm(element: self)
     }
     
     func toRealm() -> Object {
@@ -23,7 +23,7 @@ extension Location: VolvoRealmProtocol {
     }
     
     static func fromRealm(realmObject: LocationRealm) -> Location {
-        return Origin.convertToModel(element: realmObject)
+        return Realm.convertToModel(element: realmObject)
     }
 }
 
@@ -31,7 +31,7 @@ extension Location: VolvoRealmProtocol {
 @objcMembers class LocationRealm: Object, RealmObjectConverter {
     
     typealias Model = Location
-    typealias Origin = LocationRealm
+    typealias Realm = LocationRealm
     
     dynamic var id = UUID().uuidString
     dynamic var address: String?

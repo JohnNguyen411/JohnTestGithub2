@@ -18,13 +18,13 @@ class RealmManager {
         
         let config = Realm.Configuration(schemaVersion: dbVersion, migrationBlock: { migration, oldSchemaVersion in
             if oldSchemaVersion < 1 {
-                migration.enumerateObjects(ofType: DealershipTimeSlot.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: DealershipTimeSlotRealm.className()) { oldObject, newObject in
                     newObject!["availableLoanerVehicleCount"] = 0
                 }
             }
             
             if oldSchemaVersion < 2 {
-                migration.enumerateObjects(ofType: DealershipTimeSlot.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: DealershipTimeSlotRealm.className()) { oldObject, newObject in
                     newObject!["availableAssignmentCount"] = 0
                 }
             }
@@ -103,11 +103,11 @@ class RealmManager {
                     newObject!["bookingFeedbackId"] = oldObject?["bookingFeedbackId"] ?? -1
                 }
                 
-                migration.enumerateObjects(ofType: Request.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: RequestRealm.className()) { oldObject, newObject in
                     newObject!["timeslotId"] = oldObject?["timeslotId"] ?? -1
                 }
                 
-                migration.enumerateObjects(ofType: DealershipTimeSlot.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: DealershipTimeSlotRealm.className()) { oldObject, newObject in
                     newObject!["availableLoanerVehicleCount"] = oldObject?["availableLoanerVehicleCount"] ?? 0
                     newObject!["availableAssignmentCount"] = oldObject?["availableAssignmentCount"] ?? 0
                 }

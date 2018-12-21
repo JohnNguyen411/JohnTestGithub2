@@ -93,13 +93,7 @@ final class RequestedServiceManager {
     }
     
     func setPickupTimeSlot(timeSlot: DealershipTimeSlot?) {
-        // create an unmanaged copy of the timeslots to prevent crashes if the timeslot get deleted.
-        // we do delete the timeslots at every refresh to prevent duplicate
-        if let unwraptimeslot = timeSlot {
-            pickupTimeSlot = DealershipTimeSlot(value: unwraptimeslot)
-        } else {
-            pickupTimeSlot = nil
-        }
+        self.pickupTimeSlot = timeSlot
     }
     
     func setPickupRequestLocation(requestLocation: Location?) {
@@ -115,13 +109,7 @@ final class RequestedServiceManager {
     }
     
     func setDropoffTimeSlot(timeSlot: DealershipTimeSlot?) {
-        // create an unmanaged copy of the timeslots to prevent crashes if the timeslot get deleted.
-        // we do delete the timeslots at every refresh to prevent duplicate
-        if let unwraptimeslot = timeSlot {
-            dropOffTimeSlot = DealershipTimeSlot(value: unwraptimeslot)
-        } else {
-            dropOffTimeSlot = nil
-        }
+        self.dropOffTimeSlot = timeSlot
     }
     
     func setDropoffRequestLocation(requestLocation: Location?) {
