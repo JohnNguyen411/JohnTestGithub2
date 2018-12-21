@@ -76,6 +76,7 @@
 		52A33B2621C9C2FE0041CB67 /* Location+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2521C9C2FE0041CB67 /* Location+Realm.swift */; };
 		52A33B2A21CAC7940041CB67 /* CustomerAddress+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2921CAC7940041CB67 /* CustomerAddress+Realm.swift */; };
 		52A33B2C21CC740C0041CB67 /* Vehicle+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2B21CC740C0041CB67 /* Vehicle+Realm.swift */; };
+		52A33B2E21CC78A10041CB67 /* Customer+Realm.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2D21CC78A10041CB67 /* Customer+Realm.swift */; };
 		52CDAC3C21262C35008B3E53 /* ScheduledSelfDropoff.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CDAC3B21262C35008B3E53 /* ScheduledSelfDropoff.swift */; };
 		52D5C9B12113AE270020F43F /* VLScrollView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B02113AE270020F43F /* VLScrollView.swift */; };
 		52D5C9B32113DA9D0020F43F /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B22113DA9D0020F43F /* ViewUtils.swift */; };
@@ -498,6 +499,7 @@
 		52A33B2521C9C2FE0041CB67 /* Location+Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+Realm.swift"; sourceTree = "<group>"; };
 		52A33B2921CAC7940041CB67 /* CustomerAddress+Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAddress+Realm.swift"; sourceTree = "<group>"; };
 		52A33B2B21CC740C0041CB67 /* Vehicle+Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+Realm.swift"; sourceTree = "<group>"; };
+		52A33B2D21CC78A10041CB67 /* Customer+Realm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Customer+Realm.swift"; sourceTree = "<group>"; };
 		52CDAC3B21262C35008B3E53 /* ScheduledSelfDropoff.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledSelfDropoff.swift; sourceTree = "<group>"; };
 		52D5C9B02113AE270020F43F /* VLScrollView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLScrollView.swift; sourceTree = "<group>"; };
 		52D5C9B22113DA9D0020F43F /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
@@ -910,6 +912,7 @@
 				52A33B1721C43C570041CB67 /* RealmObjectConverter.swift */,
 				52A33B1121C315BA0041CB67 /* VolvoRealmProtocol.swift */,
 				52A33B1921C474680041CB67 /* Color+Realm.swift */,
+				52A33B2D21CC78A10041CB67 /* Customer+Realm.swift */,
 				52A33B2921CAC7940041CB67 /* CustomerAddress+Realm.swift */,
 				52A33B2521C9C2FE0041CB67 /* Location+Realm.swift */,
 				52A33B0E21C3144D0041CB67 /* RepairOrderType+Realm.swift */,
@@ -2465,6 +2468,7 @@
 				6C7DDE0F1FDB64CD000E2822 /* Logger.swift in Sources */,
 				6C4970FB20754E2700FF33E9 /* SyncTimer.swift in Sources */,
 				6CDAEE7A20E1B52C0040CDFF /* HelpAction.swift in Sources */,
+				52A33B2E21CC78A10041CB67 /* Customer+Realm.swift in Sources */,
 				6CDAEE8020E1CC170040CDFF /* HelpLocalization.swift in Sources */,
 				6C9B3207202A85B9006380B9 /* SettingsCell.swift in Sources */,
 				6CCCF23320488C5C004BF1A6 /* FTUEAddVehicleViewController.swift in Sources */,

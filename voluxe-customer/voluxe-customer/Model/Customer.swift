@@ -7,10 +7,8 @@
 //
 
 import Foundation
-import CoreLocation
-import RealmSwift
 
-@objcMembers class Customer: Object, Codable {
+@objcMembers class Customer: NSObject, Codable {
 
     dynamic var id: Int = -1
     dynamic var volvoCustomerId: String?
@@ -21,8 +19,8 @@ import RealmSwift
     dynamic var phoneNumber: String?
     dynamic var phoneNumberVerified: Bool = false
     dynamic var passwordResetRequired: Bool = false
-    dynamic var credit = RealmOptional<Int>()
-    dynamic var currencyId = RealmOptional<Int>()
+    dynamic var credit: Int?
+    dynamic var currencyId: Int?
     dynamic var photoUrl: String?
     dynamic var enabled: Bool = true
     dynamic var location: Location?
@@ -48,10 +46,6 @@ import RealmSwift
         case updatedAt = "updated_at" 
     }
     
-    override static func ignoredProperties() -> [String] {
-        return ["location"]
-    }
-    
     convenience required init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -64,8 +58,8 @@ import RealmSwift
         self.phoneNumber = try container.decodeIfPresent(String.self, forKey: .phoneNumber)
         self.phoneNumberVerified = try container.decodeIfPresent(Bool.self, forKey: .phoneNumberVerified) ?? false
         self.passwordResetRequired = try container.decodeIfPresent(Bool.self, forKey: .passwordResetRequired) ?? false
-        self.credit = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .credit) ?? RealmOptional<Int>()
-        self.currencyId = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .currencyId) ?? RealmOptional<Int>()
+        self.credit = try container.decodeIfPresent(Int.self, forKey: .credit)
+        self.currencyId = try container.decodeIfPresent(Int.self, forKey: .currencyId)
         self.photoUrl = try container.decodeIfPresent(String.self, forKey: .photoUrl)
         self.enabled = try container.decodeIfPresent(Bool.self, forKey: .enabled) ?? true
         self.location = try container.decodeIfPresent(Location.self, forKey: .location)
@@ -84,16 +78,12 @@ import RealmSwift
         try container.encodeIfPresent(phoneNumber, forKey: .phoneNumber)
         try container.encode(phoneNumberVerified, forKey: .phoneNumberVerified)
         try container.encode(passwordResetRequired, forKey: .passwordResetRequired)
-        try container.encode(credit, forKey: .credit)
-        try container.encode(currencyId, forKey: .currencyId)
+        try container.encodeIfPresent(credit, forKey: .credit)
+        try container.encodeIfPresent(currencyId, forKey: .currencyId)
         try container.encodeIfPresent(photoUrl, forKey: .photoUrl)
         try container.encode(enabled, forKey: .enabled)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
     
-    
-    override static func primaryKey() -> String? {
-        return "id"
-    }
 }
