@@ -50,7 +50,7 @@ class ServiceListViewController: BaseViewController {
                     try? realm.write {
                         realm.deleteAll(RepairOrderType.self)
                         realm.add(services)
-                        let filteredResults = realm.objects(RepairOrderType.self, predicate: "category == 'routine_maintenance_by_distance'")
+                        let filteredResults = realm.objects(RepairOrderType.self, "category == 'routine_maintenance_by_distance'")
                         self.showServices(services: Array(filteredResults))
                     }
                 }

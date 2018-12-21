@@ -25,7 +25,13 @@ extension Realm {
         }
     }
     
-    public func objects<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: String? = nil, sortedByKeyPath: String? = nil, sortAscending: Bool = false) -> [Element.Realm.Model] {
+    public func objects<Element: VolvoRealmProtocol>(_ type: Element.Type, _ predicateFormat: String, _ args: Any..., sortedByKeyPath: String? = nil, sortAscending: Bool = false) -> [Element.Realm.Model] {
+        return objects(type, predicate: NSPredicate(format: predicateFormat,
+                                                    argumentArray: args),
+                       sortedByKeyPath: sortedByKeyPath, sortAscending: sortAscending)
+    }
+    
+    public func objects<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: NSPredicate? = nil, sortedByKeyPath: String? = nil, sortAscending: Bool = false) -> [Element.Realm.Model] {
         var elements: Results<Element.Realm.Realm>
         if let predicate = predicate {
             elements = self.objects(type.Realm.Realm.self).filter(predicate)
@@ -40,13 +46,27 @@ extension Realm {
         return type.Realm.convertResultsToModel(results: elements)
     }
     
-    public func deleteFirst<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: String) {
+    
+    public func deleteFirst<Element: VolvoRealmProtocol>(_ type: Element.Type, _ predicateFormat: String, _ args: Any...) {
+        if let object = self.objects(type.Realm.Realm.self).filter(NSPredicate(format: predicateFormat,
+                                                                               argumentArray: args)).first {
+            self.delete(object)
+        }
+    }
+    
+    public func delete<Element: VolvoRealmProtocol>(_ type: Element.Type, _ predicateFormat: String, _ args: Any...) {
+        let objects = self.objects(type.Realm.Realm.self).filter(NSPredicate(format: predicateFormat,
+                                                                             argumentArray: args))
+        self.delete(objects)
+    }
+    
+    public func deleteFirst<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: NSPredicate) {
         if let object = self.objects(type.Realm.Realm.self).filter(predicate).first {
             self.delete(object)
         }
     }
     
-    public func delete<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: String) {
+    public func delete<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: NSPredicate) {
         let objects = self.objects(type.Realm.Realm.self).filter(predicate)
         self.delete(objects)
     }

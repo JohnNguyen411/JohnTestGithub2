@@ -145,12 +145,12 @@ extension NewServiceViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             if let realm = try? Realm() {
                 
-                if let filteredResults = realm.objects(RepairOrderType.self, predicate: "category = '\(RepairOrderCategory.custom.rawValue)'").first {
+                if let filteredResults = realm.objects(RepairOrderType.self, predicate: NSPredicate()).first {
                     Analytics.trackClick(button: .serviceCustom, screen: self.screen)
                     self.pushViewController(ServiceMultiselectListViewController(vehicle: vehicle, repairOrderType: filteredResults), animated: true)
                 }
             }
         }
-    }
+    } // NSPredicate("category = '\(RepairOrderCategory.custom.rawValue)'")
     
 }

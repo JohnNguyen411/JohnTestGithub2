@@ -25,7 +25,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         user = UserManager.sharedInstance.getCustomer()
         realm = try? Realm()
         if let realm = self.realm, let user = user {
-            addresses = realm.objects(CustomerAddress.Origin.self).filter("luxeCustomerId = \(user.id)")
+            addresses = realm.objects(CustomerAddress.Origin.self).filter("luxeCustomerId = %@", user.id)
             if let addresses = addresses {
                 addressesCount = addresses.count
             }
@@ -321,7 +321,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         Analytics.trackClick(button: .settingsDeleteAddress, screen: self.screen)
         if let realm = self.realm, let addresses = self.addresses {
             try? realm.write {
-                realm.deleteFirst(CustomerAddress.self, predicate: "id = \(addresses[indexPath.row].id)")
+                realm.deleteFirst(CustomerAddress.self, "id = %@", addresses[indexPath.row].id)
                 //realm.delete(addresses[indexPath.row])
                 self.addressesCount = addresses.count
             }
