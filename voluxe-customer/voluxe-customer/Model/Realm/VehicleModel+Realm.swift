@@ -44,14 +44,6 @@ extension VehicleModel: VolvoRealmProtocol {
         return "id"
     }
     
-    static func modelToRealmProperties() -> [String : NSObject.Type]? {
-        return nil
-    }
-    
-    static func realmToModelProperties() -> [String : NSObject.Type]? {
-        return nil
-    }
-    
     func toModel() -> NSObject {
         return VehicleModelRealm.convertToModel(element: self)
     }

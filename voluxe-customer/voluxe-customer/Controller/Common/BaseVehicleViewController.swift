@@ -33,9 +33,7 @@ class BaseVehicleViewController: BaseViewController {
         SwiftEventBus.onMainThread(self, name:"stateDidChange") {
             result in
             guard let stateChange: StateChangeObject = result?.object as? StateChangeObject else { return }
-            if !self.vehicle.isInvalidated {
-                self.stateDidChange(vehicleId: stateChange.vehicleId, oldState: stateChange.oldState, newState: stateChange.newState)
-            }
+            self.stateDidChange(vehicleId: stateChange.vehicleId, oldState: stateChange.oldState, newState: stateChange.newState)
         }
     }
     

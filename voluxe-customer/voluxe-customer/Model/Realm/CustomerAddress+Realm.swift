@@ -45,14 +45,6 @@ extension CustomerAddress: VolvoRealmProtocol {
         return "id"
     }
     
-    public static func modelToRealmProperties() -> [String: NSObject.Type]? {
-        return ["location": LocationRealm.self]
-    }
-    
-    public static func realmToModelProperties() -> [String: NSObject.Type]? {
-        return ["location": Location.self]
-    }
-    
     func toModel() -> NSObject {
         return CustomerAddressRealm.convertToModel(element: self)
     }

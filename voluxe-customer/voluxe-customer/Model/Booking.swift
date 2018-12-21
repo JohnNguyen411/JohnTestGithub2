@@ -113,6 +113,10 @@ import Realm
         return "id"
     }
     
+    override static func ignoredProperties() -> [String] {
+        return ["vehicle", "loanerVehicle"]
+    }
+    
     func getBookingFeedbackId() -> Int {
         return bookingFeedbackId.value ?? -1
     }

@@ -22,8 +22,6 @@ public protocol RealmObjectConverter: ConverterHelper {
 }
 
 public protocol ConverterHelper {
-    static func modelToRealmProperties() -> [String: NSObject.Type]?
-    static func realmToModelProperties() -> [String: NSObject.Type]?
     func toModel() -> NSObject
 
 }
@@ -47,11 +45,8 @@ public class RealmObject {
             let elementValue = element.value(forKey: label)
                 
             if case Optional<Any>.some(_) = elementValue {
-                
-                if let dict = type.realmToModelProperties(), let _ = dict[label] {
-                    if let object = elementValue as? NSObject,  let model = object as? ConverterHelper {
-                        target.setValue(model.toModel(), forKey: label)
-                    }
+                if let object = elementValue as? NSObject,  let model = object as? ConverterHelper {
+                    target.setValue(model.toModel(), forKey: label)
                 } else {
                     target.setValue(elementValue, forKey: label)
                 }
@@ -76,11 +71,8 @@ public class RealmObject {
             if ignoredProperties.contains(label) { continue }
             
             if case Optional<Any>.some(_) = value {
-                
-                if let dict = type.modelToRealmProperties(), let _ = dict[label] {
-                    if let object = value as? NSObject,  let model = object as? ToRealmProtocol {
-                        target.setValue(model.toRealm(), forKey: label)
-                    }
+                if let object = value as? NSObject,  let model = object as? ToRealmProtocol {
+                    target.setValue(model.toRealm(), forKey: label)
                 } else {
                     target.setValue(value, forKey: label)
                 }

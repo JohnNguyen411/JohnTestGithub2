@@ -42,7 +42,6 @@ extension Location: VolvoRealmProtocol {
     dynamic var updatedAt: Date?
     dynamic var location: CLLocationCoordinate2D?
     
-    
     override static func ignoredProperties() -> [String] {
         return ["location"]
     }

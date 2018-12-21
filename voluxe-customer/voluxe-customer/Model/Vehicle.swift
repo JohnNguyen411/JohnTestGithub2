@@ -7,11 +7,8 @@
 //
 
 import Foundation
-import CoreLocation
-import RealmSwift
-import Kingfisher
 
-@objcMembers class Vehicle: Object, Codable {
+@objcMembers class Vehicle: NSObject, Codable {
 
     public static let vehicleImageHeight: CGFloat = 190
 
@@ -74,9 +71,6 @@ import Kingfisher
         return "614"
     }
     
-    override static func primaryKey() -> String? {
-        return "id"
-    }
     
     func vehicleDescription() -> String {
         if let color = color, color.count > 0 {
