@@ -241,7 +241,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             isDriver = false
         }
        
-        guard let dealershipRepairOrder = realm.objects(DealershipRepairOrder.self).filter("repairOrderTypeId = \(repairOrderType.id) AND dealershipId = \(dealership.id) AND enabled = true").first else { return }
+        guard let dealershipRepairOrder = realm.objects(DealershipRepairOrder.self, "repairOrderTypeId = %@ AND dealershipId = %@ AND enabled = true", repairOrderType.id, dealership.id).first else { return }
         
         confirmButton.isLoading = true
         

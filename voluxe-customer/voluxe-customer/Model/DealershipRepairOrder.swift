@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-@objcMembers class DealershipRepairOrder: Object, Codable {
+@objcMembers class DealershipRepairOrder: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var dealershipId = -1
@@ -25,11 +25,6 @@ import RealmSwift
         case enabled
         case createdAt = "created_at" 
         case updatedAt = "updated_at" 
-    }
-    
-    
-    override static func primaryKey() -> String? {
-        return "id"
     }
     
 }
