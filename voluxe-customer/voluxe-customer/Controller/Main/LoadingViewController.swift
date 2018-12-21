@@ -141,7 +141,7 @@ class LoadingViewController: LogoViewController {
             }
         } else {
             if let realm = self.realm {
-                if let customer = realm.objects(Customer.self).filter("id = \(customerId)").first {
+                if let customer = realm.objects(Customer.self, "id = %@", customerId).first {
                     UserManager.sharedInstance.setCustomer(customer: customer)
                     if !customer.phoneNumberVerified {
                         FTUEStartViewController.flowType = .login

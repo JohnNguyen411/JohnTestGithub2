@@ -80,7 +80,7 @@ class RealmManager {
             }
             
             if oldSchemaVersion < 10 {
-                migration.enumerateObjects(ofType: Customer.className()) { oldObject, newObject in
+                migration.enumerateObjects(ofType: CustomerRealm.className()) { oldObject, newObject in
                     newObject!["credit"] = oldObject?["credit"] ?? 0
                     newObject!["currencyId"] = oldObject?["currencyId"] ?? 1
                 }
