@@ -1279,7 +1279,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A09D259AE8F94479F143422F /* Pods-voluxe-driver.development.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDevelopment;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
@@ -1288,7 +1288,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.driver.development;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1308,7 +1308,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.driver.production;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.production;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1422,7 +1422,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CD92095CAC79E51E76DD825D /* Pods-voluxe-driver.staging.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconStaging;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
@@ -1431,7 +1431,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.driver.staging;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -1527,7 +1527,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.driver;
+				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
