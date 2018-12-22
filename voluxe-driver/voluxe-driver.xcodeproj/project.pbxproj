@@ -31,6 +31,9 @@
 		5312142921CAB04500F3FCEB /* TemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142821CAB04500F3FCEB /* TemplateViewController.swift */; };
 		5312142B21CAB49500F3FCEB /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142A21CAB49500F3FCEB /* RequestViewController.swift */; };
 		5312142D21CB0AE700F3FCEB /* FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142C21CB0AE700F3FCEB /* FlowViewController.swift */; };
+		5312143121CC569E00F3FCEB /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143021CC569E00F3FCEB /* ContactInfoViewController.swift */; };
+		5312143321CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143221CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift */; };
+		5312143521CC689200F3FCEB /* SelfieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143421CC689200F3FCEB /* SelfieViewController.swift */; };
 		531F9C2021B874110027F43D /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531F9C1F21B874110027F43D /* Date+Extensions.swift */; };
 		533046E5218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */; };
 		533046E6218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */; };
@@ -52,6 +55,8 @@
 		53368D8D21C17CED00B1A2AF /* AdminAPI+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C1FF8219E4E82003AA733 /* AdminAPI+Driver.swift */; };
 		53368D8E21C17D2E00B1A2AF /* UIImage+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B654BA21AE0E3500FC3ACA /* UIImage+LuxeAPI.swift */; };
 		53368D9121C2FB5500B1A2AF /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53368D9021C2FB5400B1A2AF /* String+Utils.swift */; };
+		5339035121CEBED200DD16D8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339035021CEBED200DD16D8 /* LoginViewController.swift */; };
+		5339035321CEC43B00DD16D8 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339035221CEC43B00DD16D8 /* ForgotPasswordViewController.swift */; };
 		533B72D5218B556E009A44EC /* DriverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B72D4218B556E009A44EC /* DriverManager.swift */; };
 		535A452F217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */; };
 		535A4530217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */; };
@@ -179,6 +184,9 @@
 		5312142821CAB04500F3FCEB /* TemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateViewController.swift; sourceTree = "<group>"; };
 		5312142A21CAB49500F3FCEB /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		5312142C21CB0AE700F3FCEB /* FlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowViewController.swift; sourceTree = "<group>"; };
+		5312143021CC569E00F3FCEB /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
+		5312143221CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPhoneViewController.swift; sourceTree = "<group>"; };
+		5312143421CC689200F3FCEB /* SelfieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieViewController.swift; sourceTree = "<group>"; };
 		531F9C1F21B874110027F43D /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverAPI+Inspection.swift"; sourceTree = "<group>"; };
 		533046E721877847007CE01C /* Inspection_APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inspection_APITests.swift; sourceTree = "<group>"; };
@@ -195,6 +203,8 @@
 		5330472621890B1E007CE01C /* AppDelegate+Push.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Push.swift"; sourceTree = "<group>"; };
 		5330472821890BF8007CE01C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		53368D9021C2FB5400B1A2AF /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
+		5339035021CEBED200DD16D8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5339035221CEC43B00DD16D8 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		533B72D4218B556E009A44EC /* DriverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverManager.swift; sourceTree = "<group>"; };
 		535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverAPI+Login.swift"; sourceTree = "<group>"; };
 		535A4531217A3787006B5EE1 /* Driver_APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver_APITests.swift; sourceTree = "<group>"; };
@@ -416,6 +426,9 @@
 				533047182188D833007CE01C /* Bundle+Voluxe.swift */,
 				531F9C1F21B874110027F43D /* Date+Extensions.swift */,
 				53C190F1219B459D00CBC410 /* DateFormatter+LuxeAPI.swift */,
+				533047172188D833007CE01C /* NSObject+Voluxe.swift */,
+				53368D9021C2FB5400B1A2AF /* String+Utils.swift */,
+				538C4D9C218A45CA00922B16 /* Thread+Assert.swift */,
 				5312141E21C95FBD00F3FCEB /* UIColor+Debug.swift */,
 				53C190E1219B2A9D00CBC410 /* UIColor+Hex.swift */,
 				5380089D21A33C2F00E47660 /* UIColor+Random.swift */,
@@ -424,9 +437,6 @@
 				536FFD842177901D00C83F89 /* UIView+AutoLayout.swift */,
 				53C190E4219B2A9D00CBC410 /* UIView+SafeArea.swift */,
 				53C1962421B59F9E00DCAEBA /* UIView+Spin.swift */,
-				533047172188D833007CE01C /* NSObject+Voluxe.swift */,
-				53368D9021C2FB5400B1A2AF /* String+Utils.swift */,
-				538C4D9C218A45CA00922B16 /* Thread+Assert.swift */,
 				53B43F99218B77DE00EF847E /* UserDefaults+LuxeAPI.swift */,
 			);
 			path = Extensions;
@@ -507,14 +517,19 @@
 		538C4D99218A3F6F00922B16 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				5312143221CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift */,
+				5312143021CC569E00F3FCEB /* ContactInfoViewController.swift */,
+				5312142C21CB0AE700F3FCEB /* FlowViewController.swift */,
+				5339035221CEC43B00DD16D8 /* ForgotPasswordViewController.swift */,
 				53EEB1AA21BF29090051B8D5 /* LandingViewController.swift */,
+				5339035021CEBED200DD16D8 /* LoginViewController.swift */,
 				53EEB1AF21C06AA60051B8D5 /* MainViewController.swift */,
 				53EEB1B121C06E9E0051B8D5 /* MyScheduleViewController.swift */,
 				538C4D9A218A3FA600922B16 /* PermissionViewController.swift */,
 				5312142321C9AF3C00F3FCEB /* ProfileViewController.swift */,
 				5312142A21CAB49500F3FCEB /* RequestViewController.swift */,
+				5312143421CC689200F3FCEB /* SelfieViewController.swift */,
 				5312142821CAB04500F3FCEB /* TemplateViewController.swift */,
-				5312142C21CB0AE700F3FCEB /* FlowViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1008,6 +1023,7 @@
 				538C4D9D218A45CA00922B16 /* Thread+Assert.swift in Sources */,
 				538008A121A33D9200E47660 /* UIView+GridLayout.swift in Sources */,
 				530BCD4A2177AAB2005327E7 /* RestAPI.swift in Sources */,
+				5312143321CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift in Sources */,
 				53C190E6219B2A9D00CBC410 /* Font.swift in Sources */,
 				53DA9CA82180C4AB00ABC414 /* Booking.swift in Sources */,
 				53E7F17E219A49A600390A5D /* LuxeAPI+Notifications.swift in Sources */,
@@ -1021,10 +1037,12 @@
 				524C1FF6219E4E62003AA733 /* AdminAPI.swift in Sources */,
 				53B82AF6217E39800041015B /* Dealership.swift in Sources */,
 				5312141B21C83C2A00F3FCEB /* Colors+Volvo.swift in Sources */,
+				5339035121CEBED200DD16D8 /* LoginViewController.swift in Sources */,
 				5380089E21A33C2F00E47660 /* UIColor+Random.swift in Sources */,
 				5312142421C9AF3C00F3FCEB /* ProfileViewController.swift in Sources */,
 				533047242188F85B007CE01C /* AppDelegate+Fetch.swift in Sources */,
 				53B577B5219CAB4A00AAEB8D /* DriverAPI.swift in Sources */,
+				5312143521CC689200F3FCEB /* SelfieViewController.swift in Sources */,
 				53EEB1B221C06E9E0051B8D5 /* MyScheduleViewController.swift in Sources */,
 				53EEB1AB21BF29090051B8D5 /* LandingViewController.swift in Sources */,
 				53EEB1A021B9AFA60051B8D5 /* AppController+Permission.swift in Sources */,
@@ -1041,6 +1059,7 @@
 				53C190E9219B2A9D00CBC410 /* UIColor+Hex.swift in Sources */,
 				52FFBBAE21ADF78D00FAD7BE /* UserDefaults+Debug.swift in Sources */,
 				53C190ED219B2A9D00CBC410 /* Label.swift in Sources */,
+				5339035321CEC43B00DD16D8 /* ForgotPasswordViewController.swift in Sources */,
 				53C1962721B5DE3600DCAEBA /* DriverManagerViewController.swift in Sources */,
 				5380089C21A32CF800E47660 /* UploadManagerViewController.swift in Sources */,
 				5330471D2188D896007CE01C /* DebugSettingsViewController.swift in Sources */,
@@ -1068,6 +1087,7 @@
 				53C1962521B59F9E00DCAEBA /* UIView+Spin.swift in Sources */,
 				53BD5130219DF54900E84995 /* UploadManager.swift in Sources */,
 				53C190EB219B2A9D00CBC410 /* GridLayout.swift in Sources */,
+				5312143121CC569E00F3FCEB /* ContactInfoViewController.swift in Sources */,
 				535A452F217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */,
 				53DA9CC02180F87600ABC414 /* BookingFeedback.swift in Sources */,
 			);

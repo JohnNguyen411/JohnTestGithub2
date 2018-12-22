@@ -11,9 +11,11 @@ import UIKit
 
 class AppController: UIViewController {
 
+    // MARK: Singleton
+
     static let shared = AppController()
 
-    // MARK:- Lifecycle
+    // MARK: Lifecycle
 
     private init() {
         super.init(nibName: nil, bundle: nil)
@@ -38,7 +40,7 @@ class AppController: UIViewController {
         self.associateManagers()
     }
 
-    // MARK:- Manager support
+    // MARK: Manager support
 
     private func associateManagers() {
 
@@ -130,8 +132,8 @@ extension AppController {
         self.replaceChildController(with: controller, animated: animated)
     }
 
-    func showMain(animated: Bool = true) {
-        let controller = MainViewController()
+    func showMain(animated: Bool = true, rootViewController: UIViewController? = nil, showProfileButton: Bool = true) {
+        let controller = MainViewController(with: rootViewController, showProfileButton: showProfileButton)
         self.replaceChildController(with: controller, animated: animated)
     }
 
@@ -177,6 +179,10 @@ extension AppController {
     }
 
     // MARK: Push to the main view controller
+
+    var mainController: MainViewController? {
+        return self.children.first as? MainViewController
+    }
 
     func mainController(push controller: UIViewController,
                         animated: Bool = true,

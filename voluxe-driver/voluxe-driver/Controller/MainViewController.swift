@@ -21,10 +21,12 @@ class MainViewController: UINavigationController {
 
     // MARK: Lifecycle
 
-    // TODO need flavor to support launching with another view controller
-    // TODO button will not be visible for all root controllers
-    convenience init() {
-        self.init(rootViewController: MyScheduleViewController())
+    convenience init(with controller: UIViewController? = nil,
+                     showProfileButton: Bool = true)
+    {
+        let controller = controller ?? MyScheduleViewController()
+        self.init(rootViewController: controller)
+        self.profileButton.isHidden = !showProfileButton
         self.profileButton.addTarget(self, action: #selector(buttonTouchUpInside), for: .touchUpInside)
         self.configureNavigationBar()
     }
@@ -72,6 +74,7 @@ class MainViewController: UINavigationController {
     // MARK: Animations
 
     func showProfileButton(animated: Bool = true) {
+        self.profileButton.isHidden = false
         UIView.animate(withDuration: animated ? 0.2 : 0) {
             self.profileButton.alpha = 1
         }
@@ -92,5 +95,10 @@ class MainViewController: UINavigationController {
     override func popViewController(animated: Bool) -> UIViewController? {
         if self.children.count <= 2 { self.showProfileButton(animated: animated) }
         return super.popViewController(animated: animated)
+    }
+
+    override func popToRootViewController(animated: Bool) -> [UIViewController]? {
+        self.showProfileButton(animated: animated)
+        return super.popToRootViewController(animated: animated)
     }
 }

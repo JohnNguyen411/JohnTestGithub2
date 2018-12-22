@@ -33,6 +33,13 @@ class ProfileViewController: UIViewController {
         return button
     }()
 
+    private let selfieButton: UIButton = {
+        let button = ProfileButton().usingAutoLayout()
+        let image = UIImage(named: "avatar_empty")
+        button.setImage(image, for: .normal)
+        return button
+    }()
+
     private let changeInfoButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Change Information", for: .normal)
@@ -85,8 +92,15 @@ class ProfileViewController: UIViewController {
         self.panelView.pinToSuperviewTop(spacing: topConstant)
         self.panelView.pinBottomToSuperviewBottom()
 
+        panelView.addSubview(self.selfieButton)
+        self.selfieButton.pinToSuperviewTop(spacing: 16)
+        self.selfieButton.leadingAnchor.constraint(equalTo: panelView.leadingAnchor,
+                                                   constant: 16).isActive = true
+        self.selfieButton.widthAnchor.constraint(equalToConstant: 64).isActive = true
+        self.selfieButton.heightAnchor.constraint(equalToConstant: 64).isActive = true
+
         panelView.add(subview: self.changeInfoButton, from: 1, to: 3)
-        self.changeInfoButton.pinToSuperviewTop(spacing: 100)
+        self.changeInfoButton.pinTopToBottomOf(view: self.selfieButton, spacing: 100)
 
         panelView.add(subview: self.changePasswordButton, from: 1, to: 3)
         self.changePasswordButton.pinTopToBottomOf(view: self.changeInfoButton, spacing: 20)
@@ -97,12 +111,23 @@ class ProfileViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.updateSelfieButtonImage()
+        DriverManager.shared.driverDidChangeClosure = {
+            [weak self] driver in
+            self?.updateSelfieButtonImage()
+        }
+    }
+
+    private func updateSelfieButtonImage() {
+        let image = DriverManager.shared.driverImage
+        if image != nil { self.selfieButton.setImage(image, for: .normal) }
     }
 
     // MARK: Actions
 
     private func addActions() {
         self.dismissButton.addTarget(self, action: #selector(dismissButtonTouchUpInside), for: .touchUpInside)
+        self.selfieButton.addTarget(self, action: #selector(selfieButtonTouchUpInside), for: .touchUpInside)
         self.changeInfoButton.addTarget(self, action: #selector(changeInfoButtonTouchUpInside), for: .touchUpInside)
         self.changePasswordButton.addTarget(self, action: #selector(changePasswordButtonTouchUpInside), for: .touchUpInside)
         self.logoutButton.addTarget(self, action: #selector(logoutButtonTouchUpInside), for: .touchUpInside)
@@ -112,8 +137,14 @@ class ProfileViewController: UIViewController {
         AppController.shared.hideProfile()
     }
 
+    @objc func selfieButtonTouchUpInside() {
+        let controller = SelfieViewController()
+        AppController.shared.mainController(push: controller, hideProfileButton: true)
+        AppController.shared.hideProfile(animated: true)
+    }
+
     @objc func changeInfoButtonTouchUpInside() {
-        let controller = StepViewController(title: "Contact Information")
+        let controller = ContactInfoViewController()
         AppController.shared.mainController(push: controller, hideProfileButton: true)
         AppController.shared.hideProfile(animated: true)
     }

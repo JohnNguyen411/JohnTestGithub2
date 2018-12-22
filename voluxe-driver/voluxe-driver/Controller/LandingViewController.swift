@@ -69,6 +69,7 @@ class LandingViewController: UIViewController {
     // MARK:- Actions
 
     @objc func loginButtonTouchUpInside() {
-        AppController.shared.showMain()
+        let controller = LoginViewController()
+        AppController.shared.showMain(animated: true, rootViewController: controller, showProfileButton: false)
     }
 }

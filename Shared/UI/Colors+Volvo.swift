@@ -142,6 +142,10 @@ extension VolvoColors {
     var grey1: UIColor          { return self.grey(.lighter) }
     var grey0: UIColor          { return self.grey(.lightest) }
 
+    // oranges
+    var cloudBerry: UIColor     { return self.orange() }
+    var midnightSun: UIColor    { return self.orange(.light) }
+
     // purples
     var heather: UIColor        { return self.purple() }
 
