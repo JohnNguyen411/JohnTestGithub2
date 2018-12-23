@@ -36,10 +36,10 @@ class ProfileButton: UIButton {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.configure()
+        self.layoutImageViewAndShadowView()
     }
 
-    private func configure() {
+    private func layoutImageViewAndShadowView() {
 
         guard let imageView = self.imageView else { return }
         imageView.contentMode = .scaleAspectFit

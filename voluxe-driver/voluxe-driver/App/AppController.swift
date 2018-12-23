@@ -91,7 +91,7 @@ extension AppController {
     /// Because these are "primary" controllers and most likely fullscreen, they
     /// are placed WITHOUT safe area.  This means that the views inside the controller
     /// need to be placed with safe areas.
-    private func replaceChildController(with controller: UIViewController, animated: Bool = true) {
+    func replaceChildController(with controller: UIViewController, animated: Bool = true) {
 
         // TODO prevent showing the same type twice
         // this will become necessary to solve soon
