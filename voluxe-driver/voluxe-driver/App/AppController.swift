@@ -184,12 +184,17 @@ extension AppController {
         return self.children.first as? MainViewController
     }
 
+    // TODO should prefersProfileButton be aspect of view controller?  likely yes
     func mainController(push controller: UIViewController,
                         animated: Bool = true,
-                        hideProfileButton: Bool = false)
+                        asRootViewController: Bool = false,
+                        prefersProfileButton: Bool? = nil)
     {
         guard let main = self.children.first as? MainViewController else { return }
-        main.pushViewController(controller, animated: animated)
-        if hideProfileButton { main.hideProfileButton(animated: animated) }
+        if asRootViewController { main.setViewControllers([controller], animated: animated) }
+        else { main.pushViewController(controller, animated: animated) }
+        guard let prefers = prefersProfileButton else { return }
+        if prefers { main.showProfileButton(animated: animated) }
+        else { main.hideProfileButton(animated: animated) }
     }
 }

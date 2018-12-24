@@ -151,6 +151,9 @@ extension VolvoColors {
 
     // yellows
     var warning: UIColor        { return self.yellow() }
+
+    // other
+    var shadow: UIColor         { return UIColor(rgb: 0x0, a: 0x61) }
 }
 
 // MARK:- Extension for global access

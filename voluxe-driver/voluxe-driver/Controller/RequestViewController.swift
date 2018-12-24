@@ -46,9 +46,9 @@ class RequestViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Volvo.background.light
 
-        let scrollView = Layout.scrollView(in: self)
-        let contentView = Layout.verticalContentView(in: scrollView)
-        let gridView = contentView.addGridLayoutView()
+//        let scrollView = Layout.scrollView(in: self)
+//        let contentView = Layout.verticalContentView(in: scrollView)
+//        let gridView = contentView.addGridLayoutView()
     }
 
     override func viewDidAppear(_ animated: Bool) {

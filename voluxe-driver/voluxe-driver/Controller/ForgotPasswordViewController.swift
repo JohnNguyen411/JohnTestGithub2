@@ -13,19 +13,9 @@ class ForgotPasswordViewController: StepViewController {
 
     // MARK: Layout
 
-    private let nextButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("NEXT", for: .normal)
-        button.setTitleColor(UIColor.Volvo.brightBlue, for: .normal)
-        return button
-    }()
-
-    private let cancelButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setTitle("CANCEL", for: .normal)
-        button.setTitleColor(UIColor.Volvo.cloudBerry, for: .normal)
-        return button
-    }()
+    // TODO localize
+    private let cancelButton = UIButton.Volvo.secondary(title: "cancel")
+    private let nextButton = UIButton.Volvo.primary(title: "next")
 
     // MARK: Lifecycle
 
@@ -44,10 +34,10 @@ class ForgotPasswordViewController: StepViewController {
         let contentView = Layout.verticalContentView(in: scrollView)
         let gridView = contentView.addGridLayoutView(with: GridLayout.volvoAgent())
 
-        gridView.add(subview: self.cancelButton, from: 2, to: 3)
+        gridView.add(subview: self.cancelButton, from: 1, to: 2)
         self.cancelButton.pinToSuperviewTop(spacing: 20)
 
-        gridView.add(subview: self.nextButton, from: 4, to: 5)
+        gridView.add(subview: self.nextButton, from: 3, to: 4)
         self.nextButton.pinToSuperviewTop(spacing: 20)
     }
 

@@ -21,13 +21,7 @@ class LandingViewController: UIViewController {
     }()
 
     // TODO localize
-    let loginButton: UIButton = {
-        let button = UIButton(type: .custom).usingAutoLayout()
-        button.setTitleColor(UIColor.Volvo.heather, for: .normal)
-        button.setTitle("SIGN-IN", for: .normal)
-        button.titleLabel?.font = Font.Volvo.button
-        return button
-    }()
+    let loginButton = UIButton.Volvo.text(title: "Sign-in")
 
     // MARK:- Lifecycle
 
@@ -60,8 +54,8 @@ class LandingViewController: UIViewController {
         guard let email = defaults.driverEmail else { return }
         guard let password = defaults.driverPassword else { return }
         DriverManager.shared.login(email: email, password: password) {
-            [weak self] driver in
-            if driver != nil { self?.loginButtonTouchUpInside() }
+            _ in
+            // nothing to do
         }
     }
 #endif

@@ -28,7 +28,6 @@
 		5312141F21C95FBD00F3FCEB /* UIColor+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312141E21C95FBD00F3FCEB /* UIColor+Debug.swift */; };
 		5312142121C9A3E700F3FCEB /* UITableView+OverScroll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142021C9A3E700F3FCEB /* UITableView+OverScroll.swift */; };
 		5312142421C9AF3C00F3FCEB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142321C9AF3C00F3FCEB /* ProfileViewController.swift */; };
-		5312142921CAB04500F3FCEB /* TemplateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142821CAB04500F3FCEB /* TemplateViewController.swift */; };
 		5312142B21CAB49500F3FCEB /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142A21CAB49500F3FCEB /* RequestViewController.swift */; };
 		5312142D21CB0AE700F3FCEB /* FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142C21CB0AE700F3FCEB /* FlowViewController.swift */; };
 		5312143121CC569E00F3FCEB /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143021CC569E00F3FCEB /* ContactInfoViewController.swift */; };
@@ -59,6 +58,9 @@
 		5339035321CEC43B00DD16D8 /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339035221CEC43B00DD16D8 /* ForgotPasswordViewController.swift */; };
 		5339035521D00B5A00DD16D8 /* UIButton+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339035421D00B5A00DD16D8 /* UIButton+Color.swift */; };
 		5339035921D0215400DD16D8 /* UIImage+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339035821D0215400DD16D8 /* UIImage+Rounded.swift */; };
+		5339035B21D042DB00DD16D8 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339035A21D042DB00DD16D8 /* Buttons.swift */; };
+		5339035D21D04CC500DD16D8 /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339035C21D04CC500DD16D8 /* SetPasswordViewController.swift */; };
+		5339036121D051F000DD16D8 /* AppDelegate+UIAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036021D051F000DD16D8 /* AppDelegate+UIAppearance.swift */; };
 		533B72D5218B556E009A44EC /* DriverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B72D4218B556E009A44EC /* DriverManager.swift */; };
 		535A452F217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */; };
 		535A4530217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */; };
@@ -183,7 +185,6 @@
 		5312141E21C95FBD00F3FCEB /* UIColor+Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Debug.swift"; sourceTree = "<group>"; };
 		5312142021C9A3E700F3FCEB /* UITableView+OverScroll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+OverScroll.swift"; sourceTree = "<group>"; };
 		5312142321C9AF3C00F3FCEB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
-		5312142821CAB04500F3FCEB /* TemplateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TemplateViewController.swift; sourceTree = "<group>"; };
 		5312142A21CAB49500F3FCEB /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		5312142C21CB0AE700F3FCEB /* FlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowViewController.swift; sourceTree = "<group>"; };
 		5312143021CC569E00F3FCEB /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +210,9 @@
 		5339035221CEC43B00DD16D8 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		5339035421D00B5A00DD16D8 /* UIButton+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Color.swift"; sourceTree = "<group>"; };
 		5339035821D0215400DD16D8 /* UIImage+Rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Rounded.swift"; sourceTree = "<group>"; };
+		5339035A21D042DB00DD16D8 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
+		5339035C21D04CC500DD16D8 /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
+		5339036021D051F000DD16D8 /* AppDelegate+UIAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UIAppearance.swift"; sourceTree = "<group>"; };
 		533B72D4218B556E009A44EC /* DriverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverManager.swift; sourceTree = "<group>"; };
 		535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverAPI+Login.swift"; sourceTree = "<group>"; };
 		535A4531217A3787006B5EE1 /* Driver_APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver_APITests.swift; sourceTree = "<group>"; };
@@ -410,6 +414,7 @@
 				53EEB19B21B9854D0051B8D5 /* AppDelegate+Location.swift */,
 				5330472621890B1E007CE01C /* AppDelegate+Push.swift */,
 				53BD5131219E202300E84995 /* AppDelegate+Realm.swift */,
+				5339036021D051F000DD16D8 /* AppDelegate+UIAppearance.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -488,6 +493,7 @@
 		536FFD832177901D00C83F89 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				5339035A21D042DB00DD16D8 /* Buttons.swift */,
 				5312141821C83C1E00F3FCEB /* Colors.swift */,
 				5312141A21C83C2A00F3FCEB /* Colors+Volvo.swift */,
 				5312141C21C8767000F3FCEB /* ColorsImplementation.swift */,
@@ -535,7 +541,7 @@
 				5312142321C9AF3C00F3FCEB /* ProfileViewController.swift */,
 				5312142A21CAB49500F3FCEB /* RequestViewController.swift */,
 				5312143421CC689200F3FCEB /* SelfieViewController.swift */,
-				5312142821CAB04500F3FCEB /* TemplateViewController.swift */,
+				5339035C21D04CC500DD16D8 /* SetPasswordViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1023,6 +1029,7 @@
 				531F9C2021B874110027F43D /* Date+Extensions.swift in Sources */,
 				53BD5132219E202300E84995 /* AppDelegate+Realm.swift in Sources */,
 				53B654B721ADA83500FC3ACA /* RequestManager.swift in Sources */,
+				5339035D21D04CC500DD16D8 /* SetPasswordViewController.swift in Sources */,
 				53C190E7219B2A9D00CBC410 /* UIView+Layout.swift in Sources */,
 				5312142B21CAB49500F3FCEB /* RequestViewController.swift in Sources */,
 				53EEB19C21B9854D0051B8D5 /* AppDelegate+Location.swift in Sources */,
@@ -1034,6 +1041,7 @@
 				53DA9CA82180C4AB00ABC414 /* Booking.swift in Sources */,
 				53E7F17E219A49A600390A5D /* LuxeAPI+Notifications.swift in Sources */,
 				53C190EC219B2A9D00CBC410 /* UIView+SafeArea.swift in Sources */,
+				5339035B21D042DB00DD16D8 /* Buttons.swift in Sources */,
 				530BCD4F2177B153005327E7 /* RestAPI+AlamoFire.swift in Sources */,
 				53C190E8219B2A9D00CBC410 /* GridLayout+Debug.swift in Sources */,
 				53B43F97218B758400EF847E /* LuxeAPI+Version.swift in Sources */,
@@ -1083,11 +1091,11 @@
 				5330470F2188D7C6007CE01C /* DebugTableViewController.swift in Sources */,
 				5312141F21C95FBD00F3FCEB /* UIColor+Debug.swift in Sources */,
 				53DA9CC32181020400ABC414 /* Task.swift in Sources */,
-				5312142921CAB04500F3FCEB /* TemplateViewController.swift in Sources */,
 				53DA9CAB2180C52300ABC414 /* Customer.swift in Sources */,
 				533046E5218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */,
 				53B43F9A218B77DE00EF847E /* UserDefaults+LuxeAPI.swift in Sources */,
 				53B43FA3218CB6AC00EF847E /* AppController+Test.swift in Sources */,
+				5339036121D051F000DD16D8 /* AppDelegate+UIAppearance.swift in Sources */,
 				538C4D9B218A3FA600922B16 /* PermissionViewController.swift in Sources */,
 				53EEB1A321B9E3060051B8D5 /* Log.swift in Sources */,
 				533047062188D706007CE01C /* AppController.swift in Sources */,

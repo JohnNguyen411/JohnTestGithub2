@@ -40,21 +40,7 @@ class PermissionViewController: UIViewController {
     }()
 
     // TODO localize
-    // TODO this is the foundation for a primary button factory
-    // TODO needs both rounded corners AND shadow
-    private let button: UIButton = {
-        let button = UIButton(color: UIColor.Volvo.volvoBlue,
-                              disabledColor: UIColor.Volvo.fog,
-                              cornerRadius: 2)
-        button.layer.cornerRadius = 2
-        button.layer.shadowColor = UIColor.black.cgColor
-        button.layer.shadowOpacity = 0.5
-        button.layer.shadowOffset = CGSize(width: 0, height: 2)
-        button.setTitleColor(.white, for: .normal)
-        button.setTitle("GO TO SETTINGS", for: .normal)
-        button.titleLabel?.font = Font.Volvo.button
-        return button
-    }()
+    private let button = UIButton.Volvo.primary(title: "Go to settings")
 
     // MARK:- Lifecycle
 

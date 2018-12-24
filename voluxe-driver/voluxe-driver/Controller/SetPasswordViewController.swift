@@ -1,15 +1,15 @@
 //
-//  ContactInfoViewController.swift
+//  SetPasswordViewController.swift
 //  voluxe-driver
 //
-//  Created by Christoph on 12/20/18.
+//  Created by Christoph on 12/23/18.
 //  Copyright © 2018 Luxe By Volvo. All rights reserved.
 //
 
 import Foundation
 import UIKit
 
-class ContactInfoViewController: StepViewController {
+class SetPasswordViewController: StepViewController {
 
     // MARK: Layout
 
@@ -21,7 +21,7 @@ class ContactInfoViewController: StepViewController {
 
     // TODO localize
     convenience init() {
-        self.init(title: "Contact Information")
+        self.init(title: "Create Your Password")
         self.addActions()
     }
 
@@ -49,8 +49,7 @@ class ContactInfoViewController: StepViewController {
     }
 
     @objc func nextButtonTouchUpInside() {
-        let controller = ConfirmPhoneViewController()
-        self.navigationController?.pushViewController(controller, animated: true)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 
     @objc func cancelButtonTouchUpInside() {

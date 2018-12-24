@@ -9,25 +9,11 @@
 import Foundation
 import UIKit
 
-extension UIViewController {
-
-    func addCustomBackButton() {
-        let label = UILabel(text: "\u{2039}")
-        let item = UIBarButtonItem(title: "", style: .plain, target: self, action: #selector(popFromNavigationController))
-        self.navigationItem.backBarButtonItem = item
-    }
-
-    @objc private func popFromNavigationController() {
-        self.navigationController?.popViewController(animated: true)
-    }
-}
-
 class StepViewController: UIViewController {
 
     convenience init(title: String = "NO TITLE") {
         self.init(nibName: nil, bundle: nil)
         self.navigationItem.title = title
-        self.addCustomBackButton()
     }
 
     override func viewDidLoad() {

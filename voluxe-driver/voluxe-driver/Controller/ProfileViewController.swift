@@ -139,19 +139,19 @@ class ProfileViewController: UIViewController {
 
     @objc func selfieButtonTouchUpInside() {
         let controller = SelfieViewController()
-        AppController.shared.mainController(push: controller, hideProfileButton: true)
+        AppController.shared.mainController(push: controller, prefersProfileButton: false)
         AppController.shared.hideProfile(animated: true)
     }
 
     @objc func changeInfoButtonTouchUpInside() {
         let controller = ContactInfoViewController()
-        AppController.shared.mainController(push: controller, hideProfileButton: true)
+        AppController.shared.mainController(push: controller, prefersProfileButton: false)
         AppController.shared.hideProfile(animated: true)
     }
 
     @objc func changePasswordButtonTouchUpInside() {
-        let controller = StepViewController(title: "Create a Password")
-        AppController.shared.mainController(push: controller, hideProfileButton: true)
+        let controller = SetPasswordViewController()
+        AppController.shared.mainController(push: controller, prefersProfileButton: false)
         AppController.shared.hideProfile()
     }
 

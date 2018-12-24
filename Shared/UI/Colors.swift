@@ -93,9 +93,13 @@ protocol TableColors {
     var separator: UIColor { get }
 }
 
+// TODO not sure how to use this yet
+// TODO how do this relate to UIControl.State?
 protocol ButtonColors {
-    var primary: UIColor { get }
-    var secondary: UIColor { get }
+    var highlighted: UIColor { get }
+    var disabled: UIColor { get }
+    var normal: UIColor { get }
+    var selected: UIColor { get }
 }
 
 // MARK:- Umbrella color protocol

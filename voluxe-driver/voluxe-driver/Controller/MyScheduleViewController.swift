@@ -38,6 +38,7 @@ class MyScheduleViewController: UIViewController {
     }()
 
     // TODO localize
+    // TODO fix colors
     private let noRequestsView: UIView = {
         let label = UILabel.forAutoLayout()
         label.font = Font.Volvo.subtitle1

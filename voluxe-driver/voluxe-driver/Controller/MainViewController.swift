@@ -28,17 +28,22 @@ class MainViewController: UINavigationController {
         self.init(rootViewController: controller)
         self.profileButton.isHidden = !showProfileButton
         self.profileButton.addTarget(self, action: #selector(buttonTouchUpInside), for: .touchUpInside)
-        self.configureNavigationBar()
+//        self.configureNavigationBar()
     }
 
-    private func configureNavigationBar() {
-        let appearance = UINavigationBar.appearance()
-        appearance.backgroundColor = UIColor.Volvo.navigationBar.background
-        appearance.titleTextAttributes = [NSAttributedString.Key.font: Font.Volvo.h6,
-                                          NSAttributedString.Key.foregroundColor: UIColor.Volvo.navigationBar.title]
-        self.navigationBar.isTranslucent = false
-        self.addCustomBackButton()
-    }
+//    private func configureNavigationBar() {
+//        let appearance = UINavigationBar.appearance()
+//        appearance.backgroundColor = UIColor.Volvo.navigationBar.background
+//        appearance.titleTextAttributes = [NSAttributedString.Key.font: Font.Volvo.h6,
+//                                          NSAttributedString.Key.foregroundColor: UIColor.Volvo.navigationBar.title]
+//        self.navigationBar.isTranslucent = false
+////        self.addCustomBackButton()
+//
+////        UIImage *backButtonImage = [[UIImage imageNamed:@"button_back"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
+//        let image = UIImage(named: "back_chevron")
+////        [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
+//        UIBarButtonItem.appearance().setBackButtonBackgroundImage(image, for: .normal, barMetrics: .default)
+//    }
 
     override func viewDidLoad() {
 
