@@ -59,6 +59,14 @@ extension Layout {
         subview.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
 
+    static func add(subview: UIView, pinnedToBottomOf view: UIView, useSafeArea: Bool = true) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(subview)
+        Layout.pinToSuperviewBottom(view: subview)
+        subview.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        subview.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    }
+
     // TODO need to assert if no superview
     // TODO is vertical margin optional or changeable?
     static func add(view: UIView, pinTopToBottomOf peerView: UIView) {

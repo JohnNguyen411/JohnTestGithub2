@@ -11,27 +11,43 @@ import UIKit
 
 class RequestViewController: UIViewController {
 
+    // MARK: Data
+
+    // TODO completed
+    // TODO can redo once completed
+    struct Step {
+        let title: String
+        let nextTitle: String
+    }
+
+    // TODO localize
+    var stepIndex = 0
+    let steps: [Step] = [Step(title: "Review Service", nextTitle: "Slide to start service"),
+                         Step(title: "Get Vehicle and Paperwork", nextTitle: "slide to begin drive"),
+                         Step(title: "Drive to Customer", nextTitle: "slide when you've arrived"),
+                         Step(title: "Arrive at Customer", nextTitle: "slide to inspect vehicle"),
+                         Step(title: "Photo Customer Vehicle", nextTitle: ""),
+                         Step(title: "Receive Loaner", nextTitle: "slide to inspect loaner"),
+                         Step(title: "Photo Loaner", nextTitle: ""),
+                         Step(title: "Exchange keys", nextTitle: "slide to return to dealership"),
+                         Step(title: "Return to Dealership", nextTitle: "slide when you've arrived"),
+                         Step(title: "Record Loaner Mileage", nextTitle: "slide to end service")]
+
     // MARK: Layout
 
-    // TODO back button should rotate the up/down nature
-    // of navigating through a request's task stack
-    private let backButton: UIButton = {
-        let button = UIButton(type: .custom).usingAutoLayout()
-        button.alpha = 0
-        button.contentEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 4, right: 0)
-        button.titleLabel?.font = Font.Volvo.h4
-        button.setTitle("\u{2039}", for: .normal)
-        button.setTitleColor(UIColor.Volvo.navigationBar.button, for: .normal)
-        return button
-    }()
+    private let swipeNextView = SwipeNextView()
 
     // MARK: Lifecycle
 
     // TODO should not be allowed to start service unless day of
     convenience init() {
         self.init(nibName: nil, bundle: nil)
-        self.navigationItem.hidesBackButton = true
-        self.navigationItem.title = "Review Service"
+        self.swipeNextView.title = self.steps.first?.nextTitle
+        self.navigationItem.title = self.steps.first?.title
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_chevron"),
+                                                                style: .plain,
+                                                                target: self,
+                                                                action: #selector(backButtonTouchUpInside))
         self.addActions()
     }
 
@@ -46,56 +62,51 @@ class RequestViewController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Volvo.background.light
 
-//        let scrollView = Layout.scrollView(in: self)
-//        let contentView = Layout.verticalContentView(in: scrollView)
-//        let gridView = contentView.addGridLayoutView()
+        Layout.add(subview: self.swipeNextView, pinnedToBottomOf: self.view)
+        self.swipeNextView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        self.swipeNextView.addBottomSafeAreaCoverView()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.addBackButton()
+    // MARK: Stack navigation
+
+    private func currentStep() -> Step {
+        return self.steps[self.stepIndex]
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        self.removeBackButton()
+    // TODO how to update nav bar title?
+    private func update(animated: Bool = true) {
+        let step = self.currentStep()
+        self.navigationItem.title = step.title
+        self.swipeNextView.title = step.nextTitle
     }
 
-    // MARK: Back button support
-
-    // TODO utility func to add something to nav bar?
-    private func addBackButton(animated: Bool = true) {
-
-        guard let navigationBar = self.navigationController?.navigationBar else { return }
-        guard self.backButton.superview == nil else { return }
-
-        navigationBar.addSubview(self.backButton)
-        self.backButton.topAnchor.constraint(equalTo: navigationBar.topAnchor).isActive = true
-        self.backButton.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor).isActive = true
-        self.backButton.bottomAnchor.constraint(equalTo: navigationBar.bottomAnchor).isActive = true
-        self.backButton.widthAnchor.constraint(equalToConstant: 50).isActive = true
-
-        UIView.animate(withDuration: 0.2) {
-            self.backButton.alpha = 1
-        }
+    @discardableResult
+    private func nextStep() -> Bool {
+        guard self.stepIndex < (self.steps.count - 1) else { return false }
+        self.stepIndex += 1
+        self.update()
+        return true
     }
 
-    private func removeBackButton(animated: Bool = true) {
-        UIView.animate(withDuration: animated ? 0.2 : 0,
-                       animations: { self.backButton.alpha = 0 })
-        {
-            finished in
-            self.backButton.removeFromSuperview()
-        }
+    @discardableResult
+    private func previousStep() -> Bool {
+        guard self.stepIndex > 0 else { return false }
+        self.stepIndex -= 1
+        self.update()
+        return true
     }
 
     // MARK: Actions
 
     private func addActions() {
-        self.backButton.addTarget(self, action: #selector(backButtonTouchUpInside), for: .touchUpInside)
+        self.swipeNextView.nextClosure = {
+            guard self.nextStep() == false else { return }
+            self.navigationController?.popViewController(animated: true)
+        }
     }
 
     @objc func backButtonTouchUpInside() {
+        guard self.previousStep() == false else { return }
         self.navigationController?.popViewController(animated: true)
-        // TODO otherwise walk the task order state machine
     }
 }

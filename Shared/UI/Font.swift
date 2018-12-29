@@ -165,7 +165,7 @@ extension Font {
         static let body1 = UIFont.systemFont(ofSize: 16, weight: .regular) // permission body copy
         static let body2 = FontWeight.regular(size: 14)
         static let button = UIFont.systemFont(ofSize: 14, weight: .medium)  // landing page buttons
-        static let caption = UIFont.systemFont(ofSize: 12, weight: .medium) // section header
+        static let caption = UIFont.systemFont(ofSize: 12, weight: .medium) // section header, swipe next label
         static let overline = FontWeight.medium(size: 10)
     }
 

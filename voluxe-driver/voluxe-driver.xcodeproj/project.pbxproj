@@ -61,6 +61,9 @@
 		5339035B21D042DB00DD16D8 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339035A21D042DB00DD16D8 /* Buttons.swift */; };
 		5339035D21D04CC500DD16D8 /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339035C21D04CC500DD16D8 /* SetPasswordViewController.swift */; };
 		5339036121D051F000DD16D8 /* AppDelegate+UIAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036021D051F000DD16D8 /* AppDelegate+UIAppearance.swift */; };
+		5339036521D1570F00DD16D8 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036421D1570E00DD16D8 /* CameraView.swift */; };
+		5339036721D1573600DD16D8 /* SwipeNextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036621D1573600DD16D8 /* SwipeNextView.swift */; };
+		5339036921D55BF100DD16D8 /* UIImage+Merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036821D55BF000DD16D8 /* UIImage+Merge.swift */; };
 		533B72D5218B556E009A44EC /* DriverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B72D4218B556E009A44EC /* DriverManager.swift */; };
 		535A452F217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */; };
 		535A4530217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */; };
@@ -213,6 +216,9 @@
 		5339035A21D042DB00DD16D8 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
 		5339035C21D04CC500DD16D8 /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
 		5339036021D051F000DD16D8 /* AppDelegate+UIAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UIAppearance.swift"; sourceTree = "<group>"; };
+		5339036421D1570E00DD16D8 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
+		5339036621D1573600DD16D8 /* SwipeNextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeNextView.swift; sourceTree = "<group>"; };
+		5339036821D55BF000DD16D8 /* UIImage+Merge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Merge.swift"; sourceTree = "<group>"; };
 		533B72D4218B556E009A44EC /* DriverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverManager.swift; sourceTree = "<group>"; };
 		535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverAPI+Login.swift"; sourceTree = "<group>"; };
 		535A4531217A3787006B5EE1 /* Driver_APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver_APITests.swift; sourceTree = "<group>"; };
@@ -442,6 +448,7 @@
 				53C190E1219B2A9D00CBC410 /* UIColor+Hex.swift */,
 				5380089D21A33C2F00E47660 /* UIColor+Random.swift */,
 				53B654BA21AE0E3500FC3ACA /* UIImage+LuxeAPI.swift */,
+				5339036821D55BF000DD16D8 /* UIImage+Merge.swift */,
 				5339035821D0215400DD16D8 /* UIImage+Rounded.swift */,
 				5312142021C9A3E700F3FCEB /* UITableView+OverScroll.swift */,
 				536FFD842177901D00C83F89 /* UIView+AutoLayout.swift */,
@@ -662,8 +669,10 @@
 		53EEB1AC21BF29CD0051B8D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5339036421D1570E00DD16D8 /* CameraView.swift */,
 				53EEB1AD21BF29EC0051B8D5 /* GridLayout+VolvoAgent.swift */,
 				53EEB1B321C080770051B8D5 /* ProfileButton.swift */,
+				5339036621D1573600DD16D8 /* SwipeNextView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1019,6 +1028,7 @@
 				53DA9CB72180C9FD00ABC414 /* DriverAPI+Request.swift in Sources */,
 				533047092188D760007CE01C /* AppController+Debug.swift in Sources */,
 				53B82AFA217E69F50041015B /* Driver.swift in Sources */,
+				5339036921D55BF100DD16D8 /* UIImage+Merge.swift in Sources */,
 				53EEB1B421C080770051B8D5 /* ProfileButton.swift in Sources */,
 				5330471A2188D834007CE01C /* Bundle+Voluxe.swift in Sources */,
 				53B43F9F218BB86200EF847E /* AppController+DriverAPI.swift in Sources */,
@@ -1083,6 +1093,7 @@
 				53368D9121C2FB5500B1A2AF /* String+Utils.swift in Sources */,
 				53EEB1B021C06AA60051B8D5 /* MainViewController.swift in Sources */,
 				5312142121C9A3E700F3FCEB /* UITableView+OverScroll.swift in Sources */,
+				5339036721D1573600DD16D8 /* SwipeNextView.swift in Sources */,
 				53C190EA219B2A9D00CBC410 /* Layout.swift in Sources */,
 				533047192188D834007CE01C /* NSObject+Voluxe.swift in Sources */,
 				53DA9CBD2180F52900ABC414 /* DriverDealershipTimeSlotAssignment.swift in Sources */,
@@ -1102,6 +1113,7 @@
 				53C190EF219B2ECD00CBC410 /* GridLayoutViewController.swift in Sources */,
 				53C1962521B59F9E00DCAEBA /* UIView+Spin.swift in Sources */,
 				53BD5130219DF54900E84995 /* UploadManager.swift in Sources */,
+				5339036521D1570F00DD16D8 /* CameraView.swift in Sources */,
 				53C190EB219B2A9D00CBC410 /* GridLayout.swift in Sources */,
 				5312143121CC569E00F3FCEB /* ContactInfoViewController.swift in Sources */,
 				535A452F217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */,
