@@ -13,7 +13,7 @@ class StepViewController: UIViewController {
 
     convenience init(title: String = "NO TITLE") {
         self.init(nibName: nil, bundle: nil)
-        self.navigationItem.title = title
+        self.navigationItem.title = title.capitalized
     }
 
     override func viewDidLoad() {
@@ -33,12 +33,7 @@ class FlowViewController: UIViewController {
     convenience init(steps: [Step]) {
         self.init(nibName: nil, bundle: nil)
         self.steps = steps
-        if let step = steps.first { self.navigationItem.title = step.title }
-
-        // TODO move to class?
-        let label = UILabel(text: "\u{2039}")
-        let item = UIBarButtonItem(customView: label)
-        self.navigationItem.backBarButtonItem = item
+        if let step = steps.first { self.navigationItem.title = step.title.capitalized }
     }
 
     override func loadView() {

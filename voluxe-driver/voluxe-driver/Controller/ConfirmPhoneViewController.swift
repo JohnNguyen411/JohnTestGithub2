@@ -13,15 +13,13 @@ class ConfirmPhoneViewController: StepViewController {
 
     // MARK: Layout
 
-    // TODO localize
-    private let cancelButton = UIButton.Volvo.secondary(title: "cancel")
-    private let nextButton = UIButton.Volvo.primary(title: "next")
+    private let cancelButton = UIButton.Volvo.secondary(title: Localized.cancel)
+    private let nextButton = UIButton.Volvo.primary(title: Localized.next)
 
     // MARK: Lifecycle
 
-    // TODO localize
     convenience init() {
-        self.init(title: "Confirm Phone Number")
+        self.init(title: Localized.confirmPhoneNumber)
         self.addActions()
     }
 

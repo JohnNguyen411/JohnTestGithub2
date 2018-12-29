@@ -13,16 +13,14 @@ class LoginViewController: StepViewController {
 
     // MARK: Layout
 
-    // TODO localize
-    private let cancelButton = UIButton.Volvo.secondary(title: "cancel")
-    private let nextButton = UIButton.Volvo.primary(title: "next")
-    private let forgotButton = UIButton.Volvo.text(title: "forgot password")
+    private let cancelButton = UIButton.Volvo.secondary(title: Localized.cancel)
+    private let nextButton = UIButton.Volvo.primary(title: Localized.next)
+    private let forgotButton = UIButton.Volvo.text(title: Localized.forgotPassword)
 
     // MARK: Lifecycle
 
-    // TODO localize
     convenience init() {
-        self.init(title: "Sign-In")
+        self.init(title: Localized.signIn)
         self.addActions()
     }
 

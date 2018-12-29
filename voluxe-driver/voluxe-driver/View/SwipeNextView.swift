@@ -13,7 +13,6 @@ class SwipeNextView: UIView {
 
     // MARK: Layout
 
-    // TODO localize
     private let label: UILabel = {
         let label = UILabel(frame: CGRect.zero).usingAutoLayout()
         label.font = Font.Volvo.caption

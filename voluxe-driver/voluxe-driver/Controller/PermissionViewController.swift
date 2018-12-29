@@ -17,6 +17,7 @@ enum Permission: String {
 class PermissionViewController: UIViewController {
 
     // the type of permission this controller is prompting for
+    // currently the controller shows the same label for any permission
     let permission: Permission
 
     // MARK:- Layout
@@ -29,26 +30,23 @@ class PermissionViewController: UIViewController {
         return imageView
     }()
 
-    // TODO localize
     private let label: UILabel = {
         let label = UILabel()
         label.font = Font.Volvo.body1
         label.numberOfLines = 0
-        label.text = "For Volvo Valet to work correctly, you must enable Push Notifications and Location Tracking. You can enable these permissions in Settings. Tap the button below to proceed."
+        label.text = Localized.permissionRequiredText
         label.textColor = UIColor.Volvo.granite
         return label
     }()
 
-    // TODO localize
-    private let button = UIButton.Volvo.primary(title: "Go to settings")
+    private let button = UIButton.Volvo.primary(title: Localized.goToSettings)
 
     // MARK:- Lifecycle
 
-    // TODO localize
     init(permission: Permission) {
         self.permission = permission
         super.init(nibName: nil, bundle: nil)
-        self.navigationItem.title = "Permission Required"
+        self.navigationItem.title = Localized.permissionRequired.capitalized
         self.addActions()
     }
 

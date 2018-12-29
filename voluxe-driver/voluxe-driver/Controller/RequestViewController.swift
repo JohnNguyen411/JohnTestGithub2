@@ -43,7 +43,7 @@ class RequestViewController: UIViewController {
     convenience init() {
         self.init(nibName: nil, bundle: nil)
         self.swipeNextView.title = self.steps.first?.nextTitle
-        self.navigationItem.title = self.steps.first?.title
+        self.navigationItem.title = self.steps.first?.title.capitalized
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_chevron"),
                                                                 style: .plain,
                                                                 target: self,
@@ -76,7 +76,7 @@ class RequestViewController: UIViewController {
     // TODO how to update nav bar title?
     private func update(animated: Bool = true) {
         let step = self.currentStep()
-        self.navigationItem.title = step.title
+        self.navigationItem.title = step.title.capitalized
         self.swipeNextView.title = step.nextTitle
     }
 

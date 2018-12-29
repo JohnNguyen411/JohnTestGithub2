@@ -15,23 +15,22 @@ class SelfieViewController: StepViewController {
 
     private let nextButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("LOOKS GOOD", for: .normal)
+        button.setTitle(Localized.looksGood, for: .normal)
         button.setTitleColor(UIColor.Volvo.brightBlue, for: .normal)
         return button
     }()
 
     private let cancelButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("TRY AGAIN", for: .normal)
+        button.setTitle(Localized.tryAgain, for: .normal)
         button.setTitleColor(UIColor.Volvo.cloudBerry, for: .normal)
         return button
     }()
 
     // MARK: Lifecycle
 
-    // TODO localize
     convenience init() {
-        self.init(title: "Photograph Yourself")
+        self.init(title: Localized.photographYourself)
         self.addActions()
     }
 

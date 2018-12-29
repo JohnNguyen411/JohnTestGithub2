@@ -64,6 +64,7 @@
 		5339036521D1570F00DD16D8 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036421D1570E00DD16D8 /* CameraView.swift */; };
 		5339036721D1573600DD16D8 /* SwipeNextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036621D1573600DD16D8 /* SwipeNextView.swift */; };
 		5339036921D55BF100DD16D8 /* UIImage+Merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036821D55BF000DD16D8 /* UIImage+Merge.swift */; };
+		5339036D21D7148A00DD16D8 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036C21D7148A00DD16D8 /* Localized.swift */; };
 		533B72D5218B556E009A44EC /* DriverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B72D4218B556E009A44EC /* DriverManager.swift */; };
 		535A452F217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */; };
 		535A4530217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */; };
@@ -219,6 +220,7 @@
 		5339036421D1570E00DD16D8 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		5339036621D1573600DD16D8 /* SwipeNextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeNextView.swift; sourceTree = "<group>"; };
 		5339036821D55BF000DD16D8 /* UIImage+Merge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Merge.swift"; sourceTree = "<group>"; };
+		5339036C21D7148A00DD16D8 /* Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		533B72D4218B556E009A44EC /* DriverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverManager.swift; sourceTree = "<group>"; };
 		535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverAPI+Login.swift"; sourceTree = "<group>"; };
 		535A4531217A3787006B5EE1 /* Driver_APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver_APITests.swift; sourceTree = "<group>"; };
@@ -633,6 +635,7 @@
 				5330472821890BF8007CE01C /* GoogleService-Info.plist */,
 				53B25DE42176960D002B846B /* Info.plist */,
 				53B25DE12176960D002B846B /* LaunchScreen.storyboard */,
+				5339036C21D7148A00DD16D8 /* Localized.swift */,
 				53B25E2D2176A414002B846B /* Settings.bundle */,
 				5330472521890935007CE01C /* voluxe-driver.entitlements */,
 			);
@@ -1034,6 +1037,7 @@
 				53B43F9F218BB86200EF847E /* AppController+DriverAPI.swift in Sources */,
 				533B72D5218B556E009A44EC /* DriverManager.swift in Sources */,
 				530BCD4D2177AFBE005327E7 /* LuxeAPI.swift in Sources */,
+				5339036D21D7148A00DD16D8 /* Localized.swift in Sources */,
 				533047072188D706007CE01C /* AppDelegate.swift in Sources */,
 				53DA9CBA2180F44E00ABC414 /* Inspection.swift in Sources */,
 				531F9C2021B874110027F43D /* Date+Extensions.swift in Sources */,

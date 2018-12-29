@@ -42,21 +42,21 @@ class ProfileViewController: UIViewController {
 
     private let changeInfoButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("Change Information", for: .normal)
+        button.setTitle(Localized.changeContactInfo, for: .normal)
         button.setTitleColor(UIColor.Volvo.brightBlue, for: .normal)
         return button
     }()
 
     private let changePasswordButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("Change Password", for: .normal)
+        button.setTitle(Localized.changePassword, for: .normal)
         button.setTitleColor(UIColor.Volvo.brightBlue, for: .normal)
         return button
     }()
 
     private let logoutButton: UIButton = {
         let button = UIButton(type: .custom)
-        button.setTitle("Sign-Out", for: .normal)
+        button.setTitle(Localized.signOut, for: .normal)
         button.setTitleColor(UIColor.Volvo.brightBlue, for: .normal)
         return button
     }()

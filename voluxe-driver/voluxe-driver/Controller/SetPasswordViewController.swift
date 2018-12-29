@@ -13,15 +13,13 @@ class SetPasswordViewController: StepViewController {
 
     // MARK: Layout
 
-    // TODO localize
-    private let cancelButton = UIButton.Volvo.secondary(title: "cancel")
-    private let nextButton = UIButton.Volvo.primary(title: "next")
+    private let cancelButton = UIButton.Volvo.secondary(title: Localized.cancel)
+    private let nextButton = UIButton.Volvo.primary(title: Localized.next)
 
     // MARK: Lifecycle
 
-    // TODO localize
     convenience init() {
-        self.init(title: "Create Your Password")
+        self.init(title: Localized.createYourPassword)
         self.addActions()
     }
 

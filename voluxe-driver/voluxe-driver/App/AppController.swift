@@ -137,6 +137,7 @@ extension AppController {
         self.replaceChildController(with: controller, animated: animated)
     }
 
+    @available(*, deprecated)
     func showToday(animated: Bool = true) {
         let controller = UIViewController(nibName: nil, bundle: nil)
         controller.view.backgroundColor = UIColor.Debug.red

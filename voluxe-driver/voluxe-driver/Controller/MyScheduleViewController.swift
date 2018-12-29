@@ -37,13 +37,12 @@ class MyScheduleViewController: UIViewController {
         return view
     }()
 
-    // TODO localize
     // TODO fix colors
     private let noRequestsView: UIView = {
         let label = UILabel.forAutoLayout()
         label.font = Font.Volvo.subtitle1
         label.numberOfLines = 0
-        label.text = "You have no scheduled pick-ups or deliveries."
+        label.text = Localized.noScheduledRequests
         label.textColor = UIColor(rgb: 0x0, a: 0x61)
         let view = GridLayoutView(layout: .volvoAgent())
         view.isHidden = true
@@ -56,8 +55,7 @@ class MyScheduleViewController: UIViewController {
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
-        // TODO localize
-        self.navigationItem.title = "My Schedule"
+        self.navigationItem.title = Localized.mySchedule.capitalized
         self.tableView.dataSource = self
         self.tableView.delegate = self
     }
@@ -93,8 +91,6 @@ class MyScheduleViewController: UIViewController {
         self.update(with: RequestManager.shared.requests)
     }
 
-    // TODO clean up?
-    // TODO localize titles
     // It's important to detail the data structure that is produced because it is
     // used directly in the delegate to hide/show sections.  Essentially the data
     // is an array of tuples with (String, [Request]).  Each tuple is the section
@@ -117,13 +113,13 @@ class MyScheduleViewController: UIViewController {
             .filter { $0.state == .started &&
                       Calendar.current.isDateInToday($0.dealershipTimeSlot.from) }
             .sorted { $0.dealershipTimeSlot.from < $1.dealershipTimeSlot.from }
-        self.titlesAndRequests += [("Current Service", current)]
+        self.titlesAndRequests += [(Localized.currentService, current)]
 
         let today = requests
             .filter { $0.state == .requested &&
                       Calendar.current.isDateInToday($0.dealershipTimeSlot.from) }
             .sorted { $0.dealershipTimeSlot.from < $1.dealershipTimeSlot.from }
-        self.titlesAndRequests += [("Upcoming Today", today)]
+        self.titlesAndRequests += [(Localized.upcomingToday, today)]
 
         // this adds sections for each of the 7 days from the current date
         // each section is appropriately titled by a request during that date
@@ -136,7 +132,7 @@ class MyScheduleViewController: UIViewController {
                 .sorted { $0.dealershipTimeSlot.from < $1.dealershipTimeSlot.from }
             if requests.count > 0 {
                 let date = requests[0].dealershipTimeSlot.from
-                let title = i == 1 ? "Tomorrow" : DateFormatter.requestSectionHeader.string(from: date)
+                let title = i == 1 ? Localized.tomorrow : DateFormatter.requestSectionHeader.string(from: date)
                 self.titlesAndRequests += [(title, requests)]
             }
         }
