@@ -65,11 +65,12 @@ class VolvoColors: ColorsImplementation {
 
     override func grey(_ shade: ColorsShade = .normal) -> UIColor {
         switch shade {
-            case .dark:     return UIColor(rgb: 0x4D4F53)  // granite
-            case .normal:   return UIColor(rgb: 0x9A9B9C)  // slate
-            case .light:    return UIColor(rgb: 0xD5D6D2)  // fog
-            case .lighter:  return UIColor(rgb: 0xE0E1DD)  // grey1
-            case .lightest: return UIColor(rgb: 0xF0F0EE)  // grey0
+            case .darker:   return UIColor(rgb: 0x333333)   // camera shutter view background
+            case .dark:     return UIColor(rgb: 0x4D4F53)   // granite
+            case .normal:   return UIColor(rgb: 0x9A9B9C)   // slate
+            case .light:    return UIColor(rgb: 0xD5D6D2)   // fog
+            case .lighter:  return UIColor(rgb: 0xE0E1DD)   // grey1
+            case .lightest: return UIColor(rgb: 0xF0F0EE)   // grey0
             default:        assertionFailure("Color not implemented"); return .clear
         }
     }

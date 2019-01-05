@@ -24,9 +24,11 @@ struct Localized {
     static let currentService = NSLocalizedString("Current Service", comment: "")
     static let createYourPassword = NSLocalizedString("create your password", comment: "")
 
+    static let faceNotDetected = NSLocalizedString("Make sure your eyes and mouth are visible and only include yourself in the photo.", comment: "")
     static let forgotPassword = NSLocalizedString("Forgot Password", comment: "")
     static let forgotYourPassword = NSLocalizedString("Forgot Your Password", comment: "")
 
+    static let genericAlertTitle = NSLocalizedString("Action Failed", comment: "")
     static let goToSettings = NSLocalizedString("Go to settings", comment: "")
 
     static let later = NSLocalizedString("Later", comment: "")
@@ -37,9 +39,13 @@ struct Localized {
     static let next = NSLocalizedString("next", comment: "")
     static let noScheduledRequests = NSLocalizedString("You have no scheduled pick-ups or deliveries.", comment: "")
 
+    static let ok = NSLocalizedString("OK", comment: "")
+
     static let permissionRequired = NSLocalizedString("Permission Required", comment: "")
     static let permissionRequiredText = NSLocalizedString("For Volvo Valet to work correctly, you must enable Push Notifications and Location Tracking. You can enable these permissions in Settings. Tap the button below to proceed.", comment: "")
     static let photographYourself = NSLocalizedString("Photograph Yourself", comment: "")
+    static let photoUploadFailed = NSLocalizedString("Could not upload photo", comment: "")
+    static let pleaseTryAgain = NSLocalizedString("Please try again.", comment: "")
 
     static let signIn = NSLocalizedString("Sign-In", comment: "")
     static let signInRequired = NSLocalizedString("Sign-In Required", comment: "")

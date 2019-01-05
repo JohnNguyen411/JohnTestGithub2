@@ -30,12 +30,15 @@ extension UIView {
 
     func pinToTopOf(peerView: UIView) {}
 
-    // TODO is this useful?
-    //    func pinTopToBottomOfPreviouslyAddedSubview(spacing: CGFloat = 0) {
-    //    }
+    func matchConstraints(to view: UIView) {
+        self.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        self.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        self.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        self.widthAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+    }
 }
 
-// MARK:- Subview height constraining
+// MARK:- Subview dimension constraining
 
 extension UIView {
 

@@ -69,6 +69,16 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
         task.resume()
     }
 
+    func set(image: UIImage, completion: @escaping ((Bool, LuxeAPIError.Code?) -> ())) {
+        guard let driver = self.driver else { return }
+        guard let image = image.resized(to: 500) else { return }
+        DriverAPI.update(photo: image, for: driver) {
+            error in
+            if error == nil { self._driverImage = image }
+            completion(error == nil, error)
+        }
+    }
+
     // MARK:- Log in/out
 
     var isLoggedIn: Bool {

@@ -154,6 +154,10 @@
 		53EEB1B021C06AA60051B8D5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1AF21C06AA60051B8D5 /* MainViewController.swift */; };
 		53EEB1B221C06E9E0051B8D5 /* MyScheduleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1B121C06E9E0051B8D5 /* MyScheduleViewController.swift */; };
 		53EEB1B421C080770051B8D5 /* ProfileButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1B321C080770051B8D5 /* ProfileButton.swift */; };
+		53F1E55E21DFD8DC007EF3AD /* ShutterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F1E55D21DFD8DC007EF3AD /* ShutterView.swift */; };
+		53F1E56021E01ECE007EF3AD /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F1E55F21E01ECE007EF3AD /* UIImage+Resize.swift */; };
+		53F1E56221E0275F007EF3AD /* AppController+Progress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F1E56121E0275F007EF3AD /* AppController+Progress.swift */; };
+		53F1E56421E02D90007EF3AD /* AppController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F1E56321E02D90007EF3AD /* AppController+Alert.swift */; };
 		CA88B574BCE548756ACE2209 /* Pods_voluxe_driver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 826625F7F567DBAA71221A14 /* Pods_voluxe_driver.framework */; };
 		F51411018D2C32BCED143614 /* Pods_voluxe_driverAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 84BB7F4452F4139EEE1DDC06 /* Pods_voluxe_driverAPITests.framework */; };
 		FC29CCC2DFE7AC9B41E99E99 /* Pods_voluxe_driverUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E5305017B5E03E3CC79F2E4 /* Pods_voluxe_driverUnitTests.framework */; };
@@ -296,6 +300,10 @@
 		53EEB1AF21C06AA60051B8D5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		53EEB1B121C06E9E0051B8D5 /* MyScheduleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyScheduleViewController.swift; sourceTree = "<group>"; };
 		53EEB1B321C080770051B8D5 /* ProfileButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileButton.swift; sourceTree = "<group>"; };
+		53F1E55D21DFD8DC007EF3AD /* ShutterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShutterView.swift; sourceTree = "<group>"; };
+		53F1E55F21E01ECE007EF3AD /* UIImage+Resize.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
+		53F1E56121E0275F007EF3AD /* AppController+Progress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppController+Progress.swift"; sourceTree = "<group>"; };
+		53F1E56321E02D90007EF3AD /* AppController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppController+Alert.swift"; sourceTree = "<group>"; };
 		68BDE64C3234A652C358A12B /* Pods-voluxe-driverUnitTests.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.app store.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.app store.xcconfig"; sourceTree = "<group>"; };
 		6C25190B6650EA5FEA9E0C55 /* Pods-voluxe-driverUnitTests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.development.xcconfig"; sourceTree = "<group>"; };
 		6E5305017B5E03E3CC79F2E4 /* Pods_voluxe_driverUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -413,9 +421,11 @@
 			isa = PBXGroup;
 			children = (
 				533047042188D706007CE01C /* AppController.swift */,
+				53F1E56321E02D90007EF3AD /* AppController+Alert.swift */,
 				533047082188D760007CE01C /* AppController+Debug.swift */,
 				53B43F9E218BB86200EF847E /* AppController+DriverAPI.swift */,
 				53EEB19F21B9AFA60051B8D5 /* AppController+Permission.swift */,
+				53F1E56121E0275F007EF3AD /* AppController+Progress.swift */,
 				53B43FA2218CB6AC00EF847E /* AppController+Test.swift */,
 				533047052188D706007CE01C /* AppDelegate.swift */,
 				533047232188F85B007CE01C /* AppDelegate+Fetch.swift */,
@@ -451,6 +461,7 @@
 				5380089D21A33C2F00E47660 /* UIColor+Random.swift */,
 				53B654BA21AE0E3500FC3ACA /* UIImage+LuxeAPI.swift */,
 				5339036821D55BF000DD16D8 /* UIImage+Merge.swift */,
+				53F1E55F21E01ECE007EF3AD /* UIImage+Resize.swift */,
 				5339035821D0215400DD16D8 /* UIImage+Rounded.swift */,
 				5312142021C9A3E700F3FCEB /* UITableView+OverScroll.swift */,
 				536FFD842177901D00C83F89 /* UIView+AutoLayout.swift */,
@@ -673,6 +684,7 @@
 			isa = PBXGroup;
 			children = (
 				5339036421D1570E00DD16D8 /* CameraView.swift */,
+				53F1E55D21DFD8DC007EF3AD /* ShutterView.swift */,
 				53EEB1AD21BF29EC0051B8D5 /* GridLayout+VolvoAgent.swift */,
 				53EEB1B321C080770051B8D5 /* ProfileButton.swift */,
 				5339036621D1573600DD16D8 /* SwipeNextView.swift */,
@@ -872,6 +884,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
@@ -883,6 +896,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
@@ -1049,6 +1063,8 @@
 				53EEB19C21B9854D0051B8D5 /* AppDelegate+Location.swift in Sources */,
 				538C4D9D218A45CA00922B16 /* Thread+Assert.swift in Sources */,
 				538008A121A33D9200E47660 /* UIView+GridLayout.swift in Sources */,
+				53F1E56221E0275F007EF3AD /* AppController+Progress.swift in Sources */,
+				53F1E55E21DFD8DC007EF3AD /* ShutterView.swift in Sources */,
 				530BCD4A2177AAB2005327E7 /* RestAPI.swift in Sources */,
 				5312143321CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift in Sources */,
 				53C190E6219B2A9D00CBC410 /* Font.swift in Sources */,
@@ -1096,6 +1112,7 @@
 				5312141D21C8767000F3FCEB /* ColorsImplementation.swift in Sources */,
 				53368D9121C2FB5500B1A2AF /* String+Utils.swift in Sources */,
 				53EEB1B021C06AA60051B8D5 /* MainViewController.swift in Sources */,
+				53F1E56021E01ECE007EF3AD /* UIImage+Resize.swift in Sources */,
 				5312142121C9A3E700F3FCEB /* UITableView+OverScroll.swift in Sources */,
 				5339036721D1573600DD16D8 /* SwipeNextView.swift in Sources */,
 				53C190EA219B2A9D00CBC410 /* Layout.swift in Sources */,
@@ -1113,6 +1130,7 @@
 				5339036121D051F000DD16D8 /* AppDelegate+UIAppearance.swift in Sources */,
 				538C4D9B218A3FA600922B16 /* PermissionViewController.swift in Sources */,
 				53EEB1A321B9E3060051B8D5 /* Log.swift in Sources */,
+				53F1E56421E02D90007EF3AD /* AppController+Alert.swift in Sources */,
 				533047062188D706007CE01C /* AppController.swift in Sources */,
 				53C190EF219B2ECD00CBC410 /* GridLayoutViewController.swift in Sources */,
 				53C1962521B59F9E00DCAEBA /* UIView+Spin.swift in Sources */,
