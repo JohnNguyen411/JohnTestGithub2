@@ -34,14 +34,11 @@ extension BookingFeedback: VolvoRealmProtocol {
     typealias Model = BookingFeedback
     typealias Origin = BookingFeedbackRealm
     
-    @objc dynamic var baseColor: String?
-    @objc dynamic var color: String?
-    
-    convenience init(baseColor: String?, color: String?) {
-        self.init()
-        self.baseColor = baseColor
-        self.color = color
-    }
+    dynamic var id: Int = -1
+    dynamic var bookingId: Int = -1
+    dynamic var rating: Int = -1
+    dynamic var comment: String?
+    dynamic var state: String?
     
     override static func primaryKey() -> String? {
         return "id"

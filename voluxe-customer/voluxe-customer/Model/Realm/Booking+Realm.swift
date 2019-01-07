@@ -47,7 +47,7 @@ extension Booking: VolvoRealmProtocol {
     dynamic var loanerVehicle: VehicleRealm?
     dynamic var pickupRequest: RequestRealm?
     dynamic var pickupRequestId = RealmOptional<Int>()
-    dynamic var dropoffRequest: RequestRealm??
+    dynamic var dropoffRequest: RequestRealm?
     dynamic var dropoffRequestId = RealmOptional<Int>()
     dynamic var bookingFeedbackId = RealmOptional<Int>()
     dynamic var bookingFeedback: BookingFeedbackRealm?
