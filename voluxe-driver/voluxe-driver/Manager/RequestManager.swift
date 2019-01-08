@@ -121,13 +121,6 @@ class RequestManager {
         guard let realm = try? Realm() else { return }
         let inspections = realm.objects(OfflineInspection.self).filter { $0.isUploaded == false }
         guard let inspection = inspections.first else { return }
-//        self.route(for: inspection) {
-//            route, parameters in
-//            guard let route = route else { return }
-//            guard inspection.data.isEmpty == false else { return }
-//            UploadManager.shared.upload(inspection.data, to: route)
-//            inspection.markAsUploaded()
-//        }
         guard let upload = inspection.upload() else { return }
         UploadManager.shared.upload(upload)
         inspection.markAsUploaded()
