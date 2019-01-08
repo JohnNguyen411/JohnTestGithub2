@@ -125,39 +125,6 @@ public class RealmObject {
         return repairOrders
     }
     
-    private static func newOptionalValue(type: Any.Type) -> Any? {
-        if type is RealmOptional<Int>.Type {
-            return RealmOptional<Int>()
-        } else if type is RealmOptional<Int8>.Type {
-            return RealmOptional<Int8>()
-        } else if type is RealmOptional<Int16>.Type {
-            return RealmOptional<Int16>()
-        } else if type is RealmOptional<Int32>.Type {
-            return RealmOptional<Int32>()
-        } else if type is RealmOptional<Int64>.Type {
-            return RealmOptional<Int64>()
-        } else if type is RealmOptional<Float>.Type{
-            return RealmOptional<Float>()
-        } else if type is RealmOptional<Double>.Type{
-            return RealmOptional<Double>()
-        } else if type is RealmOptional<Bool>.Type{
-            return RealmOptional<Bool>()
-        }
-        return nil
-    }
-    
-    private static func isRealmOptional(type: Any.Type) -> Bool {
-        if type is RealmOptional<Int>.Type ||
-            type is RealmOptional<Int8>.Type ||
-            type is RealmOptional<Int16>.Type ||
-            type is RealmOptional<Int32>.Type ||
-            type is RealmOptional<Int64>.Type ||
-            type is RealmOptional<Float>.Type ||
-            type is RealmOptional<Double>.Type ||
-            type is RealmOptional<Bool>.Type {
-            return true
-        }
-        return false
-    }
+   
     
 }
