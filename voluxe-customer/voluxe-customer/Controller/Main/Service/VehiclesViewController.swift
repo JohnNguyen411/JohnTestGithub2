@@ -276,7 +276,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                     scheduledServiceView.isEditable = true
                 } else {
                     scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: booking.getRepairOrderName())
-                    dealershipLocationButton.isHidden = false
+                    dealershipLocationButton.isHidden = !booking.isSelfIB()
                     scheduledServiceView.isEditable = false
                 }
                 if let request = booking.pickupRequest, let requestLocation = request.location {

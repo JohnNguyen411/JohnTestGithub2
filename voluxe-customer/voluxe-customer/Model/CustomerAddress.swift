@@ -27,16 +27,5 @@ import RealmSwift
             self.id = id
         }
     }
-    /*
-    private enum CodingKeys: String, CodingKey {
-        case id
-        case location
-        case label
-        case luxeCustomerId = "customer_id"
-        case createdAt = "created_at" 
-        case updatedAt = "updated_at" 
-    }*/
-    
-    
 }
 

@@ -48,11 +48,14 @@ public class RealmObject {
                 if let object = elementValue as? NSObject,  let model = object as? ConverterHelper {
                     target.setValue(model.toModel(), forKey: label)
                 } else {
-                    target.setValue(elementValue, forKey: label)
+                    
+                    let childMirror = Mirror(reflecting: child.value)
+                    let subjectType = childMirror.subjectType
+                    
+                    target.setValue(convertListValue(elementValue, subjectType: subjectType), forKey: label)
+                    
                 }
             } else {
-                //let childMirror = Mirror(reflecting: child.value)
-                //let subjectType = childMirror.subjectType
                 target.setValue(nil, forKey: label)
             }
         }
@@ -101,6 +104,26 @@ public class RealmObject {
         return convertedElements
     }
     
+    private static func convertListValue(_ elementValue: Any?, subjectType: Any.Type) -> Any? {
+        if subjectType is List<RepairOrderRealm>.Type {
+            if let repairOrdersRealm = elementValue as? List<RepairOrderRealm> {
+                return convertValues(repairOrdersRealm, type: RepairOrderRealm.self)
+            }
+        } else {
+            return elementValue
+        }
+        return nil
+    }
+    
+    private static func convertValues<T: RealmObjectConverter>(_ values: List<T>, type: T.Type) -> Any? {
+        var repairOrders: [T.Model] = []
+        for repairOrderRealm in values {
+            if let repairOrderR = repairOrderRealm as? T.Realm {
+                repairOrders.append(T.convertToModel(element: repairOrderR))
+            }
+        }
+        return repairOrders
+    }
     
     private static func newOptionalValue(type: Any.Type) -> Any? {
         if type is RealmOptional<Int>.Type {

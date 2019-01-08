@@ -421,8 +421,10 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
                     try? realm.write {
                         realm.add(customerAddress, update: true)
                         
-                        if let addresses = self.addresses {
+                        if var addresses = self.addresses {
+                            addresses.append(customerAddress)
                             self.addressesCount = addresses.count
+                            self.addresses = addresses
                         }
                         self.onLocationAdded()
                         self.newLocationTextField.clearResults()
