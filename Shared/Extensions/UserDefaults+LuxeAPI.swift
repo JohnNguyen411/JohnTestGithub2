@@ -51,8 +51,19 @@ extension UserDefaults {
         get {
             #if DEBUG
                 let rawValue = self.string(forKey: #function) ?? ""
-                let host = RestAPIHost(rawValue: rawValue)
-                return host ?? RestAPIHost.development
+                if let host = RestAPIHost(rawValue: rawValue) {
+                    return host
+                }
+                let bundle = Bundle.main
+                if bundle.scheme == "Dev" {
+                    return RestAPIHost.development
+                } else if bundle.scheme == "Staging" {
+                    return RestAPIHost.staging
+                } else if bundle.scheme == "Production" || bundle.scheme == "AppStore" {
+                    return RestAPIHost.production
+                } else {
+                    return RestAPIHost.development
+                }
             #else
                 return RestAPIHost.production
             #endif
