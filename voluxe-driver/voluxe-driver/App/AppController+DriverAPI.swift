@@ -51,22 +51,19 @@ extension AppController {
     // alert should not be shown.
     private func showUpdateAlert(for version: LuxeAPI.Version?, required: Bool = false) {
 
-        var versionString = " "
-        if let version = version { versionString = " \(version) " }
-
-        let availableMessage = "A new version\(versionString)is available from the App Store.  Please update as soon as possible."
-        let requiredMessage = "A new version\(versionString)is required from the App Store.  Please update immediately."
+        let availableMessage = Localized.updateAvailableText
+        let requiredMessage = Localized.updateRequiredText
         let message = required ? requiredMessage : availableMessage
 
-        let availableTitle = "Update Available"
-        let requiredTitle = "Update Required"
+        let availableTitle = Localized.updateAvailable
+        let requiredTitle = Localized.updateRequired
         let title = required ? requiredTitle : availableTitle
 
         let controller = UIAlertController(title: title,
                                            message: message,
                                            preferredStyle: .alert)
 
-        let appStoreAction = UIAlertAction(title: "App Store", style: .default) {
+        let appStoreAction = UIAlertAction(title: Localized.appStore, style: .default) {
             _ in
             // TODO https://app.asana.com/0/858610969087925/894650916838358/f
             // TODO need app store URL
@@ -76,7 +73,7 @@ extension AppController {
         controller.addAction(appStoreAction)
 
         if !required {
-            let cancelAction = UIAlertAction(title: "Later", style: .cancel) {
+            let cancelAction = UIAlertAction(title: Localized.later, style: .cancel) {
                 _ in
                 controller.dismiss(animated: true)
             }
@@ -90,11 +87,11 @@ extension AppController {
     // TODO localize
     private func showLoginRequiredAlert() {
 
-        let controller = UIAlertController(title: "Sign In Required",
-                                           message: "To continue using this app, you must sign in with your driver credentials.",
+        let controller = UIAlertController(title: Localized.signInRequired,
+                                           message: Localized.signInRequiredText,
                                            preferredStyle: .alert)
 
-        let action = UIAlertAction(title: "Sign In", style: .default) {
+        let action = UIAlertAction(title: Localized.signIn, style: .default) {
             action in
             // TODO https://app.asana.com/0/858610969087925/907036762032121/f
             // TODO force UI back to login screen, reset API to prevent any more calls

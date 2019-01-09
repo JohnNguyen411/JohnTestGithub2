@@ -17,26 +17,37 @@ enum Permission: String {
 class PermissionViewController: UIViewController {
 
     // the type of permission this controller is prompting for
+    // currently the controller shows the same label for any permission
     let permission: Permission
 
     // MARK:- Layout
 
-    private let button: UIButton = {
-        let button = UIButton(type: .custom)
-        button.titleLabel?.numberOfLines = 0
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.addTarget(self, action: #selector(settingsButtonTouchUpInside), for: .touchUpInside)
-        button.setTitleColor(.white, for: .normal)
-        return button
+    private let lockImageView: UIImageView = {
+        let image = UIImage(named: "lock_icon")
+        let imageView = UIImageView(image: image).usingAutoLayout()
+        imageView.backgroundColor = UIColor.Volvo.error
+        imageView.contentMode = .center
+        return imageView
     }()
+
+    private let label: UILabel = {
+        let label = UILabel()
+        label.font = Font.Volvo.body1
+        label.numberOfLines = 0
+        label.text = Localized.permissionRequiredText
+        label.textColor = UIColor.Volvo.granite
+        return label
+    }()
+
+    private let button = UIButton.Volvo.primary(title: Localized.goToSettings)
 
     // MARK:- Lifecycle
 
     init(permission: Permission) {
         self.permission = permission
         super.init(nibName: nil, bundle: nil)
-        let title = "\(permission.rawValue) Disabled\nOpen Settings"
-        self.button.setTitle(title, for: .normal)
+        self.navigationItem.title = Localized.permissionRequired.capitalized
+        self.addActions()
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -44,14 +55,36 @@ class PermissionViewController: UIViewController {
     }
 
     override func viewDidLoad() {
+
         super.viewDidLoad()
-        self.view.backgroundColor = .red
-        self.view.addSubview(self.button)
-        self.button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor).isActive = true
-        self.button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor).isActive = true
+        self.view.backgroundColor = UIColor.Volvo.background.light
+
+        let gridView = GridLayoutView(layout: GridLayout.volvoAgent())
+        Layout.fill(view: self.view, with: gridView)
+
+        Layout.add(subview: self.lockImageView, pinnedToTopOf: self.view)
+        self.lockImageView.leadingAnchor.constraint(equalTo: gridView.leadingAnchor).isActive = true
+        self.lockImageView.heightAnchor.constraint(equalToConstant: 48).isActive = true
+        self.lockImageView.trailingAnchor.constraint(equalTo: gridView.trailingAnchor).isActive = true
+
+        gridView.add(subview: self.label, from: 1, to: 6)
+        self.label.pinToSuperviewTop(spacing: 67)
+
+        gridView.add(subview: self.button, from: 1, to: 6)
+        self.button.pinBottomToSuperviewBottom(spacing: -18)
+        self.button.heightAnchor.constraint(equalToConstant: 36)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+//        self.button.layoutShadowView()
     }
 
     // MARK:- Actions
+
+    private func addActions() {
+        self.button.addTarget(self, action: #selector(settingsButtonTouchUpInside), for: .touchUpInside)
+    }
 
     @objc func settingsButtonTouchUpInside() {
         let string = UIApplication.openSettingsURLString

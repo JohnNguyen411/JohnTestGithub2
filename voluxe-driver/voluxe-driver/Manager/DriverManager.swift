@@ -8,6 +8,7 @@
 
 import CoreLocation
 import Foundation
+import UIKit
 
 class DriverManager: NSObject, CLLocationManagerDelegate {
 
@@ -27,6 +28,55 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
 
     var driver: Driver? {
         return self._driver
+    }
+
+    // MARK:- Current driver image
+
+    // TODO in memory cache of image?
+    // TODO didSet?
+    private var _driverImage: UIImage?
+
+    var driverImage: UIImage? {
+        return self._driverImage
+    }
+
+    // TODO use alamofire image?
+    // TODO does this cache the image?
+    // TODO prevent over calling?
+    func imageForDriver(completion: @escaping ((UIImage?) -> ())) {
+
+        guard let driver = self.driver else {
+            Log.unexpected(.missingValue, "Cannot get drive image without an active driver")
+            DispatchQueue.main.async { completion(nil) }
+            return
+        }
+
+        guard let url = URL(string: driver.photoUrl) else {
+            Log.unexpected(.incorrectValue, "Driver.photoUrl is an invalid URL")
+            DispatchQueue.main.async { completion(nil) }
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: url) {
+            [weak self] data, response, error in
+            let image = data != nil ? UIImage(data: data!) : nil
+            DispatchQueue.main.async() {
+                completion(image)
+                self?._driverImage = image
+            }
+        }
+
+        task.resume()
+    }
+
+    func set(image: UIImage, completion: @escaping ((Bool, LuxeAPIError.Code?) -> ())) {
+        guard let driver = self.driver else { return }
+        guard let image = image.resized(to: 500) else { return }
+        DriverAPI.update(photo: image, for: driver) {
+            error in
+            if error == nil { self._driverImage = image }
+            completion(error == nil, error)
+        }
     }
 
     // MARK:- Log in/out

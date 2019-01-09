@@ -1,3 +1,6 @@
+v1.3.1 (227)
+Fix constraint crash on Booking Feedback
+
 v1.3.0 (206)
 Minor bugfixes on Country Picker
 

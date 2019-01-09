@@ -132,21 +132,21 @@ extension Request {
 
 fileprivate extension RestAPIResponse {
 
-    private struct RefreshResponse: Codable {
+    private struct RequestResponse: Codable {
         let data: Request
     }
 
     func asRequest() -> Request? {
-        let response: RefreshResponse? = self.decode()
+        let response: RequestResponse? = self.decode()
         return response?.data
     }
 
-    private struct TodayResponse: Codable {
+    private struct RequestsResponse: Codable {
         let data: [Request]
     }
 
     func asRequests() -> [Request] {
-        let response: TodayResponse? = self.decode()
+        let response: RequestsResponse? = self.decode()
         return response?.data ?? []
     }
 

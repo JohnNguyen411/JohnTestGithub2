@@ -81,8 +81,7 @@ extension GridLayout {
 // setting grid layout a second time will require rebuilding all constraints
 class GridLayoutView: UIView {
 
-    // TODO should this create and return constraints for a particular column?
-    var gridLayout: GridLayout
+    let gridLayout: GridLayout
 
     // guides represent the margins and inter-column gutters
     // the first and last guide are the margins
@@ -156,16 +155,22 @@ class GridLayoutView: UIView {
                 gutterLeadingConstant += columnStride
             }
         }
+    }
 
-//        self.layoutIfNeeded()
-//        self.setNeedsUpdateConstraints()
+    func leadingAnchor(for column: UInt) -> NSLayoutXAxisAnchor {
+        assert(column >= 1 && column <= self.gridLayout.columnCount)
+        return self.guides[Int(column)].leadingAnchor
+    }
+
+    func trailingAnchor(for column: UInt) -> NSLayoutXAxisAnchor {
+        assert(column >= 1 && column <= self.gridLayout.columnCount)
+        return self.guides[Int(column)].trailingAnchor
     }
 }
 
 // extension that allows child views to align to a parent grid layout
 extension UIView {
 
-    // TODO rename to superview?
     private func findParentGridLayoutView() -> GridLayoutView? {
         var parent: UIView? = self
         while parent != nil {
@@ -173,6 +178,16 @@ extension UIView {
             else { parent = parent?.superview }
         }
         return nil
+    }
+
+    private func parentGridLayout() -> GridLayout? {
+        return self.findParentGridLayoutView()?.gridLayout
+    }
+
+    @discardableResult
+    func add(subview: UIView) -> UIView {
+        guard let layout = self.parentGridLayout() else { return subview }
+        return self.add(subview: subview, from: 1, to: layout.columnCount)
     }
 
     // TODO rename to superview?
@@ -203,25 +218,4 @@ extension UIView {
 
         return subview
     }
-}
-
-// TODO this may not be necessary
-// MARK:- Possible grid layout by width and position concepts
-
-extension UIView {
-
-    enum GridLayoutWidth {
-        case wide       // all columns
-        case medium     // approxiamtely half the number of columns
-        case narrow     // single columm
-    }
-
-    enum GridLayoutPosition {
-        case leading
-        case center     // how does this work for even number of columns?
-        case trailing
-    }
-
-    // can there be conceptual layouts like wide = all columns, narrow = single column?
-    func add(subview: UIView, position: GridLayoutPosition, width: GridLayoutWidth) {}
 }

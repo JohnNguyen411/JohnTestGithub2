@@ -11,7 +11,7 @@ import UIKit
 
 extension GridLayout {
 
-    static func volvoValet() -> GridLayout {
+    static func volvoAgent() -> GridLayout {
         return GridLayout(margin: 13, gutter: 8, columnCount: 6)
     }
 }

@@ -11,9 +11,11 @@ import UIKit
 
 class AppController: UIViewController {
 
+    // MARK: Singleton
+
     static let shared = AppController()
 
-    // MARK:- Lifecycle
+    // MARK: Lifecycle
 
     private init() {
         super.init(nibName: nil, bundle: nil)
@@ -35,22 +37,19 @@ class AppController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.registerManagers()
+        self.associateManagers()
     }
 
-    // MARK:- Manager support
+    // MARK: Manager support
 
-    private func registerManagers() {
+    private func associateManagers() {
 
+        // TODO if driver becomes nil, need to force logout
         // when driver changes other managers need to know
         DriverManager.shared.driverDidChangeClosure = {
             driver in
             RequestManager.shared.set(driver: driver)
-        }
-
-        RequestManager.shared.requestsDidChangeClosure = {
-            requests in
-            NSLog("REQUESTS changed to \(requests)")
+            if driver == nil { self.showLanding() }
         }
     }
 }
@@ -79,15 +78,124 @@ extension AppController {
     }
 }
 
-// MARK:- Launch support
+// MARK:- Controller support
 
 extension AppController {
 
-    // TODO should remove any other child controllers
+    /// The AppController only allows one active child controller at a time.
+    /// Hence `replaceChildController` should be used instead of the usual
+    /// addChild(controller) and removeChild(controller) funcs.  This func
+    /// also provides an optional animation to transition between the controllers.
+    ///
+    /// IMPORTANT!
+    /// Because these are "primary" controllers and most likely fullscreen, they
+    /// are placed WITHOUT safe area.  This means that the views inside the controller
+    /// need to be placed with safe areas.
+    func replaceChildController(with controller: UIViewController, animated: Bool = true) {
+
+        // TODO prevent showing the same type twice
+        // this will become necessary to solve soon
+
+        assert(self.children.count <= 1, "AppController should never have more than one child controller")
+        let oldController = self.children.first
+        oldController?.removeFromParent()
+
+        self.addChild(controller)
+        Layout.fill(view: self.view, with: controller.view, useSafeArea: false)
+        controller.view.alpha = 0
+
+        UIView.animate(withDuration: animated ? 0.3 : 0,
+                       animations:
+            {
+                controller.view.alpha = 1
+                oldController?.view.alpha = 0
+            },
+                       completion:
+            {
+                finished in
+                controller.didMove(toParent: self)
+                oldController?.view.removeFromSuperview()
+                oldController?.didMove(toParent: nil)
+            })
+    }
+
+    // TODO need canShowController(type) to prevent double show
+    // TODO is showing controller of type
+}
+
+// MARK:- Specific controller support
+
+extension AppController {
+
     func showLanding(animated: Bool = true) {
         let controller = LandingViewController()
-        self.addChild(controller)
-        Layout.fill(view: self.view, with: controller.view)
-        controller.didMove(toParent: self)
+        self.replaceChildController(with: controller, animated: animated)
+    }
+
+    func showMain(animated: Bool = true, rootViewController: UIViewController? = nil, showProfileButton: Bool = true) {
+        let controller = MainViewController(with: rootViewController, showProfileButton: showProfileButton)
+        self.replaceChildController(with: controller, animated: animated)
+    }
+
+    @available(*, deprecated)
+    func showToday(animated: Bool = true) {
+        let controller = UIViewController(nibName: nil, bundle: nil)
+        controller.view.backgroundColor = UIColor.Debug.red
+        let button = UIButton(type: .custom).usingAutoLayout()
+        button.setTitle("Close", for: .normal)
+        controller.view.addSubview(button)
+        button.centerXAnchor.constraint(equalTo: controller.view.centerXAnchor).isActive = true
+        button.centerYAnchor.constraint(equalTo: controller.view.centerYAnchor).isActive = true
+        button.addTarget(self, action: #selector(closeButtonTouchUpInside), for: .touchUpInside)
+        self.replaceChildController(with: controller)
+    }
+
+    // TODO remove, this is temporary to test replacing controllers
+    @objc func closeButtonTouchUpInside() {
+        AppController.shared.showLanding()
+    }
+
+    // MARK: Profile controller
+
+    // The profile controller is different than other child controllers
+    // because it acts as an overlay first, then will replace the child
+    // controller if interacted with.  So, it is modally presented without
+    // animation so that it's own animation can run as a transition.
+    func showProfile(animated: Bool = true) {
+        guard self.presentedViewController == nil else { return }
+        let controller = ProfileViewController()
+        controller.preparePresentAnimation()
+        self.present(controller, animated: false) {
+            controller.playPresentAnimation()
+        }
+    }
+
+    // Dismisses the profile controller (if presented).  Note that the
+    // controller will perform it's own animation before the dismiss.
+    func hideProfile(animated: Bool = true) {
+        guard let controller = self.presentedViewController as? ProfileViewController else { return }
+        controller.playDismissAnimation() {
+            controller.dismiss(animated: false, completion: nil)
+        }
+    }
+
+    // MARK: Push to the main view controller
+
+    var mainController: MainViewController? {
+        return self.children.first as? MainViewController
+    }
+
+    // TODO should prefersProfileButton be aspect of view controller?  likely yes
+    func mainController(push controller: UIViewController,
+                        animated: Bool = true,
+                        asRootViewController: Bool = false,
+                        prefersProfileButton: Bool? = nil)
+    {
+        guard let main = self.children.first as? MainViewController else { return }
+        if asRootViewController { main.setViewControllers([controller], animated: animated) }
+        else { main.pushViewController(controller, animated: animated) }
+        guard let prefers = prefersProfileButton else { return }
+        if prefers { main.showProfileButton(animated: animated) }
+        else { main.hideProfileButton(animated: animated) }
     }
 }

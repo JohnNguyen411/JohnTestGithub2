@@ -9,10 +9,15 @@
 import Foundation
 import UIKit
 
+// TODO add Layout struct for namespacing?
 extension UIView {
 
     func pinToSuperviewTop(spacing: CGFloat = 0, useSafeArea: Bool = true) {
         Layout.pinToSuperviewTop(view: self, spacing: spacing, useSafeArea: useSafeArea)
+    }
+
+    func pinBottomToSuperviewBottom(spacing: CGFloat = 0, useSafeArea: Bool = true) {
+        Layout.pinToSuperviewBottom(view: self, spacing: spacing, useSafeArea: useSafeArea)
     }
 
     func pinTopToBottomOf(view: UIView, spacing: CGFloat = 0) {
@@ -25,12 +30,15 @@ extension UIView {
 
     func pinToTopOf(peerView: UIView) {}
 
-    // TODO is this useful?
-    //    func pinTopToBottomOfPreviouslyAddedSubview(spacing: CGFloat = 0) {
-    //    }
+    func matchConstraints(to view: UIView) {
+        self.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
+        self.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
+        self.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        self.widthAnchor.constraint(equalTo: view.heightAnchor).isActive = true
+    }
 }
 
-// MARK:- Subview height constraining
+// MARK:- Subview dimension constraining
 
 extension UIView {
 

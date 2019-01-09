@@ -25,6 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         self.window = window
         self.initServices()
+        self.initAppearance()
         AppController.shared.launch()
         return true
     }

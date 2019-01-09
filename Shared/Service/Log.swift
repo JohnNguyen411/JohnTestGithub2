@@ -17,6 +17,7 @@ class Log {
         case locationError
         case missingArgument
         case missingValue
+        case incorrectValue
     }
 
     // prevent instancing

@@ -24,4 +24,14 @@ extension UIView {
             return guide
         }
     }
+
+    // Note that this may not work as expected for landscape orientations.
+    // Windows rotate when the device rotates, so the top insets will report
+    // different values depending the orientation.
+    var hasTopNotch: Bool {
+        if #available(iOS 11.0, *) {
+            return UIApplication.shared.delegate?.window??.safeAreaInsets.top ?? 0 > 20
+        }
+        return false
+    }
 }

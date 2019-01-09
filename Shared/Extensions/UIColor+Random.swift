@@ -12,7 +12,10 @@ import UIKit
 extension UIColor {
 
     func image(size: CGSize = CGSize(width: 32, height: 32)) -> UIImage {
-        return UIGraphicsImageRenderer(size: size).image { rendererContext in
+        let format = UIGraphicsImageRendererFormat.default()
+        format.scale = UIScreen.main.scale
+        return UIGraphicsImageRenderer(size: size, format: format).image {
+            rendererContext in
             self.setFill()
             rendererContext.fill(CGRect(x: 0, y: 0, width: size.width, height: size.height))
         }

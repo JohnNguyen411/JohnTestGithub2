@@ -93,7 +93,6 @@ class RequestManagerViewController: UIViewController {
             self?.updateUI()
         }
 
-        // TODO clean up
         RequestManager.shared.requestsDidChangeClosure = {
             [weak self] requests in
             self?.updateUI()
@@ -106,7 +105,9 @@ class RequestManagerViewController: UIViewController {
     }
 
     deinit {
-        // TODO unregister from RequestManager
+        RequestManager.shared.requestDidChangeClosure = nil
+        RequestManager.shared.requestsDidChangeClosure = nil
+        RequestManager.shared.offlineInspectionsDidChangeClosure = nil
     }
 
     override func viewDidLoad() {
@@ -300,15 +301,15 @@ fileprivate extension UITableViewCell {
 
     func update(with request: Request) {
         self.textLabel?.text = "Request \(request.id)"
-        var text = "\(request.typeString) - \(request.state.uppercased())\n"
+        var text = "\(request.typeString) - \(request.state.rawValue.uppercased())\n"
         text = "\(text)\(request.locationString)\n"
         text = "\(text)\(request.documentInspectionString)\n"
         text = "\(text)\(request.loanerInspectionString)\n"
-        text = "\(text)\(request.vehicleInspectionString)\n"
+        text = "\(text)\(request.vehicleInspectionString)"
         self.detailTextLabel?.text = text
         let selected = RequestManager.shared.isSelected(request: request)
         self.accessoryType = selected ? .checkmark : .none
-        self.backgroundColor = selected ? Color.Debug.blue : nil
+        self.backgroundColor = selected ? UIColor.Debug.blue : nil
     }
 
     convenience init(with inspection: OfflineInspection) {

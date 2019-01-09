@@ -19,7 +19,7 @@ extension GridLayoutView {
 
         for guide in self.guides {
             let view = UIView.forAutoLayout()
-            view.backgroundColor = Color.Debug.red
+            view.backgroundColor = UIColor.Debug.red
             debugView.addSubview(view)
             view.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             view.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
@@ -38,7 +38,7 @@ extension GridLayoutView {
             let leadingGuide = self.guides[Int(i - 1)]
             let trailingGuide = self.guides[Int(i)]
             let view = UIView.forAutoLayout()
-            view.backgroundColor = Color.Debug.gray
+            view.backgroundColor = UIColor.Debug.gray
             debugView.addSubview(view)
             view.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
             view.leadingAnchor.constraint(equalTo: leadingGuide.trailingAnchor).isActive = true
