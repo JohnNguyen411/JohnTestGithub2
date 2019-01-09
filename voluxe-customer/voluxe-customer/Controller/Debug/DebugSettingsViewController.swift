@@ -236,7 +236,46 @@ class DebugSettingsViewController: DebugTableViewController {
                  */
             }
         )]
+        
+        settings += [DebugTableViewCellModel(title: "Environment",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+        {
+                cell in
+                cell.detailTextLabel?.text = UserDefaults.standard.apiHost.rawValue
+                
+        }, actionClosure: {
+            _ in
+            let alert = UIAlertController(title: "Environment", message: "Changing environment will log you out", preferredStyle: .actionSheet)
+            alert.addAction(UIAlertAction(title: RestAPIHost.development.rawValue, style: .default, handler: { (action) in
+                self.changeEnvironment(host: RestAPIHost.development)
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            alert.addAction(UIAlertAction(title: RestAPIHost.staging.rawValue, style: .default, handler: { (action) in
+                self.changeEnvironment(host: RestAPIHost.staging)
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            
+            alert.addAction(UIAlertAction(title: RestAPIHost.production.rawValue, style: .default, handler: { (action) in
+                self.changeEnvironment(host: RestAPIHost.production)
+                alert.dismiss(animated: true, completion: nil)
+            }))
+            self.present(alert, animated: true, completion: nil)
+        }
+        )]
 
         return ("Network", settings)
+    }
+    
+    private func changeEnvironment(host: RestAPIHost) {
+        if UserDefaults.standard.apiHost != host {
+            UserDefaults.standard.apiHost = host
+            UserManager.sharedInstance.logout()
+            CustomerAPI.reloadHost()
+            AppController.sharedInstance.startApp()
+            close()
+        }
+        
+
     }
 }

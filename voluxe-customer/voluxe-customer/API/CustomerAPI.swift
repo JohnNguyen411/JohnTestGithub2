@@ -38,4 +38,9 @@ class CustomerAPI: LuxeAPI {
         self.headers["X-CLIENT-ID"] = self.host.clientId
         self.headers["x-application-version"] = "luxe_by_volvo_customer_ios:\(Bundle.main.version)"
     }
+    
+    // Reload Host after environment change
+    static func reloadHost() {
+        self.api.host = UserDefaults.standard.apiHost
+    }
 }
