@@ -273,7 +273,8 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         }
         
         confirmButton.snp.makeConstraints { make in
-            make.left.bottom.right.equalToSuperview()
+            make.left.right.equalToSuperview()
+            make.equalsToBottom(view: self.contentView, offset: -20)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
         }
         
