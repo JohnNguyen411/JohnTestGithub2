@@ -214,6 +214,35 @@ final class UserManager {
         return todaysBookings
     }
     
+    public func updateBooking(updatedBooking: Booking) {
+       /* var indexBooking = -1
+        var indexVehicleBooking = -1
+        for (index, booking) in self.bookings.enumerated() {
+            if booking.id == updatedBooking.id {
+                indexBooking = index
+                break
+            }
+        }
+        var carBookings: [Booking]? = self.vehicleBookings[booking.vehicleId]
+        if carBookings != nil {
+            var indexBooking = -1
+            for (index, carBook) in carBookings!.enumerated() {
+                if carBook.id == updatedBooking.id {
+                    // already exist
+                    indexVehicleBooking = index
+                    break
+                }
+            }
+            if indexVehicleBooking >= 0 {
+                carBookings!.remove(at: indexVehicleBooking)
+            }
+            carBookings!.append(updatedBooking)
+        }
+        */
+        _ = self.addBooking(booking: updatedBooking)
+        
+    }
+    
     public func yourVolvoStringTitle() -> String {
         if let vehicles = vehicles, vehicles.count > 1 {
             return .YourVolvos

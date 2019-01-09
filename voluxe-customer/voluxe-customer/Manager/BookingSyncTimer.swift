@@ -79,6 +79,7 @@ class BookingSyncTimer: SyncTimer {
                 realm.add(booking, update: true)
             }
         }
+        UserManager.sharedInstance.updateBooking(updatedBooking: booking)
         let serviceState = Booking.getStateForBooking(booking: booking)
         StateServiceManager.sharedInstance.updateState(state: serviceState, vehicleId: booking.vehicleId, booking: booking)
     }

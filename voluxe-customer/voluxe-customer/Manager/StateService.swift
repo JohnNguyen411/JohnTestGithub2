@@ -22,7 +22,7 @@ final class StateServiceManager {
     func updateState(state: ServiceState, vehicleId: Int, booking: Booking?) {
         var oldState = states[vehicleId]
         let oldType = types[vehicleId]
-
+        
         if ((oldState == nil || oldState != state) || (booking != nil && booking!.getCurrentRequestType() != oldType)) {
             // state or type did change
             states[vehicleId] = state
