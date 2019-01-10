@@ -83,7 +83,6 @@ class ProfileViewController: UIViewController {
         // dismiss fills entire view underneath panel view
         Layout.fill(view: gridView, with: self.dismissButton, useSafeArea: false)
 
-        // TODO need to extend to be concentric to screen edge
         gridView.addSubview(self.panelView)
         let topConstant: CGFloat = gridView.hasTopNotch ? 0 : -20
         let trailingAnchor = gridView.trailingAnchor(for: 5)
@@ -111,16 +110,7 @@ class ProfileViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.updateSelfieButtonImage()
-        DriverManager.shared.driverDidChangeClosure = {
-            [weak self] driver in
-            self?.updateSelfieButtonImage()
-        }
-    }
-
-    private func updateSelfieButtonImage() {
-        let image = DriverManager.shared.driverImage
-        if image != nil { self.selfieButton.setImage(image, for: .normal) }
+        self.selfieButton.setImage(DriverManager.shared.driverPhoto, for: .normal)
     }
 
     // MARK: Actions

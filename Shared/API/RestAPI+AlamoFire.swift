@@ -171,7 +171,10 @@ extension RestAPI {
         let request = Alamofire.AF.upload(multipartFormData: {
             multiPartFormData in
             for (data, mimeType) in datasAndMimeTypes {
-                multiPartFormData.append(data, withName: "data", mimeType: mimeType.rawValue)
+                multiPartFormData.append(data,
+                                         withName: mimeType.name,
+                                         fileName: mimeType.filename,
+                                         mimeType: mimeType.rawValue)
             }
         },
                                           to: url,
