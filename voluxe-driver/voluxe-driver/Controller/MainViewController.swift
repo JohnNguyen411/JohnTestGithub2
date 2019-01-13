@@ -28,22 +28,7 @@ class MainViewController: UINavigationController {
         self.init(rootViewController: controller)
         self.profileButton.isHidden = !showProfileButton
         self.profileButton.addTarget(self, action: #selector(buttonTouchUpInside), for: .touchUpInside)
-//        self.configureNavigationBar()
     }
-
-//    private func configureNavigationBar() {
-//        let appearance = UINavigationBar.appearance()
-//        appearance.backgroundColor = UIColor.Volvo.navigationBar.background
-//        appearance.titleTextAttributes = [NSAttributedString.Key.font: Font.Volvo.h6,
-//                                          NSAttributedString.Key.foregroundColor: UIColor.Volvo.navigationBar.title]
-//        self.navigationBar.isTranslucent = false
-////        self.addCustomBackButton()
-//
-////        UIImage *backButtonImage = [[UIImage imageNamed:@"button_back"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-//        let image = UIImage(named: "back_chevron")
-////        [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//        UIBarButtonItem.appearance().setBackButtonBackgroundImage(image, for: .normal, barMetrics: .default)
-//    }
 
     override func viewDidLoad() {
 
@@ -64,10 +49,7 @@ class MainViewController: UINavigationController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DriverManager.shared.imageForDriver() {
-            [weak self] image in
-            self?.profileButton.setImage(image, for: .normal)
-        }
+        self.profileButton.setImage(DriverManager.shared.driverPhoto, for: .normal)
     }
 
     // MARK: Actions
@@ -80,6 +62,7 @@ class MainViewController: UINavigationController {
 
     func showProfileButton(animated: Bool = true) {
         self.profileButton.isHidden = false
+        self.profileButton.setImage(DriverManager.shared.driverPhoto, for: .normal)
         UIView.animate(withDuration: animated ? 0.2 : 0) {
             self.profileButton.alpha = 1
         }

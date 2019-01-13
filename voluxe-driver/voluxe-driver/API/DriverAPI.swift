@@ -30,6 +30,6 @@ class DriverAPI: LuxeAPI {
     override func updateHeaders() {
         super.updateHeaders()
         self.headers["X-CLIENT-ID"] = self.host.clientId
-        self.headers["x-application-version"] = "luxe_by_volvo_driver_ios:\(Bundle.main.version)"
+        self.headers["x-application-version"] = "luxe_by_volvo_driver_ios:\(Bundle.current.version)"
     }
 }

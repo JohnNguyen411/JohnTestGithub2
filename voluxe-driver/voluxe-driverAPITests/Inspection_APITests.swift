@@ -58,21 +58,6 @@ class Inspection_APITests: XCTestCase {
         self.wait()
     }
 
-    func test21_uploadDocumentPhoto() {
-        guard let request = Inspection_APITests.request else { XCTFail(); return }
-        guard let inspection = Inspection_APITests.inspection else { XCTFail(); return }
-        let image = UIColor.random().image()
-        DriverAPI.upload(photo: image,
-                         inspection: inspection,
-                         request: request)
-        {
-            url, error in
-            XCTAssertNil(error)
-            XCTAssertNotNil(url)
-        }
-        self.wait()
-    }
-
     func test30_createLoanerInspection() {
         guard let request = Inspection_APITests.request else { XCTFail(); return }
         DriverAPI.createLoanerInspection(for: request) {

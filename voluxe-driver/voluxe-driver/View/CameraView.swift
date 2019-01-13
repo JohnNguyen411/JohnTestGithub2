@@ -210,6 +210,18 @@ class CameraView: UIView {
 
         UIView.animate(withDuration: animated ? 0.5 : 0) {
             self.preview.alpha = 1
+            self.imageView.alpha = 1
+        }
+    }
+
+    /// Hide the preview and taken photo views.  Suitable to be
+    /// called before transitioning the parent view controller.
+    /// Currently calling open() after close() is not supported,
+    /// the UI and session will not be restored correctly.
+    func close() {
+        UIView.animate(withDuration: 0.2) {
+            self.preview.alpha = 0
+            self.imageView.alpha = 0
         }
     }
 

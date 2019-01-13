@@ -84,6 +84,11 @@ class SelfieViewController: StepViewController {
         self.shutterView.pinBottomToSuperviewBottom(spacing: -30)
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.cameraView.close()
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.cameraView.open(animated: animated)
@@ -160,14 +165,13 @@ class SelfieViewController: StepViewController {
         guard let image = self.image else { return }
         AppController.shared.lookBusy()
         DriverManager.shared.set(image: image) {
-            [weak self] success, error in
+            [weak self] success in
             AppController.shared.lookNotBusy()
             if success {
                 self?.navigationController?.popToRootViewController(animated: true)
             } else {
                 AppController.shared.alert(title: Localized.photoUploadFailed.capitalized,
                                            message: Localized.pleaseTryAgain)
-                Log.unexpected(.apiError, error?.rawValue ?? "unknown")
             }
         }
     }
