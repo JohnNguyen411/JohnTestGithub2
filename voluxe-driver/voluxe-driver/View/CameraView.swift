@@ -93,9 +93,26 @@ class CameraView: UIView {
 
     // MARK: Options
 
+    // TODO showTakenPhoto needs to be replaced
+    /// The picture taking mode the camera view is operating in.
+    /// .single means one at a time, and will preview the taken photo.
+    /// .multiple means several in a row, and will not show a preview.
+    enum Mode {
+        case single
+        case multiple
+    }
+    var mode: Mode
+
     /// Presents the captured image on top of the live camera
     /// view after a photo has been taken.
     var showTakenPhoto: Bool = false
+
+    /// Indicates if a photo was taken and is currently being
+    /// shown.  This is useful to change the ShutterView.shutterButton
+    /// behaviour for a second tap to reset the camera.
+    var isShowingTakenPhoto: Bool {
+        return self.imageView.image != nil
+    }
 
     /// Tells the capture session to use flash or not.
     var useFlash: Bool = true
@@ -126,7 +143,8 @@ class CameraView: UIView {
 
     // MARK: Lifecycle
 
-    init(position: AVCaptureDevice.Position = .back) {
+    init(mode: Mode = .single, position: AVCaptureDevice.Position = .back) {
+        self.mode = mode
         self.position = position
         super.init(frame: CGRect.zero)
         self.addSubviews()
@@ -156,6 +174,8 @@ class CameraView: UIView {
     }
 
     private func updateCropView() {
+
+        self.cropView.isHidden = self.cropTopLeft == nil
 
         guard let point = self.cropTopLeft else {
             self.cropView.layer.mask = nil
@@ -208,7 +228,7 @@ class CameraView: UIView {
         layer.frame = self.preview.bounds
         self.session.startRunning()
 
-        UIView.animate(withDuration: animated ? 0.5 : 0) {
+        UIView.animate(withDuration: animated ? 1.0 : 0) {
             self.preview.alpha = 1
             self.imageView.alpha = 1
         }
@@ -228,9 +248,14 @@ class CameraView: UIView {
     // MARK: Image capture and reset
 
     func capture() {
-        let settings = AVCapturePhotoSettings()
-        settings.flashMode = self.useFlash ? AVCaptureDevice.FlashMode.on : AVCaptureDevice.FlashMode.off
-        self.output.capturePhoto(with: settings, delegate: self)
+        #if targetEnvironment(simulator)
+            let image = UIColor.random().image(size: CGSize(width: 1024, height: 512))
+            self.didCapture(photo: image)
+        #else
+            let settings = AVCapturePhotoSettings()
+            settings.flashMode = self.useFlash ? AVCaptureDevice.FlashMode.on : AVCaptureDevice.FlashMode.off
+            self.output.capturePhoto(with: settings, delegate: self)
+        #endif
     }
 
     func reset() {
@@ -266,7 +291,14 @@ extension CameraView: AVCapturePhotoCaptureDelegate {
     {
         guard let data = photo.fileDataRepresentation() else { return }
         guard let image = UIImage(data: data) else { return }
-        let flipped = self.flipImageIfNecessary(image)
+        self.didCapture(photo: image)
+    }
+
+    /// Processes, crops, and notifies that the specified photo was taken.
+    /// This is separated into its own function so that the code can be
+    /// run on both iOS simulator (with a faked photo) and on device.
+    func didCapture(photo: UIImage) {
+        let flipped = self.flipImageIfNecessary(photo)
         let cropped = self.cropImageIfNecessary(flipped)
         if self.requireFaceDetection && self.imageHasSingleFace(cropped) == false {
             DispatchQueue.main.async {

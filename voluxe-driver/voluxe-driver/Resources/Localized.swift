@@ -17,12 +17,15 @@ struct Localized {
     static let appStore = NSLocalizedString("App Store", comment: "")
 
     static let cancel = NSLocalizedString("cancel", comment: "")
+    static let captureVehicle = NSLocalizedString("Capture both sides and all four corners of the vehicle", comment: "")
     static let changeContactInfo = NSLocalizedString("Change Contact Info", comment: "")
     static let changePassword = NSLocalizedString("Change Password", comment: "")
     static let confirmPhoneNumber = NSLocalizedString("Confirm Phone Number", comment: "")
     static let contactInformation = NSLocalizedString("Contact Information", comment: "")
     static let currentService = NSLocalizedString("Current Service", comment: "")
     static let createYourPassword = NSLocalizedString("create your password", comment: "")
+
+    static let doNotPhotoCreditCard = NSLocalizedString("Do NOT photograph the customer's credit card", comment: "")
 
     static let faceNotDetected = NSLocalizedString("Make sure your eyes and mouth are visible and only include yourself in the photo.", comment: "")
     static let forgotPassword = NSLocalizedString("Forgot Password", comment: "")

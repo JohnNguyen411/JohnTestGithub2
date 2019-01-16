@@ -159,6 +159,66 @@ class DebugSettingsViewController: DebugTableViewController {
             }
         )]
 
+        settings += [DebugTableViewCellModel(title: "Document Inspection",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                let controller = InspectionPhotosViewController(type: .document)
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Loaner Inspection",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                let controller = InspectionPhotosViewController(type: .loaner)
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Vehicle Inspection",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                let controller = InspectionPhotosViewController(type: .vehicle)
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Driver Selfie",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                let controller = SelfieViewController()
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        )]
+
         return ("Feature Debug", settings)
     }
 }

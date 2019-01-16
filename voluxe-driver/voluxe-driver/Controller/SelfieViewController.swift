@@ -40,7 +40,12 @@ class SelfieViewController: StepViewController {
         return view
     }()
 
-    private let shutterView = ShutterView()
+    private let shutterView: ShutterView = {
+        let view = ShutterView()
+        view.numberOfPhotosRequired = 1
+        view.incrementNumberOfPhotosTakenOnShutter = false
+        return view
+    }()
 
     private let errorLabel: UILabel = {
         let label = UILabel()
@@ -78,9 +83,7 @@ class SelfieViewController: StepViewController {
         gridView.add(subview: self.nextButton, from: 3, to: 4)
         self.nextButton.pinBottomToSuperviewBottom(spacing: -40)
 
-        gridView.addSubview(self.shutterView.usingAutoLayout())
-        self.shutterView.leftAnchor.constraint(equalTo: gridView.leftAnchor, constant: 16).isActive = true
-        self.shutterView.rightAnchor.constraint(equalTo: gridView.centerXAnchor, constant: 25).isActive = true
+        gridView.add(subview: self.shutterView, from: 1, to: 6)
         self.shutterView.pinBottomToSuperviewBottom(spacing: -30)
     }
 
@@ -98,8 +101,7 @@ class SelfieViewController: StepViewController {
     // MARK: Animations
 
     private func updateControls() {
-        self.setShutterView(visible: self.image == nil)
-        self.setButtons(visible: self.image != nil)
+
         self.shutterView.flashButton.isSelected = self.cameraView.useFlash
 
         if let _ = self.error {
@@ -110,8 +112,6 @@ class SelfieViewController: StepViewController {
     }
 
     private func hideControls() {
-        self.setShutterView(visible: false)
-        self.setButtons(visible: false)
         self.hideErrorLabel()
     }
 
@@ -138,27 +138,22 @@ class SelfieViewController: StepViewController {
 
     private func addActions() {
 
+        self.shutterView.cameraView = self.cameraView
+
+        // TODO clean up
+        // need to show error but not update image or increment count
+        // The UI reacts slightly differently if an error is present or not.
         self.cameraView.photoWasTaken = {
             [weak self] photo, error in
-            self?.image = photo
-            self?.error = error
-            self?.updateControls()
+            guard let me = self else { return }
+            me.error = error
+            me.updateControls()
+            guard error == nil else { return }
+            me.image = photo
+            me.shutterView.incrementNumberOfPhotosTaken()
         }
 
-        self.shutterView.flashButton.addTarget(self, action: #selector(flashButtonTouchUpInside), for: .touchUpInside)
-        self.shutterView.shutterButton.addTarget(self, action: #selector(shutterButtonTouchUpInside), for: .touchUpInside)
-        self.nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
-        self.cancelButton.addTarget(self, action: #selector(cancelButtonTouchUpInside), for: .touchUpInside)
-    }
-
-    @objc func flashButtonTouchUpInside() {
-        self.cameraView.useFlash = !self.cameraView.useFlash
-        self.shutterView.flashButton.isSelected = self.cameraView.useFlash
-    }
-
-    @objc func shutterButtonTouchUpInside() {
-        self.cameraView.capture()
-        self.hideControls()
+        self.shutterView.doneButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
     }
 
     @objc func nextButtonTouchUpInside() {
@@ -174,12 +169,5 @@ class SelfieViewController: StepViewController {
                                            message: Localized.pleaseTryAgain)
             }
         }
-    }
-
-    @objc func cancelButtonTouchUpInside() {
-        self.cameraView.reset()
-        self.image = nil
-        self.error = nil
-        self.updateControls()
     }
 }

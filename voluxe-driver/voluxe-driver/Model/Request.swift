@@ -11,6 +11,7 @@ import Foundation
 struct Request: Codable {
 
     enum State: String, Codable {
+        case canceled
         case completed
         case requested
         case started
