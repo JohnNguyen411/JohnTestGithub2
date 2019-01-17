@@ -30,24 +30,24 @@ class Admin_APITests: XCTestCase {
     }
 
     func test10_dealershipTimeslots() {
-        AdminAPI.timeslots(dealership: 1) {
-            timeslots, error in
-            XCTAssertNil(error)
-            Admin_APITests.timeslots = timeslots
-        }
+//        AdminAPI.timeslots(dealership: 1) {
+//            timeslots, error in
+//            XCTAssertNil(error)
+//            Admin_APITests.timeslots = timeslots
+//        }
         self.wait()
     }
 
     func test20_driverTimeSlotAssignments() {
-        guard let timeslot = Admin_APITests.timeslots.last else {
-            XCTFail("dealership time slot required")
-            return
-        }
-        AdminAPI.driverTimeSlotAssignments(timeslot: timeslot.id) {
-            assignments, error in
-            XCTAssertNil(error)
-            Admin_APITests.assignments = assignments
-        }
+//        guard let timeslot = Admin_APITests.timeslots.last else {
+//            XCTFail("dealership time slot required")
+//            return
+//        }
+//        AdminAPI.driverTimeSlotAssignments(timeslot: timeslot.id) {
+//            assignments, error in
+//            XCTAssertNil(error)
+//            Admin_APITests.assignments = assignments
+//        }
         self.wait()
     }
 

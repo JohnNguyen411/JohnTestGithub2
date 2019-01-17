@@ -35,6 +35,7 @@
 		5312143521CC689200F3FCEB /* SelfieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143421CC689200F3FCEB /* SelfieViewController.swift */; };
 		531A8A2521ED599100D5C8C0 /* InspectionCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2421ED599100D5C8C0 /* InspectionCameraView.swift */; };
 		531A8A2721EE7D8300D5C8C0 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */; };
+		531A8A2821F12EEB00D5C8C0 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */; };
 		531F9C2021B874110027F43D /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531F9C1F21B874110027F43D /* Date+Extensions.swift */; };
 		533046E5218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */; };
 		533046E6218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */; };
@@ -1226,6 +1227,7 @@
 				5380089F21A33C2F00E47660 /* UIColor+Random.swift in Sources */,
 				53368D8E21C17D2E00B1A2AF /* UIImage+LuxeAPI.swift in Sources */,
 				53C190F0219B3D8E00CBC410 /* LuxeAPI+Notifications.swift in Sources */,
+				531A8A2821F12EEB00D5C8C0 /* OdometerReading.swift in Sources */,
 				530BCD602177D345005327E7 /* RestAPI+AlamoFire.swift in Sources */,
 				535A4532217A3787006B5EE1 /* Driver_APITests.swift in Sources */,
 				533046E6218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */,

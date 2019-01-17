@@ -15,11 +15,12 @@ extension Bundle {
     /// the app, like API, that use the bundle for version or schemes
     /// so it is critical that the correct bundle is used.  This is
     /// offered as a workaround to main that will always provide the
-    /// correct Bundle instance for any target that includes the LuxeAPI
-    /// file.  Since that applies to the app and API test targets, this
-    /// works well.  Note that it is included as part of the application
-    /// source code and NOT part of Shared.
+    /// correct Bundle instance for any target that includes this file.
     static var current: Bundle {
-        return Bundle(for: LuxeAPI.self)
+        return Bundle(for: LuxeBundle.self)
     }
 }
+
+/// This is the class definition that will scope Bundle.current
+/// (and the associated info.plist) to whatever target is running.
+fileprivate class LuxeBundle: Bundle {}
