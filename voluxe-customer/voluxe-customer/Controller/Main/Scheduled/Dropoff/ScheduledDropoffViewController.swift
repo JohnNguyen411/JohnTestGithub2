@@ -81,7 +81,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
             var refreshTimeSlot = true
             
             if let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), state != .dropoffScheduled {
-                self.mapVC.updateDriverLocation(location: coordinates, refreshTime: booking.getRefreshTime())
+                self.mapVC.updateDriverLocation(state: state, location: coordinates, refreshTime: booking.getRefreshTime())
                 if let dropoffRequestLocation = dropoffRequest.location, let dropoffRequestCoordinates = dropoffRequestLocation.getLocation() {
                     refreshTimeSlot = false
                     self.getEta(fromLocation: coordinates, toLocation: dropoffRequestCoordinates)

@@ -124,10 +124,10 @@ import RealmSwift
     func getTitle() -> String {
         if let title = title {
             return title
-        } else {
-            if let repairOrderType = repairOrderType, let typeName = repairOrderType.name {
+        } else if let name = self.name {
+            return name
+        } else if let repairOrderType = self.repairOrderType, let typeName = repairOrderType.name {
                 return typeName
-            }
         }
         return ""
     }

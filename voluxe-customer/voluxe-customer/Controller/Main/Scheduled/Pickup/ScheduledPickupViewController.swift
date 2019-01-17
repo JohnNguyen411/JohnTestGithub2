@@ -69,7 +69,7 @@ class ScheduledPickupViewController: ScheduledViewController {
             var refreshTimeSlot = true
 
             if let driver = pickupRequest.driver, let location = driver.location, let coordinates = location.getLocation(), state != .pickupScheduled {
-                self.mapVC.updateDriverLocation(location: coordinates, refreshTime: booking.getRefreshTime())
+                self.mapVC.updateDriverLocation(state: state, location: coordinates, refreshTime: booking.getRefreshTime())
                 if let pickupRequestLocation = pickupRequest.location, let pickupRequestCoordinates = pickupRequestLocation.getLocation() {
                     self.getEta(fromLocation: coordinates, toLocation: pickupRequestCoordinates)
                     self.timeWindowView.setSubtitle(text: .EstimatedPickupTime)

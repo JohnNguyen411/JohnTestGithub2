@@ -9,7 +9,6 @@
 import Foundation
 import CoreLocation
 import RealmSwift
-import Kingfisher
 
 @objcMembers class Vehicle: Object, Codable {
 
@@ -56,6 +55,47 @@ import Kingfisher
     }
 
     
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
+        self.vin = try container.decodeIfPresent(String.self, forKey: .vin)
+        self.licensePlate = try container.decodeIfPresent(String.self, forKey: .licensePlate)
+        self.make = try container.decodeIfPresent(String.self, forKey: .make)
+        self.model = try container.decodeIfPresent(String.self, forKey: .model)
+        self.drive = try container.decodeIfPresent(String.self, forKey: .drive)
+        self.engine = try container.decodeIfPresent(String.self, forKey: .engine)
+        self.trim = try container.decodeIfPresent(String.self, forKey: .trim)
+        self.year = try container.decodeIfPresent(Int.self, forKey: .year) ?? 2018
+        self.baseColor = try container.decodeIfPresent(String.self, forKey: .baseColor)
+        self.color = try container.decodeIfPresent(String.self, forKey: .color)
+        self.photoUrl = try container.decodeIfPresent(String.self, forKey: .photoUrl)
+        self.transmission = try container.decodeIfPresent(String.self, forKey: .transmission)
+        self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
+        self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
+    }
+
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encodeIfPresent(vin, forKey: .vin)
+        try container.encodeIfPresent(licensePlate, forKey: .licensePlate)
+        try container.encodeIfPresent(make, forKey: .make)
+        try container.encodeIfPresent(model, forKey: .model)
+        try container.encodeIfPresent(drive, forKey: .drive)
+        try container.encodeIfPresent(engine, forKey: .engine)
+        try container.encodeIfPresent(trim, forKey: .trim)
+        try container.encodeIfPresent(year, forKey: .year)
+        try container.encodeIfPresent(baseColor, forKey: .baseColor)
+        try container.encodeIfPresent(color, forKey: .color)
+        try container.encodeIfPresent(photoUrl, forKey: .photoUrl)
+        try container.encodeIfPresent(transmission, forKey: .transmission)
+        try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
+    }
+    
+    
     func colorCode() -> String {
         if let color = baseColor {
             switch (color.lowercased()) {
@@ -80,9 +120,9 @@ import Kingfisher
     
     func vehicleDescription() -> String {
         if let color = color, color.count > 0 {
-            return "\(color.capitalizingFirstLetter()) \(year) \(model ?? "")"
+            return "\(color.capitalizingFirstLetter()) \(year) \(model ?? String.Unknown)"
         }
-        return "\(baseColor?.capitalizingFirstLetter() ?? "") \(year) \(model ?? "")"
+        return "\(baseColor?.capitalizingFirstLetter() ?? "") \(year) \(model ?? String.Unknown)"
     }
     
     func mileage() -> Int {

@@ -49,6 +49,7 @@
 "Pickup" = "Pickup";
 "Delivery" = "Delivery";
 "SignoutConfirmation" = "Are you sure you want to sign out?";
+"Unknown" = "Unknown";
 
 
 /***************** FTUE ***************/

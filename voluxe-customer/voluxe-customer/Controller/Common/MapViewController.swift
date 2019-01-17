@@ -75,7 +75,12 @@ class MapViewController: UIViewController {
     }
     
     // refreshTime is the current time between 2 refresh depending on the state of reservation and how close is the driver from origin or destination
-    func updateDriverLocation(location: CLLocationCoordinate2D, refreshTime: Int) {
+    func updateDriverLocation(state: ServiceState, location: CLLocationCoordinate2D, refreshTime: Int) {
+        
+        // we don't show driver location when he arrived
+        if state == .arrivedForPickup || state == .arrivedForDropoff {
+            return
+        }
         
         let prevLocation = self.driverMarker.position
         let noPreviousLocation = prevLocation.latitude == -180 && prevLocation.longitude == -180
@@ -163,13 +168,17 @@ class MapViewController: UIViewController {
             flagMarker.tracksViewChanges = true
             etaMarker.hideEta()
             flagMarker.tracksViewChanges = false
+            driverMarker.map = nil
+            if let requestLocation = self.requestLocation {
+                self.updateRequestLocation(location: requestLocation)
+            }
         } else if state == .pickupScheduled || state == .dropoffScheduled {
             flagMarker.tracksViewChanges = true
             etaMarker.hideEta()
             driverMarker.map = nil
             flagMarker.tracksViewChanges = false
             if let requestLocation = self.requestLocation {
-                updateRequestLocation(location: requestLocation)
+                self.updateRequestLocation(location: requestLocation)
             }
         }
     }

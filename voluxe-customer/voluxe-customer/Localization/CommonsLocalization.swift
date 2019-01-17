@@ -50,6 +50,5 @@ extension String {
     static let Pickup = NSLocalizedString("Pickup")
     static let Delivery = NSLocalizedString("Delivery")
     static let SignoutConfirmation = NSLocalizedString("SignoutConfirmation")
-
-
+    static let Unknown = NSLocalizedString("Unknown")
 }
