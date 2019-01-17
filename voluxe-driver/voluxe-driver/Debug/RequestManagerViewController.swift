@@ -321,8 +321,9 @@ fileprivate extension UITableViewCell {
         var text = ""
         if let request = offlineInspection.request { text = "Request \(request.id)"}
         if let inspection = offlineInspection.inspection { text = "\(text), Inspection \(inspection.id)" }
+        else { text = "\(text), nil inspection" }
         self.textLabel?.text = text
-        text = "\(offlineInspection.type.rawValue), \(offlineInspection.data.count) bytes"
+        text = "\(offlineInspection.type.description), \(offlineInspection.data.count) bytes"
         if offlineInspection.isUploaded { text = "\(text), added to UploadManager" }
         self.detailTextLabel?.text = text
     }

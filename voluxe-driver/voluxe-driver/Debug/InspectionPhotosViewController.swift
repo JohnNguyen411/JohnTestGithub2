@@ -11,6 +11,10 @@ import UIKit
 
 class InspectionPhotosViewController: UIViewController {
 
+    // MARK: Data
+
+    private var type: InspectionType = .document
+  
     // MARK: Layout
 
     private let inspectionCameraView = InspectionCameraView()
@@ -24,8 +28,17 @@ class InspectionPhotosViewController: UIViewController {
     }
 
     convenience init(type: InspectionType) {
+
         self.init()
-        self.inspectionCameraView.showOverlay(for: type)
+        self.type = type
+        self.inspectionCameraView.update(for: type)
+
+        switch type {
+            case .document: self.navigationItem.title = "Photo License, Insurance"
+            case .loaner: self.navigationItem.title = "Photo Loaner"
+            case .vehicle: self.navigationItem.title = "Photo Customer Vehicle"
+            default: self.navigationItem.title = "Inspection Photos"
+        }
     }
 
     override func loadView() {
@@ -45,9 +58,7 @@ class InspectionPhotosViewController: UIViewController {
 
         self.inspectionCameraView.photoWasTaken = {
             photo in
-            // TODO send to RequestManager
-            // TODO hide overlay image?\
-            RequestManager.shared.addInspection(photo: photo, type: .document)
+            RequestManager.shared.addInspection(photo: photo, type: self.type)
         }
 
         self.inspectionCameraView.shutterView.doneButton.addTarget(self, action: #selector(doneButtonTouchUpInside), for: .touchUpInside)

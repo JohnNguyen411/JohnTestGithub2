@@ -19,12 +19,7 @@ class InspectionCameraView: UIView {
 
     let filmstripView = FilmstripView()
     let cameraView = CameraView(mode: .multiple)
-
-    let shutterView: ShutterView = {
-        let view = ShutterView()
-        view.numberOfPhotosRequired = 6
-        return view
-    }()
+    let shutterView = ShutterView()
 
     private let overlayView = UIView.forAutoLayout()
 
@@ -117,7 +112,20 @@ class InspectionCameraView: UIView {
 
 extension InspectionCameraView {
 
-    func showOverlay(for type: InspectionType) {
+    convenience init(for type: InspectionType) {
+        self.init()
+        self.update(for: type)
+    }
+
+    func update(for type: InspectionType) {
+        self.showOverlay(for: type)
+        switch type {
+            case .document: self.shutterView.numberOfPhotosRequired = 2
+            default: self.shutterView.numberOfPhotosRequired = 6
+        }
+    }
+
+    private func showOverlay(for type: InspectionType) {
         switch type {
             case .document:
                 self.overlayImageView.image = UIImage(named: "documents")

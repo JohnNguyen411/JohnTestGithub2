@@ -19,7 +19,7 @@ struct Customer: Codable {
     let lastLoginAt: Date
     let phoneNumber: String
     let phoneNumberVerified: Bool
-    let photoUrl: String
+    let photoUrl: String?
     let location: Location?
     let type: String?
     let enabled: Bool

@@ -211,6 +211,27 @@ class CameraView: UIView {
     func open(animated: Bool = true) {
 
         guard self.session.isRunning == false else { return }
+
+        DispatchQueue.main.async {
+            self.initCamera()
+        }
+
+        guard animated else { return }
+
+        self.preview.alpha = 0
+        self.imageView.alpha = 0
+
+        UIView.animate(withDuration: 2.0) {
+            self.preview.alpha = 1
+            self.imageView.alpha = 1
+        }
+    }
+
+    /// This does the actual work of initializing the camera.  This
+    /// is an expensive operation, so all other animations MUST be
+    /// complete before calling this otherwise imperfections may be visible.
+    private func initCamera() {
+        guard self.session.isRunning == false else { return }
         guard let device = AVCaptureDevice.default(.builtInWideAngleCamera,
                                                    for: AVMediaType.video,
                                                    position: self.position) else { return }
@@ -227,11 +248,6 @@ class CameraView: UIView {
         self.preview.layer.addSublayer(layer)
         layer.frame = self.preview.bounds
         self.session.startRunning()
-
-        UIView.animate(withDuration: animated ? 1.0 : 0) {
-            self.preview.alpha = 1
-            self.imageView.alpha = 1
-        }
     }
 
     /// Hide the preview and taken photo views.  Suitable to be

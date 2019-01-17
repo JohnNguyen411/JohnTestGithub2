@@ -26,7 +26,7 @@ struct Request: Codable {
 
     let id: Int
     let type: Type
-    let booking: Booking
+    let booking: Booking?
     let dealershipTimeSlotId: Int
     let dealershipTimeSlot: DealershipTimeSlot
     let notes: String?

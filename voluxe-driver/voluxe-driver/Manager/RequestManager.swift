@@ -84,13 +84,16 @@ class RequestManager {
         self.addInspection(photo: photo, type: .vehicle)
     }
 
-    // TODO assert if no request
     func addInspection(photo: UIImage,
                        type: InspectionType)
     {
         guard let request = self.request else { return }
         request.inspection(for: type) {
             [weak self] inspection in
+            guard let inspection = inspection else {
+                Log.unexpected(.missingValue, "Need a valid inspection to create upload")
+                return
+            }
             self?.upload(request: request,
                          inspection: inspection,
                          type: type,
@@ -100,7 +103,7 @@ class RequestManager {
 
     // TODO assert on fails?
     private func upload(request: Request,
-                        inspection: Inspection?,
+                        inspection: Inspection,
                         type: InspectionType,
                         photo: UIImage)
     {
@@ -186,6 +189,7 @@ class RequestManager {
             [weak self] in
             self?.refreshing = false
         }
+        self.startUploading()
         self.cleanup()
     }
 
@@ -224,6 +228,17 @@ class RequestManager {
 
 fileprivate extension Request {
 
+    /// It is important to note that there may not be a returned
+    /// inspection.  If this is unexpectedly nil, check that the
+    /// request supports the type of inspection.  For example,
+    /// asking for a loaner inspection when the request does not
+    /// have an attached loaner will return a nil inspection, the
+    /// API will not allow it.
+    ///
+    /// Another important distinction is that for loaner and vehicle
+    /// type, the existing Inspection will be used.  For documents,
+    /// a new Inspection is created for each one.  This is most visible
+    /// when viewing the Request model.
     func inspection(for type: InspectionType,
                     completion: @escaping ((Inspection?) -> ()))
     {
@@ -310,7 +325,7 @@ class OfflineInspection: Object {
     // MARK:- Lifecycle
 
     convenience init(request: Request,
-                     inspection: Inspection? = nil,
+                     inspection: Inspection,
                      type: InspectionType,
                      photo: UIImage)
     {

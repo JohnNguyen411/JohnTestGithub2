@@ -34,6 +34,7 @@
 		5312143321CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143221CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift */; };
 		5312143521CC689200F3FCEB /* SelfieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143421CC689200F3FCEB /* SelfieViewController.swift */; };
 		531A8A2521ED599100D5C8C0 /* InspectionCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2421ED599100D5C8C0 /* InspectionCameraView.swift */; };
+		531A8A2721EE7D8300D5C8C0 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */; };
 		531F9C2021B874110027F43D /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531F9C1F21B874110027F43D /* Date+Extensions.swift */; };
 		533046E5218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */; };
 		533046E6218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */; };
@@ -209,6 +210,7 @@
 		5312143221CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPhoneViewController.swift; sourceTree = "<group>"; };
 		5312143421CC689200F3FCEB /* SelfieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieViewController.swift; sourceTree = "<group>"; };
 		531A8A2421ED599100D5C8C0 /* InspectionCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionCameraView.swift; sourceTree = "<group>"; };
+		531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerReading.swift; sourceTree = "<group>"; };
 		531F9C1F21B874110027F43D /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverAPI+Inspection.swift"; sourceTree = "<group>"; };
 		533046E721877847007CE01C /* Inspection_APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inspection_APITests.swift; sourceTree = "<group>"; };
@@ -693,6 +695,7 @@
 				53DA9CBC2180F52900ABC414 /* DriverDealershipTimeSlotAssignment.swift */,
 				53DA9CB92180F44E00ABC414 /* Inspection.swift */,
 				53DA9CA2217F66B900ABC414 /* Location.swift */,
+				531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */,
 				53DA9CB02180C7AC00ABC414 /* Request.swift */,
 				53DA9CC22181020400ABC414 /* Task.swift */,
 				53DA9CAD2180C60D00ABC414 /* Vehicle.swift */,
@@ -1160,6 +1163,7 @@
 				533046E5218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */,
 				53B43F9A218B77DE00EF847E /* UserDefaults+LuxeAPI.swift in Sources */,
 				53B43FA3218CB6AC00EF847E /* AppController+Test.swift in Sources */,
+				531A8A2721EE7D8300D5C8C0 /* OdometerReading.swift in Sources */,
 				5339036121D051F000DD16D8 /* AppDelegate+UIAppearance.swift in Sources */,
 				538C4D9B218A3FA600922B16 /* PermissionViewController.swift in Sources */,
 				53EEB1A321B9E3060051B8D5 /* Log.swift in Sources */,

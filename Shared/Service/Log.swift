@@ -28,11 +28,11 @@ class Log {
     }
 
     static func unexpected(_ reason: Reason, _ detail: String? = nil) {
-        NSLog("\nLOG:UNEXPECTED: \(reason.rawValue) \(detail ?? "")")
+        NSLog("\nLOG:UNEXPECTED:\(reason.rawValue) \(detail ?? "")")
     }
 
     // TODO fatal or assert?
     static func fatal(_ reason: Reason, _ detail: String? = nil) {
-        NSLog("\nLOG:FATAL: \(reason.rawValue) \(detail ?? "")")
+        NSLog("\nLOG:FATAL:\(reason.rawValue) \(detail ?? "")")
     }
 }
