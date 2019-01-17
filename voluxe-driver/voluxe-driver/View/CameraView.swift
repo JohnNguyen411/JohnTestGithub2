@@ -61,6 +61,7 @@ class CameraView: UIView {
 
     // Handle for captured photo output.
     private let output = AVCapturePhotoOutput()
+    private var isCapturingOutput = false
 
     // MARK: Layout
 
@@ -115,7 +116,7 @@ class CameraView: UIView {
     }
 
     /// Tells the capture session to use flash or not.
-    var useFlash: Bool = true
+    var useFlash: Bool = false
 
     /// Using a top left inset, a circular crop will appear
     /// over the camera preview.  This will also produce a
@@ -264,6 +265,10 @@ class CameraView: UIView {
     // MARK: Image capture and reset
 
     func capture() {
+
+        guard self.isCapturingOutput == false else { return }
+        self.isCapturingOutput = true
+
         #if targetEnvironment(simulator)
             let image = UIColor.random().image(size: CGSize(width: 1024, height: 512))
             self.didCapture(photo: image)
@@ -275,6 +280,7 @@ class CameraView: UIView {
     }
 
     func reset() {
+        self.isCapturingOutput = false
         self._image = nil
         self._croppedImage = nil
         self.imageView.image = nil
@@ -282,7 +288,13 @@ class CameraView: UIView {
 
     // MARK: Notifications
 
+    /// Called after capture() has verified the photo taking options.
+    /// This may not happen immediately after capture(), it depends
+    /// on the focus and flash state of the device's camera.
     var photoWillBeTaken: (() -> ())?
+
+    /// Called after the photo has finished processing
+    /// (face checking, cropping, etc).
     var photoWasTaken: ((UIImage?, OptionError?) -> ())?
 
     // Returns the cropped image (if option set) or original image
@@ -305,6 +317,7 @@ extension CameraView: AVCapturePhotoCaptureDelegate {
                      didFinishProcessingPhoto photo: AVCapturePhoto,
                      error: Error?)
     {
+        self.isCapturingOutput = false
         guard let data = photo.fileDataRepresentation() else { return }
         guard let image = UIImage(data: data) else { return }
         self.didCapture(photo: image)
