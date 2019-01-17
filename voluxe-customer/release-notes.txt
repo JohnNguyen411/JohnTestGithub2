@@ -1,3 +1,6 @@
+v1.3.2 (239)
+Misc minor bugfixes
+
 v1.3.1 (227)
 Fix constraint crash on Booking Feedback
 
