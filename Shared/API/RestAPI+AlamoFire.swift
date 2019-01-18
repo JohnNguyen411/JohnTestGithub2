@@ -101,6 +101,7 @@ extension RestAPI {
 
         // injected responses do not make an actual request
         if let injectedResponse = self.injectResponse() {
+            self.inspect(urlResponse: nil, apiResponse: injectedResponse)
             DispatchQueue.main.async { completion?(injectedResponse) }
             return
         }

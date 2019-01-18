@@ -34,24 +34,6 @@ class AppController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
     }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.associateManagers()
-    }
-
-    // MARK: Manager support
-
-    private func associateManagers() {
-
-        // TODO if driver becomes nil, need to force logout
-        // when driver changes other managers need to know
-        DriverManager.shared.driverDidChangeClosure = {
-            driver in
-            RequestManager.shared.set(driver: driver)
-            if driver == nil { self.showLanding() }
-        }
-    }
 }
 
 // MARK:- App lifecycle
@@ -59,10 +41,8 @@ class AppController: UIViewController {
 extension AppController {
 
     func launch() {
-        // TODO resume() is called just for simplicity
-        // launch behaviour will be different
         self.showLanding(animated: false)
-        self.resume()
+        self.requestPermissions()
     }
 
     func resume() {
@@ -75,6 +55,11 @@ extension AppController {
 
     func exit() {
         UserDefaults.standard.synchronize()
+    }
+
+    func logout() {
+        DriverManager.shared.logout()
+        self.showLanding()
     }
 }
 

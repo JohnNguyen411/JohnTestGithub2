@@ -43,8 +43,6 @@ extension AppController {
         NotificationCenter.default.removeObserver(self)
     }
 
-    // TODO https://app.asana.com/0/858610969087925/894650916838358/f
-    // TODO localize
     // Note that there is nothing checking if an alert has already been presented.
     // It's possible the app is showing an OS alert (like notification permissions)
     // but unlikely given a new app install will be the latest version so this
@@ -67,8 +65,6 @@ extension AppController {
             _ in
             // TODO https://app.asana.com/0/858610969087925/894650916838358/f
             // TODO need app store URL
-            // TODO https://app.asana.com/0/858610969087925/907036762032123/f
-            // prevent resume if force update required
         }
         controller.addAction(appStoreAction)
 
@@ -83,8 +79,6 @@ extension AppController {
         self.present(controller, animated: true)
     }
 
-    // TODO https://app.asana.com/0/858610969087925/894650916838358/f
-    // TODO localize
     private func showLoginRequiredAlert() {
 
         let controller = UIAlertController(title: Localized.signInRequired,
@@ -93,8 +87,7 @@ extension AppController {
 
         let action = UIAlertAction(title: Localized.signIn, style: .default) {
             action in
-            // TODO https://app.asana.com/0/858610969087925/907036762032121/f
-            // TODO force UI back to login screen, reset API to prevent any more calls
+            AppController.shared.logout()
         }
 
         controller.addAction(action)

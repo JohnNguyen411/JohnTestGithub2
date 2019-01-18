@@ -26,10 +26,13 @@ extension DriverAPI {
         }
     }
 
+    /// If no completion closure is provided, this will not attempt
+    /// to decode any response from the API.
     static func logout(completion: ((LuxeAPIError.Code?) -> ())? = nil) {
         self.api.post(route: "v1/users/logout") {
             response in
-            completion?(response?.asErrorCode())
+            guard let completion = completion else { return }
+            completion(response?.asErrorCode())
         }
         self.api.updateHeaders()
     }

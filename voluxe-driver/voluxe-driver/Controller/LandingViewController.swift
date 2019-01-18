@@ -44,21 +44,6 @@ class LandingViewController: UIViewController {
         self.loginButton.pinBottomToSuperviewBottom(spacing: -153)
     }
 
-    // TODO remove, this is temporary during development
-#if DEBUG
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        let defaults = UserDefaults.standard
-        guard defaults.loginOnLaunch else { return }
-        guard let email = defaults.driverEmail else { return }
-        guard let password = defaults.driverPassword else { return }
-        DriverManager.shared.login(email: email, password: password) {
-            _ in
-            // nothing to do
-        }
-    }
-#endif
-
     // MARK:- Actions
 
     @objc func loginButtonTouchUpInside() {

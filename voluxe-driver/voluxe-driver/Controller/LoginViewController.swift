@@ -52,10 +52,18 @@ class LoginViewController: StepViewController {
     }
 
     @objc func nextButtonTouchUpInside() {
-        let controller = MyScheduleViewController()
-        AppController.shared.mainController(push: controller,
-                                            asRootViewController: true,
-                                            prefersProfileButton: true)
+        #if DEBUG
+            guard let email = UserDefaults.standard.driverEmail else { return }
+            guard let password = UserDefaults.standard.driverPassword else { return }
+            DriverManager.shared.login(email: email, password: password) {
+                driver in
+                guard driver != nil else { return }
+                let controller = MyScheduleViewController()
+                AppController.shared.mainController(push: controller,
+                                                    asRootViewController: true,
+                                                    prefersProfileButton: true)
+            }
+        #endif
     }
 
     @objc func cancelButtonTouchUpInside() {

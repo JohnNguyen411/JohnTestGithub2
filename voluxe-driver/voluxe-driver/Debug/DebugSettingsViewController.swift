@@ -69,11 +69,12 @@ class DebugSettingsViewController: DebugTableViewController {
         var settings: [DebugTableViewCellModel] = []
 
         settings += [DebugTableViewCellModel(title: "Inject Login Required (E2001)",
-                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             cellReuseIdentifier: DebugSubtitleTableViewCell.className,
                                              valueClosure:
             {
                 cell in
                 cell.accessoryType = UserDefaults.standard.injectLoginRequired ? .checkmark : .none
+                cell.detailTextLabel?.text = "Will cause an alert loop if DriverAPI.logout() is called"
             },
                                              actionClosure:
             {
