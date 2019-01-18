@@ -183,14 +183,14 @@ class RequestManager {
     }
 
     private func refresh() {
+        self.startUploading()
+        self.cleanup()
         guard self.refreshing == false else { return }
         self.refreshing = true
         self.refreshRequests {
             [weak self] in
             self?.refreshing = false
         }
-        self.startUploading()
-        self.cleanup()
     }
 
     private func refreshRequest(completion: (() -> ())) {

@@ -80,6 +80,8 @@ extension RestAPI {
                       bodyData: Data? = nil,
                       completion: RestAPICompletion? = nil)
     {
+        Thread.assertIsMainThread()
+
         let url = self.urlFromHost(for: route)
 
         // TODO guard should return RestAPIResponse.error()

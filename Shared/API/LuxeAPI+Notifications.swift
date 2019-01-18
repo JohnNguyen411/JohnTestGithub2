@@ -15,10 +15,12 @@ extension LuxeAPI {
     func inspect(urlResponse: HTTPURLResponse?, apiResponse: RestAPIResponse?) {
 
         // login required, update required errors
-        // these take precidence over update available
+        // these take precedence over update available
+        // note that login required will reset the API token
         if let code = apiResponse?.asErrorCode() {
             switch code {
                 case .E2001, .E2002, .E2003, .E2004, .E3001:
+                    self.clearToken()
                     let notification = Notification.loginRequired()
                     NotificationCenter.default.post(notification)
                 case .E3006:

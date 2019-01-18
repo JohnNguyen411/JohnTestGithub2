@@ -43,6 +43,30 @@ class LoginViewController: StepViewController {
         self.forgotButton.pinTopToBottomOf(view: self.nextButton, spacing: 20)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.waitForRequestsDidChange()
+    }
+
+    // MARK: Animations
+
+    /// This relies upon the RequestManager returning results, plus
+    /// the association that AppController.associateManagers() does
+    /// to pass the logged in driver to the RequestManager to start
+    /// generating results.  If that association is broken, this
+    /// will not work.
+    private func waitForRequestsDidChange() {
+        RequestManager.shared.requestsDidChangeClosure = {
+            requests in
+            AppController.shared.lookNotBusy()
+            guard requests.count > 0 else { return }
+            let controller = MyScheduleViewController()
+            AppController.shared.mainController(push: controller,
+                                                asRootViewController: true,
+                                                prefersProfileButton: true)
+        }
+    }
+
     // MARK: Actions
 
     private func addActions() {
@@ -55,14 +79,8 @@ class LoginViewController: StepViewController {
         #if DEBUG
             guard let email = UserDefaults.standard.driverEmail else { return }
             guard let password = UserDefaults.standard.driverPassword else { return }
-            DriverManager.shared.login(email: email, password: password) {
-                driver in
-                guard driver != nil else { return }
-                let controller = MyScheduleViewController()
-                AppController.shared.mainController(push: controller,
-                                                    asRootViewController: true,
-                                                    prefersProfileButton: true)
-            }
+            AppController.shared.lookBusy()
+            DriverManager.shared.login(email: email, password: password) { _ in }
         #endif
     }
 

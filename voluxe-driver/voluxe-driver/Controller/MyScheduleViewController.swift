@@ -65,11 +65,12 @@ class MyScheduleViewController: UIViewController {
         self.view.backgroundColor = UIColor.Volvo.background.light
         Layout.fill(view: self.view, with: self.tableView, useSafeArea: false)
         Layout.fill(view: self.view, with: self.noRequestsView)
+        self.startRequestManager()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.startRequestManager()
+//        self.startRequestManager()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -81,14 +82,14 @@ class MyScheduleViewController: UIViewController {
 
     private func startRequestManager() {
 
+        self.update(with: RequestManager.shared.requests)
+
         RequestManager.shared.requestsDidChangeClosure = {
             [weak self] requests in
             self?.update(with: requests)
         }
 
         RequestManager.shared.start()
-
-        self.update(with: RequestManager.shared.requests)
     }
 
     // It's important to detail the data structure that is produced because it is

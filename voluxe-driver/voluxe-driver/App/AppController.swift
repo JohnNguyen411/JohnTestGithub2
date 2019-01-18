@@ -34,6 +34,18 @@ class AppController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.associateManagers()
+    }
+
+    private func associateManagers() {
+        DriverManager.shared.driverDidChangeClosure = {
+            driver in
+            RequestManager.shared.set(driver: driver)
+        }
+    }
 }
 
 // MARK:- App lifecycle
@@ -59,6 +71,8 @@ extension AppController {
 
     func logout() {
         DriverManager.shared.logout()
+        RequestManager.shared.stop()
+        UploadManager.shared.stop()
         self.showLanding()
     }
 }

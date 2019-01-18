@@ -56,6 +56,11 @@ class LuxeAPI: RestAPI {
     func initToken(token: String) {
         self.token = token
     }
+
+    func clearToken() {
+        self.token = nil
+        self.updateHeaders()
+    }
 }
 
 

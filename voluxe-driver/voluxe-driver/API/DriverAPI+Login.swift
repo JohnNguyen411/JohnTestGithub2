@@ -29,12 +29,23 @@ extension DriverAPI {
     /// If no completion closure is provided, this will not attempt
     /// to decode any response from the API.
     static func logout(completion: ((LuxeAPIError.Code?) -> ())? = nil) {
+
+        // if there is no token then logout() was probably already called
+        guard self.api.token != nil else {
+            Log.unexpected(.missingValue, "logout() called without a token")
+            completion?(nil)
+            return
+        }
+
+        // tell the API the token is finished
         self.api.post(route: "v1/users/logout") {
             response in
             guard let completion = completion else { return }
             completion(response?.asErrorCode())
         }
-        self.api.updateHeaders()
+
+        // clear the token and headers
+        self.api.clearToken()
     }
 }
 

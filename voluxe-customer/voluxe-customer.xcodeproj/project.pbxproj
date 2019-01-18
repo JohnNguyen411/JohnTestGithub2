@@ -85,6 +85,9 @@
 		5312142521C9BEF700F3FCEB /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2121C9B64F0041CB67 /* Log.swift */; };
 		5312142621C9BF2B00F3FCEB /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2121C9B64F0041CB67 /* Log.swift */; };
 		5312142721C9BF7600F3FCEB /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2121C9B64F0041CB67 /* Log.swift */; };
+		531A8A3021F18E9600D5C8C0 /* Thread+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940963219220B50009F691 /* Thread+Assert.swift */; };
+		531A8A3121F18EE700D5C8C0 /* Thread+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940963219220B50009F691 /* Thread+Assert.swift */; };
+		531A8A3221F18F7100D5C8C0 /* Thread+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940963219220B50009F691 /* Thread+Assert.swift */; };
 		5321B1B720C9A980006C1E14 /* UIView+Blur.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5321B1B620C9A980006C1E14 /* UIView+Blur.swift */; };
 		5322409020B32CE600D4E86C /* RealmManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479420AE300B001F4BC7 /* RealmManager.swift */; };
 		5322409720B39FF700D4E86C /* CreateAccount_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */; };
@@ -2261,6 +2264,7 @@
 				538FE75720BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */,
 				536D6D6420CF3B5C00A269D4 /* SignUp_APITests.swift in Sources */,
 				53C8AD3B20E596C3008E07FF /* AnalyticsEnums.swift in Sources */,
+				531A8A3021F18E9600D5C8C0 /* Thread+Assert.swift in Sources */,
 				52758F1D219E3AF3007E488A /* DateFormatter+LuxeAPI.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -2529,6 +2533,7 @@
 				5303E2F620E4622600B1F4BE /* UserDefaults_UnitTests.swift in Sources */,
 				526F6E8121B9DD88007C7D84 /* UIImage+LuxeAPI.swift in Sources */,
 				524C200E21ACAB87003AA733 /* RestAPI+AlamoFire.swift in Sources */,
+				531A8A3121F18EE700D5C8C0 /* Thread+Assert.swift in Sources */,
 				5340E90D20D861C400B17D53 /* Analytics_UnitTests.swift in Sources */,
 				524C1FFE219F427A003AA733 /* RealmSwift+Codable.swift in Sources */,
 				5340E91620D95E7400B17D53 /* AnalyticsEnums.swift in Sources */,
@@ -2552,6 +2557,7 @@
 				524C200321AC9C43003AA733 /* RestAPI.swift in Sources */,
 				524C201521ACAC6A003AA733 /* LuxeAPI+Version.swift in Sources */,
 				524C202121ACBA5D003AA733 /* AdminAPI.swift in Sources */,
+				531A8A3221F18F7100D5C8C0 /* Thread+Assert.swift in Sources */,
 				538FE76420BF4BC000C3CE17 /* Int+Test.swift in Sources */,
 				5330472A21891AE5007CE01C /* Bundle+Voluxe.swift in Sources */,
 				524C201821ACADA4003AA733 /* LuxeAPI+Notifications.swift in Sources */,
