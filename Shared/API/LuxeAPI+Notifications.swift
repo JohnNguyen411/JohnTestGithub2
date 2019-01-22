@@ -23,6 +23,9 @@ extension LuxeAPI {
                     self.clearToken()
                     let notification = Notification.loginRequired()
                     NotificationCenter.default.post(notification)
+                case .E3004:
+                    let notification = Notification.phoneVerificationRequired()
+                    NotificationCenter.default.post(notification)
                 case .E3006:
                     let notification = Notification.updateRequired()
                     NotificationCenter.default.post(notification)
@@ -57,6 +60,10 @@ extension Notification.Name {
         static var loginRequired: Notification.Name {
             return Notification.Name("Notification.LuxeAPI.\(#function)")
         }
+        
+        static var phoneVerificationRequired: Notification.Name {
+            return Notification.Name("Notification.LuxeAPI.\(#function)")
+        }
     }
 }
 
@@ -76,6 +83,11 @@ extension Notification {
 
     static func loginRequired() -> Notification {
         let notification = Notification(name: Notification.Name.LuxeAPI.loginRequired)
+        return notification
+    }
+    
+    static func phoneVerificationRequired() -> Notification {
+        let notification = Notification(name: Notification.Name.LuxeAPI.phoneVerificationRequired)
         return notification
     }
 

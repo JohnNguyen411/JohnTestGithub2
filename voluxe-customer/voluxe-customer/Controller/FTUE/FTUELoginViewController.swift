@@ -14,7 +14,7 @@ import RealmSwift
 class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
-    let passwordTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••")
+    let passwordTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••", kern: 2.0)
     let forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), event: .forgotPassword, screen: .login)
     
     var loginInProgress = false
@@ -93,8 +93,7 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         
         forgotPassword.snp.makeConstraints { (make) -> Void in
             make.right.equalTo(passwordTextField)
-            make.centerY.equalTo(passwordTextField.snp.centerY)
-            make.height.equalTo(20)
+            make.centerY.equalTo(passwordTextField.titleLabel.snp.centerY)
         }
     }
     

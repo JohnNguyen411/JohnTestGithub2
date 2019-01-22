@@ -171,7 +171,7 @@ class DriverManagerViewController: UIViewController {
         guard let password = self.passwordField.text else { return }
         self.loginButton.isEnabled = false
         DriverManager.shared.login(email: email, password: password) {
-            [weak self] driver in
+            [weak self] driver, error in
             self?.updateUI()
         }
     }

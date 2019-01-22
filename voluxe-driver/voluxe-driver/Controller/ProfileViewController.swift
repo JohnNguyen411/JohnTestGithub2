@@ -140,13 +140,13 @@ class ProfileViewController: UIViewController {
     }
 
     @objc func changePasswordButtonTouchUpInside() {
-        let controller = SetPasswordViewController()
+        let controller = ForgotPasswordViewController()
         AppController.shared.mainController(push: controller, prefersProfileButton: false)
         AppController.shared.hideProfile()
     }
 
     @objc func logoutButtonTouchUpInside() {
-        DriverManager.shared.logout()
+        AppController.shared.logout()
         AppController.shared.hideProfile()
     }
 

@@ -11,6 +11,7 @@ target 'voluxe-driver' do
     pod 'Fabric', '1.7.13'
     pod 'Firebase/Core', '5.14.0'
     pod 'Firebase/Messaging', '5.14.0'
+    pod 'FlagPhoneNumber', '0.7.1'
     pod 'MBProgressHUD', '1.1.0'
     pod 'RealmSwift', '3.11.1'
 end

@@ -163,7 +163,16 @@ class SelfieViewController: StepViewController {
             [weak self] success in
             AppController.shared.lookNotBusy()
             if success {
-                self?.navigationController?.popToRootViewController(animated: true)
+                if let flowDelegate = self?.flowDelegate {                    
+                    if !flowDelegate.pushNextStep() {
+                        AppController.shared.mainController(push: MyScheduleViewController(),
+                                                            animated: true,
+                                                            asRootViewController: true,
+                                                            prefersProfileButton: true)
+                    }
+                } else {
+                    self?.navigationController?.popToRootViewController(animated: true)
+                }
             } else {
                 AppController.shared.alert(title: Localized.photoUploadFailed.capitalized,
                                            message: Localized.pleaseTryAgain)

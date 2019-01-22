@@ -87,7 +87,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         RequestedServiceManager.sharedInstance.setDealership(dealership: dealership)
         
         if let dealership = dealership {
-            dealershipView.descLeftLabel.text = dealership.name
+            dealershipView.setLeftDescription(leftDescription: dealership.name ?? "")
             currentPresentrVC?.dismiss(animated: true, completion: {
                 if openNext {
                     self.loanerClick()
@@ -101,7 +101,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 }
             })
         } else {
-            dealershipView.descLeftLabel.text = ""
+            dealershipView.setLeftDescription(leftDescription: "")
         }
     }
     
@@ -137,7 +137,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 self.hideProgressHUD()
                 if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
                     self.pickupLocationView.hideError()
-                    self.dealershipView.descLeftLabel.text = dealership.name
+                    self.dealershipView.setLeftDescription(leftDescription: dealership.name ?? "")
                     
                     if self.pickupScheduleState.rawValue < SchedulePickupState.dealership.rawValue {
                         if let dealerships = self.dealerships, dealerships.count > 1 {

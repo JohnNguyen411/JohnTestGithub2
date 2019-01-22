@@ -16,7 +16,7 @@ struct Customer: Codable {
     let lastName: String
     let languageCode: String
     let passwordResetRequired: Bool
-    let lastLoginAt: Date
+    let lastLoginAt: Date? // might be null
     let phoneNumber: String
     let phoneNumberVerified: Bool
     let photoUrl: String?

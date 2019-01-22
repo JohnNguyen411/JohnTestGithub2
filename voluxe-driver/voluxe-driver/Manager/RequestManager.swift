@@ -204,6 +204,8 @@ class RequestManager {
 
     private func refreshRequests(completion: (() -> ())? = nil) {
         guard let driver = self.driver else { return }
+        if driver.passwordResetRequired || !driver.workPhoneNumberVerified { return }
+
         let today = Date.earliestToday()
         let weekFromToday = Date.oneWeekFromToday()
         DriverAPI.requests(for: driver, from: today, to: weekFromToday) {

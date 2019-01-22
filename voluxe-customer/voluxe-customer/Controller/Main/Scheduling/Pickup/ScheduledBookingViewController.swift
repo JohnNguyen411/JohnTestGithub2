@@ -153,7 +153,7 @@ class ScheduledBookingViewController: SchedulingViewController {
             self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
         }
         
-        loanerView.descLeftLabel.text = booking.loanerVehicleRequested ? .Yes : .No
+        loanerView.setLeftDescription(leftDescription: booking.loanerVehicleRequested ? .Yes : .No)
     }
     
     func leftButtonClick() {

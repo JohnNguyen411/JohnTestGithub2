@@ -20,7 +20,10 @@ struct Localized {
     static let captureVehicle = NSLocalizedString("Capture both sides and all four corners of the vehicle", comment: "")
     static let changeContactInfo = NSLocalizedString("Change Contact Info", comment: "")
     static let changePassword = NSLocalizedString("Change Password", comment: "")
+    static let letsVerifyPhoneNumber = NSLocalizedString("Let's verify your phone number.", comment: "")
     static let confirmPhoneNumber = NSLocalizedString("Confirm Phone Number", comment: "")
+    static let addPhoneNumber = NSLocalizedString("Add Phone Number", comment: "")
+    static let phoneNumber = NSLocalizedString("Phone Number", comment: "")
     static let contactInformation = NSLocalizedString("Contact Information", comment: "")
     static let currentService = NSLocalizedString("Current Service", comment: "")
     static let createYourPassword = NSLocalizedString("create your password", comment: "")
@@ -28,8 +31,9 @@ struct Localized {
     static let doNotPhotoCreditCard = NSLocalizedString("Do NOT photograph the customer's credit card", comment: "")
 
     static let faceNotDetected = NSLocalizedString("Make sure your eyes and mouth are visible and only include yourself in the photo.", comment: "")
-    static let forgotPassword = NSLocalizedString("Forgot Password", comment: "")
+    static let forgotPassword = NSLocalizedString("Forgot Password?", comment: "")
     static let forgotYourPassword = NSLocalizedString("Forgot Your Password", comment: "")
+    static let pleaseContactAdvisor = NSLocalizedString("Please contact your advisor to reset your password.", comment: "")
 
     static let genericAlertTitle = NSLocalizedString("Action Failed", comment: "")
     static let goToSettings = NSLocalizedString("Go to settings", comment: "")
@@ -56,7 +60,19 @@ struct Localized {
     static let signOut = NSLocalizedString("Sign-Out", comment: "")
 
     static let tomorrow = NSLocalizedString("Tomorrow", comment: "")
+    static let error = NSLocalizedString("Error", comment: "")
+    static let invalidCredentials = NSLocalizedString("Invalid Credentials", comment: "")
+    static let genericError = NSLocalizedString("Generic Error", comment: "")
     static let tryAgain = NSLocalizedString("Try again", comment: "")
+
+    static let emailAddress = NSLocalizedString("Email Address", comment: "")
+    static let emailAddressPlaceholder = NSLocalizedString("name@domain.com", comment: "")
+    static let password = NSLocalizedString("Password", comment: "")
+    static let createPassword = NSLocalizedString("Create a Password", comment: "")
+    static let currentPassword = NSLocalizedString("Current Password", comment: "")
+    static let newPassword = NSLocalizedString("New Password", comment: "")
+    static let confirmNewPassword = NSLocalizedString("Confirm New Password", comment: "")
+    static let update = NSLocalizedString("Update", comment: "")
 
     static let upcomingToday = NSLocalizedString("Upcoming Today", comment: "")
     static let updateAvailable = NSLocalizedString("Update Available", comment: "")

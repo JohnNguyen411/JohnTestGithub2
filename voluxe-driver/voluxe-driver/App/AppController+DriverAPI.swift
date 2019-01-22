@@ -37,6 +37,14 @@ extension AppController {
             [weak self] notification in
             self?.showLoginRequiredAlert()
         }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name.LuxeAPI.phoneVerificationRequired,
+                                               object: nil,
+                                               queue: nil)
+        {
+            [weak self] notification in
+            self?.showPhoneVerificationController()
+        }
     }
 
     func deregisterAPINotifications() {
@@ -92,5 +100,25 @@ extension AppController {
 
         controller.addAction(action)
         self.present(controller, animated: true, completion: nil)
+    }
+    
+    private func showPhoneVerificationController() {
+        // TODO reset API to prevent any more calls
+        RequestManager.shared.stop()
+        
+        guard let driver = DriverManager.shared.driver else {
+            AppController.shared.logout()
+            return
+        }
+        
+        let steps = FlowViewController.loginSteps(for: driver)
+        
+        if steps.count == 0 {
+            AppController.shared.logout()
+        } else {
+            AppController.shared.mainController(push: FlowViewController(steps: steps, direction: .horizontal),
+                                                asRootViewController: true,
+                                                prefersProfileButton: false)
+        }
     }
 }

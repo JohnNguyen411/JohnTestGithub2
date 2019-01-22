@@ -22,7 +22,11 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
 
     private var _driver: Driver? {
         didSet {
-            self.notifyDriverDidChange()
+            if let oldDriver = oldValue, let driver = self._driver, oldDriver.id == driver.id {
+                // just update the driver
+            } else {
+                self.notifyDriverDidChange()
+            }
             self.refreshPhotoForDriverIfNecessary(oldValue?.photoUrl)
         }
     }
@@ -55,7 +59,13 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
             return
         }
 
-        guard let url = URL(string: driver.photoUrl) else {
+        guard let photoUrl = driver.photoUrl else {
+            Log.unexpected(.incorrectValue, "Driver.photoUrl is nil")
+            DispatchQueue.main.async { completion(nil) }
+            return
+        }
+        
+        guard let url = URL(string: photoUrl) else {
             Log.unexpected(.incorrectValue, "Driver.photoUrl is an invalid URL")
             DispatchQueue.main.async { completion(nil) }
             return
@@ -101,17 +111,29 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
 
     func login(email: String,
                password: String,
-               completion: @escaping ((Driver?) -> ()))
+               completion: @escaping ((Driver?, LuxeAPIError?) -> ()))
     {
         if let driver = self._driver, driver.email == email {
-            DispatchQueue.main.async() { completion(driver) }
+            DispatchQueue.main.async() { completion(driver, nil) }
             return
         }
 
         DriverAPI.login(email: email, password: password) {
             driver, error in
             if error == nil { self._driver = driver }
-            completion(driver)
+            completion(driver, error)
+            self.updateDriverWithToken()
+        }
+    }
+    
+    func me(completion: @escaping ((Driver?, LuxeAPIError?) -> ()))
+    {
+        
+        // No need to authenticate, we are using token to retrieve `/me`
+        DriverAPI.me() {
+            driver, error in
+            if error == nil { self._driver = driver }
+            completion(driver, error)
             self.updateDriverWithToken()
         }
     }

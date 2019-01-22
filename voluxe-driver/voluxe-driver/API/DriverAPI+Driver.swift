@@ -12,11 +12,11 @@ import UIKit
 
 extension DriverAPI {
 
-    static func me(completion: @escaping ((Driver?, LuxeAPIError.Code?) -> Void)) {
+    static func me(completion: @escaping ((Driver?, LuxeAPIError?) -> Void)) {
         self.api.get(route: "v1/users/me") {
             response in
             let user = response?.decodeDriver()
-            completion(user, response?.asErrorCode())
+            completion(user, response?.asError())
         }
     }
 
@@ -56,7 +56,7 @@ extension DriverAPI {
 
     static func register(device token: String,
                          for driver: Driver,
-                         completion: @escaping ((LuxeAPIError.Code?) -> Void))
+                         completion: @escaping ((LuxeAPIError?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/devices/current"
         let identifier = UIDevice.current.identifierForVendor?.uuidString ?? "UDID unavailable"
@@ -66,7 +66,7 @@ extension DriverAPI {
                                              "os_version": UIDevice.current.systemVersion]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
-            completion(response?.asErrorCode())
+            completion(response?.asError())
         }
     }
 
@@ -111,15 +111,16 @@ extension DriverAPI {
 
     // MARK:- Password updating
 
-    static func update(password: String,
+    static func update(tempPassword: String,
+                       newPassword: String,
                        for driver: Driver,
-                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
+                       completion: @escaping ((LuxeAPIError?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/password/change"
-        let parameters: RestAPIParameters = ["new_password": password]
+        let parameters: RestAPIParameters = ["password": tempPassword, "new_password": newPassword]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
-            completion(response?.asErrorCode())
+            completion(response?.asError())
         }
     }
 }
