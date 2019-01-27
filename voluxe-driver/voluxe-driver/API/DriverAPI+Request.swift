@@ -58,15 +58,10 @@ extension DriverAPI {
         }
     }
 
-    // TODO should this only update the pickup notes?
-    // TODO are dropoff notes not applicable?
     static func update(_ request: Request,
                        notes: String,
                        completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
-        // TODO https://app.asana.com/0/858610969087925/935159618076286/f
-        // TODO assert if not pickup
-        guard request.isPickup else { return }
         let route = "\(request.route)/notes"
         let parameters: RestAPIParameters = ["notes": notes]
         self.api.put(route: route, bodyParameters: parameters) {
@@ -75,7 +70,6 @@ extension DriverAPI {
         }
     }
 
-    // TODO return the numbers separately or in a struct?
     static func contactCustomer(_ request: Request,
                                 completion: @escaping ((String?, String?, LuxeAPIError.Code?) -> Void))
     {
@@ -85,31 +79,6 @@ extension DriverAPI {
             response in
             let (textNumber, phoneNumber) = response?.asPhoneNumbers() ?? (nil, nil)
             completion(textNumber, phoneNumber, response?.asErrorCode())
-        }
-    }
-
-    // TODO move to AdminAPI only
-    static func reset(_ request: Request,
-                      completion: @escaping (LuxeAPIError.Code?) -> Void)
-    {
-        let route = "\(request.route)/reset"
-        self.api.put(route: route) {
-            response in
-            completion(response?.asErrorCode())
-        }
-    }
-
-    // TODO turn in Request extension
-    // TODO fix this to always return a path
-    // TODO include advisor paths
-    // this should include request id in path
-    @available(*, deprecated)
-    func path(for request: Request) -> String {
-        switch request.type {
-            case .advisorPickup: return "advisor-pickup-requests"
-            case .advisorDropoff: return "advisor-dropoff-requests"
-            case .dropoff: return "driver-dropoff-requests"
-            case .pickup: return "driver-pickup-requests"
         }
     }
 }

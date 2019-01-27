@@ -68,12 +68,4 @@ class Inspection_APITests: XCTestCase {
         }
         self.wait()
     }
-
-    func test99_resetRequest() {
-        guard let request = Inspection_APITests.request else { XCTFail(); return }
-        DriverAPI.reset(request) {
-            error in
-            XCTAssertNil(error)
-        }
-    }
 }

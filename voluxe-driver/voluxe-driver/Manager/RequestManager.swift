@@ -49,19 +49,15 @@ class RequestManager {
 
     var requestDidChangeClosure: ((Request?) -> ())?
 
-    // TODO start polling for request object
     func select(request: Request) {
         self.request = request
         self.notifyRequestDidChange()
     }
 
-    // TODO is this needed?
     func isSelected(request: Request) -> Bool {
         return self.request?.id == request.id
     }
 
-    // TODO rename
-    // TODO polling
     var requests: [Request] = [] {
         didSet {
             self.requestsDidChangeClosure?(requests)
@@ -101,7 +97,6 @@ class RequestManager {
         }
     }
 
-    // TODO assert on fails?
     private func upload(request: Request,
                         inspection: Inspection,
                         type: InspectionType,
@@ -117,9 +112,6 @@ class RequestManager {
         self.notifyOfflineInspectionsDidChange()
     }
 
-    // TODO assert on fails?
-    // TODO what happens if a route is bad?
-    // TODO what happens if nothing to upload?
     private func startUploading() {
         guard let realm = try? Realm() else { return }
         let inspections = realm.objects(OfflineInspection.self).filter { $0.isUploaded == false }

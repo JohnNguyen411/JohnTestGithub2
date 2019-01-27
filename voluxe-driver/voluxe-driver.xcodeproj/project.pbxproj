@@ -78,6 +78,17 @@
 		5339036921D55BF100DD16D8 /* UIImage+Merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036821D55BF000DD16D8 /* UIImage+Merge.swift */; };
 		5339036D21D7148A00DD16D8 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036C21D7148A00DD16D8 /* Localized.swift */; };
 		533B72D5218B556E009A44EC /* DriverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B72D4218B556E009A44EC /* DriverManager.swift */; };
+		535381A421FD775300C03ECE /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6D21F2A0DF005EEC3B /* KeychainManager.swift */; };
+		535381A521FD789F00C03ECE /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190DF219B2A9C00CBC410 /* UIView+Layout.swift */; };
+		535381A621FD78FF00C03ECE /* VLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62321E6CC96002A273E /* VLTextField.swift */; };
+		535381A721FD7C6900C03ECE /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190E2219B2A9D00CBC410 /* Layout.swift */; };
+		535381A821FD7C7A00C03ECE /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190E4219B2A9D00CBC410 /* UIView+SafeArea.swift */; };
+		535381A921FD7C8D00C03ECE /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536FFD842177901D00C83F89 /* UIView+AutoLayout.swift */; };
+		535381AA21FD7CA800C03ECE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312141821C83C1E00F3FCEB /* Colors.swift */; };
+		535381AB21FD7CAB00C03ECE /* Colors+Volvo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312141A21C83C2A00F3FCEB /* Colors+Volvo.swift */; };
+		535381AC21FD7CAE00C03ECE /* ColorsImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312141C21C8767000F3FCEB /* ColorsImplementation.swift */; };
+		535381AD21FD7CC500C03ECE /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190E1219B2A9D00CBC410 /* UIColor+Hex.swift */; };
+		535381AE21FD7CD200C03ECE /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190DE219B2A9C00CBC410 /* Font.swift */; };
 		535A452F217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */; };
 		535A4530217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */; };
 		535A4532217A3787006B5EE1 /* Driver_APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A4531217A3787006B5EE1 /* Driver_APITests.swift */; };
@@ -801,6 +812,7 @@
 				53B25DF02176960D002B846B /* Sources */,
 				53B25DF12176960D002B846B /* Frameworks */,
 				53B25DF22176960D002B846B /* Resources */,
+				FDA980C1118A09FAF8538581 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1083,6 +1095,30 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FDA980C1118A09FAF8538581 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FlagPhoneNumber/FlagPhoneNumber.framework",
+				"${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlagPhoneNumber.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libPhoneNumber_iOS.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FFBEFD8B04957EF7C2E3AFD7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1231,11 +1267,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				535381AB21FD7CAB00C03ECE /* Colors+Volvo.swift in Sources */,
 				53B25DF92176960D002B846B /* voluxe_driverUITests.swift in Sources */,
+				535381AE21FD7CD200C03ECE /* Font.swift in Sources */,
+				535381AA21FD7CA800C03ECE /* Colors.swift in Sources */,
 				5330470A2188D7A1007CE01C /* XCUIElement+Test.swift in Sources */,
+				535381A521FD789F00C03ECE /* UIView+Layout.swift in Sources */,
 				5374DF3121E524D100956122 /* Bundle+Current.swift in Sources */,
 				5330470B2188D7A7007CE01C /* XCTest+Test.swift in Sources */,
+				535381AD21FD7CC500C03ECE /* UIColor+Hex.swift in Sources */,
+				535381AC21FD7CAE00C03ECE /* ColorsImplementation.swift in Sources */,
+				535381A921FD7C8D00C03ECE /* UIView+AutoLayout.swift in Sources */,
+				535381A721FD7C6900C03ECE /* Layout.swift in Sources */,
 				524C201E21ACB90C003AA733 /* LuxeAPIError.swift in Sources */,
+				535381A821FD7C7A00C03ECE /* UIView+SafeArea.swift in Sources */,
+				535381A621FD78FF00C03ECE /* VLTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1282,6 +1328,7 @@
 				53B82AF7217E39800041015B /* Dealership.swift in Sources */,
 				53B82AFB217E69F50041015B /* Driver.swift in Sources */,
 				53B577B8219CB18A00AAEB8D /* Token_APITests.swift in Sources */,
+				535381A421FD775300C03ECE /* KeychainManager.swift in Sources */,
 				533046E821877847007CE01C /* Inspection_APITests.swift in Sources */,
 				53B43F9D218B7CD900EF847E /* Bundle+Voluxe.swift in Sources */,
 				5374DF3821E5681F00956122 /* Admin_APITests.swift in Sources */,

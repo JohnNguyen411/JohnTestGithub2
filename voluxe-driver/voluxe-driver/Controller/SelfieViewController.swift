@@ -140,9 +140,6 @@ class SelfieViewController: StepViewController {
 
         self.shutterView.cameraView = self.cameraView
 
-        // TODO clean up
-        // need to show error but not update image or increment count
-        // The UI reacts slightly differently if an error is present or not.
         self.cameraView.photoWasTaken = {
             [weak self] photo, error in
             guard let me = self else { return }

@@ -24,6 +24,7 @@ target 'voluxe-driverUnitTests' do
 end
 
 target 'voluxe-driverUITests' do
+    pod 'FlagPhoneNumber', '0.7.1'
 end
 
 post_install do | installer |

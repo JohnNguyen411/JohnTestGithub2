@@ -103,7 +103,7 @@ extension AppController {
     }
     
     private func showPhoneVerificationController() {
-        // TODO reset API to prevent any more calls
+
         RequestManager.shared.stop()
         
         guard let driver = DriverManager.shared.driver else {

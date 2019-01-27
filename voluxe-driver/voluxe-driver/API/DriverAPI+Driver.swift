@@ -72,9 +72,6 @@ extension DriverAPI {
 
     // MARK:- Phone number updating
 
-    // TODO how to just send in a modified driver?
-    // TODO or to generate a JSON diff of the Driver object?
-    // TODO should ignore request if both numbers are nil?
     static func update(phoneNumber: String,
                        for driver: Driver,
                        completion: @escaping ((LuxeAPIError.Code?) -> Void))
