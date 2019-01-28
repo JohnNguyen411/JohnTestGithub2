@@ -21,14 +21,9 @@ extension DriverAPI {
         }
     }
 
-    // NOTE this only supports requests where type = .pickup
-    // hence not using the self.api.path(for: request)
     static func createDocumentInspection(for request: Request,
                                          completion: @escaping ((Inspection?, LuxeAPIError.Code?) -> Void))
     {
-        // TODO https://app.asana.com/0/858610969087925/935159618076286/f
-        // TODO assert if not pickup
-        guard request.isPickup else { return }
         let route = "\(request.route)/documents"
         self.api.post(route: route) {
             response in
@@ -48,7 +43,7 @@ extension DriverAPI {
 
     static func update(_ request: Request,
                        loanerMileage: UInt,
-                       units: String,   // TODO need enum
+                       units: String,
                        completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
         let route = "\(request.route)/loaner-vehicle-odometer-reading"

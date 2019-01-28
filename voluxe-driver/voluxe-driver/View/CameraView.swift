@@ -94,7 +94,6 @@ class CameraView: UIView {
 
     // MARK: Options
 
-    // TODO showTakenPhoto needs to be replaced
     /// The picture taking mode the camera view is operating in.
     /// .single means one at a time, and will preview the taken photo.
     /// .multiple means several in a row, and will not show a preview.

@@ -17,7 +17,7 @@ class Login_APITests: XCTestCase {
             user, error in
             XCTAssertNil(user)
             XCTAssertNotNil(error)
-            XCTAssertTrue(error == .E2005)
+            XCTAssertTrue(error?.code == .E2005)
         }
 
         self.wait()
@@ -28,7 +28,7 @@ class Login_APITests: XCTestCase {
         DriverAPI.logout() {
             error in
             XCTAssertNotNil(error)
-            XCTAssertTrue(error == .E2001)
+            XCTAssertTrue(error?.code == .E2001)
         }
 
         self.wait()

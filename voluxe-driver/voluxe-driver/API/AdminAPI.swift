@@ -7,7 +7,6 @@
 //
 import Foundation
 
-// TODO replace voluxe-customer AdminAPI with this one
 class AdminAPI: LuxeAPI {
     
     static let api = AdminAPI()
@@ -38,9 +37,7 @@ class AdminAPI: LuxeAPI {
 }
 
 extension RestAPIResponse {
-    
-    // TODO need coding keys?
-    // TODO does this need to be exposed outside the API?
+
     private struct User: Codable {
         let id: Int
         let email: String
@@ -60,8 +57,7 @@ extension RestAPIResponse {
         let user: User
         let token: String
     }
-    
-    // TODO need to find a better name
+
     private struct TokenResponse: Codable {
         let data: UserAndToken
     }

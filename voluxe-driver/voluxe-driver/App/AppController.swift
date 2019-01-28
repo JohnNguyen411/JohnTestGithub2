@@ -92,9 +92,6 @@ extension AppController {
     /// need to be placed with safe areas.
     func replaceChildController(with controller: UIViewController, animated: Bool = true) {
 
-        // TODO prevent showing the same type twice
-        // this will become necessary to solve soon
-
         assert(self.children.count <= 1, "AppController should never have more than one child controller")
         let oldController = self.children.first
         oldController?.removeFromParent()
@@ -117,9 +114,6 @@ extension AppController {
                 oldController?.didMove(toParent: nil)
             })
     }
-
-    // TODO need canShowController(type) to prevent double show
-    // TODO is showing controller of type
 }
 
 // MARK:- Specific controller support
@@ -134,24 +128,6 @@ extension AppController {
     func showMain(animated: Bool = true, rootViewController: UIViewController? = nil, showProfileButton: Bool = true) {
         let controller = MainViewController(with: rootViewController, showProfileButton: showProfileButton)
         self.replaceChildController(with: controller, animated: animated)
-    }
-
-    @available(*, deprecated)
-    func showToday(animated: Bool = true) {
-        let controller = UIViewController(nibName: nil, bundle: nil)
-        controller.view.backgroundColor = UIColor.Debug.red
-        let button = UIButton(type: .custom).usingAutoLayout()
-        button.setTitle("Close", for: .normal)
-        controller.view.addSubview(button)
-        button.centerXAnchor.constraint(equalTo: controller.view.centerXAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: controller.view.centerYAnchor).isActive = true
-        button.addTarget(self, action: #selector(closeButtonTouchUpInside), for: .touchUpInside)
-        self.replaceChildController(with: controller)
-    }
-
-    // TODO remove, this is temporary to test replacing controllers
-    @objc func closeButtonTouchUpInside() {
-        AppController.shared.showLanding()
     }
 
     // MARK: Profile controller
@@ -184,7 +160,6 @@ extension AppController {
         return self.children.first as? MainViewController
     }
 
-    // TODO should prefersProfileButton be aspect of view controller?  likely yes
     func mainController(push controller: UIViewController,
                         animated: Bool = true,
                         asRootViewController: Bool = false,

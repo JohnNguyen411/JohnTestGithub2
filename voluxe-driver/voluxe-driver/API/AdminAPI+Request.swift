@@ -10,6 +10,16 @@ import Foundation
 
 extension AdminAPI {
 
+    static func reset(_ request: Request,
+                      completion: @escaping (LuxeAPIError.Code?) -> Void)
+    {
+        let route = "\(request.route)/reset"
+        self.api.put(route: route) {
+            response in
+            completion(response?.asErrorCode())
+        }
+    }
+
     static func timeslots(dealership: Int,
                           completion: @escaping (([DealershipTimeSlot], LuxeAPIError?) -> ()))
     {

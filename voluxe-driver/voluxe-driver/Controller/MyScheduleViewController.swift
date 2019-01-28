@@ -37,13 +37,12 @@ class MyScheduleViewController: UIViewController {
         return view
     }()
 
-    // TODO fix colors
     private let noRequestsView: UIView = {
         let label = UILabel.forAutoLayout()
         label.font = Font.Volvo.subtitle1
         label.numberOfLines = 0
         label.text = Localized.noScheduledRequests
-        label.textColor = UIColor(rgb: 0x0, a: 0x61)
+        label.textColor = UIColor.Volvo.granite
         let view = GridLayoutView(layout: .volvoAgent())
         view.isHidden = true
         view.add(subview: label, from: 2, to: 5)
@@ -276,7 +275,7 @@ fileprivate extension UITableViewHeaderFooterView {
         let label = UILabel()
         label.font = Font.Volvo.caption
         label.text = text
-        label.textColor = UIColor(rgb: 0x000000, a: 0x8a)
+        label.textColor = UIColor.Volvo.granite
         gridView.add(subview: label, from: 2, to: 6)
         label.heightAnchor.constraint(equalTo: gridView.heightAnchor).isActive = true
 

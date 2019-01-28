@@ -110,10 +110,11 @@ class VLTextField : UIView {
         
         self.titleLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor,
                                                  constant: -18).isActive = true
-       
-        
-        self.textField.pinToTopOf(peerView: titleLabel)
-        
+
+        // https://app.asana.com/0/858610969087925/1103854380574097/f
+        // TODO pinToTopOf() did not actually do anything
+        // self.textField.pinToTopOf(peerView: titleLabel)
+
         self.fieldtrailingAnchor = self.textField.trailingAnchor.constraint(equalTo: self.trailingAnchor,
                                                                             constant: 15)
         self.fieldtrailingAnchor?.isActive = true

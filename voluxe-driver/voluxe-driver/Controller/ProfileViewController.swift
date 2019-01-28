@@ -198,6 +198,3 @@ class ProfileViewController: UIViewController {
             })
     }
 }
-
-// TODO create a private view for the menu
-// TODO embed the buttons from above in it

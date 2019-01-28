@@ -43,11 +43,11 @@ extension AppDelegate {
         }
     }
 
-    // TODO temporary to confirm the app is speaking to APNS
     func application(_ application: UIApplication,
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
-        NSLog("\n\nAPNS TOKEN REGISTERED\n")
+        let string = String(data: deviceToken, encoding: .utf8) ?? "invalid token"
+        Log.info("APNS TOKEN REGISTERED: \(string)")
     }
 }
 
