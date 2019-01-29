@@ -15,11 +15,11 @@ class Inspection_APITests: XCTestCase {
     static var inspection: Inspection?
 
     func test00_loginDriver() {
-        DriverAPI.login(email: "christoph@luxe.com", password: "shenoa7777") {
+        DriverAPI.login(email: "xcodebots@luxe.com", password: "luxebyvolvo7") {
             driver, error in
             XCTAssertNil(error)
             XCTAssertNotNil(driver)
-            XCTAssertTrue(driver?.email == "christoph@luxe.com")
+            XCTAssertTrue(driver?.email == "xcodebots@luxe.com")
             Inspection_APITests.driver = driver
         }
         self.wait()
