@@ -22,6 +22,7 @@ struct AnalyticsEnums {
         case call
         case click
         case change
+        case log
         case view
     }
 
@@ -118,6 +119,12 @@ struct AnalyticsEnums {
             case viewDealershipLocation
         }
 
+        enum Log: String, CaseIterable {
+            case info
+            case fatal
+            case unexpected
+        }
+
         enum Navigation: String, CaseIterable {
             case back
             case close
@@ -208,6 +215,7 @@ struct AnalyticsEnums {
         case errorCode = "error_code"
         case errorMessage = "error_message"
         case granted
+        case message
         case requestID = "request_id"
         case screenName = "screen_name"
         case selected
