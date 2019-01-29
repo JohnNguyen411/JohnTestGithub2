@@ -77,6 +77,11 @@ class LandingViewController: UIViewController {
             })
         }
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Analytics.trackView(screen: .landing)
+    }
     
     private func openMainController() {
         let controller = MyScheduleViewController()

@@ -12,8 +12,9 @@ import UserNotifications
 
 extension AppDelegate {
 
+    // Note that FBAnalytics.configure() should be called before this
+    // to ensure that Firebase is initialized.
     func initPushNotifications() {
-        FirebaseApp.configure()
         Messaging.messaging().delegate = self
         UNUserNotificationCenter.current().delegate = self
     }

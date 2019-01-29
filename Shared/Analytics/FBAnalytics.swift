@@ -6,7 +6,7 @@
 //  Copyright © 2018 Luxe - Volvo Cars. All rights reserved.
 //
 
-import FirebaseAnalytics
+import Firebase
 import Foundation
 
 // global access for analytics
@@ -14,6 +14,10 @@ let Analytics = FBAnalytics()
 
 /// Subclass of AnalyticsCore with a Firebase Analytics implementation.
 class FBAnalytics: AnalyticsCore {
+
+    func configure() {
+        FirebaseApp.configure()
+    }
 
     /// Returns a underscored string that has merged the arguments.
     /// This is the preferred key format for Firebase.
