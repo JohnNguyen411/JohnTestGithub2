@@ -81,9 +81,6 @@ class LandingViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         Analytics.trackView(screen: .landing)
-        Log.info("did see landing screen")
-        Log.unexpected(.incorrectValue, "should be a float")
-        Log.fatal(.missingValue, "driver ID is required")
     }
     
     private func openMainController() {
