@@ -28,7 +28,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>253</string>
+	<string>254</string>
 	<key>ENABLE_DEBUG_INFO</key>
 	<string>$(ENABLE_DEBUG_INFO)</string>
 	<key>Fabric</key>
