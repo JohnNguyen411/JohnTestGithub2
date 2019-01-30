@@ -140,8 +140,8 @@ class Driver_APITests: XCTestCase {
 
     func test60_updatePassword() {
         guard let driver = Driver_APITests.driver else { XCTFail(); return }
-        DriverAPI.update(tempPassword: "shenoa7777",
-                         newPassword: "shenoa7777",
+        DriverAPI.update(tempPassword: "luxebyvolvo7",
+                         newPassword: "luxebyvolvo7",
                          for: driver)
         {
             error in

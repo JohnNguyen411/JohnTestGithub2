@@ -8,6 +8,11 @@
 
 import XCTest
 
+// IMPORTANT!
+// These tests require that the xcodebots@luxe.com user
+// has at least one request assigned to them for today.
+// If not, nearly all the tests will fail.
+
 class Request_APITests: XCTestCase {
 
     static var driver: Driver?
@@ -43,7 +48,7 @@ class Request_APITests: XCTestCase {
         DriverAPI.update(request, task: .meetWithCustomer) {
             error in
             XCTAssertNotNil(error)
-            XCTAssertTrue(error == .E4021)
+            XCTAssertTrue(error == .E4020)
         }
         self.wait()
     }
