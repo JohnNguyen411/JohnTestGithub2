@@ -141,6 +141,23 @@ strip_invalid_archs() {
   STRIP_BINARY_RETVAL=1
 }
 
+
+if [[ "$CONFIGURATION" == "Development" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/FlagPhoneNumber/FlagPhoneNumber.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework"
+fi
+if [[ "$CONFIGURATION" == "Staging" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/FlagPhoneNumber/FlagPhoneNumber.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework"
+fi
+if [[ "$CONFIGURATION" == "Production" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/FlagPhoneNumber/FlagPhoneNumber.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework"
+fi
+if [[ "$CONFIGURATION" == "App Store" ]]; then
+  install_framework "${BUILT_PRODUCTS_DIR}/FlagPhoneNumber/FlagPhoneNumber.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework"
+fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then
   wait
 fi

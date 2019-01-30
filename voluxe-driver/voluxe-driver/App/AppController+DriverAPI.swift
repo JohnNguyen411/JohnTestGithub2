@@ -37,46 +37,47 @@ extension AppController {
             [weak self] notification in
             self?.showLoginRequiredAlert()
         }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name.LuxeAPI.phoneVerificationRequired,
+                                               object: nil,
+                                               queue: nil)
+        {
+            [weak self] notification in
+            self?.showPhoneVerificationController()
+        }
     }
 
     func deregisterAPINotifications() {
         NotificationCenter.default.removeObserver(self)
     }
 
-    // TODO https://app.asana.com/0/858610969087925/894650916838358/f
-    // TODO localize
     // Note that there is nothing checking if an alert has already been presented.
     // It's possible the app is showing an OS alert (like notification permissions)
     // but unlikely given a new app install will be the latest version so this
     // alert should not be shown.
     private func showUpdateAlert(for version: LuxeAPI.Version?, required: Bool = false) {
 
-        var versionString = " "
-        if let version = version { versionString = " \(version) " }
-
-        let availableMessage = "A new version\(versionString)is available from the App Store.  Please update as soon as possible."
-        let requiredMessage = "A new version\(versionString)is required from the App Store.  Please update immediately."
+        let availableMessage = Localized.updateAvailableText
+        let requiredMessage = Localized.updateRequiredText
         let message = required ? requiredMessage : availableMessage
 
-        let availableTitle = "Update Available"
-        let requiredTitle = "Update Required"
+        let availableTitle = Localized.updateAvailable
+        let requiredTitle = Localized.updateRequired
         let title = required ? requiredTitle : availableTitle
 
         let controller = UIAlertController(title: title,
                                            message: message,
                                            preferredStyle: .alert)
 
-        let appStoreAction = UIAlertAction(title: "App Store", style: .default) {
+        let appStoreAction = UIAlertAction(title: Localized.appStore, style: .default) {
             _ in
             // TODO https://app.asana.com/0/858610969087925/894650916838358/f
             // TODO need app store URL
-            // TODO https://app.asana.com/0/858610969087925/907036762032123/f
-            // prevent resume if force update required
         }
         controller.addAction(appStoreAction)
 
         if !required {
-            let cancelAction = UIAlertAction(title: "Later", style: .cancel) {
+            let cancelAction = UIAlertAction(title: Localized.later, style: .cancel) {
                 _ in
                 controller.dismiss(animated: true)
             }
@@ -86,21 +87,38 @@ extension AppController {
         self.present(controller, animated: true)
     }
 
-    // TODO https://app.asana.com/0/858610969087925/894650916838358/f
-    // TODO localize
     private func showLoginRequiredAlert() {
 
-        let controller = UIAlertController(title: "Sign In Required",
-                                           message: "To continue using this app, you must sign in with your driver credentials.",
+        let controller = UIAlertController(title: Localized.signInRequired,
+                                           message: Localized.signInRequiredText,
                                            preferredStyle: .alert)
 
-        let action = UIAlertAction(title: "Sign In", style: .default) {
+        let action = UIAlertAction(title: Localized.signIn, style: .default) {
             action in
-            // TODO https://app.asana.com/0/858610969087925/907036762032121/f
-            // TODO force UI back to login screen, reset API to prevent any more calls
+            AppController.shared.logout()
         }
 
         controller.addAction(action)
         self.present(controller, animated: true, completion: nil)
+    }
+    
+    private func showPhoneVerificationController() {
+
+        RequestManager.shared.stop()
+        
+        guard let driver = DriverManager.shared.driver else {
+            AppController.shared.logout()
+            return
+        }
+        
+        let steps = FlowViewController.loginSteps(for: driver)
+        
+        if steps.count == 0 {
+            AppController.shared.logout()
+        } else {
+            AppController.shared.mainController(push: FlowViewController(steps: steps, direction: .horizontal),
+                                                asRootViewController: true,
+                                                prefersProfileButton: false)
+        }
     }
 }

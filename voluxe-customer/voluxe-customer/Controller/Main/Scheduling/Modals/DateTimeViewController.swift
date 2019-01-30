@@ -447,7 +447,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             }
             
             if selectedDate == nil {
-                var nextDay = self.todaysDate
+                var nextDay = self.minDate
                 
                 //var skippedDays = 0
                 while (!self.dateIsSelectable(date: nextDay) && nextDay <= self.maxDate) {

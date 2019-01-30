@@ -3,7 +3,7 @@
 //  voluxe-driver
 //
 //  Created by Christoph on 10/17/18.
-//  Copyright © 2018 Luxe By Volvo. All rights reserved.
+//  Copyright © 2018 Volvo Valet. All rights reserved.
 //
 
 import Alamofire
@@ -80,6 +80,8 @@ extension RestAPI {
                       bodyData: Data? = nil,
                       completion: RestAPICompletion? = nil)
     {
+        Thread.assertIsMainThread()
+
         let url = self.urlFromHost(for: route)
 
         // TODO guard should return RestAPIResponse.error()
@@ -101,6 +103,7 @@ extension RestAPI {
 
         // injected responses do not make an actual request
         if let injectedResponse = self.injectResponse() {
+            self.inspect(urlResponse: nil, apiResponse: injectedResponse)
             DispatchQueue.main.async { completion?(injectedResponse) }
             return
         }
@@ -108,7 +111,15 @@ extension RestAPI {
         let sentRequest = Alamofire.AF.request(encodedRequest)
         sentRequest.responseData {
             response in
-            let apiResponse = RestAPIResponse(data: response.result.value, error: response.error, statusCode: response.response?.statusCode)
+            // TODO: for some reason, with empty body even with 204 or 205, it returns an error, which it should not.
+            // So, manual workaround for now:
+            var error = response.error
+            let emptyResponseCodes = DataResponseSerializer.defaultEmptyResponseCodes
+        
+            if let statusCode = response.response?.statusCode, error != nil && emptyResponseCodes.contains(statusCode) {
+                error = nil
+            }
+            let apiResponse = RestAPIResponse(data: response.result.value, error: error, statusCode: response.response?.statusCode)
             self.inspect(urlResponse: response.response, apiResponse: apiResponse)
             completion?(apiResponse)
         }
@@ -146,7 +157,7 @@ extension RestAPI {
     {
         // TODO need to call completion with fabricated error response
         guard let data = image.jpegDataForPhotoUpload() else {
-            assertionFailure("Image needs to be JPEG compatible")
+            Log.fatal(.incorrectValue, "Image needs to be JPEG compatible")
             return
         }
         let tuple = [(data, RestAPIMimeType.jpeg)]
@@ -163,7 +174,10 @@ extension RestAPI {
         let request = Alamofire.AF.upload(multipartFormData: {
             multiPartFormData in
             for (data, mimeType) in datasAndMimeTypes {
-                multiPartFormData.append(data, withName: "data", mimeType: mimeType.rawValue)
+                multiPartFormData.append(data,
+                                         withName: mimeType.name,
+                                         fileName: mimeType.filename,
+                                         mimeType: mimeType.rawValue)
             }
         },
                                           to: url,

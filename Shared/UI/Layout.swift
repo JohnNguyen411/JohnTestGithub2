@@ -25,10 +25,10 @@ struct Layout {
         view.topAnchor.constraint(equalTo: anchor, constant: spacing).isActive = true
     }
 
-    static func pinToSuperviewBottom(view: UIView, useSafeArea: Bool = true) {
+    static func pinToSuperviewBottom(view: UIView, spacing: CGFloat = 0, useSafeArea: Bool = true) {
         guard let superview = view.superview else { return }
         let anchor = useSafeArea ? superview.compatibleSafeAreaLayoutGuide.bottomAnchor : superview.bottomAnchor
-        view.bottomAnchor.constraint(equalTo: anchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: anchor, constant: spacing).isActive = true
     }
 }
 
@@ -55,6 +55,14 @@ extension Layout {
         subview.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(subview)
         Layout.pinToSuperviewTop(view: subview)
+        subview.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
+        subview.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
+    }
+
+    static func add(subview: UIView, pinnedToBottomOf view: UIView, useSafeArea: Bool = true) {
+        subview.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(subview)
+        Layout.pinToSuperviewBottom(view: subview)
         subview.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         subview.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }

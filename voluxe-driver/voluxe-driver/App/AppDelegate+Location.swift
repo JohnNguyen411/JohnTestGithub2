@@ -52,14 +52,11 @@ extension AppDelegate: CLLocationManagerDelegate {
     }
 }
 
-// TODO this works but is it too clever?
-// TODO does this need to cleaned up after request completes?
-fileprivate let locationManager = CLLocationManager()
+/// The app only needs a single CLLocationManager, so this is a convenient
+/// way to turn it into a singleton without exposing the detail elsewhere
+/// in the code.
 fileprivate var requestLocationUpdatesCompletion: ((Bool) -> ())?
 
 fileprivate extension CLLocationManager {
-
-    static var local: CLLocationManager {
-        return locationManager
-    }
+    static let local = CLLocationManager()
 }

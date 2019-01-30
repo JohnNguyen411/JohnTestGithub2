@@ -64,7 +64,7 @@ class BaseViewController: UIViewController, PresentrDelegate, VLPresentrViewDele
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        SwiftEventBus.unregister(self)
+        SwiftEventBus.unregister(self, name: "requestNotifPermission")
     }
     
     func setTitle(title: String?) {

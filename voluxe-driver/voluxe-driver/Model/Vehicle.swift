@@ -23,7 +23,7 @@ struct Vehicle: Codable {
     let color: String?
     let transmission: String?
     let photoUrl: String
-    let latestOdometerReading: String?
+    let latestOdometerReading: OdometerReading?
 
     enum CodingKeys: String, CodingKey {
         case id

@@ -94,7 +94,6 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         forgotPassword.snp.makeConstraints { (make) -> Void in
             make.trailing.equalTo(passwordTextField)
             make.centerY.equalTo(passwordTextField.snp.centerY)
-            make.height.equalTo(20)
         }
     }
     

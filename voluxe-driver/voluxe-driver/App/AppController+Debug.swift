@@ -29,11 +29,17 @@ extension AppController {
     }
     #endif
 
-    // TODO https://app.asana.com/0/858610969087925/911111684210127/f
-    // TODO tell any managers to stop operations
-    // TODO tell DriverManager.logout()
-    // TODO tear down current UI
     func relaunch(_ host: RestAPIHost? = nil) {
+
+        // remove any serialized content since the host
+        // has changed so URLs will be incorrect
+        DriverManager.shared.logout()
+        RequestManager.shared.clear()
+        RequestManager.shared.stop()
+        UploadManager.shared.clear()
+        UploadManager.shared.stop()
+
+        // reset API and relaunch
         if let host = host {
             UserDefaults.standard.apiHost = host
             DriverAPI.api.host = host

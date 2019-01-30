@@ -24,11 +24,11 @@ class Driver_APITests: XCTestCase {
     }
 
     func test01_loginDriver() {
-        DriverAPI.login(email: "christoph@luxe.com", password: "shenoa7777") {
+        DriverAPI.login(email: "xcodebots@luxe.com", password: "luxebyvolvo7") {
             driver, error in
             XCTAssertNil(error)
             XCTAssertNotNil(driver)
-            XCTAssertTrue(driver?.email == "christoph@luxe.com")
+            XCTAssertTrue(driver?.email == "xcodebots@luxe.com")
             Driver_APITests.driver = driver
         }
         self.wait()
@@ -76,7 +76,7 @@ class Driver_APITests: XCTestCase {
 
     func test40_registerDevice() {
         guard let driver = Driver_APITests.driver else { XCTFail(); return }
-        let token = "this is supposed to be a push notification token"
+        let token = "abcdefghijklmnopqrstuvwxyz0123456789"
         DriverAPI.register(device: token, for: driver) {
             error in
             XCTAssertNil(error)
@@ -140,7 +140,10 @@ class Driver_APITests: XCTestCase {
 
     func test60_updatePassword() {
         guard let driver = Driver_APITests.driver else { XCTFail(); return }
-        DriverAPI.update(password: "shenoa7777", for: driver) {
+        DriverAPI.update(tempPassword: "luxebyvolvo7",
+                         newPassword: "luxebyvolvo7",
+                         for: driver)
+        {
             error in
             XCTAssertNil(error)
         }

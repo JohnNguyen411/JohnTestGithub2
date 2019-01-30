@@ -3,7 +3,7 @@
 //  voluxe-driver
 //
 //  Created by Christoph on 10/17/18.
-//  Copyright © 2018 Luxe By Volvo. All rights reserved.
+//  Copyright © 2018 Volvo Valet. All rights reserved.
 //
 
 import Foundation
@@ -45,9 +45,26 @@ struct RestAPIResponse {
 // TODO https://app.asana.com/0/858610969087925/935159618076289/f
 // TODO should this be nested in RestAPI?
 enum RestAPIMimeType: String {
+
     case invalid
     case jpeg = "image/jpeg"
     case json = "application/json"
+
+    var name: String {
+        switch self {
+            case .jpeg: return "photo"
+            case .json: return "text"
+            default: return "unknown"
+        }
+    }
+
+    var filename: String {
+        switch self {
+            case .jpeg: return "photo.jpg"
+            case .json: return "text.json"
+            default: return "unknown"
+        }
+    }
 }
 
 // TODO https://app.asana.com/0/858610969087925/908722711775269/f

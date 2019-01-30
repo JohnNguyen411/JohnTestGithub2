@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Driver</string>
+	<string>Agent</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>16</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -38,6 +38,12 @@
 	<false/>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera use is required</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>Location updates are required</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Location updates are required</string>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -62,9 +68,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Location updates are required</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Location updates are required</string>
 </dict>
 </plist>

@@ -3,7 +3,7 @@
 //  voluxe-driver
 //
 //  Created by Christoph on 10/17/18.
-//  Copyright © 2018 Luxe By Volvo. All rights reserved.
+//  Copyright © 2018 Volvo Valet. All rights reserved.
 //
 
 import Foundation
@@ -56,6 +56,11 @@ class LuxeAPI: RestAPI {
     func initToken(token: String) {
         self.token = token
     }
+
+    func clearToken() {
+        self.token = nil
+        self.updateHeaders()
+    }
 }
 
 
@@ -68,7 +73,7 @@ extension RestAPIResponse {
         guard let data = self.data else { return nil }
         do {
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601)
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.localISO8601)
             if convertFromSnakeCase {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
             }

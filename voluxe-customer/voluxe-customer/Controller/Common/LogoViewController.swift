@@ -13,7 +13,7 @@ class LogoViewController: BaseViewController {
     
     let logo: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "luxeByVolvo")
+        imageView.image = UIImage(named: "volvoValet")
         return imageView
     }()
 

@@ -49,19 +49,15 @@ class RequestManager {
 
     var requestDidChangeClosure: ((Request?) -> ())?
 
-    // TODO start polling for request object
     func select(request: Request) {
         self.request = request
         self.notifyRequestDidChange()
     }
 
-    // TODO is this needed?
     func isSelected(request: Request) -> Bool {
         return self.request?.id == request.id
     }
 
-    // TODO rename
-    // TODO polling
     var requests: [Request] = [] {
         didSet {
             self.requestsDidChangeClosure?(requests)
@@ -84,13 +80,16 @@ class RequestManager {
         self.addInspection(photo: photo, type: .vehicle)
     }
 
-    // TODO assert if no request
     func addInspection(photo: UIImage,
                        type: InspectionType)
     {
         guard let request = self.request else { return }
         request.inspection(for: type) {
             [weak self] inspection in
+            guard let inspection = inspection else {
+                Log.unexpected(.missingValue, "Need a valid inspection to create upload")
+                return
+            }
             self?.upload(request: request,
                          inspection: inspection,
                          type: type,
@@ -98,9 +97,8 @@ class RequestManager {
         }
     }
 
-    // TODO assert on fails?
     private func upload(request: Request,
-                        inspection: Inspection?,
+                        inspection: Inspection,
                         type: InspectionType,
                         photo: UIImage)
     {
@@ -114,20 +112,10 @@ class RequestManager {
         self.notifyOfflineInspectionsDidChange()
     }
 
-    // TODO assert on fails?
-    // TODO what happens if a route is bad?
-    // TODO what happens if nothing to upload?
     private func startUploading() {
         guard let realm = try? Realm() else { return }
         let inspections = realm.objects(OfflineInspection.self).filter { $0.isUploaded == false }
         guard let inspection = inspections.first else { return }
-//        self.route(for: inspection) {
-//            route, parameters in
-//            guard let route = route else { return }
-//            guard inspection.data.isEmpty == false else { return }
-//            UploadManager.shared.upload(inspection.data, to: route)
-//            inspection.markAsUploaded()
-//        }
         guard let upload = inspection.upload() else { return }
         UploadManager.shared.upload(upload)
         inspection.markAsUploaded()
@@ -177,21 +165,24 @@ class RequestManager {
             [weak self] timer in
             self?.refresh()
         }
+        Log.info("RequestManager started")
     }
 
     func stop() {
         self.refreshTimer?.invalidate()
         self.refreshTimer = nil
+        Log.info("RequestManager stopped")
     }
 
     private func refresh() {
+        self.startUploading()
+        self.cleanup()
         guard self.refreshing == false else { return }
         self.refreshing = true
         self.refreshRequests {
             [weak self] in
             self?.refreshing = false
         }
-        self.cleanup()
     }
 
     private func refreshRequest(completion: (() -> ())) {
@@ -205,6 +196,8 @@ class RequestManager {
 
     private func refreshRequests(completion: (() -> ())? = nil) {
         guard let driver = self.driver else { return }
+        if driver.passwordResetRequired || !driver.workPhoneNumberVerified { return }
+
         let today = Date.earliestToday()
         let weekFromToday = Date.oneWeekFromToday()
         DriverAPI.requests(for: driver, from: today, to: weekFromToday) {
@@ -229,6 +222,17 @@ class RequestManager {
 
 fileprivate extension Request {
 
+    /// It is important to note that there may not be a returned
+    /// inspection.  If this is unexpectedly nil, check that the
+    /// request supports the type of inspection.  For example,
+    /// asking for a loaner inspection when the request does not
+    /// have an attached loaner will return a nil inspection, the
+    /// API will not allow it.
+    ///
+    /// Another important distinction is that for loaner and vehicle
+    /// type, the existing Inspection will be used.  For documents,
+    /// a new Inspection is created for each one.  This is most visible
+    /// when viewing the Request model.
     func inspection(for type: InspectionType,
                     completion: @escaping ((Inspection?) -> ()))
     {
@@ -315,7 +319,7 @@ class OfflineInspection: Object {
     // MARK:- Lifecycle
 
     convenience init(request: Request,
-                     inspection: Inspection? = nil,
+                     inspection: Inspection,
                      type: InspectionType,
                      photo: UIImage)
     {

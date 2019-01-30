@@ -69,11 +69,12 @@ class DebugSettingsViewController: DebugTableViewController {
         var settings: [DebugTableViewCellModel] = []
 
         settings += [DebugTableViewCellModel(title: "Inject Login Required (E2001)",
-                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             cellReuseIdentifier: DebugSubtitleTableViewCell.className,
                                              valueClosure:
             {
                 cell in
                 cell.accessoryType = UserDefaults.standard.injectLoginRequired ? .checkmark : .none
+                cell.detailTextLabel?.text = "Will cause an alert loop if DriverAPI.logout() is called"
             },
                                              actionClosure:
             {
@@ -156,6 +157,66 @@ class DebugSettingsViewController: DebugTableViewController {
             {
                 cell in
                 self.navigationController?.pushViewController(UploadManagerViewController(), animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Document Inspection",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                let controller = InspectionPhotosViewController(type: .document)
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Loaner Inspection",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                let controller = InspectionPhotosViewController(type: .loaner)
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Vehicle Inspection",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                let controller = InspectionPhotosViewController(type: .vehicle)
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Driver Selfie",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                let controller = SelfieViewController()
+                self.navigationController?.pushViewController(controller, animated: true)
             }
         )]
 

@@ -8,6 +8,7 @@
 
 import CoreLocation
 import Foundation
+import UIKit
 
 class DriverManager: NSObject, CLLocationManagerDelegate {
 
@@ -21,12 +22,85 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
 
     private var _driver: Driver? {
         didSet {
-            self.notifyDriverDidChange()
+            if let oldDriver = oldValue, let driver = self._driver, oldDriver.id == driver.id {
+                // just update the driver
+            } else {
+                self.notifyDriverDidChange()
+            }
+            self.refreshPhotoForDriverIfNecessary(oldValue?.photoUrl)
         }
     }
 
     var driver: Driver? {
         return self._driver
+    }
+
+    // MARK:- Current driver image
+
+    private var _driverPhoto: UIImage? {
+        didSet {
+            self.notifyDriverPhotoDidChange()
+        }
+    }
+
+    var driverPhoto: UIImage? {
+        return self._driverPhoto
+    }
+
+    /// Provided as a convenience if UI requires the most up-to-date
+    /// photo possible.  Typically when the Driver object is updated,
+    /// the photo will be requested if the URL has changed so clients
+    /// can simply use driverPhoto and register for driverPhotoDidChange.
+    func photoForDriver(completion: @escaping ((UIImage?) -> ())) {
+
+        guard let driver = self.driver else {
+            Log.unexpected(.missingValue, "Cannot get drive image without an active driver")
+            DispatchQueue.main.async { completion(nil) }
+            return
+        }
+
+        guard let photoUrl = driver.photoUrl else {
+            Log.unexpected(.incorrectValue, "Driver.photoUrl is nil")
+            DispatchQueue.main.async { completion(nil) }
+            return
+        }
+        
+        guard let url = URL(string: photoUrl) else {
+            Log.unexpected(.incorrectValue, "Driver.photoUrl is an invalid URL")
+            DispatchQueue.main.async { completion(nil) }
+            return
+        }
+
+        let task = URLSession.shared.dataTask(with: url) {
+            [weak self] data, response, error in
+            let image = data != nil ? UIImage(data: data!) : nil
+            DispatchQueue.main.async() {
+                completion(image)
+                self?._driverPhoto = image
+            }
+        }
+
+        task.resume()
+    }
+
+    func set(image: UIImage, completion: @escaping ((Bool) -> ())) {
+        guard let driver = self.driver else { return }
+        guard let image = image.resized(to: 500) else { return }
+        DriverAPI.update(photo: image, for: driver) {
+            error in
+            if let error = error { Log.unexpected(.apiError, error.rawValue) }
+            else { self._driverPhoto = image }
+            completion(error == nil)
+        }
+    }
+
+    private func refreshPhotoForDriverIfNecessary(_ oldPhotoUrl: String?) {
+        guard let driver = self.driver else { return }
+        if oldPhotoUrl != nil && driver.photoUrl == oldPhotoUrl { return }
+        self.photoForDriver() {
+            [weak self] photo in
+            self?._driverPhoto = photo
+        }
     }
 
     // MARK:- Log in/out
@@ -37,17 +111,29 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
 
     func login(email: String,
                password: String,
-               completion: @escaping ((Driver?) -> ()))
+               completion: @escaping ((Driver?, LuxeAPIError?) -> ()))
     {
         if let driver = self._driver, driver.email == email {
-            DispatchQueue.main.async() { completion(driver) }
+            DispatchQueue.main.async() { completion(driver, nil) }
             return
         }
 
         DriverAPI.login(email: email, password: password) {
             driver, error in
             if error == nil { self._driver = driver }
-            completion(driver)
+            completion(driver, error)
+            self.updateDriverWithToken()
+        }
+    }
+    
+    func me(completion: @escaping ((Driver?, LuxeAPIError?) -> ()))
+    {
+        
+        // No need to authenticate, we are using token to retrieve `/me`
+        DriverAPI.me() {
+            driver, error in
+            if error == nil { self._driver = driver }
+            completion(driver, error)
             self.updateDriverWithToken()
         }
     }
@@ -152,6 +238,12 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
 
     private func notifyDriverDidChange() {
         self.driverDidChangeClosure?(self.driver)
+    }
+
+    var driverPhotoDidChangeClosure: ((UIImage?) -> ())?
+
+    private func notifyDriverPhotoDidChange() {
+        self.driverPhotoDidChangeClosure?(self.driverPhoto)
     }
 
     var locationDidChangeClosure: ((CLLocation?) -> ())?

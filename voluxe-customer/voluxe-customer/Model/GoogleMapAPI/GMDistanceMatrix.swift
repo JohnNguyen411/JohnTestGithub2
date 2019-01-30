@@ -33,7 +33,7 @@ class GMDistanceMatrix: Codable {
         guard let data = data else { return nil }
         do {
             let decoder = JSONDecoder()
-            decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601)
+            decoder.dateDecodingStrategy = .formatted(DateFormatter.localISO8601)
             
             let jsonString = String(data: data, encoding: .utf8)
             print("data: \(jsonString ?? "")")

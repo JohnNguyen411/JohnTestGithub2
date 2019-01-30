@@ -8,108 +8,90 @@
 
 import Foundation
 import UIKit
+import MBProgressHUD
 
 class LandingViewController: UIViewController {
-
+    
     // MARK:- Layout
-
+    
     private let logoImageView: UIImageView = {
         let image = UIImage(named: "logo")
         let imageView = UIImageView(image: image)
         imageView.contentMode = .scaleAspectFit
         return imageView
     }()
-
-    private let buttonsView: ButtonsView = {
-        let view = ButtonsView()
-        view.createButton.addTarget(self, action: #selector(createButtonTouchUpInside), for: .touchUpInside)
-        view.loginButton.addTarget(self, action: #selector(loginButtonTouchUpInside), for: .touchUpInside)
-        return view
-    }()
-
+    
+    let loginButton = UIButton.Volvo.text(title: Localized.signIn)
+    
     // MARK:- Lifecycle
-
+    
     convenience init() {
         self.init(nibName: nil, bundle: nil)
+        self.loginButton.addTarget(self, action: #selector(loginButtonTouchUpInside), for: .touchUpInside)
     }
-
+    
     override func viewDidLoad() {
-
+        
+        UserDefaults.standard.enableAlamoFireLogging = true
+        
         super.viewDidLoad()
-        self.view.backgroundColor = .white
-
-        let gridView = self.view.addGridLayoutView(with: GridLayout.volvoValet())
-
+        self.view.backgroundColor = UIColor.Volvo.background.light
+        
+        let gridView = self.view.addGridLayoutView(with: GridLayout.volvoAgent())
+        
         gridView.add(subview: self.logoImageView, from: 2, to: 5)
         self.logoImageView.pinToSuperviewTop(spacing: 96)
         self.logoImageView.heightAnchor.constraint(equalToConstant: 180).isActive = true
-
-        gridView.add(subview: self.buttonsView, from:2, to: 5)
-        self.buttonsView.pinToSuperviewTop(spacing: 425)
+        
+        gridView.add(subview: self.loginButton, from:3, to: 4)
+        self.loginButton.pinBottomToSuperviewBottom(spacing: -153)
+        
+        if let token = KeychainManager.shared.getToken() {
+            self.loginButton.alpha = 0
+            
+            MBProgressHUD.showAdded(to: self.view, animated: true)
+            
+            DriverAPI.loadToken(token: token)
+            DriverManager.shared.me(completion: { [weak self] driver, error in
+                
+                if let view = self?.view {
+                    MBProgressHUD.hide(for: view, animated: true)
+                }
+                
+                if let driver = driver {
+                    let steps = FlowViewController.loginSteps(for: driver)
+                    
+                    if steps.count == 0 {
+                        self?.openMainController()
+                    } else {
+                        AppController.shared.showMain(animated: true,
+                                                      rootViewController: FlowViewController(steps: steps, direction: .horizontal),
+                                                      showProfileButton: false)
+                    }
+                } else {
+                    KeychainManager.shared.setToken(token: nil)
+                    UIView.animate(withDuration: 0.25, animations: {
+                        self?.loginButton.alpha = 1
+                    })
+                }
+            })
+        }
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        Analytics.trackView(screen: .landing)
+    }
+    
+    private func openMainController() {
+        let controller = MyScheduleViewController()
+        AppController.shared.showMain(animated: true, rootViewController: controller, showProfileButton: true)
+    }
+    
     // MARK:- Actions
-
+    
     @objc func loginButtonTouchUpInside() {
-
-    }
-
-    @objc func createButtonTouchUpInside() {
-
-    }
-}
-
-fileprivate class ButtonsView: UIView {
-
-    let loginButton: UIButton = {
-        let button = UIButton(type: .custom).usingAutoLayout()
-        button.setTitleColor(Color.purple, for: .normal)
-        button.setTitle("SIGN-IN", for: .normal)
-        button.contentHorizontalAlignment = .right
-        button.titleLabel?.font = Font.Volvo.button
-        return button
-    }()
-
-    let seperaterLabel: UILabel = {
-        let label = UILabel().usingAutoLayout()
-        label.text = "|"
-        label.textAlignment = .center
-        label.textColor = .lightGray
-        return label
-    }()
-
-    let createButton: UIButton = {
-        let button = UIButton(type: .custom).usingAutoLayout()
-        button.contentHorizontalAlignment = .left
-        button.setTitleColor(Color.purple, for: .normal)
-        button.setTitle("CREATE ACCOUNT", for: .normal)
-        button.titleLabel?.font = Font.Volvo.button
-        return button
-    }()
-
-    convenience init() {
-
-        self.init(frame: .zero)
-        self.translatesAutoresizingMaskIntoConstraints = false
-        self.heightAnchor.constraint(equalToConstant: 44).isActive = true
-
-        self.addSubview(self.loginButton)
-        self.addSubview(self.seperaterLabel)
-        self.addSubview(self.createButton)
-
-        self.loginButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        self.loginButton.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        self.loginButton.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        self.loginButton.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 2.8/8.0).isActive = true
-
-        self.seperaterLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        self.seperaterLabel.leadingAnchor.constraint(equalTo: self.loginButton.trailingAnchor).isActive = true
-        self.seperaterLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        self.seperaterLabel.widthAnchor.constraint(equalToConstant: 20).isActive = true
-
-        self.createButton.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        self.createButton.leadingAnchor.constraint(equalTo: self.seperaterLabel.trailingAnchor).isActive = true
-        self.createButton.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        self.createButton.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        let controller = LoginViewController()
+        AppController.shared.showMain(animated: true, rootViewController: controller, showProfileButton: false)
     }
 }

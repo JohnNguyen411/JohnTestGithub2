@@ -92,8 +92,7 @@ class HelpDetailViewController: BaseViewController {
         } else if helpAction.type == .email {
             email(emailAddress: helpAction.value)
         } else if helpAction.type == .webview {
-            // todo open webview
-            // todo merge ToS PR to get correct URLS and webview
+            self.pushViewController(VLWebViewController(urlAddress: helpAction.value, title: helpAction.title, showReloadButton: true), animated: true)
         }
     }
     

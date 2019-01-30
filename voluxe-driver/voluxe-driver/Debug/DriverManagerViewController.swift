@@ -51,7 +51,8 @@ class DriverManagerViewController: UIViewController {
     private let locationLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
-        label.text = "Update location"
+        label.numberOfLines = 0
+        label.text = "Update location (only when logged in)"
         return label
     }()
 
@@ -170,7 +171,7 @@ class DriverManagerViewController: UIViewController {
         guard let password = self.passwordField.text else { return }
         self.loginButton.isEnabled = false
         DriverManager.shared.login(email: email, password: password) {
-            [weak self] driver in
+            [weak self] driver, error in
             self?.updateUI()
         }
     }

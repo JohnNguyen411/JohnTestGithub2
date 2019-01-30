@@ -122,7 +122,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             if let selectedLoaner = RequestedServiceManager.sharedInstance.getLoaner() {
                 loaner = selectedLoaner
             }
-            self.loanerView.descLeftLabel.text = loaner ? .yes : .no
+            self.loanerView.setLeftDescription(leftDescription: loaner ? .yes : .no)
         }
     }
     
@@ -299,7 +299,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             loaner = selectedLoaner
         }
         
-        loanerView.descLeftLabel.text = loaner ? .yes : .no
+        loanerView.setLeftDescription(leftDescription: loaner ? .yes : .no)
         
         self.confirmButton.setTitle(title: SchedulingViewController.getConfirmButtonTitle(vehicleId: vehicle.id))
         self.confirmButton.setEvent(name: self.getConfirmButtonEvent(), screen: self.screen)
@@ -686,7 +686,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             }
         }
         
-        loanerView.descLeftLabel.text = loanerNeeded ? .yes : .no
+        loanerView.setLeftDescription(leftDescription: loanerNeeded ? .yes : .no)
         currentPresentrVC?.dismiss(animated: true, completion: {
             if openNext {
                 self.scheduledPickupClick()

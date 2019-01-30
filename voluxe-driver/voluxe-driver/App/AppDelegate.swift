@@ -25,13 +25,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.makeKeyAndVisible()
         self.window = window
         self.initServices()
+        self.initAppearance()
         AppController.shared.launch()
         return true
     }
 
     /// Do custom init work here like background fetch, push notifications
-    /// and frameworks.
+    /// and frameworks.  Note that Analytics (which uses Firebase) must
+    /// be configured BEFORE Fabric/Crashlytics, and definitely before
+    /// push notifications.
     private func initServices() {
+        Analytics.configure()
         Fabric.with([Crashlytics.self])
         self.initBackgroundFetch()
         self.initLocationUpdates()

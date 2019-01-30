@@ -11,9 +11,10 @@ import UIKit
 
 extension UIView {
 
-    func addGridLayoutView(with layout: GridLayout = GridLayout.sixColumns()) -> GridLayoutView {
+    func addGridLayoutView(with layout: GridLayout = GridLayout.sixColumns(),
+                           useSafeArea: Bool = true) -> GridLayoutView {
         let view = GridLayoutView(layout: layout)
-        Layout.fill(view: self, with: view)
+        Layout.fill(view: self, with: view, useSafeArea: useSafeArea)
         return view
     }
 }

@@ -9,6 +9,8 @@
 import Foundation
 import RealmSwift
 import MBProgressHUD
+import libPhoneNumber_iOS
+import FlagPhoneNumber
 
 class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     
@@ -86,7 +88,18 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
             } else if indexPath.row == 1 {
                 return (user?.email)!
             } else {
-                return (user?.phoneNumber)!
+                if let phoneNumber = user?.phoneNumber, let phoneNumberUtil = NBPhoneNumberUtil.sharedInstance() {
+                    let code = phoneNumberUtil.extractCountryCode(phoneNumber, nationalNumber: nil)
+                    let region = phoneNumberUtil.getRegionCode(forCountryCode: code)
+                    
+                    do {
+                        let formattedPhoneNumber = try phoneNumberUtil.parse(phoneNumber, defaultRegion: region)
+                        return try phoneNumberUtil.format(inOriginalFormat: formattedPhoneNumber, regionCallingFrom: region)
+                    } catch {
+                        return (user?.phoneNumber) ?? ""
+                    }
+                }
+                return (user?.phoneNumber) ?? ""
             }
             
         } else {
