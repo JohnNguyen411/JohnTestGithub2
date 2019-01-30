@@ -6,55 +6,9 @@
 
 /********** Generic **********/
 
-"appName" = "Luxe by Volvo";
-
-/* Generic */
-"notAvailable" = "NA";
-
-"phoneNumber" = "Phone Number";
-
-"phoneNumberAlreadyTaken" = "Phone number already taken";
-
-"phoneNumberCannotBeEmpty" = "Phone number cannot be empty";
-
-"confirmPhoneNumber" = "Confirm Phone Number";
+"appName" = "Volvo Valet";
 
 "changePhoneNumber" = "Change phone number";
-
-"confirmationCode" = "Confirmation Code";
-
-"createPassword" = "Create a password";
-
-"currentPassword" = "Current Password";
-
-"password" = "Password";
-
-"emailAddress" = "Email Address";
-
-/* Generic */
-"yes" = "Yes";
-
-"no" = "No";
-
-"notNow" = "Not Now";
-
-"loading" = "Loading…";
-
-"next" = "Next";
-
-"skip" = "Skip";
-
-"edit" = "Edit";
-
-"done" = "Done";
-
-"add" = "Add";
-
-"remove" = "Remove";
-
-"close" = "Close";
-
-"retry" = "Retry";
 
 "removeVehicle" = "Remove Vehicle";
 
@@ -78,8 +32,6 @@
 
 "completedService" = "Completed Service";
 
-"dealership" = "Dealership";
-
 "recommendedService" = "Recommended Service";
 
 "newService" = "New Service";
@@ -98,39 +50,9 @@
 
 "yourLastDelivery" = "Your last delivery";
 
-"pickup" = "Pickup";
-
-"delivery" = "Delivery";
-
-"change" = "Change";
-
-"contact" = "Contact";
-
-"update" = "Update";
-
-"volvoYearModel" = "Volvo Year/Model";
-
-"year" = "Year";
-
-"model" = "Model";
-
-"color" = "Color";
-
-"help" = "Help";
-
-"updateNow" = "Update Now";
-
-"settings" = "Settings";
-
-"yourAccount" = "Your Account";
-
 "addNewLocation" = "Add a new location";
 
-"resendCode" = "Resend code";
-
-"toastSettingsLocationDisabled" = "Luxe by Volvo does not function properly with location services disabled";
-
-"requestReset" = "Request was reset.";
+"toastSettingsLocationDisabled" = "Volvo Valet does not function properly with location services disabled.";
 
 "updateYourPassword" = "Update your Password";
 
@@ -138,31 +60,17 @@
 
 "delete" = "Delete";
 
-"passwordRequirements" = "Password must have at least one letter and one digit, at least 8 chars, less than 60";
-
-"openSettings" = "Open Settings";
-
-"back" = "Back";
-
 "map" = "Map";
 
 "refresh" = "Refresh";
-
-/* Vehicle */
-"vehicleMake" = "Volvo";
 
 /* Drawer */
 "yourVolvo" = "Your Volvo";
 
 "yourVolvos" = "Your Volvos";
 
-"signout" = "Sign Out";
-
 
 /********** Errors **********/
-
-/* Error */
-"error" = "Error";
 
 "errorDuplicateRequest" = "A %@ is already scheduled for your car. Please refresh.";
 
@@ -170,35 +78,9 @@
 
 "errorDatabase" = "An unexpected error as occured. Please try restarting the app.";
 
-"errorOops" = "Oops";
-
-"errorUnknown" = "Something went wrong. Please try again.";
-
-"errorInvalidCredentials" = "The email or password provided is invalid.";
-
-"errorInvalidUserDisabled" = "This account has been disabled";
-
-"errorAccountAlreadyExists" = "Account already exists. Please signin.";
-
 "errorNoMatchingCustomer" = "No matching customer is found";
 
-"errorInvalidVerificationCode" = "The verification code you entered is incorrect. Please try again or tap Resend Code to receive a new code.";
-
-"errorUserDisabled" = "Your account has been disabled. Please contact your adviser.";
-
-"errorInvalidFirstName" = "Invalid first name";
-
-"errorInvalidLastName" = "Invalid last name";
-
-"errorInvalidEmail" = "Invalid email address";
-
-"errorInvalidPhoneNumber" = "Invalid phone number";
-
 "errorInvalidPhoneNumberFormatted" = "The provided phone number is correctly formatted but does not appear to be a valid phone number.";
-
-"errorVerifyPhoneNumber" = "Please verify your phone number";
-
-"errorInvalidPhoneVerificationCode" = "Invalid verification code";
 
 "errorPhoneNumberAlreadyExist" = "An account already exists with that phone number, please try Login instead.";
 
@@ -206,35 +88,16 @@
 
 "errorUpdatePhoneNumberAlreadyExist" = "An account already exists with that phone number, please verify the phone number and try again.";
 
-"errorInvalidPassword" = "Invalid password";
-
-"errorInvalidPasswordConfirm" = "Passwords are not matching";
-
 "errorPasswordNotMatch" = "Does not match";
 
-"errorLocationOutOfPickupArea" = "Out of pickup area";
+"errorForcedUpgradeMessage" = "There is a new version of Volvo Valet available for download.\n\nThis is a required update. Please update now.";
 
-"errorLocationServiceNotOfferedInYourArea" = "Service unavailable";
-
-"errorLocationOutOfDropoffArea" = "Out of delivery area";
-
-"errorForcedUpgradeTitle" = "Software Update";
-
-"errorForcedUpgradeMessage" = "There is a new version of Luxe by Volvo available for download.\n\nThis is a required update. Please update now.";
-
-"errorSoftUpgradeTitle" = "Update Available";
-
-"errorSoftUpgradeMessage" = "There is a new version of Luxe by Volvo available for download.\n\nFor the best possible experience, please update now.";
-
-"errorRemoveVehicleError" = "You cannot remove a vehicle that has an active booking";
+"errorSoftUpgradeMessage" = "There is a new version of Volvo Valet available for download.\n\nFor the best possible experience, please update now.";
 
 
 /********** Permissions **********/
 
-/* Permissions */
-"permissionsLocationDeniedTitle" = "Why we need Location?";
-
-"permissionsLocationDeniedMessage" = "Luxe by Volvo needs location access to pickup or deliver your vehicle at your current location.\nPlease go to your settings and enable Location permissions for Luxe by Volvo.";
+"permissionsLocationDeniedMessage" = "Volvo Valet needs location access to pickup or deliver your vehicle at your current location.\nPlease go to your settings and enable Location permissions for Volvo Valet.";
 
 "permissionNotificationMessage" = "We need you to grant us the permission to send you notifications to give you updates regarding the status of your car";
 
@@ -251,14 +114,7 @@
 
 /********** Popups **********/
 
-/* Popups */
-"popupPhoneVerificationResendCodeTitle" = "New confirmation code sent";
-
-"popupPhoneVerificationResendCodeMessage" = "We sent a 4 digit confirmation code to %@";
-
 "popupAddNewLocationEditHint" = "123 Main Street, San Francisco";
-
-"popupAddNewLocationLabel" = "Address for Pickup";
 
 "popupRemoveAddressMessage" = "Are you sure you want to delete that address %@?";
 
@@ -288,8 +144,6 @@
 
 "popupSelectTimeSlotUnavailableLabel" = "Unfortunately no dates are available for this dealership. Please try again later or call the dealership.";
 
-"popupSelectTimeSlotUnavailableCallDealership" = "Call Dealership";
-
 "popupSelectTimeSlotUnavailableCallDealershipNotAvailable" = "Dealership not available";
 
 "popupDefaultCancelPickupMessage" = "Are you sure you want to cancel your pickup?";
@@ -301,10 +155,6 @@
 "popupContactText" = "Text Driver";
 
 "popupContactCall" = "Call Driver";
-
-"popupSoftUpgradeNegative" = "Later";
-
-"popupSignoutConfirmationMessage" = "Are you sure you want to signout?";
 
 "popupAdvisorDropoffMessage" = "Are you sure you want to pick-up your vehicle at the dealership?";
 
@@ -339,9 +189,9 @@
 
 /********** Help Array Values **********/
 
-"helpHowLuxebyVolvoWorks" = "How Luxe by Volvo works";
+"helpHowLuxebyVolvoWorks" = "How Volvo Valet works";
 
-"helpTroubleWithTheLuxebyVolvoApp" = "Trouble with the Luxe by Volvo app";
+"helpTroubleWithTheLuxebyVolvoApp" = "Trouble with the Volvo Valet app";
 
 "helpMyVehicleWasDamaged" = "My vehicle was damaged";
 
@@ -377,7 +227,7 @@
 
 "helpIMissedMyPickupDeliveryDetail" = "If you missed your pickup/delivery window, don’t worry. If it was a pickup, the driver returned to the dealership with the loaner vehicle. If it was a delivery, the driver brought your vehicle back to the dealership. You can call or email the dealership to reschedule.";
 
-"helpMyDriverDidntMatchThePictureDetail" = "For every pickup and delivery, the Luxe by Volvo app helps you recognize the driver who will be performing service for you. If you believe the driver was not who you were expecting, please let us know here.";
+"helpMyDriverDidntMatchThePictureDetail" = "For every pickup and delivery, the Volvo Valet app helps you recognize the driver who will be performing service for you. If you believe the driver was not who you were expecting, please let us know here.";
 
 "helpICouldntContactMyDriverDetail" = "While rare, sometimes customers aren’t able to contact their drivers. This is generally due to two reasons. Either the driver is temporarily passing through an area with no mobile connectivity, or it is an unsafe moment for the driver to respond to a message or receive a call. In that case, the driver will pull-over once it is safe and try to contact the customer.\n\nIf you’re having trouble reaching your driver, you can wait a minute or two, and try contacting the driver again. If the problem persists, please let us know here.";
 
@@ -389,7 +239,7 @@
 
 "helpThereWasAnIssueWithMyPaperworkDetail" = "Apologies if there was an issue with your paperwork. We aim to have transparent and informative paperwork accompanying any maintenance. If you have questions about the paperwork you were provided, please let us know here.";
 
-"helpOtherDetail" = "Didn’t see what you were looking for? Please let us know how we can help you with your Luxe by Volvo service.";
+"helpOtherDetail" = "Didn’t see what you were looking for? Please let us know how we can help you with your Volvo Valet service.";
 
 "helpICantArrangeService" = "I can’t arrange service with my dealership";
 
@@ -401,9 +251,9 @@
 
 "helpNoneOfTheAvailableTimesWorkForMe" = "None of the available times work for me";
 
-"helpICantArrangeServiceDetail" = "Not every dealership currently offers Luxe by Volvo pickup and delivery. While the program is expanding globally across all dealerships, it may not be available at your preferred dealership at this time. Check back next time you need maintenance, and it’ll hopefully be available at that time.";
+"helpICantArrangeServiceDetail" = "Not every dealership currently offers Volvo Valet pickup and delivery. While the program is expanding globally across all dealerships, it may not be available at your preferred dealership at this time. Check back next time you need maintenance, and it’ll hopefully be available at that time.";
 
-"helpNoParticipatingDealershipsInAreaDetail" = "Luxe by Volvo is only available at participating Volvo dealerships. If your preferred dealership is not offering Luxe by Volvo now, they may be offering it in the future. Starting in 2019, Luxe by Volvo will begin becoming available in dealerships in the United States, and begin appearing in Europe and Asia.";
+"helpNoParticipatingDealershipsInAreaDetail" = "Volvo Valet is only available at participating Volvo dealerships. If your preferred dealership is not offering Volvo Valet now, they may be offering it in the future. Starting in 2019, Volvo Valet will begin becoming available in dealerships in the United States, and begin appearing in Europe and Asia.";
 
 "helpICantCancelMyPickupOrDeliveryDetail" = "Cancellation is available up until the day of your pickup or delivery. If today is the day of your pickup or delivery, you’ll need to contact the dealership directly to reschedule.";
 
@@ -413,10 +263,6 @@
 
 "helpTheAppIsntWorkingCorrectly" = "The app isn’t working correctly";
 
-"helpIForgotMyPassword" = "I forgot my password";
-
-"helpICantUpdateMyPhone" = "I can’t update my phone or email";
-
 "helpMyCurrentLocationIsntWorking" = "My current location isn’t working";
 
 "helpPushNotificationsArentWorking" = "Push notifications aren’t working for me";
@@ -425,43 +271,37 @@
 
 "helpPrivacyPolicyInformation" = "Privacy policy information";
 
-"helpRequestingDataFromLuxebyVolvo" = "Requesting data from Luxe by Volvo";
+"helpRequestingDataFromLuxebyVolvo" = "Requesting data from Volvo Valet";
 
-"helpDeleteMyLuxebyVolvoAccount" = "Delete my Luxe by Volvo account";
+"helpDeleteMyLuxebyVolvoAccount" = "Delete my Volvo Valet account";
 
-"helpTheAppIsntWorkingCorrectlyDetail" = "Is something in the Luxe by Volvo app working incorrectly or not as you expected? Please let us know here what issue you’re experiencing, and we’ll work with you to troubleshoot the issue.";
+"helpTheAppIsntWorkingCorrectlyDetail" = "Is something in the Volvo Valet app working incorrectly or not as you expected? Please let us know here what issue you’re experiencing, and we’ll work with you to troubleshoot the issue.";
 
 "helpIForgotMyPasswordDetail" = "If you forgot your password, you can create a new password at sign-in. Your password must be at least 8 characters long, and include at least one numeral and one letter. If you’re having trouble resetting your password, please let us know here.";
 
-"helpICantUpdateMyPhoneDetail" = "Because of how we create your account, we base your Luxe by Volvo account on your email address. Currently, that is not editable. You can update your mobile phone number in 'Your Account', which you can access by tapping the menu icon in the top-left of the app.";
+"helpICantUpdateMyPhoneDetail" = "Because of how we create your account, we base your Volvo Valet account on your email address. Currently, that is not editable. You can update your mobile phone number in 'Your Account', which you can access by tapping the menu icon in the top-left of the app.";
 
-"helpMyCurrentLocationIsntWorkingDetail" = "Check to make sure that you’ve enabled location services for Luxe by Volvo on your phone. For iOS users, go to Settings › Privacy › Location Services. For Android users, go to Settings › Apps › Application List › Luxe by Volvo › Permissions.\n\nMake sure that cellular data or Wi-Fi is on and that you have an active connection. If both of those are working correctly and you’re still having trouble, please let us know here.";
+"helpMyCurrentLocationIsntWorkingDetail" = "Check to make sure that you’ve enabled location services for Volvo Valet on your phone. For iOS users, go to Settings › Privacy › Location Services. For Android users, go to Settings › Apps › Application List › Volvo Valet › Permissions.\n\nMake sure that cellular data or Wi-Fi is on and that you have an active connection. If both of those are working correctly and you’re still having trouble, please let us know here.";
 
-"helpPushNotificationsArentWorkingDetail" = "Check to make sure that you’ve enabled push notifications for Luxe by Volvo on your phone. For iOS users, go to Settings › Notifications › Luxe by Volvo. For Android users, go to Settings › Apps › Application List › Luxe by Volvo › Permissions.\n\nMake sure that cellular data or Wi-Fi is on and that you have an active connection. If both of those are working correctly and you’re still having trouble, please let us know here.";
+"helpPushNotificationsArentWorkingDetail" = "Check to make sure that you’ve enabled push notifications for Volvo Valet on your phone. For iOS users, go to Settings › Notifications › Volvo Valet. For Android users, go to Settings › Apps › Application List › Volvo Valet › Permissions.\n\nMake sure that cellular data or Wi-Fi is on and that you have an active connection. If both of those are working correctly and you’re still having trouble, please let us know here.";
 
-"helpTermsOfServiceDetail" = "Our terms of service apply to all aspects of the Luxe by Volvo service. As a user of the platform, you’ve confirmed that you’ve read and agreed to the terms.";
+"helpTermsOfServiceDetail" = "Our terms of service apply to all aspects of the Volvo Valet service. As a user of the platform, you’ve confirmed that you’ve read and agreed to the terms.";
 
-"helpPrivacyPolicyInformationDetail" = "Our privacy policy describes the information we collect and how its used. The policy applies to any users of Luxe by Volvo.";
+"helpPrivacyPolicyInformationDetail" = "Our privacy policy describes the information we collect and how its used. The policy applies to any users of Volvo Valet.";
 
-"helpRequestingDataFromLuxebyVolvoDetail" = "Do you want data from your Luxe by Volvo usage in the past? You can request that data here, and we will provide it to you within 30 days.";
+"helpRequestingDataFromLuxebyVolvoDetail" = "Do you want data from your Volvo Valet usage in the past? You can request that data here, and we will provide it to you within 30 days.";
 
 "helpDeleteMyLuxebyVolvoAccountDetail" = "If you no longer wish to have your account in our system, you can request that we delete your account. We will remove your information, and notify you of its removal within 30 days.";
 
-"helpAppOtherDetail" = "Didn’t see what you were looking for? Please let us know how we can help you with your Luxe by Volvo app.";
+"helpAppOtherDetail" = "Didn’t see what you were looking for? Please let us know how we can help you with your Volvo Valet app.";
 
 
 /********** Views **********/
 
 /* Views */
-"viewLogoTitle" = "Luxe by Volvo";
+"viewLogoTitle" = "Volvo Valet";
 
-"viewIntro" = "Intro";
-
-"viewIntroFooterSignin" = "Sign-in";
-
-"viewIntroFooterSignup" = "Create Account";
-
-"viewSignupNameLabel" = "Welcome to Luxe by Volvo. Let’s create your account.";
+"viewSignupNameLabel" = "Welcome to Volvo Valet. Let’s create your account.";
 
 "viewEditTextInfoHintFirstName" = "John";
 
@@ -496,8 +336,6 @@
 "viewSignupPasswordRequireLetter" = "Requires a letter";
 
 "viewSignupPasswordRequireNumber" = "Requires a number";
-
-"errorInvalidPasswordUnauthorizedCharacters" = "Your password contains unauthorized characters. Authorized characters: @$!%*?&";
 
 "errorInvalidCharacter" = "Invalid character";
 
@@ -545,8 +383,6 @@
 
 "viewProfileAccountPasswordHeader" = "Account Password";
 
-"viewPhoneVerificationLabel" = "Type the confirmation code you received via SMS";
-
 "viewPhoneVerificationCodeHint" = "0000";
 
 "viewScheduleService" = "Pickup & Delivery";
@@ -557,7 +393,7 @@
 
 "viewScheduleServiceScheduledLabel" = "View Dealership Location";
 
-"viewScheduleServiceTypeDescription" = "You can schedule pickup (with participating dealerships) through Luxe by Volvo.\n\nTo schedule pickup, first select service type.";
+"viewScheduleServiceTypeDescription" = "You can schedule pickup (with participating dealerships) through Volvo Valet.\n\nTo schedule pickup, first select service type.";
 
 "viewScheduleServiceTypeMilestone" = "Milestone Services";
 
@@ -589,11 +425,11 @@
 
 "viewScheduleServiceOptionDropoff" = "Return Vehicle";
 
-"viewScheduleServiceOptionInfoPickup" = "Schedule pickup at any location served by a participating dealership.";
+"viewScheduleServiceOptionInfoPickup" = "You can schedule pickup at any address served by a participating dealership, or you can drop-off your car in person.";
 
 "viewScheduleServiceOptionInfoSelfPickup" = "You can schedule pickup at any address served by a participating dealership, or you can drop-off your car in person.";
 
-"viewScheduleServiceOptionNotePickup" = "Note: Luxe by Volvo is only offered at participating dealers";
+"viewScheduleServiceOptionNotePickup" = "Note: Volvo Valet is only offered at participating dealers";
 
 "viewScheduleServiceOptionPickupSelfDropPickup" = "Self-Dropoff at Dealership";
 
@@ -601,7 +437,7 @@
 
 "viewScheduleServiceOptionInfoDropoff" = "Schedule delivery at any location served by a participating dealership.";
 
-"viewScheduleServiceOptionNoteDropoff" = "Note: Luxe by Volvo is only offered at participating dealers";
+"viewScheduleServiceOptionNoteDropoff" = "Note: Volvo Valet is only offered at participating dealers";
 
 "viewScheduleServiceOptionPickupSelfDeliveryDropoff" = "Self-Pickup at Dealership";
 
@@ -617,7 +453,7 @@
 
 "viewScheduleServiceStatusInfoArrived" = "Driver has arrived";
 
-"viewScheduleServiceStatusReminderPickup" = "Have your license and insurance card ready";
+"viewScheduleServiceStatusReminderPickup" = "Bring your license and insurance card";
 
 "viewScheduleServiceStatusTimePickupWindow" = "Pickup Window";
 
@@ -655,52 +491,6 @@
 
 "viewHelpOptionPp" = "Privacy policy information";
 
-"viewHelpOptionDetailEmailDealer" = "Email Dealer";
+"viewRatingRangeValueOne" = "1";
 
-"viewHelpOptionDetailCallDealer" = "Call Dealer";
-
-"viewHelpOptionDetailEmailVolvo" = "Email Volvo";
-
-"viewHelpOptionDetailCallVolvo" = "Call Volvo";
-
-"viewSoftwareLicences" = "Software Licenses";
-
-"viewScheduleServiceStatusSelfAdvisorDropoff" = "Pick-up at Dealership";
-
-"viewScheduleServiceStatusSelfAdvisorPickup" = "Drop-off at Dealership";
-
-"viewScheduleServiceStatusSelfDealershipNavigate" = "Get Directions";
-
-"viewScheduleServiceStatusSelfFooterTitleDropoff" = "You can also schedule a driver to deliver your vehicle";
-
-/* Service Types */
-"viewScheduleServiceTypeOtherUnknown" = "Diagnostic Inspection";
-
-/* Help Categories */
-"viewHelpCategoryLastLeg" = "Last Leg";
-
-"viewHelpCategoryHowLuxeByVolvoWorks" = "How Luxe by Volvo works";
-
-"viewHelpCategoryTroubleWithLuxeByVolvoApp" = "Trouble with Luxe by Volvo app";
-
-/* TOS */
-"viewTosContentTermsOfServiceTitle" = "Terms of Service";
-
-"viewTosContentPrivacyPolicyTitle" = "Privacy Policy";
-
-"viewTosContent" = "I have read and agree to the %1$@ and \t%2$@";
-
-"viewTosContentTermsOfService" = "<a href=\"https://terms-luxebyvolvo.luxe.com\">Terms of Service</a>\"";
-
-"viewTosContentPrivacyPolicy" = "<a href=\"https://privacy-luxebyvolvo.luxe.com\">Privacy Policy</a>\"";
-
-"viewTosContentTermsOfServiceUrl" = "https://terms-luxebyvolvo.luxe.com";
-
-"viewTosContentPrivacyPolicyUrl" = "https://privacy-luxebyvolvo.luxe.com";
-
-/* Email */
-"viewEmailIntentChooserTitle" = "Choose E-Mail Client";
-
-"viewEmailSubject" = "This is Subject";
-
-"viewEmailBody" = "Hey Luxe by Volvo,\n\nThis is email body\n\n -\n\nThanks,\n%@";
+"viewRatingRangeValueTen" = "10";

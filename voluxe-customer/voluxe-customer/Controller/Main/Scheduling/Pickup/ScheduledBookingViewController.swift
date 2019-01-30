@@ -27,8 +27,8 @@ class ScheduledBookingViewController: SchedulingViewController {
             event = .outboundCancel
         }
 
-        leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), event: event, screen: .bookingDetail)
-        rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), event: .done, screen: .bookingDetail)
+        leftButton = VLButton(type: .orangePrimary, title: String.cancelPickup.uppercased(), kern: UILabel.uppercasedKern(), event: event, screen: .bookingDetail)
+        rightButton = VLButton(type: .bluePrimary, title: String.done.uppercased(), kern: UILabel.uppercasedKern(), event: .done, screen: .bookingDetail)
         
         super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screen: .bookingDetail)
     }
