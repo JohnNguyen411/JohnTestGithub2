@@ -13,7 +13,7 @@ class Login_APITests: XCTestCase {
 
     func test00_loginInvalid() {
 
-        DriverAPI.login(email: "driverapitest@luxe.com", password: "password") {
+        DriverAPI.login(email: "loginapitest@luxe.com", password: "password") {
             user, error in
             XCTAssertNil(user)
             XCTAssertNotNil(error)
@@ -27,8 +27,7 @@ class Login_APITests: XCTestCase {
 
         DriverAPI.logout() {
             error in
-            XCTAssertNotNil(error)
-            XCTAssertTrue(error?.code == .E2001)
+            XCTAssertNil(error)
         }
 
         self.wait()
@@ -36,11 +35,11 @@ class Login_APITests: XCTestCase {
 
     func test10_loginValid() {
 
-        DriverAPI.login(email: "christoph@luxe.com", password: "shenoa7777") {
+        DriverAPI.login(email: "xcodebots@luxe.com", password: "luxebyvolvo7") {
             user, error in
             XCTAssertNil(error)
             XCTAssertNotNil(user)
-            XCTAssertTrue(user?.email == "christoph@luxe.com")
+            XCTAssertTrue(user?.email == "xcodebots@luxe.com")
         }
 
         self.wait()
