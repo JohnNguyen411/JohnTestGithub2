@@ -299,9 +299,7 @@ extension Request {
             return (route, parameters)
         }
         else {
-            // TODO https://app.asana.com/0/858610969087925/935159618076287/f
-            // TODO Log.assert()
-            assertionFailure("Unsupported InspectionType")
+            Log.fatal(.incorrectValue, "Unsupported InspectionType")
             return ("Unsupported route", nil)
         }
     }

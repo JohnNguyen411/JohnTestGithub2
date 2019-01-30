@@ -42,6 +42,11 @@
 		5312143121CC569E00F3FCEB /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143021CC569E00F3FCEB /* ContactInfoViewController.swift */; };
 		5312143321CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143221CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift */; };
 		5312143521CC689200F3FCEB /* SelfieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143421CC689200F3FCEB /* SelfieViewController.swift */; };
+		5316E9692200CA950053832E /* OSLog+Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9682200CA950053832E /* OSLog+Analytics.swift */; };
+		5316E96B2200F07B0053832E /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E96A2200F07B0053832E /* OSLog.swift */; };
+		5316E96E2200F1900053832E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E96D2200F1900053832E /* Log.swift */; };
+		5316E9702200F2D20053832E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E96F2200F2D20053832E /* Log.swift */; };
+		5316E9712200F2F30053832E /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E96A2200F07B0053832E /* OSLog.swift */; };
 		531A8A2521ED599100D5C8C0 /* InspectionCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2421ED599100D5C8C0 /* InspectionCameraView.swift */; };
 		531A8A2721EE7D8300D5C8C0 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */; };
 		531A8A2821F12EEB00D5C8C0 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */; };
@@ -101,7 +106,7 @@
 		536FFD9E2177901D00C83F89 /* ipa-to-fabric.sh in Resources */ = {isa = PBXBuildFile; fileRef = 536FFD922177901D00C83F89 /* ipa-to-fabric.sh */; };
 		536FFDA12177921B00C83F89 /* release-notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 536FFDA02177921B00C83F89 /* release-notes.txt */; };
 		5374DF2921E519CA00956122 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53368D9021C2FB5400B1A2AF /* String+Utils.swift */; };
-		5374DF2A21E519D500956122 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1A221B9E3060051B8D5 /* Log.swift */; };
+		5374DF2A21E519D500956122 /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1A221B9E3060051B8D5 /* LogService.swift */; };
 		5374DF2F21E524BF00956122 /* Bundle+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5374DF2E21E524BF00956122 /* Bundle+Current.swift */; };
 		5374DF3021E524D000956122 /* Bundle+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5374DF2E21E524BF00956122 /* Bundle+Current.swift */; };
 		5374DF3121E524D100956122 /* Bundle+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5374DF2E21E524BF00956122 /* Bundle+Current.swift */; };
@@ -183,7 +188,7 @@
 		53E7F17E219A49A600390A5D /* LuxeAPI+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E7F17D219A49A600390A5D /* LuxeAPI+Notifications.swift */; };
 		53EEB19C21B9854D0051B8D5 /* AppDelegate+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB19B21B9854D0051B8D5 /* AppDelegate+Location.swift */; };
 		53EEB1A021B9AFA60051B8D5 /* AppController+Permission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB19F21B9AFA60051B8D5 /* AppController+Permission.swift */; };
-		53EEB1A321B9E3060051B8D5 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1A221B9E3060051B8D5 /* Log.swift */; };
+		53EEB1A321B9E3060051B8D5 /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1A221B9E3060051B8D5 /* LogService.swift */; };
 		53EEB1AB21BF29090051B8D5 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1AA21BF29090051B8D5 /* LandingViewController.swift */; };
 		53EEB1AE21BF29EC0051B8D5 /* GridLayout+VolvoAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1AD21BF29EC0051B8D5 /* GridLayout+VolvoAgent.swift */; };
 		53EEB1B021C06AA60051B8D5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1AF21C06AA60051B8D5 /* MainViewController.swift */; };
@@ -242,6 +247,10 @@
 		5312143021CC569E00F3FCEB /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		5312143221CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPhoneViewController.swift; sourceTree = "<group>"; };
 		5312143421CC689200F3FCEB /* SelfieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieViewController.swift; sourceTree = "<group>"; };
+		5316E9682200CA950053832E /* OSLog+Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Analytics.swift"; sourceTree = "<group>"; };
+		5316E96A2200F07B0053832E /* OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
+		5316E96D2200F1900053832E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		5316E96F2200F2D20053832E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		531A8A2421ED599100D5C8C0 /* InspectionCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionCameraView.swift; sourceTree = "<group>"; };
 		531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerReading.swift; sourceTree = "<group>"; };
 		531F9C1F21B874110027F43D /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
@@ -348,7 +357,7 @@
 		53E7F17D219A49A600390A5D /* LuxeAPI+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LuxeAPI+Notifications.swift"; sourceTree = "<group>"; };
 		53EEB19B21B9854D0051B8D5 /* AppDelegate+Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Location.swift"; sourceTree = "<group>"; };
 		53EEB19F21B9AFA60051B8D5 /* AppController+Permission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppController+Permission.swift"; sourceTree = "<group>"; };
-		53EEB1A221B9E3060051B8D5 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		53EEB1A221B9E3060051B8D5 /* LogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
 		53EEB1AA21BF29090051B8D5 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		53EEB1AD21BF29EC0051B8D5 /* GridLayout+VolvoAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridLayout+VolvoAgent.swift"; sourceTree = "<group>"; };
 		53EEB1AF21C06AA60051B8D5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -482,6 +491,14 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		5316E96C2200F1840053832E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5316E96D2200F1900053832E /* Log.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		533047032188D706007CE01C /* App */ = {
 			isa = PBXGroup;
 			children = (
@@ -581,10 +598,10 @@
 			children = (
 				535381B121FEA0D600C03ECE /* Analytics */,
 				530BCD482177AAA0005327E7 /* API */,
-				533047162188D833007CE01C /* Extensions */,
 				5330470C2188D7C5007CE01C /* Debug */,
+				533047162188D833007CE01C /* Extensions */,
+				53EEB1A121B9E2ED0051B8D5 /* Log */,
 				536FFD8E2177901D00C83F89 /* Scripts */,
-				53EEB1A121B9E2ED0051B8D5 /* Service */,
 				530BCD502177D25E005327E7 /* Tests */,
 				536FFD832177901D00C83F89 /* UI */,
 			);
@@ -688,6 +705,7 @@
 		53B25DD72176960C002B846B /* voluxe-driver */ = {
 			isa = PBXGroup;
 			children = (
+				5316E96C2200F1840053832E /* Service */,
 				530BCD4B2177AFB0005327E7 /* API */,
 				533047032188D706007CE01C /* App */,
 				538C4D99218A3F6F00922B16 /* Controller */,
@@ -714,12 +732,13 @@
 			isa = PBXGroup;
 			children = (
 				5374DF3721E5681E00956122 /* Admin_APITests.swift */,
-				53B577B7219CB18A00AAEB8D /* Token_APITests.swift */,
-				533046E721877847007CE01C /* Inspection_APITests.swift */,
 				535A4531217A3787006B5EE1 /* Driver_APITests.swift */,
 				53B25E16217698B1002B846B /* Info.plist */,
+				533046E721877847007CE01C /* Inspection_APITests.swift */,
+				5316E96F2200F2D20053832E /* Log.swift */,
 				53B25E14217698B1002B846B /* Login_APITests.swift */,
 				53DA9CC52181063E00ABC414 /* Request_APITests.swift */,
+				53B577B7219CB18A00AAEB8D /* Token_APITests.swift */,
 			);
 			path = "voluxe-driverAPITests";
 			sourceTree = "<group>";
@@ -767,12 +786,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		53EEB1A121B9E2ED0051B8D5 /* Service */ = {
+		53EEB1A121B9E2ED0051B8D5 /* Log */ = {
 			isa = PBXGroup;
 			children = (
-				53EEB1A221B9E3060051B8D5 /* Log.swift */,
+				53EEB1A221B9E3060051B8D5 /* LogService.swift */,
+				5316E96A2200F07B0053832E /* OSLog.swift */,
+				5316E9682200CA950053832E /* OSLog+Analytics.swift */,
 			);
-			path = Service;
+			path = Log;
 			sourceTree = "<group>";
 		};
 		53EEB1AC21BF29CD0051B8D5 /* View */ = {
@@ -1210,6 +1231,7 @@
 				53EEB1AE21BF29EC0051B8D5 /* GridLayout+VolvoAgent.swift in Sources */,
 				5312141921C83C1E00F3FCEB /* Colors.swift in Sources */,
 				524C1FF6219E4E62003AA733 /* AdminAPI.swift in Sources */,
+				5316E9692200CA950053832E /* OSLog+Analytics.swift in Sources */,
 				53B82AF6217E39800041015B /* Dealership.swift in Sources */,
 				5312141B21C83C2A00F3FCEB /* Colors+Volvo.swift in Sources */,
 				52C67E6421E952A3005EEC3B /* String+Validation.swift in Sources */,
@@ -1217,6 +1239,7 @@
 				5339035121CEBED200DD16D8 /* LoginViewController.swift in Sources */,
 				5380089E21A33C2F00E47660 /* UIColor+Random.swift in Sources */,
 				5312142421C9AF3C00F3FCEB /* ProfileViewController.swift in Sources */,
+				5316E96B2200F07B0053832E /* OSLog.swift in Sources */,
 				533047242188F85B007CE01C /* AppDelegate+Fetch.swift in Sources */,
 				53B577B5219CAB4A00AAEB8D /* DriverAPI.swift in Sources */,
 				52A3A62621E6CC96002A273E /* VLVerticalTextField.swift in Sources */,
@@ -1269,7 +1292,7 @@
 				531A8A2721EE7D8300D5C8C0 /* OdometerReading.swift in Sources */,
 				5339036121D051F000DD16D8 /* AppDelegate+UIAppearance.swift in Sources */,
 				538C4D9B218A3FA600922B16 /* PermissionViewController.swift in Sources */,
-				53EEB1A321B9E3060051B8D5 /* Log.swift in Sources */,
+				53EEB1A321B9E3060051B8D5 /* LogService.swift in Sources */,
 				53F1E56421E02D90007EF3AD /* AppController+Alert.swift in Sources */,
 				533047062188D706007CE01C /* AppController.swift in Sources */,
 				53C190EF219B2ECD00CBC410 /* GridLayoutViewController.swift in Sources */,
@@ -1277,6 +1300,7 @@
 				53BD5130219DF54900E84995 /* UploadManager.swift in Sources */,
 				5339036521D1570F00DD16D8 /* CameraView.swift in Sources */,
 				53C190EB219B2A9D00CBC410 /* GridLayout.swift in Sources */,
+				5316E96E2200F1900053832E /* Log.swift in Sources */,
 				531A8A2521ED599100D5C8C0 /* InspectionCameraView.swift in Sources */,
 				5312143121CC569E00F3FCEB /* ContactInfoViewController.swift in Sources */,
 				535A452F217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */,
@@ -1313,13 +1337,15 @@
 			files = (
 				535A4530217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */,
 				53DA9CB22180C7AC00ABC414 /* Request.swift in Sources */,
-				5374DF2A21E519D500956122 /* Log.swift in Sources */,
+				5316E9702200F2D20053832E /* Log.swift in Sources */,
+				5374DF2A21E519D500956122 /* LogService.swift in Sources */,
 				53B43F98218B758400EF847E /* LuxeAPI+Version.swift in Sources */,
 				53DA9CBE2180F52900ABC414 /* DriverDealershipTimeSlotAssignment.swift in Sources */,
 				53DA9CAC2180C52300ABC414 /* Customer.swift in Sources */,
 				53DA9CC62181063E00ABC414 /* Request_APITests.swift in Sources */,
 				5374DF3021E524D000956122 /* Bundle+Current.swift in Sources */,
 				53DA9CC42181020400ABC414 /* Task.swift in Sources */,
+				5316E9712200F2F30053832E /* OSLog.swift in Sources */,
 				53DA9CA4217F66B900ABC414 /* Location.swift in Sources */,
 				524C201D21ACB90C003AA733 /* LuxeAPIError.swift in Sources */,
 				53B577B6219CAB4A00AAEB8D /* DriverAPI.swift in Sources */,

@@ -27,7 +27,6 @@
 		524C200B21AC9F7A003AA733 /* LuxeAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C200721AC9F7A003AA733 /* LuxeAPIError.swift */; };
 		524C200C21ACA3E7003AA733 /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */; };
 		524C200D21ACA3E8003AA733 /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */; };
-		524C200E21ACAB87003AA733 /* RestAPI+AlamoFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529409782192598B0009F691 /* RestAPI+AlamoFire.swift */; };
 		524C200F21ACAB88003AA733 /* RestAPI+AlamoFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529409782192598B0009F691 /* RestAPI+AlamoFire.swift */; };
 		524C201021ACAC62003AA733 /* UserDefaults+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940964219220B50009F691 /* UserDefaults+LuxeAPI.swift */; };
 		524C201121ACAC62003AA733 /* UserDefaults+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940964219220B50009F691 /* UserDefaults+LuxeAPI.swift */; };
@@ -66,7 +65,6 @@
 		529E366E219B9D8F00619807 /* CustomerAPI+Dealership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E366D219B9D8F00619807 /* CustomerAPI+Dealership.swift */; };
 		529E3671219BAD7C00619807 /* CustomerAPI+RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E3670219BAD7C00619807 /* CustomerAPI+RepairOrder.swift */; };
 		529E3677219CF99200619807 /* CustomerAPI+GoogleMaps.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E3676219CF99200619807 /* CustomerAPI+GoogleMaps.swift */; };
-		52A33B2221C9B64F0041CB67 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2121C9B64F0041CB67 /* Log.swift */; };
 		52A33B2421C9B7440041CB67 /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2321C9B7440041CB67 /* UIView+AutoLayout.swift */; };
 		52A3A61D21E6C760002A273E /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A61921E6C760002A273E /* Colors.swift */; };
 		52A3A61E21E6C760002A273E /* ColorsImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A61A21E6C760002A273E /* ColorsImplementation.swift */; };
@@ -89,9 +87,20 @@
 		52FFBBB221AE06BB00FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		5303E2F620E4622600B1F4BE /* UserDefaults_UnitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F520E4622600B1F4BE /* UserDefaults_UnitTests.swift */; };
 		5303E2F820E4631D00B1F4BE /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */; };
-		5312142521C9BEF700F3FCEB /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2121C9B64F0041CB67 /* Log.swift */; };
-		5312142621C9BF2B00F3FCEB /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2121C9B64F0041CB67 /* Log.swift */; };
-		5312142721C9BF7600F3FCEB /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A33B2121C9B64F0041CB67 /* Log.swift */; };
+		5316E9742200FD2D0053832E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9732200FD2D0053832E /* Log.swift */; };
+		5316E9792200FD680053832E /* OSLog+Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9762200FD670053832E /* OSLog+Analytics.swift */; };
+		5316E97A2200FD680053832E /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9772200FD670053832E /* OSLog.swift */; };
+		5316E97B2200FD680053832E /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9782200FD670053832E /* LogService.swift */; };
+		5316E97D2200FDCF0053832E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E97C2200FDCF0053832E /* Log.swift */; };
+		5316E97E2200FDE40053832E /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9772200FD670053832E /* OSLog.swift */; };
+		5316E97F2200FDE40053832E /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9782200FD670053832E /* LogService.swift */; };
+		5316E9802200FE420053832E /* RestAPI+AlamoFire.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529409782192598B0009F691 /* RestAPI+AlamoFire.swift */; };
+		5316E9822200FE4E0053832E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9812200FE4E0053832E /* Log.swift */; };
+		5316E9832200FE530053832E /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9782200FD670053832E /* LogService.swift */; };
+		5316E9842200FE530053832E /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9772200FD670053832E /* OSLog.swift */; };
+		5316E9862200FEAD0053832E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9852200FEAD0053832E /* Log.swift */; };
+		5316E9872200FEB00053832E /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9782200FD670053832E /* LogService.swift */; };
+		5316E9882200FEB00053832E /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9772200FD670053832E /* OSLog.swift */; };
 		531A8A3021F18E9600D5C8C0 /* Thread+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940963219220B50009F691 /* Thread+Assert.swift */; };
 		531A8A3121F18EE700D5C8C0 /* Thread+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940963219220B50009F691 /* Thread+Assert.swift */; };
 		531A8A3221F18F7100D5C8C0 /* Thread+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940963219220B50009F691 /* Thread+Assert.swift */; };
@@ -489,7 +498,6 @@
 		529E366D219B9D8F00619807 /* CustomerAPI+Dealership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Dealership.swift"; sourceTree = "<group>"; };
 		529E3670219BAD7C00619807 /* CustomerAPI+RepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+RepairOrder.swift"; sourceTree = "<group>"; };
 		529E3676219CF99200619807 /* CustomerAPI+GoogleMaps.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+GoogleMaps.swift"; sourceTree = "<group>"; };
-		52A33B2121C9B64F0041CB67 /* Log.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Log.swift; path = ../Service/Log.swift; sourceTree = "<group>"; };
 		52A33B2321C9B7440041CB67 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
 		52A3A61921E6C760002A273E /* Colors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		52A3A61A21E6C760002A273E /* ColorsImplementation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorsImplementation.swift; sourceTree = "<group>"; };
@@ -509,6 +517,13 @@
 		52E737722141E41900CB8D3B /* ScheduledSelfPickup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledSelfPickup.swift; sourceTree = "<group>"; };
 		5303E2F520E4622600B1F4BE /* UserDefaults_UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults_UnitTests.swift; sourceTree = "<group>"; };
 		5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Voluxe.swift"; sourceTree = "<group>"; };
+		5316E9732200FD2D0053832E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		5316E9762200FD670053832E /* OSLog+Analytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "OSLog+Analytics.swift"; sourceTree = "<group>"; };
+		5316E9772200FD670053832E /* OSLog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
+		5316E9782200FD670053832E /* LogService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
+		5316E97C2200FDCF0053832E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		5316E9812200FE4E0053832E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		5316E9852200FEAD0053832E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		5321B1B620C9A980006C1E14 /* UIView+Blur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Blur.swift"; sourceTree = "<group>"; };
 		5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccount_UITests.swift; sourceTree = "<group>"; };
 		532E235A20CB4B5E00ADA87F /* BlurEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlurEffect.swift; sourceTree = "<group>"; };
@@ -915,6 +930,24 @@
 			path = VLKit;
 			sourceTree = "<group>";
 		};
+		5316E9722200FD1B0053832E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5316E9732200FD2D0053832E /* Log.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		5316E9752200FD670053832E /* Log */ = {
+			isa = PBXGroup;
+			children = (
+				5316E9762200FD670053832E /* OSLog+Analytics.swift */,
+				5316E9772200FD670053832E /* OSLog.swift */,
+				5316E9782200FD670053832E /* LogService.swift */,
+			);
+			path = Log;
+			sourceTree = "<group>";
+		};
 		533046FE2188D61D007CE01C /* Debug */ = {
 			isa = PBXGroup;
 			children = (
@@ -993,14 +1026,6 @@
 			path = Scripts;
 			sourceTree = "<group>";
 		};
-		53C2CCDB21C414E100A2ED42 /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				52A33B2121C9B64F0041CB67 /* Log.swift */,
-			);
-			path = Service;
-			sourceTree = "<group>";
-		};
 		53D9A1F8216426D400414648 /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -1051,6 +1076,7 @@
 			children = (
 				53FDF20A20B761D20004B8A1 /* SignUp_APITests.swift */,
 				53FDF20C20B761D20004B8A1 /* Info.plist */,
+				5316E9852200FEAD0053832E /* Log.swift */,
 			);
 			path = "voluxe-customerAPITests";
 			sourceTree = "<group>";
@@ -1272,9 +1298,9 @@
 				52940969219220E00009F691 /* API */,
 				533046FE2188D61D007CE01C /* Debug */,
 				533047112188D821007CE01C /* Extensions */,
+				5316E9752200FD670053832E /* Log */,
 				6C5832C31FB3899700F6BFE0 /* Manager */,
 				539F626D2092AB4E0023DF59 /* Scripts */,
-				53C2CCDB21C414E100A2ED42 /* Service */,
 				538FE75420BF4AB800C3CE17 /* Tests */,
 				53D9A1F8216426D400414648 /* UI */,
 			);
@@ -1600,6 +1626,7 @@
 				6C2B324B1FB3C88D00B943AC /* Objc-Bridge-Header.h */,
 				6C5832F31FB3AF5600F6BFE0 /* Presentr */,
 				53D9A7A92098E638008BE93E /* Resources */,
+				5316E9722200FD1B0053832E /* Service */,
 				6CFBF9AC1FA1119A00D3AA78 /* Supporting Files */,
 				6CC83A891FA147E100FE0633 /* Util */,
 				6CC37E4D1FA7AFC300DA8F01 /* View */,
@@ -1613,6 +1640,7 @@
 				5303E2F520E4622600B1F4BE /* UserDefaults_UnitTests.swift */,
 				6CCD42A21FA013E3000AC6C9 /* Analytics_UnitTests.swift */,
 				6CCD42A41FA013E3000AC6C9 /* Info.plist */,
+				5316E9812200FE4E0053832E /* Log.swift */,
 			);
 			path = "voluxe-customerUnitTests";
 			sourceTree = "<group>";
@@ -1623,6 +1651,7 @@
 				524C202021ACBA5D003AA733 /* AdminAPI.swift */,
 				5322409620B39FF700D4E86C /* CreateAccount_UITests.swift */,
 				6CCD42AF1FA013E3000AC6C9 /* Info.plist */,
+				5316E97C2200FDCF0053832E /* Log.swift */,
 				6C5EB9891FCE38980019ACAA /* MainController_UITests.swift */,
 				6CB11820208020D6008FB2FE /* Settings_UITests.swift */,
 				6CBF9FE01FC5F987002BC7FC /* SignIn_UITests.swift */,
@@ -2267,15 +2296,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5316E9872200FEB00053832E /* LogService.swift in Sources */,
 				524C200521AC9CF5003AA733 /* LuxeAPI.swift in Sources */,
 				5294097A2192598C0009F691 /* RestAPI+AlamoFire.swift in Sources */,
+				5316E9862200FEAD0053832E /* Log.swift in Sources */,
 				538FE75920BF4AB800C3CE17 /* XCTest+Test.swift in Sources */,
 				538FE76020BF4B9F00C3CE17 /* String+Test.swift in Sources */,
 				526F6E8021B9DD88007C7D84 /* UIImage+LuxeAPI.swift in Sources */,
 				52FFBBB121AE05C700FAD7BE /* UserDefaults+Debug.swift in Sources */,
-				5312142521C9BEF700F3FCEB /* Log.swift in Sources */,
 				536D6D6220CF3AA400A269D4 /* FTUELocalization.swift in Sources */,
 				538FE75B20BF4B4E00C3CE17 /* Config.swift in Sources */,
+				5316E9882200FEB00053832E /* OSLog.swift in Sources */,
 				538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */,
 				524C200121AC9C41003AA733 /* RestAPI.swift in Sources */,
 				524C201421ACAC69003AA733 /* LuxeAPI+Version.swift in Sources */,
@@ -2311,6 +2342,7 @@
 				6C5833111FB3AF5600F6BFE0 /* KeyboardTranslation.swift in Sources */,
 				5340E90F20D86BD900B17D53 /* TaxonomyTableViewController.swift in Sources */,
 				6CE687832036634A00D915FC /* State.swift in Sources */,
+				5316E97B2200FD680053832E /* LogService.swift in Sources */,
 				6C7342141FB25F8C00E90F7E /* LocationViewController.swift in Sources */,
 				6C1CE1E420C5E9E600A2E054 /* BranchDeeplink.swift in Sources */,
 				6C20E1CB1FBF698E00E5D9A0 /* Dealership.swift in Sources */,
@@ -2346,6 +2378,7 @@
 				6CBB4E9D1FB4DF7D00C31183 /* FSCalendarDelegationFactory.m in Sources */,
 				522F2FBC21B757CB000236ED /* UIImage+LuxeAPI.swift in Sources */,
 				6C20E1BB1FBE633800E5D9A0 /* ScheduledDropoffViewController.swift in Sources */,
+				5316E97A2200FD680053832E /* OSLog.swift in Sources */,
 				6C9C9060209CD96A00494068 /* GMDistanceMatrix.swift in Sources */,
 				6CD474AC2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */,
 				6C27FBC120E4619F00EAA689 /* VLWebViewController.swift in Sources */,
@@ -2412,7 +2445,6 @@
 				5340E91420D881F100B17D53 /* Enum+CaseIterable.swift in Sources */,
 				6CE147AA20B49E35001F4BC7 /* KeychainManager.swift in Sources */,
 				6CBAA6C72023FD3300F35ECF /* ServiceListViewController.swift in Sources */,
-				52A33B2221C9B64F0041CB67 /* Log.swift in Sources */,
 				6C9543A21FABEE1D0099AC84 /* UIFont+Voluxe.swift in Sources */,
 				6CBFD83620D87F770097D4AB /* NotificationPermissionViewController.swift in Sources */,
 				6C11208E2016B2C70048A56D /* BookingSyncManager.swift in Sources */,
@@ -2448,6 +2480,7 @@
 				6C88DC981FAA8E55009F2FC3 /* LeftPanelTableViewCell.swift in Sources */,
 				6C3FB2B21FA2824200B22EAB /* Constants.swift in Sources */,
 				6CDAEE8420E309DA0040CDFF /* HelpListViewController.swift in Sources */,
+				5316E9792200FD680053832E /* OSLog+Analytics.swift in Sources */,
 				52758F19219E3849007E488A /* CustomerAPI.swift in Sources */,
 				6CBB4E971FB4DF7D00C31183 /* FSCalendarWeekdayView.m in Sources */,
 				6C88DC9D1FAA96D2009F2FC3 /* MainViewController.swift in Sources */,
@@ -2516,6 +2549,7 @@
 				6C1CE1F020CB3A7B00A2E054 /* VLSlider.swift in Sources */,
 				6C20E1C71FBE6D2400E5D9A0 /* StateService.swift in Sources */,
 				6CBF9FEE1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */,
+				5316E9742200FD2D0053832E /* Log.swift in Sources */,
 				6C9C9058209CD8D400494068 /* GMRows.swift in Sources */,
 				533047012188D61E007CE01C /* DebugTableViewController.swift in Sources */,
 				6C32C3071FBCC0E900B1218C /* Step.swift in Sources */,
@@ -2567,23 +2601,25 @@
 			files = (
 				524C201321ACAC68003AA733 /* LuxeAPI+Version.swift in Sources */,
 				524C201621ACADA3003AA733 /* LuxeAPI+Notifications.swift in Sources */,
-				5312142621C9BF2B00F3FCEB /* Log.swift in Sources */,
 				535381C621FEA56300C03ECE /* FBAnalytics.swift in Sources */,
 				524C200421AC9CF5003AA733 /* LuxeAPI.swift in Sources */,
 				5303E2F620E4622600B1F4BE /* UserDefaults_UnitTests.swift in Sources */,
 				526F6E8121B9DD88007C7D84 /* UIImage+LuxeAPI.swift in Sources */,
-				524C200E21ACAB87003AA733 /* RestAPI+AlamoFire.swift in Sources */,
 				531A8A3121F18EE700D5C8C0 /* Thread+Assert.swift in Sources */,
 				5340E90D20D861C400B17D53 /* Analytics_UnitTests.swift in Sources */,
+				5316E9822200FE4E0053832E /* Log.swift in Sources */,
 				524C1FFE219F427A003AA733 /* RealmSwift+Codable.swift in Sources */,
+				5316E9842200FE530053832E /* OSLog.swift in Sources */,
 				5340E91520D8822D00B17D53 /* Enum+CaseIterable.swift in Sources */,
 				524C200921AC9F7A003AA733 /* LuxeAPIError.swift in Sources */,
+				5316E9832200FE530053832E /* LogService.swift in Sources */,
 				52FFBBB021AE05C500FAD7BE /* UserDefaults+Debug.swift in Sources */,
 				53C8AD4F20E59C9B008E07FF /* UserDefaults+Voluxe.swift in Sources */,
 				535381C721FEA57200C03ECE /* AnalyticsCore.swift in Sources */,
 				524C200221AC9C41003AA733 /* RestAPI.swift in Sources */,
 				5330471F2188D9C4007CE01C /* Bundle+Voluxe.swift in Sources */,
 				535381C821FEA57E00C03ECE /* AnalyticsEnums.swift in Sources */,
+				5316E9802200FE420053832E /* RestAPI+AlamoFire.swift in Sources */,
 				524C200C21ACA3E7003AA733 /* DateFormatter+LuxeAPI.swift in Sources */,
 				524C201021ACAC62003AA733 /* UserDefaults+LuxeAPI.swift in Sources */,
 			);
@@ -2593,6 +2629,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5316E97F2200FDE40053832E /* LogService.swift in Sources */,
 				524C200321AC9C43003AA733 /* RestAPI.swift in Sources */,
 				524C201521ACAC6A003AA733 /* LuxeAPI+Version.swift in Sources */,
 				524C202121ACBA5D003AA733 /* AdminAPI.swift in Sources */,
@@ -2607,6 +2644,7 @@
 				524C201221ACAC62003AA733 /* UserDefaults+LuxeAPI.swift in Sources */,
 				524C202321ACBB17003AA733 /* AdminAPI+Customer.swift in Sources */,
 				53EF28DA20AE0798006CC5FA /* Config.swift in Sources */,
+				5316E97E2200FDE40053832E /* OSLog.swift in Sources */,
 				524C200621AC9CF6003AA733 /* LuxeAPI.swift in Sources */,
 				538FE76120BF4B9F00C3CE17 /* String+Test.swift in Sources */,
 				524C2000219F427A003AA733 /* RealmSwift+Codable.swift in Sources */,
@@ -2619,9 +2657,9 @@
 				524C200D21ACA3E8003AA733 /* DateFormatter+LuxeAPI.swift in Sources */,
 				538FE75820BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */,
 				524C200B21AC9F7A003AA733 /* LuxeAPIError.swift in Sources */,
-				5312142721C9BF7600F3FCEB /* Log.swift in Sources */,
 				538FE75E20BF4B6900C3CE17 /* BotUser.swift in Sources */,
 				5322409720B39FF700D4E86C /* CreateAccount_UITests.swift in Sources */,
+				5316E97D2200FDCF0053832E /* Log.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

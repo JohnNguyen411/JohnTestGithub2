@@ -110,6 +110,13 @@ extension AnalyticsCore {
         self.track(event: .change, element: .permission, name: permission.rawValue, params: params)
     }
 
+    // MARK:- Log
+
+    func log(_ name: AnalyticsEnums.Name.Log, _ message: String) {
+        let params: AnalyticsEnums.Params = [.message: message]
+        self.track(event: .log, element: .app, name: name.rawValue, params: params)
+    }
+
     // MARK:- Views
 
     func trackView(app: AnalyticsEnums.Name.App, screen: AnalyticsEnums.Name.Screen? = nil) {
