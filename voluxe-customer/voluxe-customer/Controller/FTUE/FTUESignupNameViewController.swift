@@ -15,7 +15,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     
     let welcomeLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .viewSignupNameLabel
+        textView.text = .localized(.viewSignupNameLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.volvoProLineSpacing()
@@ -25,8 +25,8 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         return textView
     }()
         
-    let firstNameTextField = VLVerticalTextField(title: .viewEditTextTitleFirstName, placeholder: .viewEditTextInfoHintFirstName)
-    let lastNameTextField = VLVerticalTextField(title: .viewEditTextTitleLastName, placeholder: .viewEditTextInfoHintLastName)
+    let firstNameTextField = VLVerticalTextField(title: .localized(.viewEditTextTitleFirstName), placeholder: .localized(.viewEditTextInfoHintFirstName))
+    let lastNameTextField = VLVerticalTextField(title: .localized(.viewEditTextTitleLastName), placeholder: .localized(.viewEditTextInfoHintLastName))
     
     var deeplinkEventConsumed = false
     var editMode = false

@@ -30,9 +30,9 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     var selectedVehicle: Vehicle?
 
     let vehicleCollectionView: UICollectionView
-    let vehicleTypeView = VLTitledLabel(title: .volvoYearModel, leftDescription: "", rightDescription: "")
+    let vehicleTypeView = VLTitledLabel(title: .localized(.volvoYearModel), leftDescription: "", rightDescription: "")
     let vehicleImageView = UIImageView(frame: .zero)
-    let preferredDealershipView = VLTitledLabel(title: .dealership, leftDescription: "", rightDescription: "")
+    let preferredDealershipView = VLTitledLabel(title: .localized(.dealership), leftDescription: "", rightDescription: "")
     let scheduledServiceView = VLTitledLabel()
     let contentView = UIView(frame: .zero)
     let confirmButton: VLButton
@@ -50,7 +50,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         vehicleCollectionView.backgroundColor = UIColor.clear
         vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
         
-        dealershipLocationButton = VLButton(type: .blueSecondary, title: String.viewScheduleServiceScheduledLabel.uppercased(), kern: UILabel.uppercasedKern(), event: .viewDealershipLocation, screen: .vehicles)
+        dealershipLocationButton = VLButton(type: .blueSecondary, title: String.localized(.viewScheduleServiceScheduledLabel).uppercased(), kern: UILabel.uppercasedKern(), event: .viewDealershipLocation, screen: .vehicles)
         confirmButton = VLButton(type: .bluePrimary, title: (.newService as String).uppercased(), kern: UILabel.uppercasedKern(), event: .newService, screen: .vehicles)
         
         super.init(screen: .vehicles)
@@ -284,7 +284,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                 }
             } else {
                 if booking.isSelfOB() {
-                    scheduledServiceView.setTitle(title: .completedService, leftDescription: booking.getRepairOrderName())
+                    scheduledServiceView.setTitle(title: .localized(.completedService), leftDescription: booking.getRepairOrderName())
                     scheduledServiceView.isEditable = false
                     dealershipLocationButton.isHidden = false
                 } else {
@@ -295,9 +295,9 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                         scheduledServiceView.setTitle(title: .scheduledDelivery, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                     } else {
                         if booking.getState() == .service {
-                            scheduledServiceView.setTitle(title: .currentService, leftDescription: booking.getRepairOrderName())
+                            scheduledServiceView.setTitle(title: .localized(.currentService), leftDescription: booking.getRepairOrderName())
                         } else {
-                            scheduledServiceView.setTitle(title: .completedService, leftDescription: booking.getRepairOrderName())
+                            scheduledServiceView.setTitle(title: .localized(.completedService), leftDescription: booking.getRepairOrderName())
                         }
                     }
                     if let request = booking.dropoffRequest, let requestLocation = request.location {
@@ -313,14 +313,14 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                 if let location = location {
                     preferredDealershipView.isHidden = false
                     if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                        preferredDealershipView.setTitle(title: .pickupLocation, leftDescription: location)
+                        preferredDealershipView.setTitle(title: .localized(.pickupLocation), leftDescription: location)
                     } else {
-                        preferredDealershipView.setTitle(title: .deliveryLocation, leftDescription: location)
+                        preferredDealershipView.setTitle(title: .localized(.deliveryLocation), leftDescription: location)
                     }
                 } else {
                     if let dealership = booking.dealership {
                         preferredDealershipView.isHidden = false
-                        preferredDealershipView.setTitle(title: .dealership, leftDescription: dealership.name ?? "")
+                        preferredDealershipView.setTitle(title: .localized(.dealership), leftDescription: dealership.name ?? "")
                     }
                 }
             }

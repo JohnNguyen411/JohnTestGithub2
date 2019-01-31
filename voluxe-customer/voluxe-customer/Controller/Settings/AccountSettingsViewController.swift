@@ -81,7 +81,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
             if let addresses = addresses, addressesCount > indexPath.row {
                 return (addresses[indexPath.row].location?.getShortAddress())!
             }
-            return .addNewLocation
+            return .localized(.addNewLocation)
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 return "\(user?.firstName ?? "") \(user?.lastName ?? "")"
@@ -284,10 +284,10 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         if indexPath.section == 0 {
             Analytics.trackClick(button: .settingsDeleteAddress, screen: self.screen)
-            self.showDestructiveDialog(title: .confirm,
+            self.showDestructiveDialog(title: .localized(.confirm),
                                        message: String(format: .localized(.popupRemoveAddressMessage), self.getTextForIndexPath(indexPath: indexPath)),
                                        cancelButtonTitle: .localized(.cancel),
-                                       destructiveButtonTitle: .delete,
+                                       destructiveButtonTitle: .localized(.delete),
                                        destructiveCompletion: { self.deleteAddressAtIndexPath(indexPath) },
                                        dialog: .confirm,
                                        screen: self.screen)

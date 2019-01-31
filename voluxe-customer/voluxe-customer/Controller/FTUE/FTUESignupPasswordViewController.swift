@@ -15,7 +15,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     
     let passwordLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .createPassword
+        textView.text = .localized(.createPassword)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -28,7 +28,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         let textView = UILabel(frame: .zero)
         textView.font = .volvoSansProMedium(size: 11)
         textView.textColor = .luxeGray()
-        textView.text = .viewSigninPasswordDescription
+        textView.text = .localized(.viewSigninPasswordDescription)
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -51,8 +51,8 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         return textfield
     }()
     
-    let volvoPwdTextField = VLVerticalTextField(title: .viewEditTextTitlePasswordNew, placeholder: "••••••••", kern: 2.0)
-    let volvoPwdConfirmTextField = VLVerticalTextField(title: .viewEditTextTitlePasswordConfirm, placeholder: "••••••••", kern: 2.0)
+    let volvoPwdTextField = VLVerticalTextField(title: .localized(.viewEditTextTitlePasswordNew), placeholder: "••••••••", kern: 2.0)
+    let volvoPwdConfirmTextField = VLVerticalTextField(title: .localized(.viewEditTextTitlePasswordConfirm), placeholder: "••••••••", kern: 2.0)
     
     var signupInProgress = false
     var realm : Realm?
@@ -100,7 +100,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         canGoNext(nextEnabled: false)
         
         if UserManager.sharedInstance.isLoggedIn() {
-            passwordLabel.text = .updatePassword
+            passwordLabel.text = .localized(.updateYourPassword)
         }
     }
     
@@ -165,11 +165,11 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         if let code = error?.code {
             if code == .E5001 {
-                self.showOkDialog(title: .localized(.error), message: .errorAccountAlreadyExists, completion: {
+                self.showOkDialog(title: .localized(.error), message: .localized(.errorAccountAlreadyExists), completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
             } else if code == .E4012 {
-                self.showOkDialog(title: .localized(.error), message: .errorInvalidVerificationCode, completion: {
+                self.showOkDialog(title: .localized(.error), message: .localized(.errorInvalidVerificationCode), completion: {
                     self.navigationController?.popViewController(animated: true)
                 }, dialog: .error, screen: self.screen)
             }
@@ -231,18 +231,18 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         if !String.areSimilar(stringOne: volvoPwdTextField.textField.text, stringTwo: volvoPwdConfirmTextField.textField.text) {
             //DOES NOT MATCH
-            inlineError(error: .errorPasswordNotMatch)
+            inlineError(error: .localized(.errorPasswordNotMatch))
             return
         } else if let password = volvoPwdConfirmTextField.textField.text, !password.containsLetter() {
-            inlineError(error: .viewSignupPasswordRequireLetter)
+            inlineError(error: .localized(.viewSignupPasswordRequireLetter))
             return
         } else if let password = volvoPwdConfirmTextField.textField.text, !password.containsNumber() {
-            inlineError(error: .viewSignupPasswordRequireNumber)
+            inlineError(error: .localized(.viewSignupPasswordRequireNumber))
             return
         } else if let password = volvoPwdConfirmTextField.textField.text, password.hasIllegalPasswordCharacters() {
-            inlineError(error: .errorInvalidCharacter)
+            inlineError(error: .localized(.errorInvalidCharacter))
             volvoPwdConfirmTextField.setBottomRightActionBlock { [weak self] in
-                self?.showOkDialog(title: .localized(.error), message: .errorInvalidPasswordUnauthorizedCharacters, dialog: .error, screen: self?.screen)
+                self?.showOkDialog(title: .localized(.error), message: .localized(.errorInvalidPasswordUnauthorizedCharacters), dialog: .error, screen: self?.screen)
             }
             return
         }
@@ -259,7 +259,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 
                 if error != nil {
                     if let errorCode = error?.code, errorCode == .E4012 {
-                        self.showOkDialog(title: .localized(.error), message: .errorInvalidVerificationCode, completion: {
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorInvalidVerificationCode), completion: {
                             self.navigationController?.popViewController(animated: true)
                         }, dialog: .error, screen: self.screen)
                     }

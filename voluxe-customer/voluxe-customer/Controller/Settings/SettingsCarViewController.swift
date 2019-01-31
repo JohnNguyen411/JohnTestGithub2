@@ -16,7 +16,7 @@ class SettingsCarViewController: BaseViewController {
     
     let removeVehicleButton: VLButton
     let vehicleImageView = UIImageView(frame: .zero)
-    let vehicleTypeView = VLTitledLabel(title: .volvoYearModel, leftDescription: "", rightDescription: "")
+    let vehicleTypeView = VLTitledLabel(title: .localized(.volvoYearModel), leftDescription: "", rightDescription: "")
     let vehicle: Vehicle
     
     init(vehicle: Vehicle) {

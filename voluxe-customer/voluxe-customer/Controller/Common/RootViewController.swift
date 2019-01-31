@@ -142,7 +142,7 @@ class RootViewController: UIViewController {
         
         styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         
-        uiNavigationController.setTitle(title: .viewScheduleService)
+        uiNavigationController.setTitle(title: .localized(.viewScheduleService))
         
         if let leftVC = self.slideMenuController?.leftViewController as? LeftViewController {
             leftVC.mainNavigationViewController = uiNavigationController
@@ -271,7 +271,7 @@ class RootViewController: UIViewController {
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
                 let uiNavigationController = VLNavigationController(rootViewController: HelpViewController())
                 styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .help, animated: true)
+                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .localized(.help), animated: true)
             }
         }
     }

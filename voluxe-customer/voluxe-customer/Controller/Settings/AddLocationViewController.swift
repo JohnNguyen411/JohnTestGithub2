@@ -23,7 +23,7 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     var autocompletePredictions: [GMSAutocompletePrediction]?
     var autoCompleteCharacterCount = 0
     
-    let newLocationTextField = VLVerticalSearchTextField(title: .popupAddNewLocationLabel, placeholder: .popupAddNewLocationEditHint)
+    let newLocationTextField = VLVerticalSearchTextField(title: .localized(.popupAddNewLocationLabel), placeholder: .localized(.popupAddNewLocationEditHint))
 
     init() {
         super.init(title: .localized(.addNewLocation), buttonTitle: .localized(.add), screen: .location)

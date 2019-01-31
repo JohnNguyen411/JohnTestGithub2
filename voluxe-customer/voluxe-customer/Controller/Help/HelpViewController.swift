@@ -16,7 +16,10 @@ class HelpViewController: BaseViewController {
     
     static let helpSectionApp: [HelpDetail] = [HelpDetail(title: .helpTheAppIsntWorkingCorrectly, description: .helpTheAppIsntWorkingCorrectlyDetail), HelpDetail(title: .helpIForgotMyPassword, description: .helpIForgotMyPasswordDetail), HelpDetail(title: .helpICantUpdateMyPhone, description: .helpICantUpdateMyPhoneDetail), HelpDetail(title: .helpMyCurrentLocationIsntWorking, description: .helpMyCurrentLocationIsntWorkingDetail), HelpDetail(title: .helpPushNotificationsArentWorking, description: .helpPushNotificationsArentWorkingDetail), HelpDetail(title: .helpTermsOfService, description: .helpTermsOfServiceDetail), HelpDetail(title: .helpPrivacyPolicyInformation, description: .helpPrivacyPolicyInformationDetail), HelpDetail(title: .helpRequestingDataFromLuxebyVolvo, description: .helpRequestingDataFromLuxebyVolvoDetail), HelpDetail(title: .helpDeleteMyLuxebyVolvoAccount, description: .helpDeleteMyLuxebyVolvoAccountDetail), HelpDetail(title: .helpOther, description:.helpAppOtherDetail)]
     
-    let helpSections = [HelpSection(title: String.helpHowLuxeByVolvoWorks, type: .product, sections: HelpViewController.helpSectionProduct), HelpSection(title: String.helpTroubleWithTheLuxebyVolvoApp, type: .app, sections: HelpViewController.helpSectionApp)]
+    let helpSections: [HelpSection] = [
+            HelpSection(title: String.localized(.helpHowLuxebyVolvoWorks), type: .product, sections: HelpViewController.helpSectionProduct),
+            HelpSection(title: String.localized(.helpTroubleWithTheLuxebyVolvoApp), type: .app, sections: HelpViewController.helpSectionApp)
+    ]
     
     let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
     var headerView: HelpBookingView?

@@ -46,10 +46,10 @@ class SchedulingDropoffViewController: SchedulingViewController {
     override func fillViews() {
         super.fillViews()
         
-        scheduledServiceView.setTitle(title: String.completedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+        scheduledServiceView.setTitle(title: String.localized(.completedService), leftDescription: booking.getRepairOrderName(), rightDescription: "")
         
-        scheduledPickupView.titleLabel.text = .scheduledDelivery
-        pickupLocationView.titleLabel.text = .deliveryLocation
+        scheduledPickupView.titleLabel.text = .localized(.scheduledDelivery)
+        pickupLocationView.titleLabel.text = .localized(.deliveryLocation)
     }
     
     func hideDealership() {
@@ -81,7 +81,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
             }
         }
         if let dealership = bookingDealership {
-            self.dealershipView.setTitle(title: .dealership, leftDescription: dealership.name!, rightDescription: "")
+            self.dealershipView.setTitle(title: .localized(.dealership), leftDescription: dealership.name!, rightDescription: "")
         }
     }
     
@@ -192,7 +192,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 if let error = error {
                     self.pickupLocationView.showError(error: error)
                 } else {
-                    self.pickupLocationView.showError(error: .errorLocationOutOfPickupArea)
+                    self.pickupLocationView.showError(error: .localized(.errorLocationOutOfPickupArea))
                 }
                 self.showConfirmButtonIfNeeded()
             })

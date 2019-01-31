@@ -18,9 +18,9 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     public static let tosURL = "https://terms-luxebyvolvo.luxe.com/"
     public static let privacyURL = "https://privacy-luxebyvolvo.luxe.com/"
     
-    let emailTextField = VLVerticalTextField(title: .emailAddress, placeholder: .viewEditTextInfoHintEmail)
+    let emailTextField = VLVerticalTextField(title: .localized(.emailAddress), placeholder: .localized(.viewEditTextInfoHintEmail))
     
-    let phoneNumberTextField = VLVerticalTextField(title: .viewEditTextTitlePhoneNumber, placeholder: .viewEditTextInfoHintPhoneNumber, isPhoneNumber: true)
+    let phoneNumberTextField = VLVerticalTextField(title: .localized(.viewEditTextTitlePhoneNumber), placeholder: .localized(.viewEditTextInfoHintPhoneNumber), isPhoneNumber: true)
     var validPhoneNumber: NBPhoneNumber?
     var countryCode: String?
 
@@ -28,7 +28,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
 
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .viewSignupContactLabel
+        textView.text = .localized(.viewSignupContactLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -41,7 +41,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         let textView = UILabel(frame: .zero)
         textView.font = .volvoSansProRegular(size: 12)
         textView.textColor = .luxeDarkGray()
-        textView.text = .viewEditTextPhoneDescription
+        textView.text = .localized(.viewEditTextPhoneDescription)
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -107,10 +107,10 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         phoneNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
-        let tosString = String(format: NSLocalizedString(.viewTosContent), String.viewTosContentTermsOfServiceTitle, String.viewTosContentPrivacyPolicyTitle)
+        let tosString = String(format: .localized(.viewTosContent), String.localized(.viewTosContentTermsOfServiceTitle), String.localized(.viewTosContentPrivacyPolicyTitle))
         let attributedString = NSMutableAttributedString(string: tosString)
-        let tosRange = attributedString.string.range(of: String.viewTosContentTermsOfServiceTitle)
-        let privacyRange = attributedString.string.range(of: String.viewTosContentPrivacyPolicyTitle)
+        let tosRange = attributedString.string.range(of: String.localized(.viewTosContentTermsOfServiceTitle))
+        let privacyRange = attributedString.string.range(of: String.localized(.viewTosContentPrivacyPolicyTitle))
         
         tosNSRange = NSRange(tosRange!, in: tosString)
         privacyNSRange = NSRange(privacyRange!, in: tosString)
@@ -214,10 +214,10 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
     @objc func tosTap(_ tapGesture: UITapGestureRecognizer) {
         if tapGesture.didTapAttributedTextInLabel(tosLabel, inRange: tosNSRange!) {
             Analytics.trackClick(button: .termsOfService)
-            self.pushViewController(VLWebViewController(urlAddress: .viewTosContentTermsOfServiceUrl, title: .viewTosContentTermsOfServiceTitle, showReloadButton: true), animated: true)
+            self.pushViewController(VLWebViewController(urlAddress: .localized(.viewTosContentTermsOfServiceUrl), title: .localized(.viewTosContentTermsOfServiceTitle), showReloadButton: true), animated: true)
         } else if tapGesture.didTapAttributedTextInLabel(tosLabel, inRange: privacyNSRange!) {
             Analytics.trackClick(button: .privacyPolicy)
-            self.pushViewController(VLWebViewController(urlAddress: .viewTosContentPrivacyPolicyUrl, title: .viewTosContentTermsOfServiceTitle, showReloadButton: true), animated: true)
+            self.pushViewController(VLWebViewController(urlAddress: .localized(.viewTosContentPrivacyPolicyUrl), title: .localized(.viewTosContentTermsOfServiceTitle), showReloadButton: true), animated: true)
         }
     }
     
@@ -244,13 +244,13 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         if let code = error?.code {
             
             if code == .E5001 {
-                self.showOkDialog(title: .localized(.error), message: .errorPhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .localized(.error), message: .localized(.errorPhoneNumberAlreadyExist), dialog: .error, screen: self.screen)
             } else if code == .E4011 {
-                self.showOkDialog(title: .localized(.error), message: .errorAccountAlreadyExists, completion: {
+                self.showOkDialog(title: .localized(.error), message: .localized(.errorAccountAlreadyExists), completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
             } else if code == .E4046 {
-                self.showOkDialog(title: .localized(.error), message: .errorInvalidPhoneNumberFormatted, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .localized(.error), message: .localized(.errorInvalidPhoneNumberFormatted), dialog: .error, screen: self.screen)
             } else  {
                 self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
             }
@@ -371,7 +371,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 return
             } else {
                 if createdCustomer.phoneNumberVerified {
-                    self.showOkDialog(title: .localized(.error), message: .errorAccountAlreadyExists, completion: {
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorAccountAlreadyExists), completion: {
                         self.loadLandingPage()
                     }, dialog: .error, screen: self.screen)
                     return

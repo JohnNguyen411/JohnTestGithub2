@@ -26,13 +26,13 @@ class HelpBookingView: UIView {
             if let booking = self.booking {
                 if let dropoffRequest = booking.dropoffRequest, dropoffRequest.getState() == .completed {
                     self.request = dropoffRequest
-                    title = String.yourLastDelivery.uppercased()
+                    title = String.localized(.yourLastDelivery).uppercased()
                     titleLabel.text = title
                     titleLabel.addUppercasedCharacterSpacing()
                     fillRequest(request: dropoffRequest, dealership: booking.dealership)
                 } else if let pickupRequest = booking.pickupRequest {
                     self.request = pickupRequest
-                    title = String.yourLastPickup.uppercased()
+                    title = String.localized(.yourLastPickup).uppercased()
                     titleLabel.text = title
                     fillRequest(request: pickupRequest, dealership: booking.dealership)
                     titleLabel.addUppercasedCharacterSpacing()
@@ -43,7 +43,7 @@ class HelpBookingView: UIView {
     
     private let titleLabel: UILabel = {
         let titleLabel = UILabel(frame: .zero)
-        titleLabel.text = String.yourLastDelivery.uppercased()
+        titleLabel.text = String.localized(.yourLastDelivery).uppercased()
         titleLabel.font = .volvoSansProMedium(size: 13)
         titleLabel.textColor = .luxeGray()
         titleLabel.addUppercasedCharacterSpacing()

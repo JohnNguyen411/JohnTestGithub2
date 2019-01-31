@@ -19,9 +19,9 @@ class SchedulingPickupViewController: SchedulingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-            setTitle(title: .viewScheduleServiceOptionPickupSelfDropPickup)
+            setTitle(title: .localized(.viewScheduleServiceOptionPickupSelfDropPickup))
         } else {
-            setTitle(title: .schedulePickup)
+            setTitle(title: .localized(.schedulePickup))
         }
     }
     
@@ -46,7 +46,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         }
         
         if let requestLocation = RequestedServiceManager.sharedInstance.getPickupLocation() {
-            pickupLocationView.setTitle(title: .pickupLocation, leftDescription: requestLocation.address!, rightDescription: "")
+            pickupLocationView.setTitle(title: .localized(.pickupLocation), leftDescription: requestLocation.address!, rightDescription: "")
         }
         super.fillViews()
     }
@@ -172,7 +172,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     if let error = error {
                         self.pickupLocationView.showError(error: error)
                     } else {
-                        self.pickupLocationView.showError(error: .errorLocationOutOfPickupArea)
+                        self.pickupLocationView.showError(error: .localized(.errorLocationOutOfPickupArea))
                     }
                 }
                 self.showConfirmButtonIfNeeded()

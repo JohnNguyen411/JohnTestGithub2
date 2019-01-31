@@ -52,7 +52,7 @@ class ServiceDetailViewController: BaseViewController {
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
             analyticName = AnalyticsEnums.Name.Screen.serviceCustomDetail
         }
-        confirmButton = VLButton(type: .bluePrimary, title: (.viewScheduleServiceDetailConfirmService as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleService, screen: analyticName)
+        confirmButton = VLButton(type: .bluePrimary, title: String.localized(.viewScheduleServiceDetailConfirmService).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleService, screen: analyticName)
 
         super.init(screen: analyticName)
     }
@@ -111,7 +111,7 @@ class ServiceDetailViewController: BaseViewController {
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: RepairOrder(repairOrderType: weakself.service))
             StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: weakself.vehicle.id, booking: nil)
             
-            weakself.pushViewController(ServiceCarViewController(title: .viewScheduleServiceOptionPickup, vehicle: weakself.vehicle, state: .needService), animated: true)
+            weakself.pushViewController(ServiceCarViewController(title: .localized(.viewScheduleServiceOptionPickup), vehicle: weakself.vehicle, state: .needService), animated: true)
         }
         
         serviceTitle.descLeftLabel.volvoProLineSpacing()

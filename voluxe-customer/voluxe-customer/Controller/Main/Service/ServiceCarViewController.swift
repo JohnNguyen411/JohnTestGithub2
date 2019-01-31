@@ -34,7 +34,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     
     let checkupLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .viewScheduleServiceOptionInfoPickup
+        textView.text = .localized(.viewScheduleServiceOptionInfoPickup)
         textView.font = .volvoSansProRegular(size: 14)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -51,10 +51,10 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
 
     let stateTestView = UILabel(frame: .zero)
 
-    let vehicleTypeView = VLTitledLabel(title: .volvoYearModel, leftDescription: "", rightDescription: "")
+    let vehicleTypeView = VLTitledLabel(title: .localized(.volvoYearModel), leftDescription: "", rightDescription: "")
 
     let scheduledServiceView = VLTitledLabel()
-    let descriptionButton = VLButton(type: .blueSecondary, title: (.showDetails as String).uppercased(), kern: UILabel.uppercasedKern())
+    let descriptionButton = VLButton(type: .blueSecondary, title: String.localized(.showDetails).uppercased(), kern: UILabel.uppercasedKern())
     
     let vehicleImageView = UIImageView(frame: .zero)
     
@@ -300,9 +300,9 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
         vehicle.setVehicleImage(imageView: vehicleImageView)
         
         if let service = RequestedServiceManager.sharedInstance.getRepairOrder() {
-            var title = String.recommendedService
+            var title = String.localized(.recommendedService)
             if RequestedServiceManager.sharedInstance.isSelfInitiated() {
-                title = .selectedService
+                title = .localized(.selectedService)
                 showUpdateLabel(show: false, title: String.localized(.new).uppercased(), width: 40, right: true)
             } else {
                 showUpdateLabel(show: true, title: String.localized(.new).uppercased(), width: 40, right: true)
@@ -357,13 +357,13 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             
             if state == .needService {
                 dealershipPrefetching()
-                self.updateLabelText(text: .viewScheduleServiceOptionInfoPickup)
+                self.updateLabelText(text: .localized(.viewScheduleServiceOptionInfoPickup))
             } else {
-                self.updateLabelText(text: .viewScheduleServiceOptionInfoSelfDropoff)
+                self.updateLabelText(text: .localized(.viewScheduleServiceOptionInfoSelfDropoff))
                
 //                showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: true)
                 if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
-                    scheduledServiceView.setTitle(title: String.completedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+                    scheduledServiceView.setTitle(title: .localized(.completedService), leftDescription: booking.getRepairOrderName(), rightDescription: "")
                 }
             }
             
@@ -425,14 +425,14 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
                 selfDropButton.isHidden = true
                 deliveryButton.isHidden = true
                 
-                self.updateLabelText(text: String(format: NSLocalizedString(.viewScheduleServiceStatusAtDealershipInfo), (dealership?.name)!))
+                self.updateLabelText(text: String(format: .localized(.viewScheduleServiceStatusAtDealershipInfo), (dealership?.name)!))
                 
             } else if state == .completed {
                 confirmButton.isHidden = false
                 selfDropButton.isHidden = true
                 deliveryButton.isHidden = true
                 
-                self.updateLabelText(text: String(format: NSLocalizedString(.viewScheduleServiceStatusComplete), (dealership?.name)!))
+                self.updateLabelText(text: String(format: .localized(.viewScheduleServiceStatusComplete), (dealership?.name)!))
             }
         }
         
@@ -442,8 +442,8 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             self.selfDropButton.setEvent(name: .inboundSelf, screen: screenAnalyticsEnum(state: state))
             self.deliveryButton.setEvent(name: .inboundVolvo, screen: screenAnalyticsEnum(state: state))
             
-            selfDropButton.setTitle(title: (.viewScheduleServiceOptionPickupSelfDropPickup as String).uppercased())
-            deliveryButton.setTitle(title: (.schedulePickup as String).uppercased())
+            selfDropButton.setTitle(title: String.localized(.viewScheduleServiceOptionPickupSelfDropPickup).uppercased())
+            deliveryButton.setTitle(title: String.localized(.schedulePickup).uppercased())
 
         } else {
             selfDropButton.setTitle(title: (.viewScheduleServiceOptionPickupSelfDeliveryDropoff as String).uppercased())

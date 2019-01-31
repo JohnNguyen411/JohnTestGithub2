@@ -34,7 +34,7 @@ class CurrentLocationCellView: UIView {
     
     private let titleLabel: UILabel = {
         let titleLabel = UILabel(frame: .zero)
-        titleLabel.text = String.popupSelectLocationCurrentLocation
+        titleLabel.text = .localized(.popupSelectLocationCurrentLocation)
         titleLabel.font = UIFont.volvoSansProMedium(size: 14)
         titleLabel.textColor = .luxeDarkGray()
         titleLabel.addUppercasedCharacterSpacing()
@@ -46,7 +46,7 @@ class CurrentLocationCellView: UIView {
     private let subtitleLabel: UILabel = {
         let subtitleLabel = UILabel(frame: .zero)
         subtitleLabel.font = .volvoSansProMedium(size: 13)
-        subtitleLabel.text = String.popupUpdatingLocation
+        subtitleLabel.text = .localized(.popupUpdatingLocation)
         subtitleLabel.textColor = .luxeGray()
         subtitleLabel.backgroundColor = .clear
         subtitleLabel.volvoProLineSpacing()
@@ -119,9 +119,9 @@ class CurrentLocationCellView: UIView {
             subtitleLabel.text = address.shortAddress()
         } else {
             if isLocationEnabled {
-                subtitleLabel.text = .popupUpdatingLocation
+                subtitleLabel.text = .localized(.popupUpdatingLocation)
             } else {
-                subtitleLabel.text = .popupSelectLocationPermissionNote
+                subtitleLabel.text = .localized(.popupSelectLocationPermissionNote)
             }
         }
         subtitleLabel.volvoProLineSpacing()

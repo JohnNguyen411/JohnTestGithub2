@@ -127,15 +127,15 @@ class MainViewController: BaseVehicleViewController {
     func getTitleForState(state: ServiceState) -> String? {
         
         if state.rawValue == ServiceState.idle.rawValue || state.rawValue == ServiceState.needService.rawValue {
-            return .scheduleService
+            return .localized(.scheduleService)
         } else if state.rawValue >= ServiceState.pickupScheduled.rawValue && state.rawValue < ServiceState.enRouteForService.rawValue {
-            return .scheduledPickup
+            return .localized(.scheduledPickup)
         } else if state.rawValue >= ServiceState.enRouteForService.rawValue && state.rawValue < ServiceState.serviceCompleted.rawValue {
-            return .currentService
+            return .localized(.currentService)
         } else if state.rawValue == ServiceState.serviceCompleted.rawValue {
-            return .viewScheduleServiceOptionDropoff
+            return .localized(.viewScheduleServiceOptionDropoff)
         } else if state.rawValue >= ServiceState.dropoffScheduled.rawValue {
-            return .scheduledDelivery
+            return .localized(.scheduledDelivery)
         }
         return nil
     }

@@ -12,7 +12,7 @@ import MBProgressHUD
 
 class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
     
-    let emailTextField = VLVerticalTextField(title: .emailAddress, placeholder: .viewEditTextInfoHintEmail)
+    let emailTextField = VLVerticalTextField(title: .localized(.emailAddress), placeholder: .localized(.viewEditTextInfoHintEmail))
 
     var realm : Realm?
     

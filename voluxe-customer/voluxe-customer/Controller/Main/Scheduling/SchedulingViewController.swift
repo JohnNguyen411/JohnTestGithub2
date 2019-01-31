@@ -57,9 +57,9 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     let scheduledServiceView = VLTitledLabel(padding: insetPadding)
     let descriptionButton: VLButton
     let dealershipView = VLTitledLabel(padding: insetPadding)
-    let scheduledPickupView = VLTitledLabel(title: .scheduledPickup, leftDescription: "", rightDescription: "", padding: insetPadding)
-    let pickupLocationView = VLTitledLabel(title: .pickupLocation, leftDescription: "", rightDescription: "", padding: insetPadding)
-    let loanerView = VLTitledLabel(title: .needALoaner, leftDescription: "", rightDescription: "", padding: insetPadding)
+    let scheduledPickupView = VLTitledLabel(title: .localized(.scheduledPickup), leftDescription: "", rightDescription: "", padding: insetPadding)
+    let pickupLocationView = VLTitledLabel(title: .localized(.pickupLocation), leftDescription: "", rightDescription: "", padding: insetPadding)
+    let loanerView = VLTitledLabel(title: .localized(.needALoaner), leftDescription: "", rightDescription: "", padding: insetPadding)
     let confirmButton: VLButton
     
     let dealershipAddressLabel: UILabel = {
@@ -76,7 +76,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
         let dealershipMapLabel = UILabel()
         dealershipMapLabel.textColor = .luxeCobaltBlue()
         dealershipMapLabel.font = .volvoSansProMedium(size: 12)
-        dealershipMapLabel.text = String.map.uppercased()
+        dealershipMapLabel.text = String.localized(.map).uppercased()
         dealershipMapLabel.textAlignment = .left
         dealershipMapLabel.addUppercasedCharacterSpacing()
         return dealershipMapLabel
@@ -84,7 +84,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     
     
     override init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen? = nil) {
-        descriptionButton = VLButton(type: .blueSecondary, title: (.showDetails as String).uppercased(), kern: UILabel.uppercasedKern(), event: .showService, screen: screen)
+        descriptionButton = VLButton(type: .blueSecondary, title: String.localized(.showDetails).uppercased(), kern: UILabel.uppercasedKern(), event: .showService, screen: screen)
         confirmButton = VLButton(type: .bluePrimary, title: SchedulingViewController.getConfirmButtonTitle(vehicleId: vehicle.id), kern: UILabel.uppercasedKern())
         
         super.init(vehicle: vehicle, state: state, screen: screen)
@@ -285,9 +285,9 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     func fillViews() {
         
         if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
-            var title = String.recommendedService
+            var title = String.localized(.recommendedService)
             if RequestedServiceManager.sharedInstance.isSelfInitiated() {
-                title = .selectedService
+                title = .localized(.selectedService)
             }
             scheduledServiceView.setTitle(title: title, leftDescription: repairOrder.getTitle(), rightDescription: "")
         }
@@ -307,7 +307,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     
     func fillDealership() {
         if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
-            self.dealershipView.setTitle(title: .dealership, leftDescription: dealership.name!, rightDescription: "")
+            self.dealershipView.setTitle(title: .localized(.dealership), leftDescription: dealership.name!, rightDescription: "")
         }
     }
     
@@ -350,7 +350,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             
             if error != nil {
                 if let completion = completion {
-                    completion(String.errorLocationServiceNotOfferedInYourArea)
+                    completion(.localized(.errorLocationServiceNotOfferedInYourArea))
                 }
             } else {
                 var error: String? = nil
@@ -374,7 +374,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
                     
                     self.handleDealershipsResponse(dealerships: filteredDealership)
                 } else {
-                    error = String.errorLocationServiceNotOfferedInYourArea
+                    error = .localized(.errorLocationServiceNotOfferedInYourArea)
                 }
                 if let completion = completion {
                     completion(error)
@@ -408,7 +408,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
                 }
                 if let dealership = RequestedServiceManager.sharedInstance.getDealership() {
                     if let dealershipName = dealership.name {
-                        self.dealershipView.setTitle(title: .dealership, leftDescription: dealershipName, rightDescription: "")
+                        self.dealershipView.setTitle(title: .localized(.dealership), leftDescription: dealershipName, rightDescription: "")
                     }
                 }
                 
@@ -436,7 +436,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     
     func showPickupLocationModal(dismissOnTap: Bool) {
         
-        var title: String = .popupSelectLocationLabel
+        var title: Localized = .popupSelectLocationLabel
         var screen = AnalyticsEnums.Name.Screen.dropoffLocation
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
@@ -445,7 +445,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             screen = AnalyticsEnums.Name.Screen.pickupLocation
         }
         
-        let locationVC = LocationViewController(title: title, buttonTitle: .localized(.next), screen: screen)
+        let locationVC = LocationViewController(title: .localized(title), buttonTitle: .localized(.next), screen: screen)
         locationVC.isModalInPopover = true
         locationVC.pickupLocationDelegate = self
         locationVC.view.accessibilityIdentifier = "locationVC"
@@ -455,7 +455,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     }
     
     func showPickupLoanerModal(dismissOnTap: Bool) {
-        let loanerVC = LoanerViewController(title: .popupDoYouNeedLoanerVehicle, buttonTitle: .localized(.next), screen: .pickupLoaner)
+        let loanerVC = LoanerViewController(title: .localized(.needALoaner), buttonTitle: .localized(.next), screen: .pickupLoaner)
         loanerVC.delegate = self
         loanerVC.view.accessibilityIdentifier = "loanerVC"
         currentPresentrVC = loanerVC
@@ -465,7 +465,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     
     func showPickupDateTimeModal(dismissOnTap: Bool) {
         
-        var title: String = .popupSelectTimeSlotLabelPickup
+        var title: Localized = .popupSelectTimeSlotLabelPickup
         if !StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let type = RequestedServiceManager.sharedInstance.getDropoffRequestType() , type == RequestType.advisorDropoff {
                 title = .popupSelectTimeSlotLabelPickup
@@ -478,7 +478,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
             }
         }
         
-        let dateModal = DateTimeViewController(vehicle: vehicle, title: title, buttonTitle: .localized(.next))
+        let dateModal = DateTimeViewController(vehicle: vehicle, title: .localized(title), buttonTitle: .localized(.next))
         dateModal.delegate = self
         dateModal.view.accessibilityIdentifier = "dateModal"
         currentPresentrVC = dateModal
@@ -515,10 +515,10 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     
     
     func getPickupLocationTitle() -> String {
-        var title: String = .popupSelectLocationLabel
+        var title: String = .localized(.popupSelectLocationLabel)
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-                title = .viewDealershipCloseToLocation
+                title = .localized(.viewDealershipCloseToLocation)
             }
         }
         return title
@@ -537,7 +537,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     }
     
     private static func getConfirmButtonTitle(vehicleId: Int) -> String {
-        var title = String.viewScheduleServiceOptionConfirmButtonPositivePickup
+        var title: Localized = .viewScheduleServiceOptionConfirmButtonPositivePickup
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicleId) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
                 title = .popupAdvisorDropoffSelfDrop
@@ -549,7 +549,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
                 title = .viewScheduleServiceOptionConfirmButtonPositiveDropoff
             }
         }
-        return title.uppercased()
+        return String.localized(title).uppercased()
     }
 
     func getConfirmButtonEvent() -> AnalyticsEnums.Name.Button {
@@ -645,13 +645,13 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
         } else {
             RequestedServiceManager.sharedInstance.setDropoffRequestLocation(requestLocation: locationRequest!)
         }
-        var title: String = .pickupLocation
+        var title: String = .localized(.pickupLocation)
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-                title = .viewDealershipCloseToLocation
+                title = .localized(.viewDealershipCloseToLocation)
             }
         } else {
-            title = .deliveryLocation
+            title = .localized(.deliveryLocation)
         }
         
         pickupLocationView.setTitle(title: title, leftDescription: locationRequest!.address!, rightDescription: "")

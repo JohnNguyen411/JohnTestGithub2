@@ -134,23 +134,23 @@ class ScheduledBookingViewController: SchedulingViewController {
         }
         
         if let requestLocation = request.location {
-            var title = String.pickupLocation
+            var title = String.localized(.pickupLocation)
             if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                title = .deliveryLocation
+                title = .localized(.deliveryLocation)
             }
             pickupLocationView.setTitle(title: title, leftDescription: requestLocation.address!, rightDescription: "")
         }
         
         if booking.repairOrderRequests.count > 0 {
             if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                scheduledServiceView.setTitle(title: .selectedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+                scheduledServiceView.setTitle(title: .localized(.selectedService), leftDescription: booking.getRepairOrderName(), rightDescription: "")
             } else {
-                scheduledServiceView.setTitle(title: .completedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+                scheduledServiceView.setTitle(title: .localized(.completedService), leftDescription: booking.getRepairOrderName(), rightDescription: "")
             }
         }
         
         if let dealership = booking.dealership {
-            self.dealershipView.setTitle(title: .dealership, leftDescription: dealership.name!, rightDescription: "")
+            self.dealershipView.setTitle(title: .localized(.dealership), leftDescription: dealership.name!, rightDescription: "")
         }
         
         loanerView.setLeftDescription(leftDescription: booking.loanerVehicleRequested ? .localized(.yes) : .localized(.no))

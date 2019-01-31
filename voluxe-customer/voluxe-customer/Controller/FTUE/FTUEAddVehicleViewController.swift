@@ -28,7 +28,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     
     let label: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .viewVehicleAddLabel
+        textView.text = .localized(.viewVehicleAddLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -43,9 +43,9 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     var selectedModel = -1
     var selectedColor = -1
     
-    let yearLabel = VLVerticalTextField(title: .year, placeholder: .viewVehicleAddYearHint)
-    let modelLabel = VLVerticalTextField(title: .model, placeholder: .viewVehicleAddModelHint)
-    let colorLabel = VLVerticalTextField(title: .color, placeholder: .viewVehicleAddColorHint)
+    let yearLabel = VLVerticalTextField(title: .localized(.year), placeholder: .localized(.viewVehicleAddYearHint))
+    let modelLabel = VLVerticalTextField(title: .localized(.model), placeholder: .localized(.viewVehicleAddModelHint))
+    let colorLabel = VLVerticalTextField(title: .localized(.color), placeholder: .localized(.viewVehicleAddColorHint))
     
     var pickerView: UIPickerView!
     

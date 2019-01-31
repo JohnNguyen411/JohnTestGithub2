@@ -24,7 +24,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
 
     var bookingFeedback: BookingFeedback?
 
-    let vehicleTypeView = VLTitledLabel(title: .volvoYearModel, leftDescription: "", rightDescription: "")
+    let vehicleTypeView = VLTitledLabel(title: .localized(.volvoYearModel), leftDescription: "", rightDescription: "")
     let vehicleImageView = UIImageView(frame: .zero)
     let confirmButton = VLButton(type: .bluePrimary, title: String.localized(.ok).uppercased(), kern: UILabel.uppercasedKern())
     let scrollView = UIScrollView(frame: .zero)
@@ -36,7 +36,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     
     let serviceCompleteLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .viewScheduleServiceStatusComplete
+        textView.text = .localized(.viewScheduleServiceStatusComplete)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -47,7 +47,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     
     let rateLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .viewScheduleServiceStatusCompleteRate
+        textView.text = .localized(.viewScheduleServiceStatusCompleteRate)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -60,7 +60,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         let ratingTextView = UITextView(frame: .zero)
         ratingTextView.font = .volvoSansProRegular(size: 16)
         ratingTextView.isScrollEnabled = false
-        ratingTextView.text = .viewScheduleServiceStatusFeedbackCommentHint
+        ratingTextView.text = .localized(.viewScheduleServiceStatusFeedbackCommentHint)
         ratingTextView.textColor = .luxeLightGray()
         return ratingTextView
     }()
@@ -75,7 +75,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.textColor = UIColor.luxeCobaltBlue()
         titleLabel.font = .volvoSansProMedium(size: 12)
-        titleLabel.text = .viewScheduleServiceStatusFeedbackCommentTitle
+        titleLabel.text = .localized(.viewScheduleServiceStatusFeedbackCommentTitle)
         return titleLabel
     }()
     
@@ -131,7 +131,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
                 weakSelf.showRatingTextView(show: true)
             } else {
                 var commentText = weakSelf.ratingTextView.text ?? ""
-                if commentText == .viewScheduleServiceStatusFeedbackCommentHint {
+                if commentText == .localized(.viewScheduleServiceStatusFeedbackCommentHint) {
                     commentText = ""
                 }
                 
@@ -353,8 +353,8 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         rateLabel.animateAlpha(show: !show)
         ratingSlider.animateAlpha(show: !show)
         
-        serviceCompleteLabel.text = show ? .viewScheduleServiceStatusFeedbackCommentLabel : .viewScheduleServiceStatusComplete
-        self.navigationItem.title = .viewScheduleServiceStatusFeedback
+        serviceCompleteLabel.text = show ? .localized(.viewScheduleServiceStatusFeedbackCommentLabel) : .localized(.viewScheduleServiceStatusComplete)
+        self.navigationItem.title = .localized(.viewScheduleServiceStatusFeedback)
         
         confirmButton.setTitle(title: show ? String.localized(.done).uppercased() : String.localized(.ok).uppercased())
         self.navigationItem.rightBarButtonItem?.title = show ? .localized(.done) : .localized(.skip)
@@ -406,7 +406,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         scrollView.setContentOffset(offset, animated: true)
         
         if textView.text.isEmpty {
-            textView.text = .viewScheduleServiceStatusFeedbackCommentHint
+            textView.text = .localized(.viewScheduleServiceStatusFeedbackCommentHint)
             textView.textColor = .luxeLightGray()
         }
     }

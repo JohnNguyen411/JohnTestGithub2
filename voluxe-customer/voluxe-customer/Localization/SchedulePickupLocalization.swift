@@ -9,7 +9,7 @@
 import Foundation
 
 extension String {
-    
+    /*
     static var scheduleService: String { return NSLocalizedString(#function) }
     static var viewScheduleServiceDetailConfirmService: String { return NSLocalizedString(#function) }
     static var viewScheduleServiceOptionPickup: String { return NSLocalizedString(#function) }
@@ -55,5 +55,5 @@ extension String {
     static var permissionAllowNotificationTitle: String { return NSLocalizedString(#function) }
     static var permissionAllowNotificationMessage: String { return NSLocalizedString(#function) }
     static var permissionAllowButtonTitle: String { return NSLocalizedString(#function) }
-    
+ */
 }

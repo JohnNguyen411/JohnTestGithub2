@@ -56,10 +56,10 @@ class HelpDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        helpTitle.text = helpDetail.title
-        label.text = helpDetail.description
+        helpTitle.text = .localized(helpDetail.title)
+        label.text = .localized(helpDetail.description)
         
-        self.navigationItem.title = .help
+        self.navigationItem.title = .localized(.help)
         
         label.volvoProLineSpacing()
         label.sizeToFit()

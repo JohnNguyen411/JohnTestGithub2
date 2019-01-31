@@ -34,7 +34,7 @@ class HelpListViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = .help
+        self.navigationItem.title = .localized(.help)
         
         tableView.backgroundColor = .clear
         tableView.dataSource = self
@@ -67,7 +67,7 @@ extension HelpListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SettingsCell.reuseIdIndicator, for: indexPath) as! SettingsCell
-        cell.setText(text: helpSection.sections[indexPath.row].title)
+        cell.setText(text: .localized(helpSection.sections[indexPath.row].title))
         cell.setCellType(type: .indicator)
         return cell
     }
@@ -87,24 +87,24 @@ extension HelpListViewController: UITableViewDelegate {
         if helpSection.type == .booking {
             if let booking = self.booking, let dealership = booking.dealership {
                 if let phoneNumber = dealership.phoneNumber {
-                    let actionCall = HelpAction(title: .viewHelpOptionDetailCallDealer, type: .call, value: phoneNumber)
+                    let actionCall = HelpAction(title: .localized(.viewHelpOptionDetailCallDealer), type: .call, value: phoneNumber)
                     actions.append(actionCall)
                 }
                 if let email = dealership.email {
-                    let actionEmail = HelpAction(title: .viewHelpOptionDetailEmailDealer, type: .email, value: email)
+                    let actionEmail = HelpAction(title: .localized(.viewHelpOptionDetailEmailDealer), type: .email, value: email)
                     actions.append(actionEmail)
                 }
             }
         } else if helpSection.type == .app {
             if helpDetail.title == .viewTosContentTermsOfServiceTitle {
-                let actionWebview = HelpAction(title: .viewTosContentTermsOfServiceTitle, type: .webview, value: .viewTosContentTermsOfServiceUrl)
+                let actionWebview = HelpAction(title: .localized(.viewTosContentTermsOfServiceTitle), type: .webview, value: .localized(.viewTosContentTermsOfServiceUrl))
                 actions.append(actionWebview)
             } else if helpDetail.title == .viewTosContentPrivacyPolicyTitle {
-                let actionWebview = HelpAction(title: .viewTosContentPrivacyPolicyTitle, type: .webview, value: .viewTosContentPrivacyPolicyUrl)
+                let actionWebview = HelpAction(title: .localized(.viewTosContentPrivacyPolicyTitle), type: .webview, value: .localized(.viewTosContentPrivacyPolicyUrl))
                 actions.append(actionWebview)
             } else {
-                let actionCall = HelpAction(title: .viewHelpOptionDetailCallVolvo, type: .call, value: HelpListViewController.volvoPhoneNumber)
-                let actionEmail = HelpAction(title: .viewHelpOptionDetailEmailVolvo, type: .email, value: HelpListViewController.volvoEmail)
+                let actionCall = HelpAction(title: .localized(.viewHelpOptionDetailCallVolvo), type: .call, value: HelpListViewController.volvoPhoneNumber)
+                let actionEmail = HelpAction(title: .localized(.viewHelpOptionDetailEmailVolvo), type: .email, value: HelpListViewController.volvoEmail)
                 actions.append(actionCall)
                 actions.append(actionEmail)
             }

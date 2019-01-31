@@ -14,14 +14,14 @@ import libPhoneNumber_iOS
 
 class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelegate {
     
-    let phoneNumberTextField = VLVerticalTextField(title: .viewEditTextTitlePhoneNumber, placeholder: .viewEditTextInfoHintPhoneNumber, isPhoneNumber: true)
+    let phoneNumberTextField = VLVerticalTextField(title: .localized(.viewEditTextTitlePhoneNumber), placeholder: .localized(.viewEditTextInfoHintPhoneNumber), isPhoneNumber: true)
     var validPhoneNumber: NBPhoneNumber?
     let phoneUtil = NBPhoneNumberUtil.sharedInstance()
     var countryCode: String?
     
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .viewSignupContactLabel
+        textView.text = .localized(.viewSignupContactLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -34,7 +34,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
         let textView = UILabel(frame: .zero)
         textView.font = .volvoSansProRegular(size: 12)
         textView.textColor = .luxeDarkGray()
-        textView.text = .viewEditTextPhoneDescription
+        textView.text = .localized(.viewEditTextPhoneDescription)
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -67,7 +67,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
         phoneNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         if ftuePhoneType == .resetPassword {
-            self.phoneNumberLabel.text = .viewSigninPhoneLabel
+            self.phoneNumberLabel.text = .localized(.viewSigninPhoneLabel)
         }
         
         _ = checkTextFieldsValidity()

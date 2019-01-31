@@ -13,9 +13,9 @@ import RealmSwift
 
 class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
-    let emailTextField = VLVerticalTextField(title: .emailAddress, placeholder: .viewEditTextInfoHintEmail)
-    let passwordTextField = VLVerticalTextField(title: .viewEditTextTitlePasswordNew, placeholder: "••••••••")
-    let forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.viewSigninForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), event: .forgotPassword, screen: .login)
+    let emailTextField = VLVerticalTextField(title: .localized(.emailAddress), placeholder: .localized(.viewEditTextInfoHintEmail))
+    let passwordTextField = VLVerticalTextField(title: .localized(.viewEditTextTitlePasswordNew), placeholder: "••••••••")
+    let forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.localized(.viewSigninForgotPassword).uppercased(), kern: UILabel.uppercasedKern(), event: .forgotPassword, screen: .login)
     
     var loginInProgress = false
     var realm : Realm?
