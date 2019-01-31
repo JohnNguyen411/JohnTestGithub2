@@ -8,7 +8,61 @@
 
 "appName" = "Volvo Valet";
 
+/* Generic */
+"notAvailable" = "NA";
+
+"phoneNumber" = "Phone Number";
+
+"phoneNumberAlreadyTaken" = "Phone number already taken";
+
+"phoneNumberCannotBeEmpty" = "Phone number cannot be empty";
+
+"confirmPhoneNumber" = "Confirm Phone Number";
+
 "changePhoneNumber" = "Change phone number";
+
+"confirmationCode" = "Confirmation Code";
+
+"createPassword" = "Create a password";
+
+"currentPassword" = "Current Password";
+
+"password" = "Password";
+
+"emailAddress" = "Email Address";
+
+/* Generic */
+"yes" = "Yes";
+
+"no" = "No";
+
+"notNow" = "Not Now";
+
+"ok" = "Ok";
+
+"cancel" = "Cancel";
+
+"loading" = "Loading…";
+
+"next" = "Next";
+
+"new" = "Next";
+
+"skip" = "Skip";
+
+"edit" = "Edit";
+
+"done" = "Done";
+
+"add" = "Add";
+
+"remove" = "Remove";
+
+"close" = "Close";
+
+"dismiss" = "Dismiss";
+
+"retry" = "Retry";
 
 "removeVehicle" = "Remove Vehicle";
 
@@ -32,6 +86,8 @@
 
 "completedService" = "Completed Service";
 
+"dealership" = "Dealership";
+
 "recommendedService" = "Recommended Service";
 
 "newService" = "New Service";
@@ -50,9 +106,41 @@
 
 "yourLastDelivery" = "Your last delivery";
 
+"pickup" = "Pickup";
+
+"delivery" = "Delivery";
+
+"change" = "Change";
+
+"contact" = "Contact";
+
+"update" = "Update";
+
+"volvoYearModel" = "Volvo Year/Model";
+
+"year" = "Year";
+
+"model" = "Model";
+
+"color" = "Color";
+
+"help" = "Help";
+
+"updateNow" = "Update Now";
+
+"later" = "Later";
+
+"settings" = "Settings";
+
+"yourAccount" = "Your Account";
+
 "addNewLocation" = "Add a new location";
 
+"resendCode" = "Resend code";
+
 "toastSettingsLocationDisabled" = "Volvo Valet does not function properly with location services disabled.";
+
+"requestReset" = "Request was reset.";
 
 "updateYourPassword" = "Update your Password";
 
@@ -60,17 +148,61 @@
 
 "delete" = "Delete";
 
+"passwordRequirements" = "Password must have at least one letter and one digit, at least 8 chars, less than 60";
+
+"openSettings" = "Open Settings";
+
+"back" = "Back";
+
 "map" = "Map";
 
 "refresh" = "Refresh";
+
+/* Vehicle */
+"vehicleMake" = "Volvo";
 
 /* Drawer */
 "yourVolvo" = "Your Volvo";
 
 "yourVolvos" = "Your Volvos";
 
+"signout" = "Sign Out";
+
+"readMore" = "Read More";
+
+"unknown" = "Unknown";
+
+"min" = "min";
+
+"mins" = "mins";
+
+"number1" = "1";
+
+"number2" = "2";
+
+"number3" = "3";
+
+"number4" = "4";
+
+"number5" = "5";
+
+"number6" = "6";
+
+"number7" = "7";
+
+"number8" = "8";
+
+"number9" = "9";
+
+"number10" = "10";
+
+"number11" = "11";
+
 
 /********** Errors **********/
+
+/* Error */
+"error" = "Error";
 
 "errorDuplicateRequest" = "A %@ is already scheduled for your car. Please refresh.";
 
@@ -78,24 +210,93 @@
 
 "errorDatabase" = "An unexpected error as occured. Please try restarting the app.";
 
+"errorOops" = "Oops";
+
+"errorUnknown" = "Something went wrong. Please try again.";
+
+"errorOffline" = "No internet connection";
+
+"errorOnline" = "Back online";
+
+"errorInvalidCredentials" = "The email or password provided is invalid.";
+
+"errorInvalidUserDisabled" = "This account has been disabled";
+
+"errorAccountAlreadyExists" = "Account already exists. Please signin.";
+
+"errorPhoneNumberTaken" = "This phone number is already taken. Please try a different number.";
+
 "errorNoMatchingCustomer" = "No matching customer is found";
+
+"errorInvalidVerificationCode" = "The verification code you entered is incorrect. Please try again or tap Resend Code to receive a new code.";
+
+"errorUserDisabled" = "Your account has been disabled. Please contact your advisor.";
+
+"errorInvalidFirstName" = "Invalid first name";
+
+"errorInvalidLastName" = "Invalid last name";
+
+"errorInvalidEmail" = "Invalid email address";
+
+"errorInvalidPhoneNumber" = "Invalid phone number";
 
 "errorInvalidPhoneNumberFormatted" = "The provided phone number is correctly formatted but does not appear to be a valid phone number.";
 
+"errorVerifyPhoneNumber" = "Please verify your phone number";
+
+"errorInvalidPhoneVerificationCode" = "Invalid verification code";
+
 "errorPhoneNumberAlreadyExist" = "An account already exists with that phone number, please try Login instead.";
 
-"errorEmailAlreadyExist" = "We couldn't find any account for that phone number. Please verify the phone number and try again.";
+"errorEmailAlreadyExist" = "An account already exists with that email.";
+
+"errorPhoneNumberNotInFile" = "We couldn't find any account for that phone number. Please verify the phone number and try again.";
 
 "errorUpdatePhoneNumberAlreadyExist" = "An account already exists with that phone number, please verify the phone number and try again.";
 
+"errorInvalidPassword" = "Invalid password";
+
+"errorInvalidPasswordConfirm" = "Passwords are not matching";
+
 "errorPasswordNotMatch" = "Does not match";
+
+"errorRequestNotCancelable" = "The request cannot be canceled in the current state.";
+
+"errorIllegalRequestStateChange" = "The request state cannot be changed to the new state.";
+
+"errorIllegalRequestTaskChange" = "The request task cannot be changed to the new task";
+
+"errorInvalidApplicationVersion" = "The server requires a minimum version for this application but failed to parse the provided value.";
+
+"errorAmbiguousCustomerUpsert" = "The customer upsert data is ambiguous.";
+
+"errorAmbiguousVehicleUpsert" = "The vehicle upsert data is ambiguous.";
+
+"errorDuplicateLoanerVehicleBookingAssignment" = "The loaner vehicle is already assigned to an active booking.";
+
+"errorLocationOutOfPickupArea" = "Out of pickup area";
+
+"errorLocationServiceUnavailable" = "Service unavailable";
+
+"errorLocationServiceNotOfferedInYourArea" = "Service not offered in your area";
+
+"errorLocationOutOfDropoffArea" = "Out of delivery area";
+
+"errorForcedUpgradeTitle" = "Software Update";
 
 "errorForcedUpgradeMessage" = "There is a new version of Volvo Valet available for download.\n\nThis is a required update. Please update now.";
 
+"errorSoftUpgradeTitle" = "Update Available";
+
 "errorSoftUpgradeMessage" = "There is a new version of Volvo Valet available for download.\n\nFor the best possible experience, please update now.";
+
+"errorRemoveVehicleError" = "You cannot remove a vehicle that has an active booking";
 
 
 /********** Permissions **********/
+
+/* Permissions */
+"permissionsLocationDeniedTitle" = "Why we need Location?";
 
 "permissionsLocationDeniedMessage" = "Volvo Valet needs location access to pickup or deliver your vehicle at your current location.\nPlease go to your settings and enable Location permissions for Volvo Valet.";
 
@@ -114,7 +315,14 @@
 
 /********** Popups **********/
 
+/* Popups */
+"popupPhoneVerificationResendCodeTitle" = "New confirmation code sent";
+
+"popupPhoneVerificationResendCodeMessage" = "We sent a 4 digit confirmation code to %@";
+
 "popupAddNewLocationEditHint" = "123 Main Street, San Francisco";
+
+"popupAddNewLocationLabel" = "Address for Pickup";
 
 "popupRemoveAddressMessage" = "Are you sure you want to delete that address %@?";
 
@@ -144,6 +352,8 @@
 
 "popupSelectTimeSlotUnavailableLabel" = "Unfortunately no dates are available for this dealership. Please try again later or call the dealership.";
 
+"popupSelectTimeSlotUnavailableCallDealership" = "Call Dealership";
+
 "popupSelectTimeSlotUnavailableCallDealershipNotAvailable" = "Dealership not available";
 
 "popupDefaultCancelPickupMessage" = "Are you sure you want to cancel your pickup?";
@@ -155,6 +365,10 @@
 "popupContactText" = "Text Driver";
 
 "popupContactCall" = "Call Driver";
+
+"popupSoftUpgradeNegative" = "Later";
+
+"popupSignoutConfirmationMessage" = "Are you sure you want to signout?";
 
 "popupAdvisorDropoffMessage" = "Are you sure you want to pick-up your vehicle at the dealership?";
 
@@ -263,6 +477,10 @@
 
 "helpTheAppIsntWorkingCorrectly" = "The app isn’t working correctly";
 
+"helpIForgotMyPassword" = "I forgot my password";
+
+"helpICantUpdateMyPhone" = "I can’t update my phone or email";
+
 "helpMyCurrentLocationIsntWorking" = "My current location isn’t working";
 
 "helpPushNotificationsArentWorking" = "Push notifications aren’t working for me";
@@ -301,6 +519,12 @@
 /* Views */
 "viewLogoTitle" = "Volvo Valet";
 
+"viewIntro" = "Intro";
+
+"viewIntroFooterSignin" = "Sign-in";
+
+"viewIntroFooterSignup" = "Create Account";
+
 "viewSignupNameLabel" = "Welcome to Volvo Valet. Let’s create your account.";
 
 "viewEditTextInfoHintFirstName" = "John";
@@ -336,6 +560,8 @@
 "viewSignupPasswordRequireLetter" = "Requires a letter";
 
 "viewSignupPasswordRequireNumber" = "Requires a number";
+
+"errorInvalidPasswordUnauthorizedCharacters" = "Your password contains unauthorized characters. Authorized characters: @$!%*?&";
 
 "errorInvalidCharacter" = "Invalid character";
 
@@ -382,6 +608,8 @@
 "viewProfileContactHeader" = "Contact Information";
 
 "viewProfileAccountPasswordHeader" = "Account Password";
+
+"viewPhoneVerificationLabel" = "Type the confirmation code you received via SMS";
 
 "viewPhoneVerificationCodeHint" = "0000";
 
@@ -490,6 +718,56 @@
 "viewHelpOptionTos" = "Terms of service";
 
 "viewHelpOptionPp" = "Privacy policy information";
+
+"viewHelpOptionDetailEmailDealer" = "Email Dealer";
+
+"viewHelpOptionDetailCallDealer" = "Call Dealer";
+
+"viewHelpOptionDetailEmailVolvo" = "Email Volvo";
+
+"viewHelpOptionDetailCallVolvo" = "Call Volvo";
+
+"viewSoftwareLicences" = "Software Licenses";
+
+"viewScheduleServiceStatusSelfAdvisorDropoff" = "Pick-up at Dealership";
+
+"viewScheduleServiceStatusSelfAdvisorPickup" = "Drop-off at Dealership";
+
+"viewScheduleServiceStatusSelfDealershipNavigate" = "Get Directions";
+
+"viewScheduleServiceStatusSelfFooterTitleDropoff" = "You can also schedule a driver to deliver your vehicle";
+
+/* Service Types */
+"viewScheduleServiceTypeOtherUnknown" = "Diagnostic Inspection";
+
+/* Help Categories */
+"viewHelpCategoryLastLeg" = "Last Leg";
+
+"viewHelpCategoryHowLuxeByVolvoWorks" = "How Volvo Valet works";
+
+"viewHelpCategoryTroubleWithLuxeByVolvoApp" = "Trouble with Volvo Valet app";
+
+/* TOS */
+"viewTosContentTermsOfServiceTitle" = "Terms of Service";
+
+"viewTosContentPrivacyPolicyTitle" = "Privacy Policy";
+
+"viewTosContent" = "I have read and agree to the %1$@ and \t%2$@";
+
+"viewTosContentTermsOfService" = "&lt;a href=\"https://terms-luxebyvolvo.luxe.com\"&gt;Terms of Service&lt;/a&gt;\"";
+
+"viewTosContentPrivacyPolicy" = "&lt;a href=\"https://privacy-luxebyvolvo.luxe.com\"&gt;Privacy Policy&lt;/a&gt;\"";
+
+"viewTosContentTermsOfServiceUrl" = "https://terms-luxebyvolvo.luxe.com";
+
+"viewTosContentPrivacyPolicyUrl" = "https://privacy-luxebyvolvo.luxe.com";
+
+/* Email */
+"viewEmailIntentChooserTitle" = "Choose E-Mail Client";
+
+"viewEmailSubject" = "This is Subject";
+
+"viewEmailBody" = "Hey Volvo Valet,\n\nThis is email body\n\n -\n\nThanks,\n%@";
 
 "viewRatingRangeValueOne" = "1";
 

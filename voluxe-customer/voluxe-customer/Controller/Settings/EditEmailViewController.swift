@@ -43,7 +43,7 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
         }
         emailTextField.textField.becomeFirstResponder()
         
-        self.navigationItem.rightBarButtonItem?.title = .done
+        self.navigationItem.rightBarButtonItem?.title = .localized(.done)
 
     }
     override func setupViews() {
@@ -66,10 +66,10 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
         
         if let code = error?.code {
             if code == .E5001 || code == .E4011 {
-                self.showOkDialog(title: .error, message: .errorEmailAlreadyExist, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .localized(.error), message: .localized(.errorEmailAlreadyExist), dialog: .error, screen: self.screen)
             }
         } else {
-            self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
         }
     }
    

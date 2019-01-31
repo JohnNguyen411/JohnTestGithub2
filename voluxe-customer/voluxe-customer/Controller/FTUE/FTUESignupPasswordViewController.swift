@@ -165,16 +165,16 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         if let code = error?.code {
             if code == .E5001 {
-                self.showOkDialog(title: .error, message: .errorAccountAlreadyExists, completion: {
+                self.showOkDialog(title: .localized(.error), message: .errorAccountAlreadyExists, completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
             } else if code == .E4012 {
-                self.showOkDialog(title: .error, message: .errorInvalidVerificationCode, completion: {
+                self.showOkDialog(title: .localized(.error), message: .errorInvalidVerificationCode, completion: {
                     self.navigationController?.popViewController(animated: true)
                 }, dialog: .error, screen: self.screen)
             }
         } else {
-            self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
         }
         
     }
@@ -242,7 +242,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         } else if let password = volvoPwdConfirmTextField.textField.text, password.hasIllegalPasswordCharacters() {
             inlineError(error: .errorInvalidCharacter)
             volvoPwdConfirmTextField.setBottomRightActionBlock { [weak self] in
-                self?.showOkDialog(title: .error, message: .errorInvalidPasswordUnauthorizedCharacters, dialog: .error, screen: self?.screen)
+                self?.showOkDialog(title: .localized(.error), message: .errorInvalidPasswordUnauthorizedCharacters, dialog: .error, screen: self?.screen)
             }
             return
         }
@@ -259,11 +259,11 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 
                 if error != nil {
                     if let errorCode = error?.code, errorCode == .E4012 {
-                        self.showOkDialog(title: .error, message: .errorInvalidVerificationCode, completion: {
+                        self.showOkDialog(title: .localized(.error), message: .errorInvalidVerificationCode, completion: {
                             self.navigationController?.popViewController(animated: true)
                         }, dialog: .error, screen: self.screen)
                     }
-                    weakSelf?.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: weakSelf?.screen)
+                    weakSelf?.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: weakSelf?.screen)
                     weakSelf?.showLoading(loading: false)
                 } else {
                     weakSelf?.showLoading(loading: false)
@@ -283,7 +283,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
                 
                 if error != nil {
                     weakSelf?.showLoading(loading: false)
-                    weakSelf?.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: weakSelf?.screen)
+                    weakSelf?.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: weakSelf?.screen)
                 } else {
                     weakSelf?.showLoading(loading: false)
                     // password successfully updated, login the user

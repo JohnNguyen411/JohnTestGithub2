@@ -244,18 +244,18 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         if let code = error?.code {
             
             if code == .E5001 {
-                self.showOkDialog(title: .error, message: .errorPhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .localized(.error), message: .errorPhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
             } else if code == .E4011 {
-                self.showOkDialog(title: .error, message: .errorAccountAlreadyExists, completion: {
+                self.showOkDialog(title: .localized(.error), message: .errorAccountAlreadyExists, completion: {
                     self.loadLandingPage()
                 }, dialog: .error, screen: self.screen)
             } else if code == .E4046 {
-                self.showOkDialog(title: .error, message: .errorInvalidPhoneNumberFormatted, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .localized(.error), message: .errorInvalidPhoneNumberFormatted, dialog: .error, screen: self.screen)
             } else  {
-                self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
             }
         } else {
-            self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
         }
     }
     
@@ -371,7 +371,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
                 return
             } else {
                 if createdCustomer.phoneNumberVerified {
-                    self.showOkDialog(title: .error, message: .errorAccountAlreadyExists, completion: {
+                    self.showOkDialog(title: .localized(.error), message: .errorAccountAlreadyExists, completion: {
                         self.loadLandingPage()
                     }, dialog: .error, screen: self.screen)
                     return

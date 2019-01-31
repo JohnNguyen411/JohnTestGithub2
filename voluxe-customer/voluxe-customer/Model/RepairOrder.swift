@@ -112,12 +112,12 @@ import RealmSwift
     static func getDrivabilityTitle(isDrivable: Bool?) -> String {
         if let drivable = isDrivable {
             if drivable {
-                return .yes
+                return .localized(.yes)
             } else {
-                return .no
+                return .localized(.no)
             }
         } else {
-            return .imNotSure
+            return .localized(.imNotSure)
         }
     }
     

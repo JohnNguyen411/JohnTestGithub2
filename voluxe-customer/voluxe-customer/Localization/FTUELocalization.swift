@@ -10,7 +10,7 @@ import Foundation
 
 extension String {
     
-    static var viewIntroFooterSignin: String { return NSLocalizedString(#function) }
+    static var viewIntroFooterSignin: String { return NSLocalizedStringCommon(#function) }
     static var viewIntroFooterSignup: String { return NSLocalizedString(#function) }
     static var viewEditTextTitlePhoneNumber: String { return NSLocalizedString(#function) }
     static var viewEditTextInfoHintPhoneNumber: String { return NSLocalizedString(#function) }

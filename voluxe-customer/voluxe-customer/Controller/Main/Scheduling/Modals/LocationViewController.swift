@@ -605,7 +605,7 @@ extension LocationViewController: CurrentLocationCellDelegate {
     }
     
     func deniedPermissionClick() {
-        self.showDialog(title: .permissionLocationTitle, message: .popupSelectLocationPermissionDenied, cancelButtonTitle: .close, okButtonTitle: .openSettings, okCompletion: {
+        self.showDialog(title: .localized(.permissionLocationTitle), message: .localized(.popupSelectLocationPermissionDenied), cancelButtonTitle: .localized(.close), okButtonTitle: .localized(.openSettings), okCompletion: {
             let urlObj = NSURL.init(string:UIApplication.openSettingsURLString)
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(urlObj! as URL, options: [ : ], completionHandler: nil)

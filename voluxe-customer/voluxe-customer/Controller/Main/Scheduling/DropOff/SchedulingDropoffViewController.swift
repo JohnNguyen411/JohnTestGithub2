@@ -238,12 +238,12 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 
                 if (error != nil) {
                     if let code = error?.code, code == .E4049 || code == .E4050 {
-                        self.showDialog(title: .error, message: String(format: .errorDuplicateRequest, String.delivery), buttonTitle: .refresh, completion: {
+                        self.showDialog(title: .localized(.error), message: String(format: .localized(.errorDuplicateRequest), String.localized(.delivery)), buttonTitle: .localized(.refresh), completion: {
                             self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
                         }, dialog: .error, screen: self.screen)
                         return
                     } else {
-                        self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     }
                 }
             }
@@ -282,7 +282,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
             self.hideProgressHUD()
             
             if error != nil {
-                self.showDialog(title: .error, message: .errorUnknown, buttonTitle: .retry, completion: {
+                self.showDialog(title: .localized(.error), message: .localized(.errorUnknown), buttonTitle: .localized(.retry), completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 }, dialog: .error, screen: self.screen)
             } else {

@@ -43,7 +43,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     init(vehicle: Vehicle, repairOrderType: RepairOrderType) {
         self.vehicle = vehicle
         self.repairOrderType = repairOrderType
-        confirmButton = VLButton(type: .bluePrimary, title: (.next as String).uppercased(), kern: UILabel.uppercasedKern(), event: .next, screen: .serviceCustomNotes)
+        confirmButton = VLButton(type: .bluePrimary, title: String.localized(.next).uppercased(), kern: UILabel.uppercasedKern(), event: .next, screen: .serviceCustomNotes)
         
         super.init(screen: .serviceCustomNotes)
     }

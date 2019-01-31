@@ -20,7 +20,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     
     let updateLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = (.new as String).uppercased()
+        textView.text = String.localized(.new).uppercased()
         textView.font = .volvoSansProMedium(size: 12)
         textView.textColor = .white
         textView.backgroundColor = .luxeLipstick()
@@ -58,9 +58,9 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     
     let vehicleImageView = UIImageView(frame: .zero)
     
-    let selfDropButton = VLButton(type: .grayPrimary, title: (.viewScheduleServiceOptionPickupSelfDropPickup as String).uppercased(), kern: UILabel.uppercasedKern())
-    let deliveryButton = VLButton(type: .bluePrimary, title: (.schedulePickup as String).uppercased(), kern: UILabel.uppercasedKern())
-    let confirmButton = VLButton(type: .bluePrimary, title: (.ok as String).uppercased(), kern: UILabel.uppercasedKern())
+    let selfDropButton = VLButton(type: .grayPrimary, title: String.localized(.viewScheduleServiceOptionPickupSelfDropPickup).uppercased(), kern: UILabel.uppercasedKern())
+    let deliveryButton = VLButton(type: .bluePrimary, title: String.localized(.schedulePickup).uppercased(), kern: UILabel.uppercasedKern())
+    let confirmButton = VLButton(type: .bluePrimary, title: String.localized(.ok).uppercased(), kern: UILabel.uppercasedKern())
 
     var screenTitle: String?
     
@@ -303,9 +303,9 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             var title = String.recommendedService
             if RequestedServiceManager.sharedInstance.isSelfInitiated() {
                 title = .selectedService
-                showUpdateLabel(show: false, title: String.new.uppercased(), width: 40, right: true)
+                showUpdateLabel(show: false, title: String.localized(.new).uppercased(), width: 40, right: true)
             } else {
-                showUpdateLabel(show: true, title: String.new.uppercased(), width: 40, right: true)
+                showUpdateLabel(show: true, title: String.localized(.new).uppercased(), width: 40, right: true)
             }
             scheduledServiceView.setTitle(title: title, leftDescription: service.getTitle(), rightDescription: "")
         }
@@ -480,7 +480,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
         if let repairOrder = RequestedServiceManager.sharedInstance.getRepairOrder() {
             self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: repairOrder), animated: true)
         } else if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle), booking.repairOrderRequests.count > 0 {
-            self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: booking.repairOrderRequests[0]), animated: true, backBarButtonTitle: .back)
+            self.pushViewController(ServiceDetailViewController(vehicle: vehicle, service: booking.repairOrderRequests[0]), animated: true, backBarButtonTitle: .localized(.back))
         }
     }
     
@@ -488,7 +488,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
         
         // show confirmation dialog
         
-        self.showDialog(title: .viewScheduleServiceOptionPickupSelfDeliveryDropoff, message: .popupAdvisorDropoffMessage, cancelButtonTitle: .no, okButtonTitle: .yes, okCompletion: {
+        self.showDialog(title: .viewScheduleServiceOptionPickupSelfDeliveryDropoff, message: .popupAdvisorDropoffMessage, cancelButtonTitle: .localized(.no), okButtonTitle: .localized(.yes), okCompletion: {
             if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
                 RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorPickup)
                 self.pushViewController(SchedulingPickupViewController(vehicle: self.vehicle, state: .schedulingService), animated: true)
@@ -504,7 +504,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
                             self.refreshFinalBooking(customerId: booking.customerId, bookingId: booking.id)
                         } else if error != nil {
                             self.hideProgressHUD()
-                            self.showOkDialog(title: .error, message: .errorUnknown)
+                            self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown))
                         }
                     }
                 }
@@ -588,7 +588,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             self.hideProgressHUD()
             
             if error != nil {
-                self.showDialog(title: .error, message: .errorUnknown, buttonTitle: .retry, completion: {
+                self.showDialog(title: .localized(.error), message: .localized(.errorUnknown), buttonTitle: .localized(.retry), completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 }, dialog: .error, screen: self.screenAnalyticsEnum(state: self.serviceState))
             } else {

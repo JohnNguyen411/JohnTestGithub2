@@ -66,8 +66,8 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
     private var driverInfoViewController: DriverInfoViewController?
     
     init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen) {
-        changeButton = VLButton(type: .blueSecondary, title: (.change as String).uppercased(), kern: UILabel.uppercasedKern(), event: .changeDropoff, screen: screen)
-        driverContact = VLButton(type: .blueSecondary, title: (.contact as String).uppercased(), kern: UILabel.uppercasedKern(), event: .contactDriver, screen: screen)
+        changeButton = VLButton(type: .blueSecondary, title: String.localized(.change).uppercased(), kern: UILabel.uppercasedKern(), event: .changeDropoff, screen: screen)
+        driverContact = VLButton(type: .blueSecondary, title: String.localized(.contact).uppercased(), kern: UILabel.uppercasedKern(), event: .contactDriver, screen: screen)
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
         super.init(vehicle: vehicle, state: state, screen: screen)
         generateSteps()
@@ -345,17 +345,17 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
     }
     
     func contactDriverActionSheet() {
-        let alertController = UIAlertController(title: .popupContactTitle, message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: .localized(.popupContactTitle), message: nil, preferredStyle: .actionSheet)
         
-        let textButton = UIAlertAction(title: .popupContactText, style: .default, handler: { (action) -> Void in
+        let textButton = UIAlertAction(title: .localized(.popupContactText), style: .default, handler: { (action) -> Void in
             self.contactDriver(mode: "text_only")
         })
         
-        let callButton = UIAlertAction(title: .popupContactCall, style: .default, handler: { (action) -> Void in
+        let callButton = UIAlertAction(title: .localized(.popupContactCall), style: .default, handler: { (action) -> Void in
             self.contactDriver(mode: "voice_only")
         })
         
-        let cancelButton = UIAlertAction(title: .cancel, style: .cancel, handler: { (action) -> Void in
+        let cancelButton = UIAlertAction(title: .localized(.cancel), style: .cancel, handler: { (action) -> Void in
             alertController.dismiss(animated: true, completion: nil)
         })
         
@@ -388,7 +388,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
                 }
             } else {
                 MBProgressHUD.hide(for: self.view, animated: true)
-                self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
             }
         }
     }

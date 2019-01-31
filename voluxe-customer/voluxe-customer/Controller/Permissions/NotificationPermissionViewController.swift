@@ -14,7 +14,7 @@ class NotificationPermissionViewController: VLPresentrViewController, PresentrDe
 
     static var isShowing = false
     
-    let notNowButton = VLButton(type: .whitePrimary, title: String.notNow.uppercased())
+    let notNowButton = VLButton(type: .whitePrimary, title: String.localized(.notNow).uppercased())
     let allowButton = VLButton(type: .bluePrimary, title: String.permissionAllowButtonTitle.uppercased())
     let notifDelegate: UNUserNotificationCenterDelegate
     var sizeDelegate: VLPresentrViewDelegate?

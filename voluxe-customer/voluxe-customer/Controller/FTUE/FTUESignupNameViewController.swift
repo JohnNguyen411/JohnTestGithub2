@@ -68,7 +68,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         if let customer = UserManager.sharedInstance.getCustomer(), editMode {
             self.firstNameTextField.textField.text = customer.firstName
             self.lastNameTextField.textField.text = customer.lastName
-            self.navigationItem.rightBarButtonItem?.title = .done
+            self.navigationItem.rightBarButtonItem?.title = .localized(.done)
         }
     }
     
@@ -212,7 +212,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         CustomerAPI.updateName(customerId: customerId, firstName: firstName, lastName: lastName) { error in
             if error != nil {
                 MBProgressHUD.hide(for: self.view, animated: true)
-                self.showOkDialog(title: .error, message: .errorUnknown)
+                self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown))
             } else {
                 if let customer = UserManager.sharedInstance.getCustomer() {
                     if let realm = try? Realm() {

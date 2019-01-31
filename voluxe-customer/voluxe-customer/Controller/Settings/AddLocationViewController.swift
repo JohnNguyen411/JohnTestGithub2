@@ -26,7 +26,7 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     let newLocationTextField = VLVerticalSearchTextField(title: .popupAddNewLocationLabel, placeholder: .popupAddNewLocationEditHint)
 
     init() {
-        super.init(title: .addNewLocation, buttonTitle: .add, screen: .location)
+        super.init(title: .localized(.addNewLocation), buttonTitle: .localized(.add), screen: .location)
         newLocationTextField.textField.autocorrectionType = .no
         newLocationTextField.tableYOffset = -20
         newLocationTextField.tableBottomMargin = 0

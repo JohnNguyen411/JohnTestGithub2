@@ -113,7 +113,7 @@ class LoadingViewController: LogoViewController {
                         return
                     } else if code == .E5001 || code == .E5002 {
                         // 500 unknown
-                        self.showOkDialog(title: .error, message: .errorUnknown, completion: {
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), completion: {
                             self.callCustomer(customerId: customerId)
                         }, dialog: .error, screen: self.screen)
                         return
@@ -154,7 +154,7 @@ class LoadingViewController: LogoViewController {
             }
             
             
-            self.showOkDialog(title: .error, message: .errorUnknown, completion: {
+            self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), completion: {
                 self.callCustomer(customerId: customerId)
             }, dialog: .error, screen: self.screen)
         }
@@ -193,7 +193,7 @@ class LoadingViewController: LogoViewController {
                 return
             }
         }
-        self.showOkDialog(title: .error, message: .errorUnknown, completion: {
+        self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), completion: {
             self.callVehicles(customerId: customerId)
         }, dialog: .error, screen: self.screen)
     }

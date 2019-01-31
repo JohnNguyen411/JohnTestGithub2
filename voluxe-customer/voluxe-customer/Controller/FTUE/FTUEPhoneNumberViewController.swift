@@ -182,9 +182,9 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
                 if let error = error {
                     self.hideProgressHUD()
                     if let code = error.code, code == .E4001 {
-                        self.showOkDialog(title: .error, message: .errorPhoneNumberNotInFile, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorPhoneNumberNotInFile), dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
                 } else {
@@ -215,9 +215,9 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
                 if let error = error {
                     self.hideProgressHUD()
                     if let code = error.code, code == .E4011 {
-                        self.showOkDialog(title: .error, message: .errorUpdatePhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUpdatePhoneNumberAlreadyExist), dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
                 } else {
@@ -240,7 +240,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
                 if customer != nil {
                     self.goToNext()
                 } else {
-                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                 }
             }
         }

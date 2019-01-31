@@ -80,8 +80,8 @@ class SettingsCarViewController: BaseViewController {
     private func removeVehicleAlert() {
         self.showDestructiveDialog(title: .removeVehicle,
                                    message: .popupRemoveVehicleMessage,
-                                   cancelButtonTitle: .cancel,
-                                   destructiveButtonTitle: .remove,
+                                   cancelButtonTitle: String.localized(.cancel),
+                                   destructiveButtonTitle: String.localized(.remove),
                                    destructiveCompletion: { [weak self] in self?.removeVehicle() },
                                    dialog: .vehicleDelete,
                                    screen: self.screen)
@@ -108,9 +108,9 @@ class SettingsCarViewController: BaseViewController {
     private func deleteVehicleFailed(error: LuxeAPIError) {
         MBProgressHUD.hide(for: self.view, animated: true)
         if error.code == .E3011 {
-            showOkDialog(title: .error, message: .errorDeleteVehicleBooking, dialog: .error, screen: self.screen)
+            showOkDialog(title: .localized(.error), message: .localized(.errorDeleteVehicleBooking), dialog: .error, screen: self.screen)
         } else {
-            showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+            showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
         }
     }
     

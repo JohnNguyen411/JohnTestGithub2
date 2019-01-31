@@ -68,7 +68,7 @@ class ETAMarker: UIView {
         }
         
         if etaValue.text != nil && !(etaValue.text?.isEmpty)! {
-            etaLabel.text = (.shortMinute as String).lowercased()
+            etaLabel.text = String.localized(.min).lowercased()
             icon.image = UIImage(named: "markerBlank")
         } else {
             etaLabel.text = ""

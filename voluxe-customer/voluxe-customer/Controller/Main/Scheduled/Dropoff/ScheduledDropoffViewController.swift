@@ -124,7 +124,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
                     self.refreshFinalBooking(customerId: booking.customerId, bookingId: booking.id)
                 } else if error != nil {
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .error, message: .errorUnknown)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown))
                 }
             }
             
@@ -157,7 +157,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
             self.hideProgressHUD()
             
             if error != nil {
-                self.showDialog(title: .error, message: .errorUnknown, buttonTitle: .retry, completion: {
+                self.showDialog(title: .localized(.error), message: .localized(.errorUnknown), buttonTitle: .localized(.retry), completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 }, dialog: .error, screen: self.screen)
             } else {

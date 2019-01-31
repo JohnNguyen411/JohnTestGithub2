@@ -48,7 +48,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdIndicator)
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdToogle)
 
-        self.navigationItem.rightBarButtonItem?.title = .edit
+        self.navigationItem.rightBarButtonItem?.title = .localized(.edit)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -113,13 +113,13 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     
     private func edit() {
         Analytics.trackClick(navigation: .edit, screen: self.screen)
-        self.navigationItem.rightBarButtonItem?.title = .done
+        self.navigationItem.rightBarButtonItem?.title = .localized(.done)
         tableView.setEditing(true, animated: true)
     }
     
     private func done() {
         Analytics.trackClick(navigation: .done, screen: self.screen)
-        self.navigationItem.rightBarButtonItem?.title = .edit
+        self.navigationItem.rightBarButtonItem?.title = .localized(.edit)
         tableView.setEditing(false, animated: true)
     }
     
@@ -161,7 +161,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         if let customerId = UserManager.sharedInstance.customerId() {
             CustomerAPI.requestPasswordChange(customerId: customerId) { error in
                 if error != nil {
-                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
                 } else {
                     FTUEStartViewController.flowType = .signup
@@ -285,8 +285,8 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         if indexPath.section == 0 {
             Analytics.trackClick(button: .settingsDeleteAddress, screen: self.screen)
             self.showDestructiveDialog(title: .confirm,
-                                       message: String(format: .popupRemoveAddressMessage, self.getTextForIndexPath(indexPath: indexPath)),
-                                       cancelButtonTitle: .cancel,
+                                       message: String(format: .localized(.popupRemoveAddressMessage), self.getTextForIndexPath(indexPath: indexPath)),
+                                       cancelButtonTitle: .localized(.cancel),
                                        destructiveButtonTitle: .delete,
                                        destructiveCompletion: { self.deleteAddressAtIndexPath(indexPath) },
                                        dialog: .confirm,

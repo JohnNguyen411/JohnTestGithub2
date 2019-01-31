@@ -192,9 +192,9 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         self.showLoading(loading: false)
         
         if let code = error?.code, code == .E2005 {
-            self.showOkDialog(title: .error, message: .errorInvalidCredentials, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .localized(.error), message: .localized(.errorInvalidCredentials), dialog: .error, screen: self.screen)
         } else {
-            self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
         }
     }
 }

@@ -161,7 +161,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             CustomerAPI.dealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: loaner, from: from, to: to) { timeslots, error in
                 
                 if error != nil {
-                    self.showDialog(title: .error, message: .errorUnknown, buttonTitle: .retry, completion: {
+                    self.showDialog(title: .localized(.error), message: .localized(.errorUnknown), buttonTitle: .localized(.retry), completion: {
                         self.getTimeSlots()
                     }, dialog: .error, screen: self.screen)
                 } else {
@@ -508,9 +508,9 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         self.timeSlotsHeader.isHidden = error
         
         if error {
-            self.bottomButton.setTitle(title: String.close.uppercased())
+            self.bottomButton.setTitle(title: String.localized(.close).uppercased())
         } else {
-            self.bottomButton.setTitle(title: String.next.uppercased())
+            self.bottomButton.setTitle(title: String.localized(.next).uppercased())
         }
     }
     

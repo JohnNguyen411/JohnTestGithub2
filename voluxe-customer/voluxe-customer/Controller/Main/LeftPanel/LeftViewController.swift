@@ -30,7 +30,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
 
     private let vehicleTableView = UITableView(frame: .zero)
     private let menuTableView = UITableView(frame: .zero)
-    private let menus = [String.settings, String.help, String.signout]
+    private let menus = [String.localized(.settings), String.localized(.help), String.localized(.signout)]
     
     private let closeButton = UIButton(type: UIButton.ButtonType.custom)
 
@@ -304,7 +304,7 @@ class LeftViewController : UIViewController, LeftMenuProtocol {
     }
     
     func signoutDialog() {
-        self.showDestructiveDialog(title: .signout, message: .popupSignoutConfirmationMessage, cancelButtonTitle: .cancel, destructiveButtonTitle: .signout, destructiveCompletion: {
+        self.showDestructiveDialog(title: .localized(.signout), message: .localized(.popupSignoutConfirmationMessage), cancelButtonTitle: .localized(.cancel), destructiveButtonTitle: .localized(.signout), destructiveCompletion: {
             UserManager.sharedInstance.logout()
             AppController.sharedInstance.startApp()
         })

@@ -27,8 +27,8 @@ class ScheduledBookingViewController: SchedulingViewController {
             event = .outboundCancel
         }
 
-        leftButton = VLButton(type: .orangePrimary, title: String.cancelPickup.uppercased(), kern: UILabel.uppercasedKern(), event: event, screen: .bookingDetail)
-        rightButton = VLButton(type: .bluePrimary, title: String.done.uppercased(), kern: UILabel.uppercasedKern(), event: .done, screen: .bookingDetail)
+        leftButton = VLButton(type: .orangePrimary, title: String.localized(.cancelPickup).uppercased(), kern: UILabel.uppercasedKern(), event: event, screen: .bookingDetail)
+        rightButton = VLButton(type: .bluePrimary, title: String.localized(.done).uppercased(), kern: UILabel.uppercasedKern(), event: .done, screen: .bookingDetail)
         
         super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screen: .bookingDetail)
     }
@@ -40,10 +40,10 @@ class ScheduledBookingViewController: SchedulingViewController {
     override func setupViews() {
         super.setupViews()
         
-        var title = String.cancelPickup
+        var title = String.localized(.cancelPickup)
         
         if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-            title = .cancelDropoff
+            title = String.localized(.cancelDropoff)
             leftButton.setTitle(title: title.uppercased())
         }
         
@@ -153,16 +153,16 @@ class ScheduledBookingViewController: SchedulingViewController {
             self.dealershipView.setTitle(title: .dealership, leftDescription: dealership.name!, rightDescription: "")
         }
         
-        loanerView.setLeftDescription(leftDescription: booking.loanerVehicleRequested ? .yes : .no)
+        loanerView.setLeftDescription(leftDescription: booking.loanerVehicleRequested ? .localized(.yes) : .localized(.no))
     }
     
     func leftButtonClick() {
-        var title = String.cancelPickup
-        var message = String.popupDefaultCancelPickupMessage
+        var title = String.localized(.cancelPickup)
+        var message = String.localized(.popupDefaultCancelPickupMessage)
         
         if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-            title = .cancelDropoff
-            message = .popupDefaultCancelDropoffMessage
+            title = .localized(.cancelDropoff)
+            message = .localized(.popupDefaultCancelDropoffMessage)
         }
         
         let alert = UIAlertController(title: title,
@@ -170,7 +170,7 @@ class ScheduledBookingViewController: SchedulingViewController {
                                       preferredStyle: .alert)
         
         // Submit button
-        let backAction = UIAlertAction(title: .back, style: .default, handler: { (action) -> Void in
+        let backAction = UIAlertAction(title: .localized(.back), style: .default, handler: { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
         })
         
@@ -191,7 +191,7 @@ class ScheduledBookingViewController: SchedulingViewController {
 
             CustomerAPI.cancelDropoffRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff) { error in
                 if error != nil {
-                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
                 } else {
                     self.onDelete()
@@ -204,7 +204,7 @@ class ScheduledBookingViewController: SchedulingViewController {
 
             CustomerAPI.cancelPickupRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup) { error in
                 if error != nil {
-                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
                 } else {
                     self.onDelete()

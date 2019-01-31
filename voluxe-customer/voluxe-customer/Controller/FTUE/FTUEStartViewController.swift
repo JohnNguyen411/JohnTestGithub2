@@ -75,7 +75,7 @@ class FTUEStartViewController: LogoViewController {
 
         // check realm integrity
         guard let realm = self.realm else {
-            self.showOkDialog(title: .error, message: .errorDatabase, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .localized(.error), message: .localized(.errorDatabase), dialog: .error, screen: self.screen)
             return
         }
 

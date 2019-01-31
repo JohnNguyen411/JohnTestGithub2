@@ -16,7 +16,7 @@ class FTUEChildViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem?.title = .next
+        self.navigationItem.rightBarButtonItem?.title = .localized(.next)
     }
     
     override func setupViews() {

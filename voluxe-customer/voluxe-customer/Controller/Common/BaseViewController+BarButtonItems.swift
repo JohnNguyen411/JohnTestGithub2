@@ -31,7 +31,7 @@ extension BaseViewController {
     /// because it will never be called.  The default behaviour is to pop the current
     /// view controller of the stack, and UIKit doesn't want this to be broken.
     func setDefaultBarButtonItems() {
-        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: .back, style: .plain, target: nil, action: nil)
+        self.navigationItem.backBarButtonItem = UIBarButtonItem(title: .localized(.back), style: .plain, target: nil, action: nil)
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: nil, style: .plain, target: self, action: #selector(onRightClicked))
     }
 
@@ -54,7 +54,7 @@ extension BaseViewController {
 
     /// Convenience func to push a view controller onto the current controller's navigation stack.
     /// This allows for configuration of the back button item title if an alternate is desired.
-    func pushViewController(_ controller: UIViewController, animated: Bool, backBarButtonTitle: String? = .back) {
+    func pushViewController(_ controller: UIViewController, animated: Bool, backBarButtonTitle: String? = .localized(.back)) {
         if let title = backBarButtonTitle { controller.navigationItem.backBarButtonItem?.title = title }
         self.navigationController?.pushViewController(controller, animated: animated)
     }

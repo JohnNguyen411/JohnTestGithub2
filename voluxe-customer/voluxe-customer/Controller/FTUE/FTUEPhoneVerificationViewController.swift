@@ -41,7 +41,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         self.init()
         self.ftuePhoneType = type
         if FTUEStartViewController.flowType == .login {
-            self.navigationItem.rightBarButtonItem?.title = .done
+            self.navigationItem.rightBarButtonItem?.title = .localized(.done)
         }
     }
     
@@ -143,7 +143,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 
                 if error == nil {
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.isLoading = false
                 } else {
                     self.hideProgressHUD()
@@ -174,7 +174,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                     self.isLoading = false
                 } else {
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.isLoading = false
                 }
             }
@@ -196,7 +196,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                     self.isLoading = false
                 } else {
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.isLoading = false
                 }
             }
@@ -211,7 +211,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 self.hideProgressHUD()
 
                 if error != nil {
-                    self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                 }
             }
         }
@@ -289,9 +289,9 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                     
                     self.hideProgressHUD()
                     if let code = error?.code, code == .E4012 {
-                        self.showOkDialog(title: .error, message: .errorInvalidVerificationCode, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorInvalidVerificationCode), dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .error, message: .errorUnknown, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
                 }
