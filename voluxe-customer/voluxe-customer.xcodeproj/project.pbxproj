@@ -2107,7 +2107,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n# Type a script or drag a script file from your workspace to insert its path.\necho \"Start Customer Localization script based on Root ${SRCROOT}\"\nSCRIPT_FILE=\"/Users/johangiroux/Documents/sources/Volvo/ios/Shared/Scripts/Localization/Generate-Swift-L18N-Constants.swift\"\necho \"Running a custom build phase script: $SCRIPT_FILE\"\necho \"FILE0 ${SCRIPT_INPUT_FILE_0}\"\necho \"FILE1 ${SCRIPT_INPUT_FILE_1}\"\necho \"OUTPUT ${SCRIPT_OUTPUT_FILE_0}\"\n\n${SCRIPT_FILE} \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_INPUT_FILE_1}\" \"${SCRIPT_OUTPUT_FILE_0}\"\necho \"End of script\"\n\nscriptExitStatus=$?\necho \"DONE with script: ${SCRIPT_FILE} (exitStatus=${scriptExitStatus})\\n\\n\"\nexit \"${scriptExitStatus}\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\necho \"Start Customer Localization script based on Root ${SRCROOT}\"\nSCRIPT_FILE=\"${SRCROOT}/../Shared/Scripts/Localization/Generate-Swift-L18N-Constants.swift\"\necho \"Running a custom build phase script: $SCRIPT_FILE\"\necho \"FILE0 ${SCRIPT_INPUT_FILE_0}\"\necho \"FILE1 ${SCRIPT_INPUT_FILE_1}\"\necho \"OUTPUT ${SCRIPT_OUTPUT_FILE_0}\"\n\n${SCRIPT_FILE} \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_INPUT_FILE_1}\" \"${SCRIPT_OUTPUT_FILE_0}\"\necho \"End of script\"\n\nscriptExitStatus=$?\necho \"DONE with script: ${SCRIPT_FILE} (exitStatus=${scriptExitStatus})\\n\\n\"\nexit \"${scriptExitStatus}\"\n";
 		};
 		539F626F2092ABD90023DF59 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
