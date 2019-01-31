@@ -47,6 +47,7 @@
 		5316E96E2200F1900053832E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E96D2200F1900053832E /* Log.swift */; };
 		5316E9702200F2D20053832E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E96F2200F2D20053832E /* Log.swift */; };
 		5316E9712200F2F30053832E /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E96A2200F07B0053832E /* OSLog.swift */; };
+		5316E98A220205510053832E /* OfflineInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E989220205510053832E /* OfflineInspection.swift */; };
 		531A8A2521ED599100D5C8C0 /* InspectionCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2421ED599100D5C8C0 /* InspectionCameraView.swift */; };
 		531A8A2721EE7D8300D5C8C0 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */; };
 		531A8A2821F12EEB00D5C8C0 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */; };
@@ -250,6 +251,7 @@
 		5316E96A2200F07B0053832E /* OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
 		5316E96D2200F1900053832E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		5316E96F2200F2D20053832E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		5316E989220205510053832E /* OfflineInspection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineInspection.swift; sourceTree = "<group>"; };
 		531A8A2421ED599100D5C8C0 /* InspectionCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionCameraView.swift; sourceTree = "<group>"; };
 		531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerReading.swift; sourceTree = "<group>"; };
 		531F9C1F21B874110027F43D /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
@@ -777,6 +779,7 @@
 				53DA9CB92180F44E00ABC414 /* Inspection.swift */,
 				53DA9CA2217F66B900ABC414 /* Location.swift */,
 				531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */,
+				5316E989220205510053832E /* OfflineInspection.swift */,
 				53DA9CB02180C7AC00ABC414 /* Request.swift */,
 				53DA9CC22181020400ABC414 /* Task.swift */,
 				53DA9CAD2180C60D00ABC414 /* Vehicle.swift */,
@@ -1274,6 +1277,7 @@
 				53F1E56021E01ECE007EF3AD /* UIImage+Resize.swift in Sources */,
 				5312142121C9A3E700F3FCEB /* UITableView+OverScroll.swift in Sources */,
 				5339036721D1573600DD16D8 /* SwipeNextView.swift in Sources */,
+				5316E98A220205510053832E /* OfflineInspection.swift in Sources */,
 				53C190EA219B2A9D00CBC410 /* Layout.swift in Sources */,
 				533047192188D834007CE01C /* NSObject+Voluxe.swift in Sources */,
 				53DA9CBD2180F52900ABC414 /* DriverDealershipTimeSlotAssignment.swift in Sources */,

@@ -12,32 +12,32 @@ import UIKit
 extension DriverAPI {
 
     static func createVehicleInspection(for request: Request,
-                                        completion: @escaping ((Inspection?, LuxeAPIError.Code?) -> Void))
+                                        completion: @escaping ((Inspection?, LuxeAPIError?) -> Void))
     {
         let route = "\(request.route)/vehicle-inspection"
         self.api.put(route: route) {
             response in
-            completion(response?.asInspection(), response?.asErrorCode())
+            completion(response?.asInspection(), response?.asError())
         }
     }
 
     static func createDocumentInspection(for request: Request,
-                                         completion: @escaping ((Inspection?, LuxeAPIError.Code?) -> Void))
+                                         completion: @escaping ((Inspection?, LuxeAPIError?) -> Void))
     {
         let route = "\(request.route)/documents"
         self.api.post(route: route) {
             response in
-            completion(response?.asInspection(), response?.asErrorCode())
+            completion(response?.asInspection(), response?.asError())
         }
     }
 
     static func createLoanerInspection(for request: Request,
-                                       completion: @escaping ((Inspection?, LuxeAPIError.Code?) -> Void))
+                                       completion: @escaping ((Inspection?, LuxeAPIError?) -> Void))
     {
         let route = "\(request.route)/loaner-vehicle-inspection"
         self.api.put(route: route) {
             response in
-            completion(response?.asInspection(), response?.asErrorCode())
+            completion(response?.asInspection(), response?.asError())
         }
     }
 

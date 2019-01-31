@@ -11,12 +11,12 @@ import UIKit
 
 class RequestManagerViewController: UIViewController {
 
-    // MARK:- Table data sources
+    // MARK: Table data sources
 
     private let requestsTableDataSource = RequestsTableDataSource()
     private let inspectionsTableDataSource = InspectionsTableDataSource()
 
-    // MARK:- Layout
+    // MARK: Layout
 
     private let instructionLabel: UILabel = {
         let label = UILabel()
@@ -79,7 +79,7 @@ class RequestManagerViewController: UIViewController {
         return table
     }()
 
-    // MARK:- Lifecycle
+    // MARK: Lifecycle
 
     convenience init() {
 
@@ -153,7 +153,7 @@ class RequestManagerViewController: UIViewController {
         RequestManager.shared.set(driver: DriverManager.shared.driver)
     }
 
-    // MARK:- Actions
+    // MARK: Actions
 
     @objc func startButtonTouchUpInside() {
         if RequestManager.shared.isStarted {
@@ -324,6 +324,8 @@ fileprivate extension UITableViewCell {
         else { text = "\(text), nil inspection" }
         self.textLabel?.text = text
         text = "\(offlineInspection.type.description), \(offlineInspection.data.count) bytes"
+        if offlineInspection.isPreparing { text = "\(text), preparing" }
+        if offlineInspection.failedCount > 0 { text = "\(text), failed \(offlineInspection.failedCount)" }
         if offlineInspection.isUploaded { text = "\(text), added to UploadManager" }
         self.detailTextLabel?.text = text
     }

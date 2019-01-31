@@ -13,34 +13,39 @@ import UIKit
 
 class RequestManager {
 
-    // MARK:- Singleton support
+    // MARK: Singleton support
 
     static let shared = RequestManager()
-    private init() {}
 
-    // MARK:- Driver context
+    // Any pending offline inspections need to be marked
+    // such that the next refresh() cycle continues trying
+    // to get the correct Inspection.  If this is not done,
+    // then any offline inspection that `isPreparing` but
+    // does not actually have an API inspection request in
+    // progress will stall the queue.
+    private init() {
+        self.markOfflineInspectionsAsWaiting()
+    }
+
+    // MARK: Driver context
 
     private var driver: Driver?
 
-    // TODO guard different driver
-    // TODO clear realm but what happens to pending inspections?
-    // TODO get today
-    // TODO get upcoming
-    // TODO start polling for requests
-    // TODO what else needs to happen if driver == nil?
     func set(driver: Driver?) {
-//        guard driver.id != self.driver?.id else { return }
         self.driver = driver
         self.refreshRequests()
     }
 
-    // MARK:- Request context
+    // MARK: Request (active or selected)
 
-    // TODO needs to be let and private
-    var request: Request? {
+    private var _request: Request? {
         didSet {
             self.notifyRequestDidChange()
         }
+    }
+
+    var request: Request? {
+        return self._request
     }
 
     private func notifyRequestDidChange() {
@@ -50,13 +55,14 @@ class RequestManager {
     var requestDidChangeClosure: ((Request?) -> ())?
 
     func select(request: Request) {
-        self.request = request
-        self.notifyRequestDidChange()
+        self._request = request
     }
 
     func isSelected(request: Request) -> Bool {
         return self.request?.id == request.id
     }
+
+    // MARK: Current requests
 
     var requests: [Request] = [] {
         didSet {
@@ -66,7 +72,7 @@ class RequestManager {
 
     var requestsDidChangeClosure: (([Request]) -> ())?
 
-    // MARK:- Inspections
+    // MARK: Inspections
 
     func addDocumentInspection(photo: UIImage) {
         self.addInspection(photo: photo, type: .document)
@@ -83,28 +89,26 @@ class RequestManager {
     func addInspection(photo: UIImage,
                        type: InspectionType)
     {
-        guard let request = self.request else { return }
-        request.inspection(for: type) {
-            [weak self] inspection in
-            guard let inspection = inspection else {
-                Log.unexpected(.missingValue, "Need a valid inspection to create upload")
-                return
-            }
-            self?.upload(request: request,
-                         inspection: inspection,
-                         type: type,
-                         photo: photo)
+        guard let request = self.request else {
+            Log.unexpected(.missingValue, "Cannot add inspection without active Request")
+            return
         }
+
+        self.upload(request: request,
+                    type: type,
+                    photo: photo)
     }
 
     private func upload(request: Request,
-                        inspection: Inspection,
                         type: InspectionType,
                         photo: UIImage)
     {
-        guard let realm = try? Realm() else { return }
+        guard let realm = try? Realm() else {
+            Log.fatal(.missingValue, "Realm not inited, cannot create offline inspection")
+            return
+        }
+
         let offlineInspection = OfflineInspection(request: request,
-                                                  inspection: inspection,
                                                   type: type,
                                                   photo: photo)
         try? realm.write { realm.add(offlineInspection) }
@@ -116,6 +120,7 @@ class RequestManager {
         guard let realm = try? Realm() else { return }
         let inspections = realm.objects(OfflineInspection.self).filter { $0.isUploaded == false }
         guard let inspection = inspections.first else { return }
+        guard inspection.prepareForUpload() else { return }
         guard let upload = inspection.upload() else { return }
         UploadManager.shared.upload(upload)
         inspection.markAsUploaded()
@@ -135,6 +140,17 @@ class RequestManager {
         self.notifyOfflineInspectionsDidChange()
     }
 
+    /// For any serialized inspection, marks each as waiting
+    /// so that it can be attempted to upload again.  This is
+    /// necessary in case any offline inspection was waiting
+    /// to get an inspection and the app restarted.  The state
+    /// `isPreparing` would prevent any further attempts to get
+    /// an inspection, and stall the queue.
+    private func markOfflineInspectionsAsWaiting() {
+        let inspections = self.offlineInspections()
+        for inspection in inspections { inspection.markAsWaiting() }
+    }
+
     func offlineInspections() -> [OfflineInspection] {
         guard let realm = try? Realm() else { return [] }
         let objects = realm.objects(OfflineInspection.self)
@@ -148,7 +164,7 @@ class RequestManager {
 
     var offlineInspectionsDidChangeClosure: (([OfflineInspection]) -> ())?
 
-    // MARK:- Timers and polling
+    // MARK: Timers and polling
 
     // TODO https://app.asana.com/0/858610969087925/931551431894069/f
     // TODO create a refresh timer protocol and implementation
@@ -190,7 +206,7 @@ class RequestManager {
         DriverAPI.refresh(request) {
             [weak self] request, error in
             guard error == nil else { return }
-            self?.request = request
+            self?._request = request
         }
     }
 
@@ -214,137 +230,6 @@ class RequestManager {
         guard let request = self.request else { return }
         let filteredRequests = requests.filter { $0.id == request.id }
         guard filteredRequests.count == 1 else { return }
-        self.request = filteredRequests.first
-    }
-}
-
-// MARK:- Request extension to get/create inspection by type
-
-fileprivate extension Request {
-
-    /// It is important to note that there may not be a returned
-    /// inspection.  If this is unexpectedly nil, check that the
-    /// request supports the type of inspection.  For example,
-    /// asking for a loaner inspection when the request does not
-    /// have an attached loaner will return a nil inspection, the
-    /// API will not allow it.
-    ///
-    /// Another important distinction is that for loaner and vehicle
-    /// type, the existing Inspection will be used.  For documents,
-    /// a new Inspection is created for each one.  This is most visible
-    /// when viewing the Request model.
-    func inspection(for type: InspectionType,
-                    completion: @escaping ((Inspection?) -> ()))
-    {
-        if type == .document {
-            DriverAPI.createDocumentInspection(for: self) {
-                inspection, error in
-                completion(inspection)
-            }
-        }
-
-        else if type == .loaner {
-            if let inspection = self.loanerInspection {
-                DispatchQueue.main.async { completion(inspection) }
-            } else {
-                DriverAPI.createLoanerInspection(for: self) {
-                    inspection, error in
-                    completion(inspection)
-                }
-            }
-        }
-
-        else if type == .vehicle {
-            if let inspection = self.vehicleInspection {
-                DispatchQueue.main.async { completion(inspection) }
-            } else {
-                DriverAPI.createVehicleInspection(for: self) {
-                    inspection, error in
-                    completion(inspection)
-                }
-            }
-        }
-
-        else {
-            completion(nil)
-        }
-    }
-}
-
-// MARK:- OfflineInspection serialized to Realm
-
-// IMPORTANT do not use this class directly
-class OfflineInspection: Object {
-
-    @objc dynamic var typeString = InspectionType.unknown.rawValue
-    var type: InspectionType {
-        return InspectionType(rawValue: self.typeString) ?? InspectionType.unknown
-    }
-
-    // MARK:- Request
-
-    @objc dynamic var requestData: Data?
-    private var _request: Request?
-    var request: Request? {
-        if let request = self._request { return request }
-        guard let data = self.requestData else { return nil }
-        self._request = try? JSONDecoder().decode(Request.self, from: data)
-        return self._request
-    }
-
-    // MARK:- Inspection
-
-    @objc dynamic var inspectionData: Data?
-    private var _inspection: Inspection?
-    var inspection: Inspection? {
-        if let inspection = self._inspection { return inspection }
-        guard let data = self.inspectionData else { return nil }
-        self._inspection = try? JSONDecoder().decode(Inspection.self, from: data)
-        return self._inspection
-    }
-
-    // MARK:- Data and state
-
-    @objc dynamic var data = Data()
-    @objc dynamic var isUploaded: Bool = false
-
-    var needsToBeUploaded: Bool {
-        return self.isUploaded == false && self.data.isEmpty == false
-    }
-
-    var canBeRemoved: Bool {
-        return self.isUploaded || self.data.isEmpty
-    }
-
-    // MARK:- Lifecycle
-
-    convenience init(request: Request,
-                     inspection: Inspection,
-                     type: InspectionType,
-                     photo: UIImage)
-    {
-        self.init()
-        self.typeString = type.rawValue
-        self._request = request
-        self.requestData = try? JSONEncoder().encode(request)
-        self._inspection = inspection
-        self.inspectionData = try? JSONEncoder().encode(inspection)
-        if let data = photo.jpegDataForPhotoUpload() { self.data = data }
-    }
-
-    func markAsUploaded() {
-        guard let realm = try? Realm() else { return }
-        try? realm.write { self.isUploaded = true }
-    }
-}
-
-extension OfflineInspection {
-
-    func upload() -> Upload? {
-        guard let request = self.request else { return nil }
-        guard let inspection = self.inspection else { return nil }
-        let (route, parameters) = request.uploadRoute(for: inspection, of: self.type)
-        let upload = Upload(route: route, parameters: parameters, data: self.data, mimeType: RestAPIMimeType.jpeg)
-        return upload
+        self._request = filteredRequests.first
     }
 }
