@@ -23,7 +23,6 @@ struct Label {
 
 extension UILabel {
 
-    // TODO make suitable for table header view
     convenience init(text: String) {
         self.init()
         self.text = text

@@ -8,8 +8,8 @@
 
 import Foundation
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Allows the inspection and notification of any API responses that
+// require wider app action like "login required" or "upgrade required".
 extension LuxeAPI {
 
     func inspect(urlResponse: HTTPURLResponse?, apiResponse: RestAPIResponse?) {

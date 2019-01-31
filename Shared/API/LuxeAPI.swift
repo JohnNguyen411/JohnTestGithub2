@@ -8,8 +8,7 @@
 
 import Foundation
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Luxe API specific hosts for each environment
 extension RestAPIHost {
     var string: String {
         switch self {
@@ -20,8 +19,7 @@ extension RestAPIHost {
     }
 }
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Luxe API specific implementation to manage the API token
 class LuxeAPI: RestAPI {
 
     var host = RestAPIHost.development {
@@ -87,8 +85,9 @@ extension RestAPIResponse {
             let object = try decoder.decode(T.self, from: data)
             return object
         } catch {
-            // TODO log to console?
-            if reportErrors { NSLog("\n\nDECODE ERROR: \(error)\n\n") }
+            #if DEBUG
+                if reportErrors { NSLog("\n\nDECODE ERROR: \(error)\n\n") }
+            #endif
             return nil
         }
     }

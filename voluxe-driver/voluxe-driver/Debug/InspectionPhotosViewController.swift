@@ -45,8 +45,6 @@ class InspectionPhotosViewController: UIViewController {
         self.view = self.inspectionCameraView
     }
 
-    // TODO load inspection photos of current request
-
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.inspectionCameraView.cameraView.open()

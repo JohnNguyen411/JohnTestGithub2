@@ -8,8 +8,9 @@
 
 import Foundation
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Defines an inner class suited to handling an API response
+// that should generate LuxeAPI notifications.  This works in
+// tandem with LuxeAPI+Notifications.
 extension LuxeAPI {
 
     class Version: CustomStringConvertible {

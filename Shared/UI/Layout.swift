@@ -36,7 +36,6 @@ struct Layout {
 
 extension Layout {
 
-    // TODO are safe areas really implied?
     static func fill(view: UIView, with subview: UIView, useSafeArea: Bool = true) {
         subview.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(subview)
@@ -50,7 +49,6 @@ extension Layout {
         ])
     }
 
-    // top safe area is implied
     static func add(subview: UIView, pinnedToTopOf view: UIView, useSafeArea: Bool = true) {
         subview.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(subview)
@@ -67,8 +65,6 @@ extension Layout {
         subview.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
 
-    // TODO need to assert if no superview
-    // TODO is vertical margin optional or changeable?
     static func add(view: UIView, pinTopToBottomOf peerView: UIView) {
         guard let superview = peerView.superview else { return }
         superview.addSubview(view)
@@ -77,16 +73,12 @@ extension Layout {
         view.leadingAnchor.constraint(equalTo: superview.leadingAnchor).isActive = true
         view.trailingAnchor.constraint(equalTo: superview.trailingAnchor).isActive = true
     }
-
-    // TODO extension to modify height constraints using constraint.identifier
-    //https://stackoverflow.com/questions/42669554/how-to-update-the-constant-height-constraint-of-a-uiview-programatically
 }
 
 // MARK:- Spacer view factories
 
 extension Layout {
 
-    // TODO need to assert if no superview
     static func addSpacerView(pinToBottomOf peerView: UIView, pinToSuperviewBottom: Bool = true) {
         guard let superview = peerView.superview else { return }
         let view = UIView.forAutoLayout()
@@ -98,7 +90,6 @@ extension Layout {
             view.trailingAnchor.constraint(equalTo: superview.trailingAnchor)
         ])
 
-        // TODO how to get this into activate()
         if pinToSuperviewBottom {
             view.bottomAnchor.constraint(equalTo: superview.compatibleSafeAreaLayoutGuide.bottomAnchor).isActive = true
         }
@@ -109,7 +100,6 @@ extension Layout {
     /// This effectively "closes" the subview array and allows
     /// Autolayout to calculate the superview's content size
     /// correctly (including scroll views).
-    // TODO what to return if guard fails?
     @discardableResult
     static func addSpacerView(toBottomOf contentView: UIView) -> UIView {
         let view = UIView.forAutoLayout()

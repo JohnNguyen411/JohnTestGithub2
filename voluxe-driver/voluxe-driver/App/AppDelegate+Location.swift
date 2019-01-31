@@ -9,10 +9,16 @@
 import CoreLocation
 import Foundation
 
-// TODO https://app.asana.com/0/858610969087925/892091539851886/f
-// TODO documentation explaining why location permission
-// and location tracking are split between the delegate
-// and DriverManager, as opposed to a singular LocationManager.
+// Implementations of CLLocationManager often wrap it in a singleton
+// with callbacks.  There is nothing wrong with that approach, so this
+// is an experiment to see if there is an advantage to coupling a bit
+// closer with the AppDelegate.  There already is an ownership between
+// AppDelegate and AppController, and it feels cleaner to be able to
+// react to app foreground/background events directly from the AppDelegate,
+// then forward on to the AppController for UI reactions.  This frees
+// other services, like the RequestManager, from having to interact
+// with the location singleton, and can instead use a local instance of
+// CLLocationManager strictly for location changes.
 extension AppDelegate: CLLocationManagerDelegate {
 
     func initLocationUpdates() {

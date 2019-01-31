@@ -110,7 +110,6 @@ fileprivate struct FontWeight {
 
 // MARK:- Font size
 
-// TODO can this extend Int?
 fileprivate struct FontSize {
     static let extraSmall = Int(9)  // 9, 10, 11
     static let small = Int(12)      // 12, 13, 14, 15
@@ -193,8 +192,8 @@ extension UIFont.TextStyle {
 
 // MARK:- Fonts by design
 
-// TODO this should be defined as a protocl
-// with specific implementations like Volvo, Polestar, etc
+// This should follow the code pattern established by Colors.swift
+// to be flexible and reusable for multiple clients.
 extension Font {
 
     struct Volvo {
@@ -217,15 +216,6 @@ extension Font {
         case h6
         case caption
     }
-
-//    extension Polestar {
-//        func to() -> UIFont {
-//            switch self {
-//                case .h6: return Font.Volvo.h6
-//                case .caption: return Font.Volvo.caption
-//            }
-//        }
-//    }
 }
 
 // MARK:- Font by use

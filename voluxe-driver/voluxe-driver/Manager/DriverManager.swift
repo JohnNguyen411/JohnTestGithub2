@@ -219,8 +219,10 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
         self.updateDriverWithToken()
     }
 
-    // TODO https://app.asana.com/0/858610969087925/941718004229101/f
-    // TODO does this need to repeat until it works?
+    // TODO https://app.asana.com/0/858610969087925/1107652511581125/f
+    // TODO since the push token is pretty important to the driver
+    // getting request updates, this probably needs to be more resilient
+    // and keep trying if the error response is network related
     private func updateDriverWithToken() {
         guard let driver = self.driver else { return }
         guard let token = self.pushToken else { return }

@@ -105,5 +105,3 @@ class NavigationBarColorsImplementation: NavigationBarColors {
 class TableColorsImplementation: TableColors {
     var separator: UIColor  { assertionFailure("Color not implemented"); return .clear }
 }
-
-// TODO UIAppearance extension?

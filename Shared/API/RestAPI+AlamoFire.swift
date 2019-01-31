@@ -71,7 +71,9 @@ extension RestAPI {
                   completion: completion)
     }
 
-    // TODO explain what bodyData override bodyParameters
+    /// The lowest level network call that connects directly with Alamofire.
+    /// Note that both body parameters and data can be specified, but that
+    /// body data will overwrite any body parameters that may have been encoded.
     private func send(method: Alamofire.HTTPMethod,
                       route: RestAPIRoute,
                       headers: RestAPIHeaders,
@@ -84,18 +86,21 @@ extension RestAPI {
 
         let url = self.urlFromHost(for: route)
 
-        // TODO guard should return RestAPIResponse.error()
-        guard let request = try? URLRequest(url: url, method: method, headers: Self.convertToAlamoFireHeaders(headers: headers)) else { return }
-        guard var encodedRequest = try? URLEncoding.default.encode(request, with: queryParameters) else { return }
+        guard let request = try? URLRequest(url: url, method: method, headers: Self.convertToAlamoFireHeaders(headers: headers)) else {
+            Log.fatal(.missingValue, "could not convert headers to Alamofire headers, dropping request")
+            return
+        }
 
-        // TODO move to utility func?
+        guard var encodedRequest = try? URLEncoding.default.encode(request, with: queryParameters) else {
+            Log.fatal(.missingValue, "could not encode query parameters, dropping request")
+            return
+        }
+
         if let bodyParameters = bodyParameters {
             encodedRequest.httpBody = try? JSONSerialization.data(withJSONObject: bodyParameters, options:[])
             encodedRequest.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
         }
 
-        // TODO move to utility func?
-        // TODO what happens if both body params and data are supplied?
         if let bodyData = bodyData {
             encodedRequest.httpBody = bodyData
             encodedRequest.setValue("application/json; charset=UTF-8", forHTTPHeaderField: "Content-Type")
@@ -155,7 +160,6 @@ extension RestAPI {
                 image: UIImage,
                 completion: @escaping RestAPICompletion)
     {
-        // TODO need to call completion with fabricated error response
         guard let data = image.jpegDataForPhotoUpload() else {
             Log.fatal(.incorrectValue, "Image needs to be JPEG compatible")
             return
@@ -164,8 +168,6 @@ extension RestAPI {
         self.upload(route: route, datasAndMimeTypes: tuple, completion: completion)
     }
 
-    // TODO this needs to be defined in RestAPI too
-    // TODO need RestAPI.MimeType?
     func upload(route: RestAPIRoute,
                 datasAndMimeTypes: [(Data, RestAPIMimeType)],
                 completion: @escaping RestAPICompletion)
