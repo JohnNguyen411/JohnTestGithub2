@@ -41,9 +41,9 @@ import RealmSwift
  
     static func categoryName(category: RepairOrderCategory) -> String {
         if category == .routineMaintenanceByDistance {
-            return .viewScheduleServiceTypeMilestone
+            return .localized(.viewScheduleServiceTypeMilestone)
         }
-        return .viewScheduleServiceTypeDetailNameLabelOther
+        return .localized(.viewScheduleServiceTypeDetailNameLabelOther)
     }
     
 }

@@ -24,9 +24,9 @@ class SchedulingDropoffViewController: SchedulingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let requestType = RequestedServiceManager.sharedInstance.getDropoffRequestType(), requestType == .advisorDropoff {
-            setTitle(title: .viewScheduleServiceOptionPickupSelfDeliveryDropoff)
+            setTitle(title: .localized(.viewScheduleServiceOptionPickupSelfDeliveryDropoff))
         } else {
-            setTitle(title: .scheduleDelivery)
+            setTitle(title: .localized(.scheduleDelivery))
         }
     }
     

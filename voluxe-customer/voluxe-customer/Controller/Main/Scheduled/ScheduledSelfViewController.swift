@@ -39,7 +39,7 @@ class ScheduledSelfViewController: BaseVehicleViewController {
     
     let deliveryLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = .viewScheduleServiceStatusSelfFooterTitleDropoff
+        titleLabel.text = .localized(.viewScheduleServiceStatusSelfFooterTitleDropoff)
         titleLabel.textColor = .luxeDarkGray()
         titleLabel.font = .volvoSansProRegular(size: 14)
         titleLabel.textAlignment = .left
@@ -58,8 +58,8 @@ class ScheduledSelfViewController: BaseVehicleViewController {
     
     init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen) {
         dealershipPhoneButton = VLButton(type: .blueSecondary, title: "", kern: UILabel.uppercasedKern(), event: .callDealership, screen: screen)
-        mapItButton = VLButton(type: .blueSecondary, title: (.viewScheduleServiceStatusSelfDealershipNavigate as String).uppercased(), kern: UILabel.uppercasedKern(), event: .getDirections, screen: screen)
-        scheduleDeliveryButton = VLButton(type: .grayPrimary, title: (.scheduleDelivery as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
+        mapItButton = VLButton(type: .blueSecondary, title: String.localized(.viewScheduleServiceStatusSelfDealershipNavigate).uppercased(), kern: UILabel.uppercasedKern(), event: .getDirections, screen: screen)
+        scheduleDeliveryButton = VLButton(type: .grayPrimary, title: String.localized(.scheduleDelivery).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
         super.init(vehicle: vehicle, state: state, screen: screen)
         
         self.mapVC.screen = screen
@@ -78,7 +78,7 @@ class ScheduledSelfViewController: BaseVehicleViewController {
             self.fillViews(booking: booking)
         }
         
-        setTitle(title: .viewScheduleServiceStatusSelfAdvisorDropoff)
+        setTitle(title: .localized(.viewScheduleServiceStatusSelfAdvisorDropoff))
         
         mapItButton.contentHorizontalAlignment = .rightOrTrailing()
         scheduleDeliveryButton.addTarget(self, action: #selector(scheduleDelivery), for: .touchUpInside)

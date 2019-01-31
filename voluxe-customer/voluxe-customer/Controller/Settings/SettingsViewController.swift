@@ -60,9 +60,9 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
         if section == 0 {
             return UserManager.sharedInstance.yourVolvoStringTitle()
         } else if section == 1 {
-            return .yourAccount
+            return .localized(.yourAccount)
         } else {
-            return .viewSettingsDistanceUnitHeader
+            return .localized(.viewSettingsDistanceUnitHeader)
         }
     }
     
@@ -71,11 +71,11 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
             if vehicleCount > indexPath.row{
                 return vehicles[indexPath.row].vehicleDescription()
             }
-            return .viewSettingsVolvoAddNewLabel
+            return .localized(.viewSettingsVolvoAddNewLabel)
         } else if indexPath.section == 1 {
             return (user?.email)!
         } else {
-            return .viewSettingsDistanceUnitTitle
+            return .localized(.viewSettingsDistanceUnitTitle)
         }
     }
     

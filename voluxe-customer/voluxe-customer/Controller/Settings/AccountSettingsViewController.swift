@@ -40,7 +40,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = .yourAccount
+        self.navigationItem.title = .localized(.yourAccount)
         
         tableView.backgroundColor = .clear
         tableView.dataSource = self
@@ -66,7 +66,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         }
     }
     
-    func getTitleForSection(section: Int) -> String {
+    func getTitleForSection(section: Int) -> Localized {
         if section == 0 {
             return .viewProfileLocationHeader
         } else if section == 1 {
@@ -263,7 +263,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: SettingsCell.height))
         label.font = .volvoSansProMedium(size: 13)
         label.textColor = UIColor.luxeGray()
-        label.text = getTitleForSection(section: section).uppercased()
+        label.text = String.localized(getTitleForSection(section: section)).uppercased()
         label.addUppercasedCharacterSpacing()
         view.addSubview(label)
         return view

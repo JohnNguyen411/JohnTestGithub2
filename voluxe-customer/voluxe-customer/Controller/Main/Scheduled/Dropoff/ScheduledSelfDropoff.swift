@@ -13,6 +13,6 @@ class ScheduledSelfDropoff: ScheduledSelfViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTitle(title: .viewScheduleServiceStatusSelfAdvisorDropoff)
+        setTitle(title: .localized(.viewScheduleServiceStatusSelfAdvisorDropoff))
     }
 }

@@ -126,9 +126,9 @@ class ScheduledBookingViewController: SchedulingViewController {
     private func fillViewsForRequest(request: Request) {
         if let timeSlot = request.timeSlot, let date = timeSlot.from {
             let dateTime = formatter.string(from: date)
-            var title = String.scheduledPickup
+            var title = String.localized(.scheduledPickup)
             if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                title = .scheduledDelivery
+                title = .localized(.scheduledDelivery)
             }
             scheduledPickupView.setTitle(title: title, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
         }

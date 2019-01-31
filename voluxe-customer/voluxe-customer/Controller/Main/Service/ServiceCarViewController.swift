@@ -416,7 +416,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
 //            showUpdateLabel(show: true, title: (.New as String).uppercased(), width: 40, right: false)
 
             if state == .service {
-                self.updateLabelText(text: String(format: NSLocalizedString(.viewScheduleServiceStatusInServiceInfo), (dealership?.name)!))
+                self.updateLabelText(text: String(format: .localized(.viewScheduleServiceStatusInServiceInfo), (dealership?.name)!))
                 selfDropButton.isHidden = true
                 deliveryButton.isHidden = true
 
@@ -446,8 +446,8 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
             deliveryButton.setTitle(title: String.localized(.schedulePickup).uppercased())
 
         } else {
-            selfDropButton.setTitle(title: (.viewScheduleServiceOptionPickupSelfDeliveryDropoff as String).uppercased())
-            deliveryButton.setTitle(title: (.scheduleDelivery as String).uppercased())
+            selfDropButton.setTitle(title: String.localized(.viewScheduleServiceOptionPickupSelfDeliveryDropoff).uppercased())
+            deliveryButton.setTitle(title: String.localized(.scheduleDelivery).uppercased())
             self.selfDropButton.setEvent(name: .outboundSelf, screen: screenAnalyticsEnum(state: state))
             self.deliveryButton.setEvent(name: .outboundVolvo, screen: screenAnalyticsEnum(state: state))
         }
@@ -488,7 +488,11 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
         
         // show confirmation dialog
         
-        self.showDialog(title: .viewScheduleServiceOptionPickupSelfDeliveryDropoff, message: .popupAdvisorDropoffMessage, cancelButtonTitle: .localized(.no), okButtonTitle: .localized(.yes), okCompletion: {
+        self.showDialog(title: .localized(.viewScheduleServiceOptionPickupSelfDeliveryDropoff),
+                        message: .localized(.popupAdvisorDropoffMessage),
+                        cancelButtonTitle: .localized(.no),
+                        okButtonTitle: .localized(.yes),
+                        okCompletion: {
             if StateServiceManager.sharedInstance.isPickup(vehicleId: self.vehicle.id) {
                 RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .advisorPickup)
                 self.pushViewController(SchedulingPickupViewController(vehicle: self.vehicle, state: .schedulingService), animated: true)

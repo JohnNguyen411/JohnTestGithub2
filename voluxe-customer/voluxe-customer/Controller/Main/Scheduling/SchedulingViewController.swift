@@ -525,13 +525,13 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     }
     
     func getScheduledPickupTitle() -> String {
-        var title: String = .scheduledPickup
+        var title: String = .localized(.scheduledPickup)
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
             if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-                title = .viewScheduledSelfDrop
+                title = .localized(.viewScheduledSelfDrop)
             }
         } else {
-            title = .scheduledDelivery
+            title = .localized(.scheduledDelivery)
         }
         return title
     }

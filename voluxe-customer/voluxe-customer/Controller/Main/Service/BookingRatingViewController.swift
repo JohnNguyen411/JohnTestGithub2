@@ -89,7 +89,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     convenience init(booking: Booking) {
         self.init()
         self.booking = Booking(value: booking)
-        self.screenTitle = .viewScheduleServiceStatusComplete
+        self.screenTitle = .localized(.viewScheduleServiceStatusComplete)
     }
     
     init() {
@@ -186,7 +186,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     
     private func updateDealership(dealership: Dealership?) {
         if let dealership = dealership {
-            serviceCompleteLabel.text = String(format: NSLocalizedString(.viewScheduleServiceStatusComplete), (dealership.name)!)
+            serviceCompleteLabel.text = String(format: .localized(.viewScheduleServiceStatusComplete), (dealership.name)!)
         }
     }
     

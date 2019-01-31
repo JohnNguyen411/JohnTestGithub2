@@ -28,7 +28,7 @@ class TimeWindowView: UIView {
         titleLabel.textColor = .white
         titleLabel.font = .volvoSansProMedium(size: 10)
         titleLabel.textAlignment = .center
-        titleLabel.text = (.viewScheduleServiceStatusTimePickupWindow as String).uppercased()
+        titleLabel.text = String.localized(.viewScheduleServiceStatusTimePickupWindow).uppercased()
         titleLabel.addUppercasedCharacterSpacing()
         return titleLabel
     }()

@@ -54,7 +54,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
     let driversLicenseInsuranceLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.text = .viewScheduleServiceStatusReminderPickup
+        titleLabel.text = .localized(.viewScheduleServiceStatusReminderPickup)
         titleLabel.font = .volvoSansProRegular(size: 14)
         titleLabel.textAlignment = .left
         return titleLabel

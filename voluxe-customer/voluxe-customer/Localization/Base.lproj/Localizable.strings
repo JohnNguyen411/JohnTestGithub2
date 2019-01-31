@@ -336,6 +336,8 @@
 
 "popupSelectLocationCurrentLocation" = "Current Location";
 
+"popupUpdatingLocation" = "Updating Location...";
+
 "popupSelectDealershipLabel" = "Choose where to perform service";
 
 "popupSelectTimeSlotLabelPickup" = "Select pickup date and time";

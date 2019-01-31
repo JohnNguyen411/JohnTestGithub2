@@ -51,7 +51,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
         
         dealershipLocationButton = VLButton(type: .blueSecondary, title: String.localized(.viewScheduleServiceScheduledLabel).uppercased(), kern: UILabel.uppercasedKern(), event: .viewDealershipLocation, screen: .vehicles)
-        confirmButton = VLButton(type: .bluePrimary, title: (.newService as String).uppercased(), kern: UILabel.uppercasedKern(), event: .newService, screen: .vehicles)
+        confirmButton = VLButton(type: .bluePrimary, title: String.localized(.newService).uppercased(), kern: UILabel.uppercasedKern(), event: .newService, screen: .vehicles)
         
         super.init(screen: .vehicles)
     }
@@ -271,11 +271,11 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
             if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
                 if !booking.isSelfIB() && booking.getState() == .pickupScheduled, let request = booking.pickupRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
                     let dateTime = formatter.string(from: date)
-                    scheduledServiceView.setTitle(title: .scheduledPickup, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+                    scheduledServiceView.setTitle(title: .localized(.scheduledPickup), leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                     dealershipLocationButton.isHidden = true
                     scheduledServiceView.isEditable = true
                 } else {
-                    scheduledServiceView.setTitle(title: .viewScheduleServiceVehicleServiceScheduled, leftDescription: booking.getRepairOrderName())
+                    scheduledServiceView.setTitle(title: .localized(.viewScheduleServiceVehicleServiceScheduled), leftDescription: booking.getRepairOrderName())
                     dealershipLocationButton.isHidden = false
                     scheduledServiceView.isEditable = false
                 }
@@ -292,7 +292,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                     dealershipLocationButton.isHidden = true
                     if let request = booking.dropoffRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
                         let dateTime = formatter.string(from: date)
-                        scheduledServiceView.setTitle(title: .scheduledDelivery, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+                        scheduledServiceView.setTitle(title: .localized(.scheduledDelivery), leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                     } else {
                         if booking.getState() == .service {
                             scheduledServiceView.setTitle(title: .localized(.currentService), leftDescription: booking.getRepairOrderName())

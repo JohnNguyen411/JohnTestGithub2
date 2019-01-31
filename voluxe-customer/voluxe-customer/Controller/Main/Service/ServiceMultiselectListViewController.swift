@@ -12,7 +12,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     
     let introLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .viewScheduleServiceTypeOtherLabel
+        textView.text = .localized(.viewScheduleServiceTypeOtherLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -23,7 +23,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     
     let introLabelBold: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .viewScheduleServiceTypeOtherSubLabel
+        textView.text = .localized(.viewScheduleServiceTypeOtherSubLabel)
         textView.font = .volvoSansProMedium(size: 12)
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
@@ -72,7 +72,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         
         self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
 
-        showServices(services: [.underTheHood, .vehicleInterior, .vehicleExterior, .iDontKnow])
+        showServices(services: [.localized(.underTheHood), .localized(.vehicleInterior), .localized(.vehicleExterior), .localized(.iDontKnow)])
         self.serviceAnalyticsEnums = [.vehicleEngine, .vehicleInterior, .vehicleExterior, .vehicleUnknown]
         
         confirmButton.setActionBlock { [weak self] in
@@ -84,8 +84,8 @@ class ServiceMultiselectListViewController: BaseViewController {
             for (index, serviceElement) in services.enumerated() {
                 if let selected = weakSelf.selected[index], selected {
                     var title = serviceElement
-                    if title == .iDontKnow {
-                        title = .viewScheduleServiceTypeOtherUnknown
+                    if title == .localized(.iDontKnow) {
+                        title = .localized(.viewScheduleServiceTypeOtherUnknown)
                     }
                     selectedService.append(title)
                 }
@@ -94,7 +94,7 @@ class ServiceMultiselectListViewController: BaseViewController {
             weakSelf.pushViewController(OtherServiceViewController(vehicle: weakSelf.vehicle, repairOrderType: weakSelf.repairOrderType, services: selectedService), animated: true)
         }
         
-        self.navigationItem.title = .viewScheduleServiceTypeOther
+        self.navigationItem.title = .localized(.viewScheduleServiceTypeOther)
 
         enableConfirmButton()
 

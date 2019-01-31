@@ -12,7 +12,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     
     let volvoDrivableLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .viewScheduleServiceTypeOtherDetailLabel
+        textView.text = .localized(.viewScheduleServiceTypeOtherDetailLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -23,7 +23,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     
     let descriptionLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .viewScheduleServiceTypeOtherDetailExtraLabel
+        textView.text = .localized(.viewScheduleServiceTypeOtherDetailExtraLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -36,7 +36,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         let descriptionTextView = UITextView(frame: .zero)
         descriptionTextView.font = .volvoSansProRegular(size: 16)
         descriptionTextView.isScrollEnabled = false
-        descriptionTextView.text = .viewScheduleServiceTypeOtherDetailExtraHint
+        descriptionTextView.text = .localized(.viewScheduleServiceTypeOtherDetailExtraHint)
         descriptionTextView.textColor = .luxeLightGray()
         return descriptionTextView
     }()
@@ -51,7 +51,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.textColor = UIColor.luxeCobaltBlue()
         titleLabel.font = .volvoSansProMedium(size: 12)
-        titleLabel.text = .viewScheduleServiceTypeOtherDetailExtraTitle
+        titleLabel.text = .localized(.viewScheduleServiceTypeOtherDetailExtraTitle)
         return titleLabel
     }()
     
@@ -103,7 +103,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             guard let weakSelf = self else { return }
             
             var notes = "" // reset notes
-            if weakSelf.descriptionTextView.text != .viewScheduleServiceTypeOtherDetailExtraHint {
+            if weakSelf.descriptionTextView.text != .localized(.viewScheduleServiceTypeOtherDetailExtraHint) {
                 notes = weakSelf.descriptionTextView.text ?? ""
             }
             weakSelf.service.notes = notes
@@ -114,7 +114,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
 
         }
         //descriptionTextView.placeholder
-        self.navigationItem.title = .viewScheduleServiceTypeOther
+        self.navigationItem.title = .localized(.viewScheduleServiceTypeOther)
 
     }
     
@@ -247,7 +247,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         scrollView.setContentOffset(offset, animated: true)
         
         if textView.text.isEmpty {
-            textView.text = .viewScheduleServiceTypeOtherDetailExtraHint
+            textView.text = .localized(.viewScheduleServiceTypeOtherDetailExtraHint)
             textView.textColor = .luxeLightGray()
         }
     }

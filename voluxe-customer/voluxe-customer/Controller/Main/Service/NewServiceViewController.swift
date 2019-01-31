@@ -14,7 +14,7 @@ class NewServiceViewController: BaseViewController {
     
     let introLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .viewScheduleServiceTypeDescription
+        textView.text = .localized(.viewScheduleServiceTypeDescription)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -39,7 +39,7 @@ class NewServiceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = .newService
+        self.navigationItem.title = .localized(.newService)
 
         self.showProgressHUD()
         
@@ -70,9 +70,9 @@ class NewServiceViewController: BaseViewController {
                         }
                     }
                     if containsCustom {
-                        self.showServices(repairOrderTypes: [String.viewScheduleServiceTypeMilestone, String.viewScheduleServiceTypeDetailNameLabelOther])
+                        self.showServices(repairOrderTypes: [String.localized(.viewScheduleServiceTypeMilestone), String.localized(.viewScheduleServiceTypeDetailNameLabelOther)])
                     } else {
-                        self.showServices(repairOrderTypes: [String.viewScheduleServiceTypeMilestone])
+                        self.showServices(repairOrderTypes: [String.localized(.viewScheduleServiceTypeMilestone)])
                     }
                 }
             }

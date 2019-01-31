@@ -99,7 +99,7 @@ import RealmSwift
         self.title = repairOrderType.name
         self.name = repairOrderType.name
         if repairOrderType.getCategory() == .custom {
-            self.name = String.viewScheduleServiceTypeOtherUnknown
+            self.name = String.localized(.viewScheduleServiceTypeOtherUnknown)
         }
         self.repairOrderType = repairOrderType
     }

@@ -44,7 +44,7 @@ class ServiceDetailViewController: BaseViewController {
         self.vehicle = vehicle
         self.canSchedule = canSchedule
         self.service = service
-        serviceTitle = VLTitledLabel(title: .viewScheduleServiceTypeMilestoneDetailNameLabel, leftDescription: service.name!, rightDescription: "")
+        serviceTitle = VLTitledLabel(title: .localized(.viewScheduleServiceTypeMilestoneDetailNameLabel), leftDescription: service.name!, rightDescription: "")
         serviceTitle.descLeftLabel.numberOfLines = 2
         serviceTitle.descLeftLabel.volvoProLineSpacing()
         
@@ -66,12 +66,12 @@ class ServiceDetailViewController: BaseViewController {
         
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
             label.text = repairOrder.notes
-            serviceTitle.setTitle(title: .viewScheduleServiceTypeDetailNameLabelOther, leftDescription: repairOrder.getTitle())
-            isDrivableLabel.text = String.viewScheduleServiceTypeOtherDetailLabel + " " + RepairOrder.getDrivabilityTitle(isDrivable: repairOrder.vehicleDrivable.value)
+            serviceTitle.setTitle(title: .localized(.viewScheduleServiceTypeDetailNameLabelOther), leftDescription: repairOrder.getTitle())
+            isDrivableLabel.text = String.localized(.viewScheduleServiceTypeOtherDetailLabel) + " " + RepairOrder.getDrivabilityTitle(isDrivable: repairOrder.vehicleDrivable.value)
         } else {
             label.text = service.desc
             if let repairOrder = repairOrder {
-                serviceTitle.setTitle(title: .viewScheduleServiceTypeMilestoneDetailNameLabel, leftDescription: repairOrder.getTitle())
+                serviceTitle.setTitle(title: .localized(.viewScheduleServiceTypeMilestoneDetailNameLabel), leftDescription: repairOrder.getTitle())
             }
             label.snp.makeConstraints { make in
                 make.trailing.leading.equalTo(serviceTitle)
@@ -81,7 +81,7 @@ class ServiceDetailViewController: BaseViewController {
             isDrivableLabel.isHidden = true
         }
         
-        self.navigationItem.title = .newService
+        self.navigationItem.title = .localized(.newService)
 
         label.volvoProLineSpacing()
         label.sizeToFit()

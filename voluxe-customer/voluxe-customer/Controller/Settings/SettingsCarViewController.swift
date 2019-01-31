@@ -21,7 +21,7 @@ class SettingsCarViewController: BaseViewController {
     
     init(vehicle: Vehicle) {
         self.vehicle = vehicle
-        removeVehicleButton = VLButton(type: .orangePrimary, title: (.removeVehicle as String).uppercased(), kern: UILabel.uppercasedKern(), event: .removeVehicle, screen: .vehicleDetail)
+        removeVehicleButton = VLButton(type: .orangePrimary, title: String.localized(.removeVehicle).uppercased(), kern: UILabel.uppercasedKern(), event: .removeVehicle, screen: .vehicleDetail)
         super.init(screen: .vehicleDetail)
         
         realm = try? Realm()
@@ -78,8 +78,8 @@ class SettingsCarViewController: BaseViewController {
     }
     
     private func removeVehicleAlert() {
-        self.showDestructiveDialog(title: .removeVehicle,
-                                   message: .popupRemoveVehicleMessage,
+        self.showDestructiveDialog(title: .localized(.removeVehicle),
+                                   message: .localized(.popupRemoveVehicleMessage),
                                    cancelButtonTitle: String.localized(.cancel),
                                    destructiveButtonTitle: String.localized(.remove),
                                    destructiveCompletion: { [weak self] in self?.removeVehicle() },
