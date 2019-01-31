@@ -11,11 +11,11 @@ import UIKit
 
 extension AppController {
 
-    func alert(title: String = Localized.genericAlertTitle,
+    func alert(title: String = Unlocalized.genericAlertTitle,
                message: String)
     {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let cancel = UIAlertAction(title: Localized.ok, style: .cancel) {
+        let cancel = UIAlertAction(title: Unlocalized.ok, style: .cancel) {
             action in
             alert.dismiss(animated: true, completion: nil)
         }
@@ -30,7 +30,7 @@ extension AppController {
     {
         self.alert(title: title,
                    message: message,
-                   buttonTitle: Localized.ok.uppercased(),
+                   buttonTitle: Unlocalized.ok.uppercased(),
                    completion: completion)
     }
     

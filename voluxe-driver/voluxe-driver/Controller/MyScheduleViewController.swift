@@ -41,7 +41,7 @@ class MyScheduleViewController: UIViewController {
         let label = UILabel.forAutoLayout()
         label.font = Font.Volvo.subtitle1
         label.numberOfLines = 0
-        label.text = Localized.noScheduledRequests
+        label.text = Unlocalized.noScheduledRequests
         label.textColor = UIColor.Volvo.granite
         let view = GridLayoutView(layout: .volvoAgent())
         view.isHidden = true
@@ -54,7 +54,7 @@ class MyScheduleViewController: UIViewController {
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
-        self.navigationItem.title = Localized.mySchedule.capitalized
+        self.navigationItem.title = Unlocalized.mySchedule.capitalized
         self.tableView.dataSource = self
         self.tableView.delegate = self
     }
@@ -113,13 +113,13 @@ class MyScheduleViewController: UIViewController {
             .filter { $0.state == .started &&
                       Calendar.current.isDateInToday($0.dealershipTimeSlot.from) }
             .sorted { $0.dealershipTimeSlot.from < $1.dealershipTimeSlot.from }
-        self.titlesAndRequests += [(Localized.currentService, current)]
+        self.titlesAndRequests += [(Unlocalized.currentService, current)]
 
         let today = requests
             .filter { $0.state == .requested &&
                       Calendar.current.isDateInToday($0.dealershipTimeSlot.from) }
             .sorted { $0.dealershipTimeSlot.from < $1.dealershipTimeSlot.from }
-        self.titlesAndRequests += [(Localized.upcomingToday, today)]
+        self.titlesAndRequests += [(Unlocalized.upcomingToday, today)]
 
         // this adds sections for each of the 7 days from the current date
         // each section is appropriately titled by a request during that date
@@ -132,7 +132,7 @@ class MyScheduleViewController: UIViewController {
                 .sorted { $0.dealershipTimeSlot.from < $1.dealershipTimeSlot.from }
             if requests.count > 0 {
                 let date = requests[0].dealershipTimeSlot.from
-                let title = i == 1 ? Localized.tomorrow : DateFormatter.requestSectionHeader.string(from: date)
+                let title = i == 1 ? Unlocalized.tomorrow : DateFormatter.requestSectionHeader.string(from: date)
                 self.titlesAndRequests += [(title, requests)]
             }
         }

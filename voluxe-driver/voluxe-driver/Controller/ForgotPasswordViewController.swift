@@ -12,17 +12,17 @@ import UIKit
 class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
 
     // MARK: Layout
-    private let currentPasswordTextField = VLVerticalTextField(title: Localized.currentPassword, placeholder: "••••••••")
-    private let newPasswordTextField = VLVerticalTextField(title: Localized.newPassword, placeholder: "••••••••")
-    private let passwordConfirmTextField = VLVerticalTextField(title: Localized.confirmNewPassword, placeholder: "••••••••")
+    private let currentPasswordTextField = VLVerticalTextField(title: Unlocalized.currentPassword, placeholder: "••••••••")
+    private let newPasswordTextField = VLVerticalTextField(title: Unlocalized.newPassword, placeholder: "••••••••")
+    private let passwordConfirmTextField = VLVerticalTextField(title: Unlocalized.confirmNewPassword, placeholder: "••••••••")
 
-    private let cancelButton = UIButton.Volvo.secondary(title: Localized.cancel)
-    private let nextButton = UIButton.Volvo.primary(title: Localized.update)
+    private let cancelButton = UIButton.Volvo.secondary(title: Unlocalized.cancel)
+    private let nextButton = UIButton.Volvo.primary(title: Unlocalized.update)
 
     // MARK: Lifecycle
 
     convenience init() {
-        self.init(title: Localized.createPassword)
+        self.init(title: Unlocalized.createPassword)
         self.addActions()
     }
 
@@ -100,7 +100,7 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         } else if passwordConfirmTextField.text.hasIllegalPasswordCharacters() {
             inlineError(error: "InvalidCharacter")
             passwordConfirmTextField.setBottomRightActionBlock {
-                AppController.shared.alert(title: Localized.error, message: "PasswordUnauthorizedChars")
+                AppController.shared.alert(title: Unlocalized.error, message: "PasswordUnauthorizedChars")
             }
             return
         }
@@ -156,9 +156,9 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
     private func onLoginError(error: LuxeAPIError? = nil) {
         
         if let code = error?.code, code == .E2005 {
-            AppController.shared.alert(title: Localized.error, message: Localized.invalidCredentials)
+            AppController.shared.alert(title: Unlocalized.error, message: Unlocalized.invalidCredentials)
         } else {
-            AppController.shared.alert(title: Localized.error, message: Localized.genericError)
+            AppController.shared.alert(title: Unlocalized.error, message: Unlocalized.genericError)
         }
     }
     
@@ -233,6 +233,6 @@ class ForgotPasswordStep: Step {
     var confirmPassword: String?
     
     init() {
-        super.init(title: Localized.createPassword, controllerName: ForgotPasswordViewController.className)
+        super.init(title: Unlocalized.createPassword, controllerName: ForgotPasswordViewController.className)
     }
 }

@@ -19,13 +19,13 @@ class SelfieViewController: StepViewController {
     // MARK: Layout
 
     private let nextButton: UIButton = {
-        let button = UIButton.Volvo.primary(title: Localized.looksGood)
+        let button = UIButton.Volvo.primary(title: Unlocalized.looksGood)
         button.isHidden = true
         return button
     }()
 
     private let cancelButton: UIButton = {
-        let button = UIButton.Volvo.secondary(title: Localized.tryAgain)
+        let button = UIButton.Volvo.secondary(title: Unlocalized.tryAgain)
         button.isHidden = true
         return button
     }()
@@ -60,7 +60,7 @@ class SelfieViewController: StepViewController {
     // MARK: Lifecycle
 
     convenience init() {
-        self.init(title: Localized.photographYourself)
+        self.init(title: Unlocalized.photographYourself)
         self.addActions()
     }
 
@@ -105,7 +105,7 @@ class SelfieViewController: StepViewController {
         self.shutterView.flashButton.isSelected = self.cameraView.useFlash
 
         if let _ = self.error {
-            self.showErrorLabel(text: Localized.faceNotDetected)
+            self.showErrorLabel(text: Unlocalized.faceNotDetected)
         } else {
             self.hideErrorLabel()
         }
@@ -171,8 +171,8 @@ class SelfieViewController: StepViewController {
                     self?.navigationController?.popToRootViewController(animated: true)
                 }
             } else {
-                AppController.shared.alert(title: Localized.photoUploadFailed.capitalized,
-                                           message: Localized.pleaseTryAgain)
+                AppController.shared.alert(title: Unlocalized.photoUploadFailed.capitalized,
+                                           message: Unlocalized.pleaseTryAgain)
             }
         }
     }

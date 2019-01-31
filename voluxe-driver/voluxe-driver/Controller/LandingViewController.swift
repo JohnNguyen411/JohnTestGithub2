@@ -21,7 +21,7 @@ class LandingViewController: UIViewController {
         return imageView
     }()
     
-    let loginButton = UIButton.Volvo.text(title: Localized.signIn)
+    let loginButton = UIButton.Volvo.text(title: Unlocalized.signIn)
     
     // MARK:- Lifecycle
     

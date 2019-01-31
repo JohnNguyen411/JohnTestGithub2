@@ -13,16 +13,16 @@ class LoginViewController: StepViewController, UITextFieldDelegate {
 
     // MARK: Layout
 
-    private let emailTextField = VLVerticalTextField(title: Localized.emailAddress, placeholder: Localized.emailAddressPlaceholder)
-    private let passwordTextField = VLVerticalTextField(title: Localized.password, placeholder: "••••••••")
-    private let cancelButton = UIButton.Volvo.secondary(title: Localized.cancel)
-    private let nextButton = UIButton.Volvo.primary(title: Localized.next)
-    private let forgotButton = UIButton.Volvo.text(title: Localized.forgotPassword)
+    private let emailTextField = VLVerticalTextField(title: Unlocalized.emailAddress, placeholder: Unlocalized.emailAddressPlaceholder)
+    private let passwordTextField = VLVerticalTextField(title: Unlocalized.password, placeholder: "••••••••")
+    private let cancelButton = UIButton.Volvo.secondary(title: Unlocalized.cancel)
+    private let nextButton = UIButton.Volvo.primary(title: Unlocalized.next)
+    private let forgotButton = UIButton.Volvo.text(title: Unlocalized.forgotPassword)
 
     // MARK: Lifecycle
 
     convenience init() {
-        self.init(title: Localized.signIn)
+        self.init(title: Unlocalized.signIn)
         self.addActions()
     }
 
@@ -136,7 +136,7 @@ class LoginViewController: StepViewController, UITextFieldDelegate {
     }
 
     @objc func forgotButtonTouchUpInside() {
-        AppController.shared.alert(title: Localized.forgotYourPassword, message: Localized.pleaseContactAdvisor)
+        AppController.shared.alert(title: Unlocalized.forgotYourPassword, message: Unlocalized.pleaseContactAdvisor)
     }
     
     // MARK: Validation methods
@@ -152,9 +152,9 @@ class LoginViewController: StepViewController, UITextFieldDelegate {
     private func onLoginError(error: LuxeAPIError? = nil) {
         
         if let code = error?.code, code == .E2005 {
-            AppController.shared.alert(title: Localized.error, message: Localized.invalidCredentials)
+            AppController.shared.alert(title: Unlocalized.error, message: Unlocalized.invalidCredentials)
         } else {
-            AppController.shared.alert(title: Localized.error, message: Localized.genericError)
+            AppController.shared.alert(title: Unlocalized.error, message: Unlocalized.genericError)
         }
     }
     

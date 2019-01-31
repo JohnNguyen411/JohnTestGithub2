@@ -129,10 +129,10 @@ extension InspectionCameraView {
         switch type {
             case .document:
                 self.overlayImageView.image = UIImage(named: "documents")
-                self.overlayLabel.text = Localized.doNotPhotoCreditCard
+                self.overlayLabel.text = Unlocalized.doNotPhotoCreditCard
             case .loaner:
                 self.overlayImageView.image = UIImage(named: "car")
-                self.overlayLabel.text = Localized.captureVehicle
+                self.overlayLabel.text = Unlocalized.captureVehicle
             default:
                 self.overlayImageView.image = nil
                 self.overlayLabel.text = nil
