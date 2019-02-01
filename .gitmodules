@@ -1,4 +1,0 @@
-[submodule "shared/lbv-mobile-strings"]
-	path = shared/lbv-mobile-strings
-	url = git@github.com:volvo-cars/lbv-mobile-strings.git
-	branch = master
