@@ -1060,7 +1060,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ntwine generate-localization-file ../shared/lbv-mobile-strings/twine.txt voluxe-driver/Localization/Localizable.strings --tags driver,mobile_commons --lang en --format apple\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#twine generate-localization-file ../shared/lbv-mobile-strings/twine.txt voluxe-driver/Localization/Localizable.strings --tags driver,mobile_commons --lang en --format apple\n";
 		};
 		528194892203BA7E00C7E8EF /* Generate Localized Constants */ = {
 			isa = PBXShellScriptBuildPhase;
