@@ -14,14 +14,14 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
     let codeLength = 4
     let codeTextField = VLVerticalTextField(title: "", placeholder: "0000", kern: 4.0)
     
-    private let confirmationLabel = Label.dark(with: Localized.letsVerifyPhoneNumber)
-    private let cancelButton = UIButton.Volvo.secondary(title: Localized.cancel)
-    private let nextButton = UIButton.Volvo.primary(title: Localized.next)
+    private let confirmationLabel = Label.dark(with: Unlocalized.letsVerifyPhoneNumber)
+    private let cancelButton = UIButton.Volvo.secondary(title: Unlocalized.cancel)
+    private let nextButton = UIButton.Volvo.primary(title: Unlocalized.next)
     
     // MARK: Lifecycle
     
     convenience init() {
-        self.init(title: Localized.confirmPhoneNumber)
+        self.init(title: Unlocalized.confirmPhoneNumber)
         self.addActions()
     }
     
@@ -100,7 +100,7 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
             AppController.shared.lookNotBusy()
 
             if error != nil {
-                AppController.shared.alert(message: Localized.genericError)
+                AppController.shared.alert(message: Unlocalized.genericError)
             }
         })
     }
@@ -115,7 +115,7 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
                 self?.refreshDriver()
             } else {
                 AppController.shared.lookNotBusy()
-                AppController.shared.alert(message: Localized.genericError)
+                AppController.shared.alert(message: Unlocalized.genericError)
             }
         })
     }
@@ -141,7 +141,7 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
                 }
                 
             } else {
-                AppController.shared.alert(message: Localized.genericError)
+                AppController.shared.alert(message: Unlocalized.genericError)
             }
         })
     }

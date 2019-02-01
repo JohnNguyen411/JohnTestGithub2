@@ -11,3 +11,7 @@ import Foundation
 func NSLocalizedString(_ key: String) -> String {
     return NSLocalizedString(key, comment: "")
 }
+
+func NSLocalizedStringCommon(_ key: String) -> String {
+    return NSLocalizedString(key, tableName: "CommonLocalizable", bundle: Bundle.main, value: key, comment: "")
+}

@@ -13,13 +13,13 @@ class ContactInfoViewController: StepViewController {
 
     // MARK: Layout
 
-    private let cancelButton = UIButton.Volvo.secondary(title: Localized.cancel)
-    private let nextButton = UIButton.Volvo.primary(title: Localized.next)
+    private let cancelButton = UIButton.Volvo.secondary(title: Unlocalized.cancel)
+    private let nextButton = UIButton.Volvo.primary(title: Unlocalized.next)
 
     // MARK: Lifecycle
 
     convenience init() {
-        self.init(title: Localized.contactInformation)
+        self.init(title: Unlocalized.contactInformation)
         self.addActions()
     }
 

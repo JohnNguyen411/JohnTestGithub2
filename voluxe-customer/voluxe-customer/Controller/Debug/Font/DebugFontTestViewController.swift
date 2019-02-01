@@ -72,8 +72,8 @@ class DebugFontTestViewController: UIViewController {
         
         listContainerView.snp.makeConstraints { make in
             make.top.equalTo(contentView)
-            make.left.equalTo(contentView).offset(20)
-            make.right.equalTo(contentView).offset(-20)
+            make.leading.equalTo(contentView).offset(20)
+            make.trailing.equalTo(contentView).offset(-20)
         }
         
         fillViews()
@@ -98,12 +98,12 @@ class DebugFontTestViewController: UIViewController {
         let header = DebugFontCellView(attributedString: Fonts.systemFontSize(text: "SCALE", size: 12), weight: "WEIGHT", size: "SIZE", tracking: "TRACKING")
         listContainerView.addSubview(header)
         header.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(30)
         }
         
         header.title.snp.remakeConstraints { make in
-            make.centerY.left.equalToSuperview()
+            make.centerY.leading.equalToSuperview()
             make.width.equalTo(90)
         }
         
@@ -112,7 +112,7 @@ class DebugFontTestViewController: UIViewController {
         var cellHeight = h1.autoHeight()
         h1.snp.makeConstraints { make in
             make.top.equalTo(header.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(cellHeight < minCellHeight ? minCellHeight : cellHeight)
         }
         
@@ -121,7 +121,7 @@ class DebugFontTestViewController: UIViewController {
         cellHeight = h2.autoHeight()
         h2.snp.makeConstraints { make in
             make.top.equalTo(h1.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(cellHeight < minCellHeight ? minCellHeight : cellHeight)
         }
         
@@ -130,7 +130,7 @@ class DebugFontTestViewController: UIViewController {
         cellHeight = h3.autoHeight()
         h3.snp.makeConstraints { make in
             make.top.equalTo(h2.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(cellHeight < minCellHeight ? minCellHeight : cellHeight)
         }
         
@@ -139,7 +139,7 @@ class DebugFontTestViewController: UIViewController {
         cellHeight = h4.autoHeight()
         h4.snp.makeConstraints { make in
             make.top.equalTo(h3.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(cellHeight < minCellHeight ? minCellHeight : cellHeight)
         }
         
@@ -148,7 +148,7 @@ class DebugFontTestViewController: UIViewController {
         cellHeight = h5.autoHeight()
         h5.snp.makeConstraints { make in
             make.top.equalTo(h4.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(cellHeight < minCellHeight ? minCellHeight : cellHeight)
         }
         
@@ -157,7 +157,7 @@ class DebugFontTestViewController: UIViewController {
         cellHeight = h6.autoHeight()
         h6.snp.makeConstraints { make in
             make.top.equalTo(h5.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(cellHeight < minCellHeight ? minCellHeight : cellHeight)
         }
         
@@ -166,7 +166,7 @@ class DebugFontTestViewController: UIViewController {
         cellHeight = sub1.autoHeight()
         sub1.snp.makeConstraints { make in
             make.top.equalTo(h6.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(cellHeight < minCellHeight ? minCellHeight : cellHeight)
         }
         
@@ -175,7 +175,7 @@ class DebugFontTestViewController: UIViewController {
         cellHeight = sub2.autoHeight()
         sub2.snp.makeConstraints { make in
             make.top.equalTo(sub1.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(cellHeight < minCellHeight ? minCellHeight : cellHeight)
         }
         
@@ -184,7 +184,7 @@ class DebugFontTestViewController: UIViewController {
         cellHeight = body1.autoHeight()
         body1.snp.makeConstraints { make in
             make.top.equalTo(sub2.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(cellHeight < minCellHeight ? minCellHeight : cellHeight)
         }
         
@@ -193,7 +193,7 @@ class DebugFontTestViewController: UIViewController {
         cellHeight = body2.autoHeight()
         body2.snp.makeConstraints { make in
             make.top.equalTo(body1.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(cellHeight < minCellHeight ? minCellHeight : cellHeight)
         }
         
@@ -202,7 +202,7 @@ class DebugFontTestViewController: UIViewController {
         cellHeight = button.autoHeight()
         button.snp.makeConstraints { make in
             make.top.equalTo(body2.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(cellHeight < minCellHeight ? minCellHeight : cellHeight)
         }
         
@@ -211,7 +211,7 @@ class DebugFontTestViewController: UIViewController {
         cellHeight = caption.autoHeight()
         caption.snp.makeConstraints { make in
             make.top.equalTo(button.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(cellHeight < minCellHeight ? minCellHeight : cellHeight)
         }
         
@@ -220,14 +220,14 @@ class DebugFontTestViewController: UIViewController {
         cellHeight = overline.autoHeight()
         overline.snp.makeConstraints { make in
             make.top.equalTo(caption.snp.bottom)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.greaterThanOrEqualTo(cellHeight < minCellHeight ? minCellHeight : cellHeight)
         }
         
         listContainerView.snp.remakeConstraints { make in
             make.top.equalTo(contentView)
-            make.left.equalTo(contentView).offset(20)
-            make.right.equalTo(contentView).offset(-20)
+            make.leading.equalTo(contentView).offset(20)
+            make.trailing.equalTo(contentView).offset(-20)
             make.bottom.equalTo(overline).offset(20)
         }
         
@@ -237,7 +237,7 @@ class DebugFontTestViewController: UIViewController {
         
         let whiteHeight = fillBody(isBlack: false, container: bodyWhiteContainerView)
         bodyWhiteContainerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(listContainerView.snp.bottom).offset(30)
             make.height.equalTo(whiteHeight)
         }
@@ -245,7 +245,7 @@ class DebugFontTestViewController: UIViewController {
         
         let blackHeight = fillBody(isBlack: true, container: bodyBlackContainerView)
         bodyBlackContainerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(bodyWhiteContainerView.snp.bottom).offset(30)
             make.height.equalTo(blackHeight)
         }
@@ -297,23 +297,23 @@ class DebugFontTestViewController: UIViewController {
         container.addSubview(body2)
         
         body1Title.snp.makeConstraints { make in
-            make.left.top.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.top.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
         body1.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(body1Title.snp.bottom)
         }
         
         body2Title.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(body1.snp.bottom).offset(30)
         }
         body2.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(body2Title.snp.bottom)
         }
         
@@ -324,7 +324,7 @@ class DebugFontTestViewController: UIViewController {
         
         let whiteHeight = fillSize(isBlack: false, container: sizesWhiteContainerView)
         sizesWhiteContainerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(bodyBlackContainerView.snp.bottom).offset(30)
             make.height.equalTo(whiteHeight)
         }
@@ -332,7 +332,7 @@ class DebugFontTestViewController: UIViewController {
         
         let blackHeight = fillSize(isBlack: true, container: sizesBlackContainerView)
         sizesBlackContainerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(sizesWhiteContainerView.snp.bottom).offset(30)
             make.height.equalTo(blackHeight)
         }
@@ -430,49 +430,49 @@ class DebugFontTestViewController: UIViewController {
         container.addSubview(size10Body)
         
         size16Title.snp.makeConstraints { make in
-            make.left.top.equalToSuperview().offset(20)
+            make.leading.top.equalToSuperview().offset(20)
             make.width.equalTo(50)
         }
         
         size16Body.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().offset(-20)
             make.width.equalTo(240)
             make.top.equalTo(size16Title)
         }
         
         size14Title.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(20)
             make.width.equalTo(50)
             make.top.equalTo(size16Body.snp.bottom).offset(30)
         }
         
         size14Body.snp.makeConstraints { make in
             make.width.equalTo(240)
-            make.right.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(size14Title)
         }
         
         size12Title.snp.makeConstraints { make in
             make.top.equalTo(size14Body.snp.bottom).offset(30)
-            make.left.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(20)
             make.width.equalTo(50)
         }
         
         size12Body.snp.makeConstraints { make in
             make.width.equalTo(240)
-            make.right.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(size12Title)
         }
         
         size10Title.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(20)
             make.width.equalTo(50)
             make.top.equalTo(size12Body.snp.bottom).offset(30)
         }
         
         size10Body.snp.makeConstraints { make in
             make.width.equalTo(240)
-            make.right.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(size10Title)
         }
         
@@ -490,7 +490,7 @@ class DebugFontTestViewController: UIViewController {
         var italicHeightNumber = generateWeightLabel(fontWeight: fontWeightItalic, container: weightWhiteContainerView, text: "1234567890", textColor: .luxeDarkGray(),topOffset: regularHeight + italicHeight + regularHeightNumber)
 
         weightWhiteContainerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(sizesBlackContainerView.snp.bottom).offset(30)
             make.height.equalTo(regularHeight + italicHeight + regularHeightNumber + italicHeightNumber)
         }
@@ -504,7 +504,7 @@ class DebugFontTestViewController: UIViewController {
         italicHeightNumber = generateWeightLabel(fontWeight: fontWeightItalic, container: weightBlackContainerView, text: "1234567890", textColor: .luxeWhite(),topOffset: regularHeight + italicHeight + regularHeightNumber)
         
         weightBlackContainerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(weightWhiteContainerView.snp.bottom).offset(30)
             make.height.equalTo(regularHeight + italicHeight + regularHeightNumber + italicHeightNumber)
         }
@@ -526,7 +526,7 @@ class DebugFontTestViewController: UIViewController {
             
             container.addSubview(label)
             label.snp.makeConstraints { make in
-                make.left.right.equalToSuperview()
+                make.leading.trailing.equalToSuperview()
                 make.height.equalTo(labelHeight)
                 make.top.equalTo(previousLabel == nil ? topOffset : previousLabel!.snp.bottom)
             }

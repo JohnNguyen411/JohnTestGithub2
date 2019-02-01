@@ -45,13 +45,13 @@ class CheckmarkCell: UITableViewCell {
     private func setupViews() {
         titleLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview().offset(2)
-            make.bottom.right.equalToSuperview()
-            make.left.equalToSuperview()
+            make.bottom.trailing.equalToSuperview()
+            make.leading.equalToSuperview()
         }
         
         separator.snp.makeConstraints { make in
-            make.top.right.equalToSuperview()
-            make.left.equalTo(titleLabel)
+            make.top.trailing.equalToSuperview()
+            make.leading.equalTo(titleLabel)
             make.height.equalTo(1)
         }
     }

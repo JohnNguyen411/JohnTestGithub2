@@ -38,7 +38,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         timeSlotsHeader.textColor = .luxeGray()
         timeSlotsHeader.font = .volvoSansProMedium(size: 12)
         timeSlotsHeader.textAlignment = .center
-        timeSlotsHeader.text = (.PickupTimes as String).uppercased()
+        timeSlotsHeader.text = String.localized(.popupSelectTimeSlotTimesLabelPickup).uppercased()
         timeSlotsHeader.addUppercasedCharacterSpacing()
         return timeSlotsHeader
     }()
@@ -48,12 +48,12 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         noDateLabel.textColor = .black
         noDateLabel.font = .volvoSansProMedium(size: 12)
         noDateLabel.textAlignment = .center
-        noDateLabel.text = String.NoDatesForDealership
+        noDateLabel.text = .localized(.popupSelectTimeSlotUnavailableLabel)
         noDateLabel.numberOfLines = 0
         return noDateLabel
     }()
     
-    let callDealershipButton = VLButton(type: .blueSecondary, title: String.CallDealership.uppercased(), kern: UILabel.uppercasedKern(), event: .callDealership)
+    let callDealershipButton = VLButton(type: .blueSecondary, title: String.localized(.popupSelectTimeSlotUnavailableCallDealership).uppercased(), kern: UILabel.uppercasedKern(), event: .callDealership)
     
     fileprivate let gregorian = Calendar(identifier: .gregorian)
     fileprivate let formatter: DateFormatter = {
@@ -82,7 +82,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
     private let loanerLabel: UILabel = {
         let label = UILabel(frame: .zero)
         label.font = UIFont.volvoSansProMedium(size: 16)
-        label.text = .DatesLoanersOnly
+        label.text = String.localized(.viewDatesLoanersOnly)
         return label
     }()
     
@@ -161,7 +161,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
             CustomerAPI.dealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: loaner, from: from, to: to) { timeslots, error in
                 
                 if error != nil {
-                    self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                    self.showDialog(title: .localized(.error), message: .localized(.errorUnknown), buttonTitle: .localized(.retry), completion: {
                         self.getTimeSlots()
                     }, dialog: .error, screen: self.screen)
                 } else {
@@ -187,15 +187,15 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         
         if isPickup {
             if let type = RequestedServiceManager.sharedInstance.getPickupRequestType(), type == .advisorPickup {
-                timeSlotsHeader.text = (.DropOffTimes as String).uppercased()
+                timeSlotsHeader.text = String.localized(.popupSelectTimeSlotTimesLabelDelivery).uppercased()
             } else {
-                timeSlotsHeader.text = (.PickupTimes as String).uppercased()
+                timeSlotsHeader.text = String.localized(.popupSelectTimeSlotTimesLabelPickup).uppercased()
             }
         } else {
             if let type = RequestedServiceManager.sharedInstance.getDropoffRequestType(), type == .advisorDropoff {
-                timeSlotsHeader.text = (.PickupTimes as String).uppercased()
+                timeSlotsHeader.text = String.localized(.popupSelectTimeSlotTimesLabelPickup).uppercased()
             } else {
-                timeSlotsHeader.text = (.DeliveryTimes as String).uppercased()
+                timeSlotsHeader.text = String.localized(.popupSelectTimeSlotTimesLabelDelivery).uppercased()
             }
         }
         
@@ -229,7 +229,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         
         hoursScrollView.snp.makeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-28)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(VLButton.secondaryHeight)
         }
         
@@ -240,15 +240,15 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         }
         
         timeSlotsHeader.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(hoursScrollView.snp.top).offset(-5)
             make.height.equalTo(20)
         }
         
         calendar.snp.makeConstraints { make in
             make.bottom.equalTo(timeSlotsHeader.snp.top).offset(-28)
-            make.left.equalToSuperview().offset(-5)
-            make.right.equalToSuperview().offset(5)
+            make.leading.equalToSuperview().offset(-5)
+            make.trailing.equalToSuperview().offset(5)
             make.height.equalTo(calendarViewHeight)
         }
         
@@ -265,41 +265,41 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         }
         
         firstMonthHeader.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(calendar.snp.top).offset(-5)
             make.height.equalTo(20)
         }
         
         weekdayViews.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(firstMonthHeader.snp.top).offset(-5)
             make.height.equalTo(20)
         }
         
         loanerContainerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(loanerViewHeight)
             make.bottom.equalTo(weekdayViews.snp.top).offset(-20)
         }
         
         separatorOne.snp.makeConstraints { make in
-            make.right.equalTo(self.view)
-            make.left.bottom.equalToSuperview()
+            make.trailing.equalTo(self.view)
+            make.leading.bottom.equalToSuperview()
             make.height.equalTo(1)
         }
         
         loanerSwitch.snp.makeConstraints { make in
-            make.right.centerY.equalToSuperview()
+            make.trailing.centerY.equalToSuperview()
         }
         
         loanerLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.centerY.height.equalTo(loanerSwitch)
         }
         
         separatorTwo.snp.makeConstraints { make in
-            make.right.equalTo(self.view)
-            make.left.equalToSuperview()
+            make.trailing.equalTo(self.view)
+            make.leading.equalToSuperview()
             make.height.equalTo(1)
             make.top.equalToSuperview()
         }
@@ -347,7 +347,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                 
                 label.snp.makeConstraints { make in
                     make.top.bottom.equalToSuperview()
-                    make.left.equalTo(prevView == nil ? weekdayViews.snp.left : prevView!.snp.right)
+                    make.leading.equalTo(prevView == nil ? weekdayViews.snp.leading : prevView!.snp.trailing)
                     make.width.equalTo(frame.width)
                 }
                 
@@ -508,9 +508,9 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
         self.timeSlotsHeader.isHidden = error
         
         if error {
-            self.bottomButton.setTitle(title: String.Close.uppercased())
+            self.bottomButton.setTitle(title: String.localized(.close).uppercased())
         } else {
-            self.bottomButton.setTitle(title: String.Next.uppercased())
+            self.bottomButton.setTitle(title: String.localized(.next).uppercased())
         }
     }
     
@@ -607,14 +607,14 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                 
                 view.snp.makeConstraints { make in
                     make.top.equalTo(top)
-                    make.left.equalTo(prevView == nil ? hoursView.snp.left : prevView!.snp.right).offset(prevView == nil ? 0 : 10)
+                    make.leading.equalTo(prevView == nil ? hoursView.snp.leading : prevView!.snp.trailing).offset(prevView == nil ? 0 : 10)
                     make.height.equalTo(VLButton.secondaryHeight)
                     make.width.equalToSuperview().dividedBy(3).offset(-22/3)
                 }
             } else {
                 view.snp.makeConstraints { make in
                     make.top.equalTo(prevView == nil ? hoursView.snp.top : prevView!.snp.top)
-                    make.left.equalTo(prevView == nil ? hoursView.snp.left : prevView!.snp.right).offset(prevView == nil ? 0 : 10)
+                    make.leading.equalTo(prevView == nil ? hoursView.snp.leading : prevView!.snp.trailing).offset(prevView == nil ? 0 : 10)
                     make.height.equalTo(VLButton.secondaryHeight)
                     make.width.equalToSuperview().dividedBy(3).offset(-22/3)
                 }

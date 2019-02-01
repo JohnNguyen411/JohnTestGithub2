@@ -23,10 +23,10 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     var autocompletePredictions: [GMSAutocompletePrediction]?
     var autoCompleteCharacterCount = 0
     
-    let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
+    let newLocationTextField = VLVerticalSearchTextField(title: .localized(.popupAddNewLocationLabel), placeholder: .localized(.popupAddNewLocationEditHint))
 
     init() {
-        super.init(title: .AddNewLocation, buttonTitle: .Add, screen: .location)
+        super.init(title: .localized(.addNewLocation), buttonTitle: .localized(.add), screen: .location)
         newLocationTextField.textField.autocorrectionType = .no
         newLocationTextField.tableYOffset = -20
         newLocationTextField.tableBottomMargin = 0
@@ -61,7 +61,7 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
         
         newLocationTextField.snp.makeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-30)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(VLVerticalTextField.height)
         }
         

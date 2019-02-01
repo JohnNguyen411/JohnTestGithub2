@@ -14,14 +14,14 @@ import libPhoneNumber_iOS
 
 class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelegate {
     
-    let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
+    let phoneNumberTextField = VLVerticalTextField(title: .localized(.viewEditTextTitlePhoneNumber), placeholder: .localized(.viewEditTextInfoHintPhoneNumber), isPhoneNumber: true)
     var validPhoneNumber: NBPhoneNumber?
     let phoneUtil = NBPhoneNumberUtil.sharedInstance()
     var countryCode: String?
     
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .MobilePhoneNumberExplain
+        textView.text = .localized(.viewSignupContactLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -34,7 +34,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
         let textView = UILabel(frame: .zero)
         textView.font = .volvoSansProRegular(size: 12)
         textView.textColor = .luxeDarkGray()
-        textView.text = .MobilePhoneNumberConfirm
+        textView.text = .localized(.viewEditTextPhoneDescription)
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -67,7 +67,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
         phoneNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
         if ftuePhoneType == .resetPassword {
-            self.phoneNumberLabel.text = .MobilePhoneNumberResetPassword
+            self.phoneNumberLabel.text = .localized(.viewSigninPhoneLabel)
         }
         
         _ = checkTextFieldsValidity()
@@ -89,21 +89,21 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(sizeThatFits)
         }
         
         phoneNumberTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(phoneNumberLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         phoneNumberConfirmLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(phoneNumberLabel)
-            make.top.equalTo(phoneNumberTextField.snp.bottom).offset(-20)
+            make.leading.trailing.equalTo(phoneNumberLabel)
+            make.top.equalTo(phoneNumberTextField.snp.bottom)
         }
     }
     
@@ -182,9 +182,9 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
                 if let error = error {
                     self.hideProgressHUD()
                     if let code = error.code, code == .E4001 {
-                        self.showOkDialog(title: .Error, message: .PhoneNumberNotInFile, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorPhoneNumberNotInFile), dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
                 } else {
@@ -215,9 +215,9 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
                 if let error = error {
                     self.hideProgressHUD()
                     if let code = error.code, code == .E4011 {
-                        self.showOkDialog(title: .Error, message: .UpdatePhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUpdatePhoneNumberAlreadyExist), dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
                 } else {
@@ -240,7 +240,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
                 if customer != nil {
                     self.goToNext()
                 } else {
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                 }
             }
         }

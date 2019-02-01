@@ -30,9 +30,9 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     var selectedVehicle: Vehicle?
 
     let vehicleCollectionView: UICollectionView
-    let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
+    let vehicleTypeView = VLTitledLabel(title: .localized(.volvoYearModel), leftDescription: "", rightDescription: "")
     let vehicleImageView = UIImageView(frame: .zero)
-    let preferredDealershipView = VLTitledLabel(title: .Dealership, leftDescription: "", rightDescription: "")
+    let preferredDealershipView = VLTitledLabel(title: .localized(.dealership), leftDescription: "", rightDescription: "")
     let scheduledServiceView = VLTitledLabel()
     let contentView = UIView(frame: .zero)
     let confirmButton: VLButton
@@ -50,8 +50,8 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         vehicleCollectionView.backgroundColor = UIColor.clear
         vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
         
-        dealershipLocationButton = VLButton(type: .blueSecondary, title: String.ViewDealershipLocation.uppercased(), kern: UILabel.uppercasedKern(), event: .viewDealershipLocation, screen: .vehicles)
-        confirmButton = VLButton(type: .bluePrimary, title: (.NewService as String).uppercased(), kern: UILabel.uppercasedKern(), event: .newService, screen: .vehicles)
+        dealershipLocationButton = VLButton(type: .blueSecondary, title: String.localized(.viewScheduleServiceScheduledLabel).uppercased(), kern: UILabel.uppercasedKern(), event: .viewDealershipLocation, screen: .vehicles)
+        confirmButton = VLButton(type: .bluePrimary, title: String.localized(.newService).uppercased(), kern: UILabel.uppercasedKern(), event: .newService, screen: .vehicles)
         
         super.init(screen: .vehicles)
     }
@@ -141,7 +141,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         contentView.addSubview(vehicleCollectionView)
         vehicleCollectionView.snp.makeConstraints {
             make in
-            make.left.right.top.equalToSuperview()
+            make.leading.trailing.top.equalToSuperview()
             make.height.equalTo(VehicleCell.VehicleCellHeight)
         }
 
@@ -151,7 +151,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         let scrollView = UIScrollView.forAutoLayout()
         contentView.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(vehicleCollectionView.snp.bottom).offset(20)
         }
 
@@ -169,34 +169,34 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
 
         contentViewInScrollView.addSubview(vehicleTypeView)
         vehicleTypeView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalToSuperview()
             make.height.equalTo(VLTitledLabel.height)
         }
 
         contentViewInScrollView.addSubview(vehicleImageView)
         vehicleImageView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleTypeView.snp.bottom)
             make.height.equalTo(Vehicle.vehicleImageHeight)
         }
 
         contentViewInScrollView.addSubview(scheduledServiceView)
         scheduledServiceView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom)
             make.height.equalTo(VLTitledLabel.height)
         }
 
         contentViewInScrollView.addSubview(dealershipLocationButton)
         dealershipLocationButton.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.top.equalTo(scheduledServiceView.snp.bottom).offset(20)
         }
 
         contentViewInScrollView.addSubview(preferredDealershipView)
         preferredDealershipView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(scheduledServiceView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
@@ -213,13 +213,13 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         contentViewInScrollView.addSubview(spacerView)
         spacerView.snp.makeConstraints {
             make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(preferredDealershipView.snp.bottom)
         }
 
         contentViewInScrollView.addSubview(confirmButton)
         confirmButton.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(spacerView.snp.bottom)
             make.height.equalTo(VLButton.primaryHeight)
         }
@@ -271,11 +271,11 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
             if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
                 if !booking.isSelfIB() && booking.getState() == .pickupScheduled, let request = booking.pickupRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
                     let dateTime = formatter.string(from: date)
-                    scheduledServiceView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+                    scheduledServiceView.setTitle(title: .localized(.scheduledPickup), leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                     dealershipLocationButton.isHidden = true
                     scheduledServiceView.isEditable = true
                 } else {
-                    scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: booking.getRepairOrderName())
+                    scheduledServiceView.setTitle(title: .localized(.viewScheduleServiceVehicleServiceScheduled), leftDescription: booking.getRepairOrderName())
                     dealershipLocationButton.isHidden = false
                     scheduledServiceView.isEditable = false
                 }
@@ -284,7 +284,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                 }
             } else {
                 if booking.isSelfOB() {
-                    scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName())
+                    scheduledServiceView.setTitle(title: .localized(.completedService), leftDescription: booking.getRepairOrderName())
                     scheduledServiceView.isEditable = false
                     dealershipLocationButton.isHidden = false
                 } else {
@@ -292,12 +292,12 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                     dealershipLocationButton.isHidden = true
                     if let request = booking.dropoffRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
                         let dateTime = formatter.string(from: date)
-                        scheduledServiceView.setTitle(title: .ScheduledDelivery, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+                        scheduledServiceView.setTitle(title: .localized(.scheduledDelivery), leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                     } else {
                         if booking.getState() == .service {
-                            scheduledServiceView.setTitle(title: .CurrentService, leftDescription: booking.getRepairOrderName())
+                            scheduledServiceView.setTitle(title: .localized(.currentService), leftDescription: booking.getRepairOrderName())
                         } else {
-                            scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName())
+                            scheduledServiceView.setTitle(title: .localized(.completedService), leftDescription: booking.getRepairOrderName())
                         }
                     }
                     if let request = booking.dropoffRequest, let requestLocation = request.location {
@@ -313,14 +313,14 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                 if let location = location {
                     preferredDealershipView.isHidden = false
                     if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                        preferredDealershipView.setTitle(title: .PickupLocation, leftDescription: location)
+                        preferredDealershipView.setTitle(title: .localized(.pickupLocation), leftDescription: location)
                     } else {
-                        preferredDealershipView.setTitle(title: .DeliveryLocation, leftDescription: location)
+                        preferredDealershipView.setTitle(title: .localized(.deliveryLocation), leftDescription: location)
                     }
                 } else {
                     if let dealership = booking.dealership {
                         preferredDealershipView.isHidden = false
-                        preferredDealershipView.setTitle(title: .Dealership, leftDescription: dealership.name ?? "")
+                        preferredDealershipView.setTitle(title: .localized(.dealership), leftDescription: dealership.name ?? "")
                     }
                 }
             }

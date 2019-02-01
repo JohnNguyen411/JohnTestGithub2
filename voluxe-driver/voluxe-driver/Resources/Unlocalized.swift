@@ -12,7 +12,7 @@ import Foundation
 // TODO localize
 // This is provided as a temporary solution until the localized
 // strings are integrated.
-struct Localized {
+struct Unlocalized {
 
     static let appStore = NSLocalizedString("App Store", comment: "")
 

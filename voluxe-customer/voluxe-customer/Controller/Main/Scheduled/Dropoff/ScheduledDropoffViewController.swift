@@ -28,10 +28,10 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
     }
     
     override func generateSteps() {
-        let step1 = Step(id: ServiceState.serviceCompleted, text: .VehicleIsReady, state: .done)
-        let step2 = Step(id: ServiceState.enRouteForDropoff, text: .DriverEnRoute)
-        let step3 = Step(id: ServiceState.nearbyForDropoff, text: .DriverNearby)
-        let step4 = Step(id: ServiceState.arrivedForDropoff, text: .DriverArrived)
+        let step1 = Step(id: ServiceState.serviceCompleted, text: .localized(.viewScheduleServiceStatusInfoScheduledDropoff), state: .done)
+        let step2 = Step(id: ServiceState.enRouteForDropoff, text: .localized(.viewScheduleServiceStatusInfoEnRoute))
+        let step3 = Step(id: ServiceState.nearbyForDropoff, text: .localized(.viewScheduleServiceStatusInfoNearBy))
+        let step4 = Step(id: ServiceState.arrivedForDropoff, text: .localized(.viewScheduleServiceStatusInfoArrived))
         
         steps.append(step1)
         steps.append(step2)
@@ -56,7 +56,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
 
             if let timeSlot = dropoffRequest.timeSlot, state == .dropoffScheduled {
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
-                self.timeWindowView.setSubtitle(text: .DeliveryWindow)
+                self.timeWindowView.setSubtitle(text: .localized(.viewScheduleServiceStatusTimeDeliveryWindow))
             }
         }
         
@@ -85,20 +85,20 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
                 if let dropoffRequestLocation = dropoffRequest.location, let dropoffRequestCoordinates = dropoffRequestLocation.getLocation() {
                     refreshTimeSlot = false
                     self.getEta(fromLocation: coordinates, toLocation: dropoffRequestCoordinates)
-                    self.timeWindowView.setSubtitle(text: .EstimatedDeliveryTime)
+                    self.timeWindowView.setSubtitle(text: .localized(.viewScheduleServiceStatusTimeWindowEstimatedDelivery))
                 }
                 newDriver(driver: driver)
             }
             if let timeSlot = dropoffRequest.timeSlot, refreshTimeSlot {
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
-                self.timeWindowView.setSubtitle(text: .DeliveryWindow)
+                self.timeWindowView.setSubtitle(text: .localized(.viewScheduleServiceStatusTimeDeliveryWindow))
             }
         }
     }
     
     
     @objc func selfOBClick() {
-        let selfModalVC = ScheduleSelfDropModal(title: .YoureScheduledForDelivery, screen: .selfOBModal)
+        let selfModalVC = ScheduleSelfDropModal(title: .localized(.popupAdvisorDropoffLabel), screen: .selfOBModal)
         selfModalVC.delegate = self
         selfModalVC.view.accessibilityIdentifier = "selfModalVC"
         currentPresentrVC = selfModalVC
@@ -124,7 +124,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
                     self.refreshFinalBooking(customerId: booking.customerId, bookingId: booking.id)
                 } else if error != nil {
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown))
                 }
             }
             
@@ -157,7 +157,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
             self.hideProgressHUD()
             
             if error != nil {
-                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                self.showDialog(title: .localized(.error), message: .localized(.errorUnknown), buttonTitle: .localized(.retry), completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 }, dialog: .error, screen: self.screen)
             } else {

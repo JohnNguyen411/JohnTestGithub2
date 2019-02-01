@@ -44,7 +44,7 @@ class ServiceDetailViewController: BaseViewController {
         self.vehicle = vehicle
         self.canSchedule = canSchedule
         self.service = service
-        serviceTitle = VLTitledLabel(title: .FactoryScheduledMaintenance, leftDescription: service.name!, rightDescription: "")
+        serviceTitle = VLTitledLabel(title: .localized(.viewScheduleServiceTypeMilestoneDetailNameLabel), leftDescription: service.name!, rightDescription: "")
         serviceTitle.descLeftLabel.numberOfLines = 2
         serviceTitle.descLeftLabel.volvoProLineSpacing()
         
@@ -52,7 +52,7 @@ class ServiceDetailViewController: BaseViewController {
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
             analyticName = AnalyticsEnums.Name.Screen.serviceCustomDetail
         }
-        confirmButton = VLButton(type: .bluePrimary, title: (.ConfirmService as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleService, screen: analyticName)
+        confirmButton = VLButton(type: .bluePrimary, title: String.localized(.viewScheduleServiceDetailConfirmService).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleService, screen: analyticName)
 
         super.init(screen: analyticName)
     }
@@ -66,22 +66,22 @@ class ServiceDetailViewController: BaseViewController {
         
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
             label.text = repairOrder.notes
-            serviceTitle.setTitle(title: .OtherMaintenanceRepairs, leftDescription: repairOrder.getTitle())
-            isDrivableLabel.text = String.IsVolvoDrivable + " " + RepairOrder.getDrivabilityTitle(isDrivable: repairOrder.vehicleDrivable.value)
+            serviceTitle.setTitle(title: .localized(.viewScheduleServiceTypeDetailNameLabelOther), leftDescription: repairOrder.getTitle())
+            isDrivableLabel.text = String.localized(.viewScheduleServiceTypeOtherDetailLabel) + " " + RepairOrder.getDrivabilityTitle(isDrivable: repairOrder.vehicleDrivable.value)
         } else {
             label.text = service.desc
             if let repairOrder = repairOrder {
-                serviceTitle.setTitle(title: .FactoryScheduledMaintenance, leftDescription: repairOrder.getTitle())
+                serviceTitle.setTitle(title: .localized(.viewScheduleServiceTypeMilestoneDetailNameLabel), leftDescription: repairOrder.getTitle())
             }
             label.snp.makeConstraints { make in
-                make.right.left.equalTo(serviceTitle)
+                make.trailing.leading.equalTo(serviceTitle)
                 make.bottom.equalTo(confirmButton.snp.top).offset(-20)
                 make.top.equalTo(serviceTitle.snp.bottom).offset(20)
             }
             isDrivableLabel.isHidden = true
         }
         
-        self.navigationItem.title = .NewService
+        self.navigationItem.title = .localized(.newService)
 
         label.volvoProLineSpacing()
         label.sizeToFit()
@@ -92,13 +92,13 @@ class ServiceDetailViewController: BaseViewController {
             
             if isDrivableLabel.isHidden {
                 label.snp.remakeConstraints { make in
-                    make.right.left.equalTo(serviceTitle)
+                    make.trailing.leading.equalTo(serviceTitle)
                     make.top.equalTo(serviceTitle.snp.bottom).offset(20)
                     make.equalsToBottom(view: self.view, offset: 0)
                 }
             } else {
                 label.snp.remakeConstraints { make in
-                    make.right.left.equalTo(serviceTitle)
+                    make.trailing.leading.equalTo(serviceTitle)
                     make.top.equalTo(isDrivableLabel.snp.bottom).offset(20)
                     make.equalsToBottom(view: self.view, offset: 0)
                 }
@@ -111,7 +111,7 @@ class ServiceDetailViewController: BaseViewController {
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: RepairOrder(repairOrderType: weakself.service))
             StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: weakself.vehicle.id, booking: nil)
             
-            weakself.pushViewController(ServiceCarViewController(title: .ServiceSummary, vehicle: weakself.vehicle, state: .needService), animated: true)
+            weakself.pushViewController(ServiceCarViewController(title: .localized(.viewScheduleServiceOptionPickup), vehicle: weakself.vehicle, state: .needService), animated: true)
         }
         
         serviceTitle.descLeftLabel.volvoProLineSpacing()
@@ -127,24 +127,24 @@ class ServiceDetailViewController: BaseViewController {
         self.view.addSubview(confirmButton)
         
         serviceTitle.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.top.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(VLTitledLabel.height)
         }
         
         isDrivableLabel.snp.makeConstraints { make in
-            make.right.left.equalTo(serviceTitle)
+            make.trailing.leading.equalTo(serviceTitle)
             make.top.equalTo(serviceTitle.snp.bottom).offset(20)
         }
         
         confirmButton.snp.makeConstraints { make in
-            make.right.left.equalTo(serviceTitle)
+            make.trailing.leading.equalTo(serviceTitle)
             make.equalsToBottom(view: self.view, offset: -20)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
         label.snp.makeConstraints { make in
-            make.right.left.equalTo(serviceTitle)
+            make.trailing.leading.equalTo(serviceTitle)
             make.bottom.equalTo(confirmButton.snp.top).offset(-20)
             make.top.equalTo(isDrivableLabel.snp.bottom).offset(20)
         }

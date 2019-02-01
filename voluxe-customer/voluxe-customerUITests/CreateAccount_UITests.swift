@@ -25,8 +25,8 @@ class CreateAccount_UITests: XCTestCase {
         app.launch()
         self.wait(for: 5, label: "waiting for app to finish launching")
 
-        XCTAssertTrue(app.buttons["SIGN-IN"].exists)
-        app.buttons["CREATE ACCOUNT"].tap()
+        XCTAssertTrue(app.buttons[String.localized(.viewIntroFooterSignin).uppercased()].exists)
+        app.buttons[String.localized(.viewIntroFooterSignup).uppercased()].tap()
         self.wait()
 
         XCTAssertTrue(app.staticTexts["welcomeLabel"].exists)
@@ -38,9 +38,9 @@ class CreateAccount_UITests: XCTestCase {
 
         let app = XCUIApplication()
 
-        let firstNameTextfield = app.textFields[String.FirstNamePlaceholder]
-        let lastNameTextfield = app.textFields[String.LastNamePlaceholder]
-        let next = app.navigationBars.firstMatch.buttons["Next"]
+        let firstNameTextfield = app.textFields[String.localized(.viewEditTextInfoHintFirstName)]
+        let lastNameTextfield = app.textFields[String.localized(.viewEditTextInfoHintLastName)]
+        let next = app.navigationBars.firstMatch.buttons[String.localized(.next)]
 
         // next button is disabled by default
         XCTAssertFalse(next.isEnabled)
@@ -64,15 +64,15 @@ class CreateAccount_UITests: XCTestCase {
 
         let app = XCUIApplication()
 
-        var textField = app.textFields[String.FirstNamePlaceholder]
+        var textField = app.textFields[String.localized(.viewEditTextInfoHintFirstName)]
         textField.tapAndClearText()
         textField.typeText(BotUserData.firstName)
 
-        textField = app.textFields[String.LastNamePlaceholder]
+        textField = app.textFields[String.localized(.viewEditTextInfoHintLastName)]
         textField.tapAndClearText()
         textField.typeText(BotUserData.lastName)
 
-        let next = app.navigationBars.firstMatch.buttons["Next"]
+        let next = app.navigationBars.firstMatch.buttons[String.localized(.next)]
         XCTAssertTrue(next.isEnabled)
         next.tap()
         self.wait()
@@ -85,9 +85,9 @@ class CreateAccount_UITests: XCTestCase {
         let app = XCUIApplication()
 
         let tosCheckbox = app.otherElements["tosCheckbox"]
-        let emailTextfield = app.textFields[String.EmailPlaceholder]
-        let phoneTextfield = app.textFields[String.MobilePhoneNumber_Placeholder]
-        let next = app.navigationBars.firstMatch.buttons["Next"]
+        let emailTextfield = app.textFields[String.localized(.viewEditTextInfoHintEmail)]
+        let phoneTextfield = app.textFields[String.localized(.viewEditTextInfoHintPhoneNumber)]
+        let next = app.navigationBars.firstMatch.buttons[String.localized(.next)]
 
         // next button is disabled by default
         XCTAssertFalse(next.isEnabled)
@@ -159,15 +159,15 @@ class CreateAccount_UITests: XCTestCase {
 
         let app = XCUIApplication()
 
-        var textField = app.textFields[String.EmailPlaceholder]
+        var textField = app.textFields[String.localized(.viewEditTextInfoHintEmail)]
         textField.tapAndClearText()
         textField.typeText(BotUserData.email)
 
-        textField = app.textFields[String.MobilePhoneNumber_Placeholder]
+        textField = app.textFields[String.localized(.viewEditTextInfoHintPhoneNumber)]
         textField.tapAndClearText()
         textField.typeText(BotUserData.phone)
         
-        let next = app.navigationBars.firstMatch.buttons["Next"]
+        let next = app.navigationBars.firstMatch.buttons[String.localized(.next)]
         XCTAssertTrue(next.isEnabled)
         next.tap()
         self.wait()
@@ -179,7 +179,7 @@ class CreateAccount_UITests: XCTestCase {
 
         let app = XCUIApplication()
         let field = app.textFields["0000"]
-        let next = app.navigationBars.firstMatch.buttons["Next"]
+        let next = app.navigationBars.firstMatch.buttons[String.localized(.next)]
 
         // too short 0 to 3 characters
         XCTAssertFalse(next.isEnabled, "not code has been entered")
@@ -207,7 +207,7 @@ class CreateAccount_UITests: XCTestCase {
 
         let app = XCUIApplication()
         let field = app.textFields["0000"]
-        let next = app.navigationBars.firstMatch.buttons["Next"]
+        let next = app.navigationBars.firstMatch.buttons[String.localized(.next)]
 
         // TODO use a typo'd code
         let code = Int.random(from: 1000, to: 9999)
@@ -231,7 +231,7 @@ class CreateAccount_UITests: XCTestCase {
         }
         self.wait(for: 10, label: "getting verification code")
 
-        app.navigationBars.firstMatch.buttons["Next"].tap()
+        app.navigationBars.firstMatch.buttons[String.localized(.next)].tap()
         self.wait()
     }
 
@@ -242,7 +242,7 @@ class CreateAccount_UITests: XCTestCase {
         let app = XCUIApplication()
         let passwordTextField = app.otherElements["volvoPwdTextField"]
         let confirmTextField = app.otherElements["volvoPwdConfirmTextField"]
-        let next = app.navigationBars.firstMatch.buttons["Next"]
+        let next = app.navigationBars.firstMatch.buttons[String.localized(.next)]
 
         // empty password
         XCTAssertFalse(next.isEnabled)
@@ -262,14 +262,14 @@ class CreateAccount_UITests: XCTestCase {
         confirmTextField.tap(andType: "abcdefgh")
         XCTAssertTrue(next.isEnabled)
         next.tap()
-        XCTAssertTrue(app.staticTexts["REQUIRES A NUMBER"].exists)
+        XCTAssertTrue(app.staticTexts[String.localized(.viewSignupPasswordRequireNumber).uppercased()].exists)
 
         // mismatched
         passwordTextField.clear(andType: "abcdefghi9")
         confirmTextField.clear(andType: "abcdefghi8")
         XCTAssertTrue(next.isEnabled)
         next.tap()
-        XCTAssertTrue(app.staticTexts["DOES NOT MATCH"].exists)
+        XCTAssertTrue(app.staticTexts[String.localized(.errorPasswordNotMatch).uppercased()].exists)
     }
 
     func test41_validPassword() {
@@ -284,7 +284,7 @@ class CreateAccount_UITests: XCTestCase {
         textField.tap()
         textField.typeText(BotUserData.password)
 
-        app.navigationBars.firstMatch.buttons["Next"].tap()
+        app.navigationBars.firstMatch.buttons[String.localized(.next)].tap()
         self.wait(for: 10, label: "waiting for verification code to be accepted")
     }
 
@@ -293,17 +293,17 @@ class CreateAccount_UITests: XCTestCase {
     func test50_invalidVehicleOptions() {
 
         let app = XCUIApplication()
-        let yearTextfield = app.textFields["2019"]
-        let modelTextfield = app.textFields["S90"]
-        let colorTextfield = app.textFields["Black"]
+        let yearTextfield = app.textFields[String.localized(.viewVehicleAddYearHint)]
+        let modelTextfield = app.textFields[String.localized(.viewVehicleAddModelHint)]
+        let colorTextfield = app.textFields[String.localized(.viewVehicleAddColorHint)]
 
         // should be disabled without any input
-        let done = app.navigationBars.firstMatch.buttons["Next"]
+        let done = app.navigationBars.firstMatch.buttons[String.localized(.next)]
         XCTAssertFalse(done.isEnabled)
 
         // year only allows 4 digits
-        modelTextfield.clear(andType: "S90")
-        colorTextfield.clear(andType: "Black")
+        modelTextfield.clear(andType: String.localized(.viewVehicleAddModelHint))
+        colorTextfield.clear(andType: String.localized(.viewVehicleAddColorHint))
         yearTextfield.clear(andType: "1")
         XCTAssertFalse(done.isEnabled)
         yearTextfield.clear(andType: "12345")
@@ -314,7 +314,7 @@ class CreateAccount_UITests: XCTestCase {
         XCTAssertFalse(done.isEnabled)
 
         // model allows alphanumeric only
-        yearTextfield.clear(andType: "2019")
+        yearTextfield.clear(andType: String.localized(.viewVehicleAddYearHint))
         colorTextfield.clear(andType: "Black")
         modelTextfield.clear(andType: "📭🆒🍌😶")
         XCTAssertFalse(done.isEnabled)
@@ -322,8 +322,8 @@ class CreateAccount_UITests: XCTestCase {
         XCTAssertFalse(done.isEnabled)
 
         // color only allows alpha
-        yearTextfield.clear(andType: "2019")
-        modelTextfield.clear(andType: "S90")
+        yearTextfield.clear(andType: String.localized(.viewVehicleAddYearHint))
+        modelTextfield.clear(andType: String.localized(.viewVehicleAddModelHint))
         colorTextfield.clear(andType: "random")
         XCTAssertFalse(done.isEnabled)
         colorTextfield.clear(andType: "123456")
@@ -340,21 +340,21 @@ class CreateAccount_UITests: XCTestCase {
     func test51_validVehicleOptions() {
 
         let app = XCUIApplication()
-        let done = app.toolbars["Toolbar"].buttons["Done"]
+        let done = app.toolbars["Toolbar"].buttons[String.localized(.done)]
 
-        app.textFields["2019"].tap()
+        app.textFields[String.localized(.viewVehicleAddYearHint)].tap()
         done.tap()
         self.wait()
 
-        app.textFields["S90"].tap()
+        app.textFields[String.localized(.viewVehicleAddModelHint)].tap()
         done.tap()
         self.wait()
 
-        app.textFields["Black"].tap()
+        app.textFields[String.localized(.viewVehicleAddColorHint)].tap()
         done.tap()
         self.wait()
 
-        app.navigationBars.firstMatch.buttons["Next"].tap()
+        app.navigationBars.firstMatch.buttons[String.localized(.next)].tap()
         self.wait(for: 10, label: "waiting for vehicle to be created")
     }
 
@@ -364,7 +364,7 @@ class CreateAccount_UITests: XCTestCase {
 
         let app = XCUIApplication()
 
-        XCTAssertTrue(app.otherElements["Pickup & Delivery"].exists)
+        XCTAssertTrue(app.otherElements[String.localized(.viewScheduleService)].exists)
     }
 
     // MARK:- Account already exists
@@ -376,35 +376,35 @@ class CreateAccount_UITests: XCTestCase {
         app.launch()
         self.wait()
 
-        XCTAssertTrue(app.buttons["SIGN-IN"].exists)
-        app.buttons["CREATE ACCOUNT"].tap()
+        XCTAssertTrue(app.buttons[String.localized(.viewIntroFooterSignin).uppercased()].exists)
+        app.buttons[String.localized(.viewIntroFooterSignup).uppercased()].tap()
         self.wait()
 
-        var textField = app.textFields[String.FirstNamePlaceholder]
+        var textField = app.textFields[String.localized(.viewEditTextInfoHintFirstName)]
         textField.tap()
         textField.typeText(BotUserData.firstName)
 
-        textField = app.textFields[String.LastNamePlaceholder]
+        textField = app.textFields[String.localized(.viewEditTextInfoHintLastName)]
         textField.tap()
         textField.typeText(BotUserData.lastName)
 
-        app.navigationBars.firstMatch.buttons["Next"].tap()
+        app.navigationBars.firstMatch.buttons[String.localized(.next)].tap()
         self.wait()
 
-        textField = app.textFields[String.EmailPlaceholder]
+        textField = app.textFields[String.localized(.viewEditTextInfoHintEmail)]
         textField.tap()
         textField.typeText(BotUserData.email)
 
-        textField = app.textFields[String.MobilePhoneNumber_Placeholder]
+        textField = app.textFields[String.localized(.viewEditTextInfoHintPhoneNumber)]
         textField.tap()
         textField.typeText(BotUserData.phone)
 
-        app.navigationBars.firstMatch.buttons["Next"].tap()
+        app.navigationBars.firstMatch.buttons[String.localized(.next)].tap()
         self.wait(for: 5, label: "waiting for server to reject existing phone number")
 
         // this just tests that an error is thrown, it is not checking
         // that the error text matches the offending input
-        let alert = app.alerts["Error"]
+        let alert = app.alerts[String.localized(.error)]
         XCTAssertTrue(alert.exists)
     }
 }

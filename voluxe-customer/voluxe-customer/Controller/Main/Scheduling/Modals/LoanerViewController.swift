@@ -13,7 +13,7 @@ class LoanerViewController: VLPresentrViewController, VLGroupedLabelsDelegate {
     
     weak var delegate: PickupLoanerDelegate?
     
-    let groupedLabels = VLGroupedLabels(items: [.Yes, .No], singleChoice: true, selectDefault: false, topBottomSeparator: true)
+    let groupedLabels = VLGroupedLabels(items: [.localized(.yes), .localized(.no)], singleChoice: true, selectDefault: false, topBottomSeparator: true)
     
     override func setupViews() {
         super.setupViews()
@@ -23,7 +23,7 @@ class LoanerViewController: VLPresentrViewController, VLGroupedLabelsDelegate {
         
         groupedLabels.snp.makeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-30)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(groupedLabels.items.count * VLSelectableLabel.height)
         }
         

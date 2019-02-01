@@ -73,14 +73,14 @@ class VLSelectableLabel : UIView, UIGestureRecognizerDelegate {
         addSubview(checkmarkView)
         
         checkmarkView.snp.makeConstraints { (make) -> Void in
-            make.right.equalToSuperview()
+            make.trailing.equalToSuperview()
             make.width.height.equalTo(15)
             make.centerY.equalToSuperview()
         }
         
         label.snp.makeConstraints { (make) -> Void in
-            make.left.centerY.equalToSuperview()
-            make.right.equalTo(checkmarkView.snp.left).offset(-5)
+            make.leading.centerY.equalToSuperview()
+            make.trailing.equalTo(checkmarkView.snp.leading).offset(-5)
         }
         
         setSelected(selected: selected, callDelegate: true)

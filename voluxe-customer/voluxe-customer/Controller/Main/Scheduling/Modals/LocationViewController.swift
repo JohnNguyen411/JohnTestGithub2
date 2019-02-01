@@ -54,11 +54,11 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     
     let newLocationButton: VLButton
     
-    let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
+    let newLocationTextField = VLVerticalSearchTextField(title: .localized(.popupAddNewLocationLabel), placeholder: .localized(.popupAddNewLocationEditHint))
     let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
     
     override init(title: String, buttonTitle: String, screen: AnalyticsEnums.Name.Screen) {
-        newLocationButton = VLButton(type: .blueSecondary, title: (.AddNewLocation as String).uppercased(), kern: UILabel.uppercasedKern(), event: .addNewLocation, screen: screen)
+        newLocationButton = VLButton(type: .blueSecondary, title: String.localized(.addNewLocation).uppercased(), kern: UILabel.uppercasedKern(), event: .addNewLocation, screen: screen)
         super.init(title: title, buttonTitle: buttonTitle, screen: screen)
         newLocationTextField.textField.autocorrectionType = .no
         newLocationTextField.tableYOffset = -20
@@ -220,12 +220,12 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         
         newLocationTextField.snp.makeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-30)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(VLVerticalTextField.height)
         }
         
         newLocationButton.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.bottom.equalTo(bottomButton.snp.top).offset(-20)
         }
         
@@ -237,8 +237,8 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         
         tableView.snp.makeConstraints { make in
             make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview().offset(15)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview().offset(15)
             make.height.equalTo(self.tableViewHeight())
         }
         
@@ -369,16 +369,16 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         if show {
             tableView.snp.remakeConstraints { make in
                 make.bottom.equalTo(newLocationTextField.snp.top).offset(-20)
-                make.left.equalToSuperview()
-                make.right.equalToSuperview().offset(15)
+                make.leading.equalToSuperview()
+                make.trailing.equalToSuperview().offset(15)
                 make.height.equalTo(self.tableViewHeight())
             }
             
         } else {
             tableView.snp.remakeConstraints { make in
                 make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
-                make.left.equalToSuperview()
-                make.right.equalToSuperview().offset(15)
+                make.leading.equalToSuperview()
+                make.trailing.equalToSuperview().offset(15)
                 make.height.equalTo(self.tableViewHeight())
             }
         }
@@ -601,11 +601,11 @@ extension LocationViewController: CurrentLocationCellDelegate {
         let locationManager = LocationManager.sharedInstance.locationManager
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        Analytics.trackView(screen: .requestLocation)
+        Analytics.trackClick(button: .requestLocation)
     }
     
     func deniedPermissionClick() {
-        self.showDialog(title: .LocationPermission, message: .PermissionLocationDenied, cancelButtonTitle: .Close, okButtonTitle: .OpenSettings, okCompletion: {
+        self.showDialog(title: .localized(.permissionLocationTitle), message: .localized(.popupSelectLocationPermissionDenied), cancelButtonTitle: .localized(.close), okButtonTitle: .localized(.openSettings), okCompletion: {
             let urlObj = NSURL.init(string:UIApplication.openSettingsURLString)
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(urlObj! as URL, options: [ : ], completionHandler: nil)

@@ -13,9 +13,9 @@ import RealmSwift
 
 class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
     
-    let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
-    let passwordTextField = VLVerticalTextField(title: .Password, placeholder: "••••••••", kern: 2.0)
-    let forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.ForgotPassword.uppercased(), kern: UILabel.uppercasedKern(), event: .forgotPassword, screen: .login)
+    let emailTextField = VLVerticalTextField(title: .localized(.emailAddress), placeholder: .localized(.viewEditTextInfoHintEmail))
+    let passwordTextField = VLVerticalTextField(title: .localized(.viewEditTextTitlePasswordNew), placeholder: "••••••••")
+    let forgotPassword = VLButton(type: .orangeSecondaryVerySmall, title: String.localized(.viewSigninForgotPassword).uppercased(), kern: UILabel.uppercasedKern(), event: .forgotPassword, screen: .login)
     
     var loginInProgress = false
     var realm : Realm?
@@ -79,21 +79,21 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         scrollView.addSubview(forgotPassword)
         
         emailTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(20)
             make.top.equalToSuperview().offset(BaseViewController.defaultTopYOffset)
-            make.right.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         passwordTextField.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(emailTextField)
+            make.leading.trailing.equalTo(emailTextField)
             make.top.equalTo(emailTextField.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         forgotPassword.snp.makeConstraints { (make) -> Void in
-            make.right.equalTo(passwordTextField)
-            make.centerY.equalTo(passwordTextField.titleLabel.snp.centerY)
+            make.trailing.equalTo(passwordTextField)
+            make.centerY.equalTo(passwordTextField.snp.centerY)
         }
     }
     
@@ -192,9 +192,9 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         self.showLoading(loading: false)
         
         if let code = error?.code, code == .E2005 {
-            self.showOkDialog(title: .Error, message: .InvalidCredentials, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .localized(.error), message: .localized(.errorInvalidCredentials), dialog: .error, screen: self.screen)
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
         }
     }
 }

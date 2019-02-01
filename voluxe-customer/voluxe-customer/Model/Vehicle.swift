@@ -120,9 +120,9 @@ import RealmSwift
     
     func vehicleDescription() -> String {
         if let color = color, color.count > 0 {
-            return "\(color.capitalizingFirstLetter()) \(year) \(model ?? String.Unknown)"
+            return "\(color.capitalizingFirstLetter()) \(year) \(model ?? String.localized(.unknown))"
         }
-        return "\(baseColor?.capitalizingFirstLetter() ?? "") \(year) \(model ?? String.Unknown)"
+        return "\(baseColor?.capitalizingFirstLetter() ?? "") \(year) \(model ?? String.localized(.unknown))"
     }
     
     func mileage() -> Int {

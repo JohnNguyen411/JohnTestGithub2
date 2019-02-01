@@ -14,19 +14,19 @@ import libPhoneNumber_iOS
 class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
 
     // MARK: Layout
-    private let phoneNumberTextField = VLVerticalTextField(title: Localized.phoneNumber, placeholder: "(555) 555-5555", isPhoneNumber: true)
+    private let phoneNumberTextField = VLVerticalTextField(title: Unlocalized.phoneNumber, placeholder: "(555) 555-5555", isPhoneNumber: true)
     var validPhoneNumber: NBPhoneNumber?
     let phoneUtil = NBPhoneNumberUtil.sharedInstance()
     var countryCode: String?
 
-    private let verifyLabel = Label.dark(with: Localized.letsVerifyPhoneNumber)
-    private let cancelButton = UIButton.Volvo.secondary(title: Localized.cancel)
-    private let nextButton = UIButton.Volvo.primary(title: Localized.next)
+    private let verifyLabel = Label.dark(with: Unlocalized.letsVerifyPhoneNumber)
+    private let cancelButton = UIButton.Volvo.secondary(title: Unlocalized.cancel)
+    private let nextButton = UIButton.Volvo.primary(title: Unlocalized.next)
 
     // MARK: Lifecycle
 
     convenience init() {
-        self.init(title: Localized.addPhoneNumber)
+        self.init(title: Unlocalized.addPhoneNumber)
         
         if let textField = phoneNumberTextField.textField as? FPNTextField {
             textField.flagPhoneNumberDelegate = self
@@ -132,7 +132,7 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
                 self?.pushVerificationCodeViewController()
 
             } else {
-                AppController.shared.alert(message: Localized.genericError)
+                AppController.shared.alert(message: Unlocalized.genericError)
             }
         })
     }
@@ -145,7 +145,7 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
                 self?.refreshDriver()
             } else {
                 AppController.shared.lookNotBusy()
-                AppController.shared.alert(message: Localized.genericError)
+                AppController.shared.alert(message: Unlocalized.genericError)
             }
         }
     }
@@ -157,7 +157,7 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
                 // go to next
                 self?.pushVerificationCodeViewController()
             } else {
-                AppController.shared.alert(message: Localized.genericError)
+                AppController.shared.alert(message: Unlocalized.genericError)
             }
         })
     }
@@ -231,6 +231,6 @@ class PhoneNumberStep: Step {
     var phoneNumber: String?
     
     init() {
-        super.init(title: Localized.confirmPhoneNumber, controllerName: ConfirmPhoneViewController.className)
+        super.init(title: Unlocalized.confirmPhoneNumber, controllerName: ConfirmPhoneViewController.className)
     }
 }

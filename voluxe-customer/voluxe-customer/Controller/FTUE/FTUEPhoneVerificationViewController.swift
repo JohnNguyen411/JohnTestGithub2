@@ -13,7 +13,7 @@ import MBProgressHUD
 class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let codeLength = 4
-    let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder, kern: 4.0)
+    let codeTextField = VLVerticalTextField(title: "", placeholder: .localized(.viewPhoneVerificationCodeHint), kern: 4.0)
     
     let updatePhoneNumberButton: VLButton
     
@@ -21,7 +21,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .PhoneNumberVerifLabel
+        textView.text = .localized(.viewPhoneVerificationLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -32,7 +32,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     init() {
         let screen = FTUEStartViewController.flowType == .signup ? AnalyticsEnums.Name.Screen.signupPhoneVerification : AnalyticsEnums.Name.Screen.phoneVerification
-        updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.ChangePhoneNumber.uppercased(), kern: UILabel.uppercasedKern(), event: .updatePhone, screen: screen)
+        updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.localized(.changePhoneNumber).uppercased(), kern: UILabel.uppercasedKern(), event: .updatePhone, screen: screen)
         
         super.init(screen: screen)
     }
@@ -41,7 +41,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         self.init()
         self.ftuePhoneType = type
         if FTUEStartViewController.flowType == .login {
-            self.navigationItem.rightBarButtonItem?.title = .Done
+            self.navigationItem.rightBarButtonItem?.title = .localized(.done)
         }
     }
     
@@ -64,7 +64,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         codeTextField.textField.delegate = self
         super.viewDidLoad()
         codeTextField.textField.keyboardType = .numberPad
-        codeTextField.setRightButtonText(rightButtonText: (.ResendCode as String).uppercased(), actionBlock: {  [weak self] in
+        codeTextField.setRightButtonText(rightButtonText: String.localized(.resendCode).uppercased(), actionBlock: {  [weak self] in
             self?.resendCode()
         })
         codeTextField.rightLabel.addUppercasedCharacterSpacing()
@@ -98,24 +98,24 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         scrollView.addSubview(phoneNumberLabel)
         scrollView.addSubview(updatePhoneNumberButton)
         
-        updatePhoneNumberButton.contentHorizontalAlignment = .left
+        updatePhoneNumberButton.contentHorizontalAlignment = .leftOrLeading()
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
         
         codeTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(phoneNumberLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(40)
         }
         
         updatePhoneNumberButton.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(codeTextField.snp.bottom).offset(15)
             make.height.equalTo(20)
         }
@@ -143,7 +143,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 
                 if error == nil {
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.isLoading = false
                 } else {
                     self.hideProgressHUD()
@@ -174,7 +174,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                     self.isLoading = false
                 } else {
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.isLoading = false
                 }
             }
@@ -196,7 +196,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                     self.isLoading = false
                 } else {
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.isLoading = false
                 }
             }
@@ -211,7 +211,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 self.hideProgressHUD()
 
                 if error != nil {
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                 }
             }
         }
@@ -289,9 +289,9 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                     
                     self.hideProgressHUD()
                     if let code = error?.code, code == .E4012 {
-                        self.showOkDialog(title: .Error, message: .WrongVerificationCode, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorInvalidVerificationCode), dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
                 }

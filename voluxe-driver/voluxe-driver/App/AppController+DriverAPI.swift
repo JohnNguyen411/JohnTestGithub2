@@ -57,19 +57,19 @@ extension AppController {
     // alert should not be shown.
     private func showUpdateAlert(for version: LuxeAPI.Version?, required: Bool = false) {
 
-        let availableMessage = Localized.updateAvailableText
-        let requiredMessage = Localized.updateRequiredText
+        let availableMessage = Unlocalized.updateAvailableText
+        let requiredMessage = Unlocalized.updateRequiredText
         let message = required ? requiredMessage : availableMessage
 
-        let availableTitle = Localized.updateAvailable
-        let requiredTitle = Localized.updateRequired
+        let availableTitle = Unlocalized.updateAvailable
+        let requiredTitle = Unlocalized.updateRequired
         let title = required ? requiredTitle : availableTitle
 
         let controller = UIAlertController(title: title,
                                            message: message,
                                            preferredStyle: .alert)
 
-        let appStoreAction = UIAlertAction(title: Localized.appStore, style: .default) {
+        let appStoreAction = UIAlertAction(title: Unlocalized.appStore, style: .default) {
             _ in
             // TODO https://app.asana.com/0/858610969087925/894650916838358/f
             // TODO need app store URL
@@ -77,7 +77,7 @@ extension AppController {
         controller.addAction(appStoreAction)
 
         if !required {
-            let cancelAction = UIAlertAction(title: Localized.later, style: .cancel) {
+            let cancelAction = UIAlertAction(title: Unlocalized.later, style: .cancel) {
                 _ in
                 controller.dismiss(animated: true)
             }
@@ -89,11 +89,11 @@ extension AppController {
 
     private func showLoginRequiredAlert() {
 
-        let controller = UIAlertController(title: Localized.signInRequired,
-                                           message: Localized.signInRequiredText,
+        let controller = UIAlertController(title: Unlocalized.signInRequired,
+                                           message: Unlocalized.signInRequiredText,
                                            preferredStyle: .alert)
 
-        let action = UIAlertAction(title: Localized.signIn, style: .default) {
+        let action = UIAlertAction(title: Unlocalized.signIn, style: .default) {
             action in
             AppController.shared.logout()
         }

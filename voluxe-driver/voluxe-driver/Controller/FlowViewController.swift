@@ -229,10 +229,10 @@ extension FlowViewController {
         }
         if !driver.workPhoneNumberVerified {
             steps.append(PhoneNumberStep())
-            steps.append(Step(title:Localized.confirmPhoneNumber, controllerName: PhoneVerificationViewController.className))
+            steps.append(Step(title:Unlocalized.confirmPhoneNumber, controllerName: PhoneVerificationViewController.className))
         }
         if driver.photoUrl == nil || driver.photoUrl?.count == 0 {
-            steps.append(Step(title:Localized.photographYourself, controllerName: SelfieViewController.className))
+            steps.append(Step(title:Unlocalized.photographYourself, controllerName: SelfieViewController.className))
         }
         return steps
     }

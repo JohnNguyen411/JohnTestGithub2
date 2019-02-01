@@ -56,7 +56,7 @@ class MainViewController: BaseVehicleViewController {
                         let scheduledPickupViewController = ScheduledSelfPickup(vehicle: vehicle, state: state, screen: .dropoffSelfActive)
                         newViewController = scheduledPickupViewController
                     }
-                    setTitle(title: .DropoffAtDealership)
+                    setTitle(title: .localized(.viewScheduleServiceStatusSelfAdvisorPickup))
                 } else {
                     if booking.isActive() {
                         if currentViewController != nil && (currentViewController?.isKind(of: ScheduledPickupViewController.self))! {
@@ -81,7 +81,7 @@ class MainViewController: BaseVehicleViewController {
                         let scheduledDeliveryViewController = ScheduledSelfDropoff(vehicle: vehicle, state: state, screen: .dropoffSelfActive)
                         newViewController = scheduledDeliveryViewController
                     }
-                    setTitle(title: .PickupAtDealership)
+                    setTitle(title: .localized(.viewScheduleServiceStatusSelfAdvisorDropoff))
                 } else {
                     if booking.isActive() {
                         if currentViewController != nil && (currentViewController?.isKind(of: ScheduledDropoffViewController.self))! {
@@ -127,15 +127,15 @@ class MainViewController: BaseVehicleViewController {
     func getTitleForState(state: ServiceState) -> String? {
         
         if state.rawValue == ServiceState.idle.rawValue || state.rawValue == ServiceState.needService.rawValue {
-            return .ScheduleService
+            return .localized(.scheduleService)
         } else if state.rawValue >= ServiceState.pickupScheduled.rawValue && state.rawValue < ServiceState.enRouteForService.rawValue {
-            return .ScheduledPickup
+            return .localized(.scheduledPickup)
         } else if state.rawValue >= ServiceState.enRouteForService.rawValue && state.rawValue < ServiceState.serviceCompleted.rawValue {
-            return .CurrentService
+            return .localized(.currentService)
         } else if state.rawValue == ServiceState.serviceCompleted.rawValue {
-            return .ReturnVehicle
+            return .localized(.viewScheduleServiceOptionDropoff)
         } else if state.rawValue >= ServiceState.dropoffScheduled.rawValue {
-            return .ScheduledDelivery
+            return .localized(.scheduledDelivery)
         }
         return nil
     }

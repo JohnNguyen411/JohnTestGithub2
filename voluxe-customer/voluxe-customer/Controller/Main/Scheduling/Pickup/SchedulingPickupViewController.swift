@@ -19,9 +19,9 @@ class SchedulingPickupViewController: SchedulingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let requestType = RequestedServiceManager.sharedInstance.getPickupRequestType(), requestType == .advisorPickup {
-            setTitle(title: .SelfDrop)
+            setTitle(title: .localized(.viewScheduleServiceOptionPickupSelfDropPickup))
         } else {
-            setTitle(title: .SchedulePickup)
+            setTitle(title: .localized(.schedulePickup))
         }
     }
     
@@ -32,7 +32,7 @@ class SchedulingPickupViewController: SchedulingViewController {
     override func setupViews() {
         super.setupViews()
         loanerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(dealershipView.snp.bottom)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
@@ -46,7 +46,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         }
         
         if let requestLocation = RequestedServiceManager.sharedInstance.getPickupLocation() {
-            pickupLocationView.setTitle(title: .PickupLocation, leftDescription: requestLocation.address!, rightDescription: "")
+            pickupLocationView.setTitle(title: .localized(.pickupLocation), leftDescription: requestLocation.address!, rightDescription: "")
         }
         super.fillViews()
     }
@@ -172,7 +172,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                     if let error = error {
                         self.pickupLocationView.showError(error: error)
                     } else {
-                        self.pickupLocationView.showError(error: .OutOfPickupArea)
+                        self.pickupLocationView.showError(error: .localized(.errorLocationOutOfPickupArea))
                     }
                 }
                 self.showConfirmButtonIfNeeded()
@@ -251,14 +251,14 @@ class SchedulingPickupViewController: SchedulingViewController {
                 // 2 bookings for the same car, not currently handled
                 if let code = error.code, code == .E4049 || code == .E4050 {
                     self.confirmButton.isLoading = false
-                    self.showDialog(title: .Error, message: String(format: String.DuplicateRequestError, String.Pickup), buttonTitle: .Refresh, completion: {
+                    self.showDialog(title: .localized(.error), message: String(format: .localized(.errorDuplicateRequest), String.localized(.pickup)), buttonTitle: .localized(.refresh), completion: {
                         BookingSyncManager.sharedInstance.syncBookings()
                         RequestedServiceManager.sharedInstance.reset()
                         AppController.sharedInstance.showVehiclesView(animated: false)
                     }, dialog: .error, screen: self.screen)
                     return
                 } else {
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.confirmButton.isLoading = false
                 }
             } else {
@@ -294,13 +294,13 @@ class SchedulingPickupViewController: SchedulingViewController {
                 if let error = error {
                     if let code = error.code, code == .E4049 || code == .E4050 {
                         self.confirmButton.isLoading = false
-                        self.showDialog(title: .Error, message: String(format: String.DuplicateRequestError, String.Pickup), buttonTitle: .Refresh, completion: {
+                        self.showDialog(title: .localized(.error), message: String(format: .localized(.errorDuplicateRequest), String.localized(.pickup)), buttonTitle: .localized(.refresh), completion: {
                             self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
                         }, dialog: .error, screen: self.screen)
                         return
                     } else {
                         // an error occured while creating the request, try again with same booking
-                        self.showDialog(title: .Error, message: .GenericError, buttonTitle: String.Retry, completion: {
+                        self.showDialog(title: .localized(.error), message: .localized(.errorUnknown), buttonTitle: .localized(.retry), completion: {
                             self.createPickupRequest(customerId: customerId, booking: booking)
                         }, dialog: .error, screen: self.screen)
                     }
@@ -340,7 +340,7 @@ class SchedulingPickupViewController: SchedulingViewController {
             if error != nil {
                 // retry
                 self.hideProgressHUD()
-                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                self.showDialog(title: .localized(.error), message: .localized(.errorUnknown), buttonTitle: .localized(.retry), completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 }, dialog: .error, screen: self.screen)
             } else {

@@ -194,7 +194,6 @@ struct AnalyticsEnums {
             case signupPhone
             case signupPhoneVerification
             case splash
-            case success
             case termsOfService
             case vehicles
             case vehicleAdd
