@@ -116,7 +116,7 @@ extension AppController {
         if steps.count == 0 {
             AppController.shared.logout()
         } else {
-            AppController.shared.mainController(push: FlowViewController(steps: steps, direction: .horizontal),
+            AppController.shared.mainController(push: LoginFlowViewController(steps: steps, direction: .horizontal),
                                                 asRootViewController: true,
                                                 prefersProfileButton: false)
         }

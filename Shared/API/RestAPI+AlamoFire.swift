@@ -168,13 +168,31 @@ extension RestAPI {
         self.upload(route: route, datasAndMimeTypes: tuple, completion: completion)
     }
 
-    func upload(route: RestAPIRoute,
+
+    func upload(method: HTTPMethod = .put,
+                route: RestAPIRoute,
+                parameters: RestAPIParameters? = nil,
                 datasAndMimeTypes: [(Data, RestAPIMimeType)],
                 completion: @escaping RestAPICompletion)
     {
         let url = self.urlFromHost(for: route)
         let request = Alamofire.AF.upload(multipartFormData: {
             multiPartFormData in
+            
+            if let params = parameters {
+                for param in params {
+                    var value = ""
+                    if let intValue = param.value as? Int{
+                        value = String(intValue)
+                    } else if let stringValue = param.value as? String {
+                        value = stringValue
+                    }
+                    if let dataValue = value.data(using: .utf8) {
+                        multiPartFormData.append(dataValue, withName: param.key)
+                    }
+                }
+            }
+            
             for (data, mimeType) in datasAndMimeTypes {
                 multiPartFormData.append(data,
                                          withName: mimeType.name,
@@ -183,7 +201,7 @@ extension RestAPI {
             }
         },
                                           to: url,
-                                          method: .put,
+                                          method: method,
                                           headers: Self.convertToAlamoFireHeaders(headers: self.headers))
         request.responseData {
             response in

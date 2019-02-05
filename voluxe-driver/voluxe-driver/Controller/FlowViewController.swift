@@ -14,9 +14,15 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
     // MARK: Data
 
     private let direction: FlowDirection
-    private var steps: [Step] = []
-    private var currentIndex = -1
-    private var currentVC: StepViewController?
+    var currentVC: StepViewController?
+
+    var currentIndex = -1
+    var steps: [Step] = []
+    
+    // MARK: View
+    
+    // need to be provided by sublass before adding subview
+    var containerView: UIView?
 
     // MARK: Lifecycle
     
@@ -34,55 +40,78 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         if currentIndex == -1 {
-            _ = pushNextStep()
+            pushNextStep()
         }
     }
     
+    func refreshSteps() {
+        // override if need to refresh steps
+    }
+    
     // MARK: StepViewControllerDelegate
-
-    func popStep() -> Bool {
-        if currentIndex == 0 {
+    
+    @discardableResult
+    func refreshUI() -> Bool {
+        self.refreshSteps()
+        if self.steps.count <= currentIndex {
             return false
         }
-        currentIndex -= 1
-        let step = steps[currentIndex]
-        if let vc = FlowViewController.controllerForStep(step: step) {
-            vc.flowDelegate = self
+        
+        let step = self.steps[currentIndex]
+        if let vc = self.controllerForStep(step: step) {
+            self.add(asChildViewController: vc)
+            self.currentVC = vc
+            self.updateTitle()
+            return true
+        }
+        return false
+    }
+
+    @discardableResult
+    func popStep() -> Bool {
+        self.refreshSteps()
+        if self.currentIndex <= 0 || self.steps.count <= currentIndex {
+            return false
+        }
+        self.currentIndex -= 1
+        let step = self.steps[currentIndex]
+        if let vc = self.controllerForStep(step: step) {
             if let currentVC = self.currentVC {
-                animate(oldViewController: currentVC, toViewController: vc, action: .pop)
+                self.animate(oldViewController: currentVC, toViewController: vc, action: .pop)
             } else {
-                add(asChildViewController: vc)
+                self.add(asChildViewController: vc)
             }
             
-            currentVC = vc
-            updateTitle()
+            self.currentVC = vc
+            self.updateTitle()
             return true
         }
         return false
     }
     
+    @discardableResult
     func pushNextStep() -> Bool {
-        if currentIndex == steps.count-1 {
+        self.refreshSteps()
+        if self.currentIndex == self.steps.count-1 {
             return false
         }
-        currentIndex += 1
-        let nextStep = steps[currentIndex]
-        if let nextVC = FlowViewController.controllerForStep(step: nextStep) {
-            nextVC.flowDelegate = self
+        self.currentIndex += 1
+        let nextStep = self.steps[currentIndex]
+        if let nextVC = self.controllerForStep(step: nextStep) {
             if let currentVC = self.currentVC {
-                animate(oldViewController: currentVC, toViewController: nextVC, action: .push)
+                self.animate(oldViewController: currentVC, toViewController: nextVC, action: .push)
             } else {
-                add(asChildViewController: nextVC)
+                self.add(asChildViewController: nextVC)
             }
-            currentVC = nextVC
-            updateTitle()
+            self.currentVC = nextVC
+            self.updateTitle()
             return true
         }
         return false
     }
     
     func updateTitle() {
-        let step = steps[currentIndex]
+        let step = self.steps[currentIndex]
         self.navigationItem.title = step.title.capitalized
     }
     
@@ -94,7 +123,7 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
         newViewController.view.translatesAutoresizingMaskIntoConstraints = false
         
         self.addChild(newViewController)
-        let startingConstraints = self.addSubviewController(subViewController: newViewController, toView: self.view, action: action)
+        let startingConstraints = self.addSubviewController(subViewController: newViewController, toView: self.containerView, action: action)
         
         self.view.layoutIfNeeded()
         
@@ -102,7 +131,7 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
             
             // new view constraints
             NSLayoutConstraint.deactivate(startingConstraints)
-            let newContraints = self.endConstaints(for: newViewController.view, toView: self.view, action: action)
+            let newContraints = self.endConstaints(for: newViewController.view, toView: self.containerView, action: action)
             NSLayoutConstraint.activate(newContraints)
             
             oldViewController.view.alpha = 0
@@ -119,7 +148,9 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
         
     }
     
-    private func addSubviewController(subViewController: StepViewController, toView parentView: UIView, action: FlowNavigationAction) -> [NSLayoutConstraint] {
+    private func addSubviewController(subViewController: StepViewController, toView parentView: UIView?, action: FlowNavigationAction) -> [NSLayoutConstraint] {
+        guard let parentView = parentView else { return [] }
+        
         self.view.layoutIfNeeded()
         let subView = subViewController.view!
         parentView.addSubview(subView)
@@ -140,6 +171,7 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
                     subView.widthAnchor.constraint(equalTo: parentView.widthAnchor)
                 ]
             } else {
+                //pop
                 return [
                     subView.trailingAnchor.constraint(equalTo: parentView.leadingAnchor),
                     subView.topAnchor.constraint(equalTo: parentView.topAnchor),
@@ -148,30 +180,64 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
                 ]
             }
         } else {
-            return []
+            // vertical
+            if action == .push {
+                return [
+                    subView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+                    subView.topAnchor.constraint(equalTo: parentView.bottomAnchor),
+                    subView.heightAnchor.constraint(equalTo: parentView.heightAnchor),
+                    subView.widthAnchor.constraint(equalTo: parentView.widthAnchor)
+                ]
+            } else {
+                // pop
+                return [
+                    subView.bottomAnchor.constraint(equalTo: parentView.topAnchor),
+                    subView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+                    subView.widthAnchor.constraint(equalTo: parentView.widthAnchor),
+                    subView.heightAnchor.constraint(equalTo: parentView.heightAnchor)
+                ]
+            }
         }
         
     }
     
-    private func endConstaints(for subView: UIView, toView parentView: UIView, action: FlowNavigationAction) ->  [NSLayoutConstraint] {
+    private func endConstaints(for subView: UIView, toView parentView: UIView?, action: FlowNavigationAction) ->  [NSLayoutConstraint] {
+        guard let parentView = parentView else { return [] }
+
         if direction == .horizontal {
             if action == .push {
                 return [
-                    subView.leadingAnchor.constraint(equalTo: self.view.leadingAnchor),
-                    subView.topAnchor.constraint(equalTo: self.view.topAnchor),
-                    subView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-                    subView.widthAnchor.constraint(equalTo: self.view.widthAnchor)
+                    subView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+                    subView.topAnchor.constraint(equalTo: parentView.topAnchor),
+                    subView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
+                    subView.widthAnchor.constraint(equalTo: parentView.widthAnchor)
                 ]
             } else {
                 return [
-                    subView.trailingAnchor.constraint(equalTo: self.view.trailingAnchor),
-                    subView.topAnchor.constraint(equalTo: self.view.topAnchor),
-                    subView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor),
-                    subView.widthAnchor.constraint(equalTo: self.view.widthAnchor)
+                    subView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
+                    subView.topAnchor.constraint(equalTo: parentView.topAnchor),
+                    subView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
+                    subView.widthAnchor.constraint(equalTo: parentView.widthAnchor)
                 ]
             }
         } else {
-            return []
+            // vertical
+            if action == .push {
+                return [
+                    subView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor),
+                    subView.topAnchor.constraint(equalTo: parentView.topAnchor),
+                    subView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
+                    subView.widthAnchor.constraint(equalTo: parentView.widthAnchor)
+                ]
+            } else {
+                // pop
+                return [
+                    subView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor),
+                    subView.topAnchor.constraint(equalTo: parentView.topAnchor),
+                    subView.bottomAnchor.constraint(equalTo: parentView.bottomAnchor),
+                    subView.widthAnchor.constraint(equalTo: parentView.widthAnchor)
+                ]
+            }
         }
         
         
@@ -182,10 +248,10 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
         self.addChild(viewController)
         
         // Add Child View as Subview
-        self.view.addSubview(viewController.view)
+        self.containerView?.addSubview(viewController.view)
         
         // Configure Child View
-        viewController.view.frame = view.bounds
+        viewController.view.frame = self.containerView?.bounds ?? .zero
         viewController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         
         // Notify Child View Controller
@@ -203,18 +269,8 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
         viewController.removeFromParent()
     }
     
-    private static func controllerForStep(step: Step) -> StepViewController? {
-        if step.controllerName == LoginViewController.className {
-            return LoginViewController()
-        } else if step.controllerName == ForgotPasswordViewController.className {
-            return ForgotPasswordViewController(step: step)
-        } else if step.controllerName == ConfirmPhoneViewController.className {
-            return ConfirmPhoneViewController(step: step)
-        } else if step.controllerName == PhoneVerificationViewController.className {
-            return PhoneVerificationViewController(step: step)
-        } else if step.controllerName == SelfieViewController.className {
-            return SelfieViewController(step: step)
-        }
+    // must be overriden
+    func controllerForStep(step: Step) -> StepViewController? {
         return nil
     }
     
@@ -242,8 +298,10 @@ extension FlowViewController {
 class Step {
     let title: String
     let controllerName: String
+    let nextTitle: String?
     
-    init(title: String, controllerName: String) {
+    init(title: String, controllerName: String, nextTitle: String? = nil) {
+        self.nextTitle = nextTitle
         self.title = title
         self.controllerName = controllerName
     }

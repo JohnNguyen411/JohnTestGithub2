@@ -34,6 +34,8 @@ class OfflineInspection: Object {
 
     @objc dynamic var requestData: Data?
     private var _request: Request?
+    @objc dynamic var requestId: Int = -1 // -1 if not init yet
+
     var request: Request? {
         if let request = self._request { return request }
         guard let data = self.requestData else { return nil }
@@ -44,11 +46,13 @@ class OfflineInspection: Object {
     // MARK: Inspection
 
     @objc dynamic var inspectionData: Data?
+    @objc dynamic var inspectionId: Int = -1 // -1 if not init yet
 
     private var _inspection: Inspection? {
         didSet {
             guard let realm = try? Realm() else { return }
             try? realm.write {
+                self.inspectionId = _inspection?.id ?? -1
                 self.inspectionData = try? JSONEncoder().encode(_inspection)
             }
         }
@@ -77,7 +81,8 @@ class OfflineInspection: Object {
     }
 
     var canBeRemoved: Bool {
-        return self.isUploaded || self.data.isEmpty || self.failedCount > 5
+        //return self.isUploaded || self.data.isEmpty || self.failedCount > 5
+        return false
     }
 
     // MARK: Lifecycle
@@ -89,6 +94,7 @@ class OfflineInspection: Object {
         self.init()
         self.typeString = type.rawValue
         self._request = request
+        self.requestId = request.id
         self.requestData = try? JSONEncoder().encode(request)
         if let data = photo.jpegDataForPhotoUpload() { self.data = data }
     }
@@ -200,6 +206,14 @@ fileprivate extension Request {
         if let inspection = self.inspection(for: type) {
             completion(inspection, nil)
             return
+        }
+        
+        // return refreshed request inspections
+        if let request = RequestManager.shared.request(for: self.id) {
+            if let inspection = request.inspection(for: type) {
+                completion(inspection, nil)
+                return
+            }
         }
 
         // document inspections are always created

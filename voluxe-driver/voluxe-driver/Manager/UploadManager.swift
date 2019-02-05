@@ -110,7 +110,9 @@ class UploadManager {
     // the upload later.  This could cause the queue to stall
     // completely if an API logic change would reject an upload.
     private func _upload(_ upload: Upload) {
-        DriverAPI.api.upload(route: upload.route,
+        DriverAPI.api.upload(method: .post,
+                             route: upload.route,
+                             parameters: upload.params(),
                              datasAndMimeTypes: upload.datasAndMimeTypes())
         {
             // TODO https://app.asana.com/0/858610969087925/935159618076285/f
@@ -170,6 +172,7 @@ class Upload: Object {
     @objc dynamic var route = ""
     let datas = List<Data>()
     let mimeTypeStrings = List<String>()
+    @objc dynamic var encodedParams: NSData? // json encoded body parameters
 
     convenience init?(route: String, parameters: RestAPIParameters? = nil, image: UIImage) {
         guard let data = image.jpegDataForPhotoUpload() else { return nil }
@@ -187,8 +190,7 @@ class Upload: Object {
         self.init(route: route, data: data, mimeType: mimeType)
         guard let parameters = parameters else { return }
         guard let pdata = try? JSONSerialization.data(withJSONObject: parameters, options:[]) else { return }
-        self.datas.append(pdata)
-        self.mimeTypeStrings.append(RestAPIMimeType.json.rawValue)
+        self.encodedParams = pdata as NSData
     }
 
     func datasAndMimeTypes() -> [(Data, RestAPIMimeType)] {
@@ -199,5 +201,22 @@ class Upload: Object {
             tuples += [(self.datas[i], type)]
         }
         return tuples
+    }
+    
+    func params() -> RestAPIParameters? {
+        guard let data = encodedParams else { return nil }
+        
+        if let jsonResponse = try? JSONSerialization.jsonObject(with: data as Data, options: [])  as? [String: Any] {
+            guard let jsonDict = jsonResponse else { return nil }
+            
+            var restAPIParams: RestAPIParameters = [:]
+            
+            for (key, value) in jsonDict {
+                restAPIParams[key] = value
+            }
+            
+            return restAPIParams
+        }
+        return nil
     }
 }

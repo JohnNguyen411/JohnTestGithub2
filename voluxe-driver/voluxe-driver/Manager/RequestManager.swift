@@ -5,18 +5,16 @@
 //  Created by Christoph on 11/27/18.
 //  Copyright © 2018 Luxe By Volvo. All rights reserved.
 //
-
 import Foundation
 import Realm
 import RealmSwift
 import UIKit
 
 class RequestManager {
-
+    
     // MARK: Singleton support
-
     static let shared = RequestManager()
-
+    
     // Any pending offline inspections need to be marked
     // such that the next refresh() cycle continues trying
     // to get the correct Inspection.  If this is not done,
@@ -26,66 +24,62 @@ class RequestManager {
     private init() {
         self.markOfflineInspectionsAsWaiting()
     }
-
+    
     // MARK: Driver context
-
     private var driver: Driver?
-
+    
     func set(driver: Driver?) {
         self.driver = driver
         self.refreshRequests()
     }
-
+    
     // MARK: Request (active or selected)
-
     private var _request: Request? {
         didSet {
             self.notifyRequestDidChange()
         }
     }
-
+    
     var request: Request? {
         return self._request
     }
-
+    
     private func notifyRequestDidChange() {
         self.requestDidChangeClosure?(self.request)
     }
-
+    
     var requestDidChangeClosure: ((Request?) -> ())?
-
+    
     func select(request: Request) {
         self._request = request
     }
-
+    
     func isSelected(request: Request) -> Bool {
         return self.request?.id == request.id
     }
-
+    
     // MARK: Current requests
-
     var requests: [Request] = [] {
         didSet {
             self.requestsDidChangeClosure?(requests)
         }
     }
-
+    
     var requestsDidChangeClosure: (([Request]) -> ())?
-
+    
     // MARK: Inspections
-
     func addDocumentInspection(photo: UIImage) {
         self.addInspection(photo: photo, type: .document)
     }
-
+    
     func addLoanerInspection(photo: UIImage) {
         self.addInspection(photo: photo, type: .loaner)
     }
-
+    
     func addVehicleInspection(photo: UIImage) {
         self.addInspection(photo: photo, type: .vehicle)
     }
-
+    
     func addInspection(photo: UIImage,
                        type: InspectionType)
     {
@@ -93,12 +87,12 @@ class RequestManager {
             Log.unexpected(.missingValue, "Cannot add inspection without active Request")
             return
         }
-
+        
         self.upload(request: request,
                     type: type,
                     photo: photo)
     }
-
+    
     private func upload(request: Request,
                         type: InspectionType,
                         photo: UIImage)
@@ -107,7 +101,7 @@ class RequestManager {
             Log.fatal(.missingValue, "Realm not inited, cannot create offline inspection")
             return
         }
-
+        
         let offlineInspection = OfflineInspection(request: request,
                                                   type: type,
                                                   photo: photo)
@@ -115,7 +109,7 @@ class RequestManager {
         self.startUploading()
         self.notifyOfflineInspectionsDidChange()
     }
-
+    
     private func startUploading() {
         guard let realm = try? Realm() else { return }
         let inspections = realm.objects(OfflineInspection.self).filter { $0.isUploaded == false }
@@ -125,21 +119,21 @@ class RequestManager {
         UploadManager.shared.upload(upload)
         inspection.markAsUploaded()
     }
-
+    
     func clear() {
         guard let realm = try? Realm() else { return }
         let objects = realm.objects(OfflineInspection.self)
         try? realm.write { realm.delete(objects) }
         self.notifyOfflineInspectionsDidChange()
     }
-
+    
     private func cleanup() {
         guard let realm = try? Realm() else { return }
         let objects = realm.objects(OfflineInspection.self).filter { $0.canBeRemoved }
         try? realm.write { realm.delete(objects) }
         self.notifyOfflineInspectionsDidChange()
     }
-
+    
     /// For any serialized inspection, marks each as waiting
     /// so that it can be attempted to upload again.  This is
     /// necessary in case any offline inspection was waiting
@@ -150,22 +144,27 @@ class RequestManager {
         let inspections = self.offlineInspections()
         for inspection in inspections { inspection.markAsWaiting() }
     }
-
+    
     func offlineInspections() -> [OfflineInspection] {
         guard let realm = try? Realm() else { return [] }
         let objects = realm.objects(OfflineInspection.self)
         return Array(objects)
     }
-
+    
+    func offlineInspections(for requestId: Int, type: InspectionType) -> [OfflineInspection] {
+        guard let realm = try? Realm() else { return [] }
+        let objects = realm.objects(OfflineInspection.self).filter("requestId = %@ AND typeString = %@", requestId, type.rawValue)
+        return Array(objects)
+    }
+    
     private func notifyOfflineInspectionsDidChange() {
         let inspections = self.offlineInspections()
         self.offlineInspectionsDidChangeClosure?(inspections)
     }
-
+    
     var offlineInspectionsDidChangeClosure: (([OfflineInspection]) -> ())?
-
+    
     // MARK: Timers and polling
-
     // TODO https://app.asana.com/0/858610969087925/931551431894069/f
     // TODO create a refresh timer protocol and implementation
     private var refreshTimer: Timer?
@@ -174,7 +173,7 @@ class RequestManager {
         guard let timer = self.refreshTimer else { return false }
         return timer.isValid
     }
-
+    
     func start() {
         guard self.refreshTimer == nil else { return }
         self.refreshTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) {
@@ -183,13 +182,22 @@ class RequestManager {
         }
         Log.info("RequestManager started")
     }
-
+    
     func stop() {
         self.refreshTimer?.invalidate()
         self.refreshTimer = nil
         Log.info("RequestManager stopped")
     }
-
+    
+    func request(for requestId: Int) -> Request? {
+        for request in requests {
+            if request.id == requestId {
+                return request
+            }
+        }
+        return nil
+    }
+    
     private func refresh() {
         self.startUploading()
         self.cleanup()
@@ -200,7 +208,7 @@ class RequestManager {
             self?.refreshing = false
         }
     }
-
+    
     private func refreshRequest(completion: (() -> ())) {
         guard let request = self.request else { return }
         DriverAPI.refresh(request) {
@@ -209,11 +217,17 @@ class RequestManager {
             self?._request = request
         }
     }
-
+    
     private func refreshRequests(completion: (() -> ())? = nil) {
-        guard let driver = self.driver else { return }
-        if driver.passwordResetRequired || !driver.workPhoneNumberVerified { return }
-
+        guard let driver = self.driver else {
+            completion?()
+            return
+        }
+        if driver.passwordResetRequired || !driver.workPhoneNumberVerified {
+            completion?()
+            return
+        }
+        
         let today = Date.earliestToday()
         let weekFromToday = Date.oneWeekFromToday()
         DriverAPI.requests(for: driver, from: today, to: weekFromToday) {
@@ -225,7 +239,7 @@ class RequestManager {
             completion?()
         }
     }
-
+    
     private func updateRequest(from requests: [Request]) {
         guard let request = self.request else { return }
         let filteredRequests = requests.filter { $0.id == request.id }

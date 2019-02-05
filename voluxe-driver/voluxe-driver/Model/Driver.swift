@@ -41,4 +41,17 @@ struct Driver: Codable {
         case type
         case enabled
     }
+    
+    func readyForUse() -> Bool {
+        if passwordResetRequired {
+            return false
+        }
+        if !workPhoneNumberVerified {
+            return false
+        }
+        if photoUrl == nil || photoUrl?.count == 0 {
+            return false
+        }
+        return true
+    }
 }

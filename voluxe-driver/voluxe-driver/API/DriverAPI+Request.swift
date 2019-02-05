@@ -51,7 +51,7 @@ extension DriverAPI {
                        completion: @escaping ((LuxeAPIError.Code?) -> Void))
     {
         let route = "\(request.route)/task"
-        let parameters: RestAPIParameters = ["task": task.rawValue]
+        let parameters: RestAPIParameters = ["task": task == .null ? NSNull() : task.rawValue]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
             completion(response?.asErrorCode())

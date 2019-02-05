@@ -73,6 +73,8 @@ struct Unlocalized {
     static let newPassword = NSLocalizedString("New Password", comment: "")
     static let confirmNewPassword = NSLocalizedString("Confirm New Password", comment: "")
     static let update = NSLocalizedString("Update", comment: "")
+    
+    static let unknown = NSLocalizedString("Unknown", comment: "")
 
     static let upcomingToday = NSLocalizedString("Upcoming Today", comment: "")
     static let updateAvailable = NSLocalizedString("Update Available", comment: "")

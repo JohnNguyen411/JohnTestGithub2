@@ -19,6 +19,27 @@ struct Label {
         label.text = text
         return label
     }
+    
+    static func taskTitle(with text: String? = nil) -> UILabel {
+        let label = UILabel(frame: .zero)
+        label.adjustsFontForContentSizeCategory = true
+        label.textAlignment = .left
+        label.textColor = .darkGray
+        label.text = text
+        label.font = Font.Medium.regular
+        return label
+    }
+    
+    static func taskText(with text: String? = nil) -> UILabel {
+        let label = UILabel(frame: .zero)
+        label.adjustsFontForContentSizeCategory = true
+        label.textAlignment = .left
+        label.textColor = .darkGray
+        label.text = text
+        label.numberOfLines = 0
+        label.font = Font.Small.regular
+        return label
+    }
 }
 
 extension UILabel {

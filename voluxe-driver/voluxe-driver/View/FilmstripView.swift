@@ -12,6 +12,8 @@ import UIKit
 class FilmstripView: UIView {
 
     // MARK: Data
+    
+    private static let itemSize: CGFloat = 48.0
 
     var numberOfPhotos: Int {
         return self.photos.count
@@ -29,7 +31,7 @@ class FilmstripView: UIView {
 
     private let thumbnailsView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: 48, height: 48)
+        layout.itemSize = CGSize(width: itemSize, height: itemSize)
         layout.minimumLineSpacing = 6
         layout.scrollDirection = .horizontal
         let view = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout).usingAutoLayout()
@@ -48,6 +50,12 @@ class FilmstripView: UIView {
         self.thumbnailsView.register(FilmstripCell.self, forCellWithReuseIdentifier: "cell")
         self.thumbnailsView.reloadData()
         self.addSubviews()
+    }
+    
+    deinit {
+        self.photos = []
+        self.thumbnailsView.dataSource = nil
+        self.thumbnailsView.removeFromSuperview()
     }
 
     private func addSubviews() {
@@ -70,7 +78,11 @@ class FilmstripView: UIView {
     // MARK: Photo management
 
     func add(photo: UIImage) {
-        self.photos += [photo]
+        if let photoToAdd = photo.resized(to: FilmstripView.itemSize * UIScreen.main.scale) {
+            self.photos += [photoToAdd]
+        } else {
+            self.photos += [photo]
+        }
         self.thumbnailsView.reloadData()
         self.thumbnailsView.layoutIfNeeded()
         let indexPath = IndexPath(row: self.photos.count - 1, section: 0)

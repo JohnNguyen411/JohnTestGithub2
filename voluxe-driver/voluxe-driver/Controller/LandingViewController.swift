@@ -65,7 +65,7 @@ class LandingViewController: UIViewController {
                         self?.openMainController()
                     } else {
                         AppController.shared.showMain(animated: true,
-                                                      rootViewController: FlowViewController(steps: steps, direction: .horizontal),
+                                                      rootViewController: LoginFlowViewController(steps: steps, direction: .horizontal),
                                                       showProfileButton: false)
                     }
                 } else {

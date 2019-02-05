@@ -24,10 +24,9 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
     private let nextButton = UIButton.Volvo.primary(title: Unlocalized.next)
 
     // MARK: Lifecycle
-
-    convenience init() {
-        self.init(title: Unlocalized.addPhoneNumber)
-        
+    
+    override init(step: Step? = nil) {
+        super.init(step: step)
         if let textField = phoneNumberTextField.textField as? FPNTextField {
             textField.flagPhoneNumberDelegate = self
             countryCode = textField.getDefaultCountryCode()
@@ -36,6 +35,22 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
         self.addActions()
     }
 
+    convenience init(title: String) {
+        self.init(step: nil)
+        self.navigationItem.title = title.capitalized
+        
+        if let textField = phoneNumberTextField.textField as? FPNTextField {
+            textField.flagPhoneNumberDelegate = self
+            countryCode = textField.getDefaultCountryCode()
+        }
+        
+        self.addActions()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
 
         // support autofill

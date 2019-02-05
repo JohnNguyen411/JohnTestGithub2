@@ -39,5 +39,9 @@ struct Customer: Codable {
         case type
         case enabled
     }
+    
+    public func fullName() -> String {
+        return "\(firstName) \(lastName)"
+    }
 }
 

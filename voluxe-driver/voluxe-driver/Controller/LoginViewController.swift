@@ -98,7 +98,7 @@ class LoginViewController: StepViewController, UITextFieldDelegate {
                 if steps.count == 0 {
                     self?.openMainController()
                 } else {
-                    AppController.shared.mainController(push: FlowViewController(steps: steps, direction: .horizontal),
+                    AppController.shared.mainController(push: LoginFlowViewController(steps: steps, direction: .horizontal),
                                                         asRootViewController: true,
                                                         prefersProfileButton: false)
                 }

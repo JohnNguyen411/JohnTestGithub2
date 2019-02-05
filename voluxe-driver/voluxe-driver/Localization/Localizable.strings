@@ -126,29 +126,29 @@
 
 "returnToDealership" = "Return to Dealership";
 
-"pickupColon" = "Pickup:\u00A0";
+"pickupColon" = "Pickup:\U00A0";
 
-"loanerColon" = "Loaner:\u00A0";
+"loanerColon" = "Loaner:\U00A0";
 
-"customerColon" = "Customer:\u00A0";
+"customerColon" = "Customer:\U00A0";
 
-"addressColon" = "Address:\u00A0";
+"addressColon" = "Address:\U00A0";
 
-"deliveryColon" = "Delivery:\u00A0";
+"deliveryColon" = "Delivery:\U00A0";
 
-"modelColon" = "Model:\u00A0";
+"modelColon" = "Model:\U00A0";
 
-"licensePlateColon" = "License Plate:\u00A0";
+"licensePlateColon" = "License Plate:\U00A0";
 
-"keyCodeColon" = "Key Code:\u00A0";
+"keyCodeColon" = "Key Code:\U00A0";
 
-"repairOrderColon" = "Repair Order:\u00A0";
+"repairOrderColon" = "Repair Order:\U00A0";
 
-"serviceColon" = "Service:\u00A0";
+"serviceColon" = "Service:\U00A0";
 
-"notesColon" = "Notes:\u00A0";
+"notesColon" = "Notes:\U00A0";
 
-"recentMileageColon" = "Recent Mileage:\u00A0";
+"recentMileageColon" = "Recent Mileage:\U00A0";
 
 /* Vehicle */
 "vehicleMake" = "Volvo";

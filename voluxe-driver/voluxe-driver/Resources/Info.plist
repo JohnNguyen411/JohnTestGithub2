@@ -68,5 +68,13 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Volvo Novum-Bold.otf</string>
+		<string>Volvo Novum-Medium.otf</string>
+		<string>Volvo Novum-Regular.otf</string>
+		<string>Volvo Novum-SemiLight.otf</string>
+		<string>Volvo Novum-Light.otf</string>
+	</array>
 </dict>
 </plist>

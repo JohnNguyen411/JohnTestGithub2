@@ -13,6 +13,10 @@ import UIKit
 class DriverManager: NSObject, CLLocationManagerDelegate {
 
     static let shared = DriverManager()
+    
+    // todo: store Dealerships in local storage
+    var dealerships: [Dealership]?
+    
     private override init() {
         super.init()
         self.locationManager.delegate = self
@@ -132,10 +136,26 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
         // No need to authenticate, we are using token to retrieve `/me`
         DriverAPI.me() {
             driver, error in
-            if error == nil { self._driver = driver }
+            if error == nil {
+                self._driver = driver
+                if driver?.readyForUse() ?? false {
+                    self.dealerships(for: driver)
+                }
+            }
             completion(driver, error)
             self.updateDriverWithToken()
         }
+    }
+    
+    func dealerships(for driver: Driver?) {
+        guard let driver = driver else {
+            dealerships = []
+            return
+        }
+        
+        DriverAPI.dealerships(for: driver, completion: { dealerships, error in
+            self.dealerships = dealerships
+        })
     }
 
     func logout() {

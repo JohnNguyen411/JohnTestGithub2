@@ -32,7 +32,7 @@ struct Request: Codable {
     let notes: String?
     let location: Location?
     let state: State
-    let task: String?
+    let task: Task?
     let driverDealershipTimeSlotAssignmentId: Int
     let driverDealershipTimeSlotAssignment: DriverDealershipTimeSlotAssignment?
     let loanerVehicleRequested: Bool?
@@ -75,4 +75,9 @@ struct Request: Codable {
     var isCompleted: Bool {
         return self.state == .completed
     }
+    
+    var hasLoaner: Bool {
+        return self.booking?.loanerVehicle != nil
+    }
+    
 }

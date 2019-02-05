@@ -20,6 +20,7 @@ struct Dealership: Codable {
     let cityId: Int
     let dailyLoanerVehicleCap: Int
     let enabled: Bool
+    let preferredVehicleOdometerReadingUnit: String?
     let driverPickupScheduleBufferCustomer: Int?
     let driverDropffScheduleBufferCustomer: Int?
     let advisorPickupScheduleBufferCustomer: Int?
@@ -36,6 +37,7 @@ struct Dealership: Codable {
         case cityId = "city_id"
         case dailyLoanerVehicleCap = "daily_loaner_vehicle_cap"
         case enabled
+        case preferredVehicleOdometerReadingUnit = "preferred_vehicle_odometer_reading_unit"
         case driverPickupScheduleBufferCustomer = "driver_pickup_schedule_buffer_customer"
         case driverDropffScheduleBufferCustomer = "driver_dropff_schedule_buffer_customer"
         case advisorPickupScheduleBufferCustomer = "advisor_pickup_schedule_buffer_customer"

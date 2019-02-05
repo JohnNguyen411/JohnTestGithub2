@@ -45,6 +45,10 @@ class InspectionCameraView: UIView {
         self.addSubviews()
         self.addActions()
     }
+    
+    deinit {
+        self.filmstripView.removeFromSuperview()
+    }
 
     private func addSubviews() {
 
@@ -75,6 +79,17 @@ class InspectionCameraView: UIView {
         self.shutterView.pinBottomToSuperview(spacing: -30)
     }
 
+    
+    func populate(with inspections: [OfflineInspection]) {
+        for inspection in inspections {
+            if let image = UIImage(data: inspection.data) {
+                self.filmstripView.add(photo: image)
+                self.shutterView.incrementNumberOfPhotosTaken()
+            }
+        }
+        self.filmstripView.layoutIfNeeded()
+    }
+    
     // MARK: Actions
 
     private func addActions() {

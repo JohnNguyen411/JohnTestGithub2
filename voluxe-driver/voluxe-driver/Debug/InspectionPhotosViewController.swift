@@ -9,11 +9,12 @@
 import Foundation
 import UIKit
 
-class InspectionPhotosViewController: UIViewController {
+class InspectionPhotosViewController: RequestStepViewController {
 
     // MARK: Data
 
     private var type: InspectionType = .document
+    var inspectionDelegate: InspectionPhotoDelegate?
   
     // MARK: Layout
 
@@ -21,33 +22,55 @@ class InspectionPhotosViewController: UIViewController {
 
     // MARK: Lifecycle
 
-    convenience init() {
-        self.init(nibName: nil, bundle: nil)
-        self.navigationItem.title = "Inspection Photos"
-        self.addActions()
+    deinit {
+        self.inspectionCameraView.removeFromSuperview()
     }
-
+    
     convenience init(type: InspectionType) {
-
-        self.init()
+        self.init(request: nil, step: nil, task: nil, type: type)
+    }
+    
+    convenience init(request: Request?, step: Step?, task: Task?, type: InspectionType) {
+        self.init(request: request, step: step, task: task)
         self.type = type
         self.inspectionCameraView.update(for: type)
-
+        
         switch type {
             case .document: self.navigationItem.title = "Photo License, Insurance"
             case .loaner: self.navigationItem.title = "Photo Loaner"
             case .vehicle: self.navigationItem.title = "Photo Customer Vehicle"
             default: self.navigationItem.title = "Inspection Photos"
         }
+        
+        self.addActions()
+        
     }
 
     override func loadView() {
         self.view = self.inspectionCameraView
     }
+    
+    override func viewDidLoad() {
+        self.request = RequestManager.shared.request
+        super.viewDidLoad()
+        self.loadPhotos()
+    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         self.inspectionCameraView.cameraView.open()
+    }
+    
+    private func loadPhotos() {
+        
+        guard let request = RequestManager.shared.request else { return }
+        let inspections = RequestManager.shared.offlineInspections(for: request.id, type: self.type)
+        
+        if inspections.count > 0 {
+            // populate photos
+            self.inspectionCameraView.populate(with: inspections)
+        }
+        
     }
 
     // MARK: Actions
@@ -63,6 +86,30 @@ class InspectionPhotosViewController: UIViewController {
     }
 
     @objc func doneButtonTouchUpInside() {
-        self.navigationController?.popViewController(animated: true)
+        if let inspectionDelegate = self.inspectionDelegate {
+            inspectionDelegate.done(inspectionType: self.type)
+        } else {
+            self.navigationController?.popViewController(animated: true)
+        }
+    }
+}
+
+protocol InspectionPhotoDelegate {
+    func done(inspectionType: InspectionType)
+}
+
+
+class InspectionPhotosStep: Step {
+    var inspectionType: InspectionType?
+    
+    init(type: InspectionType) {
+        var title = "Inspect Loaner"
+        if type == .vehicle {
+            title = "Inspect Vehicle"
+        } else if type == .document {
+            title = "Photo License, Insurance"
+        }
+        super.init(title: title, controllerName: InspectionPhotosViewController.className)
+        self.inspectionType = type
     }
 }

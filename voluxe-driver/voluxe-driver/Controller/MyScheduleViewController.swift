@@ -74,6 +74,9 @@ class MyScheduleViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    deinit {
         RequestManager.shared.requestsDidChangeClosure = nil
     }
 
@@ -249,8 +252,7 @@ extension MyScheduleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let (_, requests) = self.titlesAndRequests[indexPath.section]
         let request = requests[indexPath.row]
-        let controller = RequestViewController(with: request)
-        self.navigationController?.pushViewController(controller, animated: true)
+        self.navigationController?.pushViewController(RequestViewController(with: request), animated: true)
     }
 }
 

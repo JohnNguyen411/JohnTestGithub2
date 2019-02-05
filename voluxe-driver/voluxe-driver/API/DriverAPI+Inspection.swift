@@ -44,14 +44,14 @@ extension DriverAPI {
     static func update(_ request: Request,
                        loanerMileage: UInt,
                        units: String,
-                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
+                       completion: @escaping ((LuxeAPIError?) -> Void))
     {
         let route = "\(request.route)/loaner-vehicle-odometer-reading"
         let parameters: RestAPIParameters = ["value": loanerMileage,
                                              "unit": units]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
-            completion(response?.asErrorCode())
+            completion(response?.asError())
         }
     }
 }

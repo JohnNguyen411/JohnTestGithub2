@@ -15,15 +15,19 @@ class StepViewController: UIViewController {
     var flowDelegate: StepViewControllerDelegate?
     var step: Step?
     
-    convenience init(step: Step) {
-        self.init()
+    init(step: Step? = nil) {
         self.step = step
-        self.navigationItem.title = step.title.capitalized
+        super.init(nibName: nil, bundle: nil)
+        self.navigationItem.title = step?.title.capitalized
     }
     
-    convenience init(title: String = "NO TITLE") {
-        self.init(nibName: nil, bundle: nil)
+    convenience init(title: String) {
+        self.init()
         self.navigationItem.title = title.capitalized
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -52,6 +56,7 @@ class StepViewController: UIViewController {
         }
         return false
     }
+    
     
     // MARK: Step Data
     func saveStepState() {
