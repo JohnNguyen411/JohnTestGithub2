@@ -197,16 +197,15 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
     
     private static func stepsForTask(task: Task?, request: Request) -> [Step] {
    
-        
         var newSteps: [Step] = []
         if let task = task {
             if task == .schedule {
-                newSteps = [Step(title: .localized(request.isDropOff ? .viewStartRequestPickup : .viewStartRequestDropoff) ,
+                newSteps = [Step(title: .localized(request.isDropOff ? .viewStartRequestDropoff : .viewStartRequestPickup),
                       controllerName: ReviewServiceViewController.className,
                       nextTitle: .localized(.viewStartRequestSwipeButtonTitle))]
-            } else if task == .retrieveLoanerVehicleFromDealership || task == .retrieveVehicleFromDealership {
+            } else if task == .retrieveLoanerVehicleFromDealership || task == .retrieveVehicleFromDealership || task == .retrieveForms {
                 newSteps = firstStepsForRequest(request: request)
-            } else if task == .driveLoanerVehicleToCustomer || task == .driveVehicleToCustomer {
+            } else if task == .driveLoanerVehicleToCustomer || task == .driveVehicleToCustomer || task == .getToCustomer {
                 newSteps = [Step(title: .localized(.viewDrivetoCustomer), controllerName: DriveToCustomerViewController.className, nextTitle: .localized(.viewGettoCustomerSwipeButtonTitle))]
             } else if task == .meetWithCustomer {
                 newSteps = [Step(title: .localized(.viewArrivedatCustomer), controllerName: MeetCustomerViewController.className, nextTitle: .localized(.viewArrivedatDeliverySwipeButtonTitle))]
@@ -222,7 +221,7 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
                 newSteps = [Step(title: .localized(.viewInspectNotes), controllerName: InspectionNotesViewController.className, nextTitle: .localized(.viewInspectNotesSwipeButtonTitle))]
             } else if task == .exchangeKeys {
                 newSteps = [Step(title: .localized(.exchangeKeys), controllerName: ExchangeKeysViewController.className, nextTitle: .localized(.viewExchangeKeysPickupSwipeTitle))]
-            } else if task == .driveVehicleToDealership || task == .driveLoanerVehicleToDealership {
+            } else if task == .driveVehicleToDealership || task == .driveLoanerVehicleToDealership || task == .getToDealership {
                 newSteps = [Step(title: .localized(.returnToDealership), controllerName: ReturnToDealershipViewController.className, nextTitle: .localized(.viewGettoDealershipSwipeButtonTitle))]
             } else if task == .recordLoanerMileage {
                 newSteps = [Step(title: .localized(.viewRecordLoanerMileage), controllerName: RecordMileageViewController.className, nextTitle: .localized(.viewRecordLoanerMileagePickupSwipeButtonTitle))]

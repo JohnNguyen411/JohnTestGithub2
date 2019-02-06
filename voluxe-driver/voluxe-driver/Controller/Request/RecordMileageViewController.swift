@@ -60,7 +60,6 @@ class RecordMileageViewController: RequestStepViewController {
         gridView.add(subview: self.mileageTextField, from: 1, to: 6)
         self.mileageTextField.pinTopToBottomOf(view: self.lastMileageLabel, spacing: 40)
         
-        
     }
     
     override func fillWithRequest(request: Request) {

@@ -88,6 +88,13 @@ class FilmstripView: UIView {
         let indexPath = IndexPath(row: self.photos.count - 1, section: 0)
         self.thumbnailsView.scrollToItem(at: indexPath, at: .right, animated: true)
     }
+    
+    func reload() {
+        self.thumbnailsView.reloadData()
+        self.thumbnailsView.layoutIfNeeded()
+        let indexPath = IndexPath(row: self.photos.count - 1, section: 0)
+        self.thumbnailsView.scrollToItem(at: indexPath, at: .right, animated: true)
+    }
 }
 
 extension FilmstripView: UICollectionViewDataSource {
@@ -110,6 +117,7 @@ fileprivate class FilmstripCell: UICollectionViewCell {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+        imageView.contentMode = .scaleAspectFill
         Layout.fill(view: self.contentView, with: self.imageView)
     }
 

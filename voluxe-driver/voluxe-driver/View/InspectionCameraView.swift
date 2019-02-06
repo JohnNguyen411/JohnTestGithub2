@@ -87,7 +87,10 @@ class InspectionCameraView: UIView {
                 self.shutterView.incrementNumberOfPhotosTaken()
             }
         }
-        self.filmstripView.layoutIfNeeded()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            self.filmstripView.reload()
+        })
     }
     
     // MARK: Actions

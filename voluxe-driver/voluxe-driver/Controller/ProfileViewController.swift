@@ -110,7 +110,12 @@ class ProfileViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.selfieButton.setImage(DriverManager.shared.driverPhoto, for: .normal)
+        if let photo = DriverManager.shared.driverPhoto {
+            self.selfieButton.setImage(photo, for: .normal)
+        } else if let photoURL = DriverManager.shared.driver?.photoUrl {
+            let url = URL(string: photoURL)
+            self.selfieButton.kf.setImage(with: url, for: .normal)
+        }
     }
 
     // MARK: Actions

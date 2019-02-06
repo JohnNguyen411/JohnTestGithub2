@@ -49,7 +49,7 @@ class MainViewController: UINavigationController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.profileButton.setImage(DriverManager.shared.driverPhoto, for: .normal)
+        self.updateDriverPhoto()
     }
 
     // MARK: Actions
@@ -59,10 +59,19 @@ class MainViewController: UINavigationController {
     }
 
     // MARK: Animations
+    
+    func updateDriverPhoto() {
+        if let photo = DriverManager.shared.driverPhoto {
+            self.profileButton.setImage(photo, for: .normal)
+        } else if let photoURL = DriverManager.shared.driver?.photoUrl {
+            let url = URL(string: photoURL)
+            self.profileButton.kf.setImage(with: url, for: .normal)
+        }
+    }
 
     func showProfileButton(animated: Bool = true) {
         self.profileButton.isHidden = false
-        self.profileButton.setImage(DriverManager.shared.driverPhoto, for: .normal)
+        self.updateDriverPhoto()
         UIView.animate(withDuration: animated ? 0.2 : 0) {
             self.profileButton.alpha = 1
         }

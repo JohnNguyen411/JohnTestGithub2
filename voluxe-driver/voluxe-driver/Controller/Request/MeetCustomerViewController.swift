@@ -15,6 +15,7 @@ class MeetCustomerViewController: RequestStepViewController {
     private let addressLabel = Label.taskText()
     private let serviceLabel = Label.taskText()
     private let pickupLabel = Label.taskText() // customer vehicle
+    private let notesLabel = Label.taskText()
 
     
     override func viewDidLoad() {
@@ -36,6 +37,9 @@ class MeetCustomerViewController: RequestStepViewController {
         
         gridView.add(subview: self.pickupLabel, from: 1, to: 6)
         self.pickupLabel.pinTopToBottomOf(view: self.serviceLabel, spacing: 10)
+        
+        gridView.add(subview: self.notesLabel, from: 1, to: 6)
+        self.notesLabel.pinTopToBottomOf(view: self.pickupLabel, spacing: 10)
         
     }
     
@@ -59,6 +63,11 @@ class MeetCustomerViewController: RequestStepViewController {
         } else if request.hasLoaner {
             let vehicleString = NSMutableAttributedString()
             self.pickupLabel.attributedText = vehicleString.append(.localized(.loanerColon), with: self.pickupLabel.font).append("\(request.booking?.loanerVehicle?.vehicleDescription() ?? "")" , with: Font.Small.medium)
+        }
+        
+        if let requestNotes = request.notes {
+            let notesString = NSMutableAttributedString()
+            self.notesLabel.attributedText = notesString.append(.localized(.notesColon), with: self.notesLabel.font).append(requestNotes, with: Font.Small.medium)
         }
         
     }

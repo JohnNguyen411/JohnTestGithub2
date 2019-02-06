@@ -12,7 +12,7 @@ import Kingfisher
 
 class LoanerPaperworkViewController: RequestStepViewController {
     
-    private let loanerLabel = Label.taskTitle()
+    private let titleLabel = Label.taskTitle()
     private let licensePlateLabel = Label.taskText()
     private let keyCodeLabel = Label.taskText()
     private let loanerImageView = UIImageView()
@@ -31,11 +31,11 @@ class LoanerPaperworkViewController: RequestStepViewController {
         loanerImageView.contentMode = .scaleAspectFit
         loanerImageView.clipsToBounds = true
         
-        gridView.add(subview: self.loanerLabel, from: 1, to: 6)
-        self.loanerLabel.pinToSuperviewTop(spacing: 40)
+        gridView.add(subview: self.titleLabel, from: 1, to: 6)
+        self.titleLabel.pinToSuperviewTop(spacing: 40)
         
         gridView.add(subview: self.licensePlateLabel, from: 1, to: 6)
-        self.licensePlateLabel.pinTopToBottomOf(view: self.loanerLabel, spacing: 10)
+        self.licensePlateLabel.pinTopToBottomOf(view: self.titleLabel, spacing: 10)
         
         gridView.add(subview: self.keyCodeLabel, from: 1, to: 6)
         self.keyCodeLabel.pinTopToBottomOf(view: self.licensePlateLabel, spacing: 10)
@@ -58,7 +58,7 @@ class LoanerPaperworkViewController: RequestStepViewController {
         if request.isPickup {
             if let loaner = request.booking?.loanerVehicle {
                 let loanerString = NSMutableAttributedString()
-                self.loanerLabel.attributedText = loanerString.append(.localized(.loanerColon), with: self.loanerLabel.font).append("\(loaner.vehicleDescription())" , with: Font.Medium.medium)
+                self.titleLabel.attributedText = loanerString.append(.localized(.loanerColon), with: self.titleLabel.font).append("\(loaner.vehicleDescription())" , with: Font.Medium.medium)
                 
                 let licenseString = NSMutableAttributedString()
                 self.licensePlateLabel.attributedText = licenseString.append(.localized(.licensePlateColon), with: self.licensePlateLabel.font).append("\(loaner.licensePlate ?? "")" , with: Font.Small.medium)
@@ -71,12 +71,22 @@ class LoanerPaperworkViewController: RequestStepViewController {
                 }
                 
             } else {
+                let loanerString = NSMutableAttributedString()
+                self.titleLabel.attributedText = loanerString.append(.localized(.customerColon), with: self.titleLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: Font.Medium.medium)
+                
+                let addressString = NSMutableAttributedString()
+                self.licensePlateLabel.attributedText = addressString.append(.localized(.addressColon), with: self.licensePlateLabel.font).append("\(request.location?.address ?? "")" , with: Font.Small.medium)
+                
+                self.keyCodeLabel.isHidden = true
                 self.loanerAgreement.isHidden = true
+                self.loanerImageView.isHidden = true
+                self.loanerImageView.constrain(height: 0)
+
             }
         } else {
             if let vehicle = self.request?.booking?.vehicle {
                 let loanerString = NSMutableAttributedString()
-                self.loanerLabel.attributedText = loanerString.append(.localized(.deliveryColon), with: self.loanerLabel.font).append("\(vehicle.vehicleDescription())" , with: Font.Medium.medium)
+                self.titleLabel.attributedText = loanerString.append(.localized(.deliveryColon), with: self.titleLabel.font).append("\(vehicle.vehicleDescription())" , with: Font.Medium.medium)
                 
                 if let licensePlate = vehicle.licensePlate{
                     let licenseString = NSMutableAttributedString()

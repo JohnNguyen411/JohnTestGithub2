@@ -60,6 +60,8 @@ enum Task: String, Codable, CaseIterable {
                 }
             } else if task == .retrieveForms {
                 return .getToCustomer
+            } else if task == .getToCustomer {
+                return .meetWithCustomer
             } else if task == .retrieveLoanerVehicleFromDealership {
                 return .recordLoanerMileage
             } else if task == .recordLoanerMileage {
@@ -115,7 +117,7 @@ enum Task: String, Codable, CaseIterable {
                 }
             } else if task == .driveLoanerVehicleToDealership {
                 return .recordLoanerMileage
-            } else if task == .recordLoanerMileage || task == .getToDealership {
+            } else if task == .recordLoanerMileage || task == .getToDealership || task == .getToDealership {
                 return .null
             }
         }

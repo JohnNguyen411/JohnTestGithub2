@@ -14,6 +14,7 @@ class DriveToCustomerViewController: RequestStepViewController {
     private let titleLabel = Label.taskTitle()
     private let addressLabel = Label.taskText()
     private let serviceLabel = Label.taskText()
+    private let notesLabel = Label.taskText()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,6 +33,9 @@ class DriveToCustomerViewController: RequestStepViewController {
         gridView.add(subview: self.serviceLabel, from: 1, to: 6)
         self.serviceLabel.pinTopToBottomOf(view: self.addressLabel, spacing: 10)
         
+        gridView.add(subview: self.notesLabel, from: 1, to: 6)
+        self.notesLabel.pinTopToBottomOf(view: self.serviceLabel, spacing: 10)
+        
     }
     
     override func fillWithRequest(request: Request) {
@@ -46,6 +50,11 @@ class DriveToCustomerViewController: RequestStepViewController {
         if let repairOrders = request.booking?.repairOrderRequests, repairOrders.count > 0 {
             let addressString = NSMutableAttributedString()
             self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: Font.Small.medium)
+        }
+        
+        if let requestNotes = request.notes {
+            let notesString = NSMutableAttributedString()
+            self.notesLabel.attributedText = notesString.append(.localized(.notesColon), with: self.notesLabel.font).append("\(requestNotes)" , with: Font.Small.medium)
         }
     }
     

@@ -54,6 +54,18 @@ extension DriverAPI {
             completion(response?.asError())
         }
     }
+    
+    static func updateNotes(repairOrderRequestId: Int,
+                            notes: String,
+                       completion: @escaping ((LuxeAPIError?) -> Void))
+    {
+        let route = "v1/repair-order-requests/\(repairOrderRequestId)/notes"
+        let parameters: RestAPIParameters = ["notes": notes]
+        self.api.put(route: route, bodyParameters: parameters) {
+            response in
+            completion(response?.asError())
+        }
+    }
 }
 
 fileprivate extension RestAPIResponse {

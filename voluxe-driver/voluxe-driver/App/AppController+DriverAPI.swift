@@ -111,14 +111,13 @@ extension AppController {
             return
         }
         
-        let steps = FlowViewController.loginSteps(for: driver)
+        var steps = FlowViewController.loginSteps(for: driver)
         
         if steps.count == 0 {
-            AppController.shared.logout()
-        } else {
-            AppController.shared.mainController(push: LoginFlowViewController(steps: steps, direction: .horizontal),
-                                                asRootViewController: true,
-                                                prefersProfileButton: false)
+            steps = [PhoneNumberStep(), Step(title: Unlocalized.confirmPhoneNumber, controllerName: PhoneVerificationViewController.className)]
         }
+        AppController.shared.mainController(push: LoginFlowViewController(steps: steps, direction: .horizontal),
+                                            asRootViewController: true,
+                                            prefersProfileButton: false)
     }
 }
