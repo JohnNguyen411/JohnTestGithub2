@@ -19,7 +19,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
 	<key>CFBundleVersion</key>
-	<string>23</string>
+	<string>24</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -44,6 +44,14 @@
 	<string>Location updates are required</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location updates are required</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Volvo Novum-Bold.otf</string>
+		<string>Volvo Novum-Medium.otf</string>
+		<string>Volvo Novum-Regular.otf</string>
+		<string>Volvo Novum-SemiLight.otf</string>
+		<string>Volvo Novum-Light.otf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -67,14 +75,6 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
-	</array>
-	<key>UIAppFonts</key>
-	<array>
-		<string>Volvo Novum-Bold.otf</string>
-		<string>Volvo Novum-Medium.otf</string>
-		<string>Volvo Novum-Regular.otf</string>
-		<string>Volvo Novum-SemiLight.otf</string>
-		<string>Volvo Novum-Light.otf</string>
 	</array>
 </dict>
 </plist>
