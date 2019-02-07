@@ -84,6 +84,8 @@ class MyScheduleViewController: UIViewController {
 
     private func startRequestManager() {
 
+        OfflineTaskManager.shared.start()
+        
         self.update(with: RequestManager.shared.requests)
 
         RequestManager.shared.requestsDidChangeClosure = {

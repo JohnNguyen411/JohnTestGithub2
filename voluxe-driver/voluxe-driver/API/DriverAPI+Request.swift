@@ -48,13 +48,20 @@ extension DriverAPI {
 
     static func update(_ request: Request,
                        task: Task,
-                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
+                       completion: @escaping ((LuxeAPIError?) -> Void))
     {
-        let route = "\(request.route)/task"
+        DriverAPI.update(request.route, task: task, completion: completion)
+    }
+    
+    static func update(_ requestRoute: String,
+                       task: Task,
+                       completion: @escaping ((LuxeAPIError?) -> Void))
+    {
+        let route = "\(requestRoute)/task"
         let parameters: RestAPIParameters = ["task": task == .null ? NSNull() : task.rawValue]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
-            completion(response?.asErrorCode())
+            completion(response?.asError())
         }
     }
 

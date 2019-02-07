@@ -99,17 +99,17 @@ protocol InspectionPhotoDelegate {
 }
 
 
-class InspectionPhotosStep: Step {
+class InspectionPhotosStep: StepTask {
     var inspectionType: InspectionType?
     
-    init(type: InspectionType) {
+    init(task: Task, type: InspectionType) {
         var title = "Inspect Loaner"
         if type == .vehicle {
             title = "Inspect Vehicle"
         } else if type == .document {
             title = "Photo License, Insurance"
         }
-        super.init(title: title, controllerName: InspectionPhotosViewController.className)
+        super.init(title: title, controllerName: InspectionPhotosViewController.className, nextTitle: nil, task: task)
         self.inspectionType = type
     }
 }

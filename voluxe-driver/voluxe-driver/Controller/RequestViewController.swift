@@ -15,6 +15,8 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
     private var request: Request
     private var localTask: Task? // current Task
     private var requestTask: Task? // latest request Task
+    
+    private var navigationStack: [Task] = []
 
     // MARK: Layout
 
@@ -36,7 +38,17 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
             }
         }
         
-        super.init(steps: RequestViewController.stepsForTask(task: self.localTask, request: request), direction: .vertical)
+        // check offline update task
+        if let failedTask = OfflineTaskManager.shared.lastFailedTask(for: request.id) {
+            self.localTask = failedTask
+        }
+        
+        let tempSteps = RequestViewController.stepsForTask(task: self.localTask ?? .schedule, request: request)
+        
+        super.init(steps: tempSteps.0, direction: .vertical)
+        
+        self.currentIndex = tempSteps.1
+        self.currentIndex -= 1 // -1 because pushNextStep will add 1
         
         self.swipeNextView.title = self.steps.first?.nextTitle
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_chevron"),
@@ -147,6 +159,22 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
     }
     
     // MARK: Actions
+    /*
+    override func popStep() -> Bool {
+        let hasPrevious = super.popStep()
+        if !hasPrevious, let previousTask = navigationStack.last {
+            self.localTask = previousTask
+            self.steps = RequestViewController.stepsForTask(task: self.localTask, request: self.request)
+            self.currentIndex = self.steps.count - 1
+            
+            // try to pop again with previous task, if failed, fuck it then
+            navigationStack.removeLast()
+            if self.steps.count > 0 {
+                return super.pop(step: self.steps[currentIndex])
+            }
+        }
+        return hasPrevious
+    }*/
 
     private func addActions() {
         self.swipeNextView.nextClosure = { [weak self] in
@@ -179,82 +207,130 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
     // MARK: Steps
     
     override func refreshSteps() {
+        /*
         var updatedTask = false
-        // if task change, reset index
+        // TODO: HANDLE TASK CHANGE FROM BACKEND
         if let requestTask = request.task, let localTask = self.localTask {
             if Task.isGreater(requestTask, than: localTask) {
                 self.updateLocalTask(task: requestTask)
                 updatedTask = true
             }
         }
+         */
+ 
         
-        if (self.currentIndex >= 0 && self.currentIndex == self.steps.count-1) || updatedTask  {
-            self.currentIndex = -1
-            
-            self.steps = RequestViewController.stepsForTask(task: self.localTask, request: self.request)
-        }
+        // need to refresh task everytime to discard the previous task if necessary
+        let tempSteps = RequestViewController.stepsForTask(task: self.localTask ?? .schedule, request: self.request)
+        self.steps = tempSteps.0
+        self.currentIndex = tempSteps.1
+        self.currentIndex -= 1
+        
     }
     
-    private static func stepsForTask(task: Task?, request: Request) -> [Step] {
-   
-        var newSteps: [Step] = []
+    private static func stepByStep(for task: Task?, request: Request) -> [StepTask] {
+        var newSteps: [StepTask] = []
         if let task = task {
             if task == .schedule {
-                newSteps = [Step(title: .localized(request.isDropOff ? .viewStartRequestDropoff : .viewStartRequestPickup),
-                      controllerName: ReviewServiceViewController.className,
-                      nextTitle: .localized(.viewStartRequestSwipeButtonTitle))]
+                newSteps = [StepTask(title: .localized(request.isDropOff ? .viewStartRequestDropoff : .viewStartRequestPickup),
+                                 controllerName: ReviewServiceViewController.className,
+                                 nextTitle: .localized(.viewStartRequestSwipeButtonTitle), task: task)]
             } else if task == .retrieveLoanerVehicleFromDealership || task == .retrieveVehicleFromDealership || task == .retrieveForms {
                 newSteps = firstStepsForRequest(request: request)
             } else if task == .driveLoanerVehicleToCustomer || task == .driveVehicleToCustomer || task == .getToCustomer {
-                newSteps = [Step(title: .localized(.viewDrivetoCustomer), controllerName: DriveToCustomerViewController.className, nextTitle: .localized(.viewGettoCustomerSwipeButtonTitle))]
+                newSteps = [StepTask(title: .localized(.viewDrivetoCustomer), controllerName: DriveToCustomerViewController.className, nextTitle: .localized(.viewGettoCustomerSwipeButtonTitle), task: task)]
             } else if task == .meetWithCustomer {
-                newSteps = [Step(title: .localized(.viewArrivedatCustomer), controllerName: MeetCustomerViewController.className, nextTitle: .localized(.viewArrivedatDeliverySwipeButtonTitle))]
+                newSteps = [StepTask(title: .localized(.viewArrivedatCustomer), controllerName: MeetCustomerViewController.className, nextTitle: .localized(.viewArrivedatDeliverySwipeButtonTitle), task: task)]
             } else if task == .receiveLoanerVehicle {
-                newSteps = [Step(title: .localized(.viewReceiveVehicleLoaner), controllerName: ReceiveLoanerViewController.className, nextTitle: .localized(.viewReceiveVehicleLoanerSwipeButtonTitle))]
+                newSteps = [StepTask(title: .localized(.viewReceiveVehicleLoaner), controllerName: ReceiveLoanerViewController.className, nextTitle: .localized(.viewReceiveVehicleLoanerSwipeButtonTitle), task: task)]
             } else if task == .inspectLoanerVehicle {
-                newSteps = [InspectionPhotosStep(type: .loaner)]
+                newSteps = [InspectionPhotosStep(task: task, type: .loaner)]
             } else if task == .inspectVehicle {
-                newSteps = [InspectionPhotosStep(type: .vehicle)]
+                newSteps = [InspectionPhotosStep(task: task, type: .vehicle)]
             } else if task == .inspectDocuments {
-                newSteps = [InspectionPhotosStep(type: .document)]
+                newSteps = [InspectionPhotosStep(task: task, type: .document)]
             } else if task == .inspectNotes {
-                newSteps = [Step(title: .localized(.viewInspectNotes), controllerName: InspectionNotesViewController.className, nextTitle: .localized(.viewInspectNotesSwipeButtonTitle))]
+                newSteps = [StepTask(title: .localized(.viewInspectNotes), controllerName: InspectionNotesViewController.className, nextTitle: .localized(.viewInspectNotesSwipeButtonTitle), task: task)]
             } else if task == .exchangeKeys {
-                newSteps = [Step(title: .localized(.exchangeKeys), controllerName: ExchangeKeysViewController.className, nextTitle: .localized(.viewExchangeKeysPickupSwipeTitle))]
+                newSteps = [StepTask(title: .localized(.exchangeKeys), controllerName: ExchangeKeysViewController.className, nextTitle: .localized(.viewExchangeKeysPickupSwipeTitle), task: task)]
             } else if task == .driveVehicleToDealership || task == .driveLoanerVehicleToDealership || task == .getToDealership {
-                newSteps = [Step(title: .localized(.returnToDealership), controllerName: ReturnToDealershipViewController.className, nextTitle: .localized(.viewGettoDealershipSwipeButtonTitle))]
+                newSteps = [StepTask(title: .localized(.returnToDealership), controllerName: ReturnToDealershipViewController.className, nextTitle: .localized(.viewGettoDealershipSwipeButtonTitle), task: task)]
             } else if task == .recordLoanerMileage {
-                newSteps = [Step(title: .localized(.viewRecordLoanerMileage), controllerName: RecordMileageViewController.className, nextTitle: .localized(.viewRecordLoanerMileagePickupSwipeButtonTitle))]
+                newSteps = [StepTask(title: .localized(.viewRecordLoanerMileage), controllerName: RecordMileageViewController.className, nextTitle: .localized(.viewRecordLoanerMileagePickupSwipeButtonTitle), task: task)]
             }
-            
-        } else {
-            newSteps = firstStepsForRequest(request: request)
         }
-        
         return newSteps
     }
     
-    private static func firstStepsForRequest(request: Request) -> [Step] {
-        var newSteps: [Step] = []
+    private static func stepsForTask(task: Task, request: Request) -> ([StepTask], Int) {
+
+        var currentTask: Task = .schedule
+        var allSteps: [StepTask] = RequestViewController.stepByStep(for: currentTask, request: request)
+        var targetTask: Task
+        if let firstTask = allSteps.first,  task == .schedule {
+            targetTask = firstTask.task
+        } else {
+            targetTask = task
+        }
+        
+        while currentTask != .null {
+            currentTask = Task.nextTask(for: currentTask, request: request)
+            allSteps.append(contentsOf: RequestViewController.stepByStep(for: currentTask, request: request))
+        }
+        
+        var strippedSteps: [StepTask] = []
+        var taskReached = false
+        
+        for step in allSteps {
+            // if it's inspection, leave it
+            if step.task == .inspectLoanerVehicle || step.task == .inspectVehicle || step.task == .inspectDocuments || step.task == .inspectNotes {
+                strippedSteps.append(step)
+            } else if taskReached {
+                strippedSteps.append(step)
+            } else if !taskReached && step.task == targetTask {
+                taskReached = true
+                strippedSteps.append(step)
+            }
+        }
+        
+        var index = 0
+        for step in strippedSteps {
+            if step.task == targetTask {
+                break
+            } else {
+                index += 1
+            }
+        }
+        return (strippedSteps, index)
+    }
+    
+    private static func firstStepsForRequest(request: Request) -> [StepTask] {
+        var newSteps: [StepTask] = []
         
         if request.isPickup {
             if request.hasLoaner {
-                newSteps.append(Step(title: .localized(.viewRetrieveVehicleLoaner), controllerName: LoanerPaperworkViewController.className, nextTitle: .localized(.viewRetrieveVehicleLoanerSwipeTitle)))
-                newSteps.append(Step(title: .localized(.viewRecordLoanerMileage), controllerName: RecordMileageViewController.className, nextTitle: .localized(.viewRecordLoanerMileagePickupSwipeButtonTitle)))
+                newSteps.append(StepTask(title: .localized(.viewRetrieveVehicleLoaner), controllerName: LoanerPaperworkViewController.className, nextTitle: .localized(.viewRetrieveVehicleLoanerSwipeTitle), task: .retrieveLoanerVehicleFromDealership))
+                newSteps.append(StepTask(title: .localized(.viewRecordLoanerMileage), controllerName: RecordMileageViewController.className, nextTitle: .localized(.viewRecordLoanerMileagePickupSwipeButtonTitle), task: .recordLoanerMileage))
             } else {
-                newSteps.append(Step(title: .localized(.viewRetrieveForms), controllerName: LoanerPaperworkViewController.className, nextTitle: .localized(.viewRetrieveFormsInfoNext)))
+                newSteps.append(StepTask(title: .localized(.viewRetrieveForms), controllerName: LoanerPaperworkViewController.className, nextTitle: .localized(.viewRetrieveFormsInfoNext), task: .retrieveForms))
             }
             
             
         } else {
-            newSteps.append(Step(title: .localized(.viewRetrieveVehicleCustomer), controllerName: LoanerPaperworkViewController.className, nextTitle: .localized(.viewRetrieveVehicleCustomerSwipeTitle)))
+            newSteps.append(StepTask(title: .localized(.viewRetrieveVehicleCustomer), controllerName: LoanerPaperworkViewController.className, nextTitle: .localized(.viewRetrieveVehicleCustomerSwipeTitle), task: .retrieveVehicleFromDealership))
         }
         return newSteps
     }
+    
 
     // MARK: RequestStepDelegate
 
     func updateLocalTask(task: Task) {
+        // add task to backstack
+        if let copyTask = self.localTask {
+            if let queueTask = Task(rawValue: copyTask.rawValue) {
+                self.navigationStack.append(queueTask)
+            }
+        }
         self.localTask = task
     }
     
@@ -262,5 +338,15 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
 
     func done(inspectionType: InspectionType) {
         self.next()
+    }
+}
+
+
+class StepTask: Step {
+    let task: Task
+    
+    init(title: String, controllerName: String, nextTitle: String?, task: Task) {
+        self.task = task
+        super.init(title: title, controllerName: controllerName, nextTitle: nextTitle)
     }
 }

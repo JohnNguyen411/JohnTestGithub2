@@ -151,6 +151,9 @@ extension InspectionCameraView {
             case .loaner:
                 self.overlayImageView.image = UIImage(named: "car")
                 self.overlayLabel.text = Unlocalized.captureVehicle
+            case .vehicle:
+                self.overlayImageView.image = UIImage(named: "car")
+                self.overlayLabel.text = Unlocalized.captureVehicle
             default:
                 self.overlayImageView.image = nil
                 self.overlayLabel.text = nil

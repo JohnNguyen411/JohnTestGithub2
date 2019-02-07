@@ -30,6 +30,8 @@
 		52A1CE3A22051928002F16BE /* ExchangeKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3922051928002F16BE /* ExchangeKeysViewController.swift */; };
 		52A1CE3C22051B43002F16BE /* ReturnToDealershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3B22051B43002F16BE /* ReturnToDealershipViewController.swift */; };
 		52A1CE3E2209FBDC002F16BE /* ReceiveLoanerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3D2209FBDC002F16BE /* ReceiveLoanerViewController.swift */; };
+		52A1CE40220B6F8C002F16BE /* OfflineTaskUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3F220B6F8C002F16BE /* OfflineTaskUpdate.swift */; };
+		52A1CE42220B72E5002F16BE /* OfflineTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE41220B72E5002F16BE /* OfflineTaskManager.swift */; };
 		52A3A62521E6CC96002A273E /* VLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62321E6CC96002A273E /* VLTextField.swift */; };
 		52A3A62621E6CC96002A273E /* VLVerticalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62421E6CC96002A273E /* VLVerticalTextField.swift */; };
 		52A3A62821E811FB002A273E /* PasswordToggleVisibilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62721E811FB002A273E /* PasswordToggleVisibilityView.swift */; };
@@ -262,6 +264,8 @@
 		52A1CE3922051928002F16BE /* ExchangeKeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeKeysViewController.swift; sourceTree = "<group>"; };
 		52A1CE3B22051B43002F16BE /* ReturnToDealershipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnToDealershipViewController.swift; sourceTree = "<group>"; };
 		52A1CE3D2209FBDC002F16BE /* ReceiveLoanerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveLoanerViewController.swift; sourceTree = "<group>"; };
+		52A1CE3F220B6F8C002F16BE /* OfflineTaskUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTaskUpdate.swift; sourceTree = "<group>"; };
+		52A1CE41220B72E5002F16BE /* OfflineTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTaskManager.swift; sourceTree = "<group>"; };
 		52A3A62321E6CC96002A273E /* VLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLTextField.swift; sourceTree = "<group>"; };
 		52A3A62421E6CC96002A273E /* VLVerticalTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLVerticalTextField.swift; sourceTree = "<group>"; };
 		52A3A62721E811FB002A273E /* PasswordToggleVisibilityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordToggleVisibilityView.swift; sourceTree = "<group>"; };
@@ -674,6 +678,7 @@
 				533B72D4218B556E009A44EC /* DriverManager.swift */,
 				53B654B621ADA83500FC3ACA /* RequestManager.swift */,
 				53BD512F219DF54900E84995 /* UploadManager.swift */,
+				52A1CE41220B72E5002F16BE /* OfflineTaskManager.swift */,
 				52C67E6D21F2A0DF005EEC3B /* KeychainManager.swift */,
 				5235EBFA21FA2D57002BBCE7 /* DriverManager+Dealerships.swift */,
 			);
@@ -885,6 +890,7 @@
 				53DA9CA2217F66B900ABC414 /* Location.swift */,
 				531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */,
 				5316E989220205510053832E /* OfflineInspection.swift */,
+				52A1CE3F220B6F8C002F16BE /* OfflineTaskUpdate.swift */,
 				5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */,
 				53DA9CB02180C7AC00ABC414 /* Request.swift */,
 				53DA9CC22181020400ABC414 /* Task.swift */,
@@ -1358,6 +1364,7 @@
 				533B72D5218B556E009A44EC /* DriverManager.swift in Sources */,
 				530BCD4D2177AFBE005327E7 /* LuxeAPI.swift in Sources */,
 				5339036D21D7148A00DD16D8 /* Unlocalized.swift in Sources */,
+				52A1CE42220B72E5002F16BE /* OfflineTaskManager.swift in Sources */,
 				533047072188D706007CE01C /* AppDelegate.swift in Sources */,
 				52494CB021FAA96B00A51DD7 /* MeetCustomerViewController.swift in Sources */,
 				53DA9CBA2180F44E00ABC414 /* Inspection.swift in Sources */,
@@ -1376,6 +1383,7 @@
 				538008A121A33D9200E47660 /* UIView+GridLayout.swift in Sources */,
 				52C67E7521F80010005EEC3B /* LoginFlowViewController.swift in Sources */,
 				53F1E56221E0275F007EF3AD /* AppController+Progress.swift in Sources */,
+				52A1CE40220B6F8C002F16BE /* OfflineTaskUpdate.swift in Sources */,
 				53F1E55E21DFD8DC007EF3AD /* ShutterView.swift in Sources */,
 				52494CAE21FAA10500A51DD7 /* RequestStepViewController.swift in Sources */,
 				530BCD4A2177AAB2005327E7 /* RestAPI.swift in Sources */,

@@ -21,9 +21,9 @@ enum Task: String, Codable, CaseIterable {
     case driveVehicleToCustomer = "drive_vehicle_to_customer"
     case getToCustomer = "get_to_customer"
     case meetWithCustomer = "meet_with_customer"
-    case inspectDocuments = "inspect_documents"
     case inspectLoanerVehicle = "inspect_loaner_vehicle"
     case inspectVehicle = "inspect_vehicle"
+    case inspectDocuments = "inspect_documents"
     case inspectNotes = "inspect_notes"
     case exchangeKeys = "exchange_keys"
     case driveLoanerVehicleToDealership = "drive_loaner_vehicle_to_dealership"
@@ -49,7 +49,7 @@ enum Task: String, Codable, CaseIterable {
         
     }
     
-    static func nextTask(for task: Task, request: Request) -> Task? {
+    static func nextTask(for task: Task, request: Request) -> Task {
         
         if request.isPickup {
             if task == .schedule {
@@ -122,37 +122,7 @@ enum Task: String, Codable, CaseIterable {
             }
         }
         
-        return nil
+        return .null
     }
     
 }
-
-/*
- Task supported by backend:
- /**
- * checks if the next task is supported on backend
- */
- fun isNextTaskSupported(nextRequestTask: String?): Boolean {
- return when (nextRequestTask) {
- Request.TASK_RETRIEVE_LOANER_VEHICLE_FROM_DEALERSHIP,
- Request.TASK_RETRIEVE_VEHICLE_FROM_DEALERSHIP,
- Request.TASK_DRIVE_LOANER_VEHICLE_TO_CUSTOMER,
- Request.TASK_DRIVE_VEHICLE_TO_CUSTOMER,
- Request.TASK_GET_TO_CUSTOMER,
- Request.TASK_MEET_WITH_CUSTOMER,
- Request.TASK_INSPECT_LOANER_VEHICLE,
- Request.TASK_INSPECT_VEHICLE,
- Request.TASK_EXCHANGE_KEYS,
- Request.TASK_DRIVE_LOANER_VEHICLE_TO_DEALERSHIP,
- Request.TASK_DRIVE_VEHICLE_TO_DEALERSHIP,
- Request.TASK_GET_TO_DEALERSHIP,
- Request.TASK_NULL,
- null -> {
- true
- }
- else -> {
- false
- }
- }
- }
- */

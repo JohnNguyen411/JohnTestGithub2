@@ -41,8 +41,8 @@ class RequestStepViewController: StepViewController {
      * Need to override in subclass, always progress by default
      ***/
     func swipeNext(completion: ((Bool) -> ())?) {
-        if let task = self.task, let request = self.request, let nextTask = Task.nextTask(for: task, request: request) {
-            self.updateRequest(with: nextTask, completion: completion)
+        if let task = self.task, let request = self.request {
+            self.updateRequest(with: Task.nextTask(for: task, request: request), completion: completion)
         } else {
             completion?(true)
         }
@@ -63,6 +63,14 @@ class RequestStepViewController: StepViewController {
             return
         }
         
+        // check if some task update failed, if yes, queue this update
+        // Otherwise proceed to the update
+        if OfflineTaskManager.shared.lastFailedTask(for: request.id) != nil {
+            OfflineTaskManager.shared.queue(task: task, request: request)
+            completion?(true)
+            return
+        }
+        
         //update task
         AppController.shared.lookBusy()
         
@@ -71,7 +79,8 @@ class RequestStepViewController: StepViewController {
             AppController.shared.lookNotBusy()
             
             if error != nil {
-                // todo handle error and offline
+                // TODO check error code
+                OfflineTaskManager.shared.queue(task: task, request: request)
             }
             
             completion?(true)

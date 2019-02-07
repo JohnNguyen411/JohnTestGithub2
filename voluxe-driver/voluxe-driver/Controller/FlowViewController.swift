@@ -39,9 +39,7 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if currentIndex == -1 {
-            pushNextStep()
-        }
+        pushNextStep()
     }
     
     func refreshSteps() {
@@ -74,6 +72,12 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
             return false
         }
         self.currentIndex -= 1
+        let step = self.steps[currentIndex]
+        
+        return pop(step: step)
+    }
+    
+    func pop(step: Step) -> Bool {
         let step = self.steps[currentIndex]
         if let vc = self.controllerForStep(step: step) {
             if let currentVC = self.currentVC {
