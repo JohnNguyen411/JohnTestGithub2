@@ -131,6 +131,24 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
         
         self.view.layoutIfNeeded()
         
+        UIView.animate(withDuration: 0.30, delay: 0, options: .curveEaseInOut, animations: {
+            // new view constraints
+            NSLayoutConstraint.deactivate(startingConstraints)
+            let newContraints = self.endConstaints(for: newViewController.view, toView: self.containerView, action: action)
+            NSLayoutConstraint.activate(newContraints)
+            
+            oldViewController.view.alpha = 0
+            
+            self.view.layoutIfNeeded()
+        }, completion: { (finished) in
+            
+            newViewController.didMove(toParent: self)
+            oldViewController.view.removeFromSuperview()
+            oldViewController.removeFromParent()
+        })
+
+        /*
+        // TODO: Fix transition bug on Inspection Camera
         self.transition(from: oldViewController, to: newViewController, duration: 0.30, options: .curveEaseInOut, animations: {
             
             // new view constraints
@@ -149,6 +167,7 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
             oldViewController.removeFromParent()
             
         })
+ */
         
     }
     
@@ -302,10 +321,12 @@ extension FlowViewController {
 class Step {
     let title: String
     let controllerName: String
+    let swipeTitle: String?
     let nextTitle: String?
     
-    init(title: String, controllerName: String, nextTitle: String? = nil) {
+    init(title: String, controllerName: String, swipeTitle: String?  = nil, nextTitle: String? = nil) {
         self.nextTitle = nextTitle
+        self.swipeTitle = swipeTitle
         self.title = title
         self.controllerName = controllerName
     }

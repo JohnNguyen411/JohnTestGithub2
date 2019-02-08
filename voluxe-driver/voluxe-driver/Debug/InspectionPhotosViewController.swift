@@ -103,11 +103,11 @@ class InspectionPhotosStep: StepTask {
     var inspectionType: InspectionType?
     
     init(task: Task, type: InspectionType) {
-        var title = "Inspect Loaner"
+        var title = String.localized(.viewInspectLoaner)
         if type == .vehicle {
-            title = "Inspect Vehicle"
+            title = String.localized(.viewInspectCustomer)
         } else if type == .document {
-            title = "Photo License, Insurance"
+            title = String.localized(.viewInspectDocuments)
         }
         super.init(title: title, controllerName: InspectionPhotosViewController.className, nextTitle: nil, task: task)
         self.inspectionType = type

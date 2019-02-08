@@ -50,7 +50,7 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
         self.currentIndex = tempSteps.1
         self.currentIndex -= 1 // -1 because pushNextStep will add 1
         
-        self.swipeNextView.title = self.steps.first?.nextTitle
+        self.swipeNextView.title = self.steps.first?.swipeTitle
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "back_chevron"),
                                                                 style: .plain,
                                                                 target: self,
@@ -154,27 +154,11 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
     override func updateTitle() {
         super.updateTitle()
         let step = steps[currentIndex]
-        self.swipeNextView.title = step.nextTitle
+        self.swipeNextView.title = step.swipeTitle
 
     }
     
     // MARK: Actions
-    /*
-    override func popStep() -> Bool {
-        let hasPrevious = super.popStep()
-        if !hasPrevious, let previousTask = navigationStack.last {
-            self.localTask = previousTask
-            self.steps = RequestViewController.stepsForTask(task: self.localTask, request: self.request)
-            self.currentIndex = self.steps.count - 1
-            
-            // try to pop again with previous task, if failed, fuck it then
-            navigationStack.removeLast()
-            if self.steps.count > 0 {
-                return super.pop(step: self.steps[currentIndex])
-            }
-        }
-        return hasPrevious
-    }*/
 
     private func addActions() {
         self.swipeNextView.nextClosure = { [weak self] in
@@ -227,37 +211,15 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
         
     }
     
-    private static func stepByStep(for task: Task?, request: Request) -> [StepTask] {
+    private static func stepByStep(for task: Task, request: Request) -> [StepTask] {
         var newSteps: [StepTask] = []
-        if let task = task {
-            if task == .schedule {
-                newSteps = [StepTask(title: .localized(request.isDropOff ? .viewStartRequestDropoff : .viewStartRequestPickup),
-                                 controllerName: ReviewServiceViewController.className,
-                                 nextTitle: .localized(.viewStartRequestSwipeButtonTitle), task: task)]
-            } else if task == .retrieveLoanerVehicleFromDealership || task == .retrieveVehicleFromDealership || task == .retrieveForms {
-                newSteps = firstStepsForRequest(request: request)
-            } else if task == .driveLoanerVehicleToCustomer || task == .driveVehicleToCustomer || task == .getToCustomer {
-                newSteps = [StepTask(title: .localized(.viewDrivetoCustomer), controllerName: DriveToCustomerViewController.className, nextTitle: .localized(.viewGettoCustomerSwipeButtonTitle), task: task)]
-            } else if task == .meetWithCustomer {
-                newSteps = [StepTask(title: .localized(.viewArrivedatCustomer), controllerName: MeetCustomerViewController.className, nextTitle: .localized(.viewArrivedatDeliverySwipeButtonTitle), task: task)]
-            } else if task == .receiveLoanerVehicle {
-                newSteps = [StepTask(title: .localized(.viewReceiveVehicleLoaner), controllerName: ReceiveLoanerViewController.className, nextTitle: .localized(.viewReceiveVehicleLoanerSwipeButtonTitle), task: task)]
-            } else if task == .inspectLoanerVehicle {
-                newSteps = [InspectionPhotosStep(task: task, type: .loaner)]
-            } else if task == .inspectVehicle {
-                newSteps = [InspectionPhotosStep(task: task, type: .vehicle)]
-            } else if task == .inspectDocuments {
-                newSteps = [InspectionPhotosStep(task: task, type: .document)]
-            } else if task == .inspectNotes {
-                newSteps = [StepTask(title: .localized(.viewInspectNotes), controllerName: InspectionNotesViewController.className, nextTitle: .localized(.viewInspectNotesSwipeButtonTitle), task: task)]
-            } else if task == .exchangeKeys {
-                newSteps = [StepTask(title: .localized(.exchangeKeys), controllerName: ExchangeKeysViewController.className, nextTitle: .localized(.viewExchangeKeysPickupSwipeTitle), task: task)]
-            } else if task == .driveVehicleToDealership || task == .driveLoanerVehicleToDealership || task == .getToDealership {
-                newSteps = [StepTask(title: .localized(.returnToDealership), controllerName: ReturnToDealershipViewController.className, nextTitle: .localized(.viewGettoDealershipSwipeButtonTitle), task: task)]
-            } else if task == .recordLoanerMileage {
-                newSteps = [StepTask(title: .localized(.viewRecordLoanerMileage), controllerName: RecordMileageViewController.className, nextTitle: .localized(.viewRecordLoanerMileagePickupSwipeButtonTitle), task: task)]
-            }
+            
+        if task == .retrieveLoanerVehicleFromDealership || task == .retrieveVehicleFromDealership || task == .retrieveForms {
+            newSteps = firstStepsForRequest(request: request)
+        } else {
+            newSteps = [StepTask.buildStepTask(for: task, with: request)]
         }
+            
         return newSteps
     }
     
@@ -280,7 +242,10 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
         var strippedSteps: [StepTask] = []
         var taskReached = false
         
+        var position = 1
+
         for step in allSteps {
+            step.taskNumber = position
             // if it's inspection, leave it
             if step.task == .inspectLoanerVehicle || step.task == .inspectVehicle || step.task == .inspectDocuments || step.task == .inspectNotes {
                 strippedSteps.append(step)
@@ -290,6 +255,7 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
                 taskReached = true
                 strippedSteps.append(step)
             }
+            position += 1
         }
         
         var index = 0
@@ -308,15 +274,14 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
         
         if request.isPickup {
             if request.hasLoaner {
-                newSteps.append(StepTask(title: .localized(.viewRetrieveVehicleLoaner), controllerName: LoanerPaperworkViewController.className, nextTitle: .localized(.viewRetrieveVehicleLoanerSwipeTitle), task: .retrieveLoanerVehicleFromDealership))
-                newSteps.append(StepTask(title: .localized(.viewRecordLoanerMileage), controllerName: RecordMileageViewController.className, nextTitle: .localized(.viewRecordLoanerMileagePickupSwipeButtonTitle), task: .recordLoanerMileage))
+                newSteps.append(StepTask.buildStepTask(for: .retrieveLoanerVehicleFromDealership, with: request))
+                newSteps.append(StepTask.buildStepTask(for: .recordLoanerMileage, with: request))
             } else {
-                newSteps.append(StepTask(title: .localized(.viewRetrieveForms), controllerName: LoanerPaperworkViewController.className, nextTitle: .localized(.viewRetrieveFormsInfoNext), task: .retrieveForms))
+                newSteps.append(StepTask.buildStepTask(for: .retrieveForms, with: request))
             }
             
-            
         } else {
-            newSteps.append(StepTask(title: .localized(.viewRetrieveVehicleCustomer), controllerName: LoanerPaperworkViewController.className, nextTitle: .localized(.viewRetrieveVehicleCustomerSwipeTitle), task: .retrieveVehicleFromDealership))
+            newSteps.append(StepTask.buildStepTask(for: .retrieveVehicleFromDealership, with: request))
         }
         return newSteps
     }
@@ -344,9 +309,142 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
 
 class StepTask: Step {
     let task: Task
-    
-    init(title: String, controllerName: String, nextTitle: String?, task: Task) {
+    var taskNumber: Int = 1// position in flow (!= position in stack)
+
+    init(title: String, controllerName: String, swipeTitle: String? = nil, nextTitle: String? = nil, task: Task) {
         self.task = task
-        super.init(title: title, controllerName: controllerName, nextTitle: nextTitle)
+        super.init(title: title, controllerName: controllerName, swipeTitle: swipeTitle, nextTitle: nextTitle)
+    }
+    
+    static func buildStepTask(for task: Task, with request: Request) -> StepTask {
+        
+        var title = ""
+        var swipe = ""
+        var next: String?
+        var controllerName = ""
+        
+        if task == .schedule {
+            
+            title = .localized(request.isDropOff ? .viewStartRequestDropoff : .viewStartRequestPickup)
+            controllerName = ReviewServiceViewController.className
+            swipe = .localized(.viewStartRequestSwipeButtonTitle)
+            if request.isPickup {
+                if request.hasLoaner {
+                    next = .localized(.viewStartRequestRetrieveLoaner)
+                } else {
+                    next = .localized(.viewStartRequestRetrieveForms)
+                }
+            } else {
+                next = .localized(.viewStartRequestRetrieveCustomerVehicle)
+            }
+        } else if task == .retrieveLoanerVehicleFromDealership {
+            
+            title = .localized(.viewRetrieveVehicleLoaner)
+            controllerName = LoanerPaperworkViewController.className
+            swipe = .localized(.viewRetrieveVehicleLoanerSwipeTitle)
+            next = .localized(.viewRecordLoanerMileage)
+            
+        } else if task == .retrieveVehicleFromDealership || task == .retrieveForms {
+            
+            title = .localized(.viewRetrieveVehicleCustomer)
+            controllerName = LoanerPaperworkViewController.className
+            swipe = .localized(.viewRetrieveVehicleCustomerSwipeTitle)
+            next = .localized(.viewRetrieveVehicleCustomerInfoNext)
+            
+        } else if task == .retrieveForms {
+            
+            title = .localized(.viewRetrieveForms)
+            controllerName = LoanerPaperworkViewController.className
+            swipe = .localized(.viewRetrieveFormsSwipeTitle)
+            next = .localized(.viewRetrieveFormsInfoNext)
+            
+        } else if task == .driveLoanerVehicleToCustomer || task == .driveVehicleToCustomer || task == .getToCustomer {
+            
+            title = .localized(.viewDrivetoCustomer)
+            controllerName = DriveToCustomerViewController.className
+            swipe = .localized(.viewGettoCustomerSwipeButtonTitle)
+            next = .localized(.viewGettoCustomerArriveatCustomer)
+            
+            if task == .getToCustomer {
+                title = .localized(.viewGettoCustomer)
+                swipe = .localized(.viewGettoCustomerSwipeButtonTitle)
+                next = .localized(.viewGettoCustomerArriveatCustomer)
+            }
+        }
+        
+        else if task == .meetWithCustomer {
+            
+            title = .localized(.viewArrivedatCustomer)
+            controllerName = MeetCustomerViewController.className
+            swipe = .localized(.viewArrivedatPickupSwipeButtonTitle)
+            next = .localized(.inspectVehicles)
+            
+            if request.isPickup {
+                if !request.hasLoaner {
+                    next = .localized(.inspectVehicle)
+                }
+            } else {
+                next = .localized(.viewArrivedatDeliveryInspectVehicles)
+                swipe = .localized(.viewArrivedatDeliverySwipeButtonTitle)
+            }
+            
+        } else if task == .receiveLoanerVehicle {
+            
+            title = .localized(.viewReceiveVehicleLoaner)
+            controllerName = ReceiveLoanerViewController.className
+            swipe = .localized(.viewReceiveVehicleLoanerSwipeButtonTitle)
+            next = .localized(.viewReceiveVehicleLoanerNext)
+            
+        } else if task == .inspectLoanerVehicle {
+            
+            return InspectionPhotosStep(task: task, type: .loaner)
+            
+        } else if task == .inspectVehicle {
+            
+            return InspectionPhotosStep(task: task, type: .vehicle)
+
+        } else if task == .inspectDocuments {
+            
+            return InspectionPhotosStep(task: task, type: .document)
+            
+        } else if task == .inspectNotes {
+            
+            title = .localized(.viewInspectNotes)
+            controllerName = InspectionNotesViewController.className
+            swipe = .localized(.viewInspectNotesSwipeButtonTitle)
+            next = .localized(.exchangeKeys)
+            
+        } else if task == .exchangeKeys {
+            
+            title = .localized(.exchangeKeys)
+            controllerName = ExchangeKeysViewController.className
+            swipe = .localized(.viewExchangeKeysPickupSwipeTitle)
+            next = .localized(.returnToDealership)
+            
+        } else if task == .driveVehicleToDealership || task == .driveLoanerVehicleToDealership || task == .getToDealership {
+            
+            title = .localized(.returnToDealership)
+            controllerName = ReturnToDealershipViewController.className
+            swipe = .localized(.viewGettoDealershipSwipeButtonTitle)
+            next = nil
+            
+            if request.isDropOff && request.hasLoaner {
+                next = .localized(.viewRecordLoanerMileage)
+            }
+            
+        } else if task == .recordLoanerMileage {
+            
+            title = .localized(.viewRecordLoanerMileage)
+            controllerName = RecordMileageViewController.className
+            swipe = .localized(.viewRecordLoanerMileagePickupSwipeButtonTitle)
+            next = .localized(.viewDrivetoCustomer)
+            
+            if request.isDropOff {
+                swipe = .localized(.viewRecordLoanerMileageDropoffSwipeButtonTitle)
+                next = nil
+            }
+            
+        }
+        return StepTask(title: title, controllerName: controllerName, swipeTitle: swipe, nextTitle: next, task: task)
     }
 }

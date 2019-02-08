@@ -35,6 +35,20 @@ class RequestStepViewController: StepViewController {
     
     func nextTask() -> Task? { return nil }
     
+    func getNextAction() -> String? {
+        if let stepTask = step as? StepTask {
+            return stepTask.nextTitle
+        }
+        return nil
+    }
+    
+    func getTaskNumber() -> String? {
+        if let stepTask = step as? StepTask {
+            return "\(stepTask.taskNumber)"
+        }
+        return nil
+    }
+    
     /***
      * Called when the Flow controller wants to progress to next
      * Call the completion block with true to continue, false otherwise

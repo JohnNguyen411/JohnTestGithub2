@@ -32,6 +32,7 @@
 		52A1CE3E2209FBDC002F16BE /* ReceiveLoanerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3D2209FBDC002F16BE /* ReceiveLoanerViewController.swift */; };
 		52A1CE40220B6F8C002F16BE /* OfflineTaskUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3F220B6F8C002F16BE /* OfflineTaskUpdate.swift */; };
 		52A1CE42220B72E5002F16BE /* OfflineTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE41220B72E5002F16BE /* OfflineTaskManager.swift */; };
+		52A1CE44220CF22E002F16BE /* Task+Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE43220CF22E002F16BE /* Task+Flow.swift */; };
 		52A3A62521E6CC96002A273E /* VLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62321E6CC96002A273E /* VLTextField.swift */; };
 		52A3A62621E6CC96002A273E /* VLVerticalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62421E6CC96002A273E /* VLVerticalTextField.swift */; };
 		52A3A62821E811FB002A273E /* PasswordToggleVisibilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62721E811FB002A273E /* PasswordToggleVisibilityView.swift */; };
@@ -266,6 +267,7 @@
 		52A1CE3D2209FBDC002F16BE /* ReceiveLoanerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveLoanerViewController.swift; sourceTree = "<group>"; };
 		52A1CE3F220B6F8C002F16BE /* OfflineTaskUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTaskUpdate.swift; sourceTree = "<group>"; };
 		52A1CE41220B72E5002F16BE /* OfflineTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTaskManager.swift; sourceTree = "<group>"; };
+		52A1CE43220CF22E002F16BE /* Task+Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Flow.swift"; sourceTree = "<group>"; };
 		52A3A62321E6CC96002A273E /* VLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLTextField.swift; sourceTree = "<group>"; };
 		52A3A62421E6CC96002A273E /* VLVerticalTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLVerticalTextField.swift; sourceTree = "<group>"; };
 		52A3A62721E811FB002A273E /* PasswordToggleVisibilityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordToggleVisibilityView.swift; sourceTree = "<group>"; };
@@ -755,6 +757,7 @@
 				5374DF2E21E524BF00956122 /* Bundle+Current.swift */,
 				52C67E7821F9189A005EEC3B /* NSMutableAttributedString+Bold.swift */,
 				52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */,
+				52A1CE43220CF22E002F16BE /* Task+Flow.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1447,6 +1450,7 @@
 				535381BB21FEA0D600C03ECE /* AnalyticsEnums.swift in Sources */,
 				5330471D2188D896007CE01C /* DebugSettingsViewController.swift in Sources */,
 				5312141D21C8767000F3FCEB /* ColorsImplementation.swift in Sources */,
+				52A1CE44220CF22E002F16BE /* Task+Flow.swift in Sources */,
 				53368D9121C2FB5500B1A2AF /* String+Utils.swift in Sources */,
 				53EEB1B021C06AA60051B8D5 /* MainViewController.swift in Sources */,
 				52C67E7321F7DF08005EEC3B /* ReviewServiceViewController.swift in Sources */,
