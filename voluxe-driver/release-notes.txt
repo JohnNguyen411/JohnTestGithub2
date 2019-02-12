@@ -1,3 +1,10 @@
+v1.0.0-alpha1 (32)
+- Fix Onboarding flow
+- Improve UI Flow
+- Contact Customer
+- Navigation
+- Bugfixes
+
 v1.0.0-alpha (26)
 1st internal Alpha version
 - Onboarding flow
