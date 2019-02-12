@@ -21,11 +21,26 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
 
     // MARK: Lifecycle
 
+    override init(step: Step? = nil) {
+        super.init(step: step)
+        self.addActions()
+    }
+    
+    convenience init(title: String) {
+        self.init(step: nil)
+        self.navigationItem.title = title.capitalized
+        self.addActions()
+    }
+    
     convenience init() {
         self.init(title: Unlocalized.createPassword)
         self.addActions()
     }
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
         self.currentPasswordTextField.textField.becomeFirstResponder()
         
@@ -36,16 +51,19 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         currentPasswordTextField.textField.isSecureTextEntry = true
         currentPasswordTextField.textField.returnKeyType = .next
         currentPasswordTextField.textField.delegate = self
-        
+        currentPasswordTextField.showPasswordToggleIcon = true
+
         newPasswordTextField.textField.autocorrectionType = .no
         newPasswordTextField.textField.isSecureTextEntry = true
         newPasswordTextField.textField.returnKeyType = .next
         newPasswordTextField.textField.delegate = self
+        newPasswordTextField.showPasswordToggleIcon = true
         
         passwordConfirmTextField.textField.autocorrectionType = .no
         passwordConfirmTextField.textField.isSecureTextEntry = true
         passwordConfirmTextField.textField.returnKeyType = .done
         passwordConfirmTextField.textField.delegate = self
+        passwordConfirmTextField.showPasswordToggleIcon = true
         
         currentPasswordTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         newPasswordTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
@@ -69,9 +87,11 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         self.passwordConfirmTextField.pinTopToBottomOf(view: self.newPasswordTextField, spacing: 20)
         self.passwordConfirmTextField.heightAnchor.constraint(equalToConstant: CGFloat(VLVerticalTextField.height)).isActive = true
 
+        self.cancelButton.isUserInteractionEnabled = true
         gridView.add(subview: self.cancelButton, from: 1, to: 2)
         self.cancelButton.pinTopToBottomOf(view: passwordConfirmTextField, spacing: 40)
 
+        self.nextButton.isUserInteractionEnabled = true
         gridView.add(subview: self.nextButton, from: 3, to: 4)
         self.nextButton.pinTopToBottomOf(view: passwordConfirmTextField, spacing: 40)
     }

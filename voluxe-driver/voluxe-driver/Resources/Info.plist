@@ -51,6 +51,7 @@
 		<string>Volvo Novum-Regular.otf</string>
 		<string>Volvo Novum-SemiLight.otf</string>
 		<string>Volvo Novum-Light.otf</string>
+		<string>Volvo Novum-Italic.otf</string>
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>
@@ -75,6 +76,12 @@
 		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
+	</array>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+		<string>comgooglemaps-x-callback</string>
+		<string>waze</string>
 	</array>
 </dict>
 </plist>

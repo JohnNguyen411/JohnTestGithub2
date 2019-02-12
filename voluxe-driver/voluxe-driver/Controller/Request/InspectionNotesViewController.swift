@@ -11,13 +11,11 @@ import UIKit
 
 class InspectionNotesViewController: RequestStepViewController {
     
-    private let titleLabel = Label.taskTitle()
     private let customerLabel = Label.taskText()
     private let serviceLabel = Label.taskText()
     private let tallLabel = Label.taskText()
-    
-    private var gridLayoutView: GridLayoutView?
-    
+    private let pickupNotesLabel = Label.taskText(with: "\(String.localized(.viewInspectNotesDescriptionHint)):")
+
     var originalNotes = ""
    
     private let notesTextField: UITextView = {
@@ -26,34 +24,25 @@ class InspectionNotesViewController: RequestStepViewController {
         field.backgroundColor = .clear
         field.textContainer.maximumNumberOfLines = 10
         field.textContainer.lineBreakMode = .byTruncatingTail
+        field.font = Font.Intermediate.regular
         return field
     }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.Volvo.background.light
         
-        let scrollView = Layout.scrollView(in: self)
+        guard let contentView = self.contentView, let scrollView = self.scrollView else {
+            return
+        }
+        
         scrollView.keyboardDismissMode = .onDrag
-
-        let contentView = Layout.verticalContentView(in: scrollView)
-        let gridView = contentView.addGridLayoutView(with: GridLayout.volvoAgent())
-        gridView.clipsToBounds = false
+        contentView.clipsToBounds = false
         
-        gridView.add(subview: self.titleLabel, from: 1, to: 6)
-        self.titleLabel.pinToSuperviewTop(spacing: 40)
+        self.addViews([self.customerLabel, self.serviceLabel])
         
-        gridView.add(subview: self.customerLabel, from: 1, to: 6)
-        self.customerLabel.pinTopToBottomOf(view: self.titleLabel, spacing: 10)
-        
-        gridView.add(subview: self.serviceLabel, from: 1, to: 6)
-        self.serviceLabel.pinTopToBottomOf(view: self.customerLabel, spacing: 10)
-        
-        gridView.add(subview: self.notesTextField, from: 1, to: 6)
-        self.notesTextField.pinTopToBottomOf(view: self.serviceLabel, spacing: 10)
+        self.addView(self.pickupNotesLabel, below: self.serviceLabel, spacing: 20)
+        self.addView(self.notesTextField, below: self.pickupNotesLabel, spacing: 0)
         self.notesTextField.constrain(height: 120)
-
-        self.gridLayoutView = gridView
         
         self.notesTextField.layoutIfNeeded()
         self.view.layoutSubviews()
@@ -61,12 +50,13 @@ class InspectionNotesViewController: RequestStepViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if let gridView = self.gridLayoutView, tallLabel.superview == nil, notesTextField.frame.origin.y > 0 {
+        if let contentView = self.contentView, tallLabel.superview == nil, notesTextField.frame.origin.y > 0 {
             
             let t = self.view.frame.size.height - (notesTextField.frame.origin.y + notesTextField.frame.size.height)
             
             tallLabel.heightAnchor.constraint(equalToConstant: t+2).isActive = true
-            gridView.add(subview: tallLabel, from: 1, to: 6).pinTopToBottomOf(view: notesTextField)
+            contentView.addSubview(self.tallLabel)
+            tallLabel.pinTopToBottomOf(view: notesTextField)
             
             Layout.addSpacerView(pinToBottomOf: tallLabel, pinToSuperviewBottom: true)
             
@@ -81,13 +71,14 @@ class InspectionNotesViewController: RequestStepViewController {
         super.fillWithRequest(request: request)
         
         self.titleLabel.text = .localized(.inspectVehicles)
+        self.titleLabel.font = Font.Medium.medium
         
         let customerString = NSMutableAttributedString()
-        self.customerLabel.attributedText = customerString.append(.localized(.customerColon), with: self.customerLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: Font.Small.medium)
+        self.customerLabel.attributedText = customerString.append(.localized(.customerColon), with: self.customerLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: self.intermediateMediumFont())
         
         if let repairOrders = request.booking?.repairOrderRequests, repairOrders.count > 0 {
             let addressString = NSMutableAttributedString()
-            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: Font.Small.medium)
+            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: self.intermediateMediumFont())
             
             if let ro = repairOrders.first, let roNotes = ro.notes {
                 self.originalNotes = roNotes

@@ -9,53 +9,41 @@
 import Foundation
 import UIKit
 
-class DriveToCustomerViewController: RequestStepViewController {
+class DriveToCustomerViewController: DriveViewController {
     
-    private let titleLabel = Label.taskTitle()
     private let addressLabel = Label.taskText()
     private let serviceLabel = Label.taskText()
     private let notesLabel = Label.taskText()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.Volvo.background.light
         
-        let scrollView = Layout.scrollView(in: self)
-        let contentView = Layout.verticalContentView(in: scrollView)
-        let gridView = contentView.addGridLayoutView(with: GridLayout.volvoAgent())
-        
-        gridView.add(subview: self.titleLabel, from: 1, to: 6)
-        self.titleLabel.pinToSuperviewTop(spacing: 40)
-        
-        gridView.add(subview: self.addressLabel, from: 1, to: 6)
-        self.addressLabel.pinTopToBottomOf(view: self.titleLabel, spacing: 10)
-        
-        gridView.add(subview: self.serviceLabel, from: 1, to: 6)
-        self.serviceLabel.pinTopToBottomOf(view: self.addressLabel, spacing: 10)
-        
-        gridView.add(subview: self.notesLabel, from: 1, to: 6)
-        self.notesLabel.pinTopToBottomOf(view: self.serviceLabel, spacing: 10)
+        self.addViews([self.addressLabel, self.serviceLabel, self.notesLabel])
+        let navigationView = self.addNavigationButton(below: self.notesLabel)
+        self.addContactButtons(below: navigationView)
         
     }
     
     override func fillWithRequest(request: Request) {
         super.fillWithRequest(request: request)
         
+        self.directionLong = request.location?.longitude
+        self.directionLat = request.location?.latitude
+
         let customerString = NSMutableAttributedString()
         self.titleLabel.attributedText = customerString.append(.localized(.customerColon), with: self.titleLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: Font.Medium.medium)
         
         let addressString = NSMutableAttributedString()
-        self.addressLabel.attributedText = addressString.append(.localized(.addressColon), with: self.addressLabel.font).append("\(request.location?.address ?? "")" , with: Font.Small.medium)
+        self.addressLabel.attributedText = addressString.append(.localized(.addressColon), with: self.addressLabel.font).append("\(request.location?.address ?? "")" , with: self.intermediateMediumFont())
         
         if let repairOrders = request.booking?.repairOrderRequests, repairOrders.count > 0 {
             let addressString = NSMutableAttributedString()
-            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: Font.Small.medium)
+            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: self.intermediateMediumFont())
         }
         
         if let requestNotes = request.notes {
             let notesString = NSMutableAttributedString()
-            self.notesLabel.attributedText = notesString.append(.localized(.notesColon), with: self.notesLabel.font).append("\(requestNotes)" , with: Font.Small.medium)
+            self.notesLabel.attributedText = notesString.append(.localized(.notesColon), with: self.notesLabel.font).append("\(requestNotes)" , with: self.intermediateMediumFont())
         }
     }
-    
 }

@@ -36,7 +36,7 @@ class SelfieViewController: StepViewController {
         view.cropTopLeft = CGPoint(x: 16, y: 36)
         view.showTakenPhoto = true
         view.requireFaceDetection = true
-        view.useFlash = true
+        view.useFlash = false
         return view
     }()
 
@@ -59,11 +59,20 @@ class SelfieViewController: StepViewController {
 
     // MARK: Lifecycle
 
+    override init(step: Step?) {
+        super.init(step: step)
+        self.addActions()
+    }
+    
     convenience init() {
         self.init(title: Unlocalized.photographYourself)
         self.addActions()
     }
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
 
         super.viewDidLoad()
@@ -160,7 +169,7 @@ class SelfieViewController: StepViewController {
             [weak self] success in
             AppController.shared.lookNotBusy()
             if success {
-                if let flowDelegate = self?.flowDelegate {                    
+                if let flowDelegate = self?.flowDelegate {
                     if !flowDelegate.pushNextStep() {
                         AppController.shared.mainController(push: MyScheduleViewController(),
                                                             animated: true,
@@ -168,7 +177,14 @@ class SelfieViewController: StepViewController {
                                                             prefersProfileButton: true)
                     }
                 } else {
-                    self?.navigationController?.popToRootViewController(animated: true)
+                    if let navigationController = self?.navigationController {
+                        navigationController.popToRootViewController(animated: true)
+                    } else {
+                        AppController.shared.mainController(push: MyScheduleViewController(),
+                                                            animated: true,
+                                                            asRootViewController: true,
+                                                            prefersProfileButton: true)
+                    }
                 }
             } else {
                 AppController.shared.alert(title: Unlocalized.photoUploadFailed.capitalized,

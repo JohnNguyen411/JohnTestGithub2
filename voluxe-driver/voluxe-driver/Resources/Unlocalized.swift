@@ -75,6 +75,9 @@ struct Unlocalized {
     static let update = NSLocalizedString("Update", comment: "")
     
     static let unknown = NSLocalizedString("Unknown", comment: "")
+    static let loanerMileage = NSLocalizedString("Loaner Mileage", comment: "")
+    static let loanerMileageUnit = NSLocalizedString("Loaner Mileage (%@)", comment: "")
+
 
     static let upcomingToday = NSLocalizedString("Upcoming Today", comment: "")
     static let updateAvailable = NSLocalizedString("Update Available", comment: "")

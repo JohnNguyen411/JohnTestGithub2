@@ -98,7 +98,7 @@ class OfflineTaskManager {
     func lastFailedTask(for requestId: Int) -> Task? {
         guard let realm = self.realm else { return nil }
         
-        if let offlineTask = realm.objects(OfflineTaskUpdate.self).sorted(byKeyPath: "createdAt", ascending: false).first,
+        if let offlineTask = realm.objects(OfflineTaskUpdate.self).filter("requestId = %@", requestId).sorted(byKeyPath: "createdAt", ascending: false).first,
             let taskString = offlineTask.taskString, let task = Task(rawValue: taskString) {
             return task
         }

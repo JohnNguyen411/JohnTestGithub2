@@ -11,42 +11,36 @@ import UIKit
 
 class ExchangeKeysViewController: RequestStepViewController {
     
-    private let titleLabel = Label.taskTitle()
-    private let customerLabel = Label.taskTitle()
+    private let customerLabel = Label.taskText()
     private let serviceLabel = Label.taskText()
-    
+    private let reminderLabel = Label.taskText()
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.Volvo.background.light
         
-        let scrollView = Layout.scrollView(in: self)
-        let contentView = Layout.verticalContentView(in: scrollView)
-        let gridView = contentView.addGridLayoutView(with: GridLayout.volvoAgent())
-        
-        gridView.add(subview: self.titleLabel, from: 1, to: 6)
-        self.titleLabel.pinToSuperviewTop(spacing: 40)
-        
-        gridView.add(subview: self.customerLabel, from: 1, to: 6)
-        self.customerLabel.pinTopToBottomOf(view: self.titleLabel, spacing: 10)
-        
-        gridView.add(subview: self.serviceLabel, from: 1, to: 6)
-        self.serviceLabel.pinTopToBottomOf(view: self.customerLabel, spacing: 10)
+        reminderLabel.font = Font.Intermediate.italic
+
+        self.addViews([self.customerLabel, self.serviceLabel])
+        self.addView(self.reminderLabel, below: self.serviceLabel, spacing: 30)
         
     }
     
     override func fillWithRequest(request: Request) {
         super.fillWithRequest(request: request)
         
-        self.titleLabel.text = self.title
+        self.titleLabel.text = self.step?.title ?? .localized(.exchangeKeys)
+        self.titleLabel.font = Font.Medium.medium
         
         let customerString = NSMutableAttributedString()
-        self.customerLabel.attributedText = customerString.append(.localized(.customerColon), with: self.customerLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: Font.Small.medium)
+        self.customerLabel.attributedText = customerString.append(.localized(.customerColon), with: self.customerLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: self.intermediateMediumFont())
         
         if let repairOrders = request.booking?.repairOrderRequests, repairOrders.count > 0 {
             let addressString = NSMutableAttributedString()
-            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: Font.Small.medium)
+            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: self.intermediateMediumFont())
         }
+        
+        self.reminderLabel.attributedText = NSMutableAttributedString.highlight(String(format: .localized(.viewReceiveVehicleInfoReminder), self.request?.booking?.customer.fullName() ?? .localized(.unknown)), with: UIColor.Volvo.yellow())
         
     }
     

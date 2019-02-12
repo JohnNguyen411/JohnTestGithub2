@@ -57,7 +57,7 @@ class SwipeNextView: UIView {
         self.addSubview(self.slider)
         self.slider.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.slider.leadingAnchor.constraint(equalTo: self.leadingAnchor,
-                                             constant: 46).isActive = true
+                                             constant: 20).isActive = true
         self.slider.trailingAnchor.constraint(equalTo: self.trailingAnchor,
                                               constant: -46).isActive = true
 

@@ -11,11 +11,17 @@ import UIKit
 
 extension NSMutableAttributedString {
     
-    @discardableResult func append(_ text: String, with font: UIFont) -> NSMutableAttributedString {
+    @discardableResult
+    func append(_ text: String, with font: UIFont) -> NSMutableAttributedString {
         let attrs: [NSAttributedString.Key: Any] = [.font: font]
         let boldString = NSMutableAttributedString(string:text, attributes: attrs)
         append(boldString)
         
         return self
     }
+    
+    static func highlight(_ text: String, with color: UIColor) -> NSMutableAttributedString {
+        return NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.backgroundColor: color])
+    }
+
 }

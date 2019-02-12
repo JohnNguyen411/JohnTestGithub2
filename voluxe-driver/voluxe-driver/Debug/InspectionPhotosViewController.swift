@@ -30,7 +30,7 @@ class InspectionPhotosViewController: RequestStepViewController {
         self.init(request: nil, step: nil, task: nil, type: type)
     }
     
-    convenience init(request: Request?, step: Step?, task: Task?, type: InspectionType) {
+    convenience init(request: Request?, step: StepTask?, task: Task?, type: InspectionType) {
         self.init(request: request, step: step, task: task)
         self.type = type
         self.inspectionCameraView.update(for: type)
@@ -53,6 +53,7 @@ class InspectionPhotosViewController: RequestStepViewController {
     override func viewDidLoad() {
         self.request = RequestManager.shared.request
         super.viewDidLoad()
+        self.hideLeftLine()
         self.loadPhotos()
     }
 

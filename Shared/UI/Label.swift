@@ -23,6 +23,7 @@ struct Label {
     static func taskTitle(with text: String? = nil) -> UILabel {
         let label = UILabel(frame: .zero)
         label.adjustsFontForContentSizeCategory = true
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.textColor = .darkGray
         label.text = text
@@ -33,11 +34,32 @@ struct Label {
     static func taskText(with text: String? = nil) -> UILabel {
         let label = UILabel(frame: .zero)
         label.adjustsFontForContentSizeCategory = true
+        label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.textColor = .darkGray
         label.text = text
         label.numberOfLines = 0
-        label.font = Font.Small.regular
+        label.font = Font.Intermediate.regular
+        return label
+    }
+    
+    static func taskTitleNumber(with text: String? = nil) -> UILabel {
+        let label = UILabel(frame: .zero)
+        label.adjustsFontForContentSizeCategory = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .center
+        label.textColor = .white
+        label.text = text
+        label.font = Font.Medium.regular
+        label.backgroundColor = UIColor.Volvo.success
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 12.5
+        return label
+    }
+    
+    static func taskNextNumber(with text: String? = nil) -> UILabel {
+        let label = taskTitleNumber(with: text)
+        label.backgroundColor = UIColor.Volvo.slate
         return label
     }
 }

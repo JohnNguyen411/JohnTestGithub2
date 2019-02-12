@@ -15,25 +15,19 @@ class RecordMileageViewController: RequestStepViewController {
     private var mileageUnit: String?
 
     //MARK - Layout
-    private let titleLabel = Label.taskTitle(with: "Record Loaner Mileage")
     private let lastMileageLabel = Label.taskText()
     
-    private let mileageTextField: UITextField = {
-        let field = UITextField()
-        field.autocorrectionType = .no
-        field.autocapitalizationType = .none
-        field.borderStyle = .roundedRect
-        field.keyboardType = .numberPad
-        field.placeholder = "Loaner Mileage"
-        return field
-    }()
-    
+    private let mileageTextField = VLVerticalTextField(title: "", placeholder: Unlocalized.loanerMileageUnit)
+
     let numberToolbar = UIToolbar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.Volvo.background.light
         
+        mileageTextField.textField.autocorrectionType = .no
+        mileageTextField.textField.autocapitalizationType = .none
+        mileageTextField.textField.keyboardType = .numberPad
+
         numberToolbar.barStyle = UIBarStyle.default
         numberToolbar.isTranslucent = true
         numberToolbar.sizeToFit()
@@ -45,51 +39,48 @@ class RecordMileageViewController: RequestStepViewController {
         
         UIBarButtonItem.styleBarButtonItem(barButton: doneButton)
         
-        mileageTextField.inputAccessoryView = numberToolbar
+        mileageTextField.textField.inputAccessoryView = numberToolbar
         
-        let scrollView = Layout.scrollView(in: self)
-        let contentView = Layout.verticalContentView(in: scrollView)
-        let gridView = contentView.addGridLayoutView(with: GridLayout.volvoAgent())
+        self.addViews([self.lastMileageLabel])
+        self.addView(self.mileageTextField, below: self.lastMileageLabel, spacing: 30)
         
-        gridView.add(subview: self.titleLabel, from: 1, to: 6)
-        self.titleLabel.pinToSuperviewTop(spacing: 40)
         
-        gridView.add(subview: self.lastMileageLabel, from: 1, to: 6)
-        self.lastMileageLabel.pinTopToBottomOf(view: self.titleLabel, spacing: 10)
-        
-        gridView.add(subview: self.mileageTextField, from: 1, to: 6)
-        self.mileageTextField.pinTopToBottomOf(view: self.lastMileageLabel, spacing: 40)
+        self.mileageTextField.heightAnchor.constraint(equalToConstant: CGFloat(VLVerticalTextField.height)).isActive = true
         
     }
     
     override func fillWithRequest(request: Request) {
         super.fillWithRequest(request: request)
         
+        self.titleLabel.text = .localized(.viewRecordLoanerMileage)
+        self.titleLabel.font = Font.Medium.medium
+        
         let mileageString = NSMutableAttributedString()
-        mileageString.append("Recent Mileage: ", with: self.lastMileageLabel.font)
+        mileageString.append(.localized(.recentMileageColon), with: self.lastMileageLabel.font)
         if let loaner = request.booking?.loanerVehicle, let lastMileage = loaner.latestOdometerReading {
             self.mileageUnit = lastMileage.unit
-            self.lastMileageLabel.attributedText = mileageString.append("\(lastMileage.value) \(lastMileage.unit)", with: Font.Small.medium)
+            self.lastMileageLabel.attributedText = mileageString.append("\(lastMileage.value) \(lastMileage.unit)", with: self.intermediateMediumFont())
         } else {
             if let dealershipId = request.booking?.dealershipId, let dealership = DriverManager.shared.dealership(for: dealershipId), let preferredVehicleOdometerReadingUnit = dealership.preferredVehicleOdometerReadingUnit {
                 self.mileageUnit = preferredVehicleOdometerReadingUnit
             } else {
                 self.mileageUnit = "mi"
             }
-            mileageString.append("-", with: Font.Small.medium)
+            mileageString.append("-", with: self.intermediateMediumFont())
         }
+        
+        mileageTextField.textField.placeholder = String(format: Unlocalized.loanerMileageUnit, self.mileageUnit ?? "")
     }
     
     // MARK: Actions
     
     @objc func okClicked() {
-        mileageTextField.resignFirstResponder()
+        mileageTextField.textField.resignFirstResponder()
     }
     
     override func swipeNext(completion: ((Bool) -> ())?) {
         guard let request = self.request,
-            let mileageString = self.mileageTextField.text,
-            let mileage = UInt(mileageString),
+            let mileage = UInt(self.mileageTextField.text),
             let mileageUnit = self.mileageUnit else {
                 super.swipeNext(completion: completion)
                 return

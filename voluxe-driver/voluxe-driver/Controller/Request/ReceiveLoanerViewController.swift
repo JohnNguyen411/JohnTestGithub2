@@ -12,35 +12,25 @@ import Kingfisher
 
 class ReceiveLoanerViewController: RequestStepViewController {
     
-    private let loanerLabel = Label.taskTitle()
     private let licensePlateLabel = Label.taskText()
-    private let loanerImageView = UIImageView()
-    private let reminderLaber = Label.taskText(with: "Loaner Agreement")
+    private let loanerImageView = UIImageViewAligned()
+    private let reminderLabel = Label.taskText()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = UIColor.Volvo.background.light
         
-        let scrollView = Layout.scrollView(in: self)
-        let contentView = Layout.verticalContentView(in: scrollView)
-        let gridView = contentView.addGridLayoutView(with: GridLayout.volvoAgent())
+        reminderLabel.font = Font.Intermediate.italic
         
+        loanerImageView.alignLeft = true
         loanerImageView.contentMode = .scaleAspectFit
         loanerImageView.clipsToBounds = true
         
-        gridView.add(subview: self.loanerLabel, from: 1, to: 6)
-        self.loanerLabel.pinToSuperviewTop(spacing: 40)
-        
-        gridView.add(subview: self.licensePlateLabel, from: 1, to: 6)
-        self.licensePlateLabel.pinTopToBottomOf(view: self.loanerLabel, spacing: 10)
-        
-        gridView.add(subview: self.loanerImageView, from: 1, to: 3)
-        self.loanerImageView.pinTopToBottomOf(view: self.licensePlateLabel, spacing: 10)
+        self.addViews([self.licensePlateLabel])
         self.loanerImageView.constrain(height: 100)
-        
-        gridView.add(subview: self.reminderLaber, from: 1, to: 6)
-        self.reminderLaber.pinTopToBottomOf(view: self.loanerImageView, spacing: 10)
-        
+        self.loanerImageView.constrain(width: 250)
+        self.addView(self.loanerImageView, below: self.licensePlateLabel, spacing: 30)
+        self.addView(self.reminderLabel, below: self.loanerImageView, spacing: 30)
+
     }
     
     override func fillWithRequest(request: Request) {
@@ -50,13 +40,13 @@ class ReceiveLoanerViewController: RequestStepViewController {
         if request.isDropOff {
             if let vehicle = self.request?.booking?.loanerVehicle {
                 let loanerString = NSMutableAttributedString()
-                self.loanerLabel.attributedText = loanerString.append(.localized(.loanerColon),
-                                                                      with: self.loanerLabel.font).append("\(vehicle.vehicleDescription())",
+                self.titleLabel.attributedText = loanerString.append(.localized(.loanerColon),
+                                                                      with: self.titleLabel.font).append("\(vehicle.vehicleDescription())",
                                                                         with: Font.Medium.medium)
                 
                 if let licensePlate = vehicle.licensePlate {
                     let licenseString = NSMutableAttributedString()
-                    self.licensePlateLabel.attributedText = licenseString.append(.localized(.licensePlateColon), with: self.licensePlateLabel.font).append(licensePlate , with: Font.Small.medium)
+                    self.licensePlateLabel.attributedText = licenseString.append(.localized(.licensePlateColon), with: self.licensePlateLabel.font).append(licensePlate , with: self.intermediateMediumFont())
                 }
                 
                 if let photoUrl = vehicle.photoUrl, let url = URL(string: photoUrl) {
@@ -64,7 +54,8 @@ class ReceiveLoanerViewController: RequestStepViewController {
                 }
             }
             
-            self.reminderLaber.text = String(format: .localized(.viewReceiveVehicleInfoReminder), self.request?.booking?.customer.fullName() ?? .localized(.unknown))
+            self.reminderLabel.attributedText = NSMutableAttributedString.highlight(String(format: .localized(.viewReceiveVehicleInfoReminder), self.request?.booking?.customer.fullName() ?? .localized(.unknown)), with: UIColor.Volvo.yellow())
+            
         }
         
     }

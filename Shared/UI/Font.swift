@@ -63,6 +63,10 @@ struct FontName {
         }
     }
     
+    static var italic: String {
+        return "VolvoNovum-Italic"
+    }
+    
     static var medium: String {
         if family == .volvo {
             return "VolvoSansPro-Medium"
@@ -98,6 +102,10 @@ fileprivate struct FontWeight {
     static func regular(size: Int) -> UIFont {
         return UIFont.customFont(fontName: FontName.regular, size: CGFloat(size)).scaled()
     }
+    
+    static func italic(size: Int) -> UIFont {
+        return UIFont.customFont(fontName: FontName.italic, size: CGFloat(size)).scaled()
+    }
 
     static func medium(size: Int) -> UIFont {
         return UIFont.customFont(fontName: FontName.medium, size: CGFloat(size)).scaled()
@@ -112,7 +120,8 @@ fileprivate struct FontWeight {
 
 fileprivate struct FontSize {
     static let extraSmall = Int(9)  // 9, 10, 11
-    static let small = Int(12)      // 12, 13, 14, 15
+    static let small = Int(12)      // 12, 13
+    static let intermediate = Int(14)      // 14
     static let medium = Int(16)     // 16, 18
     static let large = Int(20)
     static let extraLarge = Int(38)
@@ -126,6 +135,7 @@ struct Font {
         static let light = FontWeight.light(size: FontSize.extraSmall)
         static let semiLight = FontWeight.semiLight(size: FontSize.extraSmall)
         static let regular = FontWeight.regular(size: FontSize.extraSmall)
+        static let italic = FontWeight.italic(size: FontSize.extraSmall)
         static let medium = FontWeight.medium(size: FontSize.extraSmall)
         static let bold = FontWeight.bold(size: FontSize.extraSmall)
     }
@@ -134,14 +144,25 @@ struct Font {
         static let light = FontWeight.light(size: FontSize.small)
         static let semiLight = FontWeight.semiLight(size: FontSize.small)
         static let regular = FontWeight.regular(size: FontSize.small)
+        static let italic = FontWeight.italic(size: FontSize.small)
         static let medium = FontWeight.medium(size: FontSize.small)
         static let bold = FontWeight.bold(size: FontSize.small)
+    }
+    
+    struct Intermediate {
+        static let light = FontWeight.light(size: FontSize.intermediate)
+        static let semiLight = FontWeight.semiLight(size: FontSize.intermediate)
+        static let regular = FontWeight.regular(size: FontSize.intermediate)
+        static let italic = FontWeight.italic(size: FontSize.intermediate)
+        static let medium = FontWeight.medium(size: FontSize.intermediate)
+        static let bold = FontWeight.bold(size: FontSize.intermediate)
     }
 
     struct Medium {
         static let light = FontWeight.light(size: FontSize.medium)
         static let semiLight = FontWeight.semiLight(size: FontSize.medium)
         static let regular = FontWeight.regular(size: FontSize.medium)
+        static let italic = FontWeight.italic(size: FontSize.medium)
         static let medium = FontWeight.medium(size: FontSize.medium)
         static let bold = FontWeight.bold(size: FontSize.medium)
     }
@@ -150,6 +171,7 @@ struct Font {
         static let light = FontWeight.light(size: FontSize.large)
         static let semiLight = FontWeight.semiLight(size: FontSize.large)
         static let regular = FontWeight.regular(size: FontSize.large)
+        static let italic = FontWeight.italic(size: FontSize.large)
         static let medium = FontWeight.medium(size: FontSize.large)
         static let bold = FontWeight.bold(size: FontSize.large)
     }
@@ -158,6 +180,7 @@ struct Font {
         static let light = FontWeight.light(size: FontSize.extraLarge)
         static let semiLight = FontWeight.semiLight(size: FontSize.extraLarge)
         static let regular = FontWeight.regular(size: FontSize.extraLarge)
+        static let italic = FontWeight.italic(size: FontSize.extraLarge)
         static let medium = FontWeight.medium(size: FontSize.extraLarge)
         static let bold = FontWeight.bold(size: FontSize.extraLarge)
     }

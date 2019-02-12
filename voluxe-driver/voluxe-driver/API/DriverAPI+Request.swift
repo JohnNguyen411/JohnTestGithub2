@@ -78,14 +78,15 @@ extension DriverAPI {
     }
 
     static func contactCustomer(_ request: Request,
-                                completion: @escaping ((String?, String?, LuxeAPIError.Code?) -> Void))
+                                mode: String,
+                                completion: @escaping ((String?, String?, LuxeAPIError?) -> Void))
     {
         let route = "\(request.route)/contact-customer"
-        let parameters: RestAPIParameters = ["mode": "text_only"]
+        let parameters: RestAPIParameters = ["mode": "\(mode)"]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
             let (textNumber, phoneNumber) = response?.asPhoneNumbers() ?? (nil, nil)
-            completion(textNumber, phoneNumber, response?.asErrorCode())
+            completion(textNumber, phoneNumber, response?.asError())
         }
     }
 }

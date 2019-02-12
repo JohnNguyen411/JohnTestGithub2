@@ -40,7 +40,9 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
         
         // check offline update task
         if let failedTask = OfflineTaskManager.shared.lastFailedTask(for: request.id) {
-            self.localTask = failedTask
+            if request.task != nil {
+                self.localTask = failedTask
+            }
         }
         
         let tempSteps = RequestViewController.stepsForTask(task: self.localTask ?? .schedule, request: request)
@@ -105,13 +107,16 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
     // MARK: Stack navigation
     
     override func controllerForStep(step: Step) -> RequestStepViewController? {
+        
+        guard let stepTask = step as? StepTask else { return nil }
+        
         var stepVC: RequestStepViewController?
 
         // special case for inspection
         if let inspectionStep = step as? InspectionPhotosStep,
             let inspectionType = inspectionStep.inspectionType,
-            step.controllerName == InspectionPhotosViewController.className {
-            let inspectionVC = InspectionPhotosViewController(request: request, step: step, task: self.localTask, type: inspectionType)
+            stepTask.controllerName == InspectionPhotosViewController.className {
+            let inspectionVC = InspectionPhotosViewController(request: request, step: stepTask, task: self.localTask, type: inspectionType)
             inspectionVC.inspectionDelegate = self
             stepVC = inspectionVC
             self.containerView = self.view
@@ -127,23 +132,23 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
             }
 
             if step.controllerName == ReviewServiceViewController.className {
-                stepVC = ReviewServiceViewController(request: request, step: step, task: self.localTask)
+                stepVC = ReviewServiceViewController(request: request, step: stepTask, task: self.localTask)
             } else if step.controllerName == LoanerPaperworkViewController.className {
-                stepVC = LoanerPaperworkViewController(request: request, step: step, task: self.localTask)
+                stepVC = LoanerPaperworkViewController(request: request, step: stepTask, task: self.localTask)
             } else if step.controllerName == RecordMileageViewController.className {
-                stepVC = RecordMileageViewController(request: request, step: step, task: self.localTask)
+                stepVC = RecordMileageViewController(request: request, step: stepTask, task: self.localTask)
             } else if step.controllerName == DriveToCustomerViewController.className {
-                stepVC = DriveToCustomerViewController(request: request, step: step, task: self.localTask)
+                stepVC = DriveToCustomerViewController(request: request, step: stepTask, task: self.localTask)
             } else if step.controllerName == MeetCustomerViewController.className {
-                stepVC = MeetCustomerViewController(request: request, step: step, task: self.localTask)
+                stepVC = MeetCustomerViewController(request: request, step: stepTask, task: self.localTask)
             } else if step.controllerName == InspectionNotesViewController.className {
-                stepVC = InspectionNotesViewController(request: request, step: step, task: self.localTask)
+                stepVC = InspectionNotesViewController(request: request, step: stepTask, task: self.localTask)
             } else if step.controllerName == ExchangeKeysViewController.className {
-                stepVC = ExchangeKeysViewController(request: request, step: step, task: self.localTask)
+                stepVC = ExchangeKeysViewController(request: request, step: stepTask, task: self.localTask)
             } else if step.controllerName == ReturnToDealershipViewController.className {
-                stepVC = ReturnToDealershipViewController(request: request, step: step, task: self.localTask)
+                stepVC = ReturnToDealershipViewController(request: request, step: stepTask, task: self.localTask)
             } else if step.controllerName == ReceiveLoanerViewController.className {
-                stepVC = ReceiveLoanerViewController(request: request, step: step, task: self.localTask)
+                stepVC = ReceiveLoanerViewController(request: request, step: stepTask, task: self.localTask)
             }
         }
         stepVC?.requestStepDelegate = self
@@ -275,7 +280,7 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
         if request.isPickup {
             if request.hasLoaner {
                 newSteps.append(StepTask.buildStepTask(for: .retrieveLoanerVehicleFromDealership, with: request))
-                newSteps.append(StepTask.buildStepTask(for: .recordLoanerMileage, with: request))
+                //newSteps.append(StepTask.buildStepTask(for: .recordLoanerMileage, with: request))
             } else {
                 newSteps.append(StepTask.buildStepTask(for: .retrieveForms, with: request))
             }
