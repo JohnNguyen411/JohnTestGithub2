@@ -62,6 +62,15 @@ class RequestManager {
     var requests: [Request] = [] {
         didSet {
             self.requestsDidChangeClosure?(requests)
+            let current = requests.filter { $0.state == .started && Calendar.current.isDateInToday($0.dealershipTimeSlot.from) }
+            
+            // Active requests, do start location updates
+            if current.count > 0 {
+                DriverManager.shared.startLocationUpdates()
+            } else {
+                // stop location updates
+                DriverManager.shared.stopLocationUpdates()
+            }
         }
     }
     
@@ -180,6 +189,7 @@ class RequestManager {
             [weak self] timer in
             self?.refresh()
         }
+        self.refresh()
         Log.info("RequestManager started")
     }
     
@@ -215,6 +225,9 @@ class RequestManager {
             [weak self] request, error in
             guard error == nil else { return }
             self?._request = request
+            if let request = request {
+                self?.updateRequestsState(requests: [request])
+            }
         }
     }
     
@@ -223,7 +236,7 @@ class RequestManager {
             completion?()
             return
         }
-        if driver.passwordResetRequired || !driver.workPhoneNumberVerified {
+        if !driver.readyForUse() {
             completion?()
             return
         }
@@ -242,8 +255,19 @@ class RequestManager {
     
     private func updateRequest(from requests: [Request]) {
         guard let request = self.request else { return }
+        // update all request state in DB
+        self.updateRequestsState(requests: requests)
         let filteredRequests = requests.filter { $0.id == request.id }
         guard filteredRequests.count == 1 else { return }
         self._request = filteredRequests.first
+    }
+    
+    private func updateRequestsState(requests: [Request]) {
+        guard let realm = try? Realm() else { return }
+        guard let driver = self.driver else { return }
+
+        try? realm.write {
+            realm.add(RequestState.requestToRequestState(requests: requests, driverId: driver.id), update: true)
+        }
     }
 }

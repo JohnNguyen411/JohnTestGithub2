@@ -152,9 +152,9 @@ class LoginViewController: StepViewController, UITextFieldDelegate {
     private func onLoginError(error: LuxeAPIError? = nil) {
         
         if let code = error?.code, code == .E2005 {
-            AppController.shared.alert(title: Unlocalized.error, message: Unlocalized.invalidCredentials)
+            AppController.shared.alert(title: Unlocalized.error, message: .localized(.errorInvalidCredentials))
         } else {
-            AppController.shared.alert(title: Unlocalized.error, message: Unlocalized.genericError)
+            AppController.shared.alertGeneric(for: error, retry: false, completion: nil)
         }
     }
     

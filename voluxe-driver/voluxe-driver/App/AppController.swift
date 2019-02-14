@@ -54,11 +54,16 @@ extension AppController {
 
     func launch() {
         self.showLanding(animated: false)
-        self.requestPermissions()
     }
 
     func resume() {
-        self.requestPermissions()
+        if UserDefaults.standard.hasAskedPushPermission {
+            AppController.shared.requestPushPermissions()
+        }
+        if UserDefaults.standard.hasAskedLocationPermission {
+            AppController.shared.requestLocationPermissions()
+        }
+        
     }
 
     func suspend() {
@@ -171,5 +176,9 @@ extension AppController {
         guard let prefers = prefersProfileButton else { return }
         if prefers { main.showProfileButton(animated: animated) }
         else { main.hideProfileButton(animated: animated) }
+    }
+    
+    var presentedController: UIViewController? {
+        return self.children.first
     }
 }

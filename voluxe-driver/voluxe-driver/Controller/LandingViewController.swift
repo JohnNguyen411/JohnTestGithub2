@@ -46,6 +46,10 @@ class LandingViewController: UIViewController {
         gridView.add(subview: self.loginButton, from:3, to: 4)
         self.loginButton.pinBottomToSuperviewBottom(spacing: -153)
         
+        self.login()
+    }
+    
+    private func login() {
         if let token = KeychainManager.shared.getToken() {
             self.loginButton.alpha = 0
             
@@ -69,10 +73,16 @@ class LandingViewController: UIViewController {
                                                       showProfileButton: false)
                     }
                 } else {
-                    KeychainManager.shared.setToken(token: nil)
-                    UIView.animate(withDuration: 0.25, animations: {
-                        self?.loginButton.alpha = 1
-                    })
+                    if let error = error, error.code == nil {
+                        AppController.shared.alert(title: .localized(.error), message: .localized(.errorOffline), buttonTitle: .localized(.retry), completion: { [weak self] in
+                            self?.login()
+                        })
+                    } else {
+                        KeychainManager.shared.setToken(token: nil)
+                        UIView.animate(withDuration: 0.25, animations: {
+                            self?.loginButton.alpha = 1
+                        })
+                    }
                 }
             })
         }

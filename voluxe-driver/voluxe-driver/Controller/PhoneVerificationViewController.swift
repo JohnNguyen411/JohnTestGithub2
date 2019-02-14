@@ -20,9 +20,19 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
     
     // MARK: Lifecycle
     
-    convenience init() {
-        self.init(title: Unlocalized.confirmPhoneNumber)
+    override init(step: Step?) {
+        super.init(step: step)
         self.addActions()
+    }
+    
+    convenience init() {
+        self.init(step: nil)
+        self.navigationItem.title = Unlocalized.confirmPhoneNumber
+        self.addActions()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
@@ -99,8 +109,8 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
         DriverAPI.requestPhoneNumberVerification(for: driver, completion: { error in
             AppController.shared.lookNotBusy()
 
-            if error != nil {
-                AppController.shared.alert(message: Unlocalized.genericError)
+            if let error = error {
+                AppController.shared.alertGeneric(for: error, retry: false, completion: nil)
             }
         })
     }
@@ -111,11 +121,12 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
         AppController.shared.lookBusy()
         
         DriverAPI.verifyPhoneNumber(with: code, for: driver, completion: { [weak self] error in
-            if error == nil {
-                self?.refreshDriver()
-            } else {
+            
+            if let error = error {
                 AppController.shared.lookNotBusy()
-                AppController.shared.alert(message: Unlocalized.genericError)
+                AppController.shared.alertGeneric(for: error, retry: false, completion: nil)
+            } else {
+                self?.refreshDriver()
             }
         })
     }
@@ -141,7 +152,7 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
                 }
                 
             } else {
-                AppController.shared.alert(message: Unlocalized.genericError)
+                AppController.shared.alertGeneric(for: error, retry: false, completion: nil)
             }
         })
     }

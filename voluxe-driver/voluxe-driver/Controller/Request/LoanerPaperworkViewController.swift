@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import Kingfisher
+import CoreLocation
 
 class LoanerPaperworkViewController: RequestStepViewController {
     
@@ -25,6 +26,8 @@ class LoanerPaperworkViewController: RequestStepViewController {
     private var hasLoaner: Bool = false
     private var hasRO: Bool = false
     
+    private var hasShowLocationDialog: Bool = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -40,6 +43,18 @@ class LoanerPaperworkViewController: RequestStepViewController {
         self.loanerImageView.constrain(width: 250)
         
         self.handleSeparators()
+        
+        DriverManager.shared.locationDidChangeClosure = {
+            [weak self] location in
+            self?.locationDidChange(location)
+        }
+    }
+    
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        if parent == nil {
+            DriverManager.shared.locationDidChangeClosure = nil
+        }
     }
     
     private func handleSeparators() {
@@ -149,4 +164,43 @@ class LoanerPaperworkViewController: RequestStepViewController {
         }
     }
    
+    
+    func locationDidChange(_ location: CLLocation?) {
+        
+        if hasShowLocationDialog {
+            return
+        }
+        
+        var directionLong: Double?
+        var directionLat: Double?
+        
+        if let dealershipId = self.request?.booking?.dealershipId, let dealerhip = DriverManager.shared.dealership(for: dealershipId) {
+            directionLong = dealerhip.location.longitude
+            directionLat = dealerhip.location.latitude
+        }
+        
+        guard let lat = directionLat, let long = directionLong, let driverLocation = location else {
+            return
+        }
+        
+        let destinationLocation = CLLocation(latitude: lat, longitude: long)
+        if AppDelegate.distanceBetween(startLocation: driverLocation, endLocation: destinationLocation) > 500 {
+            hasShowLocationDialog = true
+            DriverManager.shared.locationDidChangeClosure = nil
+            AppController.shared.playAlertSound()
+            AppController.shared.alert(title: String(format: .localized(.popupAlreadyStartedDrivingTitle), self.request?.booking?.customer.firstName ?? .localized(.popupGetToCustomerTitle)),
+                                       message: .localized(.popupAlreadyStartedDrivingMessage),
+                                       cancelButtonTitle: .localized(.no),
+                                       okButtonTitle: .localized(.popupAlreadyStartedDrivingPositive),
+                                       okCompletion: {
+                                        super.swipeNext(completion: { success in
+                                            self.flowDelegate?.pushNextStep()
+                                        })
+                                        
+            })
+        }
+        
+    }
+    
+    
 }

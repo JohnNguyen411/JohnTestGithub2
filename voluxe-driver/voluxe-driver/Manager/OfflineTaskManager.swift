@@ -38,6 +38,17 @@ class OfflineTaskManager {
         guard let realm = self.realm else { return }
         if let offlineTask = realm.objects(OfflineTaskUpdate.self).sorted(byKeyPath: "createdAt", ascending: true).first {
             if let requestRoute = offlineTask.requestRoute, let taskString = offlineTask.taskString, let task = Task(rawValue: taskString) {
+                
+                // check cached request state
+                if let requestState = realm.objects(RequestState.self).filter("id = %@", offlineTask.requestId).first,
+                    let state = Request.State(rawValue: requestState.state), state == .completed || state == .canceled {
+                    try? realm.write { realm.delete(offlineTask) }
+                    // proceed to next
+                    updateNext()
+                    return
+                }
+                
+                
                 self.refreshing = true
                 DriverAPI.update(requestRoute, task: task, completion: { [weak self] error in
                     self?.refreshing = false

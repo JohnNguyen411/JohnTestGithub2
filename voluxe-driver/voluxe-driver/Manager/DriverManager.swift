@@ -13,6 +13,7 @@ import UIKit
 class DriverManager: NSObject, CLLocationManagerDelegate {
 
     static let shared = DriverManager()
+    var lastLocationUpdate: Date?
     
     // todo: store Dealerships in local storage
     var dealerships: [Dealership]?
@@ -26,11 +27,7 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
 
     private var _driver: Driver? {
         didSet {
-            if let oldDriver = oldValue, let driver = self._driver, oldDriver.id == driver.id {
-                // just update the driver
-            } else {
-                self.notifyDriverDidChange()
-            }
+            self.notifyDriverDidChange()
             self.refreshPhotoForDriverIfNecessary(oldValue?.photoUrl)
         }
     }
@@ -92,7 +89,7 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
         guard let image = image.resized(to: 500) else { return }
         DriverAPI.update(photo: image, for: driver) {
             error in
-            if let error = error { Log.unexpected(.apiError, error.rawValue) }
+            if let error = error { Log.unexpected(.apiError, error.code?.rawValue ?? "Unknown error") }
             else { self._driverPhoto = image }
             completion(error == nil)
         }
@@ -125,8 +122,10 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
         DriverAPI.login(email: email, password: password) {
             driver, error in
             if error == nil { self._driver = driver }
-            completion(driver, error)
-            self.updateDriverWithToken()
+            
+            self.updateDriverWithToken(completion: { updateTokenError in
+                completion(driver, error)
+            })
         }
     }
     
@@ -142,8 +141,9 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
                     self.dealerships(for: driver)
                 }
             }
-            completion(driver, error)
-            self.updateDriverWithToken()
+            self.updateDriverWithToken(completion: { updateTokenError in
+                completion(driver, error)
+            })
         }
     }
     
@@ -207,13 +207,21 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
                          didUpdateLocations locations: [CLLocation])
     {
         guard let location = locations.first else { return }
-        guard let driver = self.driver else { return }
+        guard let driver = self.driver, driver.readyForUse() else { return }
+        
+        self._location = location
+        
+        // don't refresh more than every 5 sec
+        if let lastLocationUpdate = self.lastLocationUpdate, Date().timeIntervalSince(lastLocationUpdate) > 5.0 {
+            return
+        } else {
+            self.lastLocationUpdate = Date()
+        }
         DriverAPI.update(location: location.coordinate, for: driver) {
             error in
             guard let error = error else { return }
             Log.unexpected(.apiError, "\(error)")
         }
-        self._location = location
     }
 
     func locationManager(_ manager: CLLocationManager,
@@ -243,14 +251,15 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
     // TODO since the push token is pretty important to the driver
     // getting request updates, this probably needs to be more resilient
     // and keep trying if the error response is network related
-    private func updateDriverWithToken() {
-        guard let driver = self.driver else { return }
-        guard let token = self.pushToken else { return }
+    private func updateDriverWithToken(completion: ((LuxeAPIError?) -> Void)? = nil) {
+        guard let driver = self.driver, driver.readyForUse() else {  completion?(nil); return }
+        guard let token = self.pushToken else { completion?(nil); return }
         DriverAPI.register(device: token, for: driver) {
             error in
             if let error = error {
                 Log.unexpected(.apiError, "Could not update driver with push token: \(error)")
             }
+            completion?(error)
         }
     }
 

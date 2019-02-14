@@ -61,12 +61,11 @@ extension AppController {
     // that all permissions are asked in order to ensure all permissions
     // have been granted to allow app usage, and that the appropriate UI
     // is shown.
-    func requestPermissions() {
+    func requestLocationPermissions() {
         AppDelegate.shared.requestLocationUpdates() {
             [weak self] allowed in
+            UserDefaults.standard.hasAskedLocationPermission = true
             self?.togglePermissionRequired(.location, allowed: allowed)
-            guard allowed == true else { return }
-            self?.requestPushPermissions()
         }
     }
 
@@ -74,9 +73,10 @@ extension AppController {
     // should be requested in other private funcs that are called/chained
     // from this func, as shown in requestPermissions().  The order can
     // be changed as necessary.
-    private func requestPushPermissions() {
-        AppDelegate.shared.requestLocationUpdates() {
+    func requestPushPermissions() {
+        AppDelegate.shared.registerForPushNotifications() {
             [weak self] allowed in
+            UserDefaults.standard.hasAskedPushPermission = true
             self?.togglePermissionRequired(.push, allowed: allowed)
         }
     }

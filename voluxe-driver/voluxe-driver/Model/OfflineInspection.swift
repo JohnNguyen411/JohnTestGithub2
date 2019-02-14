@@ -81,8 +81,18 @@ class OfflineInspection: Object {
     }
 
     var canBeRemoved: Bool {
-        //return self.isUploaded || self.data.isEmpty || self.failedCount > 5
-        return false
+        guard let realm = try? Realm() else { return true }
+        if let requestState = realm.objects(RequestState.self).filter("id = %@", self.requestId).first {
+            if let state = Request.State(rawValue: requestState.state),
+                state == .completed || state == .canceled {
+            
+                return self.isUploaded || self.data.isEmpty || self.failedCount > 5
+            } else {
+                return false
+            }
+        }
+        
+        return self.isUploaded || self.data.isEmpty || self.failedCount > 5
     }
 
     // MARK: Lifecycle
@@ -214,6 +224,12 @@ fileprivate extension Request {
                 completion(inspection, nil)
                 return
             }
+        }
+        
+        // check Realm now
+        if let cachedInspection = RequestState.inspection(for: type, requestId: self.id) {
+            completion(cachedInspection, nil)
+            return
         }
 
         // document inspections are always created

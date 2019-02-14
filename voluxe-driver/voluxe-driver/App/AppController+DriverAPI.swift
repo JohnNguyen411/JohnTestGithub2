@@ -105,9 +105,15 @@ extension AppController {
     private func showPhoneVerificationController() {
 
         RequestManager.shared.stop()
+        DriverManager.shared.stopLocationUpdates()
         
         guard let driver = DriverManager.shared.driver else {
             AppController.shared.logout()
+            return
+        }
+        
+        // don't show if already showing
+        if let presentedController = AppController.shared.presentedController, (((presentedController as? LoginFlowViewController) != nil) || ((presentedController.children.first as? LoginFlowViewController) != nil)) {
             return
         }
         

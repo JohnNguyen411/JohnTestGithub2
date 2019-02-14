@@ -21,36 +21,36 @@ extension DriverAPI {
     }
 
     static func dealerships(for driver: Driver,
-                            completion: @escaping (([Dealership], LuxeAPIError.Code?) -> Void))
+                            completion: @escaping (([Dealership], LuxeAPIError?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/dealerships"
         self.api.get(route: route) {
             response in
             let dealerships = response?.decodeDealerships() ?? []
-            completion(dealerships, response?.asErrorCode())
+            completion(dealerships, response?.asError())
         }
     }
 
     static func update(photo: UIImage,
                        for driver: Driver,
-                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
+                       completion: @escaping ((LuxeAPIError?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/photo"
         self.api.upload(route: route, image: photo) {
             response in
-            completion(response?.asErrorCode())
+            completion(response?.asError())
         }
     }
 
     static func update(location: CLLocationCoordinate2D,
-                       for driver: Driver, completion: @escaping ((LuxeAPIError.Code?) -> Void))
+                       for driver: Driver, completion: @escaping ((LuxeAPIError?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/location"
         let location = RestAPIResponse.APILocation(with: location)
         let data = try? JSONEncoder().encode(location)
         self.api.put(route: route, bodyJSON: data) {
             response in
-            completion(response?.asErrorCode())
+            completion(response?.asError())
         }
     }
 
@@ -74,35 +74,35 @@ extension DriverAPI {
 
     static func update(phoneNumber: String,
                        for driver: Driver,
-                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
+                       completion: @escaping ((LuxeAPIError?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)"
         let parameters: RestAPIParameters = ["work_phone_number": phoneNumber]
         self.api.patch(route: route, bodyParameters: parameters) {
             response in
-            completion(response?.asErrorCode())
+            completion(response?.asError())
         }
     }
 
     static func requestPhoneNumberVerification(for driver: Driver,
-                                               completion: @escaping ((LuxeAPIError.Code?) -> Void))
+                                               completion: @escaping ((LuxeAPIError?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/work-phone-number/request-verification"
         self.api.put(route: route) {
             response in
-            completion(response?.asErrorCode())
+            completion(response?.asError())
         }
     }
 
     static func verifyPhoneNumber(with code: String,
                                   for driver: Driver,
-                                  completion: @escaping ((LuxeAPIError.Code?) -> Void))
+                                  completion: @escaping ((LuxeAPIError?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/work-phone-number/verify"
         let parameters: RestAPIParameters = ["verification_code": code]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
-            completion(response?.asErrorCode())
+            completion(response?.asError())
         }
     }
 

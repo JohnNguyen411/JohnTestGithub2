@@ -8,11 +8,14 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 class ReturnToDealershipViewController: DriveViewController {
     
     private let customerLabel = Label.taskText()
     private let serviceLabel = Label.taskText()
+    
+    private var hasShownDialog = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +42,32 @@ class ReturnToDealershipViewController: DriveViewController {
         if let repairOrders = request.booking?.repairOrderRequests, repairOrders.count > 0 {
             let addressString = NSMutableAttributedString()
             self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: self.intermediateMediumFont())
+        }
+    }
+    
+    override func swipeNext(completion: ((Bool) -> ())?) {
+        // check distance from destination
+        
+        guard let lat = self.directionLat, let long = self.directionLong, let driverLocation = DriverManager.shared.location else {
+            super.swipeNext(completion: completion)
+            return
+        }
+        
+        let destinationLocation = CLLocation(latitude: lat, longitude: long)
+        
+        if !hasShownDialog && distanceBetween(driverLocation: driverLocation, destinationLocation: destinationLocation) > 500 {
+            self.hasShownDialog = true
+            AppController.shared.playAlertSound()
+            AppController.shared.alert(title: .localized(.popupTooFarFromDealershipTitle),
+                                       message: .localized(.popupTooFarFromDealershipMessage),
+                                       cancelButtonTitle: .localized(.no),
+                                       okButtonTitle: .localized(.popupTooFarFromDealershipPositive),
+                                       okCompletion: {
+                                        // force complete
+                                        super.swipeNext(completion: completion)
+            })
+        } else {
+            super.swipeNext(completion: completion)
         }
     }
     

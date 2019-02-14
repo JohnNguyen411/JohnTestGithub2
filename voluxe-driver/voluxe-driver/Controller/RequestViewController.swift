@@ -23,7 +23,12 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
     private let swipeNextView = SwipeNextView()
     private let subcontainer = UIView()
 
-
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        AppController.shared.requestLocationPermissions()
+    }
+    
     // MARK: Lifecycle
 
     // TODO should not be allowed to start service unless day of
@@ -151,6 +156,7 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
                 stepVC = ReceiveLoanerViewController(request: request, step: stepTask, task: self.localTask)
             }
         }
+        stepVC?.flowDelegate = self
         stepVC?.requestStepDelegate = self
         return stepVC
     }

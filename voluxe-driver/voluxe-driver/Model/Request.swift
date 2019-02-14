@@ -27,6 +27,7 @@ struct Request: Codable {
     let id: Int
     let type: Type
     let booking: Booking?
+    let bookingId: Int
     let dealershipTimeSlotId: Int
     let dealershipTimeSlot: DealershipTimeSlot
     let notes: String?
@@ -37,6 +38,7 @@ struct Request: Codable {
     let driverDealershipTimeSlotAssignment: DriverDealershipTimeSlotAssignment?
     let loanerVehicleRequested: Bool?
     let loanerInspection: Inspection?
+    let loanerInspectionId: Int?
     let vehicleInspectionId: Int?
     let vehicleInspection: Inspection?
     let documents: [Inspection]?
@@ -45,6 +47,7 @@ struct Request: Codable {
         case id
         case type
         case booking
+        case bookingId = "booking_id"
         case dealershipTimeSlotId = "dealership_time_slot_id"
         case dealershipTimeSlot = "dealership_time_slot"
         case notes
@@ -56,6 +59,7 @@ struct Request: Codable {
         case loanerVehicleRequested = "loaner_vehicle_requested"
         case loanerInspection = "loaner_vehicle_inspection"
         case vehicleInspectionId = "vehicle_inspection_id"
+        case loanerInspectionId = "loaner_vehicle_inspection_id"
         case vehicleInspection = "vehicle_inspection"
         case documents
     }

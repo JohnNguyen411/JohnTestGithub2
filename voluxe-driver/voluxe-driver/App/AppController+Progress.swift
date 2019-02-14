@@ -23,8 +23,8 @@ extension AppController {
         hud.hide(animated: true)
     }
     
-    func isBusy() -> Bool {        
-        guard let hud = MBProgressHUD(for: self.view) else {
+    func isBusy() -> Bool {
+        guard MBProgressHUD(for: self.view) != nil else {
             return false
         }
         return true

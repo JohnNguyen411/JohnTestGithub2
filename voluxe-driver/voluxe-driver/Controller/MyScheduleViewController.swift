@@ -69,6 +69,7 @@ class MyScheduleViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        AppController.shared.requestPushPermissions()
 //        self.startRequestManager()
     }
 
@@ -78,6 +79,7 @@ class MyScheduleViewController: UIViewController {
     
     deinit {
         RequestManager.shared.requestsDidChangeClosure = nil
+        RequestManager.shared.stop()
     }
 
     // MARK:- Updating latest data

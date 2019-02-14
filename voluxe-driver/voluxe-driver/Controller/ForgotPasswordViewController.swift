@@ -178,7 +178,7 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         if let code = error?.code, code == .E2005 {
             AppController.shared.alert(title: Unlocalized.error, message: Unlocalized.invalidCredentials)
         } else {
-            AppController.shared.alert(title: Unlocalized.error, message: Unlocalized.genericError)
+            AppController.shared.alertGeneric(for: error, retry: false, completion: nil)
         }
     }
     

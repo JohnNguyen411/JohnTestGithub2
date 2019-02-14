@@ -74,11 +74,13 @@ protocol StepViewControllerDelegate {
      * popStep: pop current view controller and go back to the previous step
      *  @return Bool: true if pop succeeded false if not
      ***/
+    @discardableResult
     func popStep() -> Bool
     
     /***
      * pushNextStep: push the next view controller and stack the current one
      *  @return Bool: true if push succeeded false if not
      ***/
+    @discardableResult
     func pushNextStep() -> Bool
 }

@@ -24,6 +24,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.rootViewController = AppController.shared
         window.makeKeyAndVisible()
         self.window = window
+        
+        // logoutOnLaunch can be specified as an executable argument
+        // Typically and currently this is only used by the UI test suite
+        if UserDefaults.standard.isFirstTimeLaunch {
+            DriverManager.shared.logout()
+        }
+        
         self.initServices()
         self.initAppearance()
         AppController.shared.launch()

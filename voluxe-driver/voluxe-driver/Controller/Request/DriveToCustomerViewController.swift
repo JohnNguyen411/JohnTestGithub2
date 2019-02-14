@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 class DriveToCustomerViewController: DriveViewController {
     
@@ -44,6 +45,31 @@ class DriveToCustomerViewController: DriveViewController {
         if let requestNotes = request.notes {
             let notesString = NSMutableAttributedString()
             self.notesLabel.attributedText = notesString.append(.localized(.notesColon), with: self.notesLabel.font).append("\(requestNotes)" , with: self.intermediateMediumFont())
+        }
+    }
+    
+    override func swipeNext(completion: ((Bool) -> ())?) {
+        // check distance from destination
+        
+        guard let lat = self.directionLat, let long = self.directionLong, let driverLocation = DriverManager.shared.location else {
+            super.swipeNext(completion: completion)
+            return
+        }
+        
+        let destinationLocation = CLLocation(latitude: lat, longitude: long)
+        
+        if distanceBetween(driverLocation: driverLocation, destinationLocation: destinationLocation) > 500 {
+            AppController.shared.playAlertSound()
+            AppController.shared.alert(title: .localized(.popupTooFarFromCustomerTitle),
+                                       message: .localized(.popupTooFarFromCustomerMessage),
+                                       cancelButtonTitle: .localized(.no),
+                                       okButtonTitle: .localized(.popupTooFarFromCustomerPositive),
+                                       okCompletion: {
+                                        // force complete
+                                        super.swipeNext(completion: completion)
+            })
+        } else {
+            super.swipeNext(completion: completion)
         }
     }
 }

@@ -12,6 +12,7 @@ import UIKit
 enum Permission: String {
     case location = "Location Updates"
     case push = "Push Notifications"
+    case camera = "Camera"
 }
 
 class PermissionViewController: UIViewController {
@@ -58,6 +59,10 @@ class PermissionViewController: UIViewController {
 
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Volvo.background.light
+        
+        if permission == .camera {
+            label.text = .localized(.permissionsCameraDeniedMessage)
+        }
 
         let gridView = GridLayoutView(layout: GridLayout.volvoAgent())
         Layout.fill(view: self.view, with: gridView)

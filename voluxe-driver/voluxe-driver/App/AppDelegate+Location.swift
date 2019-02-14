@@ -56,6 +56,10 @@ extension AppDelegate: CLLocationManagerDelegate {
         let allowed = status == .authorizedAlways
         completion(allowed)
     }
+    
+    static func distanceBetween(startLocation: CLLocation, endLocation: CLLocation) -> CLLocationDistance {
+        return startLocation.distance(from: endLocation) // result is in meters
+    }
 }
 
 /// The app only needs a single CLLocationManager, so this is a convenient

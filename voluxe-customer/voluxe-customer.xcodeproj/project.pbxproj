@@ -944,6 +944,7 @@
 		533047112188D821007CE01C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */,
 				52A3A62D21E92091002A273E /* UIView+SafeArea.swift */,
 				52A3A62121E6C884002A273E /* UIColor+Hex.swift */,
 				533047132188D821007CE01C /* Bundle+Voluxe.swift */,
@@ -1269,7 +1270,6 @@
 				6CF3F44E20F4113700A89214 /* UITextView+Voluxe.swift */,
 				5321B1B620C9A980006C1E14 /* UIView+Blur.swift */,
 				6C9C7A7A1FB381D600FE40B5 /* UIView+Voluxe.swift */,
-				5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";

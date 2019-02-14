@@ -15,11 +15,13 @@ struct Booking: Codable {
     let customer: Customer
     let bookingFeedback: BookingFeedback?
     let vehicle: Vehicle?
+    let vehicleId: Int?
     let dealershipId: Int?
     let dealership: Dealership?
     let repairOrderRequests: [RepairOrderRequest]?
     let loanerVehicleRequested: Bool
     let loanerVehicle: Vehicle?
+    let loanerVehicleId: Int?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -27,10 +29,12 @@ struct Booking: Codable {
         case customer
         case bookingFeedback = "booking_feedback"
         case vehicle
+        case vehicleId = "vehicle_id"
         case dealershipId = "dealership_id"
         case dealership
         case loanerVehicleRequested = "loaner_vehicle_requested"
         case loanerVehicle = "loaner_vehicle"
+        case loanerVehicleId = "loaner_vehicle_id"
         case repairOrderRequests = "repair_order_requests"
     }
     

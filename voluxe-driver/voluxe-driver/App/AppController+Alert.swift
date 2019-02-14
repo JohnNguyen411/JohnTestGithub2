@@ -34,6 +34,14 @@ extension AppController {
                    completion: completion)
     }
     
+    func alertGeneric(for error: LuxeAPIError?, retry: Bool, completion: (() -> ())? = nil) {
+        let title = String.localized(.error)
+        var message = String.localized(.errorUnknown)
+        if let error = error, error.code == nil {
+            message = String.localized(.errorOffline)
+        }
+        self.alert(title: title, message: message, buttonTitle: .localized(retry ? .retry : .ok), completion: completion)
+    }
     
     // Alert with only one button
     func alert(title: String,
@@ -57,11 +65,22 @@ extension AppController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    // Alert with Ok and Cancel button
+    func alert(title: String,
+               message: String,
+               cancelButtonTitle: String,
+               okButtonTitle: String,
+               okCompletion: @escaping (() -> ()))
+    {
+        self.alert(title: title, message: message, cancelButtonTitle: cancelButtonTitle, cancelCompletion: nil, okButtonTitle: okButtonTitle, okCompletion: okCompletion)
+    }
+    
     
     // Alert with Ok and Cancel button
     func alert(title: String,
                message: String,
                cancelButtonTitle: String,
+               cancelCompletion: (() -> ())?,
                okButtonTitle: String,
                okCompletion: @escaping (() -> ()))
     {
@@ -74,6 +93,7 @@ extension AppController {
         let backAction = UIAlertAction(title: cancelButtonTitle, style: .default) {
             _ in
             alert.dismiss(animated: true, completion: nil)
+            cancelCompletion?()
         }
         
         // OK button

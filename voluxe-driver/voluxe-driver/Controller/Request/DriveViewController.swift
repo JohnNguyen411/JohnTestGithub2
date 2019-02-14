@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreLocation
 
 class DriveViewController: RequestStepViewController {
     
@@ -134,8 +135,8 @@ class DriveViewController: RequestStepViewController {
         DriverAPI.contactCustomer(request, mode: mode, completion: { textNumber, voiceNumber, error in
             AppController.shared.lookNotBusy()
             
-            if error != nil {
-                AppController.shared.alert(title: .localized(.error), message: .localized(.errorUnknown))
+            if let error = error {
+                AppController.shared.alertGeneric(for: error, retry: false, completion: nil)
                 return
             }
             
@@ -152,5 +153,10 @@ class DriveViewController: RequestStepViewController {
             }
             
         })
+    }
+    
+    
+    func distanceBetween(driverLocation: CLLocation, destinationLocation: CLLocation) -> CLLocationDistance {
+        return AppDelegate.distanceBetween(startLocation:driverLocation, endLocation: destinationLocation)
     }
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import AVFoundation
 
 class InspectionPhotosViewController: RequestStepViewController {
 
@@ -59,7 +60,55 @@ class InspectionPhotosViewController: RequestStepViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        self.inspectionCameraView.cameraView.open()
+        // check permission
+        DispatchQueue.main.async {
+            self.checkCameraPermission()
+        }
+        
+    }
+    
+    private func checkCameraPermission() {
+        let authorisationStatus = AVCaptureDevice.authorizationStatus(for: .video)
+        if authorisationStatus == .authorized {
+            //already authorized
+            self.inspectionCameraView.cameraView.open()
+        } else if authorisationStatus == .notDetermined {
+            AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
+                DispatchQueue.main.async {
+                    if granted {
+                        //access allowed
+                        self.inspectionCameraView.cameraView.open()
+                    } else {
+                        //access denied
+                        self.alertBlockPermission()
+                    }
+                }
+            })
+        } else {
+            self.alertBlockPermission()
+        }
+    }
+    
+    private func alertBlockPermission() {
+        AppController.shared.alert(title: .localized(.permissionsCameraDeniedTitle),
+                                   message: .localized(.permissionsCameraDeniedMessage),
+                                   cancelButtonTitle: .localized(.close),
+                                   cancelCompletion: {
+                                        DispatchQueue.main.async {
+                                            self.checkCameraPermission()
+                                        }
+                                    },
+                                    okButtonTitle: .localized(.openSettings),
+                                    okCompletion: {
+                                        // open settings
+                                        self.openSettings()
+                                })
+    }
+    
+    private func openSettings() {
+        let string = UIApplication.openSettingsURLString
+        guard let url = URL(string: string) else { return }
+        UIApplication.shared.open(url, options: [:])
     }
     
     private func loadPhotos() {

@@ -105,21 +105,19 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
 
     @objc func nextButtonTouchUpInside() {
         // if entered phone is same as driver.workPhone, then request verification code, otherwise update phone number
-        guard let validPhoneNumber = validPhoneNumber else { return }
-        guard let driver = DriverManager.shared.driver else { return }
+        guard let validPhoneNumber = self.validPhoneNumber else { return }
+        guard DriverManager.shared.driver != nil else { return }
         
-        do {
-            if let phoneUtil = self.phoneUtil {
-                let fullPhoneNumber = try phoneUtil.format(validPhoneNumber, numberFormat: .E164)
-                if fullPhoneNumber == driver.workPhoneNumber {
-                    // request verification code
-                    self.requestVerificationCode(driver: driver)
-                } else {
-                    // update phone number
-                    self.updateWorkPhoneNumber(phoneNumber: fullPhoneNumber, driver: driver)
-                }
+        // retrieve latest /me
+        DriverManager.shared.me(completion: { [weak self] driver, error in
+            if let driver = driver {
+                self?.proceedNext(driver: driver, validPhoneNumber: validPhoneNumber)
             }
-        } catch {}
+            if error != nil {
+                AppController.shared.alertGeneric(for: error, retry: false)
+            }
+        })
+        
         
     }
 
@@ -137,17 +135,31 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
     
     //MARK: API Calls
     
+    private func proceedNext(driver: Driver, validPhoneNumber: NBPhoneNumber) {
+        do {
+            if let phoneUtil = self.phoneUtil {
+                let fullPhoneNumber = try phoneUtil.format(validPhoneNumber, numberFormat: .E164)
+                if fullPhoneNumber == driver.workPhoneNumber {
+                    // request verification code
+                    self.requestVerificationCode(driver: driver)
+                } else {
+                    // update phone number
+                    self.updateWorkPhoneNumber(phoneNumber: fullPhoneNumber, driver: driver)
+                }
+            }
+        } catch {}
+    }
+    
     private func requestVerificationCode(driver: Driver) {
         AppController.shared.lookBusy()
         DriverAPI.requestPhoneNumberVerification(for: driver, completion: { [weak self]
             error in
             AppController.shared.lookNotBusy()
-            if error == nil {
-                // go to next
-                self?.pushVerificationCodeViewController()
-
+            
+            if let error = error {
+                AppController.shared.alertGeneric(for: error, retry: false, completion: nil)
             } else {
-                AppController.shared.alert(message: Unlocalized.genericError)
+                self?.pushVerificationCodeViewController()
             }
         })
     }
@@ -156,11 +168,12 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
         AppController.shared.lookBusy()
         DriverAPI.update(phoneNumber: phoneNumber, for: driver) { [weak self]
             error in
-            if error == nil {
-                self?.refreshDriver()
-            } else {
+            
+            if let error = error {
                 AppController.shared.lookNotBusy()
-                AppController.shared.alert(message: Unlocalized.genericError)
+                AppController.shared.alertGeneric(for: error, retry: false, completion: nil)
+            } else {
+                self?.refreshDriver()
             }
         }
     }
@@ -168,11 +181,11 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
     private func refreshDriver() {
         DriverManager.shared.me(completion: { [weak self] driver, error in
             AppController.shared.lookNotBusy()
-            if let _ = driver {
-                // go to next
+            
+            if let error = error {
+                AppController.shared.alertGeneric(for: error, retry: false, completion: nil)
+            } else if let _ = driver {
                 self?.pushVerificationCodeViewController()
-            } else {
-                AppController.shared.alert(message: Unlocalized.genericError)
             }
         })
     }
