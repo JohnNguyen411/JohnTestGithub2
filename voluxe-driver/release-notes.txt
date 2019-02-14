@@ -1,3 +1,10 @@
+v1.0.0-alpha2 (35)
+- Fix Sync issue
+- Improve permission management
+- Add check dialogs (Are you sure you've arrived, etc...)
+- Clear inspection pictures from local storage
+- Logout user on re-install (clear Keychain)
+
 v1.0.0-alpha1 (32)
 - Fix Onboarding flow
 - Improve UI Flow
