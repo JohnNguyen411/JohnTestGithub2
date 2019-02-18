@@ -63,7 +63,7 @@ class LandingViewController: UIViewController {
                 }
                 
                 if let driver = driver {
-                    let steps = FlowViewController.loginSteps(for: driver)
+                    let steps = LoginFlowViewController.loginSteps(for: driver)
                     
                     if steps.count == 0 {
                         self?.openMainController()

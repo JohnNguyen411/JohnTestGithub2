@@ -28,6 +28,9 @@
 		525047232214C9A400D07CD4 /* AppController+AlertSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525047222214C9A300D07CD4 /* AppController+AlertSound.swift */; };
 		525047252214E78700D07CD4 /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525047242214E78700D07CD4 /* UserDefaults+Voluxe.swift */; };
 		52504727221500FA00D07CD4 /* UserDefaults+Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52504726221500FA00D07CD4 /* UserDefaults+Permissions.swift */; };
+		52504729221643E400D07CD4 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52504728221643E400D07CD4 /* NavigationHelper.swift */; };
+		5250472B2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5250472A2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift */; };
+		5250472D2217659F00D07CD4 /* UIView+Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5250472C2217659F00D07CD4 /* UIView+Dimensions.swift */; };
 		528194882203B9C500C7E8EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 528194872203B9C500C7E8EF /* Localizable.strings */; };
 		5281948B2203BB5A00C7E8EF /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948A2203BB5A00C7E8EF /* Localized.swift */; };
 		5281948E2204F43F00C7E8EF /* RepairOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */; };
@@ -76,7 +79,6 @@
 		5312142421C9AF3C00F3FCEB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142321C9AF3C00F3FCEB /* ProfileViewController.swift */; };
 		5312142B21CAB49500F3FCEB /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142A21CAB49500F3FCEB /* RequestViewController.swift */; };
 		5312142D21CB0AE700F3FCEB /* FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142C21CB0AE700F3FCEB /* FlowViewController.swift */; };
-		5312143121CC569E00F3FCEB /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143021CC569E00F3FCEB /* ContactInfoViewController.swift */; };
 		5312143321CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143221CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift */; };
 		5312143521CC689200F3FCEB /* SelfieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143421CC689200F3FCEB /* SelfieViewController.swift */; };
 		5316E9692200CA950053832E /* OSLog+Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9682200CA950053832E /* OSLog+Analytics.swift */; };
@@ -271,6 +273,9 @@
 		525047222214C9A300D07CD4 /* AppController+AlertSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppController+AlertSound.swift"; sourceTree = "<group>"; };
 		525047242214E78700D07CD4 /* UserDefaults+Voluxe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Voluxe.swift"; sourceTree = "<group>"; };
 		52504726221500FA00D07CD4 /* UserDefaults+Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Permissions.swift"; sourceTree = "<group>"; };
+		52504728221643E400D07CD4 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
+		5250472A2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+NavigationHelper.swift"; sourceTree = "<group>"; };
+		5250472C2217659F00D07CD4 /* UIView+Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Dimensions.swift"; sourceTree = "<group>"; };
 		528194872203B9C500C7E8EF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		5281948A2203BB5A00C7E8EF /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepairOrderRequest.swift; sourceTree = "<group>"; };
@@ -317,7 +322,6 @@
 		5312142321C9AF3C00F3FCEB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5312142A21CAB49500F3FCEB /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		5312142C21CB0AE700F3FCEB /* FlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowViewController.swift; sourceTree = "<group>"; };
-		5312143021CC569E00F3FCEB /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		5312143221CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPhoneViewController.swift; sourceTree = "<group>"; };
 		5312143421CC689200F3FCEB /* SelfieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieViewController.swift; sourceTree = "<group>"; };
 		5316E9682200CA950053832E /* OSLog+Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Analytics.swift"; sourceTree = "<group>"; };
@@ -616,6 +620,7 @@
 			isa = PBXGroup;
 			children = (
 				5316E96D2200F1900053832E /* Log.swift */,
+				52504728221643E400D07CD4 /* NavigationHelper.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -678,6 +683,7 @@
 				52504726221500FA00D07CD4 /* UserDefaults+Permissions.swift */,
 				525047242214E78700D07CD4 /* UserDefaults+Voluxe.swift */,
 				5339035421D00B5A00DD16D8 /* UIButton+Color.swift */,
+				5250472C2217659F00D07CD4 /* UIView+Dimensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -780,6 +786,7 @@
 				52C67E7821F9189A005EEC3B /* NSMutableAttributedString+Bold.swift */,
 				52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */,
 				52A1CE43220CF22E002F16BE /* Task+Flow.swift */,
+				5250472A2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -790,7 +797,6 @@
 				52C67E7121F7DEAD005EEC3B /* Request */,
 				5312143221CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift */,
 				52C67E6921ED60D8005EEC3B /* PhoneVerificationViewController.swift */,
-				5312143021CC569E00F3FCEB /* ContactInfoViewController.swift */,
 				5312142C21CB0AE700F3FCEB /* FlowViewController.swift */,
 				5339035221CEC43B00DD16D8 /* ForgotPasswordViewController.swift */,
 				5374DF3521E52FBF00956122 /* InspectionPhotosViewController.swift */,
@@ -1484,6 +1490,7 @@
 				52C67E7321F7DF08005EEC3B /* ReviewServiceViewController.swift in Sources */,
 				53F1E56021E01ECE007EF3AD /* UIImage+Resize.swift in Sources */,
 				5312142121C9A3E700F3FCEB /* UITableView+OverScroll.swift in Sources */,
+				5250472D2217659F00D07CD4 /* UIView+Dimensions.swift in Sources */,
 				5281948E2204F43F00C7E8EF /* RepairOrderRequest.swift in Sources */,
 				5339036721D1573600DD16D8 /* SwipeNextView.swift in Sources */,
 				5316E98A220205510053832E /* OfflineInspection.swift in Sources */,
@@ -1491,6 +1498,7 @@
 				5281948B2203BB5A00C7E8EF /* Localized.swift in Sources */,
 				533047192188D834007CE01C /* NSObject+Voluxe.swift in Sources */,
 				53DA9CBD2180F52900ABC414 /* DriverDealershipTimeSlotAssignment.swift in Sources */,
+				5250472B2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift in Sources */,
 				536FFD932177901D00C83F89 /* UIView+AutoLayout.swift in Sources */,
 				52A1CE46220E5455002F16BE /* UIImageViewAligned.swift in Sources */,
 				5330472721890B1E007CE01C /* AppDelegate+Push.swift in Sources */,
@@ -1500,6 +1508,7 @@
 				53DA9CAB2180C52300ABC414 /* Customer.swift in Sources */,
 				52C67E6A21ED60D8005EEC3B /* PhoneVerificationViewController.swift in Sources */,
 				533046E5218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */,
+				52504729221643E400D07CD4 /* NavigationHelper.swift in Sources */,
 				53B43F9A218B77DE00EF847E /* UserDefaults+LuxeAPI.swift in Sources */,
 				53B43FA3218CB6AC00EF847E /* AppController+Test.swift in Sources */,
 				531A8A2721EE7D8300D5C8C0 /* OdometerReading.swift in Sources */,
@@ -1520,7 +1529,6 @@
 				53C190EB219B2A9D00CBC410 /* GridLayout.swift in Sources */,
 				5316E96E2200F1900053832E /* Log.swift in Sources */,
 				531A8A2521ED599100D5C8C0 /* InspectionCameraView.swift in Sources */,
-				5312143121CC569E00F3FCEB /* ContactInfoViewController.swift in Sources */,
 				535A452F217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */,
 				52C67E8621F9205C005EEC3B /* LoanerPaperworkViewController.swift in Sources */,
 				53DA9CC02180F87600ABC414 /* BookingFeedback.swift in Sources */,
@@ -1759,6 +1767,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDevelopment;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
@@ -1768,6 +1777,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1779,6 +1789,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
@@ -1788,6 +1799,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.production;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1902,6 +1914,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconStaging;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
@@ -1911,6 +1924,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1998,6 +2012,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
@@ -2007,6 +2022,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

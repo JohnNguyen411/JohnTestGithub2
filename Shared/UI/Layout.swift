@@ -24,6 +24,11 @@ struct Layout {
         guard let superview = view.superview, superview == peerView.superview else { return }
         view.bottomAnchor.constraint(equalTo: peerView.bottomAnchor, constant: spacing).isActive = true
     }
+    
+    static func pin(bottomOf view: UIView, topOf peerView: UIView, spacing: CGFloat = 0) {
+        guard let superview = view.superview, superview == peerView.superview else { return }
+        view.bottomAnchor.constraint(equalTo: peerView.topAnchor, constant: spacing).isActive = true
+    }
 
     static func pinToSuperviewTop(view: UIView, spacing: CGFloat = 0, useSafeArea: Bool = true) {
         guard let superview = view.superview else { return }

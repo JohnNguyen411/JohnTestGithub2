@@ -18,7 +18,7 @@ struct Driver: Codable {
     let passwordResetRequired: Bool
     let lastLoginAt: Date?  // might be null
     let workPhoneNumber: String
-    let workPhoneNumberVerified: Bool
+    var workPhoneNumberVerified: Bool
     let personalPhoneNumber: String?
     let personalPhoneNumberVerified: Bool?
     let photoUrl: String? // might be null

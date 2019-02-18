@@ -35,6 +35,10 @@ extension UIView {
         Layout.pin(topOf: self, toBottomOf: view, spacing: spacing)
     }
     
+    func pinBottomToTopOf(view: UIView, spacing: CGFloat = 0) {
+        Layout.pin(bottomOf: self, topOf: view, spacing: spacing)
+    }
+    
 
     func matchConstraints(to view: UIView) {
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -63,7 +67,14 @@ extension UIView {
     func pinLeadingToSuperView(constant: CGFloat = 0) {
         self.translatesAutoresizingMaskIntoConstraints = false
         guard let superview = self.superview else { return }
-        self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: constant).isActive = true
+        let constraint = self.leadingAnchor.constraint(equalTo: superview.leadingAnchor, constant: constant)
+        constraint.priority = UILayoutPriority(rawValue: 999)
+        constraint.isActive = true
+    }
+    
+    func pinLeadingToTrailingOfView(peerView: UIView, constant: CGFloat = 0) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.leadingAnchor.constraint(equalTo: peerView.trailingAnchor, constant: constant).isActive = true
     }
     
     func pinTrailingToView(peerView: UIView, constant: CGFloat = 0) {

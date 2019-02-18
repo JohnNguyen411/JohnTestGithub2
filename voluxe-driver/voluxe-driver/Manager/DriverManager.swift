@@ -14,6 +14,7 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
 
     static let shared = DriverManager()
     var lastLocationUpdate: Date?
+    var workPhoneNumberVerified = false
     
     // todo: store Dealerships in local storage
     var dealerships: [Dealership]?
@@ -27,6 +28,7 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
 
     private var _driver: Driver? {
         didSet {
+            self.workPhoneNumberVerified = _driver?.workPhoneNumberVerified ?? false
             self.notifyDriverDidChange()
             self.refreshPhotoForDriverIfNecessary(oldValue?.photoUrl)
         }
@@ -46,6 +48,10 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
 
     var driverPhoto: UIImage? {
         return self._driverPhoto
+    }
+    
+    var readyForUse: Bool {
+        return self._driver?.workPhoneNumberVerified ?? false && self.workPhoneNumberVerified
     }
 
     /// Provided as a convenience if UI requires the most up-to-date
@@ -135,13 +141,13 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
         // No need to authenticate, we are using token to retrieve `/me`
         DriverAPI.me() {
             driver, error in
-            if error == nil {
-                self._driver = driver
-                if driver?.readyForUse() ?? false {
+            self.updateDriverWithToken(completion: { updateTokenError in
+                if error == nil {
+                    self._driver = driver
+                }
+                if let driver = driver {
                     self.dealerships(for: driver)
                 }
-            }
-            self.updateDriverWithToken(completion: { updateTokenError in
                 completion(driver, error)
             })
         }
@@ -207,7 +213,7 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
                          didUpdateLocations locations: [CLLocation])
     {
         guard let location = locations.first else { return }
-        guard let driver = self.driver, driver.readyForUse() else { return }
+        guard let driver = self.driver, self.readyForUse else { return }
         
         self._location = location
         
@@ -252,7 +258,7 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
     // getting request updates, this probably needs to be more resilient
     // and keep trying if the error response is network related
     private func updateDriverWithToken(completion: ((LuxeAPIError?) -> Void)? = nil) {
-        guard let driver = self.driver, driver.readyForUse() else {  completion?(nil); return }
+        guard let driver = self.driver else {  completion?(nil); return }
         guard let token = self.pushToken else { completion?(nil); return }
         DriverAPI.register(device: token, for: driver) {
             error in

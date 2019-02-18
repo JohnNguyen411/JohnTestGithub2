@@ -137,6 +137,7 @@ extension VolvoColors {
     var sand: UIColor           { return self.brown(.light) }
 
     // greys
+    var darkestGrey: UIColor    { return self.grey(.darker) }
     var granite: UIColor        { return self.grey(.dark) }
     var slate: UIColor          { return self.grey() }
     var fog: UIColor            { return self.grey(.light) }

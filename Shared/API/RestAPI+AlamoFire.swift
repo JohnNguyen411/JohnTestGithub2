@@ -118,16 +118,22 @@ extension RestAPI {
             response in
             // TODO: for some reason, with empty body even with 204 or 205, it returns an error, which it should not.
             // So, manual workaround for now:
-            var error = response.error
-            let emptyResponseCodes = DataResponseSerializer.defaultEmptyResponseCodes
-        
-            if let statusCode = response.response?.statusCode, error != nil && emptyResponseCodes.contains(statusCode) {
-                error = nil
-            }
+            let error  = self.checkEmptyResponseCode(response: response)
+            
             let apiResponse = RestAPIResponse(data: response.result.value, error: error, statusCode: response.response?.statusCode)
             self.inspect(urlResponse: response.response, apiResponse: apiResponse)
             completion?(apiResponse)
         }
+    }
+    
+    private func checkEmptyResponseCode(response: DataResponse<Data>) -> Error? {
+        var error = response.error
+        let emptyResponseCodes = DataResponseSerializer.defaultEmptyResponseCodes
+        
+        if let statusCode = response.response?.statusCode, error != nil && emptyResponseCodes.contains(statusCode) {
+            error = nil
+        }
+        return error
     }
 
     // This is wrapped in a DEBUG clause to reduce overhead in production builds.
@@ -205,7 +211,13 @@ extension RestAPI {
                                           headers: Self.convertToAlamoFireHeaders(headers: self.headers))
         request.responseData {
             response in
-            let apiResponse = RestAPIResponse(data: response.result.value, error: response.error, statusCode: response.response?.statusCode)
+            
+            
+            // TODO: for some reason, with empty body even with 204 or 205, it returns an error, which it should not.
+            // So, manual workaround for now:
+            let error = self.checkEmptyResponseCode(response: response)
+            
+            let apiResponse = RestAPIResponse(data: response.result.value, error: error, statusCode: response.response?.statusCode)
             self.inspect(urlResponse: response.response, apiResponse: apiResponse)
             completion(apiResponse)
         }

@@ -37,3 +37,26 @@ class LoginFlowViewController: FlowViewController {
         return stepVC
     }
 }
+
+extension LoginFlowViewController {
+    
+    static func changePhoneNumberSteps() -> [Step] {
+        return [PhoneNumberStep(), Step(title:Unlocalized.confirmPhoneNumber, controllerName: PhoneVerificationViewController.className)]
+    }
+    
+    static func loginSteps(for driver: Driver) -> [Step] {
+        var steps: [Step] = []
+        
+        if driver.passwordResetRequired {
+            steps.append(ForgotPasswordStep())
+        }
+        if !driver.workPhoneNumberVerified {
+            steps.append(PhoneNumberStep())
+            steps.append(Step(title:Unlocalized.confirmPhoneNumber, controllerName: PhoneVerificationViewController.className))
+        }
+        if driver.photoUrl == nil || driver.photoUrl?.count == 0 {
+            steps.append(Step(title:Unlocalized.photographYourself, controllerName: SelfieViewController.className))
+        }
+        return steps
+    }
+}

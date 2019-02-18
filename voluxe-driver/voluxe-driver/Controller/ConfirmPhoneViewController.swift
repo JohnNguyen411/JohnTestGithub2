@@ -18,6 +18,8 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
     var validPhoneNumber: NBPhoneNumber?
     let phoneUtil = NBPhoneNumberUtil.sharedInstance()
     var countryCode: String?
+    
+    var isPhoneNumberUpdate = false
 
     private let verifyLabel = Label.dark(with: Unlocalized.letsVerifyPhoneNumber)
     private let cancelButton = UIButton.Volvo.secondary(title: Unlocalized.cancel)
@@ -32,6 +34,12 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
             countryCode = textField.getDefaultCountryCode()
         }
         
+        if DriverManager.shared.readyForUse {
+            isPhoneNumberUpdate = true
+            self.navigationItem.title = .localized(.viewProfileChangeContact)
+            self.nextButton.setTitle(String.localized(.update).uppercased(), for: .normal)
+        }
+        
         self.addActions()
     }
 
@@ -43,6 +51,7 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
             textField.flagPhoneNumberDelegate = self
             countryCode = textField.getDefaultCountryCode()
         }
+        
         
         self.addActions()
     }
@@ -108,9 +117,16 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
         guard let validPhoneNumber = self.validPhoneNumber else { return }
         guard DriverManager.shared.driver != nil else { return }
         
+        AppController.shared.lookBusy()
+        
         // retrieve latest /me
         DriverManager.shared.me(completion: { [weak self] driver, error in
+            AppController.shared.lookNotBusy()
             if let driver = driver {
+                if self?.isPhoneNumberUpdate ?? false && self?.isPhoneNumberEqual(driver: driver, validPhoneNumber: validPhoneNumber) ?? false {
+                    self?.navigationController?.popViewController(animated: true)
+                    return
+                }
                 self?.proceedNext(driver: driver, validPhoneNumber: validPhoneNumber)
             }
             if error != nil {
@@ -123,7 +139,11 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
 
     @objc func cancelButtonTouchUpInside() {
         if !self.popStep() {
-            AppController.shared.logout()
+            if isPhoneNumberUpdate {
+                self.navigationController?.popViewController(animated: true)
+            } else {
+                AppController.shared.logout()
+            }
         }
     }
     
@@ -133,21 +153,32 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
         }
     }
     
-    //MARK: API Calls
-    
-    private func proceedNext(driver: Driver, validPhoneNumber: NBPhoneNumber) {
+    private func fullPhoneNumber(validPhoneNumber: NBPhoneNumber) -> String? {
         do {
             if let phoneUtil = self.phoneUtil {
                 let fullPhoneNumber = try phoneUtil.format(validPhoneNumber, numberFormat: .E164)
-                if fullPhoneNumber == driver.workPhoneNumber {
-                    // request verification code
-                    self.requestVerificationCode(driver: driver)
-                } else {
-                    // update phone number
-                    self.updateWorkPhoneNumber(phoneNumber: fullPhoneNumber, driver: driver)
-                }
+                return fullPhoneNumber
             }
         } catch {}
+        
+        return nil
+    }
+    
+    private func isPhoneNumberEqual(driver: Driver, validPhoneNumber: NBPhoneNumber) -> Bool {
+        return fullPhoneNumber(validPhoneNumber: validPhoneNumber) == driver.workPhoneNumber
+    }
+    
+    //MARK: API Calls
+    
+    private func proceedNext(driver: Driver, validPhoneNumber: NBPhoneNumber) {
+        guard let fullPhoneNumber = fullPhoneNumber(validPhoneNumber: validPhoneNumber) else { return }
+        
+        if isPhoneNumberEqual(driver: driver, validPhoneNumber: validPhoneNumber) {
+            self.requestVerificationCode(driver: driver)
+        } else {
+            self.updateWorkPhoneNumber(phoneNumber: fullPhoneNumber, driver: driver)
+        }
+        
     }
     
     private func requestVerificationCode(driver: Driver) {

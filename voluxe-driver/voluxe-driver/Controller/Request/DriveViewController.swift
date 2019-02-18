@@ -85,32 +85,7 @@ class DriveViewController: RequestStepViewController {
             return
         }
         
-        let destinationParam = String(format: "?daddr=%f,%f", lat, long)
-        /*
-         NSString *defaultGPSApp = [[NSUserDefaults standardUserDefaults] valueForKey:@"default_gps_app"];
-         NSInteger gpsAppValue = LuxeGpsAppValueGoogleMaps;
-         if (defaultGPSApp) {
-         gpsAppValue = [defaultGPSApp integerValue];
-         }
-         */
-        // try to open Google Map Navigation
-        let googleMapsTestURL = URL(string: "comgooglemaps-x-callback://")
-        
-        // if setting is Waze and app installed, launch Waze
-        if let wazeTestUrl = URL(string: "waze://"), UIApplication.shared.canOpenURL(wazeTestUrl) {
-            // Waze is installed. Launch Waze and start navigation
-            guard let url = URL(string: String(format: "waze://?ll=%f,%f&navigate=yes", lat, long)) else { return }
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            
-            // if setting is Google Maps OR Waze and Google Maps app installed, launch Google Maps
-        } else if let mapTestURL = googleMapsTestURL, UIApplication.shared.canOpenURL(mapTestURL) {
-            guard let directionsURL = URL(string: "comgooglemaps-x-callback://\(destinationParam)&x-success=sourceapp://?resume=true&x-source=VolvoAgent") else { return }
-            UIApplication.shared.open(directionsURL, options: [:], completionHandler: nil)
-        } else {
-            // fallback AppleMap
-            guard let directionsURL = URL(string: String(format: "http://maps.apple.com/%@", destinationParam)) else { return }
-            UIApplication.shared.open(directionsURL, options: [:], completionHandler: nil)
-        }
+        NavigationHelper.shared.openDefaultGPSProvider(lat: lat, long: long)
     }
     
     @objc private func textCustomer() {

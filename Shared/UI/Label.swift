@@ -15,8 +15,19 @@ struct Label {
         let label = UILabel(frame: .zero)
         label.adjustsFontForContentSizeCategory = true
         label.textAlignment = .center
-        label.textColor = .darkGray
+        label.textColor = UIColor.Volvo.granite
         label.text = text
+        return label
+    }
+    
+    static func whiteTitle(with text: String? = nil) -> UILabel {
+        let label = UILabel(frame: .zero)
+        label.adjustsFontForContentSizeCategory = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.textColor = UIColor.Volvo.white
+        label.text = text
+        label.font = Font.Medium.regular
         return label
     }
     
@@ -25,7 +36,7 @@ struct Label {
         label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.textColor = .darkGray
+        label.textColor = UIColor.Volvo.granite
         label.text = text
         label.font = Font.Medium.regular
         return label
@@ -36,7 +47,7 @@ struct Label {
         label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
-        label.textColor = .darkGray
+        label.textColor = UIColor.Volvo.granite
         label.text = text
         label.numberOfLines = 0
         label.font = Font.Intermediate.regular

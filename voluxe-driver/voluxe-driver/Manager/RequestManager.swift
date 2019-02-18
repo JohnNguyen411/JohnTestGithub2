@@ -236,7 +236,7 @@ class RequestManager {
             completion?()
             return
         }
-        if !driver.readyForUse() {
+        if !DriverManager.shared.readyForUse {
             completion?()
             return
         }

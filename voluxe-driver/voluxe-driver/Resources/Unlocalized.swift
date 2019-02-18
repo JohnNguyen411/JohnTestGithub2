@@ -15,6 +15,7 @@ import Foundation
 struct Unlocalized {
 
     static let appStore = NSLocalizedString("App Store", comment: "")
+    static let appleMaps = NSLocalizedString("Apple Maps", comment: "")
 
     static let cancel = NSLocalizedString("cancel", comment: "")
     static let captureVehicle = NSLocalizedString("Capture both sides and all four corners of the vehicle", comment: "")

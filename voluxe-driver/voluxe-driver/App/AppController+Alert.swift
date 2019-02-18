@@ -107,4 +107,39 @@ extension AppController {
         alert.addAction(submitAction)
         self.present(alert, animated: true, completion: nil)
     }
+    
+    func buildAlertDestructive(title: String,
+                               message: String,
+                               cancelButtonTitle: String,
+                               destructiveButtonTitle: String,
+                               destructiveCompletion: @escaping (() -> ()),
+                               dialog: AnalyticsEnums.Name.Screen? = nil,
+                               screen: AnalyticsEnums.Name.Screen? = nil) -> UIAlertController
+    {
+        let alert = UIAlertController(title: title,
+                                      message: message,
+                                      preferredStyle: .alert)
+        
+        if let screen = screen { Analytics.trackView(screen: screen) }
+        
+        // Submit button
+        let backAction = UIAlertAction(title: cancelButtonTitle, style: .default) {
+            _ in
+            Analytics.trackClick(button: .dismissDialog, screen: screen)
+            alert.dismiss(animated: true, completion: nil)
+        }
+        
+        // Delete button
+        let deleteAction = UIAlertAction(title: destructiveButtonTitle, style: .destructive) {
+            _ in
+            Analytics.trackClick(button: .destructiveDialog, screen: screen)
+            alert.dismiss(animated: true, completion: nil)
+            destructiveCompletion()
+        }
+        
+        alert.addAction(backAction)
+        alert.addAction(deleteAction)
+        
+        return alert
+    }
 }

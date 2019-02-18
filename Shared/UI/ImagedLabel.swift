@@ -14,7 +14,7 @@ class ImagedLabel: UIView {
     let image = UIImageView(frame: .zero)
     let label = UILabel(frame: .zero)
     
-    init() {
+    init(extraSpacing: CGFloat? = nil) {
         super.init(frame: .zero)
         
         self.translatesAutoresizingMaskIntoConstraints = false
@@ -26,7 +26,7 @@ class ImagedLabel: UIView {
         self.label.textColor = UIColor.Volvo.volvoBlue
         
         self.image.contentMode = .scaleAspectFit
-        self.setConstraints()
+        self.setConstraints(extraSpacing: extraSpacing)
     }
     
     convenience init(text: String, image: UIImage) {
@@ -45,15 +45,19 @@ class ImagedLabel: UIView {
     }
     
 
-    private func setConstraints() {
+    private func setConstraints(extraSpacing: CGFloat? = nil) {
         
         self.image.pinLeadingToView(peerView: self)
 
         self.image.widthAnchor.constraint(equalToConstant: 20).isActive = true
         self.image.heightAnchor.constraint(equalToConstant: 20).isActive = true
         
-        self.label.pinLeadingToView(peerView: self, constant: 30)
-        self.label.centerYAnchor.constraint(equalTo: self.image.centerYAnchor)
+        if let extraSpacing = extraSpacing {
+            self.label.pinLeadingToView(peerView: self, constant: 30 + extraSpacing)
+        } else {
+            self.label.pinLeadingToView(peerView: self, constant: 30)
+        }
+        self.label.centerYAnchor.constraint(equalTo: self.image.centerYAnchor).isActive = true
         
     }
     
