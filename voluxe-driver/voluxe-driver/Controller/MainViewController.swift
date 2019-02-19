@@ -55,6 +55,7 @@ class MainViewController: UINavigationController {
     // MARK: Actions
 
     @objc func buttonTouchUpInside() {
+        Analytics.trackClick(navigation: .menu)
         AppController.shared.showProfile()
     }
 

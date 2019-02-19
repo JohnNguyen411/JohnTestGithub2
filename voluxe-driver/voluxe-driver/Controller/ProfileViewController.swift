@@ -194,7 +194,6 @@ class ProfileViewController: UIViewController {
         self.gpsProviderLabel.pinLeadingToSuperView(constant: ProfileViewController.leadingMargin)
         self.gpsProviderLabel.pinTopToBottomOf(view: separator, spacing: 56)
         
-        
         self.panelView.addSubview(self.gpsProviderTableView)
         self.gpsProviderTableView.pinLeadingToSuperView()
         self.gpsProviderTableView.pinTrailingToSuperView()
@@ -206,6 +205,11 @@ class ProfileViewController: UIViewController {
         } else {
             self.gpsProviderTableView.heightAnchor.constraint(equalToConstant: CGFloat(gpsProviders.count) * ProfileViewController.gpsRowHeight).isActive = true
             self.gpsProviderTableView.isScrollEnabled = false
+        }
+        
+        if gpsProviders.count <= 1 {
+            gpsProviderLabel.isHidden = true
+            gpsProviderTableView.isHidden =  true
         }
         
         // BOTTOM AREA
@@ -256,6 +260,8 @@ class ProfileViewController: UIViewController {
             return
         }
         
+        Analytics.trackClick(button: .leftPanelCallDealership)
+        
         if dealerships.count == 1 {
             self.callNumber(phoneNumber: dealerships[0].phoneNumber)
         } else if dealerships.count > 1 {
@@ -297,6 +303,7 @@ class ProfileViewController: UIViewController {
     }
     
     @objc func selfieButtonTouchUpInside() {
+        Analytics.trackClick(button: .leftPanelProfilePhoto)
         let controller = SelfieViewController()
         AppController.shared.mainController(push: controller, prefersProfileButton: false)
         AppController.shared.hideProfile(animated: true)
@@ -306,12 +313,17 @@ class ProfileViewController: UIViewController {
         
         guard DriverManager.shared.driver != nil else { return }
         
+        Analytics.trackClick(button: .leftPanelChangePhone)
+        
         let controller = LoginFlowViewController(steps: LoginFlowViewController.changePhoneNumberSteps(), direction: .horizontal)
         AppController.shared.mainController(push: controller, prefersProfileButton: false)
         AppController.shared.hideProfile(animated: true)
     }
     
     @objc func changePasswordButtonTouchUpInside() {
+        
+        Analytics.trackClick(button: .leftPanelChangePassword)
+        
         let controller = ForgotPasswordViewController()
         AppController.shared.mainController(push: controller, prefersProfileButton: false)
         AppController.shared.hideProfile()
@@ -319,6 +331,8 @@ class ProfileViewController: UIViewController {
     
     @objc func logoutButtonTouchUpInside() {
         // check if active request
+        
+        Analytics.trackClick(button: .leftPanelLogout)
         
         var showConfirmationDialog = false
         if RequestManager.shared.requests.count > 0 {
@@ -423,7 +437,16 @@ extension ProfileViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        UserDefaults.standard.preferredGPSProvider = self.gpsProviders[indexPath.row].providerKey.rawValue
+        let selectedProvider = self.gpsProviders[indexPath.row]
+        UserDefaults.standard.preferredGPSProvider = selectedProvider.providerKey.rawValue
+        
+        if selectedProvider.providerKey == .waze {
+            Analytics.trackClick(button: .leftPanelWaze)
+        } else if selectedProvider.providerKey == .googleMaps {
+            Analytics.trackClick(button: .leftPanelGoogleMaps)
+        } else {
+            Analytics.trackClick(button: .leftPanelAppleMaps)
+        }
         
         tableView.reloadData()
     }

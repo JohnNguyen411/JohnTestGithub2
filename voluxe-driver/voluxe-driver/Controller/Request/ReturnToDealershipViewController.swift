@@ -28,9 +28,10 @@ class ReturnToDealershipViewController: DriveViewController {
     override func fillWithRequest(request: Request) {
         super.fillWithRequest(request: request)
         
-        if let dealershipId = request.booking?.dealershipId, let dealerhip = DriverManager.shared.dealership(for: dealershipId) {
-            self.directionLong = dealerhip.location.longitude
-            self.directionLat = dealerhip.location.latitude
+        if let dealershipId = request.booking?.dealershipId, let dealership = DriverManager.shared.dealership(for: dealershipId) {
+            self.directionLong = dealership.location.longitude
+            self.directionLat = dealership.location.latitude
+            self.directionAddressString = dealership.location.address
         }
         
         self.titleLabel.text = self.step?.title ?? .localized(.returnToDealership)
@@ -57,6 +58,11 @@ class ReturnToDealershipViewController: DriveViewController {
         
         if !hasShownDialog && distanceBetween(driverLocation: driverLocation, destinationLocation: destinationLocation) > 500 {
             self.hasShownDialog = true
+            
+            guard let request = self.request else {
+                return
+            }
+            
             AppController.shared.playAlertSound()
             AppController.shared.alert(title: .localized(.popupTooFarFromDealershipTitle),
                                        message: .localized(.popupTooFarFromDealershipMessage),
@@ -65,7 +71,10 @@ class ReturnToDealershipViewController: DriveViewController {
                                        okCompletion: {
                                         // force complete
                                         super.swipeNext(completion: completion)
-            })
+            },
+                                       dialog: request.isPickup ? .pickupTooFarFromDealership : .deliveryTooFarFromDealership,
+                                       screen: self.screenName
+            )
         } else {
             super.swipeNext(completion: completion)
         }

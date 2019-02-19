@@ -59,7 +59,7 @@ extension DriverAPI {
                          completion: @escaping ((LuxeAPIError?) -> Void))
     {
         let route = "v1/drivers/\(driver.id)/devices/current"
-        let identifier = UIDevice.current.identifierForVendor?.uuidString ?? "UDID unavailable"
+        let identifier = KeychainManager.shared.deviceId ?? "UDID unavailable"
         let parameters: RestAPIParameters = ["unique_identifier": identifier,
                                              "address": token,
                                              "os": "ios",

@@ -23,6 +23,7 @@ struct AnalyticsEnums {
         case click
         case change
         case log
+        case slide
         case view
     }
 
@@ -34,6 +35,7 @@ struct AnalyticsEnums {
         case navigation
         case permission
         case screen
+        case task
     }
 
     enum Name: String {
@@ -51,8 +53,30 @@ struct AnalyticsEnums {
         enum Booking: String, CaseIterable {
             case state
         }
+        
+        enum Request: String, CaseIterable {
+            case task
+        }
 
         enum Button: String, CaseIterable {
+            
+            // driver
+            case leftPanelProfilePhoto
+            case leftPanelChangePhone
+            case leftPanelChangePassword
+            case leftPanelCallDealership
+            case leftPanelWaze
+            case leftPanelGoogleMaps
+            case leftPanelAppleMaps
+            case capturePhoto
+            case getRide
+            case textCustomer
+            case callCustomer
+            case requestCurrent
+            case requestUpcoming
+            case flashOn
+            case flashOff
+            
             case addNewLocation
             case callDealership
             case callHelp
@@ -88,6 +112,7 @@ struct AnalyticsEnums {
             case removeVehicle
             case requestLocation
             case requestNotifications
+            case retry
             case scheduleDelivery
             case scheduleService
             case selectDealership
@@ -141,11 +166,33 @@ struct AnalyticsEnums {
         }
 
         enum Screen: String, CaseIterable {
+            case addPhone // driver
             case account
             case bookingCompleted
             case bookingDetail
             case bookingFeedback
+            case changePhone // driver
             case confirm
+            case confirmProfilePhoto // driver
+            
+            case deliveryReviewService // driver
+            case deliveryRetrieveCustVehicle // driver
+            case deliveryDriveToCustomer // driver
+            case deliveryMeetCustomer // driver
+            case deliveryPhotoCustomerVehicle // driver
+            case deliveryReceiveLoaner // driver
+            case deliveryPhotoLoaner // driver
+            case deliveryExchangeKey // driver
+            case deliveryReturnToDealership // driver
+            case deliveryGetToDealership // driver
+            case deliveryLoanerMileage // driver
+            case deliveryLoanerMileageEmpty // driver
+            case deliveryLoanerMileageTooLess // driver
+            case deliveryLoanerMileageTooHigh // driver
+            case deliveryTooFarFromCustomer // driver
+            case deliveryTooFarFromDealership // driver
+            case deliveryAlreadyStartedDriving // driver
+            case deliveryUnknown // driver
             case dropoffActive
             case dropoffNew
             case dropoffDateTime
@@ -156,6 +203,7 @@ struct AnalyticsEnums {
             case help
             case helpList
             case helpDetail
+            case forgotPassword
             case landing
             case loading
             case location
@@ -164,18 +212,40 @@ struct AnalyticsEnums {
             case nameUpdate
             case needService
             case pickupActive
+            case pickupAlreadyStartedDriving // driver
             case pickupDateTime
             case pickupDealership
+            case pickupDriveToCustomer // driver
+            case pickupExchangeKey // driver
+            case pickupGetPaperwork // driver
+            case pickupGetToCustomer // driver
             case pickupLoaner
+            case pickupLoanerMileage // driver
+            case pickupLoanerMileageEmpty // driver
+            case pickupLoanerMileageTooLess // driver
+            case pickupLoanerMileageTooHigh // driver
             case pickupLocation
+            case pickupMeetCustomer // driver
             case pickupNew
+            case pickupPhotoCustomerVehicle // driver
+            case pickupPhotoDocuments // driver
+            case pickupPhotoLoaner // driver
+            case pickupReviewService // driver
+            case pickupRetrieveLoaner // driver
+            case pickupReturnToDealership // driver
             case pickupSelfActive
+            case pickupTooFarFromCustomer // driver
+            case pickupTooFarFromDealership // driver
+            case pickupUnknown // driver
+            case pickupVehicleNotes // driver
             case passwordReset
             case phoneUpdate
             case phoneVerification
             case privacyPolicy
+            case profilePhoto // driver
             case requestLocation
             case requestNotifications
+            case scheduleToday // driver
             case selfOBModal
             case serviceCompleted
             case serviceCustom
@@ -216,6 +286,7 @@ struct AnalyticsEnums {
         case granted
         case message
         case requestID = "request_id"
+        case requestTask = "request_task"
         case screenName = "screen_name"
         case selected
         case statusCode = "status_code"

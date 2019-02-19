@@ -95,7 +95,7 @@ class NavigationHelper {
     private func openGoogleMaps(lat: Double, long: Double) {
         let destinationParam = String(format: "?daddr=%f,%f", lat, long)
 
-        guard let directionsURL = URL(string: "\(NavigationHelper.wazeScheme)\(destinationParam)&x-success=sourceapp://?resume=true&x-source=VolvoAgent") else { return }
+        guard let directionsURL = URL(string: "\(NavigationHelper.googleMapsScheme)\(destinationParam)&x-success=sourceapp://?resume=true&x-source=VolvoAgent") else { return }
         UIApplication.shared.open(directionsURL, options: [:], completionHandler: nil)
     }
     

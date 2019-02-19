@@ -19,6 +19,10 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
     private let cancelButton = UIButton.Volvo.secondary(title: Unlocalized.cancel)
     private let nextButton = UIButton.Volvo.primary(title: Unlocalized.update)
 
+    
+    // MARK: Analytics
+    private var screenView: AnalyticsEnums.Name.Screen?
+    
     // MARK: Lifecycle
 
     override init(step: Step? = nil) {
@@ -43,6 +47,16 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         self.currentPasswordTextField.textField.becomeFirstResponder()
+        
+        if let driver = DriverManager.shared.driver {
+            screenView = .passwordReset
+        } else {
+            screenView = .forgotPassword
+        }
+        
+        if let screen = screenView {
+            Analytics.trackView(screen: screen)
+        }
         
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Volvo.background.light
@@ -104,7 +118,7 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
     }
 
     @objc func nextButtonTouchUpInside() {
-        
+        Analytics.trackClick(navigation: .next, screen: self.screenView)
         guard let driver = DriverManager.shared.driver else { return }
         
         if !String.areSimilar(stringOne: newPasswordTextField.text, stringTwo: passwordConfirmTextField.text) {
@@ -151,6 +165,7 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
     }
 
     @objc func cancelButtonTouchUpInside() {
+        Analytics.trackClick(navigation: .back, screen: self.screenView)
         guard let driver = DriverManager.shared.driver else { return }
 
         if driver.passwordResetRequired {

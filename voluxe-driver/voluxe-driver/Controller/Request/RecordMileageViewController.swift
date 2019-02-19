@@ -122,6 +122,14 @@ class RecordMileageViewController: RequestStepViewController {
     
     // if tooHigh == false, then too low
     func mileageError(tooHigh: Bool) {
+        
+        if tooHigh {
+            Analytics.trackView(screen: .pickupLoanerMileageTooHigh, from: self.screenName)
+        } else {
+            Analytics.trackView(screen: .deliveryLoanerMileageTooHigh, from: self.screenName)
+        }
+        
+        
         AppController.shared.alert(title: .localized(.viewRecordLoanerMileage),
                                    message: .localized(tooHigh ? .popupMileageMaxConfirmation : .popupMileageMinConfirmation),
                                    cancelButtonTitle: .localized(.no),

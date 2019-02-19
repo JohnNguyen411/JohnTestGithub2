@@ -28,13 +28,18 @@ class RequestStepViewController: StepViewController {
     var request: Request?
     var requestStepDelegate: RequestStepDelegate?
     var task: Task?
-    
+    var screenName: AnalyticsEnums.Name.Screen?
+
     init(request: Request?, step: StepTask?, task: Task?) {
         self.task = task
         super.init(step: step)
         if let request = request {
             fillWithRequest(request: request)
+            if let task = task {
+                self.screenName = analyticScreenName(task: task, request: request)
+            }
         }
+        
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -179,6 +184,12 @@ class RequestStepViewController: StepViewController {
             completion?(true)
         }
     }
+    
+    
+    //MARK: - Analytics
+    private func analyticScreenName(task: Task, request: Request) -> AnalyticsEnums.Name.Screen {
+        return AnalyticsEnums.screen(for: task, request: request)
+    }
 
     
     func updateRequest(with task: Task, completion: ((Bool) -> ())?) {
@@ -242,4 +253,5 @@ class RequestStepViewController: StepViewController {
 
 protocol RequestStepDelegate {
     func updateLocalTask(task: Task)
+    func showToast(message: String)
 }

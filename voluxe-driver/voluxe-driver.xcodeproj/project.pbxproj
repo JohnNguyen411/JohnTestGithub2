@@ -31,6 +31,9 @@
 		52504729221643E400D07CD4 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52504728221643E400D07CD4 /* NavigationHelper.swift */; };
 		5250472B2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5250472A2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift */; };
 		5250472D2217659F00D07CD4 /* UIView+Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5250472C2217659F00D07CD4 /* UIView+Dimensions.swift */; };
+		52504730221B44A300D07CD4 /* FBAnalytics+UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5250472F221B44A200D07CD4 /* FBAnalytics+UserManager.swift */; };
+		52504732221B704500D07CD4 /* Analytics+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52504731221B704500D07CD4 /* Analytics+Request.swift */; };
+		52504734221C84DF00D07CD4 /* UIView+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52504733221C84DF00D07CD4 /* UIView+Toast.swift */; };
 		528194882203B9C500C7E8EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 528194872203B9C500C7E8EF /* Localizable.strings */; };
 		5281948B2203BB5A00C7E8EF /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948A2203BB5A00C7E8EF /* Localized.swift */; };
 		5281948E2204F43F00C7E8EF /* RepairOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */; };
@@ -276,6 +279,9 @@
 		52504728221643E400D07CD4 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
 		5250472A2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+NavigationHelper.swift"; sourceTree = "<group>"; };
 		5250472C2217659F00D07CD4 /* UIView+Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Dimensions.swift"; sourceTree = "<group>"; };
+		5250472F221B44A200D07CD4 /* FBAnalytics+UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FBAnalytics+UserManager.swift"; sourceTree = "<group>"; };
+		52504731221B704500D07CD4 /* Analytics+Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analytics+Request.swift"; sourceTree = "<group>"; };
+		52504733221C84DF00D07CD4 /* UIView+Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Toast.swift"; sourceTree = "<group>"; };
 		528194872203B9C500C7E8EF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		5281948A2203BB5A00C7E8EF /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepairOrderRequest.swift; sourceTree = "<group>"; };
@@ -521,6 +527,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		5250472E221B448C00D07CD4 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				5250472F221B44A200D07CD4 /* FBAnalytics+UserManager.swift */,
+				52504731221B704500D07CD4 /* Analytics+Request.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
 		528194862203B99900C7E8EF /* Localization */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,6 +699,7 @@
 				525047242214E78700D07CD4 /* UserDefaults+Voluxe.swift */,
 				5339035421D00B5A00DD16D8 /* UIButton+Color.swift */,
 				5250472C2217659F00D07CD4 /* UIView+Dimensions.swift */,
+				52504733221C84DF00D07CD4 /* UIView+Toast.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -845,6 +861,7 @@
 		53B25DD72176960C002B846B /* voluxe-driver */ = {
 			isa = PBXGroup;
 			children = (
+				5250472E221B448C00D07CD4 /* Analytics */,
 				530BCD4B2177AFB0005327E7 /* API */,
 				533047032188D706007CE01C /* App */,
 				538C4D99218A3F6F00922B16 /* Controller */,
@@ -1447,6 +1464,7 @@
 				535381B721FEA0D600C03ECE /* FBAnalytics.swift in Sources */,
 				5339035121CEBED200DD16D8 /* LoginViewController.swift in Sources */,
 				5380089E21A33C2F00E47660 /* UIColor+Random.swift in Sources */,
+				52504732221B704500D07CD4 /* Analytics+Request.swift in Sources */,
 				5312142421C9AF3C00F3FCEB /* ProfileViewController.swift in Sources */,
 				5316E96B2200F07B0053832E /* OSLog.swift in Sources */,
 				533047242188F85B007CE01C /* AppDelegate+Fetch.swift in Sources */,
@@ -1476,6 +1494,7 @@
 				52504721221495C400D07CD4 /* RequestState.swift in Sources */,
 				533047102188D7C6007CE01C /* DebugTableViewCell.swift in Sources */,
 				53C190E9219B2A9D00CBC410 /* UIColor+Hex.swift in Sources */,
+				52504734221C84DF00D07CD4 /* UIView+Toast.swift in Sources */,
 				52FFBBAE21ADF78D00FAD7BE /* UserDefaults+Debug.swift in Sources */,
 				53C190ED219B2A9D00CBC410 /* Label.swift in Sources */,
 				5339035321CEC43B00DD16D8 /* ForgotPasswordViewController.swift in Sources */,
@@ -1502,6 +1521,7 @@
 				536FFD932177901D00C83F89 /* UIView+AutoLayout.swift in Sources */,
 				52A1CE46220E5455002F16BE /* UIImageViewAligned.swift in Sources */,
 				5330472721890B1E007CE01C /* AppDelegate+Push.swift in Sources */,
+				52504730221B44A300D07CD4 /* FBAnalytics+UserManager.swift in Sources */,
 				5330470F2188D7C6007CE01C /* DebugTableViewController.swift in Sources */,
 				5312141F21C95FBD00F3FCEB /* UIColor+Debug.swift in Sources */,
 				53DA9CC32181020400ABC414 /* Task.swift in Sources */,

@@ -67,7 +67,6 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
 
     @discardableResult
     func popStep() -> Bool {
-        //self.refreshSteps()
         if self.currentIndex <= 0 || self.steps.count <= currentIndex {
             return false
         }
@@ -95,7 +94,6 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
     
     @discardableResult
     func pushNextStep() -> Bool {
-        //self.refreshSteps()
         if self.currentIndex == self.steps.count-1 {
             return false
         }

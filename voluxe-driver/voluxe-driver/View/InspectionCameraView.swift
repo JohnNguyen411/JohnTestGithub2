@@ -13,7 +13,7 @@ import UIKit
 /// for an inspection photo flow.  This allows the view to be
 /// used as the primary view in a view controller or as part
 /// of another layout.
-class InspectionCameraView: UIView {
+class InspectionCameraView: UIView, ShutterViewProtocol {
 
     // MARK: Layout
 
@@ -37,6 +37,9 @@ class InspectionCameraView: UIView {
         label.textColor = UIColor.Volvo.white
         return label
     }()
+    
+    // Analytics
+    var screenName: AnalyticsEnums.Name.Screen?
 
     // MARK: Lifecycle
 
@@ -44,6 +47,7 @@ class InspectionCameraView: UIView {
         self.init(frame: CGRect.zero)
         self.addSubviews()
         self.addActions()
+        self.shutterView.delegate = self
     }
     
     deinit {
@@ -158,5 +162,22 @@ extension InspectionCameraView {
                 self.overlayImageView.image = nil
                 self.overlayLabel.text = nil
         }
+    }
+    
+    // MARK: ShutterViewDelegate
+    func resetButtonClick() {
+        guard let screenName = self.screenName else { return }
+        Analytics.trackClick(button: .retry, screen: screenName)
+    }
+    
+    func shutterButtonClick() {
+        guard let screenName = self.screenName else { return }
+        Analytics.trackClick(button: .capturePhoto, screen: screenName)
+        
+    }
+    
+    func flashButtonClick(enabled: Bool) {
+        guard let screenName = self.screenName else { return }
+        Analytics.trackClick(button: enabled ? .flashOn : .flashOff, screen: screenName)
     }
 }

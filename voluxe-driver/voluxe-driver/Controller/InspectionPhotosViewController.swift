@@ -35,6 +35,7 @@ class InspectionPhotosViewController: RequestStepViewController {
         self.init(request: request, step: step, task: task)
         self.type = type
         self.inspectionCameraView.update(for: type)
+        self.inspectionCameraView.screenName = self.screenName
         
         switch type {
             case .document: self.navigationItem.title = "Photo License, Insurance"

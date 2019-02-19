@@ -7,15 +7,19 @@
 //
 
 import Foundation
+import UIKit
 
 // Mostly inspired by https://github.com/dagostini/DAKeychain
 class KeychainManager {
     
     private static let tokenKey = "token"
+    private static let deviceUUIDKey = "deviceUUID"
     
     open var loggingEnabled = false
     
-    private init() {}
+    private init() {
+        self.loadDeviceId()
+    }
     
     private static var _shared: KeychainManager?
     
@@ -41,6 +45,33 @@ class KeychainManager {
     public func getToken() -> String? {
         return load(withKey: KeychainManager.tokenKey)
     }
+    
+    
+    var deviceId: String? {
+        set(newUUID) {
+            DispatchQueue.global().sync(flags: .barrier) {
+                self.save(newUUID, forKey: KeychainManager.deviceUUIDKey)
+            }
+        }
+        get {
+            return load(withKey: KeychainManager.deviceUUIDKey)
+        }
+    }
+    
+    private func loadDeviceId() {
+        guard let _ = deviceId else {
+            self.deviceId = generateUUID()
+            return
+        }
+    }
+    
+    private func generateUUID() -> String {
+        if let deviceID = UIDevice.current.identifierForVendor?.uuidString {
+            return deviceID
+        }
+        return UUID().uuidString
+    }
+
     
     open subscript(key: String) -> String? {
         get {

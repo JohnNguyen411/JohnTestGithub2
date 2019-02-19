@@ -43,6 +43,7 @@
 		524C201921ACB008003AA733 /* Dealership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CA1FBF698E00E5D9A0 /* Dealership.swift */; };
 		524C202121ACBA5D003AA733 /* AdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C202021ACBA5D003AA733 /* AdminAPI.swift */; };
 		524C202321ACBB17003AA733 /* AdminAPI+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C202221ACBB17003AA733 /* AdminAPI+Customer.swift */; };
+		52504737221CC14300D07CD4 /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535381BD21FEA1C700C03ECE /* FBAnalytics.swift */; };
 		526652D221963B8900CE99A3 /* CustomerAPI+Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 526652D121963B8900CE99A3 /* CustomerAPI+Booking.swift */; };
 		526F6E7F21B9DD87007C7D84 /* UIImage+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F2FBB21B757CB000236ED /* UIImage+LuxeAPI.swift */; };
 		526F6E8021B9DD88007C7D84 /* UIImage+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F2FBB21B757CB000236ED /* UIImage+LuxeAPI.swift */; };
@@ -133,7 +134,6 @@
 		535381C121FEA1C700C03ECE /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535381BD21FEA1C700C03ECE /* FBAnalytics.swift */; };
 		535381C321FEA1C700C03ECE /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535381BF21FEA1C700C03ECE /* AnalyticsCore.swift */; };
 		535381C421FEA1C700C03ECE /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535381C021FEA1C700C03ECE /* AnalyticsEnums.swift */; };
-		535381C621FEA56300C03ECE /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535381BD21FEA1C700C03ECE /* FBAnalytics.swift */; };
 		535381C721FEA57200C03ECE /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535381BF21FEA1C700C03ECE /* AnalyticsCore.swift */; };
 		535381C821FEA57E00C03ECE /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535381C021FEA1C700C03ECE /* AnalyticsEnums.swift */; };
 		5366416821594D8900564A5B /* AutoFillViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5366416721594D8900564A5B /* AutoFillViewController.swift */; };
@@ -2606,9 +2606,9 @@
 			files = (
 				524C201321ACAC68003AA733 /* LuxeAPI+Version.swift in Sources */,
 				524C201621ACADA3003AA733 /* LuxeAPI+Notifications.swift in Sources */,
-				535381C621FEA56300C03ECE /* FBAnalytics.swift in Sources */,
 				524C200421AC9CF5003AA733 /* LuxeAPI.swift in Sources */,
 				5303E2F620E4622600B1F4BE /* UserDefaults_UnitTests.swift in Sources */,
+				52504737221CC14300D07CD4 /* FBAnalytics.swift in Sources */,
 				526F6E8121B9DD88007C7D84 /* UIImage+LuxeAPI.swift in Sources */,
 				531A8A3121F18EE700D5C8C0 /* Thread+Assert.swift in Sources */,
 				5340E90D20D861C400B17D53 /* Analytics_UnitTests.swift in Sources */,

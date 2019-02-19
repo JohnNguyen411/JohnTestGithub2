@@ -186,6 +186,11 @@ class LoanerPaperworkViewController: RequestStepViewController {
         let destinationLocation = CLLocation(latitude: lat, longitude: long)
         if AppDelegate.distanceBetween(startLocation: driverLocation, endLocation: destinationLocation) > 500 {
             hasShowLocationDialog = true
+            
+            guard let request = self.request else {
+                return
+            }
+
             DriverManager.shared.locationDidChangeClosure = nil
             AppController.shared.playAlertSound()
             AppController.shared.alert(title: String(format: .localized(.popupAlreadyStartedDrivingTitle), self.request?.booking?.customer.firstName ?? .localized(.popupGetToCustomerTitle)),
@@ -196,8 +201,10 @@ class LoanerPaperworkViewController: RequestStepViewController {
                                         super.swipeNext(completion: { success in
                                             self.flowDelegate?.pushNextStep()
                                         })
-                                        
-            })
+                                       },
+                                       dialog: request.isPickup ? .pickupAlreadyStartedDriving : .deliveryAlreadyStartedDriving,
+                                       screen: self.screenName
+            )
         }
         
     }

@@ -29,6 +29,8 @@ class LoginViewController: StepViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        Analytics.trackView(screen: .login)
+        
         // support autofill
         if #available(iOS 11.0, *) {
             self.emailTextField.textField.textContentType = .username
@@ -127,15 +129,18 @@ class LoginViewController: StepViewController, UITextFieldDelegate {
     }
 
     @objc func nextButtonTouchUpInside() {
+        Analytics.trackClick(navigation: .next, screen: .login)
         AppController.shared.lookBusy()
         self.login(email: emailTextField.text, password: passwordTextField.text)
     }
 
     @objc func cancelButtonTouchUpInside() {
+        Analytics.trackClick(navigation: .back, screen: .login)
         AppController.shared.showLanding()
     }
 
     @objc func forgotButtonTouchUpInside() {
+        Analytics.trackClick(button: .forgotPassword, screen: .login)
         AppController.shared.alert(title: Unlocalized.forgotYourPassword, message: Unlocalized.pleaseContactAdvisor)
     }
     

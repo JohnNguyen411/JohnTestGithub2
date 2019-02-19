@@ -65,6 +65,7 @@ class MyScheduleViewController: UIViewController {
         Layout.fill(view: self.view, with: self.tableView, useSafeArea: false)
         Layout.fill(view: self.view, with: self.noRequestsView)
         self.startRequestManager()
+        Analytics.trackView(screen: .scheduleToday)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -256,7 +257,15 @@ extension MyScheduleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let (_, requests) = self.titlesAndRequests[indexPath.section]
         let request = requests[indexPath.row]
-        self.navigationController?.pushViewController(RequestViewController(with: request), animated: true)
+        
+        AppController.shared.mainController(push: RequestViewController(with: request), animated: true, asRootViewController: false, prefersProfileButton: true)
+        
+        //self.navigationController?.pushViewController(RequestViewController(with: request), animated: true)
+        if request.state == .started {
+            Analytics.trackClick(button: .requestCurrent, screen: .scheduleToday)
+        } else {
+            Analytics.trackClick(button: .requestUpcoming, screen: .scheduleToday)
+        }
     }
 }
 

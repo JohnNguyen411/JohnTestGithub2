@@ -10,13 +10,19 @@ import Foundation
 import UIKit
 
 extension AppController {
-
+    
     func alert(title: String = Unlocalized.genericAlertTitle,
-               message: String)
+               message: String,
+               dialog: AnalyticsEnums.Name.Screen? = nil,
+               screen: AnalyticsEnums.Name.Screen? = nil)
     {
+        if let dialog = dialog { Analytics.trackView(screen: dialog, from: screen) }
+
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let cancel = UIAlertAction(title: Unlocalized.ok, style: .cancel) {
             action in
+            Analytics.trackClick(button: .dismissDialog, screen: dialog)
+
             alert.dismiss(animated: true, completion: nil)
         }
         alert.addAction(cancel)
@@ -26,37 +32,44 @@ extension AppController {
     
     func alert(title: String,
                message: String,
-               completion: (() -> ())? = nil)
+               completion: (() -> ())? = nil,
+               dialog: AnalyticsEnums.Name.Screen? = nil,
+               screen: AnalyticsEnums.Name.Screen? = nil)
     {
         self.alert(title: title,
                    message: message,
                    buttonTitle: Unlocalized.ok.uppercased(),
-                   completion: completion)
+                   completion: completion, dialog: dialog, screen: screen)
     }
     
-    func alertGeneric(for error: LuxeAPIError?, retry: Bool, completion: (() -> ())? = nil) {
+    func alertGeneric(for error: LuxeAPIError?, retry: Bool, completion: (() -> ())? = nil,
+                      screen: AnalyticsEnums.Name.Screen? = nil) {
         let title = String.localized(.error)
         var message = String.localized(.errorUnknown)
         if let error = error, error.code == nil {
             message = String.localized(.errorOffline)
         }
-        self.alert(title: title, message: message, buttonTitle: .localized(retry ? .retry : .ok), completion: completion)
+        self.alert(title: title, message: message, buttonTitle: .localized(retry ? .retry : .ok), completion: completion, dialog: AnalyticsEnums.Name.Screen.error, screen: screen)
     }
     
     // Alert with only one button
     func alert(title: String,
-                    message: String,
-                    buttonTitle: String,
-                    completion: (() -> ())? = nil)
+               message: String,
+               buttonTitle: String,
+               completion: (() -> ())? = nil,
+               dialog: AnalyticsEnums.Name.Screen? = nil,
+               screen: AnalyticsEnums.Name.Screen? = nil)
     {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
         
-        
+        if let dialog = dialog { Analytics.trackView(screen: dialog, from: screen) }
+
         // Submit button
         let button = UIAlertAction(title: buttonTitle, style: .default) {
             _ in
+            Analytics.trackClick(button: .okDialog, screen: dialog)
             completion?()
             alert.dismiss(animated: true, completion: nil)
         }
@@ -70,9 +83,11 @@ extension AppController {
                message: String,
                cancelButtonTitle: String,
                okButtonTitle: String,
-               okCompletion: @escaping (() -> ()))
+               okCompletion: @escaping (() -> ()),
+               dialog: AnalyticsEnums.Name.Screen? = nil,
+               screen: AnalyticsEnums.Name.Screen? = nil)
     {
-        self.alert(title: title, message: message, cancelButtonTitle: cancelButtonTitle, cancelCompletion: nil, okButtonTitle: okButtonTitle, okCompletion: okCompletion)
+        self.alert(title: title, message: message, cancelButtonTitle: cancelButtonTitle, cancelCompletion: nil, okButtonTitle: okButtonTitle, okCompletion: okCompletion, dialog: dialog, screen: screen)
     }
     
     
@@ -82,16 +97,21 @@ extension AppController {
                cancelButtonTitle: String,
                cancelCompletion: (() -> ())?,
                okButtonTitle: String,
-               okCompletion: @escaping (() -> ()))
+               okCompletion: @escaping (() -> ()),
+               dialog: AnalyticsEnums.Name.Screen? = nil,
+               screen: AnalyticsEnums.Name.Screen? = nil)
     {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
         
+        if let dialog = dialog { Analytics.trackView(screen: dialog, from: screen) }
         
         // cancel button
         let backAction = UIAlertAction(title: cancelButtonTitle, style: .default) {
             _ in
+            Analytics.trackClick(button: .dismissDialog, screen: dialog)
+            
             alert.dismiss(animated: true, completion: nil)
             cancelCompletion?()
         }
@@ -99,6 +119,7 @@ extension AppController {
         // OK button
         let submitAction = UIAlertAction(title: okButtonTitle, style: .default) {
             _ in
+            Analytics.trackClick(button: .okDialog, screen: dialog)
             alert.dismiss(animated: true, completion: nil)
             okCompletion()
         }
@@ -120,19 +141,19 @@ extension AppController {
                                       message: message,
                                       preferredStyle: .alert)
         
-        if let screen = screen { Analytics.trackView(screen: screen) }
+        if let dialog = dialog { Analytics.trackView(screen: dialog, from: screen) }
         
         // Submit button
         let backAction = UIAlertAction(title: cancelButtonTitle, style: .default) {
             _ in
-            Analytics.trackClick(button: .dismissDialog, screen: screen)
+            Analytics.trackClick(button: .dismissDialog, screen: dialog)
             alert.dismiss(animated: true, completion: nil)
         }
         
         // Delete button
         let deleteAction = UIAlertAction(title: destructiveButtonTitle, style: .destructive) {
             _ in
-            Analytics.trackClick(button: .destructiveDialog, screen: screen)
+            Analytics.trackClick(button: .destructiveDialog, screen: dialog)
             alert.dismiss(animated: true, completion: nil)
             destructiveCompletion()
         }

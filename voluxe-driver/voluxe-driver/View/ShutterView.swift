@@ -117,6 +117,9 @@ class ShutterView: UIView {
         label.font = Font.Volvo.button
         return label
     }()
+    
+    // MARK: Delegates
+    var delegate: ShutterViewProtocol?
 
     // MARK: Lifecycle
 
@@ -178,14 +181,23 @@ class ShutterView: UIView {
         guard let cameraView = self.cameraView else { return }
         cameraView.useFlash = !cameraView.useFlash
         self.flashButton.isSelected = cameraView.useFlash
+        if let delegate = delegate {
+            delegate.flashButtonClick(enabled: self.flashButton.isSelected)
+        }
     }
 
     @objc func resetButtonTouchUpInside() {
+        if let delegate = delegate {
+            delegate.resetButtonClick()
+        }
         self.cameraView?.reset()
         self._numberOfPhotosTaken = 0
     }
 
     @objc func shutterButtonTouchUpInside() {
+        if let delegate = delegate {
+            delegate.shutterButtonClick()
+        }
         self.cameraView?.capture()
         guard self.incrementNumberOfPhotosTakenOnShutter else { return }
         self._numberOfPhotosTaken += 1
@@ -230,4 +242,11 @@ class ShutterView: UIView {
         self.shutterButton.isEnabled = true
         self.shutterImageView.alpha = 1
     }
+}
+
+protocol ShutterViewProtocol {
+    func resetButtonClick()
+    func shutterButtonClick()
+    func flashButtonClick(enabled: Bool)
+
 }

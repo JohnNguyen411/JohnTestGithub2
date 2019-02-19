@@ -18,7 +18,8 @@ class DriveViewController: RequestStepViewController {
     
     var directionLat: Double?
     var directionLong: Double?
-    
+    var directionAddressString: String?
+
     func addContactButtons(below: UIView) {
         self.addView(self.contactTextView, below: below, spacing: 50)
         self.addView(self.contactCallView, below: self.contactTextView, spacing: 25)
@@ -62,8 +63,6 @@ class DriveViewController: RequestStepViewController {
         self.directionView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         self.contactTextView.heightAnchor.constraint(equalToConstant: 20).isActive = true
         self.contactCallView.heightAnchor.constraint(equalToConstant: 20).isActive = true
-        
-       
     }
     
     override func fillWithRequest(request: Request) {
@@ -72,7 +71,7 @@ class DriveViewController: RequestStepViewController {
         if request.hasLoaner {
             directionView.setText(.localized(.viewNavigateText), image: UIImage(named: "icon_directions"))
         } else {
-            directionView.setText(.localized(.viewGetToText), image: UIImage(named: "icon_directions"))
+            directionView.setText(Unlocalized.copyAddressToClipboard, image: UIImage(named: "icon_directions"))
         }
         
         contactTextView.setText(.localized(.viewContactText), image:  UIImage(named: "icon_text"))
@@ -81,19 +80,30 @@ class DriveViewController: RequestStepViewController {
     
     @objc private func navigateTo() {
         
-        guard let lat = self.directionLat, let long = self.directionLong else {
+        guard let lat = self.directionLat, let long = self.directionLong, let address = self.directionAddressString else {
             return
         }
         
-        NavigationHelper.shared.openDefaultGPSProvider(lat: lat, long: long)
+        if self.request?.hasLoaner ?? true {
+            Analytics.trackClick(button: .getDirections, screen: screenName)
+            NavigationHelper.shared.openDefaultGPSProvider(lat: lat, long: long)
+        } else {
+            // copy address to clipboard
+            UIPasteboard.general.string = address
+            Analytics.trackClick(button: .getRide, screen: screenName)
+            self.requestStepDelegate?.showToast(message: Unlocalized.addressCopiedToClipboard)
+        }
+        
     }
     
     @objc private func textCustomer() {
         self.contact(mode: "text_only")
+        Analytics.trackClick(button: .textCustomer, screen: screenName)
     }
     
     @objc private func callCustomer() {
         self.contact(mode: "voice_only")
+        Analytics.trackClick(button: .callCustomer, screen: screenName)
     }
     
     private func contact(mode: String) {

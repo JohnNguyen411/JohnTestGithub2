@@ -141,6 +141,11 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
         // No need to authenticate, we are using token to retrieve `/me`
         DriverAPI.me() {
             driver, error in
+            
+            // update in case Driver changed
+            Analytics.updateDeviceContext()
+            Analytics.updateUserContext()
+            
             self.updateDriverWithToken(completion: { updateTokenError in
                 if error == nil {
                     self._driver = driver
@@ -207,6 +212,7 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
     func stopLocationUpdates() {
         self._isUpdatingLocation = false
         self.locationManager.stopUpdatingLocation()
+        Analytics.updateDriverLocation(location: nil)
     }
 
     func locationManager(_ manager: CLLocationManager,
@@ -223,6 +229,9 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
         } else {
             self.lastLocationUpdate = Date()
         }
+        
+        Analytics.updateDriverLocation(location: location)
+        
         DriverAPI.update(location: location.coordinate, for: driver) {
             error in
             guard let error = error else { return }

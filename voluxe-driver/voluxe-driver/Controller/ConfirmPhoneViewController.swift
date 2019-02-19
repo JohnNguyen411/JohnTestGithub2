@@ -62,6 +62,8 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
     
     override func viewDidLoad() {
 
+        Analytics.trackView(screen: .addPhone)
+
         // support autofill
         // note that autofill for an OTC requires the code to be
         // either first or last in the message text
@@ -138,6 +140,7 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
     }
 
     @objc func cancelButtonTouchUpInside() {
+        Analytics.trackClick(navigation: .back, screen: .addPhone)
         if !self.popStep() {
             if isPhoneNumberUpdate {
                 self.navigationController?.popViewController(animated: true)
@@ -148,6 +151,7 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
     }
     
     private func pushVerificationCodeViewController() {
+        Analytics.trackClick(navigation: .next, screen: .addPhone)
         if !self.pushNextStep() {
             AppController.shared.mainController(push: PhoneVerificationViewController())
         }

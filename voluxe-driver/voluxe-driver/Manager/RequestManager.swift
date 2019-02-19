@@ -12,6 +12,10 @@ import UIKit
 
 class RequestManager {
     
+    // MARK: Analytics
+    
+    private var latestTask: Task?
+    
     // MARK: Singleton support
     static let shared = RequestManager()
     
@@ -254,9 +258,12 @@ class RequestManager {
     }
     
     private func updateRequest(from requests: [Request]) {
-        guard let request = self.request else { return }
         // update all request state in DB
         self.updateRequestsState(requests: requests)
+        guard let request = self.request else { return }
+        if let task = request.task, task != self.latestTask {
+            Analytics.trackChangeTask(task: task.rawValue, id: request.id)
+        }
         let filteredRequests = requests.filter { $0.id == request.id }
         guard filteredRequests.count == 1 else { return }
         self._request = filteredRequests.first

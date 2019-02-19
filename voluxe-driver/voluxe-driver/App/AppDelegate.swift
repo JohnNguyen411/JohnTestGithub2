@@ -43,6 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     /// push notifications.
     private func initServices() {
         Analytics.configure()
+        
+        // set UserProperties
+        Analytics.updateDeviceContext()
+        
         Fabric.with([Crashlytics.self])
         self.initBackgroundFetch()
         self.initLocationUpdates()

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SelfieViewController: StepViewController {
+class SelfieViewController: StepViewController, ShutterViewProtocol {
 
     // MARK: Data
 
@@ -77,6 +77,8 @@ class SelfieViewController: StepViewController {
 
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Volvo.background.light
+        
+        Analytics.trackView(screen: .profilePhoto)
 
         let gridView = self.view.addGridLayoutView(with: GridLayout.volvoAgent(), useSafeArea: false)
 
@@ -94,6 +96,8 @@ class SelfieViewController: StepViewController {
 
         gridView.add(subview: self.shutterView, from: 1, to: 6)
         self.shutterView.pinBottomToSuperviewBottom(spacing: -30)
+        
+        shutterView.delegate = self
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -157,12 +161,14 @@ class SelfieViewController: StepViewController {
             guard error == nil else { return }
             me.image = photo
             me.shutterView.incrementNumberOfPhotosTaken()
+            Analytics.trackView(screen: .confirmProfilePhoto)
         }
 
         self.shutterView.doneButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
     }
 
     @objc func nextButtonTouchUpInside() {
+        
         guard let image = self.image else { return }
         AppController.shared.lookBusy()
         DriverManager.shared.set(image: image) {
@@ -191,5 +197,19 @@ class SelfieViewController: StepViewController {
                                            message: Unlocalized.pleaseTryAgain)
             }
         }
+    }
+    
+    // MARK: ShutterViewDelegate
+    func resetButtonClick() {
+        Analytics.trackClick(button: .retry, screen: .confirmProfilePhoto)
+    }
+    
+    func shutterButtonClick() {
+        Analytics.trackClick(button: .capturePhoto, screen: .profilePhoto)
+
+    }
+    
+    func flashButtonClick(enabled: Bool) {
+        Analytics.trackClick(button: enabled ? .flashOn : .flashOff, screen: .profilePhoto)
     }
 }

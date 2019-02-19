@@ -11,6 +11,9 @@ import UIKit
 
 class RequestViewController: FlowViewController, RequestStepDelegate, InspectionPhotoDelegate {
     
+    // MARK: Analytics
+    private var screen: AnalyticsEnums.Name.Screen?
+
     // MARK: Data
     private var request: Request
     private var localTask: Task? // current Task
@@ -166,6 +169,13 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
         super.updateTitle()
         let step = steps[currentIndex]
         self.swipeNextView.title = step.swipeTitle
+        
+        // Analytics
+        if let task = self.localTask {
+            let screen = AnalyticsEnums.screen(for: task, request: self.request)
+            Analytics.trackView(screen: screen)
+            self.screen = screen
+        }
 
     }
     
@@ -173,6 +183,12 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
 
     private func addActions() {
         self.swipeNextView.nextClosure = { [weak self] in
+            // Analytic
+            
+            if let task = self?.localTask {
+                Analytics.trackSlide(task: task.rawValue, screen: self?.screen)
+            }
+            
             self?.next()
         }
     }
@@ -188,6 +204,8 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
     }
 
     @objc func backButtonTouchUpInside() {
+        Analytics.trackClick(navigation: .back, screen: self.screen)
+        
         guard self.popStep() == false else { return }
         if let currentVC = self.currentVC {
             currentVC.view.removeFromSuperview()
@@ -308,6 +326,10 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
             }
         }
         self.localTask = task
+    }
+    
+    func showToast(message: String) {
+        self.view.showToast(toastMessage: message, duration: 3, font: Font.Medium.regular, position: .bottom)
     }
     
     // MARK: InspectionPhotoDelegate

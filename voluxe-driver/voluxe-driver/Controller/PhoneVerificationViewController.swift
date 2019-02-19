@@ -37,6 +37,8 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         
+        Analytics.trackView(screen: .phoneVerification)
+        
         // support autofill
         // note that autofill for an OTC requires the code to be
         // either first or last in the message text
@@ -94,9 +96,12 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
     
     @objc func nextButtonTouchUpInside() {
         self.textFieldDidChange(self.codeTextField.textField)
+        Analytics.trackClick(navigation: .next, screen: .phoneVerification)
     }
     
     @objc func cancelButtonTouchUpInside() {
+        Analytics.trackClick(navigation: .back, screen: .phoneVerification)
+
         if !self.popStep() {
             self.navigationController?.popViewController(animated: true)
         }

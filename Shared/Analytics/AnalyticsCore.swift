@@ -93,9 +93,25 @@ extension AnalyticsCore {
         if let screen = screen { params[.screenName] = screen.rawValue }
         self.track(event: .click, element: .navigation, name: navigation.rawValue, params: params)
     }
+    
+    // MARK:- Slide/Swipe
+    
+    func trackSlide(task: String, screen: AnalyticsEnums.Name.Screen? = nil)
+    {
+        var params: AnalyticsEnums.Params = [:]
+        if let screen = screen { params[.screenName] = screen.rawValue }
+        self.track(event: .slide, element: .task, name: task, params: params)
+    }
 
     // MARK:- Changes
 
+    func trackChangeTask(task: String, id: Int? = nil) {
+        var params: AnalyticsEnums.Params = [:]
+        params[.requestTask] = task
+        if let id = id { params[.requestID] = "\(id)" }
+        self.track(event: .change, element: .task, name: AnalyticsEnums.Name.Request.task.rawValue, params: params)
+    }
+    
     func trackChangeBooking(state: String, id: Int? = nil) {
         var params: AnalyticsEnums.Params = [:]
         params[.bookingState] = state

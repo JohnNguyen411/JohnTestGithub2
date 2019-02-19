@@ -30,6 +30,7 @@ class DriveToCustomerViewController: DriveViewController {
         
         self.directionLong = request.location?.longitude
         self.directionLat = request.location?.latitude
+        self.directionAddressString = request.location?.address
 
         let customerString = NSMutableAttributedString()
         self.titleLabel.attributedText = customerString.append(.localized(.customerColon), with: self.titleLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: Font.Medium.medium)
@@ -59,6 +60,11 @@ class DriveToCustomerViewController: DriveViewController {
         let destinationLocation = CLLocation(latitude: lat, longitude: long)
         
         if distanceBetween(driverLocation: driverLocation, destinationLocation: destinationLocation) > 500 {
+            
+            guard let request = self.request else {
+                return
+            }
+            
             AppController.shared.playAlertSound()
             AppController.shared.alert(title: .localized(.popupTooFarFromCustomerTitle),
                                        message: .localized(.popupTooFarFromCustomerMessage),
@@ -67,7 +73,10 @@ class DriveToCustomerViewController: DriveViewController {
                                        okCompletion: {
                                         // force complete
                                         super.swipeNext(completion: completion)
-            })
+            },
+                                       dialog: request.isPickup ? .pickupTooFarFromCustomer : .deliveryTooFarFromCustomer,
+                                       screen: self.screenName
+            )
         } else {
             super.swipeNext(completion: completion)
         }
