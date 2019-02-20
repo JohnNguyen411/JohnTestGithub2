@@ -4,6 +4,19 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>branch_app_domain</key>
+	<string>$(BRANCH_APP_DOMAIN)</string>
+	<key>branch_key</key>
+	<string>$(BRANCH_KEY)</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>volvovaletagent</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleDisplayName</key>
 	<string>Agent</string>
 	<key>CFBundleExecutable</key>

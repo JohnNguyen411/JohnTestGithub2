@@ -56,6 +56,7 @@ class ReceiveLoanerViewController: RequestStepViewController {
             
             self.reminderLabel.attributedText = NSMutableAttributedString.highlight(String(format: .localized(.viewReceiveVehicleInfoReminder), self.request?.booking?.customer.fullName() ?? .localized(.unknown)), with: UIColor.Volvo.yellow())
             
+            self.reminderLabel.sizeToFit()
         }
         
     }

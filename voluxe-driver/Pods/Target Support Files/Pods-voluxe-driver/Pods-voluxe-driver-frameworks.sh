@@ -144,6 +144,7 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Development" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Branch/Branch.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FlagPhoneNumber/FlagPhoneNumber.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
@@ -156,6 +157,7 @@ if [[ "$CONFIGURATION" == "Development" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Staging" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Branch/Branch.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FlagPhoneNumber/FlagPhoneNumber.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
@@ -168,6 +170,7 @@ if [[ "$CONFIGURATION" == "Staging" ]]; then
 fi
 if [[ "$CONFIGURATION" == "Production" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Branch/Branch.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FlagPhoneNumber/FlagPhoneNumber.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"
@@ -180,6 +183,7 @@ if [[ "$CONFIGURATION" == "Production" ]]; then
 fi
 if [[ "$CONFIGURATION" == "App Store" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/Branch/Branch.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/FlagPhoneNumber/FlagPhoneNumber.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework"

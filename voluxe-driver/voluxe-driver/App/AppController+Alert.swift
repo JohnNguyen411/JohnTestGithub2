@@ -104,7 +104,7 @@ extension AppController {
         let alert = UIAlertController(title: title,
                                       message: message,
                                       preferredStyle: .alert)
-        
+
         if let dialog = dialog { Analytics.trackView(screen: dialog, from: screen) }
         
         // cancel button
@@ -127,6 +127,11 @@ extension AppController {
         alert.addAction(backAction)
         alert.addAction(submitAction)
         self.present(alert, animated: true, completion: nil)
+        
+        // number of lines
+        UILabel.appearance(whenContainedInInstancesOf: [UIAlertController.self]).numberOfLines = 0
+        UILabel.appearance(whenContainedInInstancesOf: [UIAlertController.self]).lineBreakMode = .byWordWrapping
+        
     }
     
     func buildAlertDestructive(title: String,

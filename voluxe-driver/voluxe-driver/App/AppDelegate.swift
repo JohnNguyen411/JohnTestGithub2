@@ -9,6 +9,7 @@
 import Crashlytics
 import Fabric
 import UIKit
+import Branch
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -32,6 +33,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         self.initServices()
+        self.setupBranch(application, launchOptions: launchOptions)
+
         self.initAppearance()
         AppController.shared.launch()
         return true
@@ -48,6 +51,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Analytics.updateDeviceContext()
         
         Fabric.with([Crashlytics.self])
+        
+        
         self.initBackgroundFetch()
         self.initLocationUpdates()
         self.initPushNotifications()
@@ -65,4 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         AppController.shared.exit()
     }
+    
+    
 }

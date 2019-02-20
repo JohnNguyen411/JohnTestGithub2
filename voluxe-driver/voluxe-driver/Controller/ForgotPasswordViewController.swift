@@ -48,7 +48,7 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         self.currentPasswordTextField.textField.becomeFirstResponder()
         
-        if let driver = DriverManager.shared.driver {
+        if DriverManager.shared.driver != nil {
             screenView = .passwordReset
         } else {
             screenView = .forgotPassword

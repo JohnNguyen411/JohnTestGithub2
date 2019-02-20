@@ -20,6 +20,9 @@ class AppController: UIViewController {
     private init() {
         super.init(nibName: nil, bundle: nil)
         self.registerAPINotifications()
+        
+        UILabel.appearance(whenContainedInInstancesOf: [UIAlertController.self]).numberOfLines = 0
+        UILabel.appearance(whenContainedInInstancesOf: [UIAlertController.self]).lineBreakMode = .byWordWrapping
     }
 
     required init?(coder aDecoder: NSCoder) {

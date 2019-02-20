@@ -1,5 +1,8 @@
 PODS:
   - Alamofire (5.0.0.beta.1)
+  - Branch (0.25.11):
+    - Branch/Core (= 0.25.11)
+  - Branch/Core (0.25.11)
   - Crashlytics (3.10.9):
     - Fabric (~> 1.7.13)
   - Fabric (1.7.13)
@@ -77,6 +80,7 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `alamofire5`)
+  - Branch (= 0.25.11)
   - Crashlytics (= 3.10.9)
   - Fabric (= 1.7.13)
   - Firebase/Core (= 5.16.0)
@@ -88,6 +92,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - Branch
     - Crashlytics
     - Fabric
     - Firebase
@@ -119,6 +124,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 2ef6d6c984c5d21c366e9b41a9ae7dfee2b67a44
+  Branch: 3cc6dcfd726db42ced22c418c0fb09aa5e90a847
   Crashlytics: 55e24fc23989680285a21cb1146578d9d18e432c
   Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
   Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
@@ -138,6 +144,6 @@ SPEC CHECKSUMS:
   Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
   RealmSwift: c9580133e73ef40ed340401af2dbc9a5790dfea7
 
-PODFILE CHECKSUM: 4d6f12db068b61763fa3b3ae69791064176e4b33
+PODFILE CHECKSUM: 68254650bcb001a17afc8bf69eef590435030186
 
 COCOAPODS: 1.5.3
