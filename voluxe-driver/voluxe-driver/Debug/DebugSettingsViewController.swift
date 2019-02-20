@@ -60,6 +60,20 @@ class DebugSettingsViewController: DebugTableViewController {
                 self?.confirmHostChange()
             }
         )]
+        
+        settings += [DebugTableViewCellModel(title: "Disable Alert Sound",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = (UserDefaults.standard.disableAlertSound ? .checkmark : .none)
+        },
+                                             actionClosure:
+            {
+                _ in
+                UserDefaults.standard.disableAlertSound = !UserDefaults.standard.disableAlertSound
+        }
+            )]
 
         return ("Application", settings)
     }
@@ -94,6 +108,35 @@ class DebugSettingsViewController: DebugTableViewController {
             {
                 cell in
                 UserDefaults.standard.injectUpdateRequired = !UserDefaults.standard.injectUpdateRequired
+            }
+        )]
+        
+        settings += [DebugTableViewCellModel(title: "Disable Firebase",
+                                             cellReuseIdentifier: DebugSubtitleTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = (UserDefaults.standard.disableFirebase ? .checkmark : .none)
+                cell.detailTextLabel?.text = "Requires relaunch to take effect"
+        },
+                                             actionClosure:
+            {
+                _ in
+                UserDefaults.standard.disableFirebase = !UserDefaults.standard.disableFirebase
+            }
+        )]
+        
+        settings += [DebugTableViewCellModel(title: "Enable logging",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = (UserDefaults.standard.enableAlamoFireLogging ? .checkmark : .none)
+        },
+                                             actionClosure:
+            {
+                _ in
+                UserDefaults.standard.enableAlamoFireLogging = !UserDefaults.standard.enableAlamoFireLogging
             }
         )]
 

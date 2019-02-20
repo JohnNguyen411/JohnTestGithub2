@@ -44,4 +44,19 @@ extension UserDefaults {
             self.synchronize()
         }
     }
+    
+    /// Sound Alert played for Driver to far from customer etc
+    var disableAlertSound: Bool {
+        get {
+            #if DEBUG
+            return self.bool(forKey: #function)
+            #else
+            return false
+            #endif
+        }
+        set {
+            self.set(newValue, forKey: #function)
+            self.synchronize()
+        }
+    }
 }

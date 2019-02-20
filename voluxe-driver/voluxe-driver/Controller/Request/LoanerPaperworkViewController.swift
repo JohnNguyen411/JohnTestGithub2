@@ -167,7 +167,7 @@ class LoanerPaperworkViewController: RequestStepViewController {
     
     func locationDidChange(_ location: CLLocation?) {
         
-        if hasShowLocationDialog {
+        if hasShowLocationDialog || AppController.shared.isBusy() {
             return
         }
         

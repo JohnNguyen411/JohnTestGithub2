@@ -13,6 +13,9 @@ import AVFoundation
 extension AppController {
 
     func playAlertSound() {
+        
+        if UserDefaults.standard.disableAlertSound { return }
+        
         AudioServicesPlaySystemSoundWithCompletion(SystemSoundID(1151), {
             AudioServicesPlaySystemSoundWithCompletion(SystemSoundID(1151), {
                 AudioServicesPlaySystemSound(SystemSoundID(1151))

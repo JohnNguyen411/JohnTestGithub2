@@ -206,6 +206,10 @@ class RequestStepViewController: StepViewController {
             return
         }
         
+        if task == .exchangeKeys && request.loanerInspection == nil {
+            
+        }
+        
         // check if some task update failed, if yes, queue this update
         // Otherwise proceed to the update
         if OfflineTaskManager.shared.lastFailedTask(for: request.id) != nil {

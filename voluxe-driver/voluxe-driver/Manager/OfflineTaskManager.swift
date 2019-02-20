@@ -23,6 +23,7 @@ class OfflineTaskManager {
     func queue(task: Task, request: Request) {
         guard let realm = self.realm else { return }
         let offline = OfflineTaskUpdate(requestId: request.id, requestRoute: request.route, task: task)
+        Log.info("OfflineTaskManager queue task: \(task.rawValue)")
 
         try? realm.write {
             realm.add(offline)

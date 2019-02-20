@@ -59,7 +59,7 @@ class ReturnToDealershipViewController: DriveViewController {
         if !hasShownDialog && distanceBetween(driverLocation: driverLocation, destinationLocation: destinationLocation) > 500 {
             self.hasShownDialog = true
             
-            guard let request = self.request else {
+            guard let request = self.request, !AppController.shared.isBusy() else {
                 return
             }
             

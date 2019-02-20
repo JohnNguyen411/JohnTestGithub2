@@ -61,7 +61,7 @@ class DriveToCustomerViewController: DriveViewController {
         
         if distanceBetween(driverLocation: driverLocation, destinationLocation: destinationLocation) > 500 {
             
-            guard let request = self.request else {
+            guard let request = self.request, !AppController.shared.isBusy() else {
                 return
             }
             

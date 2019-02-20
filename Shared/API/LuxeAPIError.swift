@@ -51,6 +51,7 @@ struct LuxeAPIError: Codable, Error {
         case E4046
         case E4049
         case E4050
+        case E4052
         case E5001
         case E5002
     }
