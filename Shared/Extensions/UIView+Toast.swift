@@ -36,7 +36,7 @@ extension UIView
         bgView.tag = 555
 
         //Label For showing toast text
-        let lblMessage = UILabel()
+        let lblMessage = ToastLabel()
         lblMessage.numberOfLines = 0
         lblMessage.lineBreakMode = .byWordWrapping
         lblMessage.textColor = .white
@@ -124,8 +124,7 @@ extension CGFloat
 
 //MARK: Extension on UILabel for adding insets - for adding padding in top, bottom, right, left.
 
-extension UILabel
-{
+fileprivate class ToastLabel: UILabel {
     private struct AssociatedKeys {
         static var padding = UIEdgeInsets()
     }
