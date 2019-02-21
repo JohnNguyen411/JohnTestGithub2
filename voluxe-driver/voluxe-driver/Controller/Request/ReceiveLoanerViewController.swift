@@ -19,17 +19,17 @@ class ReceiveLoanerViewController: RequestStepViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        reminderLabel.font = Font.Intermediate.italic
+        self.reminderLabel.font = Font.Intermediate.italic
         
-        loanerImageView.alignLeft = true
-        loanerImageView.contentMode = .scaleAspectFit
-        loanerImageView.clipsToBounds = true
+        self.loanerImageView.alignLeft = true
+        self.loanerImageView.contentMode = .scaleAspectFit
+        self.loanerImageView.clipsToBounds = true
         
         self.addViews([self.licensePlateLabel])
-        self.loanerImageView.constrain(height: 100)
-        self.loanerImageView.constrain(width: 250)
-        self.addView(self.loanerImageView, below: self.licensePlateLabel, spacing: 30)
-        self.addView(self.reminderLabel, below: self.loanerImageView, spacing: 30)
+        self.loanerImageView.constrain(height: 120)
+        
+        self.addView(self.loanerImageView, below: self.licensePlateLabel, spacing: 20)
+        self.addView(self.reminderLabel, below: self.loanerImageView, spacing: 20)
 
     }
     

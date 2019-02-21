@@ -57,6 +57,12 @@ class StepViewController: UIViewController {
         return false
     }
     
+    func hideBackButton(_ hide: Bool) {
+        if let flowDelegate = self.flowDelegate {
+            flowDelegate.hideBackButton(hide)
+        }
+    }
+    
     
     // MARK: Step Data
     func saveStepState() {
@@ -83,4 +89,6 @@ protocol StepViewControllerDelegate {
      ***/
     @discardableResult
     func pushNextStep() -> Bool
+    
+    func hideBackButton(_ hide: Bool)
 }

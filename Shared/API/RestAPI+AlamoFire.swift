@@ -113,12 +113,22 @@ extension RestAPI {
             return
         }
 
+        encodedRequest.timeoutInterval = 9.0
         let sentRequest = Alamofire.AF.request(encodedRequest)
         sentRequest.responseData {
             response in
             // TODO: for some reason, with empty body even with 204 or 205, it returns an error, which it should not.
             // So, manual workaround for now:
             let error  = self.checkEmptyResponseCode(response: response)
+            
+            if UserDefaults.standard.enableAlamoFireLogging {
+                // print data
+                OSLog.info("response: \(response.debugDescription)")
+                if let data = response.data {
+                    let jsonString = String(data: data, encoding: .utf8)
+                    OSLog.info("json: \(jsonString ?? "")")
+                }
+            }
             
             let apiResponse = RestAPIResponse(data: response.result.value, error: error, statusCode: response.response?.statusCode)
             self.inspect(urlResponse: response.response, apiResponse: apiResponse)

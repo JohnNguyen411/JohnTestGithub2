@@ -121,7 +121,7 @@ class OfflineInspection: Object {
 
     func markAsFailed(_ error: LuxeAPIError? = nil) {
         if let error = error, error.code != nil {
-            Log.info("marking offline inspection as failed")
+            OSLog.info("marking offline inspection as failed")
             return
         }
         guard let realm = try? Realm() else { return }

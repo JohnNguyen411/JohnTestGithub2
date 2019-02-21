@@ -18,10 +18,10 @@ import RealmSwift
     dynamic var type: String?
     dynamic var task: String?
     dynamic var driverId: Int = -1
-    dynamic var vehicleId: Int?
-    dynamic var loanerVehicleId: Int?
-    dynamic var vehicleInspectionId: Int?
-    dynamic var loanerInspectionId: Int?
+    dynamic var vehicleId: Int = -1
+    dynamic var loanerVehicleId: Int = -1
+    dynamic var vehicleInspectionId: Int = -1
+    dynamic var loanerInspectionId: Int = -1
 
     
     init(request: Request, driverId: Int) {
@@ -31,10 +31,10 @@ import RealmSwift
         self.type = request.type.rawValue
         self.task = request.task?.rawValue
         self.driverId = driverId
-        self.vehicleId = request.booking?.vehicleId
-        self.loanerVehicleId = request.booking?.loanerVehicleId
-        self.vehicleInspectionId = request.vehicleInspectionId
-        self.loanerInspectionId = request.loanerInspectionId
+        self.vehicleId = request.booking?.vehicleId ?? -1
+        self.loanerVehicleId = request.booking?.loanerVehicleId ?? -1
+        self.vehicleInspectionId = request.vehicleInspectionId ?? -1
+        self.loanerInspectionId = request.loanerInspectionId ?? -1
         super.init()
     }
     
@@ -81,16 +81,16 @@ import RealmSwift
     
     private static func loanerInspection(requestId: Int) -> Inspection? {
         guard let realm = try? Realm() else { return nil }
-        if let request = realm.objects(RequestState.self).filter("id = %@", requestId).first, let loanerInspectionId = request.loanerInspectionId {
-            return Inspection(id: loanerInspectionId, requestId: requestId, vehicleId: request.vehicleId, notes: nil)
+        if let request = realm.objects(RequestState.self).filter("id = %@", requestId).first, request.loanerInspectionId > -1 {
+            return Inspection(id: request.loanerInspectionId, requestId: requestId, vehicleId: request.vehicleId, notes: nil)
         }
         return nil
     }
     
     private static func vehicleInspection(requestId: Int) -> Inspection? {
         guard let realm = try? Realm() else { return nil }
-        if let request = realm.objects(RequestState.self).filter("id = %@", requestId).first, let vehicleInspectionId = request.vehicleInspectionId {
-            return Inspection(id: vehicleInspectionId, requestId: requestId, vehicleId: request.vehicleId, notes: nil)
+        if let request = realm.objects(RequestState.self).filter("id = %@", requestId).first, request.vehicleInspectionId > -1 {
+            return Inspection(id: request.vehicleInspectionId, requestId: requestId, vehicleId: request.vehicleId, notes: nil)
         }
         return nil
     }

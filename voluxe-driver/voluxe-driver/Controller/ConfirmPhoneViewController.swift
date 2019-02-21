@@ -52,8 +52,10 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
             countryCode = textField.getDefaultCountryCode()
         }
         
-        
         self.addActions()
+    }
+    
+    deinit {
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -87,11 +89,17 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
         let gridView = contentView.addGridLayoutView(with: GridLayout.volvoAgent())
 
         
-        gridView.add(subview: self.verifyLabel, from: 1, to: 6)
-        self.verifyLabel.pinToSuperviewTop(spacing: 40)
+        if !isPhoneNumberUpdate {
+            gridView.add(subview: self.verifyLabel, from: 1, to: 6)
+            self.verifyLabel.pinToSuperviewTop(spacing: 40)
+        }
 
         gridView.add(subview: self.phoneNumberTextField, from: 1, to: 6)
-        self.phoneNumberTextField.pinTopToBottomOf(view: self.verifyLabel, spacing: 40)
+        if !isPhoneNumberUpdate {
+            self.phoneNumberTextField.pinTopToBottomOf(view: self.verifyLabel, spacing: 40)
+        } else {
+            self.phoneNumberTextField.pinToSuperviewTop(spacing: 40)
+        }
         self.phoneNumberTextField.heightAnchor.constraint(equalToConstant: CGFloat(VLVerticalTextField.verticalHeight)).isActive = true
         
         gridView.add(subview: self.cancelButton, from: 1, to: 2)
@@ -103,7 +111,11 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
+        // hide back button if needed
+        self.hideBackButton(AppController.shared.isVerifyingPhoneNumber)
+        
+        super.viewDidAppear(animated)
         self.phoneNumberTextField.textField.becomeFirstResponder()
     }
 
@@ -126,6 +138,7 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
             AppController.shared.lookNotBusy()
             if let driver = driver {
                 if self?.isPhoneNumberUpdate ?? false && self?.isPhoneNumberEqual(driver: driver, validPhoneNumber: validPhoneNumber) ?? false {
+                    AppController.shared.isVerifyingPhoneNumber = false
                     self?.navigationController?.popViewController(animated: true)
                     return
                 }
@@ -141,6 +154,7 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
 
     @objc func cancelButtonTouchUpInside() {
         Analytics.trackClick(navigation: .back, screen: .addPhone)
+        AppController.shared.isVerifyingPhoneNumber = false
         if !self.popStep() {
             if isPhoneNumberUpdate {
                 self.navigationController?.popViewController(animated: true)
@@ -177,6 +191,9 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
     private func proceedNext(driver: Driver, validPhoneNumber: NBPhoneNumber) {
         guard let fullPhoneNumber = fullPhoneNumber(validPhoneNumber: validPhoneNumber) else { return }
         
+        DriverManager.shared.workPhoneNumberVerified = false
+        AppController.shared.isVerifyingPhoneNumber = true
+        
         if isPhoneNumberEqual(driver: driver, validPhoneNumber: validPhoneNumber) {
             self.requestVerificationCode(driver: driver)
         } else {
@@ -208,6 +225,7 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
                 AppController.shared.lookNotBusy()
                 AppController.shared.alertGeneric(for: error, retry: false, completion: nil)
             } else {
+                
                 self?.refreshDriver()
             }
         }
@@ -294,6 +312,10 @@ class PhoneNumberStep: Step {
     var phoneNumber: String?
     
     init() {
-        super.init(title: Unlocalized.confirmPhoneNumber, controllerName: ConfirmPhoneViewController.className)
+        var title = String.localized(.confirmPhoneNumber)
+        if DriverManager.shared.readyForUse {
+            title = String.localized(.viewProfileChangeContact)
+        }
+        super.init(title: title, controllerName: ConfirmPhoneViewController.className)
     }
 }

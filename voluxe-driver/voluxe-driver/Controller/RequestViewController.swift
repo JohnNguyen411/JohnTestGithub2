@@ -253,7 +253,8 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
     }
     
     private static func stepsForTask(task: Task, request: Request) -> ([StepTask], Int) {
-
+        OSLog.info("stepsForTask \(task.rawValue)")
+        
         var currentTask: Task = .schedule
         var allSteps: [StepTask] = RequestViewController.stepByStep(for: currentTask, request: request)
         var targetTask: Task
@@ -273,7 +274,10 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
         
         var position = 1
 
+        OSLog.info("stepsForTask allSteps: \(allSteps.count)")
+
         for step in allSteps {
+            OSLog.info("stepsForTask allSteps: \(step.task.rawValue)")
             step.taskNumber = position
             // if it's inspection, leave it
             if step.task == .inspectLoanerVehicle || step.task == .inspectVehicle || step.task == .inspectDocuments || step.task == .inspectNotes {
@@ -287,14 +291,20 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
             position += 1
         }
         
+        
+        OSLog.info("stepsForTask strippedSteps: \(strippedSteps.count)")
+        
         var index = 0
         for step in strippedSteps {
+            OSLog.info("stepsForTask strippedSteps: \(step.task.rawValue)")
             if step.task == targetTask {
                 break
             } else {
                 index += 1
             }
         }
+        
+        OSLog.info("stepsForTask \(task.rawValue), count \(strippedSteps.count), index \(index)")
         return (strippedSteps, index)
     }
     
@@ -377,7 +387,7 @@ class StepTask: Step {
             swipe = .localized(.viewRetrieveVehicleLoanerSwipeTitle)
             next = .localized(.viewRecordLoanerMileage)
             
-        } else if task == .retrieveVehicleFromDealership || task == .retrieveForms {
+        } else if task == .retrieveVehicleFromDealership {
             
             title = .localized(.viewRetrieveVehicleCustomer)
             controllerName = LoanerPaperworkViewController.className
@@ -476,7 +486,6 @@ class StepTask: Step {
                 swipe = .localized(.viewRecordLoanerMileageDropoffSwipeButtonTitle)
                 next = nil
             }
-            
         }
         return StepTask(title: title, controllerName: controllerName, swipeTitle: swipe, nextTitle: next, task: task)
     }

@@ -76,12 +76,6 @@ extension RestAPIResponse {
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
             }
             
-            if UserDefaults.standard.enableAlamoFireLogging {
-                // print data
-                let jsonString = String(data: data, encoding: .utf8)
-                print("data: \(jsonString ?? "")")
-            }
-            
             let object = try decoder.decode(T.self, from: data)
             return object
         } catch {

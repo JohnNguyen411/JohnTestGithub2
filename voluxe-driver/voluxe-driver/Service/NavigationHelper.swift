@@ -24,6 +24,15 @@ class NavigationHelper {
                                  GPSProvider(providerKey: .appleMaps, providerName: Unlocalized.appleMaps)]
     }
     
+    func providerForKey(_ key: GPSProvider.ProviderKey) -> GPSProvider? {
+        for provider in appSupportedProviders {
+            if provider.providerKey == key {
+                return provider
+            }
+        }
+         return nil
+    }
+    
     func bestAvailableGPSProvider() -> GPSProvider.ProviderKey {
         if let preferredGPSProvider = UserDefaults.standard.preferredGPSProvider,
             let gpsProvider = GPSProvider.ProviderKey(rawValue: preferredGPSProvider),

@@ -11,6 +11,9 @@ import UIKit
 
 class MainViewController: UINavigationController {
 
+    // MARK: Data
+    private var showProfileStack: [Int: Bool] = [:]
+    
     // MARK: Layout
 
     private let profileButton: UIButton = {
@@ -76,27 +79,37 @@ class MainViewController: UINavigationController {
         UIView.animate(withDuration: animated ? 0.2 : 0) {
             self.profileButton.alpha = 1
         }
+        self.showProfileStack[self.children.count] = true
     }
 
     func hideProfileButton(animated: Bool = true) {
         UIView.animate(withDuration: animated ? 0.2 : 0) {
             self.profileButton.alpha = 0
         }
+        self.showProfileStack[self.children.count] = false
     }
 
-    override func pushViewController(_ viewController: UIViewController,animated: Bool) {
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         super.pushViewController(viewController, animated: animated)
         guard self.children.count > 1 else { return }
         self.hideProfileButton(animated: animated)
     }
 
     override func popViewController(animated: Bool) -> UIViewController? {
-        if self.children.count <= 2 { self.showProfileButton(animated: animated) }
+        if self.children.count <= 2 {
+            self.showProfileButton(animated: animated)
+        } else if let shouldShowButton = shouldShowProfileButton(index: self.children.count-1), shouldShowButton {
+            self.showProfileButton(animated: animated)
+        }
         return super.popViewController(animated: animated)
     }
 
     override func popToRootViewController(animated: Bool) -> [UIViewController]? {
         self.showProfileButton(animated: animated)
         return super.popToRootViewController(animated: animated)
+    }
+    
+    private func shouldShowProfileButton(index: Int) -> Bool? {
+        return showProfileStack[index]
     }
 }

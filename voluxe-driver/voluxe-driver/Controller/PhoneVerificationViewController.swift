@@ -52,7 +52,6 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
         self.codeTextField.textField.delegate = self
         self.codeTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
 
-        super.viewDidLoad()
         self.codeTextField.textField.keyboardType = .numberPad
         self.codeTextField.setRightButtonText(rightButtonText: "RESEND CODE", actionBlock: {  [weak self] in
             self?.resendCode()
@@ -83,8 +82,14 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
     }
     
     override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        
+        // hide back button if needed
+        self.hideBackButton(AppController.shared.isVerifyingPhoneNumber)
+        
         self.codeTextField.textField.becomeFirstResponder()
+        
+        super.viewDidAppear(animated)
+
     }
     
     // MARK: Actions
@@ -140,6 +145,8 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
         DriverManager.shared.me(completion: { [weak self] driver, error in
             AppController.shared.lookNotBusy()
             if let driver = driver {
+                
+                AppController.shared.isVerifyingPhoneNumber = false
                 
                 guard let weakSelf = self else { return }
                 

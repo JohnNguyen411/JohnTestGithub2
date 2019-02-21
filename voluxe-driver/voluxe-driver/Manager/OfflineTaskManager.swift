@@ -23,7 +23,7 @@ class OfflineTaskManager {
     func queue(task: Task, request: Request) {
         guard let realm = self.realm else { return }
         let offline = OfflineTaskUpdate(requestId: request.id, requestRoute: request.route, task: task)
-        Log.info("OfflineTaskManager queue task: \(task.rawValue)")
+        OSLog.info("OfflineTaskManager queue task: \(task.rawValue)")
 
         try? realm.write {
             realm.add(offline)
@@ -97,13 +97,13 @@ class OfflineTaskManager {
             [weak self] timer in
             self?.updateNext()
         }
-        Log.info("OfflineTaskManager started")
+        OSLog.info("OfflineTaskManager started")
     }
     
     func stop() {
         self.refreshTimer?.invalidate()
         self.refreshTimer = nil
-        Log.info("OfflineTaskManager stopped")
+        OSLog.info("OfflineTaskManager stopped")
     }
     
     @discardableResult

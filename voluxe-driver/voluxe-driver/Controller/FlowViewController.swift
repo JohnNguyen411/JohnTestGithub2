@@ -112,6 +112,11 @@ class FlowViewController: UIViewController, StepViewControllerDelegate {
         return false
     }
     
+    func hideBackButton(_ hide: Bool) {
+        self.navigationController?.navigationItem.hidesBackButton = hide
+        self.navigationItem.hidesBackButton = hide
+    }
+    
     func updateTitle() {
         let step = self.steps[currentIndex]
         self.navigationItem.title = step.title.capitalized

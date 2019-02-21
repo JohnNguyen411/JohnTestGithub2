@@ -22,6 +22,7 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
     private override init() {
         super.init()
         self.locationManager.delegate = self
+        self.locationManager.allowsBackgroundLocationUpdates = true
     }
 
     // MARK:- Current driver
@@ -129,7 +130,7 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
             driver, error in
             if error == nil { self._driver = driver }
             
-            self.updateDriverWithToken(completion: { updateTokenError in
+            self.updateDriverWithToken(driver: self.driver, completion: { updateTokenError in
                 completion(driver, error)
             })
         }
@@ -146,7 +147,7 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
             Analytics.updateDeviceContext()
             Analytics.updateUserContext()
             
-            self.updateDriverWithToken(completion: { updateTokenError in
+            self.updateDriverWithToken(driver: driver, completion: { updateTokenError in
                 if error == nil {
                     self._driver = driver
                 }
@@ -224,7 +225,7 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
         self._location = location
         
         // don't refresh more than every 5 sec
-        if let lastLocationUpdate = self.lastLocationUpdate, Date().timeIntervalSince(lastLocationUpdate) > 5.0 {
+        if let lastLocationUpdate = self.lastLocationUpdate, Date().timeIntervalSince(lastLocationUpdate) < 5.0 {
             return
         } else {
             self.lastLocationUpdate = Date()
@@ -259,15 +260,15 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
 
     func set(push token: String?) {
         self._pushToken = token
-        self.updateDriverWithToken()
+        self.updateDriverWithToken(driver: self.driver)
     }
 
     // TODO https://app.asana.com/0/858610969087925/1107652511581125/f
     // TODO since the push token is pretty important to the driver
     // getting request updates, this probably needs to be more resilient
     // and keep trying if the error response is network related
-    private func updateDriverWithToken(completion: ((LuxeAPIError?) -> Void)? = nil) {
-        guard let driver = self.driver else {  completion?(nil); return }
+    private func updateDriverWithToken(driver: Driver?, completion: ((LuxeAPIError?) -> Void)? = nil) {
+        guard let driver = driver else {  completion?(nil); return }
         guard let token = self.pushToken else { completion?(nil); return }
         DriverAPI.register(device: token, for: driver) {
             error in

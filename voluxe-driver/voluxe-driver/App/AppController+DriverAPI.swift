@@ -112,6 +112,8 @@ extension AppController {
             return
         }
         
+        if AppController.shared.isVerifyingPhoneNumber { return }
+        
         // don't show if already showing
         if let presentedController = AppController.shared.presentedController, (((presentedController as? LoginFlowViewController) != nil) || ((presentedController.children.first as? LoginFlowViewController) != nil)) {
             return
@@ -124,7 +126,7 @@ extension AppController {
         }
 
         DriverManager.shared.workPhoneNumberVerified = false
-
+        AppController.shared.isVerifyingPhoneNumber = true
         AppController.shared.mainController(push: LoginFlowViewController(steps: steps, direction: .horizontal),
                                             asRootViewController: true,
                                             prefersProfileButton: false)

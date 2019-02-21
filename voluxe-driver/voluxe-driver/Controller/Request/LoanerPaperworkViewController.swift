@@ -38,9 +38,8 @@ class LoanerPaperworkViewController: RequestStepViewController {
         loanerAgreement.font = Font.Intermediate.medium
         
         self.addViews([self.licensePlateLabel, self.keyCodeLabel])
-        self.addView(self.loanerImageView, below: self.keyCodeLabel, spacing: 30)
-        self.loanerImageView.constrain(height: 100)
-        self.loanerImageView.constrain(width: 250)
+        self.addView(self.loanerImageView, below: self.keyCodeLabel, spacing: 20)
+        self.loanerImageView.constrain(height: 120)
         
         self.handleSeparators()
         
@@ -73,7 +72,7 @@ class LoanerPaperworkViewController: RequestStepViewController {
         }
         
         if hasRO && !hasLoaner {
-            self.addView(self.separatorTop, below: self.loanerImageView, spacing: 30)
+            self.addView(self.separatorTop, below: self.loanerImageView, spacing: 20)
             self.addView(self.roLabel, below: self.separatorTop, spacing: 5)
             self.addView(self.separatorMiddle, below: self.roLabel, spacing: 5)
             
@@ -84,7 +83,7 @@ class LoanerPaperworkViewController: RequestStepViewController {
         }
         
         if !hasRO && hasLoaner {
-            self.addView(self.separatorMiddle, below: self.loanerImageView, spacing: 30)
+            self.addView(self.separatorMiddle, below: self.loanerImageView, spacing: 20)
             self.addView(self.loanerAgreement, below: self.separatorMiddle, spacing: 5)
             self.addView(self.separatorBottom, below: self.loanerAgreement, spacing: 5)
             
@@ -94,7 +93,7 @@ class LoanerPaperworkViewController: RequestStepViewController {
         }
         
         // ALL
-        self.addView(self.separatorTop, below: self.loanerImageView, spacing: 30)
+        self.addView(self.separatorTop, below: self.loanerImageView, spacing: 20)
         self.addView(self.roLabel, below: self.separatorTop, spacing: 5)
         self.addView(self.separatorMiddle, below: self.roLabel, spacing: 5)
         self.addView(self.loanerAgreement, below: self.separatorMiddle, spacing: 5)

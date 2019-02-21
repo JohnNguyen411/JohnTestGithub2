@@ -69,9 +69,11 @@ class DriveViewController: RequestStepViewController {
         super.fillWithRequest(request: request)
         
         if request.hasLoaner {
-            directionView.setText(.localized(.viewNavigateText), image: UIImage(named: "icon_directions"))
+            let providerKey = NavigationHelper.shared.bestAvailableGPSProvider()
+            let providerName = NavigationHelper.shared.providerForKey(providerKey)?.providerName ?? Unlocalized.appleMaps
+            directionView.setText("\(Unlocalized.getDirections.uppercased()) (\(providerName.uppercased())", image: UIImage(named: "icon_directions"))
         } else {
-            directionView.setText(Unlocalized.copyAddressToClipboard, image: UIImage(named: "icon_directions"))
+            directionView.setText(Unlocalized.copyAddressToClipboard.uppercased(), image: UIImage(named: "icon_directions"))
         }
         
         contactTextView.setText(.localized(.viewContactText), image:  UIImage(named: "icon_text"))

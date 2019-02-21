@@ -98,7 +98,7 @@ extension AppDelegate {
                      didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data)
     {
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
-        Log.info("APNS TOKEN REGISTERED: \(token)")
+        OSLog.info("APNS TOKEN REGISTERED: \(token)")
         DriverManager.shared.set(push: token)
 
     }

@@ -35,7 +35,7 @@ class RequestStepViewController: StepViewController {
         super.init(step: step)
         if let request = request {
             fillWithRequest(request: request)
-            if let task = task {
+            if let task = step?.task {
                 self.screenName = analyticScreenName(task: task, request: request)
             }
         }
@@ -172,13 +172,20 @@ class RequestStepViewController: StepViewController {
         return nil
     }
     
+    func getStepTask() -> Task? {
+        if let stepTask = step as? StepTask {
+            return stepTask.task
+        }
+        return nil
+    }
+    
     /***
      * Called when the Flow controller wants to progress to next
      * Call the completion block with true to continue, false otherwise
      * Need to override in subclass, always progress by default
      ***/
     func swipeNext(completion: ((Bool) -> ())?) {
-        if let task = self.task, let request = self.request {
+        if let task = self.getStepTask(), let request = self.request {
             self.updateRequest(with: Task.nextTask(for: task, request: request), completion: completion)
         } else {
             completion?(true)
@@ -204,10 +211,6 @@ class RequestStepViewController: StepViewController {
         if !isBackendTask(task: task) {
             completion?(true)
             return
-        }
-        
-        if task == .exchangeKeys && request.loanerInspection == nil {
-            
         }
         
         // check if some task update failed, if yes, queue this update

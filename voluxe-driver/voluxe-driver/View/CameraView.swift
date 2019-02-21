@@ -271,6 +271,7 @@ class CameraView: UIView {
         #if targetEnvironment(simulator)
             let image = UIColor.random().image(size: CGSize(width: 1024, height: 512))
             self.didCapture(photo: image)
+            self.isCapturingOutput = false
         #else
             let settings = AVCapturePhotoSettings()
             settings.flashMode = self.useFlash ? AVCaptureDevice.FlashMode.on : AVCaptureDevice.FlashMode.off

@@ -31,9 +31,7 @@ class LandingViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        
-        UserDefaults.standard.enableAlamoFireLogging = true
-        
+                
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Volvo.background.light
         

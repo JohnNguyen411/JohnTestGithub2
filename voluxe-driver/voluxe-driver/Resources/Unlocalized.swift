@@ -80,10 +80,16 @@ struct Unlocalized {
     static let loanerMileageUnit = NSLocalizedString("Loaner Mileage (%@)", comment: "")
     static let copyAddressToClipboard = NSLocalizedString("Copy to clipboard (Get Ride)", comment: "")
     static let addressCopiedToClipboard = NSLocalizedString("Destination address has been copied to clipboard", comment: "")
+    static let getDirections = NSLocalizedString("Get directions", comment: "")
 
+    
+    
     static let upcomingToday = NSLocalizedString("Upcoming Today", comment: "")
     static let updateAvailable = NSLocalizedString("Update Available", comment: "")
     static let updateAvailableText = NSLocalizedString("A new version is available from the App Store.  Please update as soon as possible.", comment: "")
     static let updateRequired = NSLocalizedString("Update Required", comment: "")
     static let updateRequiredText = NSLocalizedString("A new version is required from the App Store.  Please update immediately.", comment: "")
+
+    static let completed = NSLocalizedString("Completed", comment: "")
+
 }
