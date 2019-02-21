@@ -1,3 +1,9 @@
+v1.0.0-alpha4 (44)
+- Fix request flow blocker
+- Fix Update phone number flow
+- Fix wrong label on GPS navigation button
+- Fix background location update refresh rate
+
 v1.0.0-alpha3 (41)
 - Fix Selfie error on Onboarding
 - Left Panel UI
