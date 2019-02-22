@@ -88,12 +88,12 @@ class InspectionCameraView: UIView, ShutterViewProtocol {
         for inspection in inspections {
             if let image = UIImage(data: inspection.data) {
                 self.filmstripView.add(photo: image)
-                self.shutterView.incrementNumberOfPhotosTaken()
             }
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
             self.filmstripView.reload()
+            self.shutterView.incrementNumberOfPhotosTaken()
         })
     }
     
@@ -180,4 +180,23 @@ extension InspectionCameraView {
         guard let screenName = self.screenName else { return }
         Analytics.trackClick(button: enabled ? .flashOn : .flashOff, screen: screenName)
     }
+}
+
+// Rotation
+extension InspectionCameraView {
+    
+    func rotate(angle: Double) {
+        
+        let transform = CGAffineTransform(rotationAngle: CGFloat(angle))
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            self.shutterView.flashButton.transform = transform
+            self.shutterView.doneButton.transform = transform
+            self.shutterView.countLabel.transform = transform
+            self.overlayView.transform = transform
+        })
+        
+        self.filmstripView.rotate(angle: angle)
+    }
+    
 }

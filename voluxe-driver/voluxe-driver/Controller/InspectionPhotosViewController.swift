@@ -12,6 +12,9 @@ import AVFoundation
 
 class InspectionPhotosViewController: RequestStepViewController {
 
+    //MARK: Rotation
+    private var deviceOrientationHelper = DeviceOrientationHelper.shared
+    
     // MARK: Data
 
     private var type: InspectionType = .document
@@ -22,7 +25,7 @@ class InspectionPhotosViewController: RequestStepViewController {
     private let inspectionCameraView = InspectionCameraView()
 
     // MARK: Lifecycle
-
+    
     deinit {
         self.inspectionCameraView.removeFromSuperview()
     }
@@ -38,10 +41,10 @@ class InspectionPhotosViewController: RequestStepViewController {
         self.inspectionCameraView.screenName = self.screenName
         
         switch type {
-            case .document: self.navigationItem.title = "Photo License, Insurance"
-            case .loaner: self.navigationItem.title = "Photo Loaner"
-            case .vehicle: self.navigationItem.title = "Photo Customer Vehicle"
-            default: self.navigationItem.title = "Inspection Photos"
+            case .document: self.navigationItem.title = .localized(.viewInspectDocuments)
+            case .loaner: self.navigationItem.title = .localized(.viewInspectLoaner)
+            case .vehicle: self.navigationItem.title = .localized(.viewInspectCustomer)
+            default: self.navigationItem.title = .localized(.viewInspectDocuments)
         }
         
         self.addActions()
@@ -55,8 +58,17 @@ class InspectionPhotosViewController: RequestStepViewController {
     override func viewDidLoad() {
         self.request = RequestManager.shared.request
         super.viewDidLoad()
+        self.deviceOrientationHelper.startDeviceOrientationNotifier { (deviceOrientation) in
+            self.orientationChanged(deviceOrientation: deviceOrientation)
+        }
+        
+        // we need to rotate the device in Landscape
+        self.orientationChanged(deviceOrientation: .landscapeRight)
+        
         self.hideLeftLine()
-        self.loadPhotos()
+        DispatchQueue.global(qos: .background).async {
+            self.loadPhotos()
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -65,7 +77,39 @@ class InspectionPhotosViewController: RequestStepViewController {
         DispatchQueue.main.async {
             self.checkCameraPermission()
         }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         
+        self.deviceOrientationHelper.stopDeviceOrientationNotifier()
+    }
+    
+    // MARK: Rotation
+    func orientationChanged(deviceOrientation: UIDeviceOrientation) {
+        var angle: Double?
+        
+        switch deviceOrientation {
+        case .portrait:
+            angle = 0
+            break
+        case .portraitUpsideDown:
+            angle = Double.pi
+            break
+        case .landscapeLeft:
+            angle = -Double.pi / 2
+            break
+        case .landscapeRight:
+            angle = Double.pi / 2
+            break
+        default:
+            break
+        }
+        
+        if let angle = angle {
+            // rotate buttons and thumbnails
+            self.inspectionCameraView.rotate(angle: angle)
+        }
     }
     
     private func checkCameraPermission() {

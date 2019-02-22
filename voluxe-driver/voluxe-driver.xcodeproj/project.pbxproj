@@ -51,6 +51,8 @@
 		52A3A62521E6CC96002A273E /* VLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62321E6CC96002A273E /* VLTextField.swift */; };
 		52A3A62621E6CC96002A273E /* VLVerticalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62421E6CC96002A273E /* VLVerticalTextField.swift */; };
 		52A3A62821E811FB002A273E /* PasswordToggleVisibilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62721E811FB002A273E /* PasswordToggleVisibilityView.swift */; };
+		52B200E5221F4EEF005DE35A /* DeviceOrientationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200E4221F4EEF005DE35A /* DeviceOrientationHelper.swift */; };
+		52B200E7221F6BBD005DE35A /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200E6221F6BBD005DE35A /* UIImage+Orientation.swift */; };
 		52C67E6421E952A3005EEC3B /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6321E952A2005EEC3B /* String+Validation.swift */; };
 		52C67E6621ED2355005EEC3B /* FlagPhoneNumberTextField+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6521ED2354005EEC3B /* FlagPhoneNumberTextField+Utils.swift */; };
 		52C67E6821ED391F005EEC3B /* UITextField+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6721ED391F005EEC3B /* UITextField+Voluxe.swift */; };
@@ -300,6 +302,8 @@
 		52A3A62321E6CC96002A273E /* VLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLTextField.swift; sourceTree = "<group>"; };
 		52A3A62421E6CC96002A273E /* VLVerticalTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLVerticalTextField.swift; sourceTree = "<group>"; };
 		52A3A62721E811FB002A273E /* PasswordToggleVisibilityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordToggleVisibilityView.swift; sourceTree = "<group>"; };
+		52B200E4221F4EEF005DE35A /* DeviceOrientationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceOrientationHelper.swift; sourceTree = "<group>"; };
+		52B200E6221F6BBD005DE35A /* UIImage+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
 		52C67E6321E952A2005EEC3B /* String+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
 		52C67E6521ED2354005EEC3B /* FlagPhoneNumberTextField+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FlagPhoneNumberTextField+Utils.swift"; sourceTree = "<group>"; };
 		52C67E6721ED391F005EEC3B /* UITextField+Voluxe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Voluxe.swift"; sourceTree = "<group>"; };
@@ -565,6 +569,14 @@
 			path = VLKit;
 			sourceTree = "<group>";
 		};
+		52B200E3221F4EC6005DE35A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				52B200E4221F4EEF005DE35A /* DeviceOrientationHelper.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
 		52C67E7121F7DEAD005EEC3B /* Request */ = {
 			isa = PBXGroup;
 			children = (
@@ -806,6 +818,7 @@
 				52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */,
 				52A1CE43220CF22E002F16BE /* Task+Flow.swift */,
 				5250472A2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift */,
+				52B200E6221F6BBD005DE35A /* UIImage+Orientation.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -875,6 +888,7 @@
 				53B82AF4217E396D0041015B /* Model */,
 				53B25E2C21769F5B002B846B /* Resources */,
 				5316E96C2200F1840053832E /* Service */,
+				52B200E3221F4EC6005DE35A /* Utils */,
 				53EEB1AC21BF29CD0051B8D5 /* View */,
 			);
 			path = "voluxe-driver";
@@ -1550,12 +1564,14 @@
 				525047232214C9A400D07CD4 /* AppController+AlertSound.swift in Sources */,
 				533047062188D706007CE01C /* AppController.swift in Sources */,
 				53C190EF219B2ECD00CBC410 /* GridLayoutViewController.swift in Sources */,
+				52B200E5221F4EEF005DE35A /* DeviceOrientationHelper.swift in Sources */,
 				52A1CE3E2209FBDC002F16BE /* ReceiveLoanerViewController.swift in Sources */,
 				53C1962521B59F9E00DCAEBA /* UIView+Spin.swift in Sources */,
 				53BD5130219DF54900E84995 /* UploadManager.swift in Sources */,
 				5235EBF621F92AA9002BBCE7 /* RepairOrderType.swift in Sources */,
 				5339036521D1570F00DD16D8 /* CameraView.swift in Sources */,
 				53C190EB219B2A9D00CBC410 /* GridLayout.swift in Sources */,
+				52B200E7221F6BBD005DE35A /* UIImage+Orientation.swift in Sources */,
 				5316E96E2200F1900053832E /* Log.swift in Sources */,
 				531A8A2521ED599100D5C8C0 /* InspectionCameraView.swift in Sources */,
 				535A452F217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */,

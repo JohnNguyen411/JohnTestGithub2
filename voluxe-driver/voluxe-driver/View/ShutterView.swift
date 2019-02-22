@@ -109,7 +109,7 @@ class ShutterView: UIView {
     }()
 
     // Label to go inside countImageView
-    private let countLabel: UILabel = {
+    let countLabel: UILabel = {
         let label = UILabel()
         label.text = "0"
         label.textAlignment = .center

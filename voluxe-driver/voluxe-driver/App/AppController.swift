@@ -13,7 +13,6 @@ class AppController: UIViewController {
 
     // MARK: PhoneNumerVerification
     var isVerifyingPhoneNumber = false
-
     
     // MARK: Singleton
 

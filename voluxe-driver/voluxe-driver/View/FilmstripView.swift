@@ -20,6 +20,7 @@ class FilmstripView: UIView {
     }
 
     private var photos: [UIImage] = []
+    private var deviceAngle: Double = 0
 
     // MARK: Layout
 
@@ -78,15 +79,17 @@ class FilmstripView: UIView {
     // MARK: Photo management
 
     func add(photo: UIImage) {
-        if let photoToAdd = photo.resized(to: FilmstripView.itemSize * UIScreen.main.scale) {
+        if let photoToAdd = photo.resizeImageUsingVImage(size: CGSize(width: FilmstripView.itemSize * UIScreen.main.scale, height: FilmstripView.itemSize * UIScreen.main.scale)) {
             self.photos += [photoToAdd]
         } else {
             self.photos += [photo]
         }
-        self.thumbnailsView.reloadData()
-        self.thumbnailsView.layoutIfNeeded()
-        let indexPath = IndexPath(row: self.photos.count - 1, section: 0)
-        self.thumbnailsView.scrollToItem(at: indexPath, at: .right, animated: true)
+        DispatchQueue.main.async {
+            self.thumbnailsView.reloadData()
+            self.thumbnailsView.layoutIfNeeded()
+            let indexPath = IndexPath(row: self.photos.count - 1, section: 0)
+            self.thumbnailsView.scrollToItem(at: indexPath, at: .right, animated: true)
+        }
     }
     
     func reload() {
@@ -107,6 +110,7 @@ extension FilmstripView: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath)
         guard let filmstripCell = cell as? FilmstripCell else { return cell }
         filmstripCell.imageView.image = self.photos[indexPath.row]
+        filmstripCell.rotateToAngle(deviceAngle: self.deviceAngle)
         return filmstripCell
     }
 }
@@ -119,9 +123,38 @@ fileprivate class FilmstripCell: UICollectionViewCell {
         super.init(frame: frame)
         imageView.contentMode = .scaleAspectFill
         Layout.fill(view: self.contentView, with: self.imageView)
+        self.imageView.clipsToBounds = true
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    func imageAngle() -> Double {
+        return self.imageView.image?.imageAngle() ?? 0.0
+    }
+    
+    func rotateToAngle(deviceAngle: Double) {
+        let angle: Float = atan2f(Float(self.transform.b), Float(self.transform.a))
+        let desiredAngle: Float = Float(deviceAngle + self.imageAngle())
+        if angle != desiredAngle {
+            let transform = CGAffineTransform(rotationAngle: CGFloat(desiredAngle))
+            self.transform = transform
+        }
+    }
+}
+
+extension FilmstripView {
+    
+    func rotate(angle: Double) {
+        self.deviceAngle = angle
+        
+        UIView.animate(withDuration: 0.3, animations: {
+            if let cells = self.thumbnailsView.visibleCells as? [FilmstripCell] {
+                for cell in cells {
+                    cell.rotateToAngle(deviceAngle: self.deviceAngle)
+                }
+            }
+        })
     }
 }

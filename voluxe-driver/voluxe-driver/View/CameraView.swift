@@ -140,6 +140,9 @@ class CameraView: UIView {
     /// This will return a nil image and a flag if set
     /// and a face was not captured in the camera image.
     var requireFaceDetection: Bool = false
+    
+    var deviceOrientation: UIDeviceOrientation = .portrait
+
 
     // MARK: Lifecycle
 
@@ -148,6 +151,7 @@ class CameraView: UIView {
         self.position = position
         super.init(frame: CGRect.zero)
         self.addSubviews()
+        self.deviceOrientation = DeviceOrientationHelper.shared.currentDeviceOrientation
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -301,6 +305,19 @@ class CameraView: UIView {
     private func notifyPhotoWasTaken() {
         self.photoWasTaken?(self.croppedImage ?? self.image, self.error)
     }
+    
+    func imageOrientation() -> UIImage.Orientation {
+         self.deviceOrientation = DeviceOrientationHelper.shared.currentDeviceOrientation
+        var imageOrientation: UIImage.Orientation = .up
+        if (deviceOrientation == .landscapeLeft) {
+            imageOrientation = .left
+        } else if (deviceOrientation == .landscapeRight) {
+            imageOrientation = .right
+        } else if (deviceOrientation == .portraitUpsideDown){
+            imageOrientation = .down
+        }
+        return imageOrientation
+    }
 }
 
 // MARK:- Extension for capture delegate
@@ -310,6 +327,9 @@ extension CameraView: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput,
                      willCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings)
     {
+        UIView.animate(withDuration: 0.1, animations: {
+            self.preview.alpha = 0
+        })
         self.photoWillBeTaken?()
     }
 
@@ -317,10 +337,16 @@ extension CameraView: AVCapturePhotoCaptureDelegate {
                      didFinishProcessingPhoto photo: AVCapturePhoto,
                      error: Error?)
     {
+        
+        guard let data = photo.cgImageRepresentation() else { return }
+        let cgImage = data.takeUnretainedValue()
+        let image = UIImage(cgImage: cgImage, scale: 1, orientation: imageOrientation())
         self.isCapturingOutput = false
-        guard let data = photo.fileDataRepresentation() else { return }
-        guard let image = UIImage(data: data) else { return }
         self.didCapture(photo: image)
+        
+        UIView.animate(withDuration: 0.1, animations: {
+            self.preview.alpha = 1
+        })
     }
 
     /// Processes, crops, and notifies that the specified photo was taken.

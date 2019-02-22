@@ -24,6 +24,9 @@ class InspectionNotesViewController: RequestStepViewController {
         field.backgroundColor = .clear
         field.textContainer.maximumNumberOfLines = 10
         field.textContainer.lineBreakMode = .byTruncatingTail
+        field.layer.borderWidth = 0.5
+        field.layer.borderColor = UIColor.Volvo.grey1.cgColor
+        field.layer.cornerRadius = 5.0
         field.font = Font.Intermediate.regular
         return field
     }()
@@ -41,7 +44,7 @@ class InspectionNotesViewController: RequestStepViewController {
         self.addViews([self.customerLabel, self.serviceLabel])
         
         self.addView(self.pickupNotesLabel, below: self.serviceLabel, spacing: 20)
-        self.addView(self.notesTextField, below: self.pickupNotesLabel, spacing: 0)
+        self.addView(self.notesTextField, below: self.pickupNotesLabel, spacing: 10)
         self.notesTextField.constrain(height: 120)
         
         self.notesTextField.layoutIfNeeded()
