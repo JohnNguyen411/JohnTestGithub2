@@ -1,4 +1,5 @@
-v1.0.0-alpha4 (44)
+v1.0.0-alpha4 (45)
+- Landscape Photo inspections
 - Fix request flow blocker
 - Fix Update phone number flow
 - Fix wrong label on GPS navigation button
