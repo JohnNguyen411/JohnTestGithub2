@@ -69,13 +69,12 @@ class FilmstripView: UIView {
         self.thumbnailsView.pinBottomToSuperviewBottom(spacing: -6)
         self.thumbnailsView.rightAnchor.constraint(equalTo: self.rightAnchor, constant: -6).isActive = true
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-        self.backgroundView.layer.cornerRadius = self.backgroundView.bounds.size.height / 2
-        self.thumbnailsView.layer.cornerRadius = self.thumbnailsView.bounds.size.height / 2
+        self.backgroundView.layer.cornerRadius = 4
     }
-
+    
     // MARK: Photo management
 
     func add(photo: UIImage) {

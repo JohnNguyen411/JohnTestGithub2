@@ -11,12 +11,12 @@ import Foundation
 extension DriverAPI {
 
     static func today(for driver: Driver,
-                      completion: @escaping (([Request], LuxeAPIError.Code?) -> Void)) {
+                      completion: @escaping (([Request], LuxeAPIError?) -> Void)) {
         let route = "v1/drivers/\(driver.id)/requests/today"
         self.api.get(route: route) {
             response in
             let requests = response?.asRequests() ?? []
-            completion(requests, response?.asErrorCode())
+            completion(requests, response?.asError())
         }
     }
 
@@ -38,11 +38,11 @@ extension DriverAPI {
     }
 
     static func refresh(_ request: Request,
-                        completion: @escaping ((Request?, LuxeAPIError.Code?) -> Void))
+                        completion: @escaping ((Request?, LuxeAPIError?) -> Void))
     {
         self.api.get(route: request.route) {
             response in
-            completion(response?.asRequest(), response?.asErrorCode())
+            completion(response?.asRequest(), response?.asError())
         }
     }
 
@@ -67,13 +67,13 @@ extension DriverAPI {
 
     static func update(_ request: Request,
                        notes: String,
-                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
+                       completion: @escaping ((LuxeAPIError?) -> Void))
     {
         let route = "\(request.route)/notes"
         let parameters: RestAPIParameters = ["notes": notes]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
-            completion(response?.asErrorCode())
+            completion(response?.asError())
         }
     }
 

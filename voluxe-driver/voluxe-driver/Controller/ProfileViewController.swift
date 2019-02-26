@@ -72,7 +72,7 @@ class ProfileViewController: UIViewController {
     
     private let headerView: UIView = {
         let view = UIView.forAutoLayout()
-        view.backgroundColor = UIColor.Volvo.darkestGrey
+        view.backgroundColor = .black
         view.layer.cornerRadius = view.hasTopNotch ? 40 : 0
         view.layer.maskedCorners = [.layerMaxXMinYCorner]
         return view
@@ -112,6 +112,7 @@ class ProfileViewController: UIViewController {
         self.modalPresentationStyle = .overCurrentContext
     }
     
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
@@ -145,13 +146,13 @@ class ProfileViewController: UIViewController {
         self.panelView.pinBottomToSuperviewBottom()
         
         self.panelView.addSubview(self.headerView)
-        self.headerView.pinTopToSuperview()
+        self.headerView.pinTopToSuperview(spacing: topConstant)
         self.headerView.pinLeadingToSuperView()
         self.headerView.pinTrailingToSuperView()
-        self.headerView.heightAnchor.constraint(equalToConstant: 120).isActive = true
+        self.headerView.heightAnchor.constraint(equalToConstant: 140).isActive = true
         
         self.headerView.addSubview(self.selfieButton)
-        self.selfieButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor).isActive = true
+        self.selfieButton.centerYAnchor.constraint(equalTo: headerView.centerYAnchor, constant: topConstant == 0 ? topConstant : topConstant * -0.5).isActive = true
         self.selfieButton.leadingAnchor.constraint(equalTo: panelView.leadingAnchor,
                                                    constant: ProfileViewController.leadingMargin).isActive = true
         self.selfieButton.widthAnchor.constraint(equalToConstant: 64).isActive = true

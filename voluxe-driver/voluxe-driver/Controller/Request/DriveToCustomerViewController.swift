@@ -14,7 +14,7 @@ class DriveToCustomerViewController: DriveViewController {
     
     private let addressLabel = Label.taskText()
     private let serviceLabel = Label.taskText()
-    private let notesLabel = Label.taskText()
+    private let notesLabel = Label.taskText(numberOfLines: 6)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,6 +46,20 @@ class DriveToCustomerViewController: DriveViewController {
         if let requestNotes = request.notes {
             let notesString = NSMutableAttributedString()
             self.notesLabel.attributedText = notesString.append(.localized(.notesColon), with: self.notesLabel.font).append("\(requestNotes)" , with: self.intermediateMediumFont())
+            DispatchQueue.main.async {
+                self.notesLabel.addTrailing(with: "...", moreText: Unlocalized.seeMore, moreTextFont: self.intermediateMediumFont(), moreTextColor: self.notesLabel.textColor)
+                
+                self.notesLabel.isUserInteractionEnabled = true
+                let tapUIGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.openNotes))
+                self.notesLabel.addGestureRecognizer(tapUIGestureRecognizer)
+            }
+            
+        }
+    }
+    
+    @objc private func openNotes() {
+        if let request = self.request, let requestNotes = request.notes {
+            AppController.shared.mainController(push: NotesViewController(title: request.isPickup ? Unlocalized.pickupNotes : Unlocalized.deliveryNotes, text: requestNotes), animated: true, asRootViewController: false, prefersProfileButton: false)
         }
     }
     

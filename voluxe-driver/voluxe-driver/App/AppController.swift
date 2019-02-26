@@ -20,6 +20,15 @@ class AppController: UIViewController {
 
     // MARK: Lifecycle
 
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        guard (self.presentedViewController as? ProfileViewController) != nil else { return .default }
+        return .lightContent
+    }
+    
+    override func setNeedsStatusBarAppearanceUpdate() {
+        super.setNeedsStatusBarAppearanceUpdate()
+    }
+    
     private init() {
         super.init(nibName: nil, bundle: nil)
         self.registerAPINotifications()
@@ -153,6 +162,7 @@ extension AppController {
         controller.preparePresentAnimation()
         self.present(controller, animated: false) {
             controller.playPresentAnimation()
+            self.setNeedsStatusBarAppearanceUpdate()
         }
     }
 
@@ -161,7 +171,9 @@ extension AppController {
     func hideProfile(animated: Bool = true) {
         guard let controller = self.presentedViewController as? ProfileViewController else { return }
         controller.playDismissAnimation() {
-            controller.dismiss(animated: false, completion: nil)
+            controller.dismiss(animated: false, completion: {
+                self.setNeedsStatusBarAppearanceUpdate()
+            })
         }
     }
 

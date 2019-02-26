@@ -187,6 +187,15 @@ class RequestManager {
         return timer.isValid
     }
     
+    func forceRefresh() {
+        if refreshing { return }
+        guard self.refreshTimer != nil else {
+            self.start()
+            return
+        }
+        self.refresh()
+    }
+    
     func start() {
         guard self.refreshTimer == nil else { return }
         self.refreshTimer = Timer.scheduledTimer(withTimeInterval: 10.0, repeats: true) {

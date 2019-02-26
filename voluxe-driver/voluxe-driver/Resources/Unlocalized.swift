@@ -91,5 +91,8 @@ struct Unlocalized {
     static let updateRequiredText = NSLocalizedString("A new version is required from the App Store.  Please update immediately.", comment: "")
 
     static let completed = NSLocalizedString("Completed", comment: "")
+    static let seeMore = NSLocalizedString("See More", comment: "")
+    static let pickupNotes = NSLocalizedString("Pickup Notes", comment: "")
+    static let deliveryNotes = NSLocalizedString("Delivery Notes", comment: "")
 
 }

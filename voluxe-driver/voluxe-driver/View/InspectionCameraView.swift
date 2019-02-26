@@ -92,8 +92,10 @@ class InspectionCameraView: UIView, ShutterViewProtocol {
         }
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.1, execute: {
+            for _ in inspections {
+                self.shutterView.incrementNumberOfPhotosTaken()
+            }
             self.filmstripView.reload()
-            self.shutterView.incrementNumberOfPhotosTaken()
         })
     }
     

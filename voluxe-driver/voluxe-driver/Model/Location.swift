@@ -30,7 +30,7 @@ extension Location {
         let components = self.address.components(separatedBy: ",")
         let city = components.count > Components.city.rawValue ? components[Components.city.rawValue] : "Unknown"
         let street = components.count > Components.street.rawValue ? components[Components.street.rawValue] : "Unknown"
-        let string = "\(city.trim()), \(street.trim())"
+        let string = "\(street.trim()), \(city.trim())"
         return string
     }
 }

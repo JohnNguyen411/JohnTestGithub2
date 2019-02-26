@@ -42,14 +42,14 @@ struct Label {
         return label
     }
     
-    static func taskText(with text: String? = nil) -> UILabel {
+    static func taskText(with text: String? = nil, numberOfLines: Int = 0) -> UILabel {
         let label = UILabel(frame: .zero)
         label.adjustsFontForContentSizeCategory = true
         label.translatesAutoresizingMaskIntoConstraints = false
         label.textAlignment = .left
         label.textColor = UIColor.Volvo.granite
         label.text = text
-        label.numberOfLines = 0
+        label.numberOfLines = numberOfLines
         label.font = Font.Intermediate.regular
         return label
     }
@@ -61,7 +61,7 @@ struct Label {
         label.textAlignment = .center
         label.textColor = .white
         label.text = text
-        label.font = Font.Medium.regular
+        label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
         label.backgroundColor = UIColor.Volvo.success
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 12.5
@@ -71,6 +71,16 @@ struct Label {
     static func taskNextNumber(with text: String? = nil) -> UILabel {
         let label = taskTitleNumber(with: text)
         label.backgroundColor = UIColor.Volvo.slate
+        return label
+    }
+    
+    static func highlightLabel(with text: String? = nil) -> UITextViewHighlight {
+        let label = UITextViewHighlight(text, highlightColor: UIColor.Volvo.yellow(), lineSpacing: 1.0)
+        label.font = Font.Medium.italic
+        label.adjustsFontForContentSizeCategory = true
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.textAlignment = .left
+        label.textColor = UIColor.Volvo.granite
         return label
     }
 }

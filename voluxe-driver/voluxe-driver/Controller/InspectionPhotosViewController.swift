@@ -58,9 +58,6 @@ class InspectionPhotosViewController: RequestStepViewController {
     override func viewDidLoad() {
         self.request = RequestManager.shared.request
         super.viewDidLoad()
-        self.deviceOrientationHelper.startDeviceOrientationNotifier { (deviceOrientation) in
-            self.orientationChanged(deviceOrientation: deviceOrientation)
-        }
         
         // we need to rotate the device in Landscape
         self.orientationChanged(deviceOrientation: .landscapeRight)
@@ -77,12 +74,18 @@ class InspectionPhotosViewController: RequestStepViewController {
         DispatchQueue.main.async {
             self.checkCameraPermission()
         }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            self.deviceOrientationHelper.startDeviceOrientationNotifier { (deviceOrientation) in
+                self.orientationChanged(deviceOrientation: deviceOrientation)
+            }
+        })
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        
         self.deviceOrientationHelper.stopDeviceOrientationNotifier()
+        super.viewWillDisappear(animated)
     }
     
     // MARK: Rotation

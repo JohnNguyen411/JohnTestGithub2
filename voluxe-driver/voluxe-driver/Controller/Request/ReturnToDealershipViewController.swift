@@ -12,6 +12,7 @@ import CoreLocation
 
 class ReturnToDealershipViewController: DriveViewController {
     
+    private let addressLabel = Label.taskText()
     private let customerLabel = Label.taskText()
     private let serviceLabel = Label.taskText()
     
@@ -20,7 +21,7 @@ class ReturnToDealershipViewController: DriveViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.addViews([self.customerLabel, self.serviceLabel])
+        self.addViews([self.addressLabel, self.customerLabel, self.serviceLabel])
         let navigationView = self.addNavigationButton(below: self.serviceLabel)
         self.addContactButtons(below: navigationView)
     }
@@ -32,6 +33,9 @@ class ReturnToDealershipViewController: DriveViewController {
             self.directionLong = dealership.location.longitude
             self.directionLat = dealership.location.latitude
             self.directionAddressString = dealership.location.address
+            
+            let addressString = NSMutableAttributedString()
+            self.addressLabel.attributedText = addressString.append(.localized(.addressColon), with: self.customerLabel.font).append("\(dealership.location.address)" , with: self.intermediateMediumFont())
         }
         
         self.titleLabel.text = self.step?.title ?? .localized(.returnToDealership)
@@ -41,8 +45,8 @@ class ReturnToDealershipViewController: DriveViewController {
         self.customerLabel.attributedText = customerString.append(.localized(.customerColon), with: self.customerLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: self.intermediateMediumFont())
         
         if let repairOrders = request.booking?.repairOrderRequests, repairOrders.count > 0 {
-            let addressString = NSMutableAttributedString()
-            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: self.intermediateMediumFont())
+            let serviceString = NSMutableAttributedString()
+            self.serviceLabel.attributedText = serviceString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: self.intermediateMediumFont())
         }
     }
     

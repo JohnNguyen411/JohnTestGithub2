@@ -14,12 +14,10 @@ class ReceiveLoanerViewController: RequestStepViewController {
     
     private let licensePlateLabel = Label.taskText()
     private let loanerImageView = UIImageViewAligned()
-    private let reminderLabel = Label.taskText()
-    
+    private var reminderLabel = Label.highlightLabel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        self.reminderLabel.font = Font.Intermediate.italic
         
         self.loanerImageView.alignLeft = true
         self.loanerImageView.contentMode = .scaleAspectFit
@@ -54,9 +52,11 @@ class ReceiveLoanerViewController: RequestStepViewController {
                 }
             }
             
-            self.reminderLabel.attributedText = NSMutableAttributedString.highlight(String(format: .localized(.viewReceiveVehicleInfoReminder), self.request?.booking?.customer.fullName() ?? .localized(.unknown)), with: UIColor.Volvo.yellow())
-            
-            self.reminderLabel.sizeToFit()
+            DispatchQueue.main.async {
+                self.reminderLabel.text = String(format: .localized(.viewReceiveVehicleInfoReminder), self.request?.booking?.customer.fullName() ?? .localized(.unknown))
+                self.reminderLabel.sizeToFit()
+                self.reminderLabel.setNeedsDisplay()
+            }
         }
         
     }

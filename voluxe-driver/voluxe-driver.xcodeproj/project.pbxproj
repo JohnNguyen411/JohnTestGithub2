@@ -53,6 +53,11 @@
 		52A3A62821E811FB002A273E /* PasswordToggleVisibilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62721E811FB002A273E /* PasswordToggleVisibilityView.swift */; };
 		52B200E5221F4EEF005DE35A /* DeviceOrientationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200E4221F4EEF005DE35A /* DeviceOrientationHelper.swift */; };
 		52B200E7221F6BBD005DE35A /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200E6221F6BBD005DE35A /* UIImage+Orientation.swift */; };
+		52B200E922246824005DE35A /* UILabel+CoreText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200E822246824005DE35A /* UILabel+CoreText.swift */; };
+		52B200EB222468E6005DE35A /* UILabelHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200EA222468E6005DE35A /* UILabelHighlight.swift */; };
+		52B200ED2224A758005DE35A /* UILabel+Truncate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200EC2224A758005DE35A /* UILabel+Truncate.swift */; };
+		52B200EF2224B54F005DE35A /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200EE2224B54F005DE35A /* NotesViewController.swift */; };
+		52B200F12224CEC7005DE35A /* UITextViewHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200F02224CEC7005DE35A /* UITextViewHighlight.swift */; };
 		52C67E6421E952A3005EEC3B /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6321E952A2005EEC3B /* String+Validation.swift */; };
 		52C67E6621ED2355005EEC3B /* FlagPhoneNumberTextField+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6521ED2354005EEC3B /* FlagPhoneNumberTextField+Utils.swift */; };
 		52C67E6821ED391F005EEC3B /* UITextField+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6721ED391F005EEC3B /* UITextField+Voluxe.swift */; };
@@ -304,6 +309,11 @@
 		52A3A62721E811FB002A273E /* PasswordToggleVisibilityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordToggleVisibilityView.swift; sourceTree = "<group>"; };
 		52B200E4221F4EEF005DE35A /* DeviceOrientationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceOrientationHelper.swift; sourceTree = "<group>"; };
 		52B200E6221F6BBD005DE35A /* UIImage+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
+		52B200E822246824005DE35A /* UILabel+CoreText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+CoreText.swift"; sourceTree = "<group>"; };
+		52B200EA222468E6005DE35A /* UILabelHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelHighlight.swift; sourceTree = "<group>"; };
+		52B200EC2224A758005DE35A /* UILabel+Truncate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Truncate.swift"; sourceTree = "<group>"; };
+		52B200EE2224B54F005DE35A /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		52B200F02224CEC7005DE35A /* UITextViewHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewHighlight.swift; sourceTree = "<group>"; };
 		52C67E6321E952A2005EEC3B /* String+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
 		52C67E6521ED2354005EEC3B /* FlagPhoneNumberTextField+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FlagPhoneNumberTextField+Utils.swift"; sourceTree = "<group>"; };
 		52C67E6721ED391F005EEC3B /* UITextField+Voluxe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Voluxe.swift"; sourceTree = "<group>"; };
@@ -715,6 +725,8 @@
 				5339035421D00B5A00DD16D8 /* UIButton+Color.swift */,
 				5250472C2217659F00D07CD4 /* UIView+Dimensions.swift */,
 				52504733221C84DF00D07CD4 /* UIView+Toast.swift */,
+				52B200E822246824005DE35A /* UILabel+CoreText.swift */,
+				52B200EC2224A758005DE35A /* UILabel+Truncate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -788,6 +800,8 @@
 				53C190DF219B2A9C00CBC410 /* UIView+Layout.swift */,
 				52A1CE45220E5455002F16BE /* UIImageViewAligned.swift */,
 				52A1CE5122123504002F16BE /* ImagedLabel.swift */,
+				52B200EA222468E6005DE35A /* UILabelHighlight.swift */,
+				52B200F02224CEC7005DE35A /* UITextViewHighlight.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -842,6 +856,7 @@
 				5312142A21CAB49500F3FCEB /* RequestViewController.swift */,
 				5312143421CC689200F3FCEB /* SelfieViewController.swift */,
 				52C67E6B21F293B7005EEC3B /* StepViewController.swift */,
+				52B200EE2224B54F005DE35A /* NotesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1434,6 +1449,7 @@
 				5374DF2F21E524BF00956122 /* Bundle+Current.swift in Sources */,
 				5374DF3421E52E4700956122 /* FilmstripView.swift in Sources */,
 				53B43F9F218BB86200EF847E /* AppController+DriverAPI.swift in Sources */,
+				52B200F12224CEC7005DE35A /* UITextViewHighlight.swift in Sources */,
 				533B72D5218B556E009A44EC /* DriverManager.swift in Sources */,
 				530BCD4D2177AFBE005327E7 /* LuxeAPI.swift in Sources */,
 				5339036D21D7148A00DD16D8 /* Unlocalized.swift in Sources */,
@@ -1464,9 +1480,11 @@
 				5312143321CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift in Sources */,
 				53C190E6219B2A9D00CBC410 /* Font.swift in Sources */,
 				53DA9CA82180C4AB00ABC414 /* Booking.swift in Sources */,
+				52B200E922246824005DE35A /* UILabel+CoreText.swift in Sources */,
 				53E7F17E219A49A600390A5D /* LuxeAPI+Notifications.swift in Sources */,
 				53C190EC219B2A9D00CBC410 /* UIView+SafeArea.swift in Sources */,
 				5339035B21D042DB00DD16D8 /* Buttons.swift in Sources */,
+				52B200EB222468E6005DE35A /* UILabelHighlight.swift in Sources */,
 				530BCD4F2177B153005327E7 /* RestAPI+AlamoFire.swift in Sources */,
 				53C190E8219B2A9D00CBC410 /* GridLayout+Debug.swift in Sources */,
 				53B43F97218B758400EF847E /* LuxeAPI+Version.swift in Sources */,
@@ -1544,6 +1562,7 @@
 				536FFD932177901D00C83F89 /* UIView+AutoLayout.swift in Sources */,
 				52A1CE46220E5455002F16BE /* UIImageViewAligned.swift in Sources */,
 				5330472721890B1E007CE01C /* AppDelegate+Push.swift in Sources */,
+				52B200EF2224B54F005DE35A /* NotesViewController.swift in Sources */,
 				52504730221B44A300D07CD4 /* FBAnalytics+UserManager.swift in Sources */,
 				5330470F2188D7C6007CE01C /* DebugTableViewController.swift in Sources */,
 				5312141F21C95FBD00F3FCEB /* UIColor+Debug.swift in Sources */,
@@ -1560,6 +1579,7 @@
 				52A1CE5222123504002F16BE /* ImagedLabel.swift in Sources */,
 				538C4D9B218A3FA600922B16 /* PermissionViewController.swift in Sources */,
 				53EEB1A321B9E3060051B8D5 /* LogService.swift in Sources */,
+				52B200ED2224A758005DE35A /* UILabel+Truncate.swift in Sources */,
 				53F1E56421E02D90007EF3AD /* AppController+Alert.swift in Sources */,
 				525047232214C9A400D07CD4 /* AppController+AlertSound.swift in Sources */,
 				533047062188D706007CE01C /* AppController.swift in Sources */,

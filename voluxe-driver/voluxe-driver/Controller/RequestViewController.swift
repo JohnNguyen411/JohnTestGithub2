@@ -280,12 +280,12 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
             OSLog.info("stepsForTask allSteps: \(step.task.rawValue)")
             step.taskNumber = position
             // if it's inspection, leave it
-            if step.task == .inspectLoanerVehicle || step.task == .inspectVehicle || step.task == .inspectDocuments || step.task == .inspectNotes {
+            if !taskReached && step.task == targetTask {
+                taskReached = true
+                strippedSteps.append(step)
+            } else if step.task == .inspectLoanerVehicle || step.task == .inspectVehicle || step.task == .inspectDocuments || step.task == .inspectNotes {
                 strippedSteps.append(step)
             } else if taskReached {
-                strippedSteps.append(step)
-            } else if !taskReached && step.task == targetTask {
-                taskReached = true
                 strippedSteps.append(step)
             }
             position += 1

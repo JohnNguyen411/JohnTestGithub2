@@ -13,14 +13,11 @@ class ExchangeKeysViewController: RequestStepViewController {
     
     private let customerLabel = Label.taskText()
     private let serviceLabel = Label.taskText()
-    private let reminderLabel = Label.taskText()
-
+    private var reminderLabel = Label.highlightLabel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        reminderLabel.font = Font.Intermediate.italic
-
         self.addViews([self.customerLabel, self.serviceLabel])
         self.addView(self.reminderLabel, below: self.serviceLabel, spacing: 30)
         
@@ -40,8 +37,12 @@ class ExchangeKeysViewController: RequestStepViewController {
             self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: self.intermediateMediumFont())
         }
         
-        self.reminderLabel.attributedText = NSMutableAttributedString.highlight(String(format: .localized(.viewReceiveVehicleInfoReminder), self.request?.booking?.customer.fullName() ?? .localized(.unknown)), with: UIColor.Volvo.yellow())
-        self.reminderLabel.sizeToFit()
+        DispatchQueue.main.async {
+            self.reminderLabel.text = String(format: .localized(.viewReceiveVehicleInfoReminder), self.request?.booking?.customer.fullName() ?? .localized(.unknown))
+            self.reminderLabel.sizeToFit()
+            self.reminderLabel.setNeedsDisplay()
+        }
+        
     }
     
     

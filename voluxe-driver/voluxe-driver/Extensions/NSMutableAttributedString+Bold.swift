@@ -20,8 +20,27 @@ extension NSMutableAttributedString {
         return self
     }
     
-    static func highlight(_ text: String, with color: UIColor) -> NSMutableAttributedString {
-        return NSMutableAttributedString(string: text, attributes: [NSAttributedString.Key.backgroundColor: color])
+    static func highlight(_ text: String, with color: UIColor, with font: UIFont? = nil) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: text)
+        let paragraph = NSMutableParagraphStyle()
+        paragraph.paragraphSpacing = 20
+        attributedString.setAttributes([NSAttributedString.Key.backgroundColor: color], range: NSRange(location: 0, length: text.count))
+        attributedString.addAttributes([NSAttributedString.Key.paragraphStyle: paragraph], range: NSRange(location: 0, length: text.count))
+        if let font = font {
+            attributedString.addAttributes([.font: font], range: NSRange(location: 0, length: attributedString.length))
+        }
+        return attributedString
+    }
+    
+    static func lineByLineHighlight(_ text: String, ranges: [NSRange], with color: UIColor, with font: UIFont? = nil) -> NSMutableAttributedString {
+        let attributedString = NSMutableAttributedString(string: text)
+        for range in ranges {
+            attributedString.addAttributes([NSAttributedString.Key.backgroundColor: color], range: range)
+        }
+        if let font = font {
+            attributedString.addAttributes([.font: font], range: NSRange(location: 0, length: attributedString.length))
+        }
+        return attributedString
     }
 
 }

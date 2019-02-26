@@ -72,6 +72,22 @@ extension UIView {
         constraint.isActive = true
     }
     
+    func pinCenterXWithSuperView(constant: CGFloat = 0) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        guard let superview = self.superview else { return }
+        let constraint = self.centerXAnchor.constraint(equalTo: superview.centerXAnchor, constant: constant)
+        constraint.priority = UILayoutPriority(rawValue: 999)
+        constraint.isActive = true
+    }
+    
+    func pinCenterYWithSuperView(constant: CGFloat = 0) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        guard let superview = self.superview else { return }
+        let constraint = self.centerYAnchor.constraint(equalTo: superview.centerYAnchor, constant: constant)
+        constraint.priority = UILayoutPriority(rawValue: 999)
+        constraint.isActive = true
+    }
+    
     func pinLeadingToTrailingOfView(peerView: UIView, constant: CGFloat = 0) {
         self.translatesAutoresizingMaskIntoConstraints = false
         self.leadingAnchor.constraint(equalTo: peerView.trailingAnchor, constant: constant).isActive = true

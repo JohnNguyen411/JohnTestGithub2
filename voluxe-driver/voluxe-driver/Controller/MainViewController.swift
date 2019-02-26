@@ -21,7 +21,7 @@ class MainViewController: UINavigationController {
         button.imageEdgeInsets = UIEdgeInsets(top: 3, left: 4, bottom: 5, right: 10)
         return button
     }()
-
+    
     // MARK: Lifecycle
 
     convenience init(with controller: UIViewController? = nil,
