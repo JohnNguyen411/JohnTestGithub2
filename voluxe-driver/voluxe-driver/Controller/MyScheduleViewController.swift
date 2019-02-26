@@ -54,7 +54,7 @@ class MyScheduleViewController: UIViewController {
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
-        self.navigationItem.title = Unlocalized.mySchedule.capitalized
+        self.navigationItem.title = String.localized(.viewSchedule).capitalized
         self.tableView.dataSource = self
         self.tableView.delegate = self
     }

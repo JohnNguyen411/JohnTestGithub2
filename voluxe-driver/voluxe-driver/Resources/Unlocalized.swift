@@ -42,8 +42,6 @@ struct Unlocalized {
     static let later = NSLocalizedString("Later", comment: "")
     static let looksGood = NSLocalizedString("looks good", comment: "")
 
-    static let mySchedule = NSLocalizedString("My Schedule", comment: "")
-
     static let next = NSLocalizedString("next", comment: "")
     static let noScheduledRequests = NSLocalizedString("You have no scheduled pick-ups or deliveries.", comment: "")
 
