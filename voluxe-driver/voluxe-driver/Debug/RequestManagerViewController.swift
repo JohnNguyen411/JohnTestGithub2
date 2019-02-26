@@ -254,7 +254,7 @@ extension RequestManagerViewController: UITableViewDelegate {
 
 fileprivate extension Request {
 
-    var typeString: String {
+    var detailedTypeString: String {
         switch self.type {
             case .advisorPickup: return "Advisor drop off"
             case .advisorDropoff: return "Advisor pick up"
@@ -301,7 +301,7 @@ fileprivate extension UITableViewCell {
 
     func update(with request: Request) {
         self.textLabel?.text = "Request \(request.id)"
-        var text = "\(request.typeString) - \(request.state.rawValue.uppercased())\n"
+        var text = "\(request.detailedTypeString) - \(request.state.rawValue.uppercased())\n"
         text = "\(text)\(request.locationString)\n"
         text = "\(text)\(request.documentInspectionString)\n"
         text = "\(text)\(request.loanerInspectionString)\n"

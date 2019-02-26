@@ -35,7 +35,7 @@ class ReturnToDealershipViewController: DriveViewController {
             self.directionAddressString = dealership.location.address
             
             let addressString = NSMutableAttributedString()
-            self.addressLabel.attributedText = addressString.append(.localized(.addressColon), with: self.customerLabel.font).append("\(dealership.location.address)" , with: self.intermediateMediumFont())
+            self.addressLabel.attributedText = addressString.append(.localized(.dealershipAddressColon), with: self.customerLabel.font).append("\(dealership.location.address)" , with: self.intermediateMediumFont())
         }
         
         self.titleLabel.text = self.step?.title ?? .localized(.returnToDealership)

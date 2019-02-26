@@ -429,10 +429,6 @@ fileprivate extension Request {
         return string
     }
 
-    var typeString: String {
-        return self.isPickup ? .localized(.pickup) : .localized(.delivery)
-    }
-
     var locationString: String {
         guard let location = self.location else { return "No location" }
         return location.cityStreetAddressString

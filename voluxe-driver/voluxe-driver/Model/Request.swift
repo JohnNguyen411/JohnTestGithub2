@@ -84,4 +84,7 @@ struct Request: Codable {
         return self.booking?.loanerVehicle != nil
     }
     
+    var typeString: String {
+        return self.isPickup ? .localized(.pickup) : .localized(.delivery)
+    }
 }

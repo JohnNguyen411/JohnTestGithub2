@@ -132,7 +132,7 @@
 
 "customerColon" = "Customer:\U00A0";
 
-"addressColon" = "Address:\U00A0";
+"addressColon" = "%@ Address:\U00A0";
 
 "deliveryColon" = "Delivery:\U00A0";
 
@@ -149,6 +149,8 @@
 "notesColon" = "Notes:\U00A0";
 
 "recentMileageColon" = "Last Recorded Mileage:\U00A0";
+
+"dealershipAddressColon" = "Dealership Address\U00A0";
 
 /* Vehicle */
 "vehicleMake" = "Volvo";
