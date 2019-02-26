@@ -1,3 +1,6 @@
+v1.0.0-beta1 (50)
+- Visual QA feedbacks part 1
+
 v1.0.0-alpha4 (45)
 - Landscape Photo inspections
 - Fix request flow blocker
