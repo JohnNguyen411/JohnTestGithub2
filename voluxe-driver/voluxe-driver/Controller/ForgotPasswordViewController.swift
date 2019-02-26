@@ -36,10 +36,7 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         self.addActions()
     }
     
-    convenience init() {
-        self.init(title: Unlocalized.createPassword)
-        self.addActions()
-    }
+   
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -268,6 +265,6 @@ class ForgotPasswordStep: Step {
     var confirmPassword: String?
     
     init() {
-        super.init(title: Unlocalized.createPassword, controllerName: ForgotPasswordViewController.className)
+        super.init(title: DriverManager.shared.readyForUse ? .localized(.viewDrawerProfileOptionsChangePassword) : .localized(.createPassword), controllerName: ForgotPasswordViewController.className)
     }
 }
