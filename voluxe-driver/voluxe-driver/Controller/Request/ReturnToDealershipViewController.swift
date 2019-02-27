@@ -67,9 +67,15 @@ class ReturnToDealershipViewController: DriveViewController {
                 return
             }
             
+            var dealershipName = String.localized(.dealership)
+            if let dealershipId = request.booking?.dealershipId, let dealership = DriverManager.shared.dealership(for: dealershipId) {
+                dealershipName = dealership.name
+            }
+            
+            
             AppController.shared.playAlertSound()
-            AppController.shared.alert(title: .localized(.popupTooFarFromDealershipTitle),
-                                       message: .localized(.popupTooFarFromDealershipMessage),
+            AppController.shared.alert(title: String(format: .localized(.popupTooFarFromDealershipTitle), dealershipName),
+                                       message: String(format: .localized(.popupTooFarFromDealershipMessage), dealershipName),
                                        cancelButtonTitle: .localized(.no),
                                        okButtonTitle: .localized(.popupTooFarFromDealershipPositive),
                                        okCompletion: {

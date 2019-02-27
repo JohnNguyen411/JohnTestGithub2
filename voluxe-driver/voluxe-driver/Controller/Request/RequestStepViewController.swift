@@ -82,7 +82,7 @@ class RequestStepViewController: StepViewController {
             // start line at titleLabel
             self.leftLine.pinTopToBottomOf(view: self.titleLabel)
         } else {
-            self.leftLine.pinTopToSuperview()
+            self.leftLine.pinTopToSuperview(spacing: -200)
         }
         
         self.titleNumber.text = "\(stepTask.taskNumber)"
