@@ -29,9 +29,9 @@ extension AppDelegate {
         appearance.tintColor = UIColor.Volvo.navigationBar.button
 
         // nav bar back button title (hidden)
-        let attributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
-        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
-        UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .highlighted)
+        //let attributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
+        //UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
+        //UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .highlighted)
         
         if #available(iOS 11, *) {
             UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -300, vertical: 0), for:UIBarMetrics.default)

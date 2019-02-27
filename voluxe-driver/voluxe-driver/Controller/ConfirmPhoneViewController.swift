@@ -22,8 +22,6 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
     var isPhoneNumberUpdate = false
 
     private let verifyLabel = Label.dark(with: Unlocalized.letsVerifyPhoneNumber)
-    private let cancelButton = UIButton.Volvo.secondary(title: Unlocalized.cancel)
-    private let nextButton = UIButton.Volvo.primary(title: Unlocalized.next)
 
     // MARK: Lifecycle
     
@@ -33,14 +31,6 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
             textField.flagPhoneNumberDelegate = self
             countryCode = textField.getDefaultCountryCode()
         }
-        
-        if DriverManager.shared.readyForUse {
-            isPhoneNumberUpdate = true
-            self.navigationItem.title = .localized(.viewProfileChangeContact)
-            self.nextButton.setTitle(String.localized(.update).uppercased(), for: .normal)
-        }
-        
-        self.addActions()
     }
 
     convenience init(title: String) {
@@ -51,8 +41,6 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
             textField.flagPhoneNumberDelegate = self
             countryCode = textField.getDefaultCountryCode()
         }
-        
-        self.addActions()
     }
     
     deinit {
@@ -74,6 +62,13 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
         }
         
         super.viewDidLoad()
+        
+        if DriverManager.shared.readyForUse {
+            isPhoneNumberUpdate = true
+            self.navigationItem.title = .localized(.viewProfileChangeContact)
+            self.nextButtonTitle(String.localized(.update))
+        }
+        
         self.view.backgroundColor = UIColor.Volvo.background.light
         
         self.phoneNumberTextField.textField.keyboardType = .phonePad
@@ -101,12 +96,6 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
             self.phoneNumberTextField.pinToSuperviewTop(spacing: 40)
         }
         self.phoneNumberTextField.heightAnchor.constraint(equalToConstant: CGFloat(VLVerticalTextField.verticalHeight)).isActive = true
-        
-        gridView.add(subview: self.cancelButton, from: 1, to: 2)
-        self.cancelButton.pinTopToBottomOf(view: self.phoneNumberTextField, spacing: 20)
-
-        gridView.add(subview: self.nextButton, from: 3, to: 4)
-        self.nextButton.pinTopToBottomOf(view: self.phoneNumberTextField, spacing: 20)
 
     }
     
@@ -119,14 +108,19 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
         self.phoneNumberTextField.textField.becomeFirstResponder()
     }
 
+    // MARK: Navigation
+    
+    override func hasNextButton() -> Bool {
+        return true
+    }
+    
+    override func hasBackButton() -> Bool {
+        return true
+    }
+    
     // MARK: Actions
 
-    private func addActions() {
-        self.nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
-        self.cancelButton.addTarget(self, action: #selector(cancelButtonTouchUpInside), for: .touchUpInside)
-    }
-
-    @objc func nextButtonTouchUpInside() {
+    @objc override func nextButtonTouchUpInside() {
         // if entered phone is same as driver.workPhone, then request verification code, otherwise update phone number
         guard let validPhoneNumber = self.validPhoneNumber else { return }
         guard DriverManager.shared.driver != nil else { return }
@@ -152,7 +146,7 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
         
     }
 
-    @objc func cancelButtonTouchUpInside() {
+    @objc override func backButtonTouchUpInside() {
         Analytics.trackClick(navigation: .back, screen: .addPhone)
         AppController.shared.isVerifyingPhoneNumber = false
         if !self.popStep() {
@@ -255,7 +249,7 @@ class ConfirmPhoneViewController: StepViewController, FPNTextFieldDelegate {
     
     private func checkTextFieldsValidity() -> Bool {
         let enabled = isPhoneNumberValid()
-        nextButton.isEnabled = enabled
+        nextButtonEnabled(enabled: enabled)
         return enabled
     }
     

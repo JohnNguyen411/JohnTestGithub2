@@ -14,7 +14,7 @@ class DriveToCustomerViewController: DriveViewController {
     
     private let addressLabel = Label.taskText()
     private let serviceLabel = Label.taskText()
-    private let notesLabel = Label.taskText(numberOfLines: 6)
+    private let notesLabel = Label.taskText(numberOfLines: 3)
     
     override func viewDidLoad() {
         super.viewDidLoad()

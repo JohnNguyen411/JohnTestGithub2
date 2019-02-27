@@ -15,10 +15,6 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
     private let currentPasswordTextField = VLVerticalTextField(title: Unlocalized.currentPassword, placeholder: "••••••••")
     private let newPasswordTextField = VLVerticalTextField(title: Unlocalized.newPassword, placeholder: "••••••••")
     private let passwordConfirmTextField = VLVerticalTextField(title: Unlocalized.confirmNewPassword, placeholder: "••••••••")
-
-    private let cancelButton = UIButton.Volvo.secondary(title: Unlocalized.cancel)
-    private let nextButton = UIButton.Volvo.primary(title: Unlocalized.update)
-
     
     // MARK: Analytics
     private var screenView: AnalyticsEnums.Name.Screen?
@@ -32,14 +28,11 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         } else {
             self.navigationItem.title = DriverManager.shared.readyForUse ? .localized(.viewDrawerProfileOptionsChangePassword) : .localized(.createPassword)
         }
-        
-        self.addActions()
     }
     
     convenience init(title: String) {
         self.init(step: nil)
         self.navigationItem.title = title.capitalized
-        self.addActions()
     }
     
    
@@ -66,6 +59,9 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         }
         
         super.viewDidLoad()
+        
+        nextButtonTitle(.localized(.update))
+        
         self.view.backgroundColor = UIColor.Volvo.background.light
         
         currentPasswordTextField.textField.autocorrectionType = .no
@@ -108,23 +104,22 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         self.passwordConfirmTextField.pinTopToBottomOf(view: self.newPasswordTextField, spacing: 20)
         self.passwordConfirmTextField.heightAnchor.constraint(equalToConstant: CGFloat(VLVerticalTextField.height)).isActive = true
 
-        self.cancelButton.isUserInteractionEnabled = true
-        gridView.add(subview: self.cancelButton, from: 1, to: 2)
-        self.cancelButton.pinTopToBottomOf(view: passwordConfirmTextField, spacing: 40)
-
-        self.nextButton.isUserInteractionEnabled = true
-        gridView.add(subview: self.nextButton, from: 3, to: 4)
-        self.nextButton.pinTopToBottomOf(view: passwordConfirmTextField, spacing: 40)
+    }
+    
+    
+    // MARK: Navigation
+    
+    override func hasNextButton() -> Bool {
+        return true
+    }
+    
+    override func hasBackButton() -> Bool {
+        return true
     }
 
     // MARK: Actions
 
-    private func addActions() {
-        self.nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
-        self.cancelButton.addTarget(self, action: #selector(cancelButtonTouchUpInside), for: .touchUpInside)
-    }
-
-    @objc func nextButtonTouchUpInside() {
+    @objc override func nextButtonTouchUpInside() {
         Analytics.trackClick(navigation: .next, screen: self.screenView)
         guard let driver = DriverManager.shared.driver else { return }
         
@@ -171,7 +166,7 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         })
     }
 
-    @objc func cancelButtonTouchUpInside() {
+    @objc override func backButtonTouchUpInside() {
         Analytics.trackClick(navigation: .back, screen: self.screenView)
         guard let driver = DriverManager.shared.driver else { return }
 
@@ -190,7 +185,7 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
             (newPasswordTextField.textField.text?.isMinimumPasswordLength() ?? false) &&
             (passwordConfirmTextField.textField.text?.isMinimumPasswordLength() ?? false)
         
-        self.nextButton.isEnabled = enabled
+        nextButtonEnabled(enabled: enabled)
         
         return enabled
     }
