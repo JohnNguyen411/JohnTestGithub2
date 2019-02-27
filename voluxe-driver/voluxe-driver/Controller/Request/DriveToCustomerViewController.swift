@@ -83,7 +83,7 @@ class DriveToCustomerViewController: DriveViewController {
             
             AppController.shared.playAlertSound()
             AppController.shared.alert(title: .localized(.popupTooFarFromCustomerTitle),
-                                       message: String(format: .localized(.popupTooFarFromCustomerMessage), fullname),
+                                       message: String(format: .localized(.popupTooFarFromCustomerMessage), fullname, request.typeString.lowercased(), request.location?.address ?? ""),
                                        cancelButtonTitle: .localized(.no),
                                        okButtonTitle: .localized(.popupTooFarFromCustomerPositive),
                                        okCompletion: {
