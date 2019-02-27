@@ -27,6 +27,12 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
 
     override init(step: Step? = nil) {
         super.init(step: step)
+        if let title = step?.title {
+            self.navigationItem.title = title.capitalized
+        } else {
+            self.navigationItem.title = DriverManager.shared.readyForUse ? .localized(.viewDrawerProfileOptionsChangePassword) : .localized(.createPassword)
+        }
+        
         self.addActions()
     }
     
@@ -42,8 +48,12 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         self.currentPasswordTextField.textField.becomeFirstResponder()
+    }
+    
+    override func viewDidLoad() {
         
         if DriverManager.shared.driver != nil {
             screenView = .passwordReset

@@ -15,11 +15,8 @@ extension AppDelegate {
 
         // nav bar
         let appearance = UINavigationBar.appearance()
-        appearance.backIndicatorImage = UIImage(named: "back_chevron")
-        appearance.backIndicatorTransitionMaskImage = appearance.backIndicatorImage
         appearance.backgroundColor = UIColor.Volvo.navigationBar.background
         appearance.isTranslucent = false
-
         appearance.titleTextAttributes = [NSAttributedString.Key.font: Font.Volvo.h6,
                                           NSAttributedString.Key.foregroundColor: UIColor.Volvo.navigationBar.title]
 
@@ -35,5 +32,11 @@ extension AppDelegate {
         let attributes = [NSAttributedString.Key.foregroundColor: UIColor.clear]
         UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .normal)
         UIBarButtonItem.appearance().setTitleTextAttributes(attributes, for: .highlighted)
+        
+        if #available(iOS 11, *) {
+            UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: -300, vertical: 0), for:UIBarMetrics.default)
+        } else {
+            UIBarButtonItem.appearance().setBackButtonTitlePositionAdjustment(UIOffset(horizontal: 0, vertical: -200), for:UIBarMetrics.default)
+        }
     }
 }
