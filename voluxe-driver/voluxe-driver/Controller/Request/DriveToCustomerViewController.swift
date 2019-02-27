@@ -79,9 +79,11 @@ class DriveToCustomerViewController: DriveViewController {
                 return
             }
             
+            let fullname = request.booking?.customer.fullName() ?? .localized(.popupGetToCustomerTitle)
+            
             AppController.shared.playAlertSound()
             AppController.shared.alert(title: .localized(.popupTooFarFromCustomerTitle),
-                                       message: .localized(.popupTooFarFromCustomerMessage),
+                                       message: String(format: .localized(.popupTooFarFromCustomerMessage), fullname),
                                        cancelButtonTitle: .localized(.no),
                                        okButtonTitle: .localized(.popupTooFarFromCustomerPositive),
                                        okCompletion: {

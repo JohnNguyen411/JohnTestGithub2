@@ -324,13 +324,13 @@
 
 "popupTooFarFromCustomerTitle" = "Are you sure you've arrived?";
 
-"popupTooFarFromCustomerMessage" = "%@'s requested location doesn't match your current location.";
+"popupTooFarFromCustomerMessage" = "%@'s requested location doesn't match your current GPS location.";
 
 "popupTooFarFromCustomerPositive" = "Yes, I’m sure";
 
 "popupTooFarFromDealershipTitle" = "Are you sure you've arrived at %@?";
 
-"popupTooFarFromDealershipMessage" = "%@ location doesn’t match your GPS location";
+"popupTooFarFromDealershipMessage" = "%@ location doesn’t match your current GPS location";
 
 "popupTooFarFromDealershipPositive" = "Yes, I’m sure";
 
