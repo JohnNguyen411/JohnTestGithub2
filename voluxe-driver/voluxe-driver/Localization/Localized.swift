@@ -268,6 +268,10 @@ enum Localized: CustomStringConvertible {
     case viewGetToText
     case viewArrivedatPickupSwipeButtonTitle
     case errorInvalidPasswordUnauthorizedCharacters
+    case errorPasswordNotMatch
+    case viewSignupPasswordRequireLetter
+    case viewSignupPasswordRequireNumber
+    case errorInvalidCharacter
     case viewDrawerContactDealershipCall
     case yes
     case popupForgotPasswordTitle
@@ -832,6 +836,14 @@ enum Localized: CustomStringConvertible {
             return "viewArrivedatPickupSwipeButtonTitle"
         case .errorInvalidPasswordUnauthorizedCharacters:
             return "errorInvalidPasswordUnauthorizedCharacters"
+        case .errorPasswordNotMatch:
+            return "errorPasswordNotMatch"
+        case .viewSignupPasswordRequireLetter:
+            return "viewSignupPasswordRequireLetter"
+        case .viewSignupPasswordRequireNumber:
+            return "viewSignupPasswordRequireNumber"
+        case .errorInvalidCharacter:
+            return "errorInvalidCharacter"
         case .viewDrawerContactDealershipCall:
             return "viewDrawerContactDealershipCall"
         case .yes:

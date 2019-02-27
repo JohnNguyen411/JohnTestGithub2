@@ -407,6 +407,14 @@
 
 "viewIntroFooterSignup" = "Create Account";
 
+"errorPasswordNotMatch" = "Does not match";
+
+"viewSignupPasswordRequireLetter" = "Requires a letter";
+
+"viewSignupPasswordRequireNumber" = "Requires a number";
+
+"errorInvalidCharacter" = "Invalid character";
+
 "errorInvalidPasswordUnauthorizedCharacters" = "Your password contains unauthorized characters. Authorized characters: @$!%*?&";
 
 "viewPhoneVerificationLabel" = "Type the confirmation code you received via SMS";

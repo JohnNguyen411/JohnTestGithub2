@@ -125,18 +125,18 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         
         if !String.areSimilar(stringOne: newPasswordTextField.text, stringTwo: passwordConfirmTextField.text) {
             //DOES NOT MATCH
-            inlineError(error: "DoesNotMatch")
+            inlineError(error: .localized(.errorPasswordNotMatch))
             return
         } else if !passwordConfirmTextField.text.containsLetter() {
-            inlineError(error: "RequiresALetter")
+            inlineError(error: .localized(.viewSignupPasswordRequireLetter))
             return
         } else if !passwordConfirmTextField.text.containsNumber() {
-            inlineError(error: "RequiresANumber")
+            inlineError(error: .localized(.viewSignupPasswordRequireNumber))
             return
         } else if passwordConfirmTextField.text.hasIllegalPasswordCharacters() {
-            inlineError(error: "InvalidCharacter")
+            inlineError(error: .localized(.errorInvalidCharacter))
             passwordConfirmTextField.setBottomRightActionBlock {
-                AppController.shared.alert(title: Unlocalized.error, message: "PasswordUnauthorizedChars")
+                AppController.shared.alert(title: .localized(.error), message: .localized(.errorInvalidPasswordUnauthorizedCharacters))
             }
             return
         }
