@@ -322,15 +322,15 @@
 
 "popupHardRefreshMessage" = "This will erase your app data and you’ll need to restart the app again. Please only click yes when you’re stuck.\n\nDo you want to proceed with hard refresh?";
 
-"popupTooFarFromCustomerTitle" = "Arrived at the CUSTOMER, are you sure?";
+"popupTooFarFromCustomerTitle" = "Are you sure you've arrived?";
 
-"popupTooFarFromCustomerMessage" = "CUSTOMER location doesn’t match your GPS location";
+"popupTooFarFromCustomerMessage" = "%@'s requested location doesn't match your current location.";
 
 "popupTooFarFromCustomerPositive" = "Yes, I’m sure";
 
-"popupTooFarFromDealershipTitle" = "Arrived at the DEALERSHIP, are you sure?";
+"popupTooFarFromDealershipTitle" = "Are you sure you've arrived at %@?";
 
-"popupTooFarFromDealershipMessage" = "DEALERSHIP location doesn’t match your GPS location";
+"popupTooFarFromDealershipMessage" = "%@ location doesn’t match your GPS location";
 
 "popupTooFarFromDealershipPositive" = "Yes, I’m sure";
 
