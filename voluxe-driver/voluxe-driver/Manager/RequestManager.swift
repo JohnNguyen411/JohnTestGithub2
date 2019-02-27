@@ -80,6 +80,9 @@ class RequestManager {
     
     var requestsDidChangeClosure: (([Request]) -> ())?
     
+    // MARK: Mileage
+    var recentMileage: [Int: UInt] = [:]
+    
     // MARK: Inspections
     func addDocumentInspection(photo: UIImage) {
         self.addInspection(photo: photo, type: .document)
