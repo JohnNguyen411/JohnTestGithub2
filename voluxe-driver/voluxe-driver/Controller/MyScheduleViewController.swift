@@ -72,7 +72,7 @@ class MyScheduleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         AppController.shared.requestPushPermissions()
-        RequestManager.shared.forceRefresh()
+        RequestManager.shared.forceRefresh()        
 //        self.startRequestManager()
     }
 
