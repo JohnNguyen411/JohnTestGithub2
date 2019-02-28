@@ -117,11 +117,13 @@ class RequestManager {
             Log.fatal(.missingValue, "Realm not inited, cannot create offline inspection")
             return
         }
-        
+
         let offlineInspection = OfflineInspection(request: request,
                                                   type: type,
                                                   photo: photo)
-        try? realm.write { realm.add(offlineInspection) }
+        try? realm.write {
+            realm.add(offlineInspection)
+        }
         self.startUploading()
         self.notifyOfflineInspectionsDidChange()
     }

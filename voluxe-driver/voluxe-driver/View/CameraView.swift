@@ -279,6 +279,9 @@ class CameraView: UIView {
         #else
             let settings = AVCapturePhotoSettings()
             settings.flashMode = self.useFlash ? AVCaptureDevice.FlashMode.on : AVCaptureDevice.FlashMode.off
+            if let photoOutputConnection = self.output.connection(with: AVMediaType.video) {
+                photoOutputConnection.videoOrientation = captureOrientation()
+            }
             self.output.capturePhoto(with: settings, delegate: self)
         #endif
     }
@@ -318,6 +321,16 @@ class CameraView: UIView {
         }
         return imageOrientation
     }
+    
+    func captureOrientation() ->AVCaptureVideoOrientation {
+        self.deviceOrientation = DeviceOrientationHelper.shared.currentDeviceOrientation
+        if self.deviceOrientation == .landscapeRight {
+            return AVCaptureVideoOrientation.landscapeRight
+        } else if self.deviceOrientation == .landscapeLeft {
+            return AVCaptureVideoOrientation.landscapeLeft
+        }
+        return AVCaptureVideoOrientation.portrait
+    }
 }
 
 // MARK:- Extension for capture delegate
@@ -338,9 +351,8 @@ extension CameraView: AVCapturePhotoCaptureDelegate {
                      error: Error?)
     {
         
-        guard let data = photo.cgImageRepresentation() else { return }
-        let cgImage = data.takeUnretainedValue()
-        let image = UIImage(cgImage: cgImage, scale: 1, orientation: imageOrientation())
+        guard let data = photo.fileDataRepresentation() else { return }
+        guard let image = UIImage(data: data) else { return }
         self.isCapturingOutput = false
         self.didCapture(photo: image)
         
