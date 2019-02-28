@@ -129,7 +129,7 @@ class LoanerPaperworkViewController: RequestStepViewController {
                 self.titleLabel.attributedText = loanerString.append(.localized(.customerColon), with: self.titleLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: Font.Medium.medium)
                 
                 let addressString = NSMutableAttributedString()
-                self.licensePlateLabel.attributedText = addressString.append(.localized(.addressColon), with: self.licensePlateLabel.font).append("\(request.location?.address ?? "")" , with: self.intermediateMediumFont())
+                self.licensePlateLabel.attributedText = addressString.append(String(format: .localized(.addressColon), request.typeString), with: self.licensePlateLabel.font).append("\(request.location?.address ?? "")" , with: self.intermediateMediumFont())
                 
                 self.keyCodeLabel.isHidden = true
                 self.loanerAgreement.isHidden = true

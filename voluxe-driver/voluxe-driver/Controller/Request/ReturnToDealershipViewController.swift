@@ -35,7 +35,7 @@ class ReturnToDealershipViewController: DriveViewController {
             self.directionAddressString = dealership.location.address
             
             let addressString = NSMutableAttributedString()
-            self.addressLabel.attributedText = addressString.append(.localized(.addressColon), with: self.customerLabel.font).append("\(dealership.location.address)" , with: self.intermediateMediumFont())
+            self.addressLabel.attributedText = addressString.append(.localized(.dealershipAddressColon), with: self.customerLabel.font).append("\(dealership.location.address)" , with: self.intermediateMediumFont())
         }
         
         self.titleLabel.text = self.step?.title ?? .localized(.returnToDealership)
@@ -67,9 +67,15 @@ class ReturnToDealershipViewController: DriveViewController {
                 return
             }
             
+            var dealershipName = String.localized(.dealership)
+            if let dealershipId = request.booking?.dealershipId, let dealership = DriverManager.shared.dealership(for: dealershipId) {
+                dealershipName = dealership.name
+            }
+            
+            
             AppController.shared.playAlertSound()
-            AppController.shared.alert(title: .localized(.popupTooFarFromDealershipTitle),
-                                       message: .localized(.popupTooFarFromDealershipMessage),
+            AppController.shared.alert(title: String(format: .localized(.popupTooFarFromDealershipTitle), dealershipName),
+                                       message: String(format: .localized(.popupTooFarFromDealershipMessage), dealershipName),
                                        cancelButtonTitle: .localized(.no),
                                        okButtonTitle: .localized(.popupTooFarFromDealershipPositive),
                                        okCompletion: {

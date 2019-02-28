@@ -42,8 +42,6 @@ struct Unlocalized {
     static let later = NSLocalizedString("Later", comment: "")
     static let looksGood = NSLocalizedString("looks good", comment: "")
 
-    static let mySchedule = NSLocalizedString("My Schedule", comment: "")
-
     static let next = NSLocalizedString("next", comment: "")
     static let noScheduledRequests = NSLocalizedString("You have no scheduled pick-ups or deliveries.", comment: "")
 
@@ -69,7 +67,6 @@ struct Unlocalized {
     static let emailAddress = NSLocalizedString("Email Address", comment: "")
     static let emailAddressPlaceholder = NSLocalizedString("name@domain.com", comment: "")
     static let password = NSLocalizedString("Password", comment: "")
-    static let createPassword = NSLocalizedString("Create a Password", comment: "")
     static let currentPassword = NSLocalizedString("Current Password", comment: "")
     static let newPassword = NSLocalizedString("New Password", comment: "")
     static let confirmNewPassword = NSLocalizedString("Confirm New Password", comment: "")

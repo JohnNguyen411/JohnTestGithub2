@@ -18,18 +18,6 @@ class SelfieViewController: StepViewController, ShutterViewProtocol {
 
     // MARK: Layout
 
-    private let nextButton: UIButton = {
-        let button = UIButton.Volvo.primary(title: Unlocalized.looksGood)
-        button.isHidden = true
-        return button
-    }()
-
-    private let cancelButton: UIButton = {
-        let button = UIButton.Volvo.secondary(title: Unlocalized.tryAgain)
-        button.isHidden = true
-        return button
-    }()
-
     private let cameraView: CameraView = {
         let view = CameraView(position: .front)
         view.cropColor = UIColor.Volvo.white.withAlphaComponent(0.4)
@@ -88,12 +76,6 @@ class SelfieViewController: StepViewController, ShutterViewProtocol {
         self.errorLabel.topAnchor.constraint(equalTo: self.cameraView.cropLayoutGuide.bottomAnchor,
                                              constant: 20).isActive = true
 
-        gridView.add(subview: self.cancelButton, from: 1, to: 2)
-        self.cancelButton.pinBottomToSuperviewBottom(spacing: -40)
-
-        gridView.add(subview: self.nextButton, from: 3, to: 4)
-        self.nextButton.pinBottomToSuperviewBottom(spacing: -40)
-
         gridView.add(subview: self.shutterView, from: 1, to: 6)
         self.shutterView.pinBottomToSuperviewBottom(spacing: -30)
         
@@ -132,10 +114,6 @@ class SelfieViewController: StepViewController, ShutterViewProtocol {
         self.shutterView.isHidden = !visible
     }
 
-    private func setButtons(visible: Bool, animated: Bool = true) {
-        self.cancelButton.isHidden = !visible
-        self.nextButton.isHidden = !visible
-    }
 
     private func showErrorLabel(text: String) {
         self.errorLabel.alpha = 0
@@ -167,7 +145,7 @@ class SelfieViewController: StepViewController, ShutterViewProtocol {
         self.shutterView.doneButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
     }
 
-    @objc func nextButtonTouchUpInside() {
+    @objc override func nextButtonTouchUpInside() {
         
         guard let image = self.image else { return }
         AppController.shared.lookBusy()

@@ -19,6 +19,9 @@ class ImagedLabel: UIView {
         
         self.translatesAutoresizingMaskIntoConstraints = false
         
+        self.image.clipsToBounds = true
+        self.label.clipsToBounds = true
+        
         self.addSubview(self.image)
         self.addSubview(self.label)
         
@@ -48,6 +51,7 @@ class ImagedLabel: UIView {
     private func setConstraints(extraSpacing: CGFloat? = nil) {
         
         self.image.pinLeadingToView(peerView: self)
+        self.image.pinCenterYWithSuperView()
 
         self.image.widthAnchor.constraint(equalToConstant: 20).isActive = true
         self.image.heightAnchor.constraint(equalToConstant: 20).isActive = true

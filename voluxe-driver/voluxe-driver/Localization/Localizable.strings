@@ -132,7 +132,7 @@
 
 "customerColon" = "Customer:\U00A0";
 
-"addressColon" = "Address:\U00A0";
+"addressColon" = "%@ Address:\U00A0";
 
 "deliveryColon" = "Delivery:\U00A0";
 
@@ -148,7 +148,9 @@
 
 "notesColon" = "Notes:\U00A0";
 
-"recentMileageColon" = "Recent Mileage:\U00A0";
+"recentMileageColon" = "Last Recorded Mileage:\U00A0";
+
+"dealershipAddressColon" = "Dealership Address\U00A0";
 
 /* Vehicle */
 "vehicleMake" = "Volvo";
@@ -320,15 +322,15 @@
 
 "popupHardRefreshMessage" = "This will erase your app data and you’ll need to restart the app again. Please only click yes when you’re stuck.\n\nDo you want to proceed with hard refresh?";
 
-"popupTooFarFromCustomerTitle" = "Arrived at the CUSTOMER, are you sure?";
+"popupTooFarFromCustomerTitle" = "Are you sure you've arrived?";
 
-"popupTooFarFromCustomerMessage" = "CUSTOMER location doesn’t match your GPS location";
+"popupTooFarFromCustomerMessage" = "%@'s requested %@ location (%@) doesn't match your current GPS location.";
 
 "popupTooFarFromCustomerPositive" = "Yes, I’m sure";
 
-"popupTooFarFromDealershipTitle" = "Arrived at the DEALERSHIP, are you sure?";
+"popupTooFarFromDealershipTitle" = "Are you sure you've arrived at %@?";
 
-"popupTooFarFromDealershipMessage" = "DEALERSHIP location doesn’t match your GPS location";
+"popupTooFarFromDealershipMessage" = "%@ address doesn’t match your current GPS location";
 
 "popupTooFarFromDealershipPositive" = "Yes, I’m sure";
 
@@ -404,6 +406,14 @@
 "viewIntroFooterSignin" = "Sign-in";
 
 "viewIntroFooterSignup" = "Create Account";
+
+"errorPasswordNotMatch" = "Does not match";
+
+"viewSignupPasswordRequireLetter" = "Requires a letter";
+
+"viewSignupPasswordRequireNumber" = "Requires a number";
+
+"errorInvalidCharacter" = "Invalid character";
 
 "errorInvalidPasswordUnauthorizedCharacters" = "Your password contains unauthorized characters. Authorized characters: @$!%*?&";
 
@@ -609,9 +619,9 @@
 
 "viewRecordLoanerMileageDropoffInfoNext" = "Complete Delivery";
 
-"viewRecordLoanerMileageDropoffSwipeButtonTitle" = "SLIDE TO COMPLETE";
+"viewRecordLoanerMileageDropoffSwipeButtonTitle" = "SLIDE TO COMPLETE DELIVERY";
 
-"viewSchedule" = "My Schedule";
+"viewSchedule" = "Your Schedule";
 
 "viewScheduleCurrent" = "Please complete the current booking…";
 

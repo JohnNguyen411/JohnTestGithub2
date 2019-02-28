@@ -15,8 +15,6 @@ class LoginViewController: StepViewController, UITextFieldDelegate {
 
     private let emailTextField = VLVerticalTextField(title: Unlocalized.emailAddress, placeholder: Unlocalized.emailAddressPlaceholder)
     private let passwordTextField = VLVerticalTextField(title: Unlocalized.password, placeholder: "••••••••")
-    private let cancelButton = UIButton.Volvo.secondary(title: Unlocalized.cancel)
-    private let nextButton = UIButton.Volvo.primary(title: Unlocalized.next)
     private let forgotButton = UIButton.Volvo.text(title: Unlocalized.forgotPassword)
 
     // MARK: Lifecycle
@@ -29,6 +27,7 @@ class LoginViewController: StepViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        forgotButton.contentHorizontalAlignment = .trailing
         Analytics.trackView(screen: .login)
         
         // support autofill
@@ -71,13 +70,7 @@ class LoginViewController: StepViewController, UITextFieldDelegate {
 
         gridView.add(subview: self.forgotButton, from: 4, to: 6)
         self.forgotButton.bottomAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 0).isActive = true
-        
-        gridView.add(subview: self.cancelButton, from: 1, to: 2)
-        self.cancelButton.pinTopToBottomOf(view: passwordTextField, spacing: 40)
 
-        gridView.add(subview: self.nextButton, from: 3, to: 4)
-        self.nextButton.pinTopToBottomOf(view: passwordTextField, spacing: 40)
-        
         self.view.setNeedsUpdateConstraints()
     }
     
@@ -120,21 +113,29 @@ class LoginViewController: StepViewController, UITextFieldDelegate {
                                             prefersProfileButton: true)
     }
     
+    // MARK: Navigations
+    
+    override func hasNextButton() -> Bool {
+        return true
+    }
+    
+    override func hasBackButton() -> Bool {
+        return true
+    }
+    
     // MARK: Actions
 
     private func addActions() {
-        self.nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
-        self.cancelButton.addTarget(self, action: #selector(cancelButtonTouchUpInside), for: .touchUpInside)
         self.forgotButton.addTarget(self, action: #selector(forgotButtonTouchUpInside), for: .touchUpInside)
     }
 
-    @objc func nextButtonTouchUpInside() {
+    @objc override func nextButtonTouchUpInside() {
         Analytics.trackClick(navigation: .next, screen: .login)
         AppController.shared.lookBusy()
         self.login(email: emailTextField.text, password: passwordTextField.text)
     }
 
-    @objc func cancelButtonTouchUpInside() {
+    @objc override func backButtonTouchUpInside() {
         Analytics.trackClick(navigation: .back, screen: .login)
         AppController.shared.showLanding()
     }
@@ -149,7 +150,7 @@ class LoginViewController: StepViewController, UITextFieldDelegate {
         let enabled = String.isValid(email: emailTextField.textField.text) &&
             String.isValid(password: passwordTextField.textField.text)
         
-        self.nextButton.isEnabled = enabled
+        self.nextButtonEnabled(enabled: enabled)
         
         return enabled
     }

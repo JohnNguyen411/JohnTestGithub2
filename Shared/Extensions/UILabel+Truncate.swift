@@ -15,6 +15,9 @@ extension UILabel {
         let readMoreText: String = trailingText + moreText
         
         let lengthForVisibleString: Int = self.visibleTextLength
+        
+        if lengthForVisibleString == self.text?.count { return }
+        
         let mutableString: String = self.text!
         let trimmedString: String? = (mutableString as NSString).replacingCharacters(in: NSRange(location: lengthForVisibleString, length: ((self.text?.count)! - lengthForVisibleString)), with: "")
         let readMoreLength: Int = (readMoreText.count)

@@ -15,20 +15,16 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
     let codeTextField = VLVerticalTextField(title: "", placeholder: "0000", kern: 4.0)
     
     private let confirmationLabel = Label.dark(with: Unlocalized.letsVerifyPhoneNumber)
-    private let cancelButton = UIButton.Volvo.secondary(title: Unlocalized.cancel)
-    private let nextButton = UIButton.Volvo.primary(title: Unlocalized.next)
     
     // MARK: Lifecycle
     
     override init(step: Step?) {
         super.init(step: step)
-        self.addActions()
     }
     
     convenience init() {
         self.init(step: nil)
         self.navigationItem.title = Unlocalized.confirmPhoneNumber
-        self.addActions()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -73,12 +69,6 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
         self.codeTextField.pinTopToBottomOf(view: self.confirmationLabel, spacing: 40)
         self.codeTextField.heightAnchor.constraint(equalToConstant: CGFloat(VLVerticalTextField.verticalHeight)).isActive = true
         
-        gridView.add(subview: self.cancelButton, from: 1, to: 2)
-        self.cancelButton.pinTopToBottomOf(view: self.codeTextField, spacing: 20)
-        
-        gridView.add(subview: self.nextButton, from: 3, to: 4)
-        self.nextButton.pinTopToBottomOf(view: self.codeTextField, spacing: 20)
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -92,19 +82,25 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
 
     }
     
-    // MARK: Actions
+    // MARK: Navigation
     
-    private func addActions() {
-        self.nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
-        self.cancelButton.addTarget(self, action: #selector(cancelButtonTouchUpInside), for: .touchUpInside)
+    override func hasNextButton() -> Bool {
+        return true
     }
     
-    @objc func nextButtonTouchUpInside() {
+    override func hasBackButton() -> Bool {
+        return true
+    }
+
+    
+    // MARK: Actions
+    
+    @objc override func nextButtonTouchUpInside() {
         self.textFieldDidChange(self.codeTextField.textField)
         Analytics.trackClick(navigation: .next, screen: .phoneVerification)
     }
     
-    @objc func cancelButtonTouchUpInside() {
+    @objc override func backButtonTouchUpInside() {
         Analytics.trackClick(navigation: .back, screen: .phoneVerification)
 
         if !self.popStep() {
@@ -180,7 +176,7 @@ class PhoneVerificationViewController: StepViewController, UITextFieldDelegate {
     
     private func checkTextFieldsValidity() -> Bool {
         let enabled = isCodeValid(code: codeTextField.textField.text)
-        nextButton.isEnabled = enabled
+        nextButtonEnabled(enabled: enabled)
         return enabled
     }
     

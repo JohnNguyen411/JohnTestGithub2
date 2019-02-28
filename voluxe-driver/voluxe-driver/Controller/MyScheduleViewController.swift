@@ -54,7 +54,7 @@ class MyScheduleViewController: UIViewController {
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
-        self.navigationItem.title = Unlocalized.mySchedule.capitalized
+        self.navigationItem.title = String.localized(.viewSchedule).capitalized
         self.tableView.dataSource = self
         self.tableView.delegate = self
     }
@@ -427,10 +427,6 @@ fileprivate extension Request {
         let toString = Request.timeFormatter.string(from: self.dealershipTimeSlot.to)
         let string = "\(fromString)–\(toString)"
         return string
-    }
-
-    var typeString: String {
-        return self.isPickup ? .localized(.pickup) : .localized(.delivery)
     }
 
     var locationString: String {

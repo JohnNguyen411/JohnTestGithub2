@@ -49,6 +49,14 @@ class RecordMileageViewController: RequestStepViewController {
         
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if let enteredMileage = RequestManager.shared.recentMileage[self.request?.id ?? 0] {
+            self.mileageTextField.text = "\(enteredMileage)"
+        }
+    }
+    
     override func fillWithRequest(request: Request) {
         super.fillWithRequest(request: request)
         
@@ -103,6 +111,8 @@ class RecordMileageViewController: RequestStepViewController {
                 return
         }
         AppController.shared.lookBusy()
+        
+        RequestManager.shared.recentMileage[self.request?.id ?? 0] = mileage
         
         DriverAPI.update(request, loanerMileage: mileage, units: mileageUnit, completion: { error in
             AppController.shared.lookNotBusy()

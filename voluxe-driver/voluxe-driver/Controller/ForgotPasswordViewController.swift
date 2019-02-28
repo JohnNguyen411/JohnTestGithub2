@@ -15,10 +15,6 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
     private let currentPasswordTextField = VLVerticalTextField(title: Unlocalized.currentPassword, placeholder: "••••••••")
     private let newPasswordTextField = VLVerticalTextField(title: Unlocalized.newPassword, placeholder: "••••••••")
     private let passwordConfirmTextField = VLVerticalTextField(title: Unlocalized.confirmNewPassword, placeholder: "••••••••")
-
-    private let cancelButton = UIButton.Volvo.secondary(title: Unlocalized.cancel)
-    private let nextButton = UIButton.Volvo.primary(title: Unlocalized.update)
-
     
     // MARK: Analytics
     private var screenView: AnalyticsEnums.Name.Screen?
@@ -27,26 +23,30 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
 
     override init(step: Step? = nil) {
         super.init(step: step)
-        self.addActions()
+        if let title = step?.title {
+            self.navigationItem.title = title.capitalized
+        } else {
+            self.navigationItem.title = DriverManager.shared.readyForUse ? .localized(.viewDrawerProfileOptionsChangePassword) : .localized(.createPassword)
+        }
     }
     
     convenience init(title: String) {
         self.init(step: nil)
         self.navigationItem.title = title.capitalized
-        self.addActions()
     }
     
-    convenience init() {
-        self.init(title: Unlocalized.createPassword)
-        self.addActions()
-    }
+   
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func viewDidLoad() {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         self.currentPasswordTextField.textField.becomeFirstResponder()
+    }
+    
+    override func viewDidLoad() {
         
         if DriverManager.shared.driver != nil {
             screenView = .passwordReset
@@ -59,6 +59,9 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         }
         
         super.viewDidLoad()
+        
+        nextButtonTitle(.localized(.update))
+        
         self.view.backgroundColor = UIColor.Volvo.background.light
         
         currentPasswordTextField.textField.autocorrectionType = .no
@@ -101,40 +104,39 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         self.passwordConfirmTextField.pinTopToBottomOf(view: self.newPasswordTextField, spacing: 20)
         self.passwordConfirmTextField.heightAnchor.constraint(equalToConstant: CGFloat(VLVerticalTextField.height)).isActive = true
 
-        self.cancelButton.isUserInteractionEnabled = true
-        gridView.add(subview: self.cancelButton, from: 1, to: 2)
-        self.cancelButton.pinTopToBottomOf(view: passwordConfirmTextField, spacing: 40)
-
-        self.nextButton.isUserInteractionEnabled = true
-        gridView.add(subview: self.nextButton, from: 3, to: 4)
-        self.nextButton.pinTopToBottomOf(view: passwordConfirmTextField, spacing: 40)
+    }
+    
+    
+    // MARK: Navigation
+    
+    override func hasNextButton() -> Bool {
+        return true
+    }
+    
+    override func hasBackButton() -> Bool {
+        return true
     }
 
     // MARK: Actions
 
-    private func addActions() {
-        self.nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
-        self.cancelButton.addTarget(self, action: #selector(cancelButtonTouchUpInside), for: .touchUpInside)
-    }
-
-    @objc func nextButtonTouchUpInside() {
+    @objc override func nextButtonTouchUpInside() {
         Analytics.trackClick(navigation: .next, screen: self.screenView)
         guard let driver = DriverManager.shared.driver else { return }
         
         if !String.areSimilar(stringOne: newPasswordTextField.text, stringTwo: passwordConfirmTextField.text) {
             //DOES NOT MATCH
-            inlineError(error: "DoesNotMatch")
+            inlineError(error: .localized(.errorPasswordNotMatch))
             return
         } else if !passwordConfirmTextField.text.containsLetter() {
-            inlineError(error: "RequiresALetter")
+            inlineError(error: .localized(.viewSignupPasswordRequireLetter))
             return
         } else if !passwordConfirmTextField.text.containsNumber() {
-            inlineError(error: "RequiresANumber")
+            inlineError(error: .localized(.viewSignupPasswordRequireNumber))
             return
         } else if passwordConfirmTextField.text.hasIllegalPasswordCharacters() {
-            inlineError(error: "InvalidCharacter")
+            inlineError(error: .localized(.errorInvalidCharacter))
             passwordConfirmTextField.setBottomRightActionBlock {
-                AppController.shared.alert(title: Unlocalized.error, message: "PasswordUnauthorizedChars")
+                AppController.shared.alert(title: .localized(.error), message: .localized(.errorInvalidPasswordUnauthorizedCharacters))
             }
             return
         }
@@ -164,7 +166,7 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         })
     }
 
-    @objc func cancelButtonTouchUpInside() {
+    @objc override func backButtonTouchUpInside() {
         Analytics.trackClick(navigation: .back, screen: self.screenView)
         guard let driver = DriverManager.shared.driver else { return }
 
@@ -183,7 +185,7 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
             (newPasswordTextField.textField.text?.isMinimumPasswordLength() ?? false) &&
             (passwordConfirmTextField.textField.text?.isMinimumPasswordLength() ?? false)
         
-        self.nextButton.isEnabled = enabled
+        nextButtonEnabled(enabled: enabled)
         
         return enabled
     }
@@ -268,6 +270,6 @@ class ForgotPasswordStep: Step {
     var confirmPassword: String?
     
     init() {
-        super.init(title: Unlocalized.createPassword, controllerName: ForgotPasswordViewController.className)
+        super.init(title: DriverManager.shared.readyForUse ? .localized(.viewDrawerProfileOptionsChangePassword) : .localized(.createPassword), controllerName: ForgotPasswordViewController.className)
     }
 }

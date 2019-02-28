@@ -14,7 +14,7 @@ class MeetCustomerViewController: DriveViewController {
     private let addressLabel = Label.taskText()
     private let serviceLabel = Label.taskText()
     private let pickupLabel = Label.taskText() // customer vehicle
-    private let notesLabel = Label.taskText(numberOfLines: 6)
+    private let notesLabel = Label.taskText(numberOfLines: 3)
 
     
     override func viewDidLoad() {
@@ -31,7 +31,7 @@ class MeetCustomerViewController: DriveViewController {
         self.titleLabel.attributedText = customerString.append(.localized(.customerColon), with: self.titleLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: Font.Medium.medium)
         
         let addressString = NSMutableAttributedString()
-        self.addressLabel.attributedText = addressString.append(.localized(.addressColon), with: self.addressLabel.font).append("\(request.location?.address ?? "")" , with: self.intermediateMediumFont())
+        self.addressLabel.attributedText = addressString.append(String(format: .localized(.addressColon), request.typeString), with: self.addressLabel.font).append("\(request.location?.address ?? "")" , with: self.intermediateMediumFont())
         
         if let repairOrders = request.booking?.repairOrderRequests, repairOrders.count > 0 {
             let addressString = NSMutableAttributedString()

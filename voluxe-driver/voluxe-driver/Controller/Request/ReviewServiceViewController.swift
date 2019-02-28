@@ -34,7 +34,7 @@ class ReviewServiceViewController: RequestStepViewController {
         self.setTitle(attributedString: customerString)
         
         let addressString = NSMutableAttributedString()
-        self.addressLabel.attributedText = addressString.append(.localized(.addressColon),
+        self.addressLabel.attributedText = addressString.append(String(format: .localized(.addressColon), request.typeString),
                                                                 with: self.addressLabel.font).append("\(request.location?.address ?? "")",
                                                                     with: self.intermediateMediumFont())
         
