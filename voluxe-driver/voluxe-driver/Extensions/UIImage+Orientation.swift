@@ -11,18 +11,6 @@ import UIKit
 
 extension UIImage {
     
-    func normalizedImage() -> UIImage {
-        if self.imageOrientation == .up { return self }
-        
-        UIGraphicsBeginImageContextWithOptions(self.size, false, self.scale)
-        self.draw(in: CGRect(x: 0, y: 0, width: self.size.width, height: self.size.height))
-        let normalizedImage = UIGraphicsGetImageFromCurrentImageContext()
-        UIGraphicsEndImageContext();
-        
-        return normalizedImage ?? self
-        
-    }
-    
     func imageAngle() -> Double {
         if self.imageOrientation == .up {
             return Double.pi / 2

@@ -106,7 +106,9 @@ class OfflineInspection: Object {
         self._request = request
         self.requestId = request.id
         self.requestData = try? JSONEncoder().encode(request)
-        if let data = photo.jpegDataForPhotoUpload() { self.data = data }
+        if let data = photo.jpegDataForPhotoUpload() {
+            self.data = data
+        }
     }
 
     func markAsPreparing() {

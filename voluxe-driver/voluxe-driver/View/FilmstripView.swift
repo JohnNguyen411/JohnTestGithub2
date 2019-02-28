@@ -129,13 +129,10 @@ fileprivate class FilmstripCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func imageAngle() -> Double {
-        return self.imageView.image?.imageAngle() ?? 0.0
-    }
     
     func rotateToAngle(deviceAngle: Double) {
         let angle: Float = atan2f(Float(self.transform.b), Float(self.transform.a))
-        let desiredAngle: Float = Float(deviceAngle + self.imageAngle())
+        let desiredAngle: Float = Float(deviceAngle)
         if angle != desiredAngle {
             let transform = CGAffineTransform(rotationAngle: CGFloat(desiredAngle))
             self.transform = transform

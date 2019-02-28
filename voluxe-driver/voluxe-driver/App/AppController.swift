@@ -8,11 +8,16 @@
 
 import Foundation
 import UIKit
+import AudioToolbox
+import AVFoundation
 
 class AppController: UIViewController {
 
     // MARK: PhoneNumerVerification
     var isVerifyingPhoneNumber = false
+    
+    // MARK: Sound
+    var audioPlayer: AVAudioPlayer?
     
     // MARK: Singleton
 
@@ -48,6 +53,16 @@ class AppController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        
+        if let fileURL = URL(string: "file:///Library/Ringtones/Beacon.m4r") {
+            do {
+                self.audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
+                audioPlayer?.delegate = self
+            } catch {
+                OSLog.info(error.localizedDescription)
+            }
+        }
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
