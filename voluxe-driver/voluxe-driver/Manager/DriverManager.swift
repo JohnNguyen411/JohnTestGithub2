@@ -173,6 +173,7 @@ class DriverManager: NSObject, CLLocationManagerDelegate {
     func logout() {
         DriverAPI.logout()
         self.stopLocationUpdates()
+        self._driverPhoto = nil
         self._driver = nil
         self._location = nil
     }
