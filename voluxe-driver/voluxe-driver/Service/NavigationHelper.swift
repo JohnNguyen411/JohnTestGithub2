@@ -115,8 +115,26 @@ class NavigationHelper {
         UIApplication.shared.open(directionsURL, options: [:], completionHandler: nil)
     }
     
+    
+    
 }
 
+extension Notification.Name {
+    
+    struct AgentGPSProvider {
+        
+        static var providerChanged: Notification.Name {
+            return Notification.Name("Notification.AgentGPSProvider.\(#function)")
+        }
+    }
+}
+
+extension Notification {
+    static func providerChanged() -> Notification {
+        let notification = Notification(name: Notification.Name.AgentGPSProvider.providerChanged)
+        return notification
+    }
+}
 
 
 struct GPSProvider {

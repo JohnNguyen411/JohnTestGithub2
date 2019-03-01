@@ -53,6 +53,25 @@ class DriveViewController: RequestStepViewController {
         return self.directionView
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        NotificationCenter.default.addObserver(forName: Notification.Name.AgentGPSProvider.providerChanged,
+                                               object: nil,
+                                               queue: nil)
+        {
+            [weak self] notification in
+            if let request = self?.request {
+                self?.fillWithRequest(request: request)
+            }
+        }
+        
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.AgentGPSProvider.providerChanged, object: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

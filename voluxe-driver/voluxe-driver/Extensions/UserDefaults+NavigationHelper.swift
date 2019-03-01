@@ -17,6 +17,9 @@ extension UserDefaults {
         set {
             self.set(newValue, forKey: #function)
             self.synchronize()
+            
+            let notification = Notification.providerChanged()
+            NotificationCenter.default.post(notification)
         }
     }
     
