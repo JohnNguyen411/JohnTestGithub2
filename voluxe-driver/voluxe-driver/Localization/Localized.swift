@@ -338,9 +338,12 @@ enum Localized: CustomStringConvertible {
     case errorInvalidPassword
     case permissionsCameraDeniedTitle
     case dealershipAddressColon
+    case errorSynchingRequest
     
     var key : String {
         switch self {
+        case .errorSynchingRequest:
+            return "errorSynchingRequest"
         case .errorDatabase:
             return "errorDatabase"
         case .errorOffline:

@@ -19,12 +19,20 @@ class OfflineTaskManager {
         self.realm = try? Realm()
     }
     
+    func queueMileage(task: Task, request: Request, mileage: Int, mileageUnit: String) {
+        let offline = OfflineTaskUpdate(requestId: request.id, requestRoute: request.route, task: task, mileage: mileage, mileageUnit: mileageUnit)
+        self.queue(offline)
+    }
     
     func queue(task: Task, request: Request) {
-        guard let realm = self.realm else { return }
         let offline = OfflineTaskUpdate(requestId: request.id, requestRoute: request.route, task: task)
-        OSLog.info("OfflineTaskManager queue task: \(task.rawValue)")
-
+        self.queue(offline)
+    }
+    
+    private func queue(_ offline: OfflineTaskUpdate) {
+        guard let realm = self.realm else { return }
+        OSLog.info("OfflineTaskManager queue task: \(offline.taskString ?? "unknown")")
+        
         try? realm.write {
             realm.add(offline)
         }
@@ -51,6 +59,24 @@ class OfflineTaskManager {
                 
                 
                 self.refreshing = true
+                
+                if let mileageUnit = offlineTask.mileageUnit, offlineTask.mileage >= 0 {
+                    DriverAPI.update(requestRoute, loanerMileage: UInt(offlineTask.mileage), units: mileageUnit, completion: { [weak self] error in
+                        if error != nil {
+                            // re-queue
+                            try? realm.write {
+                                offlineTask.failedCount += 1
+                            }
+                        } else {
+                            // uploaded
+                            try? realm.write { realm.delete(offlineTask) }
+                            // proceed to next
+                            self?.updateNext()
+                        }
+                        return
+                    })
+                }
+                
                 DriverAPI.update(requestRoute, task: task, completion: { [weak self] error in
                     self?.refreshing = false
                     if let error = error {
@@ -98,12 +124,15 @@ class OfflineTaskManager {
             self?.updateNext()
         }
         OSLog.info("OfflineTaskManager started")
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+
     }
     
     func stop() {
         self.refreshTimer?.invalidate()
         self.refreshTimer = nil
         OSLog.info("OfflineTaskManager stopped")
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
     }
     
     @discardableResult

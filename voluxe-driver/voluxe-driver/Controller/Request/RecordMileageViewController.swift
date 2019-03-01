@@ -119,6 +119,9 @@ class RecordMileageViewController: RequestStepViewController {
             
             if error != nil {
                 // todo: queue task and try later
+                if let task = self.task, let request = self.request {
+                    OfflineTaskManager.shared.queueMileage(task: task, request: request, mileage: Int(mileage), mileageUnit: mileageUnit)
+                }
             }
             super.swipeNext(completion: completion)
         })
