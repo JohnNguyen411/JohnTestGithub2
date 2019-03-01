@@ -269,6 +269,7 @@
 
 "errorFaceDetectionMessage" = "Make sure your eyes and mouth are visible and only include yourself in the photo.";
 
+"errorDatabase" = "An internal error as occured, you might have to uninstall/reinstall the app in order for it to work properly.";
 
 /********** Permissions **********/
 

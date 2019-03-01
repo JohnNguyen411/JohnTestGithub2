@@ -113,6 +113,7 @@ enum Localized: CustomStringConvertible {
     case done
     case viewSchedule
     case error
+    case errorDatabase
     case new
     case notificationForegroundServiceTextDriverLoanerToCustomer
     case confirmPhoneNumber
@@ -340,6 +341,8 @@ enum Localized: CustomStringConvertible {
     
     var key : String {
         switch self {
+        case .errorDatabase:
+            return "errorDatabase"
         case .errorOffline:
             return "errorOffline"
         case .permissionsCameraDeniedMessage:

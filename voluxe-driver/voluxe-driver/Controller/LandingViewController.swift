@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import RealmSwift
 import MBProgressHUD
 
 class LandingViewController: UIViewController {
@@ -43,6 +44,14 @@ class LandingViewController: UIViewController {
         
         gridView.add(subview: self.loginButton, from:3, to: 4)
         self.loginButton.pinBottomToSuperviewBottom(spacing: -153)
+        
+        // check Realm integrity, otherwise login
+        do {
+            let _ = try Realm()
+        } catch {
+            Log.fatal(.missingValue, "realm could not be initialized, likely due to schema change")
+            AppController.shared.alert(title: .localized(.error), message: .localized(.errorDatabase), buttonTitle: .localized(.ok))
+        }
         
         self.login()
     }
