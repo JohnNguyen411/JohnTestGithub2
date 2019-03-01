@@ -45,6 +45,14 @@ extension AppController {
             [weak self] notification in
             self?.showPhoneVerificationController()
         }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name.LuxeAPI.resetPasswordRequired,
+                                               object: nil,
+                                               queue: nil)
+        {
+            [weak self] notification in
+            self?.showPhoneVerificationController()
+        }
     }
 
     func deregisterAPINotifications() {
