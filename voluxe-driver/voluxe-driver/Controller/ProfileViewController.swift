@@ -227,6 +227,10 @@ class ProfileViewController: UIViewController {
         self.changeInfoButton.pinLeadingToSuperView(constant: ProfileViewController.leadingMargin)
         self.changeInfoButton.pinBottomToTopOf(view: self.changePasswordButton, spacing: -10)
         
+        if let dealerships = DriverManager.shared.dealerships, dealerships.count == 0 {
+            self.contactCallView.isHidden = true
+            separator.isHidden = true
+        }
         
     }
     

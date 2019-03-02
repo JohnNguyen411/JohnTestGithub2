@@ -10,14 +10,24 @@ import Foundation
 import RealmSwift
 
 extension AppDelegate {
+    
+    static let schemaVersion: UInt64 = 2
 
     func initRealm() {
 
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 1,
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: AppDelegate.schemaVersion,
                                                                        migrationBlock:
         {
             migration, oldSchemaVersion in
             // nothing to do yet!
+            if oldSchemaVersion < 2 {
+                migration.enumerateObjects(ofType: OfflineTaskUpdate.className()) { oldObject, newObject in
+                    newObject!["mileage"] = -1
+                    newObject!["mileageUnit"] = nil
+
+                }
+            }
+            
         })
 
         do {

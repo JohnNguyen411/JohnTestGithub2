@@ -45,6 +45,14 @@ extension AppController {
             [weak self] notification in
             self?.showPhoneVerificationController()
         }
+        
+        NotificationCenter.default.addObserver(forName: Notification.Name.LuxeAPI.resetPasswordRequired,
+                                               object: nil,
+                                               queue: nil)
+        {
+            [weak self] notification in
+            self?.showPhoneVerificationController()
+        }
     }
 
     func deregisterAPINotifications() {
@@ -71,8 +79,13 @@ extension AppController {
 
         let appStoreAction = UIAlertAction(title: Unlocalized.appStore, style: .default) {
             _ in
-            // TODO https://app.asana.com/0/858610969087925/894650916838358/f
-            // TODO need app store URL
+            // 1408457126 cust
+            // 1454728573 agent
+            // https://itunes.apple.com/us/app/luxe-by-volvo/id1408457126
+            if let url = URL(string: "http://itunes.apple.com/app/id1454728573"), UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url)
+            }
+            
         }
         controller.addAction(appStoreAction)
 

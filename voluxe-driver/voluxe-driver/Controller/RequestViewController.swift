@@ -109,6 +109,13 @@ class RequestViewController: FlowViewController, RequestStepDelegate, Inspection
 
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Volvo.background.light
+        
+        if self.localTask == .null {
+            AppController.shared.alert(title: .localized(.error), message: .localized(.errorSynchingRequest), buttonTitle: .localized(.ok), completion: {
+                RequestManager.shared.requestDidChangeClosure = nil
+                self.navigationController?.popViewController(animated: true)
+            })
+        }
     }
     
 

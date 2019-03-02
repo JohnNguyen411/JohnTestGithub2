@@ -58,6 +58,7 @@
 		52B200ED2224A758005DE35A /* UILabel+Truncate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200EC2224A758005DE35A /* UILabel+Truncate.swift */; };
 		52B200EF2224B54F005DE35A /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200EE2224B54F005DE35A /* NotesViewController.swift */; };
 		52B200F12224CEC7005DE35A /* UITextViewHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200F02224CEC7005DE35A /* UITextViewHighlight.swift */; };
+		52B200F322289648005DE35A /* GoogleService-Info-AppStore.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52B200F222289648005DE35A /* GoogleService-Info-AppStore.plist */; };
 		52C67E6421E952A3005EEC3B /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6321E952A2005EEC3B /* String+Validation.swift */; };
 		52C67E6621ED2355005EEC3B /* FlagPhoneNumberTextField+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6521ED2354005EEC3B /* FlagPhoneNumberTextField+Utils.swift */; };
 		52C67E6821ED391F005EEC3B /* UITextField+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6721ED391F005EEC3B /* UITextField+Voluxe.swift */; };
@@ -74,6 +75,7 @@
 		52C67E8421F91EB8005EEC3B /* Volvo Novum-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52C67E7F21F91EB8005EEC3B /* Volvo Novum-Light.otf */; };
 		52C67E8621F9205C005EEC3B /* LoanerPaperworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E8521F9205C005EEC3B /* LoanerPaperworkViewController.swift */; };
 		52CFAC5821FFD5390019255D /* UIBarButtonItem+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */; };
+		52E8CB982229FDB700794E3B /* GoogleService-Info-Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */; };
 		52FFBBAE21ADF78D00FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */; };
 		52FFBBAF21ADF79800FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */; };
 		530BCD4A2177AAB2005327E7 /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530BCD492177AAB2005327E7 /* RestAPI.swift */; };
@@ -118,7 +120,7 @@
 		5330471D2188D896007CE01C /* DebugSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5330471C2188D895007CE01C /* DebugSettingsViewController.swift */; };
 		533047242188F85B007CE01C /* AppDelegate+Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047232188F85B007CE01C /* AppDelegate+Fetch.swift */; };
 		5330472721890B1E007CE01C /* AppDelegate+Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5330472621890B1E007CE01C /* AppDelegate+Push.swift */; };
-		5330472921890BF8007CE01C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5330472821890BF8007CE01C /* GoogleService-Info.plist */; };
+		5330472921890BF8007CE01C /* GoogleService-Info-Development.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5330472821890BF8007CE01C /* GoogleService-Info-Development.plist */; };
 		53368D8C21C17CEB00B1A2AF /* AdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C1FF5219E4E62003AA733 /* AdminAPI.swift */; };
 		53368D8D21C17CED00B1A2AF /* AdminAPI+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C1FF8219E4E82003AA733 /* AdminAPI+Driver.swift */; };
 		53368D8E21C17D2E00B1A2AF /* UIImage+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B654BA21AE0E3500FC3ACA /* UIImage+LuxeAPI.swift */; };
@@ -265,7 +267,9 @@
 
 /* Begin PBXFileReference section */
 		094F2A302573828463BE665F /* Pods-voluxe-driver.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.app store.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.app store.xcconfig"; sourceTree = "<group>"; };
+		0A02722CFEB623049E274707 /* Pods-voluxe-driverAPITests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverAPITests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverAPITests/Pods-voluxe-driverAPITests.appstore.xcconfig"; sourceTree = "<group>"; };
 		24B0A83106D70B3A14E0A5B7 /* Pods-voluxe-driverAPITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverAPITests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverAPITests/Pods-voluxe-driverAPITests.production.xcconfig"; sourceTree = "<group>"; };
+		2D1EA0D2F110093970842729 /* Pods-voluxe-driver.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.appstore.xcconfig"; sourceTree = "<group>"; };
 		468ECDE7DF2AC14C8B95BC04 /* Pods-voluxe-driverUITests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.development.xcconfig"; sourceTree = "<group>"; };
 		496CC8BDA5EAFFAB068238CC /* Pods_voluxe_driverUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		522751A1221CCB4A0067459E /* AppDelegate+Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Branch.swift"; sourceTree = "<group>"; };
@@ -314,6 +318,7 @@
 		52B200EC2224A758005DE35A /* UILabel+Truncate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Truncate.swift"; sourceTree = "<group>"; };
 		52B200EE2224B54F005DE35A /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		52B200F02224CEC7005DE35A /* UITextViewHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewHighlight.swift; sourceTree = "<group>"; };
+		52B200F222289648005DE35A /* GoogleService-Info-AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-AppStore.plist"; sourceTree = "<group>"; };
 		52C67E6321E952A2005EEC3B /* String+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
 		52C67E6521ED2354005EEC3B /* FlagPhoneNumberTextField+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FlagPhoneNumberTextField+Utils.swift"; sourceTree = "<group>"; };
 		52C67E6721ED391F005EEC3B /* UITextField+Voluxe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Voluxe.swift"; sourceTree = "<group>"; };
@@ -330,6 +335,7 @@
 		52C67E7F21F91EB8005EEC3B /* Volvo Novum-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-Light.otf"; sourceTree = "<group>"; };
 		52C67E8521F9205C005EEC3B /* LoanerPaperworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanerPaperworkViewController.swift; sourceTree = "<group>"; };
 		52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Attributes.swift"; sourceTree = "<group>"; };
+		52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
 		52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Debug.swift"; sourceTree = "<group>"; };
 		530BCD492177AAB2005327E7 /* RestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPI.swift; sourceTree = "<group>"; };
 		530BCD4C2177AFBE005327E7 /* LuxeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuxeAPI.swift; sourceTree = "<group>"; };
@@ -367,7 +373,7 @@
 		533047232188F85B007CE01C /* AppDelegate+Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Fetch.swift"; sourceTree = "<group>"; };
 		5330472521890935007CE01C /* voluxe-driver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "voluxe-driver.entitlements"; sourceTree = "<group>"; };
 		5330472621890B1E007CE01C /* AppDelegate+Push.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Push.swift"; sourceTree = "<group>"; };
-		5330472821890BF8007CE01C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5330472821890BF8007CE01C /* GoogleService-Info-Development.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Development.plist"; sourceTree = "<group>"; };
 		53368D9021C2FB5400B1A2AF /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		5339035021CEBED200DD16D8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5339035221CEC43B00DD16D8 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
@@ -473,7 +479,9 @@
 		84BB7F4452F4139EEE1DDC06 /* Pods_voluxe_driverAPITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverAPITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A09D259AE8F94479F143422F /* Pods-voluxe-driver.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.development.xcconfig"; sourceTree = "<group>"; };
 		A8AF1EAF19A494AFFD6262BF /* Pods-voluxe-driverUnitTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.production.xcconfig"; sourceTree = "<group>"; };
+		A9359D9790429477D5CA826E /* Pods-voluxe-driverUnitTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.appstore.xcconfig"; sourceTree = "<group>"; };
 		BF639FC061D03DB07A4AAE2A /* Pods-voluxe-driverUITests.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.app store.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.app store.xcconfig"; sourceTree = "<group>"; };
+		CA92D79509175AADEF56BF71 /* Pods-voluxe-driverUITests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.appstore.xcconfig"; sourceTree = "<group>"; };
 		CD92095CAC79E51E76DD825D /* Pods-voluxe-driver.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.staging.xcconfig"; sourceTree = "<group>"; };
 		CEB8A3640E39C77C88978907 /* Pods-voluxe-driverAPITests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverAPITests.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverAPITests/Pods-voluxe-driverAPITests.development.xcconfig"; sourceTree = "<group>"; };
 		D02EF59993E675366B9CC290 /* Pods-voluxe-driverAPITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverAPITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverAPITests/Pods-voluxe-driverAPITests.staging.xcconfig"; sourceTree = "<group>"; };
@@ -539,6 +547,10 @@
 				DED4A4C7F26E979DDA200B48 /* Pods-voluxe-driverUnitTests.staging.xcconfig */,
 				A8AF1EAF19A494AFFD6262BF /* Pods-voluxe-driverUnitTests.production.xcconfig */,
 				68BDE64C3234A652C358A12B /* Pods-voluxe-driverUnitTests.app store.xcconfig */,
+				2D1EA0D2F110093970842729 /* Pods-voluxe-driver.appstore.xcconfig */,
+				0A02722CFEB623049E274707 /* Pods-voluxe-driverAPITests.appstore.xcconfig */,
+				CA92D79509175AADEF56BF71 /* Pods-voluxe-driverUITests.appstore.xcconfig */,
+				A9359D9790429477D5CA826E /* Pods-voluxe-driverUnitTests.appstore.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -946,7 +958,9 @@
 			children = (
 				52C67E7A21F91E6D005EEC3B /* Fonts */,
 				53B25DDF2176960D002B846B /* Assets.xcassets */,
-				5330472821890BF8007CE01C /* GoogleService-Info.plist */,
+				52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */,
+				52B200F222289648005DE35A /* GoogleService-Info-AppStore.plist */,
+				5330472821890BF8007CE01C /* GoogleService-Info-Development.plist */,
 				53B25DE42176960D002B846B /* Info.plist */,
 				53B25DE12176960D002B846B /* LaunchScreen.storyboard */,
 				5339036C21D7148A00DD16D8 /* Unlocalized.swift */,
@@ -1030,6 +1044,7 @@
 				53B25DD12176960C002B846B /* Sources */,
 				53B25DD22176960C002B846B /* Frameworks */,
 				53B25DD32176960C002B846B /* Resources */,
+				52B200F4222896FA005DE35A /* ShellScript */,
 				0C0BE171E47DB1500ADAD1C7 /* [CP] Embed Pods Frameworks */,
 				536FFD7F2177869400C83F89 /* ShellScript */,
 			);
@@ -1160,11 +1175,13 @@
 			files = (
 				536FFD9C2177901D00C83F89 /* xcarchive-to-ipa.sh in Resources */,
 				52A1CE4D22122D52002F16BE /* Volvo Novum-Italic.otf in Resources */,
-				5330472921890BF8007CE01C /* GoogleService-Info.plist in Resources */,
+				5330472921890BF8007CE01C /* GoogleService-Info-Development.plist in Resources */,
 				52C67E8321F91EB8005EEC3B /* Volvo Novum-SemiLight.otf in Resources */,
 				53B25DE32176960D002B846B /* LaunchScreen.storyboard in Resources */,
+				52E8CB982229FDB700794E3B /* GoogleService-Info-Production.plist in Resources */,
 				536FFD9E2177901D00C83F89 /* ipa-to-fabric.sh in Resources */,
 				528194882203B9C500C7E8EF /* Localizable.strings in Resources */,
+				52B200F322289648005DE35A /* GoogleService-Info-AppStore.plist in Resources */,
 				53B25E2E2176A414002B846B /* Settings.bundle in Resources */,
 				53B25DE02176960D002B846B /* Assets.xcassets in Resources */,
 				52C67E8221F91EB8005EEC3B /* Volvo Novum-Medium.otf in Resources */,
@@ -1280,6 +1297,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\necho \"Start Driver Localization script based on Root ${SRCROOT}\"\nSCRIPT_FILE=\"${SRCROOT}/../Shared/Scripts/Localization/Generate-Swift-L18N-Constants.swift\"\necho \"Running a custom build phase script: $SCRIPT_FILE\"\necho \"FILE0 ${SCRIPT_INPUT_FILE_0}\"\necho \"FILE1 ${SCRIPT_INPUT_FILE_1}\"\necho \"OUTPUT ${SCRIPT_OUTPUT_FILE_0}\"\n\n${SCRIPT_FILE} \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_INPUT_FILE_1}\" \"${SCRIPT_OUTPUT_FILE_0}\"\necho \"End of script\"\n\nscriptExitStatus=$?\necho \"DONE with script: ${SCRIPT_FILE} (exitStatus=${scriptExitStatus})\\n\\n\"\nexit \"${scriptExitStatus}\"\n";
+		};
+		52B200F4222896FA005DE35A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncp -r ${PROJECT_DIR}/voluxe-driver/Resources/GoogleService-Info-${CONFIGURATION}.plist ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\n";
 		};
 		536FFD7F2177869400C83F89 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1810,10 +1844,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_NS_ASSERTIONS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1821,12 +1861,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				VALIDATE_PRODUCT = YES;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Production;
 		};
@@ -1866,6 +1908,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.production;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -2022,7 +2065,7 @@
 			};
 			name = Staging;
 		};
-		53B25E0A21769663002B846B /* App Store */ = {
+		53B25E0A21769663002B846B /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -2077,11 +2120,11 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = "App Store";
+			name = AppStore;
 		};
-		53B25E0B21769663002B846B /* App Store */ = {
+		53B25E0B21769663002B846B /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 094F2A302573828463BE665F /* Pods-voluxe-driver.app store.xcconfig */;
+			baseConfigurationReference = 2D1EA0D2F110093970842729 /* Pods-voluxe-driver.appstore.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
@@ -2099,11 +2142,11 @@
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = "App Store";
+			name = AppStore;
 		};
-		53B25E0D21769663002B846B /* App Store */ = {
+		53B25E0D21769663002B846B /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF639FC061D03DB07A4AAE2A /* Pods-voluxe-driverUITests.app store.xcconfig */;
+			baseConfigurationReference = CA92D79509175AADEF56BF71 /* Pods-voluxe-driverUITests.appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -2120,7 +2163,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "voluxe-driver";
 			};
-			name = "App Store";
+			name = AppStore;
 		};
 		53B25E18217698B1002B846B /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -2332,9 +2375,9 @@
 			};
 			name = Production;
 		};
-		53B25E1B217698B1002B846B /* App Store */ = {
+		53B25E1B217698B1002B846B /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F886450FCC2C6BFB17E53673 /* Pods-voluxe-driverAPITests.app store.xcconfig */;
+			baseConfigurationReference = 0A02722CFEB623049E274707 /* Pods-voluxe-driverAPITests.appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2398,7 +2441,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = "App Store";
+			name = AppStore;
 		};
 		53B25E26217698C2002B846B /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -2610,9 +2653,9 @@
 			};
 			name = Production;
 		};
-		53B25E29217698C2002B846B /* App Store */ = {
+		53B25E29217698C2002B846B /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 68BDE64C3234A652C358A12B /* Pods-voluxe-driverUnitTests.app store.xcconfig */;
+			baseConfigurationReference = A9359D9790429477D5CA826E /* Pods-voluxe-driverUnitTests.appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2676,7 +2719,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = "App Store";
+			name = AppStore;
 		};
 /* End XCBuildConfiguration section */
 
@@ -2687,7 +2730,7 @@
 				53B25DFB2176960D002B846B /* Development */,
 				53B25E0621769658002B846B /* Staging */,
 				53B25DFC2176960D002B846B /* Production */,
-				53B25E0A21769663002B846B /* App Store */,
+				53B25E0A21769663002B846B /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;
@@ -2698,7 +2741,7 @@
 				53B25DFE2176960D002B846B /* Development */,
 				53B25E0721769658002B846B /* Staging */,
 				53B25DFF2176960D002B846B /* Production */,
-				53B25E0B21769663002B846B /* App Store */,
+				53B25E0B21769663002B846B /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;
@@ -2709,7 +2752,7 @@
 				53B25E042176960D002B846B /* Development */,
 				53B25E0921769658002B846B /* Staging */,
 				53B25E052176960D002B846B /* Production */,
-				53B25E0D21769663002B846B /* App Store */,
+				53B25E0D21769663002B846B /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;
@@ -2720,7 +2763,7 @@
 				53B25E18217698B1002B846B /* Development */,
 				53B25E19217698B1002B846B /* Staging */,
 				53B25E1A217698B1002B846B /* Production */,
-				53B25E1B217698B1002B846B /* App Store */,
+				53B25E1B217698B1002B846B /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;
@@ -2731,7 +2774,7 @@
 				53B25E26217698C2002B846B /* Development */,
 				53B25E27217698C2002B846B /* Staging */,
 				53B25E28217698C2002B846B /* Production */,
-				53B25E29217698C2002B846B /* App Store */,
+				53B25E29217698C2002B846B /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;
