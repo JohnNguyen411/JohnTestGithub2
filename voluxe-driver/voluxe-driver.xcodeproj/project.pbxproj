@@ -75,6 +75,7 @@
 		52C67E8421F91EB8005EEC3B /* Volvo Novum-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52C67E7F21F91EB8005EEC3B /* Volvo Novum-Light.otf */; };
 		52C67E8621F9205C005EEC3B /* LoanerPaperworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E8521F9205C005EEC3B /* LoanerPaperworkViewController.swift */; };
 		52CFAC5821FFD5390019255D /* UIBarButtonItem+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */; };
+		52E8CB982229FDB700794E3B /* GoogleService-Info-Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */; };
 		52FFBBAE21ADF78D00FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */; };
 		52FFBBAF21ADF79800FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */; };
 		530BCD4A2177AAB2005327E7 /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530BCD492177AAB2005327E7 /* RestAPI.swift */; };
@@ -334,6 +335,7 @@
 		52C67E7F21F91EB8005EEC3B /* Volvo Novum-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-Light.otf"; sourceTree = "<group>"; };
 		52C67E8521F9205C005EEC3B /* LoanerPaperworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanerPaperworkViewController.swift; sourceTree = "<group>"; };
 		52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Attributes.swift"; sourceTree = "<group>"; };
+		52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
 		52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Debug.swift"; sourceTree = "<group>"; };
 		530BCD492177AAB2005327E7 /* RestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPI.swift; sourceTree = "<group>"; };
 		530BCD4C2177AFBE005327E7 /* LuxeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuxeAPI.swift; sourceTree = "<group>"; };
@@ -956,6 +958,7 @@
 			children = (
 				52C67E7A21F91E6D005EEC3B /* Fonts */,
 				53B25DDF2176960D002B846B /* Assets.xcassets */,
+				52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */,
 				52B200F222289648005DE35A /* GoogleService-Info-AppStore.plist */,
 				5330472821890BF8007CE01C /* GoogleService-Info-Development.plist */,
 				53B25DE42176960D002B846B /* Info.plist */,
@@ -1175,6 +1178,7 @@
 				5330472921890BF8007CE01C /* GoogleService-Info-Development.plist in Resources */,
 				52C67E8321F91EB8005EEC3B /* Volvo Novum-SemiLight.otf in Resources */,
 				53B25DE32176960D002B846B /* LaunchScreen.storyboard in Resources */,
+				52E8CB982229FDB700794E3B /* GoogleService-Info-Production.plist in Resources */,
 				536FFD9E2177901D00C83F89 /* ipa-to-fabric.sh in Resources */,
 				528194882203B9C500C7E8EF /* Localizable.strings in Resources */,
 				52B200F322289648005DE35A /* GoogleService-Info-AppStore.plist in Resources */,
@@ -1840,10 +1844,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_NS_ASSERTIONS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1851,12 +1861,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				VALIDATE_PRODUCT = YES;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Production;
 		};
@@ -1896,6 +1908,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.production;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
