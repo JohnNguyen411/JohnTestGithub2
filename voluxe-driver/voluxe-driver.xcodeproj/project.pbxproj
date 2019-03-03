@@ -2128,9 +2128,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Luxe Valet Inc. (MT3X9VW9P6)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 396JF7EZ43;
+				DEVELOPMENT_TEAM = MT3X9VW9P6;
 				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
