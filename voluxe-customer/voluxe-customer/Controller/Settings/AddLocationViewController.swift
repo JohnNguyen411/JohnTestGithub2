@@ -22,7 +22,8 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     
     var autocompletePredictions: [GMSAutocompletePrediction]?
     var autoCompleteCharacterCount = 0
-    
+    var autoCompleteToken: GMSAutocompleteSessionToken = GMSAutocompleteSessionToken.init()
+
     let newLocationTextField = VLVerticalSearchTextField(title: .localized(.popupAddNewLocationLabel), placeholder: .localized(.popupAddNewLocationEditHint))
 
     init() {
@@ -73,9 +74,9 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     
     
     override func onButtonClick() {
-        if let pickupLocationDelegate = pickupLocationDelegate, let selectedLocation = selectedLocation {
+        if let pickupLocationDelegate = pickupLocationDelegate, let selectedLocation = selectedLocation, let placeID = selectedLocation.placeID {
             let location = Location(name: selectedLocation.formattedAddress, latitude: nil, longitude: nil, location: selectedLocation.coordinate)
-            pickupLocationDelegate.onLocationAdded(location: location, placeId: selectedLocation.placeID)
+            pickupLocationDelegate.onLocationAdded(location: location, placeId: placeID)
         }
     }
     
@@ -87,7 +88,7 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
         if userText.count > 2 {
             weak var weakSelf = self
 
-            self.locationManager.googlePlacesAutocomplete(address: userText) { (autocompletePredictions, error) in
+            self.locationManager.googlePlacesAutocomplete(address: userText, token: autoCompleteToken) { (autocompletePredictions, error) in
                 Analytics.trackCallGoogle(endpoint: .places, error: error)
                 guard let weakSelf = weakSelf else { return }
                 if weakSelf.isBeingDismissed { return }
@@ -116,19 +117,17 @@ class AddLocationViewController: VLPresentrViewController, LocationManagerDelega
     // MARK: protocol UITextFieldDelegate
     
     func onAutocompleteSelected(selectedIndex: Int) {
-        
+
         newLocationTextField.closeAutocomplete()
         
         guard let autocompletePredictions = autocompletePredictions, let superview = self.view.superview else { return }
         if selectedIndex > autocompletePredictions.count { return }
         
         let selectedPrediction = autocompletePredictions[selectedIndex]
-        
-        guard let placeId = selectedPrediction.placeID else { return }
-        
+                
         MBProgressHUD.showAdded(to: superview, animated: true)
         
-        self.locationManager.getPlace(placeId: placeId) { (gmsPlace, error) in
+        self.locationManager.getPlace(placeId: selectedPrediction.placeID, token: autoCompleteToken) { (gmsPlace, error) in
             Analytics.trackCallGoogle(endpoint: .places, error: error)
             MBProgressHUD.hide(for: superview, animated: true)
             if let place = gmsPlace {

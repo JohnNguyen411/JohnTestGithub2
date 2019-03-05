@@ -289,7 +289,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
     }
     
     
-    func googlePlacesAutocomplete(address: String, onAutocompleteCompletionHandler: @escaping GMSAutocompletePredictionsCallback) {
+    func googlePlacesAutocomplete(address: String, token: GMSAutocompleteSessionToken, onAutocompleteCompletionHandler: @escaping GMSAutocompletePredictionsCallback) {
         let filter = GMSAutocompleteFilter()
         filter.type = .noFilter
         
@@ -298,8 +298,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
             bounds = GMSCoordinateBounds(coordinate: location.coordinate, coordinate: location.coordinate)
         }
         
-        googlePlacesClient.autocompleteQuery(address, bounds: bounds, boundsMode: .bias, filter: filter, callback: { (autocompletePredictions, error) in
-        
+        googlePlacesClient.findAutocompletePredictions(fromQuery: address, bounds: bounds, boundsMode: .bias, filter: filter, sessionToken: token, callback: { (autocompletePredictions, error) in
             var filteredPredictions:[GMSAutocompletePrediction] = []
             if let autocompletePredictions = autocompletePredictions {
                 for prediction in autocompletePredictions {
@@ -316,7 +315,7 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
                 }
             }
             
-             onAutocompleteCompletionHandler(filteredPredictions, error)
+            onAutocompleteCompletionHandler(filteredPredictions, error)
         })
     }
  
@@ -324,8 +323,11 @@ class LocationManager: NSObject, CLLocationManagerDelegate {
         googleGeocoder.reverseGeocodeCoordinate(CLLocationCoordinate2D(latitude: latitude, longitude: longitude), completionHandler: completionHandler)
     }
     
-    func getPlace(placeId: String, callback: @escaping GMSPlaceResultCallback) {
-        googlePlacesClient.lookUpPlaceID(placeId, callback: callback)
+    func getPlace(placeId: String, token: GMSAutocompleteSessionToken, callback: @escaping GMSPlaceResultCallback) {
+        let fields: GMSPlaceField = GMSPlaceField(rawValue:
+            UInt(GMSPlaceField.name.rawValue) | UInt(GMSPlaceField.placeID.rawValue) | UInt(GMSPlaceField.coordinate.rawValue) | UInt(GMSPlaceField.formattedAddress.rawValue))!
+        
+        googlePlacesClient.fetchPlace(fromPlaceID: placeId, placeFields: fields, sessionToken: token, callback: callback)
     }
     
 }
