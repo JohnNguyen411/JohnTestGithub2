@@ -707,6 +707,10 @@
 
 "viewScheduleServiceStatusCompleteRate" = "On a scale from 1 to 10, how likely are you to recommend pickup and delivery to other Volvo owners?";
 
+"npsNotLikely" = "Not at all Likely";
+
+"npsExtremelyLikely" = "Extremely Likely";
+
 "viewScheduleServiceStatusFeedback" = "Feedback";
 
 "viewScheduleServiceStatusFeedbackCommentLabel" = "What was the main reason for your rating?";

@@ -12,15 +12,16 @@ class VLMarkedSlider: UIView, VLSliderProtocol {
     
     let dotHeightWidth: Int = 4
 
-    let slider = VLSlider(newNPS: true)
+    let slider = VLSlider(newNPS: RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.customerNewNpsViewEnabled))
     var step = 1
     var min = 1
     var disabledValue = 0
     var max = 10
     let markersContainer = UIView(frame: .zero)
     
-    let newNPS = true //RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.customerNewNpsViewEnabled)
+    let newNPS = RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.customerNewNpsViewEnabled)
     var hasBeenRelayout = false
+    var delegate: VLMarkedSliderProtocol?
     
     let minLabel: UILabel = {
         let label = UILabel(frame: .zero)
@@ -56,11 +57,7 @@ class VLMarkedSlider: UIView, VLSliderProtocol {
         self.slider.maximumValue = Float(max)
         self.slider.value = Float(newNPS ? disabledValue : defaultValue)
         
-        if newNPS {
-            self.minLabel.text = "\(min)"
-        } else {
-            self.minLabel.text = "\(min)"
-        }
+        self.minLabel.text = "\(min)"
         self.maxLabel.text = "\(max)"
         
         setupViews()
@@ -195,10 +192,11 @@ class VLMarkedSlider: UIView, VLSliderProtocol {
                 self.layoutIfNeeded()
                
             })
-
-            
         }
+        delegate?.onValueChanged(value: value)
     }
-    
-    
+}
+
+protocol VLMarkedSliderProtocol {
+    func onValueChanged(value: Int)
 }
