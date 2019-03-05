@@ -30,7 +30,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     let scrollView = UIScrollView(frame: .zero)
     let contentView = UIView(frame: .zero)
     let ghostView = UIView(frame: .zero) // use to center the slider
-    let ratingSlider = VLMarkedSlider(step: 1, min: 1, max: 10, defaultValue: 8)
+    let ratingSlider: VLMarkedSlider
     var screenTitle: String?
     var scrollViewSize: CGSize? = nil
     
@@ -79,6 +79,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         return titleLabel
     }()
     
+    private let newNPSEnabled: Bool
     
     convenience init(bookingFeedback: BookingFeedback) {
         self.init()
@@ -93,6 +94,9 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     }
     
     init() {
+        newNPSEnabled = true//RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.customerNewNpsViewEnabled)
+        ratingSlider = VLMarkedSlider(step: 1, min: 1, max: 10, defaultValue: 8)
+        
         super.init(screen: .bookingFeedback)
         self.navigationItem.rightBarButtonItem?.title = .localized(.skip)
     }
