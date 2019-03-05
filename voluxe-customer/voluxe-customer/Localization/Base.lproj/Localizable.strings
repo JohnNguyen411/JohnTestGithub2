@@ -246,7 +246,7 @@
 
 "errorInvalidPhoneVerificationCode" = "Invalid verification code";
 
-"errorPhoneNumberAlreadyExist" = "An account already exists with that phone number, please try Login instead.";
+"errorPhoneNumberAlreadyExist" = "An account already exists with that phone number, please try logging instead.";
 
 "errorEmailAlreadyExist" = "An account already exists with that email.";
 
