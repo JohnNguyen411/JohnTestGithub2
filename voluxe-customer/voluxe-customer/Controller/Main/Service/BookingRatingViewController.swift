@@ -113,7 +113,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate, VLMar
     convenience init(booking: Booking) {
         self.init()
         self.booking = Booking(value: booking)
-        self.screenTitle = .localized(.viewScheduleServiceStatusComplete)
+        self.screenTitle = .localized(.viewScheduleServiceStatusFeedback)
     }
     
     init() {
