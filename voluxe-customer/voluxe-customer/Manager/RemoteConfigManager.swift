@@ -15,6 +15,7 @@ final class RemoteConfigManager {
     public static let selfOBEnabledKey = "customer_self_OB_enabled"
     public static let snappedPointsKey = "customer_ios_snapped_points_enabled"
     public static let loanerFeatureEnabledKey = "loaner_feature_enabled"
+    public static let customerNewNpsViewEnabled = "customer_new_nps_view_enabled"
 
     static let sharedInstance = RemoteConfigManager()
     private let remoteConfig: RemoteConfig

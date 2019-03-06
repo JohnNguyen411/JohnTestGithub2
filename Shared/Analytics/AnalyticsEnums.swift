@@ -174,7 +174,6 @@ struct AnalyticsEnums {
             case changePhone // driver
             case confirm
             case confirmProfilePhoto // driver
-            
             case deliveryReviewService // driver
             case deliveryRetrieveCustVehicle // driver
             case deliveryDriveToCustomer // driver

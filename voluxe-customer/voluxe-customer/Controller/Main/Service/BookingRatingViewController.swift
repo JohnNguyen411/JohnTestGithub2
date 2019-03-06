@@ -16,7 +16,7 @@ import Kingfisher
 import MBProgressHUD
 
 
-class BookingRatingViewController: BaseViewController, UITextViewDelegate {
+class BookingRatingViewController: BaseViewController, UITextViewDelegate, VLMarkedSliderProtocol {
     
     var retryCount = 0
     var isShowingComment = false
@@ -30,7 +30,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     let scrollView = UIScrollView(frame: .zero)
     let contentView = UIView(frame: .zero)
     let ghostView = UIView(frame: .zero) // use to center the slider
-    let ratingSlider = VLMarkedSlider(step: 1, min: 1, max: 10, defaultValue: 8)
+    let ratingSlider: VLMarkedSlider
     var screenTitle: String?
     var scrollViewSize: CGSize? = nil
     
@@ -65,6 +65,29 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         return ratingTextView
     }()
     
+    
+    let notLikelyLabel: UILabel = {
+        let textView = UILabel(frame: .zero)
+        textView.text = .localized(.npsNotLikely)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
+        textView.textColor = .luxeDarkGray()
+        textView.backgroundColor = .clear
+        textView.numberOfLines = 1
+        return textView
+    }()
+    
+    let likelyLabel: UILabel = {
+        let textView = UILabel(frame: .zero)
+        textView.text = .localized(.npsExtremelyLikely)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
+        textView.textColor = .luxeDarkGray()
+        textView.backgroundColor = .clear
+        textView.numberOfLines = 1
+        return textView
+    }()
+    
     let separator: UIView = {
         let view = UIView(frame: .zero)
         view.backgroundColor = UIColor.luxeCobaltBlue()
@@ -79,6 +102,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         return titleLabel
     }()
     
+    private let newNPSEnabled: Bool
     
     convenience init(bookingFeedback: BookingFeedback) {
         self.init()
@@ -93,7 +117,10 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     }
     
     init() {
+        newNPSEnabled = RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.customerNewNpsViewEnabled)
+        ratingSlider = VLMarkedSlider(step: 1, min: 1, max: 10, defaultValue: 8)
         super.init(screen: .bookingFeedback)
+        ratingSlider.delegate = self
         self.navigationItem.rightBarButtonItem?.title = .localized(.skip)
     }
     
@@ -118,6 +145,10 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         vehicleImageView.contentMode = .scaleAspectFit
         
         loadData()
+        
+        if newNPSEnabled {
+            confirmButton.isEnabled = false
+        }
         
         confirmButton.setActionBlock { [weak self] in
 
@@ -209,6 +240,11 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         contentView.addSubview(ratingSlider)
         contentView.addSubview(ratingTextView)
         
+        if newNPSEnabled {
+            contentView.addSubview(likelyLabel)
+            contentView.addSubview(notLikelyLabel)
+        }
+        
         let adaptedMarging = ViewUtils.getAdaptedHeightSize(sizeInPoints: 20)
         
         scrollView.snp.makeConstraints { make in
@@ -249,7 +285,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         
         ratingSlider.snp.makeConstraints { make in
             make.leading.trailing.equalToSuperview()
-            make.centerY.equalTo(ghostView)
+            make.centerY.equalTo(ghostView).offset(newNPSEnabled ? -ViewUtils.getAdaptedHeightSize(sizeInPoints: 20) : 0)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 60))
         }
         
@@ -274,10 +310,22 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         
         confirmButton.snp.makeConstraints { make in
             make.leading.bottom.trailing.equalToSuperview()
-            make.equalsToBottom(view: self.contentView, offset: -20)
+            make.equalsToBottom(view: self.contentView, offset: -ViewUtils.getAdaptedHeightSize(sizeInPoints: 10))
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
         }
         
+        if newNPSEnabled {
+            
+            notLikelyLabel.snp.makeConstraints { make in
+                make.leading.equalTo(ratingSlider.minLabel)
+                make.top.equalTo(ratingSlider.snp.bottom).offset(10)
+            }
+            
+            likelyLabel.snp.makeConstraints { make in
+                make.trailing.equalTo(ratingSlider.maxLabel)
+                make.top.equalTo(ratingSlider.snp.bottom).offset(10)
+            }
+        }
         ratingTextView.sizeToFit()
         ratingTextView.backgroundColor = .clear
         showRatingTextView(show: false)
@@ -352,7 +400,9 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         separator.animateAlpha(show: show)
         rateLabel.animateAlpha(show: !show)
         ratingSlider.animateAlpha(show: !show)
-        
+        notLikelyLabel.animateAlpha(show: !show)
+        likelyLabel.animateAlpha(show: !show)
+
         serviceCompleteLabel.text = show ? .localized(.viewScheduleServiceStatusFeedbackCommentLabel) : .localized(.viewScheduleServiceStatusComplete)
         self.navigationItem.title = .localized(.viewScheduleServiceStatusFeedback)
         
@@ -428,8 +478,24 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         if self.view.safeAreaBottomHeight > 0 {
             UIView.animate(withDuration: 0.5, animations: {
                 self.confirmButton.snp.updateConstraints { make in
-                    make.equalsToBottom(view: self.contentView, offset: -20)
+                    make.equalsToBottom(view: self.contentView, offset: -ViewUtils.getAdaptedHeightSize(sizeInPoints: 10))
                 }
+            })
+        }
+    }
+    
+    func onValueChanged(value: Int) {
+        if newNPSEnabled && value > 0 {
+            UIView.animate(withDuration: 0.3, animations: {
+
+                self.notLikelyLabel.snp.remakeConstraints { make in
+                    make.leading.equalTo(self.ratingSlider.minLabel)
+                    make.top.equalTo(self.ratingSlider.snp.bottom).offset(10)
+                }
+                
+                self.confirmButton.isEnabled = true
+                
+                self.view.layoutIfNeeded()
             })
         }
     }

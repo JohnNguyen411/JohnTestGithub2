@@ -85,6 +85,7 @@
 		52D5C9B32113DA9D0020F43F /* ViewUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B22113DA9D0020F43F /* ViewUtils.swift */; };
 		52D5C9B52114FF080020F43F /* DriverInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B42114FF080020F43F /* DriverInfoViewController.swift */; };
 		52D5C9B7211514EF0020F43F /* RoundImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D5C9B6211514EF0020F43F /* RoundImageView.swift */; };
+		52D6C0AB222E121100346787 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 52D6C0AA222E121000346787 /* Assets.xcassets */; };
 		52D894A621B5F0AE00F97FA9 /* FlagPhoneNumberTextField+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D894A521B5F0AE00F97FA9 /* FlagPhoneNumberTextField+Utils.swift */; };
 		52E737712141E24900CB8D3B /* ScheduledSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E737702141E24900CB8D3B /* ScheduledSelfViewController.swift */; };
 		52E737732141E41900CB8D3B /* ScheduledSelfPickup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E737722141E41900CB8D3B /* ScheduledSelfPickup.swift */; };
@@ -361,7 +362,6 @@
 		6CBF9FE71FC5FB9A002BC7FC /* sensus_test.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7D1FA140D300FE0633 /* sensus_test.json */; };
 		6CBF9FE81FC5FB9A002BC7FC /* VolvoSansPro-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9AF1FA1131700D3AA78 /* VolvoSansPro-Light.ttf */; };
 		6CBF9FE91FC5FB9A002BC7FC /* VolvoSansPro-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 6CFBF9B01FA1131700D3AA78 /* VolvoSansPro-Medium.ttf */; };
-		6CBF9FEC1FC60104002BC7FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42941FA013E3000AC6C9 /* Assets.xcassets */; };
 		6CBF9FEE1FC62154002BC7FC /* FTUEChildViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FED1FC62154002BC7FC /* FTUEChildViewController.swift */; };
 		6CBFD83620D87F770097D4AB /* NotificationPermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBFD83520D87F770097D4AB /* NotificationPermissionViewController.swift */; };
 		6CBFD83A20D974B20097D4AB /* UserDefaults+Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBFD83920D974B20097D4AB /* UserDefaults+Permissions.swift */; };
@@ -381,7 +381,6 @@
 		6CCCF2372048B161004BF1A6 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF2362048B161004BF1A6 /* Color.swift */; };
 		6CCCF23B2048BA33004BF1A6 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF23A2048BA33004BF1A6 /* VehicleModel.swift */; };
 		6CCD428E1FA013E3000AC6C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
-		6CCD42951FA013E3000AC6C9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6CCD42941FA013E3000AC6C9 /* Assets.xcassets */; };
 		6CD3BCAA200E727A001DD79B /* Booking.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCA9200E727A001DD79B /* Booking.swift */; };
 		6CD3BCAE200E85FE001DD79B /* RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */; };
 		6CD474AC2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */; };
@@ -506,6 +505,7 @@
 		52D5C9B22113DA9D0020F43F /* ViewUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewUtils.swift; sourceTree = "<group>"; };
 		52D5C9B42114FF080020F43F /* DriverInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverInfoViewController.swift; sourceTree = "<group>"; };
 		52D5C9B6211514EF0020F43F /* RoundImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundImageView.swift; sourceTree = "<group>"; };
+		52D6C0AA222E121000346787 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		52D894A521B5F0AE00F97FA9 /* FlagPhoneNumberTextField+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FlagPhoneNumberTextField+Utils.swift"; sourceTree = "<group>"; };
 		52E737702141E24900CB8D3B /* ScheduledSelfViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledSelfViewController.swift; sourceTree = "<group>"; };
 		52E737722141E41900CB8D3B /* ScheduledSelfPickup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledSelfPickup.swift; sourceTree = "<group>"; };
@@ -766,7 +766,6 @@
 		6CCCF23A2048BA33004BF1A6 /* VehicleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModel.swift; sourceTree = "<group>"; };
 		6CCD428A1FA013E3000AC6C9 /* voluxe-customer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "voluxe-customer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		6CCD42941FA013E3000AC6C9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6CCD42991FA013E3000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CCD429E1FA013E3000AC6C9 /* voluxe-customerUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "voluxe-customerUnitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD42A21FA013E3000AC6C9 /* Analytics_UnitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Analytics_UnitTests.swift; sourceTree = "<group>"; };
@@ -1028,9 +1027,9 @@
 			isa = PBXGroup;
 			children = (
 				53AA2754209D10CC00781995 /* AppStore.entitlements */,
-				6CCD42941FA013E3000AC6C9 /* Assets.xcassets */,
 				53AA2755209D10CC00781995 /* Development.entitlements */,
 				53D9A7AB2098E679008BE93E /* GoogleService-Info-AppStore.plist */,
+				52D6C0AA222E121000346787 /* Assets.xcassets */,
 				53D9A7AA2098E678008BE93E /* GoogleService-Info-Dev.plist */,
 				6C27FBCA20EEF89200EAA689 /* GoogleService-Info-Production.plist */,
 				6C1CE24D20D081DE00A2E054 /* GoogleService-Info-Staging.plist */,
@@ -1924,7 +1923,6 @@
 				6CFBF9B31FA1131700D3AA78 /* VolvoSansPro-Light.ttf in Resources */,
 				6C9543AE1FACE0160099AC84 /* VolvoSansPro-Bold.ttf in Resources */,
 				6C1CE23620D04A2B00A2E054 /* Volvo Novum-Medium.otf in Resources */,
-				6CCD42951FA013E3000AC6C9 /* Assets.xcassets in Resources */,
 				6C9C906C209D163E00494068 /* RemoteConfigDefaults.plist in Resources */,
 				528A8E03216D878600B4B315 /* lbv-mobile-strings in Resources */,
 				6C1CE22720D04A2B00A2E054 /* Volvo Novum-Bold.otf in Resources */,
@@ -1933,6 +1931,7 @@
 				6CC83A821FA140D300FE0633 /* localhost.json in Resources */,
 				6C52246A20892E240078D9B9 /* GoogleService-Info.plist in Resources */,
 				6CC83A811FA140D300FE0633 /* mock.json in Resources */,
+				52D6C0AB222E121100346787 /* Assets.xcassets in Resources */,
 				6C1CE24220D04A2B00A2E054 /* Volvo Novum-Light.otf in Resources */,
 				6C9B0E7720A12111009221B6 /* Settings.bundle in Resources */,
 				6C1CE23320D04A2B00A2E054 /* Volvo Novum-BoldItalic.otf in Resources */,
@@ -1972,7 +1971,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6C1CE23B20D04A2B00A2E054 /* Volvo Novum-LightItalic.otf in Resources */,
-				6CBF9FEC1FC60104002BC7FC /* Assets.xcassets in Resources */,
 				6CBF9FE21FC5FB9A002BC7FC /* localhost.json in Resources */,
 				6CBF9FE31FC5FB9A002BC7FC /* mock.json in Resources */,
 				6C1CE23E20D04A2B00A2E054 /* Volvo Novum-SemiLight.otf in Resources */,

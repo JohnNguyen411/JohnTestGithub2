@@ -46,7 +46,8 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     // locations displayed in autocomplete
     var autocompletePredictions: [GMSAutocompletePrediction]?
     var autoCompleteCharacterCount = 0
-    
+    var autoCompleteToken: GMSAutocompleteSessionToken = GMSAutocompleteSessionToken.init()
+
     var currentLocationCell: CurrentLocationCellView?
     
     var selectedIndex = -2         // CurrentLocation == -1
@@ -270,7 +271,8 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         self.bottomButton.isEnabled = false
         weak var weakSelf = self
         if userText.count > 2 {
-            self.locationManager.googlePlacesAutocomplete(address: self.newLocationTextField.text) {
+            
+            self.locationManager.googlePlacesAutocomplete(address: self.newLocationTextField.text, token: autoCompleteToken) {
                 autocompletePredictions, error in
 
                 Analytics.trackCallGoogle(endpoint: .places, error: error)
@@ -390,7 +392,6 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     // MARK: protocol UITextFieldDelegate
     
     func onAutocompleteSelected(selectedIndex: Int) {
-        
         newLocationTextField.closeAutocomplete()
         
         guard let autocompletePredictions = autocompletePredictions else { return }
@@ -398,13 +399,13 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         
         selectedLocation = autocompletePredictions[selectedIndex]
         
-        guard let selectedLocation = selectedLocation, let placeId = selectedLocation.placeID, let superview = self.view.superview else { return }
+        guard let selectedLocation = selectedLocation, let superview = self.view.superview else { return }
         
         showNewLocationTextField(show: false)
         
         MBProgressHUD.showAdded(to: superview, animated: true)
         
-        self.locationManager.getPlace(placeId: placeId) { (gmsPlace, error) in
+        self.locationManager.getPlace(placeId: selectedLocation.placeID, token: autoCompleteToken) { (gmsPlace, error) in
             Analytics.trackCallGoogle(endpoint: .places, error: error)
             MBProgressHUD.hide(for: superview, animated: true)
             if let place = gmsPlace {

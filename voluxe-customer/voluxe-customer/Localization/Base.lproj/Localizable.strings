@@ -246,7 +246,7 @@
 
 "errorInvalidPhoneVerificationCode" = "Invalid verification code";
 
-"errorPhoneNumberAlreadyExist" = "An account already exists with that phone number, please try Login instead.";
+"errorPhoneNumberAlreadyExist" = "An account already exists with that phone number, please try logging instead.";
 
 "errorEmailAlreadyExist" = "An account already exists with that email.";
 
@@ -706,6 +706,10 @@
 "viewScheduleServiceStatusComplete" = "Your delivery from %@ is complete.";
 
 "viewScheduleServiceStatusCompleteRate" = "On a scale from 1 to 10, how likely are you to recommend pickup and delivery to other Volvo owners?";
+
+"npsNotLikely" = "Not at all Likely";
+
+"npsExtremelyLikely" = "Extremely Likely";
 
 "viewScheduleServiceStatusFeedback" = "Feedback";
 
