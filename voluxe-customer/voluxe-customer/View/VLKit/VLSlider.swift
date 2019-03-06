@@ -10,14 +10,23 @@ import Foundation
 
 class VLSlider: UISlider {
     
+    private static let thumbImageWidthHeight: CGFloat = 44
+    private static let arrowWidthHeight: CGFloat = 28
+
     private static let sliderButtonImage: UIImage! = UIImage(named: "slider_button")
-    
+    private static let sliderArrowButton: UIImage! = UIImage(named: "slider_arrow_button")
+
+    var delegate: VLSliderProtocol?
     var step: Float = 1
-    
-    init() {
+    var oldValue = 0
+    var newNPS: Bool
+
+    init(newNPS: Bool) {
+        self.newNPS = newNPS
         super.init(frame: .zero)
         self.addTarget(self, action: #selector(sliderValueChanged(sender:)), for: UIControl.Event.valueChanged)
         self.minimumTrackTintColor = UIColor.luxeCobaltBlue()
+        self.oldValue = Int(self.minimumValue)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -27,7 +36,17 @@ class VLSlider: UISlider {
     @objc func sliderValueChanged(sender: UISlider) {
         let roundedValue = roundedValueForFloat(floatValue: sender.value)
         sender.value = roundedValue
-        self.setThumbImage(thumbImage(forValue: String(Int(roundedValue))), for: UIControl.State.normal)
+        self.delegate?.onValueChange(value: Int(roundedValue))
+        if newNPS && roundedValue == 0 {
+            self.setInitialImage()
+        } else {
+            self.setThumbImage(thumbImage(forValue: String(Int(roundedValue))), for: UIControl.State.normal)
+        }
+        self.oldValue = Int(roundedValue)
+    }
+    
+    func setInitialImage() {
+        self.setThumbImage(initialThumbImage(), for: UIControl.State.normal)
     }
     
     override func trackRect(forBounds bounds: CGRect) -> CGRect {
@@ -43,11 +62,29 @@ class VLSlider: UISlider {
     }
     
     func thumbImageWidth() -> CGFloat {
-        return VLSlider.sliderButtonImage.size.width
+        return VLSlider.thumbImageWidthHeight
     }
     
     func thumbImageHeight() -> CGFloat {
-        return VLSlider.sliderButtonImage.size.height
+        return VLSlider.thumbImageWidthHeight
+    }
+    
+    private func initialThumbImage() -> UIImage? {
+        
+        guard let sliderButtonImage = VLSlider.sliderArrowButton else {
+            return nil
+        }
+        
+        let imageView = UIImageView(image: sliderButtonImage)
+        imageView.backgroundColor = UIColor.clear
+        imageView.frame = CGRect(x: 0, y: 0, width: VLSlider.thumbImageWidthHeight, height: VLSlider.thumbImageWidthHeight)
+        
+        UIGraphicsBeginImageContextWithOptions(imageView.bounds.size, false, 0);
+        imageView.layer.render(in: UIGraphicsGetCurrentContext()!)
+        let imageWithText = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext();
+        
+        return imageWithText
     }
     
     private func thumbImage(forValue: String) -> UIImage? {
@@ -58,9 +95,9 @@ class VLSlider: UISlider {
         
         let imageView = UIImageView(image: image)
         imageView.backgroundColor = UIColor.clear
-        imageView.frame = CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height)
+        imageView.frame = CGRect(x: 0, y: 0, width: VLSlider.thumbImageWidthHeight, height: VLSlider.thumbImageWidthHeight)
         
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: image.size.width, height: image.size.height))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: VLSlider.thumbImageWidthHeight, height: VLSlider.thumbImageWidthHeight))
         label.backgroundColor = UIColor.clear
         label.textAlignment = .center
         label.textColor = UIColor.white
@@ -93,7 +130,15 @@ class VLSlider: UISlider {
             origin.x = rect.width
         }
         
+        if origin.x < 0 {
+            origin.x = 0
+        }
+        
         return CGRect(origin: origin, size: unadjustedThumbrect.size)
     }
     
+}
+
+protocol VLSliderProtocol {
+    func onValueChange(value: Int)
 }

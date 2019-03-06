@@ -34,9 +34,9 @@ class AutoFillViewController: UIViewController {
         contentView.addSubview(usernameField)
         usernameField.snp.makeConstraints {
             make in
-            make.left.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(20)
             make.top.equalToSuperview().inset(100)
-            make.right.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
 
         let passwordField = UITextField(frame: .zero)
@@ -49,9 +49,9 @@ class AutoFillViewController: UIViewController {
         contentView.addSubview(passwordField)
         passwordField.snp.makeConstraints {
             make in
-            make.left.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(20)
             make.top.equalTo(usernameField.snp.bottom).offset(10)
-            make.right.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
         }
 
         let luxeUsernameField = VLVerticalTextField(title: "Email", placeholder: "Email")
@@ -65,9 +65,9 @@ class AutoFillViewController: UIViewController {
         contentView.addSubview(luxeUsernameField)
         luxeUsernameField.snp.makeConstraints {
             make in
-            make.left.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(20)
             make.top.equalToSuperview().inset(200)
-            make.right.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
 
@@ -82,9 +82,9 @@ class AutoFillViewController: UIViewController {
         contentView.addSubview(luxePasswordField)
         luxePasswordField.snp.makeConstraints {
             make in
-            make.left.equalToSuperview().inset(20)
+            make.leading.equalToSuperview().inset(20)
             make.top.equalTo(luxeUsernameField.snp.bottom).offset(10)
-            make.right.equalToSuperview().inset(20)
+            make.trailing.equalToSuperview().inset(20)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
     }

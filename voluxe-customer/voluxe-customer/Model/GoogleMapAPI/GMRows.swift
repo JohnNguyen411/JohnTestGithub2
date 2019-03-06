@@ -7,17 +7,13 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class GMRows: Mappable {
+class GMRows: Codable {
     
-    var elements: [GMElements]?
+    let elements: [GMElements]?
     
-    required init?(map: Map) {
-    }
-    
-    func mapping(map: Map) {
-        elements <- map["elements"]
+    private enum CodingKeys: String, CodingKey {
+        case elements
     }
     
 }

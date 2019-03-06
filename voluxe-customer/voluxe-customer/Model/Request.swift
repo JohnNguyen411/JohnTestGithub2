@@ -7,37 +7,83 @@
 //
 
 import Foundation
-import ObjectMapper
+import Realm
 import RealmSwift
 
-class Request: Object, Mappable {
+@objcMembers class Request: Object, Codable {
     
-    @objc dynamic var id: Int = -1
-    @objc dynamic var bookingId: Int = -1
-    @objc dynamic var timeslotId: Int = -1
-    @objc dynamic var state: String = "requested"
-    @objc dynamic var type: String?
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
-    @objc dynamic var driver: Driver?
-    @objc dynamic var location: Location?
-    @objc dynamic var timeSlot: DealershipTimeSlot?
+    dynamic var id: Int = -1
+    dynamic var bookingId: Int = -1
+    dynamic var timeslotId = RealmOptional<Int>()
+    dynamic var state: String = "requested"
+    dynamic var type: String?
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
+    dynamic var driver: Driver?
+    dynamic var location: Location?
+    dynamic var timeSlot: DealershipTimeSlot?
     
-    required convenience init?(map: Map) {
-        self.init()
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case bookingId = "booking_id"
+        case timeslotId = "driver_dealership_time_slot_assignment_id"
+        case location
+        case timeSlot = "dealership_time_slot"
+        case state
+        case type
+        case driverAssignment = "driver_dealership_time_slot_assignment"
+        case driver
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
     }
     
-    func mapping(map: Map) {
-        id <- map["id"]
-        bookingId <- map["booking_id"]
-        timeslotId <- map["driver_dealership_time_slot_assignment_id"]
-        location <- map["location"]
-        timeSlot <- map["dealership_time_slot"]
-        state <- map["state"]
-        type <- map["type"]
-        driver <- map["driver_dealership_time_slot_assignment.driver"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
+    
+    convenience required init(from decoder: Decoder) throws {
+        self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
+        self.bookingId = try container.decodeIfPresent(Int.self, forKey: .bookingId) ?? -1
+        self.timeslotId = try container.decodeIfPresent(RealmOptional<Int>.self, forKey: .timeslotId) ?? RealmOptional<Int>()
+        self.location = try container.decodeIfPresent(Location.self, forKey: .location)
+        self.timeSlot = try container.decodeIfPresent(DealershipTimeSlot.self, forKey: .timeSlot)
+        self.state = try container.decodeIfPresent(String.self, forKey: .state) ?? ""
+        self.type = try container.decodeIfPresent(String.self, forKey: .type)
+        
+        if container.contains(.driverAssignment) {
+            if let driverAssignment = try? container.nestedContainer(keyedBy: CodingKeys.self, forKey: .driverAssignment) {
+                self.driver = try driverAssignment.decodeIfPresent(Driver.self, forKey: .driver)
+            } else {
+                self.driver = nil
+            }
+        } else {
+            self.driver = nil
+        }
+    }
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encode(bookingId, forKey: .bookingId)
+        try container.encode(timeslotId, forKey: .timeslotId)
+        try container.encode(state, forKey: .state)
+        try container.encode(location, forKey: .location)
+        try container.encode(timeSlot, forKey: .timeSlot)
+        try container.encode(type, forKey: .type)
+        var driverAssignment = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .driverAssignment)
+        try driverAssignment.encode(driver, forKey: .driver)
+
+    }
+    
+    required init() {
+        super.init()
+    }
+    
+    required init(value: Any, schema: RLMSchema) {
+        super.init(value: value, schema: schema)
+    }
+    
+    required init(realm: RLMRealm, schema: RLMObjectSchema) {
+        super.init(realm: realm, schema: schema)
     }
     
     override static func primaryKey() -> String? {

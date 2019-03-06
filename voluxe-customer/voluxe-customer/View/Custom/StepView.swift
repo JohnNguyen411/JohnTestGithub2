@@ -49,19 +49,19 @@ class StepView: UIView {
         
         line.snp.makeConstraints{ make in
             make.top.bottom.equalToSuperview()
-            make.left.equalToSuperview().offset(11)
+            make.leading.equalToSuperview().offset(11)
             make.width.equalTo(2)
         }
         
         icon.snp.makeConstraints{ make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.top.equalToSuperview().offset(1)
             make.height.width.equalTo(24)
         }
         
         titleView.snp.makeConstraints{ make in
-            make.right.equalToSuperview()
-            make.left.equalTo(icon.snp.right).offset(20)
+            make.trailing.equalToSuperview()
+            make.leading.equalTo(icon.snp.trailing).offset(20)
             make.centerY.equalTo(icon).offset(2) // need some extra spacing because of the font
         }
     }
@@ -79,7 +79,7 @@ class StepView: UIView {
                 testView.accessibilityIdentifier = "stepview\(index)"
                 self.addSubview(testView)
                 testView.snp.makeConstraints { make in
-                    make.top.right.equalToSuperview()
+                    make.top.trailing.equalToSuperview()
                     make.width.height.equalTo(1)
                 }
             }

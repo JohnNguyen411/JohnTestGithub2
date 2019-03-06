@@ -76,7 +76,7 @@ class AppController {
             if let _ = rootViewController.presentedViewController as? VLAlertViewController {
                 return
             }
-            let alert = VLAlertViewController(title: String.ForceUpgradeTitle, message: String.ForceUpgradeMessage, cancelButtonTitle: nil, okButtonTitle: String.Ok.uppercased())
+            let alert = VLAlertViewController(title: .localized(.errorForcedUpgradeTitle), message: .localized(.errorForcedUpgradeMessage), cancelButtonTitle: nil, okButtonTitle: String.localized(.ok).uppercased())
             alert.delegate = appDelegate
             alert.dismissOnTap = false
             
@@ -95,7 +95,7 @@ class AppController {
                 return
             }
             
-            let alert = VLAlertViewController(title: String.SoftUpgradeTitle, message: String.SoftUpgradeMessage, cancelButtonTitle: String.NotNow, okButtonTitle: String.Ok.uppercased())
+            let alert = VLAlertViewController(title: .localized(.errorSoftUpgradeTitle), message: .localized(.errorSoftUpgradeMessage), cancelButtonTitle: .localized(.notNow), okButtonTitle: String.localized(.ok).uppercased())
             alert.delegate = appDelegate
             alert.dismissOnTap = true
             

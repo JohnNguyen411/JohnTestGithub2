@@ -45,6 +45,44 @@ class SignIn_UITests: XCTestCase {
         app.launch()
         self.wait(for: 10, label: "waiting for app to log in")
 
-        XCTAssertTrue(app.otherElements["Pickup & Delivery"].exists)
+        XCTAssertTrue(app.otherElements[String.localized(.viewScheduleService)].exists)
+    }
+}
+
+extension XCTestCase {
+
+    func loginToVehicleScreen(_ app: XCUIApplication) {
+
+        XCTAssertTrue(app.buttons[String.localized(.viewIntroFooterSignup).uppercased()].exists)
+        app.buttons[String.localized(.viewIntroFooterSignin).uppercased()].tap()
+        self.wait()
+
+        var textField = app.textFields[String.localized(.viewEditTextInfoHintEmail)]
+        textField.tap()
+        textField.typeText(BotUserData.email)
+
+        textField = app.otherElements["volvoPwdTextField"]
+        textField.tap()
+        textField.typeText(BotUserData.password)
+
+        app.navigationBars.firstMatch.buttons[String.localized(.next)].tap()
+        self.wait(for: 10, label: "logging in")
+
+        XCTAssertTrue(app.otherElements[String.localized(.viewScheduleService)].exists)
+    }
+
+    func logout(_ app: XCUIApplication) {
+
+        app.navigationBars.firstMatch.buttons["ic menu"].tap()
+        self.wait()
+
+        app.otherElements["leftViewController"].staticTexts[String.localized(.signout)].tap()
+        self.wait()
+
+        app.alerts[String.localized(.signout)].buttons[String.localized(.signout)].tap()
+        self.wait()
+
+        XCTAssertTrue(app.buttons[String.localized(.viewIntroFooterSignin).uppercased()].exists)
+        XCTAssertTrue(app.buttons[String.localized(.viewIntroFooterSignup).uppercased()].exists)
     }
 }

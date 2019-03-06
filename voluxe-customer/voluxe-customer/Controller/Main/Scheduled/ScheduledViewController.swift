@@ -11,8 +11,6 @@ import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
 import GoogleMaps
-import BrightFutures
-import Result
 import SwiftEventBus
 import MBProgressHUD
 import SDWebImage
@@ -31,8 +29,6 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
     
     // UITest
     let testView = UIView(frame: CGRect(x: 0, y: 0, width: 1, height: 1))
-    
-    private let googleDistanceMatrixAPI = GoogleDistanceMatrixAPI()
     
     var steps: [Step] = []
     private var driver: Driver?
@@ -58,7 +54,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
     let driversLicenseInsuranceLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
-        titleLabel.text = .LicenseInsuranceCardReady
+        titleLabel.text = .localized(.viewScheduleServiceStatusReminderPickup)
         titleLabel.font = .volvoSansProRegular(size: 14)
         titleLabel.textAlignment = .left
         return titleLabel
@@ -70,8 +66,8 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
     private var driverInfoViewController: DriverInfoViewController?
     
     init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen) {
-        changeButton = VLButton(type: .blueSecondary, title: (.Change as String).uppercased(), kern: UILabel.uppercasedKern(), event: .changeDropoff, screen: screen)
-        driverContact = VLButton(type: .blueSecondary, title: (.Contact as String).uppercased(), kern: UILabel.uppercasedKern(), event: .contactDriver, screen: screen)
+        changeButton = VLButton(type: .blueSecondary, title: String.localized(.change).uppercased(), kern: UILabel.uppercasedKern(), event: .changeDropoff, screen: screen)
+        driverContact = VLButton(type: .blueSecondary, title: String.localized(.contact).uppercased(), kern: UILabel.uppercasedKern(), event: .contactDriver, screen: screen)
         driverIcon = UIImageView.makeRoundImageView(frame: CGRect(x: 0, y: 0, width: 35, height: 35), photoUrl: nil, defaultImage: UIImage(named: "driver_placeholder"))
         super.init(vehicle: vehicle, state: state, screen: screen)
         generateSteps()
@@ -154,57 +150,57 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
             driverViewContainer.addSubview(driverContact)
             
             verticalStepView.snp.makeConstraints { make in
-                make.left.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 30))
+                make.leading.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 30))
                 make.top.equalToSuperview().offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: BaseViewController.defaultTopYOffset))
-                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -30))
+                make.trailing.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -30))
                 make.height.equalTo(verticalStepView.height) // already adapter inside
             }
             
             mapViewContainer.snp.makeConstraints { make in
-                make.left.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 25))
-                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -25))
+                make.leading.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 25))
+                make.trailing.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -25))
                 make.top.equalTo(verticalStepView.snp.bottom)
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(ScheduledViewController.mapViewHeight + ScheduledViewController.driverViewHeight)))
             }
             
             mapViewContainer.addSubview(mapVC.view)
             mapVC.view.snp.makeConstraints { (make) -> Void in
-                make.left.right.top.equalToSuperview()
+                make.leading.trailing.top.equalToSuperview()
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(ScheduledViewController.mapViewHeight)))
             }
             
             driverViewContainer.snp.makeConstraints { make in
-                make.left.right.equalToSuperview()
+                make.leading.trailing.equalToSuperview()
                 make.top.equalTo(mapVC.view.snp.bottom)
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(ScheduledViewController.driverViewHeight)))
             }
             
             driverIcon.snp.makeConstraints { make in
-                make.left.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 10))
+                make.leading.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 10))
                 make.centerY.equalToSuperview()
                 make.width.height.equalTo(ViewUtils.getAdaptedWidthSize(sizeInPoints: 35))
             }
             
             driverName.snp.makeConstraints { make in
-                make.left.equalTo(driverIcon.snp.right).offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 10))
-                make.centerY.right.equalToSuperview()
+                make.leading.equalTo(driverIcon.snp.trailing).offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: 10))
+                make.centerY.trailing.equalToSuperview()
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 35))
             }
             
             driverContact.snp.makeConstraints { make in
-                make.centerY.right.equalToSuperview()
+                make.centerY.trailing.equalToSuperview()
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 35))
                 make.width.equalTo(ViewUtils.getAdaptedWidthSize(sizeInPoints: 100))
             }
             
             timeWindowView.snp.makeConstraints { make in
-                make.left.bottom.right.equalToSuperview()
+                make.leading.bottom.trailing.equalToSuperview()
                 make.height.equalTo(TimeWindowView.height)
             }
             
             driversLicenseInsuranceLabel.snp.makeConstraints { make in
-                make.left.equalTo(mapViewContainer)
-                make.right.equalToSuperview()
+                make.leading.equalTo(mapViewContainer)
+                make.trailing.equalToSuperview()
                 make.top.equalTo(mapViewContainer.snp.bottom).offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: 6, smallerOnly: false))
             }
 
@@ -219,7 +215,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
             self.view.addSubview(view)
             view.snp.makeConstraints {
                 make in
-                make.left.right.equalToSuperview()
+                make.leading.trailing.equalToSuperview()
                 make.top.equalTo(timeWindowView.snp.bottom)
                 make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 100))
             }
@@ -231,7 +227,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
             changeButton.isHidden = true
             
             changeButton.snp.makeConstraints { make in
-                make.right.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -22))
+                make.trailing.equalToSuperview().offset(ViewUtils.getAdaptedWidthSize(sizeInPoints: -22))
                 make.top.equalTo(stepView).offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: 7))
             }
         }
@@ -329,35 +325,37 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
             
             weak var weakSelf = self
 
-            googleDistanceMatrixAPI.getDirection(origin: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: fromLocation), destination: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: toLocation), mode: nil).onSuccess { distanceMatrix in
-
-                Analytics.trackCallGoogle(endpoint: .distance)
-
-                guard let weakSelf = weakSelf else { return }
-
-                if let distanceMatrix = distanceMatrix {
-                    weakSelf.mapVC.updateETA(eta: distanceMatrix.getEta())
-                    weakSelf.timeWindowView.setETA(eta: distanceMatrix.getEta())
-                }
-                }.onFailure { error in
-                    Logger.print(error)
+            CustomerAPI.distance(origin: CustomerAPI.coordinatesToString(coordinate: fromLocation), destination: CustomerAPI.coordinatesToString(coordinate: toLocation), mode: nil) { distanceMatrix, error in
+                
+                if error != nil {
+                    Logger.print("\(error?.code?.rawValue ?? "") \(error?.message ?? "")")
                     Analytics.trackCallGoogle(endpoint: .distance, error: error)
+                } else {
+                    Analytics.trackCallGoogle(endpoint: .distance)
+                    
+                    guard let weakSelf = weakSelf else { return }
+                    
+                    if let distanceMatrix = distanceMatrix {
+                        weakSelf.mapVC.updateETA(eta: distanceMatrix.getEta())
+                        weakSelf.timeWindowView.setETA(eta: distanceMatrix.getEta())
+                    }
+                }
             }
         }
     }
     
     func contactDriverActionSheet() {
-        let alertController = UIAlertController(title: .ContactDriver, message: nil, preferredStyle: .actionSheet)
+        let alertController = UIAlertController(title: .localized(.popupContactTitle), message: nil, preferredStyle: .actionSheet)
         
-        let textButton = UIAlertAction(title: .TextDriver, style: .default, handler: { (action) -> Void in
+        let textButton = UIAlertAction(title: .localized(.popupContactText), style: .default, handler: { (action) -> Void in
             self.contactDriver(mode: "text_only")
         })
         
-        let callButton = UIAlertAction(title: .CallDriver, style: .default, handler: { (action) -> Void in
+        let callButton = UIAlertAction(title: .localized(.popupContactCall), style: .default, handler: { (action) -> Void in
             self.contactDriver(mode: "voice_only")
         })
         
-        let cancelButton = UIAlertAction(title: .Cancel, style: .cancel, handler: { (action) -> Void in
+        let cancelButton = UIAlertAction(title: .localized(.cancel), style: .cancel, handler: { (action) -> Void in
             alertController.dismiss(animated: true, completion: nil)
         })
         
@@ -375,8 +373,8 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        BookingAPI().contactDriver(customerId: customerId, bookingId: booking.id, mode: mode).onSuccess { result in
-            if let contactDriver = result?.data?.result {
+        CustomerAPI.contactDriver(customerId: customerId, bookingId: booking.id, mode: mode) { contact, error in
+            if let contactDriver = contact {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 if mode == "text_only" {
                     // sms
@@ -388,10 +386,10 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
                     guard let url = URL(string: number) else { return }
                     UIApplication.shared.open(url)
                 }
+            } else {
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
             }
-        }.onFailure { error in
-            MBProgressHUD.hide(for: self.view, animated: true)
-            self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
         }
     }
     

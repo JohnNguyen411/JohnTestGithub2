@@ -8,13 +8,20 @@
 
 import Foundation
 
-class VLMarkedSlider: UIView {
+class VLMarkedSlider: UIView, VLSliderProtocol {
     
-    let slider = VLSlider()
+    let dotHeightWidth: Int = 4
+
+    let slider = VLSlider(newNPS: RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.customerNewNpsViewEnabled))
     var step = 1
     var min = 1
+    var disabledValue = 0
     var max = 10
     let markersContainer = UIView(frame: .zero)
+    
+    let newNPS = RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.customerNewNpsViewEnabled)
+    var hasBeenRelayout = false
+    var delegate: VLMarkedSliderProtocol?
     
     let minLabel: UILabel = {
         let label = UILabel(frame: .zero)
@@ -34,22 +41,32 @@ class VLMarkedSlider: UIView {
         return label
     }()
     
-    init(step: Int = 1, min: Int = 1, max: Int = 10, defaultValue: Int = 10) {
+    init(step: Int = 1, disabledValue: Int = 0, min: Int = 1, max: Int = 10, defaultValue: Int = 10) {
         super.init(frame: .zero)
+        self.slider.delegate = self
         self.step = step
         self.min = min
         self.max = max
         self.slider.step = Float(step)
-        self.slider.minimumValue = Float(min)
+        self.disabledValue = disabledValue
+        if newNPS {
+            self.slider.minimumValue = Float(disabledValue)
+        } else {
+            self.slider.minimumValue = Float(min)
+        }
         self.slider.maximumValue = Float(max)
-        self.slider.value = Float(defaultValue)
+        self.slider.value = Float(newNPS ? disabledValue : defaultValue)
         
         self.minLabel.text = "\(min)"
         self.maxLabel.text = "\(max)"
         
         setupViews()
         
-        self.slider.sliderValueChanged(sender: self.slider)
+        if newNPS {
+            self.slider.setInitialImage()
+        } else {
+            self.slider.sliderValueChanged(sender: self.slider)
+        }
         
         // Add a gesture recognizer to the slider to allow the Tap
         let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(sliderTapped(gestureRecognizer:)))
@@ -70,22 +87,22 @@ class VLMarkedSlider: UIView {
         self.addSubview(markersContainer)
 
         slider.snp.makeConstraints { make in
-            make.top.left.right.width.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
         }
         
         minLabel.snp.makeConstraints { make in
-            make.left.equalTo(slider).offset((slider.thumbImageWidth()/2)-minLabelWidth/2)
+            make.leading.equalTo(slider).offset((slider.thumbImageWidth()/2)-minLabelWidth/2)
             make.top.equalTo(slider.snp.bottom).offset(5)
         }
         
         maxLabel.snp.makeConstraints { make in
-            make.right.equalTo(slider).offset(-(slider.thumbImageWidth()/2)+maxLabelWidth/2)
+            make.trailing.equalTo(slider).offset(-(slider.thumbImageWidth()/2)+maxLabelWidth/2)
             make.top.equalTo(slider.snp.bottom).offset(5)
         }
         
         markersContainer.snp.makeConstraints { make in
-            make.left.equalTo(slider)
-            make.right.equalTo(slider)
+            make.leading.equalTo(slider)
+            make.trailing.equalTo(slider)
             make.top.equalTo(slider.snp.bottom).offset(5)
             make.height.equalTo(10)
         }
@@ -96,23 +113,35 @@ class VLMarkedSlider: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         if markersContainer.bounds.width == 0 || markersContainer.subviews.count > 0 { return }
-        let dotHeightWidth: Int = 4
+        let trackRect =  self.slider.trackRect(forBounds: self.slider.bounds)
         
-        for i in stride(from: min, through: max, by: self.step) {
-            if i == min || i == max { continue }
+        let minStride = self.min
+        
+        for i in stride(from: minStride, through: max, by: self.step) {
+            if i == minStride || i == max { continue }
             
             let dotImage = UIImageView(image: UIImage(named: "sliderDot"))
             markersContainer.addSubview(dotImage)
             
-            let trackRect =  self.slider.trackRect(forBounds: self.slider.bounds)
             let thumbRect = self.slider.thumbRect(forBounds: self.slider.bounds, trackRect: trackRect, value: Float(i))
+            dotImage.tag = i
             
             dotImage.snp.makeConstraints { make in
                 make.centerX.equalTo((Int(thumbRect.origin.x) + Int(thumbRect.size.width) / 2 ) - dotHeightWidth / 2)
                 make.width.height.equalTo(dotHeightWidth)
                 make.centerY.equalToSuperview()
             }
+            
         }
+        if newNPS && !hasBeenRelayout {
+
+            let thumbRect = self.slider.thumbRect(forBounds: self.slider.bounds, trackRect: trackRect, value: Float(self.min))
+            self.minLabel.snp.remakeConstraints { make in
+                make.centerX.equalTo((Int(thumbRect.origin.x) + Int(thumbRect.size.width) / 2 ) - dotHeightWidth / 2)
+                make.top.equalTo(slider.snp.bottom).offset(5)
+            }
+        }
+
     }
     
     @objc func sliderTapped(gestureRecognizer: UIGestureRecognizer) {
@@ -130,4 +159,44 @@ class VLMarkedSlider: UIView {
         return Int(slider.roundedValueForFloat(floatValue: slider.value))
     }
     
+    // MARK: VLSliderProtocol
+    
+    func onValueChange(value: Int) {
+        if newNPS && value != self.disabledValue && !hasBeenRelayout {
+            let minLabelWidth = minLabel.sizeThatFits(CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT))).width
+            hasBeenRelayout = true
+            self.disabledValue = min
+
+            self.slider.minimumValue = Float(self.min)
+            let trackRect =  self.slider.trackRect(forBounds: self.slider.bounds)
+
+            UIView.animate(withDuration: 0.3, animations: {
+                
+                for view in self.markersContainer.subviews {
+                    
+                    let thumbRect = self.slider.thumbRect(forBounds: self.slider.bounds, trackRect: trackRect, value: Float(view.tag))
+                    
+                    view.snp.remakeConstraints { make in
+                        make.centerX.equalTo((Int(thumbRect.origin.x) + Int(thumbRect.size.width) / 2 ) - self.dotHeightWidth / 2)
+                        make.width.height.equalTo(self.dotHeightWidth)
+                        make.centerY.equalToSuperview()
+                    }
+                }
+                
+                
+                self.minLabel.snp.remakeConstraints { make in
+                    make.leading.equalTo(self.slider).offset((self.slider.thumbImageWidth()/2)-minLabelWidth/2)
+                    make.top.equalTo(self.slider.snp.bottom).offset(5)
+                }
+                
+                self.layoutIfNeeded()
+               
+            })
+        }
+        delegate?.onValueChanged(value: value)
+    }
+}
+
+protocol VLMarkedSliderProtocol {
+    func onValueChanged(value: Int)
 }

@@ -14,7 +14,7 @@ class NewServiceViewController: BaseViewController {
     
     let introLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .NewServiceIntro
+        textView.text = .localized(.viewScheduleServiceTypeDescription)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -39,7 +39,7 @@ class NewServiceViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = .NewService
+        self.navigationItem.title = .localized(.newService)
 
         self.showProgressHUD()
         
@@ -50,8 +50,12 @@ class NewServiceViewController: BaseViewController {
         tableView.isScrollEnabled = false
         tableView.separatorStyle = .none
         
-        RepairOrderAPI().getRepairOrderTypes().onSuccess { services in
-            if let services = services?.data?.result {
+        CustomerAPI.repairOrderTypes() { services, error in
+            self.hideProgressHUD()
+            
+            if error != nil {
+                Logger.print("\(error?.code?.rawValue ?? "") \(error?.message ?? "")")
+            } else {
                 if let realm = try? Realm() {
                     try? realm.write {
                         realm.delete(realm.objects(RepairOrderType.self))
@@ -66,18 +70,13 @@ class NewServiceViewController: BaseViewController {
                         }
                     }
                     if containsCustom {
-                        self.showServices(repairOrderTypes: [String.MilestoneServices, String.OtherMaintenanceRepairs])
+                        self.showServices(repairOrderTypes: [String.localized(.viewScheduleServiceTypeMilestone), String.localized(.viewScheduleServiceTypeDetailNameLabelOther)])
                     } else {
-                        self.showServices(repairOrderTypes: [String.MilestoneServices])
+                        self.showServices(repairOrderTypes: [String.localized(.viewScheduleServiceTypeMilestone)])
                     }
                 }
             }
-            self.hideProgressHUD()
-            }.onFailure { error in
-                Logger.print(error)
-                self.hideProgressHUD()
         }
-        
     }
     
     override func setupViews() {
@@ -89,15 +88,15 @@ class NewServiceViewController: BaseViewController {
         let labelHeight = introLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
 
         introLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(20)
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
-            make.right.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(labelHeight)
         }
         
         tableView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview()
             make.top.equalTo(introLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(CheckmarkCell.height*2+1)
         }

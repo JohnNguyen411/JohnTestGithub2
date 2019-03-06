@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Luxe By Volvo</string>
+	<string>Volvo Valet</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,18 +17,18 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.1</string>
+	<string>1.3.2</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>luxebyvolvo</string>
+				<string>volvovalet</string>
 			</array>
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>158</string>
+	<string>289</string>
 	<key>ENABLE_DEBUG_INFO</key>
 	<string>$(ENABLE_DEBUG_INFO)</string>
 	<key>Fabric</key>
@@ -70,8 +70,6 @@
 		<string>VolvoSanLigReg.ttf</string>
 		<string>VolvoSansPro-Bold.ttf</string>
 		<string>VolvoSansPro-Super.ttf</string>
-		<string>Montserrat-Regular.ttf</string>
-		<string>SourceSansPro-Regular.ttf</string>
 		<string>Volvo Novum-Bold.otf</string>
 		<string>Volvo Novum-BoldItalic.otf</string>
 		<string>Volvo Novum-Italic.otf</string>

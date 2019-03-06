@@ -16,7 +16,7 @@ class ScheduleSelfDropModal: VLPresentrViewController {
     
     let rescheduleLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .UnableToMeetDriver
+        textView.text = .localized(.popupAdvisorDropoffRescheduleDescription)
         textView.font = .volvoSansProRegular(size: 14)
         textView.numberOfLines = 0
         textView.backgroundColor = .clear
@@ -28,7 +28,7 @@ class ScheduleSelfDropModal: VLPresentrViewController {
     
     let selfPickupLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .PreferPickup
+        textView.text = .localized(.popupAdvisorDropoffSelfPickupDescription)
         textView.font = .volvoSansProRegular(size: 14)
         textView.numberOfLines = 0
         textView.textColor = .luxeDarkGray()
@@ -39,8 +39,8 @@ class ScheduleSelfDropModal: VLPresentrViewController {
     let selfPickupButton: VLButton
     
     init(title: String, screen: AnalyticsEnums.Name.Screen) {
-        rescheduleButton = VLButton(type: .grayPrimary, title: (.RescheduleDelivery as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
-        selfPickupButton = VLButton(type: .grayPrimary, title: (.SelfPickupAtDealership as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
+        rescheduleButton = VLButton(type: .grayPrimary, title: String.localized(.popupAdvisorDropoffReschedule).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
+        selfPickupButton = VLButton(type: .grayPrimary, title: String.localized(.viewScheduleServiceOptionPickupSelfDeliveryDropoff).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
         super.init(title: title, buttonTitle: "", screen: screen)
         
         rescheduleButton.setActionBlock { [weak self] in
@@ -67,23 +67,23 @@ class ScheduleSelfDropModal: VLPresentrViewController {
         containerView.addSubview(selfPickupButton)
 
         selfPickupButton.snp.makeConstraints { make in
-            make.bottom.left.right.top.height.equalTo(bottomButton)
+            make.bottom.leading.trailing.top.height.equalTo(bottomButton)
         }
         
         selfPickupLabel.snp.makeConstraints { make in
             make.bottom.equalTo(selfPickupButton.snp.top).offset(-20)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
         
         rescheduleButton.snp.makeConstraints { make in
             make.bottom.equalTo(selfPickupLabel.snp.top).offset(-40)
             make.height.equalTo(VLButton.primaryHeight)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
         
         rescheduleLabel.snp.makeConstraints { make in
             make.bottom.equalTo(rescheduleButton.snp.top).offset(-20)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
         
         

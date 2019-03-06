@@ -64,7 +64,7 @@ class BaseViewController: UIViewController, PresentrDelegate, VLPresentrViewDele
     
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-        SwiftEventBus.unregister(self)
+        SwiftEventBus.unregister(self, name: "requestNotifPermission")
     }
     
     func setTitle(title: String?) {
@@ -174,7 +174,7 @@ class BaseViewController: UIViewController, PresentrDelegate, VLPresentrViewDele
     
     func showNotificationPermissionModal(dismissOnTap: Bool) {
         if let appDelegate = self.appDelegate, !NotificationPermissionViewController.isShowing {
-            let permissionVC = NotificationPermissionViewController(title: .AllowNotifications,
+            let permissionVC = NotificationPermissionViewController(title: .localized(.permissionAllowNotificationTitle),
                                                                     screen: .requestNotifications,
                                                                     delegate: appDelegate)
             permissionVC.view.accessibilityIdentifier = "permissionVC"
@@ -270,7 +270,7 @@ extension UIViewController {
     {
         showDialog(title: title,
                    message: message,
-                   buttonTitle: String.Ok.uppercased(),
+                   buttonTitle: String.localized(.ok).uppercased(),
                    completion: completion,
                    dialog: dialog,
                    screen: screen)

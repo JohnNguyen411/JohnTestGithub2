@@ -64,7 +64,7 @@ class DriverInfoViewController: UIViewController {
         
         closeButton.snp.makeConstraints { make in
             make.equalsToTop(view: self.view, offset: !self.view.hasSafeAreaCapability ? 15 : 0)
-            make.left.equalToSuperview().offset(3)
+            make.leading.equalToSuperview().offset(3)
             make.width.height.equalTo(50)
         }
         

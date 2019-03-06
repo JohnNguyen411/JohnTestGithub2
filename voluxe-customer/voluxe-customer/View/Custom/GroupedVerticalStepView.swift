@@ -35,7 +35,7 @@ class GroupedVerticalStepView: UIView {
         addSubview(stepView)
         
         stepView.snp.makeConstraints{ make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(height)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(StepView.height)))
         }

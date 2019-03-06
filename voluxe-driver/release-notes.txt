@@ -1,0 +1,66 @@
+v1.0.0-RC1 (55)
+- Improve offline capabilities
+- Fix missing Reset Password Required error
+- Soft/Hard Update dialog
+- Fix Profile picture not updating
+- Check Realm integrity at launch
+
+v1.0.0-beta2 (53)
+- Visual QA feedbacks part 2
+- Fix camera thumbnail orientation
+- New Beacon sound Alert
+
+v1.0.0-beta1 (50)
+- Visual QA feedbacks part 1
+
+v1.0.0-alpha4 (45)
+- Landscape Photo inspections
+- Fix request flow blocker
+- Fix Update phone number flow
+- Fix wrong label on GPS navigation button
+- Fix background location update refresh rate
+
+v1.0.0-alpha3 (41)
+- Fix Selfie error on Onboarding
+- Left Panel UI
+- Update Phone Number
+- Reset Password
+- Navigation App Management
+- Analytics
+- Deeplinking (Branch.io)
+
+v1.0.0-alpha2 (35)
+- Fix Sync issue
+- Improve permission management
+- Add check dialogs (Are you sure you've arrived, etc...)
+- Clear inspection pictures from local storage
+- Logout user on re-install (clear Keychain)
+
+v1.0.0-alpha1 (32)
+- Fix Onboarding flow
+- Improve UI Flow
+- Contact Customer
+- Navigation
+- Bugfixes
+
+v1.0.0-alpha (26)
+1st internal Alpha version
+- Onboarding flow
+- Login
+- Phone Verification
+- Complete (Basic) P&D Flow (With and w/o loaner)
+- Notes (Pickup and Delivery notes, and input/modify services notes)
+- Offline Inspection
+- Offline task Updates
+- Location Updates
+
+Missing:
+- Flow UI (Flow UI is very basic and is missing informations)
+- Communication with Customer
+- Navigation (Maps, Waze, etc)
+- Security dialog (Are you sure you've arrived at customer, etc ...)
+- Analytics
+
+
+v1.0.0
+Initial project set up

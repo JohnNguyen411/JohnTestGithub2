@@ -12,7 +12,7 @@ import MBProgressHUD
 
 class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
     
-    let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
+    let emailTextField = VLVerticalTextField(title: .localized(.emailAddress), placeholder: .localized(.viewEditTextInfoHintEmail))
 
     var realm : Realm?
     
@@ -43,7 +43,7 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
         }
         emailTextField.textField.becomeFirstResponder()
         
-        self.navigationItem.rightBarButtonItem?.title = .Done
+        self.navigationItem.rightBarButtonItem?.title = .localized(.done)
 
     }
     override func setupViews() {
@@ -51,8 +51,8 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
         self.view.addSubview(emailTextField)
         
         emailTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
@@ -61,15 +61,15 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
     
     //MARK: Validation methods
     
-    private func onError(error: Errors? = nil) {
+    private func onError(error: LuxeAPIError? = nil) {
         MBProgressHUD.hide(for: self.view, animated: true)
         
-        if let apiError = error?.apiError {
-            if apiError.getCode() == .E5001 || apiError.getCode() == .E4011 {
-                self.showOkDialog(title: .Error, message: .AccountAlreadyExistUpdate, dialog: .error, screen: self.screen)
+        if let code = error?.code {
+            if code == .E5001 || code == .E4011 {
+                self.showOkDialog(title: .localized(.error), message: .localized(.errorEmailAlreadyExist), dialog: .error, screen: self.screen)
             }
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
         }
     }
    
@@ -110,21 +110,23 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
 
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        CustomerAPI().updateEmail(customerId: customerId, email: email).onSuccess { result in
-            // success
-            if let customer = UserManager.sharedInstance.getCustomer() {
-                if let realm = try? Realm() {
-                    try? realm.write {
-                        customer.email = email
-                        UserManager.sharedInstance.setCustomer(customer: customer)
-                        realm.add(customer, update: true)
+        CustomerAPI.updateEmail(customerId: customerId, email: email) { error in
+            // error
+            if let error = error {
+                self.onError(error: error)
+            } else {
+                if let customer = UserManager.sharedInstance.getCustomer() {
+                    if let realm = try? Realm() {
+                        try? realm.write {
+                            customer.email = email
+                            UserManager.sharedInstance.setCustomer(customer: customer)
+                            realm.add(customer, update: true)
+                        }
                     }
                 }
+                MBProgressHUD.hide(for: self.view, animated: true)
+                self.navigationController?.popViewController(animated: true)
             }
-            MBProgressHUD.hide(for: self.view, animated: true)
-            self.navigationController?.popViewController(animated: true)
-            }.onFailure { error in
-                self.onError(error: error)
         }
     }
     

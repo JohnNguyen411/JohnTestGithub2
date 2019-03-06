@@ -9,6 +9,8 @@
 import Foundation
 import RealmSwift
 import MBProgressHUD
+import libPhoneNumber_iOS
+import FlagPhoneNumber
 
 class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     
@@ -38,7 +40,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.navigationItem.title = .YourAccount
+        self.navigationItem.title = .localized(.yourAccount)
         
         tableView.backgroundColor = .clear
         tableView.dataSource = self
@@ -46,7 +48,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdIndicator)
         tableView.register(SettingsCell.self, forCellReuseIdentifier: SettingsCell.reuseIdToogle)
 
-        self.navigationItem.rightBarButtonItem?.title = .Edit
+        self.navigationItem.rightBarButtonItem?.title = .localized(.edit)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -59,18 +61,18 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
         self.view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
         }
     }
     
-    func getTitleForSection(section: Int) -> String {
+    func getTitleForSection(section: Int) -> Localized {
         if section == 0 {
-            return .PickupDeliveryLocations
+            return .viewProfileLocationHeader
         } else if section == 1 {
-            return .ContactInformation
+            return .viewProfileContactHeader
         } else {
-            return .AccountPassword
+            return .viewProfileAccountPasswordHeader
         }
     }
     
@@ -79,14 +81,25 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
             if let addresses = addresses, addressesCount > indexPath.row {
                 return (addresses[indexPath.row].location?.getShortAddress())!
             }
-            return .AddNewLocation
+            return .localized(.addNewLocation)
         } else if indexPath.section == 1 {
             if indexPath.row == 0 {
                 return "\(user?.firstName ?? "") \(user?.lastName ?? "")"
             } else if indexPath.row == 1 {
                 return (user?.email)!
             } else {
-                return (user?.phoneNumber)!
+                if let phoneNumber = user?.phoneNumber, let phoneNumberUtil = NBPhoneNumberUtil.sharedInstance() {
+                    let code = phoneNumberUtil.extractCountryCode(phoneNumber, nationalNumber: nil)
+                    let region = phoneNumberUtil.getRegionCode(forCountryCode: code)
+                    
+                    do {
+                        let formattedPhoneNumber = try phoneNumberUtil.parse(phoneNumber, defaultRegion: region)
+                        return try phoneNumberUtil.format(inOriginalFormat: formattedPhoneNumber, regionCallingFrom: region)
+                    } catch {
+                        return (user?.phoneNumber) ?? ""
+                    }
+                }
+                return (user?.phoneNumber) ?? ""
             }
             
         } else {
@@ -100,13 +113,13 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     
     private func edit() {
         Analytics.trackClick(navigation: .edit, screen: self.screen)
-        self.navigationItem.rightBarButtonItem?.title = .Done
+        self.navigationItem.rightBarButtonItem?.title = .localized(.done)
         tableView.setEditing(true, animated: true)
     }
     
     private func done() {
         Analytics.trackClick(navigation: .done, screen: self.screen)
-        self.navigationItem.rightBarButtonItem?.title = .Edit
+        self.navigationItem.rightBarButtonItem?.title = .localized(.edit)
         tableView.setEditing(false, animated: true)
     }
     
@@ -146,15 +159,15 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     func resetPassword() {
         showProgressHUD()
         if let customerId = UserManager.sharedInstance.customerId() {
-            CustomerAPI().requestPasswordChange(customerId: customerId).onSuccess { response in
-                
-                FTUEStartViewController.flowType = .signup
-                self.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
-                self.hideProgressHUD()
-                
-                }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+            CustomerAPI.requestPasswordChange(customerId: customerId) { error in
+                if error != nil {
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
+                } else {
+                    FTUEStartViewController.flowType = .signup
+                    self.pushViewController(FTUEPhoneVerificationViewController(), animated: true)
+                    self.hideProgressHUD()
+                }
             }
         }
     }
@@ -250,7 +263,7 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         let label = UILabel(frame: CGRect(x: 15, y: 0, width: tableView.bounds.width - 30, height: SettingsCell.height))
         label.font = .volvoSansProMedium(size: 13)
         label.textColor = UIColor.luxeGray()
-        label.text = getTitleForSection(section: section).uppercased()
+        label.text = String.localized(getTitleForSection(section: section)).uppercased()
         label.addUppercasedCharacterSpacing()
         view.addSubview(label)
         return view
@@ -271,10 +284,10 @@ extension AccountSettingsViewController: UITableViewDataSource, UITableViewDeleg
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         if indexPath.section == 0 {
             Analytics.trackClick(button: .settingsDeleteAddress, screen: self.screen)
-            self.showDestructiveDialog(title: .Confirm,
-                                       message: String(format: .AreYouSureDeleteAddress, self.getTextForIndexPath(indexPath: indexPath)),
-                                       cancelButtonTitle: .Cancel,
-                                       destructiveButtonTitle: .Delete,
+            self.showDestructiveDialog(title: .localized(.confirm),
+                                       message: String(format: .localized(.popupRemoveAddressMessage), self.getTextForIndexPath(indexPath: indexPath)),
+                                       cancelButtonTitle: .localized(.cancel),
+                                       destructiveButtonTitle: .localized(.delete),
                                        destructiveCompletion: { self.deleteAddressAtIndexPath(indexPath) },
                                        dialog: .confirm,
                                        screen: self.screen)

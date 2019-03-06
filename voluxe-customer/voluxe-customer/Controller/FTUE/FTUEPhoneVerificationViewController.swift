@@ -13,7 +13,7 @@ import MBProgressHUD
 class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldDelegate {
     
     let codeLength = 4
-    let codeTextField = VLVerticalTextField(title: "", placeholder: .PhoneNumberVerif_Placeholder, kern: 4.0)
+    let codeTextField = VLVerticalTextField(title: "", placeholder: .localized(.viewPhoneVerificationCodeHint), kern: 4.0)
     
     let updatePhoneNumberButton: VLButton
     
@@ -21,7 +21,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .PhoneNumberVerifLabel
+        textView.text = .localized(.viewPhoneVerificationLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -32,7 +32,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
     
     init() {
         let screen = FTUEStartViewController.flowType == .signup ? AnalyticsEnums.Name.Screen.signupPhoneVerification : AnalyticsEnums.Name.Screen.phoneVerification
-        updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.ChangePhoneNumber.uppercased(), kern: UILabel.uppercasedKern(), event: .updatePhone, screen: screen)
+        updatePhoneNumberButton = VLButton(type: .blueSecondary, title: String.localized(.changePhoneNumber).uppercased(), kern: UILabel.uppercasedKern(), event: .updatePhone, screen: screen)
         
         super.init(screen: screen)
     }
@@ -41,7 +41,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         self.init()
         self.ftuePhoneType = type
         if FTUEStartViewController.flowType == .login {
-            self.navigationItem.rightBarButtonItem?.title = .Done
+            self.navigationItem.rightBarButtonItem?.title = .localized(.done)
         }
     }
     
@@ -64,7 +64,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         codeTextField.textField.delegate = self
         super.viewDidLoad()
         codeTextField.textField.keyboardType = .numberPad
-        codeTextField.setRightButtonText(rightButtonText: (.ResendCode as String).uppercased(), actionBlock: {  [weak self] in
+        codeTextField.setRightButtonText(rightButtonText: String.localized(.resendCode).uppercased(), actionBlock: {  [weak self] in
             self?.resendCode()
         })
         codeTextField.rightLabel.addUppercasedCharacterSpacing()
@@ -98,24 +98,24 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         scrollView.addSubview(phoneNumberLabel)
         scrollView.addSubview(updatePhoneNumberButton)
         
-        updatePhoneNumberButton.contentHorizontalAlignment = .left
+        updatePhoneNumberButton.contentHorizontalAlignment = .leftOrLeading()
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
         
         codeTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(phoneNumberLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(40)
         }
         
         updatePhoneNumberButton.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(codeTextField.snp.bottom).offset(15)
             make.height.equalTo(20)
         }
@@ -139,15 +139,17 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.showProgressHUD()
 
             // initiate password reset with phone number (request code)
-            CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
-                self.hideProgressHUD()
-                self.isLoading = false
-                self.codeTextField.textField.text = ""
-
-                }.onFailure { error in
+            CustomerAPI.passwordReset(phoneNumber: phoneNumber) { error in
+                
+                if error == nil {
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.isLoading = false
+                } else {
+                    self.hideProgressHUD()
+                    self.isLoading = false
+                    self.codeTextField.textField.text = ""
+                }
             }
             return
         }
@@ -166,13 +168,15 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.showProgressHUD()
             
             // initiate password reset with phone number (request code)
-            CustomerAPI().requestPasswordChange(customerId: customer.id).onSuccess { result in
-                self.hideProgressHUD()
-                self.isLoading = false
-                }.onFailure { error in
+            CustomerAPI.requestPasswordChange(customerId: customer.id) { error in
+                if error == nil {
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.isLoading = false
+                } else {
+                    self.hideProgressHUD()
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
+                    self.isLoading = false
+                }
             }
             return
         }
@@ -185,13 +189,16 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         if UserManager.sharedInstance.isLoggedIn() {
             
             // resend phone verification code
-            CustomerAPI().requestPhoneVerificationCode(customerId: customerId!).onSuccess { result in
-                self.hideProgressHUD()
-                self.isLoading = false
-                }.onFailure { error in
+            CustomerAPI.requestPhoneVerificationCode(customerId: customerId!) { error in
+                
+                if error == nil {
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
                     self.isLoading = false
+                } else {
+                    self.hideProgressHUD()
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
+                    self.isLoading = false
+                }
             }
         } else if let email = signupCustomer.email, let phoneNumber = signupCustomer.phoneNumber, let firstName = signupCustomer.firstName , let lastName = signupCustomer.lastName {
             
@@ -200,13 +207,12 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 language = localeLang.uppercased()
             }
             
-            CustomerAPI().signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language).onSuccess { result in
-                if let _ = result?.data?.result {
-                }
+            CustomerAPI.signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language) { customer, error in
                 self.hideProgressHUD()
-                }.onFailure { error in
-                    self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+
+                if error != nil {
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
+                }
             }
         }
     }
@@ -271,21 +277,24 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.showProgressHUD()
 
             // verify phone number
-            CustomerAPI().verifyPhoneNumber(customerId: customerId, verificationCode: verificationCode).onSuccess { result in
-                self.codeTextField.textField.resignFirstResponder()
-
-                self.hideProgressHUD()
-                self.loadMainScreen()
-                self.isLoading = false
+            CustomerAPI.verifyPhoneNumber(customerId: customerId, verificationCode: verificationCode) { error in
                 
-                }.onFailure { error in
+                if error == nil {
+                    self.codeTextField.textField.resignFirstResponder()
+                    
                     self.hideProgressHUD()
-                    if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4012.rawValue {
-                        self.showOkDialog(title: .Error, message: .WrongVerificationCode, dialog: .error, screen: self.screen)
+                    self.loadMainScreen()
+                    self.isLoading = false
+                } else {
+                    
+                    self.hideProgressHUD()
+                    if let code = error?.code, code == .E4012 {
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorInvalidVerificationCode), dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
+                }
             }
         }
     }

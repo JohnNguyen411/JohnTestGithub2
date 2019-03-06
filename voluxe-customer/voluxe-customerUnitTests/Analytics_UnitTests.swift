@@ -82,12 +82,10 @@ class Analytics_UnitTests: XCTestCase {
         analytics.trackOutputClosure = {
             event, params in
             XCTAssertTrue(params?.count == 3)
-            XCTAssertTrue((params?[AnalyticsEnums.Param.errorCode.rawValue] as? String) == Errors.ErrorCode.E2001.rawValue)
+            XCTAssertTrue((params?[AnalyticsEnums.Param.errorCode.rawValue] as! LuxeAPIError.Code) == LuxeAPIError.Code.E2001)
             XCTAssertTrue((params?[AnalyticsEnums.Param.statusCode.rawValue] as? String) == "200")
         }
-        let responseError = ResponseError.with(errorCode: .E2001)
-        let errors = Errors.with(responseError: responseError)
-        analytics.trackCall(api: .luxe, endpoint: "some endpoint", error: errors)
+        analytics.trackCall(api: .luxe, endpoint: "some endpoint", error: LuxeAPIError.with(statusCode: 200, errorCode: .E2001))
     }
 
     func test_FirebaseEventLength() {
@@ -107,9 +105,9 @@ class Analytics_UnitTests: XCTestCase {
         for name in AnalyticsEnums.Name.Permission.allCases { analytics.trackChangePermission(permission: name, granted: true) }
         for name in AnalyticsEnums.Name.Screen.allCases { analytics.trackView(screen: name) }
 
-        // test each event name is less than the Firebase max of 40 characters
+        // Param names can be up to 40 characters long, Param values can be up to 100 characters long
         for name in names {
-            XCTAssertTrue(name.count <= 40, "\(name) is longer than Firebase max of 40 characters)")
+            XCTAssertTrue(name.count <= 100, "\(name) is longer than Firebase max of 100 characters)")
         }
 
         // test that google error message is truncated
@@ -123,24 +121,10 @@ class Analytics_UnitTests: XCTestCase {
     }
 }
 
-extension Errors {
-
-    /// Creates an Errors with a default status and the specified response error.
-    static func with(responseError: ResponseError) -> Errors {
-        let result = Result { "" as Any }
-        let dataResponse = DataResponse(request: nil, response: nil, data: nil, result: result)
-        let errors = Errors(dataResponse: dataResponse, apiError: responseError)
-        return errors
-    }
-}
-
-extension ResponseError {
+extension LuxeAPIError {
 
     /// Creates a ResponseError with the specified API error code.
-    static func with(errorCode: Errors.ErrorCode) -> ResponseError {
-        let response = ResponseError()
-        response.error = true
-        response.code = errorCode.rawValue
-        return response
+    static func with(statusCode: Int? = nil, errorCode: LuxeAPIError.Code) -> LuxeAPIError {
+        return LuxeAPIError(code: errorCode, message: nil, statusCode: statusCode)
     }
 }

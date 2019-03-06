@@ -29,9 +29,9 @@ class VLWebViewController: UIViewController, UIWebViewDelegate {
             self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .refresh, target: self, action: #selector(VLWebViewController.reloadCurrentPage))
         }
         
-        if self.urlAddress == FTUESignupEmailPhoneViewController.tosURL {
+        if self.urlAddress == .localized(.viewTosContentTermsOfServiceUrl) {
             Analytics.trackView(screen: .termsOfService)
-        } else if self.urlAddress == FTUESignupEmailPhoneViewController.privacyURL {
+        } else if self.urlAddress == .localized(.viewTosContentPrivacyPolicyUrl) {
             Analytics.trackView(screen: .privacyPolicy)
         }
         

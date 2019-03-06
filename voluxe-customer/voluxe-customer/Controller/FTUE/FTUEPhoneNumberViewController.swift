@@ -8,18 +8,20 @@
 
 import Foundation
 import UIKit
-import PhoneNumberKit
+import FlagPhoneNumber
 import MBProgressHUD
+import libPhoneNumber_iOS
 
-class FTUEPhoneNumberViewController: FTUEChildViewController {
+class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelegate {
     
-    let phoneNumberTextField = VLVerticalTextField(title: .MobilePhoneNumber, placeholder: .MobilePhoneNumber_Placeholder, isPhoneNumber: true)
-    let phoneNumberKit = PhoneNumberKit()
-    var validPhoneNumber: PhoneNumber?
+    let phoneNumberTextField = VLVerticalTextField(title: .localized(.viewEditTextTitlePhoneNumber), placeholder: .localized(.viewEditTextInfoHintPhoneNumber), isPhoneNumber: true)
+    var validPhoneNumber: NBPhoneNumber?
+    let phoneUtil = NBPhoneNumberUtil.sharedInstance()
+    var countryCode: String?
     
     let phoneNumberLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .MobilePhoneNumberExplain
+        textView.text = .localized(.viewSignupContactLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -32,7 +34,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         let textView = UILabel(frame: .zero)
         textView.font = .volvoSansProRegular(size: 12)
         textView.textColor = .luxeDarkGray()
-        textView.text = .MobilePhoneNumberConfirm
+        textView.text = .localized(.viewEditTextPhoneDescription)
         textView.backgroundColor = .clear
         textView.numberOfLines = 0
         return textView
@@ -43,6 +45,11 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
     init(type: FTUEPhoneType) {
         self.ftuePhoneType = type
         super.init(screen: type == .update ? AnalyticsEnums.Name.Screen.phoneUpdate : AnalyticsEnums.Name.Screen.passwordReset)
+        
+        if let textField = phoneNumberTextField.textField as? FPNTextField {
+            textField.flagPhoneNumberDelegate = self
+            countryCode = textField.getDefaultCountryCode()
+        }
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -59,16 +66,13 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         phoneNumberTextField.textField.textContentType = .telephoneNumber
         phoneNumberTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
         
-        let phoneNumberTF: PhoneNumberTextField = phoneNumberTextField.textField as! PhoneNumberTextField
-        phoneNumberTF.maxDigits = 10
-        
         if ftuePhoneType == .resetPassword {
-            self.phoneNumberLabel.text = .MobilePhoneNumberResetPassword
+            self.phoneNumberLabel.text = .localized(.viewSigninPhoneLabel)
         }
-
+        
         _ = checkTextFieldsValidity()
     }
-
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.phoneNumberTextField.textField.becomeFirstResponder()
@@ -85,46 +89,65 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         
         phoneNumberLabel.snp.makeConstraints { (make) -> Void in
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(sizeThatFits)
         }
         
         phoneNumberTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.top.equalTo(phoneNumberLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         phoneNumberConfirmLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(phoneNumberLabel)
+            make.leading.trailing.equalTo(phoneNumberLabel)
             make.top.equalTo(phoneNumberTextField.snp.bottom)
         }
     }
     
-    func isPhoneNumberValid(phoneNumber: String?) -> Bool {
-        guard let phoneNumber = phoneNumber else { return false }
-        guard let textField = phoneNumberTextField.textField as? PhoneNumberTextField else { return false }
-        
-        do {
-            validPhoneNumber = try phoneNumberKit.parse(phoneNumber, withRegion: textField.currentRegion, ignoreType: true)
+    func isPhoneNumberValid() -> Bool {
+        if validPhoneNumber != nil {
             return true
-        } catch {
-            return false
         }
-        
+        return false
     }
     
     override func checkTextFieldsValidity() -> Bool {
-        let enabled = isPhoneNumberValid(phoneNumber: phoneNumberTextField.textField.text)
+        let enabled = isPhoneNumberValid()
         canGoNext(nextEnabled: enabled)
         return enabled
     }
     
+    
     @objc func textFieldDidChange(_ textField: UITextField) {
         textField.trimText()
         _ = checkTextFieldsValidity()
+    }
+    
+    //MARK: FPNTextFieldDelegate
+    
+    func fpnDidSelectCountry(name: String, dialCode: String, code: String) {
+        countryCode = code
+    }
+    
+    func fpnDidValidatePhoneNumber(textField: FPNTextField, isValid: Bool) {
+        if let countryCode = countryCode {
+            if isValid {
+                validPhoneNumber = textField.getValidNumber(phoneNumber: textField.getRawPhoneNumber() ?? "", countryCode: countryCode)
+                return
+            }
+            let phoneNumber = textField.getInputPhoneNumber()
+            textField.setFlagForPhoneNumber(phoneNumber: phoneNumber)
+            
+            validPhoneNumber = textField.getValidNumber(phoneNumber: phoneNumber ?? "", countryCode: countryCode)
+            if let nbPhoneNumber = validPhoneNumber {
+                textField.set(phoneNumber: nbPhoneNumber.nationalNumber.stringValue)
+            }
+        } else {
+            validPhoneNumber = nil
+        }
     }
     
     //MARK: FTUEStartViewController
@@ -133,7 +156,11 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         super.onRightClicked()
         guard let validPhoneNumber = validPhoneNumber else { return }
         
-        UserManager.sharedInstance.signupCustomer.phoneNumber = phoneNumberKit.format(validPhoneNumber, toType: .e164)
+        do {
+            if let phoneUtil = self.phoneUtil {
+                UserManager.sharedInstance.signupCustomer.phoneNumber = try phoneUtil.format(validPhoneNumber, numberFormat: .E164)
+            }
+        } catch {}
         //update customer
         updatePhoneNumber()
         
@@ -150,19 +177,21 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
             
             showProgressHUD()
             
-            CustomerAPI().passwordReset(phoneNumber: phoneNumber).onSuccess { result in
-                self.hideProgressHUD()
-                self.isLoading = false
-                self.goToNext()
+            CustomerAPI.passwordReset(phoneNumber: phoneNumber) { error in
                 
-                }.onFailure { error in
+                if let error = error {
                     self.hideProgressHUD()
-                    if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4001.rawValue {
-                        self.showOkDialog(title: .Error, message: .PhoneNumberNotInFile, dialog: .error, screen: self.screen)
+                    if let code = error.code, code == .E4001 {
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorPhoneNumberNotInFile), dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
+                } else {
+                    self.hideProgressHUD()
+                    self.isLoading = false
+                    self.goToNext()
+                }
             }
             return
         }
@@ -181,18 +210,23 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
         
         if UserManager.sharedInstance.isLoggedIn() {
             
-            CustomerAPI().updatePhoneNumber(customerId: customerId, phoneNumber: phoneNumber).onSuccess { result in
-                self.hideProgressHUD()
-                self.isLoading = false
-                self.goToNext()
-                }.onFailure { error in
+            CustomerAPI.updatePhoneNumber(customerId: customerId, phoneNumber: phoneNumber) { error in
+                
+                if let error = error {
                     self.hideProgressHUD()
-                    if let apiError = error.apiError, let code = apiError.code, code == Errors.ErrorCode.E4011.rawValue {
-                        self.showOkDialog(title: .Error, message: .UpdatePhoneNumberAlreadyExist, dialog: .error, screen: self.screen)
+                    if let code = error.code, code == .E4011 {
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUpdatePhoneNumberAlreadyExist), dialog: .error, screen: self.screen)
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     }
                     self.isLoading = false
+                } else {
+                    self.hideProgressHUD()
+                    self.isLoading = false
+                    self.goToNext()
+                }
+                
+                
             }
         } else if let email = signupCustomer.email, let phoneNumber = signupCustomer.phoneNumber, let firstName = signupCustomer.firstName , let lastName = signupCustomer.lastName {
             
@@ -201,14 +235,13 @@ class FTUEPhoneNumberViewController: FTUEChildViewController {
                 language = localeLang.uppercased()
             }
             
-            CustomerAPI().signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language).onSuccess { result in
+            CustomerAPI.signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language) { customer, error in
                 self.hideProgressHUD()
-                if let _ = result?.data?.result {
+                if customer != nil {
                     self.goToNext()
+                } else {
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                 }
-                }.onFailure { error in
-                    self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
             }
         }
     }

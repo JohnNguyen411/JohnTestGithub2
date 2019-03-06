@@ -121,24 +121,24 @@ class VLAlertViewController: UIViewController {
         
         titleLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(20)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
         
         messageLabel.snp.makeConstraints { make in
             make.top.equalTo(titleLabel.snp.bottom).offset(10)
-            make.left.right.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10))
+            make.leading.trailing.equalToSuperview().inset(UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10))
         }
         
         if okButtonVisible && cancelButtonVisible {
             
             cancelButton.snp.makeConstraints { make in
-                make.bottom.left.equalToSuperview()
+                make.bottom.leading.equalToSuperview()
                 make.height.equalTo(50)
                 make.width.equalToSuperview().dividedBy(2)
             }
             
             okButton.snp.makeConstraints { make in
-                make.bottom.right.equalToSuperview()
+                make.bottom.trailing.equalToSuperview()
                 make.height.equalTo(50)
                 make.width.equalToSuperview().dividedBy(2)
             }
@@ -147,13 +147,13 @@ class VLAlertViewController: UIViewController {
             if okButtonVisible {
                 okButton.snp.makeConstraints { make in
                     make.height.equalTo(50)
-                    make.bottom.left.right.equalToSuperview()
+                    make.bottom.leading.trailing.equalToSuperview()
                 }
             }
             if cancelButtonVisible {
                 cancelButton.snp.makeConstraints { make in
                     make.height.equalTo(50)
-                    make.bottom.left.right.equalToSuperview()
+                    make.bottom.leading.trailing.equalToSuperview()
                 }
             }
         }

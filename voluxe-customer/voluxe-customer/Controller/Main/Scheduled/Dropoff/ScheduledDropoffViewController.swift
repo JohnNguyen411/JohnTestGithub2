@@ -28,10 +28,10 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
     }
     
     override func generateSteps() {
-        let step1 = Step(id: ServiceState.serviceCompleted, text: .VehicleIsReady, state: .done)
-        let step2 = Step(id: ServiceState.enRouteForDropoff, text: .DriverEnRoute)
-        let step3 = Step(id: ServiceState.nearbyForDropoff, text: .DriverNearby)
-        let step4 = Step(id: ServiceState.arrivedForDropoff, text: .DriverArrived)
+        let step1 = Step(id: ServiceState.serviceCompleted, text: .localized(.viewScheduleServiceStatusInfoScheduledDropoff), state: .done)
+        let step2 = Step(id: ServiceState.enRouteForDropoff, text: .localized(.viewScheduleServiceStatusInfoEnRoute))
+        let step3 = Step(id: ServiceState.nearbyForDropoff, text: .localized(.viewScheduleServiceStatusInfoNearBy))
+        let step4 = Step(id: ServiceState.arrivedForDropoff, text: .localized(.viewScheduleServiceStatusInfoArrived))
         
         steps.append(step1)
         steps.append(step2)
@@ -56,7 +56,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
 
             if let timeSlot = dropoffRequest.timeSlot, state == .dropoffScheduled {
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
-                self.timeWindowView.setSubtitle(text: .DeliveryWindow)
+                self.timeWindowView.setSubtitle(text: .localized(.viewScheduleServiceStatusTimeDeliveryWindow))
             }
         }
         
@@ -81,24 +81,24 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
             var refreshTimeSlot = true
             
             if let driver = dropoffRequest.driver, let location = driver.location, let coordinates = location.getLocation(), state != .dropoffScheduled {
-                self.mapVC.updateDriverLocation(location: coordinates, refreshTime: booking.getRefreshTime())
+                self.mapVC.updateDriverLocation(state: state, location: coordinates, refreshTime: booking.getRefreshTime())
                 if let dropoffRequestLocation = dropoffRequest.location, let dropoffRequestCoordinates = dropoffRequestLocation.getLocation() {
                     refreshTimeSlot = false
                     self.getEta(fromLocation: coordinates, toLocation: dropoffRequestCoordinates)
-                    self.timeWindowView.setSubtitle(text: .EstimatedDeliveryTime)
+                    self.timeWindowView.setSubtitle(text: .localized(.viewScheduleServiceStatusTimeWindowEstimatedDelivery))
                 }
                 newDriver(driver: driver)
             }
             if let timeSlot = dropoffRequest.timeSlot, refreshTimeSlot {
                 timeWindowView.setTimeWindows(timeWindows: timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "")
-                self.timeWindowView.setSubtitle(text: .DeliveryWindow)
+                self.timeWindowView.setSubtitle(text: .localized(.viewScheduleServiceStatusTimeDeliveryWindow))
             }
         }
     }
     
     
     @objc func selfOBClick() {
-        let selfModalVC = ScheduleSelfDropModal(title: .YoureScheduledForDelivery, screen: .selfOBModal)
+        let selfModalVC = ScheduleSelfDropModal(title: .localized(.popupAdvisorDropoffLabel), screen: .selfOBModal)
         selfModalVC.delegate = self
         selfModalVC.view.accessibilityIdentifier = "selfModalVC"
         currentPresentrVC = selfModalVC
@@ -118,14 +118,14 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
             RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .advisorDropoff)
             
             self.showProgressHUD()
-            BookingAPI().createDropoffRequest(customerId: booking.customerId, bookingId: booking.id, timeSlotId: nil, location: nil, isDriver: false).onSuccess { result in
-                if let dropOffRequest = result?.data?.result {
+            CustomerAPI.createDropoffRequest(customerId: booking.customerId, bookingId: booking.id, timeSlotId: nil, location: nil, isDriver: false) { request, error in
+                if let dropOffRequest = request {
                     self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
                     self.refreshFinalBooking(customerId: booking.customerId, bookingId: booking.id)
-                }
-                }.onFailure { error in
+                } else if error != nil {
                     self.hideProgressHUD()
-                    self.showOkDialog(title: .Error, message: .GenericError)
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown))
+                }
             }
             
         }
@@ -152,31 +152,33 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
     }
     
     private func refreshFinalBooking(customerId: Int, bookingId: Int) {
-        BookingAPI().getBooking(customerId: customerId, bookingId: bookingId).onSuccess { result in
-            if let booking = result?.data?.result {
-                if let realm = try? Realm() {
-                    try? realm.write {
-                        realm.add(booking, update: true)
-                    }
-                }
-            }
-            
-            if let realm = try? Realm() {
-                let bookings = realm.objects(Booking.self).filter("customerId = \(customerId)")
-                UserManager.sharedInstance.setBookings(bookings: Array(bookings))
-            }
-            
-            RequestedServiceManager.sharedInstance.reset()
-            AppController.sharedInstance.showVehiclesView(animated: false)
+        CustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
             
             self.hideProgressHUD()
             
-            }.onFailure { error in
-                // retry
-                self.hideProgressHUD()
-                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+            if error != nil {
+                self.showDialog(title: .localized(.error), message: .localized(.errorUnknown), buttonTitle: .localized(.retry), completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 }, dialog: .error, screen: self.screen)
+            } else {
+                
+                if let booking = booking {
+                    if let realm = try? Realm() {
+                        try? realm.write {
+                            realm.add(booking, update: true)
+                        }
+                    }
+                }
+                
+                if let realm = try? Realm() {
+                    let bookings = realm.objects(Booking.self).filter("customerId = \(customerId)")
+                    UserManager.sharedInstance.setBookings(bookings: Array(bookings))
+                }
+                
+                RequestedServiceManager.sharedInstance.reset()
+                AppController.sharedInstance.showVehiclesView(animated: false)
+                
+            }
         }
     }
 }

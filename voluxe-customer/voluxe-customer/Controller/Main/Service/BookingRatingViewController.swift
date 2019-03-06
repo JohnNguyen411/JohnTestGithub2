@@ -11,13 +11,12 @@ import UIKit
 import QuartzCore
 import SlideMenuControllerSwift
 import RealmSwift
-import BrightFutures
 import Alamofire
 import Kingfisher
 import MBProgressHUD
 
 
-class BookingRatingViewController: BaseViewController, UITextViewDelegate {
+class BookingRatingViewController: BaseViewController, UITextViewDelegate, VLMarkedSliderProtocol {
     
     var retryCount = 0
     var isShowingComment = false
@@ -25,19 +24,19 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
 
     var bookingFeedback: BookingFeedback?
 
-    let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
+    let vehicleTypeView = VLTitledLabel(title: .localized(.volvoYearModel), leftDescription: "", rightDescription: "")
     let vehicleImageView = UIImageView(frame: .zero)
-    let confirmButton = VLButton(type: .bluePrimary, title: (.Ok as String).uppercased(), kern: UILabel.uppercasedKern())
+    let confirmButton = VLButton(type: .bluePrimary, title: String.localized(.ok).uppercased(), kern: UILabel.uppercasedKern())
     let scrollView = UIScrollView(frame: .zero)
     let contentView = UIView(frame: .zero)
     let ghostView = UIView(frame: .zero) // use to center the slider
-    let ratingSlider = VLMarkedSlider(step: 1, min: 1, max: 10, defaultValue: 8)
+    let ratingSlider: VLMarkedSlider
     var screenTitle: String?
     var scrollViewSize: CGSize? = nil
     
     let serviceCompleteLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .DeliveryComplete
+        textView.text = .localized(.viewScheduleServiceStatusComplete)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -48,7 +47,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     
     let rateLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .Rating
+        textView.text = .localized(.viewScheduleServiceStatusCompleteRate)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -61,9 +60,32 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         let ratingTextView = UITextView(frame: .zero)
         ratingTextView.font = .volvoSansProRegular(size: 16)
         ratingTextView.isScrollEnabled = false
-        ratingTextView.text = .RatingReasonHint
+        ratingTextView.text = .localized(.viewScheduleServiceStatusFeedbackCommentHint)
         ratingTextView.textColor = .luxeLightGray()
         return ratingTextView
+    }()
+    
+    
+    let notLikelyLabel: UILabel = {
+        let textView = UILabel(frame: .zero)
+        textView.text = .localized(.npsNotLikely)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
+        textView.textColor = .luxeDarkGray()
+        textView.backgroundColor = .clear
+        textView.numberOfLines = 1
+        return textView
+    }()
+    
+    let likelyLabel: UILabel = {
+        let textView = UILabel(frame: .zero)
+        textView.text = .localized(.npsExtremelyLikely)
+        textView.font = .volvoSansProRegular(size: 16)
+        textView.volvoProLineSpacing()
+        textView.textColor = .luxeDarkGray()
+        textView.backgroundColor = .clear
+        textView.numberOfLines = 1
+        return textView
     }()
     
     let separator: UIView = {
@@ -76,10 +98,11 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.textColor = UIColor.luxeCobaltBlue()
         titleLabel.font = .volvoSansProMedium(size: 12)
-        titleLabel.text = .YourFeedback
+        titleLabel.text = .localized(.viewScheduleServiceStatusFeedbackCommentTitle)
         return titleLabel
     }()
     
+    private let newNPSEnabled: Bool
     
     convenience init(bookingFeedback: BookingFeedback) {
         self.init()
@@ -90,12 +113,15 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     convenience init(booking: Booking) {
         self.init()
         self.booking = Booking(value: booking)
-        self.screenTitle = .ServiceComplete
+        self.screenTitle = .localized(.viewScheduleServiceStatusComplete)
     }
     
     init() {
+        newNPSEnabled = RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.customerNewNpsViewEnabled)
+        ratingSlider = VLMarkedSlider(step: 1, min: 1, max: 10, defaultValue: 8)
         super.init(screen: .bookingFeedback)
-        self.navigationItem.rightBarButtonItem?.title = .Skip
+        ratingSlider.delegate = self
+        self.navigationItem.rightBarButtonItem?.title = .localized(.skip)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -120,6 +146,10 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         
         loadData()
         
+        if newNPSEnabled {
+            confirmButton.isEnabled = false
+        }
+        
         confirmButton.setActionBlock { [weak self] in
 
             // this will be titled OK or DONE depending on if
@@ -132,7 +162,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
                 weakSelf.showRatingTextView(show: true)
             } else {
                 var commentText = weakSelf.ratingTextView.text ?? ""
-                if commentText == .RatingReasonHint {
+                if commentText == .localized(.viewScheduleServiceStatusFeedbackCommentHint) {
                     commentText = ""
                 }
                 
@@ -158,18 +188,18 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
             
             MBProgressHUD.showAdded(to: self.view, animated: true)
             
-            BookingAPI().getBooking(customerId: customerId, bookingId: bookingFeedback.bookingId).onSuccess { result in
+            CustomerAPI.booking(customerId: customerId, bookingId: bookingFeedback.bookingId) { booking, error in
                 MBProgressHUD.hide(for: self.view, animated: true)
-                if let booking = result?.data?.result {
+                if let booking = booking {
                     self.booking = booking
                     if let vehicle = booking.vehicle {
                         self.loadVehicle(vehicle: vehicle)
                     }
                     self.updateDealership(dealership: booking.dealership)
                 }
-                }.onFailure { error in
-                    MBProgressHUD.hide(for: self.view, animated: true)
+                if error != nil {
                     self.skipBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id)
+                }
             }
         } else if let booking = self.booking {
             self.updateDealership(dealership: booking.dealership)
@@ -187,7 +217,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
     
     private func updateDealership(dealership: Dealership?) {
         if let dealership = dealership {
-            serviceCompleteLabel.text = String(format: NSLocalizedString(.DeliveryComplete), (dealership.name)!)
+            serviceCompleteLabel.text = String(format: .localized(.viewScheduleServiceStatusComplete), (dealership.name)!)
         }
     }
     
@@ -210,6 +240,11 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         contentView.addSubview(ratingSlider)
         contentView.addSubview(ratingTextView)
         
+        if newNPSEnabled {
+            contentView.addSubview(likelyLabel)
+            contentView.addSubview(notLikelyLabel)
+        }
+        
         let adaptedMarging = ViewUtils.getAdaptedHeightSize(sizeInPoints: 20)
         
         scrollView.snp.makeConstraints { make in
@@ -217,67 +252,80 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         }
         
         contentView.snp.makeConstraints { make in
-            make.left.top.width.height.equalTo(scrollView)
+            make.leading.top.width.height.equalTo(scrollView)
         }
         
         vehicleTypeView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalToSuperview().offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: BaseViewController.defaultTopYOffset - 5))
             make.height.equalTo(VLTitledLabel.height)
         }
         
         vehicleImageView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleTypeView.snp.bottom)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: Vehicle.vehicleImageHeight))
         }
         
         serviceCompleteLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom)
         }
         
         rateLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(serviceCompleteLabel.snp.bottom).offset(13)
         }
         
         ghostView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(rateLabel.snp.bottom)
             make.bottom.equalTo(confirmButton.snp.top)
         }
         
         ratingSlider.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
-            make.centerY.equalTo(ghostView)
+            make.leading.trailing.equalToSuperview()
+            make.centerY.equalTo(ghostView).offset(newNPSEnabled ? -ViewUtils.getAdaptedHeightSize(sizeInPoints: 20) : 0)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 60))
         }
         
         ratingTextView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(-5)
-            make.right.equalToSuperview().offset(5)
+            make.leading.equalToSuperview().offset(-5)
+            make.trailing.equalToSuperview().offset(5)
             make.top.equalTo(serviceCompleteLabel.snp.bottom).offset(ViewUtils.getAdaptedHeightSize(sizeInPoints: 30))
             make.height.equalTo(35)
         }
         
         separator.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(ratingTextView.snp.bottom)
             make.height.equalTo(1)
         }
         
         textViewTitle.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(separator.snp.bottom).offset(5)
             make.height.equalTo(25)
         }
         
         confirmButton.snp.makeConstraints { make in
-            make.left.bottom.right.equalToSuperview()
+            make.leading.bottom.trailing.equalToSuperview()
+            make.equalsToBottom(view: self.contentView, offset: -ViewUtils.getAdaptedHeightSize(sizeInPoints: 10))
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
         }
         
+        if newNPSEnabled {
+            
+            notLikelyLabel.snp.makeConstraints { make in
+                make.leading.equalTo(ratingSlider.minLabel)
+                make.top.equalTo(ratingSlider.snp.bottom).offset(10)
+            }
+            
+            likelyLabel.snp.makeConstraints { make in
+                make.trailing.equalTo(ratingSlider.maxLabel)
+                make.top.equalTo(ratingSlider.snp.bottom).offset(10)
+            }
+        }
         ratingTextView.sizeToFit()
         ratingTextView.backgroundColor = .clear
         showRatingTextView(show: false)
@@ -296,19 +344,16 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
             if let bookingFeedback = self.bookingFeedback {
                 skipBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id)
             } else if let booking = self.booking,
-                booking.bookingFeedbackId  > 0 {
-                skipBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.bookingFeedbackId)
+                booking.getBookingFeedbackId()  > 0 {
+                skipBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.getBookingFeedbackId())
             }
         }
     }
     
     private func skipBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        BookingAPI().skipBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId).onSuccess { result in
+        CustomerAPI.skipBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId) { error in
             self.goToNext()
-            }.onFailure { error in
-                // skip the skip?
-                self.goToNext()
         }
     }
     
@@ -317,27 +362,29 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
 
         if let bookingFeedback = self.bookingFeedback {
             submitBookingFeedback(customerId: customerId, bookingId: bookingFeedback.bookingId, feedbackBookingId: bookingFeedback.id, rating: rating, comment: comment)
-        } else if let booking = self.booking, booking.bookingFeedbackId  > 0 {
-            submitBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.bookingFeedbackId, rating: rating, comment: comment)
+        } else if let booking = self.booking, booking.getBookingFeedbackId()  > 0 {
+            submitBookingFeedback(customerId: customerId, bookingId: booking.id, feedbackBookingId: booking.getBookingFeedbackId(), rating: rating, comment: comment)
             
         }
     }
     
     private func submitBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int, rating: Int, comment: String?) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        BookingAPI().submitBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId, rating: rating, comment: comment).onSuccess { result in
-            self.goToNext()
-            }.onFailure { error in
+        CustomerAPI.submitBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId, rating: rating, comment: comment) { error in
+            if error != nil {
                 if self.retryCount > 2 {
                     // stop
                     self.goToNext()
                     return
                 }
                 MBProgressHUD.hide(for: self.view, animated: true)
-                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                self.showDialog(title: .localized(.error), message: .localized(.errorUnknown), buttonTitle: .localized(.retry), completion: {
                     self.sendFeedback(rating: rating, comment: comment)
                 }, dialog: .error, screen: self.screen)
                 self.retryCount += 1
+            } else {
+                self.goToNext()
+            }
         }
     }
     
@@ -353,12 +400,14 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         separator.animateAlpha(show: show)
         rateLabel.animateAlpha(show: !show)
         ratingSlider.animateAlpha(show: !show)
+        notLikelyLabel.animateAlpha(show: !show)
+        likelyLabel.animateAlpha(show: !show)
+
+        serviceCompleteLabel.text = show ? .localized(.viewScheduleServiceStatusFeedbackCommentLabel) : .localized(.viewScheduleServiceStatusComplete)
+        self.navigationItem.title = .localized(.viewScheduleServiceStatusFeedback)
         
-        serviceCompleteLabel.text = show ? .RatingReason : .DeliveryComplete
-        self.navigationItem.title = .Feedback
-        
-        confirmButton.setTitle(title: show ? String.Done.uppercased() : String.Ok.uppercased())
-        self.navigationItem.rightBarButtonItem?.title = show ? .Done : .Skip
+        confirmButton.setTitle(title: show ? String.localized(.done).uppercased() : String.localized(.ok).uppercased())
+        self.navigationItem.rightBarButtonItem?.title = show ? .localized(.done) : .localized(.skip)
     }
     
     override func viewDidLayoutSubviews() {
@@ -407,7 +456,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         scrollView.setContentOffset(offset, animated: true)
         
         if textView.text.isEmpty {
-            textView.text = .RatingReasonHint
+            textView.text = .localized(.viewScheduleServiceStatusFeedbackCommentHint)
             textView.textColor = .luxeLightGray()
         }
     }
@@ -429,8 +478,24 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate {
         if self.view.safeAreaBottomHeight > 0 {
             UIView.animate(withDuration: 0.5, animations: {
                 self.confirmButton.snp.updateConstraints { make in
-                    make.equalsToBottom(view: self.contentView, offset: -20)
+                    make.equalsToBottom(view: self.contentView, offset: -ViewUtils.getAdaptedHeightSize(sizeInPoints: 10))
                 }
+            })
+        }
+    }
+    
+    func onValueChanged(value: Int) {
+        if newNPSEnabled && value > 0 {
+            UIView.animate(withDuration: 0.3, animations: {
+
+                self.notLikelyLabel.snp.remakeConstraints { make in
+                    make.leading.equalTo(self.ratingSlider.minLabel)
+                    make.top.equalTo(self.ratingSlider.snp.bottom).offset(10)
+                }
+                
+                self.confirmButton.isEnabled = true
+                
+                self.view.layoutIfNeeded()
             })
         }
     }

@@ -6,7 +6,6 @@
 //  Copyright © 2017 Luxe - Volvo Cars. All rights reserved.
 //
 
-import AlamofireNetworkActivityLogger
 import Crashlytics
 import Fabric
 import Firebase
@@ -17,7 +16,6 @@ import SwiftEventBus
 import UIKit
 import UserNotifications
 import Branch
-import ObjectMapper
 
 
 @UIApplicationMain
@@ -85,6 +83,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        // init API Token
+        if let accessToken = KeychainManager.sharedInstance.accessToken, !accessToken.isEmpty {
+            CustomerAPI.initToken(token: accessToken)
+        }
+        
         window = UIWindow(frame: UIScreen.main.bounds)
         _ = AppController.sharedInstance // init
         
@@ -92,10 +95,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window!.rootViewController = rootViewController
         window!.makeKeyAndVisible()
         
+        FontName.family = .volvo
+        
+        //TODO: figure out logging for AlamoFire5
+        /*
         if UserDefaults.standard.enableAlamoFireLogging {
             NetworkActivityLogger.shared.level = .debug
             NetworkActivityLogger.shared.startLogging()
         }
+         */
 
         setupFirebase(application)
         setupBranch(application, launchOptions: launchOptions)
@@ -187,9 +195,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Branch.getInstance().initSession(launchOptions: launchOptions) { (params, error) in
             // do stuff with deep link data (nav to page, display content, etc)
             print(params as? [String: AnyObject] ?? {})
-            if let params = params as? [String: AnyObject] {
-                let deeplinkObject = Mapper<BranchDeeplink>().map(JSON: params)
-                DeeplinkManager.sharedInstance.handleDeeplink(deeplinkObject: deeplinkObject)
+            // TODO: check that Branch decoding is working fine
+            if let params = params as? [String: AnyObject], let jsonData = try? JSONSerialization.data(withJSONObject: params, options: []) {
+                if let deeplinkObject: BranchDeeplink = BranchDeeplink.decode(data: jsonData) {
+                    DeeplinkManager.sharedInstance.handleDeeplink(deeplinkObject: deeplinkObject)
+                }
             }
         }
     }
@@ -234,10 +244,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         let token = deviceToken.map { String(format: "%02.2hhx", $0) }.joined()
         KeychainManager.sharedInstance.pushDeviceToken = token
         // registerDevice for push notification if deviceToken Stored
+        var uuid = ""
+        if let deviceId = KeychainManager.sharedInstance.deviceId {
+            uuid = deviceId
+        }
+        
         if let customerId = UserManager.sharedInstance.customerId() {
-            CustomerAPI().registerDevice(customerId: customerId, deviceToken: token).onSuccess { result in
-                }.onFailure { error in
-            }
+            CustomerAPI.registerDevice(customerId: customerId, deviceToken: token, deviceId: uuid)
         }
     }
     

@@ -75,7 +75,12 @@ class MapViewController: UIViewController {
     }
     
     // refreshTime is the current time between 2 refresh depending on the state of reservation and how close is the driver from origin or destination
-    func updateDriverLocation(location: CLLocationCoordinate2D, refreshTime: Int) {
+    func updateDriverLocation(state: ServiceState, location: CLLocationCoordinate2D, refreshTime: Int) {
+        
+        // we don't show driver location when he arrived
+        if state == .arrivedForPickup || state == .arrivedForDropoff {
+            return
+        }
         
         let prevLocation = self.driverMarker.position
         let noPreviousLocation = prevLocation.latitude == -180 && prevLocation.longitude == -180
@@ -92,35 +97,37 @@ class MapViewController: UIViewController {
             return
         }
 
-        GoogleSnappedPointsAPI().getSnappedPoints(from: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: prevLocation), to: GoogleDistanceMatrixAPI.coordinatesToString(coordinate: location)).onSuccess { results in
-
-            Analytics.trackCallGoogle(endpoint: .roads)
-
-            guard let weakSelf = weakSelf else { return }
+        CustomerAPI.snappedPoints(from: CustomerAPI.coordinatesToString(coordinate: prevLocation), to: CustomerAPI.coordinatesToString(coordinate: location)) { snappedPoints, error in
             
-            if let results = results, let snappedPoints = results.snappedPoints {
-                // animate points
-                let pointsAnimationDuration = animationDuration / Double(snappedPoints.count)
-                var delay = 0.0
-                for (index, point) in snappedPoints.enumerated() {
-                    DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
-                        if let location = point.location, let coordinates = location.getLocation() {
-                            weakSelf.updateLocation(location: coordinates, prevLocation: prevLocation , animationDuration: pointsAnimationDuration, updateCamera: index % 2 == 0)
-                        }
-                    })
-                    delay = delay + pointsAnimationDuration
-                }
-                weak var weakSelf = self
-                DispatchQueue.main.asyncAfter(deadline: .now() + delay + 0.5, execute: {
-                    weakSelf?.moveCamera()
-                })
-            } else {
-                weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
-            }
-            }.onFailure { error in
+            if error != nil {
                 Analytics.trackCallGoogle(endpoint: .roads, error: error)
                 guard let weakSelf = weakSelf else { return }
                 weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
+            } else {
+                Analytics.trackCallGoogle(endpoint: .roads)
+                
+                guard let weakSelf = weakSelf else { return }
+                
+                if let snappedPoints = snappedPoints, let points = snappedPoints.snappedPoints {
+                    // animate points
+                    let pointsAnimationDuration = animationDuration / Double(points.count)
+                    var delay = 0.0
+                    for (index, point) in points.enumerated() {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + delay, execute: {
+                            if let location = point.location, let coordinates = location.getLocation() {
+                                weakSelf.updateLocation(location: coordinates, prevLocation: prevLocation , animationDuration: pointsAnimationDuration, updateCamera: index % 2 == 0)
+                            }
+                        })
+                        delay = delay + pointsAnimationDuration
+                    }
+                    weak var weakSelf = self
+                    DispatchQueue.main.asyncAfter(deadline: .now() + delay + 0.5, execute: {
+                        weakSelf?.moveCamera()
+                    })
+                } else {
+                    weakSelf.updateLocation(location: location, prevLocation: prevLocation, animationDuration: animationDuration, updateCamera: true)
+                }
+            }
         }
     }
     
@@ -161,13 +168,17 @@ class MapViewController: UIViewController {
             flagMarker.tracksViewChanges = true
             etaMarker.hideEta()
             flagMarker.tracksViewChanges = false
+            driverMarker.map = nil
+            if let requestLocation = self.requestLocation {
+                self.updateRequestLocation(location: requestLocation)
+            }
         } else if state == .pickupScheduled || state == .dropoffScheduled {
             flagMarker.tracksViewChanges = true
             etaMarker.hideEta()
             driverMarker.map = nil
             flagMarker.tracksViewChanges = false
             if let requestLocation = self.requestLocation {
-                updateRequestLocation(location: requestLocation)
+                self.updateRequestLocation(location: requestLocation)
             }
         }
     }

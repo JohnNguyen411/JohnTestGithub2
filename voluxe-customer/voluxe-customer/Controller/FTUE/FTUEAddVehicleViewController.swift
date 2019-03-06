@@ -28,7 +28,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     
     let label: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .SelectYourVehicle
+        textView.text = .localized(.viewVehicleAddLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -43,15 +43,15 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     var selectedModel = -1
     var selectedColor = -1
     
-    let yearLabel = VLVerticalTextField(title: .Year, placeholder: .YearPlaceholder)
-    let modelLabel = VLVerticalTextField(title: .Model, placeholder: .ModelPlaceholder)
-    let colorLabel = VLVerticalTextField(title: .Color, placeholder: .ColorPlaceholder)
+    let yearLabel = VLVerticalTextField(title: .localized(.year), placeholder: .localized(.viewVehicleAddYearHint))
+    let modelLabel = VLVerticalTextField(title: .localized(.model), placeholder: .localized(.viewVehicleAddModelHint))
+    let colorLabel = VLVerticalTextField(title: .localized(.color), placeholder: .localized(.viewVehicleAddColorHint))
     
     var pickerView: UIPickerView!
     
     init() {
         super.init(screen: .vehicleAdd)
-        self.navigationItem.rightBarButtonItem?.title = .Done
+        self.navigationItem.rightBarButtonItem?.title = .localized(.done)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -71,11 +71,12 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         
         showProgressHUD()
 
-        VehicleAPI().vehicleModels(makeId: nil).onSuccess { result in
-            if let vehicles = result?.data?.result {
+        CustomerAPI.vehicleModels(makeId: nil) { models, error in
+            
+            if error == nil {
                 if let realm = self.realm {
                     try? realm.write {
-                        realm.add(vehicles, update: true)
+                        realm.add(models, update: true)
                     }
                     
                     let resultsVehicleModels = realm.objects(VehicleModel.self).sorted(byKeyPath: "name", ascending: false)
@@ -83,9 +84,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
                 }
             }
             self.hideProgressHUD()
-            }.onFailure { error in
-                self.hideProgressHUD()
-            }
+        }
     }
     
     override func setupViews() {
@@ -97,26 +96,26 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         scrollView.addSubview(colorLabel)
         
         label.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(20)
             make.equalsToTop(view: scrollView.contentView, offset: BaseViewController.defaultTopYOffset)
-            make.right.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(60)
         }
         
         yearLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(label)
+            make.leading.trailing.equalTo(label)
             make.top.equalTo(label.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         modelLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(label)
+            make.leading.trailing.equalTo(label)
             make.top.equalTo(yearLabel.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         colorLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(label)
+            make.leading.trailing.equalTo(label)
             make.top.equalTo(modelLabel.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
@@ -204,11 +203,11 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         toolBar.sizeToFit()
         
         // Adding Button ToolBar
-        let doneButton = UIBarButtonItem(title: .Done, style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.donePicker))
+        let doneButton = UIBarButtonItem(title: .localized(.done), style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.donePicker))
         UIViewController.styleBarButtonItem(barButton: doneButton)
 
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: .Cancel, style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.cancelPicker))
+        let cancelButton = UIBarButtonItem(title: .localized(.cancel), style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.cancelPicker))
         UIViewController.styleBarButtonItem(barButton: cancelButton)
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true
@@ -227,15 +226,17 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     override func onRightClicked() {
         super.onRightClicked()
         if let customerId = UserManager.sharedInstance.customerId(), let baseColor = colors[selectedColor].baseColor {
-            CustomerAPI().addVehicle(customerId: customerId, make: models[selectedModel].make!, model: models[selectedModel].name!, baseColor: baseColor, year: years[selectedYear]).onSuccess { response in
-                if let vehicle = response?.data?.result, let photoUrl = vehicle.photoUrl, let photoURL = URL(string: photoUrl) {
-                    SDWebImagePrefetcher.shared().prefetchURLs([photoURL])
+            CustomerAPI.addVehicle(customerId: customerId, make: models[selectedModel].make!, model: models[selectedModel].name!, baseColor: baseColor, year: years[selectedYear]) { vehicle, error in
+                if error != nil {
+                    self.callVehicle(customerId: customerId)
+                } else {
+                    if let vehicle = vehicle, let photoUrl = vehicle.photoUrl, let photoURL = URL(string: photoUrl) {
+                        SDWebImagePrefetcher.shared().prefetchURLs([photoURL])
+                    }
+                    self.callVehicle(customerId: customerId)
                 }
-                self.callVehicle(customerId: customerId)
-            }.onFailure { error in
-                self.callVehicle(customerId: customerId)
             }
-            showProgressHUD()
+            self.showProgressHUD()
         }
     }
 
@@ -247,29 +248,26 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     
     private func callVehicle(customerId: Int) {
         // Get Customer's Vehicles based on ID
-        CustomerAPI().getVehicles(customerId: customerId).onSuccess { result in
-            if let cars = result?.data?.result {
+        CustomerAPI.vehicles(customerId: customerId) { vehicles, error in
+            if error != nil {
+                self.hideProgressHUD()
+            } else {
                 if let realm = self.realm {
                     try? realm.write {
-                        realm.add(cars, update: true)
+                        realm.add(vehicles, update: true)
                     }
                 }
-                UserManager.sharedInstance.setVehicles(vehicles: cars)
-                if cars.count > 1 {
+                UserManager.sharedInstance.setVehicles(vehicles: vehicles)
+                if vehicles.count > 1 {
                     // go back
                     self.navigationController?.popViewController(animated: true)
                 } else {
                     AppController.sharedInstance.showLoadingView()
                 }
-            }
-            self.hideProgressHUD()
-
-            }.onFailure { error in
                 self.hideProgressHUD()
+            }
         }
     }
-    
-    
 }
 
 extension FTUEAddVehicleViewController: UIPickerViewDelegate, UIPickerViewDataSource {

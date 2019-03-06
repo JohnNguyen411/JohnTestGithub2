@@ -1,19 +1,149 @@
 PODS:
-  - Alamofire (4.5.1)
-  - AlamofireObjectMapper (5.0.0):
-    - Alamofire (~> 4.1)
-    - ObjectMapper (~> 3.0)
-  - ObjectMapper (3.0.0)
+  - Alamofire (5.0.0.beta.1)
+  - Branch (0.25.11):
+    - Branch/Core (= 0.25.11)
+  - Branch/Core (0.25.11)
+  - Crashlytics (3.10.9):
+    - Fabric (~> 1.7.13)
+  - Fabric (1.7.13)
+  - Firebase/Core (5.16.0):
+    - Firebase/CoreOnly
+    - FirebaseAnalytics (= 5.5.0)
+  - Firebase/CoreOnly (5.16.0):
+    - FirebaseCore (= 5.2.0)
+  - Firebase/Messaging (5.16.0):
+    - Firebase/CoreOnly
+    - FirebaseMessaging (= 3.3.0)
+  - FirebaseAnalytics (5.5.0):
+    - FirebaseCore (~> 5.2)
+    - FirebaseInstanceID (~> 3.4)
+    - GoogleAppMeasurement (= 5.5.0)
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - FirebaseAnalyticsInterop (1.1.0)
+  - FirebaseCore (5.2.0):
+    - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseInstanceID (3.4.0):
+    - FirebaseCore (~> 5.2)
+    - GoogleUtilities/Environment (~> 5.3)
+    - GoogleUtilities/UserDefaults (~> 5.3)
+  - FirebaseMessaging (3.3.0):
+    - FirebaseAnalyticsInterop (~> 1.1)
+    - FirebaseCore (~> 5.2)
+    - FirebaseInstanceID (~> 3.4)
+    - GoogleUtilities/Environment (~> 5.2)
+    - GoogleUtilities/Reachability (~> 5.2)
+    - Protobuf (~> 3.1)
+  - FlagPhoneNumber (0.7.1):
+    - libPhoneNumber-iOS
+  - GoogleAppMeasurement (5.5.0):
+    - GoogleUtilities/AppDelegateSwizzler (~> 5.2)
+    - GoogleUtilities/MethodSwizzler (~> 5.2)
+    - GoogleUtilities/Network (~> 5.2)
+    - "GoogleUtilities/NSData+zlib (~> 5.2)"
+    - nanopb (~> 0.3)
+  - GoogleUtilities/AppDelegateSwizzler (5.3.7):
+    - GoogleUtilities/Environment
+    - GoogleUtilities/Logger
+    - GoogleUtilities/Network
+  - GoogleUtilities/Environment (5.3.7)
+  - GoogleUtilities/Logger (5.3.7):
+    - GoogleUtilities/Environment
+  - GoogleUtilities/MethodSwizzler (5.3.7):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/Network (5.3.7):
+    - GoogleUtilities/Logger
+    - "GoogleUtilities/NSData+zlib"
+    - GoogleUtilities/Reachability
+  - "GoogleUtilities/NSData+zlib (5.3.7)"
+  - GoogleUtilities/Reachability (5.3.7):
+    - GoogleUtilities/Logger
+  - GoogleUtilities/UserDefaults (5.3.7):
+    - GoogleUtilities/Logger
+  - Kingfisher (5.1.0)
+  - libPhoneNumber-iOS (0.9.13)
+  - MBProgressHUD (1.1.0)
+  - nanopb (0.3.901):
+    - nanopb/decode (= 0.3.901)
+    - nanopb/encode (= 0.3.901)
+  - nanopb/decode (0.3.901)
+  - nanopb/encode (0.3.901)
+  - Protobuf (3.6.1)
+  - Realm (3.11.1):
+    - Realm/Headers (= 3.11.1)
+  - Realm/Headers (3.11.1)
+  - RealmSwift (3.11.1):
+    - Realm (= 3.11.1)
 
 DEPENDENCIES:
-  - Alamofire (~> 4.5.1)
-  - AlamofireObjectMapper (~> 5.0.0)
+  - Alamofire (from `https://github.com/Alamofire/Alamofire.git`, branch `alamofire5`)
+  - Branch (= 0.25.11)
+  - Crashlytics (= 3.10.9)
+  - Fabric (= 1.7.13)
+  - Firebase/Core (= 5.16.0)
+  - Firebase/Messaging (= 5.16.0)
+  - FlagPhoneNumber (= 0.7.1)
+  - Kingfisher (= 5.1.0)
+  - MBProgressHUD (= 1.1.0)
+  - RealmSwift (= 3.11.1)
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Branch
+    - Crashlytics
+    - Fabric
+    - Firebase
+    - FirebaseAnalytics
+    - FirebaseAnalyticsInterop
+    - FirebaseCore
+    - FirebaseInstanceID
+    - FirebaseMessaging
+    - FlagPhoneNumber
+    - GoogleAppMeasurement
+    - GoogleUtilities
+    - Kingfisher
+    - libPhoneNumber-iOS
+    - MBProgressHUD
+    - nanopb
+    - Protobuf
+    - Realm
+    - RealmSwift
+
+EXTERNAL SOURCES:
+  Alamofire:
+    :branch: alamofire5
+    :git: https://github.com/Alamofire/Alamofire.git
+
+CHECKOUT OPTIONS:
+  Alamofire:
+    :commit: 2c99a6691dac40f03ef9f9e89aaf2eb751843393
+    :git: https://github.com/Alamofire/Alamofire.git
 
 SPEC CHECKSUMS:
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  AlamofireObjectMapper: 5fafc816351cbbc0d486611aaeba7461c0cbad49
-  ObjectMapper: 92230db59bf8f341a5c3a3cf0b9fbdde3cf0d87f
+  Alamofire: 2ef6d6c984c5d21c366e9b41a9ae7dfee2b67a44
+  Branch: 3cc6dcfd726db42ced22c418c0fb09aa5e90a847
+  Crashlytics: 55e24fc23989680285a21cb1146578d9d18e432c
+  Fabric: 25d0963b691fc97be566392243ff0ecef5a68338
+  Firebase: 749a8ff4962f9d8c79dda1966de20f6f77583d67
+  FirebaseAnalytics: d35d47c03c50c73c14a7fd31463c5775843e78a9
+  FirebaseAnalyticsInterop: e5f21be9af6548372e2f0815834ff909bff395a2
+  FirebaseCore: ea2d1816723ef21492b8e9113303e1350db5e08c
+  FirebaseInstanceID: 97ea7a5dca9afd72c79bfcdddb7a44aa1cbb42a1
+  FirebaseMessaging: acbd51fe1a172bf29abaaa6e93a60f98bbf8e4f9
+  FlagPhoneNumber: d1ca8296b3d7f29b505dc55bfd1608d411c9d636
+  GoogleAppMeasurement: 621f3bc6211d5ba548debe01fafad30cf5ab6859
+  GoogleUtilities: 111a012f4c3a29c9e7c954c082fafd6ee3c999c0
+  Kingfisher: fcec238063d17404fca89bf0a850583211c4cbf6
+  libPhoneNumber-iOS: e444379ac18bbfbdefad571da735b2cd7e096caa
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
+  Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
+  Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
+  RealmSwift: c9580133e73ef40ed340401af2dbc9a5790dfea7
 
-PODFILE CHECKSUM: 2621b69460f7aa17e6b3016a9bed6a8040da791b
+PODFILE CHECKSUM: 68254650bcb001a17afc8bf69eef590435030186
 
-COCOAPODS: 1.3.1
+COCOAPODS: 1.5.3

@@ -1,0 +1,184 @@
+//
+//  LoginViewController.swift
+//  voluxe-driver
+//
+//  Created by Christoph on 12/22/18.
+//  Copyright © 2018 Luxe By Volvo. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class LoginViewController: StepViewController, UITextFieldDelegate {
+
+    // MARK: Layout
+
+    private let emailTextField = VLVerticalTextField(title: Unlocalized.emailAddress, placeholder: Unlocalized.emailAddressPlaceholder)
+    private let passwordTextField = VLVerticalTextField(title: Unlocalized.password, placeholder: "••••••••")
+    private let forgotButton = UIButton.Volvo.text(title: Unlocalized.forgotPassword)
+
+    // MARK: Lifecycle
+
+    convenience init() {
+        self.init(title: Unlocalized.signIn)
+        self.addActions()
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        forgotButton.contentHorizontalAlignment = .trailing
+        Analytics.trackView(screen: .login)
+        
+        // support autofill
+        if #available(iOS 11.0, *) {
+            self.emailTextField.textField.textContentType = .username
+            self.passwordTextField.textField.textContentType = .password
+        }
+        
+        emailTextField.textField.autocorrectionType = .no
+        passwordTextField.textField.autocorrectionType = .no
+        passwordTextField.textField.isSecureTextEntry = true
+        
+        emailTextField.textField.keyboardType = .emailAddress
+        emailTextField.textField.autocapitalizationType = .none
+        
+        emailTextField.textField.returnKeyType = .next
+        passwordTextField.textField.returnKeyType = .done
+        
+        emailTextField.textField.delegate = self
+        passwordTextField.textField.delegate = self
+        
+        emailTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        passwordTextField.textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        
+        _ = checkTextFieldsValidity()
+
+        self.view.backgroundColor = UIColor.Volvo.background.light
+
+        let scrollView = Layout.scrollView(in: self)
+        let contentView = Layout.verticalContentView(in: scrollView)
+        let gridView = contentView.addGridLayoutView(with: GridLayout.volvoAgent())
+
+        gridView.add(subview: self.emailTextField, from: 1, to: 6)
+        self.emailTextField.pinToSuperviewTop(spacing: 40)
+        self.emailTextField.heightAnchor.constraint(equalToConstant: CGFloat(VLVerticalTextField.height)).isActive = true
+
+        gridView.add(subview: self.passwordTextField, from: 1, to: 6)
+        self.passwordTextField.pinTopToBottomOf(view: self.emailTextField, spacing: 20)
+        self.passwordTextField.heightAnchor.constraint(equalToConstant: CGFloat(VLVerticalTextField.height)).isActive = true
+
+        gridView.add(subview: self.forgotButton, from: 4, to: 6)
+        self.forgotButton.bottomAnchor.constraint(equalTo: self.passwordTextField.bottomAnchor, constant: 0).isActive = true
+
+        self.view.setNeedsUpdateConstraints()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.emailTextField.textField.becomeFirstResponder()
+    }
+
+    // MARK: API Calls
+    
+    private func login(email: String, password: String) {
+        DriverManager.shared.login(email: email, password: password) {
+            [weak self] driver, error in
+            
+            AppController.shared.lookNotBusy()
+            
+            if let driver = driver {
+                let steps = LoginFlowViewController.loginSteps(for: driver)
+                
+                if steps.count == 0 {
+                    self?.openMainController()
+                } else {
+                    AppController.shared.mainController(push: LoginFlowViewController(steps: steps, direction: .horizontal),
+                                                        asRootViewController: true,
+                                                        prefersProfileButton: false)
+                }
+                
+            } else if let error = error {
+                // handle error
+                self?.onLoginError(error: error)
+            }
+        }
+        
+    }
+    
+    private func openMainController() {
+        let controller = MyScheduleViewController()
+        AppController.shared.mainController(push: controller,
+                                            asRootViewController: true,
+                                            prefersProfileButton: true)
+    }
+    
+    // MARK: Navigations
+    
+    override func hasNextButton() -> Bool {
+        return true
+    }
+    
+    override func hasBackButton() -> Bool {
+        return true
+    }
+    
+    // MARK: Actions
+
+    private func addActions() {
+        self.forgotButton.addTarget(self, action: #selector(forgotButtonTouchUpInside), for: .touchUpInside)
+    }
+
+    @objc override func nextButtonTouchUpInside() {
+        Analytics.trackClick(navigation: .next, screen: .login)
+        AppController.shared.lookBusy()
+        self.login(email: emailTextField.text, password: passwordTextField.text)
+    }
+
+    @objc override func backButtonTouchUpInside() {
+        Analytics.trackClick(navigation: .back, screen: .login)
+        AppController.shared.showLanding()
+    }
+
+    @objc func forgotButtonTouchUpInside() {
+        Analytics.trackClick(button: .forgotPassword, screen: .login)
+        AppController.shared.alert(title: Unlocalized.forgotYourPassword, message: Unlocalized.pleaseContactAdvisor)
+    }
+    
+    // MARK: Validation methods
+    func checkTextFieldsValidity() -> Bool {
+        let enabled = String.isValid(email: emailTextField.textField.text) &&
+            String.isValid(password: passwordTextField.textField.text)
+        
+        self.nextButtonEnabled(enabled: enabled)
+        
+        return enabled
+    }
+    
+    private func onLoginError(error: LuxeAPIError? = nil) {
+        
+        if let code = error?.code, code == .E2005 {
+            AppController.shared.alert(title: Unlocalized.error, message: .localized(.errorInvalidCredentials))
+        } else {
+            AppController.shared.alertGeneric(for: error, retry: false, completion: nil)
+        }
+    }
+    
+    // MARK: UITextFieldDelegate
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField.returnKeyType == .next {
+            passwordTextField.textField.becomeFirstResponder()
+        } else {
+            if checkTextFieldsValidity() {
+                self.nextButtonTouchUpInside()
+            }
+        }
+        return false
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        _ = checkTextFieldsValidity()
+    }
+    
+}

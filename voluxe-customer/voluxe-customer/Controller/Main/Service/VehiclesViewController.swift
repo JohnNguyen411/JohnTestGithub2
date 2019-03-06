@@ -11,7 +11,6 @@ import UIKit
 import SlideMenuControllerSwift
 import CoreLocation
 import RealmSwift
-import BrightFutures
 import Alamofire
 import SwiftEventBus
 
@@ -27,15 +26,13 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     }()
     
     var serviceState: ServiceState
-    var vehicles: [Vehicle]?
+    var vehicles: [Vehicle] = []
     var selectedVehicle: Vehicle?
-    var vehicleCount = 0
 
-    let scrollView = VLScrollView()
     let vehicleCollectionView: UICollectionView
-    let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
+    let vehicleTypeView = VLTitledLabel(title: .localized(.volvoYearModel), leftDescription: "", rightDescription: "")
     let vehicleImageView = UIImageView(frame: .zero)
-    let preferedDealershipView = VLTitledLabel(title: .Dealership, leftDescription: "", rightDescription: "")
+    let preferredDealershipView = VLTitledLabel(title: .localized(.dealership), leftDescription: "", rightDescription: "")
     let scheduledServiceView = VLTitledLabel()
     let contentView = UIView(frame: .zero)
     let confirmButton: VLButton
@@ -53,8 +50,8 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         vehicleCollectionView.backgroundColor = UIColor.clear
         vehicleCollectionView.setCollectionViewLayout(layout, animated: false)
         
-        dealershipLocationButton = VLButton(type: .blueSecondary, title: String.ViewDealershipLocation.uppercased(), kern: UILabel.uppercasedKern(), event: .viewDealershipLocation, screen: .vehicles)
-        confirmButton = VLButton(type: .bluePrimary, title: (.NewService as String).uppercased(), kern: UILabel.uppercasedKern(), event: .newService, screen: .vehicles)
+        dealershipLocationButton = VLButton(type: .blueSecondary, title: String.localized(.viewScheduleServiceScheduledLabel).uppercased(), kern: UILabel.uppercasedKern(), event: .viewDealershipLocation, screen: .vehicles)
+        confirmButton = VLButton(type: .bluePrimary, title: String.localized(.newService).uppercased(), kern: UILabel.uppercasedKern(), event: .newService, screen: .vehicles)
         
         super.init(screen: .vehicles)
     }
@@ -119,8 +116,8 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     override func viewDidAppear(_ animated: Bool) {
         setNavigationBarItem()
         super.viewDidAppear(animated)
-        
-        showVehicles(vehicles: UserManager.sharedInstance.getVehicles()!)
+
+        showVehicles(vehicles: UserManager.sharedInstance.getVehicles() ?? [])
         stateDidChange(state: serviceState)
         
         // animate alpha at the first load
@@ -130,135 +127,134 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
     
     override func setupViews() {
         super.setupViews()
-        
-        dealershipLocationButton.isHidden = true
-        
+
         self.contentView.alpha = 0
-        self.view.addSubview(contentView)
-        
+        dealershipLocationButton.isHidden = true
         confirmButton.accessibilityLabel = "confirmButton"
-        
         vehicleCollectionView.clipsToBounds = false
-        contentView.addSubview(vehicleCollectionView)
-        contentView.addSubview(scrollView)
-        
-        scrollView.addSubview(vehicleTypeView)
-        scrollView.addSubview(vehicleImageView)
-        scrollView.addSubview(preferedDealershipView)
-        scrollView.addSubview(scheduledServiceView)
-        scrollView.addSubview(dealershipLocationButton)
-        scrollView.addSubview(confirmButton)
-        
+
+        self.view.addSubview(contentView)
         contentView.snp.makeConstraints { make in
             make.edgesEqualsToView(view: self.view, edges: UIEdgeInsets(top: 10, left: 20, bottom: 20, right: 20))
         }
-        
-        vehicleCollectionView.snp.makeConstraints { make in
-            make.left.right.top.equalToSuperview()
+
+        contentView.addSubview(vehicleCollectionView)
+        vehicleCollectionView.snp.makeConstraints {
+            make in
+            make.leading.trailing.top.equalToSuperview()
             make.height.equalTo(VehicleCell.VehicleCellHeight)
         }
-        
+
+        // TODO https://app.asana.com/0/835085594281016/840211358323978/f
+        // The upcoming Layout utility will have a func for this, but it
+        // is left expanded for now.
+        let scrollView = UIScrollView.forAutoLayout()
+        contentView.addSubview(scrollView)
         scrollView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
             make.top.equalTo(vehicleCollectionView.snp.bottom).offset(20)
         }
-        
+
+        // TODO https://app.asana.com/0/835085594281016/840211358323978/f
+        // The upcoming Layout utility will have a func for this, but it
+        // is left expanded for now.
+        let contentViewInScrollView = UIView.forAutoLayout()
+        scrollView.addSubview(contentViewInScrollView)
+        contentViewInScrollView.snp.makeConstraints {
+            make in
+            make.edges.equalToSuperview()
+            make.width.equalTo(scrollView.snp.width)
+            make.height.greaterThanOrEqualTo(scrollView.snp.height)
+        }
+
+        contentViewInScrollView.addSubview(vehicleTypeView)
         vehicleTypeView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalToSuperview()
             make.height.equalTo(VLTitledLabel.height)
         }
-        
+
+        contentViewInScrollView.addSubview(vehicleImageView)
         vehicleImageView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleTypeView.snp.bottom)
             make.height.equalTo(Vehicle.vehicleImageHeight)
         }
-        
+
+        contentViewInScrollView.addSubview(scheduledServiceView)
         scheduledServiceView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleImageView.snp.bottom)
             make.height.equalTo(VLTitledLabel.height)
         }
-        
+
+        contentViewInScrollView.addSubview(dealershipLocationButton)
         dealershipLocationButton.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.top.equalTo(scheduledServiceView.snp.bottom).offset(20)
         }
-        
-        preferedDealershipView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+
+        contentViewInScrollView.addSubview(preferredDealershipView)
+        preferredDealershipView.snp.makeConstraints { make in
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(scheduledServiceView.snp.bottom).offset(20)
             make.height.equalTo(VLTitledLabel.height)
         }
-        
+
+        // TODO https://app.asana.com/0/835085594281016/840211358323978/f
+        // The upcoming Layout utility will have a func for this, but it
+        // is left expanded for now.
+        // A spacer view is required to prevent the vehicle image from
+        // breaking its height constraint on taller screens, this will
+        // stretch and condense as necessary allowing small screens to
+        // automatically scroll and large screens to stretch.  This
+        // will be part of the upcoming Layout utility.
+        let spacerView = UIView()
+        contentViewInScrollView.addSubview(spacerView)
+        spacerView.snp.makeConstraints {
+            make in
+            make.leading.trailing.equalToSuperview()
+            make.top.equalTo(preferredDealershipView.snp.bottom)
+        }
+
+        contentViewInScrollView.addSubview(confirmButton)
         confirmButton.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
+            make.top.equalTo(spacerView.snp.bottom)
             make.height.equalTo(VLButton.primaryHeight)
         }
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        scrollView.viewDidLayoutSubviews()
-        
-        preferedDealershipView.layoutIfNeeded()
-        confirmButton.layoutIfNeeded()
-        scrollView.contentView.setNeedsLayout()
-        scrollView.contentView.layoutIfNeeded()
 
-        var contentHeight: CGFloat = 0.0
-        if !preferedDealershipView.isHidden {
-            contentHeight = preferedDealershipView.frame.origin.y + preferedDealershipView.frame.size.height
-        } else if let scrollViewSize = scrollView.scrollViewSize, !confirmButton.isHidden {
-            contentHeight = scrollViewSize.height
-        }
-        
-        scrollView.contentView.frame = CGRect(x: scrollView.contentView.frame.origin.x, y: scrollView.contentView.frame.origin.y, width: scrollView.contentView.frame.size.width, height: contentHeight)
-        scrollView.contentSize = CGSize(width: scrollView.contentView.frame.width, height: scrollView.contentView.frame.height)
-    }
-    
-    
     func showVehicles(vehicles: [Vehicle]) {
+
+        // collection view is hidden for less than two cars
+        // but only if it has changed
+        if vehicles.count != self.vehicles.count {
+            self.vehicleCollectionView.snp.updateConstraints {
+                make in
+                let height = vehicles.count > 1 ? VehicleCell.VehicleCellHeight : 0
+                make.height.equalTo(height)
+            }
+        }
+
+        // update the data store
         self.vehicles = vehicles
-        if scrollView.scrollViewSize != nil && vehicles.count != self.vehicleCount && (vehicles.count <= 1 || self.vehicleCount <= 1){
-            // scrollview size did change
-            scrollView.scrollViewSize = nil
-        }
-        if vehicles.count > 1 {
-            vehicleCollectionView.snp.updateConstraints { make in
-                make.height.equalTo(VehicleCell.VehicleCellHeight)
-            }
-        } else {
-            vehicleCollectionView.snp.updateConstraints { make in
-                make.height.equalTo(0)
-            }
-        }
-        
-        DispatchQueue.main.async {
-            self.vehicleCollectionView.reloadData()
-            if vehicles.count != self.vehicleCount {
-                self.vehicleCollectionView.setNeedsLayout()
-            }
-            self.selectVehicle(index: VehiclesViewController.selectedVehicleIndex)
-        }
-        
-        vehicleCount = vehicles.count
+        self.vehicleCollectionView.reloadData()
+        self.vehicleCollectionView.layoutIfNeeded()
+        self.selectVehicle(index: VehiclesViewController.selectedVehicleIndex)
     }
     
     func selectVehicle(index: Int) {
-        if let vehicles = vehicles {
-            VehiclesViewController.selectedVehicleIndex = index
-            if index < vehicles.count {
-                let vehicle = vehicles[index]
-                vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
-                vehicle.setVehicleImage(imageView: vehicleImageView)
-                selectedVehicle = vehicle
-                stateDidChange(state: serviceState)
-                vehicleCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
-            } else if vehicles.count > 0 {
-                selectVehicle(index: 0)
-            }
+        VehiclesViewController.selectedVehicleIndex = index
+        if index < vehicles.count {
+            let vehicle = vehicles[index]
+            vehicleTypeView.setLeftDescription(leftDescription: vehicle.vehicleDescription())
+            vehicle.setVehicleImage(imageView: vehicleImageView)
+            selectedVehicle = vehicle
+            stateDidChange(state: serviceState)
+            vehicleCollectionView.selectItem(at: IndexPath(item: index, section: 0), animated: true, scrollPosition: .centeredHorizontally)
+        } else if vehicles.count > 0 {
+            selectVehicle(index: 0)
         }
     }
     
@@ -267,22 +263,19 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
         // check if service scheduled
         self.serviceState = state
         if let selectedVehicle = selectedVehicle, let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: selectedVehicle), !booking.isInvalidated, booking.getState() != .canceled {
-            scheduledServiceView.snp.updateConstraints { make in
-                make.height.equalTo(VLTitledLabel.height)
-            }
+
             scheduledServiceView.isHidden = false
-            confirmButton.animateAlpha(show: false)
-            
+            confirmButton.isHidden = true
             var location: String? = nil
             
             if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
                 if !booking.isSelfIB() && booking.getState() == .pickupScheduled, let request = booking.pickupRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
                     let dateTime = formatter.string(from: date)
-                    scheduledServiceView.setTitle(title: .ScheduledPickup, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+                    scheduledServiceView.setTitle(title: .localized(.scheduledPickup), leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                     dealershipLocationButton.isHidden = true
                     scheduledServiceView.isEditable = true
                 } else {
-                    scheduledServiceView.setTitle(title: .ScheduledService, leftDescription: booking.getRepairOrderName())
+                    scheduledServiceView.setTitle(title: .localized(.viewScheduleServiceVehicleServiceScheduled), leftDescription: booking.getRepairOrderName())
                     dealershipLocationButton.isHidden = false
                     scheduledServiceView.isEditable = false
                 }
@@ -291,7 +284,7 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                 }
             } else {
                 if booking.isSelfOB() {
-                    scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName())
+                    scheduledServiceView.setTitle(title: .localized(.completedService), leftDescription: booking.getRepairOrderName())
                     scheduledServiceView.isEditable = false
                     dealershipLocationButton.isHidden = false
                 } else {
@@ -299,12 +292,12 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
                     dealershipLocationButton.isHidden = true
                     if let request = booking.dropoffRequest, let timeSlot = request.timeSlot, let date = timeSlot.from {
                         let dateTime = formatter.string(from: date)
-                        scheduledServiceView.setTitle(title: .ScheduledDelivery, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
+                        scheduledServiceView.setTitle(title: .localized(.scheduledDelivery), leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
                     } else {
                         if booking.getState() == .service {
-                            scheduledServiceView.setTitle(title: .CurrentService, leftDescription: booking.getRepairOrderName())
+                            scheduledServiceView.setTitle(title: .localized(.currentService), leftDescription: booking.getRepairOrderName())
                         } else {
-                            scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName())
+                            scheduledServiceView.setTitle(title: .localized(.completedService), leftDescription: booking.getRepairOrderName())
                         }
                     }
                     if let request = booking.dropoffRequest, let requestLocation = request.location {
@@ -315,32 +308,51 @@ class VehiclesViewController: BaseViewController, ScheduledBookingDelegate {
             
             
             if booking.isSelfOB() || (ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) && booking.isSelfIB()) {
-                preferedDealershipView.isHidden = true
+                preferredDealershipView.isHidden = true
             } else {
                 if let location = location {
-                    preferedDealershipView.isHidden = false
+                    preferredDealershipView.isHidden = false
                     if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                        preferedDealershipView.setTitle(title: .PickupLocation, leftDescription: location)
+                        preferredDealershipView.setTitle(title: .localized(.pickupLocation), leftDescription: location)
                     } else {
-                        preferedDealershipView.setTitle(title: .DeliveryLocation, leftDescription: location)
+                        preferredDealershipView.setTitle(title: .localized(.deliveryLocation), leftDescription: location)
                     }
                 } else {
                     if let dealership = booking.dealership {
-                        preferedDealershipView.isHidden = false
-                        preferedDealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!)
+                        preferredDealershipView.isHidden = false
+                        preferredDealershipView.setTitle(title: .localized(.dealership), leftDescription: dealership.name ?? "")
                     }
                 }
             }
         } else {
-            scheduledServiceView.snp.updateConstraints { make in
-                make.height.equalTo(0)
-            }
             scheduledServiceView.isHidden = true
-            preferedDealershipView.isHidden = true
+            preferredDealershipView.isHidden = true
             dealershipLocationButton.isHidden = true
-            confirmButton.animateAlpha(show: true)
+            confirmButton.isHidden = false
         }
-        
+
+        self.updateViewHeightConstraints()
+    }
+
+    private func updateViewHeightConstraints() {
+
+        self.scheduledServiceView.snp.updateConstraints {
+            make in
+            let height = self.scheduledServiceView.isHidden ? 0 : VLTitledLabel.height
+            make.height.equalTo(height)
+        }
+
+        self.preferredDealershipView.snp.updateConstraints {
+            make in
+            let height = self.preferredDealershipView.isHidden ? 0 : VLTitledLabel.height
+            make.height.equalTo(height)
+        }
+
+        self.confirmButton.snp.updateConstraints {
+            make in
+            let height = self.confirmButton.isHidden ? 0 : VLButton.primaryHeight
+            make.height.equalTo(height)
+        }
     }
     
     //MARK: Actions methods
@@ -383,17 +395,13 @@ extension VehiclesViewController: UICollectionViewDataSource, UICollectionViewDe
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: VehicleCell.reuseId, for: indexPath) as! VehicleCell
-        cell.setVehicle(vehicle: vehicles![indexPath.row])
-        
+        cell.setVehicle(vehicle: self.vehicles[indexPath.row])
         return cell
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if let vehicles = vehicles {
-            return vehicles.count
-        }
-        return 0
+        return self.vehicles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

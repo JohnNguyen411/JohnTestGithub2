@@ -7,31 +7,28 @@
 //
 
 import Foundation
-import ObjectMapper
 import CoreLocation
 import RealmSwift
-import Kingfisher
 
-class Vehicle: Object, Mappable {
-    
+@objcMembers class Vehicle: Object, Codable {
+
     public static let vehicleImageHeight: CGFloat = 190
 
-    @objc dynamic var id: Int = -1
-    @objc dynamic var ownerId: Int = -1
-    @objc dynamic var vin: String?
-    @objc dynamic var licensePlate: String?
-    @objc dynamic var make: String?
-    @objc dynamic var model: String?
-    @objc dynamic var drive: String?
-    @objc dynamic var engine: String?
-    @objc dynamic var trim: String?
-    @objc dynamic var year: Int = 2018
-    @objc dynamic var baseColor: String?
-    @objc dynamic var color: String?
-    @objc dynamic var photoUrl: String?
-    @objc dynamic var transmission: String?
-    @objc dynamic var createdAt: Date?
-    @objc dynamic var updatedAt: Date?
+    dynamic var id: Int = -1
+    dynamic var vin: String?
+    dynamic var licensePlate: String?
+    dynamic var make: String?
+    dynamic var model: String?
+    dynamic var drive: String?
+    dynamic var engine: String?
+    dynamic var trim: String?
+    dynamic var year: Int = 2018
+    dynamic var baseColor: String?
+    dynamic var color: String?
+    dynamic var photoUrl: String?
+    dynamic var transmission: String?
+    dynamic var createdAt: Date?
+    dynamic var updatedAt: Date?
 
     // Use Only for SwiftEventBus
     convenience init(id: Int) {
@@ -39,29 +36,66 @@ class Vehicle: Object, Mappable {
         self.id = id
     }
     
-    required convenience init?(map: Map) {
+    private enum CodingKeys: String, CodingKey {
+        case id
+        case vin
+        case licensePlate = "license_plate"
+        case make
+        case model
+        case drive
+        case engine
+        case trim
+        case year
+        case baseColor = "base_color"
+        case color
+        case photoUrl = "photo_url"
+        case transmission
+        case createdAt = "created_at" 
+        case updatedAt = "updated_at" 
+    }
+
+    
+    convenience required init(from decoder: Decoder) throws {
         self.init()
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
+        self.vin = try container.decodeIfPresent(String.self, forKey: .vin)
+        self.licensePlate = try container.decodeIfPresent(String.self, forKey: .licensePlate)
+        self.make = try container.decodeIfPresent(String.self, forKey: .make)
+        self.model = try container.decodeIfPresent(String.self, forKey: .model)
+        self.drive = try container.decodeIfPresent(String.self, forKey: .drive)
+        self.engine = try container.decodeIfPresent(String.self, forKey: .engine)
+        self.trim = try container.decodeIfPresent(String.self, forKey: .trim)
+        self.year = try container.decodeIfPresent(Int.self, forKey: .year) ?? 2018
+        self.baseColor = try container.decodeIfPresent(String.self, forKey: .baseColor)
+        self.color = try container.decodeIfPresent(String.self, forKey: .color)
+        self.photoUrl = try container.decodeIfPresent(String.self, forKey: .photoUrl)
+        self.transmission = try container.decodeIfPresent(String.self, forKey: .transmission)
+        self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
+        self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
     }
 
-    func mapping(map: Map) {
-        id <- map["id"]
-        ownerId <- map["owner_id"]
-        vin <- map["vin"]
-        licensePlate <- map["license_plate"]
-        make <- map["make"]
-        model <- map["model"]
-        drive <- map["drive"]
-        engine <- map["engine"]
-        trim <- map["trim"]
-        year <- map["year"]
-        baseColor <- map["base_color"]
-        color <- map["color"]
-        photoUrl <- map["photo_url"]
-        transmission <- map["transmission"]
-        createdAt <- (map["created_at"], VLISODateTransform())
-        updatedAt <- (map["updated_at"], VLISODateTransform())
+    
+    func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(id, forKey: .id)
+        try container.encodeIfPresent(vin, forKey: .vin)
+        try container.encodeIfPresent(licensePlate, forKey: .licensePlate)
+        try container.encodeIfPresent(make, forKey: .make)
+        try container.encodeIfPresent(model, forKey: .model)
+        try container.encodeIfPresent(drive, forKey: .drive)
+        try container.encodeIfPresent(engine, forKey: .engine)
+        try container.encodeIfPresent(trim, forKey: .trim)
+        try container.encodeIfPresent(year, forKey: .year)
+        try container.encodeIfPresent(baseColor, forKey: .baseColor)
+        try container.encodeIfPresent(color, forKey: .color)
+        try container.encodeIfPresent(photoUrl, forKey: .photoUrl)
+        try container.encodeIfPresent(transmission, forKey: .transmission)
+        try container.encodeIfPresent(createdAt, forKey: .createdAt)
+        try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
-
+    
+    
     func colorCode() -> String {
         if let color = baseColor {
             switch (color.lowercased()) {
@@ -86,9 +120,9 @@ class Vehicle: Object, Mappable {
     
     func vehicleDescription() -> String {
         if let color = color, color.count > 0 {
-            return "\(color.capitalizingFirstLetter()) \(year) \(model ?? "")"
+            return "\(color.capitalizingFirstLetter()) \(year) \(model ?? String.localized(.unknown))"
         }
-        return "\(baseColor?.capitalizingFirstLetter() ?? "") \(year) \(model ?? "")"
+        return "\(baseColor?.capitalizingFirstLetter() ?? "") \(year) \(model ?? String.localized(.unknown))"
     }
     
     func mileage() -> Int {

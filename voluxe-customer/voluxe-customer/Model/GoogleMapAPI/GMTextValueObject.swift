@@ -7,18 +7,10 @@
 //
 
 import Foundation
-import ObjectMapper
 
-class GMTextValueObject: Mappable {
+class GMTextValueObject: Codable {
     
-    var text: String?
-    var value: Int?
+    let text: String?
+    let value: Int?
     
-    required init?(map: Map) {
-    }
-    
-    func mapping(map: Map) {
-        text <- map["text"]
-        value <- map["value"]
-    }
 }

@@ -32,7 +32,7 @@ class RootViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.view.backgroundColor = .white
         addChild(current)
         current.view.frame = view.bounds
         view.addSubview(current.view)
@@ -83,7 +83,7 @@ class RootViewController: UIViewController {
         inTransition = true
         current.willMove(toParent: nil)
         addChild(new)
-        
+
         transition(from: current, to: new, duration: 0.3, options: [.transitionCrossDissolve, .curveEaseOut], animations: { }) { completed in
             self.current.removeFromParent()
             new.didMove(toParent: self)
@@ -142,7 +142,7 @@ class RootViewController: UIViewController {
         
         styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
         
-        uiNavigationController.setTitle(title: .PickupAndDelivery)
+        uiNavigationController.setTitle(title: .localized(.viewScheduleService))
         
         if let leftVC = self.slideMenuController?.leftViewController as? LeftViewController {
             leftVC.mainNavigationViewController = uiNavigationController
@@ -261,7 +261,7 @@ class RootViewController: UIViewController {
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
                 let uiNavigationController = VLNavigationController(rootViewController: SettingsViewController())
                 styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .Settings, animated: true)
+                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .localized(.settings), animated: true)
             }
         }
     }
@@ -271,7 +271,7 @@ class RootViewController: UIViewController {
             if let leftVC = slideMenu.leftViewController as? LeftViewController {
                 let uiNavigationController = VLNavigationController(rootViewController: HelpViewController())
                 styleNavigationBar(navigationBar: uiNavigationController.navigationBar)
-                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .Help, animated: true)
+                leftVC.changeMainViewController(uiNavigationController: uiNavigationController, title: .localized(.help), animated: true)
             }
         }
     }

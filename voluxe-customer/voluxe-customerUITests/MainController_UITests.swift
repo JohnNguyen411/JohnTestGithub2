@@ -77,7 +77,7 @@ class MainController_UITests: XCTestCase {
         
         sleep(5)
         
-        elementsQuery/*@START_MENU_TOKEN@*/.textFields["(555) 555-5555"]/*[[".otherElements[\"phoneNumberTextField\"].textFields[\"(555) 555-5555\"]",".textFields[\"(555) 555-5555\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.typeText("5555555555")
+        elementsQuery.textFields["201-555-0123"].typeText("5555555555")
         nextButtonButton.tap()
         
         sleep(1)

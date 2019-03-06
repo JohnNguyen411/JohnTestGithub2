@@ -27,8 +27,8 @@ class ScheduledBookingViewController: SchedulingViewController {
             event = .outboundCancel
         }
 
-        leftButton = VLButton(type: .orangePrimary, title: (.CancelPickup as String).uppercased(), kern: UILabel.uppercasedKern(), event: event, screen: .bookingDetail)
-        rightButton = VLButton(type: .bluePrimary, title: (.Done as String).uppercased(), kern: UILabel.uppercasedKern(), event: .done, screen: .bookingDetail)
+        leftButton = VLButton(type: .orangePrimary, title: String.localized(.cancelPickup).uppercased(), kern: UILabel.uppercasedKern(), event: event, screen: .bookingDetail)
+        rightButton = VLButton(type: .bluePrimary, title: String.localized(.done).uppercased(), kern: UILabel.uppercasedKern(), event: .done, screen: .bookingDetail)
         
         super.init(vehicle: booking.vehicle!, state: Booking.getStateForBooking(booking: booking), screen: .bookingDetail)
     }
@@ -40,28 +40,28 @@ class ScheduledBookingViewController: SchedulingViewController {
     override func setupViews() {
         super.setupViews()
         
-        var title = String.CancelPickup
+        var title = String.localized(.cancelPickup)
         
         if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-            title = .CancelDropOff
+            title = String.localized(.cancelDropoff)
             leftButton.setTitle(title: title.uppercased())
         }
         
         loanerView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(dealershipView.snp.bottom)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         if RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.loanerFeatureEnabledKey) {
             scheduledPickupView.snp.makeConstraints { make in
-                make.left.right.equalTo(scheduledServiceView)
+                make.leading.trailing.equalTo(scheduledServiceView)
                 make.top.equalTo(loanerView.snp.bottom)
                 make.height.equalTo(SchedulingViewController.vlLabelHeight)
             }
         } else {
             scheduledPickupView.snp.makeConstraints { make in
-                make.left.right.equalTo(scheduledServiceView)
+                make.leading.trailing.equalTo(scheduledServiceView)
                 make.top.equalTo(dealershipView.snp.bottom)
                 make.height.equalTo(SchedulingViewController.vlLabelHeight)
             }
@@ -73,13 +73,13 @@ class ScheduledBookingViewController: SchedulingViewController {
         
         leftButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-10)
-            make.left.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(10)
             make.width.equalToSuperview().dividedBy(2).offset(-20)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
         rightButton.snp.makeConstraints { make in
-            make.bottom.right.equalToSuperview().offset(-10)
+            make.bottom.trailing.equalToSuperview().offset(-10)
             make.width.equalToSuperview().dividedBy(2).offset(-20)
             make.height.equalTo(VLButton.primaryHeight)
         }
@@ -126,43 +126,43 @@ class ScheduledBookingViewController: SchedulingViewController {
     private func fillViewsForRequest(request: Request) {
         if let timeSlot = request.timeSlot, let date = timeSlot.from {
             let dateTime = formatter.string(from: date)
-            var title = String.ScheduledPickup
+            var title = String.localized(.scheduledPickup)
             if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                title = .ScheduledDelivery
+                title = .localized(.scheduledDelivery)
             }
             scheduledPickupView.setTitle(title: title, leftDescription: "\(dateTime), \(timeSlot.getTimeSlot(calendar: Calendar.current, showAMPM: true) ?? "" )", rightDescription: "")
         }
         
         if let requestLocation = request.location {
-            var title = String.PickupLocation
+            var title = String.localized(.pickupLocation)
             if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                title = .DeliveryLocation
+                title = .localized(.deliveryLocation)
             }
             pickupLocationView.setTitle(title: title, leftDescription: requestLocation.address!, rightDescription: "")
         }
         
         if booking.repairOrderRequests.count > 0 {
             if ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-                scheduledServiceView.setTitle(title: .SelectedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+                scheduledServiceView.setTitle(title: .localized(.selectedService), leftDescription: booking.getRepairOrderName(), rightDescription: "")
             } else {
-                scheduledServiceView.setTitle(title: .CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+                scheduledServiceView.setTitle(title: .localized(.completedService), leftDescription: booking.getRepairOrderName(), rightDescription: "")
             }
         }
         
         if let dealership = booking.dealership {
-            self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+            self.dealershipView.setTitle(title: .localized(.dealership), leftDescription: dealership.name!, rightDescription: "")
         }
         
-        loanerView.descLeftLabel.text = booking.loanerVehicleRequested ? .Yes : .No
+        loanerView.setLeftDescription(leftDescription: booking.loanerVehicleRequested ? .localized(.yes) : .localized(.no))
     }
     
     func leftButtonClick() {
-        var title = String.CancelPickup
-        var message = String.AreYouSureCancelPickup
+        var title = String.localized(.cancelPickup)
+        var message = String.localized(.popupDefaultCancelPickupMessage)
         
         if !ServiceState.isPickup(state: Booking.getStateForBooking(booking: booking)) {
-            title = .CancelDropOff
-            message = .AreYouSureCancelDropOff
+            title = .localized(.cancelDropoff)
+            message = .localized(.popupDefaultCancelDropoffMessage)
         }
         
         let alert = UIAlertController(title: title,
@@ -170,7 +170,7 @@ class ScheduledBookingViewController: SchedulingViewController {
                                       preferredStyle: .alert)
         
         // Submit button
-        let backAction = UIAlertAction(title: .Back, style: .default, handler: { (action) -> Void in
+        let backAction = UIAlertAction(title: .localized(.back), style: .default, handler: { (action) -> Void in
             alert.dismiss(animated: true, completion: nil)
         })
         
@@ -189,29 +189,27 @@ class ScheduledBookingViewController: SchedulingViewController {
         if let dropoffRequest = booking.dropoffRequest, let type = dropoffRequest.getType() {
             showProgressHUD()
 
-            BookingAPI().cancelDropoffRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff).onSuccess { result in
-
-                self.onDelete()
-                self.hideProgressHUD()
-                
-                }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+            CustomerAPI.cancelDropoffRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff) { error in
+                if error != nil {
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
+                } else {
+                    self.onDelete()
+                    self.hideProgressHUD()
+                }
             }
-            
             
         } else if let pickupRequest = booking.pickupRequest, let type = pickupRequest.getType() {
             showProgressHUD()
 
-            BookingAPI().cancelPickupRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup).onSuccess { result in
-               
-                self.onDelete()
-                self.hideProgressHUD()
-
-                }.onFailure { error in
-                    self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+            CustomerAPI.cancelPickupRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup) { error in
+                if error != nil {
+                    self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
-
+                } else {
+                    self.onDelete()
+                    self.hideProgressHUD()
+                }
             }
         }
         

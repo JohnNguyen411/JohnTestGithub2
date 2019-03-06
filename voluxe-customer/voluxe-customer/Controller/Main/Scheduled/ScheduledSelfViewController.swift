@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import PhoneNumberKit
+import FlagPhoneNumber
+import libPhoneNumber_iOS
 
 class ScheduledSelfViewController: BaseVehicleViewController {
-    
-    let phoneNumberKit = PhoneNumberKit()
-    
+        
     let dealershipNameLabel: UILabel = {
         let titleLabel = UILabel()
         titleLabel.textColor = .luxeDarkGray()
@@ -40,7 +39,7 @@ class ScheduledSelfViewController: BaseVehicleViewController {
     
     let deliveryLabel: UILabel = {
         let titleLabel = UILabel()
-        titleLabel.text = .ScheduleDriver
+        titleLabel.text = .localized(.viewScheduleServiceStatusSelfFooterTitleDropoff)
         titleLabel.textColor = .luxeDarkGray()
         titleLabel.font = .volvoSansProRegular(size: 14)
         titleLabel.textAlignment = .left
@@ -59,8 +58,8 @@ class ScheduledSelfViewController: BaseVehicleViewController {
     
     init(vehicle: Vehicle, state: ServiceState, screen: AnalyticsEnums.Name.Screen) {
         dealershipPhoneButton = VLButton(type: .blueSecondary, title: "", kern: UILabel.uppercasedKern(), event: .callDealership, screen: screen)
-        mapItButton = VLButton(type: .blueSecondary, title: (.GetDirections as String).uppercased(), kern: UILabel.uppercasedKern(), event: .getDirections, screen: screen)
-        scheduleDeliveryButton = VLButton(type: .grayPrimary, title: (.ScheduleDelivery as String).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
+        mapItButton = VLButton(type: .blueSecondary, title: String.localized(.viewScheduleServiceStatusSelfDealershipNavigate).uppercased(), kern: UILabel.uppercasedKern(), event: .getDirections, screen: screen)
+        scheduleDeliveryButton = VLButton(type: .grayPrimary, title: String.localized(.scheduleDelivery).uppercased(), kern: UILabel.uppercasedKern(), event: .scheduleDelivery, screen: screen)
         super.init(vehicle: vehicle, state: state, screen: screen)
         
         self.mapVC.screen = screen
@@ -79,9 +78,9 @@ class ScheduledSelfViewController: BaseVehicleViewController {
             self.fillViews(booking: booking)
         }
         
-        setTitle(title: .PickupAtDealership)
+        setTitle(title: .localized(.viewScheduleServiceStatusSelfAdvisorDropoff))
         
-        mapItButton.contentHorizontalAlignment = .right
+        mapItButton.contentHorizontalAlignment = .rightOrTrailing()
         scheduleDeliveryButton.addTarget(self, action: #selector(scheduleDelivery), for: .touchUpInside)
     }
     
@@ -105,43 +104,43 @@ class ScheduledSelfViewController: BaseVehicleViewController {
         scrollView.snp.makeConstraints { make in
             make.equalsToTop(view: self.view, offset: ViewUtils.getAdaptedHeightSize(sizeInPoints: BaseViewController.defaultTopYOffset))
             make.bottom.equalTo(deliveryLabel.snp.top).offset(-adaptedMarging)
-            make.left.equalToSuperview().offset(adaptedMarging)
-            make.right.equalToSuperview().offset(-adaptedMarging)
+            make.leading.equalToSuperview().offset(adaptedMarging)
+            make.trailing.equalToSuperview().offset(-adaptedMarging)
         }
         
         contentView.snp.makeConstraints { make in
-            make.left.top.width.bottom.equalTo(scrollView)
+            make.leading.top.width.bottom.equalTo(scrollView)
         }
         
         dealershipNoteLabel.snp.makeConstraints { make in
-            make.top.left.right.equalToSuperview()
+            make.top.leading.trailing.equalToSuperview()
             make.height.lessThanOrEqualTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 160))
         }
         
         dealershipNameLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(dealershipNoteLabel.snp.bottom).offset(adaptedMarging)
         }
         
         dealershipAddressLabel.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(dealershipNameLabel.snp.bottom).offset(5)
         }
         
         dealershipPhoneButton.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.top.equalTo(dealershipAddressLabel.snp.bottom).offset(5)
         }
         
         mapItButton.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.top.equalTo(dealershipPhoneButton.snp.bottom).offset(adaptedMarging)
         }
         
         mapVC.view.snp.makeConstraints { make in
             make.top.equalTo(mapItButton.snp.bottom).offset(adaptedMarging)
-            make.left.equalToSuperview().offset(2)
-            make.right.equalToSuperview().offset(-2)
+            make.leading.equalToSuperview().offset(2)
+            make.trailing.equalToSuperview().offset(-2)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: 200))
         }
         
@@ -150,14 +149,14 @@ class ScheduledSelfViewController: BaseVehicleViewController {
         ViewUtils.addShadow(toView: mapVC.view)
         
         deliveryLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(adaptedMarging)
-            make.right.equalToSuperview().offset(-adaptedMarging)
+            make.leading.equalToSuperview().offset(adaptedMarging)
+            make.trailing.equalToSuperview().offset(-adaptedMarging)
             make.bottom.equalTo(scheduleDeliveryButton.snp.top).offset(-adaptedMarging)
         }
         
         scheduleDeliveryButton.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-adaptedMarging)
-            make.left.equalToSuperview().offset(adaptedMarging)
+            make.trailing.equalToSuperview().offset(-adaptedMarging)
+            make.leading.equalToSuperview().offset(adaptedMarging)
             make.equalsToBottom(view: self.view, offset: -adaptedMarging)
             make.height.equalTo(ViewUtils.getAdaptedHeightSize(sizeInPoints: CGFloat(VLButton.primaryHeight)))
         }
@@ -188,9 +187,11 @@ class ScheduledSelfViewController: BaseVehicleViewController {
                 dealershipPhoneButton.addTarget(self, action: #selector(callDealership), for: .touchUpInside)
                 
                 do {
-                    let validPhoneNumber = try phoneNumberKit.parse(phone)
-                    dealershipPhoneButton.setTitle(title: phoneNumberKit.format(validPhoneNumber, toType: .national, withPrefix: false))
-                } catch {
+                    let phoneUtil: NBPhoneNumberUtil = NBPhoneNumberUtil.sharedInstance()
+                    let parsedNumber = try phoneUtil.parse(phone, defaultRegion: "US")
+                    let formattedPhone = try phoneUtil.format(parsedNumber, numberFormat: .NATIONAL)
+                    dealershipPhoneButton.setTitle(title: formattedPhone)
+                } catch _ {
                 }
             }
         }

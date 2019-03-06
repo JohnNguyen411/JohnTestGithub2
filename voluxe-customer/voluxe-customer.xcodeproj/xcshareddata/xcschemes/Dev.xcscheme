@@ -146,7 +146,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "# Uncomment the next line to log script output&#10;exec &gt; ~/Desktop/archive-pre.log 2&gt;&amp;1&#10;${PROJECT_DIR}/../shared/scripts/increment_build.sh">
+               scriptText = "# Uncomment the next line to log script output&#10;exec &gt; ~/Desktop/archive-pre.log 2&gt;&amp;1&#10;${PROJECT_DIR}/../shared/scripts/increment_build.sh ${PROJECT_DIR}/voluxe-customer/Resources/Info.plist&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"
@@ -164,7 +164,7 @@
             ActionType = "Xcode.IDEStandardExecutionActionsCore.ExecutionActionType.ShellScriptAction">
             <ActionContent
                title = "Run Script"
-               scriptText = "# Uncomment the next line to log script output&#10;exec &gt; ~/Desktop/archive-post.log 2&gt;&amp;1&#10;${PROJECT_DIR}/../shared/scripts/xcarchive-to-ipa.sh&#10;${PROJECT_DIR}/../shared/scripts/ipa-to-fabric.sh">
+               scriptText = "# Uncomment the next line to log script output&#10;exec &gt; ~/Desktop/archive-post.log 2&gt;&amp;1&#10;${PROJECT_DIR}/../shared/scripts/xcarchive-to-ipa.sh&#10;${PROJECT_DIR}/../shared/scripts/ipa-to-fabric.sh&#10;">
                <EnvironmentBuildable>
                   <BuildableReference
                      BuildableIdentifier = "primary"

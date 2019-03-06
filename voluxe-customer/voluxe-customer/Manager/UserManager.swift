@@ -27,7 +27,7 @@ final class UserManager {
     
     public func logout() {
         // logout from API
-        _ = CustomerAPI().logout()
+        _ = CustomerAPI.logout()
         KeychainManager.sharedInstance.saveAccessToken(token: nil, customerId: nil)
         self.customer = nil
         self.vehicles = nil
@@ -220,9 +220,9 @@ final class UserManager {
     
     public func yourVolvoStringTitle() -> String {
         if let vehicles = vehicles, vehicles.count > 1 {
-            return .YourVolvos
+            return .localized(.yourVolvos)
         }
-        return .YourVolvo
+        return .localized(.yourVolvo)
     }
 }
 
