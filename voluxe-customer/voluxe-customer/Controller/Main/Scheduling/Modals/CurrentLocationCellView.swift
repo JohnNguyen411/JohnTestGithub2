@@ -34,7 +34,7 @@ class CurrentLocationCellView: UIView {
     
     private let titleLabel: UILabel = {
         let titleLabel = UILabel(frame: .zero)
-        titleLabel.text = String.CurrentLocation
+        titleLabel.text = .localized(.popupSelectLocationCurrentLocation)
         titleLabel.font = UIFont.volvoSansProMedium(size: 14)
         titleLabel.textColor = .luxeDarkGray()
         titleLabel.addUppercasedCharacterSpacing()
@@ -46,7 +46,7 @@ class CurrentLocationCellView: UIView {
     private let subtitleLabel: UILabel = {
         let subtitleLabel = UILabel(frame: .zero)
         subtitleLabel.font = .volvoSansProMedium(size: 13)
-        subtitleLabel.text = String.UpdatingLocation
+        subtitleLabel.text = .localized(.popupUpdatingLocation)
         subtitleLabel.textColor = .luxeGray()
         subtitleLabel.backgroundColor = .clear
         subtitleLabel.volvoProLineSpacing()
@@ -83,7 +83,7 @@ class CurrentLocationCellView: UIView {
         checkmarkView.contentMode = .scaleAspectFit
         
         self.myLocationImageView.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.top.equalToSuperview().offset(2)
             make.width.height.equalTo(20)
         }
@@ -91,7 +91,7 @@ class CurrentLocationCellView: UIView {
         self.titleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(myLocationImageView)
             make.width.equalToSuperview()
-            make.left.equalTo(myLocationImageView.snp.right).offset(10)
+            make.leading.equalTo(myLocationImageView.snp.trailing).offset(10)
         }
         
         let ghostCenterView = UIView(frame: .zero)
@@ -99,15 +99,15 @@ class CurrentLocationCellView: UIView {
         
         ghostCenterView.snp.makeConstraints { make in
             make.top.equalTo(self.titleLabel.snp.bottom)
-            make.bottom.right.left.equalToSuperview()
+            make.bottom.trailing.leading.equalToSuperview()
         }
         
         self.subtitleLabel.snp.makeConstraints { make in
             make.centerY.equalTo(ghostCenterView)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
         self.checkmarkView.snp.makeConstraints { make in
-            make.right.equalToSuperview().offset(-15)
+            make.trailing.equalToSuperview().offset(-15)
             make.centerY.equalToSuperview().offset(-4)
             make.width.equalTo(12)
         }
@@ -119,9 +119,9 @@ class CurrentLocationCellView: UIView {
             subtitleLabel.text = address.shortAddress()
         } else {
             if isLocationEnabled {
-                subtitleLabel.text = .UpdatingLocation
+                subtitleLabel.text = .localized(.popupUpdatingLocation)
             } else {
-                subtitleLabel.text = .NotePermissionLocation
+                subtitleLabel.text = .localized(.popupSelectLocationPermissionNote)
             }
         }
         subtitleLabel.volvoProLineSpacing()

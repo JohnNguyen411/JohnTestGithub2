@@ -95,6 +95,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window!.rootViewController = rootViewController
         window!.makeKeyAndVisible()
         
+        FontName.family = .volvo
+        
         //TODO: figure out logging for AlamoFire5
         /*
         if UserDefaults.standard.enableAlamoFireLogging {

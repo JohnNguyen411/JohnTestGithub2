@@ -105,9 +105,9 @@ class Analytics_UnitTests: XCTestCase {
         for name in AnalyticsEnums.Name.Permission.allCases { analytics.trackChangePermission(permission: name, granted: true) }
         for name in AnalyticsEnums.Name.Screen.allCases { analytics.trackView(screen: name) }
 
-        // test each event name is less than the Firebase max of 40 characters
+        // Param names can be up to 40 characters long, Param values can be up to 100 characters long
         for name in names {
-            XCTAssertTrue(name.count <= 40, "\(name) is longer than Firebase max of 40 characters)")
+            XCTAssertTrue(name.count <= 100, "\(name) is longer than Firebase max of 100 characters)")
         }
 
         // test that google error message is truncated

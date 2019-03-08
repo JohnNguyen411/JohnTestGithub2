@@ -46,7 +46,8 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     // locations displayed in autocomplete
     var autocompletePredictions: [GMSAutocompletePrediction]?
     var autoCompleteCharacterCount = 0
-    
+    var autoCompleteToken: GMSAutocompleteSessionToken = GMSAutocompleteSessionToken.init()
+
     var currentLocationCell: CurrentLocationCellView?
     
     var selectedIndex = -2         // CurrentLocation == -1
@@ -54,11 +55,11 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     
     let newLocationButton: VLButton
     
-    let newLocationTextField = VLVerticalSearchTextField(title: .AddressForPickup, placeholder: .AddressForPickupPlaceholder)
+    let newLocationTextField = VLVerticalSearchTextField(title: .localized(.popupAddNewLocationLabel), placeholder: .localized(.popupAddNewLocationEditHint))
     let tableView = UITableView(frame: .zero, style: UITableView.Style.grouped)
     
     override init(title: String, buttonTitle: String, screen: AnalyticsEnums.Name.Screen) {
-        newLocationButton = VLButton(type: .blueSecondary, title: (.AddNewLocation as String).uppercased(), kern: UILabel.uppercasedKern(), event: .addNewLocation, screen: screen)
+        newLocationButton = VLButton(type: .blueSecondary, title: String.localized(.addNewLocation).uppercased(), kern: UILabel.uppercasedKern(), event: .addNewLocation, screen: screen)
         super.init(title: title, buttonTitle: buttonTitle, screen: screen)
         newLocationTextField.textField.autocorrectionType = .no
         newLocationTextField.tableYOffset = -20
@@ -220,12 +221,12 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         
         newLocationTextField.snp.makeConstraints { make in
             make.bottom.equalTo(bottomButton.snp.top).offset(-30)
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(VLVerticalTextField.height)
         }
         
         newLocationButton.snp.makeConstraints { make in
-            make.left.equalToSuperview()
+            make.leading.equalToSuperview()
             make.bottom.equalTo(bottomButton.snp.top).offset(-20)
         }
         
@@ -237,8 +238,8 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         
         tableView.snp.makeConstraints { make in
             make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
-            make.left.equalToSuperview()
-            make.right.equalToSuperview().offset(15)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview().offset(15)
             make.height.equalTo(self.tableViewHeight())
         }
         
@@ -270,7 +271,8 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         self.bottomButton.isEnabled = false
         weak var weakSelf = self
         if userText.count > 2 {
-            self.locationManager.googlePlacesAutocomplete(address: self.newLocationTextField.text) {
+            
+            self.locationManager.googlePlacesAutocomplete(address: self.newLocationTextField.text, token: autoCompleteToken) {
                 autocompletePredictions, error in
 
                 Analytics.trackCallGoogle(endpoint: .places, error: error)
@@ -369,16 +371,16 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         if show {
             tableView.snp.remakeConstraints { make in
                 make.bottom.equalTo(newLocationTextField.snp.top).offset(-20)
-                make.left.equalToSuperview()
-                make.right.equalToSuperview().offset(15)
+                make.leading.equalToSuperview()
+                make.trailing.equalToSuperview().offset(15)
                 make.height.equalTo(self.tableViewHeight())
             }
             
         } else {
             tableView.snp.remakeConstraints { make in
                 make.bottom.equalTo(newLocationButton.snp.top).offset(-20)
-                make.left.equalToSuperview()
-                make.right.equalToSuperview().offset(15)
+                make.leading.equalToSuperview()
+                make.trailing.equalToSuperview().offset(15)
                 make.height.equalTo(self.tableViewHeight())
             }
         }
@@ -390,7 +392,6 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
     // MARK: protocol UITextFieldDelegate
     
     func onAutocompleteSelected(selectedIndex: Int) {
-        
         newLocationTextField.closeAutocomplete()
         
         guard let autocompletePredictions = autocompletePredictions else { return }
@@ -398,13 +399,13 @@ class LocationViewController: VLPresentrViewController, LocationManagerDelegate,
         
         selectedLocation = autocompletePredictions[selectedIndex]
         
-        guard let selectedLocation = selectedLocation, let placeId = selectedLocation.placeID, let superview = self.view.superview else { return }
+        guard let selectedLocation = selectedLocation, let superview = self.view.superview else { return }
         
         showNewLocationTextField(show: false)
         
         MBProgressHUD.showAdded(to: superview, animated: true)
         
-        self.locationManager.getPlace(placeId: placeId) { (gmsPlace, error) in
+        self.locationManager.getPlace(placeId: selectedLocation.placeID, token: autoCompleteToken) { (gmsPlace, error) in
             Analytics.trackCallGoogle(endpoint: .places, error: error)
             MBProgressHUD.hide(for: superview, animated: true)
             if let place = gmsPlace {
@@ -603,11 +604,11 @@ extension LocationViewController: CurrentLocationCellDelegate {
         let locationManager = LocationManager.sharedInstance.locationManager
         locationManager.delegate = self
         locationManager.requestWhenInUseAuthorization()
-        Analytics.trackView(screen: .requestLocation)
+        Analytics.trackClick(button: .requestLocation)
     }
     
     func deniedPermissionClick() {
-        self.showDialog(title: .LocationPermission, message: .PermissionLocationDenied, cancelButtonTitle: .Close, okButtonTitle: .OpenSettings, okCompletion: {
+        self.showDialog(title: .localized(.permissionLocationTitle), message: .localized(.popupSelectLocationPermissionDenied), cancelButtonTitle: .localized(.close), okButtonTitle: .localized(.openSettings), okCompletion: {
             let urlObj = NSURL.init(string:UIApplication.openSettingsURLString)
             if #available(iOS 10.0, *) {
                 UIApplication.shared.open(urlObj! as URL, options: [ : ], completionHandler: nil)

@@ -13,17 +13,18 @@ struct Vehicle: Codable {
     let id: Int
     let vin: String?
     let licensePlate: String?
-    let make: String
-    let model: String
+    let make: String?
+    let model: String?
     let drive: String?
     let engine: String?
     let trim: String?
-    let year: Int
-    let baseColor: String
+    let year: Int?
+    let baseColor: String?
     let color: String?
     let transmission: String?
-    let photoUrl: String
-    let latestOdometerReading: String?
+    let photoUrl: String?
+    let keyTagCode: String?
+    let latestOdometerReading: OdometerReading?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -40,5 +41,13 @@ struct Vehicle: Codable {
         case transmission
         case photoUrl = "photo_url"
         case latestOdometerReading = "latest_odometer_reading"
+        case keyTagCode = "key_tag_code"
+    }
+    
+    func vehicleDescription() -> String {
+        if let color = color, color.count > 0 {
+            return "\(color.capitalizingFirstLetter()) \(year ?? 2019) \(model ?? Unlocalized.unknown)"
+        }
+        return "\(baseColor?.capitalizingFirstLetter() ?? "") \(year ?? 2019) \(model ?? Unlocalized.unknown)"
     }
 }

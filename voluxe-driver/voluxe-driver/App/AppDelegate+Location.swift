@@ -9,10 +9,16 @@
 import CoreLocation
 import Foundation
 
-// TODO https://app.asana.com/0/858610969087925/892091539851886/f
-// TODO documentation explaining why location permission
-// and location tracking are split between the delegate
-// and DriverManager, as opposed to a singular LocationManager.
+// Implementations of CLLocationManager often wrap it in a singleton
+// with callbacks.  There is nothing wrong with that approach, so this
+// is an experiment to see if there is an advantage to coupling a bit
+// closer with the AppDelegate.  There already is an ownership between
+// AppDelegate and AppController, and it feels cleaner to be able to
+// react to app foreground/background events directly from the AppDelegate,
+// then forward on to the AppController for UI reactions.  This frees
+// other services, like the RequestManager, from having to interact
+// with the location singleton, and can instead use a local instance of
+// CLLocationManager strictly for location changes.
 extension AppDelegate: CLLocationManagerDelegate {
 
     func initLocationUpdates() {
@@ -50,16 +56,17 @@ extension AppDelegate: CLLocationManagerDelegate {
         let allowed = status == .authorizedAlways
         completion(allowed)
     }
+    
+    static func distanceBetween(startLocation: CLLocation, endLocation: CLLocation) -> CLLocationDistance {
+        return startLocation.distance(from: endLocation) // result is in meters
+    }
 }
 
-// TODO this works but is it too clever?
-// TODO does this need to cleaned up after request completes?
-fileprivate let locationManager = CLLocationManager()
+/// The app only needs a single CLLocationManager, so this is a convenient
+/// way to turn it into a singleton without exposing the detail elsewhere
+/// in the code.
 fileprivate var requestLocationUpdatesCompletion: ((Bool) -> ())?
 
 fileprivate extension CLLocationManager {
-
-    static var local: CLLocationManager {
-        return locationManager
-    }
+    static let local = CLLocationManager()
 }

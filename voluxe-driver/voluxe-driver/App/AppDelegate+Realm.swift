@@ -10,22 +10,30 @@ import Foundation
 import RealmSwift
 
 extension AppDelegate {
+    
+    static let schemaVersion: UInt64 = 2
 
     func initRealm() {
 
-        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: 1,
+        Realm.Configuration.defaultConfiguration = Realm.Configuration(schemaVersion: AppDelegate.schemaVersion,
                                                                        migrationBlock:
         {
             migration, oldSchemaVersion in
             // nothing to do yet!
+            if oldSchemaVersion < 2 {
+                migration.enumerateObjects(ofType: OfflineTaskUpdate.className()) { oldObject, newObject in
+                    newObject!["mileage"] = -1
+                    newObject!["mileageUnit"] = nil
+
+                }
+            }
+            
         })
 
-        // TODO https://app.asana.com/0/858610969087925/892091539851886/f
-        // TODO should a realm error be logged somewhere?
         do {
             let _ = try Realm()
         } catch {
-            NSLog("REALM INIT ERROR: \(error)")
+            Log.fatal(.missingValue, "realm could not be initialized, likely due to schema change")
         }
     }
 }

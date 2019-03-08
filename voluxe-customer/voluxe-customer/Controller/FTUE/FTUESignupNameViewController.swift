@@ -15,7 +15,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
     
     let welcomeLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .WelcomeSignup
+        textView.text = .localized(.viewSignupNameLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.volvoProLineSpacing()
@@ -25,8 +25,8 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         return textView
     }()
         
-    let firstNameTextField = VLVerticalTextField(title: .FirstName, placeholder: .FirstNamePlaceholder)
-    let lastNameTextField = VLVerticalTextField(title: .LastName, placeholder: .LastNamePlaceholder)
+    let firstNameTextField = VLVerticalTextField(title: .localized(.viewEditTextTitleFirstName), placeholder: .localized(.viewEditTextInfoHintFirstName))
+    let lastNameTextField = VLVerticalTextField(title: .localized(.viewEditTextTitleLastName), placeholder: .localized(.viewEditTextInfoHintLastName))
     
     var deeplinkEventConsumed = false
     var editMode = false
@@ -68,7 +68,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         if let customer = UserManager.sharedInstance.getCustomer(), editMode {
             self.firstNameTextField.textField.text = customer.firstName
             self.lastNameTextField.textField.text = customer.lastName
-            self.navigationItem.rightBarButtonItem?.title = .Done
+            self.navigationItem.rightBarButtonItem?.title = .localized(.done)
         }
     }
     
@@ -108,27 +108,27 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
             welcomeLabel.isHidden = true
             
             firstNameTextField.snp.makeConstraints { (make) -> Void in
-                make.left.equalToSuperview().offset(20)
-                make.right.equalToSuperview().offset(-20)
+                make.leading.equalToSuperview().offset(20)
+                make.trailing.equalToSuperview().offset(-20)
                 make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
                 make.height.equalTo(VLVerticalTextField.verticalHeight)
             }
         } else {
             welcomeLabel.snp.makeConstraints { (make) -> Void in
-                make.left.equalToSuperview().offset(20)
+                make.leading.equalToSuperview().offset(20)
                 make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
-                make.right.equalToSuperview().offset(-20)
+                make.trailing.equalToSuperview().offset(-20)
             }
             
             firstNameTextField.snp.makeConstraints { (make) -> Void in
-                make.left.right.equalTo(welcomeLabel)
+                make.leading.trailing.equalTo(welcomeLabel)
                 make.top.equalTo(welcomeLabel.snp.bottom).offset(BaseViewController.defaultTopYOffset)
                 make.height.equalTo(VLVerticalTextField.verticalHeight)
             }
         }
         
         lastNameTextField.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(firstNameTextField)
+            make.leading.trailing.equalTo(firstNameTextField)
             make.top.equalTo(firstNameTextField.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
@@ -212,7 +212,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         CustomerAPI.updateName(customerId: customerId, firstName: firstName, lastName: lastName) { error in
             if error != nil {
                 MBProgressHUD.hide(for: self.view, animated: true)
-                self.showOkDialog(title: .Error, message: .GenericError)
+                self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown))
             } else {
                 if let customer = UserManager.sharedInstance.getCustomer() {
                     if let realm = try? Realm() {

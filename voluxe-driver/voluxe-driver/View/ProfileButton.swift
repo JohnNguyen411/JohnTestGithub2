@@ -28,10 +28,12 @@ class ProfileButton: UIButton {
         return view
     }()
 
-    convenience init() {
+    convenience init(withShadow: Bool = false) {
         self.init(type: .custom)
         guard let imageView = self.imageView else { return }
-        self.insertSubview(self.shadowView, belowSubview: imageView)
+        if withShadow {
+            self.insertSubview(self.shadowView, belowSubview: imageView)
+        }
     }
 
     override func layoutSubviews() {
@@ -44,11 +46,13 @@ class ProfileButton: UIButton {
         guard let imageView = self.imageView else { return }
         imageView.contentMode = .scaleAspectFit
         imageView.layer.borderColor = UIColor.white.cgColor
-        imageView.layer.borderWidth = 2
+        imageView.layer.borderWidth = self.shadowView.superview != nil ? 2 : 0
         let height = self.frame.size.height - self.imageEdgeInsets.top - self.imageEdgeInsets.bottom
         imageView.layer.cornerRadius = height / 2
 
-        self.shadowView.frame = imageView.frame
-        self.shadowView.layer.cornerRadius = imageView.layer.cornerRadius
+        if self.shadowView.superview != nil {
+            self.shadowView.frame = imageView.frame
+            self.shadowView.layer.cornerRadius = imageView.layer.cornerRadius
+        }
     }
 }

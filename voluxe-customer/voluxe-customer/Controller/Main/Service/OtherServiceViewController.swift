@@ -12,7 +12,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     
     let volvoDrivableLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .IsVolvoDrivable
+        textView.text = .localized(.viewScheduleServiceTypeOtherDetailLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -23,7 +23,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
     
     let descriptionLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .NewServiceDescription
+        textView.text = .localized(.viewScheduleServiceTypeOtherDetailExtraLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -36,7 +36,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         let descriptionTextView = UITextView(frame: .zero)
         descriptionTextView.font = .volvoSansProRegular(size: 16)
         descriptionTextView.isScrollEnabled = false
-        descriptionTextView.text = .TypeDescriptionHere
+        descriptionTextView.text = .localized(.viewScheduleServiceTypeOtherDetailExtraHint)
         descriptionTextView.textColor = .luxeLightGray()
         return descriptionTextView
     }()
@@ -51,7 +51,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         let titleLabel = UILabel(frame: .zero)
         titleLabel.textColor = UIColor.luxeCobaltBlue()
         titleLabel.font = .volvoSansProMedium(size: 12)
-        titleLabel.text = .AddDescription
+        titleLabel.text = .localized(.viewScheduleServiceTypeOtherDetailExtraTitle)
         return titleLabel
     }()
     
@@ -74,7 +74,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         self.serviceTitle = services.joined(separator: ", ")
         self.service = RepairOrder(title: serviceTitle, repairOrderType: repairOrderType, customerDescription: serviceTitle, drivable: drivability[checkedCellIndex])
         
-        confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), event: .next, screen: .serviceCustomNotes)
+        confirmButton = VLButton(type: .bluePrimary, title: String.localized(.next).uppercased(), kern: UILabel.uppercasedKern(), event: .next, screen: .serviceCustomNotes)
         
         super.init(screen: .serviceCustomNotes)
     }
@@ -103,18 +103,18 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
             guard let weakSelf = self else { return }
             
             var notes = "" // reset notes
-            if weakSelf.descriptionTextView.text != .TypeDescriptionHere {
+            if weakSelf.descriptionTextView.text != .localized(.viewScheduleServiceTypeOtherDetailExtraHint) {
                 notes = weakSelf.descriptionTextView.text ?? ""
             }
             weakSelf.service.notes = notes
             
             RequestedServiceManager.sharedInstance.setRepairOrder(repairOrder: weakSelf.service)
             StateServiceManager.sharedInstance.updateState(state: .needService, vehicleId: weakSelf.vehicle.id, booking: nil)
-            weakSelf.pushViewController(ServiceCarViewController(title: .ServiceSummary, vehicle: weakSelf.vehicle, state: .needService), animated: true)
+            weakSelf.pushViewController(ServiceCarViewController(title: .localized(.viewScheduleServiceOptionPickup), vehicle: weakSelf.vehicle, state: .needService), animated: true)
 
         }
         //descriptionTextView.placeholder
-        self.navigationItem.title = .OtherMaintenance
+        self.navigationItem.title = .localized(.viewScheduleServiceTypeOther)
 
     }
     
@@ -139,21 +139,21 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         }
         
         contentView.snp.makeConstraints { make in
-            make.left.top.width.height.equalTo(scrollView)
+            make.leading.top.width.height.equalTo(scrollView)
         }
         
         var labelHeight = volvoDrivableLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
         
         volvoDrivableLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(BaseViewController.defaultTopYOffset)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(labelHeight)
         }
         
         tableView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview()
             make.top.equalTo(volvoDrivableLabel.snp.bottom).offset(20)
             make.height.equalTo( Int(CheckmarkCell.height) * drivability.count + 1)
         }
@@ -166,32 +166,32 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         labelHeight = descriptionLabel.sizeThatFits(CGSize(width: view.frame.width - 40, height: CGFloat(MAXFLOAT))).height
         
         descriptionLabel.snp.makeConstraints { make in
-            make.left.right.equalTo(volvoDrivableLabel)
+            make.leading.trailing.equalTo(volvoDrivableLabel)
             make.top.equalTo(tableView.snp.bottom).offset(40)
             make.height.equalTo(labelHeight)
         }
         
         descriptionTextView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(15)
-            make.right.equalToSuperview().offset(-15)
+            make.leading.equalToSuperview().offset(15)
+            make.trailing.equalToSuperview().offset(-15)
             make.top.equalTo(descriptionLabel.snp.bottom).offset(15)
             make.height.equalTo(35)
         }
         
         separator.snp.makeConstraints { make in
-            make.left.right.equalTo(volvoDrivableLabel)
+            make.leading.trailing.equalTo(volvoDrivableLabel)
             make.top.equalTo(descriptionTextView.snp.bottom)
             make.height.equalTo(1)
         }
         
         descriptionTitle.snp.makeConstraints { make in
-            make.left.right.equalTo(volvoDrivableLabel)
+            make.leading.trailing.equalTo(volvoDrivableLabel)
             make.top.equalTo(separator.snp.bottom).offset(5)
             make.height.equalTo(25)
         }
         
         confirmButton.snp.makeConstraints { make in
-            make.left.right.equalTo(volvoDrivableLabel)
+            make.leading.trailing.equalTo(volvoDrivableLabel)
             make.equalsToBottom(view: contentView, offset: -20)
             make.height.equalTo(VLButton.primaryHeight)
         }
@@ -247,7 +247,7 @@ class OtherServiceViewController: BaseViewController, UITextViewDelegate {
         scrollView.setContentOffset(offset, animated: true)
         
         if textView.text.isEmpty {
-            textView.text = .TypeDescriptionHere
+            textView.text = .localized(.viewScheduleServiceTypeOtherDetailExtraHint)
             textView.textColor = .luxeLightGray()
         }
     }

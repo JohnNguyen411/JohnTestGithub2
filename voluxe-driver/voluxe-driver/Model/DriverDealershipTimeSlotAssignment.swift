@@ -11,7 +11,7 @@ import Foundation
 struct DriverDealershipTimeSlotAssignment: Codable {
 
     let id: Int
-    let driverId: Int
+    let driverId: Int?
     let dealershipTimeSlotId: Int
     let state: String
 

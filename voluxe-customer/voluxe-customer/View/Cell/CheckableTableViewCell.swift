@@ -41,18 +41,18 @@ class CheckableTableViewCell: UITableViewCell {
         
         self.checkView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(20)
             make.width.height.equalTo(20)
         }
         
         self.label.snp.makeConstraints { make in
             make.centerY.equalToSuperview().offset(2)
-            make.left.equalTo(self.checkView.snp.right).offset(20)
+            make.leading.equalTo(self.checkView.snp.trailing).offset(20)
         }
         
         separator.snp.makeConstraints { make in
-            make.top.right.equalToSuperview()
-            make.left.equalTo(checkView)
+            make.top.trailing.equalToSuperview()
+            make.leading.equalTo(checkView)
             make.height.equalTo(1)
         }
     }

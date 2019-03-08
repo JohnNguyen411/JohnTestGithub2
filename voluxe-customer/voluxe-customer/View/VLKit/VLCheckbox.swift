@@ -27,13 +27,13 @@ class VLCheckbox : UIView {
         
         checkButton.snp.makeConstraints { (make) -> Void in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(10)
             make.width.height.equalTo(20)
         }
         
         titleLabel.snp.makeConstraints { (make) -> Void in
-            make.centerY.right.equalToSuperview()
-            make.left.equalTo(checkButton.snp.right).offset(5)
+            make.centerY.trailing.equalToSuperview()
+            make.leading.equalTo(checkButton.snp.trailing).offset(5)
         }
         
         titleLabel.font = UIFont.volvoSansProRegular(size: 14)

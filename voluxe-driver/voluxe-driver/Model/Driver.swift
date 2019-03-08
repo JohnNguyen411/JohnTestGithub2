@@ -16,12 +16,12 @@ struct Driver: Codable {
     let lastName: String
     let languageCode: String
     let passwordResetRequired: Bool
-    let lastLoginAt: Date
+    let lastLoginAt: Date?  // might be null
     let workPhoneNumber: String
-    let workPhoneNumberVerified: Bool
+    var workPhoneNumberVerified: Bool
     let personalPhoneNumber: String?
     let personalPhoneNumberVerified: Bool?
-    let photoUrl: String
+    let photoUrl: String? // might be null
     let type: String
     let enabled: Bool
 
@@ -40,5 +40,18 @@ struct Driver: Codable {
         case photoUrl = "photo_url"
         case type
         case enabled
+    }
+    
+    func readyForUse() -> Bool {
+        if passwordResetRequired {
+            return false
+        }
+        if !workPhoneNumberVerified {
+            return false
+        }
+        if photoUrl == nil || photoUrl?.count == 0 {
+            return false
+        }
+        return true
     }
 }

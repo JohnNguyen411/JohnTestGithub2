@@ -21,14 +21,15 @@ class SwipeNextView: UIView {
         label.textAlignment = .right
         return label
     }()
+    
+    var labelAttributes: [NSAttributedString.Key : Any] = [NSAttributedString.Key.font: Font.Volvo.caption]
 
     private let slider: UISlider = {
         let slider = UISlider(frame: CGRect.zero).usingAutoLayout()
         slider.clipsToBounds = false
         slider.isContinuous = true
-        let size: CGFloat = 40
-        let image = UIColor.Volvo.volvoBlue.image(size: CGSize(width: size, height: size))
-        let thumb = image.rounded(cornerRadius: size / 2)
+        let size: CGFloat = 42
+        let thumb = UIColor.circle(diameter: size, color: UIColor.Volvo.volvoBlue)
         let offset = CGPoint(x: 1, y: 0)
         let merged = thumb.draw(centered: UIImage(named: "forward_chevron"), offset: offset)
         slider.setThumbImage(merged, for: .normal)
@@ -40,13 +41,17 @@ class SwipeNextView: UIView {
 
     var title: String? {
         get { return self.label.text }
-        set { self.label.text = newValue?.uppercased() }
+        set {
+            self.label.text = newValue?.uppercased()
+            self.label.attributedText = NSAttributedString(string: newValue?.uppercased() ?? "", attributes: self.labelAttributes)
+        }
     }
 
     // MARK: Lifecycle
 
     convenience init() {
         self.init(frame: CGRect.zero)
+        self.labelAttributes[NSAttributedString.Key.kern] = 1.05
         self.backgroundColor = UIColor.Volvo.sky50
         self.addSubviews()
         self.addActions()
@@ -57,7 +62,7 @@ class SwipeNextView: UIView {
         self.addSubview(self.slider)
         self.slider.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         self.slider.leadingAnchor.constraint(equalTo: self.leadingAnchor,
-                                             constant: 46).isActive = true
+                                             constant: 20).isActive = true
         self.slider.trailingAnchor.constraint(equalTo: self.trailingAnchor,
                                               constant: -46).isActive = true
 
@@ -65,7 +70,7 @@ class SwipeNextView: UIView {
         self.label.leadingAnchor.constraint(equalTo: self.slider.leadingAnchor).isActive = true
         self.label.trailingAnchor.constraint(equalTo: self.slider.trailingAnchor).isActive = true
         self.label.bottomAnchor.constraint(equalTo: self.slider.topAnchor,
-                                           constant: 10).isActive = true
+                                           constant: 12).isActive = true
     }
 
     func addBottomSafeAreaCoverView() {

@@ -12,11 +12,11 @@ target 'voluxe-customer' do
     pod 'Crashlytics', '3.10.9'
     pod 'DateToolsSwift', '4.0.0'
     pod 'Fabric', '1.7.13'
-    pod 'Firebase/Core', '5.14.0'
-    pod 'Firebase/Messaging', '5.14.0'
-    pod 'Firebase/RemoteConfig', '5.14.0'
-    pod 'GoogleMaps', '2.5.0'
-    pod 'GooglePlaces', '2.5.0'
+    pod 'Firebase/Core', '5.16.0'
+    pod 'Firebase/Messaging', '5.16.0'
+    pod 'Firebase/RemoteConfig', '5.16.0'
+    pod 'GoogleMaps', '3.0.3'
+    pod 'GooglePlaces', '3.0.3'
     pod 'KeychainAccess', '3.1.0'
     pod 'Kingfisher', '4.2.0'
     pod 'MBProgressHUD', '1.1.0'
@@ -33,7 +33,7 @@ end
 target 'voluxe-customerUnitTests' do
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
     pod 'RealmSwift', '3.11.1'
-    pod 'Firebase/Core', '5.14.0'
+    pod 'Firebase/Core', '5.16.0'
 end
 
 target 'voluxe-customerAPITests' do

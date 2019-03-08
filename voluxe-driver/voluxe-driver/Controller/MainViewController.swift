@@ -11,6 +11,9 @@ import UIKit
 
 class MainViewController: UINavigationController {
 
+    // MARK: Data
+    private var showProfileStack: [Int: Bool] = [:]
+    
     // MARK: Layout
 
     private let profileButton: UIButton = {
@@ -18,7 +21,7 @@ class MainViewController: UINavigationController {
         button.imageEdgeInsets = UIEdgeInsets(top: 3, left: 4, bottom: 5, right: 10)
         return button
     }()
-
+    
     // MARK: Lifecycle
 
     convenience init(with controller: UIViewController? = nil,
@@ -28,22 +31,7 @@ class MainViewController: UINavigationController {
         self.init(rootViewController: controller)
         self.profileButton.isHidden = !showProfileButton
         self.profileButton.addTarget(self, action: #selector(buttonTouchUpInside), for: .touchUpInside)
-//        self.configureNavigationBar()
     }
-
-//    private func configureNavigationBar() {
-//        let appearance = UINavigationBar.appearance()
-//        appearance.backgroundColor = UIColor.Volvo.navigationBar.background
-//        appearance.titleTextAttributes = [NSAttributedString.Key.font: Font.Volvo.h6,
-//                                          NSAttributedString.Key.foregroundColor: UIColor.Volvo.navigationBar.title]
-//        self.navigationBar.isTranslucent = false
-////        self.addCustomBackButton()
-//
-////        UIImage *backButtonImage = [[UIImage imageNamed:@"button_back"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 13, 0, 6)];
-//        let image = UIImage(named: "back_chevron")
-////        [[UIBarButtonItem appearance] setBackButtonBackgroundImage:backButtonImage forState:UIControlStateNormal barMetrics:UIBarMetricsDefault];
-//        UIBarButtonItem.appearance().setBackButtonBackgroundImage(image, for: .normal, barMetrics: .default)
-//    }
 
     override func viewDidLoad() {
 
@@ -64,46 +52,64 @@ class MainViewController: UINavigationController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        DriverManager.shared.imageForDriver() {
-            [weak self] image in
-            self?.profileButton.setImage(image, for: .normal)
-        }
+        self.updateDriverPhoto()
     }
 
     // MARK: Actions
 
     @objc func buttonTouchUpInside() {
+        Analytics.trackClick(navigation: .menu)
         AppController.shared.showProfile()
     }
 
     // MARK: Animations
+    
+    func updateDriverPhoto() {
+        if let photo = DriverManager.shared.driverPhoto {
+            self.profileButton.setImage(photo, for: .normal)
+        } else if let photoURL = DriverManager.shared.driver?.photoUrl {
+            let url = URL(string: photoURL)
+            self.profileButton.kf.setImage(with: url, for: .normal)
+        }
+    }
 
     func showProfileButton(animated: Bool = true) {
         self.profileButton.isHidden = false
+        self.updateDriverPhoto()
         UIView.animate(withDuration: animated ? 0.2 : 0) {
             self.profileButton.alpha = 1
         }
+        self.showProfileStack[self.children.count] = true
     }
 
     func hideProfileButton(animated: Bool = true) {
         UIView.animate(withDuration: animated ? 0.2 : 0) {
             self.profileButton.alpha = 0
         }
+        self.showProfileStack[self.children.count] = false
     }
 
-    override func pushViewController(_ viewController: UIViewController,animated: Bool) {
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         super.pushViewController(viewController, animated: animated)
         guard self.children.count > 1 else { return }
         self.hideProfileButton(animated: animated)
     }
 
     override func popViewController(animated: Bool) -> UIViewController? {
-        if self.children.count <= 2 { self.showProfileButton(animated: animated) }
+        if self.children.count <= 2 {
+            self.showProfileButton(animated: animated)
+        } else if let shouldShowButton = shouldShowProfileButton(index: self.children.count-1), shouldShowButton {
+            self.showProfileButton(animated: animated)
+        }
         return super.popViewController(animated: animated)
     }
 
     override func popToRootViewController(animated: Bool) -> [UIViewController]? {
         self.showProfileButton(animated: animated)
         return super.popToRootViewController(animated: animated)
+    }
+    
+    private func shouldShowProfileButton(index: Int) -> Bool? {
+        return showProfileStack[index]
     }
 }

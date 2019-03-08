@@ -14,7 +14,6 @@ protocol Buttons {
     func secondary(title: String) -> UIButton
 }
 
-// TODO connect with ButtonColors
 class VolvoButtons: Buttons {
 
     func primary(title: String) -> UIButton {

@@ -61,6 +61,7 @@ class CameraView: UIView {
 
     // Handle for captured photo output.
     private let output = AVCapturePhotoOutput()
+    private var isCapturingOutput = false
 
     // MARK: Layout
 
@@ -93,12 +94,28 @@ class CameraView: UIView {
 
     // MARK: Options
 
+    /// The picture taking mode the camera view is operating in.
+    /// .single means one at a time, and will preview the taken photo.
+    /// .multiple means several in a row, and will not show a preview.
+    enum Mode {
+        case single
+        case multiple
+    }
+    var mode: Mode
+
     /// Presents the captured image on top of the live camera
     /// view after a photo has been taken.
     var showTakenPhoto: Bool = false
 
+    /// Indicates if a photo was taken and is currently being
+    /// shown.  This is useful to change the ShutterView.shutterButton
+    /// behaviour for a second tap to reset the camera.
+    var isShowingTakenPhoto: Bool {
+        return self.imageView.image != nil
+    }
+
     /// Tells the capture session to use flash or not.
-    var useFlash: Bool = true
+    var useFlash: Bool = false
 
     /// Using a top left inset, a circular crop will appear
     /// over the camera preview.  This will also produce a
@@ -123,13 +140,18 @@ class CameraView: UIView {
     /// This will return a nil image and a flag if set
     /// and a face was not captured in the camera image.
     var requireFaceDetection: Bool = false
+    
+    var deviceOrientation: UIDeviceOrientation = .portrait
+
 
     // MARK: Lifecycle
 
-    init(position: AVCaptureDevice.Position = .back) {
+    init(mode: Mode = .single, position: AVCaptureDevice.Position = .back) {
+        self.mode = mode
         self.position = position
         super.init(frame: CGRect.zero)
         self.addSubviews()
+        self.deviceOrientation = DeviceOrientationHelper.shared.currentDeviceOrientation
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -156,6 +178,8 @@ class CameraView: UIView {
     }
 
     private func updateCropView() {
+
+        self.cropView.isHidden = self.cropTopLeft == nil
 
         guard let point = self.cropTopLeft else {
             self.cropView.layer.mask = nil
@@ -191,6 +215,27 @@ class CameraView: UIView {
     func open(animated: Bool = true) {
 
         guard self.session.isRunning == false else { return }
+
+        DispatchQueue.main.async {
+            self.initCamera()
+        }
+
+        guard animated else { return }
+
+        self.preview.alpha = 0
+        self.imageView.alpha = 0
+
+        UIView.animate(withDuration: 2.0) {
+            self.preview.alpha = 1
+            self.imageView.alpha = 1
+        }
+    }
+
+    /// This does the actual work of initializing the camera.  This
+    /// is an expensive operation, so all other animations MUST be
+    /// complete before calling this otherwise imperfections may be visible.
+    private func initCamera() {
+        guard self.session.isRunning == false else { return }
         guard let device = AVCaptureDevice.default(.builtInWideAngleCamera,
                                                    for: AVMediaType.video,
                                                    position: self.position) else { return }
@@ -207,21 +252,42 @@ class CameraView: UIView {
         self.preview.layer.addSublayer(layer)
         layer.frame = self.preview.bounds
         self.session.startRunning()
+    }
 
-        UIView.animate(withDuration: animated ? 0.5 : 0) {
-            self.preview.alpha = 1
+    /// Hide the preview and taken photo views.  Suitable to be
+    /// called before transitioning the parent view controller.
+    /// Currently calling open() after close() is not supported,
+    /// the UI and session will not be restored correctly.
+    func close() {
+        UIView.animate(withDuration: 0.2) {
+            self.preview.alpha = 0
+            self.imageView.alpha = 0
         }
     }
 
     // MARK: Image capture and reset
 
     func capture() {
-        let settings = AVCapturePhotoSettings()
-        settings.flashMode = self.useFlash ? AVCaptureDevice.FlashMode.on : AVCaptureDevice.FlashMode.off
-        self.output.capturePhoto(with: settings, delegate: self)
+
+        guard self.isCapturingOutput == false else { return }
+        self.isCapturingOutput = true
+
+        #if targetEnvironment(simulator)
+            let image = UIColor.random().image(size: CGSize(width: 1024, height: 512))
+            self.didCapture(photo: image)
+            self.isCapturingOutput = false
+        #else
+            let settings = AVCapturePhotoSettings()
+            settings.flashMode = self.useFlash ? AVCaptureDevice.FlashMode.on : AVCaptureDevice.FlashMode.off
+            if let photoOutputConnection = self.output.connection(with: AVMediaType.video) {
+                photoOutputConnection.videoOrientation = captureOrientation()
+            }
+            self.output.capturePhoto(with: settings, delegate: self)
+        #endif
     }
 
     func reset() {
+        self.isCapturingOutput = false
         self._image = nil
         self._croppedImage = nil
         self.imageView.image = nil
@@ -229,12 +295,41 @@ class CameraView: UIView {
 
     // MARK: Notifications
 
+    /// Called after capture() has verified the photo taking options.
+    /// This may not happen immediately after capture(), it depends
+    /// on the focus and flash state of the device's camera.
     var photoWillBeTaken: (() -> ())?
+
+    /// Called after the photo has finished processing
+    /// (face checking, cropping, etc).
     var photoWasTaken: ((UIImage?, OptionError?) -> ())?
 
     // Returns the cropped image (if option set) or original image
     private func notifyPhotoWasTaken() {
         self.photoWasTaken?(self.croppedImage ?? self.image, self.error)
+    }
+    
+    func imageOrientation() -> UIImage.Orientation {
+         self.deviceOrientation = DeviceOrientationHelper.shared.currentDeviceOrientation
+        var imageOrientation: UIImage.Orientation = .up
+        if (deviceOrientation == .landscapeLeft) {
+            imageOrientation = .left
+        } else if (deviceOrientation == .landscapeRight) {
+            imageOrientation = .right
+        } else if (deviceOrientation == .portraitUpsideDown){
+            imageOrientation = .down
+        }
+        return imageOrientation
+    }
+    
+    func captureOrientation() ->AVCaptureVideoOrientation {
+        self.deviceOrientation = DeviceOrientationHelper.shared.currentDeviceOrientation
+        if self.deviceOrientation == .landscapeRight {
+            return AVCaptureVideoOrientation.landscapeRight
+        } else if self.deviceOrientation == .landscapeLeft {
+            return AVCaptureVideoOrientation.landscapeLeft
+        }
+        return AVCaptureVideoOrientation.portrait
     }
 }
 
@@ -245,6 +340,9 @@ extension CameraView: AVCapturePhotoCaptureDelegate {
     func photoOutput(_ output: AVCapturePhotoOutput,
                      willCapturePhotoFor resolvedSettings: AVCaptureResolvedPhotoSettings)
     {
+        UIView.animate(withDuration: 0.1, animations: {
+            self.preview.alpha = 0
+        })
         self.photoWillBeTaken?()
     }
 
@@ -252,9 +350,22 @@ extension CameraView: AVCapturePhotoCaptureDelegate {
                      didFinishProcessingPhoto photo: AVCapturePhoto,
                      error: Error?)
     {
+        
         guard let data = photo.fileDataRepresentation() else { return }
         guard let image = UIImage(data: data) else { return }
-        let flipped = self.flipImageIfNecessary(image)
+        self.isCapturingOutput = false
+        self.didCapture(photo: image)
+        
+        UIView.animate(withDuration: 0.1, animations: {
+            self.preview.alpha = 1
+        })
+    }
+
+    /// Processes, crops, and notifies that the specified photo was taken.
+    /// This is separated into its own function so that the code can be
+    /// run on both iOS simulator (with a faked photo) and on device.
+    func didCapture(photo: UIImage) {
+        let flipped = self.flipImageIfNecessary(photo)
         let cropped = self.cropImageIfNecessary(flipped)
         if self.requireFaceDetection && self.imageHasSingleFace(cropped) == false {
             DispatchQueue.main.async {

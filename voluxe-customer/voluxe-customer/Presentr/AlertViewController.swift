@@ -65,18 +65,6 @@ public enum AlertActionStyle {
             return color
         }
     }
-
-}
-
-private enum Font: String {
-
-    case Montserrat = "Montserrat-Regular"
-    case SourceSansPro = "SourceSansPro-Regular"
-
-    func font(_ size: CGFloat = 15.0) -> UIFont {
-        return UIFont(name: self.rawValue, size: size)!
-    }
-
 }
 
 private struct ColorPalette {
@@ -126,10 +114,6 @@ public class AlertViewController: UIViewController {
             let okAction = AlertAction(title: "ok 🕶", style: .default, handler: nil)
             addAction(okAction)
         }
-
-        loadFonts
-
-        setupFonts()
         setupLabels()
         setupButtons()
     }
@@ -168,13 +152,6 @@ public class AlertViewController: UIViewController {
     }
 
     // MARK: Setup
-
-    fileprivate func setupFonts() {
-        titleLabel.font = Font.Montserrat.font()
-        bodyLabel.font = Font.SourceSansPro.font()
-        firstButton.titleLabel?.font = Font.Montserrat.font(11.0)
-        secondButton.titleLabel?.font = Font.Montserrat.font(11.0)
-    }
 
     fileprivate func setupLabels() {
         titleLabel.text = titleText ?? "Alert"
@@ -222,41 +199,6 @@ public class AlertViewController: UIViewController {
     func dismiss() {
         guard autoDismiss else { return }
         self.dismiss(animated: dismissAnimated, completion: nil)
-    }
-
-}
-
-// MARK: - Font Loading
-
-let loadFonts: () = {
-    let loadedFontMontserrat = AlertViewController.loadFont(Font.Montserrat.rawValue)
-    let loadedFontSourceSansPro = AlertViewController.loadFont(Font.SourceSansPro.rawValue)
-    if loadedFontMontserrat && loadedFontSourceSansPro {
-        Logger.print("LOADED FONTS")
-    }
-}()
-
-extension AlertViewController {
-
-    static func loadFont(_ name: String) -> Bool {
-        let bundle = Bundle(for: self)
-        guard let fontPath = bundle.path(forResource: name, ofType: "ttf"),
-            let data = try? Data(contentsOf: URL(fileURLWithPath: fontPath)),
-            let provider = CGDataProvider(data: data as CFData),
-            let font = CGFont(provider)
-        else {
-            return false
-        }
-
-        var error: Unmanaged<CFError>?
-
-        let success = CTFontManagerRegisterGraphicsFont(font, &error)
-        if !success {
-            Logger.print("Error loading font. Font is possibly already registered.")
-            return false
-        }
-
-        return true
     }
 
 }

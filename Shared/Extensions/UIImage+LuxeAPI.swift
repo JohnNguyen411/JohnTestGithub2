@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreServices
 
 extension UIImage {
 
@@ -17,3 +18,5 @@ extension UIImage {
         return self.jpegData(compressionQuality: 0.5)
     }
 }
+
+

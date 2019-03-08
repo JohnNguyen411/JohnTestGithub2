@@ -8,18 +8,22 @@
 
 import XCTest
 
+// IMPORTANT!
+// These tests require that the xcodebots@luxe.com user
+// has at least one request assigned to them for today.
+// If not, nearly all the tests will fail.
+
 class Inspection_APITests: XCTestCase {
 
     static var driver: Driver?
     static var request: Request?
-    static var inspection: Inspection?
 
     func test00_loginDriver() {
-        DriverAPI.login(email: "christoph@luxe.com", password: "shenoa7777") {
+        DriverAPI.login(email: "xcodebots@luxe.com", password: "luxebyvolvo7") {
             driver, error in
             XCTAssertNil(error)
             XCTAssertNotNil(driver)
-            XCTAssertTrue(driver?.email == "christoph@luxe.com")
+            XCTAssertTrue(driver?.email == "xcodebots@luxe.com")
             Inspection_APITests.driver = driver
         }
         self.wait()
@@ -41,8 +45,14 @@ class Inspection_APITests: XCTestCase {
         guard let request = Inspection_APITests.request else { XCTFail(); return }
         DriverAPI.createVehicleInspection(for: request) {
             inspection, error in
-            XCTAssertNil(error)
-            XCTAssertNotNil(inspection)
+            if request.vehicleInspection != nil {
+                XCTAssertNotNil(error)
+                XCTAssertTrue(error == LuxeAPIError.Code.E4016)
+                XCTAssertNil(inspection)
+            } else {
+                XCTAssertNil(error)
+                XCTAssertNotNil(inspection)
+            }
         }
         self.wait()
     }
@@ -53,22 +63,6 @@ class Inspection_APITests: XCTestCase {
             inspection, error in
             XCTAssertNil(error)
             XCTAssertNotNil(inspection)
-            Inspection_APITests.inspection = inspection
-        }
-        self.wait()
-    }
-
-    func test21_uploadDocumentPhoto() {
-        guard let request = Inspection_APITests.request else { XCTFail(); return }
-        guard let inspection = Inspection_APITests.inspection else { XCTFail(); return }
-        let image = UIColor.random().image()
-        DriverAPI.upload(photo: image,
-                         inspection: inspection,
-                         request: request)
-        {
-            url, error in
-            XCTAssertNil(error)
-            XCTAssertNotNil(url)
         }
         self.wait()
     }
@@ -77,18 +71,15 @@ class Inspection_APITests: XCTestCase {
         guard let request = Inspection_APITests.request else { XCTFail(); return }
         DriverAPI.createLoanerInspection(for: request) {
             inspection, error in
-            XCTAssertNil(error)
-            XCTAssertNotNil(inspection)
-            Inspection_APITests.inspection = inspection
+            if request.loanerInspection != nil {
+                XCTAssertNotNil(error)
+                XCTAssertNil(inspection)
+            } else {
+                let loanerRequested = request.loanerVehicleRequested ?? false
+                loanerRequested ? XCTAssertNil(error) : XCTAssertNotNil(error)
+                loanerRequested ? XCTAssertNotNil(inspection) : XCTAssertNil(inspection)
+            }
         }
         self.wait()
-    }
-
-    func test99_resetRequest() {
-        guard let request = Inspection_APITests.request else { XCTFail(); return }
-        DriverAPI.reset(request) {
-            error in
-            XCTAssertNil(error)
-        }
     }
 }

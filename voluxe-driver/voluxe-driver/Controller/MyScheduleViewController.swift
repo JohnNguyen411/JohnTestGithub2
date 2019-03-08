@@ -37,13 +37,12 @@ class MyScheduleViewController: UIViewController {
         return view
     }()
 
-    // TODO fix colors
     private let noRequestsView: UIView = {
         let label = UILabel.forAutoLayout()
+        label.text = Unlocalized.noScheduledRequests
         label.font = Font.Volvo.subtitle1
         label.numberOfLines = 0
-        label.text = Localized.noScheduledRequests
-        label.textColor = UIColor(rgb: 0x0, a: 0x61)
+        label.textColor = UIColor.Volvo.granite
         let view = GridLayoutView(layout: .volvoAgent())
         view.isHidden = true
         view.add(subview: label, from: 2, to: 5)
@@ -55,7 +54,7 @@ class MyScheduleViewController: UIViewController {
 
     convenience init() {
         self.init(nibName: nil, bundle: nil)
-        self.navigationItem.title = Localized.mySchedule.capitalized
+        self.navigationItem.title = String.localized(.viewSchedule).capitalized
         self.tableView.dataSource = self
         self.tableView.delegate = self
     }
@@ -65,21 +64,34 @@ class MyScheduleViewController: UIViewController {
         self.view.backgroundColor = UIColor.Volvo.background.light
         Layout.fill(view: self.view, with: self.tableView, useSafeArea: false)
         Layout.fill(view: self.view, with: self.noRequestsView)
+        
+        self.startRequestManager()
+        Analytics.trackView(screen: .scheduleToday)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        self.startRequestManager()
+        AppController.shared.requestPushPermissions()
+        RequestManager.shared.forceRefresh()        
+//        self.startRequestManager()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    deinit {
         RequestManager.shared.requestsDidChangeClosure = nil
+        RequestManager.shared.stop()
     }
 
     // MARK:- Updating latest data
 
     private func startRequestManager() {
+
+        OfflineTaskManager.shared.start()
+        
+        self.update(with: RequestManager.shared.requests)
 
         RequestManager.shared.requestsDidChangeClosure = {
             [weak self] requests in
@@ -87,8 +99,6 @@ class MyScheduleViewController: UIViewController {
         }
 
         RequestManager.shared.start()
-
-        self.update(with: RequestManager.shared.requests)
     }
 
     // It's important to detail the data structure that is produced because it is
@@ -113,13 +123,13 @@ class MyScheduleViewController: UIViewController {
             .filter { $0.state == .started &&
                       Calendar.current.isDateInToday($0.dealershipTimeSlot.from) }
             .sorted { $0.dealershipTimeSlot.from < $1.dealershipTimeSlot.from }
-        self.titlesAndRequests += [(Localized.currentService, current)]
+        self.titlesAndRequests += [(Unlocalized.currentService, current)]
 
         let today = requests
             .filter { $0.state == .requested &&
                       Calendar.current.isDateInToday($0.dealershipTimeSlot.from) }
             .sorted { $0.dealershipTimeSlot.from < $1.dealershipTimeSlot.from }
-        self.titlesAndRequests += [(Localized.upcomingToday, today)]
+        self.titlesAndRequests += [(Unlocalized.upcomingToday, today)]
 
         // this adds sections for each of the 7 days from the current date
         // each section is appropriately titled by a request during that date
@@ -132,7 +142,7 @@ class MyScheduleViewController: UIViewController {
                 .sorted { $0.dealershipTimeSlot.from < $1.dealershipTimeSlot.from }
             if requests.count > 0 {
                 let date = requests[0].dealershipTimeSlot.from
-                let title = i == 1 ? Localized.tomorrow : DateFormatter.requestSectionHeader.string(from: date)
+                let title = i == 1 ? Unlocalized.tomorrow : DateFormatter.requestSectionHeader.string(from: date)
                 self.titlesAndRequests += [(title, requests)]
             }
         }
@@ -249,8 +259,17 @@ extension MyScheduleViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let (_, requests) = self.titlesAndRequests[indexPath.section]
         let request = requests[indexPath.row]
-        let controller = RequestViewController(with: request)
-        self.navigationController?.pushViewController(controller, animated: true)
+        
+        if !Calendar.current.isDateInToday(request.dealershipTimeSlot.from) {
+            return
+        }
+        AppController.shared.mainController(push: RequestViewController(with: request), animated: true, asRootViewController: false, prefersProfileButton: true)
+        
+        if request.state == .started {
+            Analytics.trackClick(button: .requestCurrent, screen: .scheduleToday)
+        } else {
+            Analytics.trackClick(button: .requestUpcoming, screen: .scheduleToday)
+        }
     }
 }
 
@@ -270,28 +289,27 @@ fileprivate extension UITableViewHeaderFooterView {
                                      separator: Bool = false,
                                      separatorIsFullWidth: Bool = true) -> UITableViewHeaderFooterView
     {
-        let gridView = GridLayoutView(layout: .volvoAgent())
+        let view = UITableViewHeaderFooterView.withBackgroundView(color: backgroundColor)
 
         let label = UILabel()
         label.font = Font.Volvo.caption
         label.text = text
-        label.textColor = UIColor(rgb: 0x000000, a: 0x8a)
-        gridView.add(subview: label, from: 2, to: 6)
-        label.heightAnchor.constraint(equalTo: gridView.heightAnchor).isActive = true
+        label.textColor = UIColor.Volvo.granite
+        view.addSubview(label)
+        label.pinLeadingToSuperView(constant: 60)
+        label.pinCenterYWithSuperView()
 
         if separator {
             let separatorView = UIView.forAutoLayout()
             separatorView.backgroundColor = UIColor.Volvo.table.separator
-            gridView.addSubview(separatorView)
-            let leadingAnchor = separatorIsFullWidth ? gridView.leadingAnchor : gridView.leadingAnchor(for: 1)
+            view.addSubview(separatorView)
+            let leadingAnchor = separatorIsFullWidth ? view.leadingAnchor : label.leadingAnchor
             separatorView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-            separatorView.trailingAnchor.constraint(equalTo: gridView.trailingAnchor).isActive = true
+            separatorView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
             separatorView.pinToSuperviewTop()
             separatorView.constrain(height: 1)
         }
 
-        let view = UITableViewHeaderFooterView.withBackgroundView(color: backgroundColor)
-        Layout.fill(view: view.contentView, with: gridView, useSafeArea: false)
         return view
     }
 }
@@ -322,7 +340,7 @@ fileprivate extension UITableViewCell {
 
 // MARK:- Class for request cell content
 
-fileprivate class RequestCellContentView: GridLayoutView {
+fileprivate class RequestCellContentView: UIView {
 
     private let typeImageView: UIImageView = {
         let image = UIImage(named: "delivery_to_do")
@@ -352,26 +370,36 @@ fileprivate class RequestCellContentView: GridLayoutView {
         return label
     }()
 
-    convenience init() {
-        self.init(layout: GridLayout.volvoAgent())
+    init() {
+        super.init(frame: .zero)
         self.viewDidLoad()
     }
-
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     private func viewDidLoad() {
 
-        self.add(subview: self.typeImageView, to: 1)
+        self.addSubview(self.typeImageView)
         self.typeImageView.pinToSuperviewTop(spacing: 3)
+        self.typeImageView.pinLeadingToSuperView(constant: 20)
 
-        self.add(subview: self.primaryLabel, from: 2, to: 5)
+        self.addSubview(self.primaryLabel)
         self.primaryLabel.constrain(height: 20)
         self.primaryLabel.pinToSuperviewTop()
-
-        self.add(subview: self.loanerImageView, to: 6)
-        self.loanerImageView.pinToSuperviewTop(spacing: 3)
-
-        self.add(subview: self.secondaryLabel, from: 2, to: 5)
+        self.primaryLabel.pinLeadingToSuperView(constant: 60)
+        self.primaryLabel.pinTrailingToSuperView(constant: -50)
+        
+        self.addSubview(self.secondaryLabel)
         self.secondaryLabel.constrain(height: 20)
         self.secondaryLabel.pinTopToBottomOf(view: self.primaryLabel)
+        self.secondaryLabel.pinLeadingToSuperView(constant: 60)
+        self.secondaryLabel.pinTrailingToSuperView(constant: -50)
+
+        self.addSubview(self.loanerImageView)
+        self.loanerImageView.pinToSuperviewTop(spacing: 3)
+        self.loanerImageView.pinTrailingToSuperView(constant: -20)
     }
 
     func update(with request: Request) {
@@ -380,7 +408,7 @@ fileprivate class RequestCellContentView: GridLayoutView {
         self.primaryLabel.text = "\(request.timeRangeString) \(request.typeString)"
         self.secondaryLabel.text = request.locationString
         self.typeImageView.image = request.imageForType()
-        self.loanerImageView.isHidden = (request.loanerVehicleRequested ?? false) == false
+        self.loanerImageView.isHidden = !request.hasLoaner
     }
 }
 
@@ -397,12 +425,8 @@ fileprivate extension Request {
     var timeRangeString: String {
         let fromString = Request.timeFormatter.string(from: self.dealershipTimeSlot.from)
         let toString = Request.timeFormatter.string(from: self.dealershipTimeSlot.to)
-        let string = "\(fromString)-\(toString)"
+        let string = "\(fromString)–\(toString)"
         return string
-    }
-
-    var typeString: String {
-        return self.isPickup ? "Pickup" : "Delivery"
     }
 
     var locationString: String {

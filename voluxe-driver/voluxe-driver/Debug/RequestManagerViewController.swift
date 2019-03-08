@@ -11,12 +11,12 @@ import UIKit
 
 class RequestManagerViewController: UIViewController {
 
-    // MARK:- Table data sources
+    // MARK: Table data sources
 
     private let requestsTableDataSource = RequestsTableDataSource()
     private let inspectionsTableDataSource = InspectionsTableDataSource()
 
-    // MARK:- Layout
+    // MARK: Layout
 
     private let instructionLabel: UILabel = {
         let label = UILabel()
@@ -79,7 +79,7 @@ class RequestManagerViewController: UIViewController {
         return table
     }()
 
-    // MARK:- Lifecycle
+    // MARK: Lifecycle
 
     convenience init() {
 
@@ -153,7 +153,7 @@ class RequestManagerViewController: UIViewController {
         RequestManager.shared.set(driver: DriverManager.shared.driver)
     }
 
-    // MARK:- Actions
+    // MARK: Actions
 
     @objc func startButtonTouchUpInside() {
         if RequestManager.shared.isStarted {
@@ -254,7 +254,7 @@ extension RequestManagerViewController: UITableViewDelegate {
 
 fileprivate extension Request {
 
-    var typeString: String {
+    var detailedTypeString: String {
         switch self.type {
             case .advisorPickup: return "Advisor drop off"
             case .advisorDropoff: return "Advisor pick up"
@@ -301,7 +301,7 @@ fileprivate extension UITableViewCell {
 
     func update(with request: Request) {
         self.textLabel?.text = "Request \(request.id)"
-        var text = "\(request.typeString) - \(request.state.rawValue.uppercased())\n"
+        var text = "\(request.detailedTypeString) - \(request.state.rawValue.uppercased())\n"
         text = "\(text)\(request.locationString)\n"
         text = "\(text)\(request.documentInspectionString)\n"
         text = "\(text)\(request.loanerInspectionString)\n"
@@ -321,8 +321,11 @@ fileprivate extension UITableViewCell {
         var text = ""
         if let request = offlineInspection.request { text = "Request \(request.id)"}
         if let inspection = offlineInspection.inspection { text = "\(text), Inspection \(inspection.id)" }
+        else { text = "\(text), nil inspection" }
         self.textLabel?.text = text
-        text = "\(offlineInspection.type.rawValue), \(offlineInspection.data.count) bytes"
+        text = "\(offlineInspection.type.description), \(offlineInspection.data.count) bytes"
+        if offlineInspection.isPreparing { text = "\(text), preparing" }
+        if offlineInspection.failedCount > 0 { text = "\(text), failed \(offlineInspection.failedCount)" }
         if offlineInspection.isUploaded { text = "\(text), added to UploadManager" }
         self.detailTextLabel?.text = text
     }

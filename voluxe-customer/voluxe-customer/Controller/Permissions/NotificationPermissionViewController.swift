@@ -14,14 +14,14 @@ class NotificationPermissionViewController: VLPresentrViewController, PresentrDe
 
     static var isShowing = false
     
-    let notNowButton = VLButton(type: .whitePrimary, title: String.NotNow.uppercased())
-    let allowButton = VLButton(type: .bluePrimary, title: String.Allow.uppercased())
+    let notNowButton = VLButton(type: .whitePrimary, title: String.localized(.notNow).uppercased())
+    let allowButton = VLButton(type: .bluePrimary, title: String.localized(.permissionAllowButtonTitle).uppercased())
     let notifDelegate: UNUserNotificationCenterDelegate
     var sizeDelegate: VLPresentrViewDelegate?
     
     let permissionText: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .NotificationPermissionBody
+        textView.text = .localized(.permissionNotificationMessage)
         textView.font = .volvoSansProRegular(size: 16)
         textView.textColor = .luxeDarkGray()
         textView.volvoProLineSpacing()
@@ -65,24 +65,24 @@ class NotificationPermissionViewController: VLPresentrViewController, PresentrDe
         sizePermissionText = Int(permissionText.sizeThatFits(CGSize(width: self.view.frame.width - 60, height: CGFloat(MAXFLOAT))).height)
 
         notNowButton.snp.makeConstraints { make in
-            make.bottom.left.equalToSuperview()
+            make.bottom.leading.equalToSuperview()
             make.width.equalToSuperview().dividedBy(2).offset(-10)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
         allowButton.snp.makeConstraints { make in
             make.width.equalToSuperview().dividedBy(2).offset(-10)
-            make.bottom.right.equalToSuperview()
+            make.bottom.trailing.equalToSuperview()
             make.height.equalTo(VLButton.primaryHeight)
         }
         
         permissionText.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(notNowButton.snp.top).offset(-30)
         }
         
         appIcon.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(-9)
+            make.leading.equalToSuperview().offset(-9)
             make.bottom.equalTo(permissionText.snp.top).offset(-20)
             make.height.width.equalTo(70)
         }

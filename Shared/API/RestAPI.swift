@@ -8,54 +8,70 @@
 
 import Foundation
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Various environments for the RestAPI.  Clients are encouraged
+// to extend and provide implementations that produce String or
+// URL for each case, specific to their needs.  Check out LuxeAPI.swift
+// for an example.
 enum RestAPIHost: String, CaseIterable {
     case development
     case staging
     case production
 }
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Convenience type for API routes.
 typealias RestAPIRoute = String
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Convenience type for API parameters in the form of key:value pairs.
 typealias RestAPIParameters = [String: Any]
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Convenience type for API token.
 typealias RestAPIToken = String
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Convenience type for API headers in the form of key:value pairs.
 typealias RestAPIHeaders = [String: String]
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Convenience type used to encode upload data.
+enum RestAPIMimeType: String {
+
+    case invalid
+    case jpeg = "image/jpeg"
+    case json = "application/json"
+
+    var name: String {
+        switch self {
+            case .jpeg: return "photo"
+            case .json: return "text"
+            default: return "unknown"
+        }
+    }
+
+    var filename: String {
+        switch self {
+            case .jpeg: return "photo.jpg"
+            case .json: return "text.json"
+            default: return "unknown"
+        }
+    }
+}
+
+// Convenience type to wrap all responses in the RestAPI.  This is the
+// base response from RestAPI call to any upper layers.  Check out
+// LuxeAPI.swift to see how it is customized into a specific form
+// for the LuxeAPI.
 struct RestAPIResponse {
     let data: Data?
     let error: Error?
     let statusCode: Int?
 }
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
-// TODO https://app.asana.com/0/858610969087925/935159618076289/f
-// TODO should this be nested in RestAPI?
-enum RestAPIMimeType: String {
-    case invalid
-    case jpeg = "image/jpeg"
-    case json = "application/json"
-}
-
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Convenience type to form asynchronous completion closures for
+// API calls.
 typealias RestAPICompletion = ((RestAPIResponse?) -> ())
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Abstract protocol that defines how a Rest API should present
+// itself.  The intent is to provided a uniform interface between
+// an application specific API and a 3rd party networking framework.
+// Check out how LuxeAPI uses this with an Alamofire implementation.
 protocol RestAPI {
 
     var host: RestAPIHost { get set }
@@ -69,7 +85,6 @@ protocol RestAPI {
                bodyParameters: RestAPIParameters?,
                completion: RestAPICompletion?)
 
-    // TODO change bodyJSON to Encodable
     func put(route: RestAPIRoute,
              bodyParameters: RestAPIParameters?,
              bodyJSON: Data?,
@@ -84,15 +99,14 @@ protocol RestAPI {
                 bodyParameters: RestAPIParameters?,
                 completion: RestAPICompletion?)
 
-    // TODO need to expose upload here
-
-    // TODO NSURLResponse may be too restrictive, maybe merge into RestAPIResponse
-    // TODO how to support consuming a response if necessary
+    // Provides a hook for application code to inspect a raw response
+    // before sending the response up to higher levels.  This is useful
+    // for broadcast app wide notifications like "update required", or
+    // to dump responses to debug output.
     func inspect(urlResponse: HTTPURLResponse?, apiResponse: RestAPIResponse?)
 }
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Convenience to transform a route into a fully qualified URL string.
 extension RestAPI {
 
     func urlFromHost(for route: RestAPIRoute) -> String {

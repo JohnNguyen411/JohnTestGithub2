@@ -48,20 +48,6 @@ class DriverManagerViewController: UIViewController {
         return button
     }()
 
-    private let loginLabel: UILabel = {
-        let label = UILabel()
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.numberOfLines = 0
-        label.text = "Automatically log in on launch (for development only)"
-        return label
-    }()
-
-    private let loginToggle: UISwitch = {
-        let toggle = UISwitch()
-        toggle.addTarget(self, action: #selector(loginToggleValueChanged), for: .valueChanged)
-        return toggle
-    }()
-
     private let locationLabel: UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 12)
@@ -141,18 +127,11 @@ class DriverManagerViewController: UIViewController {
         gridView.add(subview: self.logoutButton, from: 4, to: 5)
         self.logoutButton.pinTopToBottomOf(view: self.passwordField, spacing: 20)
 
-        gridView.add(subview: self.loginToggle, to: 1)
-        self.loginToggle.pinTopToBottomOf(view: self.loginButton, spacing: 20)
-
-        gridView.add(subview: self.loginLabel, from: 2, to: 6)
-        self.loginLabel.pinTopToBottomOf(view: self.logoutButton, spacing: 20)
-        self.loginLabel.heightAnchor.constraint(equalTo: self.loginToggle.heightAnchor).isActive = true
-
         gridView.add(subview: self.locationToggle, to: 1)
-        self.locationToggle.pinTopToBottomOf(view: self.loginToggle, spacing: 20)
+        self.locationToggle.pinTopToBottomOf(view: self.logoutButton, spacing: 20)
 
         gridView.add(subview: self.locationLabel, from: 2, to: 6)
-        self.locationLabel.pinTopToBottomOf(view: self.loginLabel, spacing: 20)
+        self.locationLabel.pinTopToBottomOf(view: self.logoutButton, spacing: 20)
         self.locationLabel.heightAnchor.constraint(equalTo: self.locationToggle.heightAnchor).isActive = true
 
         gridView.add(subview: self.locationField, from: 1, to: 6)
@@ -176,7 +155,6 @@ class DriverManagerViewController: UIViewController {
         let driver = manager.driver
         self.loginButton.isEnabled = driver == nil
         self.logoutButton.isEnabled = driver != nil
-        self.loginToggle.isOn = UserDefaults.standard.loginOnLaunch
         self.locationToggle.isEnabled = manager.canUpdateLocation
         self.locationToggle.isOn = manager.isUpdatingLocation
         if let location = manager.location { self.locationField.text = "\(location)" }
@@ -193,7 +171,7 @@ class DriverManagerViewController: UIViewController {
         guard let password = self.passwordField.text else { return }
         self.loginButton.isEnabled = false
         DriverManager.shared.login(email: email, password: password) {
-            [weak self] driver in
+            [weak self] driver, error in
             self?.updateUI()
         }
     }
@@ -201,10 +179,6 @@ class DriverManagerViewController: UIViewController {
     @objc func logoutButtonTouchUpInside() {
         DriverManager.shared.logout()
         self.updateUI()
-    }
-
-    @objc func loginToggleValueChanged() {
-        UserDefaults.standard.loginOnLaunch = self.loginToggle.isOn
     }
 
     @objc func locationToggleValueChanged() {

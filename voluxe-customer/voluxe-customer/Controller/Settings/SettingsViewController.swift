@@ -51,7 +51,7 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
         self.view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
         }
     }
@@ -60,9 +60,9 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
         if section == 0 {
             return UserManager.sharedInstance.yourVolvoStringTitle()
         } else if section == 1 {
-            return .YourAccount
+            return .localized(.yourAccount)
         } else {
-            return .UnitOfDistance
+            return .localized(.viewSettingsDistanceUnitHeader)
         }
     }
     
@@ -71,11 +71,11 @@ class SettingsViewController: BaseViewController, SettingsCellProtocol {
             if vehicleCount > indexPath.row{
                 return vehicles[indexPath.row].vehicleDescription()
             }
-            return .AddANewVolvo
+            return .localized(.viewSettingsVolvoAddNewLabel)
         } else if indexPath.section == 1 {
             return (user?.email)!
         } else {
-            return .ShowDistanceAsMiles
+            return .localized(.viewSettingsDistanceUnitTitle)
         }
     }
     

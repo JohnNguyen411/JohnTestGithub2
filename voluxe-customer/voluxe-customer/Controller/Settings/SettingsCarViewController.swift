@@ -16,12 +16,12 @@ class SettingsCarViewController: BaseViewController {
     
     let removeVehicleButton: VLButton
     let vehicleImageView = UIImageView(frame: .zero)
-    let vehicleTypeView = VLTitledLabel(title: .VolvoYearModel, leftDescription: "", rightDescription: "")
+    let vehicleTypeView = VLTitledLabel(title: .localized(.volvoYearModel), leftDescription: "", rightDescription: "")
     let vehicle: Vehicle
     
     init(vehicle: Vehicle) {
         self.vehicle = vehicle
-        removeVehicleButton = VLButton(type: .orangePrimary, title: (.RemoveVehicle as String).uppercased(), kern: UILabel.uppercasedKern(), event: .removeVehicle, screen: .vehicleDetail)
+        removeVehicleButton = VLButton(type: .orangePrimary, title: String.localized(.removeVehicle).uppercased(), kern: UILabel.uppercasedKern(), event: .removeVehicle, screen: .vehicleDetail)
         super.init(screen: .vehicleDetail)
         
         realm = try? Realm()
@@ -56,19 +56,19 @@ class SettingsCarViewController: BaseViewController {
         contentView.addSubview(removeVehicleButton)
         
         vehicleTypeView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
             make.height.equalTo(VLTitledLabel.height)
         }
         
         vehicleImageView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(vehicleTypeView.snp.bottom)
             make.height.equalTo(Vehicle.vehicleImageHeight)
         }
         
         removeVehicleButton.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(VLButton.primaryHeight)
         }
         
@@ -78,10 +78,10 @@ class SettingsCarViewController: BaseViewController {
     }
     
     private func removeVehicleAlert() {
-        self.showDestructiveDialog(title: .RemoveVehicle,
-                                   message: .RemoveVehicleConfirmation,
-                                   cancelButtonTitle: .Cancel,
-                                   destructiveButtonTitle: .Remove,
+        self.showDestructiveDialog(title: .localized(.removeVehicle),
+                                   message: .localized(.popupRemoveVehicleMessage),
+                                   cancelButtonTitle: String.localized(.cancel),
+                                   destructiveButtonTitle: String.localized(.remove),
                                    destructiveCompletion: { [weak self] in self?.removeVehicle() },
                                    dialog: .vehicleDelete,
                                    screen: self.screen)
@@ -108,9 +108,9 @@ class SettingsCarViewController: BaseViewController {
     private func deleteVehicleFailed(error: LuxeAPIError) {
         MBProgressHUD.hide(for: self.view, animated: true)
         if error.code == .E3011 {
-            showOkDialog(title: .Error, message: .DeleteVehicleError, dialog: .error, screen: self.screen)
+            showOkDialog(title: .localized(.error), message: .localized(.errorDeleteVehicleBooking), dialog: .error, screen: self.screen)
         } else {
-            showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+            showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
         }
     }
     

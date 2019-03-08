@@ -7,10 +7,13 @@ inhibit_all_warnings!
 
 target 'voluxe-driver' do
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
+    pod 'Branch', '0.25.11'
     pod 'Crashlytics', '3.10.9'
     pod 'Fabric', '1.7.13'
-    pod 'Firebase/Core', '5.14.0'
-    pod 'Firebase/Messaging', '5.14.0'
+    pod 'Firebase/Core', '5.16.0'
+    pod 'Firebase/Messaging', '5.16.0'
+    pod 'FlagPhoneNumber', '0.7.1'
+    pod 'Kingfisher', '5.1.0'
     pod 'MBProgressHUD', '1.1.0'
     pod 'RealmSwift', '3.11.1'
 end
@@ -23,6 +26,7 @@ target 'voluxe-driverUnitTests' do
 end
 
 target 'voluxe-driverUITests' do
+    pod 'FlagPhoneNumber', '0.7.1'
 end
 
 post_install do | installer |

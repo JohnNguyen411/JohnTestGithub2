@@ -12,7 +12,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     
     let introLabel: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .WhatPartRequiresService
+        textView.text = .localized(.viewScheduleServiceTypeOtherLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -23,7 +23,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     
     let introLabelBold: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .SelectAllThatApply
+        textView.text = .localized(.viewScheduleServiceTypeOtherSubLabel)
         textView.font = .volvoSansProMedium(size: 12)
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
@@ -43,7 +43,7 @@ class ServiceMultiselectListViewController: BaseViewController {
     init(vehicle: Vehicle, repairOrderType: RepairOrderType) {
         self.vehicle = vehicle
         self.repairOrderType = repairOrderType
-        confirmButton = VLButton(type: .bluePrimary, title: (.Next as String).uppercased(), kern: UILabel.uppercasedKern(), event: .next, screen: .serviceCustomNotes)
+        confirmButton = VLButton(type: .bluePrimary, title: String.localized(.next).uppercased(), kern: UILabel.uppercasedKern(), event: .next, screen: .serviceCustomNotes)
         
         super.init(screen: .serviceCustomNotes)
     }
@@ -72,7 +72,7 @@ class ServiceMultiselectListViewController: BaseViewController {
         
         self.edgesForExtendedLayout = UIRectEdge.init(rawValue: 0)
 
-        showServices(services: [.UnderTheHood, .VehicleInt, .VehicleExt, .IDontKnow])
+        showServices(services: [.localized(.underTheHood), .localized(.vehicleInterior), .localized(.vehicleExterior), .localized(.iDontKnow)])
         self.serviceAnalyticsEnums = [.vehicleEngine, .vehicleInterior, .vehicleExterior, .vehicleUnknown]
         
         confirmButton.setActionBlock { [weak self] in
@@ -84,8 +84,8 @@ class ServiceMultiselectListViewController: BaseViewController {
             for (index, serviceElement) in services.enumerated() {
                 if let selected = weakSelf.selected[index], selected {
                     var title = serviceElement
-                    if title == .IDontKnow {
-                        title = .DiagnosticInspection
+                    if title == .localized(.iDontKnow) {
+                        title = .localized(.viewScheduleServiceTypeOtherUnknown)
                     }
                     selectedService.append(title)
                 }
@@ -94,7 +94,7 @@ class ServiceMultiselectListViewController: BaseViewController {
             weakSelf.pushViewController(OtherServiceViewController(vehicle: weakSelf.vehicle, repairOrderType: weakSelf.repairOrderType, services: selectedService), animated: true)
         }
         
-        self.navigationItem.title = .OtherMaintenance
+        self.navigationItem.title = .localized(.viewScheduleServiceTypeOther)
 
         enableConfirmButton()
 
@@ -117,23 +117,23 @@ class ServiceMultiselectListViewController: BaseViewController {
         
         introLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(BaseViewController.defaultTopYOffset)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
         }
         
         introLabelBold.snp.makeConstraints { make in
-            make.left.right.equalTo(introLabel)
+            make.leading.trailing.equalTo(introLabel)
             make.top.equalTo(introLabel.snp.bottom).offset(5)
         }
         
         confirmButton.snp.makeConstraints { make in
-            make.left.right.equalTo(introLabel)
+            make.leading.trailing.equalTo(introLabel)
             make.bottom.equalToSuperview()
             make.height.equalTo(VLButton.primaryHeight)
         }
         
         tableView.snp.makeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(introLabelBold.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.bottom.equalTo(confirmButton.snp.top).offset(-20)
         }

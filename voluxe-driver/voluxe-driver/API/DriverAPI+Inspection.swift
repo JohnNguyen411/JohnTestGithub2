@@ -12,51 +12,66 @@ import UIKit
 extension DriverAPI {
 
     static func createVehicleInspection(for request: Request,
-                                        completion: @escaping ((Inspection?, LuxeAPIError.Code?) -> Void))
+                                        completion: @escaping ((Inspection?, LuxeAPIError?) -> Void))
     {
         let route = "\(request.route)/vehicle-inspection"
         self.api.put(route: route) {
             response in
-            completion(response?.asInspection(), response?.asErrorCode())
+            completion(response?.asInspection(), response?.asError())
         }
     }
 
-    // NOTE this only supports requests where type = .pickup
-    // hence not using the self.api.path(for: request)
     static func createDocumentInspection(for request: Request,
-                                         completion: @escaping ((Inspection?, LuxeAPIError.Code?) -> Void))
+                                         completion: @escaping ((Inspection?, LuxeAPIError?) -> Void))
     {
-        // TODO https://app.asana.com/0/858610969087925/935159618076286/f
-        // TODO assert if not pickup
-        guard request.isPickup else { return }
         let route = "\(request.route)/documents"
         self.api.post(route: route) {
             response in
-            completion(response?.asInspection(), response?.asErrorCode())
+            completion(response?.asInspection(), response?.asError())
         }
     }
 
     static func createLoanerInspection(for request: Request,
-                                       completion: @escaping ((Inspection?, LuxeAPIError.Code?) -> Void))
+                                       completion: @escaping ((Inspection?, LuxeAPIError?) -> Void))
     {
         let route = "\(request.route)/loaner-vehicle-inspection"
         self.api.put(route: route) {
             response in
-            completion(response?.asInspection(), response?.asErrorCode())
+            completion(response?.asInspection(), response?.asError())
         }
     }
 
     static func update(_ request: Request,
                        loanerMileage: UInt,
-                       units: String,   // TODO need enum
-                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
+                       units: String,
+                       completion: @escaping ((LuxeAPIError?) -> Void))
     {
-        let route = "\(request.route)/loaner-vehicle-odometer-reading"
+        DriverAPI.update(request.route, loanerMileage: loanerMileage, units: units, completion: completion)
+    }
+    
+    static func update(_ requestRoute: String,
+                       loanerMileage: UInt,
+                       units: String,
+                       completion: @escaping ((LuxeAPIError?) -> Void))
+    {
+        let route = "\(requestRoute)/loaner-vehicle-odometer-reading"
         let parameters: RestAPIParameters = ["value": loanerMileage,
                                              "unit": units]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
-            completion(response?.asErrorCode())
+            completion(response?.asError())
+        }
+    }
+    
+    static func updateNotes(repairOrderRequestId: Int,
+                            notes: String,
+                       completion: @escaping ((LuxeAPIError?) -> Void))
+    {
+        let route = "v1/repair-order-requests/\(repairOrderRequestId)/notes"
+        let parameters: RestAPIParameters = ["notes": notes]
+        self.api.put(route: route, bodyParameters: parameters) {
+            response in
+            completion(response?.asError())
         }
     }
 }

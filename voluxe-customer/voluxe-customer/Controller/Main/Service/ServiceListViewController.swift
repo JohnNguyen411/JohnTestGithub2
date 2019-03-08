@@ -66,8 +66,8 @@ class ServiceListViewController: BaseViewController {
         self.view.addSubview(tableView)
         
         tableView.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(20)
-            make.right.bottom.equalToSuperview()
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.bottom.equalToSuperview()
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
         }
         
@@ -87,8 +87,8 @@ class ServiceListViewController: BaseViewController {
         let servicesHeight = CGFloat(services.count) * CheckmarkCell.height
         if servicesHeight < CGFloat(viewHeight - CheckmarkCell.height) {
             tableView.snp.remakeConstraints { make in
-                make.left.equalToSuperview().offset(20)
-                make.right.equalToSuperview()
+                make.leading.equalToSuperview().offset(20)
+                make.trailing.equalToSuperview()
                 make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
                 make.height.equalTo(servicesHeight+1)
             }

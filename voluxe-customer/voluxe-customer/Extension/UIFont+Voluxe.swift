@@ -47,10 +47,4 @@ extension UIFont {
     public class func volvoNovumMediumItalic(size: CGFloat) -> UIFont   { return UIFont.customFont(fontName: UIFont.volvoNovumMediumItalic, size: size) }
     public class func volvoNovumBoldItalic(size: CGFloat) -> UIFont   { return UIFont.customFont(fontName: UIFont.volvoNovumBoldItalic, size: size) }
 
-    
-    public class func customFont(fontName: String, size: CGFloat) -> UIFont {
-        return UIFont(name: fontName, size: size) ?? UIFont.systemFont(ofSize:size)
-        
-    }
-
 }

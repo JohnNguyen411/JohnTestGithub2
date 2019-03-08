@@ -49,7 +49,6 @@ struct GridLayout {
         return width
     }
 
-    // TODO check for out of bounds
     func leadingOffset(for column: UInt, in view: UIView) -> CGFloat {
         var offset = CGFloat(self.margin)
         offset += CGFloat(column - 1) * self.columnWidth(for: view)
@@ -86,7 +85,6 @@ class GridLayoutView: UIView {
     // guides represent the margins and inter-column gutters
     // the first and last guide are the margins
     // any guides in between are for the gutters
-    // TODO rename to gridGuides or maybe split into gridMarginGuides and gridGutterGuides
     var guides: [UILayoutGuide] = []
 
     private func guides(from layout: GridLayout) -> [UILayoutGuide] {
@@ -115,7 +113,6 @@ class GridLayoutView: UIView {
         return guides
     }
 
-    // TODO assert if column count == 0?
     init(layout: GridLayout) {
         self.gridLayout = layout
         super.init(frame: .zero)
@@ -190,10 +187,6 @@ extension UIView {
         return self.add(subview: subview, from: 1, to: layout.columnCount)
     }
 
-    // TODO rename to superview?
-    // TODO need a pinTopToPeerBottom?
-    // TODO should this throw if no parent grid layout?
-    // TODO throw if column > layout.columnCount?
     @discardableResult
     func add(subview: UIView, to column: UInt) -> UIView {
         return self.add(subview: subview, from: column, to: column)

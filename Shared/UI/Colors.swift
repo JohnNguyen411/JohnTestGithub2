@@ -93,8 +93,6 @@ protocol TableColors {
     var separator: UIColor { get }
 }
 
-// TODO not sure how to use this yet
-// TODO how do this relate to UIControl.State?
 protocol ButtonColors {
     var highlighted: UIColor { get }
     var disabled: UIColor { get }

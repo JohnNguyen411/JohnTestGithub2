@@ -8,10 +8,9 @@
 
 import Foundation
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
 struct LuxeAPIError: Codable, Error {
-    
+
+    // Luxe API specific error codes that are returned in the meta JSON blob
     // https://development-docs.ingress.luxe.com/v1/docs/#/
     enum Code: String, Codable {
         case E2001
@@ -52,6 +51,7 @@ struct LuxeAPIError: Codable, Error {
         case E4046
         case E4049
         case E4050
+        case E4052
         case E5001
         case E5002
     }

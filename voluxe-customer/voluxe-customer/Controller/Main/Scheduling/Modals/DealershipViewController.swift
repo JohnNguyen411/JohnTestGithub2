@@ -53,7 +53,7 @@ class DealershipViewController: VLPresentrViewController, VLGroupedLabelsDelegat
             
             groupedLabels.snp.makeConstraints { make in
                 make.bottom.equalTo(bottomButton.snp.top).offset(-30)
-                make.left.right.equalToSuperview()
+                make.leading.trailing.equalToSuperview()
                 make.height.equalTo(groupedLabels.items.count * VLSelectableLabel.height)
             }
             

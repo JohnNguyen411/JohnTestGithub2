@@ -10,11 +10,11 @@ import Foundation
 
 class HelpDetail {
     
-    var title: String
-    var description: String
+    var title: Localized
+    var description: Localized
     var actions: [HelpAction]?
     
-    init(title: String, description: String, actions: [HelpAction]? = nil) {
+    init(title: Localized, description: Localized, actions: [HelpAction]? = nil) {
         self.title = title
         self.description = description
         self.actions = actions

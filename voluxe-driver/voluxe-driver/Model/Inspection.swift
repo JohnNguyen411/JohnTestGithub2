@@ -21,6 +21,13 @@ struct Inspection: Codable {
         case vehicleId = "vehicle_id"
         case notes
     }
+    
+    init(id: Int, requestId: Int?, vehicleId: Int?, notes: String?) {
+        self.id = id
+        self.requestId = requestId
+        self.vehicleId = vehicleId
+        self.notes = notes
+    }
 }
 
 enum InspectionType: Int, CaseIterable, CustomStringConvertible {

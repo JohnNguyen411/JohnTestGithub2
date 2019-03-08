@@ -11,12 +11,12 @@ import Foundation
 extension DriverAPI {
 
     static func today(for driver: Driver,
-                      completion: @escaping (([Request], LuxeAPIError.Code?) -> Void)) {
+                      completion: @escaping (([Request], LuxeAPIError?) -> Void)) {
         let route = "v1/drivers/\(driver.id)/requests/today"
         self.api.get(route: route) {
             response in
             let requests = response?.asRequests() ?? []
-            completion(requests, response?.asErrorCode())
+            completion(requests, response?.asError())
         }
     }
 
@@ -38,78 +38,55 @@ extension DriverAPI {
     }
 
     static func refresh(_ request: Request,
-                        completion: @escaping ((Request?, LuxeAPIError.Code?) -> Void))
+                        completion: @escaping ((Request?, LuxeAPIError?) -> Void))
     {
         self.api.get(route: request.route) {
             response in
-            completion(response?.asRequest(), response?.asErrorCode())
+            completion(response?.asRequest(), response?.asError())
         }
     }
 
     static func update(_ request: Request,
                        task: Task,
-                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
+                       completion: @escaping ((LuxeAPIError?) -> Void))
     {
-        let route = "\(request.route)/task"
-        let parameters: RestAPIParameters = ["task": task.rawValue]
+        DriverAPI.update(request.route, task: task, completion: completion)
+    }
+    
+    static func update(_ requestRoute: String,
+                       task: Task,
+                       completion: @escaping ((LuxeAPIError?) -> Void))
+    {
+        let route = "\(requestRoute)/task"
+        let parameters: RestAPIParameters = ["task": task == .null ? NSNull() : task.rawValue]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
-            completion(response?.asErrorCode())
+            completion(response?.asError())
         }
     }
 
-    // TODO should this only update the pickup notes?
-    // TODO are dropoff notes not applicable?
     static func update(_ request: Request,
                        notes: String,
-                       completion: @escaping ((LuxeAPIError.Code?) -> Void))
+                       completion: @escaping ((LuxeAPIError?) -> Void))
     {
-        // TODO https://app.asana.com/0/858610969087925/935159618076286/f
-        // TODO assert if not pickup
-        guard request.isPickup else { return }
         let route = "\(request.route)/notes"
         let parameters: RestAPIParameters = ["notes": notes]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
-            completion(response?.asErrorCode())
+            completion(response?.asError())
         }
     }
 
-    // TODO return the numbers separately or in a struct?
     static func contactCustomer(_ request: Request,
-                                completion: @escaping ((String?, String?, LuxeAPIError.Code?) -> Void))
+                                mode: String,
+                                completion: @escaping ((String?, String?, LuxeAPIError?) -> Void))
     {
         let route = "\(request.route)/contact-customer"
-        let parameters: RestAPIParameters = ["mode": "text_only"]
+        let parameters: RestAPIParameters = ["mode": "\(mode)"]
         self.api.put(route: route, bodyParameters: parameters) {
             response in
             let (textNumber, phoneNumber) = response?.asPhoneNumbers() ?? (nil, nil)
-            completion(textNumber, phoneNumber, response?.asErrorCode())
-        }
-    }
-
-    // TODO move to AdminAPI only
-    static func reset(_ request: Request,
-                      completion: @escaping (LuxeAPIError.Code?) -> Void)
-    {
-        let route = "\(request.route)/reset"
-        self.api.put(route: route) {
-            response in
-            completion(response?.asErrorCode())
-        }
-    }
-
-    // TODO turn in Request extension
-    // TODO fix this to always return a path
-    // TODO include advisor paths
-    // this should include request id in path
-    @available(*, deprecated)
-    func path(for request: Request) -> String {
-        switch request.type {
-            case .advisorPickup: return "advisor-pickup-requests"
-            case .advisorDropoff: return "advisor-dropoff-requests"
-            case .dropoff: return "driver-dropoff-requests"
-            case .pickup: return "driver-pickup-requests"
+            completion(textNumber, phoneNumber, response?.asError())
         }
     }
 }

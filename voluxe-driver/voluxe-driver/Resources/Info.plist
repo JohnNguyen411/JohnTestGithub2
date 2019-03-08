@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Agent</string>
+	<string>Volvo Agent</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -18,8 +18,17 @@
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0.0</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>volvovaletagent</string>
+			</array>
+		</dict>
+	</array>
 	<key>CFBundleVersion</key>
-	<string>4</string>
+	<string>63</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -36,12 +45,29 @@
 	</dict>
 	<key>FirebaseScreenReportingEnabled</key>
 	<false/>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>comgooglemaps</string>
+		<string>comgooglemaps-x-callback</string>
+		<string>waze</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>NSCameraUsageDescription</key>
+	<string>Camera use is required</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>Location updates are required</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Location updates are required</string>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Volvo Novum-Bold.otf</string>
+		<string>Volvo Novum-Medium.otf</string>
+		<string>Volvo Novum-Regular.otf</string>
+		<string>Volvo Novum-SemiLight.otf</string>
+		<string>Volvo Novum-Light.otf</string>
+		<string>Volvo Novum-Italic.otf</string>
+	</array>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>fetch</string>
@@ -57,7 +83,6 @@
 	<key>UISupportedInterfaceOrientations</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
-		<string>UIInterfaceOrientationPortraitUpsideDown</string>
 	</array>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
@@ -66,7 +91,9 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>NSCameraUsageDescription</key>
-	<string>Camera use is required</string>
+	<key>branch_app_domain</key>
+	<string>$(BRANCH_APP_DOMAIN)</string>
+	<key>branch_key</key>
+	<string>$(BRANCH_KEY)</string>
 </dict>
 </plist>

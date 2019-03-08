@@ -16,10 +16,10 @@ struct Customer: Codable {
     let lastName: String
     let languageCode: String
     let passwordResetRequired: Bool
-    let lastLoginAt: Date
+    let lastLoginAt: Date? // might be null
     let phoneNumber: String
     let phoneNumberVerified: Bool
-    let photoUrl: String
+    let photoUrl: String?
     let location: Location?
     let type: String?
     let enabled: Bool
@@ -38,6 +38,10 @@ struct Customer: Codable {
         case location
         case type
         case enabled
+    }
+    
+    public func fullName() -> String {
+        return "\(firstName) \(lastName)"
     }
 }
 

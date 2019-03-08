@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SelfieViewController: StepViewController {
+class SelfieViewController: StepViewController, ShutterViewProtocol {
 
     // MARK: Data
 
@@ -18,29 +18,22 @@ class SelfieViewController: StepViewController {
 
     // MARK: Layout
 
-    private let nextButton: UIButton = {
-        let button = UIButton.Volvo.primary(title: Localized.looksGood)
-        button.isHidden = true
-        return button
-    }()
-
-    private let cancelButton: UIButton = {
-        let button = UIButton.Volvo.secondary(title: Localized.tryAgain)
-        button.isHidden = true
-        return button
-    }()
-
     private let cameraView: CameraView = {
         let view = CameraView(position: .front)
         view.cropColor = UIColor.Volvo.white.withAlphaComponent(0.4)
         view.cropTopLeft = CGPoint(x: 16, y: 36)
         view.showTakenPhoto = true
         view.requireFaceDetection = true
-        view.useFlash = true
+        view.useFlash = false
         return view
     }()
 
-    private let shutterView = ShutterView()
+    private let shutterView: ShutterView = {
+        let view = ShutterView()
+        view.numberOfPhotosRequired = 1
+        view.incrementNumberOfPhotosTakenOnShutter = false
+        return view
+    }()
 
     private let errorLabel: UILabel = {
         let label = UILabel()
@@ -54,15 +47,26 @@ class SelfieViewController: StepViewController {
 
     // MARK: Lifecycle
 
-    convenience init() {
-        self.init(title: Localized.photographYourself)
+    override init(step: Step?) {
+        super.init(step: step)
         self.addActions()
     }
-
+    
+    convenience init() {
+        self.init(title: Unlocalized.photographYourself)
+        self.addActions()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     override func viewDidLoad() {
 
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Volvo.background.light
+        
+        Analytics.trackView(screen: .profilePhoto)
 
         let gridView = self.view.addGridLayoutView(with: GridLayout.volvoAgent(), useSafeArea: false)
 
@@ -72,16 +76,15 @@ class SelfieViewController: StepViewController {
         self.errorLabel.topAnchor.constraint(equalTo: self.cameraView.cropLayoutGuide.bottomAnchor,
                                              constant: 20).isActive = true
 
-        gridView.add(subview: self.cancelButton, from: 1, to: 2)
-        self.cancelButton.pinBottomToSuperviewBottom(spacing: -40)
-
-        gridView.add(subview: self.nextButton, from: 3, to: 4)
-        self.nextButton.pinBottomToSuperviewBottom(spacing: -40)
-
-        gridView.addSubview(self.shutterView.usingAutoLayout())
-        self.shutterView.leftAnchor.constraint(equalTo: gridView.leftAnchor, constant: 16).isActive = true
-        self.shutterView.rightAnchor.constraint(equalTo: gridView.centerXAnchor, constant: 25).isActive = true
+        gridView.add(subview: self.shutterView, from: 1, to: 6)
         self.shutterView.pinBottomToSuperviewBottom(spacing: -30)
+        
+        shutterView.delegate = self
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        self.cameraView.close()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -93,20 +96,17 @@ class SelfieViewController: StepViewController {
     // MARK: Animations
 
     private func updateControls() {
-        self.setShutterView(visible: self.image == nil)
-        self.setButtons(visible: self.image != nil)
+
         self.shutterView.flashButton.isSelected = self.cameraView.useFlash
 
         if let _ = self.error {
-            self.showErrorLabel(text: Localized.faceNotDetected)
+            self.showErrorLabel(text: Unlocalized.faceNotDetected)
         } else {
             self.hideErrorLabel()
         }
     }
 
     private func hideControls() {
-        self.setShutterView(visible: false)
-        self.setButtons(visible: false)
         self.hideErrorLabel()
     }
 
@@ -114,10 +114,6 @@ class SelfieViewController: StepViewController {
         self.shutterView.isHidden = !visible
     }
 
-    private func setButtons(visible: Bool, animated: Bool = true) {
-        self.cancelButton.isHidden = !visible
-        self.nextButton.isHidden = !visible
-    }
 
     private func showErrorLabel(text: String) {
         self.errorLabel.alpha = 0
@@ -133,49 +129,65 @@ class SelfieViewController: StepViewController {
 
     private func addActions() {
 
+        self.shutterView.cameraView = self.cameraView
+
         self.cameraView.photoWasTaken = {
             [weak self] photo, error in
-            self?.image = photo
-            self?.error = error
-            self?.updateControls()
+            guard let me = self else { return }
+            me.error = error
+            me.updateControls()
+            guard error == nil else { return }
+            me.image = photo
+            me.shutterView.incrementNumberOfPhotosTaken()
+            Analytics.trackView(screen: .confirmProfilePhoto)
         }
 
-        self.shutterView.flashButton.addTarget(self, action: #selector(flashButtonTouchUpInside), for: .touchUpInside)
-        self.shutterView.shutterButton.addTarget(self, action: #selector(shutterButtonTouchUpInside), for: .touchUpInside)
-        self.nextButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
-        self.cancelButton.addTarget(self, action: #selector(cancelButtonTouchUpInside), for: .touchUpInside)
+        self.shutterView.doneButton.addTarget(self, action: #selector(nextButtonTouchUpInside), for: .touchUpInside)
     }
 
-    @objc func flashButtonTouchUpInside() {
-        self.cameraView.useFlash = !self.cameraView.useFlash
-        self.shutterView.flashButton.isSelected = self.cameraView.useFlash
-    }
-
-    @objc func shutterButtonTouchUpInside() {
-        self.cameraView.capture()
-        self.hideControls()
-    }
-
-    @objc func nextButtonTouchUpInside() {
+    @objc override func nextButtonTouchUpInside() {
+        
         guard let image = self.image else { return }
         AppController.shared.lookBusy()
         DriverManager.shared.set(image: image) {
-            [weak self] success, error in
+            [weak self] success in
             AppController.shared.lookNotBusy()
             if success {
-                self?.navigationController?.popToRootViewController(animated: true)
+                if let flowDelegate = self?.flowDelegate {
+                    if !flowDelegate.pushNextStep() {
+                        AppController.shared.mainController(push: MyScheduleViewController(),
+                                                            animated: true,
+                                                            asRootViewController: true,
+                                                            prefersProfileButton: true)
+                    }
+                } else {
+                    if let navigationController = self?.navigationController {
+                        navigationController.popToRootViewController(animated: true)
+                    } else {
+                        AppController.shared.mainController(push: MyScheduleViewController(),
+                                                            animated: true,
+                                                            asRootViewController: true,
+                                                            prefersProfileButton: true)
+                    }
+                }
             } else {
-                AppController.shared.alert(title: Localized.photoUploadFailed.capitalized,
-                                           message: Localized.pleaseTryAgain)
-                Log.unexpected(.apiError, error?.rawValue ?? "unknown")
+                AppController.shared.alert(title: Unlocalized.photoUploadFailed.capitalized,
+                                           message: Unlocalized.pleaseTryAgain)
             }
         }
     }
+    
+    // MARK: ShutterViewDelegate
+    func resetButtonClick() {
+        Analytics.trackClick(button: .retry, screen: .confirmProfilePhoto)
+    }
+    
+    func shutterButtonClick() {
+        Analytics.trackClick(button: .capturePhoto, screen: .profilePhoto)
 
-    @objc func cancelButtonTouchUpInside() {
-        self.cameraView.reset()
-        self.image = nil
-        self.error = nil
-        self.updateControls()
+    }
+    
+    func flashButtonClick(enabled: Bool) {
+        Analytics.trackClick(button: enabled ? .flashOn : .flashOff, screen: .profilePhoto)
     }
 }

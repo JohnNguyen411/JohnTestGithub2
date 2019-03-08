@@ -74,19 +74,4 @@ extension UserDefaults {
             #endif
         }
     }
-
-    var loginOnLaunch: Bool {
-        get {
-            #if DEBUG
-                return self.bool(forKey: #function)
-            #else
-                return false
-            #endif
-        }
-        set {
-            #if DEBUG
-                self.set(newValue, forKey: #function)
-            #endif
-        }
-    }
 }

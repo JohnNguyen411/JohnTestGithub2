@@ -9,10 +9,14 @@
 import Foundation
 
 extension DriverAPI {
+    
+    static func loadToken(token: String) {
+        self.api.token = token
+    }
 
     static func login(email: String,
                       password: String,
-                      completion: @escaping ((Driver?, LuxeAPIError.Code?) -> ()))
+                      completion: @escaping ((Driver?, LuxeAPIError?) -> ()))
     {
         let parameters = ["email": email,
                           "password": password,
@@ -21,17 +25,35 @@ extension DriverAPI {
         self.api.post(route: "v1/users/login", bodyParameters: parameters) {
             response in
             let (driver, token) = response?.decodeDriverAndToken() ?? (nil, nil)
+            // save token
+            KeychainManager.shared.setToken(token: token)
             self.api.token = token
-            completion(driver, response?.asErrorCode())
+            completion(driver, response?.asError())
         }
     }
 
-    static func logout(completion: ((LuxeAPIError.Code?) -> ())? = nil) {
+    /// If no completion closure is provided, this will not attempt
+    /// to decode any response from the API.
+    static func logout(completion: ((LuxeAPIError?) -> ())? = nil) {
+        
+        KeychainManager.shared.setToken(token: nil)
+
+        // if there is no token then logout() was probably already called
+        guard self.api.token != nil else {
+            Log.unexpected(.missingValue, "logout() called without a token")
+            completion?(nil)
+            return
+        }
+
+        // tell the API the token is finished
         self.api.post(route: "v1/users/logout") {
             response in
-            completion?(response?.asErrorCode())
+            guard let completion = completion else { return }
+            completion(response?.asError())
         }
-        self.api.updateHeaders()
+
+        // clear the token and headers
+        self.api.clearToken()
     }
 }
 

@@ -12,6 +12,7 @@ import UIKit
 enum Permission: String {
     case location = "Location Updates"
     case push = "Push Notifications"
+    case camera = "Camera"
 }
 
 class PermissionViewController: UIViewController {
@@ -34,19 +35,19 @@ class PermissionViewController: UIViewController {
         let label = UILabel()
         label.font = Font.Volvo.body1
         label.numberOfLines = 0
-        label.text = Localized.permissionRequiredText
+        label.text = Unlocalized.permissionRequiredText
         label.textColor = UIColor.Volvo.granite
         return label
     }()
 
-    private let button = UIButton.Volvo.primary(title: Localized.goToSettings)
+    private let button = UIButton.Volvo.primary(title: Unlocalized.goToSettings)
 
     // MARK:- Lifecycle
 
     init(permission: Permission) {
         self.permission = permission
         super.init(nibName: nil, bundle: nil)
-        self.navigationItem.title = Localized.permissionRequired.capitalized
+        self.navigationItem.title = Unlocalized.permissionRequired.capitalized
         self.addActions()
     }
 
@@ -58,6 +59,10 @@ class PermissionViewController: UIViewController {
 
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.Volvo.background.light
+        
+        if permission == .camera {
+            label.text = .localized(.permissionsCameraDeniedMessage)
+        }
 
         let gridView = GridLayoutView(layout: GridLayout.volvoAgent())
         Layout.fill(view: self.view, with: gridView)

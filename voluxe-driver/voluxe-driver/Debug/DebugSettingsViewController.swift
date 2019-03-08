@@ -60,6 +60,20 @@ class DebugSettingsViewController: DebugTableViewController {
                 self?.confirmHostChange()
             }
         )]
+        
+        settings += [DebugTableViewCellModel(title: "Disable Alert Sound",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = (UserDefaults.standard.disableAlertSound ? .checkmark : .none)
+        },
+                                             actionClosure:
+            {
+                _ in
+                UserDefaults.standard.disableAlertSound = !UserDefaults.standard.disableAlertSound
+        }
+            )]
 
         return ("Application", settings)
     }
@@ -69,11 +83,12 @@ class DebugSettingsViewController: DebugTableViewController {
         var settings: [DebugTableViewCellModel] = []
 
         settings += [DebugTableViewCellModel(title: "Inject Login Required (E2001)",
-                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             cellReuseIdentifier: DebugSubtitleTableViewCell.className,
                                              valueClosure:
             {
                 cell in
                 cell.accessoryType = UserDefaults.standard.injectLoginRequired ? .checkmark : .none
+                cell.detailTextLabel?.text = "Will cause an alert loop if DriverAPI.logout() is called"
             },
                                              actionClosure:
             {
@@ -93,6 +108,35 @@ class DebugSettingsViewController: DebugTableViewController {
             {
                 cell in
                 UserDefaults.standard.injectUpdateRequired = !UserDefaults.standard.injectUpdateRequired
+            }
+        )]
+        
+        settings += [DebugTableViewCellModel(title: "Disable Firebase",
+                                             cellReuseIdentifier: DebugSubtitleTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = (UserDefaults.standard.disableFirebase ? .checkmark : .none)
+                cell.detailTextLabel?.text = "Requires relaunch to take effect"
+        },
+                                             actionClosure:
+            {
+                _ in
+                UserDefaults.standard.disableFirebase = !UserDefaults.standard.disableFirebase
+            }
+        )]
+        
+        settings += [DebugTableViewCellModel(title: "Enable logging",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = (UserDefaults.standard.enableAlamoFireLogging ? .checkmark : .none)
+        },
+                                             actionClosure:
+            {
+                _ in
+                UserDefaults.standard.enableAlamoFireLogging = !UserDefaults.standard.enableAlamoFireLogging
             }
         )]
 
@@ -156,6 +200,66 @@ class DebugSettingsViewController: DebugTableViewController {
             {
                 cell in
                 self.navigationController?.pushViewController(UploadManagerViewController(), animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Document Inspection",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                let controller = InspectionPhotosViewController(type: .document)
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Loaner Inspection",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                let controller = InspectionPhotosViewController(type: .loaner)
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Vehicle Inspection",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                let controller = InspectionPhotosViewController(type: .vehicle)
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+        )]
+
+        settings += [DebugTableViewCellModel(title: "Driver Selfie",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+            },
+                                             actionClosure:
+            {
+                cell in
+                let controller = SelfieViewController()
+                self.navigationController?.pushViewController(controller, animated: true)
             }
         )]
 

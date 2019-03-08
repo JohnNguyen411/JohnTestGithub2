@@ -41,29 +41,29 @@ class DebugFontCellView: UIView {
         self.addSubview(tracking)
         
         bottomSeparator.snp.makeConstraints { make in
-            make.left.right.bottom.equalToSuperview()
+            make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(1)
         }
         
         tracking.snp.makeConstraints { make in
-            make.right.centerY.equalToSuperview()
+            make.trailing.centerY.equalToSuperview()
             make.width.equalTo(70)
         }
         
         size.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.equalTo(tracking.snp.left).offset(-20)
+            make.trailing.equalTo(tracking.snp.leading).offset(-20)
             make.width.equalTo(40)
         }
         
         weight.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.right.equalTo(size.snp.left).offset(-20)
+            make.trailing.equalTo(size.snp.leading).offset(-20)
             make.width.equalTo(70)
         }
         
         title.snp.makeConstraints { make in
-            make.bottom.left.equalToSuperview()
+            make.bottom.leading.equalToSuperview()
             make.width.equalTo(90)
         }
     }

@@ -8,18 +8,38 @@
 
 import Foundation
 import UIKit
+import AudioToolbox
+import AVFoundation
 
 class AppController: UIViewController {
 
+    // MARK: PhoneNumerVerification
+    var isVerifyingPhoneNumber = false
+    
+    // MARK: Sound
+    var audioPlayer: AVAudioPlayer?
+    
     // MARK: Singleton
 
     static let shared = AppController()
 
     // MARK: Lifecycle
 
+    open override var preferredStatusBarStyle: UIStatusBarStyle {
+        guard (self.presentedViewController as? ProfileViewController) != nil else { return .default }
+        return .lightContent
+    }
+    
+    override func setNeedsStatusBarAppearanceUpdate() {
+        super.setNeedsStatusBarAppearanceUpdate()
+    }
+    
     private init() {
         super.init(nibName: nil, bundle: nil)
         self.registerAPINotifications()
+        
+        UILabel.appearance(whenContainedInInstancesOf: [UIAlertController.self]).numberOfLines = 0
+        UILabel.appearance(whenContainedInInstancesOf: [UIAlertController.self]).lineBreakMode = .byWordWrapping
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -33,6 +53,16 @@ class AppController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        
+        if let fileURL = URL(string: "file:///Library/Ringtones/Beacon.m4r") {
+            do {
+                self.audioPlayer = try AVAudioPlayer(contentsOf: fileURL)
+                audioPlayer?.delegate = self
+            } catch {
+                OSLog.info(error.localizedDescription)
+            }
+        }
+        
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -40,16 +70,10 @@ class AppController: UIViewController {
         self.associateManagers()
     }
 
-    // MARK: Manager support
-
     private func associateManagers() {
-
-        // TODO if driver becomes nil, need to force logout
-        // when driver changes other managers need to know
         DriverManager.shared.driverDidChangeClosure = {
             driver in
             RequestManager.shared.set(driver: driver)
-            if driver == nil { self.showLanding() }
         }
     }
 }
@@ -59,14 +83,17 @@ class AppController: UIViewController {
 extension AppController {
 
     func launch() {
-        // TODO resume() is called just for simplicity
-        // launch behaviour will be different
         self.showLanding(animated: false)
-        self.resume()
     }
 
     func resume() {
-        self.requestPermissions()
+        if UserDefaults.standard.hasAskedPushPermission {
+            AppController.shared.requestPushPermissions()
+        }
+        if UserDefaults.standard.hasAskedLocationPermission {
+            AppController.shared.requestLocationPermissions()
+        }
+        
     }
 
     func suspend() {
@@ -75,6 +102,13 @@ extension AppController {
 
     func exit() {
         UserDefaults.standard.synchronize()
+    }
+
+    func logout() {
+        DriverManager.shared.logout()
+        RequestManager.shared.stop()
+        UploadManager.shared.stop()
+        self.showLanding()
     }
 }
 
@@ -92,9 +126,6 @@ extension AppController {
     /// are placed WITHOUT safe area.  This means that the views inside the controller
     /// need to be placed with safe areas.
     func replaceChildController(with controller: UIViewController, animated: Bool = true) {
-
-        // TODO prevent showing the same type twice
-        // this will become necessary to solve soon
 
         assert(self.children.count <= 1, "AppController should never have more than one child controller")
         let oldController = self.children.first
@@ -118,9 +149,6 @@ extension AppController {
                 oldController?.didMove(toParent: nil)
             })
     }
-
-    // TODO need canShowController(type) to prevent double show
-    // TODO is showing controller of type
 }
 
 // MARK:- Specific controller support
@@ -137,24 +165,6 @@ extension AppController {
         self.replaceChildController(with: controller, animated: animated)
     }
 
-    @available(*, deprecated)
-    func showToday(animated: Bool = true) {
-        let controller = UIViewController(nibName: nil, bundle: nil)
-        controller.view.backgroundColor = UIColor.Debug.red
-        let button = UIButton(type: .custom).usingAutoLayout()
-        button.setTitle("Close", for: .normal)
-        controller.view.addSubview(button)
-        button.centerXAnchor.constraint(equalTo: controller.view.centerXAnchor).isActive = true
-        button.centerYAnchor.constraint(equalTo: controller.view.centerYAnchor).isActive = true
-        button.addTarget(self, action: #selector(closeButtonTouchUpInside), for: .touchUpInside)
-        self.replaceChildController(with: controller)
-    }
-
-    // TODO remove, this is temporary to test replacing controllers
-    @objc func closeButtonTouchUpInside() {
-        AppController.shared.showLanding()
-    }
-
     // MARK: Profile controller
 
     // The profile controller is different than other child controllers
@@ -167,6 +177,7 @@ extension AppController {
         controller.preparePresentAnimation()
         self.present(controller, animated: false) {
             controller.playPresentAnimation()
+            self.setNeedsStatusBarAppearanceUpdate()
         }
     }
 
@@ -175,7 +186,9 @@ extension AppController {
     func hideProfile(animated: Bool = true) {
         guard let controller = self.presentedViewController as? ProfileViewController else { return }
         controller.playDismissAnimation() {
-            controller.dismiss(animated: false, completion: nil)
+            controller.dismiss(animated: false, completion: {
+                self.setNeedsStatusBarAppearanceUpdate()
+            })
         }
     }
 
@@ -185,7 +198,6 @@ extension AppController {
         return self.children.first as? MainViewController
     }
 
-    // TODO should prefersProfileButton be aspect of view controller?  likely yes
     func mainController(push controller: UIViewController,
                         animated: Bool = true,
                         asRootViewController: Bool = false,
@@ -197,5 +209,9 @@ extension AppController {
         guard let prefers = prefersProfileButton else { return }
         if prefers { main.showProfileButton(animated: animated) }
         else { main.hideProfileButton(animated: animated) }
+    }
+    
+    var presentedController: UIViewController? {
+        return self.children.first
     }
 }

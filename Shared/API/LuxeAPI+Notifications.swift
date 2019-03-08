@@ -8,18 +8,26 @@
 
 import Foundation
 
-// TODO https://app.asana.com/0/858610969087925/908722711775269/f
-// TODO documentation
+// Allows the inspection and notification of any API responses that
+// require wider app action like "login required" or "upgrade required".
 extension LuxeAPI {
 
     func inspect(urlResponse: HTTPURLResponse?, apiResponse: RestAPIResponse?) {
 
         // login required, update required errors
-        // these take precidence over update available
+        // these take precedence over update available
+        // note that login required will reset the API token
         if let code = apiResponse?.asErrorCode() {
             switch code {
                 case .E2001, .E2002, .E2003, .E2004, .E3001:
+                    self.clearToken()
                     let notification = Notification.loginRequired()
+                    NotificationCenter.default.post(notification)
+                case .E3003:
+                    let notification = Notification.resetPasswordRequired()
+                    NotificationCenter.default.post(notification)
+                case .E3004:
+                    let notification = Notification.phoneVerificationRequired()
                     NotificationCenter.default.post(notification)
                 case .E3006:
                     let notification = Notification.updateRequired()
@@ -55,6 +63,14 @@ extension Notification.Name {
         static var loginRequired: Notification.Name {
             return Notification.Name("Notification.LuxeAPI.\(#function)")
         }
+        
+        static var phoneVerificationRequired: Notification.Name {
+            return Notification.Name("Notification.LuxeAPI.\(#function)")
+        }
+        
+        static var resetPasswordRequired: Notification.Name {
+            return Notification.Name("Notification.LuxeAPI.\(#function)")
+        }
     }
 }
 
@@ -74,6 +90,16 @@ extension Notification {
 
     static func loginRequired() -> Notification {
         let notification = Notification(name: Notification.Name.LuxeAPI.loginRequired)
+        return notification
+    }
+    
+    static func phoneVerificationRequired() -> Notification {
+        let notification = Notification(name: Notification.Name.LuxeAPI.phoneVerificationRequired)
+        return notification
+    }
+    
+    static func resetPasswordRequired() -> Notification {
+        let notification = Notification(name: Notification.Name.LuxeAPI.resetPasswordRequired)
         return notification
     }
 

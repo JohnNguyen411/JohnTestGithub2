@@ -35,9 +35,9 @@ import Foundation
  
     static func categoryName(category: RepairOrderCategory) -> String {
         if category == .routineMaintenanceByDistance {
-            return .MilestoneServices
+            return .localized(.viewScheduleServiceTypeMilestone)
         }
-        return .OtherMaintenanceRepairs
+        return .localized(.viewScheduleServiceTypeDetailNameLabelOther)
     }
 }
 

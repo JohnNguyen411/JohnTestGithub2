@@ -8,12 +8,75 @@
 
 /* Begin PBXBuildFile section */
 		23B23DB9CB567E68A9D8A7FD /* Pods_voluxe_driverUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496CC8BDA5EAFFAB068238CC /* Pods_voluxe_driverUITests.framework */; };
+		522751A2221CCB4A0067459E /* AppDelegate+Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522751A1221CCB4A0067459E /* AppDelegate+Branch.swift */; };
+		5235EBF121F92643002BBCE7 /* RepairOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235EBEF21F92639002BBCE7 /* RepairOrderRequest.swift */; };
+		5235EBF321F927D6002BBCE7 /* DealershipRepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235EBF221F927D6002BBCE7 /* DealershipRepairOrder.swift */; };
+		5235EBF421F927D6002BBCE7 /* DealershipRepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235EBF221F927D6002BBCE7 /* DealershipRepairOrder.swift */; };
+		5235EBF621F92AA9002BBCE7 /* RepairOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235EBF521F92AA9002BBCE7 /* RepairOrderType.swift */; };
+		5235EBF921F93BC7002BBCE7 /* RecordMileageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235EBF821F93BC7002BBCE7 /* RecordMileageViewController.swift */; };
+		5235EBFB21FA2D57002BBCE7 /* DriverManager+Dealerships.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235EBFA21FA2D57002BBCE7 /* DriverManager+Dealerships.swift */; };
+		5235EBFD21FA6A26002BBCE7 /* DriveToCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235EBFC21FA6A26002BBCE7 /* DriveToCustomerViewController.swift */; };
+		52494CAE21FAA10500A51DD7 /* RequestStepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52494CAD21FAA10500A51DD7 /* RequestStepViewController.swift */; };
+		52494CB021FAA96B00A51DD7 /* MeetCustomerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52494CAF21FAA96B00A51DD7 /* MeetCustomerViewController.swift */; };
 		524C1FF6219E4E62003AA733 /* AdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C1FF5219E4E62003AA733 /* AdminAPI.swift */; };
 		524C1FF9219E4E82003AA733 /* AdminAPI+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C1FF8219E4E82003AA733 /* AdminAPI+Driver.swift */; };
 		524C201C21ACB90C003AA733 /* LuxeAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C201B21ACB90C003AA733 /* LuxeAPIError.swift */; };
 		524C201D21ACB90C003AA733 /* LuxeAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C201B21ACB90C003AA733 /* LuxeAPIError.swift */; };
 		524C201E21ACB90C003AA733 /* LuxeAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C201B21ACB90C003AA733 /* LuxeAPIError.swift */; };
 		524C201F21ACB90C003AA733 /* LuxeAPIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C201B21ACB90C003AA733 /* LuxeAPIError.swift */; };
+		5250471B22134B7900D07CD4 /* DriveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5250471A22134B7900D07CD4 /* DriveViewController.swift */; };
+		52504721221495C400D07CD4 /* RequestState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52504720221495C400D07CD4 /* RequestState.swift */; };
+		525047232214C9A400D07CD4 /* AppController+AlertSound.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525047222214C9A300D07CD4 /* AppController+AlertSound.swift */; };
+		525047252214E78700D07CD4 /* UserDefaults+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 525047242214E78700D07CD4 /* UserDefaults+Voluxe.swift */; };
+		52504727221500FA00D07CD4 /* UserDefaults+Permissions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52504726221500FA00D07CD4 /* UserDefaults+Permissions.swift */; };
+		52504729221643E400D07CD4 /* NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52504728221643E400D07CD4 /* NavigationHelper.swift */; };
+		5250472B2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5250472A2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift */; };
+		5250472D2217659F00D07CD4 /* UIView+Dimensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5250472C2217659F00D07CD4 /* UIView+Dimensions.swift */; };
+		52504730221B44A300D07CD4 /* FBAnalytics+UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5250472F221B44A200D07CD4 /* FBAnalytics+UserManager.swift */; };
+		52504732221B704500D07CD4 /* Analytics+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52504731221B704500D07CD4 /* Analytics+Request.swift */; };
+		52504734221C84DF00D07CD4 /* UIView+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52504733221C84DF00D07CD4 /* UIView+Toast.swift */; };
+		528194882203B9C500C7E8EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 528194872203B9C500C7E8EF /* Localizable.strings */; };
+		5281948B2203BB5A00C7E8EF /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948A2203BB5A00C7E8EF /* Localized.swift */; };
+		5281948E2204F43F00C7E8EF /* RepairOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */; };
+		52A1CE382205138D002F16BE /* InspectionNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE372205138D002F16BE /* InspectionNotesViewController.swift */; };
+		52A1CE3A22051928002F16BE /* ExchangeKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3922051928002F16BE /* ExchangeKeysViewController.swift */; };
+		52A1CE3C22051B43002F16BE /* ReturnToDealershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3B22051B43002F16BE /* ReturnToDealershipViewController.swift */; };
+		52A1CE3E2209FBDC002F16BE /* ReceiveLoanerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3D2209FBDC002F16BE /* ReceiveLoanerViewController.swift */; };
+		52A1CE40220B6F8C002F16BE /* OfflineTaskUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3F220B6F8C002F16BE /* OfflineTaskUpdate.swift */; };
+		52A1CE42220B72E5002F16BE /* OfflineTaskManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE41220B72E5002F16BE /* OfflineTaskManager.swift */; };
+		52A1CE44220CF22E002F16BE /* Task+Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE43220CF22E002F16BE /* Task+Flow.swift */; };
+		52A1CE46220E5455002F16BE /* UIImageViewAligned.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE45220E5455002F16BE /* UIImageViewAligned.swift */; };
+		52A1CE4D22122D52002F16BE /* Volvo Novum-Italic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52A1CE4922122D51002F16BE /* Volvo Novum-Italic.otf */; };
+		52A1CE5222123504002F16BE /* ImagedLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE5122123504002F16BE /* ImagedLabel.swift */; };
+		52A3A62521E6CC96002A273E /* VLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62321E6CC96002A273E /* VLTextField.swift */; };
+		52A3A62621E6CC96002A273E /* VLVerticalTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62421E6CC96002A273E /* VLVerticalTextField.swift */; };
+		52A3A62821E811FB002A273E /* PasswordToggleVisibilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62721E811FB002A273E /* PasswordToggleVisibilityView.swift */; };
+		52B200E5221F4EEF005DE35A /* DeviceOrientationHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200E4221F4EEF005DE35A /* DeviceOrientationHelper.swift */; };
+		52B200E7221F6BBD005DE35A /* UIImage+Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200E6221F6BBD005DE35A /* UIImage+Orientation.swift */; };
+		52B200E922246824005DE35A /* UILabel+CoreText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200E822246824005DE35A /* UILabel+CoreText.swift */; };
+		52B200EB222468E6005DE35A /* UILabelHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200EA222468E6005DE35A /* UILabelHighlight.swift */; };
+		52B200ED2224A758005DE35A /* UILabel+Truncate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200EC2224A758005DE35A /* UILabel+Truncate.swift */; };
+		52B200EF2224B54F005DE35A /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200EE2224B54F005DE35A /* NotesViewController.swift */; };
+		52B200F12224CEC7005DE35A /* UITextViewHighlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52B200F02224CEC7005DE35A /* UITextViewHighlight.swift */; };
+		52B200F322289648005DE35A /* GoogleService-Info-AppStore.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52B200F222289648005DE35A /* GoogleService-Info-AppStore.plist */; };
+		52C67E6421E952A3005EEC3B /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6321E952A2005EEC3B /* String+Validation.swift */; };
+		52C67E6621ED2355005EEC3B /* FlagPhoneNumberTextField+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6521ED2354005EEC3B /* FlagPhoneNumberTextField+Utils.swift */; };
+		52C67E6821ED391F005EEC3B /* UITextField+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6721ED391F005EEC3B /* UITextField+Voluxe.swift */; };
+		52C67E6A21ED60D8005EEC3B /* PhoneVerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6921ED60D8005EEC3B /* PhoneVerificationViewController.swift */; };
+		52C67E6C21F293B7005EEC3B /* StepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6B21F293B7005EEC3B /* StepViewController.swift */; };
+		52C67E6E21F2A0DF005EEC3B /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6D21F2A0DF005EEC3B /* KeychainManager.swift */; };
+		52C67E7321F7DF08005EEC3B /* ReviewServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E7221F7DF08005EEC3B /* ReviewServiceViewController.swift */; };
+		52C67E7521F80010005EEC3B /* LoginFlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E7421F80010005EEC3B /* LoginFlowViewController.swift */; };
+		52C67E7921F9189A005EEC3B /* NSMutableAttributedString+Bold.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E7821F9189A005EEC3B /* NSMutableAttributedString+Bold.swift */; };
+		52C67E8021F91EB8005EEC3B /* Volvo Novum-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52C67E7B21F91EB8005EEC3B /* Volvo Novum-Regular.otf */; };
+		52C67E8121F91EB8005EEC3B /* Volvo Novum-Bold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52C67E7C21F91EB8005EEC3B /* Volvo Novum-Bold.otf */; };
+		52C67E8221F91EB8005EEC3B /* Volvo Novum-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52C67E7D21F91EB8005EEC3B /* Volvo Novum-Medium.otf */; };
+		52C67E8321F91EB8005EEC3B /* Volvo Novum-SemiLight.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52C67E7E21F91EB8005EEC3B /* Volvo Novum-SemiLight.otf */; };
+		52C67E8421F91EB8005EEC3B /* Volvo Novum-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52C67E7F21F91EB8005EEC3B /* Volvo Novum-Light.otf */; };
+		52C67E8621F9205C005EEC3B /* LoanerPaperworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E8521F9205C005EEC3B /* LoanerPaperworkViewController.swift */; };
+		52CFAC5821FFD5390019255D /* UIBarButtonItem+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */; };
+		52D6C0AD223051B400346787 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52D6C0AC223051B400346787 /* GoogleService-Info-Staging.plist */; };
+		52E8CB982229FDB700794E3B /* GoogleService-Info-Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */; };
 		52FFBBAE21ADF78D00FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */; };
 		52FFBBAF21ADF79800FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */; };
 		530BCD4A2177AAB2005327E7 /* RestAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 530BCD492177AAB2005327E7 /* RestAPI.swift */; };
@@ -30,9 +93,18 @@
 		5312142421C9AF3C00F3FCEB /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142321C9AF3C00F3FCEB /* ProfileViewController.swift */; };
 		5312142B21CAB49500F3FCEB /* RequestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142A21CAB49500F3FCEB /* RequestViewController.swift */; };
 		5312142D21CB0AE700F3FCEB /* FlowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312142C21CB0AE700F3FCEB /* FlowViewController.swift */; };
-		5312143121CC569E00F3FCEB /* ContactInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143021CC569E00F3FCEB /* ContactInfoViewController.swift */; };
 		5312143321CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143221CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift */; };
 		5312143521CC689200F3FCEB /* SelfieViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312143421CC689200F3FCEB /* SelfieViewController.swift */; };
+		5316E9692200CA950053832E /* OSLog+Analytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E9682200CA950053832E /* OSLog+Analytics.swift */; };
+		5316E96B2200F07B0053832E /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E96A2200F07B0053832E /* OSLog.swift */; };
+		5316E96E2200F1900053832E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E96D2200F1900053832E /* Log.swift */; };
+		5316E9702200F2D20053832E /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E96F2200F2D20053832E /* Log.swift */; };
+		5316E9712200F2F30053832E /* OSLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E96A2200F07B0053832E /* OSLog.swift */; };
+		5316E98A220205510053832E /* OfflineInspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5316E989220205510053832E /* OfflineInspection.swift */; };
+		531A8A2521ED599100D5C8C0 /* InspectionCameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2421ED599100D5C8C0 /* InspectionCameraView.swift */; };
+		531A8A2721EE7D8300D5C8C0 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */; };
+		531A8A2821F12EEB00D5C8C0 /* OdometerReading.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */; };
+		531A8A2A21F189C900D5C8C0 /* Thread+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538C4D9C218A45CA00922B16 /* Thread+Assert.swift */; };
 		531F9C2021B874110027F43D /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 531F9C1F21B874110027F43D /* Date+Extensions.swift */; };
 		533046E5218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */; };
 		533046E6218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */; };
@@ -49,7 +121,7 @@
 		5330471D2188D896007CE01C /* DebugSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5330471C2188D895007CE01C /* DebugSettingsViewController.swift */; };
 		533047242188F85B007CE01C /* AppDelegate+Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533047232188F85B007CE01C /* AppDelegate+Fetch.swift */; };
 		5330472721890B1E007CE01C /* AppDelegate+Push.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5330472621890B1E007CE01C /* AppDelegate+Push.swift */; };
-		5330472921890BF8007CE01C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5330472821890BF8007CE01C /* GoogleService-Info.plist */; };
+		5330472921890BF8007CE01C /* GoogleService-Info-Development.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5330472821890BF8007CE01C /* GoogleService-Info-Development.plist */; };
 		53368D8C21C17CEB00B1A2AF /* AdminAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C1FF5219E4E62003AA733 /* AdminAPI.swift */; };
 		53368D8D21C17CED00B1A2AF /* AdminAPI+Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C1FF8219E4E82003AA733 /* AdminAPI+Driver.swift */; };
 		53368D8E21C17D2E00B1A2AF /* UIImage+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53B654BA21AE0E3500FC3ACA /* UIImage+LuxeAPI.swift */; };
@@ -59,13 +131,26 @@
 		5339035521D00B5A00DD16D8 /* UIButton+Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339035421D00B5A00DD16D8 /* UIButton+Color.swift */; };
 		5339035921D0215400DD16D8 /* UIImage+Rounded.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339035821D0215400DD16D8 /* UIImage+Rounded.swift */; };
 		5339035B21D042DB00DD16D8 /* Buttons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339035A21D042DB00DD16D8 /* Buttons.swift */; };
-		5339035D21D04CC500DD16D8 /* SetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339035C21D04CC500DD16D8 /* SetPasswordViewController.swift */; };
 		5339036121D051F000DD16D8 /* AppDelegate+UIAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036021D051F000DD16D8 /* AppDelegate+UIAppearance.swift */; };
 		5339036521D1570F00DD16D8 /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036421D1570E00DD16D8 /* CameraView.swift */; };
 		5339036721D1573600DD16D8 /* SwipeNextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036621D1573600DD16D8 /* SwipeNextView.swift */; };
 		5339036921D55BF100DD16D8 /* UIImage+Merge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036821D55BF000DD16D8 /* UIImage+Merge.swift */; };
-		5339036D21D7148A00DD16D8 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036C21D7148A00DD16D8 /* Localized.swift */; };
+		5339036D21D7148A00DD16D8 /* Unlocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036C21D7148A00DD16D8 /* Unlocalized.swift */; };
 		533B72D5218B556E009A44EC /* DriverManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533B72D4218B556E009A44EC /* DriverManager.swift */; };
+		535381A421FD775300C03ECE /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E6D21F2A0DF005EEC3B /* KeychainManager.swift */; };
+		535381A521FD789F00C03ECE /* UIView+Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190DF219B2A9C00CBC410 /* UIView+Layout.swift */; };
+		535381A621FD78FF00C03ECE /* VLTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A3A62321E6CC96002A273E /* VLTextField.swift */; };
+		535381A721FD7C6900C03ECE /* Layout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190E2219B2A9D00CBC410 /* Layout.swift */; };
+		535381A821FD7C7A00C03ECE /* UIView+SafeArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190E4219B2A9D00CBC410 /* UIView+SafeArea.swift */; };
+		535381A921FD7C8D00C03ECE /* UIView+AutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 536FFD842177901D00C83F89 /* UIView+AutoLayout.swift */; };
+		535381AA21FD7CA800C03ECE /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312141821C83C1E00F3FCEB /* Colors.swift */; };
+		535381AB21FD7CAB00C03ECE /* Colors+Volvo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312141A21C83C2A00F3FCEB /* Colors+Volvo.swift */; };
+		535381AC21FD7CAE00C03ECE /* ColorsImplementation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5312141C21C8767000F3FCEB /* ColorsImplementation.swift */; };
+		535381AD21FD7CC500C03ECE /* UIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190E1219B2A9D00CBC410 /* UIColor+Hex.swift */; };
+		535381AE21FD7CD200C03ECE /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C190DE219B2A9C00CBC410 /* Font.swift */; };
+		535381B721FEA0D600C03ECE /* FBAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535381B221FEA0D600C03ECE /* FBAnalytics.swift */; };
+		535381B921FEA0D600C03ECE /* AnalyticsCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535381B421FEA0D600C03ECE /* AnalyticsCore.swift */; };
+		535381BB21FEA0D600C03ECE /* AnalyticsEnums.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535381B621FEA0D600C03ECE /* AnalyticsEnums.swift */; };
 		535A452F217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */; };
 		535A4530217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */; };
 		535A4532217A3787006B5EE1 /* Driver_APITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 535A4531217A3787006B5EE1 /* Driver_APITests.swift */; };
@@ -74,6 +159,14 @@
 		536FFD9D2177901D00C83F89 /* increment_build.sh in Resources */ = {isa = PBXBuildFile; fileRef = 536FFD912177901D00C83F89 /* increment_build.sh */; };
 		536FFD9E2177901D00C83F89 /* ipa-to-fabric.sh in Resources */ = {isa = PBXBuildFile; fileRef = 536FFD922177901D00C83F89 /* ipa-to-fabric.sh */; };
 		536FFDA12177921B00C83F89 /* release-notes.txt in Resources */ = {isa = PBXBuildFile; fileRef = 536FFDA02177921B00C83F89 /* release-notes.txt */; };
+		5374DF2921E519CA00956122 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53368D9021C2FB5400B1A2AF /* String+Utils.swift */; };
+		5374DF2A21E519D500956122 /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1A221B9E3060051B8D5 /* LogService.swift */; };
+		5374DF2F21E524BF00956122 /* Bundle+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5374DF2E21E524BF00956122 /* Bundle+Current.swift */; };
+		5374DF3021E524D000956122 /* Bundle+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5374DF2E21E524BF00956122 /* Bundle+Current.swift */; };
+		5374DF3121E524D100956122 /* Bundle+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5374DF2E21E524BF00956122 /* Bundle+Current.swift */; };
+		5374DF3221E524D100956122 /* Bundle+Current.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5374DF2E21E524BF00956122 /* Bundle+Current.swift */; };
+		5374DF3421E52E4700956122 /* FilmstripView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5374DF3321E52E4700956122 /* FilmstripView.swift */; };
+		5374DF3621E52FBF00956122 /* InspectionPhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5374DF3521E52FBF00956122 /* InspectionPhotosViewController.swift */; };
 		5380089C21A32CF800E47660 /* UploadManagerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5380089B21A32CF800E47660 /* UploadManagerViewController.swift */; };
 		5380089E21A33C2F00E47660 /* UIColor+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5380089D21A33C2F00E47660 /* UIColor+Random.swift */; };
 		5380089F21A33C2F00E47660 /* UIColor+Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5380089D21A33C2F00E47660 /* UIColor+Random.swift */; };
@@ -148,7 +241,7 @@
 		53E7F17E219A49A600390A5D /* LuxeAPI+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E7F17D219A49A600390A5D /* LuxeAPI+Notifications.swift */; };
 		53EEB19C21B9854D0051B8D5 /* AppDelegate+Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB19B21B9854D0051B8D5 /* AppDelegate+Location.swift */; };
 		53EEB1A021B9AFA60051B8D5 /* AppController+Permission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB19F21B9AFA60051B8D5 /* AppController+Permission.swift */; };
-		53EEB1A321B9E3060051B8D5 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1A221B9E3060051B8D5 /* Log.swift */; };
+		53EEB1A321B9E3060051B8D5 /* LogService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1A221B9E3060051B8D5 /* LogService.swift */; };
 		53EEB1AB21BF29090051B8D5 /* LandingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1AA21BF29090051B8D5 /* LandingViewController.swift */; };
 		53EEB1AE21BF29EC0051B8D5 /* GridLayout+VolvoAgent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1AD21BF29EC0051B8D5 /* GridLayout+VolvoAgent.swift */; };
 		53EEB1B021C06AA60051B8D5 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53EEB1AF21C06AA60051B8D5 /* MainViewController.swift */; };
@@ -175,12 +268,76 @@
 
 /* Begin PBXFileReference section */
 		094F2A302573828463BE665F /* Pods-voluxe-driver.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.app store.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.app store.xcconfig"; sourceTree = "<group>"; };
+		0A02722CFEB623049E274707 /* Pods-voluxe-driverAPITests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverAPITests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverAPITests/Pods-voluxe-driverAPITests.appstore.xcconfig"; sourceTree = "<group>"; };
 		24B0A83106D70B3A14E0A5B7 /* Pods-voluxe-driverAPITests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverAPITests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverAPITests/Pods-voluxe-driverAPITests.production.xcconfig"; sourceTree = "<group>"; };
+		2D1EA0D2F110093970842729 /* Pods-voluxe-driver.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.appstore.xcconfig"; sourceTree = "<group>"; };
 		468ECDE7DF2AC14C8B95BC04 /* Pods-voluxe-driverUITests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.development.xcconfig"; sourceTree = "<group>"; };
 		496CC8BDA5EAFFAB068238CC /* Pods_voluxe_driverUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		522751A1221CCB4A0067459E /* AppDelegate+Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Branch.swift"; sourceTree = "<group>"; };
+		5235EBEF21F92639002BBCE7 /* RepairOrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrderRequest.swift; sourceTree = "<group>"; };
+		5235EBF221F927D6002BBCE7 /* DealershipRepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealershipRepairOrder.swift; sourceTree = "<group>"; };
+		5235EBF521F92AA9002BBCE7 /* RepairOrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrderType.swift; sourceTree = "<group>"; };
+		5235EBF821F93BC7002BBCE7 /* RecordMileageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMileageViewController.swift; sourceTree = "<group>"; };
+		5235EBFA21FA2D57002BBCE7 /* DriverManager+Dealerships.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverManager+Dealerships.swift"; sourceTree = "<group>"; };
+		5235EBFC21FA6A26002BBCE7 /* DriveToCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveToCustomerViewController.swift; sourceTree = "<group>"; };
+		52494CAD21FAA10500A51DD7 /* RequestStepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestStepViewController.swift; sourceTree = "<group>"; };
+		52494CAF21FAA96B00A51DD7 /* MeetCustomerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetCustomerViewController.swift; sourceTree = "<group>"; };
 		524C1FF5219E4E62003AA733 /* AdminAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdminAPI.swift; sourceTree = "<group>"; };
 		524C1FF8219E4E82003AA733 /* AdminAPI+Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdminAPI+Driver.swift"; sourceTree = "<group>"; };
 		524C201B21ACB90C003AA733 /* LuxeAPIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LuxeAPIError.swift; sourceTree = "<group>"; };
+		5250471A22134B7900D07CD4 /* DriveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriveViewController.swift; sourceTree = "<group>"; };
+		52504720221495C400D07CD4 /* RequestState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestState.swift; sourceTree = "<group>"; };
+		525047222214C9A300D07CD4 /* AppController+AlertSound.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppController+AlertSound.swift"; sourceTree = "<group>"; };
+		525047242214E78700D07CD4 /* UserDefaults+Voluxe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Voluxe.swift"; sourceTree = "<group>"; };
+		52504726221500FA00D07CD4 /* UserDefaults+Permissions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Permissions.swift"; sourceTree = "<group>"; };
+		52504728221643E400D07CD4 /* NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationHelper.swift; sourceTree = "<group>"; };
+		5250472A2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+NavigationHelper.swift"; sourceTree = "<group>"; };
+		5250472C2217659F00D07CD4 /* UIView+Dimensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Dimensions.swift"; sourceTree = "<group>"; };
+		5250472F221B44A200D07CD4 /* FBAnalytics+UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FBAnalytics+UserManager.swift"; sourceTree = "<group>"; };
+		52504731221B704500D07CD4 /* Analytics+Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analytics+Request.swift"; sourceTree = "<group>"; };
+		52504733221C84DF00D07CD4 /* UIView+Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Toast.swift"; sourceTree = "<group>"; };
+		528194872203B9C500C7E8EF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		5281948A2203BB5A00C7E8EF /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
+		5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepairOrderRequest.swift; sourceTree = "<group>"; };
+		52A1CE372205138D002F16BE /* InspectionNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionNotesViewController.swift; sourceTree = "<group>"; };
+		52A1CE3922051928002F16BE /* ExchangeKeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeKeysViewController.swift; sourceTree = "<group>"; };
+		52A1CE3B22051B43002F16BE /* ReturnToDealershipViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReturnToDealershipViewController.swift; sourceTree = "<group>"; };
+		52A1CE3D2209FBDC002F16BE /* ReceiveLoanerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveLoanerViewController.swift; sourceTree = "<group>"; };
+		52A1CE3F220B6F8C002F16BE /* OfflineTaskUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTaskUpdate.swift; sourceTree = "<group>"; };
+		52A1CE41220B72E5002F16BE /* OfflineTaskManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineTaskManager.swift; sourceTree = "<group>"; };
+		52A1CE43220CF22E002F16BE /* Task+Flow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Flow.swift"; sourceTree = "<group>"; };
+		52A1CE45220E5455002F16BE /* UIImageViewAligned.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageViewAligned.swift; sourceTree = "<group>"; };
+		52A1CE4922122D51002F16BE /* Volvo Novum-Italic.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-Italic.otf"; sourceTree = "<group>"; };
+		52A1CE5122123504002F16BE /* ImagedLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagedLabel.swift; sourceTree = "<group>"; };
+		52A3A62321E6CC96002A273E /* VLTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLTextField.swift; sourceTree = "<group>"; };
+		52A3A62421E6CC96002A273E /* VLVerticalTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VLVerticalTextField.swift; sourceTree = "<group>"; };
+		52A3A62721E811FB002A273E /* PasswordToggleVisibilityView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PasswordToggleVisibilityView.swift; sourceTree = "<group>"; };
+		52B200E4221F4EEF005DE35A /* DeviceOrientationHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceOrientationHelper.swift; sourceTree = "<group>"; };
+		52B200E6221F6BBD005DE35A /* UIImage+Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Orientation.swift"; sourceTree = "<group>"; };
+		52B200E822246824005DE35A /* UILabel+CoreText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+CoreText.swift"; sourceTree = "<group>"; };
+		52B200EA222468E6005DE35A /* UILabelHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILabelHighlight.swift; sourceTree = "<group>"; };
+		52B200EC2224A758005DE35A /* UILabel+Truncate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Truncate.swift"; sourceTree = "<group>"; };
+		52B200EE2224B54F005DE35A /* NotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
+		52B200F02224CEC7005DE35A /* UITextViewHighlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextViewHighlight.swift; sourceTree = "<group>"; };
+		52B200F222289648005DE35A /* GoogleService-Info-AppStore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-AppStore.plist"; sourceTree = "<group>"; };
+		52C67E6321E952A2005EEC3B /* String+Validation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Validation.swift"; sourceTree = "<group>"; };
+		52C67E6521ED2354005EEC3B /* FlagPhoneNumberTextField+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FlagPhoneNumberTextField+Utils.swift"; sourceTree = "<group>"; };
+		52C67E6721ED391F005EEC3B /* UITextField+Voluxe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITextField+Voluxe.swift"; sourceTree = "<group>"; };
+		52C67E6921ED60D8005EEC3B /* PhoneVerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhoneVerificationViewController.swift; sourceTree = "<group>"; };
+		52C67E6B21F293B7005EEC3B /* StepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepViewController.swift; sourceTree = "<group>"; };
+		52C67E6D21F2A0DF005EEC3B /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
+		52C67E7221F7DF08005EEC3B /* ReviewServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewServiceViewController.swift; sourceTree = "<group>"; };
+		52C67E7421F80010005EEC3B /* LoginFlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFlowViewController.swift; sourceTree = "<group>"; };
+		52C67E7821F9189A005EEC3B /* NSMutableAttributedString+Bold.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSMutableAttributedString+Bold.swift"; sourceTree = "<group>"; };
+		52C67E7B21F91EB8005EEC3B /* Volvo Novum-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-Regular.otf"; sourceTree = "<group>"; };
+		52C67E7C21F91EB8005EEC3B /* Volvo Novum-Bold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-Bold.otf"; sourceTree = "<group>"; };
+		52C67E7D21F91EB8005EEC3B /* Volvo Novum-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-Medium.otf"; sourceTree = "<group>"; };
+		52C67E7E21F91EB8005EEC3B /* Volvo Novum-SemiLight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-SemiLight.otf"; sourceTree = "<group>"; };
+		52C67E7F21F91EB8005EEC3B /* Volvo Novum-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-Light.otf"; sourceTree = "<group>"; };
+		52C67E8521F9205C005EEC3B /* LoanerPaperworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanerPaperworkViewController.swift; sourceTree = "<group>"; };
+		52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Attributes.swift"; sourceTree = "<group>"; };
+		52D6C0AC223051B400346787 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
+		52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
 		52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Debug.swift"; sourceTree = "<group>"; };
 		530BCD492177AAB2005327E7 /* RestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPI.swift; sourceTree = "<group>"; };
 		530BCD4C2177AFBE005327E7 /* LuxeAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuxeAPI.swift; sourceTree = "<group>"; };
@@ -195,9 +352,15 @@
 		5312142321C9AF3C00F3FCEB /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		5312142A21CAB49500F3FCEB /* RequestViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestViewController.swift; sourceTree = "<group>"; };
 		5312142C21CB0AE700F3FCEB /* FlowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowViewController.swift; sourceTree = "<group>"; };
-		5312143021CC569E00F3FCEB /* ContactInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactInfoViewController.swift; sourceTree = "<group>"; };
 		5312143221CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmPhoneViewController.swift; sourceTree = "<group>"; };
 		5312143421CC689200F3FCEB /* SelfieViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelfieViewController.swift; sourceTree = "<group>"; };
+		5316E9682200CA950053832E /* OSLog+Analytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OSLog+Analytics.swift"; sourceTree = "<group>"; };
+		5316E96A2200F07B0053832E /* OSLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OSLog.swift; sourceTree = "<group>"; };
+		5316E96D2200F1900053832E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		5316E96F2200F2D20053832E /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		5316E989220205510053832E /* OfflineInspection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfflineInspection.swift; sourceTree = "<group>"; };
+		531A8A2421ED599100D5C8C0 /* InspectionCameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionCameraView.swift; sourceTree = "<group>"; };
+		531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OdometerReading.swift; sourceTree = "<group>"; };
 		531F9C1F21B874110027F43D /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 		533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverAPI+Inspection.swift"; sourceTree = "<group>"; };
 		533046E721877847007CE01C /* Inspection_APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Inspection_APITests.swift; sourceTree = "<group>"; };
@@ -212,20 +375,23 @@
 		533047232188F85B007CE01C /* AppDelegate+Fetch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Fetch.swift"; sourceTree = "<group>"; };
 		5330472521890935007CE01C /* voluxe-driver.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "voluxe-driver.entitlements"; sourceTree = "<group>"; };
 		5330472621890B1E007CE01C /* AppDelegate+Push.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Push.swift"; sourceTree = "<group>"; };
-		5330472821890BF8007CE01C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5330472821890BF8007CE01C /* GoogleService-Info-Development.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Development.plist"; sourceTree = "<group>"; };
 		53368D9021C2FB5400B1A2AF /* String+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		5339035021CEBED200DD16D8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5339035221CEC43B00DD16D8 /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		5339035421D00B5A00DD16D8 /* UIButton+Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Color.swift"; sourceTree = "<group>"; };
 		5339035821D0215400DD16D8 /* UIImage+Rounded.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Rounded.swift"; sourceTree = "<group>"; };
 		5339035A21D042DB00DD16D8 /* Buttons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Buttons.swift; sourceTree = "<group>"; };
-		5339035C21D04CC500DD16D8 /* SetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetPasswordViewController.swift; sourceTree = "<group>"; };
 		5339036021D051F000DD16D8 /* AppDelegate+UIAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+UIAppearance.swift"; sourceTree = "<group>"; };
 		5339036421D1570E00DD16D8 /* CameraView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CameraView.swift; sourceTree = "<group>"; };
 		5339036621D1573600DD16D8 /* SwipeNextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwipeNextView.swift; sourceTree = "<group>"; };
 		5339036821D55BF000DD16D8 /* UIImage+Merge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Merge.swift"; sourceTree = "<group>"; };
-		5339036C21D7148A00DD16D8 /* Localized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
+		5339036C21D7148A00DD16D8 /* Unlocalized.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unlocalized.swift; sourceTree = "<group>"; };
 		533B72D4218B556E009A44EC /* DriverManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriverManager.swift; sourceTree = "<group>"; };
+		535381B221FEA0D600C03ECE /* FBAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FBAnalytics.swift; sourceTree = "<group>"; };
+		535381B321FEA0D600C03ECE /* NullAnalytics.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NullAnalytics.swift; sourceTree = "<group>"; };
+		535381B421FEA0D600C03ECE /* AnalyticsCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsCore.swift; sourceTree = "<group>"; };
+		535381B621FEA0D600C03ECE /* AnalyticsEnums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsEnums.swift; sourceTree = "<group>"; };
 		535A452E217A304B006B5EE1 /* DriverAPI+Login.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DriverAPI+Login.swift"; sourceTree = "<group>"; };
 		535A4531217A3787006B5EE1 /* Driver_APITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver_APITests.swift; sourceTree = "<group>"; };
 		536FFD842177901D00C83F89 /* UIView+AutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+AutoLayout.swift"; sourceTree = "<group>"; };
@@ -234,6 +400,10 @@
 		536FFD922177901D00C83F89 /* ipa-to-fabric.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = "ipa-to-fabric.sh"; sourceTree = "<group>"; };
 		536FFDA02177921B00C83F89 /* release-notes.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "release-notes.txt"; sourceTree = "<group>"; };
 		536FFDA52177977000C83F89 /* export-options-development.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "export-options-development.plist"; path = "export/export-options-development.plist"; sourceTree = SOURCE_ROOT; };
+		5374DF2E21E524BF00956122 /* Bundle+Current.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Current.swift"; sourceTree = "<group>"; };
+		5374DF3321E52E4700956122 /* FilmstripView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilmstripView.swift; sourceTree = "<group>"; };
+		5374DF3521E52FBF00956122 /* InspectionPhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionPhotosViewController.swift; sourceTree = "<group>"; };
+		5374DF3B21E59A2200956122 /* AdminAPI+Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AdminAPI+Request.swift"; sourceTree = "<group>"; };
 		5380089B21A32CF800E47660 /* UploadManagerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadManagerViewController.swift; sourceTree = "<group>"; };
 		5380089D21A33C2F00E47660 /* UIColor+Random.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Random.swift"; sourceTree = "<group>"; };
 		538008A021A33D9200E47660 /* UIView+GridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+GridLayout.swift"; sourceTree = "<group>"; };
@@ -294,7 +464,7 @@
 		53E7F17D219A49A600390A5D /* LuxeAPI+Notifications.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "LuxeAPI+Notifications.swift"; sourceTree = "<group>"; };
 		53EEB19B21B9854D0051B8D5 /* AppDelegate+Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Location.swift"; sourceTree = "<group>"; };
 		53EEB19F21B9AFA60051B8D5 /* AppController+Permission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppController+Permission.swift"; sourceTree = "<group>"; };
-		53EEB1A221B9E3060051B8D5 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
+		53EEB1A221B9E3060051B8D5 /* LogService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogService.swift; sourceTree = "<group>"; };
 		53EEB1AA21BF29090051B8D5 /* LandingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandingViewController.swift; sourceTree = "<group>"; };
 		53EEB1AD21BF29EC0051B8D5 /* GridLayout+VolvoAgent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GridLayout+VolvoAgent.swift"; sourceTree = "<group>"; };
 		53EEB1AF21C06AA60051B8D5 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -311,7 +481,9 @@
 		84BB7F4452F4139EEE1DDC06 /* Pods_voluxe_driverAPITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverAPITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A09D259AE8F94479F143422F /* Pods-voluxe-driver.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.development.xcconfig"; sourceTree = "<group>"; };
 		A8AF1EAF19A494AFFD6262BF /* Pods-voluxe-driverUnitTests.production.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.production.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.production.xcconfig"; sourceTree = "<group>"; };
+		A9359D9790429477D5CA826E /* Pods-voluxe-driverUnitTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUnitTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUnitTests/Pods-voluxe-driverUnitTests.appstore.xcconfig"; sourceTree = "<group>"; };
 		BF639FC061D03DB07A4AAE2A /* Pods-voluxe-driverUITests.app store.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.app store.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.app store.xcconfig"; sourceTree = "<group>"; };
+		CA92D79509175AADEF56BF71 /* Pods-voluxe-driverUITests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.appstore.xcconfig"; sourceTree = "<group>"; };
 		CD92095CAC79E51E76DD825D /* Pods-voluxe-driver.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driver.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver.staging.xcconfig"; sourceTree = "<group>"; };
 		CEB8A3640E39C77C88978907 /* Pods-voluxe-driverAPITests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverAPITests.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverAPITests/Pods-voluxe-driverAPITests.development.xcconfig"; sourceTree = "<group>"; };
 		D02EF59993E675366B9CC290 /* Pods-voluxe-driverAPITests.staging.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverAPITests.staging.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverAPITests/Pods-voluxe-driverAPITests.staging.xcconfig"; sourceTree = "<group>"; };
@@ -377,8 +549,87 @@
 				DED4A4C7F26E979DDA200B48 /* Pods-voluxe-driverUnitTests.staging.xcconfig */,
 				A8AF1EAF19A494AFFD6262BF /* Pods-voluxe-driverUnitTests.production.xcconfig */,
 				68BDE64C3234A652C358A12B /* Pods-voluxe-driverUnitTests.app store.xcconfig */,
+				2D1EA0D2F110093970842729 /* Pods-voluxe-driver.appstore.xcconfig */,
+				0A02722CFEB623049E274707 /* Pods-voluxe-driverAPITests.appstore.xcconfig */,
+				CA92D79509175AADEF56BF71 /* Pods-voluxe-driverUITests.appstore.xcconfig */,
+				A9359D9790429477D5CA826E /* Pods-voluxe-driverUnitTests.appstore.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		5250472E221B448C00D07CD4 /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				5250472F221B44A200D07CD4 /* FBAnalytics+UserManager.swift */,
+				52504731221B704500D07CD4 /* Analytics+Request.swift */,
+			);
+			path = Analytics;
+			sourceTree = "<group>";
+		};
+		528194862203B99900C7E8EF /* Localization */ = {
+			isa = PBXGroup;
+			children = (
+				528194872203B9C500C7E8EF /* Localizable.strings */,
+				5281948A2203BB5A00C7E8EF /* Localized.swift */,
+			);
+			path = Localization;
+			sourceTree = "<group>";
+		};
+		5281948C2204F3A000C7E8EF /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				5235EBEF21F92639002BBCE7 /* RepairOrderRequest.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		52A3A61721E6C3E0002A273E /* VLKit */ = {
+			isa = PBXGroup;
+			children = (
+				52A3A62721E811FB002A273E /* PasswordToggleVisibilityView.swift */,
+				52A3A62321E6CC96002A273E /* VLTextField.swift */,
+				52A3A62421E6CC96002A273E /* VLVerticalTextField.swift */,
+			);
+			path = VLKit;
+			sourceTree = "<group>";
+		};
+		52B200E3221F4EC6005DE35A /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				52B200E4221F4EEF005DE35A /* DeviceOrientationHelper.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		52C67E7121F7DEAD005EEC3B /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				5250471A22134B7900D07CD4 /* DriveViewController.swift */,
+				5235EBFC21FA6A26002BBCE7 /* DriveToCustomerViewController.swift */,
+				52A1CE3922051928002F16BE /* ExchangeKeysViewController.swift */,
+				52A1CE372205138D002F16BE /* InspectionNotesViewController.swift */,
+				52C67E8521F9205C005EEC3B /* LoanerPaperworkViewController.swift */,
+				52494CAF21FAA96B00A51DD7 /* MeetCustomerViewController.swift */,
+				52A1CE3D2209FBDC002F16BE /* ReceiveLoanerViewController.swift */,
+				5235EBF821F93BC7002BBCE7 /* RecordMileageViewController.swift */,
+				52494CAD21FAA10500A51DD7 /* RequestStepViewController.swift */,
+				52A1CE3B22051B43002F16BE /* ReturnToDealershipViewController.swift */,
+				52C67E7221F7DF08005EEC3B /* ReviewServiceViewController.swift */,
+			);
+			path = Request;
+			sourceTree = "<group>";
+		};
+		52C67E7A21F91E6D005EEC3B /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				52A1CE4922122D51002F16BE /* Volvo Novum-Italic.otf */,
+				52C67E7C21F91EB8005EEC3B /* Volvo Novum-Bold.otf */,
+				52C67E7F21F91EB8005EEC3B /* Volvo Novum-Light.otf */,
+				52C67E7D21F91EB8005EEC3B /* Volvo Novum-Medium.otf */,
+				52C67E7B21F91EB8005EEC3B /* Volvo Novum-Regular.otf */,
+				52C67E7E21F91EB8005EEC3B /* Volvo Novum-SemiLight.otf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		530BCD482177AAA0005327E7 /* API */ = {
@@ -399,6 +650,7 @@
 			children = (
 				524C1FF5219E4E62003AA733 /* AdminAPI.swift */,
 				524C1FF8219E4E82003AA733 /* AdminAPI+Driver.swift */,
+				5374DF3B21E59A2200956122 /* AdminAPI+Request.swift */,
 				53B577B4219CAB4A00AAEB8D /* DriverAPI.swift */,
 				53B82AF1217E291D0041015B /* DriverAPI+Driver.swift */,
 				533046E4218775AD007CE01C /* DriverAPI+Inspection.swift */,
@@ -417,17 +669,28 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
+		5316E96C2200F1840053832E /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				5316E96D2200F1900053832E /* Log.swift */,
+				52504728221643E400D07CD4 /* NavigationHelper.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
 		533047032188D706007CE01C /* App */ = {
 			isa = PBXGroup;
 			children = (
 				533047042188D706007CE01C /* AppController.swift */,
 				53F1E56321E02D90007EF3AD /* AppController+Alert.swift */,
+				525047222214C9A300D07CD4 /* AppController+AlertSound.swift */,
 				533047082188D760007CE01C /* AppController+Debug.swift */,
 				53B43F9E218BB86200EF847E /* AppController+DriverAPI.swift */,
 				53EEB19F21B9AFA60051B8D5 /* AppController+Permission.swift */,
 				53F1E56121E0275F007EF3AD /* AppController+Progress.swift */,
 				53B43FA2218CB6AC00EF847E /* AppController+Test.swift */,
 				533047052188D706007CE01C /* AppDelegate.swift */,
+				522751A1221CCB4A0067459E /* AppDelegate+Branch.swift */,
 				533047232188F85B007CE01C /* AppDelegate+Fetch.swift */,
 				53EEB19B21B9854D0051B8D5 /* AppDelegate+Location.swift */,
 				5330472621890B1E007CE01C /* AppDelegate+Push.swift */,
@@ -450,6 +713,9 @@
 		533047162188D833007CE01C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				52C67E6721ED391F005EEC3B /* UITextField+Voluxe.swift */,
+				52C67E6521ED2354005EEC3B /* FlagPhoneNumberTextField+Utils.swift */,
+				52C67E6321E952A2005EEC3B /* String+Validation.swift */,
 				533047182188D833007CE01C /* Bundle+Voluxe.swift */,
 				531F9C1F21B874110027F43D /* Date+Extensions.swift */,
 				53C190F1219B459D00CBC410 /* DateFormatter+LuxeAPI.swift */,
@@ -468,7 +734,13 @@
 				53C190E4219B2A9D00CBC410 /* UIView+SafeArea.swift */,
 				53C1962421B59F9E00DCAEBA /* UIView+Spin.swift */,
 				53B43F99218B77DE00EF847E /* UserDefaults+LuxeAPI.swift */,
+				52504726221500FA00D07CD4 /* UserDefaults+Permissions.swift */,
+				525047242214E78700D07CD4 /* UserDefaults+Voluxe.swift */,
 				5339035421D00B5A00DD16D8 /* UIButton+Color.swift */,
+				5250472C2217659F00D07CD4 /* UIView+Dimensions.swift */,
+				52504733221C84DF00D07CD4 /* UIView+Toast.swift */,
+				52B200E822246824005DE35A /* UILabel+CoreText.swift */,
+				52B200EC2224A758005DE35A /* UILabel+Truncate.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -491,18 +763,33 @@
 				533B72D4218B556E009A44EC /* DriverManager.swift */,
 				53B654B621ADA83500FC3ACA /* RequestManager.swift */,
 				53BD512F219DF54900E84995 /* UploadManager.swift */,
+				52A1CE41220B72E5002F16BE /* OfflineTaskManager.swift */,
+				52C67E6D21F2A0DF005EEC3B /* KeychainManager.swift */,
+				5235EBFA21FA2D57002BBCE7 /* DriverManager+Dealerships.swift */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		535381B121FEA0D600C03ECE /* Analytics */ = {
+			isa = PBXGroup;
+			children = (
+				535381B421FEA0D600C03ECE /* AnalyticsCore.swift */,
+				535381B621FEA0D600C03ECE /* AnalyticsEnums.swift */,
+				535381B221FEA0D600C03ECE /* FBAnalytics.swift */,
+				535381B321FEA0D600C03ECE /* NullAnalytics.swift */,
+			);
+			path = Analytics;
 			sourceTree = "<group>";
 		};
 		536FFD822177901D00C83F89 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
+				535381B121FEA0D600C03ECE /* Analytics */,
 				530BCD482177AAA0005327E7 /* API */,
-				533047162188D833007CE01C /* Extensions */,
 				5330470C2188D7C5007CE01C /* Debug */,
+				533047162188D833007CE01C /* Extensions */,
+				53EEB1A121B9E2ED0051B8D5 /* Log */,
 				536FFD8E2177901D00C83F89 /* Scripts */,
-				53EEB1A121B9E2ED0051B8D5 /* Service */,
 				530BCD502177D25E005327E7 /* Tests */,
 				536FFD832177901D00C83F89 /* UI */,
 			);
@@ -513,6 +800,7 @@
 		536FFD832177901D00C83F89 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				52A3A61721E6C3E0002A273E /* VLKit */,
 				5339035A21D042DB00DD16D8 /* Buttons.swift */,
 				5312141821C83C1E00F3FCEB /* Colors.swift */,
 				5312141A21C83C2A00F3FCEB /* Colors+Volvo.swift */,
@@ -524,6 +812,10 @@
 				53C190E2219B2A9D00CBC410 /* Layout.swift */,
 				538008A021A33D9200E47660 /* UIView+GridLayout.swift */,
 				53C190DF219B2A9C00CBC410 /* UIView+Layout.swift */,
+				52A1CE45220E5455002F16BE /* UIImageViewAligned.swift */,
+				52A1CE5122123504002F16BE /* ImagedLabel.swift */,
+				52B200EA222468E6005DE35A /* UILabelHighlight.swift */,
+				52B200F02224CEC7005DE35A /* UITextViewHighlight.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -546,14 +838,30 @@
 			name = export;
 			sourceTree = "<group>";
 		};
+		5374DF2B21E5248F00956122 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5374DF2E21E524BF00956122 /* Bundle+Current.swift */,
+				52C67E7821F9189A005EEC3B /* NSMutableAttributedString+Bold.swift */,
+				52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */,
+				52A1CE43220CF22E002F16BE /* Task+Flow.swift */,
+				5250472A2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift */,
+				52B200E6221F6BBD005DE35A /* UIImage+Orientation.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		538C4D99218A3F6F00922B16 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				52C67E7121F7DEAD005EEC3B /* Request */,
 				5312143221CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift */,
-				5312143021CC569E00F3FCEB /* ContactInfoViewController.swift */,
+				52C67E6921ED60D8005EEC3B /* PhoneVerificationViewController.swift */,
 				5312142C21CB0AE700F3FCEB /* FlowViewController.swift */,
 				5339035221CEC43B00DD16D8 /* ForgotPasswordViewController.swift */,
+				5374DF3521E52FBF00956122 /* InspectionPhotosViewController.swift */,
 				53EEB1AA21BF29090051B8D5 /* LandingViewController.swift */,
+				52C67E7421F80010005EEC3B /* LoginFlowViewController.swift */,
 				5339035021CEBED200DD16D8 /* LoginViewController.swift */,
 				53EEB1AF21C06AA60051B8D5 /* MainViewController.swift */,
 				53EEB1B121C06E9E0051B8D5 /* MyScheduleViewController.swift */,
@@ -561,7 +869,8 @@
 				5312142321C9AF3C00F3FCEB /* ProfileViewController.swift */,
 				5312142A21CAB49500F3FCEB /* RequestViewController.swift */,
 				5312143421CC689200F3FCEB /* SelfieViewController.swift */,
-				5339035C21D04CC500DD16D8 /* SetPasswordViewController.swift */,
+				52C67E6B21F293B7005EEC3B /* StepViewController.swift */,
+				52B200EE2224B54F005DE35A /* NotesViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -579,6 +888,7 @@
 				53B25E13217698B1002B846B /* voluxe-driverAPITests */,
 				53B25DF72176960D002B846B /* voluxe-driverUITests */,
 				53B25E21217698C2002B846B /* voluxe-driverUnitTests */,
+				5281948C2204F3A000C7E8EF /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -596,13 +906,18 @@
 		53B25DD72176960C002B846B /* voluxe-driver */ = {
 			isa = PBXGroup;
 			children = (
+				5250472E221B448C00D07CD4 /* Analytics */,
 				530BCD4B2177AFB0005327E7 /* API */,
 				533047032188D706007CE01C /* App */,
 				538C4D99218A3F6F00922B16 /* Controller */,
 				5330471B2188D895007CE01C /* Debug */,
+				5374DF2B21E5248F00956122 /* Extensions */,
+				528194862203B99900C7E8EF /* Localization */,
 				533B72D3218B5542009A44EC /* Manager */,
 				53B82AF4217E396D0041015B /* Model */,
 				53B25E2C21769F5B002B846B /* Resources */,
+				5316E96C2200F1840053832E /* Service */,
+				52B200E3221F4EC6005DE35A /* Utils */,
 				53EEB1AC21BF29CD0051B8D5 /* View */,
 			);
 			path = "voluxe-driver";
@@ -620,12 +935,13 @@
 		53B25E13217698B1002B846B /* voluxe-driverAPITests */ = {
 			isa = PBXGroup;
 			children = (
-				53B577B7219CB18A00AAEB8D /* Token_APITests.swift */,
-				533046E721877847007CE01C /* Inspection_APITests.swift */,
 				535A4531217A3787006B5EE1 /* Driver_APITests.swift */,
 				53B25E16217698B1002B846B /* Info.plist */,
+				533046E721877847007CE01C /* Inspection_APITests.swift */,
+				5316E96F2200F2D20053832E /* Log.swift */,
 				53B25E14217698B1002B846B /* Login_APITests.swift */,
 				53DA9CC52181063E00ABC414 /* Request_APITests.swift */,
+				53B577B7219CB18A00AAEB8D /* Token_APITests.swift */,
 			);
 			path = "voluxe-driverAPITests";
 			sourceTree = "<group>";
@@ -642,11 +958,15 @@
 		53B25E2C21769F5B002B846B /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				52C67E7A21F91E6D005EEC3B /* Fonts */,
 				53B25DDF2176960D002B846B /* Assets.xcassets */,
-				5330472821890BF8007CE01C /* GoogleService-Info.plist */,
+				52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */,
+				52B200F222289648005DE35A /* GoogleService-Info-AppStore.plist */,
+				5330472821890BF8007CE01C /* GoogleService-Info-Development.plist */,
+				52D6C0AC223051B400346787 /* GoogleService-Info-Staging.plist */,
 				53B25DE42176960D002B846B /* Info.plist */,
 				53B25DE12176960D002B846B /* LaunchScreen.storyboard */,
-				5339036C21D7148A00DD16D8 /* Localized.swift */,
+				5339036C21D7148A00DD16D8 /* Unlocalized.swift */,
 				53B25E2D2176A414002B846B /* Settings.bundle */,
 				5330472521890935007CE01C /* voluxe-driver.entitlements */,
 			);
@@ -660,33 +980,44 @@
 				53DA9CBF2180F87600ABC414 /* BookingFeedback.swift */,
 				53DA9CAA2180C52300ABC414 /* Customer.swift */,
 				53B82AF5217E39800041015B /* Dealership.swift */,
+				5235EBF221F927D6002BBCE7 /* DealershipRepairOrder.swift */,
 				53DA9CB32180C7F500ABC414 /* DealershipTimeSlot.swift */,
 				53B82AF9217E69F50041015B /* Driver.swift */,
 				53DA9CBC2180F52900ABC414 /* DriverDealershipTimeSlotAssignment.swift */,
 				53DA9CB92180F44E00ABC414 /* Inspection.swift */,
 				53DA9CA2217F66B900ABC414 /* Location.swift */,
+				531A8A2621EE7D8300D5C8C0 /* OdometerReading.swift */,
+				5316E989220205510053832E /* OfflineInspection.swift */,
+				52A1CE3F220B6F8C002F16BE /* OfflineTaskUpdate.swift */,
+				5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */,
 				53DA9CB02180C7AC00ABC414 /* Request.swift */,
 				53DA9CC22181020400ABC414 /* Task.swift */,
 				53DA9CAD2180C60D00ABC414 /* Vehicle.swift */,
+				52504720221495C400D07CD4 /* RequestState.swift */,
+				5235EBF521F92AA9002BBCE7 /* RepairOrderType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
 		};
-		53EEB1A121B9E2ED0051B8D5 /* Service */ = {
+		53EEB1A121B9E2ED0051B8D5 /* Log */ = {
 			isa = PBXGroup;
 			children = (
-				53EEB1A221B9E3060051B8D5 /* Log.swift */,
+				53EEB1A221B9E3060051B8D5 /* LogService.swift */,
+				5316E96A2200F07B0053832E /* OSLog.swift */,
+				5316E9682200CA950053832E /* OSLog+Analytics.swift */,
 			);
-			path = Service;
+			path = Log;
 			sourceTree = "<group>";
 		};
 		53EEB1AC21BF29CD0051B8D5 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				5339036421D1570E00DD16D8 /* CameraView.swift */,
-				53F1E55D21DFD8DC007EF3AD /* ShutterView.swift */,
+				5374DF3321E52E4700956122 /* FilmstripView.swift */,
 				53EEB1AD21BF29EC0051B8D5 /* GridLayout+VolvoAgent.swift */,
+				531A8A2421ED599100D5C8C0 /* InspectionCameraView.swift */,
 				53EEB1B321C080770051B8D5 /* ProfileButton.swift */,
+				53F1E55D21DFD8DC007EF3AD /* ShutterView.swift */,
 				5339036621D1573600DD16D8 /* SwipeNextView.swift */,
 			);
 			path = View;
@@ -711,9 +1042,12 @@
 			buildConfigurationList = 53B25DFD2176960D002B846B /* Build configuration list for PBXNativeTarget "voluxe-driver" */;
 			buildPhases = (
 				77687941A5260CEC7A1F77D1 /* [CP] Check Pods Manifest.lock */,
+				528194852203B95D00C7E8EF /* Twine script */,
+				528194892203BA7E00C7E8EF /* Generate Localized Constants */,
 				53B25DD12176960C002B846B /* Sources */,
 				53B25DD22176960C002B846B /* Frameworks */,
 				53B25DD32176960C002B846B /* Resources */,
+				52B200F4222896FA005DE35A /* ShellScript */,
 				0C0BE171E47DB1500ADAD1C7 /* [CP] Embed Pods Frameworks */,
 				536FFD7F2177869400C83F89 /* ShellScript */,
 			);
@@ -734,6 +1068,7 @@
 				53B25DF02176960D002B846B /* Sources */,
 				53B25DF12176960D002B846B /* Frameworks */,
 				53B25DF22176960D002B846B /* Resources */,
+				FDA980C1118A09FAF8538581 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -798,6 +1133,9 @@
 							com.apple.Push = {
 								enabled = 1;
 							};
+							com.apple.SafariKeychain = {
+								enabled = 1;
+							};
 						};
 					};
 					53B25DF32176960D002B846B = {
@@ -839,13 +1177,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				536FFD9C2177901D00C83F89 /* xcarchive-to-ipa.sh in Resources */,
-				5330472921890BF8007CE01C /* GoogleService-Info.plist in Resources */,
+				52A1CE4D22122D52002F16BE /* Volvo Novum-Italic.otf in Resources */,
+				5330472921890BF8007CE01C /* GoogleService-Info-Development.plist in Resources */,
+				52C67E8321F91EB8005EEC3B /* Volvo Novum-SemiLight.otf in Resources */,
+				52D6C0AD223051B400346787 /* GoogleService-Info-Staging.plist in Resources */,
 				53B25DE32176960D002B846B /* LaunchScreen.storyboard in Resources */,
+				52E8CB982229FDB700794E3B /* GoogleService-Info-Production.plist in Resources */,
 				536FFD9E2177901D00C83F89 /* ipa-to-fabric.sh in Resources */,
+				528194882203B9C500C7E8EF /* Localizable.strings in Resources */,
+				52B200F322289648005DE35A /* GoogleService-Info-AppStore.plist in Resources */,
 				53B25E2E2176A414002B846B /* Settings.bundle in Resources */,
 				53B25DE02176960D002B846B /* Assets.xcassets in Resources */,
+				52C67E8221F91EB8005EEC3B /* Volvo Novum-Medium.otf in Resources */,
 				536FFD9D2177901D00C83F89 /* increment_build.sh in Resources */,
 				536FFDA12177921B00C83F89 /* release-notes.txt in Resources */,
+				52C67E8421F91EB8005EEC3B /* Volvo Novum-Light.otf in Resources */,
+				52C67E8121F91EB8005EEC3B /* Volvo Novum-Bold.otf in Resources */,
+				52C67E8021F91EB8005EEC3B /* Volvo Novum-Regular.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -883,11 +1231,15 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/Branch/Branch.framework",
+				"${BUILT_PRODUCTS_DIR}/FlagPhoneNumber/FlagPhoneNumber.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -895,17 +1247,77 @@
 			);
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Branch.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlagPhoneNumber.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libPhoneNumber_iOS.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driver/Pods-voluxe-driver-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		528194852203B95D00C7E8EF /* Twine script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Twine script";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#twine generate-localization-file ../shared/lbv-mobile-strings/twine.txt voluxe-driver/Localization/Localizable.strings --tags driver,mobile_commons --lang en --format apple\n";
+		};
+		528194892203BA7E00C7E8EF /* Generate Localized Constants */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/voluxe-driver/Localization/Localizable.strings",
+				"${SRCROOT}/voluxe-driver/Localization/DriverLocalizedTemplate.swift",
+			);
+			name = "Generate Localized Constants";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${SRCROOT}/voluxe-driver/Localization/GeneratedLocalized.swift",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\necho \"Start Driver Localization script based on Root ${SRCROOT}\"\nSCRIPT_FILE=\"${SRCROOT}/../Shared/Scripts/Localization/Generate-Swift-L18N-Constants.swift\"\necho \"Running a custom build phase script: $SCRIPT_FILE\"\necho \"FILE0 ${SCRIPT_INPUT_FILE_0}\"\necho \"FILE1 ${SCRIPT_INPUT_FILE_1}\"\necho \"OUTPUT ${SCRIPT_OUTPUT_FILE_0}\"\n\n${SCRIPT_FILE} \"${SCRIPT_INPUT_FILE_0}\" \"${SCRIPT_INPUT_FILE_1}\" \"${SCRIPT_OUTPUT_FILE_0}\"\necho \"End of script\"\n\nscriptExitStatus=$?\necho \"DONE with script: ${SCRIPT_FILE} (exitStatus=${scriptExitStatus})\\n\\n\"\nexit \"${scriptExitStatus}\"\n";
+		};
+		52B200F4222896FA005DE35A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\ncp -r ${PROJECT_DIR}/voluxe-driver/Resources/GoogleService-Info-${CONFIGURATION}.plist ${BUILT_PRODUCTS_DIR}/${PRODUCT_NAME}.app/GoogleService-Info.plist\n";
 		};
 		536FFD7F2177869400C83F89 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1012,6 +1424,30 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		FDA980C1118A09FAF8538581 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FlagPhoneNumber/FlagPhoneNumber.framework",
+				"${BUILT_PRODUCTS_DIR}/libPhoneNumber-iOS/libPhoneNumber_iOS.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FlagPhoneNumber.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/libPhoneNumber_iOS.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		FFBEFD8B04957EF7C2E3AFD7 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1048,98 +1484,159 @@
 				5339036921D55BF100DD16D8 /* UIImage+Merge.swift in Sources */,
 				53EEB1B421C080770051B8D5 /* ProfileButton.swift in Sources */,
 				5330471A2188D834007CE01C /* Bundle+Voluxe.swift in Sources */,
+				5374DF2F21E524BF00956122 /* Bundle+Current.swift in Sources */,
+				5374DF3421E52E4700956122 /* FilmstripView.swift in Sources */,
 				53B43F9F218BB86200EF847E /* AppController+DriverAPI.swift in Sources */,
+				52B200F12224CEC7005DE35A /* UITextViewHighlight.swift in Sources */,
 				533B72D5218B556E009A44EC /* DriverManager.swift in Sources */,
 				530BCD4D2177AFBE005327E7 /* LuxeAPI.swift in Sources */,
-				5339036D21D7148A00DD16D8 /* Localized.swift in Sources */,
+				5339036D21D7148A00DD16D8 /* Unlocalized.swift in Sources */,
+				52A1CE42220B72E5002F16BE /* OfflineTaskManager.swift in Sources */,
 				533047072188D706007CE01C /* AppDelegate.swift in Sources */,
+				52494CB021FAA96B00A51DD7 /* MeetCustomerViewController.swift in Sources */,
 				53DA9CBA2180F44E00ABC414 /* Inspection.swift in Sources */,
+				5374DF3621E52FBF00956122 /* InspectionPhotosViewController.swift in Sources */,
 				531F9C2021B874110027F43D /* Date+Extensions.swift in Sources */,
 				53BD5132219E202300E84995 /* AppDelegate+Realm.swift in Sources */,
 				53B654B721ADA83500FC3ACA /* RequestManager.swift in Sources */,
-				5339035D21D04CC500DD16D8 /* SetPasswordViewController.swift in Sources */,
+				52A1CE3C22051B43002F16BE /* ReturnToDealershipViewController.swift in Sources */,
 				53C190E7219B2A9D00CBC410 /* UIView+Layout.swift in Sources */,
 				5312142B21CAB49500F3FCEB /* RequestViewController.swift in Sources */,
 				53EEB19C21B9854D0051B8D5 /* AppDelegate+Location.swift in Sources */,
+				52A1CE3A22051928002F16BE /* ExchangeKeysViewController.swift in Sources */,
+				52C67E6C21F293B7005EEC3B /* StepViewController.swift in Sources */,
+				52C67E6E21F2A0DF005EEC3B /* KeychainManager.swift in Sources */,
 				538C4D9D218A45CA00922B16 /* Thread+Assert.swift in Sources */,
 				538008A121A33D9200E47660 /* UIView+GridLayout.swift in Sources */,
+				52C67E7521F80010005EEC3B /* LoginFlowViewController.swift in Sources */,
 				53F1E56221E0275F007EF3AD /* AppController+Progress.swift in Sources */,
+				52A1CE40220B6F8C002F16BE /* OfflineTaskUpdate.swift in Sources */,
 				53F1E55E21DFD8DC007EF3AD /* ShutterView.swift in Sources */,
+				52494CAE21FAA10500A51DD7 /* RequestStepViewController.swift in Sources */,
 				530BCD4A2177AAB2005327E7 /* RestAPI.swift in Sources */,
+				52C67E6621ED2355005EEC3B /* FlagPhoneNumberTextField+Utils.swift in Sources */,
 				5312143321CC5E8E00F3FCEB /* ConfirmPhoneViewController.swift in Sources */,
 				53C190E6219B2A9D00CBC410 /* Font.swift in Sources */,
 				53DA9CA82180C4AB00ABC414 /* Booking.swift in Sources */,
+				52B200E922246824005DE35A /* UILabel+CoreText.swift in Sources */,
 				53E7F17E219A49A600390A5D /* LuxeAPI+Notifications.swift in Sources */,
 				53C190EC219B2A9D00CBC410 /* UIView+SafeArea.swift in Sources */,
 				5339035B21D042DB00DD16D8 /* Buttons.swift in Sources */,
+				52B200EB222468E6005DE35A /* UILabelHighlight.swift in Sources */,
 				530BCD4F2177B153005327E7 /* RestAPI+AlamoFire.swift in Sources */,
 				53C190E8219B2A9D00CBC410 /* GridLayout+Debug.swift in Sources */,
 				53B43F97218B758400EF847E /* LuxeAPI+Version.swift in Sources */,
+				5235EBF321F927D6002BBCE7 /* DealershipRepairOrder.swift in Sources */,
+				522751A2221CCB4A0067459E /* AppDelegate+Branch.swift in Sources */,
 				524C201C21ACB90C003AA733 /* LuxeAPIError.swift in Sources */,
+				5235EBF921F93BC7002BBCE7 /* RecordMileageViewController.swift in Sources */,
 				53EEB1AE21BF29EC0051B8D5 /* GridLayout+VolvoAgent.swift in Sources */,
 				5312141921C83C1E00F3FCEB /* Colors.swift in Sources */,
 				524C1FF6219E4E62003AA733 /* AdminAPI.swift in Sources */,
+				52504727221500FA00D07CD4 /* UserDefaults+Permissions.swift in Sources */,
+				52A1CE382205138D002F16BE /* InspectionNotesViewController.swift in Sources */,
+				5316E9692200CA950053832E /* OSLog+Analytics.swift in Sources */,
 				53B82AF6217E39800041015B /* Dealership.swift in Sources */,
+				52CFAC5821FFD5390019255D /* UIBarButtonItem+Attributes.swift in Sources */,
 				5312141B21C83C2A00F3FCEB /* Colors+Volvo.swift in Sources */,
+				52C67E6421E952A3005EEC3B /* String+Validation.swift in Sources */,
+				535381B721FEA0D600C03ECE /* FBAnalytics.swift in Sources */,
 				5339035121CEBED200DD16D8 /* LoginViewController.swift in Sources */,
 				5380089E21A33C2F00E47660 /* UIColor+Random.swift in Sources */,
+				52504732221B704500D07CD4 /* Analytics+Request.swift in Sources */,
 				5312142421C9AF3C00F3FCEB /* ProfileViewController.swift in Sources */,
+				5316E96B2200F07B0053832E /* OSLog.swift in Sources */,
 				533047242188F85B007CE01C /* AppDelegate+Fetch.swift in Sources */,
 				53B577B5219CAB4A00AAEB8D /* DriverAPI.swift in Sources */,
+				5250471B22134B7900D07CD4 /* DriveViewController.swift in Sources */,
+				52A3A62621E6CC96002A273E /* VLVerticalTextField.swift in Sources */,
 				5312143521CC689200F3FCEB /* SelfieViewController.swift in Sources */,
 				53EEB1B221C06E9E0051B8D5 /* MyScheduleViewController.swift in Sources */,
 				53EEB1AB21BF29090051B8D5 /* LandingViewController.swift in Sources */,
 				53EEB1A021B9AFA60051B8D5 /* AppController+Permission.swift in Sources */,
 				5339035521D00B5A00DD16D8 /* UIButton+Color.swift in Sources */,
+				5235EBFD21FA6A26002BBCE7 /* DriveToCustomerViewController.swift in Sources */,
 				524C1FF9219E4E82003AA733 /* AdminAPI+Driver.swift in Sources */,
 				53DA9CB12180C7AC00ABC414 /* Request.swift in Sources */,
 				53DA9CAE2180C60D00ABC414 /* Vehicle.swift in Sources */,
 				53C190F2219B459D00CBC410 /* DateFormatter+LuxeAPI.swift in Sources */,
 				53B654BB21AE0E3500FC3ACA /* UIImage+LuxeAPI.swift in Sources */,
+				52A3A62521E6CC96002A273E /* VLTextField.swift in Sources */,
+				52A3A62821E811FB002A273E /* PasswordToggleVisibilityView.swift in Sources */,
 				53DA9CB42180C7F500ABC414 /* DealershipTimeSlot.swift in Sources */,
 				53B654B921ADB25600FC3ACA /* RequestManagerViewController.swift in Sources */,
 				53DA9CA3217F66B900ABC414 /* Location.swift in Sources */,
+				5235EBFB21FA2D57002BBCE7 /* DriverManager+Dealerships.swift in Sources */,
 				5339035921D0215400DD16D8 /* UIImage+Rounded.swift in Sources */,
 				53B82AF2217E291D0041015B /* DriverAPI+Driver.swift in Sources */,
+				535381B921FEA0D600C03ECE /* AnalyticsCore.swift in Sources */,
+				52504721221495C400D07CD4 /* RequestState.swift in Sources */,
 				533047102188D7C6007CE01C /* DebugTableViewCell.swift in Sources */,
 				53C190E9219B2A9D00CBC410 /* UIColor+Hex.swift in Sources */,
+				52504734221C84DF00D07CD4 /* UIView+Toast.swift in Sources */,
 				52FFBBAE21ADF78D00FAD7BE /* UserDefaults+Debug.swift in Sources */,
 				53C190ED219B2A9D00CBC410 /* Label.swift in Sources */,
 				5339035321CEC43B00DD16D8 /* ForgotPasswordViewController.swift in Sources */,
 				53C1962721B5DE3600DCAEBA /* DriverManagerViewController.swift in Sources */,
 				5380089C21A32CF800E47660 /* UploadManagerViewController.swift in Sources */,
+				535381BB21FEA0D600C03ECE /* AnalyticsEnums.swift in Sources */,
 				5330471D2188D896007CE01C /* DebugSettingsViewController.swift in Sources */,
 				5312141D21C8767000F3FCEB /* ColorsImplementation.swift in Sources */,
+				52A1CE44220CF22E002F16BE /* Task+Flow.swift in Sources */,
 				53368D9121C2FB5500B1A2AF /* String+Utils.swift in Sources */,
 				53EEB1B021C06AA60051B8D5 /* MainViewController.swift in Sources */,
+				52C67E7321F7DF08005EEC3B /* ReviewServiceViewController.swift in Sources */,
 				53F1E56021E01ECE007EF3AD /* UIImage+Resize.swift in Sources */,
 				5312142121C9A3E700F3FCEB /* UITableView+OverScroll.swift in Sources */,
+				5250472D2217659F00D07CD4 /* UIView+Dimensions.swift in Sources */,
+				5281948E2204F43F00C7E8EF /* RepairOrderRequest.swift in Sources */,
 				5339036721D1573600DD16D8 /* SwipeNextView.swift in Sources */,
+				5316E98A220205510053832E /* OfflineInspection.swift in Sources */,
 				53C190EA219B2A9D00CBC410 /* Layout.swift in Sources */,
+				5281948B2203BB5A00C7E8EF /* Localized.swift in Sources */,
 				533047192188D834007CE01C /* NSObject+Voluxe.swift in Sources */,
 				53DA9CBD2180F52900ABC414 /* DriverDealershipTimeSlotAssignment.swift in Sources */,
+				5250472B2216461D00D07CD4 /* UserDefaults+NavigationHelper.swift in Sources */,
 				536FFD932177901D00C83F89 /* UIView+AutoLayout.swift in Sources */,
+				52A1CE46220E5455002F16BE /* UIImageViewAligned.swift in Sources */,
 				5330472721890B1E007CE01C /* AppDelegate+Push.swift in Sources */,
+				52B200EF2224B54F005DE35A /* NotesViewController.swift in Sources */,
+				52504730221B44A300D07CD4 /* FBAnalytics+UserManager.swift in Sources */,
 				5330470F2188D7C6007CE01C /* DebugTableViewController.swift in Sources */,
 				5312141F21C95FBD00F3FCEB /* UIColor+Debug.swift in Sources */,
 				53DA9CC32181020400ABC414 /* Task.swift in Sources */,
 				53DA9CAB2180C52300ABC414 /* Customer.swift in Sources */,
+				52C67E6A21ED60D8005EEC3B /* PhoneVerificationViewController.swift in Sources */,
 				533046E5218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */,
+				52504729221643E400D07CD4 /* NavigationHelper.swift in Sources */,
 				53B43F9A218B77DE00EF847E /* UserDefaults+LuxeAPI.swift in Sources */,
 				53B43FA3218CB6AC00EF847E /* AppController+Test.swift in Sources */,
+				531A8A2721EE7D8300D5C8C0 /* OdometerReading.swift in Sources */,
+				52C67E7921F9189A005EEC3B /* NSMutableAttributedString+Bold.swift in Sources */,
 				5339036121D051F000DD16D8 /* AppDelegate+UIAppearance.swift in Sources */,
+				52A1CE5222123504002F16BE /* ImagedLabel.swift in Sources */,
 				538C4D9B218A3FA600922B16 /* PermissionViewController.swift in Sources */,
-				53EEB1A321B9E3060051B8D5 /* Log.swift in Sources */,
+				53EEB1A321B9E3060051B8D5 /* LogService.swift in Sources */,
+				52B200ED2224A758005DE35A /* UILabel+Truncate.swift in Sources */,
 				53F1E56421E02D90007EF3AD /* AppController+Alert.swift in Sources */,
+				525047232214C9A400D07CD4 /* AppController+AlertSound.swift in Sources */,
 				533047062188D706007CE01C /* AppController.swift in Sources */,
 				53C190EF219B2ECD00CBC410 /* GridLayoutViewController.swift in Sources */,
+				52B200E5221F4EEF005DE35A /* DeviceOrientationHelper.swift in Sources */,
+				52A1CE3E2209FBDC002F16BE /* ReceiveLoanerViewController.swift in Sources */,
 				53C1962521B59F9E00DCAEBA /* UIView+Spin.swift in Sources */,
 				53BD5130219DF54900E84995 /* UploadManager.swift in Sources */,
+				5235EBF621F92AA9002BBCE7 /* RepairOrderType.swift in Sources */,
 				5339036521D1570F00DD16D8 /* CameraView.swift in Sources */,
 				53C190EB219B2A9D00CBC410 /* GridLayout.swift in Sources */,
-				5312143121CC569E00F3FCEB /* ContactInfoViewController.swift in Sources */,
+				52B200E7221F6BBD005DE35A /* UIImage+Orientation.swift in Sources */,
+				5316E96E2200F1900053832E /* Log.swift in Sources */,
+				531A8A2521ED599100D5C8C0 /* InspectionCameraView.swift in Sources */,
 				535A452F217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */,
+				52C67E8621F9205C005EEC3B /* LoanerPaperworkViewController.swift in Sources */,
 				53DA9CC02180F87600ABC414 /* BookingFeedback.swift in Sources */,
+				52C67E6821ED391F005EEC3B /* UITextField+Voluxe.swift in Sources */,
+				525047252214E78700D07CD4 /* UserDefaults+Voluxe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1147,10 +1644,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				535381AB21FD7CAB00C03ECE /* Colors+Volvo.swift in Sources */,
 				53B25DF92176960D002B846B /* voluxe_driverUITests.swift in Sources */,
+				535381AE21FD7CD200C03ECE /* Font.swift in Sources */,
+				535381AA21FD7CA800C03ECE /* Colors.swift in Sources */,
 				5330470A2188D7A1007CE01C /* XCUIElement+Test.swift in Sources */,
+				535381A521FD789F00C03ECE /* UIView+Layout.swift in Sources */,
+				5374DF3121E524D100956122 /* Bundle+Current.swift in Sources */,
 				5330470B2188D7A7007CE01C /* XCTest+Test.swift in Sources */,
+				535381AD21FD7CC500C03ECE /* UIColor+Hex.swift in Sources */,
+				535381AC21FD7CAE00C03ECE /* ColorsImplementation.swift in Sources */,
+				535381A921FD7C8D00C03ECE /* UIView+AutoLayout.swift in Sources */,
+				535381A721FD7C6900C03ECE /* Layout.swift in Sources */,
 				524C201E21ACB90C003AA733 /* LuxeAPIError.swift in Sources */,
+				535381A821FD7C7A00C03ECE /* UIView+SafeArea.swift in Sources */,
+				535381A621FD78FF00C03ECE /* VLTextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1160,18 +1668,26 @@
 			files = (
 				535A4530217A304B006B5EE1 /* DriverAPI+Login.swift in Sources */,
 				53DA9CB22180C7AC00ABC414 /* Request.swift in Sources */,
+				5316E9702200F2D20053832E /* Log.swift in Sources */,
+				5374DF2A21E519D500956122 /* LogService.swift in Sources */,
 				53B43F98218B758400EF847E /* LuxeAPI+Version.swift in Sources */,
 				53DA9CBE2180F52900ABC414 /* DriverDealershipTimeSlotAssignment.swift in Sources */,
 				53DA9CAC2180C52300ABC414 /* Customer.swift in Sources */,
 				53DA9CC62181063E00ABC414 /* Request_APITests.swift in Sources */,
+				5235EBF121F92643002BBCE7 /* RepairOrderRequest.swift in Sources */,
+				5374DF3021E524D000956122 /* Bundle+Current.swift in Sources */,
+				5235EBF421F927D6002BBCE7 /* DealershipRepairOrder.swift in Sources */,
 				53DA9CC42181020400ABC414 /* Task.swift in Sources */,
+				5316E9712200F2F30053832E /* OSLog.swift in Sources */,
 				53DA9CA4217F66B900ABC414 /* Location.swift in Sources */,
 				524C201D21ACB90C003AA733 /* LuxeAPIError.swift in Sources */,
 				53B577B6219CAB4A00AAEB8D /* DriverAPI.swift in Sources */,
 				53DA9CAF2180C60D00ABC414 /* Vehicle.swift in Sources */,
 				530BCD612177D348005327E7 /* RestAPI.swift in Sources */,
+				5374DF2921E519CA00956122 /* String+Utils.swift in Sources */,
 				530BCD5F2177D341005327E7 /* LuxeAPI.swift in Sources */,
 				53368D8C21C17CEB00B1A2AF /* AdminAPI.swift in Sources */,
+				531A8A2A21F189C900D5C8C0 /* Thread+Assert.swift in Sources */,
 				53B82AF3217E2A5D0041015B /* DriverAPI+Driver.swift in Sources */,
 				53DA9CA92180C4AB00ABC414 /* Booking.swift in Sources */,
 				53DA9CB52180C7F500ABC414 /* DealershipTimeSlot.swift in Sources */,
@@ -1184,6 +1700,7 @@
 				5380089F21A33C2F00E47660 /* UIColor+Random.swift in Sources */,
 				53368D8E21C17D2E00B1A2AF /* UIImage+LuxeAPI.swift in Sources */,
 				53C190F0219B3D8E00CBC410 /* LuxeAPI+Notifications.swift in Sources */,
+				531A8A2821F12EEB00D5C8C0 /* OdometerReading.swift in Sources */,
 				530BCD602177D345005327E7 /* RestAPI+AlamoFire.swift in Sources */,
 				535A4532217A3787006B5EE1 /* Driver_APITests.swift in Sources */,
 				533046E6218775AD007CE01C /* DriverAPI+Inspection.swift in Sources */,
@@ -1192,6 +1709,7 @@
 				53B82AF7217E39800041015B /* Dealership.swift in Sources */,
 				53B82AFB217E69F50041015B /* Driver.swift in Sources */,
 				53B577B8219CB18A00AAEB8D /* Token_APITests.swift in Sources */,
+				535381A421FD775300C03ECE /* KeychainManager.swift in Sources */,
 				533046E821877847007CE01C /* Inspection_APITests.swift in Sources */,
 				53B43F9D218B7CD900EF847E /* Bundle+Voluxe.swift in Sources */,
 				53DA9CB82180C9FD00ABC414 /* DriverAPI+Request.swift in Sources */,
@@ -1203,6 +1721,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				53B25E23217698C2002B846B /* voluxe_driverUnitTests.swift in Sources */,
+				5374DF3221E524D100956122 /* Bundle+Current.swift in Sources */,
 				524C201F21ACB90C003AA733 /* LuxeAPIError.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1233,6 +1752,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BRANCH_APP_DOMAIN = "shgj.test-app.link";
+				BRANCH_KEY = key_test_hnUnBtkVSC0jCZcGPZNjjdnovDfjBQWM;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1294,6 +1815,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BRANCH_APP_DOMAIN = "shgj.test-app.link";
+				BRANCH_KEY = key_test_hnUnBtkVSC0jCZcGPZNjjdnovDfjBQWM;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1325,10 +1848,16 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_NS_ASSERTIONS = YES;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -1336,12 +1865,14 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 11.4;
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = singlefile;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				VALIDATE_PRODUCT = YES;
+				VALIDATE_PRODUCT = NO;
 			};
 			name = Production;
 		};
@@ -1351,6 +1882,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDevelopment;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
@@ -1360,6 +1892,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1371,6 +1904,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
@@ -1378,8 +1912,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.production;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1431,6 +1967,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BRANCH_APP_DOMAIN = "shgj.test-app.link";
+				BRANCH_KEY = key_test_hnUnBtkVSC0jCZcGPZNjjdnovDfjBQWM;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1494,6 +2032,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconStaging;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
@@ -1503,6 +2042,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1529,10 +2069,12 @@
 			};
 			name = Staging;
 		};
-		53B25E0A21769663002B846B /* App Store */ = {
+		53B25E0A21769663002B846B /* AppStore */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				BRANCH_APP_DOMAIN = shgj.app.link;
+				BRANCH_KEY = key_live_biVlsqbHHq3aBYlGJ4QfebalFBcjAU8F;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -1582,16 +2124,17 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = "App Store";
+			name = AppStore;
 		};
-		53B25E0B21769663002B846B /* App Store */ = {
+		53B25E0B21769663002B846B /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 094F2A302573828463BE665F /* Pods-voluxe-driver.app store.xcconfig */;
+			baseConfigurationReference = 2D1EA0D2F110093970842729 /* Pods-voluxe-driver.appstore.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Luxe Valet Inc. (MT3X9VW9P6)";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 396JF7EZ43;
+				DEVELOPMENT_TEAM = MT3X9VW9P6;
 				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1599,14 +2142,15 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
-			name = "App Store";
+			name = AppStore;
 		};
-		53B25E0D21769663002B846B /* App Store */ = {
+		53B25E0D21769663002B846B /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = BF639FC061D03DB07A4AAE2A /* Pods-voluxe-driverUITests.app store.xcconfig */;
+			baseConfigurationReference = CA92D79509175AADEF56BF71 /* Pods-voluxe-driverUITests.appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -1623,7 +2167,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = "voluxe-driver";
 			};
-			name = "App Store";
+			name = AppStore;
 		};
 		53B25E18217698B1002B846B /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -1835,9 +2379,9 @@
 			};
 			name = Production;
 		};
-		53B25E1B217698B1002B846B /* App Store */ = {
+		53B25E1B217698B1002B846B /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F886450FCC2C6BFB17E53673 /* Pods-voluxe-driverAPITests.app store.xcconfig */;
+			baseConfigurationReference = 0A02722CFEB623049E274707 /* Pods-voluxe-driverAPITests.appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1901,7 +2445,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = "App Store";
+			name = AppStore;
 		};
 		53B25E26217698C2002B846B /* Development */ = {
 			isa = XCBuildConfiguration;
@@ -2113,9 +2657,9 @@
 			};
 			name = Production;
 		};
-		53B25E29217698C2002B846B /* App Store */ = {
+		53B25E29217698C2002B846B /* AppStore */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 68BDE64C3234A652C358A12B /* Pods-voluxe-driverUnitTests.app store.xcconfig */;
+			baseConfigurationReference = A9359D9790429477D5CA826E /* Pods-voluxe-driverUnitTests.appstore.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -2179,7 +2723,7 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
-			name = "App Store";
+			name = AppStore;
 		};
 /* End XCBuildConfiguration section */
 
@@ -2190,7 +2734,7 @@
 				53B25DFB2176960D002B846B /* Development */,
 				53B25E0621769658002B846B /* Staging */,
 				53B25DFC2176960D002B846B /* Production */,
-				53B25E0A21769663002B846B /* App Store */,
+				53B25E0A21769663002B846B /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;
@@ -2201,7 +2745,7 @@
 				53B25DFE2176960D002B846B /* Development */,
 				53B25E0721769658002B846B /* Staging */,
 				53B25DFF2176960D002B846B /* Production */,
-				53B25E0B21769663002B846B /* App Store */,
+				53B25E0B21769663002B846B /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;
@@ -2212,7 +2756,7 @@
 				53B25E042176960D002B846B /* Development */,
 				53B25E0921769658002B846B /* Staging */,
 				53B25E052176960D002B846B /* Production */,
-				53B25E0D21769663002B846B /* App Store */,
+				53B25E0D21769663002B846B /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;
@@ -2223,7 +2767,7 @@
 				53B25E18217698B1002B846B /* Development */,
 				53B25E19217698B1002B846B /* Staging */,
 				53B25E1A217698B1002B846B /* Production */,
-				53B25E1B217698B1002B846B /* App Store */,
+				53B25E1B217698B1002B846B /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;
@@ -2234,7 +2778,7 @@
 				53B25E26217698C2002B846B /* Development */,
 				53B25E27217698C2002B846B /* Staging */,
 				53B25E28217698C2002B846B /* Production */,
-				53B25E29217698C2002B846B /* App Store */,
+				53B25E29217698C2002B846B /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Production;

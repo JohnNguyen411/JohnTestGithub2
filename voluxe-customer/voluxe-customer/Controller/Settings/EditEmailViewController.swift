@@ -12,7 +12,7 @@ import MBProgressHUD
 
 class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
     
-    let emailTextField = VLVerticalTextField(title: .EmailAddress, placeholder: .EmailPlaceholder)
+    let emailTextField = VLVerticalTextField(title: .localized(.emailAddress), placeholder: .localized(.viewEditTextInfoHintEmail))
 
     var realm : Realm?
     
@@ -43,7 +43,7 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
         }
         emailTextField.textField.becomeFirstResponder()
         
-        self.navigationItem.rightBarButtonItem?.title = .Done
+        self.navigationItem.rightBarButtonItem?.title = .localized(.done)
 
     }
     override func setupViews() {
@@ -51,8 +51,8 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
         self.view.addSubview(emailTextField)
         
         emailTextField.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.equalsToTop(view: self.view, offset: BaseViewController.defaultTopYOffset)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
@@ -66,10 +66,10 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
         
         if let code = error?.code {
             if code == .E5001 || code == .E4011 {
-                self.showOkDialog(title: .Error, message: .AccountAlreadyExistUpdate, dialog: .error, screen: self.screen)
+                self.showOkDialog(title: .localized(.error), message: .localized(.errorEmailAlreadyExist), dialog: .error, screen: self.screen)
             }
         } else {
-            self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+            self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
         }
     }
    

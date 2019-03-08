@@ -80,17 +80,17 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
     private func setupViews() {
         editImage.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(15)
+            make.leading.equalToSuperview().offset(15)
             make.width.equalTo(0)
         }
         leftImage.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalTo(editImage.snp.right)
+            make.leading.equalTo(editImage.snp.trailing)
             make.width.equalTo(0)
         }
         settingLabel.snp.makeConstraints { make in
-            make.top.bottom.right.equalToSuperview()
-            make.left.equalTo(leftImage.snp.right).offset(15)
+            make.top.bottom.trailing.equalToSuperview()
+            make.leading.equalTo(leftImage.snp.trailing).offset(15)
         }
         
     }
@@ -102,24 +102,24 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
             
             leftImage.snp.remakeConstraints { make in
                 make.centerY.equalToSuperview()
-                make.left.equalToSuperview().offset(15)
+                make.leading.equalToSuperview().offset(15)
                 make.width.equalTo(20)
             }
                 
             settingLabel.snp.remakeConstraints { make in
-                make.top.bottom.right.equalToSuperview()
-                make.left.equalTo(leftImage.snp.right).offset(15)
+                make.top.bottom.trailing.equalToSuperview()
+                make.leading.equalTo(leftImage.snp.trailing).offset(15)
             }
         } else {
             leftImage.image = nil
             leftImage.snp.remakeConstraints { make in
                 make.centerY.equalToSuperview()
-                make.left.equalTo(editImage.snp.right)
+                make.leading.equalTo(editImage.snp.trailing)
                 make.width.equalTo(0)
             }
             settingLabel.snp.remakeConstraints { make in
-                make.top.bottom.right.equalToSuperview()
-                make.left.equalTo(leftImage.snp.right).offset(15)
+                make.top.bottom.trailing.equalToSuperview()
+                make.leading.equalTo(leftImage.snp.trailing).offset(15)
             }
         }
         if let editImageName = editImageName {
@@ -167,7 +167,7 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
                 }
                 if let _ = self.leftImage.image {
                     self.leftImage.snp.updateConstraints { make in
-                        make.left.equalToSuperview().offset(50)
+                        make.leading.equalToSuperview().offset(50)
                     }
                 }
             } else {
@@ -177,7 +177,7 @@ class SettingsCell: UITableViewCell, UITextFieldDelegate {
                 }
                 if let _ = self.leftImage.image {
                     self.leftImage.snp.updateConstraints { make in
-                        make.left.equalToSuperview().offset(15)
+                        make.leading.equalToSuperview().offset(15)
                     }
                 }
             }

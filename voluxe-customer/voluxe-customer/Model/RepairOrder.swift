@@ -95,7 +95,7 @@ import Foundation
         self.title = repairOrderType.name
         self.name = repairOrderType.name
         if repairOrderType.getCategory() == .custom {
-            self.name = String.DiagnosticInspection
+            self.name = String.localized(.viewScheduleServiceTypeOtherUnknown)
         }
         self.repairOrderType = repairOrderType
     }
@@ -104,22 +104,22 @@ import Foundation
     static func getDrivabilityTitle(isDrivable: Bool?) -> String {
         if let drivable = isDrivable {
             if drivable {
-                return .Yes
+                return .localized(.yes)
             } else {
-                return .No
+                return .localized(.no)
             }
         } else {
-            return .ImNotSure
+            return .localized(.imNotSure)
         }
     }
     
     func getTitle() -> String {
         if let title = title {
             return title
-        } else {
-            if let repairOrderType = repairOrderType, let typeName = repairOrderType.name {
+        } else if let name = self.name {
+            return name
+        } else if let repairOrderType = self.repairOrderType, let typeName = repairOrderType.name {
                 return typeName
-            }
         }
         return ""
     }

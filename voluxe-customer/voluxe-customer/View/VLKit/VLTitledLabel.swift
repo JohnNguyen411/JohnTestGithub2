@@ -118,7 +118,7 @@ class VLTitledLabel: UIView {
         }
         
         titleLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.top.equalToSuperview()
+            make.leading.trailing.top.equalToSuperview()
             make.height.equalTo(20)
         }
         
@@ -126,23 +126,23 @@ class VLTitledLabel: UIView {
         containerView.addSubview(separator)
         
         separator.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(titleLabel.snp.bottom).offset(3)
             make.height.equalTo(1)
         }
         
         descLeftLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.width.equalToSuperview()
+            make.leading.trailing.width.equalToSuperview()
             make.top.equalTo(separator.snp.bottom).offset(10)
         }
         
         descRightLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(separator.snp.bottom).offset(10)
         }
         
         errorLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.top.equalToSuperview()
+            make.leading.trailing.top.equalToSuperview()
             make.height.equalTo(20)
         }
         

@@ -51,12 +51,12 @@ class LeftPanelVehicleCell: UITableViewCell, UITextFieldDelegate {
         
         notificationImage.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.left.equalToSuperview().offset(15)
+            make.leading.equalToSuperview().offset(15)
             make.width.height.equalTo(8)
         }
         settingLabel.snp.makeConstraints { make in
-            make.top.bottom.right.equalToSuperview()
-            make.left.equalToSuperview().offset(15)
+            make.top.bottom.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(15)
         }
     }
     
@@ -68,13 +68,13 @@ class LeftPanelVehicleCell: UITableViewCell, UITextFieldDelegate {
         if let notificationType = notificationType {
             notificationImage.animateAlpha(show: true)
             settingLabel.snp.updateConstraints { make in
-                make.left.equalToSuperview().offset(35)
+                make.leading.equalToSuperview().offset(35)
             }
             notificationImage.image = UIImage(named: notificationType == .active ? "notificationDot" : "notificationDotGrey")
         } else {
             notificationImage.animateAlpha(show: false)
             settingLabel.snp.updateConstraints { make in
-                make.left.equalToSuperview().offset(15)
+                make.leading.equalToSuperview().offset(15)
             }
         }
     }

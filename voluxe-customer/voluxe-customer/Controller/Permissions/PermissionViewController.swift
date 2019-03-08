@@ -26,7 +26,7 @@ class PermissionViewController: BaseViewController {
     
     let permissionText: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .NotificationPermissionText
+        textView.text = .localized(.permissionNotificationMessage)
         textView.font = .volvoSansProRegular(size: 16)
         textView.textColor = .luxeDarkGray()
         textView.backgroundColor = .clear
@@ -43,7 +43,7 @@ class PermissionViewController: BaseViewController {
     
     init(permissionType: PermissionType, completion: @escaping (()->())) {
         self.permissionType = permissionType
-        self.grantPermissionButton = VLButton(type: .bluePrimary, title: String.GrantPermission.uppercased(), kern: UILabel.uppercasedKern())
+        self.grantPermissionButton = VLButton(type: .bluePrimary, title: String.localized(.permissionGrantTitle).uppercased(), kern: UILabel.uppercasedKern())
         self.completionBlock = completion
         
         super.init(screen: PermissionViewController.screenNameForPermission(type: permissionType))
@@ -77,14 +77,14 @@ class PermissionViewController: BaseViewController {
 
         grantPermissionButton.snp.makeConstraints { make in
             make.equalsToBottom(view: self.view, offset: -20)
-            make.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(VLButton.primaryHeight)
         }
         
         closeButton.snp.makeConstraints { make in
             make.equalsToTop(view: self.view, offset: 20)
-            make.left.equalToSuperview().offset(10)
+            make.leading.equalToSuperview().offset(10)
             make.width.height.equalTo(50)
         }
         

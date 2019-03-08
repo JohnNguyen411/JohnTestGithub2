@@ -11,6 +11,7 @@ import Foundation
 struct Request: Codable {
 
     enum State: String, Codable {
+        case canceled
         case completed
         case requested
         case started
@@ -25,17 +26,19 @@ struct Request: Codable {
 
     let id: Int
     let type: Type
-    let booking: Booking
+    let booking: Booking?
+    let bookingId: Int
     let dealershipTimeSlotId: Int
     let dealershipTimeSlot: DealershipTimeSlot
     let notes: String?
     let location: Location?
     let state: State
-    let task: String?
+    let task: Task?
     let driverDealershipTimeSlotAssignmentId: Int
     let driverDealershipTimeSlotAssignment: DriverDealershipTimeSlotAssignment?
     let loanerVehicleRequested: Bool?
     let loanerInspection: Inspection?
+    let loanerInspectionId: Int?
     let vehicleInspectionId: Int?
     let vehicleInspection: Inspection?
     let documents: [Inspection]?
@@ -44,6 +47,7 @@ struct Request: Codable {
         case id
         case type
         case booking
+        case bookingId = "booking_id"
         case dealershipTimeSlotId = "dealership_time_slot_id"
         case dealershipTimeSlot = "dealership_time_slot"
         case notes
@@ -55,6 +59,7 @@ struct Request: Codable {
         case loanerVehicleRequested = "loaner_vehicle_requested"
         case loanerInspection = "loaner_vehicle_inspection"
         case vehicleInspectionId = "vehicle_inspection_id"
+        case loanerInspectionId = "loaner_vehicle_inspection_id"
         case vehicleInspection = "vehicle_inspection"
         case documents
     }
@@ -73,5 +78,13 @@ struct Request: Codable {
 
     var isCompleted: Bool {
         return self.state == .completed
+    }
+    
+    var hasLoaner: Bool {
+        return self.booking?.loanerVehicle != nil
+    }
+    
+    var typeString: String {
+        return self.isPickup ? .localized(.pickup) : .localized(.delivery)
     }
 }

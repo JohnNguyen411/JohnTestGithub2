@@ -24,9 +24,9 @@ class SchedulingDropoffViewController: SchedulingViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         if let requestType = RequestedServiceManager.sharedInstance.getDropoffRequestType(), requestType == .advisorDropoff {
-            setTitle(title: .SelfPickup)
+            setTitle(title: .localized(.viewScheduleServiceOptionPickupSelfDeliveryDropoff))
         } else {
-            setTitle(title: .ScheduleDelivery)
+            setTitle(title: .localized(.scheduleDelivery))
         }
     }
     
@@ -46,10 +46,10 @@ class SchedulingDropoffViewController: SchedulingViewController {
     override func fillViews() {
         super.fillViews()
         
-        scheduledServiceView.setTitle(title: String.CompletedService, leftDescription: booking.getRepairOrderName(), rightDescription: "")
+        scheduledServiceView.setTitle(title: String.localized(.completedService), leftDescription: booking.getRepairOrderName(), rightDescription: "")
         
-        scheduledPickupView.titleLabel.text = .ScheduledDelivery
-        pickupLocationView.titleLabel.text = .DeliveryLocation
+        scheduledPickupView.titleLabel.text = .localized(.scheduledDelivery)
+        pickupLocationView.titleLabel.text = .localized(.deliveryLocation)
     }
     
     func hideDealership() {
@@ -61,13 +61,13 @@ class SchedulingDropoffViewController: SchedulingViewController {
         }
         
         scheduledPickupView.snp.remakeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(descriptionButton.snp.bottom).offset(10)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
         
         pickupLocationView.snp.remakeConstraints { make in
-            make.left.right.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
             make.top.equalTo(scheduledPickupView.snp.bottom)
             make.height.equalTo(SchedulingViewController.vlLabelHeight)
         }
@@ -81,7 +81,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
             }
         }
         if let dealership = bookingDealership {
-            self.dealershipView.setTitle(title: .Dealership, leftDescription: dealership.name!, rightDescription: "")
+            self.dealershipView.setTitle(title: .localized(.dealership), leftDescription: dealership.name!, rightDescription: "")
         }
     }
     
@@ -192,7 +192,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 if let error = error {
                     self.pickupLocationView.showError(error: error)
                 } else {
-                    self.pickupLocationView.showError(error: .OutOfPickupArea)
+                    self.pickupLocationView.showError(error: .localized(.errorLocationOutOfPickupArea))
                 }
                 self.showConfirmButtonIfNeeded()
             })
@@ -238,12 +238,12 @@ class SchedulingDropoffViewController: SchedulingViewController {
                 
                 if (error != nil) {
                     if let code = error?.code, code == .E4049 || code == .E4050 {
-                        self.showDialog(title: .Error, message: String(format: String.DuplicateRequestError, String.Delivery), buttonTitle: .Refresh, completion: {
+                        self.showDialog(title: .localized(.error), message: String(format: .localized(.errorDuplicateRequest), String.localized(.delivery)), buttonTitle: .localized(.refresh), completion: {
                             self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
                         }, dialog: .error, screen: self.screen)
                         return
                     } else {
-                        self.showOkDialog(title: .Error, message: .GenericError, dialog: .error, screen: self.screen)
+                        self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     }
                 }
             }
@@ -282,7 +282,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
             self.hideProgressHUD()
             
             if error != nil {
-                self.showDialog(title: .Error, message: .GenericError, buttonTitle: .Retry, completion: {
+                self.showDialog(title: .localized(.error), message: .localized(.errorUnknown), buttonTitle: .localized(.retry), completion: {
                     self.refreshFinalBooking(customerId: customerId, bookingId: bookingId)
                 }, dialog: .error, screen: self.screen)
             } else {

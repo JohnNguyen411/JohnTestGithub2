@@ -9,6 +9,7 @@
 import Crashlytics
 import Fabric
 import UIKit
+import Branch
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,16 +25,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window.rootViewController = AppController.shared
         window.makeKeyAndVisible()
         self.window = window
+        
+        // logoutOnLaunch can be specified as an executable argument
+        // Typically and currently this is only used by the UI test suite
+        if UserDefaults.standard.isFirstTimeLaunch {
+            DriverManager.shared.logout()
+        }
+        
         self.initServices()
+        self.setupBranch(application, launchOptions: launchOptions)
+
         self.initAppearance()
         AppController.shared.launch()
         return true
     }
 
     /// Do custom init work here like background fetch, push notifications
-    /// and frameworks.
+    /// and frameworks.  Note that Analytics (which uses Firebase) must
+    /// be configured BEFORE Fabric/Crashlytics, and definitely before
+    /// push notifications.
     private func initServices() {
+        Analytics.configure()
+        
+        // set UserProperties
+        Analytics.updateDeviceContext()
+        
         Fabric.with([Crashlytics.self])
+        
+        
         self.initBackgroundFetch()
         self.initLocationUpdates()
         self.initPushNotifications()
@@ -51,4 +70,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         AppController.shared.exit()
     }
+    
+    
 }

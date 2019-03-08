@@ -19,8 +19,8 @@ extension AppDelegate {
     func application(_ application: UIApplication,
                      performFetchWithCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void)
     {
-        // TODO refresh driver, requests
         // TODO https://app.asana.com/0/858610969087925/888668564766602/f
+        // TODO refresh driver, requests
         // The OS uses the completion handler responses to decide when the
         // app gets woken up, so until we're doing actual work we'll just
         // fake the responses.  Note that this is NOT a substitution for

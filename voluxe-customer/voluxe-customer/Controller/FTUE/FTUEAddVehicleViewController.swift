@@ -28,7 +28,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     
     let label: UILabel = {
         let textView = UILabel(frame: .zero)
-        textView.text = .SelectYourVehicle
+        textView.text = .localized(.viewVehicleAddLabel)
         textView.font = .volvoSansProRegular(size: 16)
         textView.volvoProLineSpacing()
         textView.textColor = .luxeDarkGray()
@@ -43,15 +43,15 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     var selectedModel = -1
     var selectedColor = -1
     
-    let yearLabel = VLVerticalTextField(title: .Year, placeholder: .YearPlaceholder)
-    let modelLabel = VLVerticalTextField(title: .Model, placeholder: .ModelPlaceholder)
-    let colorLabel = VLVerticalTextField(title: .Color, placeholder: .ColorPlaceholder)
+    let yearLabel = VLVerticalTextField(title: .localized(.year), placeholder: .localized(.viewVehicleAddYearHint))
+    let modelLabel = VLVerticalTextField(title: .localized(.model), placeholder: .localized(.viewVehicleAddModelHint))
+    let colorLabel = VLVerticalTextField(title: .localized(.color), placeholder: .localized(.viewVehicleAddColorHint))
     
     var pickerView: UIPickerView!
     
     init() {
         super.init(screen: .vehicleAdd)
-        self.navigationItem.rightBarButtonItem?.title = .Done
+        self.navigationItem.rightBarButtonItem?.title = .localized(.done)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -95,26 +95,26 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         scrollView.addSubview(colorLabel)
         
         label.snp.makeConstraints { (make) -> Void in
-            make.left.equalToSuperview().offset(20)
+            make.leading.equalToSuperview().offset(20)
             make.equalsToTop(view: scrollView.contentView, offset: BaseViewController.defaultTopYOffset)
-            make.right.equalToSuperview().offset(-20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(60)
         }
         
         yearLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(label)
+            make.leading.trailing.equalTo(label)
             make.top.equalTo(label.snp.bottom).offset(BaseViewController.defaultTopYOffset)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         modelLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(label)
+            make.leading.trailing.equalTo(label)
             make.top.equalTo(yearLabel.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
         
         colorLabel.snp.makeConstraints { (make) -> Void in
-            make.left.right.equalTo(label)
+            make.leading.trailing.equalTo(label)
             make.top.equalTo(modelLabel.snp.bottom)
             make.height.equalTo(VLVerticalTextField.verticalHeight)
         }
@@ -202,11 +202,11 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         toolBar.sizeToFit()
         
         // Adding Button ToolBar
-        let doneButton = UIBarButtonItem(title: .Done, style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.donePicker))
+        let doneButton = UIBarButtonItem(title: .localized(.done), style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.donePicker))
         UIViewController.styleBarButtonItem(barButton: doneButton)
 
         let spaceButton = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: .Cancel, style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.cancelPicker))
+        let cancelButton = UIBarButtonItem(title: .localized(.cancel), style: .plain, target: self, action: #selector(FTUEAddVehicleViewController.cancelPicker))
         UIViewController.styleBarButtonItem(barButton: cancelButton)
         toolBar.setItems([cancelButton, spaceButton, doneButton], animated: false)
         toolBar.isUserInteractionEnabled = true

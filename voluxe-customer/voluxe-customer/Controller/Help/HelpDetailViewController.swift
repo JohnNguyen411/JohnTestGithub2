@@ -56,10 +56,10 @@ class HelpDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        helpTitle.text = helpDetail.title
-        label.text = helpDetail.description
+        helpTitle.text = .localized(helpDetail.title)
+        label.text = .localized(helpDetail.description)
         
-        self.navigationItem.title = .Help
+        self.navigationItem.title = .localized(.help)
         
         label.volvoProLineSpacing()
         label.sizeToFit()
@@ -117,8 +117,8 @@ class HelpDetailViewController: BaseViewController {
         self.view.addSubview(rightButton)
         
         helpTitle.snp.makeConstraints { make in
-            make.top.left.equalToSuperview().offset(20)
-            make.right.equalToSuperview().offset(-20)
+            make.top.leading.equalToSuperview().offset(20)
+            make.trailing.equalToSuperview().offset(-20)
             make.height.equalTo(VLTitledLabel.height)
         }
         
@@ -126,14 +126,14 @@ class HelpDetailViewController: BaseViewController {
             if actions.count > 1 {
                 leftButton.snp.makeConstraints { make in
                     make.equalsToBottom(view: self.view, offset: -20)
-                    make.left.equalToSuperview().offset(20)
+                    make.leading.equalToSuperview().offset(20)
                     make.width.equalToSuperview().dividedBy(2).offset(-25)
                     make.height.equalTo(VLButton.primaryHeight)
                 }
                 
                 rightButton.snp.makeConstraints { make in
                     make.equalsToBottom(view: self.view, offset: -20)
-                    make.right.equalToSuperview().offset(-20)
+                    make.trailing.equalToSuperview().offset(-20)
                     make.width.equalToSuperview().dividedBy(2).offset(-25)
                     make.height.equalTo(VLButton.primaryHeight)
                 }
@@ -156,7 +156,7 @@ class HelpDetailViewController: BaseViewController {
         
         
         label.snp.makeConstraints { make in
-            make.right.left.equalTo(helpTitle)
+            make.trailing.leading.equalTo(helpTitle)
             make.top.equalTo(helpTitle.snp.bottom).offset(20)
         }
     }

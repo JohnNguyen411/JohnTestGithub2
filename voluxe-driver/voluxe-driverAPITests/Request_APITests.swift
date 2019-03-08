@@ -8,17 +8,22 @@
 
 import XCTest
 
+// IMPORTANT!
+// These tests require that the xcodebots@luxe.com user
+// has at least one request assigned to them for today.
+// If not, nearly all the tests will fail.
+
 class Request_APITests: XCTestCase {
 
     static var driver: Driver?
     static var request: Request?
 
     func test00_loginDriver() {
-        DriverAPI.login(email: "christoph@luxe.com", password: "shenoa7777") {
+        DriverAPI.login(email: "xcodebots@luxe.com", password: "luxebyvolvo7") {
             driver, error in
             XCTAssertNil(error)
             XCTAssertNotNil(driver)
-            XCTAssertTrue(driver?.email == "christoph@luxe.com")
+            XCTAssertTrue(driver?.email == "xcodebots@luxe.com")
             Driver_APITests.driver = driver
         }
         self.wait()
@@ -43,7 +48,7 @@ class Request_APITests: XCTestCase {
         DriverAPI.update(request, task: .meetWithCustomer) {
             error in
             XCTAssertNotNil(error)
-            XCTAssertTrue(error == .E4021)
+            XCTAssertTrue(error == .E4020)
         }
         self.wait()
     }
