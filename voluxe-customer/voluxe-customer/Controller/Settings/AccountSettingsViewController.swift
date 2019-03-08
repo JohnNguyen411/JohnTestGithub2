@@ -79,7 +79,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     func getTextForIndexPath(indexPath: IndexPath) -> String {
         if indexPath.section == 0 {
             if let addresses = addresses, addressesCount > indexPath.row {
-                guard let location = addresses[indexPath.row].location else { return .AddNewLocation }
+                guard let location = addresses[indexPath.row].location else { return .localized(.addNewLocation) }
                 return Location.fromRealm(realmObject: location).getShortAddress() ?? ""
             }
             return .localized(.addNewLocation)

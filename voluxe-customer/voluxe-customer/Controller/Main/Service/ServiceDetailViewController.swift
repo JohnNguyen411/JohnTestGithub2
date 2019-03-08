@@ -67,7 +67,7 @@ class ServiceDetailViewController: BaseViewController {
         if let repairOrder = repairOrder, let repairOrderType = repairOrder.repairOrderType, repairOrderType.getCategory() == .custom {
             label.text = repairOrder.notes
             serviceTitle.setTitle(title: .localized(.viewScheduleServiceTypeDetailNameLabelOther), leftDescription: repairOrder.getTitle())
-            isDrivableLabel.text = String.localized(.viewScheduleServiceTypeOtherDetailLabel) + " " + RepairOrder.getDrivabilityTitle(isDrivable: repairOrder.vehicleDrivable.value)
+            isDrivableLabel.text = String.localized(.viewScheduleServiceTypeOtherDetailLabel) + " " + RepairOrder.getDrivabilityTitle(isDrivable: repairOrder.vehicleDrivable)
         } else {
             label.text = service.desc
             if let repairOrder = repairOrder {
