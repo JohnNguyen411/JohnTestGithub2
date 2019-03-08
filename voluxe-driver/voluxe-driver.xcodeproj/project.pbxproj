@@ -75,6 +75,7 @@
 		52C67E8421F91EB8005EEC3B /* Volvo Novum-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 52C67E7F21F91EB8005EEC3B /* Volvo Novum-Light.otf */; };
 		52C67E8621F9205C005EEC3B /* LoanerPaperworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E8521F9205C005EEC3B /* LoanerPaperworkViewController.swift */; };
 		52CFAC5821FFD5390019255D /* UIBarButtonItem+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */; };
+		52D6C0AD223051B400346787 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52D6C0AC223051B400346787 /* GoogleService-Info-Staging.plist */; };
 		52E8CB982229FDB700794E3B /* GoogleService-Info-Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */; };
 		52FFBBAE21ADF78D00FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */; };
 		52FFBBAF21ADF79800FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */; };
@@ -335,6 +336,7 @@
 		52C67E7F21F91EB8005EEC3B /* Volvo Novum-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Volvo Novum-Light.otf"; sourceTree = "<group>"; };
 		52C67E8521F9205C005EEC3B /* LoanerPaperworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanerPaperworkViewController.swift; sourceTree = "<group>"; };
 		52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Attributes.swift"; sourceTree = "<group>"; };
+		52D6C0AC223051B400346787 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
 		52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
 		52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Debug.swift"; sourceTree = "<group>"; };
 		530BCD492177AAB2005327E7 /* RestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPI.swift; sourceTree = "<group>"; };
@@ -961,6 +963,7 @@
 				52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */,
 				52B200F222289648005DE35A /* GoogleService-Info-AppStore.plist */,
 				5330472821890BF8007CE01C /* GoogleService-Info-Development.plist */,
+				52D6C0AC223051B400346787 /* GoogleService-Info-Staging.plist */,
 				53B25DE42176960D002B846B /* Info.plist */,
 				53B25DE12176960D002B846B /* LaunchScreen.storyboard */,
 				5339036C21D7148A00DD16D8 /* Unlocalized.swift */,
@@ -1177,6 +1180,7 @@
 				52A1CE4D22122D52002F16BE /* Volvo Novum-Italic.otf in Resources */,
 				5330472921890BF8007CE01C /* GoogleService-Info-Development.plist in Resources */,
 				52C67E8321F91EB8005EEC3B /* Volvo Novum-SemiLight.otf in Resources */,
+				52D6C0AD223051B400346787 /* GoogleService-Info-Staging.plist in Resources */,
 				53B25DE32176960D002B846B /* LaunchScreen.storyboard in Resources */,
 				52E8CB982229FDB700794E3B /* GoogleService-Info-Production.plist in Resources */,
 				536FFD9E2177901D00C83F89 /* ipa-to-fabric.sh in Resources */,
