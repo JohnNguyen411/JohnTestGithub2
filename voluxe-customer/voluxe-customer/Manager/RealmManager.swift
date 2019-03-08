@@ -12,11 +12,15 @@ import RealmSwift
 /// RealmManager is use to run Realm Migrations
 class RealmManager {
     
-    private static let dbVersion: UInt64 = 14
+    private static let dbVersion: UInt64 = 15
     
     public static func realmMigration(callback: @escaping (Realm?, Swift.Error?) -> Void) {
         
-        let config = Realm.Configuration(schemaVersion: dbVersion, migrationBlock: { migration, oldSchemaVersion in
+        var oldVersion = dbVersion
+        var config = Realm.Configuration(schemaVersion: dbVersion, migrationBlock: { migration, oldSchemaVersion in
+            
+            oldVersion = oldSchemaVersion
+            
             if oldSchemaVersion < 1 {
                 migration.enumerateObjects(ofType: DealershipTimeSlotRealm.className()) { oldObject, newObject in
                     newObject!["availableLoanerVehicleCount"] = 0
@@ -119,7 +123,14 @@ class RealmManager {
                 }
             }
             
+            // just need to migrate
+            if oldSchemaVersion < 14 {
+               
+            }
+            
         })
+        
+        config.deleteRealmIfMigrationNeeded = oldVersion <= 14
         
         Realm.Configuration.defaultConfiguration = config
         Realm.asyncOpen(configuration: config) { realm, error in
