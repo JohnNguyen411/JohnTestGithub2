@@ -15,7 +15,7 @@ struct Dealership: Codable {
     let email: String
     let phoneNumber: String
     let location: Location
-    let coverageRadius: Int
+    let coverageRadius: Int?
     let autoWeeklySchedulesCount: Int
     let cityId: Int
     let dailyLoanerVehicleCap: Int
