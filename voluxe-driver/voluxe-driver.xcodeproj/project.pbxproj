@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		23B23DB9CB567E68A9D8A7FD /* Pods_voluxe_driverUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496CC8BDA5EAFFAB068238CC /* Pods_voluxe_driverUITests.framework */; };
 		522751A2221CCB4A0067459E /* AppDelegate+Branch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522751A1221CCB4A0067459E /* AppDelegate+Branch.swift */; };
-		5235EBF121F92643002BBCE7 /* RepairOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235EBEF21F92639002BBCE7 /* RepairOrderRequest.swift */; };
 		5235EBF321F927D6002BBCE7 /* DealershipRepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235EBF221F927D6002BBCE7 /* DealershipRepairOrder.swift */; };
 		5235EBF421F927D6002BBCE7 /* DealershipRepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235EBF221F927D6002BBCE7 /* DealershipRepairOrder.swift */; };
 		5235EBF621F92AA9002BBCE7 /* RepairOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235EBF521F92AA9002BBCE7 /* RepairOrderType.swift */; };
@@ -37,8 +36,12 @@
 		52504734221C84DF00D07CD4 /* UIView+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52504733221C84DF00D07CD4 /* UIView+Toast.swift */; };
 		528194882203B9C500C7E8EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 528194872203B9C500C7E8EF /* Localizable.strings */; };
 		5281948B2203BB5A00C7E8EF /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948A2203BB5A00C7E8EF /* Localized.swift */; };
-		5281948E2204F43F00C7E8EF /* RepairOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */; };
 		5296BA6A2239AD1F0093890D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F1E55F21E01ECE007EF3AD /* UIImage+Resize.swift */; };
+		5296BA6B2239B3FF0093890D /* RepairOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */; };
+		5296BA6C2239B5630093890D /* RepairOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */; };
+		5296BA6D2239BFC70093890D /* RepairOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5235EBF521F92AA9002BBCE7 /* RepairOrderType.swift */; };
+		5296BA6E2239BFE60093890D /* Unlocalized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5339036C21D7148A00DD16D8 /* Unlocalized.swift */; };
+		5296BA6F2239BFF30093890D /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948A2203BB5A00C7E8EF /* Localized.swift */; };
 		52A1CE382205138D002F16BE /* InspectionNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE372205138D002F16BE /* InspectionNotesViewController.swift */; };
 		52A1CE3A22051928002F16BE /* ExchangeKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3922051928002F16BE /* ExchangeKeysViewController.swift */; };
 		52A1CE3C22051B43002F16BE /* ReturnToDealershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3B22051B43002F16BE /* ReturnToDealershipViewController.swift */; };
@@ -275,7 +278,6 @@
 		468ECDE7DF2AC14C8B95BC04 /* Pods-voluxe-driverUITests.development.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-driverUITests.development.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-driverUITests/Pods-voluxe-driverUITests.development.xcconfig"; sourceTree = "<group>"; };
 		496CC8BDA5EAFFAB068238CC /* Pods_voluxe_driverUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_voluxe_driverUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		522751A1221CCB4A0067459E /* AppDelegate+Branch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Branch.swift"; sourceTree = "<group>"; };
-		5235EBEF21F92639002BBCE7 /* RepairOrderRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrderRequest.swift; sourceTree = "<group>"; };
 		5235EBF221F927D6002BBCE7 /* DealershipRepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DealershipRepairOrder.swift; sourceTree = "<group>"; };
 		5235EBF521F92AA9002BBCE7 /* RepairOrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrderType.swift; sourceTree = "<group>"; };
 		5235EBF821F93BC7002BBCE7 /* RecordMileageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordMileageViewController.swift; sourceTree = "<group>"; };
@@ -574,14 +576,6 @@
 				5281948A2203BB5A00C7E8EF /* Localized.swift */,
 			);
 			path = Localization;
-			sourceTree = "<group>";
-		};
-		5281948C2204F3A000C7E8EF /* Recovered References */ = {
-			isa = PBXGroup;
-			children = (
-				5235EBEF21F92639002BBCE7 /* RepairOrderRequest.swift */,
-			);
-			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		52A3A61721E6C3E0002A273E /* VLKit */ = {
@@ -889,7 +883,6 @@
 				53B25E13217698B1002B846B /* voluxe-driverAPITests */,
 				53B25DF72176960D002B846B /* voluxe-driverUITests */,
 				53B25E21217698C2002B846B /* voluxe-driverUnitTests */,
-				5281948C2204F3A000C7E8EF /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1478,6 +1471,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5296BA6C2239B5630093890D /* RepairOrderRequest.swift in Sources */,
 				5312142D21CB0AE700F3FCEB /* FlowViewController.swift in Sources */,
 				53DA9CB72180C9FD00ABC414 /* DriverAPI+Request.swift in Sources */,
 				533047092188D760007CE01C /* AppController+Debug.swift in Sources */,
@@ -1590,7 +1584,6 @@
 				53F1E56021E01ECE007EF3AD /* UIImage+Resize.swift in Sources */,
 				5312142121C9A3E700F3FCEB /* UITableView+OverScroll.swift in Sources */,
 				5250472D2217659F00D07CD4 /* UIView+Dimensions.swift in Sources */,
-				5281948E2204F43F00C7E8EF /* RepairOrderRequest.swift in Sources */,
 				5339036721D1573600DD16D8 /* SwipeNextView.swift in Sources */,
 				5316E98A220205510053832E /* OfflineInspection.swift in Sources */,
 				53C190EA219B2A9D00CBC410 /* Layout.swift in Sources */,
@@ -1671,14 +1664,16 @@
 				53DA9CB22180C7AC00ABC414 /* Request.swift in Sources */,
 				5316E9702200F2D20053832E /* Log.swift in Sources */,
 				5374DF2A21E519D500956122 /* LogService.swift in Sources */,
+				5296BA6F2239BFF30093890D /* Localized.swift in Sources */,
 				53B43F98218B758400EF847E /* LuxeAPI+Version.swift in Sources */,
 				53DA9CBE2180F52900ABC414 /* DriverDealershipTimeSlotAssignment.swift in Sources */,
 				53DA9CAC2180C52300ABC414 /* Customer.swift in Sources */,
 				53DA9CC62181063E00ABC414 /* Request_APITests.swift in Sources */,
-				5235EBF121F92643002BBCE7 /* RepairOrderRequest.swift in Sources */,
+				5296BA6E2239BFE60093890D /* Unlocalized.swift in Sources */,
 				5374DF3021E524D000956122 /* Bundle+Current.swift in Sources */,
 				5235EBF421F927D6002BBCE7 /* DealershipRepairOrder.swift in Sources */,
 				53DA9CC42181020400ABC414 /* Task.swift in Sources */,
+				5296BA6B2239B3FF0093890D /* RepairOrderRequest.swift in Sources */,
 				5316E9712200F2F30053832E /* OSLog.swift in Sources */,
 				53DA9CA4217F66B900ABC414 /* Location.swift in Sources */,
 				524C201D21ACB90C003AA733 /* LuxeAPIError.swift in Sources */,
@@ -1714,6 +1709,7 @@
 				535381A421FD775300C03ECE /* KeychainManager.swift in Sources */,
 				533046E821877847007CE01C /* Inspection_APITests.swift in Sources */,
 				53B43F9D218B7CD900EF847E /* Bundle+Voluxe.swift in Sources */,
+				5296BA6D2239BFC70093890D /* RepairOrderType.swift in Sources */,
 				53DA9CB82180C9FD00ABC414 /* DriverAPI+Request.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
