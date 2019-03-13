@@ -38,6 +38,7 @@
 		528194882203B9C500C7E8EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 528194872203B9C500C7E8EF /* Localizable.strings */; };
 		5281948B2203BB5A00C7E8EF /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948A2203BB5A00C7E8EF /* Localized.swift */; };
 		5281948E2204F43F00C7E8EF /* RepairOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */; };
+		5296BA6A2239AD1F0093890D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F1E55F21E01ECE007EF3AD /* UIImage+Resize.swift */; };
 		52A1CE382205138D002F16BE /* InspectionNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE372205138D002F16BE /* InspectionNotesViewController.swift */; };
 		52A1CE3A22051928002F16BE /* ExchangeKeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3922051928002F16BE /* ExchangeKeysViewController.swift */; };
 		52A1CE3C22051B43002F16BE /* ReturnToDealershipViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52A1CE3B22051B43002F16BE /* ReturnToDealershipViewController.swift */; };
@@ -1695,6 +1696,7 @@
 				52FFBBAF21ADF79800FAD7BE /* UserDefaults+Debug.swift in Sources */,
 				53DA9CBB2180F44E00ABC414 /* Inspection.swift in Sources */,
 				53B43F9B218B77DE00EF847E /* UserDefaults+LuxeAPI.swift in Sources */,
+				5296BA6A2239AD1F0093890D /* UIImage+Resize.swift in Sources */,
 				53368D8D21C17CED00B1A2AF /* AdminAPI+Driver.swift in Sources */,
 				53B25E15217698B1002B846B /* Login_APITests.swift in Sources */,
 				5380089F21A33C2F00E47660 /* UIColor+Random.swift in Sources */,
