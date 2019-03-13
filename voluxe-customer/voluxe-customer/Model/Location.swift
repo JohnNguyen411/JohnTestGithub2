@@ -8,7 +8,6 @@
 
 import Foundation
 import CoreLocation
-import RealmSwift
 
 @objcMembers class Location: NSObject, Codable {
     
