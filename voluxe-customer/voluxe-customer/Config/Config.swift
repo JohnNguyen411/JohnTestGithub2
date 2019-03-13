@@ -37,7 +37,7 @@ class Config: NSObject {
         let scheme = bundle.scheme
         baseUrl = Config.baseUrlForScheme(scheme: scheme)
         clientId = Config.clientIdForScheme(scheme: scheme)
-        if scheme == Config.releaseBundleId {
+        if scheme == "Production" || scheme == "AppStore" {
             defaultBookingRefresh = 60
             googleMapsAPIKey = "AIzaSyA65M4H5PG82NbkDRcTmvq9ouqAZJKCil8"
         } else {
