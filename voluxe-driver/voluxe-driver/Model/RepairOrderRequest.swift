@@ -23,7 +23,7 @@ struct RepairOrderRequest: Codable {
     let createdAt: Date?
     let updatedAt: Date?
     let completedAt: Date?
-    let starteddAt: Date?
+    let startedAt: Date?
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -37,7 +37,7 @@ struct RepairOrderRequest: Codable {
         case title
         case description
         case completedAt = "completed_at"
-        case starteddAt = "started_at"
+        case startedAt = "started_at"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
     }

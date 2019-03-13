@@ -79,7 +79,11 @@ class Driver_APITests: XCTestCase {
         let token = "abcdefghijklmnopqrstuvwxyz0123456789"
         DriverAPI.register(device: token, for: driver) {
             error in
-            XCTAssertNil(error)
+            if let error = error {
+                XCTAssert(error.code != .E4011)
+            } else {
+                XCTAssertNil(error)
+            }
         }
         self.wait()
     }
@@ -108,7 +112,7 @@ class Driver_APITests: XCTestCase {
         DriverAPI.verifyPhoneNumber(with: code, for: driver) {
             error in
             XCTAssertNotNil(error)
-            XCTAssertTrue(error == .E4012)
+            XCTAssertTrue(error?.code == .E4012)
         }
         self.wait()
     }
