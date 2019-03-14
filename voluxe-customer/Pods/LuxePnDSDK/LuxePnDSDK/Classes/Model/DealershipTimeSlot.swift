@@ -59,7 +59,8 @@ import Foundation
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
     
-    
+//TODO: Do Extension in Customer App
+/*
     func getTimeSlot(calendar: Calendar, showAMPM: Bool, shortSymbol: Bool? = nil) -> String? {
         guard let from = from, let to = to else { return nil }
         
@@ -79,4 +80,5 @@ import Foundation
             return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))–\(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))"
         }
     }
+ */
 }

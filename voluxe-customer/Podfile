@@ -6,6 +6,7 @@ use_frameworks!
 inhibit_all_warnings!
 
 target 'voluxe-customer' do
+    pod 'LuxePnDSDK', :git => 'git@github.com:volvo-cars/ios-luxepnd-sdk.git', :branch => 'master'
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
     pod 'Branch', '0.25.0'
     pod 'CocoaLumberjack/Swift', '3.3.0'

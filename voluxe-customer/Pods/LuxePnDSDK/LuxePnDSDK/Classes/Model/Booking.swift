@@ -109,6 +109,7 @@ import Foundation
         return State(rawValue: state)!
     }
     
+    
     func hasUpcomingRequestToday() -> Bool {
         if let pickupRequest = pickupRequest {
             if pickupRequest.getState() == .requested || pickupRequest.getState() == .started {
@@ -141,6 +142,8 @@ import Foundation
         return ""
     }
     
+//TODO: Do Extension in Customer App
+/*
     public func getRefreshTime() -> Int {
         let snappedPointsFeature = RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.snappedPointsKey)
         var refreshTime = 0
@@ -185,6 +188,7 @@ import Foundation
         
         return refreshTime
     }
+ */
     
     // returns distanceFromDestination in meters, nil if not applicable
     private func distanceFromDestination(request: Request) -> Double? {
@@ -205,12 +209,16 @@ import Foundation
         return nil
     }
     
+    //TODO: Do Extension in Customer App
+
+    /*
     public static func getStateForBooking(booking: Booking?) -> ServiceState {
         if let booking = booking {
             return ServiceState.appStateForBookingState(bookingState: booking.getState())
         }
         return .idle
     }
+ */
     
     public func isActive() -> Bool {
         let state = getState()
