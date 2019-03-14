@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class DealershipTimeSlot: NSObject, Codable {
+@objcMembers public class DealershipTimeSlot: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var dealershipId: Int = -1
@@ -32,7 +32,7 @@ import Foundation
         case updatedAt = "updated_at" 
     }
     
-    convenience required init(from decoder: Decoder) throws {
+    convenience required public init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
@@ -46,7 +46,7 @@ import Foundation
         self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encodeIfPresent(dealershipId, forKey: .dealershipId)
@@ -58,27 +58,5 @@ import Foundation
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
-    
-//TODO: Do Extension in Customer App
-/*
-    func getTimeSlot(calendar: Calendar, showAMPM: Bool, shortSymbol: Bool? = nil) -> String? {
-        guard let from = from, let to = to else { return nil }
-        
-        if showAMPM {
-            let hourFrom = Calendar.current.component(.hour, from: from)
-            let hourTo = Calendar.current.component(.hour, from: to)
-            
-            if hourFrom < 12 && hourTo < 12 {
-                return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: false, shortSymbol: shortSymbol))–\(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))"
-            } else if hourFrom >= 12 && hourTo > 12 {
-                return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: false, shortSymbol: shortSymbol))–\(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))"
-            } else {
-                return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))–\(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))"
-            }
-            
-        } else {
-            return "\(Date.formatHourMin(date: from, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))–\(Date.formatHourMin(date: to, calendar: calendar, showAMPM: showAMPM, shortSymbol: shortSymbol))"
-        }
-    }
- */
+ 
 }

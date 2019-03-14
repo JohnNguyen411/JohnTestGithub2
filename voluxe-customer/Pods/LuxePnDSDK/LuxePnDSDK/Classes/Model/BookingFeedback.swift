@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class BookingFeedback: NSObject, Codable {
+@objcMembers public class BookingFeedback: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var bookingId: Int = -1
@@ -24,7 +24,7 @@ import Foundation
         case state
     }
     
-    convenience required init(from decoder: Decoder) throws {
+    convenience required public init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
@@ -34,7 +34,7 @@ import Foundation
         self.rating = try container.decodeIfPresent(Int.self, forKey: .rating) ?? -1
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(bookingId, forKey: .bookingId)

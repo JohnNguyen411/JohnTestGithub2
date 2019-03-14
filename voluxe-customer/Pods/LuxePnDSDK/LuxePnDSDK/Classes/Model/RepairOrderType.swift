@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class RepairOrderType: NSObject, Codable {
+@objcMembers public class RepairOrderType: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var name: String?
@@ -33,15 +33,6 @@ import Foundation
         return .other
     }
  
-//TODO: Do Extension in Customer App
-/*
-    static func categoryName(category: RepairOrderCategory) -> String {
-        if category == .routineMaintenanceByDistance {
-            return .localized(.viewScheduleServiceTypeMilestone)
-        }
-        return .localized(.viewScheduleServiceTypeDetailNameLabelOther)
-    }
- */
 }
 
 public enum RepairOrderCategory: String {

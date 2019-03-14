@@ -13,10 +13,10 @@
 		521EC06022027FE600EEDE29 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521EC05E22027FE600EEDE29 /* Localized.swift */; };
 		521EC06122027FE600EEDE29 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521EC05E22027FE600EEDE29 /* Localized.swift */; };
 		522F2FBC21B757CB000236ED /* UIImage+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F2FBB21B757CB000236ED /* UIImage+LuxeAPI.swift */; };
-		524592C6223AD0E200CC0D6D /* AliasTestingClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524592C5223AD0E200CC0D6D /* AliasTestingClass.swift */; };
 		524592C8223AD2DE00CC0D6D /* Vehicle+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524592C7223AD2DE00CC0D6D /* Vehicle+Customer.swift */; };
 		524592CA223AD46F00CC0D6D /* RepairOrder+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524592C9223AD46F00CC0D6D /* RepairOrder+Customer.swift */; };
 		524592CC223AD4BA00CC0D6D /* RepairOrderType+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524592CB223AD4BA00CC0D6D /* RepairOrderType+Customer.swift */; };
+		524592CE223B0DAE00CC0D6D /* CustomerModels+Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524592CD223B0DAE00CC0D6D /* CustomerModels+Aliases.swift */; };
 		524BF64C211A57E900404ED5 /* CurrentLocationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */; };
 		524C1FFD219F427A003AA733 /* RealmSwift+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C1FFC219F427A003AA733 /* RealmSwift+Codable.swift */; };
 		524C1FFE219F427A003AA733 /* RealmSwift+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C1FFC219F427A003AA733 /* RealmSwift+Codable.swift */; };
@@ -469,10 +469,10 @@
 		4C64F631C2578E5AD1F6A474 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
 		521EC05E22027FE600EEDE29 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		522F2FBB21B757CB000236ED /* UIImage+LuxeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+LuxeAPI.swift"; path = "../../shared/Extensions/UIImage+LuxeAPI.swift"; sourceTree = "<group>"; };
-		524592C5223AD0E200CC0D6D /* AliasTestingClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasTestingClass.swift; sourceTree = "<group>"; };
 		524592C7223AD2DE00CC0D6D /* Vehicle+Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+Customer.swift"; sourceTree = "<group>"; };
 		524592C9223AD46F00CC0D6D /* RepairOrder+Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepairOrder+Customer.swift"; sourceTree = "<group>"; };
 		524592CB223AD4BA00CC0D6D /* RepairOrderType+Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepairOrderType+Customer.swift"; sourceTree = "<group>"; };
+		524592CD223B0DAE00CC0D6D /* CustomerModels+Aliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerModels+Aliases.swift"; sourceTree = "<group>"; };
 		524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCellView.swift; sourceTree = "<group>"; };
 		524C1FFC219F427A003AA733 /* RealmSwift+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealmSwift+Codable.swift"; sourceTree = "<group>"; };
 		524C200721AC9F7A003AA733 /* LuxeAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LuxeAPIError.swift; path = ../../Shared/API/LuxeAPIError.swift; sourceTree = "<group>"; };
@@ -1252,10 +1252,10 @@
 				6CDAEE7920E1B52C0040CDFF /* HelpAction.swift */,
 				6CDAEE7620E1B4F00040CDFF /* HelpDetail.swift */,
 				6CDAEE8520E407570040CDFF /* HelpSection.swift */,
-				524592C5223AD0E200CC0D6D /* AliasTestingClass.swift */,
 				524592C7223AD2DE00CC0D6D /* Vehicle+Customer.swift */,
 				524592C9223AD46F00CC0D6D /* RepairOrder+Customer.swift */,
 				524592CB223AD4BA00CC0D6D /* RepairOrderType+Customer.swift */,
+				524592CD223B0DAE00CC0D6D /* CustomerModels+Aliases.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2588,7 +2588,7 @@
 				6C58330E1FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */,
 				6C5C6A101FD8AACD00D70BF6 /* UserManager.swift in Sources */,
 				6C91BBDB1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
-				524592C6223AD0E200CC0D6D /* AliasTestingClass.swift in Sources */,
+				524592CE223B0DAE00CC0D6D /* CustomerModels+Aliases.swift in Sources */,
 				52A33B2421C9B7440041CB67 /* UIView+AutoLayout.swift in Sources */,
 				6C79C43A20A280AC00443463 /* GMSnappedPoints.swift in Sources */,
 				6C3FB2B01FA2823800B22EAB /* Fonts.swift in Sources */,

@@ -91,7 +91,7 @@ PODS:
   - KeychainAccess (3.1.0)
   - Kingfisher (4.2.0)
   - libPhoneNumber-iOS (0.9.13)
-  - LuxePnDSDK (0.1.0)
+  - LuxePnDSDK (0.1.1)
   - MBProgressHUD (1.1.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -128,7 +128,7 @@ DEPENDENCIES:
   - GooglePlaces (= 3.0.3)
   - KeychainAccess (= 3.1.0)
   - Kingfisher (= 4.2.0)
-  - "LuxePnDSDK (from `git@github.com:volvo-cars/ios-luxepnd-sdk.git`, branch `master`)"
+  - "LuxePnDSDK (from `git@github.com:volvo-cars/ios-luxepnd-sdk.git`, branch `0.1.1`)"
   - MBProgressHUD (= 1.1.0)
   - RealmSwift (= 3.11.1)
   - SDWebImage (= 4.0.0)
@@ -178,7 +178,7 @@ EXTERNAL SOURCES:
     :branch: alamofire5
     :git: https://github.com/Alamofire/Alamofire.git
   LuxePnDSDK:
-    :branch: master
+    :branch: 0.1.1
     :git: "git@github.com:volvo-cars/ios-luxepnd-sdk.git"
 
 CHECKOUT OPTIONS:
@@ -186,7 +186,7 @@ CHECKOUT OPTIONS:
     :commit: ccf852a42598b00888341d5fb02825c142a7c41a
     :git: https://github.com/Alamofire/Alamofire.git
   LuxePnDSDK:
-    :commit: 6dca5f5ebc84a57087ca1c53bfbade1a0f4e653f
+    :commit: 3a0b86197790dfb6c17cfd5d76f84fa9098bd419
     :git: "git@github.com:volvo-cars/ios-luxepnd-sdk.git"
 
 SPEC CHECKSUMS:
@@ -212,7 +212,7 @@ SPEC CHECKSUMS:
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   Kingfisher: 9ee7e788d8ba07c3f21ce0d43f33cec310a4f781
   libPhoneNumber-iOS: e444379ac18bbfbdefad571da735b2cd7e096caa
-  LuxePnDSDK: 43684a2352e29eccda646b6fbd878e0a92ee8135
+  LuxePnDSDK: 28248fc9a7ea9960a5f6e977b1f1ab458b893f19
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
@@ -225,6 +225,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: c29297daf073d2aa016295d5809cdd68045c39b3
   UIColor_Hex_Swift: 95f718452092a3efc8a827dffd2c04d3237be02d
 
-PODFILE CHECKSUM: 57a61ae8b776cc06812c9c1e2365fcbf6b0f824a
+PODFILE CHECKSUM: 71b0a51c492b08e0b94f7669a4ad41b958540059
 
 COCOAPODS: 1.6.1

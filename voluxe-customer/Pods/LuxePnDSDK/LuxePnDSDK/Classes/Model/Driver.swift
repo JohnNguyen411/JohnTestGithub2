@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class Driver: NSObject, Codable {
+@objcMembers public class Driver: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var name: String?

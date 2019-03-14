@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class RepairOrder: NSObject, Codable {
+@objcMembers public class RepairOrder: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var bookingId: Int = -1
@@ -44,7 +44,7 @@ import Foundation
         case name = "name"
     }
     
-    convenience required init(from decoder: Decoder) throws {
+    convenience required public init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
@@ -64,7 +64,7 @@ import Foundation
         self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(bookingId, forKey: .bookingId)
@@ -90,31 +90,6 @@ import Foundation
         self.vehicleDrivable = drivable ?? true
     }
     
-//TODO: Do Extension in Customer App
-/*
-    convenience init(repairOrderType: RepairOrderType) {
-        self.init()
-        self.title = repairOrderType.name
-        self.name = repairOrderType.name
-        if repairOrderType.getCategory() == .custom {
-            self.name = String.localized(.viewScheduleServiceTypeOtherUnknown)
-        }
-        self.repairOrderType = repairOrderType
-    }
-    
-   
-    static func getDrivabilityTitle(isDrivable: Bool?) -> String {
-        if let drivable = isDrivable {
-            if drivable {
-                return .localized(.yes)
-            } else {
-                return .localized(.no)
-            }
-        } else {
-            return .localized(.imNotSure)
-        }
-    }
-    */
     func getTitle() -> String {
         if let title = title {
             return title

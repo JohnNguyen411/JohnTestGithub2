@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-@objcMembers class CustomerAddress: NSObject {
+@objcMembers public class CustomerAddress: NSObject {
     
     dynamic var id = UUID().uuidString
     dynamic var volvoCustomerId: String?

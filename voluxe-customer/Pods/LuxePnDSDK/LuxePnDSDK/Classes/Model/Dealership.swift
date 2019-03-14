@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-@objcMembers class Dealership: NSObject, Codable {
+@objcMembers public class Dealership: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var name: String?
@@ -38,7 +38,7 @@ import CoreLocation
     }
     
     
-    convenience required init(from decoder: Decoder) throws {
+    convenience required public init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
@@ -54,7 +54,7 @@ import CoreLocation
         self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encodeIfPresent(name, forKey: .name)

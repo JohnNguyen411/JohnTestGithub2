@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class Request: NSObject, Codable {
+@objcMembers public class Request: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var bookingId: Int = -1
@@ -35,7 +35,7 @@ import Foundation
         case updatedAt = "updated_at" 
     }
     
-    convenience required init(from decoder: Decoder) throws {
+    convenience required public init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
@@ -57,7 +57,7 @@ import Foundation
         }
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encode(bookingId, forKey: .bookingId)

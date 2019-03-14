@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class Booking: NSObject, Codable {
+@objcMembers public class Booking: NSObject, Codable {
     
     private static let distanceTrigger = 500.0 // refresh more ofter when within 500m from origin or destination
     
@@ -58,7 +58,7 @@ import Foundation
         case updatedAt = "updated_at" 
     }
     
-    convenience required init(from decoder: Decoder) throws {
+    convenience required public init(from decoder: Decoder) throws {
         self.init()
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.id = try container.decodeIfPresent(Int.self, forKey: .id) ?? -1
@@ -82,7 +82,7 @@ import Foundation
         self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(id, forKey: .id)
         try container.encodeIfPresent(customer, forKey: .customer)
@@ -142,54 +142,6 @@ import Foundation
         return ""
     }
     
-//TODO: Do Extension in Customer App
-/*
-    public func getRefreshTime() -> Int {
-        let snappedPointsFeature = RemoteConfigManager.sharedInstance.getBoolValue(key: RemoteConfigManager.snappedPointsKey)
-        var refreshTime = 0
-        if pickupRequest != nil || dropoffRequest != nil {
-            if getState() != .completed && getState() != .canceled {
-                if let pickupRequest = pickupRequest, let dealership = dealership, (getState() == .enRouteForPickup || getState() == .nearbyForPickup) {
-                    let distanceFromDestination = self.distanceFromDestination(request: pickupRequest)
-                    let distanceFromOrigin = self.distanceFromOrigin(request: pickupRequest, dealership: dealership)
-                    // if driver is close to dealership or destination
-                    if let distanceFromDestination = distanceFromDestination, let distanceFromOrigin = distanceFromOrigin,
-                        distanceFromDestination < Booking.distanceTrigger || distanceFromOrigin < Booking.distanceTrigger {
-                        refreshTime = Booking.refreshEnRouteClose
-                    } else {
-                        refreshTime = Booking.refreshEnRoute
-                    }
-                    
-                    // if the SnappedPoint feature is Disabled, refresh more often when in route
-                    if !snappedPointsFeature {
-                        refreshTime = refreshTime/2
-                    }
-                } else if let dropoffRequest = dropoffRequest, let dealership = dealership, (getState() == .enRouteForDropoff || getState() == .nearbyForDropoff) {
-                    let distanceFromDestination = self.distanceFromDestination(request: dropoffRequest)
-                    let distanceFromOrigin = self.distanceFromOrigin(request: dropoffRequest, dealership: dealership)
-                    // if driver is close to dealership or destination
-                    if let distanceFromDestination = distanceFromDestination, let distanceFromOrigin = distanceFromOrigin,
-                        distanceFromDestination < Booking.distanceTrigger || distanceFromOrigin < Booking.distanceTrigger {
-                        refreshTime = Booking.refreshEnRouteClose
-                    } else {
-                        refreshTime = Booking.refreshEnRoute
-                    }
-                    
-                    // if the SnappedPoint feature is Disabled, refresh more often when in route
-                    if !snappedPointsFeature {
-                        refreshTime = refreshTime/2
-                    }
-                    
-                } else {
-                    refreshTime = Config.sharedInstance.bookingRefresh()
-                }
-            }
-        }
-        
-        return refreshTime
-    }
- */
-    
     // returns distanceFromDestination in meters, nil if not applicable
     private func distanceFromDestination(request: Request) -> Double? {
         
@@ -208,17 +160,6 @@ import Foundation
         }
         return nil
     }
-    
-    //TODO: Do Extension in Customer App
-
-    /*
-    public static func getStateForBooking(booking: Booking?) -> ServiceState {
-        if let booking = booking {
-            return ServiceState.appStateForBookingState(bookingState: booking.getState())
-        }
-        return .idle
-    }
- */
     
     public func isActive() -> Bool {
         let state = getState()

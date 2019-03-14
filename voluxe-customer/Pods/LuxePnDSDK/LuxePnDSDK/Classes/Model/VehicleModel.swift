@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class VehicleModel: NSObject, Codable {
+@objcMembers public class VehicleModel: NSObject, Codable {
     
     dynamic var id: Int = -1
     dynamic var make: String?

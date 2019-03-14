@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objcMembers class Color: NSObject, Codable {
+@objcMembers public class Color: NSObject, Codable {
     
     dynamic var baseColor: String?
     dynamic var color: String?
