@@ -49,6 +49,22 @@ class DebugSettingsViewController: DebugTableViewController {
         },
                                              actionClosure: nil)]
 
+        
+        settings += [DebugTableViewCellModel(title: "Host",
+                                             cellReuseIdentifier: DebugValueTableViewCell.className,
+                                             valueClosure:
+            {
+                cell in
+                cell.accessoryType = .disclosureIndicator
+                cell.detailTextLabel?.text = CustomerAPI.api.host.string
+        },
+                                             actionClosure:
+            {
+                [weak self] cell in
+                self?.confirmHostChange()
+            }
+        )]
+        
         settings += [DebugTableViewCellModel(title: "Fonts",
                                              cellReuseIdentifier: DebugValueTableViewCell.className,
                                              valueClosure:
@@ -223,20 +239,37 @@ class DebugSettingsViewController: DebugTableViewController {
             {
                 _ in
                 UserDefaults.standard.enableAlamoFireLogging = !UserDefaults.standard.enableAlamoFireLogging
-                //TODO: figure out logging for AlamoFire5
-                /*
-                 UserDefaults.standard.enableAlamoFireLogging = !UserDefaults.standard.enableAlamoFireLogging
-                if UserDefaults.standard.enableAlamoFireLogging {
-                    NetworkActivityLogger.shared.level = .debug
-                    NetworkActivityLogger.shared.startLogging()
-                } else {
-                    NetworkActivityLogger.shared.level = .off
-                    NetworkActivityLogger.shared.stopLogging()
-                }
-                 */
             }
         )]
 
         return ("Network", settings)
+    }
+}
+
+extension DebugSettingsViewController {
+    
+    func confirmHostChange() {
+        
+        let controller = UIAlertController(title: "Switch Host",
+                                           message: "Select the new host/environment for the app.  Note that switching hosts will relaunch the app and discard current operations.",
+                                           preferredStyle: .actionSheet)
+        
+        for host in RestAPIHost.allCases {
+            guard host != CustomerAPI.api.host else { continue }
+            let action = UIAlertAction(title: host.string, style: .destructive) {
+                _ in
+                UserManager.sharedInstance.logout()
+                UserDefaults.standard.apiHost = host
+                CustomerAPI.api.host = host
+                AppController.sharedInstance.startApp()
+                self.dismiss(animated: true)
+            }
+            controller.addAction(action)
+        }
+        
+        let action = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        controller.addAction(action)
+        
+        self.present(controller, animated: true, completion: nil)
     }
 }

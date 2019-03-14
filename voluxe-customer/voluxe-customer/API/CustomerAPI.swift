@@ -26,7 +26,7 @@ class CustomerAPI: LuxeAPI {
     
     private override init() {
         super.init()
-        self.host = UserDefaults.standard.apiHost
+        self.host = UserDefaults.standard.apiHost ?? .development
     }
     
     static func initToken(token: String) {
