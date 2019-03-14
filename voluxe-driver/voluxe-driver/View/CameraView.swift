@@ -273,7 +273,7 @@ class CameraView: UIView {
         self.isCapturingOutput = true
 
         #if targetEnvironment(simulator)
-            let image = UIColor.random().image(size: CGSize(width: 1024, height: 512))
+            let image = UIColor.random().image(size: CGSize(width: 4096, height: 2048))
             self.didCapture(photo: image)
             self.isCapturingOutput = false
         #else

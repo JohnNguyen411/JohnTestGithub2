@@ -69,6 +69,10 @@
 		5296BA712239C8CA0093890D /* Booking+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296BA702239C8CA0093890D /* Booking+Customer.swift */; };
 		5296BA732239C9EE0093890D /* DealershipTimeSlot+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296BA722239C9EE0093890D /* DealershipTimeSlot+Customer.swift */; };
 		5296BA752239CE160093890D /* LuxeSDKAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296BA742239CE160093890D /* LuxeSDKAliases.swift */; };
+		5296BA772239DAF80093890D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296BA762239DAF80093890D /* UIImage+Resize.swift */; };
+		5296BA782239DAF80093890D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296BA762239DAF80093890D /* UIImage+Resize.swift */; };
+		5296BA792239DAF80093890D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296BA762239DAF80093890D /* UIImage+Resize.swift */; };
+		5296BA7A2239DAF80093890D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296BA762239DAF80093890D /* UIImage+Resize.swift */; };
 		529AB0DB212F7AA300AD8D09 /* ScheduleSelfDropModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529AB0DA212F7AA200AD8D09 /* ScheduleSelfDropModal.swift */; };
 		529E366E219B9D8F00619807 /* CustomerAPI+Dealership.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E366D219B9D8F00619807 /* CustomerAPI+Dealership.swift */; };
 		529E3671219BAD7C00619807 /* CustomerAPI+RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 529E3670219BAD7C00619807 /* CustomerAPI+RepairOrder.swift */; };
@@ -499,6 +503,7 @@
 		5296BA702239C8CA0093890D /* Booking+Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Booking+Customer.swift"; sourceTree = "<group>"; };
 		5296BA722239C9EE0093890D /* DealershipTimeSlot+Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DealershipTimeSlot+Customer.swift"; sourceTree = "<group>"; };
 		5296BA742239CE160093890D /* LuxeSDKAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuxeSDKAliases.swift; sourceTree = "<group>"; };
+		5296BA762239DAF80093890D /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		529AB0DA212F7AA200AD8D09 /* ScheduleSelfDropModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSelfDropModal.swift; sourceTree = "<group>"; };
 		529E366D219B9D8F00619807 /* CustomerAPI+Dealership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Dealership.swift"; sourceTree = "<group>"; };
 		529E3670219BAD7C00619807 /* CustomerAPI+RepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+RepairOrder.swift"; sourceTree = "<group>"; };
@@ -989,6 +994,7 @@
 		533047112188D821007CE01C /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				5296BA762239DAF80093890D /* UIImage+Resize.swift */,
 				5303E2F720E4631D00B1F4BE /* UserDefaults+Voluxe.swift */,
 				52A3A62D21E92091002A273E /* UIView+SafeArea.swift */,
 				52A3A62121E6C884002A273E /* UIColor+Hex.swift */,
@@ -2364,6 +2370,7 @@
 				538FE76320BF4BC000C3CE17 /* Int+Test.swift in Sources */,
 				524C200121AC9C41003AA733 /* RestAPI.swift in Sources */,
 				524C201421ACAC69003AA733 /* LuxeAPI+Version.swift in Sources */,
+				5296BA792239DAF80093890D /* UIImage+Resize.swift in Sources */,
 				524C201121ACAC62003AA733 /* UserDefaults+LuxeAPI.swift in Sources */,
 				538FE75320BF482C00C3CE17 /* Location.swift in Sources */,
 				53E2521720C731D500D8C32D /* TestConstants.swift in Sources */,
@@ -2408,6 +2415,7 @@
 				6CDCC6062058411200DFA831 /* ServiceMultiselectListViewController.swift in Sources */,
 				52D5C9B12113AE270020F43F /* VLScrollView.swift in Sources */,
 				6C5833161FB3AF5600F6BFE0 /* Presentr+Equatable.swift in Sources */,
+				5296BA772239DAF80093890D /* UIImage+Resize.swift in Sources */,
 				6CBB4E9A1FB4DF7D00C31183 /* FSCalendarCell.m in Sources */,
 				6CBB4EA61FB4DF7D00C31183 /* FSCalendarCollectionView.m in Sources */,
 				6CBB4E851FB4DF7D00C31183 /* FSCalendarTransitionCoordinator.m in Sources */,
@@ -2655,6 +2663,7 @@
 				524C201321ACAC68003AA733 /* LuxeAPI+Version.swift in Sources */,
 				524C201621ACADA3003AA733 /* LuxeAPI+Notifications.swift in Sources */,
 				524C200421AC9CF5003AA733 /* LuxeAPI.swift in Sources */,
+				5296BA782239DAF80093890D /* UIImage+Resize.swift in Sources */,
 				5303E2F620E4622600B1F4BE /* UserDefaults_UnitTests.swift in Sources */,
 				52504737221CC14300D07CD4 /* FBAnalytics.swift in Sources */,
 				526F6E8121B9DD88007C7D84 /* UIImage+LuxeAPI.swift in Sources */,
@@ -2696,6 +2705,7 @@
 				52FFBBB221AE06BB00FAD7BE /* UserDefaults+Debug.swift in Sources */,
 				53C8AD5220E59D0E008E07FF /* Enum+CaseIterable.swift in Sources */,
 				53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */,
+				5296BA7A2239DAF80093890D /* UIImage+Resize.swift in Sources */,
 				524C201221ACAC62003AA733 /* UserDefaults+LuxeAPI.swift in Sources */,
 				524C202321ACBB17003AA733 /* AdminAPI+Customer.swift in Sources */,
 				53EF28DA20AE0798006CC5FA /* Config.swift in Sources */,

@@ -1,3 +1,6 @@
+v1.3.4 (299)
+Use right Google Maps key
+
 v1.3.3 (289)
 New NPS system
 Migrate to new Google Places
