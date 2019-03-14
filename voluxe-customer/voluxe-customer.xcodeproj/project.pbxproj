@@ -13,6 +13,10 @@
 		521EC06022027FE600EEDE29 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521EC05E22027FE600EEDE29 /* Localized.swift */; };
 		521EC06122027FE600EEDE29 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521EC05E22027FE600EEDE29 /* Localized.swift */; };
 		522F2FBC21B757CB000236ED /* UIImage+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F2FBB21B757CB000236ED /* UIImage+LuxeAPI.swift */; };
+		524592C6223AD0E200CC0D6D /* AliasTestingClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524592C5223AD0E200CC0D6D /* AliasTestingClass.swift */; };
+		524592C8223AD2DE00CC0D6D /* Vehicle+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524592C7223AD2DE00CC0D6D /* Vehicle+Customer.swift */; };
+		524592CA223AD46F00CC0D6D /* RepairOrder+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524592C9223AD46F00CC0D6D /* RepairOrder+Customer.swift */; };
+		524592CC223AD4BA00CC0D6D /* RepairOrderType+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524592CB223AD4BA00CC0D6D /* RepairOrderType+Customer.swift */; };
 		524BF64C211A57E900404ED5 /* CurrentLocationCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */; };
 		524C1FFD219F427A003AA733 /* RealmSwift+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C1FFC219F427A003AA733 /* RealmSwift+Codable.swift */; };
 		524C1FFE219F427A003AA733 /* RealmSwift+Codable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524C1FFC219F427A003AA733 /* RealmSwift+Codable.swift */; };
@@ -68,7 +72,6 @@
 		5294BFFA21AE19F800AA7060 /* ContentHorizontalAlignment+LTR.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5294BFF921AE19F800AA7060 /* ContentHorizontalAlignment+LTR.swift */; };
 		5296BA712239C8CA0093890D /* Booking+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296BA702239C8CA0093890D /* Booking+Customer.swift */; };
 		5296BA732239C9EE0093890D /* DealershipTimeSlot+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296BA722239C9EE0093890D /* DealershipTimeSlot+Customer.swift */; };
-		5296BA752239CE160093890D /* LuxeSDKAliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296BA742239CE160093890D /* LuxeSDKAliases.swift */; };
 		5296BA772239DAF80093890D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296BA762239DAF80093890D /* UIImage+Resize.swift */; };
 		5296BA782239DAF80093890D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296BA762239DAF80093890D /* UIImage+Resize.swift */; };
 		5296BA792239DAF80093890D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5296BA762239DAF80093890D /* UIImage+Resize.swift */; };
@@ -167,7 +170,6 @@
 		537CEAD720F7B792003C97F1 /* BaseViewController+BarButtonItems.swift in Sources */ = {isa = PBXBuildFile; fileRef = 537CEAD620F7B792003C97F1 /* BaseViewController+BarButtonItems.swift */; };
 		538CFBE82150783500BF5D25 /* UITextField+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE72150783400BF5D25 /* UITextField+Voluxe.swift */; };
 		538CFBEA215078AB00BF5D25 /* String+Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538CFBE9215078AA00BF5D25 /* String+Validation.swift */; };
-		538FE75320BF482C00C3CE17 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BA1FA29A1C00B22EAB /* Location.swift */; };
 		538FE75720BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE75520BF4AB800C3CE17 /* XCUIElement+Test.swift */; };
 		538FE75820BF4AB800C3CE17 /* XCUIElement+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE75520BF4AB800C3CE17 /* XCUIElement+Test.swift */; };
 		538FE75920BF4AB800C3CE17 /* XCTest+Test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 538FE75620BF4AB800C3CE17 /* XCTest+Test.swift */; };
@@ -188,7 +190,6 @@
 		53E2521720C731D500D8C32D /* TestConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53E2521620C731D500D8C32D /* TestConstants.swift */; };
 		53EF28A920ACE38C006CC5FA /* SignIn_UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CBF9FE01FC5F987002BC7FC /* SignIn_UITests.swift */; };
 		53EF28DA20AE0798006CC5FA /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C345A0E1FD897E4006CAC32 /* Config.swift */; };
-		53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
 		53FDF12120B5E0050004B8A1 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE121FDB664D000E2822 /* String+Utils.swift */; };
 		55FDD9C1DDD4186608975079 /* Pods_voluxe_customerAPITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1135FC81A29AC457B5EC2AD2 /* Pods_voluxe_customerAPITests.framework */; };
 		6C11208E2016B2C70048A56D /* BookingSyncManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C11208D2016B2C70048A56D /* BookingSyncManager.swift */; };
@@ -240,9 +241,7 @@
 		6C20E1C71FBE6D2400E5D9A0 /* StateService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1C61FBE6D2400E5D9A0 /* StateService.swift */; };
 		6C20E1D01FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */; };
 		6C20E1D81FBF725F00E5D9A0 /* LocationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */; };
-		6C20E1E01FBF770C00E5D9A0 /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C20E1DF1FBF770C00E5D9A0 /* Request.swift */; };
 		6C2208771FBCEF7A00874882 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C2208761FBCEF7A00874882 /* MapViewController.swift */; };
-		6C22087C1FBD0C6700874882 /* Driver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C22087B1FBD0C6700874882 /* Driver.swift */; };
 		6C2208801FBD0DDC00874882 /* UIImageView+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */; };
 		6C27FBBD20E44C2000EAA689 /* VLCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27FBBC20E44C2000EAA689 /* VLCheckbox.swift */; };
 		6C27FBBF20E4599300EAA689 /* UITapGestureRecognizer+Links.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C27FBBE20E4599300EAA689 /* UITapGestureRecognizer+Links.swift */; };
@@ -258,16 +257,12 @@
 		6C32C30B1FBCC1DD00B1218C /* StepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30A1FBCC1DD00B1218C /* StepView.swift */; };
 		6C32C30F1FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */; };
 		6C345A0F1FD897E4006CAC32 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C345A0E1FD897E4006CAC32 /* Config.swift */; };
-		6C3FB2AA1FA2574C00B22EAB /* Vehicle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */; };
 		6C3FB2B01FA2823800B22EAB /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2AF1FA2823800B22EAB /* Fonts.swift */; };
 		6C3FB2B21FA2824200B22EAB /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B11FA2824200B22EAB /* Constants.swift */; };
 		6C3FB2B61FA289F000B22EAB /* ColorDefinitions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B51FA289F000B22EAB /* ColorDefinitions.swift */; };
 		6C3FB2B91FA297A300B22EAB /* Date+DateTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2B81FA297A300B22EAB /* Date+DateTools.swift */; };
-		6C3FB2BC1FA29A1C00B22EAB /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C3FB2BA1FA29A1C00B22EAB /* Location.swift */; };
 		6C4970F72064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */; };
 		6C4970FB20754E2700FF33E9 /* SyncTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4970FA20754E2700FF33E9 /* SyncTimer.swift */; };
-		6C4971072078272400FF33E9 /* VehicleMake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4971062078272400FF33E9 /* VehicleMake.swift */; };
-		6C4D91BB1FDB15F90031E3CB /* Token.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C4D91BA1FDB15F90031E3CB /* Token.swift */; };
 		6C522452208509A10078D9B9 /* UIButton+Voluxe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */; };
 		6C522456208568E90078D9B9 /* PasswordToggleVisibilityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522455208568E90078D9B9 /* PasswordToggleVisibilityView.swift */; };
 		6C52245A208815580078D9B9 /* VLSlideMenuController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C522459208815580078D9B9 /* VLSlideMenuController.swift */; };
@@ -396,9 +391,7 @@
 		6CC83A841FA140D300FE0633 /* sensus_prod.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7E1FA140D300FE0633 /* sensus_prod.json */; };
 		6CC83A851FA140D300FE0633 /* sensus_qa.json in Resources */ = {isa = PBXBuildFile; fileRef = 6CC83A7F1FA140D300FE0633 /* sensus_qa.json */; };
 		6CCCF23320488C5C004BF1A6 /* FTUEAddVehicleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF23220488C5C004BF1A6 /* FTUEAddVehicleViewController.swift */; };
-		6CCCF23B2048BA33004BF1A6 /* VehicleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCCF23A2048BA33004BF1A6 /* VehicleModel.swift */; };
 		6CCD428E1FA013E3000AC6C9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */; };
-		6CD3BCAE200E85FE001DD79B /* RepairOrder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */; };
 		6CD474AC2046034F0082A44A /* FTUESignupNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */; };
 		6CD474B0204606410082A44A /* FTUESignupEmailPhoneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */; };
 		6CD474B420460C260082A44A /* FTUESignupPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CD474B320460C260082A44A /* FTUESignupPasswordViewController.swift */; };
@@ -411,18 +404,15 @@
 		6CDAEE8420E309DA0040CDFF /* HelpListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDAEE8320E309DA0040CDFF /* HelpListViewController.swift */; };
 		6CDAEE8620E407570040CDFF /* HelpSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDAEE8520E407570040CDFF /* HelpSection.swift */; };
 		6CDAEE8820E4126A0040CDFF /* HelpDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDAEE8720E4126A0040CDFF /* HelpDetailViewController.swift */; };
-		6CDCC5FE2053592700DFA831 /* RequestType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC5FD2053592700DFA831 /* RequestType.swift */; };
 		6CDCC602205743DB00DFA831 /* NewServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC601205743DB00DFA831 /* NewServiceViewController.swift */; };
 		6CDCC6062058411200DFA831 /* ServiceMultiselectListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC6052058411200DFA831 /* ServiceMultiselectListViewController.swift */; };
 		6CDCC60A2058442800DFA831 /* CheckableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC6092058442800DFA831 /* CheckableTableViewCell.swift */; };
 		6CDCC60E2059983000DFA831 /* OtherServiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC60D2059983000DFA831 /* OtherServiceViewController.swift */; };
-		6CDCC616205C461100DFA831 /* RepairOrderType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC615205C461100DFA831 /* RepairOrderType.swift */; };
 		6CDCC61A20603A5B00DFA831 /* ServiceDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */; };
 		6CE1479A20AE4F8D001F4BC7 /* PermissionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479920AE4F8D001F4BC7 /* PermissionViewController.swift */; };
 		6CE1479E20AF3BDA001F4BC7 /* PermissionViewController+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE1479D20AF3BD9001F4BC7 /* PermissionViewController+Notifications.swift */; };
 		6CE147A220AF4FFD001F4BC7 /* PermissionViewController+Locations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE147A120AF4FFD001F4BC7 /* PermissionViewController+Locations.swift */; };
 		6CE147AA20B49E35001F4BC7 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE147A920B49E35001F4BC7 /* KeychainManager.swift */; };
-		6CE687832036634A00D915FC /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687822036634A00D915FC /* State.swift */; };
 		6CE687872037A3D000D915FC /* ScheduledBookingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */; };
 		6CE68792203F7D5A00D915FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CE68796203F7D5A00D915FC /* InfoPlist.strings */; };
 		6CE68793203F7D5A00D915FC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6CE68796203F7D5A00D915FC /* InfoPlist.strings */; };
@@ -479,6 +469,10 @@
 		4C64F631C2578E5AD1F6A474 /* Pods-voluxe-customerUITests.dev.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-voluxe-customerUITests.dev.xcconfig"; path = "Pods/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests.dev.xcconfig"; sourceTree = "<group>"; };
 		521EC05E22027FE600EEDE29 /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		522F2FBB21B757CB000236ED /* UIImage+LuxeAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIImage+LuxeAPI.swift"; path = "../../shared/Extensions/UIImage+LuxeAPI.swift"; sourceTree = "<group>"; };
+		524592C5223AD0E200CC0D6D /* AliasTestingClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AliasTestingClass.swift; sourceTree = "<group>"; };
+		524592C7223AD2DE00CC0D6D /* Vehicle+Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Vehicle+Customer.swift"; sourceTree = "<group>"; };
+		524592C9223AD46F00CC0D6D /* RepairOrder+Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepairOrder+Customer.swift"; sourceTree = "<group>"; };
+		524592CB223AD4BA00CC0D6D /* RepairOrderType+Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RepairOrderType+Customer.swift"; sourceTree = "<group>"; };
 		524BF64B211A57E900404ED5 /* CurrentLocationCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationCellView.swift; sourceTree = "<group>"; };
 		524C1FFC219F427A003AA733 /* RealmSwift+Codable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RealmSwift+Codable.swift"; sourceTree = "<group>"; };
 		524C200721AC9F7A003AA733 /* LuxeAPIError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LuxeAPIError.swift; path = ../../Shared/API/LuxeAPIError.swift; sourceTree = "<group>"; };
@@ -502,7 +496,6 @@
 		5294BFF921AE19F800AA7060 /* ContentHorizontalAlignment+LTR.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentHorizontalAlignment+LTR.swift"; sourceTree = "<group>"; };
 		5296BA702239C8CA0093890D /* Booking+Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Booking+Customer.swift"; sourceTree = "<group>"; };
 		5296BA722239C9EE0093890D /* DealershipTimeSlot+Customer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DealershipTimeSlot+Customer.swift"; sourceTree = "<group>"; };
-		5296BA742239CE160093890D /* LuxeSDKAliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LuxeSDKAliases.swift; sourceTree = "<group>"; };
 		5296BA762239DAF80093890D /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		529AB0DA212F7AA200AD8D09 /* ScheduleSelfDropModal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduleSelfDropModal.swift; sourceTree = "<group>"; };
 		529E366D219B9D8F00619807 /* CustomerAPI+Dealership.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomerAPI+Dealership.swift"; sourceTree = "<group>"; };
@@ -630,9 +623,7 @@
 		6C20E1C61FBE6D2400E5D9A0 /* StateService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateService.swift; sourceTree = "<group>"; };
 		6C20E1CF1FBF713D00E5D9A0 /* RequestedServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestedServiceManager.swift; sourceTree = "<group>"; };
 		6C20E1D71FBF725F00E5D9A0 /* LocationUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationUtils.swift; sourceTree = "<group>"; };
-		6C20E1DF1FBF770C00E5D9A0 /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		6C2208761FBCEF7A00874882 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
-		6C22087B1FBD0C6700874882 /* Driver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Driver.swift; sourceTree = "<group>"; };
 		6C22087F1FBD0DDC00874882 /* UIImageView+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Voluxe.swift"; sourceTree = "<group>"; };
 		6C27FBBC20E44C2000EAA689 /* VLCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLCheckbox.swift; sourceTree = "<group>"; };
 		6C27FBBE20E4599300EAA689 /* UITapGestureRecognizer+Links.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITapGestureRecognizer+Links.swift"; sourceTree = "<group>"; };
@@ -651,16 +642,12 @@
 		6C32C30E1FBCC92300B1218C /* GroupedVerticalStepView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupedVerticalStepView.swift; sourceTree = "<group>"; };
 		6C32C3121FBCCD8C00B1218C /* ScheduledPickupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledPickupViewController.swift; sourceTree = "<group>"; };
 		6C345A0E1FD897E4006CAC32 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
-		6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Vehicle.swift; sourceTree = "<group>"; };
 		6C3FB2AF1FA2823800B22EAB /* Fonts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fonts.swift; sourceTree = "<group>"; };
 		6C3FB2B11FA2824200B22EAB /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		6C3FB2B51FA289F000B22EAB /* ColorDefinitions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorDefinitions.swift; sourceTree = "<group>"; };
 		6C3FB2B81FA297A300B22EAB /* Date+DateTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+DateTools.swift"; sourceTree = "<group>"; };
-		6C3FB2BA1FA29A1C00B22EAB /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		6C4970F62064162C00FF33E9 /* UILabel+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Voluxe.swift"; sourceTree = "<group>"; };
 		6C4970FA20754E2700FF33E9 /* SyncTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncTimer.swift; sourceTree = "<group>"; };
-		6C4971062078272400FF33E9 /* VehicleMake.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleMake.swift; sourceTree = "<group>"; };
-		6C4D91BA1FDB15F90031E3CB /* Token.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Token.swift; sourceTree = "<group>"; };
 		6C522451208509A10078D9B9 /* UIButton+Voluxe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Voluxe.swift"; sourceTree = "<group>"; };
 		6C522455208568E90078D9B9 /* PasswordToggleVisibilityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PasswordToggleVisibilityView.swift; sourceTree = "<group>"; };
 		6C522459208815580078D9B9 /* VLSlideMenuController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VLSlideMenuController.swift; sourceTree = "<group>"; };
@@ -792,7 +779,6 @@
 		6CC83A7E1FA140D300FE0633 /* sensus_prod.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sensus_prod.json; sourceTree = "<group>"; };
 		6CC83A7F1FA140D300FE0633 /* sensus_qa.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = sensus_qa.json; sourceTree = "<group>"; };
 		6CCCF23220488C5C004BF1A6 /* FTUEAddVehicleViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUEAddVehicleViewController.swift; sourceTree = "<group>"; };
-		6CCCF23A2048BA33004BF1A6 /* VehicleModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VehicleModel.swift; sourceTree = "<group>"; };
 		6CCD428A1FA013E3000AC6C9 /* voluxe-customer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "voluxe-customer.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD428D1FA013E3000AC6C9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6CCD42991FA013E3000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -801,7 +787,6 @@
 		6CCD42A41FA013E3000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6CCD42A91FA013E3000AC6C9 /* voluxe-customerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "voluxe-customerUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6CCD42AF1FA013E3000AC6C9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrder.swift; sourceTree = "<group>"; };
 		6CD474AB2046034F0082A44A /* FTUESignupNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUESignupNameViewController.swift; sourceTree = "<group>"; };
 		6CD474AF204606410082A44A /* FTUESignupEmailPhoneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUESignupEmailPhoneViewController.swift; sourceTree = "<group>"; };
 		6CD474B320460C260082A44A /* FTUESignupPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FTUESignupPasswordViewController.swift; sourceTree = "<group>"; };
@@ -814,19 +799,16 @@
 		6CDAEE8320E309DA0040CDFF /* HelpListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpListViewController.swift; sourceTree = "<group>"; };
 		6CDAEE8520E407570040CDFF /* HelpSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpSection.swift; sourceTree = "<group>"; };
 		6CDAEE8720E4126A0040CDFF /* HelpDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpDetailViewController.swift; sourceTree = "<group>"; };
-		6CDCC5FD2053592700DFA831 /* RequestType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestType.swift; sourceTree = "<group>"; };
 		6CDCC601205743DB00DFA831 /* NewServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewServiceViewController.swift; sourceTree = "<group>"; };
 		6CDCC6052058411200DFA831 /* ServiceMultiselectListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceMultiselectListViewController.swift; sourceTree = "<group>"; };
 		6CDCC6092058442800DFA831 /* CheckableTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckableTableViewCell.swift; sourceTree = "<group>"; };
 		6CDCC60D2059983000DFA831 /* OtherServiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherServiceViewController.swift; sourceTree = "<group>"; };
-		6CDCC615205C461100DFA831 /* RepairOrderType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepairOrderType.swift; sourceTree = "<group>"; };
 		6CDCC61920603A5B00DFA831 /* ServiceDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceDetailViewController.swift; sourceTree = "<group>"; };
 		6CE1479420AE300B001F4BC7 /* RealmManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmManager.swift; sourceTree = "<group>"; };
 		6CE1479920AE4F8D001F4BC7 /* PermissionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionViewController.swift; sourceTree = "<group>"; };
 		6CE1479D20AF3BD9001F4BC7 /* PermissionViewController+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PermissionViewController+Notifications.swift"; sourceTree = "<group>"; };
 		6CE147A120AF4FFD001F4BC7 /* PermissionViewController+Locations.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PermissionViewController+Locations.swift"; sourceTree = "<group>"; };
 		6CE147A920B49E35001F4BC7 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
-		6CE687822036634A00D915FC /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		6CE687862037A3D000D915FC /* ScheduledBookingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledBookingViewController.swift; sourceTree = "<group>"; };
 		6CE68795203F7D5A00D915FC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6CE68797203F7D7900D915FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -1264,24 +1246,16 @@
 			children = (
 				52A33B1021C315830041CB67 /* Realm */,
 				6C20E18E1FBE14A000E5D9A0 /* GoogleMapAPI */,
-				5296BA742239CE160093890D /* LuxeSDKAliases.swift */,
 				5296BA702239C8CA0093890D /* Booking+Customer.swift */,
 				6C1CE1E320C5E9E600A2E054 /* BranchDeeplink.swift */,
 				5296BA722239C9EE0093890D /* DealershipTimeSlot+Customer.swift */,
-				6C22087B1FBD0C6700874882 /* Driver.swift */,
 				6CDAEE7920E1B52C0040CDFF /* HelpAction.swift */,
 				6CDAEE7620E1B4F00040CDFF /* HelpDetail.swift */,
 				6CDAEE8520E407570040CDFF /* HelpSection.swift */,
-				6C3FB2BA1FA29A1C00B22EAB /* Location.swift */,
-				6C3FB2A61FA2574C00B22EAB /* Vehicle.swift */,
-				6C4971062078272400FF33E9 /* VehicleMake.swift */,
-				6CCCF23A2048BA33004BF1A6 /* VehicleModel.swift */,
-				6CD3BCAD200E85FE001DD79B /* RepairOrder.swift */,
-				6CDCC615205C461100DFA831 /* RepairOrderType.swift */,
-				6C20E1DF1FBF770C00E5D9A0 /* Request.swift */,
-				6CDCC5FD2053592700DFA831 /* RequestType.swift */,
-				6CE687822036634A00D915FC /* State.swift */,
-				6C4D91BA1FDB15F90031E3CB /* Token.swift */,
+				524592C5223AD0E200CC0D6D /* AliasTestingClass.swift */,
+				524592C7223AD2DE00CC0D6D /* Vehicle+Customer.swift */,
+				524592C9223AD46F00CC0D6D /* RepairOrder+Customer.swift */,
+				524592CB223AD4BA00CC0D6D /* RepairOrderType+Customer.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -2372,7 +2346,6 @@
 				524C201421ACAC69003AA733 /* LuxeAPI+Version.swift in Sources */,
 				5296BA792239DAF80093890D /* UIImage+Resize.swift in Sources */,
 				524C201121ACAC62003AA733 /* UserDefaults+LuxeAPI.swift in Sources */,
-				538FE75320BF482C00C3CE17 /* Location.swift in Sources */,
 				53E2521720C731D500D8C32D /* TestConstants.swift in Sources */,
 				524C201721ACADA3003AA733 /* LuxeAPI+Notifications.swift in Sources */,
 				5328C8AB20FD40F90006B448 /* UserDefaults+Voluxe.swift in Sources */,
@@ -2399,14 +2372,13 @@
 				6CA7C944201A92A7009C00F6 /* ServiceCarViewController.swift in Sources */,
 				6C5833111FB3AF5600F6BFE0 /* KeyboardTranslation.swift in Sources */,
 				5340E90F20D86BD900B17D53 /* TaxonomyTableViewController.swift in Sources */,
-				6CE687832036634A00D915FC /* State.swift in Sources */,
 				52A33B3821CD76C80041CB67 /* DealershipTimeSlot+Realm.swift in Sources */,
 				5316E97B2200FD680053832E /* LogService.swift in Sources */,
 				6C7342141FB25F8C00E90F7E /* LocationViewController.swift in Sources */,
 				6C1CE1E420C5E9E600A2E054 /* BranchDeeplink.swift in Sources */,
 				6C3FB2B61FA289F000B22EAB /* ColorDefinitions.swift in Sources */,
 				6C79C43620A2800800443463 /* GMLocation.swift in Sources */,
-				6C4971072078272400FF33E9 /* VehicleMake.swift in Sources */,
+				524592C8223AD2DE00CC0D6D /* Vehicle+Customer.swift in Sources */,
 				6C32C30F1FBCC92300B1218C /* GroupedVerticalStepView.swift in Sources */,
 				6CDAEE8820E4126A0040CDFF /* HelpDetailViewController.swift in Sources */,
 				6C58330C1FB3AF5600F6BFE0 /* CoverHorizontalAnimation.swift in Sources */,
@@ -2461,12 +2433,10 @@
 				5294097C21925BC80009F691 /* CustomerAPI+Signup.swift in Sources */,
 				6C90CC1220113323002594F5 /* LoadingViewController.swift in Sources */,
 				538CFBEA215078AB00BF5D25 /* String+Validation.swift in Sources */,
-				6CD3BCAE200E85FE001DD79B /* RepairOrder.swift in Sources */,
 				6C88DC941FAA8C28009F2FC3 /* LeftViewController.swift in Sources */,
 				52A3A62A21E9202E002A273E /* UIView+Layout.swift in Sources */,
 				5294096F219220E00009F691 /* LuxeAPI+Notifications.swift in Sources */,
 				52A3A62E21E92091002A273E /* UIView+SafeArea.swift in Sources */,
-				6CCCF23B2048BA33004BF1A6 /* VehicleModel.swift in Sources */,
 				524C200821AC9F7A003AA733 /* LuxeAPIError.swift in Sources */,
 				6C9C905C209CD8F500494068 /* GMElements.swift in Sources */,
 				532E235B20CB4B5F00ADA87F /* BlurEffect.swift in Sources */,
@@ -2476,9 +2446,9 @@
 				6C5833091FB3AF5600F6BFE0 /* AlertViewController.swift in Sources */,
 				6CD47D141FAD126000D794A6 /* VLTitledLabel.swift in Sources */,
 				6C9B3213202E7C23006380B9 /* AddLocationViewController.swift in Sources */,
+				524592CA223AD46F00CC0D6D /* RepairOrder+Customer.swift in Sources */,
 				533047022188D61E007CE01C /* DebugTableViewCell.swift in Sources */,
 				6C20E1D01FBF713D00E5D9A0 /* RequestedServiceManager.swift in Sources */,
-				6CDCC616205C461100DFA831 /* RepairOrderType.swift in Sources */,
 				6CBB4EAC1FB4DF7D00C31183 /* FSCalendar+Deprecated.m in Sources */,
 				6C5833191FB3AF5600F6BFE0 /* PresentrController.swift in Sources */,
 				6C4970F72064162C00FF33E9 /* UILabel+Voluxe.swift in Sources */,
@@ -2510,12 +2480,10 @@
 				6CA968B120229FAD00FBEEAB /* VehiclesViewController.swift in Sources */,
 				6CBB4EAF1FB4DF7D00C31183 /* FSCalendarAppearance.m in Sources */,
 				6CA7681F210936DF0021E807 /* EditEmailViewController.swift in Sources */,
-				6C3FB2BC1FA29A1C00B22EAB /* Location.swift in Sources */,
 				6CA20EF020939C6D00E1B549 /* VLAlertViewController.swift in Sources */,
 				6CA968BF2023CBB500FBEEAB /* VehicleCell.swift in Sources */,
 				6C5832C51FB3899800F6BFE0 /* LocationManager.swift in Sources */,
 				6C5833171FB3AF5600F6BFE0 /* Presentr.swift in Sources */,
-				6CDCC5FE2053592700DFA831 /* RequestType.swift in Sources */,
 				6C5833151FB3AF5600F6BFE0 /* PresentationType.swift in Sources */,
 				6C79C42E20A27FD800443463 /* GMSnappedPoint.swift in Sources */,
 				5340E92D20E2A45600B17D53 /* FBAnalytics+UserManager.swift in Sources */,
@@ -2552,7 +2520,6 @@
 				5294097F21937D750009F691 /* CustomerAPI+Account.swift in Sources */,
 				529409822193AC860009F691 /* CustomerAPI+Vehicle.swift in Sources */,
 				6C6F4BCA1FA9178700087FE7 /* FTUELoginViewController.swift in Sources */,
-				6C22087C1FBD0C6700874882 /* Driver.swift in Sources */,
 				52A3A62221E6C884002A273E /* UIColor+Hex.swift in Sources */,
 				6C8A16E1209289EB00F888D6 /* ConstraintMaker+Voluxe.swift in Sources */,
 				535381C321FEA1C700C03ECE /* AnalyticsCore.swift in Sources */,
@@ -2570,7 +2537,6 @@
 				6CBAA6CB2023FEE800F35ECF /* CheckmarkCell.swift in Sources */,
 				6C7DDE131FDB664D000E2822 /* String+Utils.swift in Sources */,
 				6C91BBF11FA8F2A30033C2B1 /* String+Localized.swift in Sources */,
-				6C3FB2AA1FA2574C00B22EAB /* Vehicle.swift in Sources */,
 				6CCD428E1FA013E3000AC6C9 /* AppDelegate.swift in Sources */,
 				529E366E219B9D8F00619807 /* CustomerAPI+Dealership.swift in Sources */,
 				52A33B2C21CC740C0041CB67 /* Vehicle+Realm.swift in Sources */,
@@ -2622,6 +2588,7 @@
 				6C58330E1FB3AF5600F6BFE0 /* CoverVerticalFromTopAnimation.swift in Sources */,
 				6C5C6A101FD8AACD00D70BF6 /* UserManager.swift in Sources */,
 				6C91BBDB1FA8E9730033C2B1 /* FTUEStartViewController.swift in Sources */,
+				524592C6223AD0E200CC0D6D /* AliasTestingClass.swift in Sources */,
 				52A33B2421C9B7440041CB67 /* UIView+AutoLayout.swift in Sources */,
 				6C79C43A20A280AC00443463 /* GMSnappedPoints.swift in Sources */,
 				6C3FB2B01FA2823800B22EAB /* Fonts.swift in Sources */,
@@ -2637,15 +2604,13 @@
 				6CDAEE7D20E1BFED0040CDFF /* HelpBookingView.swift in Sources */,
 				6C69267E1FB3B3E3009495E9 /* LoanerViewController.swift in Sources */,
 				5322409020B32CE600D4E86C /* RealmManager.swift in Sources */,
-				6C4D91BB1FDB15F90031E3CB /* Token.swift in Sources */,
 				6CDAEE7720E1B4F00040CDFF /* HelpDetail.swift in Sources */,
 				52758F1C219E3AF3007E488A /* DateFormatter+LuxeAPI.swift in Sources */,
-				5296BA752239CE160093890D /* LuxeSDKAliases.swift in Sources */,
 				6CE1479E20AF3BDA001F4BC7 /* PermissionViewController+Notifications.swift in Sources */,
 				6C73420C1FB12E6C00E90F7E /* VLPresentrViewController.swift in Sources */,
 				6C7341FF1FB11DCE00E90F7E /* VLGroupedLabels.swift in Sources */,
 				6C20E1BF1FBE635B00E5D9A0 /* ScheduledViewController.swift in Sources */,
-				6C20E1E01FBF770C00E5D9A0 /* Request.swift in Sources */,
+				524592CC223AD4BA00CC0D6D /* RepairOrderType+Customer.swift in Sources */,
 				52A33B3C21CD98EC0041CB67 /* BookingFeedback+Realm.swift in Sources */,
 				52940966219220B50009F691 /* UserDefaults+LuxeAPI.swift in Sources */,
 				529AB0DB212F7AA300AD8D09 /* ScheduleSelfDropModal.swift in Sources */,
@@ -2704,7 +2669,6 @@
 				5328C8AC20FD40FF0006B448 /* UserDefaults+Voluxe.swift in Sources */,
 				52FFBBB221AE06BB00FAD7BE /* UserDefaults+Debug.swift in Sources */,
 				53C8AD5220E59D0E008E07FF /* Enum+CaseIterable.swift in Sources */,
-				53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */,
 				5296BA7A2239DAF80093890D /* UIImage+Resize.swift in Sources */,
 				524C201221ACAC62003AA733 /* UserDefaults+LuxeAPI.swift in Sources */,
 				524C202321ACBB17003AA733 /* AdminAPI+Customer.swift in Sources */,

@@ -9,6 +9,7 @@
 import Foundation
 import SwiftEventBus
 import RealmSwift
+import LuxePnDSDK
 
 final class UserManager {
     
