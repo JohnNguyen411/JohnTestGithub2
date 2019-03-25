@@ -10,12 +10,12 @@ import Foundation
 
 @objcMembers public class DealershipRepairOrder: NSObject, Codable {
     
-    dynamic var id: Int = -1
-    dynamic var dealershipId = -1
-    dynamic var repairOrderTypeId = -1
-    dynamic var enabled: Bool = true
-    dynamic var createdAt: Date?
-    dynamic var updatedAt: Date?
+    public dynamic var id: Int = -1
+    public dynamic var dealershipId = -1
+    public dynamic var repairOrderTypeId = -1
+    public dynamic var enabled: Bool = true
+    public dynamic var createdAt: Date?
+    public dynamic var updatedAt: Date?
     
     private enum CodingKeys: String, CodingKey {
         case id

@@ -10,17 +10,17 @@ import Foundation
 
 @objcMembers public class RepairOrder: NSObject, Codable {
     
-    dynamic var id: Int = -1
-    dynamic var bookingId: Int = -1
-    dynamic var dealershipRepairOrderId: Int = -1
-    dynamic var notes: String = ""
-    dynamic var state: String?
-    dynamic var vehicleDrivable = true
-    dynamic var repairOrderType: RepairOrderType?
-    dynamic var name: String?
-    dynamic var title: String?
-    dynamic var createdAt: Date?
-    dynamic var updatedAt: Date?
+    public dynamic var id: Int = -1
+    public dynamic var bookingId: Int = -1
+    public dynamic var dealershipRepairOrderId: Int = -1
+    public dynamic var notes: String = ""
+    public dynamic var state: String?
+    public dynamic var vehicleDrivable = true
+    public dynamic var repairOrderType: RepairOrderType?
+    public dynamic var name: String?
+    public dynamic var title: String?
+    public dynamic var createdAt: Date?
+    public dynamic var updatedAt: Date?
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -81,7 +81,7 @@ import Foundation
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
     
-    convenience init(title: String, repairOrderType: RepairOrderType, customerDescription: String, drivable: Bool?) {
+    convenience public init(title: String, repairOrderType: RepairOrderType, customerDescription: String, drivable: Bool?) {
         self.init()
         self.name = title
         self.title = title
@@ -90,7 +90,7 @@ import Foundation
         self.vehicleDrivable = drivable ?? true
     }
     
-    func getTitle() -> String {
+    public func getTitle() -> String {
         if let title = title {
             return title
         } else if let name = self.name {

@@ -502,7 +502,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
                     
                     self.showProgressHUD()
                     
-                    CustomerAPI.createDropoffRequest(customerId: booking.customerId, bookingId: booking.id, timeSlotId: nil, location: nil, isDriver: false) { request, error in
+                    VolvoValetCustomerAPI.createDropoffRequest(customerId: booking.customerId, bookingId: booking.id, timeSlotId: nil, location: nil, isDriver: false) { request, error in
                         if let dropOffRequest = request {
                             self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
                             self.refreshFinalBooking(customerId: booking.customerId, bookingId: booking.id)
@@ -547,11 +547,11 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     
     func dealershipPrefetching() {
         if locationManager.canUpdateLocation() && locationManager.lastKnownLatitude != 0 && locationManager.lastKnownLongitude != 0 && locationManager.hasLastKnownLocation {
-            CustomerAPI.dealerships(location: CLLocationCoordinate2DMake(locationManager.lastKnownLatitude, locationManager.lastKnownLongitude)) { dealerships, error in
+            VolvoValetCustomerAPI.dealerships(location: CLLocationCoordinate2DMake(locationManager.lastKnownLatitude, locationManager.lastKnownLongitude)) { dealerships, error in
                 self.saveDealerships(dealerships: dealerships)
             }
         } else {
-            CustomerAPI.dealerships() { dealerships, error in
+            VolvoValetCustomerAPI.dealerships() { dealerships, error in
                 self.saveDealerships(dealerships: dealerships)
             }
         }
@@ -588,7 +588,7 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     }
     
     private func refreshFinalBooking(customerId: Int, bookingId: Int) {
-        CustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
+        VolvoValetCustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
             self.hideProgressHUD()
             
             if error != nil {

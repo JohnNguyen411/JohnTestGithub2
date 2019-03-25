@@ -20,28 +20,19 @@ extension RestAPIHost {
 }
 
 
-class CustomerAPI: LuxeAPI {
+open class CustomerAPI: LuxeAPI {
     
-    static var api: CustomerAPI!
+    public static var api: CustomerAPI!
     
     var applicationVersion: String?
     
-    static func initApi(host: RestAPIHost, applicationVersion: String) {
-        api = CustomerAPI(host: host, applicationVersion: applicationVersion)
-    }
-    
-    init(host: RestAPIHost, applicationVersion: String) {
+    public init(host: RestAPIHost, applicationVersion: String) {
         super.init()
         self.host = host
         self.applicationVersion = applicationVersion
     }
-    /*
-    private override init() {
-        super.init()
-        self.host = UserDefaults.standard.apiHost
-    }
-    */
-    static func initToken(token: String) {
+    
+    public static func initToken(token: String) {
         self.api.initToken(token: token)
     }
     
@@ -51,11 +42,4 @@ class CustomerAPI: LuxeAPI {
         self.headers["x-application-version"] = "\(applicationVersion ?? "")"
     }
     
-    // TODO: extension in Customer App
-    // Reload Host after environment change
-    /*
-    static func reloadHost() {
-        self.api.host = UserDefaults.standard.apiHost
-    }
- */
 }

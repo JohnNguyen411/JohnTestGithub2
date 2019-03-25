@@ -11,13 +11,13 @@ import RealmSwift
 
 extension Realm {
     
-    public func add<Element: VolvoRealmProtocol>(_ object: Element, update: Bool = false) {
+    internal func add<Element: VolvoRealmProtocol>(_ object: Element, update: Bool = false) {
         if let realmObject = object.toRealmObject() as? Object {
             self.add(realmObject, update: update)
         }
     }
     
-    public func add<Element: VolvoRealmProtocol>(_ objects: [Element], update: Bool = false) {
+    internal func add<Element: VolvoRealmProtocol>(_ objects: [Element], update: Bool = false) {
         for element in objects {
             if let realmObject = element.toRealmObject() as? Object {
                 self.add(realmObject, update: update)
@@ -25,13 +25,13 @@ extension Realm {
         }
     }
     
-    public func objects<Element: VolvoRealmProtocol>(_ type: Element.Type, _ predicateFormat: String, _ args: Any..., sortedByKeyPath: String? = nil, sortAscending: Bool = false) -> [Element.Realm.Model] {
+    internal func objects<Element: VolvoRealmProtocol>(_ type: Element.Type, _ predicateFormat: String, _ args: Any..., sortedByKeyPath: String? = nil, sortAscending: Bool = false) -> [Element.Realm.Model] {
         return objects(type, predicate: NSPredicate(format: predicateFormat,
                                                     argumentArray: args),
                        sortedByKeyPath: sortedByKeyPath, sortAscending: sortAscending)
     }
     
-    public func objects<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: NSPredicate? = nil, sortedByKeyPath: String? = nil, sortAscending: Bool = false) -> [Element.Realm.Model] {
+    internal func objects<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: NSPredicate? = nil, sortedByKeyPath: String? = nil, sortAscending: Bool = false) -> [Element.Realm.Model] {
         var elements: Results<Element.Realm.Realm>
         if let predicate = predicate {
             elements = self.objects(type.Realm.Realm.self).filter(predicate)
@@ -47,32 +47,32 @@ extension Realm {
     }
     
     
-    public func deleteFirst<Element: VolvoRealmProtocol>(_ type: Element.Type, _ predicateFormat: String, _ args: Any...) {
+    internal func deleteFirst<Element: VolvoRealmProtocol>(_ type: Element.Type, _ predicateFormat: String, _ args: Any...) {
         if let object = self.objects(type.Realm.Realm.self).filter(NSPredicate(format: predicateFormat,
                                                                                argumentArray: args)).first {
             self.delete(object)
         }
     }
     
-    public func delete<Element: VolvoRealmProtocol>(_ type: Element.Type, _ predicateFormat: String, _ args: Any...) {
+    internal func delete<Element: VolvoRealmProtocol>(_ type: Element.Type, _ predicateFormat: String, _ args: Any...) {
         let objects = self.objects(type.Realm.Realm.self).filter(NSPredicate(format: predicateFormat,
                                                                              argumentArray: args))
         self.delete(objects)
     }
     
-    public func deleteFirst<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: NSPredicate) {
+    internal func deleteFirst<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: NSPredicate) {
         if let object = self.objects(type.Realm.Realm.self).filter(predicate).first {
             self.delete(object)
         }
     }
     
-    public func delete<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: NSPredicate) {
+    internal func delete<Element: VolvoRealmProtocol>(_ type: Element.Type, predicate: NSPredicate) {
         let objects = self.objects(type.Realm.Realm.self).filter(predicate)
         self.delete(objects)
     }
     
     
-    public func delete<Element: VolvoRealmProtocol>(_ object: Element) {
+    internal func delete<Element: VolvoRealmProtocol>(_ object: Element) {
         if let primaryKey = Element.Realm.Realm.primaryKey() {
             guard let keyValueObject = object as? NSObject else { return }
             guard let primaryKeyValue = keyValueObject.value(forKey: primaryKey) else { return }
@@ -82,7 +82,7 @@ extension Realm {
         }
     }
     
-    public func deleteAll<Element: VolvoRealmProtocol>(_ type: Element.Type) {
+    internal func deleteAll<Element: VolvoRealmProtocol>(_ type: Element.Type) {
         let objects = self.objects(type.Realm.Realm.self)
         self.delete(objects)
     }

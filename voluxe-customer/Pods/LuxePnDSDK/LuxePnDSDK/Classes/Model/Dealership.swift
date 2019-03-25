@@ -11,17 +11,17 @@ import CoreLocation
 
 @objcMembers public class Dealership: NSObject, Codable {
     
-    dynamic var id: Int = -1
-    dynamic var name: String?
-    dynamic var phoneNumber: String?
-    dynamic var email: String?
-    dynamic var location: Location?
-    dynamic var hoursOfOperation: String?
-    dynamic var coverageRadius: Int = 1
-    dynamic var currencyId: Int = -1
-    dynamic var enabled: Bool = true
-    dynamic var createdAt: Date?
-    dynamic var updatedAt: Date?
+    public dynamic var id: Int = -1
+    public dynamic var name: String?
+    public dynamic var phoneNumber: String?
+    public dynamic var email: String?
+    public dynamic var location: Location?
+    public dynamic var hoursOfOperation: String?
+    public dynamic var coverageRadius: Int = 1
+    public dynamic var currencyId: Int = -1
+    public dynamic var enabled: Bool = true
+    public dynamic var createdAt: Date?
+    public dynamic var updatedAt: Date?
     
     private enum CodingKeys: String, CodingKey {
         case id

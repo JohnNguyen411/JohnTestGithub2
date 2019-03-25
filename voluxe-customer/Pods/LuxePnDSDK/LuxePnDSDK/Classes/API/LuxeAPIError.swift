@@ -8,11 +8,11 @@
 
 import Foundation
 
-struct LuxeAPIError: Codable, Error {
+public struct LuxeAPIError: Codable, Error {
 
     // Luxe API specific error codes that are returned in the meta JSON blob
     // https://development-docs.ingress.luxe.com/v1/docs/#/
-    enum Code: String, Codable {
+    public enum Code: String, Codable {
         case E2001
         case E2002
         case E2003
@@ -56,17 +56,17 @@ struct LuxeAPIError: Codable, Error {
         case E5002
     }
     
-    let code: Code?
-    let message: String?
-    let statusCode: Int?
+    public let code: Code?
+    public let message: String?
+    public let statusCode: Int?
     
-    init(statusCode: Int?) {
+    public init(statusCode: Int?) {
         self.statusCode = statusCode
         self.code = nil
         self.message = nil
     }
     
-    init(code: Code?, message: String?, statusCode: Int?) {
+    public init(code: Code?, message: String?, statusCode: Int?) {
         self.statusCode = statusCode
         self.code = code
         self.message = message

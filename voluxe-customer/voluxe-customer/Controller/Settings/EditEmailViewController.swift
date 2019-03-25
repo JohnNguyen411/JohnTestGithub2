@@ -110,7 +110,7 @@ class EditEmailViewController: FTUEChildViewController, UITextFieldDelegate {
 
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        CustomerAPI.updateEmail(customerId: customerId, email: email) { error in
+        VolvoValetCustomerAPI.updateEmail(customerId: customerId, email: email) { error in
             // error
             if let error = error {
                 self.onError(error: error)

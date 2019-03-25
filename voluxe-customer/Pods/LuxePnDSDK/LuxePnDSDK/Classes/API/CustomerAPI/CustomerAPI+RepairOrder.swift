@@ -14,7 +14,7 @@ extension CustomerAPI {
      Get all the available Repair Order Types
      - parameter completion: A closure which is called with an array of RepairOrderType Object or LuxeAPIError if an error occured
      */
-    static func repairOrderTypes(completion: @escaping (([RepairOrderType], LuxeAPIError?) -> Void)) {
+    public static func repairOrderTypes(completion: @escaping (([RepairOrderType], LuxeAPIError?) -> Void)) {
         
         self.api.get(route: "v1/repair-order-types") {
             response in
@@ -27,7 +27,7 @@ extension CustomerAPI {
      Get all dealership repair orders
      - parameter completion: A closure which is called with an array of DealershipRepairOrder Object or LuxeAPIError if an error occured
      */
-    static func dealershipRepairOrder(dealerships: [Dealership], repairOrderTypeId: Int?,
+    public static func dealershipRepairOrder(dealerships: [Dealership], repairOrderTypeId: Int?,
                                       completion: @escaping (([DealershipRepairOrder], LuxeAPIError?) -> Void)) {
         
         var ids: [Int] = []
@@ -41,7 +41,7 @@ extension CustomerAPI {
      Get all dealership repair orders
      - parameter completion: A closure which is called with an array of DealershipRepairOrder Object or LuxeAPIError if an error occured
      */
-    static func dealershipRepairOrder(dealershipIds: [Int], repairOrderTypeId: Int?,
+    public static func dealershipRepairOrder(dealershipIds: [Int], repairOrderTypeId: Int?,
                                       completion: @escaping (([DealershipRepairOrder], LuxeAPIError?) -> Void)) {
         
         var params = LuxeAPI.encodeParamsArray(array: dealershipIds, key: "dealership_id__in")
@@ -65,7 +65,7 @@ extension CustomerAPI {
      - parameter notes: The notes added by the customer for the repair
      - parameter completion: A closure which is called with the created RepairOrder Object or LuxeAPIError if an error occured
      */
-    static func createRepairOrder(customerId: Int, bookingId: Int, dealershipRepairOrderId: Int, title: String, notes: String, vehicleDrivable: Bool?,
+    public static func createRepairOrder(customerId: Int, bookingId: Int, dealershipRepairOrderId: Int, title: String, notes: String, vehicleDrivable: Bool?,
                                     completion: @escaping ((RepairOrder?, LuxeAPIError?) -> Void)) {
         
         var params: [String : Any] = [

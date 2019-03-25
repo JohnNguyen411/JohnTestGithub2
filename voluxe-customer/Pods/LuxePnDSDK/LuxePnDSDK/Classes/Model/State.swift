@@ -24,7 +24,7 @@ public enum State: String {
     case arrivedForDropoff = "arrived_for_dropoff"
     case completed = "completed"
     
-    static func isPickup(state: State) -> Bool {
+    public static func isPickup(state: State) -> Bool {
         return state == .pickupScheduled || state == .enRouteForPickup || state == .nearbyForPickup || state == .arrivedForPickup || state == .enRouteForService
     }
 }

@@ -97,7 +97,7 @@ class MapViewController: UIViewController {
             return
         }
 
-        CustomerAPI.snappedPoints(from: CustomerAPI.coordinatesToString(coordinate: prevLocation), to: CustomerAPI.coordinatesToString(coordinate: location)) { snappedPoints, error in
+        VolvoValetCustomerAPI.snappedPoints(from: VolvoValetCustomerAPI.coordinatesToString(coordinate: prevLocation), to: VolvoValetCustomerAPI.coordinatesToString(coordinate: location)) { snappedPoints, error in
             
             if error != nil {
                 Analytics.trackCallGoogle(endpoint: .roads, error: error)

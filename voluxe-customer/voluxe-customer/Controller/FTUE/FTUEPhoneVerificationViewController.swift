@@ -139,7 +139,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.showProgressHUD()
 
             // initiate password reset with phone number (request code)
-            CustomerAPI.passwordReset(phoneNumber: phoneNumber) { error in
+            VolvoValetCustomerAPI.passwordReset(phoneNumber: phoneNumber) { error in
                 
                 if error == nil {
                     self.hideProgressHUD()
@@ -168,7 +168,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.showProgressHUD()
             
             // initiate password reset with phone number (request code)
-            CustomerAPI.requestPasswordChange(customerId: customer.id) { error in
+            VolvoValetCustomerAPI.requestPasswordChange(customerId: customer.id) { error in
                 if error == nil {
                     self.hideProgressHUD()
                     self.isLoading = false
@@ -189,7 +189,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
         if UserManager.sharedInstance.isLoggedIn() {
             
             // resend phone verification code
-            CustomerAPI.requestPhoneVerificationCode(customerId: customerId!) { error in
+            VolvoValetCustomerAPI.requestPhoneVerificationCode(customerId: customerId!) { error in
                 
                 if error == nil {
                     self.hideProgressHUD()
@@ -207,7 +207,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
                 language = localeLang.uppercased()
             }
             
-            CustomerAPI.signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language) { customer, error in
+            VolvoValetCustomerAPI.signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language) { customer, error in
                 self.hideProgressHUD()
 
                 if error != nil {
@@ -277,7 +277,7 @@ class FTUEPhoneVerificationViewController: FTUEChildViewController, UITextFieldD
             self.showProgressHUD()
 
             // verify phone number
-            CustomerAPI.verifyPhoneNumber(customerId: customerId, verificationCode: verificationCode) { error in
+            VolvoValetCustomerAPI.verifyPhoneNumber(customerId: customerId, verificationCode: verificationCode) { error in
                 
                 if error == nil {
                     self.codeTextField.textField.resignFirstResponder()

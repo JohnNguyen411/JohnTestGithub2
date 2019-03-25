@@ -12,21 +12,21 @@ import Foundation
 
     public static let vehicleImageHeight: CGFloat = 190
 
-    dynamic var id: Int = -1
-    dynamic var vin: String?
-    dynamic var licensePlate: String?
-    dynamic var make: String?
-    dynamic var model: String?
-    dynamic var drive: String?
-    dynamic var engine: String?
-    dynamic var trim: String?
-    dynamic var year: Int = 2018
-    dynamic var baseColor: String?
-    dynamic var color: String?
-    dynamic var photoUrl: String?
-    dynamic var transmission: String?
-    dynamic var createdAt: Date?
-    dynamic var updatedAt: Date?
+    public dynamic var id: Int = -1
+    public dynamic var vin: String?
+    public dynamic var licensePlate: String?
+    public dynamic var make: String?
+    public dynamic var model: String?
+    public dynamic var drive: String?
+    public dynamic var engine: String?
+    public dynamic var trim: String?
+    public dynamic var year: Int = 2018
+    public dynamic var baseColor: String?
+    public dynamic var color: String?
+    public dynamic var photoUrl: String?
+    public dynamic var transmission: String?
+    public dynamic var createdAt: Date?
+    public dynamic var updatedAt: Date?
 
     // Use Only for SwiftEventBus
     convenience init(id: Int) {
@@ -91,24 +91,5 @@ import Foundation
         try container.encodeIfPresent(transmission, forKey: .transmission)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
-    }
-    
-    
-    func colorCode() -> String {
-        if let color = baseColor {
-            switch (color.lowercased()) {
-            case "black": return "717"
-            case "white": return "614"
-            case "blue": return trim != nil && trim!.lowercased() == "r-design" ? "720" : "467"
-            case "silver": return "711"
-            case "grey": return "714"
-            case "red": return "612"
-            case "beige": return "719"
-            case "brown": return "700"
-            case "copper": return "700"
-            default: return "614"
-            }
-        }
-        return "614"
     }
 }

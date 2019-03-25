@@ -389,7 +389,7 @@ class FTUESignupEmailPhoneViewController: FTUEChildViewController, UITextFieldDe
         guard let firstName = signupCustomer.firstName else { return }
         guard let lastName = signupCustomer.lastName else { return }
 
-        CustomerAPI.signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language) { customer, error in
+        VolvoValetCustomerAPI.signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language) { customer, error in
             if let customer = customer {
 
                 if let realm = self.realm {

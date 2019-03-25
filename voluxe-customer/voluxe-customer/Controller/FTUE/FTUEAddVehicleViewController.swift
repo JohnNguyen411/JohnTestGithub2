@@ -71,7 +71,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
         
         showProgressHUD()
 
-        CustomerAPI.vehicleModels(makeId: nil) { models, error in
+        VolvoValetCustomerAPI.vehicleModels(makeId: nil) { models, error in
             
             if error == nil {
                 if let realm = self.realm {
@@ -225,7 +225,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     override func onRightClicked() {
         super.onRightClicked()
         if let customerId = UserManager.sharedInstance.customerId(), let baseColor = colors[selectedColor].baseColor {
-            CustomerAPI.addVehicle(customerId: customerId, make: models[selectedModel].make!, model: models[selectedModel].name!, baseColor: baseColor, year: years[selectedYear]) { vehicle, error in
+            VolvoValetCustomerAPI.addVehicle(customerId: customerId, make: models[selectedModel].make!, model: models[selectedModel].name!, baseColor: baseColor, year: years[selectedYear]) { vehicle, error in
                 if error != nil {
                     self.callVehicle(customerId: customerId)
                 } else {
@@ -247,7 +247,7 @@ class FTUEAddVehicleViewController: FTUEChildViewController, UITextFieldDelegate
     
     private func callVehicle(customerId: Int) {
         // Get Customer's Vehicles based on ID
-        CustomerAPI.vehicles(customerId: customerId) { vehicles, error in
+        VolvoValetCustomerAPI.vehicles(customerId: customerId) { vehicles, error in
             if error != nil {
                 self.hideProgressHUD()
             } else {

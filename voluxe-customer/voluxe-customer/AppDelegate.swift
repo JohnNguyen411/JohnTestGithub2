@@ -83,9 +83,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 
+        VolvoValetCustomerAPI.initApi(host: UserDefaults.standard.apiHost, applicationVersion: "luxe_by_volvo_customer_ios:\(Bundle.main.version)")
+        
         // init API Token
         if let accessToken = KeychainManager.sharedInstance.accessToken, !accessToken.isEmpty {
-            CustomerAPI.initToken(token: accessToken)
+            VolvoValetCustomerAPI.initToken(token: accessToken)
         }
         
         window = UIWindow(frame: UIScreen.main.bounds)
@@ -96,14 +98,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         window!.makeKeyAndVisible()
         
         FontName.family = .volvo
-        
-        //TODO: figure out logging for AlamoFire5
-        /*
-        if UserDefaults.standard.enableAlamoFireLogging {
-            NetworkActivityLogger.shared.level = .debug
-            NetworkActivityLogger.shared.startLogging()
-        }
-         */
 
         setupFirebase(application)
         setupBranch(application, launchOptions: launchOptions)
@@ -161,6 +155,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
     private func setupFirebase(_ application: UIApplication) {
 
+        UserDefaults.standard.enableAlamoFireLogging = true
+        
         if UserDefaults.standard.disableFirebase == false {
             FirebaseApp.configure()
         }
@@ -250,7 +246,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         }
         
         if let customerId = UserManager.sharedInstance.customerId() {
-            CustomerAPI.registerDevice(customerId: customerId, deviceToken: token, deviceId: uuid)
+            VolvoValetCustomerAPI.registerDevice(customerId: customerId, deviceToken: token, deviceId: uuid)
         }
     }
     

@@ -11,8 +11,8 @@ import RealmSwift
 
 extension VehicleMake: VolvoRealmProtocol {
     
-    public typealias Realm = VehicleMakeRealm
-    public typealias Model = VehicleMake
+    typealias Realm = VehicleMakeRealm
+    typealias Model = VehicleMake
     
     func toRealmObject() -> VehicleMakeRealm {
         return Realm.convertModelToRealm(element: self)

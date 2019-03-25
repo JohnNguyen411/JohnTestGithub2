@@ -325,7 +325,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
             
             weak var weakSelf = self
 
-            CustomerAPI.distance(origin: CustomerAPI.coordinatesToString(coordinate: fromLocation), destination: CustomerAPI.coordinatesToString(coordinate: toLocation), mode: nil) { distanceMatrix, error in
+            VolvoValetCustomerAPI.distance(origin: VolvoValetCustomerAPI.coordinatesToString(coordinate: fromLocation), destination: VolvoValetCustomerAPI.coordinatesToString(coordinate: toLocation), mode: nil) { distanceMatrix, error in
                 
                 if error != nil {
                     Logger.print("\(error?.code?.rawValue ?? "") \(error?.message ?? "")")
@@ -373,7 +373,7 @@ class ScheduledViewController: BaseVehicleViewController, DriverInfoViewControll
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        CustomerAPI.contactDriver(customerId: customerId, bookingId: booking.id, mode: mode) { contact, error in
+        VolvoValetCustomerAPI.contactDriver(customerId: customerId, bookingId: booking.id, mode: mode) { contact, error in
             if let contactDriver = contact {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 if mode == "text_only" {

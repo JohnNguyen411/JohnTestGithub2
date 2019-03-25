@@ -323,7 +323,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
         
         guard let location = location else { return }
         
-        CustomerAPI.dealerships(location: location) { dealerships, error in
+        VolvoValetCustomerAPI.dealerships(location: location) { dealerships, error in
             
             if error != nil {
                 completion?(nil)
@@ -346,7 +346,7 @@ class SchedulingViewController: BaseVehicleViewController, PickupDealershipDeleg
     }
     
     private func filterDealershipsForRepairOrder(_ repairOrderTypeId: Int, dealerships: [Dealership], completion: ((_ error: String?) -> ())? = nil) {
-        CustomerAPI.dealershipRepairOrder(dealerships: dealerships, repairOrderTypeId: repairOrderTypeId) { dealershipsRO, error in
+        VolvoValetCustomerAPI.dealershipRepairOrder(dealerships: dealerships, repairOrderTypeId: repairOrderTypeId) { dealershipsRO, error in
             
             if error != nil {
                 if let completion = completion {

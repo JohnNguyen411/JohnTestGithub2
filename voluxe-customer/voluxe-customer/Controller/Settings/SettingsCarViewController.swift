@@ -94,7 +94,7 @@ class SettingsCarViewController: BaseViewController {
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
         weak var weakSelf = self
-        CustomerAPI.deleteVehicle(customerId: customerId, vehicleId: vehicle.id) { vehicles, error in
+        VolvoValetCustomerAPI.deleteVehicle(customerId: customerId, vehicleId: vehicle.id) { vehicles, error in
             if let error = error {
                 weakSelf?.deleteVehicleFailed(error: error)
             } else {
@@ -118,7 +118,7 @@ class SettingsCarViewController: BaseViewController {
     private func callVehicles(customerId: Int) {
         
         weak var weakSelf = self
-        CustomerAPI.vehicles(customerId: customerId) { vehicles, error in
+        VolvoValetCustomerAPI.vehicles(customerId: customerId) { vehicles, error in
             if error == nil {
                 if let realm = weakSelf?.realm {
                     try? realm.write {

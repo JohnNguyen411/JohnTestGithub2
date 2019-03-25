@@ -209,7 +209,7 @@ class FTUESignupNameViewController: FTUEChildViewController, UITextFieldDelegate
         
         MBProgressHUD.showAdded(to: self.view, animated: true)
         
-        CustomerAPI.updateName(customerId: customerId, firstName: firstName, lastName: lastName) { error in
+        VolvoValetCustomerAPI.updateName(customerId: customerId, firstName: firstName, lastName: lastName) { error in
             if error != nil {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown))

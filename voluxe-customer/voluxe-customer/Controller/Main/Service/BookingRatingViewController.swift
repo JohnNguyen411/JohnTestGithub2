@@ -188,7 +188,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate, VLMar
             
             MBProgressHUD.showAdded(to: self.view, animated: true)
             
-            CustomerAPI.booking(customerId: customerId, bookingId: bookingFeedback.bookingId) { booking, error in
+            VolvoValetCustomerAPI.booking(customerId: customerId, bookingId: bookingFeedback.bookingId) { booking, error in
                 MBProgressHUD.hide(for: self.view, animated: true)
                 if let booking = booking {
                     self.booking = booking
@@ -352,7 +352,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate, VLMar
     
     private func skipBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        CustomerAPI.skipBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId) { error in
+        VolvoValetCustomerAPI.skipBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId) { error in
             self.goToNext()
         }
     }
@@ -370,7 +370,7 @@ class BookingRatingViewController: BaseViewController, UITextViewDelegate, VLMar
     
     private func submitBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int, rating: Int, comment: String?) {
         MBProgressHUD.showAdded(to: self.view, animated: true)
-        CustomerAPI.submitBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId, rating: rating, comment: comment) { error in
+        VolvoValetCustomerAPI.submitBookingFeedback(customerId: customerId, bookingId: bookingId, feedbackBookingId: feedbackBookingId, rating: rating, comment: comment) { error in
             if error != nil {
                 if self.retryCount > 2 {
                     // stop

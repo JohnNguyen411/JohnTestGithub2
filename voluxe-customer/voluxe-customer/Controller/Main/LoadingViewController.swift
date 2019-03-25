@@ -76,7 +76,7 @@ class LoadingViewController: LogoViewController {
     private func callCustomer(customerId: Int) {
         
         // Get Customer object with ID
-        CustomerAPI.me { customer, error in
+        VolvoValetCustomerAPI.me { customer, error in
             if let customer = customer {
                 if let realm = self.realm {
                     try? realm.write {
@@ -163,7 +163,7 @@ class LoadingViewController: LogoViewController {
     private func callVehicles(customerId: Int) {
         // Get Customer's Vehicles based on ID
         
-        CustomerAPI.vehicles(customerId: customerId) { vehicles, error in
+        VolvoValetCustomerAPI.vehicles(customerId: customerId) { vehicles, error in
             
             if error != nil {
                 self.errorRetrievingVehicle(customerId: customerId)
@@ -200,7 +200,7 @@ class LoadingViewController: LogoViewController {
     
     private func getBookings(customerId: Int) {
         // Get Customer's active Bookings based on ID
-        CustomerAPI.bookings(customerId: customerId, active: true) { bookings, error in
+        VolvoValetCustomerAPI.bookings(customerId: customerId, active: true) { bookings, error in
             if bookings.count > 0 {
                 
                 for booking in bookings {
@@ -226,7 +226,7 @@ class LoadingViewController: LogoViewController {
     }
     
     private func refreshRepairOrderTypes() {
-        CustomerAPI.repairOrderTypes() { services, error in
+        VolvoValetCustomerAPI.repairOrderTypes() { services, error in
             
             if error != nil {
                 Logger.print("\(error?.message ?? "")")
@@ -244,7 +244,7 @@ class LoadingViewController: LogoViewController {
     private func loadVehiclesViewController(customerId: Int) {
         // check BookingFeedbacks if no active reservation is here
         if UserManager.sharedInstance.getActiveBookings().count == 0 {
-            CustomerAPI.bookingFeedbacks(customerId: customerId, state: "pending") { bookingFeedbacks, error in
+            VolvoValetCustomerAPI.bookingFeedbacks(customerId: customerId, state: "pending") { bookingFeedbacks, error in
                 if bookingFeedbacks.count > 0 {
                     // just get the last one
                     let bookingFeedback = bookingFeedbacks[bookingFeedbacks.count-1]

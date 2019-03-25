@@ -10,12 +10,12 @@ import Foundation
 
 @objcMembers public class RepairOrderType: NSObject, Codable {
     
-    dynamic var id: Int = -1
-    dynamic var name: String?
-    dynamic var desc: String = ""
-    dynamic var category: String?
-    dynamic var createdAt: Date?
-    dynamic var updatedAt: Date?
+    public dynamic var id: Int = -1
+    public dynamic var name: String?
+    public dynamic var desc: String = ""
+    public dynamic var category: String?
+    public dynamic var createdAt: Date?
+    public dynamic var updatedAt: Date?
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -26,7 +26,7 @@ import Foundation
         case updatedAt = "updated_at" 
     }
     
-    func getCategory() -> RepairOrderCategory {
+    public func getCategory() -> RepairOrderCategory {
         if let category = category {
             return RepairOrderCategory(rawValue: category)!
         }

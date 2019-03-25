@@ -153,13 +153,13 @@ class FTUELoginViewController: FTUEChildViewController, UITextFieldDelegate {
         guard let email = emailTextField.textField.text else { return }
         guard let password = passwordTextField.textField.text else { return }
         
-        CustomerAPI.login(email: email, password: password) { token, error in
+        VolvoValetCustomerAPI.login(email: email, password: password) { token, error in
             if let tokenObject = token, let customerId = tokenObject.user?.id {
 
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
                 UserManager.sharedInstance.tempCustomerId = customerId
-                CustomerAPI.me() { customer, error in
+                VolvoValetCustomerAPI.me() { customer, error in
                     if let customer = customer {
 
                         if let realm = self.realm {

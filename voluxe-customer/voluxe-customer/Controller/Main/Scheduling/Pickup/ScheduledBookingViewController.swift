@@ -189,7 +189,7 @@ class ScheduledBookingViewController: SchedulingViewController {
         if let dropoffRequest = booking.dropoffRequest, let type = dropoffRequest.getType() {
             showProgressHUD()
 
-            CustomerAPI.cancelDropoffRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff) { error in
+            VolvoValetCustomerAPI.cancelDropoffRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: dropoffRequest.id, isDriver: type == .driverDropoff) { error in
                 if error != nil {
                     self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.hideProgressHUD()
@@ -202,7 +202,7 @@ class ScheduledBookingViewController: SchedulingViewController {
         } else if let pickupRequest = booking.pickupRequest, let type = pickupRequest.getType() {
             showProgressHUD()
 
-            CustomerAPI.cancelPickupRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup) { error in
+            VolvoValetCustomerAPI.cancelPickupRequest(customerId: UserManager.sharedInstance.customerId()!, bookingId: booking.id, requestId: pickupRequest.id, isDriver: type == .driverPickup) { error in
                 if error != nil {
                     self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.hideProgressHUD()

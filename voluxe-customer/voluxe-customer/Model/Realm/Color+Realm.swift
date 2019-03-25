@@ -11,8 +11,8 @@ import RealmSwift
 
 extension Color: VolvoRealmProtocol {
     
-    public typealias Realm = ColorRealm
-    public typealias Model = Color
+    internal typealias Realm = ColorRealm
+    internal typealias Model = Color
     
     func toRealmObject() -> ColorRealm {
         return Realm.convertModelToRealm(element: self)

@@ -11,8 +11,8 @@ import RealmSwift
 
 extension BookingFeedback: VolvoRealmProtocol {
     
-    public typealias Realm = BookingFeedbackRealm
-    public typealias Model = BookingFeedback
+    typealias Realm = BookingFeedbackRealm
+    typealias Model = BookingFeedback
     
     func toRealmObject() -> BookingFeedbackRealm {
         return Realm.convertModelToRealm(element: self)

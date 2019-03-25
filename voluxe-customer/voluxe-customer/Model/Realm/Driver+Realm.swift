@@ -11,8 +11,8 @@ import RealmSwift
 
 extension Driver: VolvoRealmProtocol {
     
-    public typealias Realm = DriverRealm
-    public typealias Model = Driver
+    internal typealias Realm = DriverRealm
+    internal typealias Model = Driver
     
     func toRealmObject() -> DriverRealm {
         return Realm.convertModelToRealm(element: self)

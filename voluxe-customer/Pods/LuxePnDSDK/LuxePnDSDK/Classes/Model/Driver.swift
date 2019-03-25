@@ -10,10 +10,10 @@ import Foundation
 
 @objcMembers public class Driver: NSObject, Codable {
     
-    dynamic var id: Int = -1
-    dynamic var name: String?
-    dynamic var iconUrl: String?
-    dynamic var location: Location?
+    public dynamic var id: Int = -1
+    public dynamic var name: String?
+    public dynamic var iconUrl: String?
+    public dynamic var location: Location?
     
     private enum CodingKeys: String, CodingKey {
         case id

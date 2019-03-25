@@ -11,8 +11,8 @@ import RealmSwift
 
 extension Customer: VolvoRealmProtocol {
     
-    public typealias Realm = CustomerRealm
-    public typealias Model = Customer
+    typealias Realm = CustomerRealm
+    typealias Model = Customer
     
     func toRealmObject() -> CustomerRealm {
         return Realm.convertModelToRealm(element: self)

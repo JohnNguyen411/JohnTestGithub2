@@ -39,7 +39,7 @@ class ServiceListViewController: BaseViewController {
         
         showProgressHUD()
         
-        CustomerAPI.repairOrderTypes() { services, error in
+        VolvoValetCustomerAPI.repairOrderTypes() { services, error in
             self.hideProgressHUD()
 
             if error != nil {

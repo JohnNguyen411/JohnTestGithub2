@@ -8,12 +8,12 @@
 
 import Foundation
 
-class Token: Codable {
+public class Token: Codable {
     
-    var token: String
-    var user: User?
-    var issuedAt: Date?
-    var expiresAt: Date?
+    public var token: String
+    public var user: TokenUser?
+    public var issuedAt: Date?
+    public var expiresAt: Date?
     
     
     private enum CodingKeys: String, CodingKey {
@@ -28,8 +28,8 @@ class Token: Codable {
         case type
     }
     
-    struct User : Codable {
-        let id: Int
+    public struct TokenUser : Codable {
+        public let id: Int
         let type: String
     }
 }

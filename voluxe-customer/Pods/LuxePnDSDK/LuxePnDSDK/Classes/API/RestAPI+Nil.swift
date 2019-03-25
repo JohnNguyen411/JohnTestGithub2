@@ -8,36 +8,37 @@
 import Foundation
 
 extension RestAPI {
-    
-    func get(route: RestAPIRoute,
+    /*
+    public func get(route: RestAPIRoute,
              queryParameters: RestAPIParameters? = nil,
              completion: RestAPICompletion? = nil)
     {
     }
     
-    func patch(route: RestAPIRoute,
+    public func patch(route: RestAPIRoute,
                bodyParameters: RestAPIParameters?,
                completion: RestAPICompletion?)
     {
     }
     
-    func delete(route: RestAPIRoute,
+    public func delete(route: RestAPIRoute,
                 bodyParameters: RestAPIParameters? = nil,
                 completion: RestAPICompletion?)
     {
     }
     
-    func put(route: RestAPIRoute,
+    public func put(route: RestAPIRoute,
              bodyParameters: RestAPIParameters? = nil,
              bodyJSON: Data? = nil,
              completion: RestAPICompletion? = nil)
     {
     }
     
-    func post(route: RestAPIRoute,
+    public func post(route: RestAPIRoute,
               queryParameters: RestAPIParameters? = nil,
               bodyParameters: RestAPIParameters? = nil,
               completion: RestAPICompletion? = nil)
     {
     }
+ */
 }

@@ -160,7 +160,7 @@ class AccountSettingsViewController: BaseViewController, AddLocationDelegate {
     func resetPassword() {
         showProgressHUD()
         if let customerId = UserManager.sharedInstance.customerId() {
-            CustomerAPI.requestPasswordChange(customerId: customerId) { error in
+            VolvoValetCustomerAPI.requestPasswordChange(customerId: customerId) { error in
                 if error != nil {
                     self.showOkDialog(title: .localized(.error), message: .localized(.errorUnknown), dialog: .error, screen: self.screen)
                     self.hideProgressHUD()

@@ -8,73 +8,14 @@
 
 import Alamofire
 import Foundation
+import LuxePnDSDK
 
 extension RestAPI {
-
-    func get(route: RestAPIRoute,
-             queryParameters: RestAPIParameters? = nil,
-             completion: RestAPICompletion? = nil)
-    {
-        self.send(method: .get,
-                  route: route,
-                  headers: self.headers,
-                  queryParameters: queryParameters,
-                  completion: completion)
-    }
-
-    func patch(route: RestAPIRoute,
-               bodyParameters: RestAPIParameters?,
-               completion: RestAPICompletion?)
-    {
-        self.send(method: .patch,
-                  route: route,
-                  headers: self.headers,
-                  bodyParameters: bodyParameters,
-                  completion: completion)
-    }
-    
-    func delete(route: RestAPIRoute,
-               bodyParameters: RestAPIParameters? = nil,
-               completion: RestAPICompletion?)
-    {
-        self.send(method: .delete,
-                  route: route,
-                  headers: self.headers,
-                  bodyParameters: bodyParameters,
-                  completion: completion)
-    }
-
-    func put(route: RestAPIRoute,
-             bodyParameters: RestAPIParameters? = nil,
-             bodyJSON: Data? = nil,
-             completion: RestAPICompletion? = nil)
-    {
-        self.send(method: .put,
-                  route: route,
-                  headers: self.headers,
-                  queryParameters: nil,
-                  bodyParameters: bodyParameters,
-                  bodyData: bodyJSON,
-                  completion: completion)
-    }
-
-    func post(route: RestAPIRoute,
-              queryParameters: RestAPIParameters? = nil,
-              bodyParameters: RestAPIParameters? = nil,
-              completion: RestAPICompletion? = nil)
-    {
-        self.send(method: .post,
-                  route: route,
-                  headers: self.headers,
-                  queryParameters: queryParameters,
-                  bodyParameters: bodyParameters,
-                  completion: completion)
-    }
 
     /// The lowest level network call that connects directly with Alamofire.
     /// Note that both body parameters and data can be specified, but that
     /// body data will overwrite any body parameters that may have been encoded.
-    private func send(method: Alamofire.HTTPMethod,
+    public func send(method: Alamofire.HTTPMethod,
                       route: RestAPIRoute,
                       headers: RestAPIHeaders,
                       queryParameters: RestAPIParameters? = nil,
@@ -172,7 +113,7 @@ extension RestAPI {
         #endif
     }
 
-    func upload(route: RestAPIRoute,
+    public func upload(route: RestAPIRoute,
                 image: UIImage,
                 completion: @escaping RestAPICompletion)
     {
@@ -185,7 +126,7 @@ extension RestAPI {
     }
 
 
-    func upload(method: HTTPMethod = .put,
+    public func upload(method: HTTPMethod = .put,
                 route: RestAPIRoute,
                 parameters: RestAPIParameters? = nil,
                 datasAndMimeTypes: [(Data, RestAPIMimeType)],

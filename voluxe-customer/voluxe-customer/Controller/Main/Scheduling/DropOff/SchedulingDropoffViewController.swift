@@ -228,7 +228,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
             
             confirmButton.isLoading = true
             
-            CustomerAPI.createDropoffRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: true) { request, error in
+            VolvoValetCustomerAPI.createDropoffRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: true) { request, error in
                 if let dropOffRequest = request {
                     self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
                     self.refreshFinalBooking(customerId: customerId, bookingId: booking.id)
@@ -278,7 +278,7 @@ class SchedulingDropoffViewController: SchedulingViewController {
     private func refreshFinalBooking(customerId: Int, bookingId: Int) {
         showProgressHUD()
         
-        CustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
+        VolvoValetCustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
             self.hideProgressHUD()
             
             if error != nil {

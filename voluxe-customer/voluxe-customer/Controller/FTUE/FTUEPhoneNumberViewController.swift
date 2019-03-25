@@ -177,7 +177,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
             
             showProgressHUD()
             
-            CustomerAPI.passwordReset(phoneNumber: phoneNumber) { error in
+            VolvoValetCustomerAPI.passwordReset(phoneNumber: phoneNumber) { error in
                 
                 if let error = error {
                     self.hideProgressHUD()
@@ -210,7 +210,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
         
         if UserManager.sharedInstance.isLoggedIn() {
             
-            CustomerAPI.updatePhoneNumber(customerId: customerId, phoneNumber: phoneNumber) { error in
+            VolvoValetCustomerAPI.updatePhoneNumber(customerId: customerId, phoneNumber: phoneNumber) { error in
                 
                 if let error = error {
                     self.hideProgressHUD()
@@ -235,7 +235,7 @@ class FTUEPhoneNumberViewController: FTUEChildViewController, FPNTextFieldDelega
                 language = localeLang.uppercased()
             }
             
-            CustomerAPI.signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language) { customer, error in
+            VolvoValetCustomerAPI.signup(email: email, phoneNumber: phoneNumber, firstName: firstName, lastName: lastName, languageCode: language) { customer, error in
                 self.hideProgressHUD()
                 if customer != nil {
                     self.goToNext()

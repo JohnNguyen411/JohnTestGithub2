@@ -255,7 +255,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         if let code = UserManager.sharedInstance.signupCustomer.verificationCode,
             let password = volvoPwdConfirmTextField.textField.text, let customerId = UserManager.sharedInstance.customerId(),
             signupCustomer.email == nil, UserManager.sharedInstance.isLoggedIn() {
-            CustomerAPI.passwordChange(customerId: customerId, code: code, password: password) { error in
+            VolvoValetCustomerAPI.passwordChange(customerId: customerId, code: code, password: password) { error in
                 
                 if error != nil {
                     if let errorCode = error?.code, errorCode == .E4012 {
@@ -279,7 +279,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
             let password = volvoPwdConfirmTextField.textField.text,
             let phoneNumber = UserManager.sharedInstance.signupCustomer.phoneNumber,
             UserManager.sharedInstance.customerId() == nil, signupCustomer.email == nil, !UserManager.sharedInstance.isLoggedIn() {
-            CustomerAPI.passwordResetConfirm(phoneNumber: phoneNumber, code: code, password: password) { error in
+            VolvoValetCustomerAPI.passwordResetConfirm(phoneNumber: phoneNumber, code: code, password: password) { error in
                 
                 if error != nil {
                     weakSelf?.showLoading(loading: false)
@@ -318,7 +318,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
         
         guard let verificationCode = signupCustomer.verificationCode else { return }
         
-        CustomerAPI.confirmSignup(email: email, password: password, verificationCode: verificationCode) { customer, error in
+        VolvoValetCustomerAPI.confirmSignup(email: email, password: password, verificationCode: verificationCode) { customer, error in
             if let customer = customer {
                 if DeeplinkManager.sharedInstance.isPrefillSignup() {
                     Analytics.trackView(app: .deeplinkSuccess, screen: weakSelf?.screen)
@@ -341,7 +341,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     func loginUser(email: String, password: String) {
         weak var weakSelf = self
         
-        CustomerAPI.login(email: email, password: password) { token, error in
+        VolvoValetCustomerAPI.login(email: email, password: password) { token, error in
             if let tokenObject = token, let customerId = tokenObject.user?.id {
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))
@@ -360,7 +360,7 @@ class FTUESignupPasswordViewController: FTUEChildViewController, UITextFieldDele
     func loginUser(phoneNumber: String, password: String) {
         weak var weakSelf = self
         
-        CustomerAPI.login(phoneNumber: phoneNumber, password: password) { token, error in
+        VolvoValetCustomerAPI.login(phoneNumber: phoneNumber, password: password) { token, error in
             if let tokenObject = token, let customerId = tokenObject.user?.id {
                 // Get Customer object with ID
                 UserManager.sharedInstance.loginSuccess(token: tokenObject.token, customerId: String(customerId))

@@ -88,7 +88,7 @@ class SignUp_APITests: XCTestCase {
         let inputs = "\(email) \(phone) \(firstName) \(lastName) \(language)"
         print("TESTING: \(inputs)")
         
-        CustomerAPI.signup(email: email,
+        VolvoValetCustomerAPI.signup(email: email,
                            phoneNumber: phone,
                            firstName: firstName,
                            lastName: lastName,

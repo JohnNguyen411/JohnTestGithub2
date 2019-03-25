@@ -10,22 +10,22 @@ import Foundation
 
 @objcMembers public class Customer: NSObject, Codable {
 
-    dynamic var id: Int = -1
-    dynamic var volvoCustomerId: String?
-    dynamic var email: String?
-    dynamic var firstName: String?
-    dynamic var lastName: String?
-    dynamic var marketCode: String?
-    dynamic var phoneNumber: String?
-    dynamic var phoneNumberVerified: Bool = false
-    dynamic var passwordResetRequired: Bool = false
-    dynamic var credit: Int?
-    dynamic var currencyId: Int?
-    dynamic var photoUrl: String?
-    dynamic var enabled: Bool = true
-    dynamic var location: Location?
-    dynamic var createdAt: Date?
-    dynamic var updatedAt: Date?
+    public dynamic var id: Int = -1
+    public dynamic var volvoCustomerId: String?
+    public dynamic var email: String?
+    public dynamic var firstName: String?
+    public dynamic var lastName: String?
+    public dynamic var marketCode: String?
+    public dynamic var phoneNumber: String?
+    public dynamic var phoneNumberVerified: Bool = false
+    public dynamic var passwordResetRequired: Bool = false
+    public dynamic var credit: Int?
+    public dynamic var currencyId: Int?
+    public dynamic var photoUrl: String?
+    public dynamic var enabled: Bool = true
+    public dynamic var location: Location?
+    public dynamic var createdAt: Date?
+    public dynamic var updatedAt: Date?
     
     private enum CodingKeys: String, CodingKey {
         case id

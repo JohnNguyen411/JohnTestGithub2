@@ -11,8 +11,8 @@ import RealmSwift
 
 extension Booking: VolvoRealmProtocol {
     
-    public typealias Realm = BookingRealm
-    public typealias Model = Booking
+    internal typealias Realm = BookingRealm
+    internal typealias Model = Booking
     
     func toRealmObject() -> BookingRealm {
         return Realm.convertModelToRealm(element: self)

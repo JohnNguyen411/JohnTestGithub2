@@ -118,7 +118,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
             RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .advisorDropoff)
             
             self.showProgressHUD()
-            CustomerAPI.createDropoffRequest(customerId: booking.customerId, bookingId: booking.id, timeSlotId: nil, location: nil, isDriver: false) { request, error in
+            VolvoValetCustomerAPI.createDropoffRequest(customerId: booking.customerId, bookingId: booking.id, timeSlotId: nil, location: nil, isDriver: false) { request, error in
                 if let dropOffRequest = request {
                     self.manageNewDropoffRequest(dropOffRequest: dropOffRequest, booking: booking)
                     self.refreshFinalBooking(customerId: booking.customerId, bookingId: booking.id)
@@ -152,7 +152,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
     }
     
     private func refreshFinalBooking(customerId: Int, bookingId: Int) {
-        CustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
+        VolvoValetCustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
             
             self.hideProgressHUD()
             

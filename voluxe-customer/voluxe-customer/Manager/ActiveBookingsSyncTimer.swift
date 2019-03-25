@@ -53,7 +53,7 @@ class ActiveBookingsSyncTimer: SyncTimer {
         guard let customerId = UserManager.sharedInstance.customerId() else { return }
         
         // Get Customer's active Bookings based on ID
-        CustomerAPI.bookings(customerId: customerId, active: true) { bookings, error in
+        VolvoValetCustomerAPI.bookings(customerId: customerId, active: true) { bookings, error in
             if bookings.count > 0 {
                 
                 for booking in bookings {

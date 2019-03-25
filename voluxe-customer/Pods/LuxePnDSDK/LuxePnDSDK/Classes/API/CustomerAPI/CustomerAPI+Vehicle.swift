@@ -15,7 +15,7 @@ extension CustomerAPI {
      - parameter customerId: Customer's ID
      - parameter completion: A closure which is called with an array of Vehicle or LuxeAPIError if an error occured
      */
-    static func vehicles(customerId: Int,
+    public static func vehicles(customerId: Int,
                          completion: @escaping (([Vehicle], LuxeAPIError?) -> Void)) {
         let route = "v1/customers/\(customerId)/vehicles"
         
@@ -34,7 +34,7 @@ extension CustomerAPI {
      - parameter year: Year of the new vehicle
      - parameter completion: A closure which is called with the added Vehicle or LuxeAPIError if an error occured
      */
-    static func addVehicle(customerId: Int, make: String, model: String, baseColor: String, year: Int,
+    public static func addVehicle(customerId: Int, make: String, model: String, baseColor: String, year: Int,
                            completion: @escaping ((Vehicle?, LuxeAPIError?) -> Void)) {
         
         let params = [
@@ -58,7 +58,7 @@ extension CustomerAPI {
      - parameter vehicleId: Vehicle ID
      - parameter completion: A closure which is called with an array of Vehicle or LuxeAPIError if an error occured
      */
-    static func deleteVehicle(customerId: Int, vehicleId: Int,
+    public static func deleteVehicle(customerId: Int, vehicleId: Int,
                            completion: @escaping (([Vehicle], LuxeAPIError?) -> Void)) {
        
         self.api.delete(route: "v1/customers/\(customerId)/vehicles/\(vehicleId)") {
@@ -72,7 +72,7 @@ extension CustomerAPI {
      Retrieve list of Makes available for Vehicles
      - parameter completion: A closure which is called with an array of VehicleMakes or LuxeAPIError if an error occured
      */
-    static func vehicleMakes(completion: @escaping (([VehicleMake], LuxeAPIError?) -> Void)) {
+    public static func vehicleMakes(completion: @escaping (([VehicleMake], LuxeAPIError?) -> Void)) {
         let params: [String: Any] = ["managed":true, "limit":99, "sort[0]":"-name"]
 
         self.api.get(route: "v1/vehicle-makes", queryParameters: params) {
@@ -87,7 +87,7 @@ extension CustomerAPI {
      - parameter makeId: Make Id for the desired models (Optional
      - parameter completion: A closure which is called with an array of VehicleModel or LuxeAPIError if an error occured
      */
-    static func vehicleModels(makeId: Int?, completion: @escaping (([VehicleModel], LuxeAPIError?) -> Void)) {
+    public static func vehicleModels(makeId: Int?, completion: @escaping (([VehicleModel], LuxeAPIError?) -> Void)) {
 
         var queryParams = [
             "managed": "true",

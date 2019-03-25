@@ -10,16 +10,16 @@ import Foundation
 
 @objcMembers public class Request: NSObject, Codable {
     
-    dynamic var id: Int = -1
-    dynamic var bookingId: Int = -1
-    dynamic var timeslotId: Int = -1
-    dynamic var state: String = "requested"
-    dynamic var type: String?
-    dynamic var createdAt: Date?
-    dynamic var updatedAt: Date?
-    dynamic var driver: Driver?
-    dynamic var location: Location?
-    dynamic var timeSlot: DealershipTimeSlot?
+    public dynamic var id: Int = -1
+    public dynamic var bookingId: Int = -1
+    public dynamic var timeslotId: Int = -1
+    public dynamic var state: String = "requested"
+    public dynamic var type: String?
+    public dynamic var createdAt: Date?
+    public dynamic var updatedAt: Date?
+    public dynamic var driver: Driver?
+    public dynamic var location: Location?
+    public dynamic var timeSlot: DealershipTimeSlot?
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -72,18 +72,18 @@ import Foundation
     }
     
     
-    func getState() -> RequestState {
+    public func getState() -> RequestState {
         return RequestState(rawValue: state)!
     }
     
-    func getType() -> RequestType? {
+    public func getType() -> RequestType? {
         if let type = type {
             return RequestType(rawValue: type)!
         }
         return nil
     }
     
-    func isToday() -> Bool {
+    public func isToday() -> Bool {
         if let timeSlot = timeSlot, let from = timeSlot.from {
             return Calendar.current.isDateInToday(from)
         }

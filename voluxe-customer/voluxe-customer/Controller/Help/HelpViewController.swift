@@ -49,7 +49,7 @@ class HelpViewController: BaseViewController {
         guard let customerId = UserManager.sharedInstance.customerId() else {
             return
         }
-        CustomerAPI.bookings(customerId: customerId, active: nil, sort: "-id", limit: 10) { bookings, error in
+        VolvoValetCustomerAPI.bookings(customerId: customerId, active: nil, sort: "-id", limit: 10) { bookings, error in
             for booking in bookings {
                 if booking.getLastCompletedRequest() != nil {
                     self.booking = booking

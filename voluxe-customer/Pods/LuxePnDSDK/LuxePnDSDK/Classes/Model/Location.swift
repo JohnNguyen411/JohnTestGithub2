@@ -11,14 +11,14 @@ import CoreLocation
 
 @objcMembers public class Location: NSObject, Codable {
     
-    dynamic var id = UUID().uuidString
-    dynamic var address: String?
-    dynamic var latitude: Double = 0.0
-    dynamic var longitude: Double = 0.0
-    dynamic var accuracy: Double = 0.0
-    dynamic var createdAt: Date?
-    dynamic var updatedAt: Date?
-    dynamic var location: CLLocationCoordinate2D?
+    public dynamic var id = UUID().uuidString
+    public dynamic var address: String?
+    public dynamic var latitude: Double = 0.0
+    public dynamic var longitude: Double = 0.0
+    public dynamic var accuracy: Double = 0.0
+    public dynamic var createdAt: Date?
+    public dynamic var updatedAt: Date?
+    public dynamic var location: CLLocationCoordinate2D?
     
     private enum CodingKeys: String, CodingKey {
         case address
@@ -50,7 +50,7 @@ import CoreLocation
     }
     
  
-    convenience init(name: String?, latitude: Double?, longitude: Double?, location: CLLocationCoordinate2D?) {
+    convenience public init(name: String?, latitude: Double?, longitude: Double?, location: CLLocationCoordinate2D?) {
         self.init()
         self.address = name
         
@@ -69,7 +69,7 @@ import CoreLocation
     }
     
     
-    func getLocation() -> CLLocationCoordinate2D? {
+    public func getLocation() -> CLLocationCoordinate2D? {
         if let location = location {
             return location
         }
@@ -79,7 +79,7 @@ import CoreLocation
         return location
     }
     
-    func getShortAddress() -> String? {
+    public func getShortAddress() -> String? {
         if let address = address {
             let tok = address.components(separatedBy:",")
             var shortAddress = ""
@@ -97,7 +97,7 @@ import CoreLocation
         return address
     }
     
-    func getMediumAddress() -> String? {
+    public func getMediumAddress() -> String? {
         if let address = address {
             let tok = address.components(separatedBy:",")
             var shortAddress = ""
@@ -121,7 +121,7 @@ import CoreLocation
         return address
     }
     
-    func toJSON() -> [String : Any] {
+    public func toJSON() -> [String : Any] {
         return [
             "address": address ?? "",
             "latitude": latitude,

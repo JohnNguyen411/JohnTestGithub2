@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-public protocol RealmObjectConverter: ConverterHelper {
+internal protocol RealmObjectConverter: ConverterHelper {
     
     associatedtype Model: NSObject // The model object, need
     associatedtype Realm: Object // the Realm Object
@@ -21,12 +21,12 @@ public protocol RealmObjectConverter: ConverterHelper {
 
 }
 
-public protocol ConverterHelper {
+internal protocol ConverterHelper {
     func toModel() -> NSObject
 
 }
 
-public class RealmObject {
+internal class RealmObject {
     
     static func convertToModel<T: RealmObjectConverter, O: Object>(element: T.Realm, type: T.Type, realmType: O.Type) -> T.Model {
         let mirror = Mirror(reflecting: element)

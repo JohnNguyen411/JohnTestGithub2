@@ -23,7 +23,7 @@ extension CustomerAPI {
      - parameter vehicleDrivable: The repair_order vehicle_drivable, or nil if repair_order created separately
      - parameter completion: A closure which is called with a Booking Object or LuxeAPIError if an error occured
      */
-    static func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool, dealershipRepairId: Int?, repairNotes: String?, repairTitle: String?, vehicleDrivable: Bool?, timeSlotId: Int?, location: Location?, isDriver: Bool,
+    public static func createBooking(customerId: Int, vehicleId: Int, dealershipId: Int, loaner: Bool, dealershipRepairId: Int?, repairNotes: String?, repairTitle: String?, vehicleDrivable: Bool?, timeSlotId: Int?, location: Location?, isDriver: Bool,
                        completion: @escaping ((Booking?, LuxeAPIError?) -> Void)) {
 
         var pickupParams: [String: Any] = ["type": isDriver ? "driver_pickup" : "advisor_pickup"]
@@ -70,7 +70,7 @@ extension CustomerAPI {
      - parameter bookingId: The Booking ID
      - parameter completion: A closure which is called with a Booking Object or LuxeAPIError if an error occured
      */
-    static func booking(customerId: Int, bookingId: Int,
+    public static func booking(customerId: Int, bookingId: Int,
                         completion: @escaping ((Booking?, LuxeAPIError?) -> Void)) {
         
         self.api.get(route: "v1/customers/\(customerId)/bookings/\(bookingId)") {
@@ -87,7 +87,7 @@ extension CustomerAPI {
      - parameter bookingId: The Booking ID
      - parameter completion: A closure which is called with a Booking array or LuxeAPIError if an error occured
      */
-    static func bookings(customerId: Int, active: Bool?, sort: String? = nil, limit: Int? = nil,
+    public static func bookings(customerId: Int, active: Bool?, sort: String? = nil, limit: Int? = nil,
                         completion: @escaping (([Booking], LuxeAPIError?) -> Void)) {
         
         var params: [String: String] = [:]
@@ -117,7 +117,7 @@ extension CustomerAPI {
      - parameter isDriver: true if the request type if driver, false if advisor
      - parameter completion: A closure which is called with a Request Object or LuxeAPIError if an error occured
      */
-    static func createPickupRequest(customerId: Int, bookingId: Int, timeSlotId: Int?, location: Location, isDriver: Bool,
+    public static func createPickupRequest(customerId: Int, bookingId: Int, timeSlotId: Int?, location: Location, isDriver: Bool,
                                      completion: @escaping ((Request?, LuxeAPIError?) -> Void)) {
         
         let params: [String : Any] = [
@@ -141,7 +141,7 @@ extension CustomerAPI {
      - parameter isDriver: true if the request type if driver, false if advisor
      - parameter completion: A closure which is called with a Request Object or LuxeAPIError if an error occured
      */
-    static func createDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int?, location: Location?, isDriver: Bool,
+    public static func createDropoffRequest(customerId: Int, bookingId: Int, timeSlotId: Int?, location: Location?, isDriver: Bool,
                               completion: @escaping ((Request?, LuxeAPIError?) -> Void)) {
         
         var params: [String: Any] = [:]
@@ -170,7 +170,7 @@ extension CustomerAPI {
      - parameter requestId: The request ID to cancel
      - parameter completion: A closure which is called with an error if occured
      */
-    static func cancelPickupRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool,
+    public static func cancelPickupRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool,
                                      completion: @escaping ((LuxeAPIError?) -> Void)) {
         
         var endpoint = "driver-pickup-requests"
@@ -191,7 +191,7 @@ extension CustomerAPI {
      - parameter requestId: The request ID to cancel
      - parameter completion: A closure which is called with an error if occured
      */
-    static func cancelDropoffRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool,
+    public static func cancelDropoffRequest(customerId: Int, bookingId : Int, requestId: Int, isDriver: Bool,
                                     completion: @escaping ((LuxeAPIError?) -> Void)) {
         
         var endpoint = "driver-dropoff-requests"
@@ -212,7 +212,7 @@ extension CustomerAPI {
      - parameter mode: The contact mode choosen: "text_only" or "voice_only"
      - parameter completion: A closure which is called with a ContactDriver object or an error if occured
      */
-    static func contactDriver(customerId: Int, bookingId: Int, mode: String,
+    public static func contactDriver(customerId: Int, bookingId: Int, mode: String,
                                      completion: @escaping ((ContactDriver?, LuxeAPIError?) -> Void)) {
         
         let params = [
@@ -233,7 +233,7 @@ extension CustomerAPI {
      - parameter feedback_booking_id: The Feedback Booking ID comming from the Booking Object
      - parameter completion: A closure which is called with an error if occured
      */
-    static func skipBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int,
+    public static func skipBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int,
                               completion: @escaping ((LuxeAPIError?) -> Void)) {
         
         self.api.put(route: "v1/customers/\(customerId)/bookings/\(bookingId)/feedbacks/\(feedbackBookingId)/skip") {
@@ -251,7 +251,7 @@ extension CustomerAPI {
      - parameter comment: The customer comment, empty if nil
      - parameter completion: A closure which is called with an error if occured
      */
-    static func submitBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int, rating: Int, comment: String?,
+    public static func submitBookingFeedback(customerId: Int, bookingId: Int, feedbackBookingId: Int, rating: Int, comment: String?,
                                     completion: @escaping ((LuxeAPIError?) -> Void)) {
         
         let params: [String : Any] = [
@@ -271,7 +271,7 @@ extension CustomerAPI {
      - parameter state: The State of the feedback (pending|skipped|submitted)
      - parameter completion: A closure which is called with an error if occured
      */
-    static func bookingFeedbacks(customerId: Int, state: String,
+    public static func bookingFeedbacks(customerId: Int, state: String,
                                       completion: @escaping (([BookingFeedback], LuxeAPIError?) -> Void)) {
         
         self.api.get(route: "v1/customers/\(customerId)/booking-feedbacks?state=\(state)") {

@@ -63,7 +63,7 @@ class BookingSyncTimer: SyncTimer {
     
     private func getBooking(customerId: Int, bookingId: Int) {
         // Get Customer's Vehicles based on ID
-        CustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
+        VolvoValetCustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
             if let booking = booking {
                 BookingSyncTimer.updateBooking(booking: booking, customerId: customerId)
             }

@@ -245,7 +245,7 @@ class SchedulingPickupViewController: SchedulingViewController {
         
         confirmButton.isLoading = true
         
-        CustomerAPI.createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner, dealershipRepairId: dealershipRepairOrder.id, repairNotes: repairOrder.notes, repairTitle: repairOrder.title, vehicleDrivable: repairOrder.vehicleDrivable, timeSlotId: timeSlot.id, location: location, isDriver: isDriver) { booking, error in
+        VolvoValetCustomerAPI.createBooking(customerId: customerId, vehicleId: vehicle.id, dealershipId: dealership.id, loaner: loaner, dealershipRepairId: dealershipRepairOrder.id, repairNotes: repairOrder.notes, repairTitle: repairOrder.title, vehicleDrivable: repairOrder.vehicleDrivable, timeSlotId: timeSlot.id, location: location, isDriver: isDriver) { booking, error in
             
             if let error = error {
                 // 2 bookings for the same car, not currently handled
@@ -289,7 +289,7 @@ class SchedulingPickupViewController: SchedulingViewController {
                 isDriver = false
             }
             
-            CustomerAPI.createPickupRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: isDriver) { request, error in
+            VolvoValetCustomerAPI.createPickupRequest(customerId: customerId, bookingId: booking.id, timeSlotId: timeSlot.id, location: location, isDriver: isDriver) { request, error in
                 
                 if let error = error {
                     if let code = error.code, code == .E4049 || code == .E4050 {
@@ -336,7 +336,7 @@ class SchedulingPickupViewController: SchedulingViewController {
     private func refreshFinalBooking(customerId: Int, bookingId: Int) {
         showProgressHUD()
         
-        CustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
+        VolvoValetCustomerAPI.booking(customerId: customerId, bookingId: bookingId) { booking, error in
             if error != nil {
                 // retry
                 self.hideProgressHUD()

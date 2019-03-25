@@ -11,8 +11,8 @@ import RealmSwift
 
 extension DealershipRepairOrder: VolvoRealmProtocol {
     
-    public typealias Realm = DealershipRepairOrderRealm
-    public typealias Model = DealershipRepairOrder
+    typealias Realm = DealershipRepairOrderRealm
+    typealias Model = DealershipRepairOrder
     
     func toRealmObject() -> DealershipRepairOrderRealm {
         return Realm.convertModelToRealm(element: self)

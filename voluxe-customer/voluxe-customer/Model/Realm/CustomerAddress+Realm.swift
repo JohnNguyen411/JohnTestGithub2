@@ -11,8 +11,8 @@ import RealmSwift
 
 extension CustomerAddress: VolvoRealmProtocol {
     
-    public typealias Realm = CustomerAddressRealm
-    public typealias Model = CustomerAddress
+    typealias Realm = CustomerAddressRealm
+    typealias Model = CustomerAddress
     
     func toRealmObject() -> CustomerAddressRealm {
         return Realm.convertModelToRealm(element: self)

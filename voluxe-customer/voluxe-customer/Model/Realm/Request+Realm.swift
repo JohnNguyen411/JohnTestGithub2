@@ -11,8 +11,8 @@ import RealmSwift
 
 extension Request: VolvoRealmProtocol {
     
-    public typealias Realm = RequestRealm
-    public typealias Model = Request
+    typealias Realm = RequestRealm
+    typealias Model = Request
     
     func toRealmObject() -> RequestRealm {
         return Realm.convertModelToRealm(element: self)

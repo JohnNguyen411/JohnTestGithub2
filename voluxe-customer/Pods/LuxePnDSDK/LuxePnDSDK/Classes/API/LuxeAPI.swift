@@ -20,32 +20,32 @@ extension RestAPIHost {
 }
 
 // Luxe API specific implementation to manage the API token
-class LuxeAPI: RestAPI {
+open class LuxeAPI: RestAPI {
     
-    func inspect(urlResponse: HTTPURLResponse?, apiResponse: RestAPIResponse?) {
+    public func inspect(urlResponse: HTTPURLResponse?, apiResponse: RestAPIResponse?) {
         
     }
     
-    var host = RestAPIHost.development {
+    public var host = RestAPIHost.development {
         didSet {
             self.updateHeaders()
         }
     }
 
-    var token: String? {
+    public var token: String? {
         didSet {
             self.updateHeaders()
         }
     }
 
-    var headers: RestAPIHeaders = [:]
+    public var headers: RestAPIHeaders = [:]
 
     func updateHeaders() {
         let token = self.token
         self.headers["Authorization"] = token != nil ? "Bearer \(token!)" : nil
     }
     
-    static func encodeParamsArray(array: [Any], key: String) -> String {
+    public static func encodeParamsArray(array: [Any], key: String) -> String {
         let keyParam = "\(key)"
         var params = ""
         for (index, object) in array.enumerated() {
@@ -55,13 +55,51 @@ class LuxeAPI: RestAPI {
         return params
     }
     
-    func initToken(token: String) {
+    public func initToken(token: String) {
         self.token = token
     }
 
-    func clearToken() {
+    public func clearToken() {
         self.token = nil
         self.updateHeaders()
+    }
+    
+    // To be overriden by Clients
+    open func get(route: RestAPIRoute,
+                    queryParameters: RestAPIParameters? = nil,
+                    completion: RestAPICompletion? = nil)
+    {
+        assertionFailure("get from LuxeAPI not implemented by Client app")
+    }
+    
+    open func patch(route: RestAPIRoute,
+                      bodyParameters: RestAPIParameters?,
+                      completion: RestAPICompletion?)
+    {
+        assertionFailure("patch from LuxeAPI not implemented by Client app")
+    }
+    
+    open func delete(route: RestAPIRoute,
+                       bodyParameters: RestAPIParameters? = nil,
+                       completion: RestAPICompletion?)
+    {
+        assertionFailure("delete from LuxeAPI not implemented by Client app")
+    }
+    
+    open func put(route: RestAPIRoute,
+                    bodyParameters: RestAPIParameters? = nil,
+                    bodyJSON: Data? = nil,
+                    completion: RestAPICompletion? = nil)
+    {
+        assertionFailure("put from LuxeAPI not implemented by Client app")
+    }
+    
+    open func post(route: RestAPIRoute,
+                     queryParameters: RestAPIParameters? = nil,
+                     bodyParameters: RestAPIParameters? = nil,
+                     completion: RestAPICompletion? = nil)
+    {
+        assertionFailure("post from LuxeAPI not implemented by Client app")
     }
 }
 
@@ -94,7 +132,7 @@ extension RestAPIResponse {
 // MARK:- Custom decodings
 extension RestAPIResponse {
 
-    func asError() -> LuxeAPIError? {
+    public func asError() -> LuxeAPIError? {
         
         var luxeAPIError: LuxeAPIError? = self.decode(reportErrors: false)
         
@@ -113,16 +151,16 @@ extension RestAPIResponse {
     }
 
     // Can return nil even if errored (502, etc)
-    func asErrorCode() -> LuxeAPIError.Code? {
+    public func asErrorCode() -> LuxeAPIError.Code? {
         return self.asError()?.code
     }
     
-    func hasErrored() -> Bool {
+    public func hasErrored() -> Bool {
         return self.error != nil
     }
     
 
-    func asString() -> String? {
+    public func asString() -> String? {
         guard let data = self.data else { return nil }
         return String(data: data, encoding: .utf8)
     }

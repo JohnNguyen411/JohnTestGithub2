@@ -10,11 +10,11 @@ import Foundation
 
 @objcMembers public class BookingFeedback: NSObject, Codable {
     
-    dynamic var id: Int = -1
-    dynamic var bookingId: Int = -1
-    dynamic var rating: Int = -1
-    dynamic var comment: String?
-    dynamic var state: String?
+    public dynamic var id: Int = -1
+    public dynamic var bookingId: Int = -1
+    public dynamic var rating: Int = -1
+    public dynamic var comment: String?
+    public dynamic var state: String?
     
     private enum CodingKeys: String, CodingKey {
         case id

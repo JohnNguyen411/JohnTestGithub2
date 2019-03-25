@@ -8,12 +8,12 @@
 
 import Foundation
 
-@objcMembers public class Color: NSObject, Codable {
+public class Color: NSObject, Codable {
     
-    dynamic var baseColor: String?
-    dynamic var color: String?
+    public var baseColor: String?
+    public var color: String?
     
-    convenience init(baseColor: String?, color: String?) {
+    public convenience init(baseColor: String?, color: String?) {
         self.init()
         self.baseColor = baseColor
         self.color = color

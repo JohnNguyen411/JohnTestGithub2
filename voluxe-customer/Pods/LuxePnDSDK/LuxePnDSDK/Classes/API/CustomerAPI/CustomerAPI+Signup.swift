@@ -19,7 +19,7 @@ extension CustomerAPI {
      - parameter languageCode: Customer's ISO_639-3 language code
      - parameter completion: A closure which is called with a Customer Object or LuxeAPIError if an error occured
      */
-    static func signup(email: String, phoneNumber: String, firstName: String, lastName: String, languageCode: String,
+    public static func signup(email: String, phoneNumber: String, firstName: String, lastName: String, languageCode: String,
                       completion: @escaping ((Customer?, LuxeAPIError?) -> Void)) {
         let route = "v1/customers/signup"
         
@@ -45,7 +45,7 @@ extension CustomerAPI {
      - parameter verificationCode: Customer's SMS verification code
      - parameter completion: A closure which is called with a Customer Object or LuxeAPIError if an error occured
      */
-    static func confirmSignup(email: String, password: String, verificationCode: String,
+    public static func confirmSignup(email: String, password: String, verificationCode: String,
                        completion: @escaping ((Customer?, LuxeAPIError?) -> Void)) {
         let route = "v1/customers/signup/confirm"
         
@@ -67,7 +67,7 @@ extension CustomerAPI {
      - parameter customerId: Customer's ID
      - parameter completion: A closure which is called with a Customer Object or LuxeAPIError if an error occured
      */
-    static func requestPhoneVerificationCode(customerId: Int,
+    public static func requestPhoneVerificationCode(customerId: Int,
                               completion: ((LuxeAPIError?) -> ())? = nil) {
         let route = "v1/customers/\(customerId)/phone-number/request-verification"
         
@@ -83,7 +83,7 @@ extension CustomerAPI {
      - parameter verificationCode: Verification Code sent by SMS
      - parameter completion: A closure which is called with a LuxeAPIError if an error occured
      */
-    static func verifyPhoneNumber(customerId: Int, verificationCode: String,
+    public static func verifyPhoneNumber(customerId: Int, verificationCode: String,
                                              completion: ((LuxeAPIError?) -> ())? = nil) {
         let route = "v1/customers/\(customerId)/phone-number/verify"
         

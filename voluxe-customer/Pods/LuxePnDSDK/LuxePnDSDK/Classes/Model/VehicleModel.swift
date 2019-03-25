@@ -8,14 +8,14 @@
 
 import Foundation
 
-@objcMembers public class VehicleModel: NSObject, Codable {
+public class VehicleModel: NSObject, Codable {
     
-    dynamic var id: Int = -1
-    dynamic var make: String?
-    dynamic var name: String?
-    dynamic var managed: Bool = true
-    dynamic var createdAt: Date?
-    dynamic var updatedAt: Date?
+    public var id: Int = -1
+    public var make: String?
+    public var name: String?
+    public var managed: Bool = true
+    public var createdAt: Date?
+    public var updatedAt: Date?
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -26,7 +26,7 @@ import Foundation
         case updatedAt = "updated_at" 
     }
     
-    convenience init(make: String, model: String) {
+    public convenience init(make: String, model: String) {
         self.init()
         self.make = make
         self.name = model

@@ -158,7 +158,7 @@ class DateTimeViewController: VLPresentrViewController, FSCalendarDataSource, FS
                 loaner = selectedLoaner
             }
             
-            CustomerAPI.dealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: loaner, from: from, to: to) { timeslots, error in
+            VolvoValetCustomerAPI.dealershipTimeSlot(dealershipId: dealership.id, type: timeSlotType, loaner: loaner, from: from, to: to) { timeslots, error in
                 
                 if error != nil {
                     self.showDialog(title: .localized(.error), message: .localized(.errorUnknown), buttonTitle: .localized(.retry), completion: {

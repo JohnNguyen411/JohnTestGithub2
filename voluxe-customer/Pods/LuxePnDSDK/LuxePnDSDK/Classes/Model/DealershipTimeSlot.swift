@@ -10,15 +10,15 @@ import Foundation
 
 @objcMembers public class DealershipTimeSlot: NSObject, Codable {
     
-    dynamic var id: Int = -1
-    dynamic var dealershipId: Int = -1
-    dynamic var type: String?
-    dynamic var from: Date?
-    dynamic var to: Date?
-    dynamic var createdAt: Date?
-    dynamic var updatedAt: Date?
-    dynamic var availableLoanerVehicleCount = -1
-    dynamic var availableAssignmentCount = -1
+    public dynamic var id: Int = -1
+    public dynamic var dealershipId: Int = -1
+    public dynamic var type: String?
+    public dynamic var from: Date?
+    public dynamic var to: Date?
+    public dynamic var createdAt: Date?
+    public dynamic var updatedAt: Date?
+    public dynamic var availableLoanerVehicleCount = -1
+    public dynamic var availableAssignmentCount = -1
     
     private enum CodingKeys: String, CodingKey {
         case id

@@ -271,7 +271,7 @@ class DebugSettingsViewController: DebugTableViewController {
         if UserDefaults.standard.apiHost != host {
             UserDefaults.standard.apiHost = host
             UserManager.sharedInstance.logout()
-            CustomerAPI.reloadHost()
+            VolvoValetCustomerAPI.reloadHost()
             AppController.sharedInstance.startApp()
             close()
         }

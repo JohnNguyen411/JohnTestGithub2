@@ -15,7 +15,7 @@ extension CustomerAPI {
      Get a list of Dealership
      - parameter completion: A closure which is called with an array of Dealership Object or LuxeAPIError if an error occured
      */
-    static func dealerships(completion: @escaping (([Dealership], LuxeAPIError?) -> Void)) {
+    public static func dealerships(completion: @escaping (([Dealership], LuxeAPIError?) -> Void)) {
         
         self.api.get(route: "v1/dealerships") {
             response in
@@ -28,7 +28,7 @@ extension CustomerAPI {
      Get a list of Dealership servicing a Location
      - parameter completion: A closure which is called with an array of Dealership Object or LuxeAPIError if an error occured
      */
-    static func dealerships(location: CLLocationCoordinate2D, completion: @escaping (([Dealership], LuxeAPIError?) -> Void)) {
+    public static func dealerships(location: CLLocationCoordinate2D, completion: @escaping (([Dealership], LuxeAPIError?) -> Void)) {
         
         let params = ["latitude": "\(location.latitude)", "longitude" : "\(location.longitude)"]
         
@@ -48,7 +48,7 @@ extension CustomerAPI {
      - parameter to: end date of the requested timeslot
      - parameter completion: A closure which is called with an array of DealershipTimeSlot Object or LuxeAPIError if an error occured
      */
-    static func dealershipTimeSlot(dealershipId: Int, type: String, loaner: Bool, from: String, to: String,
+    public static func dealershipTimeSlot(dealershipId: Int, type: String, loaner: Bool, from: String, to: String,
                             completion: @escaping (([DealershipTimeSlot], LuxeAPIError?) -> Void)) {
         
         let params = [

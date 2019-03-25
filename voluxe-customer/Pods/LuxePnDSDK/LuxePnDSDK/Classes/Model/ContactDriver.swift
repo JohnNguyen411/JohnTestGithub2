@@ -8,12 +8,12 @@
 
 import Foundation
 
-struct ContactDriver: Codable {
+public struct ContactDriver: Codable {
     
-    var driver: Driver?
-    var textPhoneNumber: String?
-    var voicePhoneNumber: String?
-    var bodyHeader: String?
+    public var driver: Driver?
+    public var textPhoneNumber: String?
+    public var voicePhoneNumber: String?
+    public var bodyHeader: String?
     
     
     private enum CodingKeys: String, CodingKey {
@@ -25,7 +25,7 @@ struct ContactDriver: Codable {
     }
     
    
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         self.driver = try container.decodeIfPresent(Driver.self, forKey: .driver)
         
@@ -39,7 +39,7 @@ struct ContactDriver: Codable {
         }
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
         try container.encode(driver, forKey: .driver)
         var textMessages = container.nestedContainer(keyedBy: CodingKeys.self, forKey: .textMessages)

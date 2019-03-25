@@ -28,7 +28,7 @@ final class UserManager {
     
     public func logout() {
         // logout from API
-        _ = CustomerAPI.logout()
+        _ = VolvoValetCustomerAPI.logout()
         KeychainManager.sharedInstance.saveAccessToken(token: nil, customerId: nil)
         self.customer = nil
         self.vehicles = nil

@@ -11,8 +11,8 @@ import RealmSwift
 
 extension Location: VolvoRealmProtocol {
     
-    public typealias Realm = LocationRealm
-    public typealias Model = Location
+    internal typealias Realm = LocationRealm
+    internal typealias Model = Location
     
     func toRealmObject() -> LocationRealm {
         return Realm.convertModelToRealm(element: self)

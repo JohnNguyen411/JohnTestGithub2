@@ -10,31 +10,31 @@ import Foundation
 
 @objcMembers public class Booking: NSObject, Codable {
     
-    private static let distanceTrigger = 500.0 // refresh more ofter when within 500m from origin or destination
+    public static let distanceTrigger = 500.0 // refresh more ofter when within 500m from origin or destination
     
-    private static let refreshEnRouteClose = 10
-    private static let refreshEnRoute = 20
+    public static let refreshEnRouteClose = 10
+    public static let refreshEnRoute = 20
     
-    dynamic var id: Int = -1
-    dynamic var customerId: Int = -1
-    dynamic var customer: Customer?
-    dynamic var state: String = "created"
-    dynamic var vehicleId: Int = -1
-    dynamic var vehicle: Vehicle?
-    dynamic var dealershipId: Int = -1
-    dynamic var dealership: Dealership?
-    dynamic var loanerVehicleRequested: Bool = false
-    dynamic var loanerVehicleId: Int = -1
-    dynamic var loanerVehicle: Vehicle?
-    dynamic var pickupRequest: Request?
-    dynamic var pickupRequestId: Int = -1
-    dynamic var dropoffRequest: Request?
-    dynamic var dropoffRequestId: Int = -1
-    dynamic var bookingFeedbackId: Int = -1
-    dynamic var bookingFeedback: BookingFeedback?
-    dynamic var repairOrderRequests: [RepairOrder] = []
-    dynamic var createdAt: Date?
-    dynamic var updatedAt: Date?
+    public dynamic var id: Int = -1
+    public dynamic var customerId: Int = -1
+    public dynamic var customer: Customer?
+    public dynamic var state: String = "created"
+    public dynamic var vehicleId: Int = -1
+    public dynamic var vehicle: Vehicle?
+    public dynamic var dealershipId: Int = -1
+    public dynamic var dealership: Dealership?
+    public dynamic var loanerVehicleRequested: Bool = false
+    public dynamic var loanerVehicleId: Int = -1
+    public dynamic var loanerVehicle: Vehicle?
+    public dynamic var pickupRequest: Request?
+    public dynamic var pickupRequestId: Int = -1
+    public dynamic var dropoffRequest: Request?
+    public dynamic var dropoffRequestId: Int = -1
+    public dynamic var bookingFeedbackId: Int = -1
+    public dynamic var bookingFeedback: BookingFeedback?
+    public dynamic var repairOrderRequests: [RepairOrder] = []
+    public dynamic var createdAt: Date?
+    public dynamic var updatedAt: Date?
 
     private enum CodingKeys: String, CodingKey {
         case id
@@ -105,12 +105,12 @@ import Foundation
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
     
-    func getState() -> State {
+    public func getState() -> State {
         return State(rawValue: state)!
     }
     
     
-    func hasUpcomingRequestToday() -> Bool {
+    public func hasUpcomingRequestToday() -> Bool {
         if let pickupRequest = pickupRequest {
             if pickupRequest.getState() == .requested || pickupRequest.getState() == .started {
                 if pickupRequest.isToday() {
@@ -128,7 +128,7 @@ import Foundation
         return false
     }
     
-    func getRepairOrderName() -> String {
+    public func getRepairOrderName() -> String {
         if repairOrderRequests.count > 0 {
             var name = ""
             name.append(repairOrderRequests[0].getTitle())
@@ -143,7 +143,7 @@ import Foundation
     }
     
     // returns distanceFromDestination in meters, nil if not applicable
-    private func distanceFromDestination(request: Request) -> Double? {
+    public func distanceFromDestination(request: Request) -> Double? {
         
         if let driver = request.driver, let location = driver.location, let coordinates = location.getLocation(),
             let requestLocation = request.location, let requestCoordinates = requestLocation.getLocation() {
@@ -153,7 +153,7 @@ import Foundation
     }
     
     // returns distanceFromOrigin in meters, nil if not applicable
-    private func distanceFromOrigin(request: Request, dealership: Dealership) -> Double? {
+    public func distanceFromOrigin(request: Request, dealership: Dealership) -> Double? {
         if let driver = request.driver, let location = driver.location, let coordinates = location.getLocation(),
             let dealershipLocation = dealership.location, let dealershipCoordinates = dealershipLocation.getLocation() {
             return Location.distanceBetweenLocations(from: coordinates, to: dealershipCoordinates)

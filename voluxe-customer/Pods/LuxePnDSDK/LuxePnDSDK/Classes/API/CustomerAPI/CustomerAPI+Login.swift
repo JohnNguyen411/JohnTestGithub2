@@ -10,7 +10,7 @@ import Foundation
 
 extension CustomerAPI {
     
-    static func login(email: String,
+    public static func login(email: String,
                       password: String,
                       completion: @escaping ((Token?, LuxeAPIError?) -> ()))
     {
@@ -26,7 +26,7 @@ extension CustomerAPI {
         }
     }
     
-    static func login(phoneNumber: String,
+    public static func login(phoneNumber: String,
                       password: String,
                       completion: @escaping ((Token?, LuxeAPIError?) -> ()))
     {
@@ -42,7 +42,7 @@ extension CustomerAPI {
         }
     }
     
-    static func logout(completion: ((LuxeAPIError?) -> ())? = nil) {
+    public static func logout(completion: ((LuxeAPIError?) -> ())? = nil) {
         self.api.post(route: "v1/users/logout") {
             response in
             completion?(response?.asError())
