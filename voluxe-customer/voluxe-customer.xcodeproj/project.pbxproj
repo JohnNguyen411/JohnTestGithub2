@@ -93,6 +93,7 @@
 		52D894A621B5F0AE00F97FA9 /* FlagPhoneNumberTextField+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D894A521B5F0AE00F97FA9 /* FlagPhoneNumberTextField+Utils.swift */; };
 		52E737712141E24900CB8D3B /* ScheduledSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E737702141E24900CB8D3B /* ScheduledSelfViewController.swift */; };
 		52E737732141E41900CB8D3B /* ScheduledSelfPickup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E737722141E41900CB8D3B /* ScheduledSelfPickup.swift */; };
+		52E83A6B2249B29500AA119E /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F18219E3849007E488A /* CustomerAPI.swift */; };
 		52FFBBB021AE05C500FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		52FFBBB121AE05C700FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		52FFBBB221AE06BB00FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
@@ -2655,6 +2656,7 @@
 				52FFBBB221AE06BB00FAD7BE /* UserDefaults+Debug.swift in Sources */,
 				53C8AD5220E59D0E008E07FF /* Enum+CaseIterable.swift in Sources */,
 				53EF28DF20AE07C8006CC5FA /* Token.swift in Sources */,
+				52E83A6B2249B29500AA119E /* CustomerAPI.swift in Sources */,
 				5296BA7A2239DAF80093890D /* UIImage+Resize.swift in Sources */,
 				524C201221ACAC62003AA733 /* UserDefaults+LuxeAPI.swift in Sources */,
 				524C202321ACBB17003AA733 /* AdminAPI+Customer.swift in Sources */,
