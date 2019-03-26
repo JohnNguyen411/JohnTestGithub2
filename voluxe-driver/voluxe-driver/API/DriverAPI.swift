@@ -24,7 +24,24 @@ class DriverAPI: LuxeAPI {
 
     private override init() {
         super.init()
-        self.host = UserDefaults.standard.apiHost
+        
+        #if DEBUG
+        
+        if UserDefaults.standard.apiHost == nil {
+            
+            let bundleID = Bundle.main.bundleIdentifier
+
+            if bundleID == "com.luxe.luxebyvolvo.agent.development" {
+                UserDefaults.standard.apiHost = .development
+            } else if bundleID == "com.luxe.luxebyvolvo.agent.staging" {
+                UserDefaults.standard.apiHost = .staging
+            } else {
+                UserDefaults.standard.apiHost = .production
+            }
+        }
+        #endif
+        
+        self.host = UserDefaults.standard.apiHost ?? .production
     }
 
     override func updateHeaders() {

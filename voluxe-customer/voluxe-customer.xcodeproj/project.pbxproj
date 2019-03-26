@@ -108,6 +108,7 @@
 		52DB3B0D22496FD600CE8094 /* VolvoValetCustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52DB3B0922496FD600CE8094 /* VolvoValetCustomerAPI.swift */; };
 		52E737712141E24900CB8D3B /* ScheduledSelfViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E737702141E24900CB8D3B /* ScheduledSelfViewController.swift */; };
 		52E737732141E41900CB8D3B /* ScheduledSelfPickup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52E737722141E41900CB8D3B /* ScheduledSelfPickup.swift */; };
+		52E83A6B2249B29500AA119E /* CustomerAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F18219E3849007E488A /* CustomerAPI.swift */; };
 		52FFBBB021AE05C500FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		52FFBBB121AE05C700FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };
 		52FFBBB221AE06BB00FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D9A7BC209A5E2F008BE93E /* UserDefaults+Debug.swift */; };

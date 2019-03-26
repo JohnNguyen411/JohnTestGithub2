@@ -1,3 +1,6 @@
+v1.0.2 (71)
+- Proper use of Scheme to define base URL environment
+
 v1.0.1 (68)
 - Limit inspection pictures to 2MB
 

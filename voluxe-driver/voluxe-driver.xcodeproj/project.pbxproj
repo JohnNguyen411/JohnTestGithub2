@@ -34,7 +34,6 @@
 		52504730221B44A300D07CD4 /* FBAnalytics+UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5250472F221B44A200D07CD4 /* FBAnalytics+UserManager.swift */; };
 		52504732221B704500D07CD4 /* Analytics+Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52504731221B704500D07CD4 /* Analytics+Request.swift */; };
 		52504734221C84DF00D07CD4 /* UIView+Toast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52504733221C84DF00D07CD4 /* UIView+Toast.swift */; };
-		528194882203B9C500C7E8EF /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 528194872203B9C500C7E8EF /* Localizable.strings */; };
 		5281948B2203BB5A00C7E8EF /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948A2203BB5A00C7E8EF /* Localized.swift */; };
 		5296BA6A2239AD1F0093890D /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53F1E55F21E01ECE007EF3AD /* UIImage+Resize.swift */; };
 		5296BA6B2239B3FF0093890D /* RepairOrderRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */; };
@@ -80,6 +79,7 @@
 		52C67E8621F9205C005EEC3B /* LoanerPaperworkViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52C67E8521F9205C005EEC3B /* LoanerPaperworkViewController.swift */; };
 		52CFAC5821FFD5390019255D /* UIBarButtonItem+Attributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */; };
 		52D6C0AD223051B400346787 /* GoogleService-Info-Staging.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52D6C0AC223051B400346787 /* GoogleService-Info-Staging.plist */; };
+		52E83A6A2249AA1700AA119E /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 52E83A682249AA1700AA119E /* Localizable.strings */; };
 		52E8CB982229FDB700794E3B /* GoogleService-Info-Production.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */; };
 		52FFBBAE21ADF78D00FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */; };
 		52FFBBAF21ADF79800FAD7BE /* UserDefaults+Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */; };
@@ -299,7 +299,6 @@
 		5250472F221B44A200D07CD4 /* FBAnalytics+UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FBAnalytics+UserManager.swift"; sourceTree = "<group>"; };
 		52504731221B704500D07CD4 /* Analytics+Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Analytics+Request.swift"; sourceTree = "<group>"; };
 		52504733221C84DF00D07CD4 /* UIView+Toast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Toast.swift"; sourceTree = "<group>"; };
-		528194872203B9C500C7E8EF /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		5281948A2203BB5A00C7E8EF /* Localized.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localized.swift; sourceTree = "<group>"; };
 		5281948D2204F43F00C7E8EF /* RepairOrderRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RepairOrderRequest.swift; sourceTree = "<group>"; };
 		52A1CE372205138D002F16BE /* InspectionNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InspectionNotesViewController.swift; sourceTree = "<group>"; };
@@ -340,6 +339,7 @@
 		52C67E8521F9205C005EEC3B /* LoanerPaperworkViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoanerPaperworkViewController.swift; sourceTree = "<group>"; };
 		52CFAC5721FFD5390019255D /* UIBarButtonItem+Attributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Attributes.swift"; sourceTree = "<group>"; };
 		52D6C0AC223051B400346787 /* GoogleService-Info-Staging.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Staging.plist"; sourceTree = "<group>"; };
+		52E83A692249AA1700AA119E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/Localizable.strings; sourceTree = "<group>"; };
 		52E8CB972229FDB700794E3B /* GoogleService-Info-Production.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info-Production.plist"; sourceTree = "<group>"; };
 		52FFBBAD21ADF78D00FAD7BE /* UserDefaults+Debug.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Debug.swift"; sourceTree = "<group>"; };
 		530BCD492177AAB2005327E7 /* RestAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestAPI.swift; sourceTree = "<group>"; };
@@ -572,7 +572,7 @@
 		528194862203B99900C7E8EF /* Localization */ = {
 			isa = PBXGroup;
 			children = (
-				528194872203B9C500C7E8EF /* Localizable.strings */,
+				52E83A682249AA1700AA119E /* Localizable.strings */,
 				5281948A2203BB5A00C7E8EF /* Localized.swift */,
 			);
 			path = Localization;
@@ -1178,12 +1178,12 @@
 				53B25DE32176960D002B846B /* LaunchScreen.storyboard in Resources */,
 				52E8CB982229FDB700794E3B /* GoogleService-Info-Production.plist in Resources */,
 				536FFD9E2177901D00C83F89 /* ipa-to-fabric.sh in Resources */,
-				528194882203B9C500C7E8EF /* Localizable.strings in Resources */,
 				52B200F322289648005DE35A /* GoogleService-Info-AppStore.plist in Resources */,
 				53B25E2E2176A414002B846B /* Settings.bundle in Resources */,
 				53B25DE02176960D002B846B /* Assets.xcassets in Resources */,
 				52C67E8221F91EB8005EEC3B /* Volvo Novum-Medium.otf in Resources */,
 				536FFD9D2177901D00C83F89 /* increment_build.sh in Resources */,
+				52E83A6A2249AA1700AA119E /* Localizable.strings in Resources */,
 				536FFDA12177921B00C83F89 /* release-notes.txt in Resources */,
 				52C67E8421F91EB8005EEC3B /* Volvo Novum-Light.otf in Resources */,
 				52C67E8121F91EB8005EEC3B /* Volvo Novum-Bold.otf in Resources */,
@@ -1283,7 +1283,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/voluxe-driver/Localization/Localizable.strings",
+				"${SRCROOT}/voluxe-driver/Localization/Base.lproj/Localizable.strings",
 				"${SRCROOT}/voluxe-driver/Localization/DriverLocalizedTemplate.swift",
 			);
 			name = "Generate Localized Constants";
@@ -1735,6 +1735,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		52E83A682249AA1700AA119E /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				52E83A692249AA1700AA119E /* Base */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		53B25DE12176960D002B846B /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

@@ -23,7 +23,7 @@ class FTUEStartViewController: LogoViewController {
     public static var flowType: FTUEFlowType = .login
 
     let loginButton = VLButton(type: .blueSecondary, title: String.localized(.viewIntroFooterSignin).uppercased(), kern: UILabel.uppercasedKern(), event: .signIn, screen: .landing)
-
+    
     let signupButton = VLButton(type: .blueSecondary, title: String.localized(.viewIntroFooterSignup).uppercased(), kern: UILabel.uppercasedKern(), event: .createAccount, screen: .landing)
 
 
