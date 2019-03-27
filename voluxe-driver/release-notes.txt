@@ -1,3 +1,6 @@
+v1.0.2 (73)
+- Force refresh requests on PN reception
+
 v1.0.2 (71)
 - Proper use of Scheme to define base URL environment
 
