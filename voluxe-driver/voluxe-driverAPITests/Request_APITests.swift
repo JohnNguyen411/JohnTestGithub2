@@ -48,7 +48,7 @@ class Request_APITests: XCTestCase {
         DriverAPI.update(request, task: .meetWithCustomer) {
             error in
             XCTAssertNotNil(error)
-            XCTAssertTrue(error == .E4020)
+            XCTAssertTrue(error?.code == .E4020)
         }
         self.wait()
     }
@@ -62,12 +62,22 @@ class Request_APITests: XCTestCase {
         self.wait()
     }
 
-    func test13_contactCustomer() {
+    func test13_callCustomer() {
         guard let request = Driver_APITests.request else { XCTFail(); return }
-        DriverAPI.contactCustomer(request) {
+        DriverAPI.contactCustomer(request, mode: "voice_only") {
             textNumber, voiceNumber, error in
             XCTAssertNil(error)
-            XCTAssertNotNil(textNumber ?? voiceNumber)
+            XCTAssertNotNil(textNumber)
+        }
+        self.wait()
+    }
+    
+    func test13_textCustomer() {
+        guard let request = Driver_APITests.request else { XCTFail(); return }
+        DriverAPI.contactCustomer(request, mode: "text_only") {
+            textNumber, voiceNumber, error in
+            XCTAssertNil(error)
+            XCTAssertNotNil(voiceNumber)
         }
         self.wait()
     }

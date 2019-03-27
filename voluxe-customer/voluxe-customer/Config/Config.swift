@@ -37,7 +37,7 @@ class Config: NSObject {
         let scheme = bundle.scheme
         baseUrl = Config.baseUrlForScheme(scheme: scheme)
         clientId = Config.clientIdForScheme(scheme: scheme)
-        if scheme == Config.releaseBundleId {
+        if scheme == "Production" || scheme == "AppStore" {
             defaultBookingRefresh = 60
             googleMapsAPIKey = "AIzaSyA65M4H5PG82NbkDRcTmvq9ouqAZJKCil8"
         } else {
@@ -49,13 +49,25 @@ class Config: NSObject {
     
     private static func baseUrlForScheme(scheme: String) -> String {
         if scheme == "Dev" {
+            Config.setAPIHost(.development)
             return Config.devUrl
         } else if scheme == "Staging" {
+            Config.setAPIHost(.staging)
             return Config.stagingUrl
         } else if scheme == "Production" || scheme == "AppStore" {
+            CustomerAPI.api.host = .production
             return Config.prodUrl
         }
+        
+        CustomerAPI.api.host = .production
         return Config.prodUrl
+    }
+    
+    private static func setAPIHost(_ host: RestAPIHost) {
+        if UserDefaults.standard.apiHost != nil {
+            return
+        }
+        UserDefaults.standard.apiHost = host
     }
     
     private static func clientIdForScheme(scheme: String) -> String {

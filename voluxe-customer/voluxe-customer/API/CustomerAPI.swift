@@ -26,7 +26,7 @@ class CustomerAPI: LuxeAPI {
     
     private override init() {
         super.init()
-        self.host = UserDefaults.standard.apiHost
+        self.host = UserDefaults.standard.apiHost ?? .development
     }
     
     static func initToken(token: String) {
@@ -36,6 +36,10 @@ class CustomerAPI: LuxeAPI {
     override func updateHeaders() {
         super.updateHeaders()
         self.headers["X-CLIENT-ID"] = self.host.clientId
+        #if DEBUG
+        self.headers["x-application-version"] = "luxe_by_volvo_customer_ios:\(Bundle(for: type(of: self)).version)"
+        #else
         self.headers["x-application-version"] = "luxe_by_volvo_customer_ios:\(Bundle.main.version)"
+        #endif
     }
 }

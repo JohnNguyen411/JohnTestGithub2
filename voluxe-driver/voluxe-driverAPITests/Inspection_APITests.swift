@@ -47,7 +47,7 @@ class Inspection_APITests: XCTestCase {
             inspection, error in
             if request.vehicleInspection != nil {
                 XCTAssertNotNil(error)
-                XCTAssertTrue(error == LuxeAPIError.Code.E4016)
+                XCTAssertTrue(error?.code == LuxeAPIError.Code.E4016)
                 XCTAssertNil(inspection)
             } else {
                 XCTAssertNil(error)

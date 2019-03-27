@@ -47,19 +47,23 @@ extension UserDefaults {
         }
     }
 
-    var apiHost: RestAPIHost {
+    var apiHost: RestAPIHost? {
         get {
             #if DEBUG
                 let rawValue = self.string(forKey: #function) ?? ""
                 let host = RestAPIHost(rawValue: rawValue)
-                return host ?? RestAPIHost.development
+                return host
             #else
                 return RestAPIHost.production
             #endif
         }
         set {
             #if DEBUG
-                self.set(newValue.rawValue, forKey: #function)
+            if let newRaw = newValue?.rawValue {
+                self.set(newRaw, forKey: #function)
+            } else {
+                self.set(RestAPIHost.development, forKey: #function)
+            }
             #endif
         }
     }
