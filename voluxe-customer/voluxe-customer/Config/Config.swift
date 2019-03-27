@@ -64,9 +64,6 @@ class Config: NSObject {
     }
     
     private static func setAPIHost(_ host: RestAPIHost) {
-        if UserDefaults.standard.apiHost != nil {
-            return
-        }
         UserDefaults.standard.apiHost = host
     }
     

@@ -10,7 +10,7 @@ import Foundation
 
 // Luxe API specific hosts for each environment
 extension RestAPIHost {
-    var string: String {
+    public var string: String {
         switch self {
             case .development: return "https://development-uswest2.api.luxe.com"
             case .staging: return "https://staging-uswest2.api.luxe.com"
