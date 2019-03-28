@@ -8,13 +8,13 @@
 
 import Foundation
 
-public class VehicleMake: NSObject, Codable {
+@objcMembers public class VehicleMake: NSObject, Codable {
     
-    public var id: Int = -1
-    public var name: String?
-    public var managed: Bool = true
-    public var createdAt: Date?
-    public var updatedAt: Date?
+    public dynamic var id: Int = -1
+    public dynamic var name: String?
+    public dynamic var managed: Bool = true
+    public dynamic var createdAt: Date?
+    public dynamic var updatedAt: Date?
     
     private enum CodingKeys: String, CodingKey {
         case id

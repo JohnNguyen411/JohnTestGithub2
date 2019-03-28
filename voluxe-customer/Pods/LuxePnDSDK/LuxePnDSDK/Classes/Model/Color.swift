@@ -8,10 +8,10 @@
 
 import Foundation
 
-public class Color: NSObject, Codable {
+@objcMembers public class Color: NSObject, Codable {
     
-    public var baseColor: String?
-    public var color: String?
+    public dynamic var baseColor: String?
+    public dynamic var color: String?
     
     public convenience init(baseColor: String?, color: String?) {
         self.init()
