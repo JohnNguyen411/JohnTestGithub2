@@ -1889,7 +1889,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconDevelopment;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1898,7 +1898,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.development;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "LuxeByVolvo Agent Development";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1911,7 +1911,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1921,7 +1921,7 @@
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.production;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "LuxeByVolvo Agent Production(Debug)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2039,7 +2039,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIconStaging;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = 396JF7EZ43;
 				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2048,7 +2048,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent.staging;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "LuxeByVolvo Agent Staging";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -2109,7 +2109,7 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Luxe Valet Inc. (MT3X9VW9P6)";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
@@ -2139,7 +2139,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "voluxe-driver/Resources/voluxe-driver.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Luxe Valet Inc. (MT3X9VW9P6)";
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = MT3X9VW9P6;
 				INFOPLIST_FILE = "voluxe-driver/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -2148,7 +2148,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.luxe.luxebyvolvo.agent;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "Volvo Valet Agent Production";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
