@@ -1,29 +1,22 @@
 //
-//  Location.swift
+//  Location+Driver.swift
 //  voluxe-driver
 //
-//  Created by Christoph on 10/23/18.
-//  Copyright © 2018 Luxe By Volvo. All rights reserved.
+//  Created by Johan Giroux on 4/1/19.
+//  Copyright © 2019 Luxe By Volvo. All rights reserved.
 //
 
 import Foundation
 
-struct Location: Codable {
-
-    let address: String
-    let latitude: Double
-    let longitude: Double
-}
-
 extension Location {
-
+    
     enum Components: Int {
         case street = 0
         case city
         case state
         case country
     }
-
+    
     // TODO https://app.asana.com/0/858610969087925/946622779263339/f
     // TODO clean up
     var cityStreetAddressString: String {

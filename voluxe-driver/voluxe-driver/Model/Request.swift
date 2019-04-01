@@ -64,27 +64,5 @@ struct Request: Codable {
         case documents
     }
 
-    var isDropOff: Bool {
-        return self.type == .advisorPickup || self.type == .dropoff
-    }
-
-    var isPickup: Bool {
-        return self.type == .advisorPickup || self.type == .pickup
-    }
-
-    var isStarted: Bool {
-        return self.state == .started
-    }
-
-    var isCompleted: Bool {
-        return self.state == .completed
-    }
     
-    var hasLoaner: Bool {
-        return self.booking?.loanerVehicle != nil
-    }
-    
-    var typeString: String {
-        return self.isPickup ? .localized(.pickup) : .localized(.delivery)
-    }
 }
