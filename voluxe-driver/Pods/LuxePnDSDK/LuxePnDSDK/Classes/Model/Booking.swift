@@ -46,7 +46,7 @@ import Foundation
         case dealership
         case loanerVehicleRequested = "loaner_vehicle_requested"
         case loanerVehicleId = "loaner_vehicle_id"
-        case loanerVehicle
+        case loanerVehicle = "loaner_vehicle"
         case pickupRequest = "pickup_request"
         case pickupRequestId = "pickup_request_id"
         case dropoffRequest = "dropoff_request"
@@ -67,7 +67,7 @@ import Foundation
         self.vehicleId = try container.decode(Int.self, forKey: .vehicleId)
         self.vehicle = try container.decodeIfPresent(Vehicle.self, forKey: .vehicle)
         self.dealershipId = try container.decode(Int.self, forKey: .dealershipId)
-        self.dealership = try container.decode(Dealership.self, forKey: .dealership)
+        self.dealership = try container.decodeIfPresent(Dealership.self, forKey: .dealership)
         self.loanerVehicleRequested = try container.decodeIfPresent(Bool.self, forKey: .loanerVehicleRequested) ?? false
         self.loanerVehicleId = try container.decodeIfPresent(Int.self, forKey: .loanerVehicleId) ?? -1
         self.loanerVehicle = try container.decodeIfPresent(Vehicle.self, forKey: .loanerVehicle)
@@ -90,7 +90,7 @@ import Foundation
         try container.encode(vehicleId, forKey: .vehicleId)
         try container.encodeIfPresent(vehicle, forKey: .vehicle)
         try container.encode(dealershipId, forKey: .dealershipId)
-        try container.encode(dealership, forKey: .dealership)
+        try container.encodeIfPresent(dealership, forKey: .dealership)
         try container.encodeIfPresent(loanerVehicleRequested, forKey: .loanerVehicleRequested)
         try container.encodeIfPresent(loanerVehicleId, forKey: .loanerVehicleId)
         try container.encodeIfPresent(loanerVehicle, forKey: .loanerVehicle)

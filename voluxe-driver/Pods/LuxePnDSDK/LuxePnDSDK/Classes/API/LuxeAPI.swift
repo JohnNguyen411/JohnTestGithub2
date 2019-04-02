@@ -124,9 +124,12 @@ extension RestAPIResponse {
             let object = try decoder.decode(T.self, from: data)
             return object
         } catch {
+            if reportErrors { NSLog("\n\nDECODE ERROR: \(error)\n\n") }
+/*
             #if DEBUG
                 if reportErrors { NSLog("\n\nDECODE ERROR: \(error)\n\n") }
             #endif
+ */
             return nil
         }
     }

@@ -65,6 +65,7 @@ import Foundation
         self.state = try container.decodeIfPresent(String.self, forKey: .state)
         self.vehicleDrivable = try container.decodeIfPresent(Bool.self, forKey: .vehicleDrivable) ?? true
         
+        self.repairOrderId = try container.decodeIfPresent(String.self, forKey: .repairOrderId)
         self.dealershipRepairOrder = try container.decodeIfPresent(DealershipRepairOrder.self, forKey: .dealershipRepairOrder)
         let dealershipRepairOrderContainer = try container.nestedContainer(keyedBy: DealershipRepairOrderKeys.self, forKey: .dealershipRepairOrder)
         let repairOrderTypeContainer = try dealershipRepairOrderContainer.nestedContainer(keyedBy: RepairOrderTypeKeys.self, forKey: .repairOrderType)

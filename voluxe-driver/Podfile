@@ -7,7 +7,7 @@ inhibit_all_warnings!
 
 target 'voluxe-driver' do
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
-    pod 'LuxePnDSDK', :git => 'git@github.com:volvo-cars/ios-luxepnd-sdk.git', :branch => '0.2.6'
+    pod 'LuxePnDSDK', :git => 'git@github.com:volvo-cars/ios-luxepnd-sdk.git', :branch => '0.2.9'
     pod 'Branch', '0.25.11'
     pod 'Crashlytics', '3.10.9'
     pod 'Fabric', '1.7.13'
@@ -21,15 +21,15 @@ end
 
 target 'voluxe-driverAPITests' do
     pod 'Alamofire', :git => 'https://github.com/Alamofire/Alamofire.git', :branch => 'alamofire5'
-    pod 'LuxePnDSDK', :git => 'git@github.com:volvo-cars/ios-luxepnd-sdk.git', :branch => '0.2.6'
+    pod 'LuxePnDSDK', :git => 'git@github.com:volvo-cars/ios-luxepnd-sdk.git', :branch => '0.2.9'
 end
 
 target 'voluxe-driverUnitTests' do
-    pod 'LuxePnDSDK', :git => 'git@github.com:volvo-cars/ios-luxepnd-sdk.git', :branch => '0.2.6'
+    pod 'LuxePnDSDK', :git => 'git@github.com:volvo-cars/ios-luxepnd-sdk.git', :branch => '0.2.9'
 end
 
 target 'voluxe-driverUITests' do
-    pod 'LuxePnDSDK', :git => 'git@github.com:volvo-cars/ios-luxepnd-sdk.git', :branch => '0.2.6'
+    pod 'LuxePnDSDK', :git => 'git@github.com:volvo-cars/ios-luxepnd-sdk.git', :branch => '0.2.9'
     pod 'FlagPhoneNumber', '0.7.1'
 end
 
