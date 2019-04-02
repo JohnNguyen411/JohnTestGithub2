@@ -1,3 +1,6 @@
+v1.3.5 (303)
+Use of new LuxePnDSDK
+
 v1.3.4 (301)
 Proper use of Scheme to define base URL environment
 

@@ -35,6 +35,8 @@ class DriverAPI: LuxeAPI {
                 UserDefaults.standard.apiHost = .development
             } else if bundleID == "com.luxe.luxebyvolvo.agent.staging" {
                 UserDefaults.standard.apiHost = .staging
+            } else if bundleID == nil { // TESTS Target
+                UserDefaults.standard.apiHost = .development
             } else {
                 UserDefaults.standard.apiHost = .production
             }

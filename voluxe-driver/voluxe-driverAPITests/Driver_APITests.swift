@@ -76,7 +76,7 @@ class Driver_APITests: XCTestCase {
 
     func test40_registerDevice() {
         guard let driver = Driver_APITests.driver else { XCTFail(); return }
-        let token = "abcdefghijklmnopqrstuvwxyz0123456789"
+        let token = "abcdefghijklmnopqrstuvwxyz\(Date().timeIntervalSince1970)"
         DriverAPI.register(device: token, for: driver) {
             error in
             if let error = error {
