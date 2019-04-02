@@ -275,7 +275,8 @@ class ProfileViewController: UIViewController {
         }
     }
     
-    func callNumber(phoneNumber: String) {
+    func callNumber(phoneNumber: String?) {
+        guard let phoneNumber = phoneNumber else { return }
         let number = "telprompt:\(phoneNumber)"
         guard let url = URL(string: number) else { return }
         UIApplication.shared.open(url)
@@ -342,9 +343,9 @@ class ProfileViewController: UIViewController {
         var showConfirmationDialog = false
         if RequestManager.shared.requests.count > 0 {
             let current = RequestManager.shared.requests
-                .filter { $0.state == .started &&
-                    Calendar.current.isDateInToday($0.dealershipTimeSlot.from) }
-                .sorted { $0.dealershipTimeSlot.from < $1.dealershipTimeSlot.from }
+                .filter { $0.state == .started && $0.dealershipTimeSlot.from != nil &&
+                    Calendar.current.isDateInToday($0.dealershipTimeSlot.from!) }
+                .sorted { $0.dealershipTimeSlot.from! < $1.dealershipTimeSlot.from! }
             if current.count > 0 {
                 showConfirmationDialog = true
             }

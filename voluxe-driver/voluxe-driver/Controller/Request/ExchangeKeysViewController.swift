@@ -30,15 +30,15 @@ class ExchangeKeysViewController: RequestStepViewController {
         self.titleLabel.font = Font.Medium.medium
         
         let customerString = NSMutableAttributedString()
-        self.customerLabel.attributedText = customerString.append(.localized(.customerColon), with: self.customerLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: self.intermediateMediumFont())
+        self.customerLabel.attributedText = customerString.append(.localized(.customerColon), with: self.customerLabel.font).append("\(request.booking?.customer?.fullName() ?? "")" , with: self.intermediateMediumFont())
         
         if let repairOrders = request.booking?.repairOrderRequests, repairOrders.count > 0 {
             let addressString = NSMutableAttributedString()
-            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: self.intermediateMediumFont())
+            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.getRepairOrderName() ?? "")" , with: self.intermediateMediumFont())
         }
         
         DispatchQueue.main.async {
-            self.reminderLabel.text = String(format: .localized(.viewReceiveVehicleInfoReminder), self.request?.booking?.customer.fullName() ?? .localized(.unknown))
+            self.reminderLabel.text = String(format: .localized(.viewReceiveVehicleInfoReminder), self.request?.booking?.customer?.fullName() ?? .localized(.unknown))
             self.reminderLabel.sizeToFit()
             self.reminderLabel.setNeedsDisplay()
         }

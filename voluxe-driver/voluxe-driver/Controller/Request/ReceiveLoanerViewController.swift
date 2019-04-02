@@ -53,7 +53,7 @@ class ReceiveLoanerViewController: RequestStepViewController {
             }
             
             DispatchQueue.main.async {
-                self.reminderLabel.text = String(format: .localized(.viewReceiveVehicleInfoReminder), self.request?.booking?.customer.fullName() ?? .localized(.unknown))
+                self.reminderLabel.text = String(format: .localized(.viewReceiveVehicleInfoReminder), self.request?.booking?.customer?.fullName() ?? .localized(.unknown))
                 self.reminderLabel.sizeToFit()
                 self.reminderLabel.setNeedsDisplay()
             }

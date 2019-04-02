@@ -83,7 +83,7 @@ class OfflineInspection: Object {
     var canBeRemoved: Bool {
         guard let realm = try? Realm() else { return true }
         if let requestState = realm.objects(RequestState.self).filter("id = %@", self.requestId).first {
-            if let state = Request.State(rawValue: requestState.state),
+            if let state = State(rawValue: requestState.state),
                 state == .completed || state == .canceled {
             
                 return self.isUploaded || self.data.isEmpty || self.failedCount > 5

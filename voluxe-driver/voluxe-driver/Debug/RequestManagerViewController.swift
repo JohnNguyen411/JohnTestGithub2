@@ -256,16 +256,17 @@ fileprivate extension Request {
 
     var detailedTypeString: String {
         switch self.type {
-            case .advisorPickup: return "Advisor drop off"
-            case .advisorDropoff: return "Advisor pick up"
-            case .dropoff: return "Drop off"
-            case .pickup: return "Pick up"
+        case .none: return ""
+        case .advisorPickup?: return "Advisor drop off"
+        case .advisorDropoff?: return "Advisor pick up"
+        case .dropoff?: return "Drop off"
+        case .pickup?: return "Pick up"
         }
     }
 
     var locationString: String {
         guard let location = self.location else { return "No location" }
-        return location.address
+        return location.address ?? "No location"
     }
 
     var documentInspectionString: String {

@@ -28,14 +28,14 @@ class MeetCustomerViewController: DriveViewController {
         super.fillWithRequest(request: request)
         
         let customerString = NSMutableAttributedString()
-        self.titleLabel.attributedText = customerString.append(.localized(.customerColon), with: self.titleLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: Font.Medium.medium)
+        self.titleLabel.attributedText = customerString.append(.localized(.customerColon), with: self.titleLabel.font).append("\(request.booking?.customer?.fullName() ?? "")" , with: Font.Medium.medium)
         
         let addressString = NSMutableAttributedString()
         self.addressLabel.attributedText = addressString.append(String(format: .localized(.addressColon), request.typeString), with: self.addressLabel.font).append("\(request.location?.address ?? "")" , with: self.intermediateMediumFont())
         
         if let repairOrders = request.booking?.repairOrderRequests, repairOrders.count > 0 {
             let addressString = NSMutableAttributedString()
-            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: self.intermediateMediumFont())
+            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.getRepairOrderName() ?? "")" , with: self.intermediateMediumFont())
         }
         
         if request.isPickup {

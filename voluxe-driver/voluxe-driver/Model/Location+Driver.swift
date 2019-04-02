@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import CoreLocation
 
 extension Location {
+    
+    public convenience init(address: String, latitude: Double, longitude: Double) {
+        self.init(name: address, latitude: latitude, longitude: longitude, location: CLLocationCoordinate2D(latitude: latitude, longitude: longitude))
+    }
     
     enum Components: Int {
         case street = 0
@@ -20,7 +25,12 @@ extension Location {
     // TODO https://app.asana.com/0/858610969087925/946622779263339/f
     // TODO clean up
     var cityStreetAddressString: String {
-        let components = self.address.components(separatedBy: ",")
+        
+        guard let address = self.address else {
+            return ""
+        }
+        
+        let components = address.components(separatedBy: ",")
         let city = components.count > Components.city.rawValue ? components[Components.city.rawValue] : "Unknown"
         let street = components.count > Components.street.rawValue ? components[Components.street.rawValue] : "Unknown"
         let string = "\(street.trim()), \(city.trim())"

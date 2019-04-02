@@ -97,10 +97,11 @@ extension Request {
 
     var route: String {
         switch self.type {
-            case .advisorPickup: return "v1/advisor-pickup-requests/\(self.id)"
-            case .advisorDropoff: return "v1/advisor-dropoff-requests/\(self.id)"
-            case .dropoff: return "v1/driver-dropoff-requests/\(self.id)"
-            case .pickup: return "v1/driver-pickup-requests/\(self.id)"
+        case .none: return ""
+        case .advisorPickup?: return "v1/advisor-pickup-requests/\(self.id)"
+        case .advisorDropoff?: return "v1/advisor-dropoff-requests/\(self.id)"
+        case .dropoff?: return "v1/driver-dropoff-requests/\(self.id)"
+        case .pickup?: return "v1/driver-pickup-requests/\(self.id)"
         }
     }
 }

@@ -29,24 +29,24 @@ class ReturnToDealershipViewController: DriveViewController {
     override func fillWithRequest(request: Request) {
         super.fillWithRequest(request: request)
         
-        if let dealershipId = request.booking?.dealershipId, let dealership = DriverManager.shared.dealership(for: dealershipId) {
-            self.directionLong = dealership.location.longitude
-            self.directionLat = dealership.location.latitude
-            self.directionAddressString = dealership.location.address
+        if let dealershipId = request.booking?.dealershipId, let dealership = DriverManager.shared.dealership(for: dealershipId), let location = dealership.location {
+            self.directionLong = location.longitude
+            self.directionLat = location.latitude
+            self.directionAddressString = location.address
             
             let addressString = NSMutableAttributedString()
-            self.addressLabel.attributedText = addressString.append(.localized(.dealershipAddressColon), with: self.customerLabel.font).append("\(dealership.location.address)" , with: self.intermediateMediumFont())
+            self.addressLabel.attributedText = addressString.append(.localized(.dealershipAddressColon), with: self.customerLabel.font).append("\(location.address ?? "")" , with: self.intermediateMediumFont())
         }
         
         self.titleLabel.text = self.step?.title ?? .localized(.returnToDealership)
         self.titleLabel.font = Font.Medium.medium
         
         let customerString = NSMutableAttributedString()
-        self.customerLabel.attributedText = customerString.append(.localized(.customerColon), with: self.customerLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: self.intermediateMediumFont())
+        self.customerLabel.attributedText = customerString.append(.localized(.customerColon), with: self.customerLabel.font).append("\(request.booking?.customer!.fullName() ?? "")" , with: self.intermediateMediumFont())
         
         if let repairOrders = request.booking?.repairOrderRequests, repairOrders.count > 0 {
             let serviceString = NSMutableAttributedString()
-            self.serviceLabel.attributedText = serviceString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: self.intermediateMediumFont())
+            self.serviceLabel.attributedText = serviceString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.getRepairOrderName() ?? "")" , with: self.intermediateMediumFont())
         }
     }
     
@@ -69,7 +69,7 @@ class ReturnToDealershipViewController: DriveViewController {
             
             var dealershipName = String.localized(.dealership)
             if let dealershipId = request.booking?.dealershipId, let dealership = DriverManager.shared.dealership(for: dealershipId) {
-                dealershipName = dealership.name
+                dealershipName = dealership.name ?? ""
             }
             
             

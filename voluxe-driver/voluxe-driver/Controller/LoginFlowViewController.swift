@@ -47,10 +47,10 @@ extension LoginFlowViewController {
     static func loginSteps(for driver: Driver) -> [Step] {
         var steps: [Step] = []
         
-        if driver.passwordResetRequired {
+        if driver.passwordResetRequired ?? false {
             steps.append(ForgotPasswordStep())
         }
-        if !driver.workPhoneNumberVerified {
+        if !(driver.workPhoneNumberVerified ?? false) {
             steps.append(PhoneNumberStep())
             steps.append(Step(title:Unlocalized.confirmPhoneNumber, controllerName: PhoneVerificationViewController.className))
         }

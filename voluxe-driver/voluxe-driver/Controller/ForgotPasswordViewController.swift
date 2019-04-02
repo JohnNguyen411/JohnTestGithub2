@@ -170,7 +170,7 @@ class ForgotPasswordViewController: StepViewController, UITextFieldDelegate {
         Analytics.trackClick(navigation: .back, screen: self.screenView)
         guard let driver = DriverManager.shared.driver else { return }
 
-        if driver.passwordResetRequired {
+        if driver.passwordResetRequired ?? false {
             AppController.shared.logout()
         } else {
             if !self.popStep() {

@@ -9,6 +9,11 @@
 import Foundation
 
 extension Request {
+    
+    var dealershipTimeSlot: DealershipTimeSlot {
+        return timeSlot!
+    }
+    
     var isDropOff: Bool {
         return self.type == .advisorPickup || self.type == .dropoff
     }

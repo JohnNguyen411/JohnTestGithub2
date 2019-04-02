@@ -126,7 +126,7 @@ class LoanerPaperworkViewController: RequestStepViewController {
                 
             } else {
                 let loanerString = NSMutableAttributedString()
-                self.titleLabel.attributedText = loanerString.append(.localized(.customerColon), with: self.titleLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: Font.Medium.medium)
+                self.titleLabel.attributedText = loanerString.append(.localized(.customerColon), with: self.titleLabel.font).append("\(request.booking?.customer?.fullName() ?? "")" , with: Font.Medium.medium)
                 
                 let addressString = NSMutableAttributedString()
                 self.licensePlateLabel.attributedText = addressString.append(String(format: .localized(.addressColon), request.typeString), with: self.licensePlateLabel.font).append("\(request.location?.address ?? "")" , with: self.intermediateMediumFont())
@@ -156,7 +156,7 @@ class LoanerPaperworkViewController: RequestStepViewController {
             self.loanerAgreement.isHidden = true
         }
         
-        if let booking = request.booking, let ros = booking.repairOrderRequests, ros.count > 0 {
+        if let booking = request.booking, booking.repairOrderRequests.count > 0 {
             self.hasRO = true
             let roString = NSMutableAttributedString()
             self.roLabel.attributedText = roString.append("\(String.localized(.repairOrderColon)) \(booking.repairOrderIds())", with: self.intermediateMediumFont())
@@ -173,9 +173,9 @@ class LoanerPaperworkViewController: RequestStepViewController {
         var directionLong: Double?
         var directionLat: Double?
         
-        if let dealershipId = self.request?.booking?.dealershipId, let dealerhip = DriverManager.shared.dealership(for: dealershipId) {
-            directionLong = dealerhip.location.longitude
-            directionLat = dealerhip.location.latitude
+        if let dealershipId = self.request?.booking?.dealershipId, let dealerhip = DriverManager.shared.dealership(for: dealershipId), let location = dealerhip.location {
+            directionLong = location.longitude
+            directionLat = location.latitude
         }
         
         guard let lat = directionLat, let long = directionLong, let driverLocation = location else {
@@ -192,7 +192,7 @@ class LoanerPaperworkViewController: RequestStepViewController {
 
             DriverManager.shared.locationDidChangeClosure = nil
             AppController.shared.playAlertSound()
-            AppController.shared.alert(title: String(format: .localized(.popupAlreadyStartedDrivingTitle), self.request?.booking?.customer.firstName ?? .localized(.popupGetToCustomerTitle)),
+            AppController.shared.alert(title: String(format: .localized(.popupAlreadyStartedDrivingTitle), self.request?.booking?.customer?.firstName ?? .localized(.popupGetToCustomerTitle)),
                                        message: .localized(.popupAlreadyStartedDrivingMessage),
                                        cancelButtonTitle: .localized(.no),
                                        okButtonTitle: .localized(.popupAlreadyStartedDrivingPositive),

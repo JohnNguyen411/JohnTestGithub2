@@ -66,7 +66,7 @@ class RequestManager {
     var requests: [Request] = [] {
         didSet {
             self.requestsDidChangeClosure?(requests)
-            let current = requests.filter { $0.state == .started && Calendar.current.isDateInToday($0.dealershipTimeSlot.from) }
+            let current = requests.filter { $0.state == .started && $0.dealershipTimeSlot.from != nil && Calendar.current.isDateInToday($0.dealershipTimeSlot.from!) }
             
             // Active requests, do start location updates
             if current.count > 0 {

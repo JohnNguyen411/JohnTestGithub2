@@ -33,14 +33,14 @@ class DriveToCustomerViewController: DriveViewController {
         self.directionAddressString = request.location?.address
 
         let customerString = NSMutableAttributedString()
-        self.titleLabel.attributedText = customerString.append(.localized(.customerColon), with: self.titleLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: Font.Medium.medium)
+        self.titleLabel.attributedText = customerString.append(.localized(.customerColon), with: self.titleLabel.font).append("\(request.booking?.customer?.fullName() ?? "")" , with: Font.Medium.medium)
         
         let addressString = NSMutableAttributedString()
         self.addressLabel.attributedText = addressString.append(String(format: .localized(.addressColon), request.typeString) , with: self.addressLabel.font).append("\(request.location?.address ?? "")" , with: self.intermediateMediumFont())
         
         if let repairOrders = request.booking?.repairOrderRequests, repairOrders.count > 0 {
             let addressString = NSMutableAttributedString()
-            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: self.intermediateMediumFont())
+            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.getRepairOrderName() ?? "")" , with: self.intermediateMediumFont())
         }
         
         if let requestNotes = request.notes {
@@ -79,7 +79,7 @@ class DriveToCustomerViewController: DriveViewController {
                 return
             }
             
-            let fullname = request.booking?.customer.fullName() ?? .localized(.popupGetToCustomerTitle)
+            let fullname = request.booking?.customer?.fullName() ?? .localized(.popupGetToCustomerTitle)
             
             AppController.shared.playAlertSound()
             AppController.shared.alert(title: .localized(.popupTooFarFromCustomerTitle),

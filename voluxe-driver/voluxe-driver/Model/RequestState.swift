@@ -28,7 +28,7 @@ import RealmSwift
         self.id = request.id
         self.bookingId = request.bookingId
         self.state = request.state.rawValue
-        self.type = request.type.rawValue
+        self.type = request.type?.rawValue
         self.task = request.task?.rawValue
         self.driverId = driverId
         self.vehicleId = request.booking?.vehicleId ?? -1

@@ -1,14 +1,13 @@
 //
 //  Task.swift
-//  voluxe-driver
+//  LuxePnDSDK
 //
-//  Created by Christoph on 10/24/18.
-//  Copyright © 2018 Luxe By Volvo. All rights reserved.
+//  Created by Johan Giroux on 4/1/19.
 //
 
 import Foundation
 
-enum Task: String, Codable, CaseIterable {
+public enum Task: String, Codable, CaseIterable {
     case unsupported
     case null
     case schedule

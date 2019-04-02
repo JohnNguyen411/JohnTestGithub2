@@ -120,15 +120,15 @@ class MyScheduleViewController: UIViewController {
         self.titlesAndRequests = []
 
         let current = requests
-            .filter { $0.state == .started &&
-                      Calendar.current.isDateInToday($0.dealershipTimeSlot.from) }
-            .sorted { $0.dealershipTimeSlot.from < $1.dealershipTimeSlot.from }
+            .filter { $0.state == .started && $0.dealershipTimeSlot.from != nil &&
+                      Calendar.current.isDateInToday($0.dealershipTimeSlot.from!) }
+            .sorted { $0.dealershipTimeSlot.from! < $1.dealershipTimeSlot.from! }
         self.titlesAndRequests += [(Unlocalized.currentService, current)]
 
         let today = requests
-            .filter { $0.state == .requested &&
-                      Calendar.current.isDateInToday($0.dealershipTimeSlot.from) }
-            .sorted { $0.dealershipTimeSlot.from < $1.dealershipTimeSlot.from }
+            .filter { $0.state == .requested && $0.dealershipTimeSlot.from != nil &&
+                      Calendar.current.isDateInToday($0.dealershipTimeSlot.from!) }
+            .sorted { $0.dealershipTimeSlot.from! < $1.dealershipTimeSlot.from! }
         self.titlesAndRequests += [(Unlocalized.upcomingToday, today)]
 
         // this adds sections for each of the 7 days from the current date
@@ -138,10 +138,10 @@ class MyScheduleViewController: UIViewController {
         // no results
         for i in 1...6 {
             let requests = requests
-                .filter { $0.state == .requested && $0.dealershipTimeSlot.from.isDuring(daysFromNow: i) }
-                .sorted { $0.dealershipTimeSlot.from < $1.dealershipTimeSlot.from }
+                .filter { $0.state == .requested &&  $0.dealershipTimeSlot.from != nil && $0.dealershipTimeSlot.from!.isDuring(daysFromNow: i) }
+                .sorted { $0.dealershipTimeSlot.from! < $1.dealershipTimeSlot.from! }
             if requests.count > 0 {
-                let date = requests[0].dealershipTimeSlot.from
+                let date = requests[0].dealershipTimeSlot.from!
                 let title = i == 1 ? Unlocalized.tomorrow : DateFormatter.requestSectionHeader.string(from: date)
                 self.titlesAndRequests += [(title, requests)]
             }
@@ -260,7 +260,7 @@ extension MyScheduleViewController: UITableViewDelegate {
         let (_, requests) = self.titlesAndRequests[indexPath.section]
         let request = requests[indexPath.row]
         
-        if !Calendar.current.isDateInToday(request.dealershipTimeSlot.from) {
+        if let from = request.dealershipTimeSlot.from, !Calendar.current.isDateInToday(from) {
             return
         }
         AppController.shared.mainController(push: RequestViewController(with: request), animated: true, asRootViewController: false, prefersProfileButton: true)
@@ -423,8 +423,13 @@ fileprivate extension Request {
     }()
 
     var timeRangeString: String {
-        let fromString = Request.timeFormatter.string(from: self.dealershipTimeSlot.from)
-        let toString = Request.timeFormatter.string(from: self.dealershipTimeSlot.to)
+        
+        guard let from = self.dealershipTimeSlot.from, let to = self.dealershipTimeSlot.to else {
+            return ""
+        }
+        
+        let fromString = Request.timeFormatter.string(from: from)
+        let toString = Request.timeFormatter.string(from: to)
         let string = "\(fromString)–\(toString)"
         return string
     }
@@ -435,7 +440,7 @@ fileprivate extension Request {
     }
 
     var isUpcoming: Bool {
-        return self.dealershipTimeSlot.from.isLaterThanToday()
+        return self.dealershipTimeSlot.from?.isLaterThanToday() ?? false
     }
 
     func imageForType() -> UIImage? {

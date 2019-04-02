@@ -28,7 +28,7 @@ class ReviewServiceViewController: RequestStepViewController {
         
         let customerString = NSMutableAttributedString()
         customerString.append(.localized(.customerColon),
-                              with: self.titleLabel.font).append("\(request.booking?.customer.fullName() ?? "")",
+                              with: self.titleLabel.font).append("\(request.booking?.customer?.fullName() ?? "")",
                                 with: Font.Medium.medium)
         
         self.setTitle(attributedString: customerString)

@@ -18,37 +18,78 @@ extension RestAPIHost {
     }
 }
 
-class DriverAPI: LuxeAPI {
+open class DriverAPI: LuxeAPI {
 
     static let api = DriverAPI()
 
-    private override init() {
+    override init() {
         super.init()
-        
-        #if DEBUG
-        
-        if UserDefaults.standard.apiHost == nil {
-            
-            let bundleID = Bundle.main.bundleIdentifier
-
-            if bundleID == "com.luxe.luxebyvolvo.agent.development" {
-                UserDefaults.standard.apiHost = .development
-            } else if bundleID == "com.luxe.luxebyvolvo.agent.staging" {
-                UserDefaults.standard.apiHost = .staging
-            } else if bundleID == nil { // TESTS Target
-                UserDefaults.standard.apiHost = .development
-            } else {
-                UserDefaults.standard.apiHost = .production
-            }
-        }
-        #endif
-        
-        self.host = UserDefaults.standard.apiHost ?? .production
+        self.host = UserDefaults.standard.apiHost
     }
 
-    override func updateHeaders() {
+    override open func updateHeaders() {
         super.updateHeaders()
         self.headers["X-CLIENT-ID"] = self.host.clientId
         self.headers["x-application-version"] = "luxe_by_volvo_driver_ios:\(Bundle.current.version)"
+    }
+    
+    open override func get(route: RestAPIRoute,
+                             queryParameters: RestAPIParameters? = nil,
+                             completion: RestAPICompletion? = nil)
+    {
+        self.send(method: .get,
+                  route: route,
+                  headers: self.headers,
+                  queryParameters: queryParameters,
+                  completion: completion)
+    }
+    
+    open override func patch(route: RestAPIRoute,
+                               bodyParameters: RestAPIParameters?,
+                               completion: RestAPICompletion?)
+    {
+        self.send(method: .patch,
+                  route: route,
+                  headers: self.headers,
+                  bodyParameters: bodyParameters,
+                  completion: completion)
+    }
+    
+    open override func delete(route: RestAPIRoute,
+                                bodyParameters: RestAPIParameters? = nil,
+                                completion: RestAPICompletion?)
+    {
+        self.send(method: .delete,
+                  route: route,
+                  headers: self.headers,
+                  bodyParameters: bodyParameters,
+                  completion: completion)
+    }
+    
+    open override func put(route: RestAPIRoute,
+                             bodyParameters: RestAPIParameters? = nil,
+                             bodyJSON: Data? = nil,
+                             completion: RestAPICompletion? = nil)
+    {
+        self.send(method: .put,
+                  route: route,
+                  headers: self.headers,
+                  queryParameters: nil,
+                  bodyParameters: bodyParameters,
+                  bodyData: bodyJSON,
+                  completion: completion)
+    }
+    
+    open override func post(route: RestAPIRoute,
+                              queryParameters: RestAPIParameters? = nil,
+                              bodyParameters: RestAPIParameters? = nil,
+                              completion: RestAPICompletion? = nil)
+    {
+        self.send(method: .post,
+                  route: route,
+                  headers: self.headers,
+                  queryParameters: queryParameters,
+                  bodyParameters: bodyParameters,
+                  completion: completion)
     }
 }

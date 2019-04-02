@@ -25,6 +25,8 @@ import Foundation
     public dynamic var color: String?
     public dynamic var photoUrl: String?
     public dynamic var transmission: String?
+    public dynamic var keyTagCode: String?
+    public dynamic var latestOdometerReading: OdometerReading?
     public dynamic var createdAt: Date?
     public dynamic var updatedAt: Date?
 
@@ -48,6 +50,8 @@ import Foundation
         case color
         case photoUrl = "photo_url"
         case transmission
+        case latestOdometerReading = "latest_odometer_reading"
+        case keyTagCode = "key_tag_code"
         case createdAt = "created_at" 
         case updatedAt = "updated_at" 
     }
@@ -69,6 +73,8 @@ import Foundation
         self.color = try container.decodeIfPresent(String.self, forKey: .color)
         self.photoUrl = try container.decodeIfPresent(String.self, forKey: .photoUrl)
         self.transmission = try container.decodeIfPresent(String.self, forKey: .transmission)
+        self.keyTagCode = try container.decodeIfPresent(String.self, forKey: .keyTagCode)
+        self.latestOdometerReading = try container.decodeIfPresent(OdometerReading.self, forKey: .latestOdometerReading)
         self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
         self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
     }
@@ -89,6 +95,8 @@ import Foundation
         try container.encodeIfPresent(color, forKey: .color)
         try container.encodeIfPresent(photoUrl, forKey: .photoUrl)
         try container.encodeIfPresent(transmission, forKey: .transmission)
+        try container.encodeIfPresent(keyTagCode, forKey: .keyTagCode)
+        try container.encodeIfPresent(latestOdometerReading, forKey: .latestOdometerReading)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }

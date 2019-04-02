@@ -50,5 +50,20 @@ import Foundation
         case type
         case enabled
     }
+    
+    
+    // Driver Function
+    func readyForUse() -> Bool {
+        if let passwordResetRequired = self.passwordResetRequired, passwordResetRequired {
+            return false
+        }
+        if let workPhoneNumberVerified = self.workPhoneNumberVerified, !workPhoneNumberVerified {
+            return false
+        }
+        if photoUrl == nil || photoUrl?.count == 0 {
+            return false
+        }
+        return true
+    }
    
 }

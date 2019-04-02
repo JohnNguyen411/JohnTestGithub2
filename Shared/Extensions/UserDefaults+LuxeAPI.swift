@@ -55,7 +55,7 @@ extension UserDefaults {
                     return host
                 }
                 let bundle = Bundle.main
-                if bundle.scheme == "Dev" {
+                if bundle.scheme == "Development" {
                     return RestAPIHost.development
                 } else if bundle.scheme == "Staging" {
                     return RestAPIHost.staging

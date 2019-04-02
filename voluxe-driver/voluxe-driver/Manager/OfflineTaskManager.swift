@@ -50,7 +50,7 @@ class OfflineTaskManager {
                 
                 // check cached request state
                 if let requestState = realm.objects(RequestState.self).filter("id = %@", offlineTask.requestId).first,
-                    let state = Request.State(rawValue: requestState.state), state == .completed || state == .canceled {
+                    let state = State(rawValue: requestState.state), state == .completed || state == .canceled {
                     try? realm.write { realm.delete(offlineTask) }
                     // proceed to next
                     updateNext()

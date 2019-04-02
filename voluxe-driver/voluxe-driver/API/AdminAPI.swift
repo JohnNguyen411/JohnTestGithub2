@@ -7,15 +7,16 @@
 //
 import Foundation
 
-class AdminAPI: LuxeAPI {
+open class AdminAPI: LuxeAPI {
     
     static let api = AdminAPI()
-    private override init() {
+    
+    override init() {
         super.init()
         self.updateHeaders()
     }
     
-    override func updateHeaders() {
+    open override func updateHeaders() {
         super.updateHeaders()
         self.headers["x-application-version"] = "luxe_by_volvo_customer_ios:100.0.0"
     }

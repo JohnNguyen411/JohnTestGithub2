@@ -77,15 +77,15 @@ class InspectionNotesViewController: RequestStepViewController {
         self.titleLabel.font = Font.Medium.medium
         
         let customerString = NSMutableAttributedString()
-        self.customerLabel.attributedText = customerString.append(.localized(.customerColon), with: self.customerLabel.font).append("\(request.booking?.customer.fullName() ?? "")" , with: self.intermediateMediumFont())
+        self.customerLabel.attributedText = customerString.append(.localized(.customerColon), with: self.customerLabel.font).append("\(request.booking?.customer?.fullName() ?? "")" , with: self.intermediateMediumFont())
         
         if let repairOrders = request.booking?.repairOrderRequests, repairOrders.count > 0 {
             let addressString = NSMutableAttributedString()
-            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.repairOrderNames() ?? "")" , with: self.intermediateMediumFont())
+            self.serviceLabel.attributedText = addressString.append(.localized(.serviceColon), with: self.serviceLabel.font).append("\(request.booking?.getRepairOrderName() ?? "")" , with: self.intermediateMediumFont())
             
-            if let ro = repairOrders.first, let roNotes = ro.notes {
-                self.originalNotes = roNotes
-                self.notesTextField.text = roNotes
+            if let ro = repairOrders.first {
+                self.originalNotes = ro.notes
+                self.notesTextField.text = ro.notes
             }
         }
     }

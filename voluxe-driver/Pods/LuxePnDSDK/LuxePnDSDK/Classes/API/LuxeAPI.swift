@@ -39,8 +39,11 @@ open class LuxeAPI: RestAPI {
     }
 
     public var headers: RestAPIHeaders = [:]
+    
+    public init() {
+    }
 
-    func updateHeaders() {
+    open func updateHeaders() {
         let token = self.token
         self.headers["Authorization"] = token != nil ? "Bearer \(token!)" : nil
     }
@@ -109,7 +112,7 @@ open class LuxeAPI: RestAPI {
 
 extension RestAPIResponse {
   
-    func decode<T: Decodable>(convertFromSnakeCase: Bool = false, reportErrors: Bool = true) -> T? {
+    public func decode<T: Decodable>(convertFromSnakeCase: Bool = false, reportErrors: Bool = true) -> T? {
         guard let data = self.data else { return nil }
         do {
             let decoder = JSONDecoder()
