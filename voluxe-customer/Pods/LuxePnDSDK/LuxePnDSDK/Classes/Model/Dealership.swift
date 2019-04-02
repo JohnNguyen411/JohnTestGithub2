@@ -22,6 +22,7 @@ import CoreLocation
     public dynamic var enabled: Bool = true
     public dynamic var createdAt: Date?
     public dynamic var updatedAt: Date?
+    public dynamic var preferredVehicleOdometerReadingUnit: String? // Driver Use only
     
     private enum CodingKeys: String, CodingKey {
         case id
@@ -34,7 +35,8 @@ import CoreLocation
         case currencyId = "currency_id"
         case enabled
         case createdAt = "created_at" 
-        case updatedAt = "updated_at" 
+        case updatedAt = "updated_at"
+        case preferredVehicleOdometerReadingUnit = "preferred_vehicle_odometer_reading_unit"
     }
     
     
@@ -50,6 +52,7 @@ import CoreLocation
         self.coverageRadius = try container.decodeIfPresent(Int.self, forKey: .coverageRadius) ?? 1
         self.currencyId = try container.decodeIfPresent(Int.self, forKey: .currencyId) ?? -1
         self.enabled = try container.decodeIfPresent(Bool.self, forKey: .enabled) ?? true
+        self.preferredVehicleOdometerReadingUnit = try container.decodeIfPresent(String.self, forKey: .preferredVehicleOdometerReadingUnit)
         self.createdAt = try container.decodeIfPresent(Date.self, forKey: .createdAt)
         self.updatedAt = try container.decodeIfPresent(Date.self, forKey: .updatedAt)
     }
@@ -65,6 +68,7 @@ import CoreLocation
         try container.encodeIfPresent(coverageRadius, forKey: .coverageRadius)
         try container.encodeIfPresent(currencyId, forKey: .currencyId)
         try container.encode(enabled, forKey: .enabled)
+        try container.encodeIfPresent(preferredVehicleOdometerReadingUnit, forKey: .preferredVehicleOdometerReadingUnit)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }

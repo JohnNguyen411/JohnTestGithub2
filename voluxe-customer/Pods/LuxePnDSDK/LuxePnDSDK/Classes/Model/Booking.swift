@@ -46,7 +46,7 @@ import Foundation
         case dealership
         case loanerVehicleRequested = "loaner_vehicle_requested"
         case loanerVehicleId = "loaner_vehicle_id"
-        case loanerVehicle
+        case loanerVehicle = "loaner_vehicle"
         case pickupRequest = "pickup_request"
         case pickupRequestId = "pickup_request_id"
         case dropoffRequest = "dropoff_request"
@@ -67,7 +67,7 @@ import Foundation
         self.vehicleId = try container.decode(Int.self, forKey: .vehicleId)
         self.vehicle = try container.decodeIfPresent(Vehicle.self, forKey: .vehicle)
         self.dealershipId = try container.decode(Int.self, forKey: .dealershipId)
-        self.dealership = try container.decode(Dealership.self, forKey: .dealership)
+        self.dealership = try container.decodeIfPresent(Dealership.self, forKey: .dealership)
         self.loanerVehicleRequested = try container.decodeIfPresent(Bool.self, forKey: .loanerVehicleRequested) ?? false
         self.loanerVehicleId = try container.decodeIfPresent(Int.self, forKey: .loanerVehicleId) ?? -1
         self.loanerVehicle = try container.decodeIfPresent(Vehicle.self, forKey: .loanerVehicle)
@@ -90,7 +90,7 @@ import Foundation
         try container.encode(vehicleId, forKey: .vehicleId)
         try container.encodeIfPresent(vehicle, forKey: .vehicle)
         try container.encode(dealershipId, forKey: .dealershipId)
-        try container.encode(dealership, forKey: .dealership)
+        try container.encodeIfPresent(dealership, forKey: .dealership)
         try container.encodeIfPresent(loanerVehicleRequested, forKey: .loanerVehicleRequested)
         try container.encodeIfPresent(loanerVehicleId, forKey: .loanerVehicleId)
         try container.encodeIfPresent(loanerVehicle, forKey: .loanerVehicle)
@@ -112,20 +112,36 @@ import Foundation
     
     public func hasUpcomingRequestToday() -> Bool {
         if let pickupRequest = pickupRequest {
-            if pickupRequest.getState() == .requested || pickupRequest.getState() == .started {
+            if pickupRequest.state == .requested || pickupRequest.state == .started {
                 if pickupRequest.isToday() {
                     return true
                 }
             }
         }
         if let dropOffRequest = dropoffRequest {
-            if dropOffRequest.getState() == .requested || dropOffRequest.getState() == .started {
+            if dropOffRequest.state == .requested || dropOffRequest.state == .started {
                 if dropOffRequest.isToday() {
                     return true
                 }
             }
         }
         return false
+    }
+    
+    
+    // Repair Orders methods:
+    
+    public func repairOrderIds() -> String {
+        var rosID = ""
+        for ro in self.repairOrderRequests {
+            if let roID = ro.repairOrderId {
+                rosID.append("\(roID),")
+            }
+        }
+        if rosID.count > 0 {
+            rosID.removeLast()
+        }
+        return rosID
     }
     
     public func getRepairOrderName() -> String {
@@ -169,11 +185,11 @@ import Foundation
             || state == .arrivedForDropoff || state == .arrivedForPickup) {
             return true
         } else if state == .pickupScheduled {
-            if let pickupRequest = self.pickupRequest, let type = pickupRequest.getType(), type == .advisorPickup {
+            if let pickupRequest = self.pickupRequest, let type = pickupRequest.type, type == .advisorPickup {
                 return true
             }
         } else if state == .dropoffScheduled {
-            if let dropoffRequest = self.dropoffRequest, let type = dropoffRequest.getType(), type == .advisorDropoff {
+            if let dropoffRequest = self.dropoffRequest, let type = dropoffRequest.type, type == .advisorDropoff {
                 return true
             }
         }
@@ -185,23 +201,23 @@ import Foundation
     }
     
     public func isSelfIB() -> Bool {
-        if let pickupRequest = self.pickupRequest, let type = pickupRequest.getType() {
+        if let pickupRequest = self.pickupRequest, let type = pickupRequest.type {
             return type == .advisorPickup
         }
         return false
     }
     
     public func isSelfOB() -> Bool {
-        if let dropoffRequest = self.dropoffRequest, let type = dropoffRequest.getType() {
+        if let dropoffRequest = self.dropoffRequest, let type = dropoffRequest.type {
             return type == .advisorDropoff
         }
         return false
     }
     
-    public func getCurrentRequestType() -> RequestType? {
-        if let dropoffRequest = self.dropoffRequest, let type = dropoffRequest.getType() {
+    public func getCurrentRequestType() -> Type? {
+        if let dropoffRequest = self.dropoffRequest, let type = dropoffRequest.type {
             return type
-        } else if let pickupRequest = self.pickupRequest, let type = pickupRequest.getType() {
+        } else if let pickupRequest = self.pickupRequest, let type = pickupRequest.type {
             return type
         } else {
             return nil
@@ -209,9 +225,9 @@ import Foundation
     }
     
     public func getLastCompletedRequest() -> Request? {
-        if let dropoffRequest = self.dropoffRequest, dropoffRequest.getState() == .completed {
+        if let dropoffRequest = self.dropoffRequest, dropoffRequest.state == .completed {
             return dropoffRequest
-        } else if let pickupRequest = self.pickupRequest, pickupRequest.getState() == .completed {
+        } else if let pickupRequest = self.pickupRequest, pickupRequest.state == .completed {
             return pickupRequest
         }
         return nil

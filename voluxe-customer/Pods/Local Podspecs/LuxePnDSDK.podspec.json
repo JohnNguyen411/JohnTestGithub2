@@ -1,6 +1,6 @@
 {
   "name": "LuxePnDSDK",
-  "version": "0.1.20",
+  "version": "0.2.9",
   "summary": "LuxePnDSDK allows you to easily interface with the Luxe API services.",
   "swift_version": "4.2",
   "description": "TODO: Add long description of the pod here.",
@@ -14,7 +14,7 @@
   },
   "source": {
     "git": "git@github.com:volvo-cars/ios-luxepnd-sdk.git",
-    "tag": "0.1.20"
+    "tag": "0.2.9"
   },
   "platforms": {
     "ios": "8.0"

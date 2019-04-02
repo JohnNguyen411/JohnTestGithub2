@@ -36,7 +36,7 @@ open class CustomerAPI: LuxeAPI {
         self.api.initToken(token: token)
     }
     
-    override func updateHeaders() {
+    override open func updateHeaders() {
         super.updateHeaders()
         self.headers["X-CLIENT-ID"] = self.host.clientId
         self.headers["x-application-version"] = "\(applicationVersion ?? "")"

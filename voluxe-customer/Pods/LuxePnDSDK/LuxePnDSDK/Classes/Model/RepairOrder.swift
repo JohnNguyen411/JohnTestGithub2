@@ -22,17 +22,28 @@ import Foundation
     public dynamic var createdAt: Date?
     public dynamic var updatedAt: Date?
     
+    // Driver Fields
+    public dynamic var repairOrderId: String?
+    public dynamic var dealershipRepairOrder: DealershipRepairOrder?
+    public dynamic var roDescription: String?
+    public dynamic var completedAt: Date?
+    public dynamic var startedAt: Date?
+    
     private enum CodingKeys: String, CodingKey {
         case id
         case bookingId = "booking_id"
+        case repairOrderId = "repair_order_id"
         case dealershipRepairOrderId = "dealership_repair_order_id"
         case notes
         case state
         case vehicleDrivable = "vehicle_drivable"
         case dealershipRepairOrder = "dealership_repair_order"
         case title
+        case roDescription = "description"
         case createdAt = "created_at"
         case updatedAt = "updated_at"
+        case completedAt = "completed_at"
+        case startedAt = "started_at"
     }
     
     
@@ -54,6 +65,8 @@ import Foundation
         self.state = try container.decodeIfPresent(String.self, forKey: .state)
         self.vehicleDrivable = try container.decodeIfPresent(Bool.self, forKey: .vehicleDrivable) ?? true
         
+        self.repairOrderId = try container.decodeIfPresent(String.self, forKey: .repairOrderId)
+        self.dealershipRepairOrder = try container.decodeIfPresent(DealershipRepairOrder.self, forKey: .dealershipRepairOrder)
         let dealershipRepairOrderContainer = try container.nestedContainer(keyedBy: DealershipRepairOrderKeys.self, forKey: .dealershipRepairOrder)
         let repairOrderTypeContainer = try dealershipRepairOrderContainer.nestedContainer(keyedBy: RepairOrderTypeKeys.self, forKey: .repairOrderType)
         self.repairOrderType = try dealershipRepairOrderContainer.decodeIfPresent(RepairOrderType.self, forKey: .repairOrderType)
@@ -77,6 +90,11 @@ import Foundation
         var repairOrderTypeContainer = encoder.container(keyedBy: RepairOrderTypeKeys.self)
         try repairOrderTypeContainer.encodeIfPresent(name, forKey: RepairOrderTypeKeys.name)
         try container.encodeIfPresent(title, forKey: .title)
+        try container.encodeIfPresent(roDescription, forKey: .roDescription)
+        try container.encodeIfPresent(repairOrderId, forKey: .repairOrderId)
+        try container.encodeIfPresent(dealershipRepairOrder, forKey: .dealershipRepairOrder)
+        try container.encodeIfPresent(completedAt, forKey: .completedAt)
+        try container.encodeIfPresent(startedAt, forKey: .startedAt)
         try container.encodeIfPresent(createdAt, forKey: .createdAt)
         try container.encodeIfPresent(updatedAt, forKey: .updatedAt)
     }
