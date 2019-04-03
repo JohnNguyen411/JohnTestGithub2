@@ -108,7 +108,7 @@ class ScheduledDropoffViewController: ScheduledViewController, ScheduleSelfDropM
     
     func onRescheduleClick() {
         if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
-            RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .driverDropoff)
+            RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .dropoff)
             self.pushViewController(SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true)
         }
     }

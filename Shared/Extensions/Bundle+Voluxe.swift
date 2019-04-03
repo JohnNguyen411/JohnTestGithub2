@@ -34,8 +34,10 @@ extension Bundle {
     /// If the bundle's Info.plist does not have a "Scheme" value, then
     /// this will assert in debug and default to "Dev" in release builds.
     var scheme: String {
-        let scheme = self.object(forInfoDictionaryKey: "Scheme")
-        assert(scheme != nil, "No scheme value in Info.plist")
-        return (scheme as? String) ?? "Dev"
+        if let scheme = self.object(forInfoDictionaryKey: "Scheme") as? String {
+            return scheme
+        } else {
+            return "Development"
+        }
     }
 }

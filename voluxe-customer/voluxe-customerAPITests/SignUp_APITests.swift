@@ -13,6 +13,7 @@ class SignUp_APITests: XCTestCase {
 
     override func setUp() {
         self.continueAfterFailure = false
+        VolvoValetCustomerAPI.initApi(host: RestAPIHost.development, applicationVersion: "luxe_by_volvo_customer_ios:\(Bundle.main.version)")
     }
 
     // MARK:- Invalid inputs for /v1/customers/signup

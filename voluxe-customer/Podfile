@@ -50,6 +50,8 @@ target 'voluxe-customerUITests' do
     pod 'LuxePnDSDK', :git => 'git@github.com:volvo-cars/ios-luxepnd-sdk.git', :branch => '0.2.9'
     pod 'RealmSwift', '3.13.1'
     pod 'SwiftEventBus', '2.1.2'
+    pod 'Firebase/Core', '5.16.0'
+    pod 'Firebase/RemoteConfig', '5.16.0'
 end
 
 post_install do | installer |

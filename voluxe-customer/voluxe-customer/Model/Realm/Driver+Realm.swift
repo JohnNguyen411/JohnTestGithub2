@@ -38,6 +38,10 @@ extension Driver: VolvoRealmProtocol {
     dynamic var iconUrl: String?
     dynamic var location: LocationRealm?
     
+    // we implement that method to ignore values that we don't want to store in Realm
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+        // ignore
+    }
     
     override static func primaryKey() -> String? {
         return "id"

@@ -39,6 +39,7 @@ extension Customer: VolvoRealmProtocol {
     dynamic var firstName: String?
     dynamic var lastName: String?
     dynamic var marketCode: String?
+    dynamic var languageCode: String?
     dynamic var phoneNumber: String?
     dynamic var phoneNumberVerified: Bool = false
     dynamic var passwordResetRequired: Bool = false
@@ -49,6 +50,12 @@ extension Customer: VolvoRealmProtocol {
     dynamic var location: LocationRealm?
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
+    dynamic var lastLoginAt: Date?
+    
+    // we implement that method to ignore values that we don't want to store in Realm
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+        // ignore
+    }
     
     override static func primaryKey() -> String? {
         return "id"

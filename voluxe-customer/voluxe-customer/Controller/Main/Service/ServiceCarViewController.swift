@@ -519,11 +519,11 @@ class ServiceCarViewController: BaseVehicleViewController, LocationManagerDelega
     
     func deliveryButtonClick() {
         if StateServiceManager.sharedInstance.isPickup(vehicleId: vehicle.id) {
-            RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .driverPickup)
+            RequestedServiceManager.sharedInstance.setPickupRequestType(requestType: .pickup)
             self.pushViewController(SchedulingPickupViewController(vehicle: vehicle, state: .schedulingService), animated: true)
         } else {
             if let booking = UserManager.sharedInstance.getLastBookingForVehicle(vehicle: vehicle) {
-                RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .driverDropoff)
+                RequestedServiceManager.sharedInstance.setDropOffRequestType(requestType: .dropoff)
                 self.pushViewController(SchedulingDropoffViewController(state: .schedulingDelivery, booking: booking), animated: true)
             }
         }

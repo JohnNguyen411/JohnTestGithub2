@@ -40,6 +40,11 @@ extension VehicleModel: VolvoRealmProtocol {
     dynamic var createdAt: Date?
     dynamic var updatedAt: Date?
     
+    // we implement that method to ignore values that we don't want to store in Realm
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+        // ignore
+    }
+    
     override static func primaryKey() -> String? {
         return "id"
     }

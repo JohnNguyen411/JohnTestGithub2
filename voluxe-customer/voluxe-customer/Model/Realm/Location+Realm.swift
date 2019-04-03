@@ -42,6 +42,11 @@ extension Location: VolvoRealmProtocol {
     dynamic var updatedAt: Date?
     dynamic var location: CLLocationCoordinate2D?
     
+    // we implement that method to ignore values that we don't want to store in Realm
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+        // ignore
+    }
+    
     override static func ignoredProperties() -> [String] {
         return ["location"]
     }

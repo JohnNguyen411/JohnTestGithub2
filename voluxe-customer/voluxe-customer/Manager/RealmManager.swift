@@ -12,7 +12,7 @@ import RealmSwift
 /// RealmManager is use to run Realm Migrations
 class RealmManager {
     
-    private static let dbVersion: UInt64 = 15
+    private static let dbVersion: UInt64 = 16
     
     public static func realmMigration(callback: @escaping (Realm?, Swift.Error?) -> Void) {
         
@@ -123,14 +123,9 @@ class RealmManager {
                 }
             }
             
-            // just need to migrate
-            if oldSchemaVersion < 14 {
-               
-            }
-            
         })
         
-        config.deleteRealmIfMigrationNeeded = oldVersion <= 14
+        config.deleteRealmIfMigrationNeeded = oldVersion <= 15
         
         Realm.Configuration.defaultConfiguration = config
         Realm.asyncOpen(configuration: config) { realm, error in

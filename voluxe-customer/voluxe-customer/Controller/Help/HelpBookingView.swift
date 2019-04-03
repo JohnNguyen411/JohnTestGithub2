@@ -24,7 +24,7 @@ class HelpBookingView: UIView {
     var booking: Booking? {
         didSet {
             if let booking = self.booking {
-                if let dropoffRequest = booking.dropoffRequest, dropoffRequest.getState() == .completed {
+                if let dropoffRequest = booking.dropoffRequest, dropoffRequest.state == .completed {
                     self.request = dropoffRequest
                     title = String.localized(.yourLastDelivery).uppercased()
                     titleLabel.text = title

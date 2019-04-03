@@ -41,6 +41,11 @@ extension CustomerAddress: VolvoRealmProtocol {
     dynamic var updatedAt: Date?
     dynamic var luxeCustomerId: Int = -1
     
+    // we implement that method to ignore values that we don't want to store in Realm
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+        // ignore
+    }
+    
     override static func primaryKey() -> String? {
         return "id"
     }

@@ -13,6 +13,7 @@
 		521EC06022027FE600EEDE29 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521EC05E22027FE600EEDE29 /* Localized.swift */; };
 		521EC06122027FE600EEDE29 /* Localized.swift in Sources */ = {isa = PBXBuildFile; fileRef = 521EC05E22027FE600EEDE29 /* Localized.swift */; };
 		522F2FBC21B757CB000236ED /* UIImage+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F2FBB21B757CB000236ED /* UIImage+LuxeAPI.swift */; };
+		524147AC225434DA00E3441D /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C7DDE0E1FDB64CC000E2822 /* Logger.swift */; };
 		524592C8223AD2DE00CC0D6D /* Vehicle+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524592C7223AD2DE00CC0D6D /* Vehicle+Customer.swift */; };
 		524592CA223AD46F00CC0D6D /* RepairOrder+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524592C9223AD46F00CC0D6D /* RepairOrder+Customer.swift */; };
 		524592CC223AD4BA00CC0D6D /* RepairOrderType+Customer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 524592CB223AD4BA00CC0D6D /* RepairOrderType+Customer.swift */; };
@@ -51,6 +52,7 @@
 		526F6E8121B9DD88007C7D84 /* UIImage+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 522F2FBB21B757CB000236ED /* UIImage+LuxeAPI.swift */; };
 		52758F1C219E3AF3007E488A /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */; };
 		52758F1D219E3AF3007E488A /* DateFormatter+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52758F1B219E3AF3007E488A /* DateFormatter+LuxeAPI.swift */; };
+		527FB9F422543323004716DD /* RemoteConfigManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C9C9067209D127100494068 /* RemoteConfigManager.swift */; };
 		528A8E03216D878600B4B315 /* lbv-mobile-strings in Resources */ = {isa = PBXBuildFile; fileRef = 528A8E02216D878600B4B315 /* lbv-mobile-strings */; };
 		52940965219220B50009F691 /* Thread+Assert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940963219220B50009F691 /* Thread+Assert.swift */; };
 		52940966219220B50009F691 /* UserDefaults+LuxeAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52940964219220B50009F691 /* UserDefaults+LuxeAPI.swift */; };
@@ -2050,18 +2052,24 @@
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-voluxe-customerUITests/Pods-voluxe-customerUITests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/LuxePnDSDK/LuxePnDSDK.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftEventBus/SwiftEventBus.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LuxePnDSDK.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftEventBus.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -2632,6 +2640,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5316E97F2200FDE40053832E /* LogService.swift in Sources */,
+				524147AC225434DA00E3441D /* Logger.swift in Sources */,
 				524C201521ACAC6A003AA733 /* LuxeAPI+Version.swift in Sources */,
 				524C202121ACBA5D003AA733 /* AdminAPI.swift in Sources */,
 				521EC06122027FE600EEDE29 /* Localized.swift in Sources */,
@@ -2648,6 +2657,7 @@
 				524C201221ACAC62003AA733 /* UserDefaults+LuxeAPI.swift in Sources */,
 				524C202321ACBB17003AA733 /* AdminAPI+Customer.swift in Sources */,
 				53EF28DA20AE0798006CC5FA /* Config.swift in Sources */,
+				527FB9F422543323004716DD /* RemoteConfigManager.swift in Sources */,
 				5316E97E2200FDE40053832E /* OSLog.swift in Sources */,
 				538FE76120BF4B9F00C3CE17 /* String+Test.swift in Sources */,
 				524C2000219F427A003AA733 /* RealmSwift+Codable.swift in Sources */,
